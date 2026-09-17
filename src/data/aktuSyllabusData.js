@@ -30,8 +30,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Unit Notes',
             author: 'Multi Atoms',
             date: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths1-Unit1-byMultiAtoms%20%283%29.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths1-Unit1-byMultiAtoms%20%283%29.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           },
@@ -41,8 +41,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -59,8 +59,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Unit Notes',
             author: 'Multi Atoms',
             date: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths1-Unit2-byMultiAtoms%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths1-Unit2-byMultiAtoms%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           },
@@ -70,8 +70,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -88,8 +88,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -106,8 +106,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -124,8 +124,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -156,8 +156,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -174,8 +174,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Unit Notes',
             author: 'Multi Atoms',
             date: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/pps_unit%202%20multiatoms.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/pps_unit%202%20multiatoms.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           },
@@ -185,8 +185,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -203,8 +203,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -221,8 +221,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -239,8 +239,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -271,8 +271,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -289,8 +289,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -307,8 +307,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -325,8 +325,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -343,8 +343,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -375,8 +375,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -393,8 +393,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -411,8 +411,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -429,8 +429,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -447,8 +447,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -481,8 +481,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -499,8 +499,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -517,8 +517,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -535,8 +535,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -553,8 +553,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -585,8 +585,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -603,8 +603,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -621,8 +621,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -639,8 +639,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -657,8 +657,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -678,11 +678,11 @@ export const AKTU_SYLLABUS_DATA = [
     credits: 3,
     description: 'Semiconductor Diodes, BJT, Op-Amp, Digital Electronics, and Communication Systems Overview.',
     units: [
-      { unitNo: 1, title: 'Semiconductor Diodes & Applications', topics: ['PN Junction Diode', 'Rectifiers & Filters', 'Zener Diode Regulator'], notes: [{ id: 'kec-201-u1', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf' }] },
-      { unitNo: 2, title: 'Bipolar Junction Transistors (BJT)', topics: ['BJT Configurations', 'Biasing Techniques', 'Amplifier Action'], notes: [{ id: 'kec-201-u2', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf' }] },
-      { unitNo: 3, title: 'Operational Amplifiers (Op-Amp)', topics: ['Ideal Op-Amp', 'Inverting & Non-Inverting Amplifiers', 'Summing & Difference Amplifiers'], notes: [{ id: 'kec-201-u3', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf' }] },
-      { unitNo: 4, title: 'Digital Electronics Fundamentals', topics: ['Number Systems & Binary Codes', 'Logic Gates & Truth Tables', 'Boolean Algebra Simplification'], notes: [{ id: 'kec-201-u4', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf' }] },
-      { unitNo: 5, title: 'Fundamentals of Communication Engineering', topics: ['Need for Modulation', 'AM & FM Basics', 'Satellite & Cellular Communication Overview'], notes: [{ id: 'kec-201-u5', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Electronics%20Quantam.pdf' }] }
+      { unitNo: 1, title: 'Semiconductor Diodes & Applications', topics: ['PN Junction Diode', 'Rectifiers & Filters', 'Zener Diode Regulator'], notes: [{ id: 'kec-201-u1', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 2, title: 'Bipolar Junction Transistors (BJT)', topics: ['BJT Configurations', 'Biasing Techniques', 'Amplifier Action'], notes: [{ id: 'kec-201-u2', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 3, title: 'Operational Amplifiers (Op-Amp)', topics: ['Ideal Op-Amp', 'Inverting & Non-Inverting Amplifiers', 'Summing & Difference Amplifiers'], notes: [{ id: 'kec-201-u3', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 4, title: 'Digital Electronics Fundamentals', topics: ['Number Systems & Binary Codes', 'Logic Gates & Truth Tables', 'Boolean Algebra Simplification'], notes: [{ id: 'kec-201-u4', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 5, title: 'Fundamentals of Communication Engineering', topics: ['Need for Modulation', 'AM & FM Basics', 'Satellite & Cellular Communication Overview'], notes: [{ id: 'kec-201-u5', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] }
     ]
   },
   {
@@ -697,11 +697,11 @@ export const AKTU_SYLLABUS_DATA = [
     credits: 3,
     description: 'Thermodynamics Laws, IC Engines, Refrigeration, Power Transmission, and Engineering Materials.',
     units: [
-      { unitNo: 1, title: 'Introduction to Thermodynamics & IC Engines', topics: ['First & Second Laws', '4-Stroke & 2-Stroke Petrol/Diesel Engines', 'Engine Performance Metrics'], notes: [{ id: 'kme-201-u1', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf' }] },
-      { unitNo: 2, title: 'Refrigeration & Air Conditioning', topics: ['Vapor Compression Refrigeration System (VCRS)', 'Refrigerants & COP', 'Psychrometric Chart Basics'], notes: [{ id: 'kme-201-u2', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf' }] },
-      { unitNo: 3, title: 'Fluid Mechanics & Turbines', topics: ['Fluid Properties & Pascal Law', 'Bernoulli Theorem & Applications', 'Hydraulic Turbines & Pumps'], notes: [{ id: 'kme-201-u3', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf' }] },
-      { unitNo: 4, title: 'Power Transmission & Drives', topics: ['Belt, Rope & Chain Drives', 'Gear Trains & Types of Gears', 'Clutches & Brakes Overview'], notes: [{ id: 'kme-201-u4', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf' }] },
-      { unitNo: 5, title: 'Engineering Materials & Manufacturing', topics: ['Ferrous & Non-Ferrous Metals', 'Stress-Strain Curve for Mild Steel', 'Lathe, Drilling & Welding Processes'], notes: [{ id: 'kme-201-u5', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf', sourceUrl: 'https://aktu-quantum.tech/pdfs/Mechanical%20Quantam.pdf' }] }
+      { unitNo: 1, title: 'Introduction to Thermodynamics & IC Engines', topics: ['First & Second Laws', '4-Stroke & 2-Stroke Petrol/Diesel Engines', 'Engine Performance Metrics'], notes: [{ id: 'kme-201-u1', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 2, title: 'Refrigeration & Air Conditioning', topics: ['Vapor Compression Refrigeration System (VCRS)', 'Refrigerants & COP', 'Psychrometric Chart Basics'], notes: [{ id: 'kme-201-u2', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 3, title: 'Fluid Mechanics & Turbines', topics: ['Fluid Properties & Pascal Law', 'Bernoulli Theorem & Applications', 'Hydraulic Turbines & Pumps'], notes: [{ id: 'kme-201-u3', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 4, title: 'Power Transmission & Drives', topics: ['Belt, Rope & Chain Drives', 'Gear Trains & Types of Gears', 'Clutches & Brakes Overview'], notes: [{ id: 'kme-201-u4', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 5, title: 'Engineering Materials & Manufacturing', topics: ['Ferrous & Non-Ferrous Metals', 'Stress-Strain Curve for Mild Steel', 'Lathe, Drilling & Welding Processes'], notes: [{ id: 'kme-201-u5', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] }
     ]
   },
 
@@ -733,8 +733,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -751,8 +751,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -769,8 +769,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -787,8 +787,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -805,8 +805,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -837,8 +837,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -855,8 +855,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -873,8 +873,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -891,8 +891,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -909,8 +909,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -941,8 +941,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -959,8 +959,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -977,8 +977,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -995,8 +995,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1013,8 +1013,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1123,8 +1123,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1141,8 +1141,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1159,8 +1159,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1177,8 +1177,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1195,8 +1195,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1227,8 +1227,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1245,8 +1245,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1263,8 +1263,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1281,8 +1281,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1299,8 +1299,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1394,8 +1394,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1412,8 +1412,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1430,8 +1430,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1448,8 +1448,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1466,8 +1466,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1517,8 +1517,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1535,8 +1535,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1553,8 +1553,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1571,8 +1571,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }
@@ -1589,8 +1589,8 @@ export const AKTU_SYLLABUS_DATA = [
             type: 'Quantum PDF',
             author: 'Quantum Series',
             date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             source: 'aktu-quantum.tech',
             verified: true
           }

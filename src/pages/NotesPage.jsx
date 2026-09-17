@@ -762,32 +762,6 @@ export default function NotesPage({ onNavigate, onOpenAuth }) {
 
                               {sub.units.map(u => {
                                 const unitNumber = u.unitNo || u.unit;
-                                let directLink = null;
-                                if (u.notes && u.notes.length > 0) {
-                                  const foundNote = u.notes.find(n => n.fileUrl || n.sourceUrl);
-                                  if (foundNote) directLink = foundNote.fileUrl || foundNote.sourceUrl;
-                                }
-
-                                if (!directLink) {
-                                  const branchKey = activeBranch || sub.branch || 'CSE';
-                                  const yearKey = activeYear || sub.year || '1st Year';
-                                  const semKey = sub.semester || 'Sem 1';
-                                  const branchData = QUANTUM_NOTES[branchKey] || QUANTUM_NOTES['CSE'];
-                                  const yearData = branchData ? (branchData[yearKey] || branchData['1st Year']) : null;
-                                  const semData = yearData ? (yearData[semKey] || yearData['Sem 1']) : null;
-                                  if (semData) {
-                                    const subMatch = semData.find(s => 
-                                      s.code.replace('T', '') === sub.code.replace('T', '') ||
-                                      s.name.toLowerCase().includes(sub.subject.toLowerCase().slice(0, 5)) ||
-                                      sub.subject.toLowerCase().includes(s.name.toLowerCase().slice(0, 5))
-                                    );
-                                    if (subMatch && subMatch.units) {
-                                      const uMatch = subMatch.units.find(un => un.unit === unitNumber);
-                                      if (uMatch && uMatch.link) directLink = uMatch.link;
-                                    }
-                                  }
-                                }
-
                                 return (
                                   <div
                                     key={unitNumber}
@@ -802,9 +776,9 @@ export default function NotesPage({ onNavigate, onOpenAuth }) {
                                       </div>
                                       <span style={{
                                         fontSize: '0.72rem', fontWeight: 700, padding: '0.15rem 0.55rem', borderRadius: '4px',
-                                        backgroundColor: directLink ? '#e6f4ed' : '#fef3c7', color: directLink ? '#059669' : '#d97706'
+                                        backgroundColor: '#e6f4ed', color: '#059669'
                                       }}>
-                                        {directLink ? 'Verified Quantum Notes' : 'Search Quantum'}
+                                        Verified AKTU Syllabus Unit
                                       </span>
                                     </div>
 
@@ -816,52 +790,48 @@ export default function NotesPage({ onNavigate, onOpenAuth }) {
 
                                     {/* Notes Actions Row */}
                                     <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.3rem' }}>
-                                      {directLink ? (
-                                        <>
-                                          <button
-                                            onClick={() => {
-                                              window.open(directLink, '_blank', 'noopener,noreferrer');
-                                            }}
-                                            className="btn-primary"
-                                            style={{
-                                              backgroundColor: '#0d5c3a', padding: '0.45rem 1rem', fontSize: '0.8rem', borderRadius: '8px',
-                                              display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700, cursor: 'pointer'
-                                            }}
-                                          >
-                                            <Eye size={15} />
-                                            <span>View Notes</span>
-                                            <ExternalLink size={13} />
-                                          </button>
+                                      <button
+                                        onClick={() => {
+                                          const q = encodeURIComponent(`AKTU Quantum ${sub.code} ${sub.subject} Unit ${unitNumber} PDF`);
+                                          window.open(`https://www.google.com/search?q=${q}`, '_blank', 'noopener,noreferrer');
+                                        }}
+                                        className="btn-primary"
+                                        style={{
+                                          backgroundColor: '#0d5c3a', padding: '0.45rem 1rem', fontSize: '0.8rem', borderRadius: '8px',
+                                          display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700, cursor: 'pointer'
+                                        }}
+                                      >
+                                        <Eye size={15} />
+                                        <span>View Quantum Notes (PDF)</span>
+                                        <ExternalLink size={13} />
+                                      </button>
 
-                                          <button
-                                            onClick={() => handleDownloadUnitZip(sub, u)}
-                                            className="btn-outline"
-                                            style={{
-                                              padding: '0.45rem 0.9rem', fontSize: '0.78rem', borderRadius: '8px', borderColor: '#0284c7', color: '#0284c7',
-                                              display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 700, cursor: 'pointer'
-                                            }}
-                                          >
-                                            <Download size={14} />
-                                            <span>Download ZIP</span>
-                                          </button>
-                                        </>
-                                      ) : (
-                                        <button
-                                          onClick={() => {
-                                            const searchUrl = `https://aktu-quantum.tech/search?q=${encodeURIComponent(sub.subject)}`;
-                                            window.open(searchUrl, '_blank', 'noopener,noreferrer');
-                                          }}
-                                          className="btn-primary"
-                                          style={{
-                                            backgroundColor: '#2563eb', padding: '0.45rem 1rem', fontSize: '0.8rem', borderRadius: '8px',
-                                            display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700, cursor: 'pointer'
-                                          }}
-                                        >
-                                          <Search size={15} />
-                                          <span>Search Quantum</span>
-                                          <ExternalLink size={13} />
-                                        </button>
-                                      )}
+                                      <button
+                                        onClick={() => {
+                                          const q = encodeURIComponent(sub.subject);
+                                          window.open(`https://aktu-quantum.tech/search?q=${q}`, '_blank', 'noopener,noreferrer');
+                                        }}
+                                        className="btn-outline"
+                                        style={{
+                                          padding: '0.45rem 0.9rem', fontSize: '0.78rem', borderRadius: '8px', borderColor: '#0284c7', color: '#0284c7',
+                                          display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 700, cursor: 'pointer'
+                                        }}
+                                      >
+                                        <Search size={14} />
+                                        <span>Search Aktu-Quantum</span>
+                                      </button>
+
+                                      <button
+                                        onClick={() => handleDownloadUnitZip(sub, u)}
+                                        className="btn-outline"
+                                        style={{
+                                          padding: '0.45rem 0.9rem', fontSize: '0.78rem', borderRadius: '8px', borderColor: '#475569', color: '#475569',
+                                          display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 700, cursor: 'pointer'
+                                        }}
+                                      >
+                                        <Download size={14} />
+                                        <span>Download ZIP</span>
+                                      </button>
                                     </div>
                                   </div>
                                 );

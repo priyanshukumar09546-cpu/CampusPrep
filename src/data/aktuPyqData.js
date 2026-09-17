@@ -28,8 +28,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths1-2024-u1',
             title: 'AKTU Maths-I Unit 1 PYQ Paper (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths1-Unit1-byMultiAtoms%20%283%29.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths1-Unit1-byMultiAtoms%20%283%29.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -44,8 +44,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths1-2024-u2',
             title: 'AKTU Maths-I Unit 2 PYQ Paper (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths1-Unit2-byMultiAtoms%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths1-Unit2-byMultiAtoms%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -60,8 +60,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths1-2023-u3',
             title: 'AKTU Maths-I Solved Quantum PYQ (2023)',
             examYear: '2023',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -76,8 +76,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths1-2023-u4',
             title: 'AKTU Maths-I Solved Quantum PYQ (2023)',
             examYear: '2023',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -92,8 +92,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths1-2023-u5',
             title: 'AKTU Maths-I Solved Quantum PYQ (2023)',
             examYear: '2023',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/maths%201%20quantum_compressed.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -122,8 +122,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-pps-2024-u1',
             title: 'AKTU PPS Solved Quantum PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -138,8 +138,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-pps-2024-u2',
             title: 'AKTU PPS Unit 2 PYQ Paper (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/pps_unit%202%20multiatoms.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/pps_unit%202%20multiatoms.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -154,8 +154,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-pps-2023-u3',
             title: 'AKTU PPS Solved Quantum PYQ (2023)',
             examYear: '2023',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -170,8 +170,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-pps-2023-u4',
             title: 'AKTU PPS Solved Quantum PYQ (2023)',
             examYear: '2023',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -186,8 +186,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-pps-2023-u5',
             title: 'AKTU PPS Solved Quantum PYQ (2023)',
             examYear: '2023',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/PPS%20%28Latest%2020222-2023%29%20Quantum%20Series%20%7BSearchable%7D.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -216,8 +216,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-physics-2024-u1',
             title: 'AKTU Physics Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -232,8 +232,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-physics-2024-u2',
             title: 'AKTU Physics Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -248,8 +248,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-physics-2024-u3',
             title: 'AKTU Physics Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -264,8 +264,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-physics-2024-u4',
             title: 'AKTU Physics Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -280,8 +280,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-physics-2024-u5',
             title: 'AKTU Physics Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Physics%20Quantam.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -310,8 +310,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-bee-2024-u1',
             title: 'AKTU BEE Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -326,8 +326,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-bee-2024-u2',
             title: 'AKTU BEE Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -342,8 +342,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-bee-2024-u3',
             title: 'AKTU BEE Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -358,8 +358,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-bee-2024-u4',
             title: 'AKTU BEE Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -374,8 +374,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-bee-2024-u5',
             title: 'AKTU BEE Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/BEE%202023-24%20.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -406,8 +406,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths2-2024-u1',
             title: 'AKTU Maths-II Topicwise PYQ Bank (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/ENG.%20MATH-2%20UNIT-1%20TO%205%20%28IMPOARTANT%20QUESTIONS%20TOPICWISE%29.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/ENG.%20MATH-2%20UNIT-1%20TO%205%20%28IMPOARTANT%20QUESTIONS%20TOPICWISE%29.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -422,8 +422,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths2-2024-u2',
             title: 'AKTU Maths-II Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -438,8 +438,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths2-2024-u3',
             title: 'AKTU Maths-II Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -454,8 +454,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths2-2024-u4',
             title: 'AKTU Maths-II Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -470,8 +470,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-maths2-2024-u5',
             title: 'AKTU Maths-II Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Maths%202%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -500,8 +500,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-chem-2024-u1',
             title: 'AKTU Chemistry Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -516,8 +516,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-chem-2024-u2',
             title: 'AKTU Chemistry Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -532,8 +532,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-chem-2024-u3',
             title: 'AKTU Chemistry Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -548,8 +548,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-chem-2024-u4',
             title: 'AKTU Chemistry Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -564,8 +564,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-chem-2024-u5',
             title: 'AKTU Chemistry Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Chemistry%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -638,8 +638,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-ds-2024-u1',
             title: 'AKTU Data Structures Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -654,8 +654,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-ds-2024-u2',
             title: 'AKTU Data Structures Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -670,8 +670,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-ds-2024-u3',
             title: 'AKTU Data Structures Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -686,8 +686,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-ds-2024-u4',
             title: 'AKTU Data Structures Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -702,8 +702,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-ds-2024-u5',
             title: 'AKTU Data Structures Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DS%20Quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -732,8 +732,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-coa-2024-u1',
             title: 'AKTU COA Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -748,8 +748,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-coa-2024-u2',
             title: 'AKTU COA Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -764,8 +764,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-coa-2024-u3',
             title: 'AKTU COA Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -780,8 +780,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-coa-2024-u4',
             title: 'AKTU COA Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -796,8 +796,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-coa-2024-u5',
             title: 'AKTU COA Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/COA%20Quantum%203rd%20Sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -826,8 +826,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dstl-2024-u1',
             title: 'AKTU Discrete Maths Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -842,8 +842,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dstl-2024-u2',
             title: 'AKTU Discrete Maths Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -858,8 +858,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dstl-2024-u3',
             title: 'AKTU Discrete Maths Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -874,8 +874,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dstl-2024-u4',
             title: 'AKTU Discrete Maths Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -890,8 +890,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dstl-2024-u5',
             title: 'AKTU Discrete Maths Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DSTL%20quantum%203rd%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -922,8 +922,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-os-2024-u1',
             title: 'AKTU OS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -938,8 +938,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-os-2024-u2',
             title: 'AKTU OS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -954,8 +954,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-os-2024-u3',
             title: 'AKTU OS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -970,8 +970,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-os-2024-u4',
             title: 'AKTU OS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -986,8 +986,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-os-2024-u5',
             title: 'AKTU OS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Operating%20System%20Quantum%20Series.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1016,8 +1016,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-tafl-2024-u1',
             title: 'AKTU TAFL Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1032,8 +1032,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-tafl-2024-u2',
             title: 'AKTU TAFL Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1048,8 +1048,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-tafl-2024-u3',
             title: 'AKTU TAFL Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1064,8 +1064,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-tafl-2024-u4',
             title: 'AKTU TAFL Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1080,8 +1080,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-tafl-2024-u5',
             title: 'AKTU TAFL Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/TAFL%20quantum%204th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1135,8 +1135,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dbms-2024-u1',
             title: 'AKTU DBMS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1151,8 +1151,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dbms-2024-u2',
             title: 'AKTU DBMS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1167,8 +1167,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dbms-2024-u3',
             title: 'AKTU DBMS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1183,8 +1183,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dbms-2024-u4',
             title: 'AKTU DBMS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1199,8 +1199,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-dbms-2024-u5',
             title: 'AKTU DBMS Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/DBMS%20quantum%205th%20sem.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1248,8 +1248,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-cn-2024-u1',
             title: 'AKTU Computer Networks Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1264,8 +1264,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-cn-2024-u2',
             title: 'AKTU Computer Networks Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1280,8 +1280,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-cn-2024-u3',
             title: 'AKTU Computer Networks Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1296,8 +1296,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-cn-2024-u4',
             title: 'AKTU Computer Networks Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }
@@ -1312,8 +1312,8 @@ export const AKTU_PYQ_DATA = [
             id: 'pyq-cn-2024-u5',
             title: 'AKTU Computer Networks Quantum Solved PYQ (2024)',
             examYear: '2024',
-            fileUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
-            sourceUrl: 'https://aktu-quantum.tech/pdfs/Computer%20Networks%20Quantum.pdf',
+            fileUrl: 'https://aktu-quantum.tech/',
+            sourceUrl: 'https://aktu-quantum.tech/',
             sourceType: 'Quantum PYQ PDF',
             verified: true
           }

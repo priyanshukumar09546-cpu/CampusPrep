@@ -99,14 +99,15 @@ export default function PYQsPage({ onNavigate, onOpenAuth }) {
       semester: activeSemester
     });
 
-    if (selectedBranches.length > 0) {
+    const is1stYear = (activeYear === '1st Year') || selectedYears.includes('1st Year');
+
+    if (selectedBranches.length > 0 && !is1stYear) {
       result = result.filter(s => 
         selectedBranches.includes(s.branch) || 
         (s.applicableBranches && (
           s.applicableBranches.includes('ALL') ||
           s.applicableBranches.some(b => selectedBranches.includes(b))
-        )) ||
-        s.year === '1st Year'
+        ))
       );
     }
     if (selectedYears.length > 0) {
@@ -119,39 +120,15 @@ export default function PYQsPage({ onNavigate, onOpenAuth }) {
       result = result.filter(s => selectedSubjects.includes(s.subject));
     }
 
-    // Attach PYQ records if present
-    return result.map(sObj => {
-      const matchPyqObj = AKTU_PYQ_DATA.find(p => p.code === sObj.code || p.subject === sObj.subject);
-      const updatedUnits = sObj.units.map(uObj => {
-        let unitPyqs = [];
-        if (matchPyqObj) {
-          const matchUnit = matchPyqObj.units.find(u => u.unitNo === uObj.unitNo);
-          if (matchUnit && matchUnit.pyqs) {
-            unitPyqs = matchUnit.pyqs;
-          }
-        }
-        if (selectedExamYearFilter !== 'All') {
-          unitPyqs = unitPyqs.filter(p => p.examYear && p.examYear.includes(selectedExamYearFilter));
-        }
-        return {
-          ...uObj,
-          pyqs: unitPyqs
-        };
-      });
-
-      if (selectedUnitFilter !== 'All') {
-        const uNum = parseInt(selectedUnitFilter.replace('Unit ', ''), 10);
-        return {
-          ...sObj,
-          units: updatedUnits.filter(u => u.unitNo === uNum)
-        };
-      }
-
-      return {
+    if (selectedUnitFilter !== 'All') {
+      const uNum = parseInt(selectedUnitFilter.replace('Unit ', ''), 10);
+      return result.map(sObj => ({
         ...sObj,
-        units: updatedUnits
-      };
-    });
+        units: sObj.units.filter(u => u.unitNo === uNum)
+      }));
+    }
+
+    return result;
   }, [activeBranch, activeYear, activeSemester, selectedBranches, selectedYears, selectedSemesters, selectedSubjects, selectedUnitFilter, selectedExamYearFilter, heroSearchQuery, subjectSearchQuery]);
 
   // Handle Branch Click -> Open Year Selection
@@ -544,17 +521,10 @@ export default function PYQsPage({ onNavigate, onOpenAuth }) {
                   fontSize: '0.82rem', backgroundColor: '#ffffff', outline: 'none', fontWeight: 600, color: '#334155'
                 }}
               >
-                <option value="All">All Exam Years</option>
-                <option value="2026">2026</option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
+                <option value="All">All Exam Years (2015 - 2025)</option>
+                {['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015'].map(yr => (
+                  <option key={yr} value={yr}>{yr}</option>
+                ))}
               </select>
             </div>
 
@@ -839,10 +809,27 @@ export default function PYQsPage({ onNavigate, onOpenAuth }) {
                               </div>
 
                               {sub.units.map(u => {
-                                const hasPyqs = u.pyqs && u.pyqs.length > 0;
+                                const unitNumber = u.unitNo || u.unit;
+                                const yearsList = selectedExamYearFilter !== 'All'
+                                  ? [selectedExamYearFilter]
+                                  : ['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015'];
+
+                                const openPyq = (yr) => {
+                                  const cleanName = sub.subject.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                                  const semNum = (sub.semester || '1').replace(/[^0-9]/g, '') || '1';
+                                  const codeClean = sub.code.toLowerCase().replace(/[^a-z0-9]/g, '');
+                                  const possibleUrl = `https://www.aktuonline.com/papers/btech-cs-${semNum}-sem-${cleanName}-${codeClean}-jan-${yr}.pdf`;
+                                  window.open(possibleUrl, '_blank', 'noopener,noreferrer');
+                                };
+
+                                const searchPyqGoogle = (yr) => {
+                                  const q = encodeURIComponent(`AKTU ${sub.code} ${sub.subject} ${yr} PYQ question paper pdf aktuonline`);
+                                  window.open(`https://www.google.com/search?q=${q}`, '_blank', 'noopener,noreferrer');
+                                };
+
                                 return (
                                   <div
-                                    key={u.unitNo}
+                                    key={unitNumber}
                                     style={{
                                       backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '14px', padding: '1rem',
                                       display: 'flex', flexDirection: 'column', gap: '0.65rem'
@@ -850,80 +837,57 @@ export default function PYQsPage({ onNavigate, onOpenAuth }) {
                                   >
                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
                                       <div style={{ fontWeight: 800, fontSize: '0.94rem', color: '#0f172a' }}>
-                                        Unit {u.unitNo}: {u.title}
+                                        Unit {unitNumber}: {u.title}
                                       </div>
                                       <span style={{
                                         fontSize: '0.72rem', fontWeight: 700, padding: '0.15rem 0.55rem', borderRadius: '4px',
-                                        backgroundColor: hasPyqs ? '#e6f4ed' : '#fef2f2', color: hasPyqs ? '#059669' : '#dc2626'
+                                        backgroundColor: '#e6f4ed', color: '#059669'
                                       }}>
-                                        {hasPyqs ? `${u.pyqs.length} Verified PYQ Papers` : 'PYQ not available yet'}
+                                        AKTU 10-Year Papers (2015 - 2025)
                                       </span>
                                     </div>
 
-                                    {/* Topics list */}
-                                    <div style={{ fontSize: '0.78rem', color: '#475569', lineHeight: 1.4 }}>
-                                      <strong>Focus Topics:</strong> {u.topics.join(' • ')}
-                                    </div>
+                                    {u.topics && u.topics.length > 0 && (
+                                      <div style={{ fontSize: '0.78rem', color: '#475569', lineHeight: 1.4 }}>
+                                        <strong>Focus Topics:</strong> {u.topics.join(' • ')}
+                                      </div>
+                                    )}
 
-                                    {/* PYQ Actions Row: [View PYQ] & [Download ZIP] */}
-                                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.3rem' }}>
-                                      {hasPyqs ? (
-                                        <>
-                                          {u.pyqs.map(p => (
+                                    {/* Exam Years Grid */}
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '0.5rem', marginTop: '0.4rem' }}>
+                                      {yearsList.map(yr => (
+                                        <div key={yr} style={{
+                                          backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '0.5rem 0.65rem',
+                                          display: 'flex', flexDirection: 'column', gap: '0.35rem'
+                                        }}>
+                                          <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#0f172a' }}>
+                                            {yr} Exam Paper
+                                          </div>
+                                          <div style={{ display: 'flex', gap: '0.3rem' }}>
                                             <button
-                                              key={p.id}
-                                              onClick={() => {
-                                                const targetUrl = p.fileUrl || p.sourceUrl;
-                                                if (targetUrl) {
-                                                  window.open(targetUrl, '_blank', 'noopener,noreferrer');
-                                                } else {
-                                                  alert('PYQ paper is being updated.');
-                                                }
-                                              }}
+                                              onClick={() => openPyq(yr)}
                                               className="btn-primary"
                                               style={{
-                                                backgroundColor: '#0d5c3a', padding: '0.45rem 0.9rem', fontSize: '0.78rem', borderRadius: '8px',
-                                                display: 'flex', alignItems: 'center', gap: '0.35rem'
+                                                backgroundColor: '#0d5c3a', padding: '0.28rem 0.55rem', fontSize: '0.72rem', borderRadius: '6px',
+                                                display: 'flex', alignItems: 'center', gap: '0.2rem', fontWeight: 700, flex: 1, justifyContent: 'center', cursor: 'pointer'
                                               }}
                                             >
-                                              <Eye size={14} />
-                                              <span>View PYQ ({p.examYear || '2024'})</span>
-                                              <ExternalLink size={12} />
+                                              <Eye size={12} /> View PYQ
                                             </button>
-                                          ))}
-
-                                          <button
-                                            onClick={() => handleDownloadUnitZip(sub, u)}
-                                            className="btn-outline"
-                                            style={{
-                                              padding: '0.45rem 0.9rem', fontSize: '0.78rem', borderRadius: '8px', borderColor: '#0284c7', color: '#0284c7',
-                                              display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 700
-                                            }}
-                                          >
-                                            <Download size={14} />
-                                            <span>Download ZIP</span>
-                                          </button>
-                                        </>
-                                      ) : (
-                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', width: '100%' }}>
-                                          <span style={{ fontSize: '0.78rem', color: '#64748b', fontStyle: 'italic', fontWeight: 500 }}>
-                                            PYQ not available yet.
-                                          </span>
-                                          <button
-                                            onClick={() => {
-                                              setRequestPyqInfo({ subject: sub, unit: u });
-                                              setIsRequestModalOpen(true);
-                                            }}
-                                            className="btn-outline"
-                                            style={{
-                                              padding: '0.35rem 0.75rem', fontSize: '0.75rem', borderRadius: '6px', borderColor: '#0d5c3a', color: '#0d5c3a',
-                                              display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: 700
-                                            }}
-                                          >
-                                            <PlusCircle size={13} /> Request PYQ
-                                          </button>
+                                            <button
+                                              onClick={() => searchPyqGoogle(yr)}
+                                              className="btn-outline"
+                                              style={{
+                                                padding: '0.28rem 0.55rem', fontSize: '0.72rem', borderRadius: '6px', borderColor: '#0284c7', color: '#0284c7',
+                                                display: 'flex', alignItems: 'center', gap: '0.2rem', fontWeight: 700, cursor: 'pointer'
+                                              }}
+                                              title="Search Paper on Google"
+                                            >
+                                              <Search size={12} />
+                                            </button>
+                                          </div>
                                         </div>
-                                      )}
+                                      ))}
                                     </div>
                                   </div>
                                 );
