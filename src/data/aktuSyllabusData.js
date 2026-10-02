@@ -704,326 +704,69 @@ export const AKTU_SYLLABUS_DATA = [
       { unitNo: 5, title: 'Engineering Materials & Manufacturing', topics: ['Ferrous & Non-Ferrous Metals', 'Stress-Strain Curve for Mild Steel', 'Lathe, Drilling & Welding Processes'], notes: [{ id: 'kme-201-u5', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] }
     ]
   },
+  {
+    id: 'bas-104-env',
+    code: 'BAS-104',
+    subject: 'Environment & Ecology',
+    slug: 'environment-and-ecology',
+    branch: 'Common',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '1st Year',
+    semester: 'Sem 1',
+    credits: 3,
+    description: 'Ecosystems, Environmental Pollution, Natural Resources, Sustainable Development, and Environmental Acts.',
+    units: [
+      { unitNo: 1, title: 'Environment & Ecosystems', topics: ['Definition, Scope & Importance', 'Structure & Functions of Ecosystem', 'Ecological Pyramids & Food Chains'], notes: [{ id: 'env-u1', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 2, title: 'Natural Resources & Conservation', topics: ['Forest, Water, Mineral & Energy Resources', 'Renewable vs Non-Renewable Energy', 'Deforestation & Mining Impacts'], notes: [{ id: 'env-u2', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 3, title: 'Environmental Pollution & Control', topics: ['Air, Water, Soil & Noise Pollution', 'Solid Waste Management', 'Pollution Control Acts & Regulations'], notes: [{ id: 'env-u3', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 4, title: 'Social Issues & Environment', topics: ['Sustainable Development & Climate Change', 'Global Warming, Acid Rain & Ozone Depletion', 'Resettlement & Rehabilitation Issues'], notes: [{ id: 'env-u4', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 5, title: 'Human Population & Environment', topics: ['Population Growth & Variation Among Nations', 'Environment & Human Health', 'Role of IT in Environment & Human Health'], notes: [{ id: 'env-u5', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] }
+    ]
+  },
+  {
+    id: 'knc-102-ss',
+    code: 'KNC-102',
+    subject: 'Soft Skills & Communication',
+    slug: 'soft-skills-and-communication',
+    branch: 'Common',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '1st Year',
+    semester: 'Sem 2',
+    credits: 2,
+    description: 'Communication Skills, Soft Skills, Group Discussions, Interviews, and Presentation Skills for AKTU 1st Year.',
+    units: [
+      { unitNo: 1, title: 'Basics of Communication', topics: ['Process & Barriers to Communication', 'Verbal vs Non-Verbal Communication', 'Kinesics, Proxemics & Chronemics'], notes: [{ id: 'ss-u1', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 2, title: 'Grammar & Vocabulary Building', topics: ['Parts of Speech & Sentence Types', 'Vocabulary Building & Word Formation', 'Common Errors in English'], notes: [{ id: 'ss-u2', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 3, title: 'Technical Writing Skills', topics: ['Resume Writing & Covering Letters', 'Business Email & Formal Letters', 'Technical Reports & Proposals'], notes: [{ id: 'ss-u3', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 4, title: 'Group Discussion & Interview Skills', topics: ['GD Strategies & Body Language', 'Personal Interview Preparation', 'Frequently Asked Interview Questions'], notes: [{ id: 'ss-u4', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
+      { unitNo: 5, title: 'Presentation & Soft Skills', topics: ['Public Speaking & Presentation Skills', 'Time Management & Stress Management', 'Leadership & Team Work Skills'], notes: [{ id: 'ss-u5', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] }
+    ]
+  },
 
   // =========================================================================
-  // 2ND YEAR — CSE / IT / AI & DS / ECE / ME / CE / EE / MATHS
+  // 2ND YEAR — ALL BRANCHES (12 SUBJECTS)
   // =========================================================================
 
-  // --- 2nd Year: Semester 3 ---
+  // =========================================================================
+  // 2ND YEAR — ALL BRANCHES (INCLUDING ECE 10 SUBJECTS)
+  // =========================================================================
+
+  // --- 2nd Year: Common & ECE Subjects ---
   {
-    id: 'kcs-301',
-    code: 'KCS-301',
-    subject: 'Data Structures',
-    slug: 'data-structures',
-    branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
+    id: 'kas-302-maths4',
+    code: 'KAS-401',
+    subject: 'Engineering Mathematics-IV',
+    slug: 'engineering-maths-4',
+    branch: 'Maths',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
     year: '2nd Year',
-    semester: 'Sem 3',
+    semester: 'Sem 4',
     credits: 4,
-    description: 'Linear & Non-linear Data Structures, Stacks, Queues, Linked Lists, Trees, Graphs, Sorting, and Searching.',
-    units: [
-      {
-        unitNo: 1,
-        title: 'Introduction to Data Structures & Arrays',
-        topics: ['Time & Space Complexity Notation', 'Arrays, 2D Arrays & Sparse Matrices', 'Recursion & Tail Recursion'],
-        notes: [
-          {
-            id: 'ds-quantum-unit-1',
-            title: 'Data Structures Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Stacks & Queues',
-        topics: ['Stack ADT, Infix to Postfix Conversion', 'Queue ADT, Circular Queue & Priority Queue', 'Deque'],
-        notes: [
-          {
-            id: 'ds-quantum-unit-2',
-            title: 'Data Structures Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Linked Lists',
-        topics: ['Singly, Doubly & Circular Linked Lists', 'Polynomial Addition using Linked Lists', 'Doubly Linked Queue'],
-        notes: [
-          {
-            id: 'ds-quantum-unit-3',
-            title: 'Data Structures Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Trees & Binary Search Trees',
-        topics: ['Binary Tree Traversal (Inorder, Preorder, Postorder)', 'Binary Search Tree (BST) Operations', 'AVL Trees & Rotations', 'B-Trees & B+ Trees Overview'],
-        notes: [
-          {
-            id: 'ds-quantum-unit-4',
-            title: 'Data Structures Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Graphs, Searching & Sorting',
-        topics: ['Graph Representation: Adjacency Matrix & List', 'BFS & DFS Graph Traversals', 'Dijkstra & Prim Algorithm', 'Sorting: Bubble, Quick, Merge, Heap Sort'],
-        notes: [
-          {
-            id: 'ds-quantum-unit-5',
-            title: 'Data Structures Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
-    ]
+    description: 'PDEs, Complex Variables, Probability Distributions, Sampling Theory, and Transform Techniques for AKTU 2nd Year.',
+    units: []
   },
   {
-    id: 'kcs-302',
-    code: 'KCS-302',
-    subject: 'Computer Organization & Architecture (COA)',
-    slug: 'computer-organization',
-    branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'Functional Units, Register Transfer Language, ALU, Booth Algorithm, Cache Memory & Pipelining.',
-    units: [
-      {
-        unitNo: 1,
-        title: 'Functional Units & Register Transfer',
-        topics: ['Bus Architecture & Microoperations', 'Arithmetic & Logic Shift Unit', 'Instruction Codes & Formats'],
-        notes: [
-          {
-            id: 'coa-quantum-unit-1',
-            title: 'COA Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Computer Arithmetic',
-        topics: ['Addition & Subtraction with Signed Numbers', 'Booth Multiplication Algorithm', 'Division Algorithms'],
-        notes: [
-          {
-            id: 'coa-quantum-unit-2',
-            title: 'COA Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Control Unit Architecture',
-        topics: ['Hardwired Control Unit', 'Microprogrammed Control Unit & Microinstruction', 'Control Memory'],
-        notes: [
-          {
-            id: 'coa-quantum-unit-3',
-            title: 'COA Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Memory Organization',
-        topics: ['RAM, ROM & Cache Memory Mapping (Direct, Associative, Set-Associative)', 'Virtual Memory & Page Replacement', 'Secondary Storage Structures'],
-        notes: [
-          {
-            id: 'coa-quantum-unit-4',
-            title: 'COA Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Input-Output Organization & Pipelining',
-        topics: ['Peripheral Devices & I/O Interfaces', 'Programmed I/O, Interrupt-Driven I/O & DMA', 'Instruction Pipeline & Pipelining Hazards'],
-        notes: [
-          {
-            id: 'coa-quantum-unit-5',
-            title: 'COA Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'kcs-303',
-    code: 'KCS-303',
-    subject: 'Discrete Mathematics',
-    slug: 'discrete-mathematics',
-    branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS', 'Maths'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'Set Theory, Relations, Functions, Propositional Logic, Lattices, Boolean Algebra & Combinatorics.',
-    units: [
-      {
-        unitNo: 1,
-        title: 'Set Theory, Relations & Functions',
-        topics: ['Sets, Subsets & Power Set', 'Equivalence Relations & Partial Ordering (POSET)', 'Hasse Diagrams'],
-        notes: [
-          {
-            id: 'dstl-quantum-unit-1',
-            title: 'Discrete Mathematics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Algebraic Structures',
-        topics: ['Groups, Subgroups, Cosets & Lagrange Theorem', 'Normal Subgroups & Homomorphism', 'Rings, Integral Domains & Fields'],
-        notes: [
-          {
-            id: 'dstl-quantum-unit-2',
-            title: 'Discrete Mathematics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Lattices & Boolean Algebra',
-        topics: ['Lattices as POSETs & Properties', 'Bounded & Complemented Lattices', 'Boolean Algebra & Karnaugh Maps'],
-        notes: [
-          {
-            id: 'dstl-quantum-unit-3',
-            title: 'Discrete Mathematics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Propositional & Predicate Logic',
-        topics: ['Propositions, Truth Tables & Tautologies', 'Rules of Inference & Natural Deduction', 'Predicates & Quantifiers'],
-        notes: [
-          {
-            id: 'dstl-quantum-unit-4',
-            title: 'Discrete Mathematics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Combinatorics & Recurrence Relations',
-        topics: ['Pigeonhole Principle & Permutations/Combinations', 'Recurrence Relations & Generating Functions', 'Homogeneous Linear Recurrence Relations'],
-        notes: [
-          {
-            id: 'dstl-quantum-unit-5',
-            title: 'Discrete Mathematics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'kec-301',
+    id: 'kec-301-ed',
     code: 'KEC-301',
     subject: 'Electronic Devices',
     slug: 'electronic-devices',
@@ -1032,303 +775,11 @@ export const AKTU_SYLLABUS_DATA = [
     year: '2nd Year',
     semester: 'Sem 3',
     credits: 4,
-    description: 'Semiconductor Physics, PN Junction Diode, BJT Characteristics, MOSFET Fabrication and High-Frequency Analysis.',
-    units: [
-      { unitNo: 1, title: 'Semiconductor Physics & PN Junction', topics: ['Intrinsic & Extrinsic Semiconductors', 'Fermi Level & Energy Band Diagrams', 'PN Junction Diode Characteristics'], notes: [] },
-      { unitNo: 2, title: 'Bipolar Junction Transistor (BJT)', topics: ['BJT Operation & Configuration (CB, CE, CC)', 'Transistor Biasing & Thermal Runaway', 'Small Signal Analysis'], notes: [] },
-      { unitNo: 3, title: 'Field Effect Transistors (FET & MOSFET)', topics: ['JFET Construction & V-I Characteristics', 'MOSFET Enhancement & Depletion Types', 'MOS Capacitor Physics'], notes: [] },
-      { unitNo: 4, title: 'Special Diode & Photonic Devices', topics: ['Zener Diode & Voltage Regulation', 'LED, Photodiode & Solar Cell Working', 'Schottky & Tunnel Diodes'], notes: [] },
-      { unitNo: 5, title: 'IC Fabrication Technology', topics: ['Epitaxy, Oxidation & Lithography Steps', 'Diffusion & Ion Implantation', 'CMOS Fabrication Process'], notes: [] }
-    ]
+    description: 'Semiconductor Physics, PN Junction Diodes, BJT, MOSFET Characteristics, and Optoelectronic Devices.',
+    units: []
   },
   {
-    id: 'kme-301',
-    code: 'KME-301',
-    subject: 'Thermodynamics',
-    slug: 'thermodynamics',
-    branch: 'ME',
-    applicableBranches: ['ME'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'First & Second Laws of Thermodynamics, Entropy, Availability, Pure Substances, and Power Cycles.',
-    units: [
-      { unitNo: 1, title: 'Fundamental Concepts & Zeroth/First Law', topics: ['System, Boundary, State & Equilibrium', 'Zeroth Law & Temperature Scale', 'First Law for Closed & Open Systems'], notes: [] },
-      { unitNo: 2, title: 'Second Law & Entropy', topics: ['Kelvin-Planck & Clausius Statements', 'Carnot Engine & Efficiency', 'Clausius Inequality & Entropy Concept'], notes: [] },
-      { unitNo: 3, title: 'Availability & Irreversibility', topics: ['High & Low Grade Energy', 'Available & Unavailable Energy', 'Exergy Analysis of Thermal Systems'], notes: [] },
-      { unitNo: 4, title: 'Properties of Pure Substances', topics: ['P-V-T Diagrams of Water', 'Steam Tables & Mollier Chart Usage', 'Dryness Fraction Measurement'], notes: [] },
-      { unitNo: 5, title: 'Thermodynamic Power Cycles', topics: ['Air Standard Cycles: Otto, Diesel & Dual Cycles', 'Rankine Cycle & Steam Cycles', 'Gas Turbine Brayton Cycle'], notes: [] }
-    ]
-  },
-  {
-    id: 'kce-302',
-    code: 'KCE-302',
-    subject: 'Solid Mechanics',
-    slug: 'solid-mechanics',
-    branch: 'CE',
-    applicableBranches: ['CE', 'ME'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'Stress-Strain Relations, Shear Force & Bending Moment Diagrams, Bending Stresses, Torsion, and Deflection.',
-    units: [
-      { unitNo: 1, title: 'Simple Stresses & Strains', topics: ['Hooke Law & Elastic Constants', 'Thermal Stresses in Compound Bars', 'Principal Stresses & Mohr Circle'], notes: [] },
-      { unitNo: 2, title: 'Shear Force & Bending Moment Diagrams', topics: ['Types of Beams & Loads', 'SFD & BMD for Cantilever & Simply Supported Beams', 'Point of Contraflexure'], notes: [] },
-      { unitNo: 3, title: 'Bending & Shear Stresses in Beams', topics: ['Pure Bending Theory & Flexural Formula', 'Section Modulus for Rectangular & I Sections', 'Shear Stress Distribution'], notes: [] },
-      { unitNo: 4, title: 'Torsion & Springs', topics: ['Torsion Equation for Circular Shafts', 'Power Transmission', 'Helical Springs Analysis'], notes: [] },
-      { unitNo: 5, title: 'Deflection of Beams & Columns', topics: ['Double Integration Method', 'Euler Buckling Formula for Columns', 'Rankine-Gordon Formula'], notes: [] }
-    ]
-  },
-  {
-    id: 'kee-301',
-    code: 'KEE-301',
-    subject: 'Basic System Analysis',
-    slug: 'basic-system-analysis',
-    branch: 'EE',
-    applicableBranches: ['EE', 'ECE'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'Continuous & Discrete-time Signals, Fourier Series, Laplace Transform, State Variable Analysis.',
-    units: [
-      { unitNo: 1, title: 'Signals & Systems Classification', topics: ['Continuous vs Discrete Time Signals', 'Energy & Power Signals', 'LTI Systems & Convolution'], notes: [] },
-      { unitNo: 2, title: 'Fourier Analysis of Signals', topics: ['Fourier Series & Transform', 'Frequency Response of LTI Systems', 'Sampling Theorem'], notes: [] },
-      { unitNo: 3, title: 'Laplace Transform Applications', topics: ['s-Domain Analysis of Electrical Networks', 'Transfer Function & Impulse Response', 'Poles & Zeros'], notes: [] },
-      { unitNo: 4, title: 'State Variable Analysis', topics: ['State Space Model Representation', 'State Transition Matrix', 'Controllability & Observability'], notes: [] },
-      { unitNo: 5, title: 'Z-Transform & Discrete Systems', topics: ['Region of Convergence (ROC)', 'Inverse Z-Transform', 'Discrete-Time System Analysis'], notes: [] }
-    ]
-  },
-
-  // --- 2nd Year: Semester 4 ---
-  {
-    id: 'kcs-401',
-    code: 'KCS-401',
-    subject: 'Operating System',
-    slug: 'operating-system',
-    branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 4,
-    description: 'CPU scheduling, memory management, process synchronization, deadlocks, and file systems.',
-    units: [
-      {
-        unitNo: 1,
-        title: 'Introduction & Operating System Structures',
-        topics: ['OS Overview & Objectives', 'Types of OS: Batch, Multiprogramming, Time-Sharing', 'System Calls & OS Services'],
-        notes: [
-          {
-            id: 'os-quantum-unit-1',
-            title: 'Operating System Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Process Management & CPU Scheduling',
-        topics: ['Process Concept & PCB', 'CPU Scheduling Algorithms (FCFS, SJF, Round-Robin)', 'Inter-Process Communication (IPC)'],
-        notes: [
-          {
-            id: 'os-quantum-unit-2',
-            title: 'Operating System Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Process Synchronization & Deadlocks',
-        topics: ['Critical Section Problem & Semaphores', 'Deadlock Prevention & Avoidance (Banker Algorithm)', 'Deadlock Detection & Recovery'],
-        notes: [
-          {
-            id: 'os-quantum-unit-3',
-            title: 'Operating System Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Memory Management & Virtual Memory',
-        topics: ['Paging & Segmentation', 'Virtual Memory & Demand Paging', 'Page Replacement Algorithms (FIFO, LRU, Optimal)'],
-        notes: [
-          {
-            id: 'os-quantum-unit-4',
-            title: 'Operating System Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'File Systems & Disk Management',
-        topics: ['File Structure & Allocation Methods', 'Disk Scheduling Algorithms (FCFS, SSTF, SCAN, C-SCAN)', 'Swap Space Management'],
-        notes: [
-          {
-            id: 'os-quantum-unit-5',
-            title: 'Operating System Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'kcs-402',
-    code: 'KCS-402',
-    subject: 'Theory of Automata & Formal Languages (TAFL)',
-    slug: 'theory-of-automata',
-    branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 4,
-    description: 'DFA, NFA, Regular Expressions, Context-Free Grammars, Pushdown Automata, and Turing Machines.',
-    units: [
-      {
-        unitNo: 1,
-        title: 'Finite Automata & Regular Expressions',
-        topics: ['DFA & NFA Equivalence', 'Mealy & Moore Machines', 'Pumping Lemma for Regular Languages'],
-        notes: [
-          {
-            id: 'tafl-quantum-unit-1',
-            title: 'TAFL Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Regular Grammars & Languages',
-        topics: ['Regular Grammar Definition', 'Conversion of Regular Grammar to FA', 'Closure Properties of Regular Sets'],
-        notes: [
-          {
-            id: 'tafl-quantum-unit-2',
-            title: 'TAFL Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Context-Free Grammars (CFG) & Languages',
-        topics: ['Derivation Trees & Ambiguity in CFG', 'Chomsky Normal Form (CNF) & Greibach Normal Form (GNF)', 'Pumping Lemma for CFLs'],
-        notes: [
-          {
-            id: 'tafl-quantum-unit-3',
-            title: 'TAFL Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Pushdown Automata (PDA)',
-        topics: ['Deterministic & Non-Deterministic PDA', 'Equivalence of PDA and CFG', 'Parsing Techniques'],
-        notes: [
-          {
-            id: 'tafl-quantum-unit-4',
-            title: 'TAFL Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Turing Machines & Undecidability',
-        topics: ['Turing Machine Definition & Design', 'Church-Turing Thesis', 'Halting Problem & Post Correspondence Problem (PCP)'],
-        notes: [
-          {
-            id: 'tafl-quantum-unit-5',
-            title: 'TAFL Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'kcs-403',
-    code: 'KCS-403',
-    subject: 'Python Programming',
-    slug: 'python-programming',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'IT', 'AI & DS', 'Maths', 'EE', 'ECE', 'ME', 'CE'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 3,
-    description: 'Python Basics, Control Statements, Data Structures, OOPs, Modules & File Handling.',
-    units: [
-      { unitNo: 1, title: 'Python Basics & Operators', topics: ['Variables & Expressions', 'Input/Output Functions', 'Operators & Precedence'], notes: [] },
-      { unitNo: 2, title: 'Control Statements & Strings', topics: ['If-Else & Loops', 'Break & Continue', 'String Slice & Operations'], notes: [] },
-      { unitNo: 3, title: 'Python Lists, Tuples & Dictionaries', topics: ['List Methods & Mutability', 'Tuple Operations', 'Dictionary Keys & Values'], notes: [] },
-      { unitNo: 4, title: 'Functions & Modules', topics: ['Defining Functions & Arguments', 'Lambda Functions & Recursion', 'Built-in Modules (math, random, os)'], notes: [] },
-      { unitNo: 5, title: 'OOPs & Exception Handling', topics: ['Classes & Objects', 'Inheritance & Polymorphism', 'Try-Except Blocks & File Read/Write'], notes: [] }
-    ]
-  },
-  {
-    id: 'kec-401',
+    id: 'kec-401-ce',
     code: 'KEC-401',
     subject: 'Communication Engineering',
     slug: 'communication-engineering',
@@ -1337,531 +788,733 @@ export const AKTU_SYLLABUS_DATA = [
     year: '2nd Year',
     semester: 'Sem 4',
     credits: 4,
-    description: 'Analog & Digital Modulation, AM, FM, Pulse Code Modulation (PCM), Digital Baseband Transmission.',
-    units: [
-      { unitNo: 1, title: 'Amplitude Modulation (AM)', topics: ['DSB-FC, DSB-SC, SSB-SC Modulation', 'AM Transmitters & Superheterodyne Receiver', 'Noise in AM'], notes: [] },
-      { unitNo: 2, title: 'Angle Modulation (FM & PM)', topics: ['Narrowband & Wideband FM', 'Direct & Indirect FM Generation (Armstrong Method)', 'FM Detectors'], notes: [] },
-      { unitNo: 3, title: 'Pulse Modulation Techniques', topics: ['Sampling Theorem & Aliasing', 'PAM, PWM, PPM Modulation', 'Pulse Code Modulation (PCM) & DPCM'], notes: [] },
-      { unitNo: 4, title: 'Digital Bandpass Transmission', topics: ['ASK, FSK, PSK Signal Constellations', 'QPSK & BPSK Performance', 'Matched Filter Receiver'], notes: [] },
-      { unitNo: 5, title: 'Information Theory & Coding', topics: ['Entropy & Mutual Information', 'Shannon Channel Capacity Theorem', 'Huffman & Error Control Coding'], notes: [] }
-    ]
+    description: 'Analog & Digital Modulation, AM, FM, Pulse Code Modulation (PCM), and Digital Baseband Transmission.',
+    units: []
   },
   {
-    id: 'kme-401',
+    id: 'kec-302-emft',
+    code: 'KEC-302',
+    subject: 'Electromagnetic Field Theory',
+    slug: 'electromagnetic-field-theory',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 4,
+    description: 'Vector Calculus, Electrostatics, Magnetostatics, Maxwell Equations, and Electromagnetic Wave Propagation.',
+    units: []
+  },
+  {
+    id: 'kec-303-de',
+    code: 'KEC-303',
+    subject: 'Digital Electronics',
+    slug: 'digital-electronics-ece',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE', 'CSE', 'IT'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 4,
+    description: 'Number Systems, Logic Gates, Combinational & Sequential Circuits, Flip-Flops, Counters, and Registers.',
+    units: []
+  },
+  {
+    id: 'kec-402-emi',
+    code: 'KEC-402',
+    subject: 'Electrical Measurements & Instrumentation',
+    slug: 'electrical-measurements-instrumentation',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
+    year: '2nd Year',
+    semester: 'Sem 4',
+    credits: 4,
+    description: 'Measurement Errors, AC/DC Bridges, Transducers, Oscilloscopes (CRO), and Digital Voltmeter.',
+    units: []
+  },
+  {
+    id: 'kec-403-bss',
+    code: 'KEC-403',
+    subject: 'Basic Signal System',
+    slug: 'basic-signal-system',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
+    year: '2nd Year',
+    semester: 'Sem 4',
+    credits: 4,
+    description: 'Continuous & Discrete Signals, LTI Systems, Fourier Series, Fourier Transform, and Z-Transform.',
+    units: []
+  },
+  {
+    id: 'kcs-301',
+    code: 'KCS-301',
+    subject: 'Data Structure',
+    slug: 'data-structures',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 4,
+    description: 'Linear & Non-linear Data Structures, Stacks, Queues, Linked Lists, Trees, Graphs, Sorting, and Searching.',
+    units: []
+  },
+  {
+    id: 'kcs-302',
+    code: 'KCS-302',
+    subject: 'Computer Organization and Architecture',
+    slug: 'computer-organization-architecture',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 4,
+    description: 'Register Transfer, Microoperations, CPU Design, Memory Hierarchy, I/O Subsystems, and Pipelining Architecture.',
+    units: []
+  },
+  {
+    id: 'kcs-303',
+    code: 'KCS-303',
+    subject: 'Discrete Structures & Theory of Logic',
+    slug: 'discrete-structures',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 4,
+    description: 'Sets, Relations, Functions, Group Theory, Lattices, Boolean Algebra, Propositional & Predicate Logic.',
+    units: []
+  },
+  {
+    id: 'koe-033',
+    code: 'KOE-033',
+    subject: 'Energy Science & Engineering',
+    slug: 'energy-science',
+    branch: 'Common',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 3,
+    description: 'Energy Resources, Solar Thermal Systems, Photovoltaics, Wind Energy, Nuclear Energy, and Environmental Impact.',
+    units: []
+  },
+  {
+    id: 'kas-301-tc',
+    code: 'KAS-301',
+    subject: 'Technical Communication',
+    slug: 'technical-communication',
+    branch: 'Common',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 3,
+    description: 'Technical Writing, Business Correspondence, Presentation Skills, Phonetics, and Group Discussions.',
+    units: []
+  },
+  {
+    id: 'knc-301-cs',
+    code: 'KNC-301',
+    subject: 'Cyber Security',
+    slug: 'cyber-security',
+    branch: 'Common',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 3,
+    description: 'Information Security Concepts, Cryptography, Network Security, Cyber Crimes, IT Act, and Digital Forensics.',
+    units: []
+  },
+  {
+    id: 'kve-301-uhv',
+    code: 'KVE-301',
+    subject: 'Universal Human Values',
+    slug: 'universal-human-values',
+    branch: 'Common',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 3,
+    description: 'Self-exploration, Harmony in Human Being, Family, Society & Nature, Professional Ethics & Values.',
+    units: []
+  },
+
+  // --- 2nd Year: Semester 4 ---
+  {
+    id: 'kcs-403',
+    code: 'KCS-403',
+    subject: 'Python Programming',
+    slug: 'python-programming',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 4',
+    credits: 3,
+    description: 'Python Syntax, Data Structures, OOPs, Exception Handling, Modules, File I/O, and NumPy/Pandas Intro.',
+    units: []
+  },
+  {
+    id: 'kcs-041-wd',
+    code: 'KCS-041',
+    subject: 'Web Designing',
+    slug: 'web-designing',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 4',
+    credits: 3,
+    description: 'HTML5, CSS3, JavaScript, Responsive Web Design, Bootstrap, DOM Manipulation, and Web Hosting.',
+    units: []
+  },
+  {
+    id: 'kcs-401',
+    code: 'KCS-401',
+    subject: 'Operating Systems',
+    slug: 'operating-system',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 4',
+    credits: 4,
+    description: 'CPU Scheduling, Memory Management, Process Synchronization, Deadlocks, File Systems, and Disk Scheduling.',
+    units: []
+  },
+  {
+    id: 'kcs-402-tafl',
+    code: 'KCS-402',
+    subject: 'Theory of Automata and Formal Languages (TAFL)',
+    slug: 'theory-of-automata-tafl',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '2nd Year',
+    semester: 'Sem 4',
+    credits: 4,
+    description: 'DFA, NFA, Regular Expressions, Context-Free Grammars, Pushdown Automata, and Turing Machines.',
+    units: []
+  },
+  {
+    id: 'kme-301-td',
+    code: 'KME-301',
+    subject: 'Thermodynamics',
+    slug: 'thermodynamics-me',
+    branch: 'ME',
+    applicableBranches: ['ME', 'CE'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 4,
+    description: 'Zeroth, First & Second Laws of Thermodynamics, Entropy, Availability, Work & Heat Transfer.',
+    units: []
+  },
+  {
+    id: 'kme-401-fm',
     code: 'KME-401',
     subject: 'Fluid Mechanics & Fluid Machines',
-    slug: 'fluid-mechanics',
+    slug: 'fluid-mechanics-machines-me',
     branch: 'ME',
     applicableBranches: ['ME', 'CE'],
     year: '2nd Year',
     semester: 'Sem 4',
     credits: 4,
     description: 'Fluid Statics, Kinematics, Bernoulli Equation, Viscous Flow, Turbines, and Centrifugal Pumps.',
-    units: [
-      { unitNo: 1, title: 'Fluid Statics & Properties', topics: ['Viscosity, Surface Tension & Capillarity', 'Pascal & Hydrostatic Law', 'Buoyancy & Metacentric Height'], notes: [] },
-      { unitNo: 2, title: 'Fluid Kinematics & Dynamics', topics: ['Streamlines, Streaklines & Pathlines', 'Continuity Equation in 3D', 'Bernoulli Theorem & Venturimeter'], notes: [] },
-      { unitNo: 3, title: 'Viscous & Boundary Layer Flow', topics: ['Laminar Flow through Circular Pipe (Hagen-Poiseuille)', 'Boundary Layer Thickness', 'Drag & Lift Forces'], notes: [] },
-      { unitNo: 4, title: 'Hydraulic Turbines', topics: ['Impact of Jets', 'Pelton Wheel Turbine', 'Francis & Kaplan Turbines'], notes: [] },
-      { unitNo: 5, title: 'Centrifugal & Reciprocating Pumps', topics: ['Working Principle & Work Done', 'Cavitation & NPSH', 'Air Vessels in Reciprocating Pump'], notes: [] }
-    ]
+    units: []
+  },
+  {
+    id: 'kme-302-mate',
+    code: 'KME-302',
+    subject: 'Materials Engineering',
+    slug: 'materials-engineering-me',
+    branch: 'ME',
+    applicableBranches: ['ME'],
+    year: '2nd Year',
+    semester: 'Sem 3',
+    credits: 4,
+    description: 'Crystal Structure, Phase Diagrams, Heat Treatment of Steels, Ferrous & Non-ferrous Alloys, Mechanical Testing.',
+    units: []
+  },
+  {
+    id: 'kme-402-atd',
+    code: 'KME-402',
+    subject: 'Applied Thermodynamics',
+    slug: 'applied-thermodynamics-me',
+    branch: 'ME',
+    applicableBranches: ['ME'],
+    year: '2nd Year',
+    semester: 'Sem 4',
+    credits: 4,
+    description: 'Gas Power Cycles, Vapor Power Cycles, Steam Turbines, IC Engines, Refrigeration Cycles, and Nozzles.',
+    units: []
+  },
+  {
+    id: 'kme-403-mp',
+    code: 'KME-403',
+    subject: 'Manufacturing Processes',
+    slug: 'manufacturing-processes-me',
+    branch: 'ME',
+    applicableBranches: ['ME'],
+    year: '2nd Year',
+    semester: 'Sem 4',
+    credits: 4,
+    description: 'Casting Processes, Metal Forming, Welding & Joining, Metal Cutting Principles, and Machine Tools.',
+    units: []
   },
 
   // =========================================================================
-  // 3RD YEAR — ALL BRANCHES
+  // 3RD YEAR — ALL BRANCHES (INCLUDING 11 ECE SUBJECTS)
   // =========================================================================
-
-  // --- 3rd Year: CSE / IT / AI & DS ---
   {
-    id: 'kcs-501',
-    code: 'KCS-501',
-    subject: 'Database Management Systems (DBMS)',
-    slug: 'dbms',
-    branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
+    id: 'kec-501-ic',
+    code: 'KEC-501',
+    subject: 'Integrated Circuits',
+    slug: 'integrated-circuits',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
     year: '3rd Year',
     semester: 'Sem 5',
     credits: 4,
-    description: 'Relational Model, ER Diagrams, SQL Queries, Normalization (1NF to BCNF), Transaction Processing, and Concurrency Control.',
-    units: [
-      {
-        unitNo: 1,
-        title: 'Introduction & ER Modeling',
-        topics: ['Database System Architecture & 3-Schema Architecture', 'ER Diagram Entities, Attributes & Relationships', 'Relational Model & Keys'],
-        notes: [
-          {
-            id: 'dbms-quantum-unit-1',
-            title: 'DBMS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Relational Algebra & SQL',
-        topics: ['Relational Algebra Operators', 'SQL DDL, DML, DCL Commands', 'Nested Queries, Views & Joins'],
-        notes: [
-          {
-            id: 'dbms-quantum-unit-2',
-            title: 'DBMS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Database Normalization',
-        topics: ['Functional Dependencies & Attribute Closure', 'Normal Forms: 1NF, 2NF, 3NF, BCNF', 'Lossless Join & Dependency Preservation'],
-        notes: [
-          {
-            id: 'dbms-quantum-unit-3',
-            title: 'DBMS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Transaction Processing & Concurrency',
-        topics: ['ACID Properties of Transactions', 'Serializability: Conflict & View Serializability', 'Concurrency Control: Two-Phase Locking (2PL)'],
-        notes: [
-          {
-            id: 'dbms-quantum-unit-4',
-            title: 'DBMS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Database Recovery & Indexing',
-        topics: ['Failure Classification & Log-Based Recovery', 'Checkpoints & Shadow Paging', 'Indexing Techniques: B-Tree Indexing'],
-        notes: [
-          {
-            id: 'dbms-quantum-unit-5',
-            title: 'DBMS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
-    ]
+    description: 'Operational Amplifier Applications, Timers (555), Voltage Regulators, Active Filters, and Phase Locked Loops (PLL).',
+    units: []
   },
   {
-    id: 'kcs-502',
-    code: 'KCS-502',
-    subject: 'Compiler Design',
-    slug: 'compiler-design',
-    branch: 'CSE',
-    applicableBranches: ['CSE', 'IT'],
+    id: 'kec-502-cs',
+    code: 'KEC-502',
+    subject: 'Control System',
+    slug: 'control-system-ece',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
     year: '3rd Year',
     semester: 'Sem 5',
     credits: 4,
-    description: 'Lexical Analysis, Lex, Syntax Analysis, Yacc, Syntax-Directed Translation, Intermediate Code Generation, and Code Optimization.',
-    units: [
-      { unitNo: 1, title: 'Introduction & Lexical Analysis', topics: ['Phases of Compiler Architecture', 'Lexical Analyzer & Token Recognition', 'Regular Expressions to Finite Automata'], notes: [] },
-      { unitNo: 2, title: 'Syntax Analysis & Top-Down Parsing', topics: ['Role of Parser & Context Free Grammar', 'Recursive Descent & LL(1) Parsing', 'FIRST & FOLLOW Sets Computation'], notes: [] },
-      { unitNo: 3, title: 'Bottom-Up Parsing', topics: ['Shift-Reduce & LR(0) Parsing', 'SLR(1), LALR(1) & CLR(1) Parsing Tables', 'YACC Tool Overview'], notes: [] },
-      { unitNo: 4, title: 'Syntax-Directed Translation & Intermediate Code', topics: ['Syntax Directed Definitions (SDD) & SDT', '3-Address Code (Triples & Quadruples)', 'DAG Representation of Expressions'], notes: [] },
-      { unitNo: 5, title: 'Code Optimization & Generation', topics: ['Principal Sources of Optimization', 'Loop Optimization & Basic Blocks', 'Target Machine Code Generation'], notes: [] }
-    ]
+    description: 'Transfer Function, Signal Flow Graphs, Time Response Analysis, Routh-Hurwitz, Root Locus, Bode Plot, and Nyquist Plot.',
+    units: []
   },
   {
-    id: 'kcs-503',
-    code: 'KCS-503',
-    subject: 'Computer Networks',
-    slug: 'computer-networks',
-    branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
+    id: 'kec-503-mpmc',
+    code: 'KEC-503',
+    subject: 'Microprocessors And Microcontrollers',
+    slug: 'microprocessors-microcontrollers',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
     year: '3rd Year',
     semester: 'Sem 5',
     credits: 4,
-    description: 'OSI Model, TCP/IP Layering, IP Subnetting, Routing Algorithms, Flow Control (Sliding Window), TCP/UDP Protocols.',
-    units: [
-      {
-        unitNo: 1,
-        title: 'Network Fundamentals & Physical Layer',
-        topics: ['OSI 7-Layer Reference Model vs TCP/IP Architecture', 'Network Topologies & Switching Techniques', 'Transmission Media'],
-        notes: [
-          {
-            id: 'cn-quantum-unit-1',
-            title: 'Computer Networks Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Data Link Layer & MAC Sublayer',
-        topics: ['Framing & Error Control (CRC)', 'Sliding Window Protocols (Go-Back-N, Selective Repeat)', 'ALOHA & CSMA/CD'],
-        notes: [
-          {
-            id: 'cn-quantum-unit-2',
-            title: 'Computer Networks Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Network Layer & IP Addressing',
-        topics: ['IPv4 Addressing & Classless Subnetting (CIDR)', 'IPv6 Address Architecture', 'Routing Algorithms (OSPF, BGP)'],
-        notes: [
-          {
-            id: 'cn-quantum-unit-3',
-            title: 'Computer Networks Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Transport Layer Protocols',
-        topics: ['UDP Header & Connectionless Service', 'TCP 3-Way Handshake & Connection Management', 'TCP Congestion Control'],
-        notes: [
-          {
-            id: 'cn-quantum-unit-4',
-            title: 'Computer Networks Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Application Layer Protocols',
-        topics: ['Domain Name System (DNS) Resolution', 'HTTP/HTTPS, FTP, SMTP Protocols', 'Network Security Basics & Firewalls'],
-        notes: [
-          {
-            id: 'cn-quantum-unit-5',
-            title: 'Computer Networks Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
-    ]
+    description: '8085/8086 Microprocessor Architecture, Assembly Language, 8051 Microcontroller, Interfacing ICs (8255, 8253, 8259).',
+    units: []
   },
   {
-    id: 'kcs-601',
-    code: 'KCS-601',
-    subject: 'Software Engineering',
-    slug: 'software-engineering',
-    branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
+    id: 'kec-051-vlsi',
+    code: 'KEC-051',
+    subject: 'VLSI Technology',
+    slug: 'vlsi-technology',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 4,
+    description: 'Wafer Fabrication, Epitaxy, Oxidation, Photolithography, Diffusion, Ion Implantation, and CMOS Circuit Design.',
+    units: []
+  },
+  {
+    id: 'knc-501-itcs',
+    code: 'KNC-501',
+    subject: 'Indian Tradition Culture and Society',
+    slug: 'indian-tradition-culture-society',
+    branch: 'Common',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 3,
+    description: 'Indian Society, Ancient Science & Technology, State & Religion, Literature & Performing Arts, and Cultural Heritage.',
+    units: []
+  },
+  {
+    id: 'kec-601-dsp',
+    code: 'KEC-601',
+    subject: 'Digital Signal Processing',
+    slug: 'digital-signal-processing-ece',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
     year: '3rd Year',
     semester: 'Sem 6',
     credits: 4,
-    description: 'SDLC Models, SRS, Software Architecture, Testing (White Box/Black Box), Function Point Analysis & Maintenance.',
-    units: [
-      { unitNo: 1, title: 'Software Process & SDLC Models', topics: ['Waterfall, Spiral, Agile & Scrum Models', 'Software Requirement Specification (SRS)', 'Feasibility Analysis'], notes: [] },
-      { unitNo: 2, title: 'Software Design & Modeling', topics: ['Cohesion & Coupling', 'Data Flow Diagrams (DFD)', 'UML Use Case, Class & Sequence Diagrams'], notes: [] },
-      { unitNo: 3, title: 'Software Project Estimation & Metrics', topics: ['COCOMO Model Estimation', 'Function Point (FP) Analysis', 'Risk Management & Mitigation'], notes: [] },
-      { unitNo: 4, title: 'Software Testing & Quality Assurance', topics: ['White Box & Black Box Testing', 'Unit, Integration & System Testing', 'Cyclomatic Complexity'], notes: [] },
-      { unitNo: 5, title: 'Software Maintenance & Reliability', topics: ['Reverse Engineering & Re-engineering', 'Software Configuration Management', 'ISO 9000 & CMMI Levels'], notes: [] }
-    ]
+    description: 'Discrete Fourier Transform (DFT), FFT Algorithms, FIR/IIR Filter Design, Structures for Discrete-Time Systems.',
+    units: []
   },
   {
-    id: 'kcs-602',
+    id: 'kec-602-awp',
+    code: 'KEC-602',
+    subject: 'Antenna and Wave Propagation',
+    slug: 'antenna-wave-propagation',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
+    year: '3rd Year',
+    semester: 'Sem 6',
+    credits: 4,
+    description: 'Antenna Parameters, Dipole Antennas, Antenna Arrays, Aperture Antennas, and Ground/Sky/Space Wave Propagation.',
+    units: []
+  },
+  {
+    id: 'kee-501-ps',
+    code: 'KEE-501',
+    subject: 'Power System',
+    slug: 'power-system-ece',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 4,
+    description: 'Generation, Transmission & Distribution of Electrical Power, Line Parameters, Performance of Lines, Insulators & Cables.',
+    units: []
+  },
+  {
+    id: 'kec-061-eim',
+    code: 'KEC-061',
+    subject: 'Electronic Instrumentation and Measurement',
+    slug: 'electronic-instrumentation-measurement',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
+    year: '3rd Year',
+    semester: 'Sem 6',
+    credits: 3,
+    description: 'Transducers, Signal Conditioning, Digital Meters, Spectrum Analyzer, Telemetry, and Data Acquisition Systems.',
+    units: []
+  },
+  {
+    id: 'kec-062-oc',
+    code: 'KEC-062',
+    subject: 'Optical Communication',
+    slug: 'optical-communication',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
+    year: '3rd Year',
+    semester: 'Sem 6',
+    credits: 3,
+    description: 'Optical Fibers, Signal Attenuation & Dispersion, LED/Laser Diodes, PIN/APD Photodetectors, Optical Receivers.',
+    units: []
+  },
+  {
+    id: 'kee-061-pe',
+    code: 'KEE-061',
+    subject: 'Power Electronics',
+    slug: 'power-electronics-ece',
+    branch: 'ECE',
+    applicableBranches: ['ECE', 'EE'],
+    year: '3rd Year',
+    semester: 'Sem 6',
+    credits: 4,
+    description: 'Thyristors, Controlled Rectifiers, DC Choppers, Inverters, AC Voltage Controllers, and Industrial Applications.',
+    units: []
+  },
+  {
+    id: 'kcs-602-wt',
     code: 'KCS-602',
     subject: 'Web Technology',
     slug: 'web-technology',
     branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
     year: '3rd Year',
     semester: 'Sem 6',
     credits: 4,
-    description: 'HTML5, CSS3, JavaScript, DOM, Servlets, JSP, XML, and Web Services.',
-    units: [
-      { unitNo: 1, title: 'HTML5, CSS3 & Responsive Design', topics: ['HTML Elements, Tables & Forms', 'CSS Box Model, Flexbox & Grid', 'Media Queries'], notes: [] },
-      { unitNo: 2, title: 'Client-Side JavaScript & DOM Manipulation', topics: ['Variables, Functions & ES6 Features', 'DOM Tree Traversal & Event Handling', 'JSON & AJAX Requests'], notes: [] },
-      { unitNo: 3, title: 'Server-Side Java Servlets', topics: ['Servlet Lifecycle & HTTP Methods', 'Session Tracking (Cookies, HttpSession)', 'Database Connectivity (JDBC)'], notes: [] },
-      { unitNo: 4, title: 'Java Server Pages (JSP)', topics: ['JSP Directives, Scriptlets & Expression Language', 'JSP Standard Tag Library (JSTL)', 'MVC Architecture in Web Apps'], notes: [] },
-      { unitNo: 5, title: 'XML & Web Services', topics: ['XML Schema & DTD Validation', 'SOAP vs RESTful Web Services', 'Web Security Basics'], notes: [] }
-    ]
-  },
-
-  // --- 3rd Year: ECE / EE ---
-  {
-    id: 'kec-501',
-    code: 'KEC-501',
-    subject: 'Digital Signal Processing (DSP)',
-    slug: 'digital-signal-processing',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Discrete Fourier Transform (DFT), Fast Fourier Transform (FFT), IIR/FIR Filter Design, Digital Signal Processors.',
-    units: [
-      { unitNo: 1, title: 'Discrete Fourier Transform (DFT)', topics: ['DFT Definition & Properties', 'Circular Convolution vs Linear Convolution', 'IDFT Computation'], notes: [] },
-      { unitNo: 2, title: 'Fast Fourier Transform (FFT) Algorithms', topics: ['Decimation in Time (DIT) FFT', 'Decimation in Frequency (DIF) FFT', 'Butterfly Diagrams'], notes: [] },
-      { unitNo: 3, title: 'IIR Digital Filter Design', topics: ['Butterworth & Chebyshev Filters', 'Impulse Invariance Transformation', 'Bilinear Transformation'], notes: [] },
-      { unitNo: 4, title: 'FIR Digital Filter Design', topics: ['Linear Phase FIR Filters', 'Windowing Techniques (Hamming, Hanning, Blackman)', 'Frequency Sampling Method'], notes: [] },
-      { unitNo: 5, title: 'Digital Signal Processors Architecture', topics: ['TMS320C67x Architecture', 'Pipelining & MAC Unit', 'Finite Word Length Effects'], notes: [] }
-    ]
+    description: 'HTML5, CSS3, JavaScript DOM, Client-Server Architecture, Servlets, JSP, XML, and Web Frameworks.',
+    units: []
   },
   {
-    id: 'kee-501',
-    code: 'KEE-501',
-    subject: 'Control Systems',
-    slug: 'control-systems',
-    branch: 'EE',
-    applicableBranches: ['EE', 'ECE', 'ME'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Transfer Functions, Block Diagram Reduction, Routh-Hurwitz Stability, Root Locus, Bode Plot & Nyquist Criterion.',
-    units: [
-      { unitNo: 1, title: 'Control System Modeling', topics: ['Open Loop vs Closed Loop Systems', 'Block Diagram Algebra', 'Signal Flow Graph & Mason Gain Formula'], notes: [] },
-      { unitNo: 2, title: 'Time Response Analysis', topics: ['Standard Test Signals', 'First & Second Order System Transient Response', 'Steady-State Error & Error Constants'], notes: [] },
-      { unitNo: 3, title: 'Stability Analysis & Root Locus', topics: ['Routh-Hurwitz Stability Criterion', 'Root Locus Construction Rules', 'Stability Margins'], notes: [] },
-      { unitNo: 4, title: 'Frequency Response Analysis', topics: ['Bode Plot Gain & Phase Margins', 'Nyquist Stability Criterion & Contour', 'Polar Plots'], notes: [] },
-      { unitNo: 5, title: 'State Variable Analysis & Compensators', topics: ['State Transition Matrix', 'Lead, Lag & Lag-Lead Compensators', 'PID Controllers'], notes: [] }
-    ]
-  },
-
-  // --- 3rd Year: ME / CE ---
-  {
-    id: 'kme-501',
-    code: 'KME-501',
-    subject: 'Heat & Mass Transfer',
-    slug: 'heat-mass-transfer',
-    branch: 'ME',
-    applicableBranches: ['ME'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Conduction, Convection, Radiation, Heat Exchangers, and Fick Law of Mass Transfer.',
-    units: [
-      { unitNo: 1, title: 'Conduction Heat Transfer', topics: ['Fourier Law & Thermal Conductivity', '1D Steady State Conduction', 'Extended Surfaces (Fins)'], notes: [] },
-      { unitNo: 2, title: 'Transient Conduction & Boundary Layer', topics: ['Lumped Heat Capacity Analysis', 'Heisler Charts', 'Convective Boundary Layer Equations'], notes: [] },
-      { unitNo: 3, title: 'Convective Heat Transfer', topics: ['Free & Forced Convection', 'Dimensional Analysis (Nusselt, Prandtl, Grashof Numbers)', 'Flow over Flat Plate & Pipes'], notes: [] },
-      { unitNo: 4, title: 'Radiation Heat Transfer & Heat Exchangers', topics: ['Stefan-Boltzmann Law & Planck Law', 'Radiation Shape Factor', 'LMTD & NTU Methods for Heat Exchangers'], notes: [] },
-      { unitNo: 5, title: 'Mass Transfer Fundamentals', topics: ['Fick Law of Diffusion', 'Mass Transfer Coefficient', 'Analogy between Heat & Mass Transfer'], notes: [] }
-    ]
-  },
-  {
-    id: 'kce-501',
-    code: 'KCE-501',
-    subject: 'Structural Analysis',
-    slug: 'structural-analysis',
-    branch: 'CE',
-    applicableBranches: ['CE'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Determinate & Indeterminate Structures, Slope Deflection, Moment Distribution, Strain Energy & Arches.',
-    units: [
-      { unitNo: 1, title: 'Static & Kinematic Indeterminancy', topics: ['Degree of Indeterminacy of Trusses & Frames', 'Castigliano Theorems', 'Unit Load Method for Deflection'], notes: [] },
-      { unitNo: 2, title: 'Slope Deflection Method', topics: ['Derivation of Slope Deflection Equations', 'Analysis of Continuous Beams', 'Sway & Non-Sway Rigid Frames'], notes: [] },
-      { unitNo: 3, title: 'Moment Distribution Method', topics: ['Stiffness & Carry-Over Factors', 'Distribution Factors', 'Analysis of Beams & Frames'], notes: [] },
-      { unitNo: 4, title: 'Arches & Cables', topics: ['3-Hinged & 2-Hinged Arches', 'Eddy Theorem', 'Cables & Suspension Bridges with Stiffening Girders'], notes: [] },
-      { unitNo: 5, title: 'Influence Line Diagrams (ILD)', topics: ['Muller-Breslau Principle', 'ILD for Simply Supported & Continuous Beams', 'Maximum Bending Moment under Moving Loads'], notes: [] }
-    ]
-  },
-
-  // --- 3rd Year: Maths ---
-  {
-    id: 'kas-501-maths',
-    code: 'KAS-501',
-    subject: 'Applied Mathematics-III',
-    slug: 'applied-mathematics-3',
-    branch: 'Maths',
-    applicableBranches: ['Maths', 'ECE', 'EE', 'ME', 'CE'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Partial Differential Equations, Complex Integration, Probability Distributions & Numerical Methods.',
-    units: [
-      { unitNo: 1, title: 'Partial Differential Equations (PDE)', topics: ['Lagrange Linear PDE', 'Charpit Method', 'Classification of 2nd Order Linear PDEs'], notes: [] },
-      { unitNo: 2, title: 'Applications of PDE', topics: ['Method of Separation of Variables', '1D Wave & Heat Conduction Equations', 'Laplace Equation in 2D'], notes: [] },
-      { unitNo: 3, title: 'Complex Integration & Residues', topics: ['Cauchy Residue Theorem', 'Evaluation of Real Definite Integrals', 'Conformal Mapping'], notes: [] },
-      { unitNo: 4, title: 'Statistical Techniques & Probability', topics: ['Binomial, Poisson & Normal Distributions', 'Correlation & Linear Regression', 'Hypothesis Testing (t-Test, Chi-Square)'], notes: [] },
-      { unitNo: 5, title: 'Numerical Methods', topics: ['Newton-Raphson & Regula-Falsi Methods', 'Newton Forward/Backward Interpolation', 'Runge-Kutta 4th Order Method'], notes: [] }
-    ]
-  },
-
-  // =========================================================================
-  // 4TH YEAR — ALL BRANCHES
-  // =========================================================================
-
-  // --- 4th Year: CSE / IT / AI & DS ---
-  {
-    id: 'kcs-701',
-    code: 'KCS-701',
-    subject: 'Artificial Intelligence',
-    slug: 'artificial-intelligence',
+    id: 'kcs-502-cd',
+    code: 'KCS-502',
+    subject: 'Compiler Design',
+    slug: 'compiler-design',
     branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
-    year: '4th Year',
-    semester: 'Sem 7',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 5',
     credits: 4,
-    description: 'Heuristic Search (A*, AO*), Knowledge Representation, Propositional Logic, Neural Networks, Natural Language Processing.',
-    units: [
-      { unitNo: 1, title: 'Introduction & Problem Solving Search', topics: ['AI Agents & Environments', 'Uninformed Search: BFS, DFS', 'Informed Search: A* & AO* Algorithms'], notes: [] },
-      { unitNo: 2, title: 'Knowledge Representation & Logic', topics: ['Propositional & First-Order Predicate Logic', 'Resolution & Unification Algorithm', 'Semantic Nets & Frames'], notes: [] },
-      { unitNo: 3, title: 'Reasoning under Uncertainty', topics: ['Bayesian Networks & Probabilistic Reasoning', 'Dempster-Shafer Theory', 'Fuzzy Logic & Membership Functions'], notes: [] },
-      { unitNo: 4, title: 'Machine Learning & Neural Networks', topics: ['Supervised vs Unsupervised Learning', 'Perceptrons & Backpropagation Neural Networks', 'Decision Trees'], notes: [] },
-      { unitNo: 5, title: 'Natural Language Processing & Expert Systems', topics: ['Parsing & Syntactic Analysis', 'Expert System Architecture', 'Chatbots & NLP Applications'], notes: [] }
-    ]
+    description: 'Lexical Analysis, Syntax Parsing (LL & LR), Syntax Directed Translation, Intermediate Code, and Optimization.',
+    units: []
   },
   {
-    id: 'kcs-702',
-    code: 'KCS-702',
-    subject: 'Cloud Computing',
-    slug: 'cloud-computing',
+    id: 'kcs-601-se',
+    code: 'KCS-601',
+    subject: 'Software Engineering',
+    slug: 'software-engineering',
     branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
-    year: '4th Year',
-    semester: 'Sem 7',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 6',
+    credits: 4,
+    description: 'SDLC Models, Requirements Engineering, Software Architecture, Testing Strategies, and Agile Methodologies.',
+    units: []
+  },
+  {
+    id: 'kcs-501-dbms',
+    code: 'KCS-501',
+    subject: 'Database Management System (DBMS)',
+    slug: 'database-management-system',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 4,
+    description: 'ER Modeling, Relational Algebra, SQL Queries, Normalization, Transaction Processing, and Concurrency Control.',
+    units: []
+  },
+  {
+    id: 'kcs-503-cn',
+    code: 'KCS-503',
+    subject: 'Computer Networks',
+    slug: 'computer-networks',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 4,
+    description: 'OSI & TCP/IP Model, Data Link Layer Protocols, Routing Algorithms, Transport Layer (TCP/UDP), and Application Layer.',
+    units: []
+  },
+  {
+    id: 'kcs-054-oosd',
+    code: 'KCS-054',
+    subject: 'Object Oriented System Design',
+    slug: 'object-oriented-system-design',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 4,
+    description: 'UML Class Diagrams, Sequence Diagrams, Use Cases, Object Oriented Modeling, Design Patterns, and Principles.',
+    units: []
+  },
+  {
+    id: 'kcs-055-da',
+    code: 'KCS-055',
+    subject: 'Data Analytics',
+    slug: 'data-analytics',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 4,
+    description: 'Data Preprocessing, Exploratory Data Analysis, Regression, Classification, Clustering, and Big Data Intro.',
+    units: []
+  },
+  {
+    id: 'kcs-056-daa',
+    code: 'KCS-056',
+    subject: 'Data Analysis Algorithms',
+    slug: 'data-analysis-algorithms',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 4,
+    description: 'Statistical Learning Algorithms, Hypothesis Testing, Dimensionality Reduction (PCA), and Algorithmic Analysis.',
+    units: []
+  },
+  {
+    id: 'kcs-053-cg',
+    code: 'KCS-053',
+    subject: 'Computer Graphics',
+    slug: 'computer-graphics',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 4,
+    description: 'Raster Graphics, 2D/3D Transformations, Clipping Algorithms, Curves & Surfaces, Shading, and Animation.',
+    units: []
+  },
+  {
+    id: 'kcs-061-wd3',
+    code: 'KCS-061',
+    subject: 'Web Designing',
+    slug: 'web-designing-3rd-year',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 6',
     credits: 3,
-    description: 'Cloud Models (IaaS, PaaS, SaaS), Virtualization, Hypervisors, Cloud Storage, and Security.',
-    units: [
-      { unitNo: 1, title: 'Cloud Overview & Service Models', topics: ['NIST Cloud Definition', 'IaaS, PaaS, SaaS Architectures', 'Public, Private & Hybrid Deployments'], notes: [] },
-      { unitNo: 2, title: 'Virtualization Technology', topics: ['Type-1 & Type-2 Hypervisors', 'Full vs Para-Virtualization', 'Virtual Machine Migration'], notes: [] },
-      { unitNo: 3, title: 'Cloud Storage & Architecture', topics: ['Block vs Object Storage (S3)', 'Distributed File Systems (GFS, HDFS)', 'Cloud Data Management'], notes: [] },
-      { unitNo: 4, title: 'Resource Management & Load Balancing', topics: ['Auto-scaling Strategies', 'Load Balancing Algorithms', 'SLA Management'], notes: [] },
-      { unitNo: 5, title: 'Cloud Security & Identity', topics: ['IAM & Access Control', 'Data Encryption in Cloud', 'Compliance & Multi-Tenancy Security'], notes: [] }
-    ]
+    description: 'Advanced Responsive Web Development, UI/UX Principles, Frontend Frameworks, and Web Standards.',
+    units: []
   },
   {
-    id: 'kcs-801',
-    code: 'KCS-801',
-    subject: 'Distributed Systems',
-    slug: 'distributed-systems',
+    id: 'kcs-062-cs3',
+    code: 'KCS-062',
+    subject: 'Cyber Security',
+    slug: 'cyber-security-3rd-year',
     branch: 'CSE',
-    applicableBranches: ['CSE', 'IT', 'AI & DS'],
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 6',
+    credits: 3,
+    description: 'Information Security Principles, Network Attacks, Cryptography Techniques, Cyber Laws, and Ethics.',
+    units: []
+  },
+  {
+    id: 'kcs-063-mlt',
+    code: 'KCS-063',
+    subject: 'Machine Learning Technology',
+    slug: 'machine-learning-technology',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '3rd Year',
+    semester: 'Sem 6',
+    credits: 4,
+    description: 'Supervised & Unsupervised Machine Learning, Decision Trees, SVM, Neural Networks, and ML Model Evaluation.',
+    units: []
+  },
+
+  // =========================================================================
+  // 4TH YEAR — ALL BRANCHES (12 SUBJECTS)
+  // =========================================================================
+  {
+    id: 'kcs-071-ai',
+    code: 'KCS-071',
+    subject: 'Artificial Intelligence',
+    slug: 'artificial-intelligence-4th-year',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '4th Year',
+    semester: 'Sem 7',
+    credits: 4,
+    description: 'Heuristic Search (A*, AO*), Knowledge Representation, Logic, Neural Networks, and AI Applications.',
+    units: []
+  },
+  {
+    id: 'kcs-072-nlp',
+    code: 'KCS-072',
+    subject: 'Natural Language Processing',
+    slug: 'natural-language-processing',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '4th Year',
+    semester: 'Sem 7',
+    credits: 4,
+    description: 'Tokenization, POS Tagging, Parsing, Sentiment Analysis, Word Embeddings, and Language Models.',
+    units: []
+  },
+  {
+    id: 'kcs-073-hpc',
+    code: 'KCS-073',
+    subject: 'High Performance Computing',
+    slug: 'high-performance-computing',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '4th Year',
+    semester: 'Sem 7',
+    credits: 4,
+    description: 'Parallel Architectures, OpenMP, MPI Programming, GPU Computing (CUDA), and Cluster Performance.',
+    units: []
+  },
+  {
+    id: 'kcs-074-cns',
+    code: 'KCS-074',
+    subject: 'Cryptography & Network Security',
+    slug: 'cryptography-network-security',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '4th Year',
+    semester: 'Sem 7',
+    credits: 4,
+    description: 'Symmetric & Asymmetric Ciphers (AES, RSA), Hash Functions, Digital Signatures, IPsec, and SSL/TLS.',
+    units: []
+  },
+  {
+    id: 'kcs-075-dda',
+    code: 'KCS-075',
+    subject: 'Design & Development of Applications',
+    slug: 'design-development-applications',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '4th Year',
+    semester: 'Sem 7',
+    credits: 4,
+    description: 'Application Design Architecture, Mobile & Web App Lifecycle, API Integration, and Cloud Deployment.',
+    units: []
+  },
+  {
+    id: 'kcs-076-st',
+    code: 'KCS-076',
+    subject: 'Software Testing',
+    slug: 'software-testing',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '4th Year',
+    semester: 'Sem 7',
+    credits: 4,
+    description: 'Black-box & White-box Testing, Unit Testing, Integration Testing, Test Case Automation, and Bug Tracking.',
+    units: []
+  },
+  {
+    id: 'kcs-081-ds',
+    code: 'KCS-081',
+    subject: 'Distributed Systems',
+    slug: 'distributed-systems-4th-year',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
     year: '4th Year',
     semester: 'Sem 8',
     credits: 4,
-    description: 'Distributed System Models, RPC, Logical Clocks (Lamport, Vector), Mutual Exclusion Algorithms, Consensus.',
-    units: [
-      { unitNo: 1, title: 'Distributed System Characterization', topics: ['Architectural Models (Client-Server, P2P)', 'System Layering & Middleware', 'Interprocess Communication'], notes: [] },
-      { unitNo: 2, title: 'RPC & Message Passing', topics: ['Remote Procedure Call (RPC) Mechanism', 'RMI Architecture', 'Message-Oriented Middleware'], notes: [] },
-      { unitNo: 3, title: 'Time Synchronization & Logical Clocks', topics: ['Physical Clock Synchronization (NTP)', 'Lamport Logical Clocks', 'Vector Clocks & Causality'], notes: [] },
-      { unitNo: 4, title: 'Distributed Mutual Exclusion & Election', topics: ['Ricart-Agrawala Algorithm', 'Token Ring Algorithm', 'Bully & Ring Election Algorithms'], notes: [] },
-      { unitNo: 5, title: 'Consensus & Fault Tolerance', topics: ['Byzantine Generals Problem', 'Two-Phase Commit Protocol', 'Replication & Consistency Models'], notes: [] }
-    ]
+    description: 'Distributed System Models, RPC, Logical Clocks (Lamport, Vector), Mutual Exclusion, and Consensus Protocols.',
+    units: []
   },
-
-  // --- 4th Year: ECE / EE ---
   {
-    id: 'kec-701',
-    code: 'KEC-701',
-    subject: 'Wireless & Mobile Communication',
-    slug: 'wireless-communication',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
+    id: 'kcs-082-dl',
+    code: 'KCS-082',
+    subject: 'Deep Learning',
+    slug: 'deep-learning',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
     year: '4th Year',
-    semester: 'Sem 7',
+    semester: 'Sem 8',
     credits: 4,
-    description: 'Cellular Concepts, Frequency Reuse, Handoff Strategies, Small-Scale Fading, 4G LTE & 5G Architecture.',
-    units: [
-      { unitNo: 1, title: 'Cellular System Fundamentals', topics: ['Frequency Reuse & Cell Splitting', 'Channel Assignment Strategies', 'Handoff & Interference (Co-Channel, Adjacent)'], notes: [] },
-      { unitNo: 2, title: 'Mobile Radio Propagation & Fading', topics: ['Free Space Propagation Model', 'Small-Scale & Large-Scale Fading', 'Doppler Spread & Coherence Time'], notes: [] },
-      { unitNo: 3, title: 'Equalization & Diversity Techniques', topics: ['Linear & Non-Linear Equalizers', 'Rake Receiver', 'Space, Frequency & Time Diversity'], notes: [] },
-      { unitNo: 4, title: 'Multiple Access Techniques', topics: ['FDMA, TDMA & CDMA', 'OFDMA Principles', 'Space Division Multiple Access (SDMA)'], notes: [] },
-      { unitNo: 5, title: 'Wireless Standards & 5G Networks', topics: ['GSM & CDMA2000 Architecture', '4G LTE E-UTRAN Architecture', '5G NR Features & Massive MIMO'], notes: [] }
-    ]
+    description: 'Deep Neural Networks, Convolutional Neural Networks (CNN), Recurrent Neural Networks (RNN), and Transformers.',
+    units: []
   },
-
-  // --- 4th Year: ME / CE ---
   {
-    id: 'kme-701',
-    code: 'KME-701',
-    subject: 'CAD/CAM & Automation',
-    slug: 'cad-cam',
-    branch: 'ME',
-    applicableBranches: ['ME', 'CE'],
+    id: 'kcs-083-soa',
+    code: 'KCS-083',
+    subject: 'Service Oriented Architecture',
+    slug: 'service-oriented-architecture',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
     year: '4th Year',
-    semester: 'Sem 7',
+    semester: 'Sem 8',
     credits: 4,
-    description: 'Computer Graphics Transformation, Geometric Modeling (Bezier, B-Spline), CNC Part Programming, FMS & Robotics.',
-    units: [
-      { unitNo: 1, title: 'CAD Fundamentals & Transformations', topics: ['2D & 3D Geometric Transformations (Translation, Rotation, Scaling)', 'Homogeneous Coordinates', 'Clipping Algorithms'], notes: [] },
-      { unitNo: 2, title: 'Geometric Modeling', topics: ['Wireframe, Surface & Solid Modeling (CSG, B-Rep)', 'Hermite, Bezier & B-Spline Curves', 'NURBS Overview'], notes: [] },
-      { unitNo: 3, title: 'NC & CNC Machine Tools', topics: ['CNC Machine Components & MCU', 'G-Codes & M-Codes Part Programming', 'Tool Path Generation'], notes: [] },
-      { unitNo: 4, title: 'Flexible Manufacturing Systems (FMS)', topics: ['Group Technology & Cellular Manufacturing', 'Automated Guided Vehicles (AGV)', 'AS/RS Automated Storage'], notes: [] },
-      { unitNo: 5, title: 'Industrial Robotics', topics: ['Robot Anatomy & Configurations', 'Forward & Inverse Kinematics', 'Robot End Effectors & Sensors'], notes: [] }
-    ]
+    description: 'SOA Principles, Web Services (SOAP, REST), Microservices Architecture, Service Bus, and Orchestration.',
+    units: []
   },
-
-  // --- 4th Year: Maths ---
   {
-    id: 'kas-701-maths',
-    code: 'KAS-701',
-    subject: 'Optimization Techniques',
-    slug: 'optimization-techniques',
-    branch: 'Maths',
-    applicableBranches: ['Maths', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS'],
+    id: 'kcs-084-qc',
+    code: 'KCS-084',
+    subject: 'Quantum Computing',
+    slug: 'quantum-computing',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
     year: '4th Year',
-    semester: 'Sem 7',
+    semester: 'Sem 8',
     credits: 4,
-    description: 'Linear Programming (Simplex), Transportation Model, Assignment Problem, Dynamic Programming & Non-Linear Optimization.',
-    units: [
-      { unitNo: 1, title: 'Linear Programming & Simplex Method', topics: ['LPP Mathematical Formulation', 'Simplex & Big-M Methods', 'Dual Simplex Algorithm'], notes: [] },
-      { unitNo: 2, title: 'Transportation & Assignment Problems', topics: ['Initial Basic Feasible Solution (VAM)', 'MODI Optimality Test', 'Hungarian Assignment Method'], notes: [] },
-      { unitNo: 3, title: 'Network Analysis (PERT & CPM)', topics: ['Critical Path Method (CPM)', 'PERT Event Times & Probability', 'Project Crashing'], notes: [] },
-      { unitNo: 4, title: 'Dynamic Programming & Game Theory', topics: ['Bellman Principle of Optimality', 'Two-Person Zero-Sum Games', 'Saddle Point & Mixed Strategy'], notes: [] },
-      { unitNo: 5, title: 'Non-Linear Optimization', topics: ['Unconstrained Optimization (Gradient Search)', 'Kuhn-Tucker Conditions', 'Quadratic Programming Overview'], notes: [] }
-    ]
+    description: 'Qubits, Quantum Gates, Quantum Algorithms (Shor, Grover), Superposition, Entanglement, and Quantum Circuits.',
+    units: []
+  },
+  {
+    id: 'kcs-085-mc',
+    code: 'KCS-085',
+    subject: 'Mobile Computing',
+    slug: 'mobile-computing',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '4th Year',
+    semester: 'Sem 8',
+    credits: 4,
+    description: 'Cellular Systems, Mobile IP, Wireless Protocols, Mobile OS Architecture, and Wireless Sensor Networks.',
+    units: []
+  },
+  {
+    id: 'kcs-086-iot',
+    code: 'KCS-086',
+    subject: 'Internet of Things',
+    slug: 'internet-of-things',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    year: '4th Year',
+    semester: 'Sem 8',
+    credits: 4,
+    description: 'IoT Hardware, Sensors & Actuators, MQTT/CoAP Communication, Raspberry Pi/Arduino, and IoT Security.',
+    units: []
   }
 ];
 

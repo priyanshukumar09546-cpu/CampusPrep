@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, FileText, MessageSquare, ArrowRight, Eye, Clock, MessageCircle, FileDown } from 'lucide-react';
+import { Flame, FileText, Briefcase, ArrowRight, Eye, Clock, Sparkles, FileDown, CheckCircle } from 'lucide-react';
 
 export default function TrendingLatestCommunitySection({ 
   onSubjectClick, 
@@ -24,19 +24,19 @@ export default function TrendingLatestCommunitySection({
     { id: 5, title: 'TAFL – Unit 2 Notes', sub: 'CSE - Sem 4 • PDF', time: '2 days ago' },
   ];
 
-  const communityDiscussions = [
-    { id: 1, title: 'How to prepare for OS in 15 days?', sub: 'CSE • 12 replies', time: '2 hours ago' },
-    { id: 2, title: 'Difference between deadlock and starvation?', sub: 'CSE • 8 replies', time: '5 hours ago' },
-    { id: 3, title: 'Can anyone share unit 3 notes of CN?', sub: 'CSE • 14 replies', time: '1 day ago' },
-    { id: 4, title: 'Best resources for Maths IV?', sub: 'Common • 10 replies', time: '1 day ago' },
-    { id: 5, title: 'Placement preparation with AKTU syllabus?', sub: 'General • 6 replies', time: '2 hours ago' },
+  const placementModules = [
+    { id: 1, title: 'Aptitude Reasoning Drill', sub: 'Quant, Logical & Verbal • 20 Questions', badge: 'Round 1' },
+    { id: 2, title: 'Competitive Coding Challenge', sub: 'MongoDB Problem Bank • Python/C++/Java', badge: 'Round 2' },
+    { id: 3, title: 'AI Technical Interviewer', sub: 'Turn-Taking Voice Q&A with Misconception Checks', badge: 'Round 3' },
+    { id: 4, title: 'AI HR Behavioral Round', sub: 'STAR Framework Situation Analysis', badge: 'Round 4' },
+    { id: 5, title: 'Comprehensive Placement Report', sub: 'Mathematical Score & Question Breakdown', badge: 'Report' },
   ];
 
   return (
     <section style={{
-      backgroundColor: '#f9f7f1',
+      backgroundColor: '#FAF7F2',
       padding: '2.5rem 0',
-      borderBottom: '1px solid #eae5d9'
+      borderBottom: '1.5px solid #E8E2D5'
     }}>
       <div className="container">
         <div style={{
@@ -50,8 +50,8 @@ export default function TrendingLatestCommunitySection({
             backgroundColor: '#ffffff',
             borderRadius: '20px',
             padding: '1.4rem',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.03)'
+            border: '1.5px solid #E8E2D5',
+            boxShadow: '0 8px 24px rgba(35,30,25,0.04)'
           }}>
             <div style={{
               display: 'flex',
@@ -60,8 +60,8 @@ export default function TrendingLatestCommunitySection({
               marginBottom: '0.4rem'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Flame size={20} style={{ color: '#f97316' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a' }}>
+                <Flame size={20} style={{ color: '#EA580C' }} />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21' }}>
                   Trending Subjects
                 </h3>
               </div>
@@ -71,7 +71,7 @@ export default function TrendingLatestCommunitySection({
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#0d5c3a',
+                  color: '#C88D2D',
                   fontSize: '0.8rem',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -84,7 +84,7 @@ export default function TrendingLatestCommunitySection({
               </button>
             </div>
             
-            <p style={{ fontSize: '0.76rem', color: '#64748b', marginBottom: '1rem' }}>
+            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem' }}>
               Most popular among AKTU students
             </p>
 
@@ -94,8 +94,8 @@ export default function TrendingLatestCommunitySection({
                   key={sub.id}
                   onClick={() => onSubjectClick && onSubjectClick(sub)}
                   style={{
-                    backgroundColor: '#f8fafc',
-                    border: '1px solid #e2e8f0',
+                    backgroundColor: '#FAF7F2',
+                    border: '1.5px solid #E8E2D5',
                     borderRadius: '12px',
                     padding: '0.75rem 0.9rem',
                     display: 'flex',
@@ -105,34 +105,34 @@ export default function TrendingLatestCommunitySection({
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#0d5c3a';
-                    e.currentTarget.style.backgroundColor = '#e6f4ed';
+                    e.currentTarget.style.borderColor = '#C88D2D';
+                    e.currentTarget.style.backgroundColor = '#FDF6E8';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#e2e8f0';
-                    e.currentTarget.style.backgroundColor = '#f8fafc';
+                    e.currentTarget.style.borderColor = '#E8E2D5';
+                    e.currentTarget.style.backgroundColor = '#FAF7F2';
                   }}
                 >
                   <div>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#0f172a' }}>
+                    <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#1C1E21' }}>
                       {sub.name}
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 500, marginTop: '0.1rem' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#646E78', fontWeight: 500, marginTop: '0.1rem' }}>
                       {sub.branch} - {sub.sem}
                     </div>
                   </div>
 
                   <div style={{
                     fontSize: '0.7rem',
-                    color: '#0d5c3a',
-                    fontWeight: 600,
+                    color: '#C88D2D',
+                    fontWeight: 700,
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.3rem',
                     backgroundColor: '#ffffff',
                     padding: '0.2rem 0.5rem',
                     borderRadius: '9999px',
-                    border: '1px solid #cbd5e1'
+                    border: '1px solid #E8D3B0'
                   }}>
                     <Eye size={12} /> {sub.views}
                   </div>
@@ -146,8 +146,8 @@ export default function TrendingLatestCommunitySection({
             backgroundColor: '#ffffff',
             borderRadius: '20px',
             padding: '1.4rem',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.03)'
+            border: '1.5px solid #E8E2D5',
+            boxShadow: '0 8px 24px rgba(35,30,25,0.04)'
           }}>
             <div style={{
               display: 'flex',
@@ -156,8 +156,8 @@ export default function TrendingLatestCommunitySection({
               marginBottom: '0.4rem'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <FileText size={20} style={{ color: '#10b981' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a' }}>
+                <FileText size={20} style={{ color: '#C88D2D' }} />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21' }}>
                   Latest Notes
                 </h3>
               </div>
@@ -167,7 +167,7 @@ export default function TrendingLatestCommunitySection({
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#0d5c3a',
+                  color: '#C88D2D',
                   fontSize: '0.8rem',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -180,7 +180,7 @@ export default function TrendingLatestCommunitySection({
               </button>
             </div>
             
-            <p style={{ fontSize: '0.76rem', color: '#64748b', marginBottom: '1rem' }}>
+            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem' }}>
               Recently uploaded study materials
             </p>
 
@@ -190,8 +190,8 @@ export default function TrendingLatestCommunitySection({
                   key={note.id}
                   onClick={() => onNoteClick && onNoteClick(note)}
                   style={{
-                    backgroundColor: '#f8fafc',
-                    border: '1px solid #e2e8f0',
+                    backgroundColor: '#FAF7F2',
+                    border: '1.5px solid #E8E2D5',
                     borderRadius: '12px',
                     padding: '0.75rem 0.9rem',
                     display: 'flex',
@@ -201,12 +201,12 @@ export default function TrendingLatestCommunitySection({
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#10b981';
-                    e.currentTarget.style.backgroundColor = '#ecfdf5';
+                    e.currentTarget.style.borderColor = '#C88D2D';
+                    e.currentTarget.style.backgroundColor = '#FDF6E8';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#e2e8f0';
-                    e.currentTarget.style.backgroundColor = '#f8fafc';
+                    e.currentTarget.style.borderColor = '#E8E2D5';
+                    e.currentTarget.style.backgroundColor = '#FAF7F2';
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
@@ -214,8 +214,8 @@ export default function TrendingLatestCommunitySection({
                       width: '32px',
                       height: '32px',
                       borderRadius: '8px',
-                      backgroundColor: '#fef2f2',
-                      color: '#ef4444',
+                      backgroundColor: '#FDF6E8',
+                      color: '#C88D2D',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -226,16 +226,16 @@ export default function TrendingLatestCommunitySection({
                     </div>
 
                     <div>
-                      <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#0f172a', lineHeight: 1.3 }}>
+                      <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#1C1E21', lineHeight: 1.3 }}>
                         {note.title}
                       </div>
-                      <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: '0.15rem' }}>
+                      <div style={{ fontSize: '0.72rem', color: '#646E78', marginTop: '0.15rem' }}>
                         {note.sub}
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ fontSize: '0.7rem', color: '#94a3b8', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                  <div style={{ fontSize: '0.7rem', color: '#909AA4', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
                     <Clock size={11} /> {note.time}
                   </div>
                 </div>
@@ -243,13 +243,13 @@ export default function TrendingLatestCommunitySection({
             </div>
           </div>
 
-          {/* COLUMN 3: Community Discussions */}
+          {/* COLUMN 3: Placement & Interview Pro */}
           <div style={{
             backgroundColor: '#ffffff',
             borderRadius: '20px',
             padding: '1.4rem',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.03)'
+            border: '1.5px solid #E8E2D5',
+            boxShadow: '0 8px 24px rgba(35,30,25,0.04)'
           }}>
             <div style={{
               display: 'flex',
@@ -258,18 +258,18 @@ export default function TrendingLatestCommunitySection({
               marginBottom: '0.4rem'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <MessageSquare size={20} style={{ color: '#0284c7' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0f172a' }}>
-                  Community Discussions
+                <Briefcase size={20} style={{ color: '#781416' }} />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21' }}>
+                  Interview Pro Drills
                 </h3>
               </div>
               
               <button 
-                onClick={() => onViewAll && onViewAll('community')}
+                onClick={() => onViewAll && onViewAll('interview-pro')}
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#0d5c3a',
+                  color: '#C88D2D',
                   fontSize: '0.8rem',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -278,22 +278,22 @@ export default function TrendingLatestCommunitySection({
                   gap: '0.2rem'
                 }}
               >
-                View All <ArrowRight size={14} />
+                Launch <ArrowRight size={14} />
               </button>
             </div>
             
             <p style={{ fontSize: '0.76rem', color: '#64748b', marginBottom: '1rem' }}>
-              Ask questions & discuss with peers
+              4-Stage assessment with voice AI & live coding
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {communityDiscussions.map(disc => (
+              {placementModules.map(item => (
                 <div
-                  key={disc.id}
-                  onClick={() => onDiscussionClick && onDiscussionClick(disc)}
+                  key={item.id}
+                  onClick={() => onViewAll && onViewAll('interview-pro')}
                   style={{
-                    backgroundColor: '#f8fafc',
-                    border: '1px solid #e2e8f0',
+                    backgroundColor: '#FAF7F2',
+                    border: '1.5px solid #E8E2D5',
                     borderRadius: '12px',
                     padding: '0.75rem 0.9rem',
                     display: 'flex',
@@ -303,43 +303,52 @@ export default function TrendingLatestCommunitySection({
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#0284c7';
-                    e.currentTarget.style.backgroundColor = '#f0f9ff';
+                    e.currentTarget.style.borderColor = '#781416';
+                    e.currentTarget.style.backgroundColor = '#FEF2F2';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#e2e8f0';
-                    e.currentTarget.style.backgroundColor = '#f8fafc';
+                    e.currentTarget.style.borderColor = '#E8E2D5';
+                    e.currentTarget.style.backgroundColor = '#FAF7F2';
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
                     <div style={{
                       width: '32px',
                       height: '32px',
-                      borderRadius: '50%',
-                      backgroundColor: '#e0f2fe',
-                      color: '#0284c7',
+                      borderRadius: '8px',
+                      backgroundColor: '#FEF2F2',
+                      color: '#781416',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
                       marginTop: '2px'
                     }}>
-                      <MessageCircle size={16} />
+                      <Sparkles size={16} />
                     </div>
 
                     <div>
-                      <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#0f172a', lineHeight: 1.3 }}>
-                        {disc.title}
+                      <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#1C1E21', lineHeight: 1.3 }}>
+                        {item.title}
                       </div>
                       <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: '0.15rem' }}>
-                        {disc.sub}
+                        {item.sub}
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ fontSize: '0.7rem', color: '#94a3b8', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-                    <Clock size={11} /> {disc.time}
-                  </div>
+                  <span style={{
+                    fontSize: '0.68rem',
+                    fontWeight: 800,
+                    backgroundColor: '#FDF6E8',
+                    color: '#8A5D00',
+                    border: '1px solid #E8D3B0',
+                    padding: '0.2rem 0.5rem',
+                    borderRadius: '6px',
+                    whiteSpace: 'nowrap'
+                  }}>
+                    {item.badge}
+                  </span>
                 </div>
               ))}
             </div>

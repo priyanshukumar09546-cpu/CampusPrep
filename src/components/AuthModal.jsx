@@ -8,12 +8,42 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
   const [year, setYear] = useState('1st Year');
   const [branch, setBranch] = useState('CSE');
 
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`${mode === 'login' ? 'LoggedIn' : 'Signed Up'} successfully as ${email}!`);
-    onClose();
+    setLoading(true);
+    setErrorMsg('');
+
+    try {
+      const endpoint = mode === 'login' ? '/api/auth/login' : '/api/auth/signup';
+      const bodyPayload = mode === 'login' ? { emailOrEnrollment: email, password } : { name, email, branch, year, password };
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bodyPayload)
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        localStorage.setItem('professorvirus_token', data.token);
+        localStorage.setItem('professorvirus_user', JSON.stringify(data.user));
+        sessionStorage.setItem('professorvirus_token', data.token);
+        sessionStorage.setItem('professorvirus_user', JSON.stringify(data.user));
+        onClose();
+        window.location.reload();
+      } else {
+        setErrorMsg(data.message || 'Authentication failed.');
+      }
+    } catch (err) {
+      setErrorMsg('Connection error. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -61,10 +91,10 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
             gap: '0.4rem',
             fontSize: '1.6rem',
             fontWeight: 800,
-            color: '#0e4d34',
+            color: '#1F2421',
             marginBottom: '0.2rem'
           }}>
-            Campus<span style={{ color: '#059669' }}>Prep</span>
+            Professor<span style={{ color: '#C88D2D' }}>Virus</span>
           </div>
           <p style={{ fontSize: '0.85rem', color: '#64748b' }}>
             {mode === 'login' ? 'Welcome back! Log in to access your AKTU resources.' : 'Create your student account & start preparing.'}
@@ -154,7 +184,7 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
               padding: '0.75rem',
               fontSize: '0.95rem',
               marginTop: '0.5rem',
-              backgroundColor: '#0e4d34'
+              backgroundColor: '#1F2421'
             }}
           >
             {mode === 'login' ? 'Login to Account' : 'Create Free Account'} <ArrowRight size={18} />
@@ -225,7 +255,7 @@ const selectStyle = {
 const linkBtnStyle = {
   background: 'none',
   border: 'none',
-  color: '#0e4d34',
+  color: '#C88D2D',
   fontWeight: 700,
   cursor: 'pointer'
 };

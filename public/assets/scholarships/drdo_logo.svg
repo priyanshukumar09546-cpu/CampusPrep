@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="280" height="80">
+  <rect width="280" height="80" rx="12" fill="#0A2540" />
+  <g transform="translate(18, 14)">
+    <circle cx="26" cy="26" r="24" fill="#0E3864" stroke="#F59E0B" stroke-width="2" />
+    <path d="M 26 10 L 32 26 L 26 23 L 20 26 Z" fill="#F59E0B" />
+    <circle cx="26" cy="34" r="5" fill="#38BDF8" />
+  </g>
+  <text x="78" y="36" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="22" font-weight="900" fill="#FFFFFF" letter-spacing="1.5">DRDO</text>
+  <text x="78" y="54" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="10" font-weight="700" fill="#38BDF8" letter-spacing="1">DEFENCE R&amp;D ORG. INDIA</text>
+</svg>

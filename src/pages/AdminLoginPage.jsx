@@ -34,13 +34,11 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        if (rememberMe) {
-          localStorage.setItem('admin_token', data.token);
-          localStorage.setItem('admin_user', JSON.stringify(data.user));
-        } else {
-          sessionStorage.setItem('admin_token', data.token);
-          sessionStorage.setItem('admin_user', JSON.stringify(data.user));
-        }
+        localStorage.setItem('admin_token', data.token);
+        localStorage.setItem('admin_user', JSON.stringify(data.user));
+        sessionStorage.setItem('admin_token', data.token);
+        sessionStorage.setItem('admin_user', JSON.stringify(data.user));
+
         if (onLoginSuccess) {
           onLoginSuccess(data.token, data.user);
         }
@@ -58,7 +56,7 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: '#f4f7f5',
+      backgroundColor: '#FAF7F2',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -70,13 +68,13 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
         maxWidth: '440px',
         backgroundColor: '#ffffff',
         borderRadius: '20px',
-        boxShadow: '0 20px 40px rgba(13, 77, 46, 0.08)',
-        border: '1px solid #e1eee7',
+        boxShadow: '0 20px 40px rgba(31, 36, 33, 0.08)',
+        border: '1px solid #E8E2D5',
         overflow: 'hidden'
       }}>
         {/* Top Header Banner */}
         <div style={{
-          backgroundColor: '#0d4d2e',
+          backgroundColor: '#1F2421',
           padding: '32px 24px',
           textAlign: 'center',
           color: '#ffffff',
@@ -89,16 +87,17 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
             width: '56px',
             height: '56px',
             borderRadius: '16px',
-            backgroundColor: 'rgba(255, 255, 255, 0.15)',
+            backgroundColor: 'rgba(200, 141, 45, 0.15)',
+            border: '1px solid rgba(200, 141, 45, 0.3)',
             marginBottom: '16px',
             backdropFilter: 'blur(4px)'
           }}>
-            <ShieldCheck size={32} color="#4ade80" />
+            <ShieldCheck size={32} color="#C88D2D" />
           </div>
           <h1 style={{ margin: 0, fontSize: '24px', fontWeight: '700', letterSpacing: '-0.3px' }}>
-            CampusPrep Admin
+            ProfessorVirus Admin
           </h1>
-          <p style={{ margin: '8px 0 0', fontSize: '14px', color: '#a7f3d0', fontWeight: '400' }}>
+          <p style={{ margin: '8px 0 0', fontSize: '14px', color: '#D4B886', fontWeight: '400' }}>
             Secure Portal for Platform Administrators
           </p>
         </div>
@@ -127,23 +126,23 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
           {showForgotNotice && (
             <div style={{
               padding: '12px 16px',
-              backgroundColor: '#eff6ff',
-              border: '1px solid #bfdbfe',
+              backgroundColor: '#FDF6E8',
+              border: '1px solid #E8D3B0',
               borderRadius: '12px',
-              color: '#1e40af',
+              color: '#7A5835',
               fontSize: '13px',
               lineHeight: '1.5',
               marginBottom: '20px'
             }}>
               <strong>Password Reset Security Policy:</strong><br />
-              Administrator credentials are restricted. To request a password reset, contact internal IT security at <code>security@campusprep.edu</code>.
+              Administrator credentials are restricted. To request a password reset, contact internal IT security at <code>security@professorvirus.edu</code>.
             </div>
           )}
 
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {/* Email Field */}
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: '#1F2421', marginBottom: '8px' }}>
                 Admin Email Address
               </label>
               <div style={{ position: 'relative' }}>
@@ -153,20 +152,20 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@campusprep.edu"
+                  placeholder="admin@professorvirus.edu"
                   style={{
                     width: '100%',
                     padding: '12px 14px 12px 42px',
                     borderRadius: '12px',
-                    border: '1.5px solid #cbd5e1',
+                    border: '1.5px solid #E8E2D5',
                     fontSize: '14px',
-                    color: '#0f172a',
+                    color: '#1F2421',
                     outline: 'none',
                     boxSizing: 'border-box',
                     transition: 'all 0.2s ease'
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#0d4d2e'}
-                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                  onFocus={(e) => e.target.style.borderColor = '#C88D2D'}
+                  onBlur={(e) => e.target.style.borderColor = '#E8E2D5'}
                 />
               </div>
             </div>
@@ -174,7 +173,7 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
             {/* Password Field */}
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <label style={{ fontSize: '13px', fontWeight: '600', color: '#1e293b' }}>
+                <label style={{ fontSize: '13px', fontWeight: '600', color: '#1F2421' }}>
                   Password
                 </label>
                 <button
@@ -183,7 +182,7 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#0d4d2e',
+                    color: '#C88D2D',
                     fontSize: '12px',
                     fontWeight: '600',
                     cursor: 'pointer',
@@ -205,15 +204,15 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
                     width: '100%',
                     padding: '12px 44px 12px 42px',
                     borderRadius: '12px',
-                    border: '1.5px solid #cbd5e1',
+                    border: '1.5px solid #E8E2D5',
                     fontSize: '14px',
-                    color: '#0f172a',
+                    color: '#1F2421',
                     outline: 'none',
                     boxSizing: 'border-box',
                     transition: 'all 0.2s ease'
                   }}
-                  onFocus={(e) => e.target.style.borderColor = '#0d4d2e'}
-                  onBlur={(e) => e.target.style.borderColor = '#cbd5e1'}
+                  onFocus={(e) => e.target.style.borderColor = '#C88D2D'}
+                  onBlur={(e) => e.target.style.borderColor = '#E8E2D5'}
                 />
                 <button
                   type="button"
@@ -242,7 +241,7 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
                 id="rememberAdmin"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                style={{ width: '16px', height: '16px', accentColor: '#0d4d2e', cursor: 'pointer' }}
+                style={{ width: '16px', height: '16px', accentColor: '#1F2421', cursor: 'pointer' }}
               />
               <label htmlFor="rememberAdmin" style={{ fontSize: '13px', color: '#475569', cursor: 'pointer', userSelect: 'none' }}>
                 Keep me logged in on this device
@@ -256,7 +255,7 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
               style={{
                 width: '100%',
                 padding: '14px',
-                backgroundColor: '#0d4d2e',
+                backgroundColor: '#1F2421',
                 color: '#ffffff',
                 border: 'none',
                 borderRadius: '12px',
@@ -267,7 +266,7 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '8px',
-                boxShadow: '0 4px 12px rgba(13, 77, 46, 0.25)',
+                boxShadow: '0 4px 12px rgba(31, 36, 33, 0.25)',
                 transition: 'all 0.2s ease',
                 opacity: loading ? 0.7 : 1
               }}
@@ -295,7 +294,7 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
                 textDecoration: 'underline'
               }}
             >
-              ← Back to Main CampusPrep Website
+              ← Back to Main ProfessorVirus Website
             </button>
           </div>
         </div>

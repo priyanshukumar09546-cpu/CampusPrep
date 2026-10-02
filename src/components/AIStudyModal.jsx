@@ -13,20 +13,38 @@ export default function AIStudyModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    const userMsg = input;
+    const userMsg = input.trim();
     setMessages(prev => [...prev, { sender: 'user', text: userMsg }]);
     setInput('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      let reply = `“Concept clear hona chahiye! '${userMsg}' ke liye exact AKTU unit-wise notes, 5-year PYQs & simple solved examples humare database me tayyar hain. Exam me 10/10 marks aayenge!” — Virus`;
-      setMessages(prev => [...prev, { sender: 'virus', text: reply }]);
+    try {
+      const res = await fetch('/api/ai-study', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: userMsg })
+      });
+      const data = await res.json();
+      if (res.ok && data.reply) {
+        setMessages(prev => [...prev, { sender: 'virus', text: data.reply }]);
+      } else {
+        setMessages(prev => [...prev, { 
+          sender: 'virus', 
+          text: data.error || 'Ask Virus is currently connecting to OpenAI. Please ensure OPENAI_API_KEY is configured in the backend environment.' 
+        }]);
+      }
+    } catch (err) {
+      setMessages(prev => [...prev, { 
+        sender: 'virus', 
+        text: 'Network error communicating with Ask Virus server. Please verify backend connection.' 
+      }]);
+    } finally {
       setIsTyping(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -42,8 +60,8 @@ export default function AIStudyModal({ isOpen, onClose }) {
       padding: '1rem'
     }}>
       <div style={{
-        backgroundColor: '#0c3829',
-        border: '2px solid #1a563f',
+        backgroundColor: '#1F2421',
+        border: '2px solid #3E4642',
         borderRadius: '24px',
         width: '100%',
         maxWidth: '640px',
@@ -56,8 +74,8 @@ export default function AIStudyModal({ isOpen, onClose }) {
         {/* MODAL HEADER */}
         <div style={{
           padding: '1rem 1.25rem',
-          backgroundColor: '#07271c',
-          borderBottom: '1px solid #1a563f',
+          backgroundColor: '#161917',
+          borderBottom: '1px solid #2A302C',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between'
@@ -68,18 +86,18 @@ export default function AIStudyModal({ isOpen, onClose }) {
               height: '42px',
               borderRadius: '50%',
               overflow: 'hidden',
-              border: '2px solid #34d399',
-              backgroundColor: '#1e293b'
+              border: '2px solid #C88D2D',
+              backgroundColor: '#FAF7F2'
             }}>
-              <img src="/assets/ai_virus.png" alt="Ask Virus" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src="/assets/navbar_logo.png" alt="ProfessorVirus AI" style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '0.2rem' }} />
             </div>
 
             <div>
               <div style={{ color: '#ffffff', fontWeight: 800, fontSize: '1.05rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                Ask Virus <span style={{ fontSize: '0.75rem', backgroundColor: '#059669', color: '#fff', padding: '0.1rem 0.5rem', borderRadius: '9999px' }}>AI Study Buddy</span>
+                Ask ProfessorVirus <span style={{ fontSize: '0.75rem', backgroundColor: '#C88D2D', color: '#1F2421', padding: '0.1rem 0.5rem', borderRadius: '9999px', fontWeight: 800 }}>AI Study Buddy</span>
               </div>
-              <div style={{ color: '#a7f3d0', fontSize: '0.75rem', fontFamily: "'Kalam', cursive" }}>
-                “No doubt is foolish!” — Virus
+              <div style={{ color: '#E8D3B0', fontSize: '0.75rem', fontFamily: "'Kalam', cursive" }}>
+                “No doubt is foolish!” — ProfessorVirus
               </div>
             </div>
           </div>
@@ -113,13 +131,14 @@ export default function AIStudyModal({ isOpen, onClose }) {
               style={{
                 alignSelf: m.sender === 'user' ? 'flex-end' : 'flex-start',
                 maxWidth: '85%',
-                backgroundColor: m.sender === 'user' ? '#059669' : '#144d37',
-                color: '#ffffff',
+                backgroundColor: m.sender === 'user' ? '#C88D2D' : '#2A302C',
+                color: m.sender === 'user' ? '#1F2421' : '#FAF7F2',
                 padding: '0.85rem 1.1rem',
                 borderRadius: m.sender === 'user' ? '18px 18px 2px 18px' : '18px 18px 18px 2px',
                 fontSize: '0.92rem',
                 lineHeight: 1.4,
                 boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                fontWeight: m.sender === 'user' ? 600 : 400,
                 fontFamily: m.sender === 'virus' ? "'Outfit', sans-serif" : 'sans-serif'
               }}
             >
@@ -130,7 +149,7 @@ export default function AIStudyModal({ isOpen, onClose }) {
           {isTyping && (
             <div style={{
               alignSelf: 'flex-start',
-              color: '#a7f3d0',
+              color: '#C88D2D',
               fontSize: '0.82rem',
               fontStyle: 'italic',
               display: 'flex',
@@ -145,8 +164,8 @@ export default function AIStudyModal({ isOpen, onClose }) {
         {/* INPUT FOOTER */}
         <form onSubmit={handleSend} style={{
           padding: '0.85rem 1.25rem',
-          backgroundColor: '#07271c',
-          borderTop: '1px solid #1a563f',
+          backgroundColor: '#161917',
+          borderTop: '1px solid #2A302C',
           display: 'flex',
           alignItems: 'center',
           gap: '0.6rem'
@@ -158,8 +177,8 @@ export default function AIStudyModal({ isOpen, onClose }) {
             onChange={(e) => setInput(e.target.value)}
             style={{
               flex: 1,
-              backgroundColor: '#0c3829',
-              border: '1px solid #1a563f',
+              backgroundColor: '#1F2421',
+              border: '1px solid #3E4642',
               borderRadius: '9999px',
               padding: '0.65rem 1.1rem',
               color: '#ffffff',
@@ -171,7 +190,8 @@ export default function AIStudyModal({ isOpen, onClose }) {
             type="submit"
             className="btn-primary"
             style={{
-              backgroundColor: '#059669',
+              backgroundColor: '#C88D2D',
+              color: '#1F2421',
               borderRadius: '50%',
               width: '42px',
               height: '42px',

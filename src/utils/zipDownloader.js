@@ -23,7 +23,7 @@ export async function downloadUnitZip({ subjectCode, subjectName, unitNo, unitTi
   // Add README text file with official unit topics and metadata
   const readmeContent = `
 ===================================================================
-CAMPUSPREP OFFICIAL AKTU UNIT NOTES PACKAGE
+PROFESSORVIRUS OFFICIAL AKTU UNIT NOTES PACKAGE
 ===================================================================
 Subject Code : ${subjectCode || 'N/A'}
 Subject Name : ${subjectName}
@@ -39,11 +39,11 @@ ${topics.map((t, idx) => `${idx + 1}. ${t}`).join('\n')}
 ===================================================================
 NOTES INCLUDED IN THIS ZIP:
 ===================================================================
-${notes.map((n, idx) => `${idx + 1}. ${n.title} (By: ${n.author || 'CampusPrep Contributor'})`).join('\n')}
+${notes.map((n, idx) => `${idx + 1}. ${n.title} (By: ${n.author || 'ProfessorVirus Contributor'})`).join('\n')}
 
 ===================================================================
-CampusPrep — Study Smart. Prepare Better.
-Visit: https://campusprep.edu/notes
+ProfessorVirus — Study Smart. Prepare Better.
+Visit: https://professorvirus.edu/notes
 ===================================================================
   `.trim();
 
@@ -74,15 +74,15 @@ Visit: https://campusprep.edu/notes
     // Generate structured verified note summary text file inside ZIP if direct blob fetch is remote/CORS
     const noteTextContent = `
 ===================================================================
-CAMPUSPREP VERIFIED AKTU NOTE RESOURCE
+PROFESSORVIRUS VERIFIED AKTU NOTE RESOURCE
 ===================================================================
 Title       : ${note.title}
 Subject     : ${subjectName} (${subjectCode})
 Unit        : Unit ${unitNo} - ${unitTitle}
 Note Type   : ${note.type || 'Unit Notes'}
-Author      : ${note.author || 'CampusPrep Contributor'}
+Author      : ${note.author || 'ProfessorVirus Contributor'}
 Date Added  : ${note.date || 'Recent'}
-Direct Link : ${note.fileUrl || 'https://campusprep.edu/notes'}
+Direct Link : ${note.fileUrl || 'https://professorvirus.edu/notes'}
 ===================================================================
 
 SYLLABUS COVERAGE:
@@ -91,7 +91,7 @@ ${topics.map((t, idx) => `• ${t}`).join('\n')}
 INSTRUCTIONS:
 Open the direct PDF link in your browser to view the original full high-resolution handwritten scans.
 
-— CampusPrep Academic Notes Team
+— ProfessorVirus Academic Notes Team
     `.trim();
 
     folder.file(`${safeTitle}_Summary.txt`, noteTextContent);

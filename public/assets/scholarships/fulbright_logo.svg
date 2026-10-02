@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" width="300" height="80">
+  <rect width="300" height="80" rx="12" fill="#0F172A" />
+  <g transform="translate(18, 16)">
+    <circle cx="24" cy="24" r="22" fill="#1E3A8A" stroke="#38BDF8" stroke-width="2" />
+    <path d="M 12 24 L 24 12 L 36 24 L 24 36 Z" fill="#FBBF24" />
+  </g>
+  <text x="74" y="38" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="18" font-weight="900" fill="#FFFFFF">FULBRIGHT-NEHRU</text>
+  <text x="74" y="55" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="10.5" font-weight="700" fill="#93C5FD">USIEF FELLOWSHIPS</text>
+</svg>

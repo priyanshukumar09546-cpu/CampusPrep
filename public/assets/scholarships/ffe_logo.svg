@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="280" height="80">
+  <rect width="280" height="80" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g transform="translate(18, 16)">
+    <circle cx="24" cy="24" r="22" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+    <path d="M 16 16 L 32 16 M 16 24 L 28 24 M 16 32 L 24 32" stroke="#B45309" stroke-width="3" stroke-linecap="round" />
+  </g>
+  <text x="74" y="38" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="22" font-weight="900" fill="#781416">FFE INDIA</text>
+  <text x="74" y="55" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="10.5" font-weight="700" fill="#D97706">FOUNDATION FOR EXCELLENCE</text>
+</svg>

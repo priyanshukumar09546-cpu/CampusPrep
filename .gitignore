@@ -1,3 +1,13 @@
+# Environment secrets (SERVER ONLY - DO NOT COMMIT TO GIT)
+.env
+.env.local
+.env.*.local
+*.env
+
+# Uploads & Data
+uploads/
+server/data/*.json
+
 # Logs
 logs
 *.log
@@ -22,3 +32,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Scratch/test files
+scratch/
+backups/
+server/data_backup_recovery/
+server/opportunities.json
+server/scholarships.json
+server/check_pyqs_route.cjs
+server/analyze_*.cjs
+server/migrate_*.cjs
+server/scrape_*.cjs
+server/scraped_*.json
+server/sync_*.cjs
+server/test_*.cjs
+*.timestamp-*

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="280" height="80">
+  <rect width="280" height="80" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g transform="translate(18, 18)">
+    <!-- Kotak Red Infinity Emblem -->
+    <path d="M 12 22 C 6 22 2 17 2 11 C 2 5 6 0 12 0 C 18 0 22 5 28 11 C 34 17 38 22 44 22 C 50 22 54 17 54 11 C 54 5 50 0 44 0 C 38 0 34 5 28 11 C 22 17 18 22 12 22 Z" fill="#EE2726" />
+    <circle cx="12" cy="11" r="4.5" fill="#003366" />
+    <circle cx="44" cy="11" r="4.5" fill="#003366" />
+  </g>
+  <text x="82" y="38" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="22" font-weight="900" fill="#003366">kotak</text>
+  <text x="82" y="55" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="10.5" font-weight="700" fill="#EE2726" letter-spacing="1.5">EDUCATION FOUNDATION</text>
+</svg>

@@ -1,162 +1,182 @@
 import React from 'react';
-import { Youtube, Instagram, Linkedin, Twitter, Heart } from 'lucide-react';
+import { Sparkles, Heart } from 'lucide-react';
 
 export default function Footer({ onNavigate }) {
-  const footerLinks = [
-    { name: 'About', id: 'about' },
-    { name: 'Contact', id: 'contact' },
-    { name: 'Contributors', id: 'contributors' },
-    { name: 'Privacy Policy', id: 'privacy' },
-    { name: 'Terms', id: 'terms' },
-    { name: 'Help', id: 'help' }
+  const quickLinks = [
+    { name: 'Home', id: 'home' },
+    { name: 'Notes', id: 'notes' },
+    { name: 'PYQs', id: 'pyqs' },
+    { name: 'Syllabus', id: 'syllabus' },
+    { name: 'Quizzes', id: 'quizzes' },
+    { name: 'Interview Pro', id: 'interview-pro' },
+    { name: 'SGPA Analyzer', id: 'result-cgpa' },
+    { name: 'Attendance Planner', id: 'attendance-calculator' },
+    { name: 'Important Links', id: 'important-links' }
   ];
 
   return (
     <footer style={{
-      backgroundColor: '#ffffff',
-      borderTop: '1px solid #eae5d9',
-      padding: '2.5rem 0 2rem 0',
-      color: '#475569'
+      backgroundColor: '#FAF7F2',
+      borderTop: '1.5px solid #E8E2D5',
+      padding: '3rem 0 2rem 0',
+      color: '#475569',
+      fontFamily: "'Plus Jakarta Sans', sans-serif"
     }}>
       <div className="container">
         
-        {/* TOP ROW: Brand, Nav links, Social Icons, Credits */}
+        {/* TOP SECTION: BRAND & NAVIGATION */}
         <div style={{
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '1.5rem',
-          paddingBottom: '1.5rem',
-          borderBottom: '1px solid #f1f5f9'
-        }}>
+          gap: '2rem',
+          paddingBottom: '2rem',
+          borderBottom: '1px solid #E8E2D5'
+        }} className="footer-top-row">
 
-          {/* LEFT: Logo & Brand */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              overflow: 'hidden',
-              border: '2px solid #0e4d34',
-              backgroundColor: '#fff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <img
-                src="/assets/navbar_logo.png"
-                alt="CampusPrep Mascot"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80';
-                }}
-              />
-            </div>
-
-            <div>
+          {/* LEFT: Logo, Title, and Brand Tagline */}
+          <div style={{ maxWidth: '420px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.65rem' }}>
               <div style={{
-                fontFamily: "'Outfit', sans-serif",
-                fontWeight: 800,
-                fontSize: '1.3rem',
-                color: '#0e4d34',
-                lineHeight: 1.1
+                width: '38px',
+                height: '38px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                border: '2px solid #C88D2D',
+                backgroundColor: '#FFFFFF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
               }}>
-                Campus<span style={{ color: '#059669' }}>Prep</span>
+                <img
+                  src="/assets/navbar_logo.png"
+                  alt="ProfessorVirus Logo"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.style.display = 'none';
+                  }}
+                />
               </div>
-              <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#64748b' }}>
-                Study Smart. Prepare Better.
+
+              <div>
+                <span style={{
+                  fontFamily: "'Outfit', sans-serif",
+                  fontWeight: 800,
+                  fontSize: '1.35rem',
+                  color: '#1F2421',
+                  letterSpacing: '-0.01em'
+                }}>
+                  Professor<span style={{ color: '#781416' }}>Virus</span>
+                </span>
               </div>
             </div>
+
+            <p style={{
+              fontSize: '0.85rem',
+              color: '#64748B',
+              lineHeight: 1.55,
+              margin: 0
+            }}>
+              Independent student academic ecosystem for AKTU B.Tech & professional degree students. Verified notes, university question papers, smart academic tools, and placement preparation.
+            </p>
           </div>
 
-          {/* CENTER: Quick Nav Links */}
+          {/* RIGHT: Curated Quick Navigation Links */}
           <div style={{
             display: 'flex',
-            alignItems: 'center',
-            gap: '1.25rem',
-            flexWrap: 'wrap'
-          }}>
-            {footerLinks.map(l => (
-              <button
-                key={l.id}
-                onClick={() => onNavigate && onNavigate(l.id)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: '#475569',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'color 0.2s ease'
-                }}
-                onMouseEnter={(e) => e.target.style.color = '#0e4d34'}
-                onMouseLeave={(e) => e.target.style.color = '#475569'}
-              >
-                {l.name}
-              </button>
-            ))}
-          </div>
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: '0.85rem',
+            maxWidth: '560px'
+          }} className="footer-links-col">
+            <div style={{
+              fontSize: '0.74rem',
+              fontWeight: 800,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              color: '#781416'
+            }}>
+              Academic & Placement Resources
+            </div>
 
-          {/* RIGHT: Social Icons */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <a href="#youtube" title="YouTube" style={socialIconStyle}>
-              <Youtube size={17} />
-            </a>
-            <a href="#instagram" title="Instagram" style={socialIconStyle}>
-              <Instagram size={17} />
-            </a>
-            <a href="#linkedin" title="LinkedIn" style={socialIconStyle}>
-              <Linkedin size={17} />
-            </a>
-            <a href="#twitter" title="Twitter / X" style={socialIconStyle}>
-              <Twitter size={17} />
-            </a>
+            <div style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '0.5rem 1.25rem'
+            }}>
+              {quickLinks.map(link => (
+                <button
+                  key={link.id}
+                  onClick={() => onNavigate && onNavigate(link.id)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#475569',
+                    fontSize: '0.86rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    padding: '0.2rem 0',
+                    transition: 'color 0.2s ease',
+                    textAlign: 'left'
+                  }}
+                  onMouseEnter={(e) => e.target.style.color = '#781416'}
+                  onMouseLeave={(e) => e.target.style.color = '#475569'}
+                >
+                  {link.name}
+                </button>
+              ))}
+            </div>
           </div>
 
         </div>
 
-        {/* BOTTOM ROW: Disclaimer & Credit Tag */}
+        {/* BOTTOM SECTION: Copyright & Academic Notice */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: '1rem',
-          paddingTop: '1.25rem',
+          paddingTop: '1.5rem',
           fontSize: '0.78rem',
-          color: '#64748b'
-        }}>
+          color: '#64748B'
+        }} className="footer-bottom-row">
           <div>
-            © {new Date().getFullYear()} CampusPrep. Independent Student Academic Platform for AKTU B.Tech.
+            © {new Date().getFullYear()} ProfessorVirus. Made by students, for students.
           </div>
 
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.3rem',
+            gap: '0.35rem',
             fontWeight: 600,
             color: '#334155'
           }}>
-            Made for AKTU Students • By Students, For a Better Tomorrow. <Heart size={14} style={{ color: '#ef4444', fill: '#ef4444' }} />
+            Study Smart. Prepare Better. <Sparkles size={13} style={{ color: '#C88D2D' }} />
           </div>
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .footer-top-row {
+            flex-direction: column !important;
+            gap: 1.5rem !important;
+          }
+          .footer-links-col {
+            max-width: 100% !important;
+          }
+          .footer-bottom-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.5rem !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }
-
-const socialIconStyle = {
-  width: '34px',
-  height: '34px',
-  borderRadius: '50%',
-  backgroundColor: '#f1f5f9',
-  color: '#334155',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  textDecoration: 'none',
-  transition: 'all 0.2s ease'
-};

@@ -46,6 +46,8 @@ import {
   Paperclip,
   Brain
 } from 'lucide-react';
+import AllIzzWellBanner from '../components/AllIzzWellBanner';
+import AcademicResourceBanner from '../components/AcademicResourceBanner';
 
 export default function AIStudyPage({ onNavigate }) {
   // Navigation & Filter States
@@ -187,7 +189,7 @@ export default function AIStudyPage({ onNavigate }) {
       }
     } catch (err) {
       setTimeout(() => {
-        let structuredReply = `📌 **AKTU Study Guide for "${q}"**:\n\n• **Definition**: Important 7-mark / 10-mark question for AKTU End Sem Exams.\n• **Key Components**: Focus on unit definitions, solved examples, and block diagrams.\n• **Preparation Advice**: Refer to CampusPrep PYQs for 5-year repeated questions! — Virus`;
+        let structuredReply = `📌 **AKTU Study Guide for "${q}"**:\n\n• **Definition**: Important 7-mark / 10-mark question for AKTU End Sem Exams.\n• **Key Components**: Focus on unit definitions, solved examples, and block diagrams.\n• **Preparation Advice**: Refer to ProfessorVirus PYQs for 5-year repeated questions! — Virus`;
         setChatMessages(prev => [...prev, { sender: 'virus', text: structuredReply }]);
         setIsAiLoading(false);
       }, 800);
@@ -205,26 +207,26 @@ export default function AIStudyPage({ onNavigate }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#f9f7f1', minHeight: '100vh', color: '#1e293b' }}>
+    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F2421' }}>
       
       {/* 1. LARGE ILLUSTRATED AI STUDY HERO BANNER */}
       <section style={{
         position: 'relative',
-        backgroundColor: '#0c3829',
+        backgroundColor: '#FAF7F2',
         backgroundImage: `
-          radial-gradient(rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
-          linear-gradient(180deg, #07271c 0%, #0c3829 100%)
+          radial-gradient(rgba(31, 36, 33, 0.04) 1.5px, transparent 1.5px),
+          linear-gradient(180deg, #F6F2E9 0%, #FAF7F2 100%)
         `,
         backgroundSize: '24px 24px, 100% 100%',
         padding: '1.75rem 0 2rem 0',
-        borderBottom: '4px solid #1a563f',
+        borderBottom: '2px solid #E8E2D5',
         overflow: 'hidden',
-        boxShadow: '0 12px 30px rgba(12, 56, 41, 0.35)'
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)'
       }}>
         <div style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
-          background: 'radial-gradient(circle at 50% 30%, rgba(52, 211, 153, 0.15), transparent 70%)',
+          background: 'radial-gradient(circle at 50% 30%, rgba(200, 141, 45, 0.08), transparent 70%)',
           pointerEvents: 'none'
         }} />
 
@@ -244,11 +246,11 @@ export default function AIStudyPage({ onNavigate }) {
                 borderRadius: '16px',
                 padding: '0.6rem 0.85rem',
                 marginBottom: '0.5rem',
-                border: '2px solid #0e4d34',
-                boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
+                border: '2px solid #E8D3B0',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.06)',
                 fontSize: '0.85rem',
                 fontWeight: 700,
-                color: '#0f172a',
+                color: '#1F2421',
                 fontFamily: "'Kalam', cursive",
                 lineHeight: 1.3,
                 textAlign: 'center',
@@ -257,7 +259,7 @@ export default function AIStudyPage({ onNavigate }) {
                 “Doubt ho? Confusion ho? <br />
                 AI se puch! <br />
                 Samajh ke Padho!” <br />
-                <span style={{ color: '#059669' }}>— Virus</span>
+                <span style={{ color: '#C88D2D' }}>— Virus</span>
 
                 <div style={{
                   position: 'absolute',
@@ -267,23 +269,27 @@ export default function AIStudyPage({ onNavigate }) {
                   width: 0, height: 0,
                   borderLeft: '7px solid transparent',
                   borderRight: '7px solid transparent',
-                  borderTop: '10px solid #0e4d34'
+                  borderTop: '10px solid #E8D3B0'
                 }} />
               </div>
 
               <div style={{
-                width: '230px',
-                height: '250px',
+                width: '240px',
+                height: '200px',
                 position: 'relative',
-                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.4))'
+                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.08))'
               }}>
                 <img
-                  src="/assets/aistudy_hero_virus.png"
-                  alt="Virus Teacher Mascot"
+                  src="/assets/hero_board.png"
+                  alt="AKTU Study Board"
+                  loading="eager"
+                  fetchpriority="high"
+                  width={240}
+                  height={200}
                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = '/assets/hero_virus.png';
+                    e.target.src = '/assets/aistudy_hero_students.png';
                   }}
                 />
               </div>
@@ -302,30 +308,30 @@ export default function AIStudyPage({ onNavigate }) {
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: '3.4rem',
                   fontWeight: 900,
-                  color: '#ffffff',
+                  color: '#1F2421',
                   lineHeight: 1.1,
                   letterSpacing: '-0.02em',
-                  textShadow: '0 4px 14px rgba(0,0,0,0.4), 0 0 24px rgba(52,211,153,0.3)'
+                  textShadow: 'none'
                 }}>
                   AI Study
                 </h1>
-                <Brain size={42} style={{ color: '#34d399', filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.3))' }} />
+                <Brain size={42} style={{ color: '#C88D2D', filter: 'drop-shadow(0 2px 6px rgba(200,141,45,0.3))' }} />
               </div>
 
               <div style={{
                 fontFamily: "'Kalam', cursive",
-                color: '#fde047',
+                color: '#C88D2D',
                 fontSize: '1.35rem',
                 fontWeight: 700,
                 letterSpacing: '0.02em',
-                textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+                textShadow: 'none'
               }}>
                 “Your Personal AI Study Buddy.”
               </div>
 
-              <p style={{ color: '#e2e8f0', fontSize: '0.95rem', fontWeight: 500 }}>
+              <p style={{ color: '#475569', fontSize: '0.95rem', fontWeight: 500 }}>
                 Ask Doubts. Get Clear Concepts. Study Smarter. <br />
-                <span style={{ fontSize: '0.8rem', color: '#a7f3d0' }}>Powered by AI. Designed for AKTU Students.</span>
+                <span style={{ fontSize: '0.8rem', color: '#C88D2D' }}>Powered by AI. Designed for AKTU Students.</span>
               </p>
 
               {/* Large Search / Ask AI Input Bar */}
@@ -347,8 +353,8 @@ export default function AIStudyPage({ onNavigate }) {
                   backgroundColor: '#ffffff',
                   borderRadius: '9999px',
                   padding: '0.35rem 0.4rem 0.35rem 1.25rem',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.35), 0 0 0 3px rgba(52,211,153,0.25)',
-                  border: '1px solid #cbd5e1'
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.06), 0 0 0 2px rgba(200,141,45,0.2)',
+                  border: '1px solid #E8E2D5'
                 }}>
                   <Search size={18} style={{ color: '#64748b', marginRight: '0.6rem', flexShrink: 0 }} />
                   <input
@@ -361,7 +367,7 @@ export default function AIStudyPage({ onNavigate }) {
                       border: 'none',
                       outline: 'none',
                       fontSize: '0.92rem',
-                      color: '#0f172a',
+                      color: '#1F2421',
                       fontWeight: 500,
                       backgroundColor: 'transparent'
                     }}
@@ -373,7 +379,7 @@ export default function AIStudyPage({ onNavigate }) {
                       padding: '0.6rem 1.5rem',
                       fontSize: '0.9rem',
                       fontWeight: 700,
-                      backgroundColor: '#0d5c3a',
+                      backgroundColor: '#1F2421',
                       borderRadius: '9999px',
                       flexShrink: 0,
                       gap: '0.3rem'
@@ -385,64 +391,8 @@ export default function AIStudyPage({ onNavigate }) {
               </form>
             </div>
 
-            {/* RIGHT: Students + Sticky Note + Boombox */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }} className="aistudy-right-mascot">
-              <div style={{
-                fontFamily: "'Kalam', cursive",
-                color: '#fef08a',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                textAlign: 'center',
-                marginBottom: '0.3rem',
-                textShadow: '0 2px 4px rgba(0,0,0,0.6)'
-              }}>
-                Same Doubts, <br />
-                Better Answers, Higher CGPA! <br />
-                <span style={{ color: '#34d399' }}>— CampusPrep :)</span>
-              </div>
-
-              <div style={{
-                width: '310px',
-                height: '190px',
-                position: 'relative',
-                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.4))'
-              }}>
-                <img
-                  src="/assets/aistudy_hero_students.png"
-                  alt="AKTU Student Group"
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = '/assets/hero_students.png';
-                  }}
-                />
-              </div>
-
-              {/* Sticky Note */}
-              <div className="sticky-note" style={{
-                position: 'absolute',
-                top: '10px',
-                left: '-15px',
-                width: '150px',
-                padding: '0.55rem 0.65rem',
-                borderRadius: '6px',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                color: '#1e293b',
-                lineHeight: 1.3,
-                boxShadow: '0 6px 14px rgba(0,0,0,0.25)',
-                transform: 'rotate(-4deg)'
-              }}>
-                <div>✓ Instant Explanations</div>
-                <div>✓ Unit-wise Help</div>
-                <div>✓ Exam-oriented Answers</div>
-                <div>✓ Solve Questions</div>
-                <div>✓ Study Smarter</div>
-                <div style={{ color: '#047857', fontFamily: "'Kalam', cursive", textAlign: 'right', marginTop: '0.2rem' }}>
-                  — CampusPrep :)
-                </div>
-              </div>
-            </div>
+            {/* RIGHT: Shared All Izz Well Banner */}
+            <AllIzzWellBanner title={"Same Doubts,\nBetter Answers, Higher CGPA! :)"} className="aistudy-right-mascot" />
 
           </div>
 
@@ -457,7 +407,7 @@ export default function AIStudyPage({ onNavigate }) {
       </section>
 
       {/* 2. HORIZONTAL AI TOOL STRIP */}
-      <section style={{ backgroundColor: '#ffffff', padding: '1.25rem 0', borderBottom: '1px solid #eae5d9' }}>
+      <section style={{ backgroundColor: '#ffffff', padding: '1.25rem 0', borderBottom: '1px solid #E8E2D5' }}>
         <div className="container">
           <div style={{
             display: 'grid',
@@ -472,7 +422,7 @@ export default function AIStudyPage({ onNavigate }) {
                   key={tool.id}
                   onClick={() => setSelectedTool(tool)}
                   style={{
-                    backgroundColor: isActive ? '#0d5c3a' : tool.bgColor,
+                    backgroundColor: isActive ? '#1F2421' : tool.bgColor,
                     color: isActive ? '#ffffff' : '#1e293b',
                     borderRadius: '16px',
                     padding: '0.85rem 0.5rem',
@@ -482,8 +432,8 @@ export default function AIStudyPage({ onNavigate }) {
                     textAlign: 'center',
                     cursor: 'pointer',
                     transition: 'all 0.25s ease',
-                    boxShadow: isActive ? '0 6px 16px rgba(13,92,58,0.25)' : '0 2px 8px rgba(0,0,0,0.02)',
-                    border: isActive ? '2px solid #0d5c3a' : '1px solid transparent'
+                    boxShadow: isActive ? '0 6px 16px rgba(31,36,33,0.25)' : '0 2px 8px rgba(0,0,0,0.02)',
+                    border: isActive ? '2px solid #1F2421' : '1px solid transparent'
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) e.currentTarget.style.transform = 'translateY(-3px)';
@@ -513,7 +463,7 @@ export default function AIStudyPage({ onNavigate }) {
                   <div style={{
                     fontSize: '0.68rem',
                     fontWeight: 500,
-                    color: isActive ? '#a7f3d0' : '#64748b',
+                    color: isActive ? '#FDF6E8' : '#64748b',
                     marginTop: '0.1rem'
                   }}>
                     {tool.desc.split('.')[0]}
@@ -538,7 +488,7 @@ export default function AIStudyPage({ onNavigate }) {
           <aside style={{
             backgroundColor: '#ffffff',
             borderRadius: '20px',
-            border: '1px solid #e2e8f0',
+            border: '1px solid #E8E2D5',
             padding: '1.25rem',
             boxShadow: '0 4px 16px rgba(0,0,0,0.03)',
             position: 'sticky',
@@ -549,15 +499,15 @@ export default function AIStudyPage({ onNavigate }) {
               alignItems: 'center',
               justifyContent: 'space-between',
               paddingBottom: '0.75rem',
-              borderBottom: '1px solid #f1f5f9',
+              borderBottom: '1px solid #F6F2E9',
               marginBottom: '1rem'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '1rem', color: '#0f172a' }}>
-                <Filter size={16} style={{ color: '#0d5c3a' }} /> Filters
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '1rem', color: '#1F2421' }}>
+                <Filter size={16} style={{ color: '#C88D2D' }} /> Filters
               </div>
               <button
                 onClick={handleResetFilters}
-                style={{ background: 'none', border: 'none', color: '#0d5c3a', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#C88D2D', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}
               >
                 Reset
               </button>
@@ -588,7 +538,7 @@ export default function AIStudyPage({ onNavigate }) {
               <div style={filterTitleStyle}>SELECT YEAR</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
                 {[
-                  { name: '1st Year', sem: 'Sem 1 & 2', color: '#e6f4ed', text: '#0d5c3a' },
+                  { name: '1st Year', sem: 'Sem 1 & 2', color: '#FDF6E8', text: '#C88D2D' },
                   { name: '2nd Year', sem: 'Sem 3 & 4', color: '#fffbeb', text: '#d97706' },
                   { name: '3rd Year', sem: 'Sem 5 & 6', color: '#fef2f2', text: '#dc2626' },
                   { name: '4th Year', sem: 'Sem 7 & 8', color: '#f5f3ff', text: '#7c3aed' }
@@ -597,13 +547,13 @@ export default function AIStudyPage({ onNavigate }) {
                     key={y.name}
                     onClick={() => setFilterYear(filterYear === y.name ? null : y.name)}
                     style={{
-                      backgroundColor: filterYear === y.name ? '#0d5c3a' : y.color,
+                      backgroundColor: filterYear === y.name ? '#1F2421' : y.color,
                       color: filterYear === y.name ? '#ffffff' : y.text,
                       borderRadius: '10px',
                       padding: '0.6rem 0.4rem',
                       textAlign: 'center',
                       cursor: 'pointer',
-                      border: '1px solid #e2e8f0',
+                      border: '1px solid #E8E2D5',
                       transition: 'all 0.2s ease'
                     }}
                   >
@@ -703,8 +653,8 @@ export default function AIStudyPage({ onNavigate }) {
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.transform = 'translateY(-3px)';
-                          e.currentTarget.style.borderColor = '#0d5c3a';
-                          e.currentTarget.style.boxShadow = '0 8px 22px rgba(13,92,58,0.1)';
+                          e.currentTarget.style.borderColor = '#C88D2D';
+                          e.currentTarget.style.boxShadow = '0 8px 22px rgba(200,141,45,0.15)';
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.transform = 'translateY(0px)';
@@ -740,7 +690,7 @@ export default function AIStudyPage({ onNavigate }) {
                         <div style={{
                           fontSize: '0.82rem',
                           fontWeight: 700,
-                          color: '#0d5c3a',
+                          color: '#C88D2D',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '0.3rem',
@@ -758,7 +708,7 @@ export default function AIStudyPage({ onNavigate }) {
               <div style={{
                 backgroundColor: '#ffffff',
                 borderRadius: '24px',
-                border: '1.5px solid #e2e8f0',
+                border: '1.5px solid #E8E2D5',
                 padding: '1.5rem',
                 boxShadow: '0 8px 24px rgba(0,0,0,0.04)'
               }}>
@@ -766,7 +716,7 @@ export default function AIStudyPage({ onNavigate }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  borderBottom: '1.5px solid #e6f4ed',
+                  borderBottom: '1.5px solid #E8D3B0',
                   paddingBottom: '0.85rem',
                   marginBottom: '1rem'
                 }}>
@@ -780,10 +730,10 @@ export default function AIStudyPage({ onNavigate }) {
                     </div>
 
                     <div>
-                      <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a' }}>
+                      <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1F2421' }}>
                         {selectedTool.title} Assistant
                       </h3>
-                      <div style={{ fontSize: '0.76rem', color: '#059669', fontWeight: 600 }}>
+                      <div style={{ fontSize: '0.76rem', color: '#C88D2D', fontWeight: 600 }}>
                         Powered by AI • AKTU Engineering Level
                       </div>
                     </div>
@@ -807,9 +757,9 @@ export default function AIStudyPage({ onNavigate }) {
                   flexDirection: 'column',
                   gap: '0.85rem',
                   padding: '1rem',
-                  backgroundColor: '#f8fafc',
+                  backgroundColor: '#FAF7F2',
                   borderRadius: '16px',
-                  border: '1px solid #e2e8f0',
+                  border: '1px solid #E8E2D5',
                   marginBottom: '1rem'
                 }}>
                   {chatMessages.map((m, idx) => (
@@ -818,9 +768,9 @@ export default function AIStudyPage({ onNavigate }) {
                       style={{
                         alignSelf: m.sender === 'user' ? 'flex-end' : 'flex-start',
                         maxWidth: '85%',
-                        backgroundColor: m.sender === 'user' ? '#0d5c3a' : '#ffffff',
-                        color: m.sender === 'user' ? '#ffffff' : '#0f172a',
-                        border: m.sender === 'user' ? 'none' : '1px solid #cbd5e1',
+                        backgroundColor: m.sender === 'user' ? '#1F2421' : '#ffffff',
+                        color: m.sender === 'user' ? '#ffffff' : '#1F2421',
+                        border: m.sender === 'user' ? 'none' : '1px solid #E8E2D5',
                         padding: '0.85rem 1.1rem',
                         borderRadius: m.sender === 'user' ? '18px 18px 2px 18px' : '18px 18px 18px 2px',
                         fontSize: '0.9rem',
@@ -834,7 +784,7 @@ export default function AIStudyPage({ onNavigate }) {
                   ))}
 
                   {isAiLoading && (
-                    <div style={{ color: '#059669', fontSize: '0.85rem', fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <div style={{ color: '#C88D2D', fontSize: '0.85rem', fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                       <Sparkles size={16} className="animate-spin" /> Virus is generating structured solution...
                     </div>
                   )}
@@ -856,7 +806,7 @@ export default function AIStudyPage({ onNavigate }) {
                     style={{
                       flex: 1,
                       backgroundColor: '#ffffff',
-                      border: '1px solid #cbd5e1',
+                      border: '1px solid #E8E2D5',
                       borderRadius: '9999px',
                       padding: '0.65rem 1.1rem',
                       fontSize: '0.9rem',
@@ -866,7 +816,7 @@ export default function AIStudyPage({ onNavigate }) {
                   <button
                     type="submit"
                     className="btn-primary"
-                    style={{ backgroundColor: '#0d5c3a', borderRadius: '9999px', padding: '0.65rem 1.4rem' }}
+                    style={{ backgroundColor: '#1F2421', borderRadius: '9999px', padding: '0.65rem 1.4rem' }}
                   >
                     Send <Send size={16} />
                   </button>
@@ -878,9 +828,9 @@ export default function AIStudyPage({ onNavigate }) {
             <div style={{
               marginTop: '2.5rem',
               borderRadius: '24px',
-              backgroundColor: '#f4eee0',
-              backgroundImage: `linear-gradient(135deg, #f9f6ed 0%, #efe7d4 100%)`,
-              border: '2px solid #e5dfd3',
+              backgroundColor: '#F6F2E9',
+              backgroundImage: `linear-gradient(135deg, #FAF7F2 0%, #F0E9DA 100%)`,
+              border: '2px solid #E8E2D5',
               boxShadow: '0 10px 28px rgba(0,0,0,0.05)',
               padding: '1.25rem 1.5rem',
               display: 'grid',
@@ -915,51 +865,87 @@ export default function AIStudyPage({ onNavigate }) {
                   fontFamily: "'Kalam', cursive",
                   fontSize: '1.1rem',
                   fontWeight: 700,
-                  color: '#0f172a',
+                  color: '#1F2421',
                   lineHeight: 1.2
                 }}>
                   Same Effort <br />
                   Smarter Study <br />
-                  <span style={{ color: '#059669', fontSize: '1.2rem' }}>Higher CGPA!</span>
+                  <span style={{ color: '#C88D2D', fontSize: '1.2rem' }}>Higher CGPA!</span>
                 </div>
               </div>
 
-              {/* Center: Students Artwork */}
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
+              {/* Center: Academic Feature Highlights (Replacing 3-boys image) */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.45rem',
+                backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                backdropFilter: 'blur(8px)',
+                border: '1px solid #E8E2D5',
+                borderRadius: '16px',
+                padding: '0.85rem 1.25rem',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    padding: '0.2rem 0.6rem',
+                    borderRadius: '20px',
+                    backgroundColor: '#FEF3C7',
+                    border: '1px solid #FDE68A',
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    color: '#92400E'
+                  }}>
+                    🤖 24/7 AI Buddy
+                  </span>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    padding: '0.2rem 0.6rem',
+                    borderRadius: '20px',
+                    backgroundColor: '#ECFDF5',
+                    border: '1px solid #A7F3D0',
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    color: '#065F46'
+                  }}>
+                    ✓ Syllabus-Tuned
+                  </span>
+                </div>
                 <div style={{
-                  width: '180px',
-                  height: '100px',
-                  position: 'relative',
-                  filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.15))'
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  color: '#475569',
+                  textAlign: 'center'
                 }}>
-                  <img
-                    src="/assets/notes_bottom_students.png"
-                    alt="AKTU Students"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/assets/hero_students.png';
-                    }}
-                  />
+                  Instant AKTU doubt solving, numerical breakdowns & revision notes
                 </div>
               </div>
 
               {/* Right: Sticky Note */}
               <div className="sticky-note" style={{
-                padding: '0.6rem 0.75rem',
-                borderRadius: '8px',
+                padding: '0.65rem 0.85rem',
+                borderRadius: '10px',
                 fontSize: '0.78rem',
                 fontFamily: "'Kalam', cursive",
                 fontWeight: 700,
-                color: '#1e293b',
+                color: '#1F2421',
+                backgroundColor: '#FEF9C3',
+                border: '1px solid #FDE047',
                 textAlign: 'center',
-                boxShadow: '0 6px 14px rgba(0,0,0,0.12)',
-                transform: 'rotate(-3deg)'
+                boxShadow: '0 6px 14px rgba(0,0,0,0.08)',
+                transform: 'rotate(-2deg)'
               }}>
-                Plan <br />
-                Practice <br />
-                Perform <br />
-                <span style={{ color: '#059669' }}>— CampusPrep :)</span>
+                Padho 📖<br />
+                Samjho 💡<br />
+                Grow karo 🚀<br />
+                <span style={{ color: '#C88D2D', fontSize: '0.82rem' }}>— ProfessorVirus :)</span>
               </div>
 
             </div>
@@ -973,13 +959,13 @@ export default function AIStudyPage({ onNavigate }) {
             <div style={{
               backgroundColor: '#ffffff',
               borderRadius: '20px',
-              border: '1px solid #e2e8f0',
+              border: '1px solid #E8E2D5',
               padding: '1.25rem',
               boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#eab308', marginBottom: '0.75rem' }}>
                 <Lightbulb size={18} />
-                <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#0f172a' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#1F2421' }}>
                   Today's Study Tip
                 </h3>
               </div>
@@ -990,13 +976,13 @@ export default function AIStudyPage({ onNavigate }) {
                   height: '70px',
                   borderRadius: '12px',
                   overflow: 'hidden',
-                  border: '1.5px solid #0d5c3a',
+                  border: '1.5px solid #C88D2D',
                   flexShrink: 0
                 }}>
                   <img
                     src="/assets/aistudy_tips_virus.png"
                     alt="Virus Avatar"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                     onError={(e) => {
                       e.target.onerror = null;
                       e.target.src = '/assets/navbar_logo.png';
@@ -1015,7 +1001,7 @@ export default function AIStudyPage({ onNavigate }) {
                 }}>
                   “Smart Study is not about studying more, <br />
                   but studying right!” <br />
-                  <span style={{ color: '#047857' }}>— Virus :)</span>
+                  <span style={{ color: '#C88D2D' }}>— Virus :)</span>
                 </div>
               </div>
             </div>
@@ -1024,18 +1010,18 @@ export default function AIStudyPage({ onNavigate }) {
             <div style={{
               backgroundColor: '#ffffff',
               borderRadius: '20px',
-              border: '1px solid #e2e8f0',
+              border: '1px solid #E8E2D5',
               padding: '1.35rem',
               boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <History size={16} style={{ color: '#0d5c3a' }} />
-                  <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a' }}>
+                  <History size={16} style={{ color: '#C88D2D' }} />
+                  <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1F2421' }}>
                     Recent Queries
                   </h3>
                 </div>
-                <button style={{ background: 'none', border: 'none', color: '#0d5c3a', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}>
+                <button style={{ background: 'none', border: 'none', color: '#C88D2D', fontSize: '0.76rem', fontWeight: 700, cursor: 'pointer' }}>
                   View All
                 </button>
               </div>
@@ -1054,15 +1040,15 @@ export default function AIStudyPage({ onNavigate }) {
                       fontWeight: 600,
                       padding: '0.45rem 0.65rem',
                       borderRadius: '8px',
-                      backgroundColor: '#f8fafc',
+                      backgroundColor: '#FAF7F2',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#e6f4ed';
+                      e.currentTarget.style.backgroundColor = '#FDF6E8';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#f8fafc';
+                      e.currentTarget.style.backgroundColor = '#FAF7F2';
                     }}
                   >
                     <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{rq}</span>
@@ -1076,13 +1062,13 @@ export default function AIStudyPage({ onNavigate }) {
             <div style={{
               backgroundColor: '#ffffff',
               borderRadius: '20px',
-              border: '1px solid #e2e8f0',
+              border: '1px solid #E8E2D5',
               padding: '1.35rem',
               boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#d97706', marginBottom: '0.4rem' }}>
                 <Crown size={20} />
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a' }}>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1F2421' }}>
                   Upgrade Your Learning
                 </h3>
               </div>
@@ -1092,13 +1078,13 @@ export default function AIStudyPage({ onNavigate }) {
               </p>
 
               <button
-                onClick={() => alert('CampusPrep Premium Pro Upgrade!')}
+                onClick={() => alert('ProfessorVirus Premium Pro Upgrade!')}
                 className="btn-primary"
                 style={{
                   width: '100%',
                   padding: '0.65rem',
                   fontSize: '0.88rem',
-                  backgroundColor: '#0d5c3a',
+                  backgroundColor: '#1F2421',
                   gap: '0.4rem'
                 }}
               >
@@ -1110,6 +1096,9 @@ export default function AIStudyPage({ onNavigate }) {
 
         </div>
       </div>
+
+      {/* BOTTOM ACADEMIC RESOURCE BANNER */}
+      <AcademicResourceBanner onNavigate={onNavigate} />
 
       <style>{`
         @media (max-width: 1024px) {
@@ -1140,7 +1129,7 @@ const checkboxLabelStyle = {
 };
 
 const checkboxInputStyle = {
-  accentColor: '#0d5c3a',
+  accentColor: '#1F2421',
   width: '15px',
   height: '15px',
   cursor: 'pointer'

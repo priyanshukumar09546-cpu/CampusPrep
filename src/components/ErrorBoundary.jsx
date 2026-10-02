@@ -23,7 +23,7 @@ export default class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      const isDev = process.env.NODE_ENV !== 'production' || true;
+      const isDev = Boolean(import.meta.env?.DEV);
       return (
         <div style={{
           minHeight: '100vh',
@@ -59,7 +59,7 @@ export default class ErrorBoundary extends React.Component {
             </div>
 
             <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem' }}>
-              {this.props.title || "Admin Dashboard failed to load"}
+              {this.props.title || "Page failed to load"}
             </h2>
 
             <p style={{ fontSize: '0.9rem', color: '#64748b', lineHeight: 1.5, marginBottom: '1.5rem' }}>
@@ -91,7 +91,7 @@ export default class ErrorBoundary extends React.Component {
                 style={{
                   padding: '0.65rem 1.25rem',
                   borderRadius: '12px',
-                  backgroundColor: '#0d5c3a',
+                  backgroundColor: '#1F2421',
                   color: '#ffffff',
                   border: 'none',
                   fontWeight: 700,

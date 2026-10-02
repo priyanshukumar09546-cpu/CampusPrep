@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Search, 
   ChevronDown, 
@@ -40,15 +40,318 @@ import {
 } from 'lucide-react';
 import { AKTU_SYLLABUS_DATA, searchAktuSyllabus } from '../data/aktuSyllabusData';
 import { QUANTUM_NOTES } from '../data/aktuQuantumNotes';
+import { getSubjectQuantumPdfUrl, meNotes, itNotes, eceNotes, eeNotes } from '../data/subjectQuantumNotes';
 import NoteViewerModal from '../components/NoteViewerModal';
-import { downloadUnitZip } from '../utils/zipDownloader';
+import { isValidPdfUrl } from '../utils/pdfValidator';
+import AllIzzWellBanner from '../components/AllIzzWellBanner';
+import AcademicResourceBanner from '../components/AcademicResourceBanner';
+import CourseNotesView from '../components/CourseNotesView';
+import { COURSES } from '../data/coursesCatalog';
 
-export default function NotesPage({ onNavigate, onOpenAuth }) {
-  // Navigation Flow State: Branch -> Year -> Semester -> Subject -> Unit
-  const [activeBranch, setActiveBranch] = useState(null); // 'CSE' | 'ECE' | 'ME' | 'CE' | 'IT' | 'EE' | 'AI & DS' | 'Maths' | null
-  const [activeYear, setActiveYear] = useState(null); // '1st Year' | '2nd Year' | '3rd Year' | '4th Year' | null
+export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'B.Tech', onSelectCourse }) {
+  // Course State: 'B.Tech' | 'MCA' | 'MBA' | 'B.Pharm'
+  const [selectedCourse, setSelectedCourse] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const c = params.get('course');
+      if (c) {
+        const cLower = c.toLowerCase();
+        if (cLower.includes('bca')) return 'BCA';
+        if (cLower.includes('mca')) return 'MCA';
+        if (cLower.includes('mba')) return 'MBA';
+        if (cLower.includes('pharm')) return 'B.Pharm';
+        return 'B.Tech';
+      }
+    } catch (e) {}
+    return initialCourse || 'B.Tech';
+  });
+
+  useEffect(() => {
+    if (initialCourse && initialCourse !== selectedCourse) {
+      setSelectedCourse(initialCourse);
+    }
+  }, [initialCourse]);
+
+  // URL Query Params Helper
+  const updateUrlParams = (newParams) => {
+    try {
+      const searchParams = new URLSearchParams(window.location.search);
+      Object.entries(newParams).forEach(([k, v]) => {
+        if (v === null || v === undefined) searchParams.delete(k);
+        else searchParams.set(k, v);
+      });
+      const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+      window.history.replaceState(null, '', newUrl);
+    } catch (e) {}
+  };
+
+  // Course Switcher Tab Handler
+  const handleCourseTabChange = (courseKey) => {
+    setSelectedCourse(courseKey);
+    if (onSelectCourse) onSelectCourse(courseKey);
+    if (courseKey === 'B.Tech') {
+      setActiveBranch('CSE');
+      setActiveYear('1st Year');
+      setActiveSubject(null);
+      setActiveUnit(null);
+      setSelectedSubject('All Subjects');
+      updateUrlParams({ course: 'B.Tech', branch: 'CSE', year: '1st Year', semester: null, specialization: null, subject: null, unit: null });
+    } else {
+      updateUrlParams({ course: courseKey, branch: null, year: null, semester: null, specialization: null, subject: null, unit: null });
+    }
+  };
+
+  // Navigation Flow State: Branch -> Year -> Subject -> Unit -> Sources
+  const [activeBranch, setActiveBranch] = useState('CSE'); // 'CSE' | 'ECE' | 'ME' | 'CE' | 'IT' | 'EE' | 'AI & DS' | 'Maths' | null
+  const [activeYear, setActiveYear] = useState('1st Year'); // '1st Year' | '2nd Year' | '3rd Year' | '4th Year' | null
   const [activeSemester, setActiveSemester] = useState(null); // 'Sem 1' ... 'Sem 8' | null
   const [activeSubject, setActiveSubject] = useState(null); // Subject Object | null
+  const [activeUnit, setActiveUnit] = useState(null); // 1 | 2 | 3 | 4 | 5 | null
+
+  // Subject Filter & Dropdown Search States
+  const [selectedSubject, setSelectedSubject] = useState('All Subjects');
+  const [subjectDropdownSearch, setSubjectDropdownSearch] = useState('');
+
+  // Live Database Notes State (from Backend API)
+  const [dbNotes, setDbNotes] = useState([]);
+  const notesCacheRef = React.useRef(new Map());
+
+  const fetchBackendNotes = React.useCallback((courseVal, branchVal, yearVal) => {
+    const c = courseVal || selectedCourse || 'B.Tech';
+    let url = `/api/notes?course=${encodeURIComponent(c)}`;
+    if (c === 'B.Tech') {
+      const b = branchVal || activeBranch || 'CSE';
+      const y = yearVal || activeYear || '1st Year';
+      url += `&branch=${encodeURIComponent(normBranchStr(b))}&year=${encodeURIComponent(normYearStr(y))}`;
+    }
+
+    const cacheKey = `${c}_${url}`;
+    if (notesCacheRef.current.has(cacheKey)) {
+      setDbNotes(notesCacheRef.current.get(cacheKey));
+      return;
+    }
+
+    fetch(url, { cache: 'no-store' })
+      .then(res => {
+        if (!res.ok || !(res.headers.get('content-type') || '').includes('application/json')) {
+          throw new Error('Backend server not available');
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data.success && Array.isArray(data.notes)) {
+          notesCacheRef.current.set(cacheKey, data.notes);
+          setDbNotes(data.notes);
+        }
+      })
+      .catch(err => console.error('Error fetching backend notes:', err));
+  }, [selectedCourse, activeBranch, activeYear]);
+
+  React.useEffect(() => {
+    fetchBackendNotes(selectedCourse, activeBranch, activeYear);
+  }, [selectedCourse, activeBranch, activeYear, fetchBackendNotes]);
+
+  // 4 STANDARD NOTE SOURCES (AND DYNAMIC SOURCE SUPPORT)
+  const NOTE_SOURCES = [
+    { id: 'quantum', name: 'Quantum Notes', color: '#C88D2D', bg: '#FDF6E8', border: '#E8D3B0', badge: 'Popular' },
+    { id: 'gateway_classes', name: 'Gateway Classes Notes', color: '#0284c7', bg: '#e0f2fe', border: '#bae6fd', badge: 'Recommended' },
+    { id: 'faculty_notes', name: 'Faculty Lecture Notes', color: '#1e40af', bg: '#eff6ff', border: '#bfdbfe', badge: 'Curriculum' },
+    { id: 'aktu_solved_papers', name: 'AKTU Solved Papers', color: '#7e22ce', bg: '#faf5ff', border: '#e9d5ff', badge: 'Exam Prep' }
+  ];
+
+  // DYNAMIC SOURCE PALETTE & METADATA HELPER
+  const getSourceMeta = (sourceName) => {
+    const s = String(sourceName || '').toLowerCase();
+    if (s.includes('gateway')) return { id: 'gateway_classes', name: 'Gateway Classes', color: '#0284c7', bg: '#e0f2fe', border: '#bae6fd', badge: 'Recommended' };
+    if (s.includes('quantum')) return { id: 'quantum', name: sourceName || 'Quantum Series', color: '#C88D2D', bg: '#FDF6E8', border: '#E8D3B0', badge: 'Popular' };
+    if (s.includes('edushine') || s.includes('rrsimt')) return { id: 'edushine', name: 'EduShine Classes', color: '#0891b2', bg: '#ecfeff', border: '#a5f3fc', badge: 'EduShine' };
+    if (s.includes('knowledge gate')) return { id: 'knowledge_gate', name: 'Knowledge Gate', color: '#d97706', bg: '#fef3c7', border: '#fde68a', badge: 'Knowledge Gate' };
+    if (s.includes('coreconcept') || s.includes('core concept')) return { id: 'core_concepts', name: 'Core Concepts', color: '#4f46e5', bg: '#e0e7ff', border: '#c7d2fe', badge: 'Core Concepts' };
+    if (s.includes('engineering being') || s.includes('eiov')) return { id: 'engineering_being', name: 'Engineering Being', color: '#ea580c', bg: '#fff7ed', border: '#ffedd5', badge: 'Engineering Being' };
+    if (s.includes('bitwise')) return { id: 'bitwise_learning', name: 'Bitwise Learning', color: '#7c3aed', bg: '#f3e8ff', border: '#ddd6fe', badge: 'Detailed' };
+    if (s.includes('multi')) return { id: 'multi_atom', name: 'Multi Atoms', color: '#db2777', bg: '#fce7f3', border: '#fbcfe8', badge: 'Multi Atoms' };
+    if (s.includes('lakshya')) return { id: 'lakshya', name: 'Lakshya Academy', color: '#B37D28', bg: '#FDF6E8', border: '#E8D3B0', badge: 'Lakshya Academy' };
+    if (s.includes('handwritten')) return { id: 'handwritten', name: 'Handwritten Notes', color: '#7A5835', bg: '#F6F2E9', border: '#E8E2D5', badge: 'Handwritten' };
+    if (s.includes('solved') || s.includes('pyq') || s.includes('paper')) return { id: 'aktu_solved_papers', name: 'AKTU Solved Papers', color: '#7e22ce', bg: '#faf5ff', border: '#e9d5ff', badge: 'Solved Papers' };
+    if (s.includes('printed')) return { id: 'faculty_printed', name: 'Faculty Printed Notes', color: '#2563eb', bg: '#eff6ff', border: '#bfdbfe', badge: 'Printed Notes' };
+    if (s.includes('priyanshi')) return { id: 'priyanshi', name: 'Priyanshi Notes', color: '#be185d', bg: '#fdf2f8', border: '#fbcfe8', badge: 'Faculty' };
+    if (s.includes('vimal')) return { id: 'vimal_sir', name: 'Vimal Sir Notes', color: '#0284c7', bg: '#e0f2fe', border: '#bae6fd', badge: 'Faculty' };
+    if (s.includes('gopal')) return { id: 'gopal_sir', name: 'Gopal Sir Notes', color: '#0d9488', bg: '#f0fdfa', border: '#99f6e4', badge: 'Faculty' };
+    if (s.includes('lecture') || s.includes('faculty') || s.includes('tutorial') || s.includes('notesgallery')) return { id: 'faculty_notes', name: 'Faculty Lecture Notes', color: '#1e40af', bg: '#eff6ff', border: '#bfdbfe', badge: 'Lecture Notes' };
+    
+    return {
+      id: s.replace(/[^a-z0-9]/g, '_') || 'custom_source',
+      name: sourceName || 'Study Material',
+      color: '#4f46e5',
+      bg: '#e0e7ff',
+      border: '#c7d2fe',
+      badge: sourceName || 'Verified Resource'
+    };
+  };
+
+  // CANONICAL NORMALIZATION HELPERS FOR ROBUST NOTE RESOLUTION
+  const normYearStr = (yearStr) => {
+    if (!yearStr) return '';
+    const s = String(yearStr).toLowerCase().replace(/b\.tech/g, '').replace(/st|nd|rd|th/g, '').replace(/year\s*/g, '').trim();
+    if (s === '1' || s.includes('1')) return '1';
+    if (s === '2' || s.includes('2')) return '2';
+    if (s === '3' || s.includes('3')) return '3';
+    if (s === '4' || s.includes('4')) return '4';
+    return s;
+  };
+
+  const normBranchStr = (branchStr) => {
+    if (!branchStr) return '';
+    const b = String(branchStr).toUpperCase().trim();
+    if (b.includes('COMPUTER') || b === 'CSE') return 'CSE';
+    if (b.includes('ELECTRONIC') || b === 'ECE') return 'ECE';
+    if (b.includes('MECHANICAL') || b === 'ME') return 'ME';
+    if (b.includes('CIVIL') || b === 'CE') return 'CE';
+    if (b.includes('INFORMATION') || b === 'IT') return 'IT';
+    if (b.includes('ELECTRICAL') || b === 'EE') return 'EE';
+    if (b.includes('AI') && !b.includes('DS') && !b.includes('DATA')) return 'AI & ML';
+    if (b.includes('DS') || b.includes('DATA')) return 'DS';
+    if (b.includes('AI & DS') || b.includes('AIML') || b.includes('AI')) return 'AI & ML';
+    if (b.includes('MATH')) return 'Maths';
+    return b;
+  };
+
+  const normSourceKey = (srcStr) => {
+    if (!srcStr) return '';
+    const s = String(srcStr).toLowerCase();
+    if (s.includes('gateway')) return 'gateway_classes';
+    if (s.includes('quantum')) return 'quantum';
+    if (s.includes('bitwise')) return 'bitwise_learning';
+    if (s.includes('multi')) return 'multi_atom';
+    return s;
+  };
+
+  const cleanTokens = (str) => {
+    if (!str) return [];
+    return String(str)
+      .toLowerCase()
+      .replace(/&/g, ' and ')
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/)
+      .filter(t => t && !['and', 'of', 'the', 'in', 'for', 'with', 'to', 'a', 'an', 'pps', 'tafl', 'dbms'].includes(t))
+      .map(t => {
+        if (t === 'iv' || t === '4') return '4';
+        if (t === 'iii' || t === '3') return '3';
+        if (t === 'ii' || t === '2') return '2';
+        if (t === 'i' || t === '1') return '1';
+        return t.endsWith('s') ? t.slice(0, -1) : t;
+      });
+  };
+
+  const isSubjectMatch = (codeA, nameA, codeB, nameB) => {
+    const normCodeA = codeA ? String(codeA).toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
+    const normCodeB = codeB ? String(codeB).toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
+
+    // If both codes exist and are valid (length >= 4), they MUST match exactly
+    if (normCodeA && normCodeB && normCodeA.length >= 4 && normCodeB.length >= 4) {
+      return normCodeA === normCodeB;
+    }
+
+    const tokensA = cleanTokens(nameA);
+    const tokensB = cleanTokens(nameB);
+    if (tokensA.length === 0 || tokensB.length === 0) return false;
+
+    // 1. Distinguishing number check (1 vs 2 vs 3 vs 4)
+    const numA = tokensA.find(t => ['1', '2', '3', '4'].includes(t));
+    const numB = tokensB.find(t => ['1', '2', '3', '4'].includes(t));
+    if (numA && numB && numA !== numB) return false;
+    if ((numA && !numB) || (!numA && numB)) return false;
+
+    // 2. Key topic check (physic vs chemistry vs mathematic vs electrical vs electronics vs mechanical vs civil)
+    const keyTopics = ['physic', 'chemistry', 'mathematic', 'electrical', 'electronic', 'mechanical', 'civil', 'environment', 'programming', 'soft', 'human', 'python', 'c', 'java', 'structure', 'algorithm', 'database', 'operating', 'network'];
+    const topicA = tokensA.find(t => keyTopics.includes(t));
+    const topicB = tokensB.find(t => keyTopics.includes(t));
+    if (topicA && topicB && topicA !== topicB) return false;
+
+    const strA = tokensA.join('');
+    const strB = tokensB.join('');
+    if (strA === strB) return true;
+
+    const setA = new Set(tokensA);
+    const setB = new Set(tokensB);
+    const intersection = tokensA.filter(x => setB.has(x));
+
+    if (intersection.length === tokensA.length && intersection.length === tokensB.length) return true;
+    if (intersection.length >= 2 && (intersection.length === tokensA.length || intersection.length === tokensB.length)) return true;
+
+    return false;
+  };
+
+  // HELPER TO RESOLVE NOTE RESOURCE URL FOR A GIVEN SUBJECT, UNIT, AND SOURCE
+  const resolveNoteSourceUrl = (subjectObj, unitNum, sourceKey) => {
+    if (!subjectObj || !unitNum) return null;
+
+    const targetSource = normSourceKey(sourceKey);
+    const activeBranchNorm = normBranchStr(activeBranch);
+    const activeYearNorm = normYearStr(activeYear);
+
+    // 1. Check DB notes loaded from backend API (includes all uploaded Gateway Classes notes)
+    if (dbNotes && dbNotes.length > 0) {
+      const match = dbNotes.find(n => {
+        const nBranchNorm = normBranchStr(n.branch || n.branchId);
+        const matchBranch = !activeBranchNorm || nBranchNorm === activeBranchNorm || nBranchNorm === 'ALL';
+
+        const nYearNorm = normYearStr(n.year);
+        const matchYear = !activeYearNorm || nYearNorm === activeYearNorm;
+
+        const matchSub = isSubjectMatch(subjectObj.code, subjectObj.subject || subjectObj.name, n.subjectCode, n.subject || n.subjectName);
+
+        const matchUnit = Number(n.unit !== undefined ? n.unit : n.unitNumber) === Number(unitNum);
+
+        const nSource = normSourceKey(n.source || n.sourceKey);
+        const matchSource = nSource === targetSource;
+
+        const isPub = n.status === 'published' || n.status === 'Verified' || n.status === 'Published' || String(n.published) === 'true' || n.published !== false;
+        const isAvail = String(n.available) === 'true' || n.available !== false;
+
+        return matchBranch && matchYear && matchSub && matchUnit && matchSource && isPub && isAvail;
+      });
+
+      if (match) {
+        const rawUrl = match.fileUrl || match.url || match.pdfUrl;
+        if (isValidPdfUrl(rawUrl)) {
+          return rawUrl;
+        }
+      }
+    }
+
+    // 2. Static Quantum Notes repository fallback
+    if (targetSource === 'quantum') {
+      const quantumUrl = getSubjectQuantumPdfUrl(subjectObj.code, subjectObj.subject);
+      if (quantumUrl && isValidPdfUrl(quantumUrl)) {
+        return quantumUrl;
+      }
+      if (subjectObj.pdfUrl && isValidPdfUrl(subjectObj.pdfUrl)) {
+        return subjectObj.pdfUrl;
+      }
+    }
+
+    return null;
+  };
+
+  // State sync from search query
+  React.useEffect(() => {
+    if (searchQuery && typeof searchQuery === 'string') {
+      const sq = searchQuery.toLowerCase();
+      if (sq.includes('1st') || sq.includes('first')) setActiveYear('1st Year');
+      else if (sq.includes('2nd') || sq.includes('second')) setActiveYear('2nd Year');
+      else if (sq.includes('3rd') || sq.includes('third')) setActiveYear('3rd Year');
+      else if (sq.includes('4th') || sq.includes('fourth')) setActiveYear('4th Year');
+
+      if (sq.includes('cse') || sq.includes('computer')) setActiveBranch('CSE');
+      else if (sq.includes('ece') || sq.includes('electronic')) setActiveBranch('ECE');
+      else if (sq.includes('me') || sq.includes('mechanical')) setActiveBranch('ME');
+      else if (sq.includes('ee') || sq.includes('electrical')) setActiveBranch('EE');
+      else if (sq.includes('it') || sq.includes('information')) setActiveBranch('IT');
+      else if (sq.includes('ai') || sq.includes('aiml')) setActiveBranch('AI & ML');
+      else if (sq.includes('ds') || sq.includes('data science')) setActiveBranch('DS');
+    }
+  }, [searchQuery]);
 
   // Sidebar Filter Checkbox States
   const [selectedBranches, setSelectedBranches] = useState([]);
@@ -69,133 +372,557 @@ export default function NotesPage({ onNavigate, onOpenAuth }) {
   const [requestUnitInfo, setRequestUnitInfo] = useState(null);
   const [activeViewerNote, setActiveViewerNote] = useState(null); // { note, subject, unit }
 
+  // Sync hero search query from props (if passed from global Navbar / Hero search)
+  React.useEffect(() => {
+    if (searchQuery !== undefined && searchQuery !== null) {
+      setHeroSearchQuery(searchQuery);
+    }
+  }, [searchQuery]);
+
   // Available Branches List
   const branchesList = [
     { id: 'CSE', name: 'CSE', fullName: 'Computer Science & Engineering', icon: Code, color: '#0284c7', bg: '#e0f2fe' },
     { id: 'ECE', name: 'ECE', fullName: 'Electronics & Communication', icon: Cpu, color: '#db2777', bg: '#fce7f3' },
     { id: 'ME', name: 'ME', fullName: 'Mechanical Engineering', icon: Wrench, color: '#ea580c', bg: '#ffedd5' },
-    { id: 'CE', name: 'CE', fullName: 'Civil Engineering', icon: Building2, color: '#0d9488', bg: '#ccfbf1' },
     { id: 'IT', name: 'IT', fullName: 'Information Technology', icon: Radio, color: '#9333ea', bg: '#f3e8ff' },
     { id: 'EE', name: 'EE', fullName: 'Electrical Engineering', icon: Zap, color: '#4f46e5', bg: '#e0e7ff' },
-    { id: 'AI & DS', name: 'AI & DS', fullName: 'Artificial Intelligence & Data Science', icon: Sparkles, color: '#2563eb', bg: '#dbeafe' },
+    { id: 'AI & ML', name: 'AI & ML', fullName: 'Artificial Intelligence & Machine Learning', icon: Sparkles, color: '#2563eb', bg: '#dbeafe' },
+    { id: 'DS', name: 'DS', fullName: 'Data Science & Analytics', icon: Layers, color: '#0891b2', bg: '#ecfeff' },
+    { id: 'CE', name: 'CE', fullName: 'Civil Engineering', icon: Building2, color: '#0d9488', bg: '#ccfbf1' },
     { id: 'Maths', name: 'Maths', fullName: 'Applied Sciences & Mathematics', icon: Sigma, color: '#e11d48', bg: '#ffe4e6' }
   ];
 
-  // Verified AKTU Syllabus Filtered Search
+  // COMPUTE AVAILABLE SUBJECTS FOR ACTIVE BRANCH + B.TECH YEAR
+  const availableSubjectsForFilter = useMemo(() => {
+    const branchToUse = activeBranch || (selectedBranches.length > 0 ? selectedBranches[0] : 'CSE');
+    const yearToUse = activeYear || (selectedYears.length > 0 ? selectedYears[0] : '1st Year');
+
+    let list = [];
+
+    // Branch direct centralized notes mapping overrides if available
+    if (branchToUse === 'ME' && yearToUse) {
+      const yearKey = yearToUse === '1st Year' ? 'year1' : yearToUse === '2nd Year' ? 'year2' : null;
+      if (yearKey && meNotes[yearKey]) {
+        list = meNotes[yearKey].map((item, index) => ({
+          id: `me-${yearKey}-${index}`,
+          code: `KME-${yearToUse === '1st Year' ? '1' : '3'}0${index + 1}`,
+          subject: item.name,
+          branch: 'ME',
+          year: yearToUse,
+          semester: yearToUse === '1st Year' ? (index < 5 ? 'Sem 1' : 'Sem 2') : (index < 5 ? 'Sem 3' : 'Sem 4'),
+          pdfUrl: item.pdfUrl,
+          available: item.available !== false
+        }));
+      }
+    } else if (branchToUse === 'IT' && yearToUse) {
+      const yearKey = yearToUse === '1st Year' ? 'year1' : yearToUse === '2nd Year' ? 'year2' : yearToUse === '3rd Year' ? 'year3' : yearToUse === '4th Year' ? 'year4' : null;
+      if (yearKey && itNotes[yearKey]) {
+        list = itNotes[yearKey].map((item, index) => ({
+          id: `it-${yearKey}-${index}`,
+          code: `KIT-${index + 101}`,
+          subject: item.name,
+          branch: 'IT',
+          year: yearToUse,
+          semester: yearToUse === '1st Year' ? (index < 5 ? 'Sem 1' : 'Sem 2') : yearToUse === '2nd Year' ? (index < 6 ? 'Sem 3' : 'Sem 4') : yearToUse === '3rd Year' ? (index < 6 ? 'Sem 5' : 'Sem 6') : (index < 6 ? 'Sem 7' : 'Sem 8'),
+          pdfUrl: item.pdfUrl,
+          available: item.available !== false
+        }));
+      }
+    } else if (branchToUse === 'ECE' && yearToUse) {
+      const yearKey = yearToUse === '1st Year' ? 'year1' : yearToUse === '2nd Year' ? 'year2' : yearToUse === '3rd Year' ? 'year3' : yearToUse === '4th Year' ? 'year4' : null;
+      if (yearKey && eceNotes[yearKey]) {
+        list = eceNotes[yearKey].map((item, index) => ({
+          id: `ece-${yearKey}-${index}`,
+          code: `KEC-${index + 101}`,
+          subject: item.name,
+          branch: 'ECE',
+          year: yearToUse,
+          semester: yearToUse === '1st Year' ? (index < 5 ? 'Sem 1' : 'Sem 2') : yearToUse === '2nd Year' ? (index < 5 ? 'Sem 3' : 'Sem 4') : yearToUse === '3rd Year' ? (index < 5 ? 'Sem 5' : 'Sem 6') : (index < 6 ? 'Sem 7' : 'Sem 8'),
+          pdfUrl: item.pdfUrl,
+          available: item.available !== false
+        }));
+      }
+    } else if (branchToUse === 'EE' && yearToUse) {
+      const yearKey = yearToUse === '1st Year' ? 'year1' : yearToUse === '2nd Year' ? 'year2' : yearToUse === '3rd Year' ? 'year3' : yearToUse === '4th Year' ? 'year4' : null;
+      if (yearKey && eeNotes[yearKey]) {
+        list = eeNotes[yearKey].map((item, index) => ({
+          id: `ee-${yearKey}-${index}`,
+          code: `KEE-${index + 101}`,
+          subject: item.name,
+          branch: 'EE',
+          year: yearToUse,
+          semester: yearToUse === '1st Year' ? (index < 5 ? 'Sem 1' : 'Sem 2') : yearToUse === '2nd Year' ? (index < 5 ? 'Sem 3' : 'Sem 4') : yearToUse === '3rd Year' ? (index < 6 ? 'Sem 5' : 'Sem 6') : (index < 3 ? 'Sem 7' : 'Sem 8'),
+          pdfUrl: item.pdfUrl,
+          available: item.available !== false
+        }));
+      }
+    }
+
+    if (list.length === 0) {
+      list = searchAktuSyllabus('', {
+        branch: branchToUse,
+        year: yearToUse
+      });
+    }
+
+    // CRITICAL: DYNAMICALLY MERGE ANY SUBJECTS PRESENT IN dbNotes (includes uploaded Gateway Classes notes)
+    if (dbNotes && dbNotes.length > 0) {
+      const activeBranchNorm = normBranchStr(branchToUse);
+      const activeYearNorm = normYearStr(yearToUse);
+
+      dbNotes.forEach((n) => {
+        const nBranchNorm = normBranchStr(n.branch || n.branchId);
+        const nYearNorm = normYearStr(n.year);
+
+        const matchBranch = !activeBranchNorm || nBranchNorm === activeBranchNorm || nBranchNorm === 'ALL';
+        const matchYear = !activeYearNorm || nYearNorm === activeYearNorm;
+
+        if (matchBranch && matchYear) {
+          const subName = (n.subject || n.subjectName || '').trim();
+          const subCode = (n.subjectCode || '').trim();
+          if (!subName) return;
+
+          const alreadyExists = list.some(item => isSubjectMatch(item.code, item.subject, subCode, subName));
+          if (!alreadyExists) {
+            list.push({
+              id: `db-sub-${subCode || subName.replace(/[^a-z0-9]/gi, '-').toLowerCase()}`,
+              code: subCode || 'AKTU',
+              subject: subName,
+              branch: branchToUse,
+              year: yearToUse,
+              semester: n.semester || (yearToUse === '1st Year' ? 'Sem 1' : yearToUse === '2nd Year' ? 'Sem 3' : yearToUse === '3rd Year' ? 'Sem 5' : 'Sem 7'),
+              available: true,
+              description: `AKTU verified notes and units for ${subName}.`
+            });
+          }
+        }
+      });
+    }
+
+    if (sortBy === 'alphabetical') {
+      list = [...list].sort((a, b) => a.subject.localeCompare(b.subject));
+    } else if (sortBy === 'oldest') {
+      list = [...list].reverse();
+    }
+
+    return list;
+  }, [activeBranch, activeYear, selectedBranches, selectedYears, sortBy, dbNotes]);
+
+  // FILTERED SUBJECT DROPDOWN OPTIONS (WITH SEARCH)
+  const filteredSubjectDropdownList = useMemo(() => {
+    if (!subjectDropdownSearch.trim()) return availableSubjectsForFilter;
+    const q = subjectDropdownSearch.toLowerCase().trim();
+    return availableSubjectsForFilter.filter(s =>
+      s.subject.toLowerCase().includes(q) ||
+      (s.code && s.code.toLowerCase().includes(q))
+    );
+  }, [availableSubjectsForFilter, subjectDropdownSearch]);
+
+  // DIRECT NOTE MATCHES (FUZZY / SOURCE / CODE / SUBJECT SEARCH)
+  const directNoteMatches = useMemo(() => {
+    const rawQ = (heroSearchQuery || subjectSearchQuery || '').toLowerCase().trim();
+    if (!rawQ || rawQ.length < 2) return [];
+
+    const isGatewayQuery = rawQ.includes('gateway');
+    const isQuantumQuery = rawQ.includes('quantum');
+    const isBitwiseQuery = rawQ.includes('bitwise');
+    const isMultiAtomQuery = rawQ.includes('multi') || rawQ.includes('atom');
+
+    let queryYear = null;
+    if (rawQ.includes('year 1') || rawQ.includes('1st year') || rawQ.includes('year-1')) queryYear = '1';
+    else if (rawQ.includes('year 2') || rawQ.includes('2nd year') || rawQ.includes('year-2')) queryYear = '2';
+    else if (rawQ.includes('year 3') || rawQ.includes('3rd year') || rawQ.includes('year-3')) queryYear = '3';
+    else if (rawQ.includes('year 4') || rawQ.includes('4th year') || rawQ.includes('year-4')) queryYear = '4';
+
+    const subjectCleanQuery = rawQ
+      .replace(/gateway\s*(classes)?/gi, '')
+      .replace(/quantum(\s*notes)?/gi, '')
+      .replace(/bitwise(\s*learning)?/gi, '')
+      .replace(/multi\s*atom/gi, '')
+      .replace(/year\s*[1-4]/gi, '')
+      .replace(/[1-4](st|nd|rd|th)\s*year/gi, '')
+      .replace(/notes?/gi, '')
+      .trim();
+
+    return (dbNotes || []).filter(note => {
+      if (queryYear && normYearStr(note.year) !== queryYear) {
+        return false;
+      }
+
+      const noteSourceKey = normSourceKey(note.source || note.sourceKey);
+      const noteSource = String(note.source || '').toLowerCase();
+      const noteTitle = String(note.title || '').toLowerCase();
+      const noteSubject = String(note.subject || note.subjectName || '').toLowerCase();
+      const noteCode = String(note.subjectCode || '').toLowerCase();
+      const noteBranch = String(note.branch || '').toLowerCase();
+      const noteYear = String(note.year || '').toLowerCase();
+
+      if (isGatewayQuery) {
+        if (noteSourceKey !== 'gateway_classes' && !noteSource.includes('gateway')) {
+          return false;
+        }
+        if (!subjectCleanQuery) return true;
+        return noteSubject.includes(subjectCleanQuery) ||
+               noteTitle.includes(subjectCleanQuery) ||
+               noteCode.includes(subjectCleanQuery) ||
+               isSubjectMatch(noteCode, noteSubject, '', subjectCleanQuery);
+      }
+
+      if (isQuantumQuery) {
+        if (noteSourceKey !== 'quantum' && !noteSource.includes('quantum')) return false;
+        if (!subjectCleanQuery) return true;
+        return noteSubject.includes(subjectCleanQuery) || noteTitle.includes(subjectCleanQuery) || noteCode.includes(subjectCleanQuery) || isSubjectMatch(noteCode, noteSubject, '', subjectCleanQuery);
+      }
+
+      if (isBitwiseQuery) {
+        if (noteSourceKey !== 'bitwise_learning' && !noteSource.includes('bitwise')) return false;
+        if (!subjectCleanQuery) return true;
+        return noteSubject.includes(subjectCleanQuery) || noteTitle.includes(subjectCleanQuery) || noteCode.includes(subjectCleanQuery) || isSubjectMatch(noteCode, noteSubject, '', subjectCleanQuery);
+      }
+
+      if (isMultiAtomQuery) {
+        if (noteSourceKey !== 'multi_atom' && !noteSource.includes('multi')) return false;
+        if (!subjectCleanQuery) return true;
+        return noteSubject.includes(subjectCleanQuery) || noteTitle.includes(subjectCleanQuery) || noteCode.includes(subjectCleanQuery) || isSubjectMatch(noteCode, noteSubject, '', subjectCleanQuery);
+      }
+
+      return noteTitle.includes(rawQ) ||
+             noteSubject.includes(rawQ) ||
+             noteCode.includes(rawQ) ||
+             noteSource.includes(rawQ) ||
+             `${noteBranch} ${noteYear}`.includes(rawQ) ||
+             isSubjectMatch(noteCode, noteSubject, '', rawQ);
+    });
+  }, [dbNotes, heroSearchQuery, subjectSearchQuery]);
+
+  // FINAL FILTERED SUBJECT CARDS DISPLAYED IN WORKSPACE
   const filteredSubjects = useMemo(() => {
-    let result = searchAktuSyllabus(heroSearchQuery || subjectSearchQuery, {
-      branch: activeBranch,
-      year: activeYear,
-      semester: activeSemester
+    let list = availableSubjectsForFilter;
+
+    const query = (heroSearchQuery || subjectSearchQuery || '').toLowerCase().trim();
+    if (query) {
+      const isSourceOnlyQuery = ['gateway', 'gateway classes', 'quantum', 'bitwise', 'multi atom'].some(s => query === s || query === `${s} notes`);
+      if (isSourceOnlyQuery) {
+        const targetSrc = normSourceKey(query);
+        list = list.filter(s => {
+          return (dbNotes || []).some(n => {
+            const matchSrc = normSourceKey(n.source || n.sourceKey) === targetSrc;
+            const matchSub = isSubjectMatch(s.code, s.subject, n.subjectCode, n.subject || n.subjectName);
+            return matchSrc && matchSub;
+          });
+        });
+      } else {
+        const cleanQ = query
+          .replace(/gateway\s*(classes)?/gi, '')
+          .replace(/quantum(\s*notes)?/gi, '')
+          .replace(/bitwise(\s*learning)?/gi, '')
+          .replace(/multi\s*atom/gi, '')
+          .replace(/year\s*[1-4]/gi, '')
+          .replace(/[1-4](st|nd|rd|th)\s*year/gi, '')
+          .replace(/notes?/gi, '')
+          .trim();
+
+        const searchToUse = cleanQ || query;
+        list = list.filter(s =>
+          s.subject.toLowerCase().includes(searchToUse) ||
+          (s.code && s.code.toLowerCase().includes(searchToUse)) ||
+          isSubjectMatch(s.code, s.subject, '', searchToUse)
+        );
+      }
+    }
+
+    if (activeSemester && activeSemester !== 'All') {
+      list = list.filter(s => s.semester === activeSemester);
+    }
+
+    if (selectedSubject && selectedSubject !== 'All Subjects') {
+      list = list.filter(s => s.subject === selectedSubject || (s.code && s.code === selectedSubject));
+    }
+
+    return list;
+  }, [availableSubjectsForFilter, heroSearchQuery, subjectSearchQuery, activeSemester, selectedSubject, dbNotes]);
+
+  // CASCADING RESET EFFECT (ONLY RESET IF NO ACTIVE SUBJECT IS SELECTED AND SUBJECT DOES NOT MATCH)
+  React.useEffect(() => {
+    if (selectedSubject !== 'All Subjects' && !activeSubject) {
+      const exists = availableSubjectsForFilter.some(
+        s => isSubjectMatch(s.code, s.subject, '', selectedSubject) || s.subject === selectedSubject || (s.code && s.code === selectedSubject)
+      );
+      if (!exists) {
+        setSelectedSubject('All Subjects');
+      }
+    }
+  }, [activeBranch, activeYear, availableSubjectsForFilter, selectedSubject, activeSubject]);
+
+  // COMPUTE ALL AVAILABLE DYNAMIC NOTE RESOURCES FOR ACTIVE SUBJECT & UNIT
+  const activeUnitResources = useMemo(() => {
+    if (!activeSubject || !activeUnit) return [];
+
+    const activeBranchNorm = normBranchStr(activeBranch);
+    const activeYearNorm = normYearStr(activeYear);
+    const resourcesMap = new Map();
+    const seenSourceKeys = new Set();
+
+    // 1. Collect all matching DB notes for this subject and unit
+    if (dbNotes && dbNotes.length > 0) {
+      dbNotes.forEach(n => {
+        const nBranchNorm = normBranchStr(n.branch || n.branchId);
+        const matchBranch = !activeBranchNorm || nBranchNorm === activeBranchNorm || nBranchNorm === 'ALL';
+        const nYearNorm = normYearStr(n.year);
+        const matchYear = !activeYearNorm || nYearNorm === activeYearNorm;
+        const matchSub = isSubjectMatch(activeSubject.code, activeSubject.subject || activeSubject.name, n.subjectCode, n.subject || n.subjectName);
+        const matchUnit = Number(n.unit !== undefined ? n.unit : n.unitNumber) === Number(activeUnit);
+        const isPub = n.status === 'published' || n.status === 'Verified' || n.status === 'Published' || String(n.published) === 'true' || n.published !== false;
+        const isAvail = String(n.available) === 'true' || n.available !== false;
+
+        if (matchBranch && matchYear && matchSub && matchUnit && isPub && isAvail) {
+          const srcName = n.source || n.sourceName || 'Study Material';
+          const meta = getSourceMeta(srcName);
+          const sourceKey = normSourceKey(n.source || n.sourceKey || srcName);
+          
+          seenSourceKeys.add(sourceKey);
+          seenSourceKeys.add(srcName.toLowerCase());
+
+          const isSuccess = n.mirrorStatus === 'success' && Boolean(n.driveUrl);
+          const driveUrl = isSuccess ? n.driveUrl : '';
+          const origUrl = n.originalUrl || n.url || n.pdfUrl || n.fileUrl || '';
+
+          const isUnavailableWithEvidence = (n.notesStatus === 'coming_soon' || n.mirrorStatus === 'unavailable') && Boolean(n.unavailableReason);
+
+          const candidate = {
+            id: n.id,
+            title: n.title || `${srcName} - ${activeSubject.subject} (Unit ${activeUnit})`,
+            source: srcName,
+            sourceKey: sourceKey,
+            meta: meta,
+            url: isSuccess ? driveUrl : null,
+            driveUrl: driveUrl,
+            originalUrl: origUrl,
+            mirrorStatus: isSuccess ? 'success' : (isUnavailableWithEvidence ? 'unavailable' : 'pending'),
+            notesStatus: isSuccess ? 'active' : (isUnavailableWithEvidence ? 'coming_soon' : 'pending'),
+            unavailableReason: n.unavailableReason || '',
+            mirrorError: n.mirrorError || '',
+            isAvailable: isSuccess,
+            unit: activeUnit
+          };
+
+          const key = srcName.toLowerCase().trim();
+          const existing = resourcesMap.get(key);
+          if (!existing) {
+            resourcesMap.set(key, candidate);
+          } else {
+            const existingSuccess = existing.mirrorStatus === 'success' && existing.driveUrl;
+            const newSuccess = candidate.mirrorStatus === 'success' && candidate.driveUrl;
+            if (!existingSuccess && newSuccess) {
+              resourcesMap.set(key, candidate);
+            }
+          }
+        }
+      });
+    }
+
+    const resources = Array.from(resourcesMap.values());
+
+    // 2. Static Quantum check if not already present
+    if (!seenSourceKeys.has('quantum')) {
+      const staticQuantumUrl = getSubjectQuantumPdfUrl(activeSubject.code, activeSubject.subject) || activeSubject.pdfUrl;
+      if (staticQuantumUrl) {
+        const meta = getSourceMeta('Quantum Notes');
+        seenSourceKeys.add('quantum');
+        resources.push({
+          id: `static-quantum-${activeSubject.code || activeSubject.id}-${activeUnit}`,
+          title: `Quantum Notes - ${activeSubject.subject} (Unit ${activeUnit})`,
+          source: 'Quantum Notes',
+          sourceKey: 'quantum',
+          meta: meta,
+          url: staticQuantumUrl,
+          driveUrl: staticQuantumUrl,
+          mirrorStatus: 'success',
+          mirrorError: '',
+          isAvailable: true,
+          unit: activeUnit
+        });
+      }
+    }
+
+    // 3. For standard sources not yet uploaded, provide request card
+    NOTE_SOURCES.forEach(std => {
+      if (!seenSourceKeys.has(std.id)) {
+        resources.push({
+          id: `missing-${std.id}-${activeUnit}`,
+          title: `${std.name} - ${activeSubject.subject} (Unit ${activeUnit})`,
+          source: std.name,
+          sourceKey: std.id,
+          meta: std,
+          url: null,
+          driveUrl: '',
+          mirrorStatus: 'pending',
+          mirrorError: '',
+          isAvailable: false,
+          unit: activeUnit
+        });
+      }
     });
 
-    const is1stYear = (activeYear === '1st Year') || selectedYears.includes('1st Year');
+    return resources;
+  }, [activeSubject, activeUnit, activeBranch, activeYear, dbNotes]);
 
-    if (selectedBranches.length > 0 && !is1stYear) {
-      result = result.filter(s => 
-        selectedBranches.includes(s.branch) || 
-        (s.applicableBranches && (
-          s.applicableBranches.includes('ALL') ||
-          s.applicableBranches.some(b => selectedBranches.includes(b))
-        ))
-      );
-    }
-    if (selectedYears.length > 0) {
-      result = result.filter(s => selectedYears.some(y => s.year.toLowerCase().includes(y.toLowerCase().slice(0, 3))));
-    }
-    if (selectedSemesters.length > 0) {
-      result = result.filter(s => selectedSemesters.includes(s.semester));
-    }
-    if (selectedSubjects.length > 0) {
-      result = result.filter(s => selectedSubjects.includes(s.subject));
+  const handleOpenNote = (noteItem) => {
+    if (!noteItem) return;
+    const noteObj = typeof noteItem === 'string'
+      ? { title: activeSubject?.subject || 'Course Resource', fileUrl: noteItem, resourceUrl: noteItem, verifiedUrl: noteItem }
+      : noteItem;
+
+    const resourceUrl = noteObj.verifiedUrl || noteObj.resourceUrl || noteObj.fileUrl || noteObj.driveUrl || noteObj.url;
+    if (!resourceUrl && noteObj.mirrorStatus === 'failed') {
+      alert('This resource is currently unavailable.');
+      return;
     }
 
-    return result;
-  }, [activeBranch, activeYear, activeSemester, selectedBranches, selectedYears, selectedSemesters, selectedSubjects, heroSearchQuery, subjectSearchQuery]);
-
-  // Handle Branch Click -> Open Year Selection
-  const handleSelectBranchCard = (bId) => {
-    setActiveBranch(bId);
-    setActiveYear(null);
-    setActiveSemester(null);
-    setActiveSubject(null);
-    setSelectedBranches([bId]);
+    setActiveViewerNote({
+      note: noteObj,
+      subject: activeSubject,
+      unit: activeUnit ? { unitNo: activeUnit, topics: [] } : null
+    });
   };
 
-  // Handle Year Click -> Open Semester Selection
-  const handleSelectYearCard = (yStr) => {
-    setActiveYear(yStr);
+  // Handle Branch Click -> Reset Year to 1st Year, Subject to null, Unit to null
+  const handleSelectBranchCard = (bId) => {
+    setActiveBranch(bId);
+    setActiveYear('1st Year');
     setActiveSemester(null);
     setActiveSubject(null);
+    setActiveUnit(null);
+    setSelectedSubject('All Subjects');
+    setSubjectDropdownSearch('');
+    setSelectedBranches([bId]);
+    updateUrlParams({ course: 'B.Tech', branch: bId, year: '1st Year', subject: null, unit: null });
+  };
+
+  // Handle Year Click -> Reset Subject to null, Unit to null
+  const handleSelectYearCard = (yStr) => {
+    setActiveYear(yStr);
+    if (!activeBranch) setActiveBranch('CSE');
+    setActiveSemester(null);
+    setActiveSubject(null);
+    setActiveUnit(null);
+    setSelectedSubject('All Subjects');
+    setSubjectDropdownSearch('');
     setSelectedYears([yStr]);
+    updateUrlParams({ course: 'B.Tech', branch: activeBranch || 'CSE', year: yStr, subject: null, unit: null });
   };
 
   // Handle Semester Click -> Open Subjects List
   const handleSelectSemesterCard = (semStr) => {
     setActiveSemester(semStr);
     setActiveSubject(null);
+    setActiveUnit(null);
     setSelectedSemesters([semStr]);
   };
 
-  // Handle Subject Click -> Open Unit Breakdown Page
+  // Handle Subject Click -> Reset Unit to null
   const handleSelectSubjectCard = (subjectObj) => {
     setActiveSubject(subjectObj);
-    setExpandedSubjectId(subjectObj.id);
+    setActiveUnit(null);
+    if (subjectObj) {
+      setSelectedSubject(subjectObj.subject);
+      updateUrlParams({ course: 'B.Tech', branch: activeBranch, year: activeYear, subject: subjectObj.subject, unit: null });
+    } else {
+      setSelectedSubject('All Subjects');
+      updateUrlParams({ course: 'B.Tech', branch: activeBranch, year: activeYear, subject: null, unit: null });
+    }
   };
 
   // Clear All Navigation & Filters
   const handleClearAll = () => {
-    setActiveBranch(null);
-    setActiveYear(null);
+    setActiveBranch('CSE');
+    setActiveYear('1st Year');
     setActiveSemester(null);
     setActiveSubject(null);
+    setActiveUnit(null);
     setSelectedBranches([]);
     setSelectedYears([]);
     setSelectedSemesters([]);
     setSelectedSubjects([]);
+    setSelectedSubject('All Subjects');
+    setSubjectDropdownSearch('');
     setSubjectSearchQuery('');
     setHeroSearchQuery('');
-  };
-
-  // Download ZIP Handler
-  const handleDownloadUnitZip = async (subjectObj, unitObj) => {
-    if (!unitObj.notes || unitObj.notes.length === 0) {
-      alert(`No downloadable files available for Unit ${unitObj.unitNo} yet. Requesting notes from faculty...`);
-      setRequestUnitInfo({ subject: subjectObj, unit: unitObj });
-      setIsRequestModalOpen(true);
-      return;
-    }
-    await downloadUnitZip({
-      subjectCode: subjectObj.code,
-      subjectName: subjectObj.subject,
-      unitNo: unitObj.unitNo,
-      unitTitle: unitObj.title,
-      topics: unitObj.topics,
-      notes: unitObj.notes
-    });
+    updateUrlParams({ course: 'B.Tech', branch: 'CSE', year: '1st Year', subject: null, unit: null });
   };
 
   return (
-    <div style={{ backgroundColor: '#f9f7f1', minHeight: '100vh', color: '#1e293b' }}>
+    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1C1E21' }}>
       
+      {/* 0. COURSE SELECTOR TABS (B.Tech | MCA | MBA | B.Pharm) */}
+      <div style={{
+        backgroundColor: '#FCFAF6',
+        borderBottom: '1.5px solid #E8E2D5',
+        padding: '0.75rem 0',
+        boxShadow: '0 2px 8px rgba(35,30,25,0.02)'
+      }}>
+        <div className="container" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '0.75rem'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <span style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', color: '#7A6F62', letterSpacing: '0.04em' }}>
+              Curriculum:
+            </span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+            {COURSES.map(c => {
+              const isSelected = selectedCourse === c.key;
+              return (
+                <button
+                  key={c.id}
+                  onClick={() => handleCourseTabChange(c.key)}
+                  style={{
+                    padding: '0.42rem 1.15rem',
+                    borderRadius: '9999px',
+                    border: isSelected ? `2px solid ${c.btnColor}` : '1.5px solid #E8E2D5',
+                    backgroundColor: isSelected ? c.btnColor : '#ffffff',
+                    color: isSelected ? '#ffffff' : '#3A3530',
+                    fontWeight: isSelected ? 800 : 600,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    boxShadow: isSelected ? `0 4px 12px ${c.badgeColor}30` : '0 1px 3px rgba(0,0,0,0.04)',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <span>{c.name}</span>
+                  {isSelected && <Check size={14} strokeWidth={3} />}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* 1. LARGE NOTES HERO BANNER */}
       <section style={{
         position: 'relative',
-        backgroundColor: '#0c3829',
+        backgroundColor: '#FAF7F2',
         backgroundImage: `
-          radial-gradient(rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
-          linear-gradient(180deg, #07271c 0%, #0c3829 100%)
+          radial-gradient(rgba(200, 141, 45, 0.08) 1.5px, transparent 1.5px),
+          linear-gradient(180deg, #FAF7F2 0%, #EFE8DA 100%)
         `,
         backgroundSize: '24px 24px, 100% 100%',
         padding: '1.75rem 0 2rem 0',
-        borderBottom: '4px solid #1a563f',
+        borderBottom: '2px solid #E8E2D5',
         overflow: 'hidden',
-        boxShadow: '0 12px 30px rgba(12, 56, 41, 0.35)'
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)'
       }}>
         <div style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
-          background: 'radial-gradient(circle at 50% 30%, rgba(52, 211, 153, 0.15), transparent 70%)',
+          background: 'radial-gradient(circle at 50% 30%, rgba(200, 141, 45, 0.08), transparent 70%)',
           pointerEvents: 'none'
         }} />
 
@@ -214,11 +941,11 @@ export default function NotesPage({ onNavigate, onOpenAuth }) {
                 borderRadius: '16px',
                 padding: '0.6rem 0.85rem',
                 marginBottom: '0.5rem',
-                border: '2px solid #0e4d34',
-                boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
+                border: '2px solid #C88D2D',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.06)',
                 fontSize: '0.85rem',
                 fontWeight: 700,
-                color: '#0f172a',
+                color: '#1C1E21',
                 fontFamily: "'Kalam', cursive",
                 lineHeight: 1.3,
                 textAlign: 'center',
@@ -226,785 +953,118 @@ export default function NotesPage({ onNavigate, onOpenAuth }) {
               }}>
                 “Notes banao, <br />
                 life set karo!” <br />
-                <span style={{ color: '#059669' }}>— Virus</span>
+                <span style={{ color: '#C88D2D' }}>— ProfessorVirus</span>
                 <div style={{
                   position: 'absolute', bottom: '-10px', left: '50%', transform: 'translateX(-50%)',
-                  width: 0, height: 0, borderLeft: '7px solid transparent', borderRight: '7px solid transparent', borderTop: '10px solid #0e4d34'
+                  width: 0, height: 0, borderLeft: '7px solid transparent', borderRight: '7px solid transparent', borderTop: '10px solid #C88D2D'
                 }} />
               </div>
 
-              <div style={{ width: '220px', height: '240px', position: 'relative', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.4))' }}>
+              <div style={{ width: '240px', height: '200px', position: 'relative', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.15))' }}>
                 <img
-                  src="/assets/notes_hero_virus.png"
-                  alt="Virus Teacher Mascot"
+                  src="/assets/hero_board.png"
+                  alt="AKTU Study Board"
+                  loading="eager"
+                  fetchpriority="high"
+                  width={240}
+                  height={200}
                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = '/assets/hero_virus.png';
+                    e.target.src = '/assets/navbar_logo.png';
                   }}
                 />
               </div>
             </div>
 
-            {/* CENTER: Main Title & Search */}
+            {/* CENTER: Title & Main Search */}
             <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.65rem' }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem' }}>
                 <h1 style={{
-                  fontFamily: "'Outfit', sans-serif", fontSize: '3.4rem', fontWeight: 900, color: '#ffffff',
-                  lineHeight: 1.1, letterSpacing: '-0.02em', textShadow: '0 4px 14px rgba(0,0,0,0.4)'
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: '3.4rem',
+                  fontWeight: 900,
+                  color: '#1F2421',
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.02em'
                 }}>
-                  Notes
+                  AKTU Notes Hub
                 </h1>
-                <BookOpen size={42} style={{ color: '#34d399', filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.3))' }} />
+                <BookOpen size={42} style={{ color: '#C88D2D' }} />
               </div>
 
-              <div style={{ fontFamily: "'Kalam', cursive", color: '#fde047', fontSize: '1.35rem', fontWeight: 700, letterSpacing: '0.02em' }}>
-                Unit-wise Notes. Exam-ready Content.
+              <div style={{
+                fontFamily: "'Kalam', cursive",
+                color: '#7A5835',
+                fontSize: '1.35rem',
+                fontWeight: 700
+              }}>
+                Quantum • Gateway Classes • Bitwise Learning • Multi Atom
               </div>
 
-              <p style={{ color: '#e2e8f0', fontSize: '0.95rem', fontWeight: 500, maxWidth: '500px' }}>
-                High-quality, well-organized notes for AKTU B.Tech <br />
-                Prepared by toppers, verified for your branch & semester.
+              <p style={{ color: '#64748b', fontSize: '0.95rem', fontWeight: 500, maxWidth: '520px' }}>
+                Unit-wise verified notes and Quantum series for AKTU B.Tech engineering branches.
               </p>
 
-              {/* Search Bar */}
-              <form onSubmit={(e) => e.preventDefault()} style={{ width: '100%', maxWidth: '540px', position: 'relative', marginTop: '0.75rem' }}>
+              {/* SEARCH BAR */}
+              <form onSubmit={(e) => e.preventDefault()} style={{ width: '100%', maxWidth: '560px', position: 'relative', marginTop: '0.75rem' }}>
                 <div style={{
                   display: 'flex', alignItems: 'center', backgroundColor: '#ffffff', borderRadius: '9999px',
-                  padding: '0.35rem 0.4rem 0.35rem 1.25rem', boxShadow: '0 8px 25px rgba(0,0,0,0.35)', border: '1px solid #cbd5e1'
+                  padding: '0.35rem 0.4rem 0.35rem 1.25rem', boxShadow: '0 8px 25px rgba(0,0,0,0.08)', border: '1px solid #E8E2D5'
                 }}>
-                  <Search size={18} style={{ color: '#64748b', marginRight: '0.6rem', flexShrink: 0 }} />
+                  <Search size={18} style={{ color: '#7A5835', marginRight: '0.6rem', flexShrink: 0 }} />
                   <input
                     type="text"
-                    placeholder="Search notes by subject code, topic, or keyword..."
+                    placeholder="Search notes by subject, code, or source (e.g. Gateway, KAS-103)..."
                     value={heroSearchQuery}
                     onChange={(e) => setHeroSearchQuery(e.target.value)}
-                    style={{ width: '100%', border: 'none', outline: 'none', fontSize: '0.92rem', color: '#0f172a', fontWeight: 500, backgroundColor: 'transparent' }}
+                    style={{ width: '100%', border: 'none', outline: 'none', fontSize: '0.92rem', color: '#1C1E21', fontWeight: 500, backgroundColor: 'transparent' }}
                   />
-                  <button type="submit" className="btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, backgroundColor: '#0d5c3a', borderRadius: '9999px', flexShrink: 0 }}>
+                  {heroSearchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setHeroSearchQuery('');
+                        if (onClearSearch) onClearSearch();
+                      }}
+                      style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', padding: '0 0.5rem', display: 'flex', alignItems: 'center', marginRight: '0.25rem' }}
+                      title="Clear search"
+                    >
+                      <X size={16} />
+                    </button>
+                  )}
+                  <button type="submit" className="btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, backgroundColor: '#1F2421', borderRadius: '9999px', flexShrink: 0 }}>
                     Search
                   </button>
                 </div>
               </form>
             </div>
 
-            {/* RIGHT: Students Graphic */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }} className="notes-right-mascot">
-              <div style={{ fontFamily: "'Kalam', cursive", color: '#fef08a', fontSize: '0.85rem', fontWeight: 700, textAlign: 'center', marginBottom: '0.3rem' }}>
-                Padhai ka Tension? <br /> Hum hai na! :)
-              </div>
-
-              <div style={{ width: '300px', height: '190px', position: 'relative', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.4))' }}>
-                <img
-                  src="/assets/notes_hero_students.png"
-                  alt="AKTU Students"
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = '/assets/hero_students.png';
-                  }}
-                />
-              </div>
-
-              <div className="sticky-note" style={{
-                position: 'absolute', top: '15px', left: '-10px', width: '145px', padding: '0.5rem 0.6rem',
-                borderRadius: '6px', fontSize: '0.72rem', fontWeight: 700, color: '#1e293b', transform: 'rotate(-4deg)'
-              }}>
-                <div>✓ Same Syllabus</div>
-                <div>✓ Better Notes</div>
-                <div>✓ Higher CGPA</div>
-                <div style={{ color: '#047857', fontFamily: "'Kalam', cursive", textAlign: 'right', marginTop: '0.2rem' }}>— CampusPrep :)</div>
-              </div>
-            </div>
+            {/* RIGHT GRAPHIC: All Izz Well Shared Banner */}
+            <AllIzzWellBanner title={"Semester Top Karna Hai?\nNotes Padhna Shuru Karo! :)"} className="notes-right-mascot" />
 
           </div>
         </div>
       </section>
 
-      {/* 2. BREADCRUMBS INTERACTIVE NAVIGATION BAR */}
-      <section style={{ backgroundColor: '#ffffff', borderBottom: '1px solid #eae5d9', padding: '0.75rem 0' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', fontWeight: 700, flexWrap: 'wrap' }}>
-            <button
-              onClick={handleClearAll}
-              style={{ background: 'none', border: 'none', color: '#0d5c3a', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 700 }}
-            >
-              <HomeIcon size={15} /> Notes
-            </button>
-
-            {activeBranch && (
-              <>
-                <ChevronRight size={14} style={{ color: '#94a3b8' }} />
-                <button
-                  onClick={() => { setActiveYear(null); setActiveSemester(null); setActiveSubject(null); }}
-                  style={{ background: 'none', border: 'none', color: activeYear ? '#0d5c3a' : '#0f172a', cursor: 'pointer', fontWeight: activeYear ? 600 : 800 }}
-                >
-                  {activeBranch}
-                </button>
-              </>
-            )}
-
-            {activeYear && (
-              <>
-                <ChevronRight size={14} style={{ color: '#94a3b8' }} />
-                <button
-                  onClick={() => { setActiveSemester(null); setActiveSubject(null); }}
-                  style={{ background: 'none', border: 'none', color: activeSemester ? '#0d5c3a' : '#0f172a', cursor: 'pointer', fontWeight: activeSemester ? 600 : 800 }}
-                >
-                  {activeYear}
-                </button>
-              </>
-            )}
-
-            {activeSemester && (
-              <>
-                <ChevronRight size={14} style={{ color: '#94a3b8' }} />
-                <button
-                  onClick={() => setActiveSubject(null)}
-                  style={{ background: 'none', border: 'none', color: activeSubject ? '#0d5c3a' : '#0f172a', cursor: 'pointer', fontWeight: activeSubject ? 600 : 800 }}
-                >
-                  {activeSemester}
-                </button>
-              </>
-            )}
-
-            {activeSubject && (
-              <>
-                <ChevronRight size={14} style={{ color: '#94a3b8' }} />
-                <span style={{ color: '#0d5c3a', fontWeight: 800 }}>
-                  {activeSubject.subject} ({activeSubject.code})
-                </span>
-              </>
-            )}
-          </div>
-
-          {(activeBranch || activeYear || activeSemester || activeSubject) && (
-            <button
-              onClick={handleClearAll}
-              style={{ background: 'none', border: 'none', color: '#ef4444', fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
-            >
-              <X size={14} /> Reset Flow
-            </button>
-          )}
-        </div>
-      </section>
-
-      {/* 3. MAIN THREE-COLUMN LAYOUT */}
+      {/* 2. MAIN CONTENT: UNIFIED MODERN COURSE NOTES VIEW */}
       <div className="container" style={{ padding: '2rem 1.25rem 3rem 1.25rem' }}>
-        <div style={{
-          display: 'grid', gridTemplateColumns: '240px 1fr 280px', gap: '1.5rem', alignItems: 'start'
-        }} className="notes-main-layout">
-
-          {/* LEFT SIDEBAR: FILTERS */}
-          <aside style={{
-            backgroundColor: '#ffffff', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.03)', position: 'sticky', top: '85px'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: '0.75rem', borderBottom: '1px solid #f1f5f9', marginBottom: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '1rem', color: '#0f172a' }}>
-                <Filter size={16} style={{ color: '#0d5c3a' }} /> Filters
-              </div>
-              <button onClick={handleClearAll} style={{ background: 'none', border: 'none', color: '#0d5c3a', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}>
-                Clear All
-              </button>
-            </div>
-
-            {/* SELECT BRANCH */}
-            <div style={{ marginBottom: '1.25rem' }}>
-              <div style={filterTitleStyle}>SELECT BRANCH</div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
-                {['CSE', 'ME', 'ECE', 'IT', 'CE', 'EE', 'AI & DS', 'Maths'].map(b => (
-                  <label key={b} style={checkboxLabelStyle}>
-                    <input
-                      type="checkbox"
-                      checked={activeBranch === b || selectedBranches.includes(b)}
-                      onChange={() => handleSelectBranchCard(b)}
-                      style={checkboxInputStyle}
-                    />
-                    <span style={{ fontSize: '0.82rem', color: '#334155' }}>{b}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* SELECT YEAR */}
-            <div style={{ marginBottom: '1.25rem' }}>
-              <div style={filterTitleStyle}>SELECT YEAR</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                {['1st Year', '2nd Year', '3rd Year', '4th Year'].map(y => (
-                  <label key={y} style={checkboxLabelStyle}>
-                    <input
-                      type="checkbox"
-                      checked={activeYear === y || selectedYears.includes(y)}
-                      onChange={() => handleSelectYearCard(y)}
-                      style={checkboxInputStyle}
-                    />
-                    <span style={{ fontSize: '0.82rem', color: '#334155' }}>{y}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* SELECT SEMESTER */}
-            <div style={{ marginBottom: '1.25rem' }}>
-              <div style={filterTitleStyle}>SELECT SEMESTER</div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
-                {['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5', 'Sem 6', 'Sem 7', 'Sem 8'].map(s => (
-                  <label key={s} style={checkboxLabelStyle}>
-                    <input
-                      type="checkbox"
-                      checked={activeSemester === s || selectedSemesters.includes(s)}
-                      onChange={() => handleSelectSemesterCard(s)}
-                      style={checkboxInputStyle}
-                    />
-                    <span style={{ fontSize: '0.82rem', color: '#334155' }}>{s}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* SORT BY */}
-            <div>
-              <div style={filterTitleStyle}>SORT BY</div>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                style={{
-                  width: '100%', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0.45rem 0.6rem',
-                  fontSize: '0.82rem', backgroundColor: '#ffffff', outline: 'none', fontWeight: 600, color: '#334155'
-                }}
-              >
-                <option value="latest">Latest First</option>
-                <option value="downloaded">Most Downloaded</option>
-                <option value="rating">Top Rated</option>
-              </select>
-            </div>
-          </aside>
-
-          {/* CENTER WORKSPACE: MULTI-STEP NAVIGATION FLOW */}
-          <main style={{ minWidth: 0 }}>
-
-            {/* STEP 1: TOP-LEVEL BRANCH SELECTION (IF NO BRANCH SELECTED) */}
-            {!activeBranch && (
-              <div>
-                <div style={{ marginBottom: '1.25rem' }}>
-                  <h2 style={{ fontSize: '1.5rem', fontWeight: 900, color: '#0f172a' }}>
-                    Select Your Engineering Branch
-                  </h2>
-                  <p style={{ fontSize: '0.86rem', color: '#64748b', marginTop: '0.2rem' }}>
-                    Choose your branch to view verified AKTU B.Tech year-wise, semester-wise, and unit-wise notes.
-                  </p>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
-                  {branchesList.map(b => {
-                    const BIcon = b.icon;
-                    return (
-                      <div
-                        key={b.id}
-                        onClick={() => handleSelectBranchCard(b.id)}
-                        style={{
-                          backgroundColor: '#ffffff', borderRadius: '20px', border: '1.5px solid #e2e8f0',
-                          padding: '1.25rem', cursor: 'pointer', transition: 'all 0.25s ease',
-                          boxShadow: '0 4px 14px rgba(0,0,0,0.02)'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'translateY(-4px)';
-                          e.currentTarget.style.borderColor = b.color;
-                          e.currentTarget.style.boxShadow = `0 10px 25px ${b.color}20`;
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = 'translateY(0px)';
-                          e.currentTarget.style.borderColor = '#e2e8f0';
-                          e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.02)';
-                        }}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-                          <div style={{ width: '42px', height: '42px', borderRadius: '12px', backgroundColor: b.bg, color: b.color, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <BIcon size={22} />
-                          </div>
-                          <ArrowRight size={18} style={{ color: '#94a3b8' }} />
-                        </div>
-
-                        <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#0f172a', lineHeight: 1.2 }}>
-                          {b.id}
-                        </div>
-
-                        <div style={{ fontSize: '0.78rem', color: '#64748b', fontWeight: 500, marginTop: '0.25rem' }}>
-                          {b.fullName}
-                        </div>
-
-                        <div style={{ fontSize: '0.74rem', color: '#059669', fontWeight: 700, marginTop: '0.65rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                          Explore Years & Semesters →
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* STEP 2: YEAR SELECTION FOR CHOSEN BRANCH */}
-            {activeBranch && !activeYear && (
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
-                  <button
-                    onClick={() => setActiveBranch(null)}
-                    style={{ background: 'none', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#334155' }}
-                  >
-                    <ArrowLeft size={16} />
-                  </button>
-                  <div>
-                    <h2 style={{ fontSize: '1.5rem', fontWeight: 900, color: '#0f172a' }}>
-                      {activeBranch} — Select Academic Year
-                    </h2>
-                    <p style={{ fontSize: '0.86rem', color: '#64748b', marginTop: '0.1rem' }}>
-                      Verified AKTU B.Tech curriculum for {activeBranch}.
-                    </p>
-                  </div>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                  {[
-                    { year: '1st Year', sems: 'Semester 1 & 2', desc: 'Foundation engineering mathematics, physics, and programming.' },
-                    { year: '2nd Year', sems: 'Semester 3 & 4', desc: 'Core branch fundamentals, data structures, and circuits.' },
-                    { year: '3rd Year', sems: 'Semester 5 & 6', desc: 'Advanced domain subjects, DBMS, networks, and design.' },
-                    { year: '4th Year', sems: 'Semester 7 & 8', desc: 'Specialized electives, AI, cloud computing, and projects.' }
-                  ].map((item) => (
-                    <div
-                      key={item.year}
-                      onClick={() => handleSelectYearCard(item.year)}
-                      style={{
-                        backgroundColor: '#ffffff', borderRadius: '20px', border: '1.5px solid #e2e8f0',
-                        padding: '1.5rem', cursor: 'pointer', transition: 'all 0.2s ease',
-                        boxShadow: '0 4px 14px rgba(0,0,0,0.02)'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-3px)';
-                        e.currentTarget.style.borderColor = '#0d5c3a';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0px)';
-                        e.currentTarget.style.borderColor = '#e2e8f0';
-                      }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                        <div style={{ fontSize: '1.3rem', fontWeight: 900, color: '#0f172a' }}>
-                          {item.year}
-                        </div>
-                        <ArrowRight size={20} style={{ color: '#0d5c3a' }} />
-                      </div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#059669', marginBottom: '0.4rem' }}>
-                        {item.sems}
-                      </div>
-                      <p style={{ fontSize: '0.78rem', color: '#64748b', margin: 0, lineHeight: 1.4 }}>
-                        {item.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* STEP 3 & 4: SUBJECTS LIST & UNIT BREAKDOWN FOR SELECTED BRANCH & YEAR */}
-            {activeBranch && activeYear && (
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.75rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <button
-                      onClick={() => {
-                        if (activeSubject) setActiveSubject(null);
-                        else if (activeSemester) setActiveSemester(null);
-                        else setActiveYear(null);
-                      }}
-                      style={{ background: 'none', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0.4rem 0.6rem', cursor: 'pointer', color: '#334155' }}
-                    >
-                      <ArrowLeft size={16} />
-                    </button>
-                    <div>
-                      <h2 style={{ fontSize: '1.45rem', fontWeight: 900, color: '#0f172a', margin: 0 }}>
-                        {activeSubject ? activeSubject.subject : `${activeBranch} • ${activeYear} Subjects`}
-                      </h2>
-                      <p style={{ fontSize: '0.82rem', color: '#64748b', marginTop: '0.15rem', margin: 0 }}>
-                        {activeSubject ? `Subject Code: ${activeSubject.code} • ${activeSubject.units.length} Syllabus Units` : `Official Verified AKTU Syllabus Subjects (${filteredSubjects.length})`}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
-                    {/* SEMESTER QUICK FILTER PILLS */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', backgroundColor: '#ffffff', padding: '0.2rem', borderRadius: '10px', border: '1px solid #cbd5e1' }}>
-                      <button
-                        onClick={() => setActiveSemester(null)}
-                        style={{
-                          padding: '0.3rem 0.7rem', borderRadius: '7px', border: 'none',
-                          backgroundColor: !activeSemester ? '#0d5c3a' : 'transparent',
-                          color: !activeSemester ? '#ffffff' : '#475569',
-                          fontWeight: 700, fontSize: '0.76rem', cursor: 'pointer'
-                        }}
-                      >
-                        All Semesters
-                      </button>
-                      {(activeYear === '1st Year' ? ['Sem 1', 'Sem 2'] :
-                        activeYear === '2nd Year' ? ['Sem 3', 'Sem 4'] :
-                        activeYear === '3rd Year' ? ['Sem 5', 'Sem 6'] :
-                        ['Sem 7', 'Sem 8']).map(sem => (
-                          <button
-                            key={sem}
-                            onClick={() => setActiveSemester(sem)}
-                            style={{
-                              padding: '0.3rem 0.7rem', borderRadius: '7px', border: 'none',
-                              backgroundColor: activeSemester === sem ? '#0d5c3a' : 'transparent',
-                              color: activeSemester === sem ? '#ffffff' : '#475569',
-                              fontWeight: 700, fontSize: '0.76rem', cursor: 'pointer'
-                            }}
-                          >
-                            {sem}
-                          </button>
-                      ))}
-                    </div>
-
-                    <div style={{ display: 'flex', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0.2rem' }}>
-                      <button
-                        onClick={() => setViewMode('grid')}
-                        style={{ padding: '0.3rem 0.6rem', borderRadius: '6px', border: 'none', backgroundColor: viewMode === 'grid' ? '#0d5c3a' : 'transparent', color: viewMode === 'grid' ? '#ffffff' : '#64748b', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 600 }}
-                      >
-                        <Grid size={13} />
-                      </button>
-                      <button
-                        onClick={() => setViewMode('list')}
-                        style={{ padding: '0.3rem 0.6rem', borderRadius: '6px', border: 'none', backgroundColor: viewMode === 'list' ? '#0d5c3a' : 'transparent', color: viewMode === 'list' ? '#ffffff' : '#64748b', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 600 }}
-                      >
-                        <List size={13} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* IF NO SUBJECTS FOUND */}
-                {filteredSubjects.length === 0 ? (
-                  <div style={{
-                    backgroundColor: '#ffffff', borderRadius: '20px', border: '1.5px solid #e2e8f0', padding: '2.5rem 1.5rem', textAlign: 'center'
-                  }}>
-                    <BookMarked size={48} style={{ color: '#94a3b8', margin: '0 auto 1rem auto' }} />
-                    <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0f172a' }}>No Verified Subjects Found</h3>
-                    <p style={{ fontSize: '0.88rem', color: '#64748b', maxWidth: '420px', margin: '0.4rem auto 1.25rem auto' }}>
-                      No syllabus subjects found matching your active search/filter criteria.
-                    </p>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem' }}>
-                      <button onClick={handleClearAll} className="btn-primary" style={{ padding: '0.55rem 1.2rem', backgroundColor: '#0d5c3a', fontSize: '0.85rem' }}>
-                        Clear Filters
-                      </button>
-                      <button onClick={() => setIsRequestModalOpen(true)} className="btn-outline" style={{ padding: '0.55rem 1.2rem', fontSize: '0.85rem' }}>
-                        Request Notes
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  /* SUBJECT CARDS & EXPANDED UNITS DISPLAY */
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                    {filteredSubjects.map(sub => {
-                      const isExpanded = activeSubject ? activeSubject.id === sub.id : expandedSubjectId === sub.id;
-                      return (
-                        <div
-                          key={sub.id}
-                          style={{
-                            backgroundColor: '#ffffff', borderRadius: '20px', border: isExpanded ? '2px solid #0d5c3a' : '1px solid #e2e8f0',
-                            padding: '1.35rem', boxShadow: '0 4px 14px rgba(0,0,0,0.03)', transition: 'all 0.2s ease'
-                          }}
-                        >
-                          {/* Subject Header Row */}
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
-                            <div>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
-                                <span style={{ backgroundColor: '#e6f4ed', color: '#0d5c3a', fontWeight: 800, fontSize: '0.75rem', padding: '0.2rem 0.6rem', borderRadius: '6px' }}>
-                                  {sub.code}
-                                </span>
-                                <span style={{ fontSize: '0.78rem', color: '#059669', fontWeight: 700 }}>
-                                  {sub.branch} • {sub.year} • {sub.semester}
-                                </span>
-                              </div>
-                              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#0f172a', margin: 0 }}>
-                                {sub.subject}
-                              </h3>
-                            </div>
-
-                            <button
-                              onClick={() => {
-                                if (isExpanded) {
-                                  setExpandedSubjectId(null);
-                                  if (activeSubject) setActiveSubject(null);
-                                } else {
-                                  handleSelectSubjectCard(sub);
-                                }
-                              }}
-                              className="btn-outline"
-                              style={{
-                                padding: '0.45rem 1rem', fontSize: '0.82rem', fontWeight: 700, borderColor: '#0d5c3a', color: '#0d5c3a',
-                                display: 'flex', alignItems: 'center', gap: '0.35rem'
-                              }}
-                            >
-                              <span>{isExpanded ? 'Hide Units' : `View ${sub.units.length} Units`}</span>
-                              <ChevronDown size={16} style={{ transform: isExpanded ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
-                            </button>
-                          </div>
-
-                          <p style={{ fontSize: '0.84rem', color: '#64748b', marginTop: '0.5rem', lineHeight: 1.4 }}>
-                            {sub.description}
-                          </p>
-
-                          {/* EXPANDABLE UNIT-BY-UNIT NOTES BREAKDOWN */}
-                          {isExpanded && (
-                            <div style={{ marginTop: '1.25rem', borderTop: '1px solid #f1f5f9', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                              <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#0f172a', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                                Official AKTU Syllabus Units & Quantum Notes
-                              </div>
-
-                              {sub.units.map(u => {
-                                const unitNumber = u.unitNo || u.unit;
-                                return (
-                                  <div
-                                    key={unitNumber}
-                                    style={{
-                                      backgroundColor: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '14px', padding: '1rem',
-                                      display: 'flex', flexDirection: 'column', gap: '0.65rem'
-                                    }}
-                                  >
-                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-                                      <div style={{ fontWeight: 800, fontSize: '0.94rem', color: '#0f172a' }}>
-                                        Unit {unitNumber}: {u.title}
-                                      </div>
-                                      <span style={{
-                                        fontSize: '0.72rem', fontWeight: 700, padding: '0.15rem 0.55rem', borderRadius: '4px',
-                                        backgroundColor: '#e6f4ed', color: '#059669'
-                                      }}>
-                                        Verified AKTU Syllabus Unit
-                                      </span>
-                                    </div>
-
-                                    {u.topics && u.topics.length > 0 && (
-                                      <div style={{ fontSize: '0.78rem', color: '#475569', lineHeight: 1.4 }}>
-                                        <strong>Topics:</strong> {u.topics.join(' • ')}
-                                      </div>
-                                    )}
-
-                                    {/* Notes Actions Row */}
-                                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.3rem' }}>
-                                      <button
-                                        onClick={() => {
-                                          const q = encodeURIComponent(`AKTU Quantum ${sub.code} ${sub.subject} Unit ${unitNumber} PDF`);
-                                          window.open(`https://www.google.com/search?q=${q}`, '_blank', 'noopener,noreferrer');
-                                        }}
-                                        className="btn-primary"
-                                        style={{
-                                          backgroundColor: '#0d5c3a', padding: '0.45rem 1rem', fontSize: '0.8rem', borderRadius: '8px',
-                                          display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700, cursor: 'pointer'
-                                        }}
-                                      >
-                                        <Eye size={15} />
-                                        <span>View Quantum Notes (PDF)</span>
-                                        <ExternalLink size={13} />
-                                      </button>
-
-                                      <button
-                                        onClick={() => {
-                                          const q = encodeURIComponent(sub.subject);
-                                          window.open(`https://aktu-quantum.tech/search?q=${q}`, '_blank', 'noopener,noreferrer');
-                                        }}
-                                        className="btn-outline"
-                                        style={{
-                                          padding: '0.45rem 0.9rem', fontSize: '0.78rem', borderRadius: '8px', borderColor: '#0284c7', color: '#0284c7',
-                                          display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 700, cursor: 'pointer'
-                                        }}
-                                      >
-                                        <Search size={14} />
-                                        <span>Search Aktu-Quantum</span>
-                                      </button>
-
-                                      <button
-                                        onClick={() => handleDownloadUnitZip(sub, u)}
-                                        className="btn-outline"
-                                        style={{
-                                          padding: '0.45rem 0.9rem', fontSize: '0.78rem', borderRadius: '8px', borderColor: '#475569', color: '#475569',
-                                          display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 700, cursor: 'pointer'
-                                        }}
-                                      >
-                                        <Download size={14} />
-                                        <span>Download ZIP</span>
-                                      </button>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          )}
-
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-
-              </div>
-            )}
-
-
-          </main>
-
-          {/* RIGHT COLUMN: UPLOAD NOTES + QUICK LINKS + STUDY TIPS */}
-          <aside style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            
-            {/* UPLOAD NOTES */}
-            <div style={{
-              backgroundColor: '#ffffff', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.35rem',
-              boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem' }}>
-                <div style={{
-                  width: '32px', height: '32px', borderRadius: '8px', backgroundColor: '#e6f4ed', color: '#0d5c3a',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center'
-                }}>
-                  <UploadCloud size={18} />
-                </div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a' }}>
-                  Upload Notes
-                </h3>
-              </div>
-
-              <p style={{ fontSize: '0.82rem', color: '#64748b', lineHeight: 1.4, marginBottom: '1rem' }}>
-                Share your unit notes with the community and help fellow AKTU students.
-              </p>
-
-              <button
-                onClick={() => setIsUploadModalOpen(true)}
-                className="btn-primary"
-                style={{ width: '100%', padding: '0.65rem', fontSize: '0.88rem', backgroundColor: '#0d5c3a', gap: '0.4rem' }}
-              >
-                Upload Now <ArrowRight size={16} />
-              </button>
-            </div>
-
-            {/* QUICK LINKS */}
-            <div style={{
-              backgroundColor: '#ffffff', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.35rem',
-              boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
-            }}>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.85rem' }}>
-                Quick Links
-              </h3>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {[
-                  { name: 'Most Downloaded Notes', icon: Download },
-                  { name: 'Recently Added', icon: Clock },
-                  { name: 'Unit-wise Notes', icon: Layers },
-                  { name: 'Handwritten Notes', icon: FileText },
-                  { name: 'Top Rated Notes', icon: Star }
-                ].map((link, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleClearAll()}
-                    style={{
-                      width: '100%', textAlign: 'left', padding: '0.55rem 0.75rem', borderRadius: '10px',
-                      border: '1px solid #f1f5f9', backgroundColor: '#f8fafc', color: '#334155', fontSize: '0.82rem',
-                      fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between'
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <link.icon size={14} style={{ color: '#0d5c3a' }} />
-                      <span>{link.name}</span>
-                    </div>
-                    <ArrowRight size={14} style={{ color: '#94a3b8' }} />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* STUDY TIPS BY VIRUS */}
-            <div style={{
-              backgroundColor: '#ffffff', borderRadius: '20px', border: '1px solid #e2e8f0', padding: '1.25rem',
-              boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#eab308', marginBottom: '0.75rem' }}>
-                <Lightbulb size={18} />
-                <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#0f172a' }}>
-                  Study Tips by Virus
-                </h3>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div style={{ width: '65px', height: '75px', borderRadius: '12px', overflow: 'hidden', border: '1.5px solid #0d5c3a', flexShrink: 0 }}>
-                  <img
-                    src="/assets/notes_tips_virus.png"
-                    alt="Virus Avatar"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/assets/navbar_logo.png';
-                    }}
-                  />
-                </div>
-
-                <div className="sticky-note" style={{ padding: '0.55rem 0.65rem', borderRadius: '6px', fontSize: '0.76rem', fontFamily: "'Kalam', cursive", fontWeight: 700, color: '#1e293b', lineHeight: 1.3 }}>
-                  “Notes sirf likhne ke liye nahi, <br />
-                  samajhne ke liye hote hain.” <br />
-                  <span style={{ color: '#047857' }}>— Virus :)</span>
-                </div>
-              </div>
-            </div>
-
-          </aside>
-
-        </div>
+        <CourseNotesView
+          courseKey={selectedCourse}
+          dbNotes={dbNotes}
+          onOpenViewer={({ note, subject, unit }) => {
+            setActiveViewerNote({ note, subject, unit: unit ? { unitNo: unit, topics: [] } : null });
+          }}
+          onRequestNotes={(subject, unit) => {
+            setRequestUnitInfo({ subject: { subject: subject?.name || 'Subject', code: subject?.code || '' }, unitNo: unit });
+            setIsRequestModalOpen(true);
+          }}
+          onOpenAuth={onOpenAuth}
+        />
       </div>
 
-      {/* 4. BOTTOM ILLUSTRATED BANNER */}
-      <section className="container" style={{ marginBottom: '3rem' }}>
-        <div style={{
-          borderRadius: '24px', backgroundColor: '#f4eee0', backgroundImage: `linear-gradient(135deg, #f9f6ed 0%, #efe7d4 100%)`,
-          border: '2px solid #e5dfd3', boxShadow: '0 10px 28px rgba(0,0,0,0.05)', padding: '1.25rem 2rem',
-          display: 'grid', gridTemplateColumns: '260px 1fr 240px', gap: '1.5rem', alignItems: 'center'
-        }} className="notes-bottom-banner">
-          
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <div style={{ width: '110px', height: '110px', position: 'relative', flexShrink: 0 }}>
-              <img
-                src="/assets/notes_bottom_virus.png"
-                alt="Virus Drinking Tea"
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = '/assets/hero_virus.png';
-                }}
-              />
-            </div>
-            <div style={{ fontFamily: "'Kalam', cursive", fontSize: '1.2rem', fontWeight: 700, color: '#0f172a', lineHeight: 1.2 }}>
-              Good Notes <br /> Better Concepts <br />
-              <span style={{ color: '#059669', fontSize: '1.3rem' }}>Higher CGPA!</span>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ width: '200px', height: '120px', position: 'relative' }}>
-              <img
-                src="/assets/notes_bottom_students.png"
-                alt="Students Walking to College"
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = '/assets/hero_students.png';
-                }}
-              />
-            </div>
-          </div>
-
-          <div style={{ fontFamily: "'Kalam', cursive", fontSize: '1.15rem', fontWeight: 700, color: '#1e293b', textAlign: 'right', lineHeight: 1.3 }}>
-            Same Dreams <br /> Brighter Tomorrows <br />
-            <span style={{ color: '#059669' }}>— CampusPrep :)</span>
-          </div>
-
-        </div>
-      </section>
+      {/* 4. BOTTOM ACADEMIC RESOURCE BANNER */}
+      <AcademicResourceBanner onNavigate={onNavigate} />
 
       {/* UPLOAD NOTES MODAL */}
       {isUploadModalOpen && (
@@ -1061,7 +1121,7 @@ function SemesterCard({ sem, onSelect }) {
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-3px)';
-        e.currentTarget.style.borderColor = '#0d5c3a';
+        e.currentTarget.style.borderColor = '#C88D2D';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0px)';
@@ -1072,11 +1132,11 @@ function SemesterCard({ sem, onSelect }) {
         <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#0f172a' }}>
           {sem}
         </div>
-        <div style={{ fontSize: '0.78rem', color: '#059669', fontWeight: 700, marginTop: '0.2rem' }}>
+        <div style={{ fontSize: '0.78rem', color: '#C88D2D', fontWeight: 700, marginTop: '0.2rem' }}>
           Explore Verified AKTU Subjects →
         </div>
       </div>
-      <ArrowRight size={20} style={{ color: '#0d5c3a' }} />
+      <ArrowRight size={20} style={{ color: '#C88D2D' }} />
     </div>
   );
 }
@@ -1114,7 +1174,7 @@ function UploadModal({ onClose, onUpload }) {
         </button>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
-          <UploadCloud size={24} style={{ color: '#0d5c3a' }} />
+          <UploadCloud size={24} style={{ color: '#C88D2D' }} />
           <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0f172a' }}>
             Upload Unit Notes
           </h3>
@@ -1193,14 +1253,14 @@ function UploadModal({ onClose, onUpload }) {
               type="checkbox"
               checked={rightsConfirmed}
               onChange={(e) => setRightsConfirmed(e.target.checked)}
-              style={{ marginTop: '3px', accentColor: '#0d5c3a' }}
+              style={{ marginTop: '3px', accentColor: '#C88D2D' }}
             />
             <span style={{ fontSize: '0.76rem', color: '#475569', lineHeight: 1.3 }}>
               I confirm that I own this study material or have permission to share it under educational fair use policies.
             </span>
           </label>
 
-          <button type="submit" className="btn-primary" style={{ backgroundColor: '#0d5c3a', marginTop: '0.5rem', padding: '0.7rem' }}>
+          <button type="submit" className="btn-primary" style={{ backgroundColor: '#1F2421', marginTop: '0.5rem', padding: '0.7rem' }}>
             Submit Note for Admin Verification
           </button>
         </form>
@@ -1211,7 +1271,7 @@ function UploadModal({ onClose, onUpload }) {
 
 // REQUEST NOTE FORM MODAL COMPONENT
 function RequestModal({ initialInfo, onClose }) {
-  const [reqSubject, setReqSubject] = useState(initialInfo ? `${initialInfo.subject.subject} (Unit ${initialInfo.unit.unitNo})` : '');
+  const [reqSubject, setReqSubject] = useState(initialInfo ? `${initialInfo.subject.subject}` : '');
   const [reqMessage, setReqMessage] = useState('');
 
   const handleSubmit = (e) => {
@@ -1235,18 +1295,18 @@ function RequestModal({ initialInfo, onClose }) {
         </button>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
-          <PlusCircle size={24} style={{ color: '#0d5c3a' }} />
+          <PlusCircle size={24} style={{ color: '#C88D2D' }} />
           <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0f172a' }}>
-            Request Unit Notes
+            Request Subject Notes
           </h3>
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
           <div>
-            <label style={modalLabelStyle}>Subject / Unit</label>
+            <label style={modalLabelStyle}>Subject Name / Code</label>
             <input
               type="text"
-              placeholder="e.g. Operating System Unit 3"
+              placeholder="e.g. Engineering Physics (KAS-101T)"
               required
               value={reqSubject}
               onChange={(e) => setReqSubject(e.target.value)}
@@ -1265,7 +1325,7 @@ function RequestModal({ initialInfo, onClose }) {
             />
           </div>
 
-          <button type="submit" className="btn-primary" style={{ backgroundColor: '#0d5c3a', marginTop: '0.5rem', padding: '0.7rem' }}>
+          <button type="submit" className="btn-primary" style={{ backgroundColor: '#1F2421', marginTop: '0.5rem', padding: '0.7rem' }}>
             Send Request to Faculty
           </button>
         </form>
@@ -1284,7 +1344,7 @@ const checkboxLabelStyle = {
 };
 
 const checkboxInputStyle = {
-  accentColor: '#0d5c3a', width: '15px', height: '15px', cursor: 'pointer'
+  accentColor: '#C88D2D', width: '15px', height: '15px', cursor: 'pointer'
 };
 
 const modalLabelStyle = {

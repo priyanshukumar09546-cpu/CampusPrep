@@ -1,0 +1,2599 @@
+{
+  "1st Year": {
+    "CSE": [
+      {
+        "code": "KAS-103",
+        "name": "Engineering Mathematics-I",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KCS-101",
+        "name": "Programming for Problem Solving (PPS)",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-101",
+        "name": "Engineering Physics",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KEE-101",
+        "name": "Basic Electrical Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-203",
+        "name": "Engineering Mathematics-II",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KAS-102",
+        "name": "Engineering Chemistry",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-201",
+        "name": "Emerging Domain in Electronics Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KME-201",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "BAS-104",
+        "name": "Environment & Ecology",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KNC-102",
+        "name": "Soft Skills & Communication",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-101",
+        "name": "Fundamentals of Electronics Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KME-101",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 1"
+      }
+    ],
+    "ECE": [
+      {
+        "code": "KAS-103",
+        "name": "Engineering Mathematics-I",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KCS-101",
+        "name": "Programming for Problem Solving (PPS)",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-101",
+        "name": "Engineering Physics",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KEE-101",
+        "name": "Basic Electrical Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-203",
+        "name": "Engineering Mathematics-II",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KAS-102",
+        "name": "Engineering Chemistry",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-201",
+        "name": "Emerging Domain in Electronics Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KME-201",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "BAS-104",
+        "name": "Environment & Ecology",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KNC-102",
+        "name": "Soft Skills & Communication",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-101",
+        "name": "Fundamentals of Electronics Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KME-101",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 1"
+      }
+    ],
+    "ME": [
+      {
+        "code": "KAS-103",
+        "name": "Engineering Mathematics-I",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KCS-101",
+        "name": "Programming for Problem Solving (PPS)",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-101",
+        "name": "Engineering Physics",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KEE-101",
+        "name": "Basic Electrical Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-203",
+        "name": "Engineering Mathematics-II",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KAS-102",
+        "name": "Engineering Chemistry",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-201",
+        "name": "Emerging Domain in Electronics Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KME-201",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "BAS-104",
+        "name": "Environment & Ecology",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KNC-102",
+        "name": "Soft Skills & Communication",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-101",
+        "name": "Fundamentals of Electronics Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KME-101",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 1"
+      }
+    ],
+    "CE": [
+      {
+        "code": "KAS-103",
+        "name": "Engineering Mathematics-I",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KCS-101",
+        "name": "Programming for Problem Solving (PPS)",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-101",
+        "name": "Engineering Physics",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KEE-101",
+        "name": "Basic Electrical Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-203",
+        "name": "Engineering Mathematics-II",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KAS-102",
+        "name": "Engineering Chemistry",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-201",
+        "name": "Emerging Domain in Electronics Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KME-201",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "BAS-104",
+        "name": "Environment & Ecology",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KNC-102",
+        "name": "Soft Skills & Communication",
+        "semester": "Semester 2"
+      }
+    ],
+    "EE": [
+      {
+        "code": "KAS-103",
+        "name": "Engineering Mathematics-I",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KCS-101",
+        "name": "Programming for Problem Solving (PPS)",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-101",
+        "name": "Engineering Physics",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KEE-101",
+        "name": "Basic Electrical Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-203",
+        "name": "Engineering Mathematics-II",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KAS-102",
+        "name": "Engineering Chemistry",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-201",
+        "name": "Emerging Domain in Electronics Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KME-201",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "BAS-104",
+        "name": "Environment & Ecology",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KNC-102",
+        "name": "Soft Skills & Communication",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-101",
+        "name": "Fundamentals of Electronics Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KME-101",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 1"
+      }
+    ],
+    "IT": [
+      {
+        "code": "KAS-103",
+        "name": "Engineering Mathematics-I",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KCS-101",
+        "name": "Programming for Problem Solving (PPS)",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-101",
+        "name": "Engineering Physics",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KEE-101",
+        "name": "Basic Electrical Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-203",
+        "name": "Engineering Mathematics-II",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KAS-102",
+        "name": "Engineering Chemistry",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-201",
+        "name": "Emerging Domain in Electronics Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KME-201",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "BAS-104",
+        "name": "Environment & Ecology",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KNC-102",
+        "name": "Soft Skills & Communication",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-101",
+        "name": "Fundamentals of Electronics Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KME-101",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 1"
+      }
+    ],
+    "AI & ML": [
+      {
+        "code": "KAS-103",
+        "name": "Engineering Mathematics-I",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KCS-101",
+        "name": "Programming for Problem Solving (PPS)",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-101",
+        "name": "Engineering Physics",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KEE-101",
+        "name": "Basic Electrical Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-203",
+        "name": "Engineering Mathematics-II",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KAS-102",
+        "name": "Engineering Chemistry",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-201",
+        "name": "Emerging Domain in Electronics Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KME-201",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "BAS-104",
+        "name": "Environment & Ecology",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KNC-102",
+        "name": "Soft Skills & Communication",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-101",
+        "name": "Fundamentals of Electronics Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KME-101",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 1"
+      }
+    ],
+    "DS": [
+      {
+        "code": "KAS-103",
+        "name": "Engineering Mathematics-I",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KCS-101",
+        "name": "Programming for Problem Solving (PPS)",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-101",
+        "name": "Engineering Physics",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KEE-101",
+        "name": "Basic Electrical Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KAS-203",
+        "name": "Engineering Mathematics-II",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KAS-102",
+        "name": "Engineering Chemistry",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-201",
+        "name": "Emerging Domain in Electronics Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KME-201",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "BAS-104",
+        "name": "Environment & Ecology",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KNC-102",
+        "name": "Soft Skills & Communication",
+        "semester": "Semester 2"
+      },
+      {
+        "code": "KEC-101",
+        "name": "Fundamentals of Electronics Engineering",
+        "semester": "Semester 1"
+      },
+      {
+        "code": "KME-101",
+        "name": "Fundamentals of Mechanical Engineering",
+        "semester": "Semester 1"
+      }
+    ]
+  },
+  "2nd Year": {
+    "CSE": [
+      {
+        "code": "KAS-401",
+        "name": "Engineering Mathematics-IV",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-303",
+        "name": "Digital Electronics",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-301",
+        "name": "Data Structure",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-302",
+        "name": "Computer Organization and Architecture",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-303",
+        "name": "Discrete Structures & Theory of Logic",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KOE-033",
+        "name": "Energy Science & Engineering",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KAS-301",
+        "name": "Technical Communication",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KNC-301",
+        "name": "Cyber Security",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KVE-301",
+        "name": "Universal Human Values",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-403",
+        "name": "Python Programming",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-041",
+        "name": "Web Designing",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-401",
+        "name": "Operating Systems",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-402",
+        "name": "Theory of Automata and Formal Languages (TAFL)",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-305",
+        "name": "Object Oriented Programming",
+        "semester": "Semester 3"
+      }
+    ],
+    "ECE": [
+      {
+        "code": "KAS-401",
+        "name": "Engineering Mathematics-IV",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-301",
+        "name": "Electronic Devices",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KEC-401",
+        "name": "Communication Engineering",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-302",
+        "name": "Electromagnetic Field Theory",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KEC-303",
+        "name": "Digital Electronics",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KEC-402",
+        "name": "Electrical Measurements & Instrumentation",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-403",
+        "name": "Basic Signal System",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-301",
+        "name": "Data Structure",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-302",
+        "name": "Computer Organization and Architecture",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-303",
+        "name": "Discrete Structures & Theory of Logic",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KOE-033",
+        "name": "Energy Science & Engineering",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KAS-301",
+        "name": "Technical Communication",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KNC-301",
+        "name": "Cyber Security",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KVE-301",
+        "name": "Universal Human Values",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-403",
+        "name": "Python Programming",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-041",
+        "name": "Web Designing",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-401",
+        "name": "Operating Systems",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-402",
+        "name": "Theory of Automata and Formal Languages (TAFL)",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-304",
+        "name": "Network Analysis and Synthesis",
+        "semester": "Semester 3"
+      }
+    ],
+    "ME": [
+      {
+        "code": "KAS-401",
+        "name": "Engineering Mathematics-IV",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-301",
+        "name": "Data Structure",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-302",
+        "name": "Computer Organization and Architecture",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-303",
+        "name": "Discrete Structures & Theory of Logic",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KOE-033",
+        "name": "Energy Science & Engineering",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KAS-301",
+        "name": "Technical Communication",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KNC-301",
+        "name": "Cyber Security",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KVE-301",
+        "name": "Universal Human Values",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-403",
+        "name": "Python Programming",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-041",
+        "name": "Web Designing",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-401",
+        "name": "Operating Systems",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-402",
+        "name": "Theory of Automata and Formal Languages (TAFL)",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KME-301",
+        "name": "Thermodynamics",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KME-401",
+        "name": "Fluid Mechanics & Fluid Machines",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KME-302",
+        "name": "Materials Engineering",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KME-402",
+        "name": "Applied Thermodynamics",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KME-403",
+        "name": "Manufacturing Processes",
+        "semester": "Semester 4"
+      }
+    ],
+    "CE": [
+      {
+        "code": "KAS-401",
+        "name": "Engineering Mathematics-IV",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-301",
+        "name": "Data Structure",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-302",
+        "name": "Computer Organization and Architecture",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-303",
+        "name": "Discrete Structures & Theory of Logic",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KOE-033",
+        "name": "Energy Science & Engineering",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KAS-301",
+        "name": "Technical Communication",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KNC-301",
+        "name": "Cyber Security",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KVE-301",
+        "name": "Universal Human Values",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-403",
+        "name": "Python Programming",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-041",
+        "name": "Web Designing",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-401",
+        "name": "Operating Systems",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-402",
+        "name": "Theory of Automata and Formal Languages (TAFL)",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KME-301",
+        "name": "Thermodynamics",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KME-401",
+        "name": "Fluid Mechanics & Fluid Machines",
+        "semester": "Semester 4"
+      }
+    ],
+    "EE": [
+      {
+        "code": "KAS-401",
+        "name": "Engineering Mathematics-IV",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-301",
+        "name": "Electronic Devices",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KEC-401",
+        "name": "Communication Engineering",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-302",
+        "name": "Electromagnetic Field Theory",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KEC-303",
+        "name": "Digital Electronics",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KEC-402",
+        "name": "Electrical Measurements & Instrumentation",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-403",
+        "name": "Basic Signal System",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-301",
+        "name": "Data Structure",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-302",
+        "name": "Computer Organization and Architecture",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-303",
+        "name": "Discrete Structures & Theory of Logic",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KOE-033",
+        "name": "Energy Science & Engineering",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KAS-301",
+        "name": "Technical Communication",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KNC-301",
+        "name": "Cyber Security",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KVE-301",
+        "name": "Universal Human Values",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-403",
+        "name": "Python Programming",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-041",
+        "name": "Web Designing",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-401",
+        "name": "Operating Systems",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-402",
+        "name": "Theory of Automata and Formal Languages (TAFL)",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-304",
+        "name": "Network Analysis and Synthesis",
+        "semester": "Semester 3"
+      }
+    ],
+    "IT": [
+      {
+        "code": "KAS-401",
+        "name": "Engineering Mathematics-IV",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KEC-303",
+        "name": "Digital Electronics",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-301",
+        "name": "Data Structure",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-302",
+        "name": "Computer Organization and Architecture",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-303",
+        "name": "Discrete Structures & Theory of Logic",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KOE-033",
+        "name": "Energy Science & Engineering",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KAS-301",
+        "name": "Technical Communication",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KNC-301",
+        "name": "Cyber Security",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KVE-301",
+        "name": "Universal Human Values",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-403",
+        "name": "Python Programming",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-041",
+        "name": "Web Designing",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-401",
+        "name": "Operating Systems",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-402",
+        "name": "Theory of Automata and Formal Languages (TAFL)",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-305",
+        "name": "Object Oriented Programming",
+        "semester": "Semester 3"
+      }
+    ],
+    "AI & ML": [
+      {
+        "code": "KAS-401",
+        "name": "Engineering Mathematics-IV",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-301",
+        "name": "Data Structure",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-302",
+        "name": "Computer Organization and Architecture",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-303",
+        "name": "Discrete Structures & Theory of Logic",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KOE-033",
+        "name": "Energy Science & Engineering",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KAS-301",
+        "name": "Technical Communication",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KNC-301",
+        "name": "Cyber Security",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KVE-301",
+        "name": "Universal Human Values",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-403",
+        "name": "Python Programming",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-041",
+        "name": "Web Designing",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-401",
+        "name": "Operating Systems",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-402",
+        "name": "Theory of Automata and Formal Languages (TAFL)",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-305",
+        "name": "Object Oriented Programming",
+        "semester": "Semester 3"
+      }
+    ],
+    "DS": [
+      {
+        "code": "KAS-401",
+        "name": "Engineering Mathematics-IV",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-301",
+        "name": "Data Structure",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-302",
+        "name": "Computer Organization and Architecture",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-303",
+        "name": "Discrete Structures & Theory of Logic",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KOE-033",
+        "name": "Energy Science & Engineering",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KAS-301",
+        "name": "Technical Communication",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KNC-301",
+        "name": "Cyber Security",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KVE-301",
+        "name": "Universal Human Values",
+        "semester": "Semester 3"
+      },
+      {
+        "code": "KCS-403",
+        "name": "Python Programming",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-041",
+        "name": "Web Designing",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-401",
+        "name": "Operating Systems",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-402",
+        "name": "Theory of Automata and Formal Languages (TAFL)",
+        "semester": "Semester 4"
+      },
+      {
+        "code": "KCS-305",
+        "name": "Object Oriented Programming",
+        "semester": "Semester 3"
+      }
+    ]
+  },
+  "3rd Year": {
+    "CSE": [
+      {
+        "code": "KNC-501",
+        "name": "Indian Tradition Culture and Society",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-602",
+        "name": "Web Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-502",
+        "name": "Compiler Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-601",
+        "name": "Software Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-501",
+        "name": "Database Management System (DBMS)",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-503",
+        "name": "Computer Networks",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-054",
+        "name": "Object Oriented System Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-055",
+        "name": "Data Analytics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-056",
+        "name": "Data Analysis Algorithms",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-053",
+        "name": "Computer Graphics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-061",
+        "name": "Web Designing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-062",
+        "name": "Cyber Security",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-063",
+        "name": "Machine Learning Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KNC-502",
+        "name": "Constitution of India, Law and Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-603",
+        "name": "Computer Networks",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCS-601",
+        "name": "Software Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCS-602",
+        "name": "Compiler Design",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCS-603",
+        "name": "Computer Networks",
+        "semester": "Semester 6"
+      }
+    ],
+    "ECE": [
+      {
+        "code": "KEC-501",
+        "name": "Integrated Circuits",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-502",
+        "name": "Control System",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-503",
+        "name": "Microprocessors And Microcontrollers",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-051",
+        "name": "VLSI Technology",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KNC-501",
+        "name": "Indian Tradition Culture and Society",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-601",
+        "name": "Digital Signal Processing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KEC-602",
+        "name": "Antenna and Wave Propagation",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KEE-501",
+        "name": "Power System",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-061",
+        "name": "Electronic Instrumentation and Measurement",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KEC-062",
+        "name": "Optical Communication",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KEE-061",
+        "name": "Power Electronics",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-602",
+        "name": "Web Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-502",
+        "name": "Compiler Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-601",
+        "name": "Software Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-501",
+        "name": "Database Management System (DBMS)",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-503",
+        "name": "Computer Networks",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-054",
+        "name": "Object Oriented System Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-055",
+        "name": "Data Analytics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-056",
+        "name": "Data Analysis Algorithms",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-053",
+        "name": "Computer Graphics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-061",
+        "name": "Web Designing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-062",
+        "name": "Cyber Security",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-063",
+        "name": "Machine Learning Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KNC-502",
+        "name": "Constitution of India, Law and Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-603",
+        "name": "Data Communication Networks",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BNC-602",
+        "name": "Essence of Indian Traditional Knowledge",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BNC-601",
+        "name": "Constitution of India",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BEC501",
+        "name": "Integrated Circuits",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BEC503",
+        "name": "Digital Signal Processing",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BEC-601",
+        "name": "Digital Communication",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BEC-602",
+        "name": "Control System",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BEC-603",
+        "name": "Antenna and Wave Propagation",
+        "semester": "Semester 6"
+      }
+    ],
+    "ME": [
+      {
+        "code": "KNC-501",
+        "name": "Indian Tradition Culture and Society",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-602",
+        "name": "Web Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-502",
+        "name": "Compiler Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-601",
+        "name": "Software Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-501",
+        "name": "Database Management System (DBMS)",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-503",
+        "name": "Computer Networks",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-054",
+        "name": "Object Oriented System Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-055",
+        "name": "Data Analytics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-056",
+        "name": "Data Analysis Algorithms",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-053",
+        "name": "Computer Graphics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-061",
+        "name": "Web Designing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-062",
+        "name": "Cyber Security",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-063",
+        "name": "Machine Learning Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KNC-502",
+        "name": "Constitution of India, Law and Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BME-602",
+        "name": "CAD/CAM",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "RME-602",
+        "name": "Refrigeration and Air Conditioning",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BME-501",
+        "name": "Heat and Mass Transfer",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BME-502",
+        "name": "Machine Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BME-503",
+        "name": "Industrial Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KME-502",
+        "name": "Machine Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KME-503",
+        "name": "Industrial Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BME-603",
+        "name": "Theory of Machines",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KNC-602",
+        "name": "Indian Tradition, Culture and Society",
+        "semester": "Semester 6"
+      }
+    ],
+    "CE": [
+      {
+        "code": "KNC-501",
+        "name": "Indian Tradition Culture and Society",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-602",
+        "name": "Web Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-502",
+        "name": "Compiler Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-601",
+        "name": "Software Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-501",
+        "name": "Database Management System (DBMS)",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-503",
+        "name": "Computer Networks",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-054",
+        "name": "Object Oriented System Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-055",
+        "name": "Data Analytics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-056",
+        "name": "Data Analysis Algorithms",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-053",
+        "name": "Computer Graphics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-061",
+        "name": "Web Designing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-062",
+        "name": "Cyber Security",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-063",
+        "name": "Machine Learning Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCE-501",
+        "name": "Geotechnical Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BCE-503",
+        "name": "Quantity Estimation and Construction Management",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCE-602",
+        "name": "Transportation Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCE-603",
+        "name": "Environmental Engineering",
+        "semester": "Semester 6"
+      }
+    ],
+    "EE": [
+      {
+        "code": "KEC-501",
+        "name": "Integrated Circuits",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-502",
+        "name": "Control System",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-503",
+        "name": "Microprocessors And Microcontrollers",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-051",
+        "name": "VLSI Technology",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KNC-501",
+        "name": "Indian Tradition Culture and Society",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-601",
+        "name": "Digital Signal Processing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KEC-602",
+        "name": "Antenna and Wave Propagation",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KEE-501",
+        "name": "Power System",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEC-061",
+        "name": "Electronic Instrumentation and Measurement",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KEC-062",
+        "name": "Optical Communication",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KEE-061",
+        "name": "Power Electronics",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-602",
+        "name": "Web Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-502",
+        "name": "Compiler Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-601",
+        "name": "Software Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-501",
+        "name": "Database Management System (DBMS)",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-503",
+        "name": "Computer Networks",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-054",
+        "name": "Object Oriented System Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-055",
+        "name": "Data Analytics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-056",
+        "name": "Data Analysis Algorithms",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-053",
+        "name": "Computer Graphics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-061",
+        "name": "Web Designing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-062",
+        "name": "Cyber Security",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-063",
+        "name": "Machine Learning Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KNC-502",
+        "name": "Constitution of India, Law and Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEE-601",
+        "name": "Power System",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BEC502",
+        "name": "Microprocessor and Microcontroller",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KNC502",
+        "name": "Indian Tradition, Culture and Society",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BEE501",
+        "name": "Power System  I",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BEE503",
+        "name": "Electrical Machines-II",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KEE601",
+        "name": "Power System-2",
+        "semester": "Semester 6"
+      }
+    ],
+    "IT": [
+      {
+        "code": "KNC-501",
+        "name": "Indian Tradition Culture and Society",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-602",
+        "name": "Web Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-502",
+        "name": "Compiler Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-601",
+        "name": "Software Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-501",
+        "name": "Database Management System (DBMS)",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-503",
+        "name": "Computer Networks",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-054",
+        "name": "Object Oriented System Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-055",
+        "name": "Data Analytics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-056",
+        "name": "Data Analysis Algorithms",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-053",
+        "name": "Computer Graphics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-061",
+        "name": "Web Designing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-062",
+        "name": "Cyber Security",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-063",
+        "name": "Machine Learning Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KNC-502",
+        "name": "Constitution of India, Law and Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-603",
+        "name": "Computer Networks",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCS502",
+        "name": "Web Technology",
+        "semester": "Semester 5"
+      }
+    ],
+    "AI & ML": [
+      {
+        "code": "KNC-501",
+        "name": "Indian Tradition Culture and Society",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-602",
+        "name": "Web Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-502",
+        "name": "Compiler Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-601",
+        "name": "Software Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-501",
+        "name": "Database Management System (DBMS)",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-503",
+        "name": "Computer Networks",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-054",
+        "name": "Object Oriented System Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-055",
+        "name": "Data Analytics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-056",
+        "name": "Data Analysis Algorithms",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-053",
+        "name": "Computer Graphics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-061",
+        "name": "Web Designing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-062",
+        "name": "Cyber Security",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-063",
+        "name": "Machine Learning Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KNC-502",
+        "name": "Constitution of India, Law and Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-603",
+        "name": "Computer Networks",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCAI501",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 5"
+      }
+    ],
+    "DS": [
+      {
+        "code": "KNC-501",
+        "name": "Indian Tradition Culture and Society",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-602",
+        "name": "Web Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-502",
+        "name": "Compiler Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-601",
+        "name": "Software Engineering",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-501",
+        "name": "Database Management System (DBMS)",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-503",
+        "name": "Computer Networks",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-054",
+        "name": "Object Oriented System Design",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-055",
+        "name": "Data Analytics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-056",
+        "name": "Data Analysis Algorithms",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-053",
+        "name": "Computer Graphics",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-061",
+        "name": "Web Designing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-062",
+        "name": "Cyber Security",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-063",
+        "name": "Machine Learning Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KNC-502",
+        "name": "Constitution of India, Law and Engineering",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-603",
+        "name": "Computer Networks",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCS503",
+        "name": "Design and Analysis of Algorithm",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BNC501",
+        "name": "Constitution of India",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BCS501",
+        "name": "Database Management System",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "BCDS501",
+        "name": "Data Analytics and Visualization",
+        "semester": "Semester 5"
+      }
+    ]
+  },
+  "4th Year": {
+    "CSE": [
+      {
+        "code": "KCS-071",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-072",
+        "name": "Natural Language Processing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-073",
+        "name": "High Performance Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-074",
+        "name": "Cryptography & Network Security",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-075",
+        "name": "Design & Development of Applications",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-076",
+        "name": "Software Testing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-081",
+        "name": "Distributed Systems",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-082",
+        "name": "Deep Learning",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-083",
+        "name": "Service Oriented Architecture",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-084",
+        "name": "Quantum Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-085",
+        "name": "Mobile Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-086",
+        "name": "Internet of Things",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KHU-701",
+        "name": "Project Management & Entrepreneurship",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-702",
+        "name": "Cloud Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-701",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      }
+    ],
+    "ECE": [
+      {
+        "code": "KCS-071",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-072",
+        "name": "Natural Language Processing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-073",
+        "name": "High Performance Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-074",
+        "name": "Cryptography & Network Security",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-075",
+        "name": "Design & Development of Applications",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-076",
+        "name": "Software Testing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-081",
+        "name": "Distributed Systems",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-082",
+        "name": "Deep Learning",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-083",
+        "name": "Service Oriented Architecture",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-084",
+        "name": "Quantum Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-085",
+        "name": "Mobile Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-086",
+        "name": "Internet of Things",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-702",
+        "name": "Cloud Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-701",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KHU-701",
+        "name": "Project Management & Entrepreneurship",
+        "semester": "Semester 7"
+      }
+    ],
+    "ME": [
+      {
+        "code": "KCS-071",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-072",
+        "name": "Natural Language Processing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-073",
+        "name": "High Performance Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-074",
+        "name": "Cryptography & Network Security",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-075",
+        "name": "Design & Development of Applications",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-076",
+        "name": "Software Testing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-081",
+        "name": "Distributed Systems",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-082",
+        "name": "Deep Learning",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-083",
+        "name": "Service Oriented Architecture",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-084",
+        "name": "Quantum Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-085",
+        "name": "Mobile Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-086",
+        "name": "Internet of Things",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KHU-701",
+        "name": "Project Management & Entrepreneurship",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-702",
+        "name": "Cloud Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-701",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      }
+    ],
+    "CE": [
+      {
+        "code": "KCS-071",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-072",
+        "name": "Natural Language Processing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-073",
+        "name": "High Performance Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-074",
+        "name": "Cryptography & Network Security",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-075",
+        "name": "Design & Development of Applications",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-076",
+        "name": "Software Testing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-081",
+        "name": "Distributed Systems",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-082",
+        "name": "Deep Learning",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-083",
+        "name": "Service Oriented Architecture",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-084",
+        "name": "Quantum Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-085",
+        "name": "Mobile Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-086",
+        "name": "Internet of Things",
+        "semester": "Semester 8"
+      }
+    ],
+    "EE": [
+      {
+        "code": "KCS-071",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-072",
+        "name": "Natural Language Processing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-073",
+        "name": "High Performance Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-074",
+        "name": "Cryptography & Network Security",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-075",
+        "name": "Design & Development of Applications",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-076",
+        "name": "Software Testing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-081",
+        "name": "Distributed Systems",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-082",
+        "name": "Deep Learning",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-083",
+        "name": "Service Oriented Architecture",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-084",
+        "name": "Quantum Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-085",
+        "name": "Mobile Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-086",
+        "name": "Internet of Things",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KHU-701",
+        "name": "Project Management & Entrepreneurship",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-702",
+        "name": "Cloud Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-701",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      }
+    ],
+    "IT": [
+      {
+        "code": "KCS-071",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-072",
+        "name": "Natural Language Processing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-073",
+        "name": "High Performance Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-074",
+        "name": "Cryptography & Network Security",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-075",
+        "name": "Design & Development of Applications",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-076",
+        "name": "Software Testing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-081",
+        "name": "Distributed Systems",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-082",
+        "name": "Deep Learning",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-083",
+        "name": "Service Oriented Architecture",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-084",
+        "name": "Quantum Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-085",
+        "name": "Mobile Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-086",
+        "name": "Internet of Things",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KHU-701",
+        "name": "Project Management & Entrepreneurship",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-702",
+        "name": "Cloud Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-701",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      }
+    ],
+    "AI & ML": [
+      {
+        "code": "KCS-071",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-072",
+        "name": "Natural Language Processing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-073",
+        "name": "High Performance Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-074",
+        "name": "Cryptography & Network Security",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-075",
+        "name": "Design & Development of Applications",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-076",
+        "name": "Software Testing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-081",
+        "name": "Distributed Systems",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-082",
+        "name": "Deep Learning",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-083",
+        "name": "Service Oriented Architecture",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-084",
+        "name": "Quantum Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-085",
+        "name": "Mobile Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-086",
+        "name": "Internet of Things",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KHU-701",
+        "name": "Project Management & Entrepreneurship",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-702",
+        "name": "Cloud Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-701",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      }
+    ],
+    "DS": [
+      {
+        "code": "KCS-071",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-072",
+        "name": "Natural Language Processing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-073",
+        "name": "High Performance Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-074",
+        "name": "Cryptography & Network Security",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-075",
+        "name": "Design & Development of Applications",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-076",
+        "name": "Software Testing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-081",
+        "name": "Distributed Systems",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-082",
+        "name": "Deep Learning",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-083",
+        "name": "Service Oriented Architecture",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-084",
+        "name": "Quantum Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-085",
+        "name": "Mobile Computing",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KCS-086",
+        "name": "Internet of Things",
+        "semester": "Semester 8"
+      },
+      {
+        "code": "KHU-701",
+        "name": "Project Management & Entrepreneurship",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-702",
+        "name": "Cloud Computing",
+        "semester": "Semester 7"
+      },
+      {
+        "code": "KCS-701",
+        "name": "Artificial Intelligence",
+        "semester": "Semester 7"
+      }
+    ]
+  }
+}

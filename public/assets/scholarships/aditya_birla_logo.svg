@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" width="300" height="80">
+  <rect width="300" height="80" rx="12" fill="#8B0000" />
+  <g transform="translate(18, 16)">
+    <!-- Aditya Birla Sun/Diamond Icon -->
+    <polygon points="24,2 32,18 46,24 32,30 24,46 16,30 2,24 16,18" fill="#FBBF24" />
+    <circle cx="24" cy="24" r="7" fill="#FFFFFF" />
+  </g>
+  <text x="74" y="38" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="17" font-weight="900" fill="#FFFFFF" letter-spacing="1">ADITYA BIRLA</text>
+  <text x="74" y="55" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="10.5" font-weight="700" fill="#FCD34D" letter-spacing="2">CAPITAL FOUNDATION</text>
+</svg>

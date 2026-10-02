@@ -3,33 +3,38 @@ import { Users, FileText, BookOpen, HelpCircle, ThumbsUp, Database } from 'lucid
 
 export default function StatsSection({ statsData }) {
   const [stats, setStats] = useState([
-    { id: 'students', value: '0', label: 'Students Learning', icon: Users, color: '#10b981', bgColor: '#e6f4ed' },
-    { id: 'pyqs', value: '0', label: 'PYQs Available', icon: FileText, color: '#059669', bgColor: '#d1fae5' },
-    { id: 'notes', value: '0', label: 'Notes & Resources', icon: BookOpen, color: '#8b5cf6', bgColor: '#f3e8ff' },
-    { id: 'quizzes', value: '0', label: 'Practice Quizzes', icon: HelpCircle, color: '#f97316', bgColor: '#ffedd5' },
-    { id: 'feedback', value: '0%', label: 'Positive Feedback', icon: ThumbsUp, color: '#eab308', bgColor: '#fef9c3' }
+    { id: 'students', value: '0', label: 'Students Learning', icon: Users, color: '#C88D2D', bgColor: '#FDF6E8' },
+    { id: 'pyqs', value: '0', label: 'PYQs Available', icon: FileText, color: '#B45309', bgColor: '#FFFBEB' },
+    { id: 'notes', value: '0', label: 'Notes & Resources', icon: BookOpen, color: '#7C3AED', bgColor: '#F5F3FF' },
+    { id: 'quizzes', value: '0', label: 'Practice Quizzes', icon: HelpCircle, color: '#EA580C', bgColor: '#FFF7ED' },
+    { id: 'feedback', value: '0%', label: 'Positive Feedback', icon: ThumbsUp, color: '#D97706', bgColor: '#FEF3C7' }
   ]);
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
     fetch('/api/stats')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok || !(res.headers.get('content-type') || '').includes('application/json')) {
+          throw new Error('Backend not available');
+        }
+        return res.json();
+      })
       .then(data => {
         if (data.success && data.stats) {
           setIsLive(true);
           const iconMap = { Users, FileText, BookOpen, HelpCircle, ThumbsUp };
           const colorMap = {
-            students: { color: '#10b981', bgColor: '#e6f4ed' },
-            pyqs: { color: '#059669', bgColor: '#d1fae5' },
-            notes: { color: '#8b5cf6', bgColor: '#f3e8ff' },
-            quizzes: { color: '#f97316', bgColor: '#ffedd5' },
-            feedback: { color: '#eab308', bgColor: '#fef9c3' }
+            students: { color: '#C88D2D', bgColor: '#FDF6E8' },
+            pyqs: { color: '#B45309', bgColor: '#FFFBEB' },
+            notes: { color: '#7C3AED', bgColor: '#F5F3FF' },
+            quizzes: { color: '#EA580C', bgColor: '#FFF7ED' },
+            feedback: { color: '#D97706', bgColor: '#FEF3C7' }
           };
           setStats(data.stats.map(s => ({
             ...s,
             icon: iconMap[s.iconName] || Users,
-            color: colorMap[s.id]?.color || '#10b981',
-            bgColor: colorMap[s.id]?.bgColor || '#e6f4ed'
+            color: colorMap[s.id]?.color || '#C88D2D',
+            bgColor: colorMap[s.id]?.bgColor || '#FDF6E8'
           })));
         }
       })
@@ -40,10 +45,10 @@ export default function StatsSection({ statsData }) {
 
   return (
     <section style={{
-      backgroundColor: '#ffffff',
-      padding: '1.75rem 0',
-      borderBottom: '1px solid #eae5d9',
-      boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
+      backgroundColor: '#FAF7F2',
+      padding: '2rem 0',
+      borderBottom: '1.5px solid #E8E2D5',
+      boxShadow: '0 2px 10px rgba(35,30,25,0.02)'
     }}>
       <div className="container">
         
@@ -56,16 +61,16 @@ export default function StatsSection({ statsData }) {
         }}>
           <span style={{
             fontSize: '0.68rem',
-            color: '#64748b',
+            color: '#646E78',
             display: 'flex',
             alignItems: 'center',
             gap: '0.3rem',
-            backgroundColor: '#f8fafc',
+            backgroundColor: '#FFFFFF',
             padding: '0.2rem 0.6rem',
             borderRadius: '9999px',
-            border: '1px solid #e2e8f0'
+            border: '1.5px solid #E8E2D5'
           }}>
-            <Database size={12} style={{ color: isLive ? '#10b981' : '#64748b' }} />
+            <Database size={12} style={{ color: isLive ? '#C88D2D' : '#646E78' }} />
             {isLive ? 'Real Database Metrics' : 'Live DB Syncing...'}
           </span>
         </div>
@@ -81,18 +86,24 @@ export default function StatsSection({ statsData }) {
               <div
                 key={s.id}
                 style={{
-                  backgroundColor: '#fbf9f3',
-                  border: '1px solid #eee8db',
+                  backgroundColor: '#FFFFFF',
+                  border: '1.5px solid #E8E2D5',
                   borderRadius: '16px',
                   padding: '1.25rem 1rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.9rem',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.02)',
-                  transition: 'transform 0.2s ease'
+                  boxShadow: '0 4px 14px rgba(35,30,25,0.03)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0px)'}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(35,30,25,0.06)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(35,30,25,0.03)';
+                }}
               >
                 <div style={{
                   width: '44px',
@@ -107,12 +118,11 @@ export default function StatsSection({ statsData }) {
                 }}>
                   <Icon size={22} />
                 </div>
-                
                 <div>
                   <div style={{
-                    fontSize: '1.35rem',
+                    fontSize: '1.45rem',
                     fontWeight: 900,
-                    color: '#0f172a',
+                    color: '#1C1E21',
                     lineHeight: 1.1
                   }}>
                     {s.value}
@@ -120,8 +130,8 @@ export default function StatsSection({ statsData }) {
                   <div style={{
                     fontSize: '0.78rem',
                     fontWeight: 600,
-                    color: '#64748b',
-                    marginTop: '0.1rem'
+                    color: '#646E78',
+                    marginTop: '0.15rem'
                   }}>
                     {s.label}
                   </div>

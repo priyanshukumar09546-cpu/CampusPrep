@@ -34,6 +34,8 @@ import {
   Folder,
   Play
 } from 'lucide-react';
+import AllIzzWellBanner from '../components/AllIzzWellBanner';
+import AcademicResourceBanner from '../components/AcademicResourceBanner';
 
 export default function QuizzesPage({ onNavigate, onOpenAI }) {
   // Navigation & Filter States
@@ -47,7 +49,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
 
   // Categories Strip Data
   const categories = [
-    { id: 'All', name: 'All Quizzes', sub: 'Complete Collection', icon: Grid, bgColor: '#e6f4ed', iconBg: '#0d5c3a' },
+    { id: 'All', name: 'All Quizzes', sub: 'Complete Collection', icon: Grid, bgColor: '#FDF6E8', iconBg: '#C88D2D' },
     { id: 'CSE', name: 'CSE', sub: 'Computer Science', icon: Code, bgColor: '#e0f2fe', iconBg: '#0284c7' },
     { id: 'ECE', name: 'ECE', sub: 'Electronics', icon: Cpu, bgColor: '#fce7f3', iconBg: '#db2777' },
     { id: 'ME', name: 'ME', sub: 'Mechanical', icon: Wrench, bgColor: '#ffedd5', iconBg: '#ea580c' },
@@ -98,8 +100,8 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
       source: 'GeeksforGeeks',
       sourceUrl: 'https://www.geeksforgeeks.org/quizzes/database-management-system-basics/',
       icon: Layers,
-      bgColor: '#e6f4ed',
-      iconColor: '#059669',
+      bgColor: '#FDF6E8',
+      iconColor: '#C88D2D',
       questionsCount: 'Basics MCQs',
       duration: 'Self-Paced'
     },
@@ -182,8 +184,8 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
       source: 'W3Schools',
       sourceUrl: 'https://www.w3schools.com/quiztest/quiztest.asp?qtest=SQL',
       icon: Layers,
-      bgColor: '#e6f4ed',
-      iconColor: '#059669',
+      bgColor: '#FDF6E8',
+      iconColor: '#C88D2D',
       questionsCount: '25 Questions',
       duration: 'Official Quiz'
     },
@@ -262,26 +264,26 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#f9f7f1', minHeight: '100vh', color: '#1e293b' }}>
+    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F2421' }}>
       
       {/* 1. LARGE ILLUSTRATED QUIZZES HERO BANNER */}
       <section style={{
         position: 'relative',
-        backgroundColor: '#0c3829',
+        backgroundColor: '#FAF7F2',
         backgroundImage: `
-          radial-gradient(rgba(255, 255, 255, 0.05) 1.5px, transparent 1.5px),
-          linear-gradient(180deg, #07271c 0%, #0c3829 100%)
+          radial-gradient(rgba(31, 36, 33, 0.04) 1.5px, transparent 1.5px),
+          linear-gradient(180deg, #F6F2E9 0%, #FAF7F2 100%)
         `,
         backgroundSize: '24px 24px, 100% 100%',
         padding: '1.75rem 0 2rem 0',
-        borderBottom: '4px solid #1a563f',
+        borderBottom: '2px solid #E8E2D5',
         overflow: 'hidden',
-        boxShadow: '0 12px 30px rgba(12, 56, 41, 0.35)'
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)'
       }}>
         <div style={{
           position: 'absolute',
           top: 0, left: 0, right: 0, bottom: 0,
-          background: 'radial-gradient(circle at 50% 30%, rgba(52, 211, 153, 0.15), transparent 70%)',
+          background: 'radial-gradient(circle at 50% 30%, rgba(200, 141, 45, 0.08), transparent 70%)',
           pointerEvents: 'none'
         }} />
 
@@ -301,11 +303,11 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                 borderRadius: '16px',
                 padding: '0.6rem 0.85rem',
                 marginBottom: '0.5rem',
-                border: '2px solid #0e4d34',
-                boxShadow: '0 8px 20px rgba(0,0,0,0.25)',
+                border: '2px solid #E8D3B0',
+                boxShadow: '0 8px 20px rgba(0,0,0,0.06)',
                 fontSize: '0.85rem',
                 fontWeight: 700,
-                color: '#0f172a',
+                color: '#1F2421',
                 fontFamily: "'Kalam', cursive",
                 lineHeight: 1.3,
                 textAlign: 'center',
@@ -314,7 +316,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                 “Practice aaj <br />
                 Quiz kal Topper <br />
                 hoga tu pakka!” <br />
-                <span style={{ color: '#059669' }}>— Virus</span>
+                <span style={{ color: '#C88D2D' }}>— Virus</span>
 
                 <div style={{
                   position: 'absolute',
@@ -324,23 +326,27 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   width: 0, height: 0,
                   borderLeft: '7px solid transparent',
                   borderRight: '7px solid transparent',
-                  borderTop: '10px solid #0e4d34'
+                  borderTop: '10px solid #E8D3B0'
                 }} />
               </div>
 
               <div style={{
-                width: '230px',
-                height: '250px',
+                width: '240px',
+                height: '200px',
                 position: 'relative',
-                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.4))'
+                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.08))'
               }}>
                 <img
-                  src="/assets/quizzes_hero_virus.png"
-                  alt="Virus Teacher Mascot"
+                  src="/assets/hero_board.png"
+                  alt="AKTU Study Board"
+                  loading="eager"
+                  fetchpriority="high"
+                  width={240}
+                  height={200}
                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = '/assets/hero_virus.png';
+                    e.target.src = '/assets/quizzes_hero_students.png';
                   }}
                 />
               </div>
@@ -359,28 +365,28 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: '3.4rem',
                   fontWeight: 900,
-                  color: '#ffffff',
+                  color: '#1F2421',
                   lineHeight: 1.1,
                   letterSpacing: '-0.02em',
-                  textShadow: '0 4px 14px rgba(0,0,0,0.4), 0 0 24px rgba(52,211,153,0.3)'
+                  textShadow: 'none'
                 }}>
                   Quizzes
                 </h1>
-                <Lightbulb size={40} style={{ color: '#fde047', filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.3))' }} />
+                <Lightbulb size={40} style={{ color: '#C88D2D', filter: 'drop-shadow(0 2px 6px rgba(200,141,45,0.3))' }} />
               </div>
 
               <div style={{
                 fontFamily: "'Kalam', cursive",
-                color: '#fde047',
+                color: '#C88D2D',
                 fontSize: '1.35rem',
                 fontWeight: 700,
                 letterSpacing: '0.02em',
-                textShadow: '0 2px 4px rgba(0,0,0,0.5)'
+                textShadow: 'none'
               }}>
                 “Practice. Analyze. Improve.”
               </div>
 
-              <p style={{ color: '#e2e8f0', fontSize: '0.95rem', fontWeight: 500, maxWidth: '520px' }}>
+              <p style={{ color: '#475569', fontSize: '0.95rem', fontWeight: 500, maxWidth: '520px' }}>
                 Topic-wise quizzes to strengthen your concepts, <br />
                 track your progress and boost your preparation.
               </p>
@@ -401,8 +407,8 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   backgroundColor: '#ffffff',
                   borderRadius: '9999px',
                   padding: '0.35rem 0.4rem 0.35rem 1.25rem',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.35), 0 0 0 3px rgba(52,211,153,0.25)',
-                  border: '1px solid #cbd5e1'
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.06), 0 0 0 2px rgba(200,141,45,0.2)',
+                  border: '1px solid #E8E2D5'
                 }}>
                   <Search size={18} style={{ color: '#64748b', marginRight: '0.6rem', flexShrink: 0 }} />
                   <input
@@ -415,7 +421,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                       border: 'none',
                       outline: 'none',
                       fontSize: '0.92rem',
-                      color: '#0f172a',
+                      color: '#1F2421',
                       fontWeight: 500,
                       backgroundColor: 'transparent'
                     }}
@@ -427,7 +433,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                       padding: '0.6rem 1.5rem',
                       fontSize: '0.9rem',
                       fontWeight: 700,
-                      backgroundColor: '#0d5c3a',
+                      backgroundColor: '#1F2421',
                       borderRadius: '9999px',
                       flexShrink: 0
                     }}
@@ -438,62 +444,8 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
               </form>
             </div>
 
-            {/* RIGHT: Students + Sticky Note + Boombox */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }} className="quizzes-right-mascot">
-              <div style={{
-                fontFamily: "'Kalam', cursive",
-                color: '#fef08a',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                textAlign: 'center',
-                marginBottom: '0.3rem',
-                textShadow: '0 2px 4px rgba(0,0,0,0.6)'
-              }}>
-                Quiz karo Darr nahi, <br />
-                Concept pakka! :)
-              </div>
-
-              <div style={{
-                width: '310px',
-                height: '190px',
-                position: 'relative',
-                filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.4))'
-              }}>
-                <img
-                  src="/assets/quizzes_hero_students.png"
-                  alt="AKTU Student Group"
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = '/assets/hero_students.png';
-                  }}
-                />
-              </div>
-
-              {/* Sticky Note */}
-              <div className="sticky-note" style={{
-                position: 'absolute',
-                top: '10px',
-                left: '-15px',
-                width: '145px',
-                padding: '0.55rem 0.65rem',
-                borderRadius: '6px',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                color: '#1e293b',
-                lineHeight: 1.3,
-                boxShadow: '0 6px 14px rgba(0,0,0,0.25)',
-                transform: 'rotate(-4deg)'
-              }}>
-                <div>✓ Practice Daily</div>
-                <div>✓ Find Weak Topics</div>
-                <div>✓ Improve Faster</div>
-                <div>✓ Score Higher</div>
-                <div style={{ color: '#047857', fontFamily: "'Kalam', cursive", textAlign: 'right', marginTop: '0.2rem' }}>
-                  — CampusPrep :)
-                </div>
-              </div>
-            </div>
+            {/* RIGHT: Shared All Izz Well Banner */}
+            <AllIzzWellBanner title={"Quiz karo Darr nahi,\nConcept pakka! :)"} className="quizzes-right-mascot" />
 
           </div>
 
@@ -523,7 +475,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   style={{
-                    backgroundColor: isActive ? '#0d5c3a' : cat.bgColor,
+                    backgroundColor: isActive ? '#1F2421' : cat.bgColor,
                     color: isActive ? '#ffffff' : '#1e293b',
                     borderRadius: '16px',
                     padding: '0.85rem 0.5rem',
@@ -533,8 +485,8 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                     textAlign: 'center',
                     cursor: 'pointer',
                     transition: 'all 0.25s ease',
-                    boxShadow: isActive ? '0 6px 16px rgba(13,92,58,0.25)' : '0 2px 8px rgba(0,0,0,0.02)',
-                    border: isActive ? '2px solid #0d5c3a' : '1px solid transparent'
+                    boxShadow: isActive ? '0 6px 16px rgba(31,36,33,0.25)' : '0 2px 8px rgba(0,0,0,0.02)',
+                    border: isActive ? '2px solid #1F2421' : '1px solid transparent'
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) e.currentTarget.style.transform = 'translateY(-3px)';
@@ -564,7 +516,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   <div style={{
                     fontSize: '0.68rem',
                     fontWeight: 500,
-                    color: isActive ? '#a7f3d0' : '#64748b',
+                    color: isActive ? '#FDF6E8' : '#64748b',
                     marginTop: '0.1rem'
                   }}>
                     {cat.sub}
@@ -589,7 +541,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
           <aside style={{
             backgroundColor: '#ffffff',
             borderRadius: '20px',
-            border: '1px solid #e2e8f0',
+            border: '1px solid #E8E2D5',
             padding: '1.25rem',
             boxShadow: '0 4px 16px rgba(0,0,0,0.03)',
             position: 'sticky',
@@ -600,15 +552,15 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
               alignItems: 'center',
               justifyContent: 'space-between',
               paddingBottom: '0.75rem',
-              borderBottom: '1px solid #f1f5f9',
+              borderBottom: '1px solid #F6F2E9',
               marginBottom: '1rem'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '1rem', color: '#0f172a' }}>
-                <Filter size={16} style={{ color: '#0d5c3a' }} /> Filters
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '1rem', color: '#1F2421' }}>
+                <Filter size={16} style={{ color: '#C88D2D' }} /> Filters
               </div>
               <button
                 onClick={handleResetFilters}
-                style={{ background: 'none', border: 'none', color: '#0d5c3a', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#C88D2D', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}
               >
                 Reset
               </button>
@@ -641,13 +593,13 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                     key={y}
                     onClick={() => setFilterYear(filterYear === y ? null : y)}
                     style={{
-                      backgroundColor: filterYear === y ? '#0d5c3a' : '#f8fafc',
+                      backgroundColor: filterYear === y ? '#1F2421' : '#FAF7F2',
                       color: filterYear === y ? '#ffffff' : '#334155',
                       borderRadius: '8px',
                       padding: '0.45rem 0.3rem',
                       textAlign: 'center',
                       cursor: 'pointer',
-                      border: '1px solid #e2e8f0',
+                      border: '1px solid #E8E2D5',
                       fontSize: '0.78rem',
                       fontWeight: 700
                     }}
@@ -744,7 +696,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   </p>
                 </div>
 
-                <button style={{ background: 'none', border: 'none', color: '#0d5c3a', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                <button style={{ background: 'none', border: 'none', color: '#C88D2D', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
                   View All <ArrowRight size={14} />
                 </button>
               </div>
@@ -763,7 +715,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                       style={{
                         backgroundColor: '#ffffff',
                         borderRadius: '18px',
-                        border: '1.5px solid #e2e8f0',
+                        border: '1.5px solid #E8E2D5',
                         padding: '1.25rem',
                         display: 'flex',
                         flexDirection: 'column',
@@ -773,11 +725,11 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = 'translateY(-3px)';
-                        e.currentTarget.style.borderColor = '#0d5c3a';
+                        e.currentTarget.style.borderColor = '#C88D2D';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = 'translateY(0px)';
-                        e.currentTarget.style.borderColor = '#e2e8f0';
+                        e.currentTarget.style.borderColor = '#E8E2D5';
                       }}
                     >
                       <div>
@@ -792,7 +744,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                             </div>
 
                             <div>
-                              <h3 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#0f172a' }}>
+                              <h3 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#1F2421' }}>
                                 {quiz.subject}
                               </h3>
                               <div style={{ fontSize: '0.74rem', color: '#64748b' }}>
@@ -807,8 +759,8 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '0.3rem',
-                          backgroundColor: '#e6f4ed',
-                          color: '#0d5c3a',
+                          backgroundColor: '#FDF6E8',
+                          color: '#C88D2D',
                           padding: '0.2rem 0.55rem',
                           borderRadius: '6px',
                           fontSize: '0.72rem',
@@ -823,7 +775,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        borderTop: '1px solid #f1f5f9',
+                        borderTop: '1px solid #F6F2E9',
                         paddingTop: '0.75rem',
                         fontSize: '0.76rem',
                         color: '#64748b'
@@ -840,7 +792,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                           style={{
                             padding: '0.45rem 1rem',
                             fontSize: '0.8rem',
-                            backgroundColor: '#0d5c3a',
+                            backgroundColor: '#1F2421',
                             fontWeight: 700,
                             gap: '0.3rem'
                           }}
@@ -863,7 +815,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                 marginBottom: '0.85rem'
               }}>
                 <div>
-                  <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#0f172a' }}>
+                  <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1F2421' }}>
                     Quiz Categories by Subject
                   </h2>
                   <p style={{ fontSize: '0.82rem', color: '#64748b', marginTop: '0.1rem' }}>
@@ -871,7 +823,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   </p>
                 </div>
 
-                <button style={{ background: 'none', border: 'none', color: '#0d5c3a', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                <button style={{ background: 'none', border: 'none', color: '#C88D2D', fontSize: '0.8rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
                   View All <ArrowRight size={14} />
                 </button>
               </div>
@@ -891,7 +843,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                       style={{
                         backgroundColor: '#ffffff',
                         borderRadius: '16px',
-                        border: '1.5px solid #e2e8f0',
+                        border: '1.5px solid #E8E2D5',
                         padding: '0.9rem 1rem',
                         display: 'flex',
                         alignItems: 'center',
@@ -901,11 +853,11 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                         boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#0d5c3a';
-                        e.currentTarget.style.backgroundColor = '#e6f4ed';
+                        e.currentTarget.style.borderColor = '#C88D2D';
+                        e.currentTarget.style.backgroundColor = '#FDF6E8';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = '#e2e8f0';
+                        e.currentTarget.style.borderColor = '#E8E2D5';
                         e.currentTarget.style.backgroundColor = '#ffffff';
                       }}
                     >
@@ -920,7 +872,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                         </div>
 
                         <div>
-                          <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#0f172a' }}>
+                          <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#1F2421' }}>
                             {quiz.subject}
                           </div>
                           <div style={{ fontSize: '0.72rem', color: '#64748b' }}>
@@ -929,7 +881,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                         </div>
                       </div>
 
-                      <ArrowRight size={16} style={{ color: '#0d5c3a' }} />
+                      <ArrowRight size={16} style={{ color: '#C88D2D' }} />
                     </div>
                   );
                 })}
@@ -940,9 +892,9 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
             <div style={{
               marginTop: '2.5rem',
               borderRadius: '24px',
-              backgroundColor: '#f4eee0',
-              backgroundImage: `linear-gradient(135deg, #f9f6ed 0%, #efe7d4 100%)`,
-              border: '2px solid #e5dfd3',
+              backgroundColor: '#F6F2E9',
+              backgroundImage: `linear-gradient(135deg, #FAF7F2 0%, #F0E9DA 100%)`,
+              border: '2px solid #E8E2D5',
               boxShadow: '0 10px 28px rgba(0,0,0,0.05)',
               padding: '1.25rem 1.5rem',
               display: 'grid',
@@ -977,49 +929,86 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   fontFamily: "'Kalam', cursive",
                   fontSize: '1.1rem',
                   fontWeight: 700,
-                  color: '#0f172a',
+                  color: '#1F2421',
                   lineHeight: 1.2
                 }}>
                   Small Quizzes <br />
-                  <span style={{ color: '#059669', fontSize: '1.25rem' }}>Big Results!</span>
+                  <span style={{ color: '#C88D2D', fontSize: '1.25rem' }}>Big Results!</span>
                 </div>
               </div>
 
-              {/* Center: Students Artwork */}
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
+              {/* Center: Academic Feature Highlights (Replacing 3-boys image) */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.45rem',
+                backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                backdropFilter: 'blur(8px)',
+                border: '1px solid #E8E2D5',
+                borderRadius: '16px',
+                padding: '0.85rem 1.25rem',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    padding: '0.2rem 0.6rem',
+                    borderRadius: '20px',
+                    backgroundColor: '#FEF3C7',
+                    border: '1px solid #FDE68A',
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    color: '#92400E'
+                  }}>
+                    ⚡ 50+ Topic Quizzes
+                  </span>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    padding: '0.2rem 0.6rem',
+                    borderRadius: '20px',
+                    backgroundColor: '#ECFDF5',
+                    border: '1px solid #A7F3D0',
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    color: '#065F46'
+                  }}>
+                    ✓ Instant Explanations
+                  </span>
+                </div>
                 <div style={{
-                  width: '180px',
-                  height: '100px',
-                  position: 'relative',
-                  filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.15))'
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  color: '#475569',
+                  textAlign: 'center'
                 }}>
-                  <img
-                    src="/assets/notes_bottom_students.png"
-                    alt="AKTU Students"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/assets/hero_students.png';
-                    }}
-                  />
+                  Targeted MCQ practice for semester exams & technical interviews
                 </div>
               </div>
 
               {/* Right: Sticky Note */}
               <div className="sticky-note" style={{
-                padding: '0.6rem 0.75rem',
-                borderRadius: '8px',
+                padding: '0.65rem 0.85rem',
+                borderRadius: '10px',
                 fontSize: '0.78rem',
                 fontFamily: "'Kalam', cursive",
                 fontWeight: 700,
-                color: '#1e293b',
+                color: '#1F2421',
+                backgroundColor: '#FEF9C3',
+                border: '1px solid #FDE047',
                 textAlign: 'center',
-                boxShadow: '0 6px 14px rgba(0,0,0,0.12)',
-                transform: 'rotate(-3deg)'
+                boxShadow: '0 6px 14px rgba(0,0,0,0.08)',
+                transform: 'rotate(-2deg)'
               }}>
-                Same Effort <br />
-                Higher CGPA! <br />
-                <span style={{ color: '#059669' }}>— CampusPrep :)</span>
+                Padho 📖<br />
+                Test karo 📝<br />
+                Grow karo 🚀<br />
+                <span style={{ color: '#C88D2D', fontSize: '0.82rem' }}>— ProfessorVirus :)</span>
               </div>
 
             </div>
@@ -1033,13 +1022,13 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
             <div style={{
               backgroundColor: '#ffffff',
               borderRadius: '20px',
-              border: '1px solid #e2e8f0',
+              border: '1px solid #E8E2D5',
               padding: '1.35rem',
               boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
-                <TrendingUp size={18} style={{ color: '#0d5c3a' }} />
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a' }}>
+                <TrendingUp size={18} style={{ color: '#C88D2D' }} />
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1F2421' }}>
                   Your Progress
                 </h3>
               </div>
@@ -1049,8 +1038,8 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
 
               {/* Progress State */}
               <div style={{
-                backgroundColor: '#f8fafc',
-                border: '1px solid #e2e8f0',
+                backgroundColor: '#FAF7F2',
+                border: '1px solid #E8E2D5',
                 borderRadius: '14px',
                 padding: '1rem',
                 textAlign: 'center',
@@ -1071,7 +1060,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   width: '100%',
                   padding: '0.65rem',
                   fontSize: '0.85rem',
-                  backgroundColor: '#0d5c3a',
+                  backgroundColor: '#1F2421',
                   gap: '0.4rem'
                 }}
               >
@@ -1083,14 +1072,14 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
             <div style={{
               backgroundColor: '#ffffff',
               borderRadius: '20px',
-              border: '1px solid #e2e8f0',
+              border: '1px solid #E8E2D5',
               padding: '1.35rem',
               boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.3rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <Flame size={18} style={{ color: '#ea580c' }} />
-                  <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0f172a' }}>
+                  <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1F2421' }}>
                     Daily Quiz Challenge
                   </h3>
                 </div>
@@ -1108,7 +1097,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   width: '100%',
                   padding: '0.65rem',
                   fontSize: '0.85rem',
-                  backgroundColor: '#059669',
+                  backgroundColor: '#C88D2D',
                   gap: '0.4rem'
                 }}
               >
@@ -1120,13 +1109,13 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
             <div style={{
               backgroundColor: '#ffffff',
               borderRadius: '20px',
-              border: '1px solid #e2e8f0',
+              border: '1px solid #E8E2D5',
               padding: '1.25rem',
               boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#eab308', marginBottom: '0.75rem' }}>
                 <Lightbulb size={18} />
-                <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#0f172a' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#1F2421' }}>
                   Study Tip by Virus
                 </h3>
               </div>
@@ -1138,13 +1127,13 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   height: '75px',
                   borderRadius: '12px',
                   overflow: 'hidden',
-                  border: '1.5px solid #0d5c3a',
+                  border: '1.5px solid #C88D2D',
                   flexShrink: 0
                 }}>
                   <img
                     src="/assets/quizzes_tips_virus.png"
                     alt="Virus Avatar"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                     onError={(e) => {
                       e.target.onerror = null;
                       e.target.src = '/assets/navbar_logo.png';
@@ -1165,7 +1154,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                   “Practice se hi <br />
                   confidence aata hai, <br />
                   aur confidence se result!” <br />
-                  <span style={{ color: '#047857' }}>— Virus :)</span>
+                  <span style={{ color: '#C88D2D' }}>— Virus :)</span>
                 </div>
               </div>
             </div>
@@ -1174,6 +1163,9 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
 
         </div>
       </div>
+
+      {/* BOTTOM ACADEMIC RESOURCE BANNER */}
+      <AcademicResourceBanner onNavigate={onNavigate} />
 
       <style>{`
         @media (max-width: 1024px) {
@@ -1204,7 +1196,7 @@ const checkboxLabelStyle = {
 };
 
 const checkboxInputStyle = {
-  accentColor: '#0d5c3a',
+  accentColor: '#1F2421',
   width: '15px',
   height: '15px',
   cursor: 'pointer'
