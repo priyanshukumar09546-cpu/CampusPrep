@@ -47,13 +47,20 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const getServerBaseUrl = () => {
+  if (process.env.BACKEND_URL) return process.env.BACKEND_URL.replace(/\/+$/, '');
+  if (process.env.RENDER_EXTERNAL_URL) return process.env.RENDER_EXTERNAL_URL.replace(/\/+$/, '');
+  return `http://localhost:${PORT}`;
+};
+
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
-  'http://localhost:3000',
-  'http://localhost:5173',
+  'https://campusprep.vercel.app',
   'https://professorvirus.com',
-  'https://www.professorvirus.com'
+  'https://www.professorvirus.com',
+  'http://localhost:3000',
+  'http://localhost:5173'
 ].filter(Boolean);
 
 app.use(cors({
@@ -2244,7 +2251,7 @@ app.get('/api/health', (req, res) => {
 });
 
 app.get('/health', (req, res) => {
-  res.redirect('/api/health');
+  res.status(200).json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() });
 });
 
 // ============================================================================
@@ -3941,7 +3948,7 @@ function saveGoogleTokensToDisk(tokenData) {
 function getOAuth2Client(customRedirectUri) {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-  const redirectUri = customRedirectUri || process.env.GOOGLE_REDIRECT_URI || `http://localhost:${PORT}/api/google-drive/callback`;
+  const redirectUri = customRedirectUri || process.env.GOOGLE_REDIRECT_URI || `${getServerBaseUrl()}/api/google-drive/callback`;
   
   if (!clientId || !clientSecret) {
     return null;
@@ -4088,7 +4095,7 @@ app.get('/api/google-drive/auth', (req, res) => {
     state: state
   });
 
-  const redirectUri = process.env.GOOGLE_REDIRECT_URI || `http://localhost:${PORT}/api/google-drive/callback`;
+  const redirectUri = process.env.GOOGLE_REDIRECT_URI || `${getServerBaseUrl()}/api/google-drive/callback`;
 
   if (req.query.redirect === 'true') {
     return res.redirect(authUrl);
@@ -4178,7 +4185,7 @@ app.get('/api/google-drive/status', async (req, res) => {
     const hasClientId = Boolean(process.env.GOOGLE_CLIENT_ID);
     const hasClientSecret = Boolean(process.env.GOOGLE_CLIENT_SECRET);
     const configuredFolderId = process.env.GOOGLE_DRIVE_FOLDER_ID || '';
-    const redirectUri = process.env.GOOGLE_REDIRECT_URI || `http://localhost:${PORT}/api/google-drive/callback`;
+    const redirectUri = process.env.GOOGLE_REDIRECT_URI || `${getServerBaseUrl()}/api/google-drive/callback`;
 
     if (!tokenData || (!tokenData.access_token && !tokenData.refresh_token)) {
       return res.json({

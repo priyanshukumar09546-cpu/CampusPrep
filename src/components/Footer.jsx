@@ -151,11 +151,39 @@ export default function Footer({ onNavigate }) {
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.35rem',
-            fontWeight: 600,
-            color: '#334155'
+            gap: '1rem',
+            flexWrap: 'wrap'
           }}>
-            Study Smart. Prepare Better. <Sparkles size={13} style={{ color: '#C88D2D' }} />
+            <button
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.openCookieSettings) {
+                  window.openCookieSettings();
+                } else {
+                  window.dispatchEvent(new CustomEvent('open_cookie_settings'));
+                }
+              }}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                color: '#781416',
+                fontWeight: 600,
+                fontSize: '0.78rem',
+                cursor: 'pointer',
+                textDecoration: 'underline'
+              }}
+            >
+              Cookie Settings
+            </button>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              fontWeight: 600,
+              color: '#334155'
+            }}>
+              Study Smart. Prepare Better. <Sparkles size={13} style={{ color: '#C88D2D' }} />
+            </div>
           </div>
         </div>
 

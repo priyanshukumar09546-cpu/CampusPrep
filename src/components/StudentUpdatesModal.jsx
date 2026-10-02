@@ -33,6 +33,12 @@ export default function StudentUpdatesModal({ onNavigate }) {
     }
   }, []);
 
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open_student_updates', handleOpen);
+    return () => window.removeEventListener('open_student_updates', handleOpen);
+  }, []);
+
   const handleDismiss = () => {
     setIsOpen(false);
     try {

@@ -36,6 +36,7 @@ import {
 } from 'lucide-react';
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
 import AcademicResourceBanner from '../components/AcademicResourceBanner';
+import MobileQuizzesScreen from '../components/MobileQuizzesScreen';
 
 export default function QuizzesPage({ onNavigate, onOpenAI }) {
   // Navigation & Filter States
@@ -264,7 +265,19 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F2421' }}>
+    <>
+      <div className="pv-mobile-quizzes-view">
+        <MobileQuizzesScreen 
+          onStartQuiz={(quizId) => {
+            const q = realQuizDatabase.find(x => x.id === quizId) || realQuizDatabase[0];
+            if (q && q.sourceUrl) {
+              window.open(q.sourceUrl, '_blank', 'noopener,noreferrer');
+            }
+          }}
+        />
+      </div>
+
+      <div className="pv-desktop-quizzes-view" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F2421' }}>
       
       {/* 1. LARGE ILLUSTRATED QUIZZES HERO BANNER */}
       <section style={{
@@ -1176,6 +1189,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
       `}</style>
 
     </div>
+    </>
   );
 }
 

@@ -4,6 +4,19 @@ import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import './index.css';
 
+// Automatically handle production backend API URL if configured via VITE_API_URL or VITE_BACKEND_URL
+const customApiUrl = (import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || '').trim();
+if (customApiUrl && typeof window !== 'undefined' && window.fetch) {
+  const originalFetch = window.fetch;
+  const cleanBase = customApiUrl.replace(/\/+$/, '');
+  window.fetch = function (resource, init) {
+    if (typeof resource === 'string' && resource.startsWith('/api/')) {
+      return originalFetch.call(this, `${cleanBase}${resource}`, init);
+    }
+    return originalFetch.call(this, resource, init);
+  };
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>

@@ -13,6 +13,10 @@ import AIStudyModal from './components/AIStudyModal';
 import AuthModal from './components/AuthModal';
 import CourseSelectModal from './components/CourseSelectModal';
 import StayConnectedPopup from './components/StayConnectedPopup';
+import MobileHeader from './components/MobileHeader';
+import MobileBottomNav from './components/MobileBottomNav';
+import MobileHomeScreen from './components/MobileHomeScreen';
+import CookieConsent from './components/CookieConsent';
 
 import { Clock } from 'lucide-react';
 // Pages
@@ -385,14 +389,26 @@ export default function App() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Responsive Navbar (Hidden on standalone Auth & Admin Pages) */}
       {!isAuthOrAdminPage && (
-        <Navbar
-          onSearch={(query) => handleSearch(query, selectedBranch)}
-          onOpenAuth={handleOpenAuth}
-          activeTab={activeTab}
-          setActiveTab={(tab) => {
-            navigateToTab(tab);
-          }}
-        />
+        <>
+          <div className="pv-desktop-navbar-wrapper">
+            <Navbar
+              onSearch={(query) => handleSearch(query, selectedBranch)}
+              onOpenAuth={handleOpenAuth}
+              activeTab={activeTab}
+              setActiveTab={(tab) => {
+                navigateToTab(tab);
+              }}
+            />
+          </div>
+          <MobileHeader
+            activeTab={activeTab}
+            onNavigate={(tab) => navigateToTab(tab)}
+            onOpenUpdates={() => {
+              window.dispatchEvent(new CustomEvent('open_student_updates'));
+            }}
+            onOpenSearch={() => navigateToTab('notes')}
+          />
+        </>
       )}
 
       {/* Main Content View Switcher */}
@@ -660,58 +676,71 @@ export default function App() {
           />
         ) : (
           <>
-            {/* 1. Sunlit Warm Ivory Home Hero Section */}
-            <HeroSection
-              onSearch={handleSearch}
-              onSelectBranch={handleSelectBranch}
-            />
+            {/* Mobile Home Screen (<= 768px) */}
+            <div className="pv-mobile-home-view">
+              <MobileHomeScreen
+                onNavigate={navigateToTab}
+                onOpenAI={() => setIsAIModalOpen(true)}
+                onSearch={handleSearch}
+                onSelectCourse={handleCourseSelected}
+              />
+            </div>
 
-            {/* 2. Horizontal Feature Cards Section */}
-            <FeatureCards
-              onCardClick={handleFeatureClick}
-            />
+            {/* Desktop Home Views (> 768px) */}
+            <div className="pv-desktop-home-view">
+              {/* 1. Sunlit Warm Ivory Home Hero Section */}
+              <HeroSection
+                onSearch={handleSearch}
+                onSelectBranch={handleSelectBranch}
+              />
 
-            {/* 3. Choose Your Course Section (B.Tech, MCA, MBA, B.Pharm) */}
-            <CourseCardsSection
-              onSelectCourse={(courseId) => {
-                let courseKey = 'B.Tech';
-                if (courseId === 'bca') courseKey = 'BCA';
-                else if (courseId === 'mca') courseKey = 'MCA';
-                else if (courseId === 'mba') courseKey = 'MBA';
-                else if (courseId === 'bpharm') courseKey = 'B.Pharm';
-                handleCourseSelected(courseKey, 'notes');
-              }}
-              onNavigate={(tab) => {
-                navigateToTab(tab);
-              }}
-            />
+              {/* 2. Horizontal Feature Cards Section */}
+              <FeatureCards
+                onCardClick={handleFeatureClick}
+              />
 
-            {/* 4. Year + Branch + Ask Virus AI Section */}
-            <YearBranchAISection
-              onSelectYear={handleSelectYear}
-              onSelectBranch={handleSelectBranch}
-              onOpenAI={() => setIsAIModalOpen(true)}
-            />
+              {/* 3. Choose Your Course Section (B.Tech, MCA, MBA, B.Pharm) */}
+              <CourseCardsSection
+                onSelectCourse={(courseId) => {
+                  let courseKey = 'B.Tech';
+                  if (courseId === 'bca') courseKey = 'BCA';
+                  else if (courseId === 'mca') courseKey = 'MCA';
+                  else if (courseId === 'mba') courseKey = 'MBA';
+                  else if (courseId === 'bpharm') courseKey = 'B.Pharm';
+                  handleCourseSelected(courseKey, 'notes');
+                }}
+                onNavigate={(tab) => {
+                  navigateToTab(tab);
+                }}
+              />
 
-            {/* 4. Configurable Statistics Section */}
-            <StatsSection
-              isLiveDataAvailable={false}
-            />
+              {/* 4. Year + Branch + Ask Virus AI Section */}
+              <YearBranchAISection
+                onSelectYear={handleSelectYear}
+                onSelectBranch={handleSelectBranch}
+                onOpenAI={() => setIsAIModalOpen(true)}
+              />
 
-            {/* 5. Three-Column Trending + Latest Notes + Community Section */}
-            <TrendingLatestCommunitySection
-              onSubjectClick={(sub) => alert(`Selected Subject: ${sub.name}`)}
-              onNoteClick={(note) => alert(`Opening Note: ${note.title}`)}
-              onDiscussionClick={(disc) => alert(`Opening Discussion: ${disc.title}`)}
-              onViewAll={(type) => setActiveTab(type)}
-            />
+              {/* 4. Configurable Statistics Section */}
+              <StatsSection
+                isLiveDataAvailable={false}
+              />
 
-            {/* 6. Academic Closing CTA Section */}
-            <AcademicClosingSection
-              onNavigate={(tab) => {
-                navigateToTab(tab);
-              }}
-            />
+              {/* 5. Three-Column Trending + Latest Notes + Community Section */}
+              <TrendingLatestCommunitySection
+                onSubjectClick={(sub) => alert(`Selected Subject: ${sub.name}`)}
+                onNoteClick={(note) => alert(`Opening Note: ${note.title}`)}
+                onDiscussionClick={(disc) => alert(`Opening Discussion: ${disc.title}`)}
+                onViewAll={(type) => setActiveTab(type)}
+              />
+
+              {/* 6. Academic Closing CTA Section */}
+              <AcademicClosingSection
+                onNavigate={(tab) => {
+                  navigateToTab(tab);
+                }}
+              />
+            </div>
           </>
         )}
       </main>
@@ -755,6 +784,17 @@ export default function App() {
 
       {/* WhatsApp & Telegram Stay Connected Popup */}
       <StayConnectedPopup />
+
+      {/* Mobile Bottom Navigation (<= 768px) */}
+      {!isAuthOrAdminPage && (
+        <MobileBottomNav
+          activeTab={activeTab}
+          onNavigate={(tab) => navigateToTab(tab)}
+        />
+      )}
+
+      {/* Universal Cookie Consent System (Desktop + Mobile) */}
+      <CookieConsent />
     </div>
   );
 }

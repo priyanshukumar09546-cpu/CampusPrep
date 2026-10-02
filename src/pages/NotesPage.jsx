@@ -46,6 +46,7 @@ import { isValidPdfUrl } from '../utils/pdfValidator';
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
 import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CourseNotesView from '../components/CourseNotesView';
+import MobileNotesScreen from '../components/MobileNotesScreen';
 import { COURSES } from '../data/coursesCatalog';
 
 export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'B.Tech', onSelectCourse }) {
@@ -852,11 +853,27 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   };
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1C1E21' }}>
-      
-      {/* 0. COURSE SELECTOR TABS (B.Tech | MCA | MBA | B.Pharm) */}
-      <div style={{
-        backgroundColor: '#FCFAF6',
+    <>
+      <div className="pv-mobile-notes-view">
+        <MobileNotesScreen
+          courseKey={selectedCourse}
+          dbNotes={dbNotes}
+          onOpenViewer={({ note, subject, unit }) => {
+            setActiveViewerNote({ note, subject, unit: unit ? { unitNo: unit, topics: [] } : null });
+          }}
+          onRequestNotes={(subject, unit) => {
+            setRequestUnitInfo({ subject: { subject: subject?.name || 'Subject', code: subject?.code || '' }, unitNo: unit });
+            setIsRequestModalOpen(true);
+          }}
+          onNavigate={onNavigate}
+        />
+      </div>
+
+      <div className="pv-desktop-notes-view" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1C1E21' }}>
+        
+        {/* 0. COURSE SELECTOR TABS (B.Tech | MCA | MBA | B.Pharm) */}
+        <div style={{
+          backgroundColor: '#FCFAF6',
         borderBottom: '1.5px solid #E8E2D5',
         padding: '0.75rem 0',
         boxShadow: '0 2px 8px rgba(35,30,25,0.02)'
@@ -1065,6 +1082,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
 
       {/* 4. BOTTOM ACADEMIC RESOURCE BANNER */}
       <AcademicResourceBanner onNavigate={onNavigate} />
+    </div>
 
       {/* UPLOAD NOTES MODAL */}
       {isUploadModalOpen && (
@@ -1105,7 +1123,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         }
       `}</style>
 
-    </div>
+    </>
   );
 }
 

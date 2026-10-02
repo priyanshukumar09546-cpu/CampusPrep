@@ -11,6 +11,7 @@ import {
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
 import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CoursePyqsView from '../components/CoursePyqsView';
+import MobilePYQsScreen from '../components/MobilePYQsScreen';
 import { COURSES } from '../data/coursesCatalog';
 
 export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'B.Tech', onSelectCourse }) {
@@ -114,11 +115,28 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'B.Te
   };
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1C1E21' }}>
-      
-      {/* 0. COURSE SELECTOR TABS (B.Tech | MCA | MBA | B.Pharm) */}
-      <div style={{
-        backgroundColor: '#FCFAF6',
+    <>
+      <div className="pv-mobile-pyqs-view">
+        <MobilePYQsScreen
+          courseKey={selectedCourse}
+          dbPyqs={dbPyqs}
+          onOpenPdf={handleOpenPdf}
+          onRequestPyq={(subject, year) => {
+            setRequestPyqInfo({
+              subject: subject?.name || subject?.subject || 'Subject',
+              code: subject?.code || '',
+              year: year || '1st Year'
+            });
+            setIsRequestModalOpen(true);
+          }}
+        />
+      </div>
+
+      <div className="pv-desktop-pyqs-view" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1C1E21' }}>
+        
+        {/* 0. COURSE SELECTOR TABS (B.Tech | MCA | MBA | B.Pharm) */}
+        <div style={{
+          backgroundColor: '#FCFAF6',
         borderBottom: '1.5px solid #E8E2D5',
         padding: '0.75rem 0',
         boxShadow: '0 2px 8px rgba(35,30,25,0.02)'
@@ -297,6 +315,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'B.Te
 
       {/* 3. BOTTOM ACADEMIC RESOURCE BANNER */}
       <AcademicResourceBanner onNavigate={onNavigate} />
+    </div>
 
       {/* REQUEST PYQ MODAL */}
       {isRequestModalOpen && (
@@ -446,6 +465,6 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'B.Te
         </div>
       )}
 
-    </div>
+    </>
   );
 }

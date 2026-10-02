@@ -633,3 +633,126 @@ pre, code {
   }
 }
 
+/* =========================================================================
+   10. PROFESSORVIRUS MOBILE UI/UX & COOKIE CONSENT SYSTEM
+   ========================================================================= */
+
+:root {
+  --color-wine: #7A1C28;
+  --color-wine-dark: #5C121D;
+  --color-wine-hover: #8D2230;
+  --color-wine-soft: #FDF2F4;
+  --color-wine-border: #F6D6DC;
+  --color-ivory: #FAF7F2;
+}
+
+@keyframes pvFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pvSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Desktop display rules */
+@media (min-width: 769px) {
+  .pv-mobile-header,
+  .pv-mobile-bottom-nav,
+  .pv-mobile-home-view,
+  .pv-mobile-more-view,
+  .pv-mobile-notes-view,
+  .pv-mobile-pyqs-view,
+  .pv-mobile-quizzes-view,
+  .pv-mobile-interview-pro-view,
+  .pv-mobile-resume-builder-view {
+    display: none !important;
+  }
+
+  .pv-desktop-navbar-wrapper,
+  .pv-desktop-navbar,
+  .pv-desktop-home-view,
+  .pv-desktop-more-view,
+  .pv-desktop-notes-view,
+  .pv-desktop-pyqs-view,
+  .pv-desktop-quizzes-view,
+  .pv-desktop-interview-pro-view,
+  .pv-desktop-resume-builder-view {
+    display: block;
+  }
+}
+
+/* Mobile & Tablet display rules (320px - 768px) */
+@media (max-width: 768px) {
+  .pv-desktop-navbar-wrapper,
+  .pv-desktop-navbar,
+  .pv-desktop-home-view,
+  .pv-desktop-more-view,
+  .pv-desktop-notes-view,
+  .pv-desktop-pyqs-view,
+  .pv-desktop-quizzes-view,
+  .pv-desktop-interview-pro-view {
+    display: none !important;
+  }
+
+  .pv-desktop-resume-builder-view:not(.pv-force-show-mobile) {
+    display: none !important;
+  }
+
+  .pv-mobile-header,
+  .pv-mobile-bottom-nav,
+  .pv-mobile-home-view,
+  .pv-mobile-more-view,
+  .pv-mobile-notes-view,
+  .pv-mobile-pyqs-view,
+  .pv-mobile-quizzes-view,
+  .pv-mobile-interview-pro-view,
+  .pv-mobile-resume-builder-view {
+    display: block;
+  }
+
+  /* Safe space for fixed bottom navigation */
+  body {
+    padding-bottom: 64px !important;
+  }
+
+  /* Cookie banner mobile positioning right above bottom nav */
+  .pv-cookie-banner {
+    bottom: 72px !important;
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    max-width: calc(100vw - 1.5rem) !important;
+    margin: 0 auto !important;
+    padding: 1rem !important;
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Full screen or neat modal for Ask Virus on mobile */
+  .pv-ask-virus-container {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+
+  /* Prevent horizontal scroll */
+  html, body, #root, .app-container {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Clean responsive container padding */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+

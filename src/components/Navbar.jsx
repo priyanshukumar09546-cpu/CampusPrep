@@ -400,6 +400,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
 
   return (
     <header
+      className="pv-desktop-navbar"
       style={{
         position: 'sticky',
         top: 0,

@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: professorvirus-backend
+    name: campusprep-backend
     env: node
     plan: free
     buildCommand: npm install
@@ -12,3 +12,23 @@ services:
         value: production
       - key: PORT
         value: 5000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
+        sync: false
+      - key: GOOGLE_DRIVE_FOLDER_ID
+        sync: false

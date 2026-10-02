@@ -45,6 +45,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
+import MobileMoreScreen from '../components/MobileMoreScreen';
 
 function MoreResourceCard({ icon: Icon, title, subtitle, footer, iconColor, iconBg, iconBorder, arrowColor, arrowBg, onClick }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -333,7 +334,12 @@ export default function MorePage({ onNavigate, initialTool = null }) {
   ];
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F2421', paddingBottom: '3.5rem' }}>
+    <>
+      <div className="pv-mobile-more-view">
+        <MobileMoreScreen onNavigate={handleAction} onOpenAuth={() => handleAction('login')} />
+      </div>
+
+      <div className="pv-desktop-more-view" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F2421', paddingBottom: '3.5rem' }}>
       
       {/* 1. BREADCRUMBS */}
       <div className="container" style={{ paddingTop: '1.25rem', paddingBottom: '0.65rem' }}>
@@ -805,6 +811,7 @@ export default function MorePage({ onNavigate, initialTool = null }) {
       `}</style>
 
     </div>
+    </>
   );
 }
 

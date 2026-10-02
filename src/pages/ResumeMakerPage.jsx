@@ -39,6 +39,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { generateLatex } from '../utils/latexGenerator';
+import MobileResumeBuilderScreen from '../components/MobileResumeBuilderScreen';
 
 const DEFAULT_RESUME_DATA = {
   personal: {
@@ -135,7 +136,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     }
   })();
 
-  // Main Resume States
+  const [mobileEditorOpen, setMobileEditorOpen] = useState(false);
   const [activeResumeId, setActiveResumeId] = useState(null);
   const [resumeTitle, setResumeTitle] = useState('My ATS Resume');
   const [resumeData, setResumeData] = useState(DEFAULT_RESUME_DATA);
@@ -533,7 +534,14 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <>
+      {!mobileEditorOpen && (
+        <div className="pv-mobile-resume-builder-view">
+          <MobileResumeBuilderScreen onStartBuilder={() => setMobileEditorOpen(true)} />
+        </div>
+      )}
+
+      <div className={`pv-desktop-resume-builder-view ${mobileEditorOpen ? 'pv-force-show-mobile' : ''}`} style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
       {/* =========================================================================
           TOP NAV & ATS COMPLIANCE TOOLBAR
@@ -2799,5 +2807,6 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       `}</style>
 
     </div>
+    </>
   );
 }
