@@ -1,13 +1,13 @@
 import React from 'react';
 import { ArrowLeft, Bell, Search, GraduationCap, Sparkles, SlidersHorizontal } from 'lucide-react';
 
-export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onOpenSearch }) {
+export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onOpenSearch, selectedCourse = 'B.Tech' }) {
   const isHome = activeTab === 'home' || !activeTab;
 
   const getPageTitle = () => {
     switch (activeTab) {
-      case 'notes': return 'Notes';
-      case 'pyqs': return 'PYQs';
+      case 'notes': return `${selectedCourse || 'B.Tech'} Notes`;
+      case 'pyqs': return `${selectedCourse || 'B.Tech'} PYQs`;
       case 'syllabus': return 'Syllabus';
       case 'quizzes': return 'Quizzes';
       case 'interview-pro':
@@ -34,7 +34,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
       case 'important-links': return 'Important Links';
       case 'pdf-maker': return 'PDF Maker';
       case 'result-cgpa': return 'Result & SGPA';
-      case 'more': return 'More & Profile';
+      case 'more': return 'Tools & More';
       default: return 'ProfessorVirus';
     }
   };
@@ -101,7 +101,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 letterSpacing: '0.02em',
                 marginTop: '1px'
               }}>
-                B.Tech • BCA • M.Tech • MCA
+                {selectedCourse || 'B.Tech'} • Academic Hub
               </div>
             </div>
           </div>

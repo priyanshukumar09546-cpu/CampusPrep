@@ -751,42 +751,43 @@ async function syncMongoDbWithLocalStores() {
     }
 
     // 3. Sync Notes
-    const mongoNotesCount = await NoteModel.countDocuments();
     const diskNotes = loadNotesFromDisk();
-    const activeNotes = (Array.isArray(diskNotes) && diskNotes.length > 0) ? diskNotes : dbNotes;
-
-    if (activeNotes.length > 0 && (mongoNotesCount === 0 || mongoNotesCount !== activeNotes.length)) {
-      console.log(`[DATABASE] Syncing clean notes into MongoDB (Disk: ${activeNotes.length}, Mongo: ${mongoNotesCount})...`);
-      await NoteModel.deleteMany({
-        course: 'B.Tech',
-        branch: { $in: ['CSE', 'ALL'] },
-        year: { $in: ['1st Year', '2nd Year', 'Year 1', 'Year 2'] }
-      });
-      const cseToSync = activeNotes.filter(n => {
-        const c = (n.course || 'B.Tech').toLowerCase();
-        const b = (n.branch || '').toUpperCase();
-        const y = (n.year || '').toLowerCase();
-        return c === 'b.tech' && (b === 'CSE' || b === 'ALL') && (y.includes('1') || y.includes('2'));
-      });
-      const ops = cseToSync.map(n => {
-        if (!n.uniqueKey) {
-          n.uniqueKey = crypto.createHash('sha256').update(n.id + '_' + (n.url || Math.random())).digest('hex');
-        }
-        return {
-          updateOne: {
-            filter: { id: n.id },
-            update: { $set: n },
-            upsert: true
+    
+    // Upsert any missing notes from disk into MongoDB (e.g. BCA, etc.)
+    if (Array.isArray(diskNotes) && diskNotes.length > 0) {
+      const existingMongoIds = new Set((await NoteModel.find({}, { id: 1 }).lean()).map(n => n.id));
+      const missingNotes = diskNotes.filter(n => !existingMongoIds.has(n.id));
+      if (missingNotes.length > 0) {
+        console.log(`[DATABASE] Found ${missingNotes.length} notes on disk missing from MongoDB. Upserting into MongoDB...`);
+        const ops = missingNotes.map(n => {
+          if (!n.uniqueKey) {
+            n.uniqueKey = crypto.createHash('sha256').update(n.id + '_' + (n.url || Math.random())).digest('hex');
           }
-        };
-      });
-      for (let i = 0; i < ops.length; i += 500) {
-        await NoteModel.bulkWrite(ops.slice(i, i + 500));
+          return {
+            updateOne: {
+              filter: { id: n.id },
+              update: { $set: n },
+              upsert: true
+            }
+          };
+        });
+        for (let i = 0; i < ops.length; i += 500) {
+          await NoteModel.bulkWrite(ops.slice(i, i + 500));
+        }
+        console.log(`[DATABASE] Upserted ${missingNotes.length} missing notes into MongoDB.`);
       }
-      const updatedMongoCount = await NoteModel.countDocuments();
-      console.log(`[DATABASE] Synced ${cseToSync.length} clean CSE Notes into MongoDB. Total in Mongo: ${updatedMongoCount}`);
+    }
+
+    if (dbNotes.length === 0) {
+      const allMongoNotes = await NoteModel.find({}).lean();
+      if (allMongoNotes && allMongoNotes.length > 0) {
+        dbNotes.length = 0;
+        dbNotes.push(...allMongoNotes);
+        saveNotesToDisk(dbNotes);
+        console.log(`[DATABASE] Loaded ${dbNotes.length} Notes from MongoDB into memory & cache.`);
+      }
     } else {
-      console.log(`[DATABASE] MongoDB Notes collection verified (${mongoNotesCount} documents).`);
+      console.log(`[DATABASE] MongoDB Notes collection verified (${dbNotes.length} in memory).`);
     }
 
     // 4. Sync Users
@@ -1114,6 +1115,17 @@ function loadPyqsFromDisk() {
       cachedPyqsMtime = stat.mtimeMs;
       return cachedPyqsData;
     }
+    const bundledPyqsFile = path.join(__dirname, 'data', 'pyqs.json');
+    if (bundledPyqsFile !== PYQS_FILE && fs.existsSync(bundledPyqsFile)) {
+      const stat = fs.statSync(bundledPyqsFile);
+      if (cachedPyqsData && stat.mtimeMs === cachedPyqsMtime) {
+        return cachedPyqsData;
+      }
+      const content = fs.readFileSync(bundledPyqsFile, 'utf-8');
+      cachedPyqsData = JSON.parse(content);
+      cachedPyqsMtime = stat.mtimeMs;
+      return cachedPyqsData;
+    }
   } catch (err) {
     console.error('Error loading PYQs from disk:', err);
   }
@@ -1122,6 +1134,9 @@ function loadPyqsFromDisk() {
 
 function savePyqsToDisk(pyqsArray) {
   try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
     cachedPyqsData = pyqsArray;
     fs.writeFileSync(PYQS_FILE, JSON.stringify(pyqsArray, null, 2), 'utf-8');
     if (fs.existsSync(PYQS_FILE)) {
@@ -1147,6 +1162,17 @@ function loadNotesFromDisk() {
       cachedNotesMtime = stat.mtimeMs;
       return cachedNotesData;
     }
+    const bundledNotesFile = path.join(__dirname, 'data', 'notes.json');
+    if (bundledNotesFile !== NOTES_FILE && fs.existsSync(bundledNotesFile)) {
+      const stat = fs.statSync(bundledNotesFile);
+      if (cachedNotesData && stat.mtimeMs === cachedNotesMtime) {
+        return cachedNotesData;
+      }
+      const content = fs.readFileSync(bundledNotesFile, 'utf-8');
+      cachedNotesData = JSON.parse(content);
+      cachedNotesMtime = stat.mtimeMs;
+      return cachedNotesData;
+    }
   } catch (err) {
     console.error('Error loading notes from disk:', err);
   }
@@ -1155,6 +1181,9 @@ function loadNotesFromDisk() {
 
 function saveNotesToDisk(notesArray) {
   try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
     cachedNotesData = notesArray;
     fs.writeFileSync(NOTES_FILE, JSON.stringify(notesArray, null, 2), 'utf-8');
     if (fs.existsSync(NOTES_FILE)) {

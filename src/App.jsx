@@ -453,6 +453,7 @@ export default function App() {
           </div>
           <MobileHeader
             activeTab={activeTab}
+            selectedCourse={selectedCourse || 'B.Tech'}
             onNavigate={(tab) => navigateToTab(tab)}
             onOpenUpdates={() => {
               window.dispatchEvent(new CustomEvent('open_student_updates'));
@@ -752,6 +753,7 @@ export default function App() {
             {/* Mobile Home Screen (<= 768px) */}
             <div className="pv-mobile-home-view">
               <MobileHomeScreen
+                selectedCourse={selectedCourse || 'B.Tech'}
                 onNavigate={(tab, data) => {
                   if (tab === 'subject' && data) {
                     handleOpenSubject(data);
@@ -761,7 +763,11 @@ export default function App() {
                 }}
                 onOpenAI={() => setIsAIModalOpen(true)}
                 onSearch={handleSearch}
-                onSelectCourse={handleCourseSelected}
+                onSelectCourse={(courseKey) => {
+                  setSelectedCourse(courseKey);
+                  const targetPath = `/?course=${encodeURIComponent(courseKey)}`;
+                  window.history.replaceState({ tab: 'home', course: courseKey }, '', targetPath);
+                }}
                 onSelectSubject={(sub) => handleOpenSubject(sub)}
               />
             </div>
