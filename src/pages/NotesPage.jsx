@@ -1176,88 +1176,8 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         </div>
       </section>
 
-      {/* 2. MAIN CONTENT: COURSE BRANCH & YEAR SELECTOR + SUBJECTS LIST */}
+      {/* 2. MAIN CONTENT: UNIFIED COURSE NOTES VIEW (Notes & Quantum) */}
       <div className="container" style={{ padding: '2rem 1.25rem 3rem 1.25rem' }}>
-        {/* Branch Tabs */}
-        {branches.length > 1 && (
-          <div className="flex gap-2 p-3 overflow-x-auto justify-center flex-wrap bg-white/80 rounded-2xl border border-stone-200/80 mb-4 shadow-xs">
-            {(branches || []).map(branch => (
-              <button
-                key={branch}
-                onClick={() => setSelectedBranch(branch)}
-                className={`px-4 py-2 rounded-xl font-bold text-xs transition-all cursor-pointer ${
-                  selectedBranch === branch
-                    ? 'bg-[#1F2421] text-white shadow-xs'
-                    : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
-                }`}
-              >
-                {branch}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Year Tabs */}
-        {yearKeys.length > 1 && (
-          <div className="flex gap-2 overflow-x-auto justify-center flex-wrap mb-6">
-            {(yearKeys || []).map(yr => (
-              <button
-                key={yr}
-                onClick={() => setSelectedYear(yr)}
-                className={`px-5 py-2 rounded-full font-bold text-xs transition-all cursor-pointer ${
-                  selectedYear === yr
-                    ? 'bg-[#C88D2D] text-white shadow-xs'
-                    : 'bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100'
-                }`}
-              >
-                {yr}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Subjects List - WITH NOTES & PYQ COUNT */}
-        <div className="mb-10">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-black text-[#1F2421]">
-              {normalizedCourse} {selectedBranch !== 'General' ? selectedBranch : ''} • {selectedYear} Subjects
-            </h2>
-            <span className="text-xs font-bold text-stone-500 bg-stone-100 px-3 py-1 rounded-full">
-              {subjects.length} Subjects
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {(subjects || []).map(sub => {
-              const notesCount = notesData?.[sub.code]?.length || 5;
-              const pyqsCount = pyqsData?.[sub.code]?.length || 3;
-              return (
-                <div key={sub.code} className="border border-stone-200 hover:border-[#7A2327]/50 bg-white p-5 rounded-2xl shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-black px-2.5 py-0.5 bg-amber-50 text-amber-800 rounded-md border border-amber-200/60 uppercase">
-                        {sub.code}
-                      </span>
-                      <span className="text-xs font-bold text-stone-400">
-                        {selectedYear}
-                      </span>
-                    </div>
-                    <h3 className="text-base font-bold text-[#1F2421] mb-2">{sub.name}</h3>
-                    <p className="text-xs font-semibold text-stone-600 mb-4">
-                      Notes: <span className="text-emerald-700 font-bold">{notesCount} units</span> | PYQs: <span className="text-blue-700 font-bold">{pyqsCount} years</span>
-                    </p>
-                  </div>
-                  <a
-                    href={`/subject/${sub.code}?course=${normalizedCourse}`}
-                    className="w-full text-center py-2.5 px-4 bg-[#7A2327] hover:bg-[#5C1A1D] text-white rounded-xl font-bold text-xs shadow-xs transition-all block"
-                  >
-                    View Subject Notes & PYQs →
-                  </a>
-                </div>
-              );
-            })}
-          </div>
-        </div>
 
         {/* Unified Course Notes View for detailed quantum/gateway series browsing */}
         <CourseNotesView
