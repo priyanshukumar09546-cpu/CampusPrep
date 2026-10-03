@@ -19,10 +19,14 @@ if (customApiUrl && typeof window !== 'undefined' && window.fetch) {
   };
 }
 
+import { CourseProvider } from './context/CourseContext.jsx';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <App />
+      <CourseProvider>
+        <App />
+      </CourseProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );

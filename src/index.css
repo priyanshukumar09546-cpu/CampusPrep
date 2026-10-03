@@ -1,6 +1,14 @@
 /* ProfessorVirus Core Stylesheet — Premium Warm Cream & Charcoal & Gold Theme */
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  background-color: #FFF7ED;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   /* Centralized Theme Tokens — Warm Ivory / Cream & Charcoal & Gold */
   --color-background: #FAF7F2;

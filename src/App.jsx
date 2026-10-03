@@ -53,6 +53,17 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminLoginPage from './pages/AdminLoginPage';
 import SubjectPage from './pages/SubjectPage';
 
+// Exact Reference Image 1 & 2 Screens
+import SignIn from './pages/Auth/SignIn';
+import SignUp from './pages/Auth/SignUp';
+import SelectCoursePage from './pages/SelectCoursePage';
+import SelectYearPage from './pages/SelectYearPage';
+import SelectSubjectPage from './pages/SelectSubjectPage';
+import SubjectDetailPage from './pages/SubjectDetailPage';
+import MobileQuizzesScreen from './components/MobileQuizzesScreen';
+import MobileInterviewProScreen from './components/MobileInterviewProScreen';
+import MobileMoreScreen from './components/MobileMoreScreen';
+
 export default function App() {
   const isAdminAuthenticated = () => {
     const token = localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token');
@@ -137,8 +148,15 @@ export default function App() {
   const getInitialTab = () => {
     const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
     if (!path || path === 'home') return 'home';
-    if (path === 'subject') return 'subject';
+    if (path === 'signin' || path === 'sign-in' || path === 'login') return 'signin';
+    if (path === 'signup' || path === 'sign-up') return 'signup';
+    if (path === 'select-course' || path === 'courses') return 'select-course';
+    if (path === 'select-year' || path === 'years') return 'select-year';
+    if (path === 'select-subject' || path === 'subjects') return 'select-subject';
+    if (path.startsWith('subject/') || path === 'subject' || path === 'subject-detail') return 'subject-detail';
+    if (path === 'quizzes') return 'quizzes';
     if (path === 'interview-pro') return 'interview-pro';
+    if (path === 'more') return 'more';
     if (path === 'admin/login') return 'admin-login';
     if (path === 'interview-pro/confirm' || path === 'interview-confirm') return 'interview-confirm';
     if (path === 'interview-pro/instructions' || path === 'interview-instructions') return 'interview-instructions';
@@ -170,7 +188,7 @@ export default function App() {
       if (parts[1]) return 'scholarship-detail';
     }
     if (path === 'community') return 'home';
-    if (['login', 'signup', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
+    if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
       if (path === 'aistudy') return 'interview-pro';
       return path;
     }
@@ -254,6 +272,23 @@ export default function App() {
       setActiveTabState(tab);
       if (tab === 'home') {
         targetPath = '/';
+      } else if (tab === 'signin' || tab === 'login') {
+        targetPath = '/signin';
+      } else if (tab === 'signup') {
+        targetPath = '/signup';
+      } else if (tab === 'select-course') {
+        targetPath = '/select-course';
+      } else if (tab === 'select-year') {
+        targetPath = '/select-year';
+      } else if (tab === 'select-subject') {
+        targetPath = '/select-subject';
+      } else if (tab === 'subject-detail' || tab === 'subject') {
+        const code = selectedSubjectData?.code || 'bcs202';
+        targetPath = `/subject/${encodeURIComponent(code.toLowerCase())}`;
+      } else if (tab === 'quizzes') {
+        targetPath = '/quizzes';
+      } else if (tab === 'more') {
+        targetPath = '/more';
       } else if (tab === 'interview-pro') {
         targetPath = '/interview-pro';
       } else if (tab === 'interview-confirm') {
@@ -322,6 +357,22 @@ export default function App() {
 
       if (!path || path === 'home') {
         setActiveTabState('home');
+      } else if (path === 'signin' || path === 'sign-in' || path === 'login') {
+        setActiveTabState('signin');
+      } else if (path === 'signup' || path === 'sign-up') {
+        setActiveTabState('signup');
+      } else if (path === 'select-course' || path === 'courses') {
+        setActiveTabState('select-course');
+      } else if (path === 'select-year' || path === 'years') {
+        setActiveTabState('select-year');
+      } else if (path === 'select-subject' || path === 'subjects') {
+        setActiveTabState('select-subject');
+      } else if (path.startsWith('subject/') || path === 'subject' || path === 'subject-detail') {
+        setActiveTabState('subject-detail');
+      } else if (path === 'quizzes') {
+        setActiveTabState('quizzes');
+      } else if (path === 'more') {
+        setActiveTabState('more');
       } else if (path === 'interview-pro') {
         setActiveTabState('interview-pro');
       } else if (path === 'admin/login') {
@@ -434,12 +485,26 @@ export default function App() {
     navigateToTab('notes');
   };
 
-  const isAuthOrAdminPage = activeTab === 'login' || activeTab === 'signup' || activeTab === 'admin' || activeTab === 'admin-login';
+  // On mobile phone devices, if first time user with no selected course, navigate to /select-course
+  useEffect(() => {
+    try {
+      const isMobile = window.innerWidth <= 768;
+      const hasSavedCourse = localStorage.getItem('campusprep_selected_course');
+      const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+      if (isMobile && !hasSavedCourse && (!path || path === 'home')) {
+        navigateToTab('select-course');
+      }
+    } catch (e) {}
+  }, []);
+
+  const isStandaloneAuth = activeTab === 'signin' || activeTab === 'signup' || activeTab === 'login' || activeTab === 'admin' || activeTab === 'admin-login';
+  const isCustomMobileScreen = activeTab === 'select-course' || activeTab === 'select-year' || activeTab === 'select-subject' || activeTab === 'subject-detail';
+  const hideTopNav = isStandaloneAuth || isCustomMobileScreen;
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Responsive Navbar (Hidden on standalone Auth & Admin Pages) */}
-      {!isAuthOrAdminPage && (
+      {/* Responsive Navbar (Hidden on standalone Auth, Admin, and Full Mobile Screens) */}
+      {!hideTopNav && (
         <>
           <div className="pv-desktop-navbar-wrapper">
             <Navbar
@@ -465,7 +530,65 @@ export default function App() {
 
       {/* Main Content View Switcher */}
       <main style={{ flex: 1 }}>
-        {activeTab === 'admin' ? (
+        {activeTab === 'signin' ? (
+          <SignIn onNavigate={(tab) => navigateToTab(tab)} />
+        ) : activeTab === 'signup' ? (
+          <SignUp onNavigate={(tab) => navigateToTab(tab)} />
+        ) : activeTab === 'select-course' ? (
+          <SelectCoursePage onNavigate={(tab) => navigateToTab(tab)} />
+        ) : activeTab === 'select-year' ? (
+          <SelectYearPage onNavigate={(tab) => navigateToTab(tab)} />
+        ) : activeTab === 'select-subject' ? (
+          <SelectSubjectPage 
+            onNavigate={(tab, data) => {
+              if (data?.subject) setSelectedSubjectData(data.subject);
+              navigateToTab(tab);
+            }} 
+            onSelectSubject={(sub) => setSelectedSubjectData(sub)}
+          />
+        ) : (activeTab === 'subject-detail' || activeTab === 'subject') ? (
+          <SubjectDetailPage 
+            subjectData={selectedSubjectData}
+            onBack={() => navigateToTab('select-subject')}
+            onNavigate={(tab) => navigateToTab(tab)}
+          />
+        ) : activeTab === 'notes' ? (
+          <SubjectDetailPage 
+            subjectData={selectedSubjectData}
+            initialTab="notes"
+            onBack={() => navigateToTab('select-subject')}
+            onNavigate={(tab) => navigateToTab(tab)}
+          />
+        ) : activeTab === 'pyqs' ? (
+          <SubjectDetailPage 
+            subjectData={selectedSubjectData}
+            initialTab="pyqs"
+            onBack={() => navigateToTab('select-subject')}
+            onNavigate={(tab) => navigateToTab(tab)}
+          />
+        ) : activeTab === 'syllabus' ? (
+          <SubjectDetailPage 
+            subjectData={selectedSubjectData}
+            initialTab="syllabus"
+            onBack={() => navigateToTab('select-subject')}
+            onNavigate={(tab) => navigateToTab(tab)}
+          />
+        ) : activeTab === 'quizzes' ? (
+          <MobileQuizzesScreen 
+            onNavigate={(tab) => navigateToTab(tab)}
+            onStartQuiz={(quiz) => alert(`Starting ${quiz.name} Quiz!`)}
+          />
+        ) : activeTab === 'interview-pro' || activeTab === 'aistudy' ? (
+          <MobileInterviewProScreen 
+            onNavigate={(tab) => navigateToTab(tab)}
+            onStartInterview={(type) => navigateToTab('interview-confirm')}
+          />
+        ) : activeTab === 'more' || activeTab === 'progress' ? (
+          <MobileMoreScreen 
+            onNavigate={(tab) => navigateToTab(tab)}
+            onOpenAuth={handleOpenAuth}
+          />
+        ) : activeTab === 'admin' ? (
           isAdminAuthenticated() ? (
             <AdminDashboard
               onNavigate={(tab) => {
@@ -496,14 +619,8 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
-        ) : activeTab === 'login' || activeTab === 'signup' ? (
-          <LoginPage
-            initialMode={activeTab}
-            onNavigate={(tab) => {
-              setActiveTab(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
+        ) : activeTab === 'login' ? (
+          <SignIn onNavigate={(tab) => navigateToTab(tab)} />
         ) : activeTab === 'interview-confirm' ? (
           <InterviewConfirmPage
             onNavigate={(tab) => {
@@ -839,7 +956,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      {!isAuthOrAdminPage && (
+      {!hideTopNav && (
         <Footer
           onNavigate={(tab) => {
             setActiveTab(tab);
@@ -878,8 +995,8 @@ export default function App() {
       {/* WhatsApp & Telegram Stay Connected Popup */}
       <StayConnectedPopup />
 
-      {/* Mobile Bottom Navigation (<= 768px) */}
-      {!isAuthOrAdminPage && (
+      {/* Mobile Bottom Navigation */}
+      {!isStandaloneAuth && (
         <MobileBottomNav
           activeTab={activeTab}
           onNavigate={(tab) => navigateToTab(tab)}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, BookOpen, FileText, Award, Menu, Sparkles } from 'lucide-react';
+import { Home, BookOpen, FileText, Award, Menu } from 'lucide-react';
 
 export default function MobileBottomNav({ activeTab, onNavigate }) {
   const tabs = [
@@ -30,12 +30,12 @@ export default function MobileBottomNav({ activeTab, onNavigate }) {
     }
   ];
 
-  // Map sub-routes to active parent tab if applicable
+  // Map sub-routes to active parent tab
   const getActiveNavId = () => {
-    if (activeTab === 'home' || !activeTab) return 'home';
-    if (activeTab === 'notes' || activeTab.startsWith('notes')) return 'notes';
-    if (activeTab === 'pyqs' || activeTab.startsWith('pyqs')) return 'pyqs';
-    if (activeTab === 'quizzes' || activeTab.startsWith('quiz')) return 'quizzes';
+    if (!activeTab || activeTab === 'home') return 'home';
+    if (activeTab === 'notes' || activeTab === 'select-course' || activeTab === 'select-year' || activeTab === 'select-subject' || activeTab === 'subject') return 'notes';
+    if (activeTab === 'pyqs') return 'pyqs';
+    if (activeTab === 'quizzes') return 'quizzes';
     return 'more';
   };
 
@@ -45,23 +45,7 @@ export default function MobileBottomNav({ activeTab, onNavigate }) {
     <nav
       role="navigation"
       aria-label="Mobile Bottom Navigation"
-      className="pv-mobile-bottom-nav"
-      style={{
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 9998,
-        backgroundColor: '#FFFFFF',
-        borderTop: '1px solid #ECE7E1',
-        boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.05)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        paddingTop: '0.45rem',
-        paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0.5rem)',
-        height: '62px'
-      }}
+      className="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-white/95 backdrop-blur-md border-t border-stone-200/90 z-50 shadow-lg flex items-center justify-around h-16 px-1 select-none font-['Plus_Jakarta_Sans',sans-serif]"
     >
       {tabs.map((tab) => {
         const isActive = currentNav === tab.id;
@@ -71,57 +55,34 @@ export default function MobileBottomNav({ activeTab, onNavigate }) {
           <button
             key={tab.id}
             type="button"
-            onClick={() => onNavigate(tab.id)}
-            aria-label={`Navigate to ${tab.label}`}
-            aria-current={isActive ? 'page' : undefined}
-            style={{
-              background: 'none',
-              border: 'none',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.15rem',
-              flex: 1,
-              padding: '0.2rem 0',
-              cursor: 'pointer',
-              color: isActive ? '#7A1C28' : '#71717A',
-              transition: 'all 0.18s ease',
-              position: 'relative'
+            onClick={() => {
+              if (tab.id === 'notes') {
+                onNavigate('select-subject');
+              } else {
+                onNavigate(tab.id);
+              }
             }}
+            aria-label={`Navigate to ${tab.label}`}
+            className="flex-1 flex flex-col items-center justify-center gap-1 py-1 cursor-pointer transition-all relative group"
           >
-            <div style={{
-              width: '28px',
-              height: '24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative'
-            }}>
+            <div className={`p-1 rounded-full transition-transform ${isActive ? 'scale-110' : 'group-hover:scale-105'}`}>
               <IconComponent 
-                size={21} 
-                strokeWidth={isActive ? 2.5 : 1.9}
-                color={isActive ? '#7A1C28' : '#71717A'} 
+                size={20} 
+                strokeWidth={isActive ? 2.5 : 2} 
+                className={isActive ? 'text-[#7A2327]' : 'text-stone-400 group-hover:text-stone-600'} 
               />
-              {isActive && (
-                <div style={{
-                  position: 'absolute',
-                  top: '-4px',
-                  width: '14px',
-                  height: '2.5px',
-                  backgroundColor: '#7A1C28',
-                  borderRadius: '999px'
-                }} />
-              )}
             </div>
-            <span style={{
-              fontSize: '0.72rem',
-              fontWeight: isActive ? 800 : 500,
-              letterSpacing: '-0.01em',
-              lineHeight: 1.1
-            }}>
+            
+            <span className={`text-[10px] tracking-tight leading-none ${
+              isActive ? 'font-bold text-[#7A2327]' : 'font-medium text-stone-500 group-hover:text-stone-700'
+            }`}>
               {tab.label}
             </span>
+
+            {/* Active Bottom Indicator Dot */}
+            {isActive && (
+              <span className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-[#7A2327]"></span>
+            )}
           </button>
         );
       })}

@@ -1,243 +1,202 @@
 import React, { useState } from 'react';
 import { 
-  Trophy, 
-  Code, 
+  ArrowLeft, 
+  Bell, 
   Cpu, 
-  Wrench, 
-  Building2, 
+  Database, 
   Radio, 
-  Zap, 
-  Sigma, 
-  Play, 
-  ArrowRight,
-  Sparkles,
-  BookOpen
+  Layers, 
+  Code, 
+  CheckCircle2, 
+  Sparkles, 
+  Trophy 
 } from 'lucide-react';
 
-export default function MobileQuizzesScreen({ onStartQuiz }) {
-  const [activeFilter, setActiveFilter] = useState('All');
+export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
+  const [activeTab, setActiveTab] = useState('All'); // 'All' | 'Subject Wise'
 
-  const quizList = [
-    {
-      id: 'c-prog',
-      subject: 'C Programming',
-      category: 'CSE',
-      questions: '25 Questions',
-      time: '15 min',
-      icon: Code,
-      iconColor: '#2563EB',
-      iconBg: '#EFF6FF',
-      iconBorder: '#DBEAFE'
-    },
-    {
-      id: 'dbms',
-      subject: 'DBMS',
-      category: 'CSE',
-      questions: '30 Questions',
-      time: '20 min',
-      icon: BookOpen,
-      iconColor: '#E11D48',
-      iconBg: '#FFF1F2',
-      iconBorder: '#FFE4E6'
-    },
+  const quizzes = [
     {
       id: 'os',
-      subject: 'Operating System',
-      category: 'CSE',
+      name: 'Operating System',
       questions: '25 Questions',
       time: '15 min',
       icon: Cpu,
-      iconColor: '#7C3AED',
-      iconBg: '#F5F3FF',
-      iconBorder: '#EDE9FE'
+      color: 'bg-purple-100 text-purple-600'
+    },
+    {
+      id: 'dbms',
+      name: 'DBMS',
+      questions: '30 Questions',
+      time: '20 min',
+      icon: Database,
+      color: 'bg-rose-100 text-rose-600'
     },
     {
       id: 'cn',
-      subject: 'Computer Networks',
-      category: 'CSE',
+      name: 'Computer Networks',
       questions: '25 Questions',
       time: '15 min',
       icon: Radio,
-      iconColor: '#D97706',
-      iconBg: '#FEF3C7',
-      iconBorder: '#FDE68A'
+      color: 'bg-purple-100 text-purple-600'
     },
     {
-      id: 'web-dev',
-      subject: 'Web Development',
-      category: 'CSE',
-      questions: '30 Questions',
-      time: '20 min',
-      icon: Zap,
-      iconColor: '#059669',
-      iconBg: '#ECFDF5',
-      iconBorder: '#D1FAE5'
+      id: 'ds',
+      name: 'Data Structures',
+      questions: '25 Questions',
+      time: '15 min',
+      icon: Layers,
+      color: 'bg-emerald-100 text-emerald-600'
     },
     {
-      id: 'java',
-      subject: 'Java Programming',
-      category: 'CSE',
+      id: 'oops-java',
+      name: 'OOPs with Java',
       questions: '25 Questions',
       time: '15 min',
       icon: Code,
-      iconColor: '#E11D48',
-      iconBg: '#FFF1F2',
-      iconBorder: '#FFE4E6'
+      color: 'bg-purple-100 text-purple-600'
     }
   ];
 
   return (
-    <div 
-      className="pv-mobile-quizzes"
-      style={{
-        padding: '1rem 1rem 5.5rem',
-        backgroundColor: '#FAF7F2',
-        minHeight: '100vh',
-        boxSizing: 'border-box'
-      }}
-    >
-      {/* 1. HERO BANNER */}
-      <div style={{
-        background: 'linear-gradient(135deg, #1C0A10 0%, #3B121C 55%, #561826 100%)',
-        borderRadius: '22px',
-        padding: '1.25rem',
-        color: '#FFFFFF',
-        marginBottom: '1.25rem',
-        boxShadow: '0 10px 28px rgba(90, 15, 25, 0.28)',
-        border: '1px solid rgba(246, 214, 220, 0.2)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem'
-      }}>
-        <div style={{
-          width: '56px',
-          height: '56px',
-          borderRadius: '16px',
-          backgroundColor: 'rgba(255, 255, 255, 0.12)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#FFD166',
-          flexShrink: 0
-        }}>
-          <Trophy size={28} />
-        </div>
+    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
+      
+      {/* Corner Leaves Decoration */}
+      <div 
+        className="absolute top-0 left-0 w-24 h-24 pointer-events-none opacity-40 z-0 bg-contain bg-no-repeat"
+        style={{ backgroundImage: 'url("/assets/leaves-top.png")' }}
+      />
+      <div 
+        className="absolute bottom-0 right-0 w-32 h-32 pointer-events-none opacity-40 z-0 bg-contain bg-no-repeat"
+        style={{ backgroundImage: 'url("/assets/leaves-bottom.png")' }}
+      />
 
-        <div>
-          <h2 style={{
-            margin: '0 0 0.25rem',
-            fontSize: '1.2rem',
-            fontWeight: 900,
-            color: '#FFFFFF',
-            letterSpacing: '-0.02em'
-          }}>
-            Test Your Knowledge
-          </h2>
-          <p style={{
-            margin: 0,
-            fontSize: '0.78rem',
-            color: 'rgba(255, 255, 255, 0.82)'
-          }}>
-            Practice, Learn and Improve
+      {/* TOP STATUS BAR (9:41) */}
+      <div className="pt-2 px-6 flex justify-between items-center text-xs font-semibold text-stone-800 z-10 select-none">
+        <span>9:41</span>
+        <div className="flex items-center gap-1.5">
+          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/>
+          </svg>
+          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
+          </svg>
+          <div className="w-5 h-2.5 border border-stone-800 rounded-sm p-0.5 flex items-center">
+            <div className="w-full h-full bg-stone-800 rounded-2xs"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* HEADER: Title Quizzes + Subtitle + Bell */}
+      <div className="px-5 pt-3 pb-2 flex items-center justify-between z-10">
+        <button 
+          onClick={() => onNavigate('home')}
+          className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
+          aria-label="Back"
+        >
+          <ArrowLeft size={20} />
+        </button>
+
+        <div className="text-center flex-1 mx-2">
+          <h1 className="font-['Outfit',sans-serif] font-bold text-xl text-stone-900 leading-tight">
+            Quizzes
+          </h1>
+          <p className="text-[11px] text-stone-500 font-medium">
+            Test Your Knowledge, Practice, Learn and Improve
           </p>
         </div>
+
+        <button 
+          onClick={() => alert('No active quiz notifications')}
+          className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
+          aria-label="Notifications"
+        >
+          <Bell size={20} />
+        </button>
       </div>
 
-      {/* 2. PILL FILTERS */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.45rem',
-        marginBottom: '1.15rem',
-        overflowX: 'auto',
-        paddingBottom: '0.2rem'
-      }}>
-        {['All', 'Semester Wise', 'Subject Wise'].map((f) => {
-          const isActive = activeFilter === f;
-          return (
-            <button
-              key={f}
-              type="button"
-              onClick={() => setActiveFilter(f)}
-              style={{
-                padding: '0.45rem 1rem',
-                borderRadius: '999px',
-                border: isActive ? 'none' : '1px solid #E5DFD6',
-                backgroundColor: isActive ? '#7A1C28' : '#FFFFFF',
-                color: isActive ? '#FFFFFF' : '#2D3139',
-                fontSize: '0.8rem',
-                fontWeight: isActive ? 800 : 600,
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                boxShadow: isActive ? '0 4px 12px rgba(122, 28, 40, 0.25)' : 'none',
-                transition: 'all 0.15s ease'
+      {/* TROPHY & STATS BADGES CARD (SCREEN 8) */}
+      <div className="px-5 mb-4 z-10">
+        <div className="bg-gradient-to-r from-amber-50/90 via-orange-50/80 to-amber-50/90 rounded-2xl p-4 border border-amber-200/60 shadow-xs flex flex-col items-center">
+          <div className="w-16 h-16 mb-2 flex items-center justify-center">
+            <img 
+              src="/assets/quiz_trophy.png" 
+              alt="Quiz Trophy" 
+              className="w-full h-full object-contain drop-shadow-sm"
+              onError={(e) => {
+                e.currentTarget.src = '/assets/logo.png';
               }}
-            >
-              {f}
-            </button>
-          );
-        })}
+            />
+          </div>
+
+          {/* 3 Pills Row */}
+          <div className="flex items-center gap-1.5 flex-wrap justify-center">
+            <span className="bg-white/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-amber-900 shadow-2xs flex items-center gap-1">
+              🏆 25+ Subjects
+            </span>
+            <span className="bg-white/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-800 shadow-2xs flex items-center gap-1">
+              📝 10K+ Questions
+            </span>
+            <span className="bg-white/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-800 shadow-2xs flex items-center gap-1">
+              ⚡ Instant Feedback
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* 3. QUIZ CARDS LIST */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-        {quizList.map((quiz) => {
-          const IconComp = quiz.icon;
+      {/* FILTER TABS: [All] [Subject Wise] */}
+      <div className="px-5 mb-3 z-10 flex items-center gap-2">
+        <button
+          onClick={() => setActiveTab('All')}
+          className={`flex-1 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+            activeTab === 'All'
+              ? 'bg-[#7A2327] text-white shadow-xs'
+              : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-50'
+          }`}
+        >
+          All
+        </button>
+        <button
+          onClick={() => setActiveTab('Subject Wise')}
+          className={`flex-1 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+            activeTab === 'Subject Wise'
+              ? 'bg-[#7A2327] text-white shadow-xs'
+              : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-50'
+          }`}
+        >
+          Subject Wise
+        </button>
+      </div>
+
+      {/* QUIZZES LIST */}
+      <div className="px-5 space-y-2.5 z-10 flex-1">
+        {quizzes.map((quiz) => {
+          const Icon = quiz.icon;
           return (
-            <div
+            <div 
               key={quiz.id}
-              style={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '16px',
-                padding: '0.95rem 1.15rem',
-                border: '1px solid #ECE7E0',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
-              }}
+              className="bg-white rounded-2xl p-3 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-200 transition-all"
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                <div style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '13px',
-                  backgroundColor: quiz.iconBg,
-                  border: `1.5px solid ${quiz.iconBorder}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: quiz.iconColor,
-                  flexShrink: 0
-                }}>
-                  <IconComp size={20} strokeWidth={2.2} />
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${quiz.color}`}>
+                  <Icon size={20} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#1C1E21' }}>
-                    {quiz.subject}
+                  <div className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900 leading-tight">
+                    {quiz.name}
                   </div>
-                  <div style={{ fontSize: '0.74rem', color: '#71717A', marginTop: '0.15rem' }}>
+                  <div className="text-[11px] text-stone-400 font-medium mt-0.5">
                     {quiz.questions} • {quiz.time}
                   </div>
                 </div>
               </div>
 
               <button
-                type="button"
-                onClick={() => onStartQuiz(quiz.id)}
-                style={{
-                  backgroundColor: '#7A1C28',
-                  backgroundImage: 'linear-gradient(135deg, #85182A 0%, #63121F 100%)',
-                  color: '#FFFFFF',
-                  border: 'none',
-                  borderRadius: '999px',
-                  padding: '0.45rem 0.95rem',
-                  fontSize: '0.78rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  boxShadow: '0 3px 10px rgba(122, 28, 40, 0.25)',
-                  flexShrink: 0
+                onClick={() => {
+                  if (onStartQuiz) onStartQuiz(quiz);
+                  else alert(`Starting ${quiz.name} Quiz!`);
                 }}
+                className="bg-[#7A2327] text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xs hover:bg-[#631c20] transition-colors cursor-pointer"
               >
                 Start Quiz
               </button>
@@ -245,6 +204,7 @@ export default function MobileQuizzesScreen({ onStartQuiz }) {
           );
         })}
       </div>
+
     </div>
   );
 }

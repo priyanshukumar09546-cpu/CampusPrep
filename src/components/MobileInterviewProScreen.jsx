@@ -1,446 +1,178 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
-  Code, 
-  Users, 
-  BarChart2, 
-  FileText, 
+  ArrowLeft, 
+  Search, 
   ArrowRight, 
-  ChevronRight, 
-  Sparkles,
-  Award,
-  Bot,
-  Target,
-  Clock,
-  CheckCircle2,
-  Briefcase,
-  Play,
-  ShieldCheck,
-  ChevronDown
+  HeartHandshake, 
+  Users, 
+  Compass, 
+  FileCheck, 
+  Sparkles 
 } from 'lucide-react';
-import { AVAILABLE_COURSES } from '../data/courseMapping.ts';
 
 export default function MobileInterviewProScreen({ onNavigate, onStartInterview }) {
-  const [selectedCourse, setSelectedCourse] = useState('BCA');
-  const [selectedRole, setSelectedRole] = useState('Software Developer');
-
-  const assessmentRounds = [
-    {
-      id: 'aptitude',
-      step: '01',
-      title: 'Aptitude Round',
-      duration: '35 Minutes',
-      desc: 'Quantitative, Logical Reasoning, Verbal Ability & Data Interpretation',
-      icon: BarChart2,
-      color: '#0284C7',
-      bg: '#F0F9FF',
-      border: '#E0F2FE',
-      action: () => onNavigate('interview-aptitude')
-    },
-    {
-      id: 'coding',
-      step: '02',
-      title: 'Coding Round',
-      duration: '60 Minutes',
-      desc: 'DSA & algorithmic challenges with automated test case evaluation',
-      icon: Code,
-      color: '#2563EB',
-      bg: '#EFF6FF',
-      border: '#DBEAFE',
-      action: () => onNavigate('interview-coding')
-    },
+  const interviewTypes = [
     {
       id: 'technical',
-      step: '03',
-      title: 'AI Technical Viva',
-      duration: '30 Minutes',
-      desc: 'Smart adaptive technical questions on Core CS, DBMS, OS & OOPs',
-      icon: Bot,
-      color: '#7C3AED',
-      bg: '#F5F3FF',
-      border: '#EDE9FE',
+      title: 'Technical Interview',
+      sub: '50+ questions',
+      icon: HeartHandshake,
+      color: 'text-purple-600 bg-purple-100',
       action: () => onNavigate('interview-technical')
     },
     {
       id: 'hr',
-      step: '04',
-      title: 'AI HR / Behavioral',
-      duration: '15 Minutes',
-      desc: 'Behavioral, situational questions & STAR framework communication analysis',
+      title: 'HR Interview',
+      sub: 'Common HR questions',
       icon: Users,
-      color: '#EA580C',
-      bg: '#FFF7ED',
-      border: '#FFEDD5',
+      color: 'text-rose-600 bg-rose-100',
       action: () => onNavigate('interview-hr')
-    }
-  ];
-
-  const popularRoles = [
-    'Software Developer',
-    'Full Stack Developer',
-    'Data Analyst',
-    'AI / ML Engineer',
-    'Cloud / DevOps Engineer',
-    'Product Management'
-  ];
-
-  const whyChooseFeatures = [
-    {
-      title: 'Company-Style Simulation',
-      desc: 'Same multi-round pressure: Aptitude + Coding + Technical + HR in one go.',
-      icon: Target,
-      color: '#059669'
     },
     {
-      title: 'Adaptive AI Questions',
-      desc: 'Questions evolve dynamically based on your answers and selected tech stack.',
-      icon: Sparkles,
-      color: '#7C3AED'
+      id: 'aptitude',
+      title: 'Aptitude',
+      sub: 'Quantitative & Logical',
+      icon: Compass,
+      color: 'text-sky-600 bg-sky-100',
+      action: () => onNavigate('interview-aptitude')
     },
     {
-      title: 'Instant In-depth Report',
-      desc: 'Clear percentile rank, topic-wise strengths, weaknesses and hiring verdict.',
-      icon: Award,
-      color: '#D97706'
+      id: 'resume-review',
+      title: 'Resume Review',
+      sub: 'Get AI feedback',
+      icon: FileCheck,
+      color: 'text-emerald-600 bg-emerald-100',
+      action: () => onNavigate('resume-maker')
     }
   ];
 
   return (
-    <div 
-      className="pv-mobile-interview-pro"
-      style={{
-        padding: '1rem 1rem 5.5rem',
-        backgroundColor: '#FAF7F2',
-        minHeight: '100vh',
-        boxSizing: 'border-box',
-        overflowX: 'hidden',
-        width: '100%',
-        maxWidth: '100%'
-      }}
-    >
-      {/* 1. HERO BANNER */}
-      <div style={{
-        background: 'linear-gradient(135deg, #1C0A10 0%, #3B121C 55%, #561826 100%)',
-        borderRadius: '20px',
-        padding: '1.25rem',
-        color: '#FFFFFF',
-        marginBottom: '1.25rem',
-        boxShadow: '0 8px 24px rgba(90, 15, 25, 0.25)',
-        border: '1px solid rgba(246, 214, 220, 0.2)',
-        boxSizing: 'border-box'
-      }}>
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', backgroundColor: 'rgba(255,255,255,0.12)', padding: '0.2rem 0.6rem', borderRadius: '999px', fontSize: '12px', fontWeight: 800, marginBottom: '0.65rem' }}>
-          <Briefcase size={13} color="#FDE047" /> INTERVIEW PRO
-        </div>
+    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
+      
+      {/* Corner Leaves Decoration */}
+      <div 
+        className="absolute top-0 left-0 w-24 h-24 pointer-events-none opacity-40 z-0 bg-contain bg-no-repeat"
+        style={{ backgroundImage: 'url("/assets/leaves-top.png")' }}
+      />
+      <div 
+        className="absolute bottom-0 right-0 w-32 h-32 pointer-events-none opacity-40 z-0 bg-contain bg-no-repeat"
+        style={{ backgroundImage: 'url("/assets/leaves-bottom.png")' }}
+      />
 
-        <h1 style={{
-          margin: '0 0 0.4rem',
-          fontSize: '1.35rem',
-          fontWeight: 900,
-          color: '#FFFFFF',
-          lineHeight: 1.25,
-          letterSpacing: '-0.02em'
-        }}>
-          One Test. Real Experience. <br />
-          <span style={{ color: '#FCD34D' }}>Placement Ready.</span>
+      {/* TOP STATUS BAR (9:41) */}
+      <div className="pt-2 px-6 flex justify-between items-center text-xs font-semibold text-stone-800 z-10 select-none">
+        <span>9:41</span>
+        <div className="flex items-center gap-1.5">
+          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/>
+          </svg>
+          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
+          </svg>
+          <div className="w-5 h-2.5 border border-stone-800 rounded-sm p-0.5 flex items-center">
+            <div className="w-full h-full bg-stone-800 rounded-2xs"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* HEADER: Back Arrow + Title + Search */}
+      <div className="px-5 pt-3 pb-3 flex items-center justify-between z-10">
+        <button 
+          onClick={() => onNavigate('home')}
+          className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
+          aria-label="Back"
+        >
+          <ArrowLeft size={20} />
+        </button>
+
+        <h1 className="font-['Outfit',sans-serif] font-bold text-xl text-stone-900 leading-tight">
+          Interview Pro
         </h1>
 
-        <p style={{
-          margin: '0 0 1rem',
-          fontSize: '14px',
-          color: 'rgba(255, 255, 255, 0.85)',
-          lineHeight: 1.45
-        }}>
-          Take a complete MNC recruitment simulation with Aptitude, Coding, AI Tech Interview & HR round.
-        </p>
-
-        {/* Start Full Assessment Button - Full Width */}
-        <button
-          type="button"
-          onClick={() => onNavigate('interview-confirm')}
-          style={{
-            width: '100%',
-            backgroundColor: '#C88D2D',
-            backgroundImage: 'linear-gradient(135deg, #D97706 0%, #B45309 100%)',
-            border: 'none',
-            borderRadius: '12px',
-            padding: '0.85rem 1rem',
-            color: '#FFFFFF',
-            fontSize: '14px',
-            fontWeight: 800,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.5rem',
-            cursor: 'pointer',
-            boxShadow: '0 4px 14px rgba(0,0,0,0.25)',
-            boxSizing: 'border-box'
-          }}
+        <button 
+          onClick={() => alert('Search interview questions...')}
+          className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
+          aria-label="Search"
         >
-          <Play size={16} fill="#FFFFFF" /> Start Complete Assessment (2h 20m)
+          <Search size={20} />
         </button>
       </div>
 
-      {/* 2. COURSE & TARGET ROLE QUICK SELECTOR */}
-      <div style={{
-        backgroundColor: '#FFFFFF',
-        borderRadius: '18px',
-        padding: '1.15rem',
-        border: '1.5px solid #E8E2D5',
-        marginBottom: '1.25rem',
-        boxShadow: '0 2px 8px rgba(35,30,25,0.03)',
-        boxSizing: 'border-box'
-      }}>
-        <h3 style={{ margin: '0 0 0.85rem', fontSize: '14px', fontWeight: 800, color: '#1C1E21', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          <Target size={16} color="#7A1C28" /> Select Curriculum & Role
-        </h3>
+      {/* HERO BANNER CARD (SCREEN 9) */}
+      <div className="px-5 mb-5 z-10">
+        <div className="w-full bg-gradient-to-r from-[#21090C] via-[#3E1117] to-[#5C1922] rounded-3xl p-4 text-white shadow-xl relative overflow-hidden">
+          {/* Subtle star particle accents */}
+          <div className="absolute top-2 right-12 w-1 h-1 bg-amber-300 rounded-full opacity-60"></div>
+          <div className="absolute bottom-12 left-28 w-1 h-1 bg-rose-200 rounded-full opacity-40"></div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          <div>
-            <label style={{ fontSize: '12px', fontWeight: 700, color: '#64748B', display: 'block', marginBottom: '0.25rem' }}>
-              Your Course:
-            </label>
-            <div style={{ position: 'relative' }}>
-              <select
-                value={selectedCourse}
-                onChange={(e) => setSelectedCourse(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '0.6rem 2rem 0.6rem 0.75rem',
-                  borderRadius: '10px',
-                  border: '1.5px solid #E8E2D5',
-                  backgroundColor: '#FAF7F2',
-                  fontSize: '14px',
-                  fontWeight: 700,
-                  color: '#1C1E21',
-                  outline: 'none',
-                  appearance: 'none',
-                  WebkitAppearance: 'none'
+          <div className="flex items-center justify-between mb-3 relative z-10">
+            <div className="flex-1 pr-2">
+              <h2 className="font-['Outfit',sans-serif] font-black text-lg text-white leading-tight mb-1.5">
+                Get Job Ready with AI-Powered Mock Interviews
+              </h2>
+              <p className="text-[11px] text-stone-300 leading-snug">
+                Practice real interview questions and get instant feedback from AI.
+              </p>
+            </div>
+
+            {/* Boy Mascot in hoodie */}
+            <div className="w-24 h-24 flex-shrink-0 flex items-center justify-center">
+              <img 
+                src="/assets/interview_card_hero.png" 
+                alt="Interview Mascot" 
+                className="w-full h-full object-contain drop-shadow-md"
+                onError={(e) => {
+                  e.currentTarget.src = '/assets/home_hero_banner.png';
                 }}
-              >
-                {AVAILABLE_COURSES.map(c => (
-                  <option key={c.key} value={c.key}>{c.fullName} ({c.name})</option>
-                ))}
-              </select>
-              <ChevronDown size={16} color="#78716C" style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+              />
             </div>
           </div>
 
-          <div>
-            <label style={{ fontSize: '12px', fontWeight: 700, color: '#64748B', display: 'block', marginBottom: '0.25rem' }}>
-              Target Job Profile:
-            </label>
-            <div style={{ position: 'relative' }}>
-              <select
-                value={selectedRole}
-                onChange={(e) => setSelectedRole(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '0.6rem 2rem 0.6rem 0.75rem',
-                  borderRadius: '10px',
-                  border: '1.5px solid #E8E2D5',
-                  backgroundColor: '#FAF7F2',
-                  fontSize: '14px',
-                  fontWeight: 700,
-                  color: '#1C1E21',
-                  outline: 'none',
-                  appearance: 'none',
-                  WebkitAppearance: 'none'
-                }}
-              >
-                {popularRoles.map(r => (
-                  <option key={r} value={r}>{r}</option>
-                ))}
-              </select>
-              <ChevronDown size={16} color="#78716C" style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
-            </div>
-          </div>
+          {/* Full-width "Start Interview ->" button inside card */}
+          <button 
+            onClick={() => {
+              if (onStartInterview) onStartInterview('technical');
+              else onNavigate('interview-confirm');
+            }}
+            className="w-full bg-[#7A2327] hover:bg-[#661b1f] text-white text-xs font-bold py-2.5 px-4 rounded-full shadow-md flex items-center justify-center gap-1.5 transition-all cursor-pointer border border-rose-400/20"
+          >
+            <span>Start Interview</span>
+            <ArrowRight size={14} strokeWidth={2.5} />
+          </button>
         </div>
       </div>
 
-      {/* 3. 4-ROUND ASSESSMENT STEPS (STACKED VERTICALLY) */}
-      <div style={{ marginBottom: '1.25rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-          <h2 style={{
-            margin: 0,
-            fontSize: '15px',
-            fontWeight: 800,
-            color: '#1C1E21',
-            letterSpacing: '-0.01em'
-          }}>
-            Assessment Stages (4 Rounds)
-          </h2>
-          <span style={{ fontSize: '12px', fontWeight: 700, color: '#7A1C28' }}>
-            2h 20m Total
-          </span>
+      {/* CHOOSE INTERVIEW TYPE SECTION */}
+      <div className="px-5 z-10 flex-1">
+        <div className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900 mb-3">
+          Choose Interview Type
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-          {assessmentRounds.map((round) => {
-            const IconComp = round.icon;
+        {/* 2x2 Grid of cards */}
+        <div className="grid grid-cols-2 gap-3">
+          {interviewTypes.map((type) => {
+            const Icon = type.icon;
             return (
-              <div
-                key={round.id}
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  borderRadius: '16px',
-                  padding: '1rem',
-                  border: `1.5px solid ${round.border}`,
-                  boxShadow: '0 2px 8px rgba(35,30,25,0.03)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.6rem',
-                  boxSizing: 'border-box'
-                }}
+              <button
+                key={type.id}
+                onClick={type.action}
+                className="bg-white rounded-2xl p-3 border border-orange-100/70 shadow-xs flex flex-col items-start hover:border-orange-200 transition-all text-left cursor-pointer group"
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                    <div style={{
-                      width: '38px',
-                      height: '38px',
-                      borderRadius: '10px',
-                      backgroundColor: round.bg,
-                      border: `1.5px solid ${round.border}`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: round.color,
-                      flexShrink: 0
-                    }}>
-                      <IconComp size={18} strokeWidth={2.2} />
-                    </div>
-                    <div>
-                      <div style={{ fontSize: '14px', fontWeight: 800, color: '#1C1E21' }}>
-                        Round {round.step}: {round.title}
-                      </div>
-                      <div style={{ fontSize: '12px', color: '#64748B', display: 'flex', alignItems: 'center', gap: '0.3rem', marginTop: '0.1rem' }}>
-                        <Clock size={12} /> {round.duration}
-                      </div>
-                    </div>
-                  </div>
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-2.5 ${type.color}`}>
+                  <Icon size={19} />
                 </div>
-
-                <p style={{
-                  fontSize: '13px',
-                  color: '#475569',
-                  margin: 0,
-                  lineHeight: 1.4
-                }}>
-                  {round.desc}
-                </p>
-
-                {/* Full-width Button */}
-                <button
-                  type="button"
-                  onClick={round.action}
-                  style={{
-                    width: '100%',
-                    backgroundColor: '#FAF7F2',
-                    border: `1.5px solid ${round.border}`,
-                    borderRadius: '10px',
-                    padding: '0.6rem 0.85rem',
-                    color: round.color,
-                    fontSize: '14px',
-                    fontWeight: 800,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.4rem',
-                    cursor: 'pointer',
-                    boxSizing: 'border-box'
-                  }}
-                >
-                  <span>Practice {round.title}</span>
-                  <ArrowRight size={14} />
-                </button>
-              </div>
+                <div className="font-['Outfit',sans-serif] font-bold text-xs text-stone-900 group-hover:text-[#7A2327] transition-colors leading-tight">
+                  {type.title}
+                </div>
+                <div className="text-[10px] text-stone-400 font-medium mt-0.5">
+                  {type.sub}
+                </div>
+              </button>
             );
           })}
         </div>
       </div>
 
-      {/* 4. WHY CHOOSE INTERVIEW PRO (STACKED VERTICALLY) */}
-      <div style={{
-        backgroundColor: '#FFFFFF',
-        borderRadius: '18px',
-        padding: '1.15rem',
-        border: '1.5px solid #E8E2D5',
-        marginBottom: '1rem',
-        boxSizing: 'border-box'
-      }}>
-        <h3 style={{ margin: '0 0 0.85rem', fontSize: '14px', fontWeight: 800, color: '#1C1E21' }}>
-          Why Students Choose Interview Pro
-        </h3>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-          {whyChooseFeatures.map((item, idx) => {
-            const IconComp = item.icon;
-            return (
-              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
-                <div style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '8px',
-                  backgroundColor: '#FAF7F2',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: item.color,
-                  flexShrink: 0
-                }}>
-                  <IconComp size={16} />
-                </div>
-                <div>
-                  <div style={{ fontSize: '14px', fontWeight: 800, color: '#1C1E21' }}>
-                    {item.title}
-                  </div>
-                  <div style={{ fontSize: '13px', color: '#64748B', lineHeight: 1.4, marginTop: '0.15rem' }}>
-                    {item.desc}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* 5. BOTTOM FIXED ACTION BAR ON MOBILE */}
-      <div style={{
-        position: 'fixed',
-        bottom: '62px',
-        left: 0,
-        right: 0,
-        zIndex: 90,
-        backgroundColor: '#FFFFFF',
-        borderTop: '1px solid #E8E2D5',
-        padding: '0.6rem 1rem',
-        boxShadow: '0 -4px 14px rgba(0,0,0,0.06)',
-        boxSizing: 'border-box'
-      }}>
-        <button
-          type="button"
-          onClick={() => onNavigate('interview-confirm')}
-          style={{
-            width: '100%',
-            backgroundColor: '#7A1C28',
-            color: '#FFFFFF',
-            border: 'none',
-            borderRadius: '12px',
-            padding: '0.75rem',
-            fontSize: '14px',
-            fontWeight: 800,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.45rem',
-            cursor: 'pointer',
-            boxSizing: 'border-box',
-            boxShadow: '0 4px 12px rgba(122, 28, 40, 0.3)'
-          }}
-        >
-          <span>Start Full 4-Round Assessment</span>
-          <ArrowRight size={16} />
-        </button>
-      </div>
     </div>
   );
 }
