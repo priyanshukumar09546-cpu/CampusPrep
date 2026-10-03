@@ -90,21 +90,24 @@ app.use(async (req, res, next) => {
   next();
 });
 
-// ENSURE STORAGE DIRECTORIES EXIST
-const UPLOADS_DIR = path.join(PROJECT_ROOT, 'uploads', 'pyqs');
-const COMMUNITY_UPLOADS_DIR = path.join(PROJECT_ROOT, 'uploads', 'community');
-const DATA_DIR = path.join(__dirname, 'data');
+// DETECT VERCEL SERVERLESS ENVIRONMENT (read-only filesystem except /tmp)
+const IS_VERCEL = !!(process.env.VERCEL || process.env.VERCEL_ENV || process.env.VERCEL_URL);
+
+// ENSURE STORAGE DIRECTORIES EXIST — use /tmp on Vercel
+const UPLOADS_DIR = IS_VERCEL ? '/tmp/uploads/pyqs' : path.join(PROJECT_ROOT, 'uploads', 'pyqs');
+const COMMUNITY_UPLOADS_DIR = IS_VERCEL ? '/tmp/uploads/community' : path.join(PROJECT_ROOT, 'uploads', 'community');
+const DATA_DIR = IS_VERCEL ? '/tmp/data' : path.join(__dirname, 'data');
 const GOOGLE_TOKENS_FILE = path.join(DATA_DIR, 'google_drive_tokens.json');
 
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
-}
-if (!fs.existsSync(COMMUNITY_UPLOADS_DIR)) {
-  fs.mkdirSync(COMMUNITY_UPLOADS_DIR, { recursive: true });
-}
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
+try {
+  if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+} catch (e) { console.warn('[VERCEL FS] Cannot create UPLOADS_DIR:', e.message); }
+try {
+  if (!fs.existsSync(COMMUNITY_UPLOADS_DIR)) fs.mkdirSync(COMMUNITY_UPLOADS_DIR, { recursive: true });
+} catch (e) { console.warn('[VERCEL FS] Cannot create COMMUNITY_UPLOADS_DIR:', e.message); }
+try {
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+} catch (e) { console.warn('[VERCEL FS] Cannot create DATA_DIR:', e.message); }
 
 // SERVE UPLOADED FILES STATICALLY
 app.use('/uploads', express.static(path.join(PROJECT_ROOT, 'uploads')));
@@ -160,10 +163,10 @@ const uploadCommunity = multer({
   }
 });
 
-const RESUMES_UPLOADS_DIR = path.join(PROJECT_ROOT, 'uploads', 'resumes');
-if (!fs.existsSync(RESUMES_UPLOADS_DIR)) {
-  fs.mkdirSync(RESUMES_UPLOADS_DIR, { recursive: true });
-}
+const RESUMES_UPLOADS_DIR = IS_VERCEL ? '/tmp/uploads/resumes' : path.join(PROJECT_ROOT, 'uploads', 'resumes');
+try {
+  if (!fs.existsSync(RESUMES_UPLOADS_DIR)) fs.mkdirSync(RESUMES_UPLOADS_DIR, { recursive: true });
+} catch (e) { console.warn('[VERCEL FS] Cannot create RESUMES_UPLOADS_DIR:', e.message); }
 
 const resumeStorage = multer.diskStorage({
   destination: (req, file, cb) => {

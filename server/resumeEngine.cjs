@@ -1049,16 +1049,21 @@ async function compileResumePdf(resumeData, customOptions = {}) {
     };
   }
 
-  // Save compiled PDF to disk
-  const uploadDir = path.join(__dirname, '..', 'uploads', 'resumes');
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-  }
+  // Save compiled PDF to disk (use /tmp on Vercel serverless)
+  const isVercel = !!(process.env.VERCEL || process.env.VERCEL_ENV);
+  const uploadDir = isVercel ? '/tmp/uploads/resumes' : path.join(__dirname, '..', 'uploads', 'resumes');
+  try {
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+  } catch (e) { console.warn('[RESUME ENGINE] Cannot create uploadDir:', e.message); }
 
   const resumeId = resumeData.id || `resume_${Date.now()}`;
   const pdfFileName = `${resumeId}.pdf`;
   const pdfFilePath = path.join(uploadDir, pdfFileName);
-  fs.writeFileSync(pdfFilePath, selectedPdfBytes);
+  try {
+    fs.writeFileSync(pdfFilePath, selectedPdfBytes);
+  } catch (e) { console.warn('[RESUME ENGINE] Cannot write PDF file:', e.message); }
 
   return {
     success: finalStatus === 'success',
