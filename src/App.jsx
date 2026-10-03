@@ -79,12 +79,14 @@ export default function App() {
       const params = new URLSearchParams(window.location.search);
       const c = params.get('course');
       if (c) {
-        const cLower = c.toLowerCase();
-        if (cLower.includes('bca')) return 'BCA';
-        if (cLower.includes('mca')) return 'MCA';
-        if (cLower.includes('mba')) return 'MBA';
-        if (cLower.includes('pharm')) return 'B.Pharm';
-        return 'B.Tech';
+        const cLower = c.toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
+        if (cLower === 'bca') return 'BCA';
+        if (cLower === 'mca') return 'MCA';
+        if (cLower === 'mba') return 'MBA';
+        if (cLower === 'bba') return 'BBA';
+        if (cLower === 'mtech') return 'MTech';
+        if (cLower.includes('pharm')) return 'BPharm';
+        return 'BTech';
       }
     } catch (e) {}
     return null;
@@ -671,8 +673,8 @@ export default function App() {
             }}
             onOpenAI={() => setIsAIModalOpen(true)}
           />
-        ) : activeTab === 'subject' ? (
-          <SubjectPage
+        ) : (activeTab === 'subject' || activeTab === 'subject-detail') ? (
+          <SubjectDetailPage
             subjectData={selectedSubjectData}
             onBack={() => {
               navigateToTab('notes');

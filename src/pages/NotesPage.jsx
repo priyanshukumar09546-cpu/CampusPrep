@@ -49,21 +49,47 @@ import CourseNotesView from '../components/CourseNotesView';
 import { COURSES } from '../data/coursesCatalog';
 import { API_URL } from '../config/api';
 import CourseSelectModal from '../components/CourseSelectModal';
-import { COURSE_CONFIG, AVAILABLE_COURSES, normalizeCourseKey, normalizeYearStr, getYearsForCourse } from '../data/courseMapping.ts';
-import { notesData as localNotesData } from '@/data/notesData';
+import { notesData as localNotesData, notesData } from '../data/notesData';
+import { pyqsData as localPyqsData, pyqsData } from '../data/pyqsData';
+import { allCourses } from '../data/subjectsData';
 
-export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'BCA', onSelectCourse }) {
-  // Course State: 'BCA' | 'BTech' | 'MCA' | 'MBA' | 'BPharma' | 'BBA' | 'MTech'
-  const [selectedCourse, setSelectedCourse] = useState(() => {
+// NORMALIZE FOR ALL 7 COURSES
+export const normalizeCourse = (param) => {
+  if (!param) return 'BTech';
+  const p = String(param).toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
+  const map = {
+    'btech': 'BTech',
+    'bca': 'BCA',
+    'mtech': 'MTech',
+    'mca': 'MCA',
+    'mba': 'MBA',
+    'bba': 'BBA',
+    'bpharm': 'BPharm',
+    'bpharma': 'BPharm',
+    'bpharmacy': 'BPharm'
+  };
+  return map[p] || 'BTech';
+};
+
+export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'BTech', onSelectCourse }) {
+  const getCourseParam = () => {
     try {
       const params = new URLSearchParams(window.location.search);
       const c = params.get('course');
-      if (c) return normalizeCourseKey(c);
+      if (c) return c;
       const saved = localStorage.getItem('campusprep_selected_course');
-      if (saved) return normalizeCourseKey(saved);
+      if (saved) return saved;
     } catch (e) {}
-    return normalizeCourseKey(initialCourse || 'BCA');
-  });
+    return initialCourse || 'BTech';
+  };
+
+  let courseParam = getCourseParam();
+  const normalizedCourse = normalizeCourse(courseParam);
+  const courses = allCourses || {};
+  const selectedCourseData = courses[normalizedCourse];
+
+  // Course State for backward compatibility with child components
+  const [selectedCourse, setSelectedCourse] = useState(normalizedCourse);
 
   // Modal open on first open if no course is selected/stored
   const [isCourseModalOpen, setIsCourseModalOpen] = useState(() => {
@@ -78,8 +104,8 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   });
 
   useEffect(() => {
-    if (initialCourse && normalizeCourseKey(initialCourse) !== normalizeCourseKey(selectedCourse)) {
-      setSelectedCourse(normalizeCourseKey(initialCourse));
+    if (initialCourse && normalizeCourse(initialCourse) !== normalizeCourse(selectedCourse)) {
+      setSelectedCourse(normalizeCourse(initialCourse));
     }
   }, [initialCourse]);
 
@@ -98,35 +124,56 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
 
   // Course Switcher Tab Handler
   const handleCourseTabChange = (courseKey) => {
-    const norm = normalizeCourseKey(courseKey);
+    const norm = normalizeCourse(courseKey);
     setSelectedCourse(norm);
     try {
       localStorage.setItem('campusprep_selected_course', norm);
     } catch (e) {}
     if (onSelectCourse) onSelectCourse(norm);
-
-    if (norm === 'BTech' || norm === 'B.Tech') {
-      setActiveBranch('CSE');
-      setActiveYear('1st Year');
-      setActiveSubject(null);
-      setActiveUnit(null);
-      setSelectedSubject('All Subjects');
-      updateUrlParams({ course: 'BTech', branch: 'CSE', year: '1st Year', semester: null, specialization: null, subject: null, unit: null });
-    } else {
-      const years = getYearsForCourse(norm);
-      const defaultYear = years[0] || '1st Year';
-      setActiveYear(defaultYear);
-      setActiveSemester(null);
-      setActiveSubject(null);
-      setActiveUnit(null);
-      setSelectedSubject('All Subjects');
-      updateUrlParams({ course: norm, branch: null, year: defaultYear, semester: null, specialization: null, subject: null, unit: null });
-    }
+    window.location.href = `/notes?course=${norm}`;
   };
 
-  // Navigation Flow State: Branch -> Year -> Subject -> Unit -> Sources
-  const [activeBranch, setActiveBranch] = useState('CSE');
-  const [activeYear, setActiveYear] = useState('1st Year');
+  // SAFE RENDERING FOR ALL
+  const branches = Object.keys(selectedCourseData || {});
+  const [selectedBranch, setSelectedBranch] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const b = params.get('branch');
+      if (b && branches.includes(b)) return b;
+    } catch (e) {}
+    return branches[0] || 'CSE' || 'General';
+  });
+
+  useEffect(() => {
+    if (!branches.includes(selectedBranch)) {
+      setSelectedBranch(branches[0] || 'CSE' || 'General');
+    }
+  }, [normalizedCourse]);
+
+  const yearsData = (selectedCourseData && selectedCourseData[selectedBranch])
+    ? selectedCourseData[selectedBranch]
+    : (branches[0] && selectedCourseData ? selectedCourseData[branches[0]] : {});
+  const yearKeys = Object.keys(yearsData || {});
+  const [selectedYear, setSelectedYear] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const y = params.get('year');
+      if (y && yearKeys.includes(y)) return y;
+    } catch (e) {}
+    return yearKeys[0] || '1st Year';
+  });
+
+  useEffect(() => {
+    if (!yearKeys.includes(selectedYear)) {
+      setSelectedYear(yearKeys[0] || '1st Year');
+    }
+  }, [selectedBranch, normalizedCourse]);
+
+  const subjects = (yearsData && yearsData[selectedYear]) ? yearsData[selectedYear] : [];
+
+  // Active navigation states for deeper inspection
+  const [activeBranch, setActiveBranch] = useState(selectedBranch);
+  const [activeYear, setActiveYear] = useState(selectedYear);
   const [activeSemester, setActiveSemester] = useState(null);
   const [activeSubject, setActiveSubject] = useState(null);
   const [activeUnit, setActiveUnit] = useState(null);
@@ -138,7 +185,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   // Live Database Notes State with Local Fallback First
   const [dbNotes, setDbNotes] = useState(() => {
     try {
-      const allLocal = Object.values(localNotesData).flat();
+      const allLocal = Object.values(notesData).flat();
       return allLocal;
     } catch (e) {
       return [];
@@ -147,13 +194,13 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   const notesCacheRef = React.useRef(new Map());
 
   const fetchBackendNotes = React.useCallback((courseVal, branchVal, yearVal) => {
-    const c = courseVal || selectedCourse || 'B.Tech';
+    const c = courseVal || normalizedCourse || 'BTech';
     
     // STEP 1: ALWAYS load local first (instant, works offline)
     try {
-      const localMatches = Object.values(localNotesData).flat().filter(n => {
-        const nc = normalizeCourseKey(n.course);
-        return nc === normalizeCourseKey(c);
+      const localMatches = Object.values(notesData).flat().filter(n => {
+        const nc = normalizeCourse(n.course);
+        return nc === normalizeCourse(c);
       });
       if (localMatches.length > 0) {
         setDbNotes(localMatches);
@@ -163,10 +210,10 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
     }
 
     let url = `${API_URL}/api/notes?course=${encodeURIComponent(c)}`;
-    if (c === 'B.Tech') {
-      const b = branchVal || activeBranch || 'CSE';
-      const y = yearVal || activeYear || '1st Year';
-      url += `&branch=${encodeURIComponent(normBranchStr(b))}&year=${encodeURIComponent(normYearStr(y))}`;
+    if (c === 'BTech' || c === 'B.Tech') {
+      const b = branchVal || selectedBranch || 'CSE';
+      const y = yearVal || selectedYear || '1st Year';
+      url += `&branch=${encodeURIComponent(b)}&year=${encodeURIComponent(y)}`;
     }
 
     const cacheKey = `${c}_${url}`;
@@ -190,11 +237,11 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         }
       })
       .catch(err => console.log('Backend not available, keeping local fallback notes:', err));
-  }, [selectedCourse, activeBranch, activeYear]);
+  }, [normalizedCourse, selectedBranch, selectedYear]);
 
   React.useEffect(() => {
-    fetchBackendNotes(selectedCourse, activeBranch, activeYear);
-  }, [selectedCourse, activeBranch, activeYear, fetchBackendNotes]);
+    fetchBackendNotes(normalizedCourse, selectedBranch, selectedYear);
+  }, [normalizedCourse, selectedBranch, selectedYear, fetchBackendNotes]);
 
   // 4 STANDARD NOTE SOURCES (AND DYNAMIC SOURCE SUPPORT)
   const NOTE_SOURCES = [
@@ -896,6 +943,21 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
     updateUrlParams({ course: 'B.Tech', branch: 'CSE', year: '1st Year', subject: null, unit: null });
   };
 
+  if (!selectedCourseData) {
+    const validCourses = Object.keys(courses).filter(c => !c.includes('.'));
+    return (
+      <div className="p-8 text-center min-h-[60vh] flex flex-col items-center justify-center font-['Plus_Jakarta_Sans',sans-serif] bg-[#FAF7F2]">
+        <h2 className="text-2xl font-black text-[#1F2421] mb-2">Course "{courseParam}" not found</h2>
+        <p className="text-stone-600 mb-6">Available: {validCourses.join(', ')}</p>
+        <div className="flex gap-2 justify-center flex-wrap max-w-lg">
+          {validCourses.map(c => (
+            <button key={c} onClick={() => window.location.href = `/notes?course=${c}`} className="px-5 py-2.5 bg-[#7A2327] hover:bg-[#5C1A1D] text-white rounded-xl font-bold shadow-md transition-all">{c}</button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="pv-mobile-notes-view">
@@ -940,17 +1002,17 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            {COURSES.map(c => {
-              const isSelected = selectedCourse === c.key;
+            {Object.keys(courses).filter(c => !c.includes('.')).map(courseName => {
+              const isSelected = normalizedCourse === courseName;
               return (
                 <button
-                  key={c.id}
-                  onClick={() => handleCourseTabChange(c.key)}
+                  key={courseName}
+                  onClick={() => handleCourseTabChange(courseName)}
                   style={{
-                    padding: '0.42rem 1.15rem',
+                    padding: '0.45rem 1.25rem',
                     borderRadius: '9999px',
-                    border: isSelected ? `2px solid ${c.btnColor}` : '1.5px solid #E8E2D5',
-                    backgroundColor: isSelected ? c.btnColor : '#ffffff',
+                    border: isSelected ? '2px solid #7A2327' : '1.5px solid #E8E2D5',
+                    backgroundColor: isSelected ? '#7A2327' : '#ffffff',
                     color: isSelected ? '#ffffff' : '#3A3530',
                     fontWeight: isSelected ? 800 : 600,
                     fontSize: '0.85rem',
@@ -958,11 +1020,11 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.4rem',
-                    boxShadow: isSelected ? `0 4px 12px ${c.badgeColor}30` : '0 1px 3px rgba(0,0,0,0.04)',
+                    boxShadow: isSelected ? '0 4px 12px rgba(122,35,39,0.3)' : '0 1px 3px rgba(0,0,0,0.04)',
                     transition: 'all 0.2s ease'
                   }}
                 >
-                  <span>{c.name}</span>
+                  <span>{courseName}</span>
                   {isSelected && <Check size={14} strokeWidth={3} />}
                 </button>
               );
@@ -1113,10 +1175,92 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         </div>
       </section>
 
-      {/* 2. MAIN CONTENT: UNIFIED MODERN COURSE NOTES VIEW */}
+      {/* 2. MAIN CONTENT: COURSE BRANCH & YEAR SELECTOR + SUBJECTS LIST */}
       <div className="container" style={{ padding: '2rem 1.25rem 3rem 1.25rem' }}>
+        {/* Branch Tabs */}
+        {branches.length > 1 && (
+          <div className="flex gap-2 p-3 overflow-x-auto justify-center flex-wrap bg-white/80 rounded-2xl border border-stone-200/80 mb-4 shadow-xs">
+            {(branches || []).map(branch => (
+              <button
+                key={branch}
+                onClick={() => setSelectedBranch(branch)}
+                className={`px-4 py-2 rounded-xl font-bold text-xs transition-all cursor-pointer ${
+                  selectedBranch === branch
+                    ? 'bg-[#1F2421] text-white shadow-xs'
+                    : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                }`}
+              >
+                {branch}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Year Tabs */}
+        {yearKeys.length > 1 && (
+          <div className="flex gap-2 overflow-x-auto justify-center flex-wrap mb-6">
+            {(yearKeys || []).map(yr => (
+              <button
+                key={yr}
+                onClick={() => setSelectedYear(yr)}
+                className={`px-5 py-2 rounded-full font-bold text-xs transition-all cursor-pointer ${
+                  selectedYear === yr
+                    ? 'bg-[#C88D2D] text-white shadow-xs'
+                    : 'bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100'
+                }`}
+              >
+                {yr}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Subjects List - WITH NOTES & PYQ COUNT */}
+        <div className="mb-10">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-black text-[#1F2421]">
+              {normalizedCourse} {selectedBranch !== 'General' ? selectedBranch : ''} • {selectedYear} Subjects
+            </h2>
+            <span className="text-xs font-bold text-stone-500 bg-stone-100 px-3 py-1 rounded-full">
+              {subjects.length} Subjects
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {(subjects || []).map(sub => {
+              const notesCount = notesData?.[sub.code]?.length || 5;
+              const pyqsCount = pyqsData?.[sub.code]?.length || 3;
+              return (
+                <div key={sub.code} className="border border-stone-200 hover:border-[#7A2327]/50 bg-white p-5 rounded-2xl shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-black px-2.5 py-0.5 bg-amber-50 text-amber-800 rounded-md border border-amber-200/60 uppercase">
+                        {sub.code}
+                      </span>
+                      <span className="text-xs font-bold text-stone-400">
+                        {selectedYear}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-[#1F2421] mb-2">{sub.name}</h3>
+                    <p className="text-xs font-semibold text-stone-600 mb-4">
+                      Notes: <span className="text-emerald-700 font-bold">{notesCount} units</span> | PYQs: <span className="text-blue-700 font-bold">{pyqsCount} years</span>
+                    </p>
+                  </div>
+                  <a
+                    href={`/subject/${sub.code}?course=${normalizedCourse}`}
+                    className="w-full text-center py-2.5 px-4 bg-[#7A2327] hover:bg-[#5C1A1D] text-white rounded-xl font-bold text-xs shadow-xs transition-all block"
+                  >
+                    View Subject Notes & PYQs →
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Unified Course Notes View for detailed quantum/gateway series browsing */}
         <CourseNotesView
-          courseKey={selectedCourse}
+          courseKey={normalizedCourse}
           dbNotes={dbNotes}
           onOpenViewer={({ note, subject, unit }) => {
             setActiveViewerNote({ note, subject, unit: unit ? { unitNo: unit, topics: [] } : null });

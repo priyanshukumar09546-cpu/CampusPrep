@@ -14,10 +14,10 @@ import {
   File,
   ExternalLink
 } from 'lucide-react';
-import { useCourse } from '../context/CourseContext';
-import { notesData as localNotesData } from '@/data/notesData';
-import { pyqsData as localPyqsData } from '@/data/pyqsData';
-import { API_URL } from '@/config/api';
+import { notesData as localNotesData, notesData } from '../data/notesData';
+import { pyqsData as localPyqsData, pyqsData } from '../data/pyqsData';
+import { allCourses } from '../data/subjectsData';
+import { API_URL } from '../config/api';
 
 export default function SubjectDetailPage({ 
   subjectData, 
@@ -25,7 +25,6 @@ export default function SubjectDetailPage({
   onBack, 
   onNavigate 
 }) {
-  const { selectedCourse, selectedYear, selectedBranch } = useCourse();
   const [activeTab, setActiveTab] = useState(initialTab); // 'notes' | 'pyqs' | 'syllabus'
   const [bookmarked, setBookmarked] = useState(false);
   const [expandedUnits, setExpandedUnits] = useState({ 1: true });
@@ -36,7 +35,7 @@ export default function SubjectDetailPage({
     if (subjectData?.code) return subjectData.code;
     try {
       const params = new URLSearchParams(window.location.search);
-      const q = params.get('code');
+      const q = params.get('code') || params.get('subject');
       if (q) return q;
       const path = window.location.pathname.replace(/^\/|\/$/g, '');
       if (path.startsWith('subject/')) {
@@ -48,66 +47,74 @@ export default function SubjectDetailPage({
   };
 
   const code = getSubjectCode();
-  const subjectName = subjectData?.name || subjectData?.title || (code === 'BCS301' ? 'Data Structure' : `${code} - Subject Notes`);
-  const courseName = subjectData?.course || selectedCourse || 'B.Tech';
-  const branchName = subjectData?.branch || selectedBranch || 'CSE';
-  const yearName = subjectData?.year || selectedYear || '2nd Year';
+  const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  const courseParam = searchParams.get('course') || subjectData?.course || 'BTech';
 
-  // Local-first resilient state initialization
-  const [notes, setNotes] = useState(() => {
-    const local = localNotesData[code] || localNotesData[code?.toUpperCase()] || localNotesData[code?.toLowerCase()] || [];
-    return local;
-  });
+  // Helper to fetch notes and pyqs with all variations
+  const getNotes = (c) => {
+    if (!c) return [];
+    const hyp = c.includes('-') ? c : (c.slice(0, 3) + '-' + c.slice(3));
+    const noHyp = c.replace(/-/g, '');
+    return (
+      notesData?.[c] ||
+      notesData?.[c.toUpperCase()] ||
+      notesData?.[c.toLowerCase()] ||
+      notesData?.[hyp] ||
+      notesData?.[hyp.toUpperCase()] ||
+      notesData?.[hyp.toLowerCase()] ||
+      notesData?.[noHyp] ||
+      notesData?.[noHyp.toUpperCase()] ||
+      notesData?.[noHyp.toLowerCase()] ||
+      []
+    );
+  };
 
-  const [pyqs, setPyqs] = useState(() => {
-    const local = localPyqsData[code] || localPyqsData[code?.toUpperCase()] || localPyqsData[code?.toLowerCase()] || [];
-    return local;
-  });
+  const getPyqs = (c) => {
+    if (!c) return [];
+    const hyp = c.includes('-') ? c : (c.slice(0, 3) + '-' + c.slice(3));
+    const noHyp = c.replace(/-/g, '');
+    return (
+      pyqsData?.[c] ||
+      pyqsData?.[c.toUpperCase()] ||
+      pyqsData?.[c.toLowerCase()] ||
+      pyqsData?.[hyp] ||
+      pyqsData?.[hyp.toUpperCase()] ||
+      pyqsData?.[hyp.toLowerCase()] ||
+      pyqsData?.[noHyp] ||
+      pyqsData?.[noHyp.toUpperCase()] ||
+      pyqsData?.[noHyp.toLowerCase()] ||
+      []
+    );
+  };
 
-  // STEP 1: FORCE LOCAL FALLBACK ON PRODUCTION (Most Important)
+  const [notes, setNotes] = useState(() => getNotes(code));
+  const [pyqs, setPyqs] = useState(() => getPyqs(code));
+
   useEffect(() => {
-    const loadData = async () => {
-      // STEP 1: ALWAYS load local first (instant, works offline)
-      const localNotes = localNotesData[code] || localNotesData[code?.toUpperCase()] || localNotesData[code?.toLowerCase()] || [];
-      const localPyqs = localPyqsData[code] || localPyqsData[code?.toUpperCase()] || localPyqsData[code?.toLowerCase()] || [];
+    const n = getNotes(code);
+    const p = getPyqs(code);
+    if (n.length > 0) setNotes(n);
+    if (p.length > 0) setPyqs(p);
 
-      console.log(`[LOCAL] Subject ${code}: ${localNotes.length} notes, ${localPyqs.length} pyqs`);
-
-      if (localNotes.length > 0) {
-        setNotes(localNotes);
-        setPyqs(localPyqs);
-        // Still try API in background to update, but don't blank if API fails
-        try {
-          const res = await fetch(`${API_URL}/api/notes?subject=${code}`);
-          const apiData = await res.json();
+    // Try background API fetch if available
+    try {
+      fetch(`${API_URL}/api/notes?subject=${encodeURIComponent(code)}`)
+        .then(res => res.json())
+        .then(apiData => {
           const apiNotes = Array.isArray(apiData) ? apiData : (apiData?.notes || []);
           if (apiNotes && apiNotes.length > 0) {
-            console.log(`[API] Got ${apiNotes.length} notes, merging`);
-            setNotes(apiNotes); // Update if API has newer
+            setNotes(apiNotes);
           }
-        } catch (e) {
-          console.log("[API] Failed, keeping local data", e);
-        }
-        return;
-      }
-
-      // STEP 2: If no local, try API
-      try {
-        const res = await fetch(`${API_URL}/api/notes?subject=${code}`);
-        const apiData = await res.json();
-        const apiNotes = Array.isArray(apiData) ? apiData : (apiData?.notes || []);
-        if (apiNotes && apiNotes.length > 0) {
-          setNotes(apiNotes);
-        } else {
-          setNotes([]); // Show empty state
-        }
-      } catch (e) {
-        console.error("Both local and API failed for", code);
-        setNotes([]);
-      }
-    };
-    loadData();
+        })
+        .catch(() => {});
+    } catch (e) {}
   }, [code]);
+
+  const firstItem = notes[0] || pyqs[0];
+  const subjectName = subjectData?.name || subjectData?.title || firstItem?.subject || firstItem?.subjectName || (code === 'BCS301' ? 'Data Structure' : `${code} - Study Notes`);
+  const courseName = subjectData?.course || firstItem?.course || courseParam || 'BTech';
+  const branchName = subjectData?.branch || firstItem?.branch || 'CSE';
+  const yearName = subjectData?.year || firstItem?.year || '1st Year';
 
   const toggleUnit = (unit) => {
     setExpandedUnits(prev => ({ ...prev, [unit]: !prev[unit] }));
@@ -137,6 +144,23 @@ export default function SubjectDetailPage({
       alert('Link copied to clipboard!');
     }
   };
+
+  if (notes.length === 0 && pyqs.length === 0) {
+    const available = Object.keys(notesData).filter(k => /^[A-Z]{3}\d{3}$/.test(k)).slice(0, 10);
+    return (
+      <div className="p-8 text-center min-h-[60vh] flex flex-col items-center justify-center font-['Plus_Jakarta_Sans',sans-serif] bg-[#FFF7ED]">
+        <h2 className="text-2xl font-black text-[#1F2421] mb-2">No notes found for {code}</h2>
+        <p className="text-stone-600 mb-6">Available: {available.join(', ')}</p>
+        <div className="flex gap-2 justify-center flex-wrap max-w-lg">
+          {available.map(c => (
+            <button key={c} onClick={() => window.location.href = `/subject/${c}?course=${courseParam}`} className="px-4 py-2 bg-[#7A2327] hover:bg-[#5C1A1D] text-white rounded-xl font-bold text-sm shadow-md transition-all">
+              {c}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#FFF7ED] w-full max-w-4xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] flex flex-col pb-24">

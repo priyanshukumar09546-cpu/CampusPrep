@@ -487,6 +487,8 @@ export function normalizeCourseKey(courseStr) {
   if (s === 'bca') return 'BCA';
   if (s === 'mca') return 'MCA';
   if (s === 'mba') return 'MBA';
+  if (s === 'bba') return 'BBA';
+  if (s === 'mtech') return 'M.Tech';
   if (s === 'bpharm' || s.includes('pharm')) return 'B.Pharm';
   return 'B.Tech';
 }

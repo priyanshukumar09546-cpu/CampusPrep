@@ -144942,6 +144942,19267 @@ export const notesData: Record<string, NoteItem[]> = {
       ]
     }
   ]
+,
+  "BCS101": [
+    {
+      "id": "bcs101-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Mathematics-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs101-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Mathematics-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs101-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Mathematics-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs101-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Mathematics-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs101-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Mathematics-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs101": [
+    {
+      "id": "bcs101-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Mathematics-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs101-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Mathematics-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs101-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Mathematics-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs101-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Mathematics-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs101-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Mathematics-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-101": [
+    {
+      "id": "bcs101-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Mathematics-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs101-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Mathematics-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs101-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Mathematics-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs101-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Mathematics-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs101-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Mathematics-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-101": [
+    {
+      "id": "bcs101-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Mathematics-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs101-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Mathematics-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs101-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Mathematics-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs101-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Mathematics-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs101-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Mathematics-I — Comprehensive Study Notes",
+      "desc": "Engineering Mathematics-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mathematics-I",
+      "subjectCode": "BCS101",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Mathematics-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS102": [
+    {
+      "id": "bcs102-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Physics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs102-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Physics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs102-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Physics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs102-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Physics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs102-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Physics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs102": [
+    {
+      "id": "bcs102-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Physics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs102-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Physics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs102-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Physics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs102-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Physics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs102-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Physics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-102": [
+    {
+      "id": "bcs102-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Physics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs102-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Physics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs102-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Physics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs102-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Physics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs102-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Physics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-102": [
+    {
+      "id": "bcs102-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_89qvTWIen2-9IkKwOcUfWXTt6OWl2gQ/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Physics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs102-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_RT1HXIRznjlOhAHfaNVIgVk0HMTXN0y/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Physics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs102-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_X6XtKlALsZ0Ma4b9UG2OcwmQo3gTK71/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Physics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs102-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f49l_kJJR5bnA9ryJpKI5nbSPEdl2Spx/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Physics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs102-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Physics — Comprehensive Study Notes",
+      "desc": "Engineering Physics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Physics",
+      "subjectCode": "BCS102",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1_82UHdwsGSw1uDldzl7JXOwv1dCh_azl/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Physics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS103": [
+    {
+      "id": "bcs103-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electrical: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs103-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electrical: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs103-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electrical: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs103-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electrical",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs103-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electrical",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs103": [
+    {
+      "id": "bcs103-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electrical: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs103-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electrical: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs103-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electrical: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs103-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electrical",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs103-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electrical",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-103": [
+    {
+      "id": "bcs103-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electrical: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs103-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electrical: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs103-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electrical: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs103-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electrical",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs103-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electrical",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-103": [
+    {
+      "id": "bcs103-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electrical: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs103-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electrical: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs103-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electrical: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs103-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electrical",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs103-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BCS103",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electrical",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS104": [
+    {
+      "id": "bcs104-u1",
+      "unit": 1,
+      "title": "Unit 1: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to C Programming: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs104-u2",
+      "unit": 2,
+      "title": "Unit 2: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of C Programming: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs104-u3",
+      "unit": 3,
+      "title": "Unit 3: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in C Programming: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs104-u4",
+      "unit": 4,
+      "title": "Unit 4: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in C Programming",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs104-u5",
+      "unit": 5,
+      "title": "Unit 5: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of C Programming",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs104": [
+    {
+      "id": "bcs104-u1",
+      "unit": 1,
+      "title": "Unit 1: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to C Programming: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs104-u2",
+      "unit": 2,
+      "title": "Unit 2: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of C Programming: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs104-u3",
+      "unit": 3,
+      "title": "Unit 3: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in C Programming: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs104-u4",
+      "unit": 4,
+      "title": "Unit 4: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in C Programming",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs104-u5",
+      "unit": 5,
+      "title": "Unit 5: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of C Programming",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-104": [
+    {
+      "id": "bcs104-u1",
+      "unit": 1,
+      "title": "Unit 1: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to C Programming: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs104-u2",
+      "unit": 2,
+      "title": "Unit 2: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of C Programming: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs104-u3",
+      "unit": 3,
+      "title": "Unit 3: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in C Programming: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs104-u4",
+      "unit": 4,
+      "title": "Unit 4: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in C Programming",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs104-u5",
+      "unit": 5,
+      "title": "Unit 5: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of C Programming",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-104": [
+    {
+      "id": "bcs104-u1",
+      "unit": 1,
+      "title": "Unit 1: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to C Programming: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs104-u2",
+      "unit": 2,
+      "title": "Unit 2: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of C Programming: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs104-u3",
+      "unit": 3,
+      "title": "Unit 3: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in C Programming: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs104-u4",
+      "unit": 4,
+      "title": "Unit 4: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in C Programming",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs104-u5",
+      "unit": 5,
+      "title": "Unit 5: C Programming — Comprehensive Study Notes",
+      "desc": "C Programming Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "C Programming",
+      "subjectCode": "BCS104",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of C Programming",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS302": [
+    {
+      "id": "bcs302-u1",
+      "unit": 1,
+      "title": "Unit 1: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "topics": [
+        "Introduction to Operating System: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs302-u2",
+      "unit": 2,
+      "title": "Unit 2: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "topics": [
+        "Foundations of Operating System: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs302-u3",
+      "unit": 3,
+      "title": "Unit 3: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Operating System: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs302-u4",
+      "unit": 4,
+      "title": "Unit 4: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Operating System",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs302-u5",
+      "unit": 5,
+      "title": "Unit 5: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Operating System",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs302": [
+    {
+      "id": "bcs302-u1",
+      "unit": 1,
+      "title": "Unit 1: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "topics": [
+        "Introduction to Operating System: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs302-u2",
+      "unit": 2,
+      "title": "Unit 2: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "topics": [
+        "Foundations of Operating System: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs302-u3",
+      "unit": 3,
+      "title": "Unit 3: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Operating System: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs302-u4",
+      "unit": 4,
+      "title": "Unit 4: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Operating System",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs302-u5",
+      "unit": 5,
+      "title": "Unit 5: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Operating System",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-302": [
+    {
+      "id": "bcs302-u1",
+      "unit": 1,
+      "title": "Unit 1: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "topics": [
+        "Introduction to Operating System: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs302-u2",
+      "unit": 2,
+      "title": "Unit 2: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "topics": [
+        "Foundations of Operating System: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs302-u3",
+      "unit": 3,
+      "title": "Unit 3: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Operating System: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs302-u4",
+      "unit": 4,
+      "title": "Unit 4: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Operating System",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs302-u5",
+      "unit": 5,
+      "title": "Unit 5: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Operating System",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-302": [
+    {
+      "id": "bcs302-u1",
+      "unit": 1,
+      "title": "Unit 1: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-cyA5p98nHqFsVEqmqdr1vBKWiOKMSDa/view?usp=sharing",
+      "topics": [
+        "Introduction to Operating System: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs302-u2",
+      "unit": 2,
+      "title": "Unit 2: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-fc5Yw47JPXZtovwjZAT2s0V_cNCi01_/view?usp=sharing",
+      "topics": [
+        "Foundations of Operating System: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs302-u3",
+      "unit": 3,
+      "title": "Unit 3: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-fvUDRmRpLAE3R_cjN5HVwKAqfc9Agw8/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Operating System: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs302-u4",
+      "unit": 4,
+      "title": "Unit 4: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-lUfhfxnwNQ-pU3GT9vPW9NkGnvRjCvA/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Operating System",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs302-u5",
+      "unit": 5,
+      "title": "Unit 5: Operating System — Comprehensive Study Notes",
+      "desc": "Operating System Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Operating System",
+      "subjectCode": "BCS302",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-leSSX_Rb-z1zyX1jPc5QK4hh1QEG8zp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Operating System",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS303": [
+    {
+      "id": "bcs303-u1",
+      "unit": 1,
+      "title": "Unit 1: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "topics": [
+        "Introduction to DBMS: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs303-u2",
+      "unit": 2,
+      "title": "Unit 2: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "topics": [
+        "Foundations of DBMS: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs303-u3",
+      "unit": 3,
+      "title": "Unit 3: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "url": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "topics": [
+        "Intermediate Methods in DBMS: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs303-u4",
+      "unit": 4,
+      "title": "Unit 4: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "topics": [
+        "Advanced Systems & Frameworks in DBMS",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs303-u5",
+      "unit": 5,
+      "title": "Unit 5: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of DBMS",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs303": [
+    {
+      "id": "bcs303-u1",
+      "unit": 1,
+      "title": "Unit 1: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "topics": [
+        "Introduction to DBMS: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs303-u2",
+      "unit": 2,
+      "title": "Unit 2: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "topics": [
+        "Foundations of DBMS: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs303-u3",
+      "unit": 3,
+      "title": "Unit 3: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "url": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "topics": [
+        "Intermediate Methods in DBMS: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs303-u4",
+      "unit": 4,
+      "title": "Unit 4: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "topics": [
+        "Advanced Systems & Frameworks in DBMS",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs303-u5",
+      "unit": 5,
+      "title": "Unit 5: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of DBMS",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-303": [
+    {
+      "id": "bcs303-u1",
+      "unit": 1,
+      "title": "Unit 1: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "topics": [
+        "Introduction to DBMS: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs303-u2",
+      "unit": 2,
+      "title": "Unit 2: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "topics": [
+        "Foundations of DBMS: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs303-u3",
+      "unit": 3,
+      "title": "Unit 3: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "url": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "topics": [
+        "Intermediate Methods in DBMS: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs303-u4",
+      "unit": 4,
+      "title": "Unit 4: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "topics": [
+        "Advanced Systems & Frameworks in DBMS",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs303-u5",
+      "unit": 5,
+      "title": "Unit 5: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of DBMS",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-303": [
+    {
+      "id": "bcs303-u1",
+      "unit": 1,
+      "title": "Unit 1: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_unit1_foundations.pdf",
+      "topics": [
+        "Introduction to DBMS: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs303-u2",
+      "unit": 2,
+      "title": "Unit 2: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_relational_models_univ.pdf",
+      "topics": [
+        "Foundations of DBMS: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs303-u3",
+      "unit": 3,
+      "title": "Unit 3: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "url": "/assets/notes/bca/bca302_rdbms_sql_commands_univ.pdf",
+      "topics": [
+        "Intermediate Methods in DBMS: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs303-u4",
+      "unit": 4,
+      "title": "Unit 4: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_unit5_transactions.pdf",
+      "topics": [
+        "Advanced Systems & Frameworks in DBMS",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs303-u5",
+      "unit": 5,
+      "title": "Unit 5: DBMS — Comprehensive Study Notes",
+      "desc": "DBMS Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "DBMS",
+      "subjectCode": "BCS303",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "driveUrl": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "url": "/assets/notes/bca/bca302_dbms_comprehensive_qa_bank.pdf",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of DBMS",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS304": [
+    {
+      "id": "bcs304-u1",
+      "unit": 1,
+      "title": "Unit 1: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "topics": [
+        "Introduction to Computer Networks: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs304-u2",
+      "unit": 2,
+      "title": "Unit 2: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "topics": [
+        "Foundations of Computer Networks: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs304-u3",
+      "unit": 3,
+      "title": "Unit 3: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Computer Networks: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs304-u4",
+      "unit": 4,
+      "title": "Unit 4: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Computer Networks",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs304-u5",
+      "unit": 5,
+      "title": "Unit 5: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Computer Networks",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs304": [
+    {
+      "id": "bcs304-u1",
+      "unit": 1,
+      "title": "Unit 1: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "topics": [
+        "Introduction to Computer Networks: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs304-u2",
+      "unit": 2,
+      "title": "Unit 2: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "topics": [
+        "Foundations of Computer Networks: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs304-u3",
+      "unit": 3,
+      "title": "Unit 3: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Computer Networks: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs304-u4",
+      "unit": 4,
+      "title": "Unit 4: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Computer Networks",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs304-u5",
+      "unit": 5,
+      "title": "Unit 5: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Computer Networks",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-304": [
+    {
+      "id": "bcs304-u1",
+      "unit": 1,
+      "title": "Unit 1: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "topics": [
+        "Introduction to Computer Networks: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs304-u2",
+      "unit": 2,
+      "title": "Unit 2: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "topics": [
+        "Foundations of Computer Networks: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs304-u3",
+      "unit": 3,
+      "title": "Unit 3: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Computer Networks: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs304-u4",
+      "unit": 4,
+      "title": "Unit 4: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Computer Networks",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs304-u5",
+      "unit": 5,
+      "title": "Unit 5: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Computer Networks",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-304": [
+    {
+      "id": "bcs304-u1",
+      "unit": 1,
+      "title": "Unit 1: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1snhzGQdDUGkhkqCBc6I-lokaugpUrwDS/view?usp=sharing",
+      "topics": [
+        "Introduction to Computer Networks: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs304-u2",
+      "unit": 2,
+      "title": "Unit 2: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1o_BJw69xtW_wiQy1X40_V0krHWZfGkOM/view?usp=sharing",
+      "topics": [
+        "Foundations of Computer Networks: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs304-u3",
+      "unit": 3,
+      "title": "Unit 3: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NEUk5UAMisNpC6nAoZyp6lHH5JCuhRue/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Computer Networks: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs304-u4",
+      "unit": 4,
+      "title": "Unit 4: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/18pT0aGR_igHdZEcZIm8ayt0DJ3ouSPYo/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Computer Networks",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs304-u5",
+      "unit": 5,
+      "title": "Unit 5: Computer Networks — Comprehensive Study Notes",
+      "desc": "Computer Networks Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Computer Networks",
+      "subjectCode": "BCS304",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1-MIPuZz-jx1IobXzOrKKVt_P4Dk6D8qQ/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Computer Networks",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-501": [
+    {
+      "id": "bcs501-u1",
+      "unit": 1,
+      "title": "Unit 1: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "topics": [
+        "Introduction to Machine Learning: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs501-u2",
+      "unit": 2,
+      "title": "Unit 2: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "topics": [
+        "Foundations of Machine Learning: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs501-u3",
+      "unit": 3,
+      "title": "Unit 3: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Machine Learning: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs501-u4",
+      "unit": 4,
+      "title": "Unit 4: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Machine Learning",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs501-u5",
+      "unit": 5,
+      "title": "Unit 5: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Machine Learning",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-501": [
+    {
+      "id": "bcs501-u1",
+      "unit": 1,
+      "title": "Unit 1: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "topics": [
+        "Introduction to Machine Learning: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs501-u2",
+      "unit": 2,
+      "title": "Unit 2: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "topics": [
+        "Foundations of Machine Learning: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs501-u3",
+      "unit": 3,
+      "title": "Unit 3: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Machine Learning: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs501-u4",
+      "unit": 4,
+      "title": "Unit 4: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Machine Learning",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs501-u5",
+      "unit": 5,
+      "title": "Unit 5: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "BCS501",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Machine Learning",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-502": [
+    {
+      "id": "bcs502-u1",
+      "unit": 1,
+      "title": "Unit 1: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1JoB-qh5kdeDnjwFRO8_jTG58VCHkbb-8/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1JoB-qh5kdeDnjwFRO8_jTG58VCHkbb-8/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1JoB-qh5kdeDnjwFRO8_jTG58VCHkbb-8/view?usp=sharing",
+      "topics": [
+        "Introduction to Compiler Design: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs502-u2",
+      "unit": 2,
+      "title": "Unit 2: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Compiler Design: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs502-u3",
+      "unit": 3,
+      "title": "Unit 3: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Compiler Design: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs502-u4",
+      "unit": 4,
+      "title": "Unit 4: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1GN2kSBaFyrKM8jxIqKC5xsNu5Vs4GcSM/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1GN2kSBaFyrKM8jxIqKC5xsNu5Vs4GcSM/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1GN2kSBaFyrKM8jxIqKC5xsNu5Vs4GcSM/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Compiler Design",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs502-u5",
+      "unit": 5,
+      "title": "Unit 5: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Compiler Design",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-502": [
+    {
+      "id": "bcs502-u1",
+      "unit": 1,
+      "title": "Unit 1: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1JoB-qh5kdeDnjwFRO8_jTG58VCHkbb-8/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1JoB-qh5kdeDnjwFRO8_jTG58VCHkbb-8/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1JoB-qh5kdeDnjwFRO8_jTG58VCHkbb-8/view?usp=sharing",
+      "topics": [
+        "Introduction to Compiler Design: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs502-u2",
+      "unit": 2,
+      "title": "Unit 2: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Compiler Design: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs502-u3",
+      "unit": 3,
+      "title": "Unit 3: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Compiler Design: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs502-u4",
+      "unit": 4,
+      "title": "Unit 4: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1GN2kSBaFyrKM8jxIqKC5xsNu5Vs4GcSM/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1GN2kSBaFyrKM8jxIqKC5xsNu5Vs4GcSM/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1GN2kSBaFyrKM8jxIqKC5xsNu5Vs4GcSM/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Compiler Design",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs502-u5",
+      "unit": 5,
+      "title": "Unit 5: Compiler Design — Comprehensive Study Notes",
+      "desc": "Compiler Design Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Compiler Design",
+      "subjectCode": "BCS502",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "3rd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Compiler Design",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS701": [
+    {
+      "id": "bcs701-u1",
+      "unit": 1,
+      "title": "Unit 1: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "topics": [
+        "Introduction to AI: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs701-u2",
+      "unit": 2,
+      "title": "Unit 2: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "topics": [
+        "Foundations of AI: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs701-u3",
+      "unit": 3,
+      "title": "Unit 3: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in AI: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs701-u4",
+      "unit": 4,
+      "title": "Unit 4: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in AI",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs701-u5",
+      "unit": 5,
+      "title": "Unit 5: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of AI",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs701": [
+    {
+      "id": "bcs701-u1",
+      "unit": 1,
+      "title": "Unit 1: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "topics": [
+        "Introduction to AI: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs701-u2",
+      "unit": 2,
+      "title": "Unit 2: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "topics": [
+        "Foundations of AI: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs701-u3",
+      "unit": 3,
+      "title": "Unit 3: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in AI: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs701-u4",
+      "unit": 4,
+      "title": "Unit 4: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in AI",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs701-u5",
+      "unit": 5,
+      "title": "Unit 5: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of AI",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-701": [
+    {
+      "id": "bcs701-u1",
+      "unit": 1,
+      "title": "Unit 1: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "topics": [
+        "Introduction to AI: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs701-u2",
+      "unit": 2,
+      "title": "Unit 2: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "topics": [
+        "Foundations of AI: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs701-u3",
+      "unit": 3,
+      "title": "Unit 3: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in AI: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs701-u4",
+      "unit": 4,
+      "title": "Unit 4: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in AI",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs701-u5",
+      "unit": 5,
+      "title": "Unit 5: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of AI",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-701": [
+    {
+      "id": "bcs701-u1",
+      "unit": 1,
+      "title": "Unit 1: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1mlAmKpAGXUyEp0gcZYZoexoURyoYoM6q/view?usp=sharing",
+      "topics": [
+        "Introduction to AI: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs701-u2",
+      "unit": 2,
+      "title": "Unit 2: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1buvE1grXFnbiS6I0q7hox1ebUrDlx7-Y/view?usp=sharing",
+      "topics": [
+        "Foundations of AI: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs701-u3",
+      "unit": 3,
+      "title": "Unit 3: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in AI: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs701-u4",
+      "unit": 4,
+      "title": "Unit 4: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in AI",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs701-u5",
+      "unit": 5,
+      "title": "Unit 5: AI — Comprehensive Study Notes",
+      "desc": "AI Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "AI",
+      "subjectCode": "BCS701",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of AI",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS702": [
+    {
+      "id": "bcs702-u1",
+      "unit": 1,
+      "title": "Unit 1: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Cloud Computing: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs702-u2",
+      "unit": 2,
+      "title": "Unit 2: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Cloud Computing: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs702-u3",
+      "unit": 3,
+      "title": "Unit 3: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Cloud Computing: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs702-u4",
+      "unit": 4,
+      "title": "Unit 4: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Cloud Computing",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs702-u5",
+      "unit": 5,
+      "title": "Unit 5: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Cloud Computing",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs702": [
+    {
+      "id": "bcs702-u1",
+      "unit": 1,
+      "title": "Unit 1: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Cloud Computing: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs702-u2",
+      "unit": 2,
+      "title": "Unit 2: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Cloud Computing: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs702-u3",
+      "unit": 3,
+      "title": "Unit 3: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Cloud Computing: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs702-u4",
+      "unit": 4,
+      "title": "Unit 4: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Cloud Computing",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs702-u5",
+      "unit": 5,
+      "title": "Unit 5: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Cloud Computing",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCS-702": [
+    {
+      "id": "bcs702-u1",
+      "unit": 1,
+      "title": "Unit 1: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Cloud Computing: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs702-u2",
+      "unit": 2,
+      "title": "Unit 2: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Cloud Computing: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs702-u3",
+      "unit": 3,
+      "title": "Unit 3: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Cloud Computing: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs702-u4",
+      "unit": 4,
+      "title": "Unit 4: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Cloud Computing",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs702-u5",
+      "unit": 5,
+      "title": "Unit 5: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Cloud Computing",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bcs-702": [
+    {
+      "id": "bcs702-u1",
+      "unit": 1,
+      "title": "Unit 1: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Cloud Computing: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bcs702-u2",
+      "unit": 2,
+      "title": "Unit 2: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Cloud Computing: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bcs702-u3",
+      "unit": 3,
+      "title": "Unit 3: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Cloud Computing: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bcs702-u4",
+      "unit": 4,
+      "title": "Unit 4: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Cloud Computing",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bcs702-u5",
+      "unit": 5,
+      "title": "Unit 5: Cloud Computing — Comprehensive Study Notes",
+      "desc": "Cloud Computing Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Cloud Computing",
+      "subjectCode": "BCS702",
+      "course": "BTech",
+      "branch": "CSE",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Cloud Computing",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEC101": [
+    {
+      "id": "bec101-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electronics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec101-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electronics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec101-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electronics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec101-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electronics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec101-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electronics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bec101": [
+    {
+      "id": "bec101-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electronics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec101-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electronics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec101-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electronics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec101-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electronics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec101-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electronics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEC-101": [
+    {
+      "id": "bec101-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electronics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec101-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electronics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec101-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electronics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec101-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electronics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec101-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electronics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bec-101": [
+    {
+      "id": "bec101-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electronics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec101-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electronics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec101-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electronics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec101-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electronics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec101-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electronics — Comprehensive Study Notes",
+      "desc": "Basic Electronics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electronics",
+      "subjectCode": "BEC101",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electronics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEC102": [
+    {
+      "id": "bec102-u1",
+      "unit": 1,
+      "title": "Unit 1: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "topics": [
+        "Introduction to Network Analysis: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec102-u2",
+      "unit": 2,
+      "title": "Unit 2: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "topics": [
+        "Foundations of Network Analysis: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec102-u3",
+      "unit": 3,
+      "title": "Unit 3: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Network Analysis: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec102-u4",
+      "unit": 4,
+      "title": "Unit 4: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Network Analysis",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec102-u5",
+      "unit": 5,
+      "title": "Unit 5: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Network Analysis",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bec102": [
+    {
+      "id": "bec102-u1",
+      "unit": 1,
+      "title": "Unit 1: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "topics": [
+        "Introduction to Network Analysis: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec102-u2",
+      "unit": 2,
+      "title": "Unit 2: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "topics": [
+        "Foundations of Network Analysis: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec102-u3",
+      "unit": 3,
+      "title": "Unit 3: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Network Analysis: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec102-u4",
+      "unit": 4,
+      "title": "Unit 4: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Network Analysis",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec102-u5",
+      "unit": 5,
+      "title": "Unit 5: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Network Analysis",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEC-102": [
+    {
+      "id": "bec102-u1",
+      "unit": 1,
+      "title": "Unit 1: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "topics": [
+        "Introduction to Network Analysis: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec102-u2",
+      "unit": 2,
+      "title": "Unit 2: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "topics": [
+        "Foundations of Network Analysis: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec102-u3",
+      "unit": 3,
+      "title": "Unit 3: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Network Analysis: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec102-u4",
+      "unit": 4,
+      "title": "Unit 4: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Network Analysis",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec102-u5",
+      "unit": 5,
+      "title": "Unit 5: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Network Analysis",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bec-102": [
+    {
+      "id": "bec102-u1",
+      "unit": 1,
+      "title": "Unit 1: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13RwQd-DToed_0zPZcX94prb5e0xhbwpy/view?usp=sharing",
+      "topics": [
+        "Introduction to Network Analysis: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec102-u2",
+      "unit": 2,
+      "title": "Unit 2: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1MvADLHuLQtP6Ld9Fk3tmIfkGGDX_5Yg3/view?usp=sharing",
+      "topics": [
+        "Foundations of Network Analysis: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec102-u3",
+      "unit": 3,
+      "title": "Unit 3: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Network Analysis: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec102-u4",
+      "unit": 4,
+      "title": "Unit 4: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1N5qfo06mGW_zRJFQkNa_hT03trDbBjEr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Network Analysis",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec102-u5",
+      "unit": 5,
+      "title": "Unit 5: Network Analysis — Comprehensive Study Notes",
+      "desc": "Network Analysis Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Network Analysis",
+      "subjectCode": "BEC102",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NCZqrOmLqNjCw-Bn8jDaU6wwZLULaOyj/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Network Analysis",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEC301": [
+    {
+      "id": "bec301-u1",
+      "unit": 1,
+      "title": "Unit 1: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "topics": [
+        "Introduction to Digital Electronics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec301-u2",
+      "unit": 2,
+      "title": "Unit 2: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "topics": [
+        "Foundations of Digital Electronics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec301-u3",
+      "unit": 3,
+      "title": "Unit 3: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Digital Electronics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec301-u4",
+      "unit": 4,
+      "title": "Unit 4: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Digital Electronics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec301-u5",
+      "unit": 5,
+      "title": "Unit 5: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Digital Electronics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bec301": [
+    {
+      "id": "bec301-u1",
+      "unit": 1,
+      "title": "Unit 1: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "topics": [
+        "Introduction to Digital Electronics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec301-u2",
+      "unit": 2,
+      "title": "Unit 2: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "topics": [
+        "Foundations of Digital Electronics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec301-u3",
+      "unit": 3,
+      "title": "Unit 3: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Digital Electronics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec301-u4",
+      "unit": 4,
+      "title": "Unit 4: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Digital Electronics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec301-u5",
+      "unit": 5,
+      "title": "Unit 5: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Digital Electronics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEC-301": [
+    {
+      "id": "bec301-u1",
+      "unit": 1,
+      "title": "Unit 1: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "topics": [
+        "Introduction to Digital Electronics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec301-u2",
+      "unit": 2,
+      "title": "Unit 2: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "topics": [
+        "Foundations of Digital Electronics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec301-u3",
+      "unit": 3,
+      "title": "Unit 3: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Digital Electronics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec301-u4",
+      "unit": 4,
+      "title": "Unit 4: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Digital Electronics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec301-u5",
+      "unit": 5,
+      "title": "Unit 5: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Digital Electronics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bec-301": [
+    {
+      "id": "bec301-u1",
+      "unit": 1,
+      "title": "Unit 1: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iYZJWww0vTzxMt9FXPD7H6tuy25wfFun/view?usp=sharing",
+      "topics": [
+        "Introduction to Digital Electronics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec301-u2",
+      "unit": 2,
+      "title": "Unit 2: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iSXacgAb2Xy-tCE3YDXaL_L9o9Re_a0q/view?usp=sharing",
+      "topics": [
+        "Foundations of Digital Electronics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec301-u3",
+      "unit": 3,
+      "title": "Unit 3: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iSEHuHxqaFtKIyU3s2xWZTM05KEhhM83/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Digital Electronics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec301-u4",
+      "unit": 4,
+      "title": "Unit 4: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1iV9GGnozor2lwDAETyFJl5FiKvJSc2So/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Digital Electronics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec301-u5",
+      "unit": 5,
+      "title": "Unit 5: Digital Electronics — Comprehensive Study Notes",
+      "desc": "Digital Electronics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Digital Electronics",
+      "subjectCode": "BEC301",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1kWBO2wB_E0UGS7cROevFobE3FgrpXAY5/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Digital Electronics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEC302": [
+    {
+      "id": "bec302-u1",
+      "unit": 1,
+      "title": "Unit 1: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Signal & Systems: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec302-u2",
+      "unit": 2,
+      "title": "Unit 2: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Signal & Systems: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec302-u3",
+      "unit": 3,
+      "title": "Unit 3: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Signal & Systems: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec302-u4",
+      "unit": 4,
+      "title": "Unit 4: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Signal & Systems",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec302-u5",
+      "unit": 5,
+      "title": "Unit 5: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Signal & Systems",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bec302": [
+    {
+      "id": "bec302-u1",
+      "unit": 1,
+      "title": "Unit 1: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Signal & Systems: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec302-u2",
+      "unit": 2,
+      "title": "Unit 2: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Signal & Systems: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec302-u3",
+      "unit": 3,
+      "title": "Unit 3: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Signal & Systems: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec302-u4",
+      "unit": 4,
+      "title": "Unit 4: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Signal & Systems",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec302-u5",
+      "unit": 5,
+      "title": "Unit 5: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Signal & Systems",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEC-302": [
+    {
+      "id": "bec302-u1",
+      "unit": 1,
+      "title": "Unit 1: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Signal & Systems: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec302-u2",
+      "unit": 2,
+      "title": "Unit 2: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Signal & Systems: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec302-u3",
+      "unit": 3,
+      "title": "Unit 3: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Signal & Systems: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec302-u4",
+      "unit": 4,
+      "title": "Unit 4: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Signal & Systems",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec302-u5",
+      "unit": 5,
+      "title": "Unit 5: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Signal & Systems",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bec-302": [
+    {
+      "id": "bec302-u1",
+      "unit": 1,
+      "title": "Unit 1: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Signal & Systems: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bec302-u2",
+      "unit": 2,
+      "title": "Unit 2: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Signal & Systems: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bec302-u3",
+      "unit": 3,
+      "title": "Unit 3: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Signal & Systems: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bec302-u4",
+      "unit": 4,
+      "title": "Unit 4: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Signal & Systems",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bec302-u5",
+      "unit": 5,
+      "title": "Unit 5: Signal & Systems — Comprehensive Study Notes",
+      "desc": "Signal & Systems Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Signal & Systems",
+      "subjectCode": "BEC302",
+      "course": "BTech",
+      "branch": "ECE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Signal & Systems",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BME101": [
+    {
+      "id": "bme101-u1",
+      "unit": 1,
+      "title": "Unit 1: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Thermodynamics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bme101-u2",
+      "unit": 2,
+      "title": "Unit 2: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Thermodynamics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bme101-u3",
+      "unit": 3,
+      "title": "Unit 3: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Thermodynamics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bme101-u4",
+      "unit": 4,
+      "title": "Unit 4: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Thermodynamics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bme101-u5",
+      "unit": 5,
+      "title": "Unit 5: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Thermodynamics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bme101": [
+    {
+      "id": "bme101-u1",
+      "unit": 1,
+      "title": "Unit 1: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Thermodynamics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bme101-u2",
+      "unit": 2,
+      "title": "Unit 2: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Thermodynamics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bme101-u3",
+      "unit": 3,
+      "title": "Unit 3: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Thermodynamics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bme101-u4",
+      "unit": 4,
+      "title": "Unit 4: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Thermodynamics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bme101-u5",
+      "unit": 5,
+      "title": "Unit 5: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Thermodynamics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BME-101": [
+    {
+      "id": "bme101-u1",
+      "unit": 1,
+      "title": "Unit 1: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Thermodynamics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bme101-u2",
+      "unit": 2,
+      "title": "Unit 2: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Thermodynamics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bme101-u3",
+      "unit": 3,
+      "title": "Unit 3: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Thermodynamics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bme101-u4",
+      "unit": 4,
+      "title": "Unit 4: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Thermodynamics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bme101-u5",
+      "unit": 5,
+      "title": "Unit 5: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Thermodynamics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bme-101": [
+    {
+      "id": "bme101-u1",
+      "unit": 1,
+      "title": "Unit 1: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Thermodynamics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bme101-u2",
+      "unit": 2,
+      "title": "Unit 2: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Thermodynamics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bme101-u3",
+      "unit": 3,
+      "title": "Unit 3: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Thermodynamics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bme101-u4",
+      "unit": 4,
+      "title": "Unit 4: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Thermodynamics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bme101-u5",
+      "unit": 5,
+      "title": "Unit 5: Thermodynamics — Comprehensive Study Notes",
+      "desc": "Thermodynamics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Thermodynamics",
+      "subjectCode": "BME101",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Thermodynamics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BME301": [
+    {
+      "id": "bme301-u1",
+      "unit": 1,
+      "title": "Unit 1: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Fluid Mechanics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bme301-u2",
+      "unit": 2,
+      "title": "Unit 2: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Fluid Mechanics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bme301-u3",
+      "unit": 3,
+      "title": "Unit 3: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Fluid Mechanics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bme301-u4",
+      "unit": 4,
+      "title": "Unit 4: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Fluid Mechanics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bme301-u5",
+      "unit": 5,
+      "title": "Unit 5: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Fluid Mechanics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bme301": [
+    {
+      "id": "bme301-u1",
+      "unit": 1,
+      "title": "Unit 1: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Fluid Mechanics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bme301-u2",
+      "unit": 2,
+      "title": "Unit 2: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Fluid Mechanics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bme301-u3",
+      "unit": 3,
+      "title": "Unit 3: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Fluid Mechanics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bme301-u4",
+      "unit": 4,
+      "title": "Unit 4: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Fluid Mechanics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bme301-u5",
+      "unit": 5,
+      "title": "Unit 5: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Fluid Mechanics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BME-301": [
+    {
+      "id": "bme301-u1",
+      "unit": 1,
+      "title": "Unit 1: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Fluid Mechanics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bme301-u2",
+      "unit": 2,
+      "title": "Unit 2: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Fluid Mechanics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bme301-u3",
+      "unit": 3,
+      "title": "Unit 3: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Fluid Mechanics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bme301-u4",
+      "unit": 4,
+      "title": "Unit 4: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Fluid Mechanics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bme301-u5",
+      "unit": 5,
+      "title": "Unit 5: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Fluid Mechanics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bme-301": [
+    {
+      "id": "bme301-u1",
+      "unit": 1,
+      "title": "Unit 1: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Fluid Mechanics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bme301-u2",
+      "unit": 2,
+      "title": "Unit 2: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Fluid Mechanics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bme301-u3",
+      "unit": 3,
+      "title": "Unit 3: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Fluid Mechanics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bme301-u4",
+      "unit": 4,
+      "title": "Unit 4: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Fluid Mechanics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bme301-u5",
+      "unit": 5,
+      "title": "Unit 5: Fluid Mechanics — Comprehensive Study Notes",
+      "desc": "Fluid Mechanics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Fluid Mechanics",
+      "subjectCode": "BME301",
+      "course": "BTech",
+      "branch": "ME",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Fluid Mechanics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEE101": [
+    {
+      "id": "bee101-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electrical: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bee101-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electrical: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bee101-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electrical: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bee101-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electrical",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bee101-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electrical",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bee101": [
+    {
+      "id": "bee101-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electrical: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bee101-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electrical: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bee101-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electrical: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bee101-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electrical",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bee101-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electrical",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEE-101": [
+    {
+      "id": "bee101-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electrical: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bee101-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electrical: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bee101-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electrical: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bee101-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electrical",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bee101-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electrical",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bee-101": [
+    {
+      "id": "bee101-u1",
+      "unit": 1,
+      "title": "Unit 1: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YIlt31vl2BvNmd7c4xY_Fqh3F6hiZJRA/view?usp=sharing",
+      "topics": [
+        "Introduction to Basic Electrical: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bee101-u2",
+      "unit": 2,
+      "title": "Unit 2: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YBLTkKtUNmdkvMVRurAZPHhSteGxsV1K/view?usp=sharing",
+      "topics": [
+        "Foundations of Basic Electrical: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bee101-u3",
+      "unit": 3,
+      "title": "Unit 3: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YCVA9AgJWiK3_4_1m3Uyhydzxa3Hr8Up/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Basic Electrical: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bee101-u4",
+      "unit": 4,
+      "title": "Unit 4: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YE5Lq-uGA6wU93nmS3hTA6KuP1o8tqpr/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Basic Electrical",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bee101-u5",
+      "unit": 5,
+      "title": "Unit 5: Basic Electrical — Comprehensive Study Notes",
+      "desc": "Basic Electrical Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Basic Electrical",
+      "subjectCode": "BEE101",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1YEiyCqZWrrdDe8r3WChuYK6C4Tz65ONR/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Basic Electrical",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEE301": [
+    {
+      "id": "bee301-u1",
+      "unit": 1,
+      "title": "Unit 1: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "driveUrl": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "url": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "topics": [
+        "Introduction to Electrical Machines: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bee301-u2",
+      "unit": 2,
+      "title": "Unit 2: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "driveUrl": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "url": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "topics": [
+        "Foundations of Electrical Machines: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bee301-u3",
+      "unit": 3,
+      "title": "Unit 3: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Electrical Machines: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bee301-u4",
+      "unit": 4,
+      "title": "Unit 4: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Electrical Machines",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bee301-u5",
+      "unit": 5,
+      "title": "Unit 5: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Electrical Machines",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bee301": [
+    {
+      "id": "bee301-u1",
+      "unit": 1,
+      "title": "Unit 1: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "driveUrl": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "url": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "topics": [
+        "Introduction to Electrical Machines: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bee301-u2",
+      "unit": 2,
+      "title": "Unit 2: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "driveUrl": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "url": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "topics": [
+        "Foundations of Electrical Machines: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bee301-u3",
+      "unit": 3,
+      "title": "Unit 3: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Electrical Machines: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bee301-u4",
+      "unit": 4,
+      "title": "Unit 4: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Electrical Machines",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bee301-u5",
+      "unit": 5,
+      "title": "Unit 5: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Electrical Machines",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BEE-301": [
+    {
+      "id": "bee301-u1",
+      "unit": 1,
+      "title": "Unit 1: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "driveUrl": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "url": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "topics": [
+        "Introduction to Electrical Machines: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bee301-u2",
+      "unit": 2,
+      "title": "Unit 2: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "driveUrl": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "url": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "topics": [
+        "Foundations of Electrical Machines: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bee301-u3",
+      "unit": 3,
+      "title": "Unit 3: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Electrical Machines: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bee301-u4",
+      "unit": 4,
+      "title": "Unit 4: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Electrical Machines",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bee301-u5",
+      "unit": 5,
+      "title": "Unit 5: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Electrical Machines",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bee-301": [
+    {
+      "id": "bee301-u1",
+      "unit": 1,
+      "title": "Unit 1: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "driveUrl": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "url": "https://drive.google.com/file/d/1uaAW0OUyLRscZLQIpCU_5QnH_PngClhu/view",
+      "topics": [
+        "Introduction to Electrical Machines: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bee301-u2",
+      "unit": 2,
+      "title": "Unit 2: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "driveUrl": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "url": "https://drive.google.com/file/d/16byqHGZfIkoMEp2Aya6vslTRFQnX9zSc/view",
+      "topics": [
+        "Foundations of Electrical Machines: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bee301-u3",
+      "unit": 3,
+      "title": "Unit 3: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Electrical Machines: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bee301-u4",
+      "unit": 4,
+      "title": "Unit 4: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Electrical Machines",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bee301-u5",
+      "unit": 5,
+      "title": "Unit 5: Electrical Machines — Comprehensive Study Notes",
+      "desc": "Electrical Machines Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Electrical Machines",
+      "subjectCode": "BEE301",
+      "course": "BTech",
+      "branch": "EE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Electrical Machines",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCE101": [
+    {
+      "id": "bce101-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Mechanics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bce101-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Mechanics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bce101-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Mechanics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bce101-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Mechanics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bce101-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Mechanics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bce101": [
+    {
+      "id": "bce101-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Mechanics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bce101-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Mechanics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bce101-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Mechanics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bce101-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Mechanics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bce101-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Mechanics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCE-101": [
+    {
+      "id": "bce101-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Mechanics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bce101-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Mechanics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bce101-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Mechanics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bce101-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Mechanics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bce101-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Mechanics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bce-101": [
+    {
+      "id": "bce101-u1",
+      "unit": 1,
+      "title": "Unit 1: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Engineering Mechanics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bce101-u2",
+      "unit": 2,
+      "title": "Unit 2: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Engineering Mechanics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bce101-u3",
+      "unit": 3,
+      "title": "Unit 3: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Engineering Mechanics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bce101-u4",
+      "unit": 4,
+      "title": "Unit 4: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Engineering Mechanics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bce101-u5",
+      "unit": 5,
+      "title": "Unit 5: Engineering Mechanics — Comprehensive Study Notes",
+      "desc": "Engineering Mechanics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Engineering Mechanics",
+      "subjectCode": "BCE101",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Engineering Mechanics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCE301": [
+    {
+      "id": "bce301-u1",
+      "unit": 1,
+      "title": "Unit 1: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Building Materials: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bce301-u2",
+      "unit": 2,
+      "title": "Unit 2: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Building Materials: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bce301-u3",
+      "unit": 3,
+      "title": "Unit 3: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Building Materials: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bce301-u4",
+      "unit": 4,
+      "title": "Unit 4: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Building Materials",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bce301-u5",
+      "unit": 5,
+      "title": "Unit 5: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Building Materials",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bce301": [
+    {
+      "id": "bce301-u1",
+      "unit": 1,
+      "title": "Unit 1: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Building Materials: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bce301-u2",
+      "unit": 2,
+      "title": "Unit 2: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Building Materials: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bce301-u3",
+      "unit": 3,
+      "title": "Unit 3: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Building Materials: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bce301-u4",
+      "unit": 4,
+      "title": "Unit 4: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Building Materials",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bce301-u5",
+      "unit": 5,
+      "title": "Unit 5: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Building Materials",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCE-301": [
+    {
+      "id": "bce301-u1",
+      "unit": 1,
+      "title": "Unit 1: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Building Materials: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bce301-u2",
+      "unit": 2,
+      "title": "Unit 2: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Building Materials: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bce301-u3",
+      "unit": 3,
+      "title": "Unit 3: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Building Materials: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bce301-u4",
+      "unit": 4,
+      "title": "Unit 4: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Building Materials",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bce301-u5",
+      "unit": 5,
+      "title": "Unit 5: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Building Materials",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bce-301": [
+    {
+      "id": "bce301-u1",
+      "unit": 1,
+      "title": "Unit 1: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Building Materials: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bce301-u2",
+      "unit": 2,
+      "title": "Unit 2: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Building Materials: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bce301-u3",
+      "unit": 3,
+      "title": "Unit 3: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Building Materials: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bce301-u4",
+      "unit": 4,
+      "title": "Unit 4: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Building Materials",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bce301-u5",
+      "unit": 5,
+      "title": "Unit 5: Building Materials — Comprehensive Study Notes",
+      "desc": "Building Materials Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Building Materials",
+      "subjectCode": "BCE301",
+      "course": "BTech",
+      "branch": "CE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Building Materials",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCA101": [
+    {
+      "id": "bca101-u1",
+      "unit": 1,
+      "title": "Unit 1: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "topics": [
+        "Introduction to Mathematics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bca101-u2",
+      "unit": 2,
+      "title": "Unit 2: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "topics": [
+        "Foundations of Mathematics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bca101-u3",
+      "unit": 3,
+      "title": "Unit 3: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Mathematics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bca101-u4",
+      "unit": 4,
+      "title": "Unit 4: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Mathematics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bca101-u5",
+      "unit": 5,
+      "title": "Unit 5: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Mathematics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bca101": [
+    {
+      "id": "bca101-u1",
+      "unit": 1,
+      "title": "Unit 1: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "topics": [
+        "Introduction to Mathematics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bca101-u2",
+      "unit": 2,
+      "title": "Unit 2: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "topics": [
+        "Foundations of Mathematics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bca101-u3",
+      "unit": 3,
+      "title": "Unit 3: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Mathematics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bca101-u4",
+      "unit": 4,
+      "title": "Unit 4: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Mathematics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bca101-u5",
+      "unit": 5,
+      "title": "Unit 5: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Mathematics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCA-101": [
+    {
+      "id": "bca101-u1",
+      "unit": 1,
+      "title": "Unit 1: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "topics": [
+        "Introduction to Mathematics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bca101-u2",
+      "unit": 2,
+      "title": "Unit 2: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "topics": [
+        "Foundations of Mathematics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bca101-u3",
+      "unit": 3,
+      "title": "Unit 3: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Mathematics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bca101-u4",
+      "unit": 4,
+      "title": "Unit 4: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Mathematics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bca101-u5",
+      "unit": 5,
+      "title": "Unit 5: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Mathematics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bca-101": [
+    {
+      "id": "bca101-u1",
+      "unit": 1,
+      "title": "Unit 1: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dWJaWU1znFCrtuetz3858G93NOvZi3nv/view?usp=sharing",
+      "topics": [
+        "Introduction to Mathematics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bca101-u2",
+      "unit": 2,
+      "title": "Unit 2: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1dXlhWDxwYR9xoTVKyvsMB3QQuoyxxAPa/view?usp=sharing",
+      "topics": [
+        "Foundations of Mathematics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bca101-u3",
+      "unit": 3,
+      "title": "Unit 3: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1CpBpVTYeiV86CBpTlLNnQnNaYwlNs3Re/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Mathematics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bca101-u4",
+      "unit": 4,
+      "title": "Unit 4: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1hvHuSaw4UTCzfiBLckxy1jcjleuC6uDf/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Mathematics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bca101-u5",
+      "unit": 5,
+      "title": "Unit 5: Mathematics — Comprehensive Study Notes",
+      "desc": "Mathematics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Mathematics",
+      "subjectCode": "BCA101",
+      "course": "BCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1NGMAiXRZWp9OEjzNMBX7BdiGUl_Mrb9e/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Mathematics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCA201": [
+    {
+      "id": "bca201-u1",
+      "unit": 1,
+      "title": "Unit 1: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "topics": [
+        "Introduction to Data Structures: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bca201-u2",
+      "unit": 2,
+      "title": "Unit 2: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "topics": [
+        "Foundations of Data Structures: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bca201-u3",
+      "unit": 3,
+      "title": "Unit 3: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Data Structures: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bca201-u4",
+      "unit": 4,
+      "title": "Unit 4: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Data Structures",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bca201-u5",
+      "unit": 5,
+      "title": "Unit 5: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Data Structures",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bca201": [
+    {
+      "id": "bca201-u1",
+      "unit": 1,
+      "title": "Unit 1: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "topics": [
+        "Introduction to Data Structures: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bca201-u2",
+      "unit": 2,
+      "title": "Unit 2: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "topics": [
+        "Foundations of Data Structures: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bca201-u3",
+      "unit": 3,
+      "title": "Unit 3: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Data Structures: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bca201-u4",
+      "unit": 4,
+      "title": "Unit 4: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Data Structures",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bca201-u5",
+      "unit": 5,
+      "title": "Unit 5: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Data Structures",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BCA-201": [
+    {
+      "id": "bca201-u1",
+      "unit": 1,
+      "title": "Unit 1: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "topics": [
+        "Introduction to Data Structures: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bca201-u2",
+      "unit": 2,
+      "title": "Unit 2: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "topics": [
+        "Foundations of Data Structures: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bca201-u3",
+      "unit": 3,
+      "title": "Unit 3: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Data Structures: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bca201-u4",
+      "unit": 4,
+      "title": "Unit 4: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Data Structures",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bca201-u5",
+      "unit": 5,
+      "title": "Unit 5: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Data Structures",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bca-201": [
+    {
+      "id": "bca201-u1",
+      "unit": 1,
+      "title": "Unit 1: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "topics": [
+        "Introduction to Data Structures: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bca201-u2",
+      "unit": 2,
+      "title": "Unit 2: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "topics": [
+        "Foundations of Data Structures: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bca201-u3",
+      "unit": 3,
+      "title": "Unit 3: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Data Structures: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bca201-u4",
+      "unit": 4,
+      "title": "Unit 4: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Data Structures",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bca201-u5",
+      "unit": 5,
+      "title": "Unit 5: Data Structures — Comprehensive Study Notes",
+      "desc": "Data Structures Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Data Structures",
+      "subjectCode": "BCA201",
+      "course": "BCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Data Structures",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS101": [
+    {
+      "id": "mcs101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Data Structures: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Data Structures: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Data Structures: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Data Structures",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Data Structures",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs101": [
+    {
+      "id": "mcs101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Data Structures: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Data Structures: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Data Structures: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Data Structures",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Data Structures",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS-101": [
+    {
+      "id": "mcs101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Data Structures: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Data Structures: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Data Structures: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Data Structures",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Data Structures",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs-101": [
+    {
+      "id": "mcs101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1IdTOsMKS5kWWoTADFJ2iXoPEFwwqj0z3/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Data Structures: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fCl_aDPsBsi8dQ9wh-ddg0w3zCPZTZ8V/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Data Structures: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_7S4Otc0iJp09Ko94vU5kskRObrh25f/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Data Structures: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1fDD1wqb7Osd2TId25KVNnPYfEqXfwUx7/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Data Structures",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Data Structures — Comprehensive Study Notes",
+      "desc": "Advanced Data Structures Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Data Structures",
+      "subjectCode": "MCS101",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1f6R59lwqMKPbNk0htt-di1j3vUQQ2KSp/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Data Structures",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS102": [
+    {
+      "id": "mcs102-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Algorithms: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs102-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Algorithms: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs102-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Algorithms: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs102-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Algorithms",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs102-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Algorithms",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs102": [
+    {
+      "id": "mcs102-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Algorithms: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs102-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Algorithms: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs102-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Algorithms: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs102-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Algorithms",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs102-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Algorithms",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS-102": [
+    {
+      "id": "mcs102-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Algorithms: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs102-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Algorithms: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs102-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Algorithms: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs102-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Algorithms",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs102-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Algorithms",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs-102": [
+    {
+      "id": "mcs102-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Algorithms: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs102-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Algorithms: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs102-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Algorithms: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs102-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Algorithms",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs102-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Algorithms — Comprehensive Study Notes",
+      "desc": "Advanced Algorithms Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Algorithms",
+      "subjectCode": "MCS102",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Algorithms",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS103": [
+    {
+      "id": "mcs103-u1",
+      "unit": 1,
+      "title": "Unit 1: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "topics": [
+        "Introduction to Machine Learning: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs103-u2",
+      "unit": 2,
+      "title": "Unit 2: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "topics": [
+        "Foundations of Machine Learning: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs103-u3",
+      "unit": 3,
+      "title": "Unit 3: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Machine Learning: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs103-u4",
+      "unit": 4,
+      "title": "Unit 4: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Machine Learning",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs103-u5",
+      "unit": 5,
+      "title": "Unit 5: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Machine Learning",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs103": [
+    {
+      "id": "mcs103-u1",
+      "unit": 1,
+      "title": "Unit 1: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "topics": [
+        "Introduction to Machine Learning: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs103-u2",
+      "unit": 2,
+      "title": "Unit 2: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "topics": [
+        "Foundations of Machine Learning: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs103-u3",
+      "unit": 3,
+      "title": "Unit 3: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Machine Learning: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs103-u4",
+      "unit": 4,
+      "title": "Unit 4: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Machine Learning",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs103-u5",
+      "unit": 5,
+      "title": "Unit 5: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Machine Learning",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS-103": [
+    {
+      "id": "mcs103-u1",
+      "unit": 1,
+      "title": "Unit 1: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "topics": [
+        "Introduction to Machine Learning: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs103-u2",
+      "unit": 2,
+      "title": "Unit 2: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "topics": [
+        "Foundations of Machine Learning: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs103-u3",
+      "unit": 3,
+      "title": "Unit 3: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Machine Learning: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs103-u4",
+      "unit": 4,
+      "title": "Unit 4: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Machine Learning",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs103-u5",
+      "unit": 5,
+      "title": "Unit 5: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Machine Learning",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs-103": [
+    {
+      "id": "mcs103-u1",
+      "unit": 1,
+      "title": "Unit 1: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1V4Xvmp5BYyTVtxteufWdJFjVgXKX3cti/view?usp=sharing",
+      "topics": [
+        "Introduction to Machine Learning: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs103-u2",
+      "unit": 2,
+      "title": "Unit 2: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/13R_q8ebjejJEsOxyLL07jv6LDAhPnZJh/view?usp=sharing",
+      "topics": [
+        "Foundations of Machine Learning: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs103-u3",
+      "unit": 3,
+      "title": "Unit 3: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1d4wQcIO1gS_6bHy3ZS8Q5CMju7UvKCAG/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Machine Learning: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs103-u4",
+      "unit": 4,
+      "title": "Unit 4: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1BqEAboqEr2kWJl9UfeVJZZoOi-TEQeQ6/view?usp=sharing",
+      "topics": [
+        "Advanced Systems & Frameworks in Machine Learning",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs103-u5",
+      "unit": 5,
+      "title": "Unit 5: Machine Learning — Comprehensive Study Notes",
+      "desc": "Machine Learning Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Machine Learning",
+      "subjectCode": "MCS103",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11WCtF3PxABqvM0jaJjMm8qTnCW6RJ4wq/view?usp=sharing",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Machine Learning",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS104": [
+    {
+      "id": "mcs104-u1",
+      "unit": 1,
+      "title": "Unit 1: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "driveUrl": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "url": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "topics": [
+        "Introduction to Research Methodology: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs104-u2",
+      "unit": 2,
+      "title": "Unit 2: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "driveUrl": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "url": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "topics": [
+        "Foundations of Research Methodology: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs104-u3",
+      "unit": 3,
+      "title": "Unit 3: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "driveUrl": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "url": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "topics": [
+        "Intermediate Methods in Research Methodology: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs104-u4",
+      "unit": 4,
+      "title": "Unit 4: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "driveUrl": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "url": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Research Methodology",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs104-u5",
+      "unit": 5,
+      "title": "Unit 5: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "driveUrl": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "url": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Research Methodology",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs104": [
+    {
+      "id": "mcs104-u1",
+      "unit": 1,
+      "title": "Unit 1: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "driveUrl": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "url": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "topics": [
+        "Introduction to Research Methodology: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs104-u2",
+      "unit": 2,
+      "title": "Unit 2: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "driveUrl": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "url": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "topics": [
+        "Foundations of Research Methodology: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs104-u3",
+      "unit": 3,
+      "title": "Unit 3: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "driveUrl": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "url": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "topics": [
+        "Intermediate Methods in Research Methodology: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs104-u4",
+      "unit": 4,
+      "title": "Unit 4: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "driveUrl": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "url": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Research Methodology",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs104-u5",
+      "unit": 5,
+      "title": "Unit 5: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "driveUrl": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "url": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Research Methodology",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS-104": [
+    {
+      "id": "mcs104-u1",
+      "unit": 1,
+      "title": "Unit 1: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "driveUrl": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "url": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "topics": [
+        "Introduction to Research Methodology: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs104-u2",
+      "unit": 2,
+      "title": "Unit 2: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "driveUrl": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "url": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "topics": [
+        "Foundations of Research Methodology: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs104-u3",
+      "unit": 3,
+      "title": "Unit 3: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "driveUrl": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "url": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "topics": [
+        "Intermediate Methods in Research Methodology: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs104-u4",
+      "unit": 4,
+      "title": "Unit 4: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "driveUrl": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "url": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Research Methodology",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs104-u5",
+      "unit": 5,
+      "title": "Unit 5: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "driveUrl": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "url": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Research Methodology",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs-104": [
+    {
+      "id": "mcs104-u1",
+      "unit": 1,
+      "title": "Unit 1: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "driveUrl": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "url": "https://drive.google.com/file/d/13hxvyD8HGsJTMT45zJE2Cq6ga4Qi9OyX/view",
+      "topics": [
+        "Introduction to Research Methodology: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs104-u2",
+      "unit": 2,
+      "title": "Unit 2: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "driveUrl": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "url": "https://drive.google.com/file/d/1yE-Na34PPrWbePsCtPdRGVBFL8zXAkyj/view",
+      "topics": [
+        "Foundations of Research Methodology: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs104-u3",
+      "unit": 3,
+      "title": "Unit 3: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "driveUrl": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "url": "https://drive.google.com/file/d/1teEzbcOExBw57dG0ZEp_koxDdMxCGnsx/view",
+      "topics": [
+        "Intermediate Methods in Research Methodology: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs104-u4",
+      "unit": 4,
+      "title": "Unit 4: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "driveUrl": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "url": "https://drive.google.com/file/d/10lCS5nVxhjtKReLwTCuO6kj5oRsHjJCg/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Research Methodology",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs104-u5",
+      "unit": 5,
+      "title": "Unit 5: Research Methodology — Comprehensive Study Notes",
+      "desc": "Research Methodology Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Research Methodology",
+      "subjectCode": "MCS104",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "driveUrl": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "url": "https://drive.google.com/file/d/1AtR0QUv4mEzh2HFxwQO7t4is-hrw-ueg/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Research Methodology",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS201": [
+    {
+      "id": "mcs201-u1",
+      "unit": 1,
+      "title": "Unit 1: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Dissertation Phase-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs201-u2",
+      "unit": 2,
+      "title": "Unit 2: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Dissertation Phase-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs201-u3",
+      "unit": 3,
+      "title": "Unit 3: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Dissertation Phase-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs201-u4",
+      "unit": 4,
+      "title": "Unit 4: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Dissertation Phase-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs201-u5",
+      "unit": 5,
+      "title": "Unit 5: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Dissertation Phase-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs201": [
+    {
+      "id": "mcs201-u1",
+      "unit": 1,
+      "title": "Unit 1: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Dissertation Phase-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs201-u2",
+      "unit": 2,
+      "title": "Unit 2: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Dissertation Phase-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs201-u3",
+      "unit": 3,
+      "title": "Unit 3: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Dissertation Phase-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs201-u4",
+      "unit": 4,
+      "title": "Unit 4: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Dissertation Phase-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs201-u5",
+      "unit": 5,
+      "title": "Unit 5: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Dissertation Phase-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS-201": [
+    {
+      "id": "mcs201-u1",
+      "unit": 1,
+      "title": "Unit 1: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Dissertation Phase-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs201-u2",
+      "unit": 2,
+      "title": "Unit 2: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Dissertation Phase-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs201-u3",
+      "unit": 3,
+      "title": "Unit 3: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Dissertation Phase-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs201-u4",
+      "unit": 4,
+      "title": "Unit 4: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Dissertation Phase-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs201-u5",
+      "unit": 5,
+      "title": "Unit 5: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Dissertation Phase-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs-201": [
+    {
+      "id": "mcs201-u1",
+      "unit": 1,
+      "title": "Unit 1: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Dissertation Phase-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs201-u2",
+      "unit": 2,
+      "title": "Unit 2: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Dissertation Phase-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs201-u3",
+      "unit": 3,
+      "title": "Unit 3: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Dissertation Phase-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs201-u4",
+      "unit": 4,
+      "title": "Unit 4: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Dissertation Phase-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs201-u5",
+      "unit": 5,
+      "title": "Unit 5: Dissertation Phase-I — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-I",
+      "subjectCode": "MCS201",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Dissertation Phase-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS202": [
+    {
+      "id": "mcs202-u1",
+      "unit": 1,
+      "title": "Unit 1: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Dissertation Phase-II: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs202-u2",
+      "unit": 2,
+      "title": "Unit 2: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Dissertation Phase-II: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs202-u3",
+      "unit": 3,
+      "title": "Unit 3: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Dissertation Phase-II: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs202-u4",
+      "unit": 4,
+      "title": "Unit 4: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Dissertation Phase-II",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs202-u5",
+      "unit": 5,
+      "title": "Unit 5: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Dissertation Phase-II",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs202": [
+    {
+      "id": "mcs202-u1",
+      "unit": 1,
+      "title": "Unit 1: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Dissertation Phase-II: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs202-u2",
+      "unit": 2,
+      "title": "Unit 2: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Dissertation Phase-II: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs202-u3",
+      "unit": 3,
+      "title": "Unit 3: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Dissertation Phase-II: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs202-u4",
+      "unit": 4,
+      "title": "Unit 4: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Dissertation Phase-II",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs202-u5",
+      "unit": 5,
+      "title": "Unit 5: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Dissertation Phase-II",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCS-202": [
+    {
+      "id": "mcs202-u1",
+      "unit": 1,
+      "title": "Unit 1: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Dissertation Phase-II: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs202-u2",
+      "unit": 2,
+      "title": "Unit 2: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Dissertation Phase-II: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs202-u3",
+      "unit": 3,
+      "title": "Unit 3: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Dissertation Phase-II: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs202-u4",
+      "unit": 4,
+      "title": "Unit 4: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Dissertation Phase-II",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs202-u5",
+      "unit": 5,
+      "title": "Unit 5: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Dissertation Phase-II",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mcs-202": [
+    {
+      "id": "mcs202-u1",
+      "unit": 1,
+      "title": "Unit 1: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Dissertation Phase-II: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mcs202-u2",
+      "unit": 2,
+      "title": "Unit 2: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Dissertation Phase-II: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mcs202-u3",
+      "unit": 3,
+      "title": "Unit 3: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Dissertation Phase-II: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mcs202-u4",
+      "unit": 4,
+      "title": "Unit 4: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Dissertation Phase-II",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mcs202-u5",
+      "unit": 5,
+      "title": "Unit 5: Dissertation Phase-II — Comprehensive Study Notes",
+      "desc": "Dissertation Phase-II Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Dissertation Phase-II",
+      "subjectCode": "MCS202",
+      "course": "MTech",
+      "branch": "CSE",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Dissertation Phase-II",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MEC101": [
+    {
+      "id": "mec101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Digital Communication: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mec101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "driveUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "url": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "topics": [
+        "Foundations of Advanced Digital Communication: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mec101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "driveUrl": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "url": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "topics": [
+        "Intermediate Methods in Advanced Digital Communication: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mec101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "driveUrl": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "url": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Digital Communication",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mec101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "driveUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "url": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Digital Communication",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mec101": [
+    {
+      "id": "mec101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Digital Communication: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mec101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "driveUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "url": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "topics": [
+        "Foundations of Advanced Digital Communication: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mec101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "driveUrl": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "url": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "topics": [
+        "Intermediate Methods in Advanced Digital Communication: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mec101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "driveUrl": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "url": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Digital Communication",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mec101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "driveUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "url": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Digital Communication",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MEC-101": [
+    {
+      "id": "mec101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Digital Communication: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mec101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "driveUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "url": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "topics": [
+        "Foundations of Advanced Digital Communication: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mec101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "driveUrl": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "url": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "topics": [
+        "Intermediate Methods in Advanced Digital Communication: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mec101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "driveUrl": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "url": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Digital Communication",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mec101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "driveUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "url": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Digital Communication",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mec-101": [
+    {
+      "id": "mec101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/11_vzLitRUYLDo7m1fDaSF9AmnzQo0tMU/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Digital Communication: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mec101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "driveUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "url": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "topics": [
+        "Foundations of Advanced Digital Communication: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mec101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "driveUrl": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "url": "https://drive.google.com/file/d/1a5YY1nTI2nZP8rB569sHeEXiHq0jHaft/view",
+      "topics": [
+        "Intermediate Methods in Advanced Digital Communication: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mec101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "driveUrl": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "url": "https://drive.google.com/file/d/1H1UcvPg-P0mXeSia9aLSmNMbpyDMPpUu/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Digital Communication",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mec101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Digital Communication — Comprehensive Study Notes",
+      "desc": "Advanced Digital Communication Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Digital Communication",
+      "subjectCode": "MEC101",
+      "course": "MTech",
+      "branch": "ECE",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "driveUrl": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "url": "https://drive.google.com/file/d/1uUTwIvTYKY7YeEQmLnzOSJR0QcRcUg6D/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Digital Communication",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCA101": [
+    {
+      "id": "mca101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Mathematics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Mathematics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Mathematics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Mathematics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Mathematics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mca101": [
+    {
+      "id": "mca101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Mathematics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Mathematics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Mathematics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Mathematics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Mathematics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCA-101": [
+    {
+      "id": "mca101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Mathematics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Mathematics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Mathematics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Mathematics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Mathematics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mca-101": [
+    {
+      "id": "mca101-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Mathematics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca101-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Mathematics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca101-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Mathematics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca101-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Mathematics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca101-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Mathematics — Comprehensive Study Notes",
+      "desc": "Advanced Mathematics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Mathematics",
+      "subjectCode": "MCA101",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Mathematics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCA102": [
+    {
+      "id": "mca102-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced C Programming: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca102-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced C Programming: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca102-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced C Programming: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca102-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced C Programming",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca102-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced C Programming",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mca102": [
+    {
+      "id": "mca102-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced C Programming: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca102-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced C Programming: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca102-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced C Programming: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca102-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced C Programming",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca102-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced C Programming",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCA-102": [
+    {
+      "id": "mca102-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced C Programming: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca102-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced C Programming: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca102-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced C Programming: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca102-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced C Programming",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca102-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced C Programming",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mca-102": [
+    {
+      "id": "mca102-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced C Programming: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca102-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced C Programming: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca102-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced C Programming: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca102-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced C Programming",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca102-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced C Programming — Comprehensive Study Notes",
+      "desc": "Advanced C Programming Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced C Programming",
+      "subjectCode": "MCA102",
+      "course": "MCA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced C Programming",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCA201": [
+    {
+      "id": "mca201-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Java: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca201-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Java: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca201-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Java: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca201-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Java",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca201-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Java",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mca201": [
+    {
+      "id": "mca201-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Java: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca201-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Java: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca201-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Java: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca201-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Java",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca201-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Java",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCA-201": [
+    {
+      "id": "mca201-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Java: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca201-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Java: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca201-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Java: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca201-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Java",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca201-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Java",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mca-201": [
+    {
+      "id": "mca201-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced Java: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca201-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced Java: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca201-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced Java: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca201-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced Java",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca201-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced Java — Comprehensive Study Notes",
+      "desc": "Advanced Java Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced Java",
+      "subjectCode": "MCA201",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced Java",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCA202": [
+    {
+      "id": "mca202-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced DBMS: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca202-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced DBMS: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca202-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced DBMS: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca202-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced DBMS",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca202-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced DBMS",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mca202": [
+    {
+      "id": "mca202-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced DBMS: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca202-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced DBMS: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca202-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced DBMS: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca202-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced DBMS",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca202-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced DBMS",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MCA-202": [
+    {
+      "id": "mca202-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced DBMS: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca202-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced DBMS: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca202-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced DBMS: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca202-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced DBMS",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca202-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced DBMS",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mca-202": [
+    {
+      "id": "mca202-u1",
+      "unit": 1,
+      "title": "Unit 1: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Advanced DBMS: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mca202-u2",
+      "unit": 2,
+      "title": "Unit 2: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Advanced DBMS: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mca202-u3",
+      "unit": 3,
+      "title": "Unit 3: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Advanced DBMS: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mca202-u4",
+      "unit": 4,
+      "title": "Unit 4: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Advanced DBMS",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mca202-u5",
+      "unit": 5,
+      "title": "Unit 5: Advanced DBMS — Comprehensive Study Notes",
+      "desc": "Advanced DBMS Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Advanced DBMS",
+      "subjectCode": "MCA202",
+      "course": "MCA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Advanced DBMS",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA101": [
+    {
+      "id": "mba101-u1",
+      "unit": 1,
+      "title": "Unit 1: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Management Principles: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba101-u2",
+      "unit": 2,
+      "title": "Unit 2: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Management Principles: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba101-u3",
+      "unit": 3,
+      "title": "Unit 3: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Management Principles: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba101-u4",
+      "unit": 4,
+      "title": "Unit 4: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Management Principles",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba101-u5",
+      "unit": 5,
+      "title": "Unit 5: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Management Principles",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba101": [
+    {
+      "id": "mba101-u1",
+      "unit": 1,
+      "title": "Unit 1: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Management Principles: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba101-u2",
+      "unit": 2,
+      "title": "Unit 2: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Management Principles: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba101-u3",
+      "unit": 3,
+      "title": "Unit 3: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Management Principles: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba101-u4",
+      "unit": 4,
+      "title": "Unit 4: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Management Principles",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba101-u5",
+      "unit": 5,
+      "title": "Unit 5: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Management Principles",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA-101": [
+    {
+      "id": "mba101-u1",
+      "unit": 1,
+      "title": "Unit 1: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Management Principles: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba101-u2",
+      "unit": 2,
+      "title": "Unit 2: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Management Principles: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba101-u3",
+      "unit": 3,
+      "title": "Unit 3: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Management Principles: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba101-u4",
+      "unit": 4,
+      "title": "Unit 4: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Management Principles",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba101-u5",
+      "unit": 5,
+      "title": "Unit 5: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Management Principles",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba-101": [
+    {
+      "id": "mba101-u1",
+      "unit": 1,
+      "title": "Unit 1: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Management Principles: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba101-u2",
+      "unit": 2,
+      "title": "Unit 2: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Management Principles: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba101-u3",
+      "unit": 3,
+      "title": "Unit 3: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Management Principles: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba101-u4",
+      "unit": 4,
+      "title": "Unit 4: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Management Principles",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba101-u5",
+      "unit": 5,
+      "title": "Unit 5: Management Principles — Comprehensive Study Notes",
+      "desc": "Management Principles Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Management Principles",
+      "subjectCode": "MBA101",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Management Principles",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA102": [
+    {
+      "id": "mba102-u1",
+      "unit": 1,
+      "title": "Unit 1: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "driveUrl": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "url": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "topics": [
+        "Introduction to Marketing Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba102-u2",
+      "unit": 2,
+      "title": "Unit 2: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "driveUrl": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "url": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "topics": [
+        "Foundations of Marketing Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba102-u3",
+      "unit": 3,
+      "title": "Unit 3: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "driveUrl": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "url": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "topics": [
+        "Intermediate Methods in Marketing Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba102-u4",
+      "unit": 4,
+      "title": "Unit 4: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "driveUrl": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "url": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Marketing Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba102-u5",
+      "unit": 5,
+      "title": "Unit 5: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "driveUrl": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "url": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Marketing Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba102": [
+    {
+      "id": "mba102-u1",
+      "unit": 1,
+      "title": "Unit 1: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "driveUrl": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "url": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "topics": [
+        "Introduction to Marketing Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba102-u2",
+      "unit": 2,
+      "title": "Unit 2: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "driveUrl": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "url": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "topics": [
+        "Foundations of Marketing Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba102-u3",
+      "unit": 3,
+      "title": "Unit 3: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "driveUrl": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "url": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "topics": [
+        "Intermediate Methods in Marketing Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba102-u4",
+      "unit": 4,
+      "title": "Unit 4: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "driveUrl": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "url": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Marketing Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba102-u5",
+      "unit": 5,
+      "title": "Unit 5: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "driveUrl": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "url": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Marketing Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA-102": [
+    {
+      "id": "mba102-u1",
+      "unit": 1,
+      "title": "Unit 1: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "driveUrl": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "url": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "topics": [
+        "Introduction to Marketing Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba102-u2",
+      "unit": 2,
+      "title": "Unit 2: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "driveUrl": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "url": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "topics": [
+        "Foundations of Marketing Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba102-u3",
+      "unit": 3,
+      "title": "Unit 3: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "driveUrl": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "url": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "topics": [
+        "Intermediate Methods in Marketing Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba102-u4",
+      "unit": 4,
+      "title": "Unit 4: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "driveUrl": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "url": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Marketing Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba102-u5",
+      "unit": 5,
+      "title": "Unit 5: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "driveUrl": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "url": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Marketing Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba-102": [
+    {
+      "id": "mba102-u1",
+      "unit": 1,
+      "title": "Unit 1: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "driveUrl": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "url": "https://drive.google.com/file/d/1PDnQ9zPra0P7bAVS_o6jh56_ZtScMAbi/view",
+      "topics": [
+        "Introduction to Marketing Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba102-u2",
+      "unit": 2,
+      "title": "Unit 2: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "driveUrl": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "url": "https://drive.google.com/file/d/1t5JIpxy1587vQ5b1VYW3QpwJyWdDCdRB/view",
+      "topics": [
+        "Foundations of Marketing Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba102-u3",
+      "unit": 3,
+      "title": "Unit 3: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "driveUrl": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "url": "https://drive.google.com/file/d/1QRx3YMBFjRa6URSh7-VuifT--vzUvb8z/view",
+      "topics": [
+        "Intermediate Methods in Marketing Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba102-u4",
+      "unit": 4,
+      "title": "Unit 4: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "driveUrl": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "url": "https://drive.google.com/file/d/1iuGhdVWgIkN03FzxlrxLIxeqa50V46CK/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Marketing Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba102-u5",
+      "unit": 5,
+      "title": "Unit 5: Marketing Management — Comprehensive Study Notes",
+      "desc": "Marketing Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Marketing Management",
+      "subjectCode": "MBA102",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "driveUrl": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "url": "https://drive.google.com/file/d/1KPJqMVsxtbrzjgnRT8DzpbQxwYLnCC6w/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Marketing Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA103": [
+    {
+      "id": "mba103-u1",
+      "unit": 1,
+      "title": "Unit 1: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Financial Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba103-u2",
+      "unit": 2,
+      "title": "Unit 2: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Financial Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba103-u3",
+      "unit": 3,
+      "title": "Unit 3: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Financial Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba103-u4",
+      "unit": 4,
+      "title": "Unit 4: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Financial Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba103-u5",
+      "unit": 5,
+      "title": "Unit 5: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Financial Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba103": [
+    {
+      "id": "mba103-u1",
+      "unit": 1,
+      "title": "Unit 1: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Financial Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba103-u2",
+      "unit": 2,
+      "title": "Unit 2: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Financial Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba103-u3",
+      "unit": 3,
+      "title": "Unit 3: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Financial Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba103-u4",
+      "unit": 4,
+      "title": "Unit 4: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Financial Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba103-u5",
+      "unit": 5,
+      "title": "Unit 5: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Financial Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA-103": [
+    {
+      "id": "mba103-u1",
+      "unit": 1,
+      "title": "Unit 1: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Financial Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba103-u2",
+      "unit": 2,
+      "title": "Unit 2: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Financial Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba103-u3",
+      "unit": 3,
+      "title": "Unit 3: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Financial Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba103-u4",
+      "unit": 4,
+      "title": "Unit 4: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Financial Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba103-u5",
+      "unit": 5,
+      "title": "Unit 5: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Financial Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba-103": [
+    {
+      "id": "mba103-u1",
+      "unit": 1,
+      "title": "Unit 1: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Financial Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba103-u2",
+      "unit": 2,
+      "title": "Unit 2: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Financial Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba103-u3",
+      "unit": 3,
+      "title": "Unit 3: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Financial Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba103-u4",
+      "unit": 4,
+      "title": "Unit 4: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Financial Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba103-u5",
+      "unit": 5,
+      "title": "Unit 5: Financial Management — Comprehensive Study Notes",
+      "desc": "Financial Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Financial Management",
+      "subjectCode": "MBA103",
+      "course": "MBA",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Financial Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA201": [
+    {
+      "id": "mba201-u1",
+      "unit": 1,
+      "title": "Unit 1: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to HR Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba201-u2",
+      "unit": 2,
+      "title": "Unit 2: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of HR Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba201-u3",
+      "unit": 3,
+      "title": "Unit 3: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in HR Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba201-u4",
+      "unit": 4,
+      "title": "Unit 4: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in HR Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba201-u5",
+      "unit": 5,
+      "title": "Unit 5: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of HR Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba201": [
+    {
+      "id": "mba201-u1",
+      "unit": 1,
+      "title": "Unit 1: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to HR Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba201-u2",
+      "unit": 2,
+      "title": "Unit 2: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of HR Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba201-u3",
+      "unit": 3,
+      "title": "Unit 3: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in HR Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba201-u4",
+      "unit": 4,
+      "title": "Unit 4: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in HR Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba201-u5",
+      "unit": 5,
+      "title": "Unit 5: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of HR Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA-201": [
+    {
+      "id": "mba201-u1",
+      "unit": 1,
+      "title": "Unit 1: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to HR Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba201-u2",
+      "unit": 2,
+      "title": "Unit 2: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of HR Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba201-u3",
+      "unit": 3,
+      "title": "Unit 3: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in HR Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba201-u4",
+      "unit": 4,
+      "title": "Unit 4: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in HR Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba201-u5",
+      "unit": 5,
+      "title": "Unit 5: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of HR Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba-201": [
+    {
+      "id": "mba201-u1",
+      "unit": 1,
+      "title": "Unit 1: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to HR Management: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba201-u2",
+      "unit": 2,
+      "title": "Unit 2: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of HR Management: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba201-u3",
+      "unit": 3,
+      "title": "Unit 3: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in HR Management: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba201-u4",
+      "unit": 4,
+      "title": "Unit 4: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in HR Management",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba201-u5",
+      "unit": 5,
+      "title": "Unit 5: HR Management — Comprehensive Study Notes",
+      "desc": "HR Management Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "HR Management",
+      "subjectCode": "MBA201",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of HR Management",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA202": [
+    {
+      "id": "mba202-u1",
+      "unit": 1,
+      "title": "Unit 1: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Business Analytics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba202-u2",
+      "unit": 2,
+      "title": "Unit 2: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Business Analytics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba202-u3",
+      "unit": 3,
+      "title": "Unit 3: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Business Analytics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba202-u4",
+      "unit": 4,
+      "title": "Unit 4: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Business Analytics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba202-u5",
+      "unit": 5,
+      "title": "Unit 5: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Business Analytics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba202": [
+    {
+      "id": "mba202-u1",
+      "unit": 1,
+      "title": "Unit 1: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Business Analytics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba202-u2",
+      "unit": 2,
+      "title": "Unit 2: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Business Analytics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba202-u3",
+      "unit": 3,
+      "title": "Unit 3: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Business Analytics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba202-u4",
+      "unit": 4,
+      "title": "Unit 4: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Business Analytics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba202-u5",
+      "unit": 5,
+      "title": "Unit 5: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Business Analytics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "MBA-202": [
+    {
+      "id": "mba202-u1",
+      "unit": 1,
+      "title": "Unit 1: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Business Analytics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba202-u2",
+      "unit": 2,
+      "title": "Unit 2: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Business Analytics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba202-u3",
+      "unit": 3,
+      "title": "Unit 3: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Business Analytics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba202-u4",
+      "unit": 4,
+      "title": "Unit 4: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Business Analytics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba202-u5",
+      "unit": 5,
+      "title": "Unit 5: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Business Analytics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "mba-202": [
+    {
+      "id": "mba202-u1",
+      "unit": 1,
+      "title": "Unit 1: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Business Analytics: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "mba202-u2",
+      "unit": 2,
+      "title": "Unit 2: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Business Analytics: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "mba202-u3",
+      "unit": 3,
+      "title": "Unit 3: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Business Analytics: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "mba202-u4",
+      "unit": 4,
+      "title": "Unit 4: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Business Analytics",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "mba202-u5",
+      "unit": 5,
+      "title": "Unit 5: Business Analytics — Comprehensive Study Notes",
+      "desc": "Business Analytics Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Business Analytics",
+      "subjectCode": "MBA202",
+      "course": "MBA",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Business Analytics",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH101": [
+    {
+      "id": "bph101-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutics-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph101-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutics-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph101-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutics-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph101-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutics-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph101-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutics-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph101": [
+    {
+      "id": "bph101-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutics-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph101-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutics-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph101-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutics-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph101-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutics-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph101-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutics-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH-101": [
+    {
+      "id": "bph101-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutics-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph101-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutics-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph101-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutics-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph101-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutics-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph101-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutics-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph-101": [
+    {
+      "id": "bph101-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutics-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph101-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutics-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph101-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutics-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph101-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutics-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph101-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutics-I — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-I",
+      "subjectCode": "BPH101",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutics-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH102": [
+    {
+      "id": "bph102-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutical Chemistry: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph102-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutical Chemistry: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph102-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutical Chemistry: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph102-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutical Chemistry",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph102-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutical Chemistry",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph102": [
+    {
+      "id": "bph102-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutical Chemistry: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph102-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutical Chemistry: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph102-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutical Chemistry: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph102-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutical Chemistry",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph102-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutical Chemistry",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH-102": [
+    {
+      "id": "bph102-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutical Chemistry: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph102-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutical Chemistry: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph102-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutical Chemistry: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph102-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutical Chemistry",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph102-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutical Chemistry",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph-102": [
+    {
+      "id": "bph102-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutical Chemistry: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph102-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutical Chemistry: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph102-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutical Chemistry: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph102-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutical Chemistry",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph102-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutical Chemistry — Comprehensive Study Notes",
+      "desc": "Pharmaceutical Chemistry Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutical Chemistry",
+      "subjectCode": "BPH102",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutical Chemistry",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH103": [
+    {
+      "id": "bph103-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "driveUrl": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "url": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "topics": [
+        "Introduction to Pharmacognosy: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph103-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "driveUrl": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "url": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "topics": [
+        "Foundations of Pharmacognosy: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph103-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "driveUrl": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "url": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "topics": [
+        "Intermediate Methods in Pharmacognosy: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph103-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "driveUrl": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "url": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmacognosy",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph103-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "driveUrl": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "url": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmacognosy",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph103": [
+    {
+      "id": "bph103-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "driveUrl": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "url": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "topics": [
+        "Introduction to Pharmacognosy: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph103-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "driveUrl": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "url": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "topics": [
+        "Foundations of Pharmacognosy: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph103-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "driveUrl": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "url": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "topics": [
+        "Intermediate Methods in Pharmacognosy: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph103-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "driveUrl": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "url": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmacognosy",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph103-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "driveUrl": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "url": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmacognosy",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH-103": [
+    {
+      "id": "bph103-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "driveUrl": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "url": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "topics": [
+        "Introduction to Pharmacognosy: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph103-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "driveUrl": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "url": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "topics": [
+        "Foundations of Pharmacognosy: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph103-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "driveUrl": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "url": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "topics": [
+        "Intermediate Methods in Pharmacognosy: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph103-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "driveUrl": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "url": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmacognosy",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph103-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "driveUrl": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "url": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmacognosy",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph-103": [
+    {
+      "id": "bph103-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "driveUrl": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "url": "https://drive.google.com/file/d/1lI7NhW270L588j8Z6_6qFvsILhaV9N9j/view",
+      "topics": [
+        "Introduction to Pharmacognosy: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph103-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "driveUrl": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "url": "https://drive.google.com/file/d/1cRRtP4cyDIZy1cZjrNJPaL2VrxfvW4O-/view",
+      "topics": [
+        "Foundations of Pharmacognosy: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph103-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "driveUrl": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "url": "https://drive.google.com/file/d/1Wr1mwSJelcLWqp_mRZSzcnLqVc1dm9Eq/view",
+      "topics": [
+        "Intermediate Methods in Pharmacognosy: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph103-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "driveUrl": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "url": "https://drive.google.com/file/d/1q-tAPZsSzleEYlX14Vou20GFetCCU7SB/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmacognosy",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph103-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmacognosy — Comprehensive Study Notes",
+      "desc": "Pharmacognosy Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacognosy",
+      "subjectCode": "BPH103",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "1st Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "driveUrl": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "url": "https://drive.google.com/file/d/1_rthBqHbCiu2OBb4lU-fMWso6di0rdsY/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmacognosy",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH201": [
+    {
+      "id": "bph201-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmacology-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph201-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmacology-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph201-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmacology-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph201-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmacology-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph201-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmacology-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph201": [
+    {
+      "id": "bph201-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmacology-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph201-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmacology-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph201-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmacology-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph201-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmacology-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph201-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmacology-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH-201": [
+    {
+      "id": "bph201-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmacology-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph201-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmacology-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph201-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmacology-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph201-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmacology-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph201-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmacology-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph-201": [
+    {
+      "id": "bph201-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmacology-I: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph201-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmacology-I: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph201-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmacology-I: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph201-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmacology-I",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph201-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmacology-I — Comprehensive Study Notes",
+      "desc": "Pharmacology-I Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmacology-I",
+      "subjectCode": "BPH201",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmacology-I",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH202": [
+    {
+      "id": "bph202-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutics-II: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph202-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutics-II: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph202-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutics-II: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph202-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutics-II",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph202-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutics-II",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph202": [
+    {
+      "id": "bph202-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutics-II: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph202-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutics-II: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph202-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutics-II: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph202-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutics-II",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph202-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutics-II",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH-202": [
+    {
+      "id": "bph202-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutics-II: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph202-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutics-II: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph202-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutics-II: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph202-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutics-II",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph202-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutics-II",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph-202": [
+    {
+      "id": "bph202-u1",
+      "unit": 1,
+      "title": "Unit 1: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1gQDwFFSHGFZ4rCtz6A5oH3G3QN69azg0/view?usp=sharing",
+      "topics": [
+        "Introduction to Pharmaceutics-II: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph202-u2",
+      "unit": 2,
+      "title": "Unit 2: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1bYyof7duNc4wN3GB1EHZASjMAz4hGtiP/view?usp=sharing",
+      "topics": [
+        "Foundations of Pharmaceutics-II: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph202-u3",
+      "unit": 3,
+      "title": "Unit 3: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "driveUrl": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "url": "https://drive.google.com/file/d/1l-WyapphkHZCsoTEHc2pN_cMFkPMtLEn/view?usp=sharing",
+      "topics": [
+        "Intermediate Methods in Pharmaceutics-II: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph202-u4",
+      "unit": 4,
+      "title": "Unit 4: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "driveUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Pharmaceutics-II",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph202-u5",
+      "unit": 5,
+      "title": "Unit 5: Pharmaceutics-II — Comprehensive Study Notes",
+      "desc": "Pharmaceutics-II Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Pharmaceutics-II",
+      "subjectCode": "BPH202",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "2nd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "driveUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Pharmaceutics-II",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH301": [
+    {
+      "id": "bph301-u1",
+      "unit": 1,
+      "title": "Unit 1: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "driveUrl": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "url": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "topics": [
+        "Introduction to Medicinal Chemistry: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph301-u2",
+      "unit": 2,
+      "title": "Unit 2: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "driveUrl": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "url": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "topics": [
+        "Foundations of Medicinal Chemistry: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph301-u3",
+      "unit": 3,
+      "title": "Unit 3: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "driveUrl": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "url": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "topics": [
+        "Intermediate Methods in Medicinal Chemistry: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph301-u4",
+      "unit": 4,
+      "title": "Unit 4: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "driveUrl": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "url": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Medicinal Chemistry",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph301-u5",
+      "unit": 5,
+      "title": "Unit 5: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "driveUrl": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "url": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Medicinal Chemistry",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph301": [
+    {
+      "id": "bph301-u1",
+      "unit": 1,
+      "title": "Unit 1: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "driveUrl": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "url": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "topics": [
+        "Introduction to Medicinal Chemistry: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph301-u2",
+      "unit": 2,
+      "title": "Unit 2: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "driveUrl": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "url": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "topics": [
+        "Foundations of Medicinal Chemistry: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph301-u3",
+      "unit": 3,
+      "title": "Unit 3: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "driveUrl": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "url": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "topics": [
+        "Intermediate Methods in Medicinal Chemistry: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph301-u4",
+      "unit": 4,
+      "title": "Unit 4: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "driveUrl": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "url": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Medicinal Chemistry",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph301-u5",
+      "unit": 5,
+      "title": "Unit 5: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "driveUrl": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "url": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Medicinal Chemistry",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH-301": [
+    {
+      "id": "bph301-u1",
+      "unit": 1,
+      "title": "Unit 1: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "driveUrl": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "url": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "topics": [
+        "Introduction to Medicinal Chemistry: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph301-u2",
+      "unit": 2,
+      "title": "Unit 2: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "driveUrl": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "url": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "topics": [
+        "Foundations of Medicinal Chemistry: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph301-u3",
+      "unit": 3,
+      "title": "Unit 3: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "driveUrl": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "url": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "topics": [
+        "Intermediate Methods in Medicinal Chemistry: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph301-u4",
+      "unit": 4,
+      "title": "Unit 4: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "driveUrl": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "url": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Medicinal Chemistry",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph301-u5",
+      "unit": 5,
+      "title": "Unit 5: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "driveUrl": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "url": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Medicinal Chemistry",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph-301": [
+    {
+      "id": "bph301-u1",
+      "unit": 1,
+      "title": "Unit 1: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "driveUrl": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "url": "https://drive.google.com/file/d/1BDfDGCF8RUMZ5FRTSmWwwG2VdK6AHGEu/view",
+      "topics": [
+        "Introduction to Medicinal Chemistry: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph301-u2",
+      "unit": 2,
+      "title": "Unit 2: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "driveUrl": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "url": "https://drive.google.com/file/d/1WCJzuImcbfI07HNNOtxvdOB8JdlohS6F/view",
+      "topics": [
+        "Foundations of Medicinal Chemistry: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph301-u3",
+      "unit": 3,
+      "title": "Unit 3: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "driveUrl": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "url": "https://drive.google.com/file/d/1vJye4AXAXEBY0SxDQiPeklIuJWsKaZmO/view",
+      "topics": [
+        "Intermediate Methods in Medicinal Chemistry: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph301-u4",
+      "unit": 4,
+      "title": "Unit 4: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "driveUrl": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "url": "https://drive.google.com/file/d/16GKHTNa4qGbhwi4HLZgpQ8oTbdTANSYy/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Medicinal Chemistry",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph301-u5",
+      "unit": 5,
+      "title": "Unit 5: Medicinal Chemistry — Comprehensive Study Notes",
+      "desc": "Medicinal Chemistry Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Medicinal Chemistry",
+      "subjectCode": "BPH301",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "3rd Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "driveUrl": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "url": "https://drive.google.com/file/d/1nD-RIodh2VoxrXj02MOqtjpR8Kn0QC-V/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Medicinal Chemistry",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH401": [
+    {
+      "id": "bph401-u1",
+      "unit": 1,
+      "title": "Unit 1: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "driveUrl": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "url": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "topics": [
+        "Introduction to Industrial Pharmacy: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph401-u2",
+      "unit": 2,
+      "title": "Unit 2: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "driveUrl": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "url": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "topics": [
+        "Foundations of Industrial Pharmacy: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph401-u3",
+      "unit": 3,
+      "title": "Unit 3: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "driveUrl": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "url": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "topics": [
+        "Intermediate Methods in Industrial Pharmacy: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph401-u4",
+      "unit": 4,
+      "title": "Unit 4: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "driveUrl": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "url": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Industrial Pharmacy",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph401-u5",
+      "unit": 5,
+      "title": "Unit 5: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "driveUrl": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "url": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Industrial Pharmacy",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph401": [
+    {
+      "id": "bph401-u1",
+      "unit": 1,
+      "title": "Unit 1: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "driveUrl": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "url": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "topics": [
+        "Introduction to Industrial Pharmacy: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph401-u2",
+      "unit": 2,
+      "title": "Unit 2: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "driveUrl": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "url": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "topics": [
+        "Foundations of Industrial Pharmacy: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph401-u3",
+      "unit": 3,
+      "title": "Unit 3: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "driveUrl": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "url": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "topics": [
+        "Intermediate Methods in Industrial Pharmacy: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph401-u4",
+      "unit": 4,
+      "title": "Unit 4: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "driveUrl": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "url": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Industrial Pharmacy",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph401-u5",
+      "unit": 5,
+      "title": "Unit 5: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "driveUrl": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "url": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Industrial Pharmacy",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "BPH-401": [
+    {
+      "id": "bph401-u1",
+      "unit": 1,
+      "title": "Unit 1: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "driveUrl": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "url": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "topics": [
+        "Introduction to Industrial Pharmacy: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph401-u2",
+      "unit": 2,
+      "title": "Unit 2: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "driveUrl": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "url": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "topics": [
+        "Foundations of Industrial Pharmacy: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph401-u3",
+      "unit": 3,
+      "title": "Unit 3: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "driveUrl": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "url": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "topics": [
+        "Intermediate Methods in Industrial Pharmacy: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph401-u4",
+      "unit": 4,
+      "title": "Unit 4: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "driveUrl": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "url": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Industrial Pharmacy",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph401-u5",
+      "unit": 5,
+      "title": "Unit 5: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "driveUrl": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "url": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Industrial Pharmacy",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ],
+  "bph-401": [
+    {
+      "id": "bph401-u1",
+      "unit": 1,
+      "title": "Unit 1: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 1 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "2.4 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "driveUrl": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "url": "https://drive.google.com/file/d/1kPy4LUV5vOVEqi3oA6Gl9axsTprWE1QY/view",
+      "topics": [
+        "Introduction to Industrial Pharmacy: Fundamental Concepts & Theoretical Principles",
+        "Definitions, Standard Terminology & Core Architectural Models",
+        "Historical Evolution, Key Metrics & Industry Paradigms",
+        "Analytical Frameworks, Problem Formulation & Case Analysis"
+      ]
+    },
+    {
+      "id": "bph401-u2",
+      "unit": 2,
+      "title": "Unit 2: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 2 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "2.7 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "driveUrl": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "url": "https://drive.google.com/file/d/1rqhTd12ECBqZFHcQdZbXrNd18iqsdWwR/view",
+      "topics": [
+        "Foundations of Industrial Pharmacy: Component Analysis & Mechanisms",
+        "Mathematical Formulations, Theorems & Proof Techniques",
+        "Structural Elements, Design Heuristics & Practical Constraints",
+        "Comparative Studies, Performance Metrics & Implementation Strategies"
+      ]
+    },
+    {
+      "id": "bph401-u3",
+      "unit": 3,
+      "title": "Unit 3: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 3 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.0 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "driveUrl": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "url": "https://drive.google.com/file/d/1qHJ2yAjzmJDuOAzKygz4spYkZ2alx3vp/view",
+      "topics": [
+        "Intermediate Methods in Industrial Pharmacy: Processing & Operations",
+        "System Architecture, Interfacing & Protocol Handling",
+        "Design Patterns, Algorithmic Implementation & Optimization",
+        "Failure Modes, Recovery Protocols & Quality Assurance"
+      ]
+    },
+    {
+      "id": "bph401-u4",
+      "unit": 4,
+      "title": "Unit 4: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 4 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.3 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "driveUrl": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "url": "https://drive.google.com/file/d/1ZJ47dySFc1cA4AH1cTtnTWGhKjXkoV0f/view",
+      "topics": [
+        "Advanced Systems & Frameworks in Industrial Pharmacy",
+        "Complex Interdependencies, Modern Toolchains & Workflows",
+        "Scalability Considerations, Optimization & Resource Management",
+        "Case Studies, Real-World Benchmarking & Empirical Analysis"
+      ]
+    },
+    {
+      "id": "bph401-u5",
+      "unit": 5,
+      "title": "Unit 5: Industrial Pharmacy — Comprehensive Study Notes",
+      "desc": "Industrial Pharmacy Unit 5 curriculum: theoretical concepts, solved examples, and university questions.",
+      "subject": "Industrial Pharmacy",
+      "subjectCode": "BPH401",
+      "course": "BPharm",
+      "branch": "General",
+      "year": "4th Year",
+      "size": "3.6 MB",
+      "pdfUrl": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "driveUrl": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "url": "https://drive.google.com/file/d/1foBKhkZXZnYsXEtzY74Xod6Ol4BzfJrB/view",
+      "topics": [
+        "Emerging Trends, Frontiers & Comprehensive Applications of Industrial Pharmacy",
+        "Recent Research Directions, Modern Standards & Next-Gen Systems",
+        "Integration Pipelines, Security Considerations & Global Best Practices",
+        "Comprehensive Review, Previous Examination Problems & Solution Sets"
+      ]
+    }
+  ]
 };
 
 export default notesData;

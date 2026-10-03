@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
 import { BCA_NOTES_CATALOG } from '../data/bcaNotesData';
-import { notesData as localNotesData } from '@/data/notesData';
+import { notesData as localNotesData } from '../data/notesData';
 import { API_URL } from '../config/api';
 
 export default function CourseNotesView({ 

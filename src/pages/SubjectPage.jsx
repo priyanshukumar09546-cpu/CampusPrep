@@ -16,8 +16,8 @@ import {
 } from 'lucide-react';
 import { getAktuSyllabusForSubject } from '../data/aktuSyllabusData';
 import NoteViewerModal from '../components/NoteViewerModal';
-import { notesData as localNotesData } from '@/data/notesData';
-import { pyqsData as localPyqsData } from '@/data/pyqsData';
+import { notesData as localNotesData } from '../data/notesData';
+import { pyqsData as localPyqsData } from '../data/pyqsData';
 
 export default function SubjectPage({ 
   subjectData, 

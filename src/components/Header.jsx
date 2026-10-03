@@ -40,7 +40,7 @@ export default function Header({
           }}
         />
         <span className="text-[10px] md:text-xs font-semibold text-stone-500 tracking-wider mt-0.5">
-          BTech • BCA • MTech • MCA • MBA • BPharm
+          BTech • BCA • MTech • MCA • MBA • BPharm • BBA
         </span>
       </div>
 

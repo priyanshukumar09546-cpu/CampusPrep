@@ -17,7 +17,7 @@ import {
   Filter
 } from 'lucide-react';
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
-import { pyqsData as localPyqsData } from '@/data/pyqsData';
+import { pyqsData as localPyqsData } from '../data/pyqsData';
 import { API_URL } from '../config/api';
 
 // Strict Real Database Branches ONLY — zero fake branches

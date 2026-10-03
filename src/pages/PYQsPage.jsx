@@ -14,24 +14,85 @@ import CoursePyqsView from '../components/CoursePyqsView';
 import { COURSES } from '../data/coursesCatalog';
 import { API_URL } from '../config/api';
 import CourseSelectModal from '../components/CourseSelectModal';
-import { COURSE_CONFIG, AVAILABLE_COURSES, normalizeCourseKey, normalizeYearStr, getYearsForCourse } from '../data/courseMapping.ts';
-import { pyqsData as localPyqsData } from '@/data/pyqsData';
+import { pyqsData as localPyqsData, pyqsData } from '../data/pyqsData';
+import { notesData } from '../data/notesData';
+import { allCourses } from '../data/subjectsData';
 
-export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA', onSelectCourse }) {
-  // Course State: 'BCA' | 'BTech' | 'MCA' | 'MBA' | 'BPharma' | 'BBA' | 'MTech'
-  const [selectedCourse, setSelectedCourse] = useState(() => {
+// NORMALIZE FOR ALL 7 COURSES
+export const normalizeCourse = (param) => {
+  if (!param) return 'BTech';
+  const p = String(param).toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
+  const map = {
+    'btech': 'BTech',
+    'bca': 'BCA',
+    'mtech': 'MTech',
+    'mca': 'MCA',
+    'mba': 'MBA',
+    'bba': 'BBA',
+    'bpharm': 'BPharm',
+    'bpharma': 'BPharm',
+    'bpharmacy': 'BPharm'
+  };
+  return map[p] || 'BTech';
+};
+
+export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTech', onSelectCourse }) {
+  const getCourseParam = () => {
     try {
       const params = new URLSearchParams(window.location.search);
       const c = params.get('course');
-      if (c) return normalizeCourseKey(c);
+      if (c) return c;
       const saved = localStorage.getItem('campusprep_selected_course');
-      if (saved) return normalizeCourseKey(saved);
+      if (saved) return saved;
     } catch (e) {}
-    return normalizeCourseKey(initialCourse || 'BCA');
+    return initialCourse || 'BTech';
+  };
+
+  let courseParam = getCourseParam();
+  const normalizedCourse = normalizeCourse(courseParam);
+  const courses = allCourses || {};
+  const selectedCourseData = courses[normalizedCourse];
+
+  // Course State for backward compatibility with child components
+  const [selectedCourse, setSelectedCourse] = useState(normalizedCourse);
+
+  // SAFE RENDERING FOR ALL
+  const branches = Object.keys(selectedCourseData || {});
+  const [activeBranch, setActiveBranch] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const b = params.get('branch');
+      if (b && branches.includes(b)) return b;
+    } catch (e) {}
+    return branches[0] || 'CSE' || 'General';
   });
 
-  const [activeYear, setActiveYear] = useState('1st Year');
-  const [activeBranch, setActiveBranch] = useState('CSE');
+  useEffect(() => {
+    if (!branches.includes(activeBranch)) {
+      setActiveBranch(branches[0] || 'CSE' || 'General');
+    }
+  }, [normalizedCourse]);
+
+  const yearsData = (selectedCourseData && selectedCourseData[activeBranch])
+    ? selectedCourseData[activeBranch]
+    : (branches[0] && selectedCourseData ? selectedCourseData[branches[0]] : {});
+  const yearKeys = Object.keys(yearsData || {});
+  const [activeYear, setActiveYear] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const y = params.get('year');
+      if (y && yearKeys.includes(y)) return y;
+    } catch (e) {}
+    return yearKeys[0] || '1st Year';
+  });
+
+  useEffect(() => {
+    if (!yearKeys.includes(activeYear)) {
+      setActiveYear(yearKeys[0] || '1st Year');
+    }
+  }, [activeBranch, normalizedCourse]);
+
+  const subjects = (yearsData && yearsData[activeYear]) ? yearsData[activeYear] : [];
 
   // Modal open on first open if no course is selected/stored
   const [isCourseModalOpen, setIsCourseModalOpen] = useState(() => {
@@ -46,8 +107,8 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
   });
 
   useEffect(() => {
-    if (initialCourse && normalizeCourseKey(initialCourse) !== normalizeCourseKey(selectedCourse)) {
-      setSelectedCourse(normalizeCourseKey(initialCourse));
+    if (initialCourse && normalizeCourse(initialCourse) !== normalizeCourse(selectedCourse)) {
+      setSelectedCourse(normalizeCourse(initialCourse));
     }
   }, [initialCourse]);
 
@@ -66,23 +127,13 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
 
   // Course Switcher Tab Handler
   const handleCourseTabChange = (courseKey) => {
-    const norm = normalizeCourseKey(courseKey);
+    const norm = normalizeCourse(courseKey);
     setSelectedCourse(norm);
     try {
       localStorage.setItem('campusprep_selected_course', norm);
     } catch (e) {}
     if (onSelectCourse) onSelectCourse(norm);
-
-    if (norm === 'BTech' || norm === 'B.Tech') {
-      setActiveBranch('CSE');
-      setActiveYear('1st Year');
-      updateUrlParams({ course: 'BTech', branch: 'CSE', year: '1st Year', semester: null, subject: null, academicYear: null, examType: null });
-    } else {
-      const years = getYearsForCourse(norm);
-      const defaultYear = years[0] || '1st Year';
-      setActiveYear(defaultYear);
-      updateUrlParams({ course: norm, branch: null, year: defaultYear, semester: null, subject: null, academicYear: null, examType: null });
-    }
+    window.location.href = `/pyqs?course=${norm}`;
   };
 
   // Hero Search State
@@ -95,7 +146,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
   // Live Database PYQ Papers State with Local Fallback First
   const [dbPyqs, setDbPyqs] = useState(() => {
     try {
-      const allLocal = Object.values(localPyqsData).flat();
+      const allLocal = Object.values(pyqsData).flat();
       return allLocal;
     } catch (e) {
       return [];
@@ -104,11 +155,11 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
 
   // Fetch Live Data from Backend API with Local Fallback
   const loadLiveData = (courseKey) => {
-    const c = courseKey || selectedCourse || 'B.Tech';
+    const c = courseKey || normalizedCourse || 'BTech';
     
     // STEP 1: ALWAYS load local first
     try {
-      const localMatches = Object.values(localPyqsData).flat();
+      const localMatches = Object.values(pyqsData).flat();
       if (localMatches.length > 0) {
         setDbPyqs(localMatches);
       }
@@ -153,6 +204,21 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
       alert('This paper is being processed. Please check back shortly.');
     }
   };
+
+  if (!selectedCourseData) {
+    const validCourses = Object.keys(courses).filter(c => !c.includes('.'));
+    return (
+      <div className="p-8 text-center min-h-[60vh] flex flex-col items-center justify-center font-['Plus_Jakarta_Sans',sans-serif] bg-[#FAF7F2]">
+        <h2 className="text-2xl font-black text-[#1F2421] mb-2">Course "{courseParam}" not found</h2>
+        <p className="text-stone-600 mb-6">Available: {validCourses.join(', ')}</p>
+        <div className="flex gap-2 justify-center flex-wrap max-w-lg">
+          {validCourses.map(c => (
+            <button key={c} onClick={() => window.location.href = `/pyqs?course=${c}`} className="px-5 py-2.5 bg-[#7A2327] hover:bg-[#5C1A1D] text-white rounded-xl font-bold shadow-md transition-all">{c}</button>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -199,17 +265,17 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            {COURSES.map(c => {
-              const isSelected = selectedCourse === c.key;
+            {Object.keys(courses).filter(c => !c.includes('.')).map(courseName => {
+              const isSelected = normalizedCourse === courseName;
               return (
                 <button
-                  key={c.id}
-                  onClick={() => handleCourseTabChange(c.key)}
+                  key={courseName}
+                  onClick={() => handleCourseTabChange(courseName)}
                   style={{
-                    padding: '0.42rem 1.15rem',
+                    padding: '0.45rem 1.25rem',
                     borderRadius: '9999px',
-                    border: isSelected ? `2px solid ${c.btnColor}` : '1.5px solid #E8E2D5',
-                    backgroundColor: isSelected ? c.btnColor : '#ffffff',
+                    border: isSelected ? '2px solid #7A2327' : '1.5px solid #E8E2D5',
+                    backgroundColor: isSelected ? '#7A2327' : '#ffffff',
                     color: isSelected ? '#ffffff' : '#3A3530',
                     fontWeight: isSelected ? 800 : 600,
                     fontSize: '0.85rem',
@@ -217,11 +283,11 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.4rem',
-                    boxShadow: isSelected ? `0 4px 12px ${c.badgeColor}30` : '0 1px 3px rgba(0,0,0,0.04)',
+                    boxShadow: isSelected ? '0 4px 12px rgba(122,35,39,0.3)' : '0 1px 3px rgba(0,0,0,0.04)',
                     transition: 'all 0.2s ease'
                   }}
                 >
-                  <span>{c.name}</span>
+                  <span>{courseName}</span>
                   {isSelected && <Check size={14} strokeWidth={3} />}
                 </button>
               );
@@ -339,10 +405,109 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
         </div>
       </section>
 
-      {/* 2. MAIN WORKSPACE: UNIFIED MODERN COURSE PYQS VIEW */}
+      {/* 2. MAIN WORKSPACE: COURSE BRANCH & YEAR SELECTOR + SUBJECTS PYQ LIST */}
       <div className="container" style={{ padding: '2rem 1.25rem 3rem 1.25rem' }}>
+        {/* Branch Tabs */}
+        {branches.length > 1 && (
+          <div className="flex gap-2 p-3 overflow-x-auto justify-center flex-wrap bg-white/80 rounded-2xl border border-stone-200/80 mb-4 shadow-xs">
+            {(branches || []).map(branch => (
+              <button
+                key={branch}
+                onClick={() => setActiveBranch(branch)}
+                className={`px-4 py-2 rounded-xl font-bold text-xs transition-all cursor-pointer ${
+                  activeBranch === branch
+                    ? 'bg-[#1F2421] text-white shadow-xs'
+                    : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
+                }`}
+              >
+                {branch}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Year Tabs */}
+        {yearKeys.length > 1 && (
+          <div className="flex gap-2 overflow-x-auto justify-center flex-wrap mb-6">
+            {(yearKeys || []).map(yr => (
+              <button
+                key={yr}
+                onClick={() => setActiveYear(yr)}
+                className={`px-5 py-2 rounded-full font-bold text-xs transition-all cursor-pointer ${
+                  activeYear === yr
+                    ? 'bg-[#C88D2D] text-white shadow-xs'
+                    : 'bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100'
+                }`}
+              >
+                {yr}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Subjects PYQ Cards */}
+        <div className="mb-10">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-black text-[#1F2421]">
+              {normalizedCourse} {activeBranch !== 'General' ? activeBranch : ''} • {activeYear} Question Papers
+            </h2>
+            <span className="text-xs font-bold text-stone-500 bg-stone-100 px-3 py-1 rounded-full">
+              {subjects.length} Subjects
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {(subjects || []).map(sub => {
+              const papers = pyqsData?.[sub.code] || pyqsData?.[sub.code?.toUpperCase()] || [];
+              const notesCount = notesData?.[sub.code]?.length || 5;
+              return (
+                <div key={sub.code} className="border border-stone-200 hover:border-[#7A2327]/50 bg-white p-5 rounded-2xl shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-black px-2.5 py-0.5 bg-rose-50 text-rose-800 rounded-md border border-rose-200/60 uppercase">
+                        {sub.code}
+                      </span>
+                      <span className="text-xs font-bold text-stone-400">
+                        {activeYear}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-[#1F2421] mb-2">{sub.name}</h3>
+                    <p className="text-xs font-semibold text-stone-600 mb-3">
+                      PYQ Papers: <span className="text-blue-700 font-bold">{papers.length || 3} Years</span> | Notes: <span className="text-emerald-700 font-bold">{notesCount} Units</span>
+                    </p>
+
+                    {/* Available Papers Pills */}
+                    <div className="flex gap-1.5 flex-wrap mb-4">
+                      {papers.slice(0, 3).map((p, pIdx) => (
+                        <button
+                          key={p.id || pIdx}
+                          onClick={() => handleOpenPdf(p)}
+                          className="px-2.5 py-1 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-lg text-xs font-bold transition-colors cursor-pointer flex items-center gap-1"
+                        >
+                          <FileText size={12} className="text-stone-500" />
+                          <span>{p.examYear || p.year}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <a
+                      href={`/subject/${sub.code}?course=${normalizedCourse}`}
+                      className="w-full text-center py-2 px-4 bg-[#7A2327] hover:bg-[#5C1A1D] text-white rounded-xl font-bold text-xs shadow-xs transition-all block"
+                    >
+                      View All Papers & Notes →
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Detailed PYQ workspace */}
         <CoursePyqsView
-          courseKey={selectedCourse}
+          courseKey={normalizedCourse}
           dbPyqs={dbPyqs}
           onOpenPdf={handleOpenPdf}
           onRequestPyq={(subject, year) => {

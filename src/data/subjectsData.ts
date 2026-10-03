@@ -580,3 +580,175 @@ export function getSubjectsByHierarchy(course: string, year: string, branch?: st
     return true;
   });
 }
+
+export interface SubjectRef {
+  code: string;
+  name: string;
+}
+
+export type CourseData = Record<string, Record<string, SubjectRef[]>>;
+
+export const allCourses: Record<string, CourseData> = {
+  BTech: {
+    CSE: {
+      "1st Year": [
+        { code: "BCS101", name: "Engineering Mathematics-I" },
+        { code: "BCS102", name: "Engineering Physics" },
+        { code: "BCS103", name: "Basic Electrical" },
+        { code: "BCS104", name: "C Programming" }
+      ],
+      "2nd Year": [
+        { code: "BCS301", name: "Data Structures" },
+        { code: "BCS302", name: "Operating System" },
+        { code: "BCS303", name: "DBMS" },
+        { code: "BCS304", name: "Computer Networks" }
+      ],
+      "3rd Year": [
+        { code: "BCS501", name: "Machine Learning" },
+        { code: "BCS502", name: "Compiler Design" }
+      ],
+      "4th Year": [
+        { code: "BCS701", name: "AI" },
+        { code: "BCS702", name: "Cloud Computing" }
+      ]
+    },
+    ECE: {
+      "1st Year": [
+        { code: "BEC101", name: "Basic Electronics" },
+        { code: "BEC102", name: "Network Analysis" }
+      ],
+      "2nd Year": [
+        { code: "BEC301", name: "Digital Electronics" },
+        { code: "BEC302", name: "Signal & Systems" }
+      ]
+    },
+    ME: {
+      "1st Year": [
+        { code: "BME101", name: "Thermodynamics" }
+      ],
+      "2nd Year": [
+        { code: "BME301", name: "Fluid Mechanics" }
+      ]
+    },
+    EE: {
+      "1st Year": [
+        { code: "BEE101", name: "Basic Electrical" }
+      ],
+      "2nd Year": [
+        { code: "BEE301", name: "Electrical Machines" }
+      ]
+    },
+    CE: {
+      "1st Year": [
+        { code: "BCE101", name: "Engineering Mechanics" }
+      ],
+      "2nd Year": [
+        { code: "BCE301", name: "Building Materials" }
+      ]
+    }
+  },
+  BCA: {
+    General: {
+      "1st Year": [
+        { code: "BCA101", name: "Mathematics" },
+        { code: "BCA102", name: "C Programming" },
+        { code: "BCA103", name: "Digital Electronics" }
+      ],
+      "2nd Year": [
+        { code: "BCA201", name: "Data Structures" },
+        { code: "BCA202", name: "Operating System" },
+        { code: "BCA203", name: "DBMS" }
+      ],
+      "3rd Year": [
+        { code: "BCA301", name: "Java" },
+        { code: "BCA302", name: "Web Development" }
+      ]
+    }
+  },
+  MTech: {
+    CSE: {
+      "1st Year": [
+        { code: "MCS101", name: "Advanced Data Structures" },
+        { code: "MCS102", name: "Advanced Algorithms" },
+        { code: "MCS103", name: "Machine Learning" },
+        { code: "MCS104", name: "Research Methodology" }
+      ],
+      "2nd Year": [
+        { code: "MCS201", name: "Dissertation Phase-I" },
+        { code: "MCS202", name: "Dissertation Phase-II" }
+      ]
+    },
+    ECE: {
+      "1st Year": [
+        { code: "MEC101", name: "Advanced Digital Communication" }
+      ]
+    }
+  },
+  MCA: {
+    General: {
+      "1st Year": [
+        { code: "MCA101", name: "Advanced Mathematics" },
+        { code: "MCA102", name: "Advanced C Programming" }
+      ],
+      "2nd Year": [
+        { code: "MCA201", name: "Advanced Java" },
+        { code: "MCA202", name: "Advanced DBMS" }
+      ]
+    }
+  },
+  MBA: {
+    General: {
+      "1st Year": [
+        { code: "MBA101", name: "Management Principles" },
+        { code: "MBA102", name: "Marketing Management" },
+        { code: "MBA103", name: "Financial Management" }
+      ],
+      "2nd Year": [
+        { code: "MBA201", name: "HR Management" },
+        { code: "MBA202", name: "Business Analytics" }
+      ]
+    }
+  },
+  BPharm: {
+    General: {
+      "1st Year": [
+        { code: "BPH101", name: "Pharmaceutics-I" },
+        { code: "BPH102", name: "Pharmaceutical Chemistry" },
+        { code: "BPH103", name: "Pharmacognosy" }
+      ],
+      "2nd Year": [
+        { code: "BPH201", name: "Pharmacology-I" },
+        { code: "BPH202", name: "Pharmaceutics-II" }
+      ],
+      "3rd Year": [
+        { code: "BPH301", name: "Medicinal Chemistry" }
+      ],
+      "4th Year": [
+        { code: "BPH401", name: "Industrial Pharmacy" }
+      ]
+    }
+  },
+  BBA: {
+    General: {
+      "1st Year": [
+        { code: "BBA101", name: "Business Organisation" },
+        { code: "BBA102", name: "Business Economics" }
+      ],
+      "2nd Year": [
+        { code: "BBA201", name: "Organizational Behaviour" },
+        { code: "BBA202", name: "Marketing" }
+      ],
+      "3rd Year": [
+        { code: "BBA301", name: "Entrepreneurship" }
+      ]
+    }
+  }
+};
+
+// Aliases for dot-notated and variation keys
+allCourses["B.Tech"] = allCourses["BTech"];
+allCourses["B.Pharm"] = allCourses["BPharm"];
+allCourses["B.Pharma"] = allCourses["BPharm"];
+allCourses["BPharma"] = allCourses["BPharm"];
+allCourses["M.Tech"] = allCourses["MTech"];
+

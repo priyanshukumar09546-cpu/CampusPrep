@@ -766,5 +766,8 @@ pre, code {
   }
 }
 
-
-
+@media (min-width: 768px) {
+  .pv-mobile-bottom-nav {
+    display: none !important;
+  }
+}
