@@ -11,6 +11,7 @@ import {
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
 import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CoursePyqsView from '../components/CoursePyqsView';
+import MobilePYQsScreen from '../components/MobilePYQsScreen';
 import { COURSES } from '../data/coursesCatalog';
 import { API_URL } from '../config/api';
 import CourseSelectModal from '../components/CourseSelectModal';

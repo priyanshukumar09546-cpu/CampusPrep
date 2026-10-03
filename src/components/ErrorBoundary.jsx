@@ -66,23 +66,28 @@ export default class ErrorBoundary extends React.Component {
               An unexpected error occurred while rendering this page. Our application caught the crash to prevent a blank screen.
             </p>
 
-            {isDev && this.state.error && (
-              <div style={{
+            {this.state.error && (
+              <details style={{
                 backgroundColor: '#f1f5f9',
                 border: '1px solid #cbd5e1',
                 borderRadius: '12px',
-                padding: '1rem',
+                padding: '0.75rem 1rem',
                 textAlign: 'left',
                 fontSize: '0.8rem',
                 color: '#dc2626',
                 fontFamily: 'monospace',
                 overflowX: 'auto',
                 marginBottom: '1.5rem',
-                maxHeight: '180px'
+                maxHeight: '220px'
               }}>
-                <strong>Error details:</strong>
-                <div>{this.state.error.toString()}</div>
-              </div>
+                <summary style={{ cursor: 'pointer', fontWeight: 'bold', color: '#b91c1c' }}>View error details</summary>
+                <div style={{ marginTop: '0.5rem' }}>{this.state.error.toString()}</div>
+                {this.state.errorInfo?.componentStack && (
+                  <pre style={{ fontSize: '0.72rem', whiteSpace: 'pre-wrap', marginTop: '0.5rem', color: '#64748b' }}>
+                    {this.state.errorInfo.componentStack}
+                  </pre>
+                )}
+              </details>
             )}
 
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>

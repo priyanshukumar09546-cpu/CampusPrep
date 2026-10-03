@@ -46,6 +46,7 @@ import { isValidPdfUrl } from '../utils/pdfValidator';
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
 import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CourseNotesView from '../components/CourseNotesView';
+import MobileNotesScreen from '../components/MobileNotesScreen';
 import { COURSES } from '../data/coursesCatalog';
 import { API_URL } from '../config/api';
 import CourseSelectModal from '../components/CourseSelectModal';
