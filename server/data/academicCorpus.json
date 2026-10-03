@@ -1,0 +1,98 @@
+[
+  {
+    "id": "wiki_data_structures",
+    "title": "Data Structure — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Data_structure",
+    "domain": "en.wikipedia.org",
+    "category": "Computer Science",
+    "text": "In computer science, a data structure is a data organization, management, and storage format that is usually chosen for efficient access to data. More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data. Different types of data structures are suited to different kinds of applications, and some are highly specialized to specific tasks. For example, relational databases commonly use B-tree indexes for data retrieval, while compiler implementations usually use hash tables to look up identifiers. Data structures provide a means to manage large amounts of data efficiently for uses such as large databases and internet indexing services. Usually, efficient data structures are key to designing efficient algorithms."
+  },
+  {
+    "id": "wiki_operating_systems",
+    "title": "Operating System — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Operating_system",
+    "domain": "en.wikipedia.org",
+    "category": "Computer Science",
+    "text": "An operating system is system software that manages computer hardware, software resources, and provides common services for computer programs. Time-sharing operating systems schedule tasks for efficient use of the system and may also include accounting software for cost allocation of processor time, mass storage, printing, and other resources. For hardware functions such as input and output and memory allocation, the operating system acts as an intermediary between programs and the computer hardware, although the application code is usually executed directly by the hardware and frequently makes system calls to an OS function or is interrupted by it."
+  },
+  {
+    "id": "gfg_sorting_algorithms",
+    "title": "Sorting Algorithms — GeeksforGeeks",
+    "url": "https://www.geeksforgeeks.org/sorting-algorithms/",
+    "domain": "geeksforgeeks.org",
+    "category": "Algorithms",
+    "text": "A sorting algorithm is used to rearrange a given array or list of elements according to a comparison operator on the elements. The comparison operator is used to decide the new order of elements in the respective data structure. Efficient sorting is important for optimizing the efficiency of other algorithms, such as search and merge algorithms, that require input data to be in sorted lists. Common sorting algorithms include bubble sort, insertion sort, selection sort, merge sort, quicksort, and heapsort. Quicksort is a divide and conquer algorithm that picks an element as a pivot and partitions the given array around the picked pivot."
+  },
+  {
+    "id": "wiki_artificial_intelligence",
+    "title": "Artificial Intelligence — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+    "domain": "en.wikipedia.org",
+    "category": "Artificial Intelligence",
+    "text": "Artificial intelligence is the intelligence of machines or software, as opposed to the intelligence of living beings, primarily of humans. It is a field of study in computer science that develops and studies intelligent machines. Such machines may be called AIs. AI technology is widely used throughout industry, government, and science. Some high-profile applications include advanced web search engines, recommendation systems, understanding human speech, self-driving cars, generative creativity, and superhuman play and analysis in strategy games. Machine learning is an important branch of artificial intelligence where algorithms learn patterns from training data."
+  },
+  {
+    "id": "wiki_database_management",
+    "title": "Database Management System — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Database",
+    "domain": "en.wikipedia.org",
+    "category": "Databases",
+    "text": "A database is an organized collection of data or a type of data store based on the use of a database management system. The DBMS is the software that interacts with end users, applications, and the database itself to capture and analyze the data. The DBMS software additionally encompasses the core facilities provided to administer the database. The sum total of the database, the DBMS and the associated applications can be referred to as a database system. Often the term database is also used to loosely refer to any of the DBMS, the database system or an application associated with the database. Relational databases organize data into tables consisting of rows and columns."
+  },
+  {
+    "id": "wiki_computer_networks",
+    "title": "Computer Network — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Computer_network",
+    "domain": "en.wikipedia.org",
+    "category": "Networking",
+    "text": "A computer network is a set of computers sharing resources located on or provided by network nodes. Computers use common communication protocols over digital interconnections to communicate with each other. These interconnections are made up of telecommunication network technologies based on physically wired, optical, and wireless radio-frequency methods that may be arranged in a variety of network topologies. The Open Systems Interconnection model defines a conceptual framework that standardizes the communication functions of a telecommunication or computing system without regard to its underlying internal structure and technology."
+  },
+  {
+    "id": "wiki_object_oriented_programming",
+    "title": "Object-Oriented Programming — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Object-oriented_programming",
+    "domain": "en.wikipedia.org",
+    "category": "Software Engineering",
+    "text": "Object-oriented programming is a programming paradigm based on the concept of objects, which can contain data and code: data in the form of fields, and code in the form of procedures. A common feature of objects is that procedures are attached to them and can access and modify the object's data fields. In object-oriented programming, computer programs are designed by making them out of objects that interact with one another. Many of the most widely used programming languages are multi-paradigm and support object-oriented programming to a greater or lesser degree, typically in combination with imperative, procedural programming. Key principles include encapsulation, inheritance, polymorphism, and abstraction."
+  },
+  {
+    "id": "wiki_software_engineering",
+    "title": "Software Engineering — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Software_engineering",
+    "domain": "en.wikipedia.org",
+    "category": "Software Engineering",
+    "text": "Software engineering is a systematic engineering approach to software development. A software engineer is a person who applies the principles of software engineering to design, develop, maintain, test, and evaluate computer software. The term programmer is sometimes used as a synonym, but may also lack connotations of engineering education or skills. The software development life cycle is a process used by the software industry to design, develop and test high quality softwares. The SDLC aims to produce high quality software that meets or exceeds customer expectations, reaches completion within times and cost estimates."
+  },
+  {
+    "id": "gfg_binary_search_tree",
+    "title": "Binary Search Tree — GeeksforGeeks",
+    "url": "https://www.geeksforgeeks.org/binary-search-tree-data-structure/",
+    "domain": "geeksforgeeks.org",
+    "category": "Data Structures",
+    "text": "A binary search tree is a data structure used in computer science for organizing and storing data in a sorted manner. Each node in a binary search tree has at most two children, a left child and a right child. For every node, the key in the node is greater than all keys stored in the left subtree and smaller than all keys stored in the right subtree. This ordering property allows binary search trees to perform search, insertion, and deletion operations efficiently with an average time complexity of O(log n)."
+  },
+  {
+    "id": "wiki_cloud_computing",
+    "title": "Cloud Computing — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Cloud_computing",
+    "domain": "en.wikipedia.org",
+    "category": "Cloud Computing",
+    "text": "Cloud computing is the on-demand availability of computer system resources, especially data storage and computing power, without direct active management by the user. Large clouds often have functions distributed over multiple locations, each of which is a data center. Cloud computing relies on sharing of resources to achieve coherence and economies of scale. Cloud computing offers three primary service models: Infrastructure as a Service, Platform as a Service, and Software as a Service. Benefits include reduced capital expenditure, high availability, and rapid elastic scalability."
+  },
+  {
+    "id": "gfg_stack_data_structure",
+    "title": "Stack Data Structure — GeeksforGeeks",
+    "url": "https://www.geeksforgeeks.org/stack-data-structure/",
+    "domain": "geeksforgeeks.org",
+    "category": "Data Structures",
+    "text": "A stack is a linear data structure that follows a particular order in which the operations are performed. The order may be LIFO (Last In First Out) or FILO (First In Last Out). Mainly the following basic operations are performed in the stack: Push adds an item in the stack, Pop removes an item from the stack, Peek returns the top element of the stack without removing it, and IsEmpty checks whether the stack is empty. Stacks are used in function call management, expression evaluation, and backtracking algorithms."
+  },
+  {
+    "id": "wiki_cybersecurity",
+    "title": "Cybersecurity — Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Computer_security",
+    "domain": "en.wikipedia.org",
+    "category": "Cybersecurity",
+    "text": "Computer security, cybersecurity, or information technology security is the protection of computer systems and networks from attack by malicious actors that may result in unauthorized information disclosure, theft of, or damage to hardware, software, or data, as well as from the disruption or misdirection of the services they provide. The field has become significant due to the expanded reliance on computer systems, the Internet, and wireless network standards such as Bluetooth and Wi-Fi. Common threats include malware, ransomware, phishing, and denial-of-service attacks."
+  }
+]
