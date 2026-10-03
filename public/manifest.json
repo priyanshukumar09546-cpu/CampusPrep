@@ -1,0 +1,24 @@
+﻿{
+  "name": "ProfessorVirus",
+  "short_name": "ProfessorVirus",
+  "description": "Study Smart. Prepare Better. Notes, PYQs, Quizzes and Interview Prep for AKTU students.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#7A2327",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/logo-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/logo-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

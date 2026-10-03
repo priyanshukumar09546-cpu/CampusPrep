@@ -188,6 +188,7 @@ export default function MobilePYQsScreen({
       .then(res => res.json())
       .then(data => {
         if (!isSubscribed) return;
+        console.log("API URL", API_URL, "Response", data);
         if (data && data.success && Array.isArray(data.pyqs)) {
           const matched = data.pyqs.filter(p => {
             const pCourse = normalizeCourseKey(p.course || 'BTech');

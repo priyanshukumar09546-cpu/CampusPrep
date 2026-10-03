@@ -553,19 +553,51 @@ export default function App() {
             onNavigate={(tab) => navigateToTab(tab)}
           />
         ) : activeTab === 'notes' ? (
-          <SubjectDetailPage 
-            subjectData={selectedSubjectData}
-            initialTab="notes"
-            onBack={() => navigateToTab('select-subject')}
-            onNavigate={(tab) => navigateToTab(tab)}
+          /* On mobile, notes click should go through Course→Year→Subject flow */
+          window.innerWidth <= 768 ? (
+            <SelectCoursePage onNavigate={(tab) => navigateToTab(tab)} />
+          ) : (
+          <NotesPage
+            searchQuery={globalSearchQuery}
+            onClearSearch={() => setGlobalSearchQuery('')}
+            initialCourse={selectedCourse || 'B.Tech'}
+            onSelectCourse={(courseKey) => {
+              setSelectedCourse(courseKey);
+              const targetPath = `/notes?course=${encodeURIComponent(courseKey)}`;
+              window.history.replaceState({ tab: 'notes', course: courseKey }, '', targetPath);
+            }}
+            onNavigate={(tab, data) => {
+              if (tab === 'subject' && data) {
+                handleOpenSubject(data);
+              } else {
+                navigateToTab(tab, data);
+              }
+            }}
+            onOpenAuth={handleOpenAuth}
           />
+          )
         ) : activeTab === 'pyqs' ? (
-          <SubjectDetailPage 
-            subjectData={selectedSubjectData}
-            initialTab="pyqs"
-            onBack={() => navigateToTab('select-subject')}
-            onNavigate={(tab) => navigateToTab(tab)}
+          /* On mobile, pyqs click should go through Course→Year→Subject flow */
+          window.innerWidth <= 768 ? (
+            <SelectCoursePage onNavigate={(tab) => navigateToTab(tab)} />
+          ) : (
+          <PYQsPage
+            initialCourse={selectedCourse || 'B.Tech'}
+            onSelectCourse={(courseKey) => {
+              setSelectedCourse(courseKey);
+              const targetPath = `/pyqs?course=${encodeURIComponent(courseKey)}`;
+              window.history.replaceState({ tab: 'pyqs', course: courseKey }, '', targetPath);
+            }}
+            onNavigate={(tab, data) => {
+              if (tab === 'subject' && data) {
+                handleOpenSubject(data);
+              } else {
+                navigateToTab(tab, data);
+              }
+            }}
+            onOpenAuth={handleOpenAuth}
           />
+          )
         ) : activeTab === 'syllabus' ? (
           <SubjectDetailPage 
             subjectData={selectedSubjectData}
@@ -715,25 +747,6 @@ export default function App() {
               }
             }}
           />
-        ) : activeTab === 'notes' ? (
-          <NotesPage
-            searchQuery={globalSearchQuery}
-            onClearSearch={() => setGlobalSearchQuery('')}
-            initialCourse={selectedCourse || 'B.Tech'}
-            onSelectCourse={(courseKey) => {
-              setSelectedCourse(courseKey);
-              const targetPath = `/notes?course=${encodeURIComponent(courseKey)}`;
-              window.history.replaceState({ tab: 'notes', course: courseKey }, '', targetPath);
-            }}
-            onNavigate={(tab, data) => {
-              if (tab === 'subject' && data) {
-                handleOpenSubject(data);
-              } else {
-                navigateToTab(tab, data);
-              }
-            }}
-            onOpenAuth={handleOpenAuth}
-          />
         ) : activeTab === 'resume-maker' ? (
           <ResumeMakerPage
             onNavigate={(tab) => {
@@ -848,24 +861,8 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
-        ) : activeTab === 'pyqs' ? (
-          <PYQsPage
-            initialCourse={selectedCourse || 'B.Tech'}
-            onSelectCourse={(courseKey) => {
-              setSelectedCourse(courseKey);
-              const targetPath = `/pyqs?course=${encodeURIComponent(courseKey)}`;
-              window.history.replaceState({ tab: 'pyqs', course: courseKey }, '', targetPath);
-            }}
-            onNavigate={(tab, data) => {
-              if (tab === 'subject' && data) {
-                handleOpenSubject(data);
-              } else {
-                navigateToTab(tab, data);
-              }
-            }}
-            onOpenAuth={handleOpenAuth}
-          />
         ) : (
+
           <>
             {/* Mobile Home Screen (<= 768px) */}
             <div className="pv-mobile-home-view">

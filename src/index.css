@@ -715,7 +715,6 @@ pre, code {
   }
 
   .pv-mobile-header,
-  .pv-mobile-bottom-nav,
   .pv-mobile-home-view,
   .pv-mobile-more-view,
   .pv-mobile-notes-view,
@@ -724,6 +723,10 @@ pre, code {
   .pv-mobile-interview-pro-view,
   .pv-mobile-resume-builder-view {
     display: block;
+  }
+
+  .pv-mobile-bottom-nav {
+    display: flex !important;
   }
 
   /* Safe space for fixed bottom navigation */

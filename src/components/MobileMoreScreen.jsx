@@ -178,22 +178,6 @@ export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
         style={{ backgroundImage: 'url("/assets/leaves-bottom.png")' }}
       />
 
-      {/* TOP STATUS BAR (9:41) */}
-      <div className="pt-2 px-6 flex justify-between items-center text-xs font-semibold text-stone-800 z-10 select-none">
-        <span>9:41</span>
-        <div className="flex items-center gap-1.5">
-          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-            <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/>
-          </svg>
-          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-            <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A16.88 16.88 0 0 0 12 4z"/>
-          </svg>
-          <div className="w-5 h-2.5 border border-stone-800 rounded-sm p-0.5 flex items-center">
-            <div className="w-full h-full bg-stone-800 rounded-2xs"></div>
-          </div>
-        </div>
-      </div>
-
       {/* 1. USER PROFILE CARD (SCREEN 10) */}
       <div className="px-5 pt-3 pb-2 z-10">
         <div className="bg-white rounded-2xl p-3.5 border border-orange-100/70 shadow-xs flex items-center justify-between">
