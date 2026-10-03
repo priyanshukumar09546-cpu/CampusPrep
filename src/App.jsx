@@ -53,6 +53,7 @@ import AdminLoginPage from './pages/AdminLoginPage';
 import SubjectPage from './pages/SubjectPage';
 import PlagiarismCheckerPage from './pages/PlagiarismCheckerPage';
 import ProgressPage from './pages/ProgressPage';
+import PromotionPage from './pages/PromotionPage';
 
 // Exact Reference Image 1 & 2 Screens
 import SignIn from './pages/Auth/SignIn';
@@ -158,6 +159,7 @@ export default function App() {
     if (path === 'interview-pro') return 'interview-pro';
     if (path === 'more') return 'more';
     if (path === 'progress' || path === 'analytics' || path === 'student-progress') return 'progress';
+    if (path === 'promotion' || path === 'advertise' || path === 'promote') return 'promotion';
     if (path === 'admin/login') return 'admin-login';
     if (path === 'interview-pro/confirm' || path === 'interview-confirm') return 'interview-confirm';
     if (path === 'interview-pro/instructions' || path === 'interview-instructions') return 'interview-instructions';
@@ -190,7 +192,7 @@ export default function App() {
       if (parts[1]) return 'scholarship-detail';
     }
     if (path === 'community') return 'home';
-    if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
+    if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'promotion', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
       if (path === 'aistudy') return 'interview-pro';
       return path;
     }
@@ -827,6 +829,13 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onOpenAuth={handleOpenAuth}
+          />
+        ) : activeTab === 'promotion' ? (
+          <PromotionPage
+            onNavigate={(tab) => {
+              setActiveTab(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
           />
         ) : (
           <Home

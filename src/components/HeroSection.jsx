@@ -193,6 +193,25 @@ export default function HeroSection({ onSearch, onSelectBranch }) {
               width: '100%'
             }}>
               
+              {/* Top Pill Badge matching Page 1 Reference */}
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                backgroundColor: '#FFFBEB',
+                border: '1px solid #FDE68A',
+                borderRadius: '9999px',
+                padding: '0.35rem 1rem',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                color: '#C88D2D',
+                marginBottom: '0.25rem',
+                boxShadow: '0 2px 8px rgba(200, 141, 45, 0.08)'
+              }}>
+                <span role="img" aria-label="grad-cap">🎓</span>
+                <span>All Your Academic Tools in One Place</span>
+              </div>
+
               {/* ProfessorVirus Logo Header */}
               <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
                 <div style={{
@@ -242,21 +261,16 @@ export default function HeroSection({ onSearch, onSelectBranch }) {
                 </div>
               </div>
 
-              {/* Tagline: Same Notes Higher Grades ! */}
-              <div style={{
-                fontFamily: "'Outfit', sans-serif",
-                color: '#3A3530',
-                fontSize: '1.05rem',
-                fontWeight: 700,
-                letterSpacing: '-0.01em',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem'
+              {/* Subtext matching Page 1 */}
+              <p style={{
+                fontSize: '0.92rem',
+                color: '#64748B',
+                lineHeight: 1.5,
+                margin: '0.15rem 0 0.45rem 0',
+                maxWidth: '560px'
               }}>
-                <span style={{ color: '#C88D2D' }}>★</span>
-                <span>Same Notes Higher Grades !</span>
-                <span style={{ color: '#C88D2D' }}>★</span>
-              </div>
+                Notes, PYQs, syllabus, quizzes, internships, interview prep, results, PDF tools and more — everything you need for your academic journey.
+              </p>
 
               {/* PROMINENT 3D FLOATING HERO SEARCH BAR */}
               <form onSubmit={handleSearch} style={{

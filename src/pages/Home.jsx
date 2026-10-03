@@ -2,10 +2,11 @@ import React from 'react';
 import HeroSection from '../components/HeroSection';
 import FeatureCards from '../components/FeatureCards';
 import CourseCardsSection from '../components/CourseCardsSection';
-import YearBranchAISection from '../components/YearBranchAISection';
-import StatsSection from '../components/StatsSection';
-import TrendingLatestCommunitySection from '../components/TrendingLatestCommunitySection';
-import AcademicClosingSection from '../components/AcademicClosingSection';
+import WhyStudentsLoveSection from '../components/WhyStudentsLoveSection';
+import RealStatsSection from '../components/RealStatsSection';
+import PopularSubjectsSection from '../components/PopularSubjectsSection';
+import PromotionSection from '../components/PromotionSection';
+import FinalCtaSection from '../components/FinalCtaSection';
 
 export default function Home({
   onSearch,
@@ -18,55 +19,47 @@ export default function Home({
   onOpenSubject
 }) {
   return (
-    <div className="w-full relative overflow-x-hidden">
-      {/* 1. Sunlit Warm Ivory Home Hero Section with Professor Virus & 3-Idiots Blackboard */}
+    <div className="w-full relative overflow-x-hidden" style={{ backgroundColor: '#FAF7F2' }}>
+      
+      {/* 1. Page 1: Hero Section with Branding, Pill Tag, Functional Search & Branch Filters */}
       <HeroSection
         onSearch={onSearch}
         onSelectBranch={onSelectBranch}
       />
 
-      {/* 2. 8 Tools Feature Cards Section */}
+      {/* 2. Page 1: 8 Primary Academic Tools Strip */}
       <FeatureCards
         onCardClick={onFeatureClick}
       />
 
-      {/* 3. 7 Courses Section (BTech, BCA, MTech, MCA, MBA, BPharm, BBA) */}
+      {/* 3. Page 1 & 2: Choose Your Course Section (BTech, BCA, BBA, BPharm, MBA, MCA, MTech, More) */}
       <CourseCardsSection
         onSelectCourse={onSelectCourse}
         onNavigate={onNavigate}
       />
 
-      {/* 4. Year + Branch + Ask Virus AI Section */}
-      <YearBranchAISection
-        onSelectYear={onSelectYear}
-        onSelectBranch={onSelectBranch}
-        onOpenAI={onOpenAI}
-      />
+      {/* 4. Page 2: Why Students Love ProfessorVirus? (4 Verified Feature Cards) */}
+      <WhyStudentsLoveSection />
 
-      {/* 5. Configurable Statistics Section */}
-      <StatsSection
-        isLiveDataAvailable={false}
-      />
+      {/* 5. Page 2: Real Verified Academic Statistics */}
+      <RealStatsSection />
 
-      {/* 6. Three-Column Trending + Latest Notes + Community Section */}
-      <TrendingLatestCommunitySection
-        onSubjectClick={(sub) => onOpenSubject ? onOpenSubject(sub) : onNavigate('notes')}
-        onNoteClick={(note) => {
-          const rawUrl = note.pdfUrl || note.driveUrl || note.fileUrl || note.resourceUrl || note.url;
-          if (rawUrl) {
-            window.open(rawUrl, '_blank', 'noopener,noreferrer');
-          } else {
-            alert('Note document is currently unavailable.');
-          }
-        }}
-        onDiscussionClick={(disc) => alert(`Opening Discussion: ${disc.title}`)}
-        onViewAll={(type) => onNavigate(type)}
-      />
-
-      {/* 7. Academic Closing CTA Section */}
-      <AcademicClosingSection
+      {/* 6. Page 2: Popular Subjects with Direct Course/Branch/Semester Navigation */}
+      <PopularSubjectsSection
+        onOpenSubject={onOpenSubject}
         onNavigate={onNavigate}
       />
+
+      {/* 7. Page 3: Promote Your Brand & App, Plans & Value Highlights */}
+      <PromotionSection
+        onNavigate={onNavigate}
+      />
+
+      {/* 8. Page 4: Final Academic Call To Action & 4 Core Values */}
+      <FinalCtaSection
+        onNavigate={onNavigate}
+      />
+
     </div>
   );
 }
