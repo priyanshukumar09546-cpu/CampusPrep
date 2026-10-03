@@ -48,6 +48,7 @@ import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CourseNotesView from '../components/CourseNotesView';
 import MobileNotesScreen from '../components/MobileNotesScreen';
 import { COURSES } from '../data/coursesCatalog';
+import { API_URL } from '../config/api';
 
 export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'B.Tech', onSelectCourse }) {
   // Course State: 'B.Tech' | 'MCA' | 'MBA' | 'B.Pharm'
@@ -119,7 +120,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
 
   const fetchBackendNotes = React.useCallback((courseVal, branchVal, yearVal) => {
     const c = courseVal || selectedCourse || 'B.Tech';
-    let url = `/api/notes?course=${encodeURIComponent(c)}`;
+    let url = `${API_URL}/api/notes?course=${encodeURIComponent(c)}`;
     if (c === 'B.Tech') {
       const b = branchVal || activeBranch || 'CSE';
       const y = yearVal || activeYear || '1st Year';
@@ -140,6 +141,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         return res.json();
       })
       .then(data => {
+        console.log("API URL", API_URL, "Response", data);
         if (data.success && Array.isArray(data.notes)) {
           notesCacheRef.current.set(cacheKey, data.notes);
           setDbNotes(data.notes);

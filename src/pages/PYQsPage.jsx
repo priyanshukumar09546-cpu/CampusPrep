@@ -13,6 +13,7 @@ import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CoursePyqsView from '../components/CoursePyqsView';
 import MobilePYQsScreen from '../components/MobilePYQsScreen';
 import { COURSES } from '../data/coursesCatalog';
+import { API_URL } from '../config/api';
 
 export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'B.Tech', onSelectCourse }) {
   // Course State: 'B.Tech' | 'MCA' | 'MBA' | 'B.Pharm'
@@ -75,7 +76,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'B.Te
   // Fetch Live Data from Backend API
   const loadLiveData = (courseKey) => {
     const c = courseKey || selectedCourse || 'B.Tech';
-    fetch(`/api/pyqs?course=${encodeURIComponent(c)}&_t=${Date.now()}`, {
+    fetch(`${API_URL}/api/pyqs?course=${encodeURIComponent(c)}&_t=${Date.now()}`, {
       cache: 'no-store',
       headers: {
         'Cache-Control': 'no-cache, no-store, must-revalidate',
@@ -89,6 +90,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'B.Te
         return res.json();
       })
       .then(data => {
+        console.log("API URL", API_URL, "Response", data);
         if (data.success && Array.isArray(data.pyqs)) {
           setDbPyqs(data.pyqs);
         }

@@ -68,16 +68,7 @@ const allowedOrigins = [
   'http://localhost:5173'
 ].filter(Boolean);
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.some(ao => origin === ao) || origin.endsWith('.vercel.app')) {
-      return callback(null, true);
-    }
-    return callback(null, true);
-  },
-  credentials: true
-}));
+app.use(cors({ origin: "*", methods: ["GET", "POST", "PUT", "DELETE"] }));
 app.use(express.json());
 
 // Ensure MongoDB is connected for serverless invocations (cold starts)

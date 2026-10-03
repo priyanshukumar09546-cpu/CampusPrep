@@ -4,8 +4,10 @@ import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import './index.css';
 
-// Automatically handle production backend API URL if configured via VITE_API_URL or VITE_BACKEND_URL
-const customApiUrl = (import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || '').trim();
+import { API_URL } from './config/api';
+
+// Automatically handle production backend API URL if configured via VITE_API_URL or VITE_BACKEND_URL or API_URL
+const customApiUrl = (API_URL || import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || '').trim();
 if (customApiUrl && typeof window !== 'undefined' && window.fetch) {
   const originalFetch = window.fetch;
   const cleanBase = customApiUrl.replace(/\/+$/, '');
