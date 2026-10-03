@@ -172,6 +172,50 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
           <rect x="148" y="82" width="32" height="7" rx="1.5" fill="#BE185D" />
         </svg>
       )
+    },
+    {
+      id: 'mtech',
+      courseName: 'M.Tech',
+      fullName: 'Master of Technology',
+      tagline: 'Research Innovate Lead !',
+      description: 'Advanced postgraduate engineering and specialization mastery.',
+      badgeColor: '#7C3AED',
+      bgGradient: 'linear-gradient(180deg, #F5F3FF 0%, #FFFFFF 100%)',
+      borderColor: '#DDD6FE',
+      btnColor: '#7C3AED',
+      btnHover: '#6D28D9',
+      illustration: (
+        <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', maxHeight: '115px' }}>
+          <rect x="30" y="28" width="90" height="60" rx="6" fill="#1E1B4B" stroke="#4338CA" strokeWidth="2" />
+          <rect x="35" y="33" width="80" height="50" rx="3" fill="#0F172A" />
+          <text x="75" y="64" fill="#A78BFA" fontFamily="monospace" fontSize="18" fontWeight="bold" textAnchor="middle">&lt;AI/ML&gt;</text>
+          <circle cx="145" cy="50" r="16" fill="#8B5CF6" opacity="0.8" />
+          <path d="M135 75 L155 75 L145 95 Z" fill="#6366F1" />
+          <rect x="22" y="96" width="55" height="8" rx="2" fill="#7C3AED" />
+        </svg>
+      )
+    },
+    {
+      id: 'bba',
+      courseName: 'BBA',
+      fullName: 'Bachelor of Business Administration',
+      tagline: 'Strategize Grow Succeed !',
+      description: 'Business leadership, entrepreneurship, marketing and corporate management.',
+      badgeColor: '#C2410C',
+      bgGradient: 'linear-gradient(180deg, #FFF7ED 0%, #FFFFFF 100%)',
+      borderColor: '#FFEDD5',
+      btnColor: '#EA580C',
+      btnHover: '#C2410C',
+      illustration: (
+        <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', maxHeight: '115px' }}>
+          <rect x="32" y="65" width="12" height="30" rx="2" fill="#FDBA74" />
+          <rect x="48" y="48" width="12" height="47" rx="2" fill="#FB923C" />
+          <rect x="64" y="32" width="12" height="63" rx="2" fill="#EA580C" />
+          <path d="M30 68 L66 28 L76 36" stroke="#C2410C" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+          <rect x="85" y="50" width="62" height="42" rx="5" fill="#7C2D12" stroke="#431407" strokeWidth="1.5" />
+          <rect x="108" y="42" width="16" height="8" rx="2" fill="#F97316" />
+        </svg>
+      )
     }
   ];
 
@@ -226,13 +270,13 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
           </p>
         </div>
 
-        {/* 4 COURSE CARDS GRID */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: '1.25rem',
-          alignItems: 'stretch'
-        }} className="course-cards-grid">
+        {/* 7 COURSE CARDS GRID */}
+        <div 
+          className="course-cards-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
+          style={{
+            alignItems: 'stretch'
+          }}
+        >
           {courses.map(course => (
             <div
               key={course.id}

@@ -76,6 +76,16 @@ export const ALL_COURSES = [
     iconColor: '#16A34A',
     years: ['1st Year', '2nd Year', '3rd Year', '4th Year'],
     branches: ['Pharmacy']
+  },
+  {
+    id: 'bba',
+    key: 'BBA',
+    name: 'BBA',
+    fullName: 'Bachelor of Business Administration',
+    iconBg: '#FEF3C7',
+    iconColor: '#B45309',
+    years: ['1st Year', '2nd Year', '3rd Year'],
+    branches: ['General']
   }
 ];
 
@@ -102,6 +112,11 @@ export const YEARS_CONFIG: Record<string, { year: string; title: string; subtitl
   'M.Tech': [
     { year: '1st Year', title: '1st Year', subtitle: 'Advanced algorithms & specialized theory', iconBg: '#FEE2E2', iconColor: '#DC2626' },
     { year: '2nd Year', title: '2nd Year', subtitle: 'Thesis, research & defense', iconBg: '#FFEDD5', iconColor: '#EA580C' }
+  ],
+  'BBA': [
+    { year: '1st Year', title: '1st Year', subtitle: 'Management principles & business economics', iconBg: '#FEE2E2', iconColor: '#DC2626' },
+    { year: '2nd Year', title: '2nd Year', subtitle: 'Marketing, HR & corporate financial systems', iconBg: '#FFEDD5', iconColor: '#EA580C' },
+    { year: '3rd Year', title: '3rd Year', subtitle: 'Strategic management & entrepreneurship', iconBg: '#FEF3C7', iconColor: '#B45309' }
   ]
 };
 
@@ -490,6 +505,56 @@ export const SUBJECTS_CATALOG: SubjectItem[] = [
     iconColor: '#16A34A',
     unitsCount: 5,
     pyqsCount: 14
+  },
+
+  // ================= BBA SUBJECTS =================
+  {
+    id: 'bba101',
+    code: 'BBA-101',
+    name: 'Principles of Management',
+    course: 'BBA',
+    year: '1st Year',
+    semester: 'Sem 1',
+    iconBg: '#FEF3C7',
+    iconColor: '#B45309',
+    unitsCount: 5,
+    pyqsCount: 10
+  },
+  {
+    id: 'bba102',
+    code: 'BBA-102',
+    name: 'Business Economics',
+    course: 'BBA',
+    year: '1st Year',
+    semester: 'Sem 1',
+    iconBg: '#DBEAFE',
+    iconColor: '#2563EB',
+    unitsCount: 5,
+    pyqsCount: 8
+  },
+  {
+    id: 'bba201',
+    code: 'BBA-201',
+    name: 'Marketing Management',
+    course: 'BBA',
+    year: '2nd Year',
+    semester: 'Sem 3',
+    iconBg: '#DCFCE7',
+    iconColor: '#16A34A',
+    unitsCount: 5,
+    pyqsCount: 12
+  },
+  {
+    id: 'bba301',
+    code: 'BBA-301',
+    name: 'Strategic Management',
+    course: 'BBA',
+    year: '3rd Year',
+    semester: 'Sem 5',
+    iconBg: '#F3E8FF',
+    iconColor: '#9333EA',
+    unitsCount: 5,
+    pyqsCount: 11
   }
 ];
 

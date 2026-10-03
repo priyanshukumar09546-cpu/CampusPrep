@@ -45,7 +45,7 @@ export default function MobileBottomNav({ activeTab, onNavigate }) {
     <nav
       role="navigation"
       aria-label="Mobile Bottom Navigation"
-      className="pv-mobile-bottom-nav md:hidden fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-white/95 backdrop-blur-md border-t border-stone-200/90 z-50 shadow-lg flex items-center justify-around h-16 px-1 select-none font-['Plus_Jakarta_Sans',sans-serif]"
+      className="pv-mobile-bottom-nav md:hidden fixed bottom-0 left-0 right-0 w-full bg-white/95 backdrop-blur-md border-t border-stone-200/90 z-50 shadow-lg flex items-center justify-around h-16 px-1 select-none font-['Plus_Jakarta_Sans',sans-serif]"
     >
       {tabs.map((tab) => {
         const isActive = currentNav === tab.id;
@@ -55,14 +55,7 @@ export default function MobileBottomNav({ activeTab, onNavigate }) {
           <button
             key={tab.id}
             type="button"
-            onClick={() => {
-              if (tab.id === 'notes') {
-                // Start from top of flow: Course → Year → Subject
-                onNavigate('select-course');
-              } else {
-                onNavigate(tab.id);
-              }
-            }}
+            onClick={() => onNavigate(tab.id)}
             aria-label={`Navigate to ${tab.label}`}
             className="flex-1 flex flex-col items-center justify-center gap-1 py-1 cursor-pointer transition-all relative group"
           >

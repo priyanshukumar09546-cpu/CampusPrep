@@ -11,11 +11,11 @@ import {
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
 import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CoursePyqsView from '../components/CoursePyqsView';
-import MobilePYQsScreen from '../components/MobilePYQsScreen';
 import { COURSES } from '../data/coursesCatalog';
 import { API_URL } from '../config/api';
 import CourseSelectModal from '../components/CourseSelectModal';
 import { COURSE_CONFIG, AVAILABLE_COURSES, normalizeCourseKey, normalizeYearStr, getYearsForCourse } from '../data/courseMapping.ts';
+import { pyqsData as localPyqsData } from '@/data/pyqsData';
 
 export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA', onSelectCourse }) {
   // Course State: 'BCA' | 'BTech' | 'MCA' | 'MBA' | 'BPharma' | 'BBA' | 'MTech'
@@ -92,12 +92,28 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
   const [requestPyqInfo, setRequestPyqInfo] = useState(null);
 
-  // Live Database PYQ Papers State (from Backend API)
-  const [dbPyqs, setDbPyqs] = useState([]);
+  // Live Database PYQ Papers State with Local Fallback First
+  const [dbPyqs, setDbPyqs] = useState(() => {
+    try {
+      const allLocal = Object.values(localPyqsData).flat();
+      return allLocal;
+    } catch (e) {
+      return [];
+    }
+  });
 
-  // Fetch Live Data from Backend API
+  // Fetch Live Data from Backend API with Local Fallback
   const loadLiveData = (courseKey) => {
     const c = courseKey || selectedCourse || 'B.Tech';
+    
+    // STEP 1: ALWAYS load local first
+    try {
+      const localMatches = Object.values(localPyqsData).flat();
+      if (localMatches.length > 0) {
+        setDbPyqs(localMatches);
+      }
+    } catch (e) {}
+
     fetch(`${API_URL}/api/pyqs?course=${encodeURIComponent(c)}&_t=${Date.now()}`, {
       cache: 'no-store',
       headers: {
@@ -112,12 +128,12 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BCA'
         return res.json();
       })
       .then(data => {
-        console.log("API URL", API_URL, "Response", data);
-        if (data.success && Array.isArray(data.pyqs)) {
-          setDbPyqs(data.pyqs);
+        const pyqList = Array.isArray(data) ? data : (data?.pyqs || []);
+        if (pyqList.length > 0) {
+          setDbPyqs(pyqList);
         }
       })
-      .catch(err => console.error('Error fetching backend PYQs:', err));
+      .catch(err => console.log('Backend not available, keeping local fallback pyqs:', err));
   };
 
   useEffect(() => {

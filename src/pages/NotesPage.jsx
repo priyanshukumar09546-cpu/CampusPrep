@@ -46,11 +46,11 @@ import { isValidPdfUrl } from '../utils/pdfValidator';
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
 import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CourseNotesView from '../components/CourseNotesView';
-import MobileNotesScreen from '../components/MobileNotesScreen';
 import { COURSES } from '../data/coursesCatalog';
 import { API_URL } from '../config/api';
 import CourseSelectModal from '../components/CourseSelectModal';
 import { COURSE_CONFIG, AVAILABLE_COURSES, normalizeCourseKey, normalizeYearStr, getYearsForCourse } from '../data/courseMapping.ts';
+import { notesData as localNotesData } from '@/data/notesData';
 
 export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'BCA', onSelectCourse }) {
   // Course State: 'BCA' | 'BTech' | 'MCA' | 'MBA' | 'BPharma' | 'BBA' | 'MTech'
@@ -125,22 +125,43 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   };
 
   // Navigation Flow State: Branch -> Year -> Subject -> Unit -> Sources
-  const [activeBranch, setActiveBranch] = useState('CSE'); // 'CSE' | 'ECE' | 'ME' | 'CE' | 'IT' | 'EE' | 'AI & DS' | 'Maths' | null
-  const [activeYear, setActiveYear] = useState('1st Year'); // '1st Year' | '2nd Year' | '3rd Year' | '4th Year' | null
-  const [activeSemester, setActiveSemester] = useState(null); // 'Sem 1' ... 'Sem 8' | null
-  const [activeSubject, setActiveSubject] = useState(null); // Subject Object | null
-  const [activeUnit, setActiveUnit] = useState(null); // 1 | 2 | 3 | 4 | 5 | null
+  const [activeBranch, setActiveBranch] = useState('CSE');
+  const [activeYear, setActiveYear] = useState('1st Year');
+  const [activeSemester, setActiveSemester] = useState(null);
+  const [activeSubject, setActiveSubject] = useState(null);
+  const [activeUnit, setActiveUnit] = useState(null);
 
   // Subject Filter & Dropdown Search States
   const [selectedSubject, setSelectedSubject] = useState('All Subjects');
   const [subjectDropdownSearch, setSubjectDropdownSearch] = useState('');
 
-  // Live Database Notes State (from Backend API)
-  const [dbNotes, setDbNotes] = useState([]);
+  // Live Database Notes State with Local Fallback First
+  const [dbNotes, setDbNotes] = useState(() => {
+    try {
+      const allLocal = Object.values(localNotesData).flat();
+      return allLocal;
+    } catch (e) {
+      return [];
+    }
+  });
   const notesCacheRef = React.useRef(new Map());
 
   const fetchBackendNotes = React.useCallback((courseVal, branchVal, yearVal) => {
     const c = courseVal || selectedCourse || 'B.Tech';
+    
+    // STEP 1: ALWAYS load local first (instant, works offline)
+    try {
+      const localMatches = Object.values(localNotesData).flat().filter(n => {
+        const nc = normalizeCourseKey(n.course);
+        return nc === normalizeCourseKey(c);
+      });
+      if (localMatches.length > 0) {
+        setDbNotes(localMatches);
+      }
+    } catch (e) {
+      console.log('[LOCAL NOTES] Fallback error', e);
+    }
+
     let url = `${API_URL}/api/notes?course=${encodeURIComponent(c)}`;
     if (c === 'B.Tech') {
       const b = branchVal || activeBranch || 'CSE';
@@ -162,13 +183,13 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         return res.json();
       })
       .then(data => {
-        console.log("API URL", API_URL, "Response", data);
-        if (data.success && Array.isArray(data.notes)) {
-          notesCacheRef.current.set(cacheKey, data.notes);
-          setDbNotes(data.notes);
+        const notesList = Array.isArray(data) ? data : (data?.notes || []);
+        if (notesList.length > 0) {
+          notesCacheRef.current.set(cacheKey, notesList);
+          setDbNotes(notesList);
         }
       })
-      .catch(err => console.error('Error fetching backend notes:', err));
+      .catch(err => console.log('Backend not available, keeping local fallback notes:', err));
   }, [selectedCourse, activeBranch, activeYear]);
 
   React.useEffect(() => {

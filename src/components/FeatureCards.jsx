@@ -104,11 +104,12 @@ export default function FeatureCards({ onCardClick }) {
       perspective: '1200px'
     }}>
       <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-          gap: '0.95rem'
-        }}>
+        <div 
+          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-3.5"
+          style={{
+            alignItems: 'stretch'
+          }}
+        >
           {cards.map(c => {
             const Icon = c.icon;
             return (

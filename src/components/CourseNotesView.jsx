@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
 import { BCA_NOTES_CATALOG } from '../data/bcaNotesData';
+import { notesData as localNotesData } from '@/data/notesData';
 import { API_URL } from '../config/api';
 
 export default function CourseNotesView({ 
@@ -388,11 +389,16 @@ export default function CourseNotesView({
   // Available units dynamic based on notes for active subject
   const availableUnitsForActiveSubject = useMemo(() => {
     if (!activeSubject) return ['All', 1, 2, 3, 4, 5];
-    const sourceNotes = isBTech 
-      ? (Array.isArray(localBTechNotes) ? localBTechNotes : [])
-      : (normKey === 'BCA' 
-          ? ((Array.isArray(dbNotes) && dbNotes.length > 0) ? dbNotes : BCA_NOTES_CATALOG)
-          : (Array.isArray(dbNotes) ? dbNotes : []));
+    const subCode = activeSubject.code || '';
+    const fallbackNotes = (subCode && (localNotesData[subCode] || localNotesData[subCode.toUpperCase()] || localNotesData[subCode.toLowerCase()])) || [];
+
+    const sourceNotes = (Array.isArray(dbNotes) && dbNotes.length > 0)
+      ? dbNotes
+      : (isBTech 
+          ? (Array.isArray(localBTechNotes) && localBTechNotes.length > 0 ? localBTechNotes : fallbackNotes)
+          : (normKey === 'BCA' 
+              ? BCA_NOTES_CATALOG 
+              : fallbackNotes));
 
     const notesForSubject = sourceNotes.filter(n => isSubjectStrictMatch(activeSubject, n));
     if (notesForSubject.length === 0) return ['All', 1, 2, 3, 4, 5];
@@ -416,11 +422,16 @@ export default function CourseNotesView({
 
   // Filter notes for active subject and active unit with strict isolation
   const matchedNotes = useMemo(() => {
-    const sourceNotes = isBTech 
-      ? (Array.isArray(localBTechNotes) ? localBTechNotes : [])
-      : (normKey === 'BCA' 
-          ? ((Array.isArray(dbNotes) && dbNotes.length > 0) ? dbNotes : BCA_NOTES_CATALOG)
-          : (Array.isArray(dbNotes) ? dbNotes : []));
+    const subCode = activeSubject?.code || '';
+    const fallbackNotes = (subCode && (localNotesData[subCode] || localNotesData[subCode.toUpperCase()] || localNotesData[subCode.toLowerCase()])) || [];
+
+    const sourceNotes = (Array.isArray(dbNotes) && dbNotes.length > 0)
+      ? dbNotes
+      : (isBTech 
+          ? (Array.isArray(localBTechNotes) && localBTechNotes.length > 0 ? localBTechNotes : fallbackNotes)
+          : (normKey === 'BCA' 
+              ? BCA_NOTES_CATALOG 
+              : fallbackNotes));
 
     if (!Array.isArray(sourceNotes) || !activeSubject) return [];
 

@@ -270,12 +270,46 @@ export const COURSE_CONFIG = {
         "Pharmaceutical Regulatory Science"
       ]
     }
+  },
+  "BBA": {
+    name: "BBA",
+    fullName: "Bachelor of Business Administration",
+    years: ["1st Year", "2nd Year", "3rd Year"],
+    sems: {
+      "1st Year": [1, 2],
+      "2nd Year": [3, 4],
+      "3rd Year": [5, 6]
+    },
+    subjects: {
+      1: ["Principles of Management", "Business Economics", "Financial Accounting", "Business Mathematics", "Business Communication"],
+      2: ["Organizational Behavior", "Marketing Management", "Human Resource Management", "Business Law", "Management Information Systems"],
+      3: ["Strategic Management", "Financial Management", "Operations Research", "Entrepreneurship Development", "International Business"],
+      4: ["Consumer Behavior", "Advertising & Brand Management", "Retail Management", "Digital Marketing", "Research Methodology"],
+      5: ["Investment Analysis", "Supply Chain Management", "Taxation Laws", "Business Ethics", "Corporate Governance"],
+      6: ["Major Project", "Comprehensive Viva", "E-Commerce", "Services Marketing"]
+    }
+  },
+  "MTech": {
+    name: "MTech",
+    fullName: "Master of Technology",
+    years: ["1st Year", "2nd Year"],
+    sems: {
+      "1st Year": [1, 2],
+      "2nd Year": [3, 4]
+    },
+    subjects: {
+      1: ["Advanced Data Structures & Algorithms", "Advanced Computer Architecture", "Advanced Operating Systems", "Distributed Systems"],
+      2: ["Machine Learning & Deep Neural Systems", "Cloud Infrastructure & High Scalability", "Advanced Cryptography & Network Security", "High Performance Computing"],
+      3: ["Dissertation Phase-I", "Seminar & Technical Writing", "Special Elective I"],
+      4: ["Dissertation Phase-II", "Comprehensive Viva", "Research Publication"]
+    }
   }
 };
 
 // Also support dot-notated aliases seamlessly:
 COURSE_CONFIG["B.Tech"] = COURSE_CONFIG["BTech"];
 COURSE_CONFIG["B.Pharm"] = COURSE_CONFIG["BPharma"];
+COURSE_CONFIG["M.Tech"] = COURSE_CONFIG["MTech"];
 
 // Available courses for modal and selector
 export const AVAILABLE_COURSES = [

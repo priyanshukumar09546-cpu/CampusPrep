@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ArrowLeft, 
   Share2, 
@@ -11,9 +11,13 @@ import {
   ChevronDown, 
   ChevronUp, 
   Check, 
-  File
+  File,
+  ExternalLink
 } from 'lucide-react';
 import { useCourse } from '../context/CourseContext';
+import { notesData as localNotesData } from '@/data/notesData';
+import { pyqsData as localPyqsData } from '@/data/pyqsData';
+import { API_URL } from '@/config/api';
 
 export default function SubjectDetailPage({ 
   subjectData, 
@@ -28,126 +32,94 @@ export default function SubjectDetailPage({
   const [downloadSuccess, setDownloadSuccess] = useState(null);
 
   // Subject details fallback
-  const subjectName = subjectData?.name || subjectData?.title || 'Operating System';
-  const subjectCode = subjectData?.code || 'BCS202';
+  const getSubjectCode = () => {
+    if (subjectData?.code) return subjectData.code;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('code');
+      if (q) return q;
+      const path = window.location.pathname.replace(/^\/|\/$/g, '');
+      if (path.startsWith('subject/')) {
+        const seg = path.split('/')[1];
+        if (seg) return decodeURIComponent(seg);
+      }
+    } catch (e) {}
+    return 'BCS301';
+  };
+
+  const code = getSubjectCode();
+  const subjectName = subjectData?.name || subjectData?.title || (code === 'BCS301' ? 'Data Structure' : `${code} - Subject Notes`);
   const courseName = subjectData?.course || selectedCourse || 'B.Tech';
   const branchName = subjectData?.branch || selectedBranch || 'CSE';
   const yearName = subjectData?.year || selectedYear || '2nd Year';
 
-  const notesList = [
-    {
-      unit: 1,
-      title: 'Unit 1',
-      desc: 'Introduction to OS',
-      size: '2.4 MB',
-      color: 'bg-red-50 text-red-600 border-red-200',
-      iconBg: 'bg-rose-100 text-rose-600',
-      topics: [
-        'Introduction, Evolution of Operating System',
-        'Operating System Structure & Operations',
-        'Process Management, Memory Management',
-        'Storage Management, Protection & Security',
-        'Computing Environments, Open Source OS'
-      ]
-    },
-    {
-      unit: 2,
-      title: 'Unit 2',
-      desc: 'Process Management',
-      size: '3.1 MB',
-      color: 'bg-red-50 text-red-600 border-red-200',
-      iconBg: 'bg-rose-100 text-rose-600',
-      topics: [
-        'Process Concept, Process Scheduling, Operations',
-        'Interprocess Communication (IPC)',
-        'Overview of Threads, Multicore Programming',
-        'Multithreading Models & Thread Libraries'
-      ]
-    },
-    {
-      unit: 3,
-      title: 'Unit 3',
-      desc: 'CPU Scheduling',
-      size: '2.8 MB',
-      color: 'bg-red-50 text-red-600 border-red-200',
-      iconBg: 'bg-rose-100 text-rose-600',
-      topics: [
-        'Basic Concepts, Scheduling Criteria',
-        'FCFS, SJF, Priority Scheduling, Round Robin',
-        'Multilevel Queue & Feedback Queue Scheduling',
-        'Thread Scheduling & Multi-Processor Scheduling'
-      ]
-    },
-    {
-      unit: 4,
-      title: 'Unit 4',
-      desc: 'Memory Management',
-      size: '2.6 MB',
-      color: 'bg-red-50 text-red-600 border-red-200',
-      iconBg: 'bg-rose-100 text-rose-600',
-      topics: [
-        'Swapping, Contiguous Memory Allocation',
-        'Segmentation and Paging Architectures',
-        'Virtual Memory, Demand Paging, Copy-on-Write',
-        'Page Replacement Algorithms (FIFO, LRU, Optimal)',
-        'Allocation of Frames, Thrashing'
-      ]
-    },
-    {
-      unit: 5,
-      title: 'Unit 5',
-      desc: 'File System',
-      size: '3.0 MB',
-      color: 'bg-amber-50 text-amber-600 border-amber-200',
-      iconBg: 'bg-amber-100 text-amber-700',
-      topics: [
-        'File Concept, Access Methods, Directory Structure',
-        'File-System Mounting, File Sharing & Protection',
-        'Allocation Methods (Contiguous, Chained, Indexed)',
-        'Free-Space Management & Disk Scheduling (SCAN, C-SCAN)'
-      ]
-    }
-  ];
+  // Local-first resilient state initialization
+  const [notes, setNotes] = useState(() => {
+    const local = localNotesData[code] || localNotesData[code?.toUpperCase()] || localNotesData[code?.toLowerCase()] || [];
+    return local;
+  });
 
-  const pyqList = [
-    {
-      year: 'AKTU 2024',
-      size: '1.4 MB',
-      questions: '32 Questions',
-      color: 'bg-rose-100 text-rose-600'
-    },
-    {
-      year: 'AKTU 2023',
-      size: '1.2 MB',
-      questions: '28 Questions',
-      color: 'bg-blue-100 text-blue-600'
-    },
-    {
-      year: 'AKTU 2022',
-      size: '1.3 MB',
-      questions: '30 Questions',
-      color: 'bg-amber-100 text-amber-700'
-    },
-    {
-      year: 'AKTU 2021',
-      size: '1.1 MB',
-      questions: '26 Questions',
-      color: 'bg-emerald-100 text-emerald-600'
-    },
-    {
-      year: 'AKTU 2020',
-      size: '1.6 MB',
-      questions: '32 Questions',
-      color: 'bg-sky-100 text-sky-600'
-    }
-  ];
+  const [pyqs, setPyqs] = useState(() => {
+    const local = localPyqsData[code] || localPyqsData[code?.toUpperCase()] || localPyqsData[code?.toLowerCase()] || [];
+    return local;
+  });
+
+  // STEP 1: FORCE LOCAL FALLBACK ON PRODUCTION (Most Important)
+  useEffect(() => {
+    const loadData = async () => {
+      // STEP 1: ALWAYS load local first (instant, works offline)
+      const localNotes = localNotesData[code] || localNotesData[code?.toUpperCase()] || localNotesData[code?.toLowerCase()] || [];
+      const localPyqs = localPyqsData[code] || localPyqsData[code?.toUpperCase()] || localPyqsData[code?.toLowerCase()] || [];
+
+      console.log(`[LOCAL] Subject ${code}: ${localNotes.length} notes, ${localPyqs.length} pyqs`);
+
+      if (localNotes.length > 0) {
+        setNotes(localNotes);
+        setPyqs(localPyqs);
+        // Still try API in background to update, but don't blank if API fails
+        try {
+          const res = await fetch(`${API_URL}/api/notes?subject=${code}`);
+          const apiData = await res.json();
+          const apiNotes = Array.isArray(apiData) ? apiData : (apiData?.notes || []);
+          if (apiNotes && apiNotes.length > 0) {
+            console.log(`[API] Got ${apiNotes.length} notes, merging`);
+            setNotes(apiNotes); // Update if API has newer
+          }
+        } catch (e) {
+          console.log("[API] Failed, keeping local data", e);
+        }
+        return;
+      }
+
+      // STEP 2: If no local, try API
+      try {
+        const res = await fetch(`${API_URL}/api/notes?subject=${code}`);
+        const apiData = await res.json();
+        const apiNotes = Array.isArray(apiData) ? apiData : (apiData?.notes || []);
+        if (apiNotes && apiNotes.length > 0) {
+          setNotes(apiNotes);
+        } else {
+          setNotes([]); // Show empty state
+        }
+      } catch (e) {
+        console.error("Both local and API failed for", code);
+        setNotes([]);
+      }
+    };
+    loadData();
+  }, [code]);
 
   const toggleUnit = (unit) => {
     setExpandedUnits(prev => ({ ...prev, [unit]: !prev[unit] }));
   };
 
-  const handleDownload = (item) => {
-    setDownloadSuccess(item);
+  const handleOpenResource = (item) => {
+    const url = item?.pdfUrl || item?.driveUrl || item?.url || item?.fileUrl;
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    setDownloadSuccess(item?.title || item?.year || 'Resource');
     setTimeout(() => {
       setDownloadSuccess(null);
     }, 2500);
@@ -167,7 +139,7 @@ export default function SubjectDetailPage({
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
+    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-4xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] flex flex-col pb-24">
       
       {/* Corner Leaves Decoration */}
       <div 
@@ -182,26 +154,27 @@ export default function SubjectDetailPage({
       {/* HEADER SECTION - Conditional based on Tab */}
       {activeTab === 'notes' ? (
         /* SCREEN 5 HEADER: With Share & Bookmark Icons */
-        <div className="px-5 pt-3 pb-2 z-10">
+        <div className="pt-2 pb-2 z-10">
           <div className="flex items-center justify-between mb-2">
             <button 
-              onClick={onBack || (() => onNavigate('select-subject'))} 
-              className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
+              onClick={onBack || (() => onNavigate ? onNavigate('notes') : window.history.back())} 
+              className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer flex items-center gap-1.5 font-medium text-sm"
               aria-label="Back"
             >
               <ArrowLeft size={20} />
+              <span>Back</span>
             </button>
             <div className="flex items-center gap-3">
               <button 
                 onClick={handleShare}
-                className="p-1 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
+                className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
                 aria-label="Share"
               >
                 <Share2 size={19} />
               </button>
               <button 
                 onClick={() => setBookmarked(!bookmarked)}
-                className={`p-1 transition-colors cursor-pointer ${bookmarked ? 'text-[#7A2327] fill-current' : 'text-stone-700 hover:text-stone-900'}`}
+                className={`p-1.5 transition-colors cursor-pointer ${bookmarked ? 'text-[#7A2327] fill-current' : 'text-stone-700 hover:text-stone-900'}`}
                 aria-label="Bookmark"
               >
                 <Bookmark size={19} className={bookmarked ? 'fill-[#7A2327]' : ''} />
@@ -211,7 +184,13 @@ export default function SubjectDetailPage({
 
           {/* Title & Hierarchy Breadcrumb */}
           <div className="mb-3">
-            <h1 className="font-['Outfit',sans-serif] font-bold text-2xl text-stone-900 leading-tight">
+            <div className="flex items-center gap-2">
+              <span className="bg-[#7A2327]/10 text-[#7A2327] font-bold text-xs px-2.5 py-0.5 rounded-full">
+                {code}
+              </span>
+              <span className="text-xs text-stone-500 font-medium">Official Curriculum</span>
+            </div>
+            <h1 className="font-['Outfit',sans-serif] font-bold text-2xl md:text-3xl text-stone-900 leading-tight mt-1">
               {subjectName}
             </h1>
             <div className="flex items-center gap-1.5 text-xs text-stone-500 font-medium mt-1">
@@ -221,7 +200,7 @@ export default function SubjectDetailPage({
           </div>
 
           {/* Screen 5 Hero Banner Illustration */}
-          <div className="w-full h-36 rounded-2xl overflow-hidden bg-gradient-to-r from-amber-50 to-orange-50 border border-orange-100/60 shadow-sm flex items-center justify-center p-2 mb-2">
+          <div className="w-full h-36 md:h-44 rounded-2xl overflow-hidden bg-gradient-to-r from-amber-50 to-orange-50 border border-orange-100/60 shadow-sm flex items-center justify-center p-3 mb-2">
             <img 
               src="/assets/os_header_illustration.png" 
               alt={`${subjectName} visual hero`}
@@ -234,10 +213,10 @@ export default function SubjectDetailPage({
         </div>
       ) : (
         /* SCREEN 6 & SCREEN 7 HEADER: With Search Icon & Compact Subtitle */
-        <div className="px-5 pt-3 pb-3 z-10">
+        <div className="pt-2 pb-3 z-10">
           <div className="flex items-center justify-between mb-1">
             <button 
-              onClick={onBack || (() => onNavigate('select-subject'))} 
+              onClick={onBack || (() => onNavigate ? onNavigate('notes') : window.history.back())} 
               className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
               aria-label="Back"
             >
@@ -245,16 +224,16 @@ export default function SubjectDetailPage({
             </button>
             
             <div className="text-center flex-1 mx-2">
-              <h1 className="font-['Outfit',sans-serif] font-bold text-xl text-stone-900 leading-tight">
+              <h1 className="font-['Outfit',sans-serif] font-bold text-xl md:text-2xl text-stone-900 leading-tight">
                 {subjectName}
               </h1>
-              <span className="text-[11px] text-stone-500 font-medium">
-                {subjectCode} • {courseName} {branchName} • {yearName}
+              <span className="text-xs text-stone-500 font-medium">
+                {code} • {courseName} {branchName} • {yearName}
               </span>
             </div>
 
             <button 
-              onClick={() => alert(`Search within ${subjectName}`)} 
+              onClick={() => alert(`Search active for ${subjectName}`)} 
               className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
               aria-label="Search"
             >
@@ -265,8 +244,8 @@ export default function SubjectDetailPage({
       )}
 
       {/* 3 TABS PILL TOGGLE (Notes / PYQs / Syllabus) */}
-      <div className="px-5 mb-4 z-10">
-        <div className="bg-[#EFEAE2] p-1 rounded-full flex items-center shadow-inner">
+      <div className="mb-4 z-10">
+        <div className="bg-[#EFEAE2] p-1 rounded-full flex items-center shadow-inner max-w-md mx-auto">
           <button
             onClick={() => setActiveTab('notes')}
             className={`flex-1 py-2 text-xs font-bold rounded-full transition-all text-center cursor-pointer ${
@@ -275,7 +254,7 @@ export default function SubjectDetailPage({
                 : 'text-stone-600 hover:text-stone-900'
             }`}
           >
-            Notes
+            Notes ({notes.length})
           </button>
           <button
             onClick={() => setActiveTab('pyqs')}
@@ -285,7 +264,7 @@ export default function SubjectDetailPage({
                 : 'text-stone-600 hover:text-stone-900'
             }`}
           >
-            PYQs
+            PYQs ({pyqs.length})
           </button>
           <button
             onClick={() => setActiveTab('syllabus')}
@@ -301,111 +280,136 @@ export default function SubjectDetailPage({
       </div>
 
       {/* TAB CONTENT */}
-      <div className="px-5 flex-1 z-10">
+      <div className="flex-1 z-10">
 
         {/* ===================== TAB 1: NOTES (SCREEN 5) ===================== */}
         {activeTab === 'notes' && (
           <div>
-            {/* Header: Unit-wise Notes (5) + Download All */}
+            {/* Header: Unit-wise Notes + Download All */}
             <div className="flex items-center justify-between mb-3">
-              <span className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900">
-                Unit-wise Notes ({notesList.length})
+              <span className="font-['Outfit',sans-serif] font-bold text-sm md:text-base text-stone-900">
+                Unit-wise Notes ({notes.length} Units Available)
               </span>
               <button 
-                onClick={() => handleDownload('All Unit Notes ZIP')}
+                onClick={() => handleOpenResource(notes[0])}
                 className="text-xs font-bold text-[#7A2327] hover:underline cursor-pointer flex items-center gap-1"
               >
-                Download All
+                Download Top Note
               </button>
             </div>
 
-            {/* List of 5 Unit Cards */}
-            <div className="space-y-2.5">
-              {notesList.map((item) => (
-                <div 
-                  key={item.unit}
-                  className="bg-white rounded-2xl p-3 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-200 transition-all"
-                >
-                  <div className="flex items-center gap-3">
-                    {/* PDF Icon Badge */}
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xs ${item.iconBg}`}>
-                      <FileText size={20} />
-                    </div>
-                    <div>
-                      <div className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">
-                        {item.title}
-                      </div>
-                      <div className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900">
-                        {item.desc}
-                      </div>
-                      <div className="text-[11px] text-stone-400 font-medium">
-                        PDF • {item.size}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Download Action */}
-                  <button 
-                    onClick={() => handleDownload(item.desc)}
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-[#7A2327] hover:bg-rose-50 transition-colors cursor-pointer"
-                    aria-label={`Download ${item.title}`}
+            {/* List of Unit Cards */}
+            {notes.length === 0 ? (
+              <div className="bg-white rounded-2xl p-8 border border-orange-100 text-center">
+                <FileText size={36} className="mx-auto text-stone-400 mb-2" />
+                <p className="font-bold text-stone-700">Loading notes for {code}...</p>
+                <p className="text-xs text-stone-500 mt-1">If empty, check back shortly or explore PYQs.</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {notes.map((item, idx) => (
+                  <div 
+                    key={item.id || item.unit || idx}
+                    className="bg-white rounded-2xl p-4 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-300 hover:shadow-md transition-all group"
                   >
-                    <Download size={18} strokeWidth={2.2} />
-                  </button>
-                </div>
-              ))}
-            </div>
+                    <div className="flex items-start sm:items-center gap-3">
+                      {/* PDF Icon Badge */}
+                      <div className="w-11 h-11 rounded-xl flex items-center justify-center font-bold text-xs bg-rose-100 text-rose-600 flex-shrink-0">
+                        <FileText size={22} />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] font-bold text-[#7A2327] uppercase tracking-wider bg-rose-50 px-2 py-0.5 rounded">
+                            Unit {item.unit || (idx + 1)}
+                          </span>
+                          <span className="text-[11px] text-stone-400 font-medium">
+                            PDF • {item.size || '2.8 MB'}
+                          </span>
+                        </div>
+                        <div className="font-['Outfit',sans-serif] font-bold text-sm sm:text-base text-stone-900 mt-0.5 group-hover:text-[#7A2327] transition-colors">
+                          {item.title}
+                        </div>
+                        {item.desc && (
+                          <div className="text-xs text-stone-500 line-clamp-1 mt-0.5">
+                            {item.desc}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Download / Open Action */}
+                    <button 
+                      onClick={() => handleOpenResource(item)}
+                      className="px-3.5 py-1.5 rounded-full flex items-center gap-1.5 text-xs font-bold text-white bg-[#7A2327] hover:bg-[#631c20] transition-colors cursor-pointer flex-shrink-0 shadow-sm ml-2"
+                      aria-label={`Open ${item.title}`}
+                    >
+                      <Download size={14} strokeWidth={2.4} />
+                      <span className="hidden sm:inline">View PDF</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
         {/* ===================== TAB 2: PYQS (SCREEN 6) ===================== */}
         {activeTab === 'pyqs' && (
           <div>
-            {/* Header: Previous Year Questions (18) + Filter */}
+            {/* Header: Previous Year Questions + Filter */}
             <div className="flex items-center justify-between mb-3">
-              <span className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900">
-                Previous Year Questions (18)
+              <span className="font-['Outfit',sans-serif] font-bold text-sm md:text-base text-stone-900">
+                Previous Year Papers ({pyqs.length} Papers)
               </span>
               <button 
-                onClick={() => alert('Filter PYQs: 2024 to 2018 End-Sem & Mid-Sem')}
-                className="bg-white border border-stone-200/90 rounded-full px-2.5 py-1 flex items-center gap-1 text-[11px] font-semibold text-stone-700 shadow-xs hover:bg-stone-50 cursor-pointer"
+                onClick={() => alert(`Showing all available papers for ${code}`)}
+                className="bg-white border border-stone-200/90 rounded-full px-3 py-1 flex items-center gap-1 text-xs font-semibold text-stone-700 shadow-xs hover:bg-stone-50 cursor-pointer"
               >
                 <Filter size={12} />
-                <span>Filter</span>
+                <span>AKTU Papers</span>
               </button>
             </div>
 
             {/* List of PYQ Cards */}
-            <div className="space-y-2.5">
-              {pyqList.map((item, idx) => (
-                <div 
-                  key={idx}
-                  className="bg-white rounded-2xl p-3 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-200 transition-all"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xs ${item.color}`}>
-                      <File size={20} />
-                    </div>
-                    <div>
-                      <div className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900">
-                        {item.year}
-                      </div>
-                      <div className="text-[11px] text-stone-400 font-medium">
-                        PDF • {item.size} • {item.questions}
-                      </div>
-                    </div>
-                  </div>
-
-                  <button 
-                    onClick={() => handleDownload(item.year)}
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-[#7A2327] hover:bg-rose-50 transition-colors cursor-pointer"
-                    aria-label={`Download ${item.year}`}
+            {pyqs.length === 0 ? (
+              <div className="bg-white rounded-2xl p-8 border border-orange-100 text-center">
+                <File size={36} className="mx-auto text-stone-400 mb-2" />
+                <p className="font-bold text-stone-700">No PYQs recorded for {code}</p>
+                <p className="text-xs text-stone-500 mt-1">Check back shortly as new session papers are synchronized.</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {pyqs.map((item, idx) => (
+                  <div 
+                    key={item.id || idx}
+                    className="bg-white rounded-2xl p-4 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-300 hover:shadow-md transition-all group"
                   >
-                    <Download size={18} strokeWidth={2.2} />
-                  </button>
-                </div>
-              ))}
-            </div>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center font-bold text-xs ${item.color || 'bg-blue-100 text-blue-600'} flex-shrink-0`}>
+                        <File size={22} />
+                      </div>
+                      <div>
+                        <div className="font-['Outfit',sans-serif] font-bold text-sm sm:text-base text-stone-900 group-hover:text-[#7A2327] transition-colors">
+                          {item.year || `AKTU ${item.examYear || 'Paper'}`}
+                        </div>
+                        <div className="text-xs text-stone-500 font-medium">
+                          {item.session ? `${item.session} • ` : ''}PDF • {item.size || '1.3 MB'} • {item.questions || 'Solved Paper'}
+                        </div>
+                      </div>
+                    </div>
+
+                    <button 
+                      onClick={() => handleOpenResource(item)}
+                      className="px-3.5 py-1.5 rounded-full flex items-center gap-1.5 text-xs font-bold text-white bg-[#7A2327] hover:bg-[#631c20] transition-colors cursor-pointer flex-shrink-0 shadow-sm ml-2"
+                      aria-label={`Open ${item.year}`}
+                    >
+                      <Download size={14} strokeWidth={2.4} />
+                      <span className="hidden sm:inline">Open Paper</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -414,54 +418,62 @@ export default function SubjectDetailPage({
           <div>
             {/* 1. Official Syllabus Card */}
             <div className="mb-4">
-              <div className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900 mb-2">
+              <div className="font-['Outfit',sans-serif] font-bold text-sm md:text-base text-stone-900 mb-2">
                 Official Syllabus
               </div>
-              <div className="bg-white rounded-2xl p-3 border border-orange-100/70 shadow-xs flex items-center justify-between">
+              <div className="bg-white rounded-2xl p-4 border border-orange-100/70 shadow-xs flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xs bg-rose-100 text-rose-600">
-                    <FileText size={20} />
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center font-bold text-xs bg-rose-100 text-rose-600 flex-shrink-0">
+                    <FileText size={22} />
                   </div>
                   <div>
-                    <div className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900">
-                      AKTU Syllabus 2024
+                    <div className="font-['Outfit',sans-serif] font-bold text-sm sm:text-base text-stone-900">
+                      {subjectName} — Syllabus
                     </div>
-                    <div className="text-[11px] text-stone-400 font-medium">
-                      PDF • 0.9 MB
+                    <div className="text-xs text-stone-500 font-medium">
+                      Code: {code} • 5 Units Full Outline
                     </div>
                   </div>
                 </div>
 
                 <button 
-                  onClick={() => handleDownload('Official Syllabus 2024')}
+                  onClick={() => handleOpenResource(notes[0])}
                   className="bg-[#7A2327] text-white text-xs font-bold px-4 py-2 rounded-full shadow-xs hover:bg-[#631c20] transition-colors cursor-pointer"
                 >
-                  Download
+                  View Outline
                 </button>
               </div>
             </div>
 
             {/* 2. Syllabus Topics Accordion */}
             <div>
-              <div className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900 mb-2">
-                Syllabus Topics
+              <div className="font-['Outfit',sans-serif] font-bold text-sm md:text-base text-stone-900 mb-2">
+                Unit Breakdown & Topics
               </div>
-              <div className="space-y-2">
-                {notesList.map((item) => {
-                  const isExpanded = !!expandedUnits[item.unit];
+              <div className="space-y-2.5">
+                {(notes.length > 0 ? notes : [1, 2, 3, 4, 5].map(u => ({ unit: u, title: `Unit ${u}`, desc: `Topics for Unit ${u}`, topics: ['Fundamental concepts & theory', 'Applied models & algorithms'] }))).map((item, idx) => {
+                  const unitNum = item.unit || (idx + 1);
+                  const isExpanded = !!expandedUnits[unitNum];
+                  const topicsList = item.topics && item.topics.length > 0 ? item.topics : [
+                    'Theoretical Foundations & Mathematical Formulations',
+                    'Architectural Principles & Modular Design',
+                    'Algorithmic Complexity & Execution Steps',
+                    'Empirical Analysis & Previous Year Examination Problems'
+                  ];
+
                   return (
                     <div 
-                      key={item.unit}
+                      key={unitNum}
                       className="bg-white rounded-2xl border border-orange-100/70 shadow-xs overflow-hidden transition-all"
                     >
                       <button
-                        onClick={() => toggleUnit(item.unit)}
-                        className="w-full p-3 flex items-center justify-between text-left cursor-pointer hover:bg-stone-50/50"
+                        onClick={() => toggleUnit(unitNum)}
+                        className="w-full p-3.5 flex items-center justify-between text-left cursor-pointer hover:bg-stone-50/50"
                       >
                         <div className="flex items-center gap-2.5">
-                          <FileText size={16} className="text-stone-400" />
-                          <span className="font-['Outfit',sans-serif] font-bold text-xs text-stone-800">
-                            Unit {item.unit}: {item.desc}
+                          <FileText size={17} className="text-[#7A2327]" />
+                          <span className="font-['Outfit',sans-serif] font-bold text-xs sm:text-sm text-stone-800">
+                            Unit {unitNum}: {item.title || item.desc}
                           </span>
                         </div>
                         {isExpanded ? (
@@ -472,9 +484,9 @@ export default function SubjectDetailPage({
                       </button>
 
                       {isExpanded && (
-                        <div className="px-4 pb-3 pt-1 border-t border-stone-100 bg-[#FDFBF9] text-xs text-stone-600 space-y-1.5">
-                          {item.topics.map((t, idx) => (
-                            <div key={idx} className="flex items-start gap-1.5">
+                        <div className="px-5 pb-3.5 pt-1 border-t border-stone-100 bg-[#FDFBF9] text-xs text-stone-600 space-y-2">
+                          {topicsList.map((t, tIdx) => (
+                            <div key={tIdx} className="flex items-start gap-2">
                               <span className="text-[#7A2327] font-bold">•</span>
                               <span className="leading-snug">{t}</span>
                             </div>
@@ -494,7 +506,7 @@ export default function SubjectDetailPage({
       {downloadSuccess && (
         <div className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-stone-900 text-white text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2 z-50 animate-bounce">
           <Check size={14} className="text-emerald-400" />
-          <span>Downloading {downloadSuccess}...</span>
+          <span>Opening {downloadSuccess}...</span>
         </div>
       )}
 

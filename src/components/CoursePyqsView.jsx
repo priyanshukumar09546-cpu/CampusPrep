@@ -17,6 +17,7 @@ import {
   Filter
 } from 'lucide-react';
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
+import { pyqsData as localPyqsData } from '@/data/pyqsData';
 import { API_URL } from '../config/api';
 
 // Strict Real Database Branches ONLY — zero fake branches
@@ -100,27 +101,50 @@ export default function CoursePyqsView({
   const [activeSubject, setActiveSubject] = useState(null);
 
   // Local state for fetched PYQs (resilient fallback if dbPyqs prop is empty/loading)
-  const [localPyqs, setLocalPyqs] = useState(Array.isArray(dbPyqs) ? dbPyqs : []);
+  const allFallbackPyqs = useMemo(() => {
+    try {
+      return Object.values(localPyqsData).flat();
+    } catch (e) {
+      return [];
+    }
+  }, []);
+
+  const [localPyqs, setLocalPyqs] = useState(() => {
+    if (Array.isArray(dbPyqs) && dbPyqs.length > 0) return dbPyqs;
+    try {
+      return Object.values(localPyqsData).flat();
+    } catch (e) {
+      return [];
+    }
+  });
 
   useEffect(() => {
     if (Array.isArray(dbPyqs) && dbPyqs.length > 0) {
       setLocalPyqs(dbPyqs);
-    } else {
-      fetch(`${API_URL}/api/pyqs?course=${encodeURIComponent(normKey)}&_t=${Date.now()}`)
-        .then(res => {
-          if (!res.ok || !(res.headers.get('content-type') || '').includes('application/json')) {
-            throw new Error('Backend not available');
-          }
-          return res.json();
-        })
-        .then(data => {
-          if (data.success && Array.isArray(data.pyqs)) {
-            setLocalPyqs(data.pyqs);
-          }
-        })
-        .catch(err => console.error('Error fetching PYQs in CoursePyqsView:', err));
+      return;
     }
-  }, [normKey, dbPyqs]);
+    
+    // STEP 1: ALWAYS load local first (instant, works offline)
+    if (allFallbackPyqs.length > 0) {
+      setLocalPyqs(allFallbackPyqs);
+    }
+
+    // STEP 2: Background API fetch
+    fetch(`${API_URL}/api/pyqs?course=${encodeURIComponent(normKey)}&_t=${Date.now()}`)
+      .then(res => {
+        if (!res.ok || !(res.headers.get('content-type') || '').includes('application/json')) {
+          throw new Error('Backend not available');
+        }
+        return res.json();
+      })
+      .then(data => {
+        const pyqList = Array.isArray(data) ? data : (data?.pyqs || []);
+        if (pyqList.length > 0) {
+          setLocalPyqs(pyqList);
+        }
+      })
+      .catch(err => console.log('Backend not available, keeping local fallback pyqs:', err));
+  }, [normKey, dbPyqs, allFallbackPyqs]);
 
   // URL Sync Helper
   const updateUrl = useCallback((newParams = {}) => {

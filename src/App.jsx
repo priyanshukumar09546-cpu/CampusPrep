@@ -13,10 +13,9 @@ import AIStudyModal from './components/AIStudyModal';
 import AuthModal from './components/AuthModal';
 import CourseSelectModal from './components/CourseSelectModal';
 import StayConnectedPopup from './components/StayConnectedPopup';
-import MobileHeader from './components/MobileHeader';
 import MobileBottomNav from './components/MobileBottomNav';
-import MobileHomeScreen from './components/MobileHomeScreen';
 import CookieConsent from './components/CookieConsent';
+import Home from './pages/Home';
 
 import { Clock } from 'lucide-react';
 // Pages
@@ -60,9 +59,6 @@ import SelectCoursePage from './pages/SelectCoursePage';
 import SelectYearPage from './pages/SelectYearPage';
 import SelectSubjectPage from './pages/SelectSubjectPage';
 import SubjectDetailPage from './pages/SubjectDetailPage';
-import MobileQuizzesScreen from './components/MobileQuizzesScreen';
-import MobileInterviewProScreen from './components/MobileInterviewProScreen';
-import MobileMoreScreen from './components/MobileMoreScreen';
 
 export default function App() {
   const isAdminAuthenticated = () => {
@@ -485,47 +481,21 @@ export default function App() {
     navigateToTab('notes');
   };
 
-  // On mobile phone devices, if first time user with no selected course, navigate to /select-course
-  useEffect(() => {
-    try {
-      const isMobile = window.innerWidth <= 768;
-      const hasSavedCourse = localStorage.getItem('campusprep_selected_course');
-      const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
-      if (isMobile && !hasSavedCourse && (!path || path === 'home')) {
-        navigateToTab('select-course');
-      }
-    } catch (e) {}
-  }, []);
-
   const isStandaloneAuth = activeTab === 'signin' || activeTab === 'signup' || activeTab === 'login' || activeTab === 'admin' || activeTab === 'admin-login';
-  const isCustomMobileScreen = activeTab === 'select-course' || activeTab === 'select-year' || activeTab === 'select-subject' || activeTab === 'subject-detail';
-  const hideTopNav = isStandaloneAuth || isCustomMobileScreen;
+  const hideTopNav = isStandaloneAuth;
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Responsive Navbar (Hidden on standalone Auth, Admin, and Full Mobile Screens) */}
+      {/* Responsive Navbar (Hidden only on standalone Auth & Admin Pages) */}
       {!hideTopNav && (
-        <>
-          <div className="pv-desktop-navbar-wrapper">
-            <Navbar
-              onSearch={(query) => handleSearch(query, selectedBranch)}
-              onOpenAuth={handleOpenAuth}
-              activeTab={activeTab}
-              setActiveTab={(tab) => {
-                navigateToTab(tab);
-              }}
-            />
-          </div>
-          <MobileHeader
-            activeTab={activeTab}
-            selectedCourse={selectedCourse || 'B.Tech'}
-            onNavigate={(tab) => navigateToTab(tab)}
-            onOpenUpdates={() => {
-              window.dispatchEvent(new CustomEvent('open_student_updates'));
-            }}
-            onOpenSearch={() => navigateToTab('notes')}
-          />
-        </>
+        <Navbar
+          onSearch={(query) => handleSearch(query, selectedBranch)}
+          onOpenAuth={handleOpenAuth}
+          activeTab={activeTab}
+          setActiveTab={(tab) => {
+            navigateToTab(tab);
+          }}
+        />
       )}
 
       {/* Main Content View Switcher */}
@@ -553,10 +523,6 @@ export default function App() {
             onNavigate={(tab) => navigateToTab(tab)}
           />
         ) : activeTab === 'notes' ? (
-          /* On mobile, notes click should go through Course→Year→Subject flow */
-          window.innerWidth <= 768 ? (
-            <SelectCoursePage onNavigate={(tab) => navigateToTab(tab)} />
-          ) : (
           <NotesPage
             searchQuery={globalSearchQuery}
             onClearSearch={() => setGlobalSearchQuery('')}
@@ -575,12 +541,7 @@ export default function App() {
             }}
             onOpenAuth={handleOpenAuth}
           />
-          )
         ) : activeTab === 'pyqs' ? (
-          /* On mobile, pyqs click should go through Course→Year→Subject flow */
-          window.innerWidth <= 768 ? (
-            <SelectCoursePage onNavigate={(tab) => navigateToTab(tab)} />
-          ) : (
           <PYQsPage
             initialCourse={selectedCourse || 'B.Tech'}
             onSelectCourse={(courseKey) => {
@@ -595,29 +556,6 @@ export default function App() {
                 navigateToTab(tab, data);
               }
             }}
-            onOpenAuth={handleOpenAuth}
-          />
-          )
-        ) : activeTab === 'syllabus' ? (
-          <SubjectDetailPage 
-            subjectData={selectedSubjectData}
-            initialTab="syllabus"
-            onBack={() => navigateToTab('select-subject')}
-            onNavigate={(tab) => navigateToTab(tab)}
-          />
-        ) : activeTab === 'quizzes' ? (
-          <MobileQuizzesScreen 
-            onNavigate={(tab) => navigateToTab(tab)}
-            onStartQuiz={(quiz) => alert(`Starting ${quiz.name} Quiz!`)}
-          />
-        ) : activeTab === 'interview-pro' || activeTab === 'aistudy' ? (
-          <MobileInterviewProScreen 
-            onNavigate={(tab) => navigateToTab(tab)}
-            onStartInterview={(type) => navigateToTab('interview-confirm')}
-          />
-        ) : activeTab === 'more' || activeTab === 'progress' ? (
-          <MobileMoreScreen 
-            onNavigate={(tab) => navigateToTab(tab)}
             onOpenAuth={handleOpenAuth}
           />
         ) : activeTab === 'admin' ? (
@@ -862,93 +800,25 @@ export default function App() {
             }}
           />
         ) : (
-
-          <>
-            {/* Mobile Home Screen (<= 768px) */}
-            <div className="pv-mobile-home-view">
-              <MobileHomeScreen
-                selectedCourse={selectedCourse || 'B.Tech'}
-                onNavigate={(tab, data) => {
-                  if (tab === 'subject' && data) {
-                    handleOpenSubject(data);
-                  } else {
-                    navigateToTab(tab, data);
-                  }
-                }}
-                onOpenAI={() => setIsAIModalOpen(true)}
-                onSearch={handleSearch}
-                onSelectCourse={(courseKey) => {
-                  setSelectedCourse(courseKey);
-                  const targetPath = `/?course=${encodeURIComponent(courseKey)}`;
-                  window.history.replaceState({ tab: 'home', course: courseKey }, '', targetPath);
-                }}
-                onSelectSubject={(sub) => handleOpenSubject(sub)}
-              />
-            </div>
-
-            {/* Desktop Home Views (> 768px) */}
-            <div className="pv-desktop-home-view">
-              {/* 1. Sunlit Warm Ivory Home Hero Section */}
-              <HeroSection
-                onSearch={handleSearch}
-                onSelectBranch={handleSelectBranch}
-              />
-
-              {/* 2. Horizontal Feature Cards Section */}
-              <FeatureCards
-                onCardClick={handleFeatureClick}
-              />
-
-              {/* 3. Choose Your Course Section (B.Tech, MCA, MBA, B.Pharm) */}
-              <CourseCardsSection
-                onSelectCourse={(courseId) => {
-                  let courseKey = 'B.Tech';
-                  if (courseId === 'bca') courseKey = 'BCA';
-                  else if (courseId === 'mca') courseKey = 'MCA';
-                  else if (courseId === 'mba') courseKey = 'MBA';
-                  else if (courseId === 'bpharm') courseKey = 'B.Pharm';
-                  handleCourseSelected(courseKey, 'notes');
-                }}
-                onNavigate={(tab) => {
-                  navigateToTab(tab);
-                }}
-              />
-
-              {/* 4. Year + Branch + Ask Virus AI Section */}
-              <YearBranchAISection
-                onSelectYear={handleSelectYear}
-                onSelectBranch={handleSelectBranch}
-                onOpenAI={() => setIsAIModalOpen(true)}
-              />
-
-              {/* 4. Configurable Statistics Section */}
-              <StatsSection
-                isLiveDataAvailable={false}
-              />
-
-              {/* 5. Three-Column Trending + Latest Notes + Community Section */}
-              <TrendingLatestCommunitySection
-                onSubjectClick={(sub) => handleOpenSubject(sub)}
-                onNoteClick={(note) => {
-                  const rawUrl = note.pdfUrl || note.driveUrl || note.fileUrl || note.resourceUrl || note.url;
-                  if (rawUrl) {
-                    window.open(rawUrl, '_blank', 'noopener,noreferrer');
-                  } else {
-                    alert('Note document is currently unavailable.');
-                  }
-                }}
-                onDiscussionClick={(disc) => alert(`Opening Discussion: ${disc.title}`)}
-                onViewAll={(type) => setActiveTab(type)}
-              />
-
-              {/* 6. Academic Closing CTA Section */}
-              <AcademicClosingSection
-                onNavigate={(tab) => {
-                  navigateToTab(tab);
-                }}
-              />
-            </div>
-          </>
+          <Home
+            onSearch={handleSearch}
+            onSelectBranch={handleSelectBranch}
+            onFeatureClick={handleFeatureClick}
+            onSelectCourse={(courseId) => {
+              let courseKey = 'B.Tech';
+              if (courseId === 'bca') courseKey = 'BCA';
+              else if (courseId === 'mca') courseKey = 'MCA';
+              else if (courseId === 'mba') courseKey = 'MBA';
+              else if (courseId === 'bpharm') courseKey = 'B.Pharm';
+              else if (courseId === 'bba') courseKey = 'BBA';
+              else if (courseId === 'mtech') courseKey = 'M.Tech';
+              handleCourseSelected(courseKey, 'notes');
+            }}
+            onSelectYear={handleSelectYear}
+            onOpenAI={() => setIsAIModalOpen(true)}
+            onNavigate={navigateToTab}
+            onOpenSubject={handleOpenSubject}
+          />
         )}
       </main>
 

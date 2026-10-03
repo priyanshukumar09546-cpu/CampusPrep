@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 import { getAktuSyllabusForSubject } from '../data/aktuSyllabusData';
 import NoteViewerModal from '../components/NoteViewerModal';
+import { notesData as localNotesData } from '@/data/notesData';
+import { pyqsData as localPyqsData } from '@/data/pyqsData';
 
 export default function SubjectPage({ 
   subjectData, 
@@ -24,11 +26,6 @@ export default function SubjectPage({
   onNavigate 
 }) {
   const [activeTab, setActiveTab] = useState('notes'); // 'notes' | 'pyqs' | 'syllabus'
-  const [notes, setNotes] = useState([]);
-  const [pyqs, setPyqs] = useState([]);
-  const [isLoadingNotes, setIsLoadingNotes] = useState(true);
-  const [isLoadingPyqs, setIsLoadingPyqs] = useState(true);
-  const [viewerModalData, setViewerModalData] = useState(null);
 
   // Normalize subject details from prop
   const subjectName = typeof subjectData === 'string' 
@@ -41,13 +38,26 @@ export default function SubjectPage({
   const semester = subjectData?.sem || subjectData?.semester || '';
   const course = subjectData?.course || 'B.Tech';
 
+  const [notes, setNotes] = useState(() => {
+    return localNotesData[subjectCode] || localNotesData[subjectCode?.toUpperCase()] || [];
+  });
+  const [pyqs, setPyqs] = useState(() => {
+    return localPyqsData[subjectCode] || localPyqsData[subjectCode?.toUpperCase()] || [];
+  });
+  const [isLoadingNotes, setIsLoadingNotes] = useState(false);
+  const [isLoadingPyqs, setIsLoadingPyqs] = useState(false);
+  const [viewerModalData, setViewerModalData] = useState(null);
+
   // Authoritative AKTU syllabus data for this subject
   const aktuSyllabus = getAktuSyllabusForSubject(subjectCode, subjectName);
 
-  // Fetch real notes from MongoDB API
+  // Fetch real notes from MongoDB API with local fallback
   useEffect(() => {
     let isSubscribed = true;
-    setIsLoadingNotes(true);
+    const local = localNotesData[subjectCode] || localNotesData[subjectCode?.toUpperCase()] || [];
+    if (local.length > 0) {
+      setNotes(local);
+    }
 
     const queryParams = new URLSearchParams({
       course: course,
@@ -60,8 +70,7 @@ export default function SubjectPage({
       .then(res => res.json())
       .then(data => {
         if (!isSubscribed) return;
-        if (data && data.success && Array.isArray(data.notes)) {
-          // Filter to match this subject
+        if (data && data.success && Array.isArray(data.notes) && data.notes.length > 0) {
           const matched = data.notes.filter(n => {
             const nSub = String(n.subject || n.subjectName || '').toLowerCase();
             const nCode = String(n.subjectCode || '').toLowerCase();
@@ -75,18 +84,10 @@ export default function SubjectPage({
             );
           });
           setNotes(matched.length > 0 ? matched : data.notes);
-        } else {
-          setNotes([]);
         }
       })
       .catch(err => {
-        if (isSubscribed) {
-          console.error('Error fetching subject notes:', err);
-          setNotes([]);
-        }
-      })
-      .finally(() => {
-        if (isSubscribed) setIsLoadingNotes(false);
+        console.log('Background notes fetch failed, keeping local fallback:', err);
       });
 
     return () => {
@@ -94,10 +95,13 @@ export default function SubjectPage({
     };
   }, [subjectName, subjectCode, branch, course]);
 
-  // Fetch real PYQs from MongoDB API
+  // Fetch real PYQs from MongoDB API with local fallback
   useEffect(() => {
     let isSubscribed = true;
-    setIsLoadingPyqs(true);
+    const local = localPyqsData[subjectCode] || localPyqsData[subjectCode?.toUpperCase()] || [];
+    if (local.length > 0) {
+      setPyqs(local);
+    }
 
     const queryParams = new URLSearchParams({
       course: course,
@@ -110,7 +114,7 @@ export default function SubjectPage({
       .then(res => res.json())
       .then(data => {
         if (!isSubscribed) return;
-        if (data && data.success && Array.isArray(data.pyqs)) {
+        if (data && data.success && Array.isArray(data.pyqs) && data.pyqs.length > 0) {
           const matched = data.pyqs.filter(p => {
             const pSub = String(p.subjectName || p.subject || '').toLowerCase();
             const pCode = String(p.subjectCode || '').toLowerCase();
@@ -124,18 +128,10 @@ export default function SubjectPage({
             );
           });
           setPyqs(matched.length > 0 ? matched : data.pyqs);
-        } else {
-          setPyqs([]);
         }
       })
       .catch(err => {
-        if (isSubscribed) {
-          console.error('Error fetching subject PYQs:', err);
-          setPyqs([]);
-        }
-      })
-      .finally(() => {
-        if (isSubscribed) setIsLoadingPyqs(false);
+        console.log('Background pyqs fetch failed, keeping local fallback:', err);
       });
 
     return () => {
