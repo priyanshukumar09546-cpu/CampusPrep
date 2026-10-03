@@ -318,6 +318,109 @@ export const COURSES = [
         { code: 'BP805ET', name: 'Pharmacovigilance' }
       ]
     }
+  },
+  {
+    id: 'bba',
+    key: 'BBA',
+    name: 'BBA',
+    fullName: 'Bachelor of Business Administration',
+    tagline: 'Lead Strategize Grow !',
+    description: 'Management fundamentals, business principles, and leadership skills.',
+    badgeColor: '#7C3AED',
+    btnColor: '#7C3AED',
+    btnHover: '#6D28D9',
+    bgGradient: 'linear-gradient(180deg, #F5F3FF 0%, #FFFFFF 100%)',
+    borderColor: '#DDD6FE',
+    filterType: 'semester',
+    years: ['1st Year', '2nd Year', '3rd Year'],
+    semesters: ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5', 'Semester 6'],
+    units: [1, 2, 3, 4, 5],
+    subjectsBySemester: {
+      'Semester 1': [
+        { code: 'BBA101', name: 'Principles of Management' },
+        { code: 'BBA102', name: 'Business Economics' },
+        { code: 'BBA103', name: 'Basic Accounting' },
+        { code: 'BBA104', name: 'Business Communication' },
+        { code: 'BBA105', name: 'Computer Fundamentals' }
+      ],
+      'Semester 2': [
+        { code: 'BBA201', name: 'Organizational Behavior' },
+        { code: 'BBA202', name: 'Business Statistics' },
+        { code: 'BBA203', name: 'Financial Management' },
+        { code: 'BBA204', name: 'Marketing Management' },
+        { code: 'BBA205', name: 'Business Law' }
+      ],
+      'Semester 3': [
+        { code: 'BBA301', name: 'Human Resource Management' },
+        { code: 'BBA302', name: 'Cost Accounting' },
+        { code: 'BBA303', name: 'Operations Research' },
+        { code: 'BBA304', name: 'Management Information Systems' },
+        { code: 'BBA305', name: 'Environmental Studies' }
+      ],
+      'Semester 4': [
+        { code: 'BBA401', name: 'Research Methodology' },
+        { code: 'BBA402', name: 'Financial Markets & Institutions' },
+        { code: 'BBA403', name: 'Advertising & Sales Promotion' },
+        { code: 'BBA404', name: 'Consumer Behaviour' },
+        { code: 'BBA405', name: 'Income Tax Law' }
+      ],
+      'Semester 5': [
+        { code: 'BBA501', name: 'Strategic Management' },
+        { code: 'BBA502', name: 'Entrepreneurship Development' },
+        { code: 'BBA503', name: 'International Business' },
+        { code: 'BBA504', name: 'Project Management' },
+        { code: 'BBA505', name: 'Digital Marketing' }
+      ],
+      'Semester 6': [
+        { code: 'BBA601', name: 'Business Policy' },
+        { code: 'BBA602', name: 'Corporate Governance & Ethics' },
+        { code: 'BBA603', name: 'Retail Management' },
+        { code: 'BBA604', name: 'Major Project & Comprehensive Viva' }
+      ]
+    }
+  },
+  {
+    id: 'mtech',
+    key: 'MTech',
+    name: 'MTech',
+    fullName: 'Master of Technology',
+    tagline: 'Research Innovate Specialize !',
+    description: 'Advanced engineering research, specialized technical topics, and publications.',
+    badgeColor: '#DC2626',
+    btnColor: '#DC2626',
+    btnHover: '#B91C1C',
+    bgGradient: 'linear-gradient(180deg, #FEF2F2 0%, #FFFFFF 100%)',
+    borderColor: '#FECACA',
+    filterType: 'branch_year',
+    branches: [
+      { id: 'CSE', name: 'Computer Science & Engineering', short: 'CSE' },
+      { id: 'VLSI', name: 'VLSI Design', short: 'VLSI' },
+      { id: 'ECE', name: 'Electronics & Communication', short: 'ECE' }
+    ],
+    years: ['1st Year', '2nd Year'],
+    semesters: ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4'],
+    units: [1, 2, 3, 4, 5],
+    subjectsBySemester: {
+      'Semester 1': [
+        { code: 'MTCS101', name: 'Advanced Algorithms & Complexity' },
+        { code: 'MTCS102', name: 'Advanced Computer Architecture' },
+        { code: 'MTCS103', name: 'Machine Learning & Pattern Recognition' },
+        { code: 'MTCS104', name: 'Research Methodology & IPR' }
+      ],
+      'Semester 2': [
+        { code: 'MTCS201', name: 'Advanced Distributed Systems' },
+        { code: 'MTCS202', name: 'Deep Learning & Neural Networks' },
+        { code: 'MTCS203', name: 'Cloud Computing Architecture' },
+        { code: 'MTCS204', name: 'Elective: High Performance Computing' }
+      ],
+      'Semester 3': [
+        { code: 'MTCS301', name: 'Dissertation Phase - I' },
+        { code: 'MTCS302', name: 'Specialized Technical Seminar' }
+      ],
+      'Semester 4': [
+        { code: 'MTCS401', name: 'Dissertation Phase - II & Final Defense' }
+      ]
+    }
   }
 ];
 

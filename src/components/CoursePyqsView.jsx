@@ -17,6 +17,7 @@ import {
   Filter
 } from 'lucide-react';
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
+import { API_URL } from '../config/api';
 
 // Strict Real Database Branches ONLY — zero fake branches
 const BTECH_BRANCHES = [
@@ -105,7 +106,7 @@ export default function CoursePyqsView({
     if (Array.isArray(dbPyqs) && dbPyqs.length > 0) {
       setLocalPyqs(dbPyqs);
     } else {
-      fetch(`/api/pyqs?course=${encodeURIComponent(normKey)}&_t=${Date.now()}`)
+      fetch(`${API_URL}/api/pyqs?course=${encodeURIComponent(normKey)}&_t=${Date.now()}`)
         .then(res => {
           if (!res.ok || !(res.headers.get('content-type') || '').includes('application/json')) {
             throw new Error('Backend not available');

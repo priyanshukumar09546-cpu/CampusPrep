@@ -49,28 +49,37 @@ import CourseNotesView from '../components/CourseNotesView';
 import MobileNotesScreen from '../components/MobileNotesScreen';
 import { COURSES } from '../data/coursesCatalog';
 import { API_URL } from '../config/api';
+import CourseSelectModal from '../components/CourseSelectModal';
+import { COURSE_CONFIG, AVAILABLE_COURSES, normalizeCourseKey, normalizeYearStr, getYearsForCourse } from '../data/courseMapping.ts';
 
-export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'B.Tech', onSelectCourse }) {
-  // Course State: 'B.Tech' | 'MCA' | 'MBA' | 'B.Pharm'
+export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'BCA', onSelectCourse }) {
+  // Course State: 'BCA' | 'BTech' | 'MCA' | 'MBA' | 'BPharma' | 'BBA' | 'MTech'
   const [selectedCourse, setSelectedCourse] = useState(() => {
     try {
       const params = new URLSearchParams(window.location.search);
       const c = params.get('course');
-      if (c) {
-        const cLower = c.toLowerCase();
-        if (cLower.includes('bca')) return 'BCA';
-        if (cLower.includes('mca')) return 'MCA';
-        if (cLower.includes('mba')) return 'MBA';
-        if (cLower.includes('pharm')) return 'B.Pharm';
-        return 'B.Tech';
-      }
+      if (c) return normalizeCourseKey(c);
+      const saved = localStorage.getItem('campusprep_selected_course');
+      if (saved) return normalizeCourseKey(saved);
     } catch (e) {}
-    return initialCourse || 'B.Tech';
+    return normalizeCourseKey(initialCourse || 'BCA');
+  });
+
+  // Modal open on first open if no course is selected/stored
+  const [isCourseModalOpen, setIsCourseModalOpen] = useState(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const c = params.get('course');
+      const saved = localStorage.getItem('campusprep_selected_course');
+      return !c && !saved;
+    } catch (e) {
+      return false;
+    }
   });
 
   useEffect(() => {
-    if (initialCourse && initialCourse !== selectedCourse) {
-      setSelectedCourse(initialCourse);
+    if (initialCourse && normalizeCourseKey(initialCourse) !== normalizeCourseKey(selectedCourse)) {
+      setSelectedCourse(normalizeCourseKey(initialCourse));
     }
   }, [initialCourse]);
 
@@ -89,17 +98,29 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
 
   // Course Switcher Tab Handler
   const handleCourseTabChange = (courseKey) => {
-    setSelectedCourse(courseKey);
-    if (onSelectCourse) onSelectCourse(courseKey);
-    if (courseKey === 'B.Tech') {
+    const norm = normalizeCourseKey(courseKey);
+    setSelectedCourse(norm);
+    try {
+      localStorage.setItem('campusprep_selected_course', norm);
+    } catch (e) {}
+    if (onSelectCourse) onSelectCourse(norm);
+
+    if (norm === 'BTech' || norm === 'B.Tech') {
       setActiveBranch('CSE');
       setActiveYear('1st Year');
       setActiveSubject(null);
       setActiveUnit(null);
       setSelectedSubject('All Subjects');
-      updateUrlParams({ course: 'B.Tech', branch: 'CSE', year: '1st Year', semester: null, specialization: null, subject: null, unit: null });
+      updateUrlParams({ course: 'BTech', branch: 'CSE', year: '1st Year', semester: null, specialization: null, subject: null, unit: null });
     } else {
-      updateUrlParams({ course: courseKey, branch: null, year: null, semester: null, specialization: null, subject: null, unit: null });
+      const years = getYearsForCourse(norm);
+      const defaultYear = years[0] || '1st Year';
+      setActiveYear(defaultYear);
+      setActiveSemester(null);
+      setActiveSubject(null);
+      setActiveUnit(null);
+      setSelectedSubject('All Subjects');
+      updateUrlParams({ course: norm, branch: null, year: defaultYear, semester: null, specialization: null, subject: null, unit: null });
     }
   };
 
@@ -859,7 +880,12 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
       <div className="pv-mobile-notes-view">
         <MobileNotesScreen
           courseKey={selectedCourse}
+          selectedYearProp={activeYear}
+          selectedBranchProp={activeBranch}
           dbNotes={dbNotes}
+          onSelectCourse={handleCourseTabChange}
+          onSelectYear={(y) => setActiveYear(y)}
+          onSelectBranch={(b) => setActiveBranch(b)}
           onOpenViewer={({ note, subject, unit }) => {
             setActiveViewerNote({ note, subject, unit: unit ? { unitNo: unit, topics: [] } : null });
           }}
@@ -1118,6 +1144,17 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
           onClose={() => setActiveViewerNote(null)}
         />
       )}
+
+      {/* COURSE SELECT MODAL */}
+      <CourseSelectModal
+        isOpen={isCourseModalOpen}
+        onClose={() => setIsCourseModalOpen(false)}
+        targetTab="notes"
+        onSelectCourse={(c) => {
+          handleCourseTabChange(c);
+          setIsCourseModalOpen(false);
+        }}
+      />
 
       <style>{`
         @media (max-width: 1024px) {

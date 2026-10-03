@@ -171,6 +171,17 @@ export default function CourseSelectModal({ isOpen, onClose, targetTab = 'notes'
                       <rect x="18" y="68" width="46" height="6" rx="1.5" fill="#2563EB" />
                     </svg>
                   )}
+                  {course.id === 'bca' && (
+                    <svg viewBox="0 0 160 86" fill="none" style={{ width: '100%', height: '100%' }}>
+                      <rect x="22" y="16" width="70" height="46" rx="5" fill="#0369A1" />
+                      <rect x="26" y="20" width="62" height="38" rx="3" fill="#0C4A6E" />
+                      <text x="57" y="44" fill="#38BDF8" fontFamily="monospace" fontSize="13" fontWeight="bold" textAnchor="middle">BCA</text>
+                      <rect x="100" y="22" width="38" height="34" rx="4" fill="#E0F2FE" stroke="#0284C7" strokeWidth="1.5" />
+                      <line x1="106" y1="30" x2="132" y2="30" stroke="#0284C7" strokeWidth="2" strokeLinecap="round" />
+                      <line x1="106" y1="38" x2="126" y2="38" stroke="#0369A1" strokeWidth="2" strokeLinecap="round" />
+                      <line x1="106" y1="46" x2="120" y2="46" stroke="#0369A1" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  )}
                   {course.id === 'mca' && (
                     <svg viewBox="0 0 160 86" fill="none" style={{ width: '100%', height: '100%' }}>
                       <rect x="20" y="16" width="75" height="48" rx="5" fill="#1E293B" />
@@ -201,6 +212,26 @@ export default function CourseSelectModal({ isOpen, onClose, targetTab = 'notes'
                       <rect x="55" y="42" width="18" height="6" rx="1" fill="#FFFFFF" />
                       <path d="M90 44 C90 58 116 58 116 44 Z" fill="#E2E8F0" stroke="#64748B" strokeWidth="1.5" />
                       <line x1="95" y1="30" x2="108" y2="50" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
+                    </svg>
+                  )}
+                  {course.id === 'bba' && (
+                    <svg viewBox="0 0 160 86" fill="none" style={{ width: '100%', height: '100%' }}>
+                      <rect x="25" y="24" width="54" height="42" rx="6" fill="#7C3AED" />
+                      <circle cx="52" cy="40" r="10" fill="#DDD6FE" />
+                      <path d="M38 58 C38 48 66 48 66 58 Z" fill="#DDD6FE" />
+                      <rect x="90" y="26" width="46" height="38" rx="4" fill="#F5F3FF" stroke="#7C3AED" strokeWidth="1.5" />
+                      <path d="M96 52 L106 42 L116 48 L128 34" stroke="#7C3AED" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                  {course.id === 'mtech' && (
+                    <svg viewBox="0 0 160 86" fill="none" style={{ width: '100%', height: '100%' }}>
+                      <rect x="26" y="20" width="64" height="44" rx="6" fill="#991B1B" />
+                      <rect x="32" y="26" width="52" height="32" rx="3" fill="#18181B" />
+                      <circle cx="48" cy="42" r="5" fill="#EF4444" />
+                      <circle cx="68" cy="42" r="5" fill="#F59E0B" />
+                      <line x1="53" y1="42" x2="63" y2="42" stroke="#EF4444" strokeWidth="2" />
+                      <rect x="100" y="28" width="38" height="32" rx="4" fill="#FEF2F2" stroke="#DC2626" strokeWidth="1.5" />
+                      <text x="119" y="49" fill="#DC2626" fontFamily="sans-serif" fontSize="12" fontWeight="bold" textAnchor="middle">M.T</text>
                     </svg>
                   )}
                 </div>

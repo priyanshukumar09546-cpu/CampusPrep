@@ -15,15 +15,23 @@ import {
   ArrowLeft, 
   X, 
   Sparkles, 
-  CheckCircle2, 
-  ShieldCheck, 
   Calendar, 
   AlertCircle,
   ExternalLink,
-  ChevronDown
+  ChevronDown,
+  RefreshCw
 } from 'lucide-react';
-import { COURSES, getSubjectsForCourse, normalizeCourseKey } from '../data/coursesCatalog';
+import { 
+  COURSE_CONFIG, 
+  AVAILABLE_COURSES,
+  normalizeCourseKey, 
+  normalizeYearStr, 
+  getYearsForCourse, 
+  getSemestersForCourseYear,
+  getSubjectsForCourseMapping
+} from '../data/courseMapping.ts';
 import { getAktuSyllabusForSubject } from '../data/aktuSyllabusData';
+import { API_URL } from '../config/api';
 
 // Icons mapping helper for subjects
 function getSubjectIcon(name = '', code = '') {
@@ -40,8 +48,13 @@ function getSubjectIcon(name = '', code = '') {
 }
 
 export default function MobileNotesScreen({ 
-  courseKey = 'B.Tech', 
+  courseKey = 'BCA', 
+  selectedYearProp = '1st Year',
+  selectedBranchProp = 'CSE',
   dbNotes = [], 
+  onSelectCourse,
+  onSelectYear,
+  onSelectBranch,
   onOpenViewer, 
   onRequestNotes,
   onNavigate 
@@ -49,11 +62,12 @@ export default function MobileNotesScreen({
   const normKey = normalizeCourseKey(courseKey);
 
   // 1. Navigation Flow States: Course -> Branch -> Year -> Semester -> Subject
-  const [selectedCourse, setSelectedCourse] = useState(normKey || 'B.Tech');
-  const [selectedBranch, setSelectedBranch] = useState('CSE');
-  const [selectedYear, setSelectedYear] = useState('1st Year');
+  const [selectedCourse, setSelectedCourse] = useState(normKey || 'BCA');
+  const [selectedBranch, setSelectedBranch] = useState(selectedBranchProp || 'CSE');
+  const [selectedYear, setSelectedYear] = useState(normalizeYearStr(selectedYearProp) || '1st Year');
   const [selectedSem, setSelectedSem] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   // 2. Active Subject Detail Screen
   const [activeSubjectDetail, setActiveSubjectDetail] = useState(null);
@@ -72,48 +86,72 @@ export default function MobileNotesScreen({
     }
   }, [courseKey]);
 
-  // Year options for the selected course
+  useEffect(() => {
+    if (selectedYearProp) {
+      setSelectedYear(normalizeYearStr(selectedYearProp));
+    }
+  }, [selectedYearProp]);
+
+  useEffect(() => {
+    if (selectedBranchProp) {
+      setSelectedBranch(selectedBranchProp);
+    }
+  }, [selectedBranchProp]);
+
+  // Year options for the selected course as per COURSE_CONFIG
   const yearOptions = useMemo(() => {
-    if (selectedCourse === 'B.Tech') {
-      return ['1st Year', '2nd Year', '3rd Year', '4th Year'];
-    }
-    if (selectedCourse === 'BCA') {
-      return ['1st Year', '2nd Year', '3rd Year'];
-    }
-    if (selectedCourse === 'MCA' || selectedCourse === 'MBA') {
-      return ['1st Year', '2nd Year'];
-    }
-    if (selectedCourse === 'B.Pharm') {
-      return ['1st Year', '2nd Year', '3rd Year', '4th Year'];
-    }
-    return ['1st Year', '2nd Year', '3rd Year', '4th Year'];
+    return getYearsForCourse(selectedCourse);
   }, [selectedCourse]);
 
-  // Dynamic Semester options based on the selected Year
+  // Dynamic Semester options based on selected Course & Year
   const semesterOptions = useMemo(() => {
-    if (selectedCourse === 'B.Tech' || selectedCourse === 'BCA') {
-      if (selectedYear === '1st Year') return ['All', 'Sem 1', 'Sem 2'];
-      if (selectedYear === '2nd Year') return ['All', 'Sem 3', 'Sem 4'];
-      if (selectedYear === '3rd Year') return ['All', 'Sem 5', 'Sem 6'];
-      if (selectedYear === '4th Year') return ['All', 'Sem 7', 'Sem 8'];
-    }
-    return ['All', 'Sem 1', 'Sem 2'];
+    const sems = getSemestersForCourseYear(selectedCourse, selectedYear);
+    return ['All', ...sems];
   }, [selectedCourse, selectedYear]);
 
-  // Reset semester to 'All' when year changes
-  const handleYearChange = (newYear) => {
-    setSelectedYear(newYear);
+  // Course change handler
+  const handleCourseChange = (newCourse) => {
+    const norm = normalizeCourseKey(newCourse);
+    setSelectedCourse(norm);
+    try {
+      localStorage.setItem('campusprep_selected_course', norm);
+    } catch (e) {}
+
+    const years = getYearsForCourse(norm);
+    const defaultYear = years[0] || '1st Year';
+    setSelectedYear(defaultYear);
     setSelectedSem('All');
+    setActiveSubjectDetail(null);
+
+    if (onSelectCourse) onSelectCourse(norm);
+    if (onSelectYear) onSelectYear(defaultYear);
+  };
+
+  // Year change handler
+  const handleYearChange = (newYear) => {
+    const normYear = normalizeYearStr(newYear);
+    setSelectedYear(normYear);
+    setSelectedSem('All');
+    setActiveSubjectDetail(null);
+    if (onSelectYear) onSelectYear(normYear);
+  };
+
+  // Branch change handler
+  const handleBranchChange = (newBranch) => {
+    setSelectedBranch(newBranch);
+    setActiveSubjectDetail(null);
+    if (onSelectBranch) onSelectBranch(newBranch);
   };
 
   // Branch options for B.Tech
-  const btechBranches = ['CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'];
+  const btechBranches = COURSE_CONFIG["BTech"]?.branches || ['CSE', 'ECE', 'ME', 'CE', 'EE', 'IT', 'AI&DS'];
+  const isBTech = normalizeCourseKey(selectedCourse) === 'BTech';
 
-  // Subjects belonging strictly to Course + Branch + Year + Semester
+  // Subjects belonging strictly to Course + Branch + Year + Semester from central course mapping
   const subjectsList = useMemo(() => {
-    const semParam = selectedSem !== 'All' ? selectedSem.replace('Sem ', 'Semester ') : null;
-    const branchParam = selectedCourse === 'B.Tech' ? selectedBranch : null;
-    const rawSubs = getSubjectsForCourse(selectedCourse, semParam, null, selectedYear, branchParam);
+    const semParam = selectedSem !== 'All' ? selectedSem : null;
+    const branchParam = isBTech ? selectedBranch : null;
+    const rawSubs = getSubjectsForCourseMapping(selectedCourse, selectedYear, semParam, branchParam);
 
     let list = (rawSubs || []).map(sub => {
       const iconMeta = getSubjectIcon(sub.name, sub.code);
@@ -123,13 +161,43 @@ export default function MobileNotesScreen({
         name: sub.name,
         semester: sub.semester || '',
         course: selectedCourse,
-        branch: selectedBranch,
+        branch: branchParam,
         year: selectedYear,
         icon: iconMeta.icon,
         iconBg: iconMeta.bg,
         cardBadge: iconMeta.badge
       };
     });
+
+    // Also merge any subject that exists in dbNotes for this course & year if not already present
+    if (Array.isArray(dbNotes) && dbNotes.length > 0) {
+      const normSelCourse = normalizeCourseKey(selectedCourse);
+      const normSelYear = normalizeYearStr(selectedYear);
+
+      dbNotes.forEach(n => {
+        const nCourse = normalizeCourseKey(n.course || 'BTech');
+        const nYear = normalizeYearStr(n.year);
+        if (nCourse === normSelCourse && nYear === normSelYear) {
+          const subName = n.subject || n.subjectName || '';
+          const subCode = n.subjectCode || '';
+          if (subName && !list.some(s => s.name.toLowerCase() === subName.toLowerCase() || (subCode && s.code.toLowerCase() === subCode.toLowerCase()))) {
+            const iconMeta = getSubjectIcon(subName, subCode);
+            list.push({
+              id: subCode || subName.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+              code: subCode,
+              name: subName,
+              semester: n.semester || (selectedSem !== 'All' ? selectedSem : ''),
+              course: selectedCourse,
+              branch: branchParam,
+              year: selectedYear,
+              icon: iconMeta.icon,
+              iconBg: iconMeta.bg,
+              cardBadge: iconMeta.badge
+            });
+          }
+        }
+      });
+    }
 
     // Filter by search query if any
     if (searchQuery.trim()) {
@@ -141,7 +209,7 @@ export default function MobileNotesScreen({
     }
 
     return list;
-  }, [selectedCourse, selectedBranch, selectedYear, selectedSem, searchQuery]);
+  }, [selectedCourse, selectedBranch, selectedYear, selectedSem, searchQuery, isBTech, dbNotes]);
 
   // Fetch real notes and PYQs when a subject is opened
   useEffect(() => {
@@ -153,8 +221,8 @@ export default function MobileNotesScreen({
     const subName = activeSubjectDetail.name;
     const subCode = activeSubjectDetail.code;
 
-    const notesUrl = `/api/notes?course=${encodeURIComponent(selectedCourse)}&branch=${encodeURIComponent(selectedBranch)}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode)}`;
-    const pyqsUrl = `/api/pyqs?course=${encodeURIComponent(selectedCourse)}&branch=${encodeURIComponent(selectedBranch)}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode)}`;
+    const notesUrl = `${API_URL}/api/notes?course=${encodeURIComponent(selectedCourse)}&branch=${encodeURIComponent(selectedBranch || '')}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode || '')}`;
+    const pyqsUrl = `${API_URL}/api/pyqs?course=${encodeURIComponent(selectedCourse)}&branch=${encodeURIComponent(selectedBranch || '')}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode || '')}`;
 
     Promise.all([
       fetch(notesUrl, { cache: 'no-store' }).then(r => r.json()).catch(() => ({ notes: [] })),
@@ -171,17 +239,30 @@ export default function MobileNotesScreen({
     };
   }, [activeSubjectDetail, selectedCourse, selectedBranch]);
 
-  // Count notes for a subject from dbNotes prop
+  // Count notes for a subject strictly scoped to the same course & year
   const getSubjectNoteCount = (sub) => {
     if (!Array.isArray(dbNotes) || dbNotes.length === 0) return null;
-    const targetName = sub.name.toLowerCase().replace(/s$/, '');
-    const targetCode = sub.code.toLowerCase();
+    const normSubCourse = normalizeCourseKey(selectedCourse);
+    const targetName = (sub.name || '').toLowerCase().replace(/s$/, '').trim();
+    const targetCode = (sub.code || '').toLowerCase().trim();
+
     const count = dbNotes.filter(n => {
-      const nSub = String(n.subject || n.subjectName || '').toLowerCase().replace(/s$/, '');
-      const nCode = String(n.subjectCode || '').toLowerCase();
+      // Must strictly match course!
+      const nCourse = normalizeCourseKey(n.course || 'BTech');
+      if (nCourse !== normSubCourse) return false;
+
+      const nSub = String(n.subject || n.subjectName || '').toLowerCase().replace(/s$/, '').trim();
+      const nCode = String(n.subjectCode || '').toLowerCase().trim();
       return (targetCode && nCode === targetCode) || nSub.includes(targetName) || targetName.includes(nSub);
     }).length;
+
     return count > 0 ? count : null;
+  };
+
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    if (onSelectCourse) onSelectCourse(selectedCourse);
+    setTimeout(() => setIsRefreshing(false), 800);
   };
 
   return (
@@ -190,7 +271,10 @@ export default function MobileNotesScreen({
       style={{
         backgroundColor: '#FAF7F2',
         minHeight: '100vh',
-        paddingBottom: '5rem'
+        paddingBottom: '5rem',
+        width: '100%',
+        boxSizing: 'border-box',
+        overflowX: 'hidden'
       }}
     >
       {/* ========================================================================= */}
@@ -206,7 +290,8 @@ export default function MobileNotesScreen({
           backgroundColor: '#FAF7F2',
           zIndex: 1000,
           overflowY: 'auto',
-          paddingBottom: '80px'
+          paddingBottom: '80px',
+          boxSizing: 'border-box'
         }}>
           {/* Header */}
           <div style={{
@@ -239,7 +324,7 @@ export default function MobileNotesScreen({
               <ArrowLeft size={18} /> Back to Subjects
             </button>
             <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#64748B' }}>
-              {activeSubjectDetail.code || activeSubjectDetail.branch}
+              {selectedCourse} • {activeSubjectDetail.code || activeSubjectDetail.branch || selectedYear}
             </span>
           </div>
 
@@ -271,8 +356,8 @@ export default function MobileNotesScreen({
               }}>
                 {React.createElement(activeSubjectDetail.icon, { size: 24, strokeWidth: 2.2 })}
               </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem' }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem', flexWrap: 'wrap' }}>
                   {activeSubjectDetail.code && (
                     <span style={{
                       backgroundColor: '#7A1C28',
@@ -286,7 +371,7 @@ export default function MobileNotesScreen({
                     </span>
                   )}
                   <span style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: 600 }}>
-                    {selectedYear} • {activeSubjectDetail.semester || selectedSem}
+                    {selectedCourse} • {selectedYear} • {activeSubjectDetail.semester || selectedSem}
                   </span>
                 </div>
                 <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1C1E21', margin: 0, lineHeight: 1.25 }}>
@@ -365,17 +450,17 @@ export default function MobileNotesScreen({
                   gap: '0.35rem'
                 }}
               >
-                <ShieldCheck size={14} /> Syllabus
+                <Layers size={14} /> Syllabus
               </button>
             </div>
 
-            {/* TAB CONTENT 1: NOTES */}
+            {/* TAB CONTENT 1: Notes */}
             {activeDetailTab === 'notes' && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {isLoadingDetail ? (
                   <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#64748B' }}>
-                    <Sparkles size={28} style={{ animation: 'spin 2s linear infinite', color: '#C88D2D', marginBottom: '0.5rem' }} />
-                    <p style={{ fontSize: '0.82rem', fontWeight: 600 }}>Loading notes from database...</p>
+                    <Sparkles size={28} style={{ animation: 'spin 2s linear infinite', color: '#7A1C28', marginBottom: '0.5rem' }} />
+                    <p style={{ fontSize: '0.82rem', fontWeight: 600 }}>Loading verified notes from server...</p>
                   </div>
                 ) : subjectLiveNotes.length === 0 ? (
                   <div style={{
@@ -388,10 +473,10 @@ export default function MobileNotesScreen({
                   }}>
                     <BookOpen size={36} style={{ color: '#94A3B8', marginBottom: '0.5rem' }} />
                     <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#1C1E21', margin: '0 0 0.25rem' }}>
-                      No Notes Uploaded Yet
+                      No Live Notes Found
                     </h4>
-                    <p style={{ fontSize: '0.78rem', margin: '0 0 1rem' }}>
-                      Verified notes for this subject have not been uploaded to the database yet.
+                    <p style={{ fontSize: '0.78rem', margin: '0 0 0.85rem 0' }}>
+                      Materials for {activeSubjectDetail.name} are being digitized and uploaded.
                     </p>
                     {onRequestNotes && (
                       <button
@@ -400,22 +485,22 @@ export default function MobileNotesScreen({
                           backgroundColor: '#7A1C28',
                           color: '#FFFFFF',
                           border: 'none',
-                          padding: '0.5rem 1rem',
                           borderRadius: '8px',
+                          padding: '0.5rem 1rem',
                           fontSize: '0.8rem',
                           fontWeight: 700,
                           cursor: 'pointer'
                         }}
                       >
-                        Request Notes
+                        Request Notes Upload
                       </button>
                     )}
                   </div>
                 ) : (
                   subjectLiveNotes.map((note, idx) => {
-                    const rawUrl = note.driveUrl || note.pdfUrl || note.fileUrl || note.resourceUrl || note.url;
-                    const unitNo = note.unit !== undefined ? note.unit : note.unitNumber;
-                    const provider = note.provider || note.source || 'Faculty Lecture Notes';
+                    const rawUrl = note.driveUrl || note.fileUrl || note.pdfUrl || note.url || note.resourceUrl;
+                    const unitNo = note.unit || note.unitNumber || (idx + 1);
+                    const provider = note.source || note.sourceName || 'Study Material';
 
                     return (
                       <div
@@ -428,7 +513,7 @@ export default function MobileNotesScreen({
                           boxShadow: '0 2px 8px rgba(35,30,25,0.03)'
                         }}
                       >
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.45rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
                           <span style={{
                             fontSize: '0.72rem',
                             fontWeight: 800,
@@ -437,22 +522,18 @@ export default function MobileNotesScreen({
                             padding: '0.15rem 0.5rem',
                             borderRadius: '6px'
                           }}>
-                            {unitNo ? `Unit ${unitNo}` : 'Complete'}
+                            Unit {unitNo}
                           </span>
-                          <span style={{ fontSize: '0.72rem', color: '#059669', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}>
-                            <CheckCircle2 size={12} /> Verified
+                          <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 600 }}>
+                            {provider}
                           </span>
                         </div>
 
                         <h4 style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1C1E21', margin: '0 0 0.35rem', lineHeight: 1.35 }}>
-                          {note.title || `${activeSubjectDetail.name} — Unit ${unitNo || idx + 1}`}
+                          {note.title || `${activeSubjectDetail.name} — Unit ${unitNo}`}
                         </h4>
 
-                        <p style={{ fontSize: '0.75rem', color: '#64748B', margin: '0 0 0.75rem' }}>
-                          Provider: <strong>{provider}</strong>
-                        </p>
-
-                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.75rem' }}>
                           <button
                             onClick={() => {
                               if (onOpenViewer) {
@@ -606,126 +687,37 @@ export default function MobileNotesScreen({
               </div>
             )}
 
-            {/* TAB CONTENT 3: SYLLABUS */}
-            {activeDetailTab === 'syllabus' && (() => {
-              const aktuSub = getAktuSyllabusForSubject(activeSubjectDetail.code, activeSubjectDetail.name);
-              return (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                  {/* Official Metadata Card */}
-                  <div style={{
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: '14px',
-                    padding: '1.15rem',
-                    border: '1.5px solid #E8E2D5',
-                    boxShadow: '0 2px 8px rgba(35,30,25,0.03)'
-                  }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.85rem' }}>
-                      <ShieldCheck size={20} style={{ color: '#059669' }} />
-                      <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#1C1E21', margin: 0 }}>
-                        Official AKTU Curriculum
-                      </h4>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem', fontSize: '0.78rem', marginBottom: '1rem' }}>
-                      <div>
-                        <span style={{ color: '#64748B', display: 'block', fontSize: '0.7rem', fontWeight: 700 }}>University:</span>
-                        <strong style={{ color: '#1C1E21' }}>AKTU</strong>
-                      </div>
-                      <div>
-                        <span style={{ color: '#64748B', display: 'block', fontSize: '0.7rem', fontWeight: 700 }}>Course &amp; Branch:</span>
-                        <strong style={{ color: '#1C1E21' }}>{selectedCourse} - {selectedBranch}</strong>
-                      </div>
-                      <div>
-                        <span style={{ color: '#64748B', display: 'block', fontSize: '0.7rem', fontWeight: 700 }}>Year:</span>
-                        <strong style={{ color: '#1C1E21' }}>{selectedYear}</strong>
-                      </div>
-                      <div>
-                        <span style={{ color: '#64748B', display: 'block', fontSize: '0.7rem', fontWeight: 700 }}>Subject Code:</span>
-                        <strong style={{ color: '#1C1E21' }}>{activeSubjectDetail.code || 'AKTU'}</strong>
-                      </div>
-                    </div>
-
-                    {/* Official Units Outline */}
-                    {aktuSub && Array.isArray(aktuSub.units) && aktuSub.units.length > 0 && (
-                      <div style={{ marginTop: '0.75rem', borderTop: '1px solid #F1ECE1', paddingTop: '0.75rem' }}>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-                          Curriculum Units:
-                        </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                          {aktuSub.units.map(u => (
-                            <div key={u.unitNo} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: '#1C1E21' }}>
-                              <span style={{ backgroundColor: '#7A1C28', color: '#FFF', width: '20px', height: '20px', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: 800, flexShrink: 0 }}>
-                                {u.unitNo}
-                              </span>
-                              <span>{u.title}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* PDF action or truthful unavailable state */}
-                    <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #F1ECE1' }}>
-                      {aktuSub && aktuSub.isPdfAvailable && aktuSub.pdfUrl ? (
-                        <a
-                          href={aktuSub.pdfUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: '0.4rem',
-                            backgroundColor: '#2563EB',
-                            color: '#FFFFFF',
-                            padding: '0.55rem',
-                            borderRadius: '8px',
-                            fontSize: '0.82rem',
-                            fontWeight: 700,
-                            textDecoration: 'none'
-                          }}
-                        >
-                          <Eye size={15} /> View Official Syllabus PDF
-                        </a>
-                      ) : (
-                        <div style={{
-                          backgroundColor: '#FFFBEB',
-                          padding: '0.75rem',
-                          borderRadius: '8px',
-                          border: '1px solid #FDE68A'
-                        }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#92400E', fontSize: '0.78rem', fontWeight: 700, marginBottom: '0.4rem' }}>
-                            <AlertCircle size={14} /> Official AKTU syllabus PDF currently unavailable.
-                          </div>
-                          <p style={{ margin: '0 0 0.6rem', fontSize: '0.72rem', color: '#B45309', lineHeight: 1.35 }}>
-                            Authoritative syllabus is maintained directly on the official AKTU portal.
-                          </p>
-                          <a
-                            href="https://aktu.ac.in/syllabus.html"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '0.35rem',
-                              backgroundColor: '#D97706',
-                              color: '#FFFFFF',
-                              padding: '0.45rem 0.75rem',
-                              borderRadius: '6px',
-                              fontSize: '0.75rem',
-                              fontWeight: 700,
-                              textDecoration: 'none'
-                            }}
-                          >
-                            Open AKTU Syllabus Hub <ExternalLink size={13} />
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            })()}
+            {/* TAB CONTENT 3: Syllabus */}
+            {activeDetailTab === 'syllabus' && (
+              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1.5px solid #E8E2D5', padding: '1rem' }}>
+                <h3 style={{ fontSize: '0.98rem', fontWeight: 800, marginBottom: '0.5rem' }}>
+                  {activeSubjectDetail.name} Syllabus
+                </h3>
+                <p style={{ fontSize: '0.8rem', color: '#64748B', lineHeight: 1.5, margin: '0 0 1rem' }}>
+                  Official university curriculum structure covering units 1 through 5.
+                </p>
+                <a
+                  href="https://aktu.ac.in/syllabus.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.4rem',
+                    backgroundColor: '#2563EB',
+                    color: '#FFFFFF',
+                    padding: '0.55rem',
+                    borderRadius: '8px',
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    textDecoration: 'none'
+                  }}
+                >
+                  <ExternalLink size={15} /> Open Official Syllabus Portal
+                </a>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -734,7 +726,120 @@ export default function MobileNotesScreen({
       {/* SCREEN B: MAIN MOBILE NOTES WORKSPACE */}
       {/* ========================================================================= */}
 
-      {/* 1. Search Bar */}
+      {/* 0. STICKY TOP DROPDOWNS BAR (COURSE + YEAR + BRANCH) */}
+      <div style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        backgroundColor: '#FFFFFF',
+        borderBottom: '1.5px solid #E8E2D5',
+        padding: '0.65rem 1rem',
+        boxShadow: '0 2px 10px rgba(35,30,25,0.04)',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        boxSizing: 'border-box'
+      }}>
+        {/* Course Dropdown */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <label style={{ fontSize: '0.68rem', fontWeight: 800, color: '#7A1C28', textTransform: 'uppercase', display: 'block', marginBottom: '0.15rem' }}>
+            Course:
+          </label>
+          <div style={{ position: 'relative' }}>
+            <select
+              value={selectedCourse}
+              onChange={(e) => handleCourseChange(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '0.45rem 1.5rem 0.45rem 0.6rem',
+                borderRadius: '10px',
+                border: '1.5px solid #E8E2D5',
+                backgroundColor: '#FAF7F2',
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                color: '#1C1E21',
+                outline: 'none',
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              {AVAILABLE_COURSES.map(c => (
+                <option key={c.key} value={c.key}>{c.name}</option>
+              ))}
+            </select>
+            <ChevronDown size={14} color="#78716C" style={{ position: 'absolute', right: '0.45rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+          </div>
+        </div>
+
+        {/* Year Dropdown */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <label style={{ fontSize: '0.68rem', fontWeight: 800, color: '#7A1C28', textTransform: 'uppercase', display: 'block', marginBottom: '0.15rem' }}>
+            Year:
+          </label>
+          <div style={{ position: 'relative' }}>
+            <select
+              value={selectedYear}
+              onChange={(e) => handleYearChange(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '0.45rem 1.5rem 0.45rem 0.6rem',
+                borderRadius: '10px',
+                border: '1.5px solid #E8E2D5',
+                backgroundColor: '#FAF7F2',
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                color: '#1C1E21',
+                outline: 'none',
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              {yearOptions.map(y => (
+                <option key={y} value={y}>{y}</option>
+              ))}
+            </select>
+            <ChevronDown size={14} color="#78716C" style={{ position: 'absolute', right: '0.45rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+          </div>
+        </div>
+
+        {/* Branch Dropdown (if BTech) */}
+        {isBTech && (
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <label style={{ fontSize: '0.68rem', fontWeight: 800, color: '#0369A1', textTransform: 'uppercase', display: 'block', marginBottom: '0.15rem' }}>
+              Branch:
+            </label>
+            <div style={{ position: 'relative' }}>
+              <select
+                value={selectedBranch}
+                onChange={(e) => handleBranchChange(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.45rem 1.5rem 0.45rem 0.6rem',
+                  borderRadius: '10px',
+                  border: '1.5px solid #BAE6FD',
+                  backgroundColor: '#F0F9FF',
+                  fontSize: '0.82rem',
+                  fontWeight: 800,
+                  color: '#0369A1',
+                  outline: 'none',
+                  appearance: 'none',
+                  WebkitAppearance: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                {btechBranches.map(b => (
+                  <option key={b} value={b}>{b}</option>
+                ))}
+              </select>
+              <ChevronDown size={14} color="#0369A1" style={{ position: 'absolute', right: '0.45rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* 1. SEARCH BAR */}
       <div style={{ padding: '0.75rem 1rem 0.4rem 1rem' }}>
         <div style={{
           display: 'flex',
@@ -748,7 +853,7 @@ export default function MobileNotesScreen({
           <Search size={18} style={{ color: '#A8A29E', marginRight: '0.5rem', flexShrink: 0 }} />
           <input
             type="text"
-            placeholder="Search subjects or codes (e.g. OS, KCS-401)..."
+            placeholder={`Search ${selectedCourse} subjects or codes...`}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
@@ -780,25 +885,24 @@ export default function MobileNotesScreen({
         </div>
       </div>
 
-      {/* 2. Course Selection Pills: B.Tech | MCA | MBA | B.Pharm | BCA */}
+      {/* 2. HORIZONTALLY SCROLLABLE SEMESTER CHIPS */}
       <div style={{
         display: 'flex',
-        gap: '0.4rem',
+        alignItems: 'center',
+        gap: '0.45rem',
         overflowX: 'auto',
-        padding: '0.35rem 1rem 0.6rem 1rem',
+        WebkitOverflowScrolling: 'touch',
+        padding: '0.35rem 1rem 0.65rem 1rem',
         scrollbarWidth: 'none',
-        msOverflowStyle: 'none'
+        msOverflowStyle: 'none',
+        flexWrap: 'nowrap'
       }}>
-        {COURSES.map(c => {
-          const isSelected = selectedCourse === c.key;
+        {semesterOptions.map(sem => {
+          const isSelected = selectedSem === sem;
           return (
             <button
-              key={c.id}
-              onClick={() => {
-                setSelectedCourse(c.key);
-                setSelectedYear('1st Year');
-                setSelectedSem('All');
-              }}
+              key={sem}
+              onClick={() => setSelectedSem(sem)}
               style={{
                 padding: '0.35rem 0.85rem',
                 borderRadius: '999px',
@@ -808,170 +912,20 @@ export default function MobileNotesScreen({
                 fontSize: '0.78rem',
                 fontWeight: isSelected ? 800 : 600,
                 whiteSpace: 'nowrap',
+                flexShrink: 0,
                 cursor: 'pointer',
-                boxShadow: isSelected ? '0 2px 8px rgba(122,28,40,0.18)' : 'none',
-                flexShrink: 0
+                boxShadow: isSelected ? '0 2px 8px rgba(122,28,40,0.2)' : 'none'
               }}
             >
-              {c.name}
+              {sem === 'All' ? 'All Semesters' : sem}
             </button>
           );
         })}
       </div>
 
-      {/* 3. Branch Selection (When B.Tech is selected) */}
-      {selectedCourse === 'B.Tech' && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.4rem',
-          overflowX: 'auto',
-          padding: '0 1rem 0.65rem 1rem',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none'
-        }}>
-          <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase', marginRight: '0.2rem', flexShrink: 0 }}>
-            Branch:
-          </span>
-          {btechBranches.map(b => {
-            const isSelected = selectedBranch === b;
-            return (
-              <button
-                key={b}
-                onClick={() => setSelectedBranch(b)}
-                style={{
-                  padding: '0.25rem 0.7rem',
-                  borderRadius: '8px',
-                  border: isSelected ? '1.5px solid #0284C7' : '1px solid #E8E2D5',
-                  backgroundColor: isSelected ? '#E0F2FE' : '#FFFFFF',
-                  color: isSelected ? '#0369A1' : '#475569',
-                  fontSize: '0.75rem',
-                  fontWeight: isSelected ? 800 : 600,
-                  whiteSpace: 'nowrap',
-                  cursor: 'pointer',
-                  flexShrink: 0
-                }}
-              >
-                {b}
-              </button>
-            );
-          })}
-        </div>
-      )}
-
-      {/* ========================================================================= */}
-      {/* 4. SELECT YEAR CONTROLS (MANDATORY REQUIREMENT) */}
-      {/* ========================================================================= */}
-      <div style={{ padding: '0 1rem 0.85rem 1rem' }}>
-        <div style={{
-          backgroundColor: '#FFFFFF',
-          borderRadius: '16px',
-          padding: '0.85rem 1rem',
-          border: '1.5px solid #E8E2D5',
-          boxShadow: '0 2px 10px rgba(35,30,25,0.03)'
-        }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '0.65rem'
-          }}>
-            <span style={{
-              fontSize: '0.75rem',
-              fontWeight: 800,
-              textTransform: 'uppercase',
-              color: '#7A1C28',
-              letterSpacing: '0.04em',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.35rem'
-            }}>
-              <Calendar size={13} /> Select Academic Year
-            </span>
-            <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 600 }}>
-              {selectedYear}
-            </span>
-          </div>
-
-          {/* 4 Clean Premium Buttons: Year 1 | Year 2 | Year 3 | Year 4 */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(${yearOptions.length}, 1fr)`,
-            gap: '0.45rem'
-          }}>
-            {yearOptions.map(y => {
-              const isSelected = selectedYear === y;
-              const shortLabel = y.replace('st Year', '').replace('nd Year', '').replace('rd Year', '').replace('th Year', '');
-              return (
-                <button
-                  key={y}
-                  onClick={() => handleYearChange(y)}
-                  style={{
-                    padding: '0.55rem 0.2rem',
-                    borderRadius: '10px',
-                    border: isSelected ? '2px solid #7A1C28' : '1.5px solid #E8E2D5',
-                    backgroundColor: isSelected ? '#7A1C28' : '#FAF7F2',
-                    color: isSelected ? '#FFFFFF' : '#1C1E21',
-                    fontSize: '0.82rem',
-                    fontWeight: isSelected ? 800 : 700,
-                    cursor: 'pointer',
-                    textAlign: 'center',
-                    transition: 'all 0.15s ease',
-                    boxShadow: isSelected ? '0 3px 8px rgba(122,28,40,0.22)' : 'none'
-                  }}
-                >
-                  Year {shortLabel}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* 5. Semester Chips within the Selected Year */}
-          {semesterOptions.length > 1 && (
-            <div style={{
-              marginTop: '0.75rem',
-              paddingTop: '0.65rem',
-              borderTop: '1px solid #F1ECE1',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              overflowX: 'auto',
-              scrollbarWidth: 'none'
-            }}>
-              <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#78716C', marginRight: '0.2rem' }}>
-                Semester:
-              </span>
-              {semesterOptions.map(sem => {
-                const isSelected = selectedSem === sem;
-                return (
-                  <button
-                    key={sem}
-                    onClick={() => setSelectedSem(sem)}
-                    style={{
-                      padding: '0.22rem 0.65rem',
-                      borderRadius: '999px',
-                      border: isSelected ? '1.5px solid #C88D2D' : '1px solid #E8E2D5',
-                      backgroundColor: isSelected ? '#FDF6E8' : '#FFFFFF',
-                      color: isSelected ? '#92400E' : '#64748B',
-                      fontSize: '0.74rem',
-                      fontWeight: isSelected ? 800 : 600,
-                      cursor: 'pointer',
-                      whiteSpace: 'nowrap',
-                      flexShrink: 0
-                    }}
-                  >
-                    {sem}
-                  </button>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* 6. Section Header */}
+      {/* 3. Section Header & Refresh indicator */}
       <div style={{
-        padding: '0 1rem 0.5rem 1rem',
+        padding: '0.2rem 1rem 0.5rem 1rem',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between'
@@ -981,12 +935,32 @@ export default function MobileNotesScreen({
             {selectedCourse} Subjects
           </h2>
           <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 500 }}>
-            {selectedYear} {selectedSem !== 'All' ? `• ${selectedSem}` : ''} ({subjectsList.length} Available)
+            {selectedYear} {isBTech ? `• ${selectedBranch}` : ''} {selectedSem !== 'All' ? `• ${selectedSem}` : ''} ({subjectsList.length} Available)
           </span>
         </div>
+
+        <button
+          onClick={handleRefresh}
+          title="Refresh Subjects & Cache"
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#7A1C28',
+            cursor: 'pointer',
+            padding: '0.3rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.3rem',
+            fontSize: '0.75rem',
+            fontWeight: 700
+          }}
+        >
+          <RefreshCw size={14} className={isRefreshing ? 'animate-spin' : ''} />
+          <span>Refresh</span>
+        </button>
       </div>
 
-      {/* 7. SUBJECTS LIST (ONLY Belonging to Selected Year/Semester) */}
+      {/* 4. SUBJECTS LIST (FULL WIDTH CARDS WITH TEXT TRUNCATION & CHEVRON) */}
       <div style={{
         padding: '0 1rem',
         display: 'flex',
@@ -1007,7 +981,7 @@ export default function MobileNotesScreen({
               No Subjects Found
             </h4>
             <p style={{ fontSize: '0.78rem', margin: 0 }}>
-              No subjects mapped for {selectedCourse} {selectedBranch} {selectedYear} ({selectedSem}).
+              No subjects mapped for {selectedCourse} {isBTech ? selectedBranch : ''} {selectedYear} ({selectedSem}).
             </p>
           </div>
         ) : (
@@ -1023,6 +997,7 @@ export default function MobileNotesScreen({
                   setActiveDetailTab('notes');
                 }}
                 style={{
+                  width: '100%',
                   backgroundColor: '#FFFFFF',
                   borderRadius: '16px',
                   padding: '0.9rem 1rem',
@@ -1031,6 +1006,8 @@ export default function MobileNotesScreen({
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
+                  gap: '0.75rem',
+                  boxSizing: 'border-box',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease'
                 }}
@@ -1064,11 +1041,9 @@ export default function MobileNotesScreen({
                           {subject.code}
                         </span>
                       )}
-                      {subject.semester && (
-                        <span style={{ fontSize: '0.68rem', color: '#64748B', fontWeight: 500 }}>
-                          {subject.semester}
-                        </span>
-                      )}
+                      <span style={{ fontSize: '0.68rem', color: '#64748B', fontWeight: 500 }}>
+                        {selectedYear} {subject.semester ? `• ${subject.semester}` : ''}
+                      </span>
                     </div>
 
                     <h3 style={{
@@ -1082,31 +1057,23 @@ export default function MobileNotesScreen({
                     }}>
                       {subject.name}
                     </h3>
-
-                    <div style={{
-                      fontSize: '0.72rem',
-                      color: '#059669',
-                      fontWeight: 600,
-                      marginTop: '0.15rem'
-                    }}>
-                      {noteCount ? `${noteCount} Notes Available` : 'Notes & PYQs'}
-                    </div>
                   </div>
                 </div>
 
-                <div style={{
-                  width: '30px',
-                  height: '30px',
-                  borderRadius: '50%',
-                  backgroundColor: '#FAF7F2',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#7A1C28',
-                  flexShrink: 0,
-                  marginLeft: '0.5rem'
-                }}>
-                  <ChevronRight size={16} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+                  {noteCount !== null && (
+                    <span style={{
+                      fontSize: '0.7rem',
+                      fontWeight: 800,
+                      color: '#7A1C28',
+                      backgroundColor: '#FDF2F4',
+                      padding: '0.15rem 0.45rem',
+                      borderRadius: '6px'
+                    }}>
+                      {noteCount} {noteCount === 1 ? 'Note' : 'Notes'}
+                    </span>
+                  )}
+                  <ChevronRight size={18} color="#94A3B8" />
                 </div>
               </div>
             );

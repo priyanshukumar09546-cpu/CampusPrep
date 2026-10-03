@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
 import { BCA_NOTES_CATALOG } from '../data/bcaNotesData';
+import { API_URL } from '../config/api';
 
 export default function CourseNotesView({ 
   courseKey = 'B.Tech', 
@@ -336,7 +337,7 @@ export default function CourseNotesView({
     setIsLoadingNotes(true);
     setLocalBTechNotes([]); // Immediately clear stale resources
 
-    let apiUrl = `/api/notes?course=B.Tech&branch=${encodeURIComponent(activeBranch)}&year=${encodeURIComponent(activeYear)}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode)}`;
+    let apiUrl = `${API_URL}/api/notes?course=B.Tech&branch=${encodeURIComponent(activeBranch)}&year=${encodeURIComponent(activeYear)}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode)}`;
     if (semParam) {
       apiUrl += `&semester=${encodeURIComponent(semParam)}`;
     }
@@ -424,6 +425,12 @@ export default function CourseNotesView({
     if (!Array.isArray(sourceNotes) || !activeSubject) return [];
 
     return sourceNotes.filter(n => {
+      // 0. Strict Course Isolation
+      if (n.course) {
+        const nCourseNorm = normalizeCourseKey(n.course);
+        if (nCourseNorm !== normKey) return false;
+      }
+
       // 1. Strict Subject Isolation
       if (!isSubjectStrictMatch(activeSubject, n)) return false;
 
