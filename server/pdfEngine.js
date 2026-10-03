@@ -5,8 +5,13 @@
 
 import { PDFDocument, rgb, degrees, StandardFonts, PDFName } from 'pdf-lib';
 import JSZip from 'jszip';
-import { PDFParse } from 'pdf-parse';
-import sharp from 'sharp';
+let sharp = null;
+try {
+  const sharpMod = await import('sharp');
+  sharp = sharpMod.default || sharpMod;
+} catch (e) {
+  // Sharp optional, fallback to native pdf-lib decoders
+}
 import { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } from 'docx';
 import * as XLSX from 'xlsx';
 import { GoogleGenerativeAI } from '@google/generative-ai';
@@ -197,26 +202,45 @@ function parsePageRanges(rangesStr, totalPages) {
 export async function appendImageToPdf(targetDoc, imageBuffer, options = {}) {
   const { pageSize = 'a4', margin = 36 } = options;
 
-  // 1. Inspect image with sharp
-  const metadata = await sharp(imageBuffer).metadata();
-  let imgWidth = metadata.width || 800;
-  let imgHeight = metadata.height || 600;
-
-  // Swap dimensions if EXIF indicates rotation (orientation 5, 6, 7, 8)
-  if (metadata.orientation && metadata.orientation >= 5) {
-    [imgWidth, imgHeight] = [imgHeight, imgWidth];
-  }
-
-  // 2. Normalize image buffer to JPEG or PNG for reliable pdf-lib embedding
   let embeddedImg;
-  const isPng = metadata.format === 'png';
+  let imgWidth = 800;
+  let imgHeight = 600;
 
-  if (isPng) {
-    const cleanPng = await sharp(imageBuffer).rotate().png({ compressionLevel: 6 }).toBuffer();
-    embeddedImg = await targetDoc.embedPng(cleanPng);
+  if (sharp) {
+    try {
+      const metadata = await sharp(imageBuffer).metadata();
+      imgWidth = metadata.width || 800;
+      imgHeight = metadata.height || 600;
+
+      if (metadata.orientation && metadata.orientation >= 5) {
+        [imgWidth, imgHeight] = [imgHeight, imgWidth];
+      }
+
+      const isPng = metadata.format === 'png';
+      if (isPng) {
+        const cleanPng = await sharp(imageBuffer).rotate().png({ compressionLevel: 6 }).toBuffer();
+        embeddedImg = await targetDoc.embedPng(cleanPng);
+      } else {
+        const cleanJpg = await sharp(imageBuffer).rotate().jpeg({ quality: 90 }).toBuffer();
+        embeddedImg = await targetDoc.embedJpg(cleanJpg);
+      }
+    } catch (errSharp) {
+      try {
+        embeddedImg = await targetDoc.embedJpg(imageBuffer);
+      } catch (e) {
+        embeddedImg = await targetDoc.embedPng(imageBuffer);
+      }
+      imgWidth = embeddedImg.width;
+      imgHeight = embeddedImg.height;
+    }
   } else {
-    const cleanJpg = await sharp(imageBuffer).rotate().jpeg({ quality: 90 }).toBuffer();
-    embeddedImg = await targetDoc.embedJpg(cleanJpg);
+    try {
+      embeddedImg = await targetDoc.embedJpg(imageBuffer);
+    } catch (e) {
+      embeddedImg = await targetDoc.embedPng(imageBuffer);
+    }
+    imgWidth = embeddedImg.width;
+    imgHeight = embeddedImg.height;
   }
 
   // 3. Determine page dimensions (in standard points: 72 points = 1 inch)
