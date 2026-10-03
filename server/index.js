@@ -26,6 +26,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 
+// Polyfill browser globals required by pdf-parse v2 in headless serverless environments
+if (typeof globalThis.DOMMatrix === 'undefined') globalThis.DOMMatrix = class DOMMatrix {};
+if (typeof globalThis.ImageData === 'undefined') globalThis.ImageData = class ImageData {};
+if (typeof globalThis.Path2D === 'undefined') globalThis.Path2D = class Path2D {};
+
 // Ensure DNS resolvers (Google & Cloudflare) are available for MongoDB Atlas SRV record resolution
 try {
   dns.setServers(['8.8.8.8', '1.1.1.1', '8.8.4.4']);

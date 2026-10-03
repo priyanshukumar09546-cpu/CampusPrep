@@ -5,9 +5,24 @@ import https from 'https';
 import http from 'http';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import JSZip from 'jszip';
-import { createRequire } from 'module';
-const _require = createRequire(import.meta.url);
-const pdfParse = _require('pdf-parse');
+// Polyfill browser globals required by pdf-parse v2 in headless serverless environments
+if (typeof globalThis.DOMMatrix === 'undefined') globalThis.DOMMatrix = class DOMMatrix {};
+if (typeof globalThis.ImageData === 'undefined') globalThis.ImageData = class ImageData {};
+if (typeof globalThis.Path2D === 'undefined') globalThis.Path2D = class Path2D {};
+
+let _pdfParse = null;
+async function getPdfParse() {
+  if (_pdfParse) return _pdfParse;
+  try {
+    const { createRequire } = await import('module');
+    const req = createRequire(import.meta.url);
+    _pdfParse = req('pdf-parse');
+    return _pdfParse;
+  } catch (e) {
+    console.warn('[PDF PARSE LOAD ERROR]', e?.message || e);
+    return null;
+  }
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -133,7 +148,9 @@ export function normalizeSourceCode(code, language = 'general') {
  */
 export async function extractTextFromPdf(buffer) {
   try {
-    const data = await pdfParse(buffer);
+    const parser = await getPdfParse();
+    if (!parser) throw new Error('PDF parser is currently unavailable.');
+    const data = await parser(buffer);
     const fullText = (data.text || '').trim();
     const numPages = data.numpages || 1;
 
