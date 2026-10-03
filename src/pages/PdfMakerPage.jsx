@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { PDFDocument, rgb, degrees, StandardFonts } from 'pdf-lib';
+import JSZip from 'jszip';
 import {
   FileText,
   Layers,
@@ -192,20 +194,46 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
     setErrorMessage('');
   };
 
-  // Inspect page count for organize tool
+  // Universal Image to standard A4 (595.28 x 841.89) canvas converter
+  const convertImageToStandardCanvas = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth || img.width;
+          canvas.height = img.naturalHeight || img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob((blob) => {
+            if (!blob) return reject(new Error('Failed to convert image'));
+            const r = new FileReader();
+            r.onload = () => resolve({ buffer: r.result, width: canvas.width, height: canvas.height });
+            r.onerror = reject;
+            r.readAsArrayBuffer(blob);
+          }, 'image/png');
+        };
+        img.onerror = () => reject(new Error(`Failed to load image: ${file.name}`));
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  // Inspect page count for organize tool (client-side with fallback)
   const inspectPdfPages = async (file) => {
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      const res = await fetch('/api/pdf/pdf-to-text', { method: 'POST', body: formData });
-      if (res.ok) {
-        const data = await res.json();
-        const total = Math.max(1, Math.min(100, data.total || 5));
-        const pagesArray = Array.from({ length: total }, (_, i) => i + 1);
-        setOrganizePages(pagesArray);
-        setDeletedPages([]);
-        setRotatedPagesMap({});
-      }
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+      const total = Math.max(1, Math.min(100, pdfDoc.getPageCount() || 5));
+      const pagesArray = Array.from({ length: total }, (_, i) => i + 1);
+      setOrganizePages(pagesArray);
+      setDeletedPages([]);
+      setRotatedPagesMap({});
     } catch {
       setOrganizePages([1, 2, 3, 4, 5]);
     }
@@ -274,37 +302,92 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
     setProcessStatusText('Preparing documents and validating file signatures...');
 
     try {
+      // First attempt fast, reliable client-side processing using pdf-lib
+      try {
+        const mergedPdf = await PDFDocument.create();
+        let totalPages = 0;
+
+        for (let i = 0; i < selectedFiles.length; i++) {
+          const file = selectedFiles[i];
+          const pct = Math.round(15 + ((i + 1) / selectedFiles.length) * 75);
+          setProcessProgress(pct);
+          setProcessStatusText(`Merging ${file.name} (${i + 1} of ${selectedFiles.length})...`);
+
+          const isPdfFile = file.name.toLowerCase().endsWith('.pdf') || file.type === 'application/pdf';
+
+          if (isPdfFile) {
+            const arrayBuffer = await file.arrayBuffer();
+            const srcDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+            const pageIndices = srcDoc.getPageIndices();
+            const copiedPages = await mergedPdf.copyPages(srcDoc, pageIndices);
+            copiedPages.forEach(p => {
+              mergedPdf.addPage(p);
+              totalPages++;
+            });
+          } else {
+            // High-fidelity image embedding (JPG, PNG, WEBP, etc.)
+            const { buffer, width, height } = await convertImageToStandardCanvas(file);
+            const embeddedImage = await mergedPdf.embedPng(buffer);
+
+            // Standard A4 dimensions in points
+            const a4Width = 595.28;
+            const a4Height = 841.89;
+            const margin = 20;
+            const maxWidth = a4Width - margin * 2;
+            const maxHeight = a4Height - margin * 2;
+
+            const scale = Math.min(maxWidth / width, maxHeight / height, 1);
+            const drawWidth = width * scale;
+            const drawHeight = height * scale;
+
+            const page = mergedPdf.addPage([a4Width, a4Height]);
+            page.drawImage(embeddedImage, {
+              x: (a4Width - drawWidth) / 2,
+              y: (a4Height - drawHeight) / 2,
+              width: drawWidth,
+              height: drawHeight
+            });
+            totalPages++;
+          }
+        }
+
+        setProcessProgress(95);
+        setProcessStatusText('Finalizing merged PDF document...');
+
+        const pdfBytes = await mergedPdf.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+
+        setProcessProgress(100);
+        setProcessResult({
+          downloadUrl: url,
+          filename: 'professorvirus_merged_document.pdf',
+          fileSize: blob.size,
+          message: `Successfully merged ${selectedFiles.length} files (${totalPages} total pages) into one valid PDF!`
+        });
+        return;
+      } catch (clientErr) {
+        console.warn('[PDF MERGE] Client engine note, trying server endpoint:', clientErr.message);
+      }
+
+      // Backend fallback if client-side parsing encounters legacy unsupported streams
       const formData = new FormData();
       selectedFiles.forEach(file => {
         formData.append('files', file);
       });
 
-      setProcessProgress(35);
-      setProcessStatusText('Normalizing images to standard A4 pages & parsing PDF streams...');
+      setProcessProgress(50);
+      setProcessStatusText('Processing via backend engine...');
 
-      const resPromise = fetch('/api/pdf/merge', {
+      const res = await fetch('/api/pdf/merge', {
         method: 'POST',
         body: formData
       });
 
-      // Realistic progress ticker
-      const progressTimer = setInterval(() => {
-        setProcessProgress(prev => {
-          if (prev < 80) return prev + 12;
-          return prev;
-        });
-      }, 350);
-
-      const res = await resPromise;
-      clearInterval(progressTimer);
-
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.message || 'Server error merging documents.');
+        throw new Error(errorData.message || 'Failed to merge documents.');
       }
-
-      setProcessProgress(92);
-      setProcessStatusText('Validating generated PDF structure...');
 
       const blob = await res.blob();
       const pageCount = res.headers.get('x-page-count') || selectedFiles.length;
@@ -336,6 +419,92 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
     setProcessStatusText('Extracting pages according to rule...');
 
     try {
+      // First attempt fast client-side split
+      try {
+        const arrayBuffer = await selectedFiles[0].arrayBuffer();
+        const srcDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+        const total = srcDoc.getPageCount();
+
+        if (splitMode === 'single-pages' || splitMode === 'pages-per-file') {
+          const zip = new JSZip();
+          const step = splitMode === 'pages-per-file' ? Math.max(1, parseInt(splitPagesPerFile, 10) || 1) : 1;
+          let partNum = 1;
+
+          for (let i = 0; i < total; i += step) {
+            const newDoc = await PDFDocument.create();
+            const pageIndices = [];
+            for (let j = i; j < Math.min(total, i + step); j++) {
+              pageIndices.push(j);
+            }
+            const copied = await newDoc.copyPages(srcDoc, pageIndices);
+            copied.forEach(p => newDoc.addPage(p));
+            const bytes = await newDoc.save();
+            zip.file(`part_${partNum}_pages_${i + 1}-${Math.min(total, i + step)}.pdf`, bytes);
+            partNum++;
+          }
+
+          const zipBlob = await zip.generateAsync({ type: 'blob' });
+          const url = URL.createObjectURL(zipBlob);
+          setProcessProgress(100);
+          setProcessResult({
+            downloadUrl: url,
+            filename: 'split_pages.zip',
+            fileSize: zipBlob.size,
+            message: 'Pages split and packaged into ZIP successfully!'
+          });
+          return;
+        } else {
+          // Range mode
+          const parseRanges = (str, max) => {
+            const pages = new Set();
+            const parts = str.split(',');
+            for (const part of parts) {
+              const trimmed = part.trim();
+              if (trimmed.includes('-')) {
+                const [startStr, endStr] = trimmed.split('-');
+                let start = parseInt(startStr, 10);
+                let end = parseInt(endStr, 10);
+                if (isNaN(start)) start = 1;
+                if (isNaN(end)) end = max;
+                start = Math.max(1, Math.min(max, start));
+                end = Math.max(1, Math.min(max, end));
+                for (let p = start; p <= end; p++) pages.add(p - 1);
+              } else {
+                const p = parseInt(trimmed, 10);
+                if (!isNaN(p) && p >= 1 && p <= max) {
+                  pages.add(p - 1);
+                }
+              }
+            }
+            return Array.from(pages).sort((a, b) => a - b);
+          };
+
+          const targetIndices = parseRanges(splitRanges || '1', total);
+          if (targetIndices.length === 0) {
+            throw new Error(`Invalid page range. Total pages: ${total}`);
+          }
+
+          const newDoc = await PDFDocument.create();
+          const copied = await newDoc.copyPages(srcDoc, targetIndices);
+          copied.forEach(p => newDoc.addPage(p));
+          const bytes = await newDoc.save();
+          const blob = new Blob([bytes], { type: 'application/pdf' });
+          const url = URL.createObjectURL(blob);
+
+          setProcessProgress(100);
+          setProcessResult({
+            downloadUrl: url,
+            filename: `extracted_pages_${(splitRanges || '1').replace(/[^a-zA-Z0-9-]/g, '_')}.pdf`,
+            fileSize: blob.size,
+            message: 'Page range extracted into PDF successfully!'
+          });
+          return;
+        }
+      } catch (clientErr) {
+        console.warn('[PDF SPLIT] Client engine note, trying server endpoint:', clientErr.message);
+      }
+
+      // Backend fallback
       const formData = new FormData();
       formData.append('file', selectedFiles[0]);
       formData.append('mode', splitMode);
@@ -384,6 +553,37 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
     setProcessStatusText('Reordering, deleting, and rotating pages...');
 
     try {
+      try {
+        const arrayBuffer = await selectedFiles[0].arrayBuffer();
+        const srcDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+        const newDoc = await PDFDocument.create();
+        const finalPages = organizePages.filter(p => !deletedPages.includes(p));
+
+        for (const pNum of finalPages) {
+          const [copiedPage] = await newDoc.copyPages(srcDoc, [pNum - 1]);
+          const rot = rotatedPagesMap[pNum] || 0;
+          if (rot !== 0) {
+            const curr = copiedPage.getRotation().angle;
+            copiedPage.setRotation(degrees((curr + rot) % 360));
+          }
+          newDoc.addPage(copiedPage);
+        }
+
+        const pdfBytes = await newDoc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        setProcessProgress(100);
+        setProcessResult({
+          downloadUrl: url,
+          filename: `organized_${selectedFiles[0].name}`,
+          fileSize: blob.size,
+          message: `PDF organized successfully! Retained ${finalPages.length} pages.`
+        });
+        return;
+      } catch (clientErr) {
+        console.warn('[PDF ORGANIZE] Client engine note, trying server endpoint:', clientErr.message);
+      }
+
       const formData = new FormData();
       formData.append('file', selectedFiles[0]);
       formData.append('pageOrder', JSON.stringify(organizePages));
@@ -430,6 +630,34 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
     setProcessStatusText(`Applying ${rotateAngle}° rotation to ${rotatePages} pages...`);
 
     try {
+      try {
+        const arrayBuffer = await selectedFiles[0].arrayBuffer();
+        const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
+        const pages = pdfDoc.getPages();
+
+        pages.forEach((p, idx) => {
+          if (rotatePages === 'all' || (rotatePages === 'odd' && (idx + 1) % 2 !== 0) || (rotatePages === 'even' && (idx + 1) % 2 === 0)) {
+            const currentAngle = p.getRotation().angle;
+            p.setRotation(degrees((currentAngle + parseInt(rotateAngle, 10)) % 360));
+          }
+        });
+
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+
+        setProcessProgress(100);
+        setProcessResult({
+          downloadUrl: url,
+          filename: `rotated_${rotateAngle}deg_${selectedFiles[0].name}`,
+          fileSize: blob.size,
+          message: `Successfully rotated pages by ${rotateAngle}°!`
+        });
+        return;
+      } catch (clientErr) {
+        console.warn('[PDF ROTATE] Client engine note, trying server endpoint:', clientErr.message);
+      }
+
       const formData = new FormData();
       formData.append('file', selectedFiles[0]);
       formData.append('angle', rotateAngle);
@@ -663,6 +891,52 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
     setProcessStatusText(`Converting ${files.length} images to standard A4 PDF...`);
 
     try {
+      try {
+        const doc = await PDFDocument.create();
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const pct = Math.round(20 + ((i + 1) / files.length) * 70);
+          setProcessProgress(pct);
+          setProcessStatusText(`Converting ${file.name} (${i + 1}/${files.length})...`);
+
+          const { buffer, width, height } = await convertImageToStandardCanvas(file);
+          const embeddedImage = await doc.embedPng(buffer);
+
+          const a4Width = 595.28;
+          const a4Height = 841.89;
+          const margin = 20;
+          const maxWidth = a4Width - margin * 2;
+          const maxHeight = a4Height - margin * 2;
+
+          const scale = Math.min(maxWidth / width, maxHeight / height, 1);
+          const drawWidth = width * scale;
+          const drawHeight = height * scale;
+
+          const page = doc.addPage([a4Width, a4Height]);
+          page.drawImage(embeddedImage, {
+            x: (a4Width - drawWidth) / 2,
+            y: (a4Height - drawHeight) / 2,
+            width: drawWidth,
+            height: drawHeight
+          });
+        }
+
+        const pdfBytes = await doc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+
+        setProcessProgress(100);
+        setProcessResult({
+          downloadUrl: url,
+          filename: 'converted_images.pdf',
+          fileSize: blob.size,
+          message: `Successfully converted ${files.length} images into a single valid PDF!`
+        });
+        return;
+      } catch (clientErr) {
+        console.warn('[JPG TO PDF] Client engine note, trying server endpoint:', clientErr.message);
+      }
+
       const formData = new FormData();
       files.forEach(f => formData.append('images', f));
       formData.append('pageSize', imagePageSize);

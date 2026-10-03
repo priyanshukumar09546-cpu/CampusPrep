@@ -5,7 +5,9 @@ import https from 'https';
 import http from 'http';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import JSZip from 'jszip';
-import pdfParse from 'pdf-parse';
+import { createRequire } from 'module';
+const _require = createRequire(import.meta.url);
+const pdfParse = _require('pdf-parse');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

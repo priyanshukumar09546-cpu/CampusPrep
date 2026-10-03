@@ -62,15 +62,39 @@ const getServerBaseUrl = () => {
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
+  'https://campusprep-official.vercel.app',
   'https://campusprep-chi.vercel.app',
   'https://campusprep.vercel.app',
   'https://professorvirus.com',
   'https://www.professorvirus.com',
   'http://localhost:3000',
-  'http://localhost:5173'
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:5175'
 ].filter(Boolean);
 
-app.use(cors({ origin: "*", methods: ["GET", "POST", "PUT", "DELETE"] }));
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.vercel.app') ||
+      origin.includes('localhost') ||
+      origin.includes('127.0.0.1')
+    ) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Cache-Control', 'x-page-count']
+}));
+
+// Production Health Check Endpoints
+app.get('/health', (req, res) => res.status(200).json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() }));
+app.get('/api/health', (req, res) => res.status(200).json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() }));
+
 app.use(express.json());
 
 // Ensure MongoDB is connected for serverless invocations (cold starts)
@@ -667,6 +691,10 @@ const safeErrorMessage = (err) => {
 };
 
 async function connectToDatabase() {
+  if (mongoose.connection.readyState === 1) {
+    isDbConnected = true;
+    return;
+  }
   if (!process.env.MONGODB_URI) {
     console.warn('[DATABASE] MONGODB_URI not found in process.env. Operating with persistent disk storage mode.');
     return;

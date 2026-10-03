@@ -6,11 +6,12 @@ import './index.css';
 
 import { API_URL } from './config/api';
 
-// Automatically handle production backend API URL if configured via VITE_API_URL or VITE_BACKEND_URL or API_URL
-const customApiUrl = (API_URL || import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || '').trim();
-if (customApiUrl && typeof window !== 'undefined' && window.fetch) {
+// If API_URL is non-empty (e.g. local dev http://localhost:5000 or custom VITE_API_URL),
+// automatically prefix relative /api/ fetch calls.
+// If API_URL is empty (production same-origin), calls remain relative /api/ to the current host.
+if (API_URL && typeof window !== 'undefined' && window.fetch) {
   const originalFetch = window.fetch;
-  const cleanBase = customApiUrl.replace(/\/+$/, '');
+  const cleanBase = API_URL.replace(/\/+$/, '');
   window.fetch = function (resource, init) {
     if (typeof resource === 'string' && resource.startsWith('/api/')) {
       return originalFetch.call(this, `${cleanBase}${resource}`, init);
