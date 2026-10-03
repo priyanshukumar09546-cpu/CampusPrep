@@ -27,6 +27,9 @@ const PROJECT_ROOT = path.resolve(__dirname, '..');
 // Ensure DNS resolvers (Google & Cloudflare) are available for MongoDB Atlas SRV record resolution
 try {
   dns.setServers(['8.8.8.8', '1.1.1.1', '8.8.4.4']);
+  if (dns.setDefaultResultOrder) {
+    dns.setDefaultResultOrder('ipv4first');
+  }
 } catch (dnsErr) {
   console.warn('[DATABASE] Notice: Custom DNS resolver initialization skipped:', dnsErr.message);
 }
@@ -74,6 +77,18 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+
+// Ensure MongoDB is connected for serverless invocations (cold starts)
+app.use(async (req, res, next) => {
+  if (req.path.startsWith('/api') && !isDbConnected && process.env.MONGODB_URI) {
+    try {
+      await connectToDatabase();
+    } catch (e) {
+      console.warn('[SERVERLESS MONGO RECONNECT ERROR]', e?.message || e);
+    }
+  }
+  next();
+});
 
 // ENSURE STORAGE DIRECTORIES EXIST
 const UPLOADS_DIR = path.join(PROJECT_ROOT, 'uploads', 'pyqs');
@@ -9558,29 +9573,33 @@ if (fs.existsSync(distPath)) {
   });
 }
 
-app.listen(PORT, '0.0.0.0', () => {
-  const tokenData = loadGoogleTokensFromDisk();
-  const gdriveOk = tokenData && tokenData.refresh_token;
-  const envOk = Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
-  const geminiKey = process.env.GEMINI_API_KEY;
-  const geminiOk = Boolean(geminiKey && geminiKey !== 'YOUR_GEMINI_API_KEY' && geminiKey.length > 10);
+if (process.env.VERCEL !== '1' && !process.env.VERCEL_ENV && !process.env.AWS_LAMBDA_FUNCTION_NAME) {
+  app.listen(PORT, '0.0.0.0', () => {
+    const tokenData = loadGoogleTokensFromDisk();
+    const gdriveOk = tokenData && tokenData.refresh_token;
+    const envOk = Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
+    const geminiKey = process.env.GEMINI_API_KEY;
+    const geminiOk = Boolean(geminiKey && geminiKey !== 'YOUR_GEMINI_API_KEY' && geminiKey.length > 10);
 
-  console.log('');
-  console.log('╔══════════════════════════════════════════════════════════════╗');
-  console.log('║           🎓 ProfessorVirus Backend — STARTUP REPORT         ║');
-  console.log('╠══════════════════════════════════════════════════════════════╣');
-  console.log(`║  Server:        http://localhost:${PORT}                       ║`);
-  console.log(`║  MongoDB:       ${isDbConnected ? '✓ Connected' : '✗ Disconnected (disk-only mode)'}${isDbConnected ? '             ' : ''}║`);
-  console.log(`║  .env Loaded:   ${envOk ? '✓ GOOGLE_CLIENT_ID & SECRET set' : '✗ Missing Google credentials'}     ║`);
-  console.log(`║  Google Drive:  ${gdriveOk ? '✓ Connected (' + (tokenData.accountEmail || 'Account') + ')' : '✗ Not Connected'}${gdriveOk ? '' : '                  '}║`);
-  console.log(`║  Gemini AI:     ${geminiOk ? '✓ Configured (gemini-2.0-flash)' : '✗ Not Set (Structural Mode)'}${geminiOk ? '   ' : '     '}║`);
-  console.log(`║  Notes:         ${dbNotes.length} loaded from disk                        ║`);
-  console.log(`║  PYQs:          ${dbPyqs.length} loaded from disk                         ║`);
-  console.log(`║  Subjects:      ${dbSubjects.length} loaded from disk                        ║`);
-  console.log(`║  Scholarships:  ${dbScholarships.length} loaded from disk                        ║`);
-  console.log('╚══════════════════════════════════════════════════════════════╝');
-  console.log('');
-  if (!geminiOk) {
-    console.warn('[AI ENGINE] Notice: GEMINI_API_KEY is not configured in .env. AI Result Analysis is operating in zero-assumption structural verification mode.');
-  }
-});
+    console.log('');
+    console.log('╔══════════════════════════════════════════════════════════════╗');
+    console.log('║           🎓 ProfessorVirus Backend — STARTUP REPORT         ║');
+    console.log('╠══════════════════════════════════════════════════════════════╣');
+    console.log(`║  Server:        http://localhost:${PORT}                       ║`);
+    console.log(`║  MongoDB:       ${isDbConnected ? '✓ Connected' : '✗ Disconnected (disk-only mode)'}${isDbConnected ? '             ' : ''}║`);
+    console.log(`║  .env Loaded:   ${envOk ? '✓ GOOGLE_CLIENT_ID & SECRET set' : '✗ Missing Google credentials'}     ║`);
+    console.log(`║  Google Drive:  ${gdriveOk ? '✓ Connected (' + (tokenData.accountEmail || 'Account') + ')' : '✗ Not Connected'}${gdriveOk ? '' : '                  '}║`);
+    console.log(`║  Gemini AI:     ${geminiOk ? '✓ Configured (gemini-2.0-flash)' : '✗ Not Set (Structural Mode)'}${geminiOk ? '   ' : '     '}║`);
+    console.log(`║  Notes:         ${dbNotes.length} loaded from disk                        ║`);
+    console.log(`║  PYQs:          ${dbPyqs.length} loaded from disk                         ║`);
+    console.log(`║  Subjects:      ${dbSubjects.length} loaded from disk                        ║`);
+    console.log(`║  Scholarships:  ${dbScholarships.length} loaded from disk                        ║`);
+    console.log('╚══════════════════════════════════════════════════════════════╝');
+    console.log('');
+    if (!geminiOk) {
+      console.warn('[AI ENGINE] Notice: GEMINI_API_KEY is not configured in .env. AI Result Analysis is operating in zero-assumption structural verification mode.');
+    }
+  });
+}
+
+export default app;

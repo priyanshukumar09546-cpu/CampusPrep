@@ -15,6 +15,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { getAktuSyllabusForSubject } from '../data/aktuSyllabusData';
+import NoteViewerModal from '../components/NoteViewerModal';
 
 export default function SubjectPage({ 
   subjectData, 
@@ -27,6 +28,7 @@ export default function SubjectPage({
   const [pyqs, setPyqs] = useState([]);
   const [isLoadingNotes, setIsLoadingNotes] = useState(true);
   const [isLoadingPyqs, setIsLoadingPyqs] = useState(true);
+  const [viewerModalData, setViewerModalData] = useState(null);
 
   // Normalize subject details from prop
   const subjectName = typeof subjectData === 'string' 
@@ -152,7 +154,11 @@ export default function SubjectPage({
           unit: note.unit ? { unitNo: note.unit, topics: [] } : null
         });
       } else {
-        window.open(rawUrl, '_blank', 'noopener,noreferrer');
+        setViewerModalData({
+          note,
+          subject: { name: subjectName, code: subjectCode },
+          unit: note.unit ? { unitNo: note.unit, topics: [] } : null
+        });
       }
     } else {
       alert('This note document is currently unavailable.');
@@ -163,7 +169,27 @@ export default function SubjectPage({
   const handleOpenPyq = (pyq) => {
     const rawUrl = pyq.pdfUrl || pyq.fileUrl || pyq.driveUrl || pyq.resourceUrl || pyq.url;
     if (rawUrl) {
-      window.open(rawUrl, '_blank', 'noopener,noreferrer');
+      const normalizedPyq = {
+        ...pyq,
+        title: `${subjectName} ${pyq.academicYear || pyq.year || ''} ${pyq.examType || 'End Semester'} Question Paper`,
+        category: 'Previous Year Question Paper',
+        provider: 'AKTU Examination Paper',
+        url: rawUrl,
+        pdfUrl: rawUrl
+      };
+      if (onOpenViewer) {
+        onOpenViewer({
+          note: normalizedPyq,
+          subject: { name: subjectName, code: subjectCode },
+          unit: null
+        });
+      } else {
+        setViewerModalData({
+          note: normalizedPyq,
+          subject: { name: subjectName, code: subjectCode },
+          unit: null
+        });
+      }
     } else {
       alert('This question paper is currently unavailable.');
     }
@@ -1086,6 +1112,15 @@ export default function SubjectPage({
           </div>
         )}
       </div>
+
+      {viewerModalData && (
+        <NoteViewerModal
+          note={viewerModalData.note}
+          subject={viewerModalData.subject}
+          unit={viewerModalData.unit}
+          onClose={() => setViewerModalData(null)}
+        />
+      )}
     </div>
   );
 }

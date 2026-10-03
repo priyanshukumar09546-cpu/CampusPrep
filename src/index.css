@@ -754,5 +754,17 @@ pre, code {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
   }
+
+  /* Mobile tool card tap targets and smooth momentum scrolling */
+  .pv-mobile-home, .pv-mobile-more, .pv-mobile-notes-view, .pv-mobile-pyqs-view {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Responsive image scaling */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 }
+
 

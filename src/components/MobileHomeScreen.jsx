@@ -9,7 +9,15 @@ import {
   Briefcase, 
   FileCheck, 
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  Calculator,
+  Calendar,
+  Lightbulb,
+  GraduationCap,
+  Link2,
+  Compass,
+  Layers,
+  Wrench
 } from 'lucide-react';
 
 export default function MobileHomeScreen({ 
@@ -38,6 +46,7 @@ export default function MobileHomeScreen({
     }
   };
 
+  // Primary Academic & Career Pillars (6 Cards)
   const featureCards = [
     {
       id: 'notes',
@@ -62,7 +71,7 @@ export default function MobileHomeScreen({
     {
       id: 'syllabus',
       title: 'Syllabus',
-      subtitle: 'Complete Curriculum',
+      subtitle: 'Curriculum',
       icon: CheckSquare,
       iconColor: '#2563EB',
       iconBg: '#EFF6FF',
@@ -72,7 +81,7 @@ export default function MobileHomeScreen({
     {
       id: 'quizzes',
       title: 'Quizzes',
-      subtitle: 'Test Your Knowledge',
+      subtitle: 'Test Knowledge',
       icon: Award,
       iconColor: '#7C3AED',
       iconBg: '#F5F3FF',
@@ -82,7 +91,7 @@ export default function MobileHomeScreen({
     {
       id: 'interview-pro',
       title: 'Interview Pro',
-      subtitle: 'Mock Interviews',
+      subtitle: 'AI Mock Rounds',
       icon: Briefcase,
       iconColor: '#D97706',
       iconBg: '#FEF3C7',
@@ -92,12 +101,115 @@ export default function MobileHomeScreen({
     {
       id: 'resume-maker',
       title: 'Resume Builder',
-      subtitle: 'Create Professional CV',
+      subtitle: 'ATS Resume CV',
       icon: FileCheck,
       iconColor: '#4F46E5',
       iconBg: '#EEF2FF',
       iconBorder: '#E0E7FF',
       action: () => onNavigate('resume-maker')
+    }
+  ];
+
+  // Essential Student & Career Tools
+  const essentialTools = [
+    {
+      id: 'pdf-maker',
+      title: 'AI PDF Maker',
+      subtitle: 'Merge, split, img-to-PDF',
+      tag: 'Tool',
+      icon: Layers,
+      iconColor: '#4F46E5',
+      iconBg: '#EEF2FF',
+      iconBorder: '#E0E7FF',
+      action: () => onNavigate('pdf-maker')
+    },
+    {
+      id: 'result-cgpa',
+      title: 'Result & CGPA',
+      subtitle: 'Instant SGPA breakdown',
+      tag: 'Calculator',
+      icon: Calculator,
+      iconColor: '#059669',
+      iconBg: '#ECFDF5',
+      iconBorder: '#D1FAE5',
+      action: () => onNavigate('result-cgpa')
+    },
+    {
+      id: 'attendance-calculator',
+      title: 'Attendance 75%',
+      subtitle: 'Bunk & safe class planner',
+      tag: 'Tracker',
+      icon: Calculator,
+      iconColor: '#D97706',
+      iconBg: '#FFFBEB',
+      iconBorder: '#FEF3C7',
+      action: () => onNavigate('attendance-calculator')
+    },
+    {
+      id: 'timetable',
+      title: 'Time Table',
+      subtitle: 'Weekly routine & schedule',
+      tag: 'Planner',
+      icon: Calendar,
+      iconColor: '#E11D48',
+      iconBg: '#FEF2F2',
+      iconBorder: '#FEE2E2',
+      action: () => onNavigate('timetable')
+    },
+    {
+      id: 'internships-jobs',
+      title: 'Internships & Jobs',
+      subtitle: 'Verified off-campus drives',
+      tag: 'Careers',
+      icon: Briefcase,
+      iconColor: '#2563EB',
+      iconBg: '#EFF6FF',
+      iconBorder: '#DBEAFE',
+      action: () => onNavigate('internships-jobs')
+    },
+    {
+      id: 'project-ideas',
+      title: 'Project Ideas',
+      subtitle: 'Verified repos & source',
+      tag: 'Projects',
+      icon: Lightbulb,
+      iconColor: '#D97706',
+      iconBg: '#FEF7E8',
+      iconBorder: '#FCEAC2',
+      action: () => onNavigate('project-ideas')
+    },
+    {
+      id: 'scholarships',
+      title: 'Scholarships',
+      subtitle: 'Govt & private aid',
+      tag: 'Grants',
+      icon: GraduationCap,
+      iconColor: '#16A34A',
+      iconBg: '#F0FDF4',
+      iconBorder: '#DCFCE7',
+      action: () => onNavigate('scholarships')
+    },
+    {
+      id: 'competitive-exams',
+      title: 'Exams & Roadmaps',
+      subtitle: 'GATE, CAT, UPSC guides',
+      tag: 'Guidance',
+      icon: Compass,
+      iconColor: '#7C3AED',
+      iconBg: '#FAF5FF',
+      iconBorder: '#F3E8FF',
+      action: () => onNavigate('competitive-exams')
+    },
+    {
+      id: 'important-links',
+      title: 'Important Links',
+      subtitle: 'AKTU ERP & OneView',
+      tag: 'Portals',
+      icon: Link2,
+      iconColor: '#DC2626',
+      iconBg: '#FEF2F2',
+      iconBorder: '#FEE2E2',
+      action: () => onNavigate('important-links')
     }
   ];
 
@@ -143,7 +255,7 @@ export default function MobileHomeScreen({
           lineHeight: 1.45,
           fontWeight: 450
         }}>
-          Notes, PYQs, Quizzes, Interviews, Resume Builder &amp; Ask Virus — All in One.
+          Notes, PYQs, Resume Builder, Interview Pro &amp; Student Tools — All in One.
         </p>
       </div>
 
@@ -167,8 +279,8 @@ export default function MobileHomeScreen({
           type="search"
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          placeholder="Search notes, PYQs, topics..."
-          aria-label="Search notes, PYQs, topics"
+          placeholder="Search notes, PYQs, subjects..."
+          aria-label="Search notes, PYQs, subjects"
           style={{
             flex: 1,
             border: 'none',
@@ -253,12 +365,11 @@ export default function MobileHomeScreen({
               fontWeight: 450,
               maxWidth: '190px'
             }}>
-              Get instant, accurate answers to your doubts.
+              Get instant, accurate answers to your academic doubts.
             </p>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
-            {/* Robot mascot image */}
             <div style={{
               width: '68px',
               height: '68px',
@@ -281,7 +392,6 @@ export default function MobileHomeScreen({
               />
             </div>
 
-            {/* Circular Arrow Button */}
             <div style={{
               width: '34px',
               height: '34px',
@@ -365,7 +475,125 @@ export default function MobileHomeScreen({
         })}
       </div>
 
-      {/* 5. TRENDING TOPICS */}
+      {/* 5. ESSENTIAL STUDENT TOOLS & CAREER HUB */}
+      <div style={{ marginBottom: '1.45rem' }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: '0.75rem'
+        }}>
+          <div>
+            <h2 style={{
+              margin: 0,
+              fontSize: '1.05rem',
+              fontWeight: 800,
+              color: '#1C1E21',
+              letterSpacing: '-0.01em'
+            }}>
+              Student Tools &amp; Career Hub
+            </h2>
+            <p style={{
+              margin: '0.15rem 0 0',
+              fontSize: '0.74rem',
+              color: '#71717A',
+              fontWeight: 500
+            }}>
+              Calculators, PDF utilities &amp; placement resources
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => onNavigate('more')}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#7A1C28',
+              fontSize: '0.78rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              padding: 0,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.2rem'
+            }}
+          >
+            All Tools <ChevronRight size={14} />
+          </button>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '0.65rem'
+        }}>
+          {essentialTools.map((tool) => {
+            const IconComp = tool.icon;
+            return (
+              <div
+                key={tool.id}
+                onClick={tool.action}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter') tool.action(); }}
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '16px',
+                  border: '1px solid #ECE7E0',
+                  padding: '0.85rem 0.9rem',
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.65rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+                  transition: 'all 0.18s ease'
+                }}
+              >
+                <div style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '11px',
+                  backgroundColor: tool.iconBg,
+                  border: `1.5px solid ${tool.iconBorder}`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: tool.iconColor,
+                  flexShrink: 0
+                }}>
+                  <IconComp size={18} strokeWidth={2.2} />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{
+                    fontSize: '0.82rem',
+                    fontWeight: 800,
+                    color: '#1C1E21',
+                    lineHeight: 1.2,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}>
+                    {tool.title}
+                  </div>
+                  <div style={{
+                    fontSize: '0.68rem',
+                    color: '#71717A',
+                    marginTop: '0.15rem',
+                    lineHeight: 1.25,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}>
+                    {tool.subtitle}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 6. TRENDING TOPICS */}
       <div>
         <div style={{
           display: 'flex',
