@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   ArrowLeft, 
   Bell, 
@@ -9,54 +9,22 @@ import {
   Code, 
   CheckCircle2, 
   Sparkles, 
-  Trophy 
+  Trophy,
+  BookOpen
 } from 'lucide-react';
+import { INITIAL_QUIZZES } from '../data/quizQuestionBank';
 
 export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
-  const [activeTab, setActiveTab] = useState('All'); // 'All' | 'Subject Wise'
+  const [activeCourse, setActiveCourse] = useState('All');
 
-  const quizzes = [
-    {
-      id: 'os',
-      name: 'Operating System',
-      questions: '25 Questions',
-      time: '15 min',
-      icon: Cpu,
-      color: 'bg-purple-100 text-purple-600'
-    },
-    {
-      id: 'dbms',
-      name: 'DBMS',
-      questions: '30 Questions',
-      time: '20 min',
-      icon: Database,
-      color: 'bg-rose-100 text-rose-600'
-    },
-    {
-      id: 'cn',
-      name: 'Computer Networks',
-      questions: '25 Questions',
-      time: '15 min',
-      icon: Radio,
-      color: 'bg-purple-100 text-purple-600'
-    },
-    {
-      id: 'ds',
-      name: 'Data Structures',
-      questions: '25 Questions',
-      time: '15 min',
-      icon: Layers,
-      color: 'bg-emerald-100 text-emerald-600'
-    },
-    {
-      id: 'oops-java',
-      name: 'OOPs with Java',
-      questions: '25 Questions',
-      time: '15 min',
-      icon: Code,
-      color: 'bg-purple-100 text-purple-600'
-    }
-  ];
+  const courses = ['All', 'B.Tech', 'BCA', 'MBA', 'MCA', 'B.Pharm', 'BBA'];
+
+  const displayedQuizzes = useMemo(() => {
+    return INITIAL_QUIZZES.filter(q => {
+      if (activeCourse !== 'All' && q.course && q.course.toLowerCase() !== activeCourse.toLowerCase()) return false;
+      return true;
+    });
+  }, [activeCourse]);
 
   return (
     <div className="min-h-screen bg-[#FFF7ED] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
@@ -74,7 +42,7 @@ export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
       {/* HEADER: Title Quizzes + Subtitle + Bell */}
       <div className="px-5 pt-3 pb-2 flex items-center justify-between z-10">
         <button 
-          onClick={() => onNavigate('home')}
+          onClick={() => onNavigate && onNavigate('home')}
           className="p-1.5 text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
           aria-label="Back"
         >
@@ -83,10 +51,10 @@ export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
 
         <div className="text-center flex-1 mx-2">
           <h1 className="font-['Outfit',sans-serif] font-bold text-xl text-stone-900 leading-tight">
-            Quizzes
+            Quizzes & Tests
           </h1>
           <p className="text-[11px] text-stone-500 font-medium">
-            Test Your Knowledge, Practice, Learn and Improve
+            First-Party Academic Exam Platform
           </p>
         </div>
 
@@ -99,10 +67,10 @@ export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
         </button>
       </div>
 
-      {/* TROPHY & STATS BADGES CARD (SCREEN 8) */}
+      {/* STATS BADGES CARD */}
       <div className="px-5 mb-4 z-10">
         <div className="bg-gradient-to-r from-amber-50/90 via-orange-50/80 to-amber-50/90 rounded-2xl p-4 border border-amber-200/60 shadow-xs flex flex-col items-center">
-          <div className="w-16 h-16 mb-2 flex items-center justify-center">
+          <div className="w-14 h-14 mb-2 flex items-center justify-center">
             <img 
               src="/assets/quiz_trophy.png" 
               alt="Quiz Trophy" 
@@ -113,80 +81,70 @@ export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
             />
           </div>
 
-          {/* 3 Pills Row */}
+          {/* 3 Pills Row with Real Honest Numbers */}
           <div className="flex items-center gap-1.5 flex-wrap justify-center">
             <span className="bg-white/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-amber-900 shadow-2xs flex items-center gap-1">
-              🏆 25+ Subjects
+              🏆 Verified Syllabus
             </span>
             <span className="bg-white/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-800 shadow-2xs flex items-center gap-1">
-              📝 10K+ Questions
+              📝 Real University PYQs
             </span>
             <span className="bg-white/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-800 shadow-2xs flex items-center gap-1">
-              ⚡ Instant Feedback
+              ⚡ Instant Review
             </span>
           </div>
         </div>
       </div>
 
-      {/* FILTER TABS: [All] [Subject Wise] */}
-      <div className="px-5 mb-3 z-10 flex items-center gap-2">
-        <button
-          onClick={() => setActiveTab('All')}
-          className={`flex-1 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
-            activeTab === 'All'
-              ? 'bg-[#7A2327] text-white shadow-xs'
-              : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-50'
-          }`}
-        >
-          All
-        </button>
-        <button
-          onClick={() => setActiveTab('Subject Wise')}
-          className={`flex-1 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
-            activeTab === 'Subject Wise'
-              ? 'bg-[#7A2327] text-white shadow-xs'
-              : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-50'
-          }`}
-        >
-          Subject Wise
-        </button>
+      {/* COURSE FILTER HORIZONTAL SCROLL */}
+      <div className="px-5 mb-3 z-10 flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+        {courses.map(course => (
+          <button
+            key={course}
+            onClick={() => setActiveCourse(course)}
+            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+              activeCourse === course
+                ? 'bg-[#7A2327] text-white shadow-xs'
+                : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-50'
+            }`}
+          >
+            {course}
+          </button>
+        ))}
       </div>
 
       {/* QUIZZES LIST */}
       <div className="px-5 space-y-2.5 z-10 flex-1">
-        {quizzes.map((quiz) => {
-          const Icon = quiz.icon;
-          return (
-            <div 
-              key={quiz.id}
-              className="bg-white rounded-2xl p-3 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-200 transition-all"
-            >
-              <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${quiz.color}`}>
-                  <Icon size={20} />
+        {displayedQuizzes.map((quiz) => (
+          <div 
+            key={quiz.id}
+            className="bg-white rounded-2xl p-3.5 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-200 transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 border border-amber-200/60 flex items-center justify-center font-bold text-xs">
+                {quiz.course}
+              </div>
+              <div>
+                <div className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900 leading-tight">
+                  {quiz.title}
                 </div>
-                <div>
-                  <div className="font-['Outfit',sans-serif] font-bold text-sm text-stone-900 leading-tight">
-                    {quiz.name}
-                  </div>
-                  <div className="text-[11px] text-stone-400 font-medium mt-0.5">
-                    {quiz.questions} • {quiz.time}
-                  </div>
+                <div className="text-[11px] text-stone-500 font-medium mt-0.5">
+                  {quiz.subject} • {quiz.questions?.length || 0} Questions • {quiz.durationMinutes || 15}m
                 </div>
               </div>
-
-              <button
-                onClick={() => {
-                  if (onStartQuiz) onStartQuiz(quiz);
-                  else alert(`Starting ${quiz.name} Quiz!`);
-                }}
-                className="bg-[#7A2327] text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xs hover:bg-[#631c20] transition-colors cursor-pointer"
-              >
-                Start Quiz
-              </button>
             </div>
-          );
-        })}
+
+            <button
+              onClick={() => {
+                if (onStartQuiz) onStartQuiz(quiz);
+                else if (onNavigate) onNavigate('quizzes');
+              }}
+              className="bg-[#7A2327] text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xs hover:bg-[#631c20] transition-colors cursor-pointer"
+            >
+              Start Quiz
+            </button>
+          </div>
+        ))}
       </div>
 
     </div>

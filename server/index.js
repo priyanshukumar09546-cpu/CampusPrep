@@ -20,6 +20,7 @@ import { createTimetableRouter } from './routes/timetableRoutes.js';
 import { createInterviewRouter } from './routes/interviewRoutes.js';
 import { createPlagiarismRouter } from './routes/plagiarismRoutes.js';
 import { createProgressRouter } from './routes/progressRoutes.js';
+import { createQuizRouter } from './routes/quizRoutes.js';
 import OpenAI from 'openai';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -9607,6 +9608,9 @@ app.use('/api/plagiarism', createPlagiarismRouter());
 
 // STUDENT PROGRESS & ANALYTICS ROUTER
 app.use('/api/progress', createProgressRouter({ verifyJwtToken }));
+
+// FIRST-PARTY QUIZ ENGINE ROUTER
+app.use('/api/quizzes', createQuizRouter({ verifyAdminToken }));
 
 // STUDENT ACADEMIC UPDATES & EXAM ALERTS NEWSLETTER
 app.post('/api/updates/subscribe', (req, res) => {

@@ -62,6 +62,7 @@ import {
 import { QUANTUM_NOTES } from '../data/aktuQuantumNotes';
 import { AKTU_PYQ_DATA } from '../data/aktuPyqData';
 import { COURSES } from '../data/coursesCatalog';
+import AdminQuizManager from '../components/AdminQuizManager';
 
 
 export const getAdminToken = () => {
@@ -6759,6 +6760,14 @@ export default function AdminDashboard({ onNavigate }) {
                 </table>
               </div>
             </div>
+          )}
+
+          {/* TAB 5: QUIZZES MANAGEMENT */}
+          {activeTab === 'quizzes' && (
+            <AdminQuizManager
+              adminToken={getAdminToken()}
+              onNavigate={onNavigate}
+            />
           )}
 
         </main>
