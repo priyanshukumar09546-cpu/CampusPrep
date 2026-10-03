@@ -804,13 +804,19 @@ export function getAktuSyllabusForSubject(subjectCode, subjectName) {
   const normCode = String(subjectCode || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
   const normName = String(subjectName || '').toLowerCase().trim();
 
+  const formatSyllabusResult = (s) => ({
+    ...s,
+    name: s.subject || s.name,
+    unavailableNotice: s.unavailableNotice || AKTU_METADATA_DEFAULTS.unavailableNotice
+  });
+
   // Try exact code match
   if (normCode && normCode.length >= 4) {
     const foundByCode = AKTU_SYLLABUS_DATA.find(s => {
       const c = String(s.code || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
       return c === normCode || c.replace(/^[KB]/, '') === normCode.replace(/^[KB]/, '');
     });
-    if (foundByCode) return foundByCode;
+    if (foundByCode) return formatSyllabusResult(foundByCode);
   }
 
   // Try subject name match
@@ -819,7 +825,7 @@ export function getAktuSyllabusForSubject(subjectCode, subjectName) {
       const sName = String(s.subject || '').toLowerCase().trim();
       return sName === normName || sName.includes(normName) || normName.includes(sName);
     });
-    if (foundByName) return foundByName;
+    if (foundByName) return formatSyllabusResult(foundByName);
   }
 
   // Fallback to official template if subject is in AKTU curriculum but not individually listed
@@ -828,6 +834,7 @@ export function getAktuSyllabusForSubject(subjectCode, subjectName) {
     course: 'B.Tech',
     branch: 'CSE',
     subject: subjectName || 'AKTU Subject',
+    name: subjectName || 'AKTU Subject',
     code: subjectCode || '',
     sourceUrl: 'https://aktu.ac.in/syllabus.html',
     ilmsUrl: 'https://ilms.aktu.ac.in/',
