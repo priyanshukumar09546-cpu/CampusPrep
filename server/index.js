@@ -3592,14 +3592,23 @@ app.get('/api/notes', async (req, res) => {
     if (reqSub || reqCode) {
       const subConditions = [];
       if (reqCode) {
+        const cleanCode = reqCode.replace(/[^a-zA-Z0-9]/g, '');
         subConditions.push({ subjectCode: new RegExp(`^${reqCode.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') });
+        if (cleanCode.length >= 4) {
+          subConditions.push({ subjectCode: new RegExp(cleanCode, 'i') });
+        }
       }
       if (reqSub) {
         if (/^[A-Z]{2,4}-?[0-9]{3}/i.test(reqSub)) {
           subConditions.push({ subjectCode: new RegExp(`^${reqSub.replace(/[^a-zA-Z0-9]/g, '-?')}$`, 'i') });
         }
-        subConditions.push({ subject: new RegExp(`^${reqSub.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') });
-        subConditions.push({ subjectName: new RegExp(`^${reqSub.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') });
+        const cleanSub = reqSub.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/s$/, '');
+        subConditions.push({ subject: new RegExp(`^${cleanSub}s?$`, 'i') });
+        subConditions.push({ subjectName: new RegExp(`^${cleanSub}s?$`, 'i') });
+        if (reqSub.length > 5) {
+          subConditions.push({ subject: new RegExp(cleanSub, 'i') });
+          subConditions.push({ subjectName: new RegExp(cleanSub, 'i') });
+        }
       }
       if (subConditions.length > 0) {
         findQuery.$and = findQuery.$and || [];

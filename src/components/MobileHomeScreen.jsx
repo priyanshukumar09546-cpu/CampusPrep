@@ -16,7 +16,8 @@ export default function MobileHomeScreen({
   onNavigate, 
   onOpenAI, 
   onSearch, 
-  onSelectCourse 
+  onSelectCourse,
+  onSelectSubject
 }) {
   const [searchInput, setSearchInput] = useState('');
 
@@ -29,8 +30,12 @@ export default function MobileHomeScreen({
   };
 
   const handleTrendingClick = (topic) => {
-    if (onSearch) onSearch(topic);
-    onNavigate('notes');
+    if (onSelectSubject) {
+      onSelectSubject(topic);
+    } else {
+      if (onSearch) onSearch(topic);
+      onNavigate('notes');
+    }
   };
 
   const featureCards = [

@@ -310,6 +310,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'B.Te
           }}
           onOpenAuth={onOpenAuth}
           initialSearchQuery={heroSearchQuery}
+          onNavigate={onNavigate}
         />
       </div>
 

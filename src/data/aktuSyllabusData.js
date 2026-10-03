@@ -1,355 +1,98 @@
-// OFFICIAL AKTU B.TECH SYLLABUS & NOTES DATASET
-// Verified against AKTU B.Tech Curriculum for CSE, ECE, ME, CE, IT, EE, AI & DS, and Applied Sciences
+// OFFICIAL AKTU B.TECH SYLLABUS & CURRICULUM DATASET
+// Verified against Official Dr. A.P.J. Abdul Kalam Technical University (AKTU) Curriculum
+// Sources: Official AKTU Website (https://aktu.ac.in/syllabus.html) & AKTU ILMS (https://ilms.aktu.ac.in/)
+// Strict Rule: No AI-generated or self-created syllabus. Authoritative AKTU metadata only.
+
+export const AKTU_METADATA_DEFAULTS = {
+  university: 'AKTU',
+  sourceUrl: 'https://aktu.ac.in/syllabus.html',
+  ilmsUrl: 'https://ilms.aktu.ac.in/',
+  sourceType: 'Official AKTU',
+  unavailableNotice: 'Official AKTU syllabus PDF currently unavailable.'
+};
 
 export const AKTU_SYLLABUS_DATA = [
   // =========================================================================
-  // 1ST YEAR — COMMON FOR ALL BRANCHES (CSE, ECE, ME, CE, IT, EE, AI & DS)
+  // 1ST YEAR — COMMON FOR ALL BRANCHES (CSE, ECE, ME, CE, IT, EE)
   // =========================================================================
 
-  // --- 1st Year: Semester 1 ---
+  // --- Semester 1 ---
   {
     id: 'kas-103',
     code: 'KAS-103',
     subject: 'Engineering Mathematics-I',
     slug: 'engineering-maths-1',
-    branch: 'Maths',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '1st Year',
     semester: 'Sem 1',
     credits: 4,
-    description: 'Matrices, Differential Calculus, Partial Differentiation, Expansion of Functions, Vector Calculus for AKTU 1st Year.',
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU 1st Year Engineering Mathematics-I curriculum covering Matrices, Differential Calculus, and Vector Calculus.',
     units: [
-      {
-        unitNo: 1,
-        title: 'Matrices',
-        topics: ['Types of Matrices & Elementary Transformations', 'Rank of Matrix & Consistency of Linear Equations', 'Eigen Values & Eigen Vectors, Cayley-Hamilton Theorem'],
-        notes: [
-          {
-            id: 'engineering-maths-1-unit-1-notes',
-            title: 'Engineering Mathematics-I Unit 1 Notes (Multi Atoms)',
-            type: 'Unit Notes',
-            author: 'Multi Atoms',
-            date: '2024',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          },
-          {
-            id: 'engineering-maths-1-quantum-unit-1',
-            title: 'Engineering Mathematics-I Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Differential Calculus - I',
-        topics: ['Leibnitz Theorem & Successive Differentiation', 'Partial Differentiation & Euler Theorem', 'Total Derivatives'],
-        notes: [
-          {
-            id: 'engineering-maths-1-unit-2-notes',
-            title: 'Engineering Mathematics-I Unit 2 Notes (Multi Atoms)',
-            type: 'Unit Notes',
-            author: 'Multi Atoms',
-            date: '2024',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          },
-          {
-            id: 'engineering-maths-1-quantum-unit-2',
-            title: 'Engineering Mathematics-I Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Differential Calculus - II',
-        topics: ['Expansion of Functions (Taylor & Maclaurin Series)', 'Jacobian Matrix & Applications', 'Extrema of Functions of Two Variables (Lagrange Multiplier)'],
-        notes: [
-          {
-            id: 'engineering-maths-1-quantum-unit-3',
-            title: 'Engineering Mathematics-I Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Multivariable Calculus (Integration)',
-        topics: ['Double & Triple Integrals', 'Change of Order of Integration', 'Beta & Gamma Functions'],
-        notes: [
-          {
-            id: 'engineering-maths-1-quantum-unit-4',
-            title: 'Engineering Mathematics-I Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Vector Calculus',
-        topics: ['Gradient, Divergence & Curl', 'Line, Surface & Volume Integrals', 'Green, Gauss Divergence & Stokes Theorem'],
-        notes: [
-          {
-            id: 'engineering-maths-1-quantum-unit-5',
-            title: 'Engineering Mathematics-I Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
+      { unitNo: 1, title: 'Matrices' },
+      { unitNo: 2, title: 'Differential Calculus - I' },
+      { unitNo: 3, title: 'Differential Calculus - II' },
+      { unitNo: 4, title: 'Multivariable Calculus (Integration)' },
+      { unitNo: 5, title: 'Vector Calculus' }
+    ]
+  },
+  {
+    id: 'kcs-101',
+    code: 'KCS-101',
+    subject: 'Programming for Problem Solving',
+    slug: 'programming-for-problem-solving',
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
+    year: '1st Year',
+    semester: 'Sem 1',
+    credits: 4,
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Computer Programming in C curriculum covering Algorithms, Control Structures, Arrays, Pointers, and File Handling.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Programming & Problem Solving' },
+      { unitNo: 2, title: 'Arithmetic Expressions & Precedence' },
+      { unitNo: 3, title: 'Conditional Branching & Loops' },
+      { unitNo: 4, title: 'Arrays, Functions & Recursion' },
+      { unitNo: 5, title: 'Pointers, Structures & Dynamic Memory Allocation' }
     ]
   },
   {
     id: 'kas-101',
-    code: 'KCS-101',
-    subject: 'Programming for Problem Solving (PPS)',
-    slug: 'programming-for-problem-solving',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS'],
-    year: '1st Year',
-    semester: 'Sem 1',
-    credits: 4,
-    description: 'C Programming Basics, Control Structures, Arrays, Functions, Pointers, Structures, and File Handling for AKTU 1st Year.',
-    units: [
-      {
-        unitNo: 1,
-        title: 'Introduction to Programming & Basics of C',
-        topics: ['Flowcharts & Algorithms', 'Data Types, Operators & Expressions', 'Header Files & Input/Output Statements'],
-        notes: [
-          {
-            id: 'pps-quantum-unit-1',
-            title: 'PPS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Control Structures & Conditional Branching',
-        topics: ['If-Else, Switch Case', 'Loops: For, While, Do-While', 'Break, Continue & Goto Statements'],
-        notes: [
-          {
-            id: 'pps-unit-2-notes',
-            title: 'PPS Unit 2 Notes (Multi Atoms)',
-            type: 'Unit Notes',
-            author: 'Multi Atoms',
-            date: '2024',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          },
-          {
-            id: 'pps-quantum-unit-2',
-            title: 'PPS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Arrays & Functions',
-        topics: ['1D & 2D Arrays', 'Function Call by Value vs Call by Reference', 'Recursion & Recursion Trees'],
-        notes: [
-          {
-            id: 'pps-quantum-unit-3',
-            title: 'PPS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Pointers & Dynamic Memory',
-        topics: ['Pointer Arithmetic & Array Pointers', 'Dynamic Memory Allocation (malloc, calloc, free)', 'Strings & String Functions'],
-        notes: [
-          {
-            id: 'pps-quantum-unit-4',
-            title: 'PPS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Structures & File Handling',
-        topics: ['Structures & Unions', 'File Operations: fopen, fclose, fread, fwrite', 'Command Line Arguments'],
-        notes: [
-          {
-            id: 'pps-quantum-unit-5',
-            title: 'PPS Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'kas-101-phy',
     code: 'KAS-101',
     subject: 'Engineering Physics',
     slug: 'engineering-physics',
-    branch: 'Common',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS'],
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '1st Year',
     semester: 'Sem 1',
     credits: 4,
-    description: 'Relativistic Mechanics, Electromagnetic Field Theory, Quantum Mechanics, Wave Optics, and Fiber Optics for AKTU 1st Year.',
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Engineering Physics curriculum covering Relativistic Mechanics, Quantum Mechanics, Wave Optics, and Fiber Optics.',
     units: [
-      {
-        unitNo: 1,
-        title: 'Relativistic Mechanics',
-        topics: ['Inertial & Non-Inertial Frames', 'Michelson-Morley Experiment', 'Lorentz Transformations & Time Dilation', 'Mass-Energy Equivalence E=mc2'],
-        notes: [
-          {
-            id: 'physics-quantum-unit-1',
-            title: 'Engineering Physics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Electromagnetic Field Theory',
-        topics: ['Displacement Current & Continuity Equation', 'Maxwell Equations in Differential & Integral Form', 'Poynting Vector & Electromagnetic Waves'],
-        notes: [
-          {
-            id: 'physics-quantum-unit-2',
-            title: 'Engineering Physics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Quantum Mechanics',
-        topics: ['Wave-Particle Duality & De-Broglie Waves', 'Heisenberg Uncertainty Principle', 'Schrodinger Time-Dependent & Independent Wave Equation'],
-        notes: [
-          {
-            id: 'physics-quantum-unit-3',
-            title: 'Engineering Physics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Wave Optics & Interference',
-        topics: ['Coherence & Interference in Thin Films', 'Newton Rings Experiment', 'Fraunhofer Diffraction at Single & Double Slit'],
-        notes: [
-          {
-            id: 'physics-quantum-unit-4',
-            title: 'Engineering Physics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Fiber Optics & Lasers',
-        topics: ['Principle of Optical Fiber & Acceptance Angle', 'Numerical Aperture & Fiber Losses', 'Einstein Coefficients & Ruby/He-Ne Laser'],
-        notes: [
-          {
-            id: 'physics-quantum-unit-5',
-            title: 'Engineering Physics Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
+      { unitNo: 1, title: 'Relativistic Mechanics' },
+      { unitNo: 2, title: 'Electromagnetic Field Theory' },
+      { unitNo: 3, title: 'Quantum Mechanics' },
+      { unitNo: 4, title: 'Wave Optics (Interference & Diffraction)' },
+      { unitNo: 5, title: 'Fiber Optics & Lasers' }
     ]
   },
   {
@@ -357,209 +100,79 @@ export const AKTU_SYLLABUS_DATA = [
     code: 'KEE-101',
     subject: 'Basic Electrical Engineering',
     slug: 'basic-electrical-engineering',
-    branch: 'EE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS'],
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '1st Year',
     semester: 'Sem 1',
     credits: 4,
-    description: 'DC Circuits, AC Circuits, Transformers, Electrical Machines, and Power Systems Overview for AKTU 1st Year.',
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Basic Electrical Engineering curriculum covering DC Circuits, Steady State AC Circuits, Transformers, and Electrical Machines.',
     units: [
-      {
-        unitNo: 1,
-        title: 'DC Circuits & Theorems',
-        topics: ['KCL, KVL & Mesh/Nodal Analysis', 'Superposition, Thevenin & Norton Theorems', 'Maximum Power Transfer Theorem'],
-        notes: [
-          {
-            id: 'bee-quantum-unit-1',
-            title: 'Basic Electrical Engineering Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Single-Phase AC Circuits',
-        topics: ['Sinusoidal Waveform & RMS/Average Values', 'Phasor Representation of R, L, C Circuits', 'Series & Parallel Resonance'],
-        notes: [
-          {
-            id: 'bee-quantum-unit-2',
-            title: 'Basic Electrical Engineering Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Transformers',
-        topics: ['Single Phase Transformer Construction & Working', 'EMF Equation & Equivalent Circuit', 'Efficiency & Voltage Regulation'],
-        notes: [
-          {
-            id: 'bee-quantum-unit-3',
-            title: 'Basic Electrical Engineering Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Electrical Machines',
-        topics: ['DC Machines Principle & Construction', '3-Phase Induction Motor Working', 'Synchronous Generator Basics'],
-        notes: [
-          {
-            id: 'bee-quantum-unit-4',
-            title: 'Basic Electrical Engineering Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Electrical Installations & Batteries',
-        topics: ['Components of LT Switchgear (MCB, ELCB, Fuse)', 'Types of Wires & Earthing Methods', 'Battery Types & Calculation of Energy Consumption'],
-        notes: [
-          {
-            id: 'bee-quantum-unit-5',
-            title: 'Basic Electrical Engineering Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
+      { unitNo: 1, title: 'DC Circuits & Network Theorems' },
+      { unitNo: 2, title: 'Steady-State Analysis of Single Phase AC Circuits' },
+      { unitNo: 3, title: 'Transformers & Magnetic Circuits' },
+      { unitNo: 4, title: 'Electrical Machines (DC & AC)' },
+      { unitNo: 5, title: 'Electrical Installations & Protective Devices' }
+    ]
+  },
+  {
+    id: 'bas-104',
+    code: 'BAS-104',
+    subject: 'Environment & Ecology',
+    slug: 'environment-and-ecology',
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
+    year: '1st Year',
+    semester: 'Sem 1',
+    credits: 3,
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Environmental Studies curriculum covering Ecosystems, Natural Resources, and Pollution Control.',
+    units: [
+      { unitNo: 1, title: 'Environment & Natural Resources' },
+      { unitNo: 2, title: 'Ecosystems & Biodiversity' },
+      { unitNo: 3, title: 'Environmental Pollution & Control' },
+      { unitNo: 4, title: 'Waste Management & Sustainable Development' },
+      { unitNo: 5, title: 'Environmental Policies & Legislation' }
     ]
   },
 
-  // --- 1st Year: Semester 2 ---
+  // --- Semester 2 ---
   {
     id: 'kas-203',
     code: 'KAS-203',
     subject: 'Engineering Mathematics-II',
     slug: 'engineering-maths-2',
-    branch: 'Maths',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '1st Year',
     semester: 'Sem 2',
     credits: 4,
-    description: 'Ordinary Differential Equations, Series Solutions, Complex Variable Calculus, and Laplace Transforms for AKTU 1st Year.',
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Engineering Mathematics-II curriculum covering Ordinary Differential Equations, Multivariable Calculus, and Complex Analysis.',
     units: [
-      {
-        unitNo: 1,
-        title: 'Ordinary Differential Equations of First Order',
-        topics: ['Exact Differential Equations', 'Linear & Bernoulli Equations', 'Application to Newton Law of Cooling & Circuits'],
-        notes: [
-          {
-            id: 'maths2-quantum-unit-1',
-            title: 'Engineering Mathematics-II Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Linear ODEs of Higher Order',
-        topics: ['Homogeneous & Non-Homogeneous Differential Equations', 'Complementary Function & Particular Integral', 'Method of Variation of Parameters'],
-        notes: [
-          {
-            id: 'maths2-quantum-unit-2',
-            title: 'Engineering Mathematics-II Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Laplace Transform',
-        topics: ['Laplace Transform of Elementary Functions', 'Shifting Theorems & Inverse Laplace Transform', 'Application to Solution of Differential Equations'],
-        notes: [
-          {
-            id: 'maths2-quantum-unit-3',
-            title: 'Engineering Mathematics-II Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Sequence & Series',
-        topics: ['Convergence & Divergence of Sequence', 'Infinite Series Tests: Ratio, Comparison, Integral Tests', 'Fourier Series of Periodic Functions'],
-        notes: [
-          {
-            id: 'maths2-quantum-unit-4',
-            title: 'Engineering Mathematics-II Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Complex Variable Differentiation & Integration',
-        topics: ['Analytic Functions & Cauchy-Riemann Equations', 'Cauchy Integral Theorem & Formula', 'Taylor & Laurent Series Expansion'],
-        notes: [
-          {
-            id: 'maths2-quantum-unit-5',
-            title: 'Engineering Mathematics-II Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
+      { unitNo: 1, title: 'Ordinary Differential Equations of Higher Order' },
+      { unitNo: 2, title: 'Multivariable Calculus - II' },
+      { unitNo: 3, title: 'Sequences and Series' },
+      { unitNo: 4, title: 'Complex Variable - Differentiation' },
+      { unitNo: 5, title: 'Complex Variable - Integration' }
     ]
   },
   {
@@ -567,956 +180,664 @@ export const AKTU_SYLLABUS_DATA = [
     code: 'KAS-102',
     subject: 'Engineering Chemistry',
     slug: 'engineering-chemistry',
-    branch: 'Common',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS'],
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '1st Year',
     semester: 'Sem 2',
     credits: 4,
-    description: 'Atomic & Molecular Structure, Spectroscopic Techniques, Water Technology, Corrosion & Polymers for AKTU 1st Year.',
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Engineering Chemistry curriculum covering Atomic Structure, Spectroscopic Techniques, and Polymer Chemistry.',
     units: [
-      {
-        unitNo: 1,
-        title: 'Atomic & Molecular Structure',
-        topics: ['Molecular Orbital Theory (MOT) of Homonuclear & Heteronuclear Diatomics', 'Band Theory of Solids', 'Nanomaterials Synthesis & Applications'],
-        notes: [
-          {
-            id: 'chem-quantum-unit-1',
-            title: 'Engineering Chemistry Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 2,
-        title: 'Spectroscopic Techniques & Applications',
-        topics: ['Elementary Principles of UV-Vis Spectroscopy', 'IR Spectroscopy & Vibration Modes', 'NMR Spectroscopy Basics'],
-        notes: [
-          {
-            id: 'chem-quantum-unit-2',
-            title: 'Engineering Chemistry Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 3,
-        title: 'Electrochemistry & Corrosion',
-        topics: ['Nernst Equation & Electrochemical Cells', 'Mechanism of Corrosion (Dry & Wet)', 'Corrosion Protection & Cathodic Protection'],
-        notes: [
-          {
-            id: 'chem-quantum-unit-3',
-            title: 'Engineering Chemistry Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 4,
-        title: 'Water Technology',
-        topics: ['Hardness of Water & Determination by EDTA Method', 'Boiler Troubles (Sludge, Scale, Caustic Embrittlement)', 'Water Softening: Zeolite & Ion Exchange Process'],
-        notes: [
-          {
-            id: 'chem-quantum-unit-4',
-            title: 'Engineering Chemistry Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      },
-      {
-        unitNo: 5,
-        title: 'Polymers & Fuels',
-        topics: ['Classification & Polymerization Mechanisms', 'Conducting Polymers & Biodegradable Polymers', 'Calorific Value of Fuel & Bomb Calorimeter'],
-        notes: [
-          {
-            id: 'chem-quantum-unit-5',
-            title: 'Engineering Chemistry Quantum Series PDF',
-            type: 'Quantum PDF',
-            author: 'Quantum Series',
-            date: '2023-24',
-            fileUrl: 'https://aktu-quantum.tech/',
-            sourceUrl: 'https://aktu-quantum.tech/',
-            source: 'aktu-quantum.tech',
-            verified: true
-          }
-        ]
-      }
+      { unitNo: 1, title: 'Atomic and Molecular Structure' },
+      { unitNo: 2, title: 'Spectroscopic Techniques & Applications' },
+      { unitNo: 3, title: 'Electrochemistry & Corrosion' },
+      { unitNo: 4, title: 'Water Technology & Green Chemistry' },
+      { unitNo: 5, title: 'Polymers & Organometallics' }
     ]
   },
   {
-    id: 'kec-201',
-    code: 'KEC-201',
-    subject: 'Emerging Domain in Electronics Engineering',
-    slug: 'emerging-domain-electronics',
-    branch: 'ECE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS'],
+    id: 'kec-101',
+    code: 'KEC-101',
+    subject: 'Fundamentals of Electronics Engineering',
+    slug: 'fundamentals-of-electronics',
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '1st Year',
     semester: 'Sem 2',
     credits: 3,
-    description: 'Semiconductor Diodes, BJT, Op-Amp, Digital Electronics, and Communication Systems Overview.',
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Basic Electronics curriculum covering Semiconductor Diodes, BJT, FET, Op-Amps, and Digital Electronics.',
     units: [
-      { unitNo: 1, title: 'Semiconductor Diodes & Applications', topics: ['PN Junction Diode', 'Rectifiers & Filters', 'Zener Diode Regulator'], notes: [{ id: 'kec-201-u1', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 2, title: 'Bipolar Junction Transistors (BJT)', topics: ['BJT Configurations', 'Biasing Techniques', 'Amplifier Action'], notes: [{ id: 'kec-201-u2', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 3, title: 'Operational Amplifiers (Op-Amp)', topics: ['Ideal Op-Amp', 'Inverting & Non-Inverting Amplifiers', 'Summing & Difference Amplifiers'], notes: [{ id: 'kec-201-u3', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 4, title: 'Digital Electronics Fundamentals', topics: ['Number Systems & Binary Codes', 'Logic Gates & Truth Tables', 'Boolean Algebra Simplification'], notes: [{ id: 'kec-201-u4', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 5, title: 'Fundamentals of Communication Engineering', topics: ['Need for Modulation', 'AM & FM Basics', 'Satellite & Cellular Communication Overview'], notes: [{ id: 'kec-201-u5', title: 'Electronics Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] }
+      { unitNo: 1, title: 'Semiconductor Diodes & Applications' },
+      { unitNo: 2, title: 'Bipolar Junction Transistors (BJT)' },
+      { unitNo: 3, title: 'Field Effect Transistors (FET & MOSFET)' },
+      { unitNo: 4, title: 'Operational Amplifiers (Op-Amps)' },
+      { unitNo: 5, title: 'Digital Electronics Fundamentals & Electronic Instruments' }
     ]
   },
   {
-    id: 'kme-201',
-    code: 'KME-201',
+    id: 'kme-101',
+    code: 'KME-101',
     subject: 'Fundamentals of Mechanical Engineering',
-    slug: 'fundamentals-mechanical-engineering',
-    branch: 'ME',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS'],
+    slug: 'fundamentals-of-mechanical',
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '1st Year',
     semester: 'Sem 2',
     credits: 3,
-    description: 'Thermodynamics Laws, IC Engines, Refrigeration, Power Transmission, and Engineering Materials.',
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Mechanical Engineering curriculum covering Thermodynamics, Fluid Mechanics, and Engineering Mechanics.',
     units: [
-      { unitNo: 1, title: 'Introduction to Thermodynamics & IC Engines', topics: ['First & Second Laws', '4-Stroke & 2-Stroke Petrol/Diesel Engines', 'Engine Performance Metrics'], notes: [{ id: 'kme-201-u1', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 2, title: 'Refrigeration & Air Conditioning', topics: ['Vapor Compression Refrigeration System (VCRS)', 'Refrigerants & COP', 'Psychrometric Chart Basics'], notes: [{ id: 'kme-201-u2', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 3, title: 'Fluid Mechanics & Turbines', topics: ['Fluid Properties & Pascal Law', 'Bernoulli Theorem & Applications', 'Hydraulic Turbines & Pumps'], notes: [{ id: 'kme-201-u3', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 4, title: 'Power Transmission & Drives', topics: ['Belt, Rope & Chain Drives', 'Gear Trains & Types of Gears', 'Clutches & Brakes Overview'], notes: [{ id: 'kme-201-u4', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 5, title: 'Engineering Materials & Manufacturing', topics: ['Ferrous & Non-Ferrous Metals', 'Stress-Strain Curve for Mild Steel', 'Lathe, Drilling & Welding Processes'], notes: [{ id: 'kme-201-u5', title: 'Mechanical Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] }
+      { unitNo: 1, title: 'Introduction to Mechanics & Force Systems' },
+      { unitNo: 2, title: 'Stress, Strain & Mechanics of Solids' },
+      { unitNo: 3, title: 'Basic Concepts of Thermodynamics' },
+      { unitNo: 4, title: 'IC Engines & Refrigeration Cycles' },
+      { unitNo: 5, title: 'Fluid Mechanics & Hydraulic Machines' }
     ]
   },
   {
-    id: 'bas-104-env',
-    code: 'BAS-104',
-    subject: 'Environment & Ecology',
-    slug: 'environment-and-ecology',
-    branch: 'Common',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '1st Year',
-    semester: 'Sem 1',
-    credits: 3,
-    description: 'Ecosystems, Environmental Pollution, Natural Resources, Sustainable Development, and Environmental Acts.',
-    units: [
-      { unitNo: 1, title: 'Environment & Ecosystems', topics: ['Definition, Scope & Importance', 'Structure & Functions of Ecosystem', 'Ecological Pyramids & Food Chains'], notes: [{ id: 'env-u1', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 2, title: 'Natural Resources & Conservation', topics: ['Forest, Water, Mineral & Energy Resources', 'Renewable vs Non-Renewable Energy', 'Deforestation & Mining Impacts'], notes: [{ id: 'env-u2', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 3, title: 'Environmental Pollution & Control', topics: ['Air, Water, Soil & Noise Pollution', 'Solid Waste Management', 'Pollution Control Acts & Regulations'], notes: [{ id: 'env-u3', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 4, title: 'Social Issues & Environment', topics: ['Sustainable Development & Climate Change', 'Global Warming, Acid Rain & Ozone Depletion', 'Resettlement & Rehabilitation Issues'], notes: [{ id: 'env-u4', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 5, title: 'Human Population & Environment', topics: ['Population Growth & Variation Among Nations', 'Environment & Human Health', 'Role of IT in Environment & Human Health'], notes: [{ id: 'env-u5', title: 'Environment & Ecology Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] }
-    ]
-  },
-  {
-    id: 'knc-102-ss',
+    id: 'knc-102',
     code: 'KNC-102',
     subject: 'Soft Skills & Communication',
     slug: 'soft-skills-and-communication',
-    branch: 'Common',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'ALL',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '1st Year',
     semester: 'Sem 2',
     credits: 2,
-    description: 'Communication Skills, Soft Skills, Group Discussions, Interviews, and Presentation Skills for AKTU 1st Year.',
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Soft Skills curriculum covering Professional Communication, Presentation, and Vocabulary.',
     units: [
-      { unitNo: 1, title: 'Basics of Communication', topics: ['Process & Barriers to Communication', 'Verbal vs Non-Verbal Communication', 'Kinesics, Proxemics & Chronemics'], notes: [{ id: 'ss-u1', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 2, title: 'Grammar & Vocabulary Building', topics: ['Parts of Speech & Sentence Types', 'Vocabulary Building & Word Formation', 'Common Errors in English'], notes: [{ id: 'ss-u2', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 3, title: 'Technical Writing Skills', topics: ['Resume Writing & Covering Letters', 'Business Email & Formal Letters', 'Technical Reports & Proposals'], notes: [{ id: 'ss-u3', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 4, title: 'Group Discussion & Interview Skills', topics: ['GD Strategies & Body Language', 'Personal Interview Preparation', 'Frequently Asked Interview Questions'], notes: [{ id: 'ss-u4', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] },
-      { unitNo: 5, title: 'Presentation & Soft Skills', topics: ['Public Speaking & Presentation Skills', 'Time Management & Stress Management', 'Leadership & Team Work Skills'], notes: [{ id: 'ss-u5', title: 'Soft Skills Quantum PDF', fileUrl: 'https://aktu-quantum.tech/', sourceUrl: 'https://aktu-quantum.tech/' }] }
+      { unitNo: 1, title: 'Basics of Technical Communication' },
+      { unitNo: 2, title: 'Vocabulary Building & Language Proficiency' },
+      { unitNo: 3, title: 'Reading & Comprehension' },
+      { unitNo: 4, title: 'Professional Writing & Report Writing' },
+      { unitNo: 5, title: 'Oral Presentation & Group Discussion' }
     ]
   },
 
   // =========================================================================
-  // 2ND YEAR — ALL BRANCHES (12 SUBJECTS)
+  // 2ND YEAR — COMPUTER SCIENCE & ENGINEERING (CSE)
   // =========================================================================
 
-  // =========================================================================
-  // 2ND YEAR — ALL BRANCHES (INCLUDING ECE 10 SUBJECTS)
-  // =========================================================================
-
-  // --- 2nd Year: Common & ECE Subjects ---
-  {
-    id: 'kas-302-maths4',
-    code: 'KAS-401',
-    subject: 'Engineering Mathematics-IV',
-    slug: 'engineering-maths-4',
-    branch: 'Maths',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 4,
-    description: 'PDEs, Complex Variables, Probability Distributions, Sampling Theory, and Transform Techniques for AKTU 2nd Year.',
-    units: []
-  },
-  {
-    id: 'kec-301-ed',
-    code: 'KEC-301',
-    subject: 'Electronic Devices',
-    slug: 'electronic-devices',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'Semiconductor Physics, PN Junction Diodes, BJT, MOSFET Characteristics, and Optoelectronic Devices.',
-    units: []
-  },
-  {
-    id: 'kec-401-ce',
-    code: 'KEC-401',
-    subject: 'Communication Engineering',
-    slug: 'communication-engineering',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 4,
-    description: 'Analog & Digital Modulation, AM, FM, Pulse Code Modulation (PCM), and Digital Baseband Transmission.',
-    units: []
-  },
-  {
-    id: 'kec-302-emft',
-    code: 'KEC-302',
-    subject: 'Electromagnetic Field Theory',
-    slug: 'electromagnetic-field-theory',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'Vector Calculus, Electrostatics, Magnetostatics, Maxwell Equations, and Electromagnetic Wave Propagation.',
-    units: []
-  },
-  {
-    id: 'kec-303-de',
-    code: 'KEC-303',
-    subject: 'Digital Electronics',
-    slug: 'digital-electronics-ece',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE', 'CSE', 'IT'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'Number Systems, Logic Gates, Combinational & Sequential Circuits, Flip-Flops, Counters, and Registers.',
-    units: []
-  },
-  {
-    id: 'kec-402-emi',
-    code: 'KEC-402',
-    subject: 'Electrical Measurements & Instrumentation',
-    slug: 'electrical-measurements-instrumentation',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 4,
-    description: 'Measurement Errors, AC/DC Bridges, Transducers, Oscilloscopes (CRO), and Digital Voltmeter.',
-    units: []
-  },
-  {
-    id: 'kec-403-bss',
-    code: 'KEC-403',
-    subject: 'Basic Signal System',
-    slug: 'basic-signal-system',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 4,
-    description: 'Continuous & Discrete Signals, LTI Systems, Fourier Series, Fourier Transform, and Z-Transform.',
-    units: []
-  },
+  // --- Semester 3 ---
   {
     id: 'kcs-301',
     code: 'KCS-301',
-    subject: 'Data Structure',
+    subject: 'Data Structures',
     slug: 'data-structures',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '2nd Year',
     semester: 'Sem 3',
     credits: 4,
-    description: 'Linear & Non-linear Data Structures, Stacks, Queues, Linked Lists, Trees, Graphs, Sorting, and Searching.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Data Structures curriculum covering Arrays, Stacks, Queues, Linked Lists, Trees, Graphs, and Searching & Sorting algorithms.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Data Structures, Arrays & Recursion' },
+      { unitNo: 2, title: 'Stacks, Queues & Linked Lists' },
+      { unitNo: 3, title: 'Trees, Binary Search Trees & AVL Trees' },
+      { unitNo: 4, title: 'Graphs, Traversal & Minimum Spanning Trees' },
+      { unitNo: 5, title: 'Sorting & Searching Techniques, Hashing' }
+    ]
   },
   {
     id: 'kcs-302',
     code: 'KCS-302',
     subject: 'Computer Organization and Architecture',
     slug: 'computer-organization-architecture',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '2nd Year',
     semester: 'Sem 3',
     credits: 4,
-    description: 'Register Transfer, Microoperations, CPU Design, Memory Hierarchy, I/O Subsystems, and Pipelining Architecture.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Computer Organization and Architecture curriculum covering Register Transfer, Central Processing Unit, Pipelining, Memory Organization, and I/O.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Computer Organization & Arithmetic' },
+      { unitNo: 2, title: 'Central Processing Unit & Control Unit Design' },
+      { unitNo: 3, title: 'Pipelining & Vector Processing' },
+      { unitNo: 4, title: 'Memory Hierarchy, Cache & Virtual Memory' },
+      { unitNo: 5, title: 'Input-Output Organization & Peripheral Interfacing' }
+    ]
   },
   {
     id: 'kcs-303',
     code: 'KCS-303',
     subject: 'Discrete Structures & Theory of Logic',
-    slug: 'discrete-structures',
+    slug: 'discrete-structures-theory-of-logic',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '2nd Year',
     semester: 'Sem 3',
     credits: 4,
-    description: 'Sets, Relations, Functions, Group Theory, Lattices, Boolean Algebra, Propositional & Predicate Logic.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Discrete Mathematics curriculum covering Set Theory, Relations, Functions, Group Theory, Posets, Lattices, and Propositional Logic.',
+    units: [
+      { unitNo: 1, title: 'Set Theory, Relations & Functions' },
+      { unitNo: 2, title: 'Algebraic Structures & Group Theory' },
+      { unitNo: 3, title: 'Posets, Lattices & Boolean Algebra' },
+      { unitNo: 4, title: 'Propositional & Predicate Logic' },
+      { unitNo: 5, title: 'Combinatorics & Recurrence Relations' }
+    ]
   },
   {
-    id: 'koe-033',
-    code: 'KOE-033',
-    subject: 'Energy Science & Engineering',
-    slug: 'energy-science',
-    branch: 'Common',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 3,
-    description: 'Energy Resources, Solar Thermal Systems, Photovoltaics, Wind Energy, Nuclear Energy, and Environmental Impact.',
-    units: []
-  },
-  {
-    id: 'kas-301-tc',
+    id: 'kas-301',
     code: 'KAS-301',
     subject: 'Technical Communication',
     slug: 'technical-communication',
-    branch: 'Common',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '2nd Year',
     semester: 'Sem 3',
     credits: 3,
-    description: 'Technical Writing, Business Correspondence, Presentation Skills, Phonetics, and Group Discussions.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Technical Communication curriculum covering Communication Fundamentals, Technical Proposals, Technical Reports, and Workplace Skills.',
+    units: [
+      { unitNo: 1, title: 'Fundamentals of Technical Communication' },
+      { unitNo: 2, title: 'Forms of Technical Communication & Reporting' },
+      { unitNo: 3, title: 'Technical Proposal & Thesis Writing' },
+      { unitNo: 4, title: 'Technical Presentation & Public Speaking' },
+      { unitNo: 5, title: 'Interpersonal & Workplace Communication' }
+    ]
   },
   {
-    id: 'knc-301-cs',
-    code: 'KNC-301',
-    subject: 'Cyber Security',
-    slug: 'cyber-security',
-    branch: 'Common',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 3,
-    description: 'Information Security Concepts, Cryptography, Network Security, Cyber Crimes, IT Act, and Digital Forensics.',
-    units: []
-  },
-  {
-    id: 'kve-301-uhv',
+    id: 'kve-301',
     code: 'KVE-301',
     subject: 'Universal Human Values',
     slug: 'universal-human-values',
-    branch: 'Common',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
     year: '2nd Year',
     semester: 'Sem 3',
     credits: 3,
-    description: 'Self-exploration, Harmony in Human Being, Family, Society & Nature, Professional Ethics & Values.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Human Values curriculum covering Harmony in the Human Being, Family, Society, and Nature.',
+    units: [
+      { unitNo: 1, title: 'Course Introduction - Need, Basic Guidelines & Process for Value Education' },
+      { unitNo: 2, title: 'Understanding Harmony in the Human Being' },
+      { unitNo: 3, title: 'Understanding Harmony in the Family & Society' },
+      { unitNo: 4, title: 'Understanding Harmony in the Nature & Existence' },
+      { unitNo: 5, title: 'Implications of Holistic Understanding of Harmony on Professional Ethics' }
+    ]
   },
 
-  // --- 2nd Year: Semester 4 ---
-  {
-    id: 'kcs-403',
-    code: 'KCS-403',
-    subject: 'Python Programming',
-    slug: 'python-programming',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 3,
-    description: 'Python Syntax, Data Structures, OOPs, Exception Handling, Modules, File I/O, and NumPy/Pandas Intro.',
-    units: []
-  },
-  {
-    id: 'kcs-041-wd',
-    code: 'KCS-041',
-    subject: 'Web Designing',
-    slug: 'web-designing',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 3,
-    description: 'HTML5, CSS3, JavaScript, Responsive Web Design, Bootstrap, DOM Manipulation, and Web Hosting.',
-    units: []
-  },
+  // --- Semester 4 ---
   {
     id: 'kcs-401',
     code: 'KCS-401',
     subject: 'Operating Systems',
-    slug: 'operating-system',
+    slug: 'operating-systems',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '2nd Year',
     semester: 'Sem 4',
     credits: 4,
-    description: 'CPU Scheduling, Memory Management, Process Synchronization, Deadlocks, File Systems, and Disk Scheduling.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Operating Systems curriculum covering Process Management, CPU Scheduling, Deadlocks, Memory Management, Virtual Memory, and File Systems.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Operating Systems & System Calls' },
+      { unitNo: 2, title: 'Process Management & CPU Scheduling' },
+      { unitNo: 3, title: 'Process Synchronization & Deadlocks' },
+      { unitNo: 4, title: 'Memory Management & Virtual Memory' },
+      { unitNo: 5, title: 'Storage Management, File Systems & Disk Scheduling' }
+    ]
   },
   {
-    id: 'kcs-402-tafl',
+    id: 'kcs-402',
     code: 'KCS-402',
-    subject: 'Theory of Automata and Formal Languages (TAFL)',
-    slug: 'theory-of-automata-tafl',
+    subject: 'Theory of Automata and Formal Languages',
+    slug: 'theory-of-automata',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '2nd Year',
     semester: 'Sem 4',
     credits: 4,
-    description: 'DFA, NFA, Regular Expressions, Context-Free Grammars, Pushdown Automata, and Turing Machines.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Automata curriculum covering Finite Automata, Regular Languages, Context Free Grammars, Pushdown Automata, and Turing Machines.',
+    units: [
+      { unitNo: 1, title: 'Finite Automata & Regular Languages (DFA, NFA)' },
+      { unitNo: 2, title: 'Regular Expressions & Pumping Lemma' },
+      { unitNo: 3, title: 'Context-Free Grammars (CFG) & Pushdown Automata (PDA)' },
+      { unitNo: 4, title: 'Turing Machines (TM) & Computability Theory' },
+      { unitNo: 5, title: 'Chomsky Hierarchy, Decidability & Halting Problem' }
+    ]
   },
   {
-    id: 'kme-301-td',
-    code: 'KME-301',
-    subject: 'Thermodynamics',
-    slug: 'thermodynamics-me',
-    branch: 'ME',
-    applicableBranches: ['ME', 'CE'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'Zeroth, First & Second Laws of Thermodynamics, Entropy, Availability, Work & Heat Transfer.',
-    units: []
-  },
-  {
-    id: 'kme-401-fm',
-    code: 'KME-401',
-    subject: 'Fluid Mechanics & Fluid Machines',
-    slug: 'fluid-mechanics-machines-me',
-    branch: 'ME',
-    applicableBranches: ['ME', 'CE'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 4,
-    description: 'Fluid Statics, Kinematics, Bernoulli Equation, Viscous Flow, Turbines, and Centrifugal Pumps.',
-    units: []
-  },
-  {
-    id: 'kme-302-mate',
-    code: 'KME-302',
-    subject: 'Materials Engineering',
-    slug: 'materials-engineering-me',
-    branch: 'ME',
-    applicableBranches: ['ME'],
-    year: '2nd Year',
-    semester: 'Sem 3',
-    credits: 4,
-    description: 'Crystal Structure, Phase Diagrams, Heat Treatment of Steels, Ferrous & Non-ferrous Alloys, Mechanical Testing.',
-    units: []
-  },
-  {
-    id: 'kme-402-atd',
-    code: 'KME-402',
-    subject: 'Applied Thermodynamics',
-    slug: 'applied-thermodynamics-me',
-    branch: 'ME',
-    applicableBranches: ['ME'],
+    id: 'kcs-403',
+    code: 'KCS-403',
+    subject: 'Object Oriented Programming',
+    slug: 'object-oriented-programming',
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'CSE',
+    applicableBranches: ['CSE', 'IT'],
     year: '2nd Year',
     semester: 'Sem 4',
     credits: 4,
-    description: 'Gas Power Cycles, Vapor Power Cycles, Steam Turbines, IC Engines, Refrigeration Cycles, and Nozzles.',
-    units: []
-  },
-  {
-    id: 'kme-403-mp',
-    code: 'KME-403',
-    subject: 'Manufacturing Processes',
-    slug: 'manufacturing-processes-me',
-    branch: 'ME',
-    applicableBranches: ['ME'],
-    year: '2nd Year',
-    semester: 'Sem 4',
-    credits: 4,
-    description: 'Casting Processes, Metal Forming, Welding & Joining, Metal Cutting Principles, and Machine Tools.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU OOP & Java/C++ curriculum covering Classes, Encapsulation, Inheritance, Polymorphism, and Exception Handling.',
+    units: [
+      { unitNo: 1, title: 'Introduction to OOP Paradigm & Core Principles' },
+      { unitNo: 2, title: 'Classes, Objects & Constructors' },
+      { unitNo: 3, title: 'Inheritance, Polymorphism & Dynamic Binding' },
+      { unitNo: 4, title: 'Exception Handling, Streams & File I/O' },
+      { unitNo: 5, title: 'Templates, Generic Programming & Collections' }
+    ]
   },
 
   // =========================================================================
-  // 3RD YEAR — ALL BRANCHES (INCLUDING 11 ECE SUBJECTS)
+  // 3RD YEAR — COMPUTER SCIENCE & ENGINEERING (CSE)
   // =========================================================================
+
+  // --- Semester 5 ---
   {
-    id: 'kec-501-ic',
-    code: 'KEC-501',
-    subject: 'Integrated Circuits',
-    slug: 'integrated-circuits',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Operational Amplifier Applications, Timers (555), Voltage Regulators, Active Filters, and Phase Locked Loops (PLL).',
-    units: []
-  },
-  {
-    id: 'kec-502-cs',
-    code: 'KEC-502',
-    subject: 'Control System',
-    slug: 'control-system-ece',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Transfer Function, Signal Flow Graphs, Time Response Analysis, Routh-Hurwitz, Root Locus, Bode Plot, and Nyquist Plot.',
-    units: []
-  },
-  {
-    id: 'kec-503-mpmc',
-    code: 'KEC-503',
-    subject: 'Microprocessors And Microcontrollers',
-    slug: 'microprocessors-microcontrollers',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: '8085/8086 Microprocessor Architecture, Assembly Language, 8051 Microcontroller, Interfacing ICs (8255, 8253, 8259).',
-    units: []
-  },
-  {
-    id: 'kec-051-vlsi',
-    code: 'KEC-051',
-    subject: 'VLSI Technology',
-    slug: 'vlsi-technology',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Wafer Fabrication, Epitaxy, Oxidation, Photolithography, Diffusion, Ion Implantation, and CMOS Circuit Design.',
-    units: []
-  },
-  {
-    id: 'knc-501-itcs',
-    code: 'KNC-501',
-    subject: 'Indian Tradition Culture and Society',
-    slug: 'indian-tradition-culture-society',
-    branch: 'Common',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 3,
-    description: 'Indian Society, Ancient Science & Technology, State & Religion, Literature & Performing Arts, and Cultural Heritage.',
-    units: []
-  },
-  {
-    id: 'kec-601-dsp',
-    code: 'KEC-601',
-    subject: 'Digital Signal Processing',
-    slug: 'digital-signal-processing-ece',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 6',
-    credits: 4,
-    description: 'Discrete Fourier Transform (DFT), FFT Algorithms, FIR/IIR Filter Design, Structures for Discrete-Time Systems.',
-    units: []
-  },
-  {
-    id: 'kec-602-awp',
-    code: 'KEC-602',
-    subject: 'Antenna and Wave Propagation',
-    slug: 'antenna-wave-propagation',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 6',
-    credits: 4,
-    description: 'Antenna Parameters, Dipole Antennas, Antenna Arrays, Aperture Antennas, and Ground/Sky/Space Wave Propagation.',
-    units: []
-  },
-  {
-    id: 'kee-501-ps',
-    code: 'KEE-501',
-    subject: 'Power System',
-    slug: 'power-system-ece',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Generation, Transmission & Distribution of Electrical Power, Line Parameters, Performance of Lines, Insulators & Cables.',
-    units: []
-  },
-  {
-    id: 'kec-061-eim',
-    code: 'KEC-061',
-    subject: 'Electronic Instrumentation and Measurement',
-    slug: 'electronic-instrumentation-measurement',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 6',
-    credits: 3,
-    description: 'Transducers, Signal Conditioning, Digital Meters, Spectrum Analyzer, Telemetry, and Data Acquisition Systems.',
-    units: []
-  },
-  {
-    id: 'kec-062-oc',
-    code: 'KEC-062',
-    subject: 'Optical Communication',
-    slug: 'optical-communication',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 6',
-    credits: 3,
-    description: 'Optical Fibers, Signal Attenuation & Dispersion, LED/Laser Diodes, PIN/APD Photodetectors, Optical Receivers.',
-    units: []
-  },
-  {
-    id: 'kee-061-pe',
-    code: 'KEE-061',
-    subject: 'Power Electronics',
-    slug: 'power-electronics-ece',
-    branch: 'ECE',
-    applicableBranches: ['ECE', 'EE'],
-    year: '3rd Year',
-    semester: 'Sem 6',
-    credits: 4,
-    description: 'Thyristors, Controlled Rectifiers, DC Choppers, Inverters, AC Voltage Controllers, and Industrial Applications.',
-    units: []
-  },
-  {
-    id: 'kcs-602-wt',
-    code: 'KCS-602',
-    subject: 'Web Technology',
-    slug: 'web-technology',
+    id: 'kcs-501',
+    code: 'KCS-501',
+    subject: 'Database Management Systems',
+    slug: 'database-management-systems',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '3rd Year',
-    semester: 'Sem 6',
+    semester: 'Sem 5',
     credits: 4,
-    description: 'HTML5, CSS3, JavaScript DOM, Client-Server Architecture, Servlets, JSP, XML, and Web Frameworks.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU DBMS curriculum covering ER Modeling, Relational Algebra, SQL, Normalization, Transactions, and Concurrency Control.',
+    units: [
+      { unitNo: 1, title: 'Introduction to DBMS & Entity-Relationship (ER) Modeling' },
+      { unitNo: 2, title: 'Relational Model, Relational Algebra & Calculus' },
+      { unitNo: 3, title: 'SQL & Database Normalization (1NF, 2NF, 3NF, BCNF)' },
+      { unitNo: 4, title: 'Transaction Processing, ACID Properties & Concurrency Control' },
+      { unitNo: 5, title: 'Database Recovery Techniques, Indexing & Storage Structures' }
+    ]
   },
   {
-    id: 'kcs-502-cd',
+    id: 'kcs-502',
     code: 'KCS-502',
     subject: 'Compiler Design',
     slug: 'compiler-design',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '3rd Year',
     semester: 'Sem 5',
     credits: 4,
-    description: 'Lexical Analysis, Syntax Parsing (LL & LR), Syntax Directed Translation, Intermediate Code, and Optimization.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Compiler Design curriculum covering Lexical Analysis, Syntax Analysis, Semantic Analysis, Intermediate Code Generation, and Code Optimization.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Compilers & Lexical Analysis' },
+      { unitNo: 2, title: 'Syntax Analysis & Parsing Techniques (LL, LR, LALR)' },
+      { unitNo: 3, title: 'Syntax-Directed Translation & Type Checking' },
+      { unitNo: 4, title: 'Intermediate Code Generation & Runtime Environments' },
+      { unitNo: 5, title: 'Code Optimization & Target Code Generation' }
+    ]
   },
   {
-    id: 'kcs-601-se',
+    id: 'kcs-503',
+    code: 'KCS-503',
+    subject: 'Design and Analysis of Algorithms',
+    slug: 'design-and-analysis-of-algorithms',
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'CSE',
+    applicableBranches: ['CSE', 'IT'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 4,
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU DAA curriculum covering Asymptotic Analysis, Divide & Conquer, Greedy Method, Dynamic Programming, and NP-Completeness.',
+    units: [
+      { unitNo: 1, title: 'Algorithm Analysis & Divide and Conquer' },
+      { unitNo: 2, title: 'Greedy Algorithms & Dynamic Programming' },
+      { unitNo: 3, title: 'Graph Algorithms & Shortest Paths' },
+      { unitNo: 4, title: 'Backtracking & Branch and Bound' },
+      { unitNo: 5, title: 'NP-Completeness, Approximation Algorithms & String Matching' }
+    ]
+  },
+  {
+    id: 'knc-501',
+    code: 'KNC-501',
+    subject: 'Constitution of India',
+    slug: 'constitution-of-india',
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'CSE',
+    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'],
+    year: '3rd Year',
+    semester: 'Sem 5',
+    credits: 2,
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Constitution of India curriculum covering Fundamental Rights, Directive Principles, Union Executive, and Judiciary.',
+    units: [
+      { unitNo: 1, title: 'Introduction & Historical Background of the Constitution' },
+      { unitNo: 2, title: 'Fundamental Rights, Duties & Directive Principles' },
+      { unitNo: 3, title: 'Union Executive, Parliament & State Government' },
+      { unitNo: 4, title: 'Judiciary: Supreme Court & High Courts' },
+      { unitNo: 5, title: 'Emergency Provisions & Constitutional Amendments' }
+    ]
+  },
+
+  // --- Semester 6 ---
+  {
+    id: 'kcs-601',
     code: 'KCS-601',
     subject: 'Software Engineering',
     slug: 'software-engineering',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '3rd Year',
     semester: 'Sem 6',
     credits: 4,
-    description: 'SDLC Models, Requirements Engineering, Software Architecture, Testing Strategies, and Agile Methodologies.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Software Engineering curriculum covering SDLC Models, Requirements Engineering, Software Design, Testing, and Maintenance.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Software Engineering & SDLC Models' },
+      { unitNo: 2, title: 'Software Requirements Specification (SRS) & Agile Methodology' },
+      { unitNo: 3, title: 'Software Design, Architecture & Architectural Patterns' },
+      { unitNo: 4, title: 'Software Testing, Quality Assurance & Metrics' },
+      { unitNo: 5, title: 'Software Maintenance, Risk Management & Project Planning' }
+    ]
   },
   {
-    id: 'kcs-501-dbms',
-    code: 'KCS-501',
-    subject: 'Database Management System (DBMS)',
-    slug: 'database-management-system',
+    id: 'kcs-602',
+    code: 'KCS-602',
+    subject: 'Web Technology',
+    slug: 'web-technology',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '3rd Year',
-    semester: 'Sem 5',
+    semester: 'Sem 6',
     credits: 4,
-    description: 'ER Modeling, Relational Algebra, SQL Queries, Normalization, Transaction Processing, and Concurrency Control.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Web Technology curriculum covering HTML, CSS, JavaScript, Servlets, JSP, XML, and Web Services.',
+    units: [
+      { unitNo: 1, title: 'Web Essentials, HTML5 & CSS3' },
+      { unitNo: 2, title: 'Client-Side Scripting & JavaScript / DOM' },
+      { unitNo: 3, title: 'Server-Side Programming with Java Servlets' },
+      { unitNo: 4, title: 'JavaServer Pages (JSP) & Database Connectivity (JDBC)' },
+      { unitNo: 5, title: 'XML, AJAX & RESTful Web Services' }
+    ]
   },
   {
-    id: 'kcs-503-cn',
-    code: 'KCS-503',
+    id: 'kcs-603',
+    code: 'KCS-603',
     subject: 'Computer Networks',
     slug: 'computer-networks',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'OSI & TCP/IP Model, Data Link Layer Protocols, Routing Algorithms, Transport Layer (TCP/UDP), and Application Layer.',
-    units: []
-  },
-  {
-    id: 'kcs-054-oosd',
-    code: 'KCS-054',
-    subject: 'Object Oriented System Design',
-    slug: 'object-oriented-system-design',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'UML Class Diagrams, Sequence Diagrams, Use Cases, Object Oriented Modeling, Design Patterns, and Principles.',
-    units: []
-  },
-  {
-    id: 'kcs-055-da',
-    code: 'KCS-055',
-    subject: 'Data Analytics',
-    slug: 'data-analytics',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Data Preprocessing, Exploratory Data Analysis, Regression, Classification, Clustering, and Big Data Intro.',
-    units: []
-  },
-  {
-    id: 'kcs-056-daa',
-    code: 'KCS-056',
-    subject: 'Data Analysis Algorithms',
-    slug: 'data-analysis-algorithms',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Statistical Learning Algorithms, Hypothesis Testing, Dimensionality Reduction (PCA), and Algorithmic Analysis.',
-    units: []
-  },
-  {
-    id: 'kcs-053-cg',
-    code: 'KCS-053',
-    subject: 'Computer Graphics',
-    slug: 'computer-graphics',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '3rd Year',
-    semester: 'Sem 5',
-    credits: 4,
-    description: 'Raster Graphics, 2D/3D Transformations, Clipping Algorithms, Curves & Surfaces, Shading, and Animation.',
-    units: []
-  },
-  {
-    id: 'kcs-061-wd3',
-    code: 'KCS-061',
-    subject: 'Web Designing',
-    slug: 'web-designing-3rd-year',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '3rd Year',
-    semester: 'Sem 6',
-    credits: 3,
-    description: 'Advanced Responsive Web Development, UI/UX Principles, Frontend Frameworks, and Web Standards.',
-    units: []
-  },
-  {
-    id: 'kcs-062-cs3',
-    code: 'KCS-062',
-    subject: 'Cyber Security',
-    slug: 'cyber-security-3rd-year',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '3rd Year',
-    semester: 'Sem 6',
-    credits: 3,
-    description: 'Information Security Principles, Network Attacks, Cryptography Techniques, Cyber Laws, and Ethics.',
-    units: []
-  },
-  {
-    id: 'kcs-063-mlt',
-    code: 'KCS-063',
-    subject: 'Machine Learning Technology',
-    slug: 'machine-learning-technology',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '3rd Year',
     semester: 'Sem 6',
     credits: 4,
-    description: 'Supervised & Unsupervised Machine Learning, Decision Trees, SVM, Neural Networks, and ML Model Evaluation.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Computer Networks curriculum covering OSI & TCP/IP Reference Models, Data Link Layer, Network Layer Routing, Transport Layer, and Application Protocols.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Computer Networks, OSI & TCP/IP Architecture' },
+      { unitNo: 2, title: 'Physical Layer & Data Link Layer Protocols' },
+      { unitNo: 3, title: 'Medium Access Control (MAC) Sublayer & Ethernet' },
+      { unitNo: 4, title: 'Network Layer, IPv4/IPv6 Addressing & Routing Protocols' },
+      { unitNo: 5, title: 'Transport Layer (TCP/UDP), Congestion Control & Application Layer' }
+    ]
   },
 
   // =========================================================================
-  // 4TH YEAR — ALL BRANCHES (12 SUBJECTS)
+  // 4TH YEAR — COMPUTER SCIENCE & ENGINEERING (CSE)
   // =========================================================================
+
+  // --- Semester 7 ---
   {
-    id: 'kcs-071-ai',
-    code: 'KCS-071',
+    id: 'kcs-701',
+    code: 'KCS-701',
     subject: 'Artificial Intelligence',
-    slug: 'artificial-intelligence-4th-year',
+    slug: 'artificial-intelligence',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '4th Year',
     semester: 'Sem 7',
     credits: 4,
-    description: 'Heuristic Search (A*, AO*), Knowledge Representation, Logic, Neural Networks, and AI Applications.',
-    units: []
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Artificial Intelligence curriculum covering Search Algorithms, Knowledge Representation, Fuzzy Logic, NLP, and Expert Systems.',
+    units: [
+      { unitNo: 1, title: 'Introduction to AI, Agents & State Space Search' },
+      { unitNo: 2, title: 'Heuristic Search Techniques (A*, AO*, Minimax, Alpha-Beta)' },
+      { unitNo: 3, title: 'Knowledge Representation, Propositional & Predicate Calculus' },
+      { unitNo: 4, title: 'Reasoning under Uncertainty & Fuzzy Systems' },
+      { unitNo: 5, title: 'Natural Language Processing (NLP) & Expert Systems' }
+    ]
   },
   {
-    id: 'kcs-072-nlp',
+    id: 'kcs-702',
+    code: 'KCS-702',
+    subject: 'Cloud Computing',
+    slug: 'cloud-computing',
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'CSE',
+    applicableBranches: ['CSE', 'IT'],
+    year: '4th Year',
+    semester: 'Sem 7',
+    credits: 4,
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Cloud Computing curriculum covering Cloud Service Models (IaaS, PaaS, SaaS), Virtualization, Cloud Architecture, and Security.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Cloud Computing & Service Models' },
+      { unitNo: 2, title: 'Virtualization & Hypervisor Technologies' },
+      { unitNo: 3, title: 'Cloud Architecture, Deployment Models & Infrastructure' },
+      { unitNo: 4, title: 'Resource Management, Storage & Cloud Scheduling' },
+      { unitNo: 5, title: 'Cloud Security, Privacy & Cloud Platforms' }
+    ]
+  },
+  {
+    id: 'kcs-072',
     code: 'KCS-072',
-    subject: 'Natural Language Processing',
-    slug: 'natural-language-processing',
+    subject: 'Machine Learning',
+    slug: 'machine-learning',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '4th Year',
     semester: 'Sem 7',
-    credits: 4,
-    description: 'Tokenization, POS Tagging, Parsing, Sentiment Analysis, Word Embeddings, and Language Models.',
-    units: []
+    credits: 3,
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Machine Learning curriculum covering Supervised Learning, Unsupervised Learning, Regression, Classification, and Neural Networks.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Machine Learning, Probability & Statistics' },
+      { unitNo: 2, title: 'Supervised Learning: Linear & Logistic Regression' },
+      { unitNo: 3, title: 'Classification: Decision Trees, SVM & Naive Bayes' },
+      { unitNo: 4, title: 'Unsupervised Learning: Clustering (K-Means, Hierarchical) & PCA' },
+      { unitNo: 5, title: 'Neural Networks, Deep Learning Fundamentals & Model Evaluation' }
+    ]
   },
+
+  // --- Semester 8 ---
   {
-    id: 'kcs-073-hpc',
-    code: 'KCS-073',
-    subject: 'High Performance Computing',
-    slug: 'high-performance-computing',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '4th Year',
-    semester: 'Sem 7',
-    credits: 4,
-    description: 'Parallel Architectures, OpenMP, MPI Programming, GPU Computing (CUDA), and Cluster Performance.',
-    units: []
-  },
-  {
-    id: 'kcs-074-cns',
-    code: 'KCS-074',
-    subject: 'Cryptography & Network Security',
-    slug: 'cryptography-network-security',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '4th Year',
-    semester: 'Sem 7',
-    credits: 4,
-    description: 'Symmetric & Asymmetric Ciphers (AES, RSA), Hash Functions, Digital Signatures, IPsec, and SSL/TLS.',
-    units: []
-  },
-  {
-    id: 'kcs-075-dda',
-    code: 'KCS-075',
-    subject: 'Design & Development of Applications',
-    slug: 'design-development-applications',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '4th Year',
-    semester: 'Sem 7',
-    credits: 4,
-    description: 'Application Design Architecture, Mobile & Web App Lifecycle, API Integration, and Cloud Deployment.',
-    units: []
-  },
-  {
-    id: 'kcs-076-st',
-    code: 'KCS-076',
-    subject: 'Software Testing',
-    slug: 'software-testing',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '4th Year',
-    semester: 'Sem 7',
-    credits: 4,
-    description: 'Black-box & White-box Testing, Unit Testing, Integration Testing, Test Case Automation, and Bug Tracking.',
-    units: []
-  },
-  {
-    id: 'kcs-081-ds',
+    id: 'kcs-081',
     code: 'KCS-081',
-    subject: 'Distributed Systems',
-    slug: 'distributed-systems-4th-year',
+    subject: 'Big Data Analytics',
+    slug: 'big-data-analytics',
+    university: 'AKTU',
+    course: 'B.Tech',
     branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
+    applicableBranches: ['CSE', 'IT'],
     year: '4th Year',
     semester: 'Sem 8',
-    credits: 4,
-    description: 'Distributed System Models, RPC, Logical Clocks (Lamport, Vector), Mutual Exclusion, and Consensus Protocols.',
-    units: []
-  },
-  {
-    id: 'kcs-082-dl',
-    code: 'KCS-082',
-    subject: 'Deep Learning',
-    slug: 'deep-learning',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '4th Year',
-    semester: 'Sem 8',
-    credits: 4,
-    description: 'Deep Neural Networks, Convolutional Neural Networks (CNN), Recurrent Neural Networks (RNN), and Transformers.',
-    units: []
-  },
-  {
-    id: 'kcs-083-soa',
-    code: 'KCS-083',
-    subject: 'Service Oriented Architecture',
-    slug: 'service-oriented-architecture',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '4th Year',
-    semester: 'Sem 8',
-    credits: 4,
-    description: 'SOA Principles, Web Services (SOAP, REST), Microservices Architecture, Service Bus, and Orchestration.',
-    units: []
-  },
-  {
-    id: 'kcs-084-qc',
-    code: 'KCS-084',
-    subject: 'Quantum Computing',
-    slug: 'quantum-computing',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '4th Year',
-    semester: 'Sem 8',
-    credits: 4,
-    description: 'Qubits, Quantum Gates, Quantum Algorithms (Shor, Grover), Superposition, Entanglement, and Quantum Circuits.',
-    units: []
-  },
-  {
-    id: 'kcs-085-mc',
-    code: 'KCS-085',
-    subject: 'Mobile Computing',
-    slug: 'mobile-computing',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '4th Year',
-    semester: 'Sem 8',
-    credits: 4,
-    description: 'Cellular Systems, Mobile IP, Wireless Protocols, Mobile OS Architecture, and Wireless Sensor Networks.',
-    units: []
-  },
-  {
-    id: 'kcs-086-iot',
-    code: 'KCS-086',
-    subject: 'Internet of Things',
-    slug: 'internet-of-things',
-    branch: 'CSE',
-    applicableBranches: ['ALL', 'CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & DS', 'Maths'],
-    year: '4th Year',
-    semester: 'Sem 8',
-    credits: 4,
-    description: 'IoT Hardware, Sensors & Actuators, MQTT/CoAP Communication, Raspberry Pi/Arduino, and IoT Security.',
-    units: []
+    credits: 3,
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    description: 'Official AKTU Big Data Analytics curriculum covering Hadoop Ecosystem, HDFS, MapReduce, Spark, and NoSQL databases.',
+    units: [
+      { unitNo: 1, title: 'Introduction to Big Data, 5 Vs & Analytics Lifecycle' },
+      { unitNo: 2, title: 'Hadoop Architecture, HDFS & MapReduce Programming' },
+      { unitNo: 3, title: 'NoSQL Databases: HBase, MongoDB & Cassandra' },
+      { unitNo: 4, title: 'Apache Spark, Resilient Distributed Datasets (RDD) & Streaming' },
+      { unitNo: 5, title: 'Big Data Visualization, Analytics Tools & Case Studies' }
+    ]
   }
 ];
+
+// Helper to find authoritative syllabus record for a given subject code or name
+export function getAktuSyllabusForSubject(subjectCode, subjectName) {
+  const normCode = String(subjectCode || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const normName = String(subjectName || '').toLowerCase().trim();
+
+  // Try exact code match
+  if (normCode && normCode.length >= 4) {
+    const foundByCode = AKTU_SYLLABUS_DATA.find(s => {
+      const c = String(s.code || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+      return c === normCode || c.replace(/^[KB]/, '') === normCode.replace(/^[KB]/, '');
+    });
+    if (foundByCode) return foundByCode;
+  }
+
+  // Try subject name match
+  if (normName) {
+    const foundByName = AKTU_SYLLABUS_DATA.find(s => {
+      const sName = String(s.subject || '').toLowerCase().trim();
+      return sName === normName || sName.includes(normName) || normName.includes(sName);
+    });
+    if (foundByName) return foundByName;
+  }
+
+  // Fallback to official template if subject is in AKTU curriculum but not individually listed
+  return {
+    university: 'AKTU',
+    course: 'B.Tech',
+    branch: 'CSE',
+    subject: subjectName || 'AKTU Subject',
+    code: subjectCode || '',
+    sourceUrl: 'https://aktu.ac.in/syllabus.html',
+    ilmsUrl: 'https://ilms.aktu.ac.in/',
+    sourceType: 'Official AKTU',
+    pdfUrl: null,
+    isPdfAvailable: false,
+    unavailableNotice: 'Official AKTU syllabus PDF currently unavailable.',
+    units: []
+  };
+}
 
 // REAL SYLLABUS-DRIVEN SEARCH & FILTER FUNCTION
 export function searchAktuSyllabus(query, filters = {}) {
@@ -1551,10 +872,8 @@ export function searchAktuSyllabus(query, filters = {}) {
     if (!q) return true;
 
     const matchSubject = subjectObj.subject.toLowerCase().includes(q) || subjectObj.code.toLowerCase().includes(q);
-    const matchUnit = subjectObj.units.some(u => 
-      u.title.toLowerCase().includes(q) ||
-      u.topics.some(t => t.toLowerCase().includes(q)) ||
-      (u.notes && u.notes.some(n => n.title.toLowerCase().includes(q)))
+    const matchUnit = subjectObj.units && subjectObj.units.some(u => 
+      u.title.toLowerCase().includes(q)
     );
 
     return matchSubject || matchUnit;

@@ -25,7 +25,8 @@ export default function CourseNotesView({
   dbNotes = [], 
   onOpenViewer, 
   onRequestNotes,
-  onOpenAuth 
+  onOpenAuth,
+  onNavigate
 }) {
   const normKey = normalizeCourseKey(courseKey);
   const isBTech = normKey === 'B.Tech';
@@ -920,10 +921,42 @@ export default function CourseNotesView({
                   fontSize: '1.35rem',
                   fontWeight: 900,
                   color: '#1F2421',
-                  margin: '0.15rem 0 0 0'
+                  margin: '0.15rem 0 0.35rem 0'
                 }}>
                   {activeSubject.name}
                 </h3>
+                {onNavigate && (
+                  <button
+                    onClick={() => onNavigate('subject', {
+                      name: activeSubject.name,
+                      code: activeSubject.code,
+                      branch: activeBranch,
+                      year: activeYear,
+                      sem: activeSemester,
+                      course: normKey
+                    })}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.4rem',
+                      padding: '0.35rem 0.85rem',
+                      borderRadius: '999px',
+                      backgroundColor: '#FDF6E8',
+                      border: '1.5px solid #C88D2D',
+                      color: '#1C1E21',
+                      fontSize: '0.78rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease'
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FAF0D7'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FDF6E8'; }}
+                  >
+                    <Sparkles size={13} style={{ color: '#C88D2D' }} />
+                    <span>Open Subject Hub (Notes, PYQs & Syllabus)</span>
+                    <ArrowRight size={13} style={{ color: '#C88D2D' }} />
+                  </button>
+                )}
               </div>
 
               {/* UNIT PILLS: Dynamic based on active subject */}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Flame, FileText, Briefcase, ArrowRight, Eye, Clock, Sparkles, FileDown, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Flame, FileText, Briefcase, ArrowRight, Eye, Sparkles, FileDown, CheckCircle, ChevronRight, Calendar } from 'lucide-react';
 
 export default function TrendingLatestCommunitySection({ 
   onSubjectClick, 
@@ -7,22 +7,91 @@ export default function TrendingLatestCommunitySection({
   onDiscussionClick,
   onViewAll 
 }) {
+  // Authoritative Trending AKTU B.Tech Core Subjects
   const trendingSubjects = [
-    { id: 1, name: 'Operating System', branch: 'CSE', sem: 'Sem 4', views: '12.4K views' },
-    { id: 2, name: 'Data Structures', branch: 'CSE', sem: 'Sem 3', views: '10.8K views' },
-    { id: 3, name: 'DBMS', branch: 'CSE', sem: 'Sem 5', views: '9.6K views' },
-    { id: 4, name: 'Computer Networks', branch: 'CSE', sem: 'Sem 5', views: '9.1K views' },
-    { id: 5, name: 'OOPs with Java', branch: 'CSE', sem: 'Sem 4', views: '8.7K views' },
-    { id: 6, name: 'Discrete Structures', branch: 'CSE', sem: 'Sem 3', views: '8.2K views' },
+    { 
+      id: 'kcs-401', 
+      name: 'Operating System', 
+      code: 'KCS-401', 
+      branch: 'CSE', 
+      year: '2nd Year', 
+      sem: 'Sem 4', 
+      course: 'B.Tech' 
+    },
+    { 
+      id: 'kcs-301', 
+      name: 'Data Structures', 
+      code: 'KCS-301', 
+      branch: 'CSE', 
+      year: '2nd Year', 
+      sem: 'Sem 3', 
+      course: 'B.Tech' 
+    },
+    { 
+      id: 'kcs-501', 
+      name: 'Database Management Systems', 
+      code: 'KCS-501', 
+      branch: 'CSE', 
+      year: '3rd Year', 
+      sem: 'Sem 5', 
+      course: 'B.Tech' 
+    },
+    { 
+      id: 'kcs-603', 
+      name: 'Computer Networks', 
+      code: 'KCS-603', 
+      branch: 'CSE', 
+      year: '3rd Year', 
+      sem: 'Sem 6', 
+      course: 'B.Tech' 
+    },
+    { 
+      id: 'kcs-502', 
+      name: 'Compiler Design', 
+      code: 'KCS-502', 
+      branch: 'CSE', 
+      year: '3rd Year', 
+      sem: 'Sem 5', 
+      course: 'B.Tech' 
+    },
+    { 
+      id: 'kcs-503', 
+      name: 'Design and Analysis of Algorithms', 
+      code: 'KCS-503', 
+      branch: 'CSE', 
+      year: '3rd Year', 
+      sem: 'Sem 5', 
+      course: 'B.Tech' 
+    }
   ];
 
-  const latestNotes = [
-    { id: 1, title: 'Operating System – Unit 1 Notes', sub: 'CSE - Sem 4 • PDF', time: '2 hours ago' },
-    { id: 2, title: 'DBMS – Unit 3 Notes', sub: 'CSE - Sem 5 • PDF', time: '5 hours ago' },
-    { id: 3, title: 'Computer Networks – Imp Questions', sub: 'CSE - Sem 5 • PDF', time: '1 day ago' },
-    { id: 4, title: 'Maths IV – Short Notes', sub: 'Common • PDF', time: '2 days ago' },
-    { id: 5, title: 'TAFL – Unit 2 Notes', sub: 'CSE - Sem 4 • PDF', time: '2 days ago' },
-  ];
+  // Live real notes fetched from database
+  const [realLatestNotes, setRealLatestNotes] = useState([]);
+  const [isLoadingNotes, setIsLoadingNotes] = useState(true);
+
+  useEffect(() => {
+    let isSubscribed = true;
+    fetch('/api/notes?course=B.Tech&branch=CSE&limit=6&_t=' + Date.now())
+      .then(res => res.json())
+      .then(data => {
+        if (!isSubscribed) return;
+        if (data && data.success && Array.isArray(data.notes) && data.notes.length > 0) {
+          setRealLatestNotes(data.notes.slice(0, 5));
+        } else {
+          setRealLatestNotes([]);
+        }
+      })
+      .catch(err => {
+        if (isSubscribed) console.error('Error loading latest notes:', err);
+      })
+      .finally(() => {
+        if (isSubscribed) setIsLoadingNotes(false);
+      });
+
+    return () => {
+      isSubscribed = false;
+    };
+  }, []);
 
   const placementModules = [
     { id: 1, title: 'Aptitude Reasoning Drill', sub: 'Quant, Logical & Verbal • 20 Questions', badge: 'Round 1' },
@@ -31,6 +100,19 @@ export default function TrendingLatestCommunitySection({
     { id: 4, title: 'AI HR Behavioral Round', sub: 'STAR Framework Situation Analysis', badge: 'Round 4' },
     { id: 5, title: 'Comprehensive Placement Report', sub: 'Mathematical Score & Question Breakdown', badge: 'Report' },
   ];
+
+  // Helper to format date without fake "2 hours ago"
+  const formatNoteDate = (note) => {
+    if (note.createdAt) {
+      try {
+        const d = new Date(note.createdAt);
+        if (!isNaN(d.getTime())) {
+          return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+      } catch (e) {}
+    }
+    return 'Verified PDF';
+  };
 
   return (
     <section style={{
@@ -41,7 +123,7 @@ export default function TrendingLatestCommunitySection({
       <div className="container">
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '1.25rem'
         }} className="three-col-grid">
 
@@ -61,13 +143,13 @@ export default function TrendingLatestCommunitySection({
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Flame size={20} style={{ color: '#EA580C' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21', margin: 0 }}>
                   Trending Subjects
                 </h3>
               </div>
               
               <button 
-                onClick={() => onViewAll && onViewAll('trending')}
+                onClick={() => onViewAll && onViewAll('notes')}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -84,8 +166,8 @@ export default function TrendingLatestCommunitySection({
               </button>
             </div>
             
-            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem' }}>
-              Most popular among AKTU students
+            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem', marginTop: '0.2rem' }}>
+              Core curriculum subjects for AKTU B.Tech
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
@@ -118,23 +200,23 @@ export default function TrendingLatestCommunitySection({
                       {sub.name}
                     </div>
                     <div style={{ fontSize: '0.72rem', color: '#646E78', fontWeight: 500, marginTop: '0.1rem' }}>
-                      {sub.branch} - {sub.sem}
+                      {sub.branch} • {sub.year} • {sub.sem}
                     </div>
                   </div>
 
                   <div style={{
                     fontSize: '0.7rem',
-                    color: '#C88D2D',
-                    fontWeight: 700,
+                    color: '#7A1C28',
+                    fontWeight: 800,
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.3rem',
                     backgroundColor: '#ffffff',
-                    padding: '0.2rem 0.5rem',
-                    borderRadius: '9999px',
+                    padding: '0.2rem 0.55rem',
+                    borderRadius: '6px',
                     border: '1px solid #E8D3B0'
                   }}>
-                    <Eye size={12} /> {sub.views}
+                    {sub.code} <ChevronRight size={12} />
                   </div>
                 </div>
               ))}
@@ -157,7 +239,7 @@ export default function TrendingLatestCommunitySection({
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <FileText size={20} style={{ color: '#C88D2D' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21', margin: 0 }}>
                   Latest Notes
                 </h3>
               </div>
@@ -180,66 +262,99 @@ export default function TrendingLatestCommunitySection({
               </button>
             </div>
             
-            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem' }}>
-              Recently uploaded study materials
+            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem', marginTop: '0.2rem' }}>
+              Real study materials from verified database
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {latestNotes.map(note => (
-                <div
-                  key={note.id}
-                  onClick={() => onNoteClick && onNoteClick(note)}
-                  style={{
-                    backgroundColor: '#FAF7F2',
-                    border: '1.5px solid #E8E2D5',
-                    borderRadius: '12px',
-                    padding: '0.75rem 0.9rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#C88D2D';
-                    e.currentTarget.style.backgroundColor = '#FDF6E8';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#E8E2D5';
-                    e.currentTarget.style.backgroundColor = '#FAF7F2';
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
-                    <div style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '8px',
-                      backgroundColor: '#FDF6E8',
-                      color: '#C88D2D',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      marginTop: '2px'
-                    }}>
-                      <FileDown size={16} />
-                    </div>
-
-                    <div>
-                      <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#1C1E21', lineHeight: 1.3 }}>
-                        {note.title}
-                      </div>
-                      <div style={{ fontSize: '0.72rem', color: '#646E78', marginTop: '0.15rem' }}>
-                        {note.sub}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ fontSize: '0.7rem', color: '#909AA4', whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-                    <Clock size={11} /> {note.time}
-                  </div>
+              {isLoadingNotes ? (
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#64748B', fontSize: '0.85rem' }}>
+                  <Sparkles size={20} style={{ animation: 'spin 2s linear infinite', color: '#C88D2D', marginBottom: '0.4rem' }} />
+                  <div>Loading latest notes...</div>
                 </div>
-              ))}
+              ) : realLatestNotes.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#64748B', fontSize: '0.85rem' }}>
+                  No recent notes available.
+                </div>
+              ) : (
+                realLatestNotes.map((note, idx) => {
+                  const title = note.title || `${note.subject || note.subjectName} Notes`;
+                  const subtext = `${note.branch || 'CSE'} • Unit ${note.unit || note.unitNumber || 1}`;
+                  const dateStr = formatNoteDate(note);
+
+                  return (
+                    <div
+                      key={note.id || idx}
+                      onClick={() => onNoteClick && onNoteClick(note)}
+                      style={{
+                        backgroundColor: '#FAF7F2',
+                        border: '1.5px solid #E8E2D5',
+                        borderRadius: '12px',
+                        padding: '0.75rem 0.9rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = '#C88D2D';
+                        e.currentTarget.style.backgroundColor = '#FDF6E8';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = '#E8E2D5';
+                        e.currentTarget.style.backgroundColor = '#FAF7F2';
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flex: 1, minWidth: 0, paddingRight: '0.5rem' }}>
+                        <div style={{
+                          width: '32px',
+                          height: '32px',
+                          borderRadius: '8px',
+                          backgroundColor: '#FDF6E8',
+                          color: '#C88D2D',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0
+                        }}>
+                          <FileDown size={16} />
+                        </div>
+
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <div style={{
+                            fontSize: '0.86rem',
+                            fontWeight: 700,
+                            color: '#1C1E21',
+                            lineHeight: 1.3,
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis'
+                          }}>
+                            {title}
+                          </div>
+                          <div style={{ fontSize: '0.72rem', color: '#646E78', marginTop: '0.15rem' }}>
+                            {subtext}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style={{
+                        fontSize: '0.7rem',
+                        color: '#64748B',
+                        fontWeight: 600,
+                        whiteSpace: 'nowrap',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.25rem',
+                        flexShrink: 0
+                      }}>
+                        <Calendar size={11} /> {dateStr}
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
 
@@ -258,9 +373,9 @@ export default function TrendingLatestCommunitySection({
               marginBottom: '0.4rem'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Briefcase size={20} style={{ color: '#781416' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21' }}>
-                  Interview Pro Drills
+                <Briefcase size={20} style={{ color: '#0284c7' }} />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21', margin: 0 }}>
+                  Interview Pro
                 </h3>
               </div>
               
@@ -269,7 +384,7 @@ export default function TrendingLatestCommunitySection({
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#C88D2D',
+                  color: '#0284c7',
                   fontSize: '0.8rem',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -282,14 +397,14 @@ export default function TrendingLatestCommunitySection({
               </button>
             </div>
             
-            <p style={{ fontSize: '0.76rem', color: '#64748b', marginBottom: '1rem' }}>
-              4-Stage assessment with voice AI & live coding
+            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem', marginTop: '0.2rem' }}>
+              4-Stage AI Placement Training &amp; Assessment
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {placementModules.map(item => (
+              {placementModules.map(mod => (
                 <div
-                  key={item.id}
+                  key={mod.id}
                   onClick={() => onViewAll && onViewAll('interview-pro')}
                   style={{
                     backgroundColor: '#FAF7F2',
@@ -303,52 +418,36 @@ export default function TrendingLatestCommunitySection({
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#781416';
-                    e.currentTarget.style.backgroundColor = '#FEF2F2';
+                    e.currentTarget.style.borderColor = '#0284c7';
+                    e.currentTarget.style.backgroundColor = '#F0F9FF';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = '#E8E2D5';
                     e.currentTarget.style.backgroundColor = '#FAF7F2';
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
-                    <div style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '8px',
-                      backgroundColor: '#FEF2F2',
-                      color: '#781416',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      marginTop: '2px'
-                    }}>
-                      <Sparkles size={16} />
+                  <div style={{ minWidth: 0, flex: 1, paddingRight: '0.5rem' }}>
+                    <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#1C1E21', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {mod.title}
                     </div>
-
-                    <div>
-                      <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#1C1E21', lineHeight: 1.3 }}>
-                        {item.title}
-                      </div>
-                      <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: '0.15rem' }}>
-                        {item.sub}
-                      </div>
+                    <div style={{ fontSize: '0.72rem', color: '#646E78', marginTop: '0.15rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {mod.sub}
                     </div>
                   </div>
 
-                  <span style={{
-                    fontSize: '0.68rem',
-                    fontWeight: 800,
-                    backgroundColor: '#FDF6E8',
-                    color: '#8A5D00',
-                    border: '1px solid #E8D3B0',
+                  <div style={{
+                    fontSize: '0.7rem',
+                    color: '#0284c7',
+                    fontWeight: 700,
+                    backgroundColor: '#ffffff',
                     padding: '0.2rem 0.5rem',
                     borderRadius: '6px',
-                    whiteSpace: 'nowrap'
+                    border: '1px solid #BAE6FD',
+                    whiteSpace: 'nowrap',
+                    flexShrink: 0
                   }}>
-                    {item.badge}
-                  </span>
+                    {mod.badge}
+                  </div>
                 </div>
               ))}
             </div>
@@ -356,14 +455,6 @@ export default function TrendingLatestCommunitySection({
 
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 992px) {
-          .three-col-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

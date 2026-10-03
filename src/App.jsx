@@ -51,6 +51,7 @@ import TimetablePage from './pages/TimetablePage';
 import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminLoginPage from './pages/AdminLoginPage';
+import SubjectPage from './pages/SubjectPage';
 
 export default function App() {
   const isAdminAuthenticated = () => {
@@ -115,9 +116,28 @@ export default function App() {
     return null;
   };
 
+  const parseSubjectFromUrl = () => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const sub = params.get('subject');
+      if (sub) {
+        return {
+          name: sub,
+          code: params.get('code') || '',
+          branch: params.get('branch') || 'CSE',
+          course: params.get('course') || 'B.Tech',
+          year: params.get('year') || '2nd Year',
+          sem: params.get('sem') || ''
+        };
+      }
+    } catch (e) {}
+    return null;
+  };
+
   const getInitialTab = () => {
     const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
     if (!path || path === 'home') return 'home';
+    if (path === 'subject') return 'subject';
     if (path === 'interview-pro') return 'interview-pro';
     if (path === 'admin/login') return 'admin-login';
     if (path === 'interview-pro/confirm' || path === 'interview-confirm') return 'interview-confirm';
@@ -150,7 +170,7 @@ export default function App() {
       if (parts[1]) return 'scholarship-detail';
     }
     if (path === 'community') return 'home';
-    if (['login', 'signup', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'home', 'admin', 'admin-login'].includes(path)) {
+    if (['login', 'signup', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
       if (path === 'aistudy') return 'interview-pro';
       return path;
     }
@@ -161,6 +181,7 @@ export default function App() {
   const [selectedProjectSlug, setSelectedProjectSlug] = useState(parseProjectSlug);
   const [selectedOpportunitySlug, setSelectedOpportunitySlug] = useState(parseOpportunitySlug);
   const [selectedScholarshipSlug, setSelectedScholarshipSlug] = useState(parseScholarshipSlug);
+  const [selectedSubjectData, setSelectedSubjectData] = useState(parseSubjectFromUrl);
   const [selectedCourse, setSelectedCourse] = useState(parseCourseFromUrl);
   const [isCourseModalOpen, setIsCourseModalOpen] = useState(false);
   const [pendingCourseTarget, setPendingCourseTarget] = useState('notes');
@@ -170,7 +191,31 @@ export default function App() {
   const [selectedYear, setSelectedYear] = useState(null);
   const [globalSearchQuery, setGlobalSearchQuery] = useState('');
 
+  const handleOpenSubject = (subjectData) => {
+    const subObj = typeof subjectData === 'string' ? { name: subjectData } : (subjectData || {});
+    setSelectedSubjectData(subObj);
+    setActiveTabState('subject');
+    const query = new URLSearchParams();
+    if (subObj.name) query.set('subject', subObj.name);
+    if (subObj.code) query.set('code', subObj.code);
+    if (subObj.branch) query.set('branch', subObj.branch);
+    if (subObj.course || selectedCourse) query.set('course', subObj.course || selectedCourse || 'B.Tech');
+    if (subObj.year) query.set('year', subObj.year);
+    if (subObj.sem || subObj.semester) query.set('sem', subObj.sem || subObj.semester);
+    const targetPath = `/subject?${query.toString()}`;
+    if (window.location.pathname + window.location.search !== targetPath) {
+      window.history.pushState({ tab: 'subject', subject: subObj }, '', targetPath);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const navigateToTab = (tab, courseOverride = null) => {
+    if (tab === 'subject' || (typeof tab === 'object' && tab?.type === 'subject')) {
+      const subObj = typeof tab === 'object' ? (tab.data || tab) : courseOverride;
+      handleOpenSubject(subObj);
+      return;
+    }
+
     const courseToUse = courseOverride !== undefined ? courseOverride : selectedCourse;
     
     // If navigating to notes or pyqs without a course selected, prompt Choose Your Course
@@ -241,6 +286,8 @@ export default function App() {
         targetPath = '/timetable';
       } else if (tab === 'admin-login') {
         targetPath = '/admin/login';
+      } else if (tab === 'subject') {
+        targetPath = '/subject';
       } else {
         targetPath = `/${tab}`;
       }
@@ -331,7 +378,11 @@ export default function App() {
         }
       } else if (path === 'community') {
         setActiveTabState('home');
-      } else if (['login', 'signup', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'aistudy', 'planner', 'progress', 'home', 'admin', 'admin-login'].includes(path)) {
+      } else if (path === 'subject') {
+        const sub = parseSubjectFromUrl();
+        if (sub) setSelectedSubjectData(sub);
+        setActiveTabState('subject');
+      } else if (['login', 'signup', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'aistudy', 'planner', 'progress', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
         setActiveTabState(path === 'aistudy' ? 'interview-pro' : path);
       } else {
         setActiveTabState('home');
@@ -532,6 +583,20 @@ export default function App() {
             }}
             onOpenAI={() => setIsAIModalOpen(true)}
           />
+        ) : activeTab === 'subject' ? (
+          <SubjectPage
+            subjectData={selectedSubjectData}
+            onBack={() => {
+              navigateToTab('notes');
+            }}
+            onNavigate={(tab, data) => {
+              if (tab === 'subject' && data) {
+                handleOpenSubject(data);
+              } else {
+                navigateToTab(tab, data);
+              }
+            }}
+          />
         ) : activeTab === 'notes' ? (
           <NotesPage
             searchQuery={globalSearchQuery}
@@ -542,8 +607,12 @@ export default function App() {
               const targetPath = `/notes?course=${encodeURIComponent(courseKey)}`;
               window.history.replaceState({ tab: 'notes', course: courseKey }, '', targetPath);
             }}
-            onNavigate={(tab) => {
-              navigateToTab(tab);
+            onNavigate={(tab, data) => {
+              if (tab === 'subject' && data) {
+                handleOpenSubject(data);
+              } else {
+                navigateToTab(tab, data);
+              }
             }}
             onOpenAuth={handleOpenAuth}
           />
@@ -669,8 +738,12 @@ export default function App() {
               const targetPath = `/pyqs?course=${encodeURIComponent(courseKey)}`;
               window.history.replaceState({ tab: 'pyqs', course: courseKey }, '', targetPath);
             }}
-            onNavigate={(tab) => {
-              navigateToTab(tab);
+            onNavigate={(tab, data) => {
+              if (tab === 'subject' && data) {
+                handleOpenSubject(data);
+              } else {
+                navigateToTab(tab, data);
+              }
             }}
             onOpenAuth={handleOpenAuth}
           />
@@ -679,10 +752,17 @@ export default function App() {
             {/* Mobile Home Screen (<= 768px) */}
             <div className="pv-mobile-home-view">
               <MobileHomeScreen
-                onNavigate={navigateToTab}
+                onNavigate={(tab, data) => {
+                  if (tab === 'subject' && data) {
+                    handleOpenSubject(data);
+                  } else {
+                    navigateToTab(tab, data);
+                  }
+                }}
                 onOpenAI={() => setIsAIModalOpen(true)}
                 onSearch={handleSearch}
                 onSelectCourse={handleCourseSelected}
+                onSelectSubject={(sub) => handleOpenSubject(sub)}
               />
             </div>
 
@@ -728,8 +808,15 @@ export default function App() {
 
               {/* 5. Three-Column Trending + Latest Notes + Community Section */}
               <TrendingLatestCommunitySection
-                onSubjectClick={(sub) => alert(`Selected Subject: ${sub.name}`)}
-                onNoteClick={(note) => alert(`Opening Note: ${note.title}`)}
+                onSubjectClick={(sub) => handleOpenSubject(sub)}
+                onNoteClick={(note) => {
+                  const rawUrl = note.pdfUrl || note.driveUrl || note.fileUrl || note.resourceUrl || note.url;
+                  if (rawUrl) {
+                    window.open(rawUrl, '_blank', 'noopener,noreferrer');
+                  } else {
+                    alert('Note document is currently unavailable.');
+                  }
+                }}
                 onDiscussionClick={(disc) => alert(`Opening Discussion: ${disc.title}`)}
                 onViewAll={(type) => setActiveTab(type)}
               />

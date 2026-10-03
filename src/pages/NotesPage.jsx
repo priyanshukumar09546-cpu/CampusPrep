@@ -1077,6 +1077,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
             setIsRequestModalOpen(true);
           }}
           onOpenAuth={onOpenAuth}
+          onNavigate={onNavigate}
         />
       </div>
 

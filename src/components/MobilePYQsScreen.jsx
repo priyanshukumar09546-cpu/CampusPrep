@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Search, 
   Download, 
@@ -9,159 +9,172 @@ import {
   ExternalLink,
   BookOpen,
   Eye,
-  ArrowLeft
+  ArrowLeft,
+  ChevronRight,
+  Sparkles
 } from 'lucide-react';
+import { COURSES, getSubjectsForCourse, normalizeCourseKey } from '../data/coursesCatalog';
 
 export default function MobilePYQsScreen({ 
-  courseKey = 'BCA', 
+  courseKey = 'B.Tech', 
   dbPyqs = [], 
   onOpenPdf, 
   onRequestPyq 
 }) {
-  const [searchQuery, setSearchQuery] = useState('');
+  const normKey = normalizeCourseKey(courseKey);
+
+  // Navigation states: Course -> Branch -> Year -> Semester -> Subject -> PYQs
+  const [selectedCourse, setSelectedCourse] = useState(normKey || 'B.Tech');
+  const [selectedBranch, setSelectedBranch] = useState('CSE');
+  const [selectedYear, setSelectedYear] = useState('1st Year');
   const [selectedSem, setSelectedSem] = useState('All');
-  const [selectedPyqDetails, setSelectedPyqDetails] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const semesters = ['All', 'Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5', 'Sem 6'];
+  // Selected subject for viewing PYQs list
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [subjectPyqs, setSubjectPyqs] = useState([]);
+  const [isLoadingPyqs, setIsLoadingPyqs] = useState(false);
 
-  // Semester bundle definitions matching Screen 4 of reference image
-  const defaultPyqBundles = [
-    {
-      id: 'bca-sem-1',
-      title: 'BCA 1st Semester',
-      subtitle: 'Previous Year Questions 2020 - 2024',
-      sem: 'Sem 1',
-      semNumber: 1,
-      questionsCount: '120 Questions',
-      papersCount: 6,
-      themeColor: '#EF4444', // Red
-      iconBg: '#FEE2E2',
-      years: '2020 - 2024',
-      downloadUrl: '/api/pyqs?course=BCA&semester=Semester%201'
-    },
-    {
-      id: 'bca-sem-2',
-      title: 'BCA 2nd Semester',
-      subtitle: 'Previous Year Questions 2020 - 2024',
-      sem: 'Sem 2',
-      semNumber: 2,
-      questionsCount: '150 Questions',
-      papersCount: 6,
-      themeColor: '#2563EB', // Blue
-      iconBg: '#DBEAFE',
-      years: '2020 - 2024',
-      downloadUrl: '/api/pyqs?course=BCA&semester=Semester%202'
-    },
-    {
-      id: 'bca-sem-3',
-      title: 'BCA 3rd Semester',
-      subtitle: 'Previous Year Questions 2020 - 2024',
-      sem: 'Sem 3',
-      semNumber: 3,
-      questionsCount: '180 Questions',
-      papersCount: 6,
-      themeColor: '#EF4444', // Red
-      iconBg: '#FEE2E2',
-      years: '2020 - 2024',
-      downloadUrl: '/api/pyqs?course=BCA&semester=Semester%203'
-    },
-    {
-      id: 'bca-sem-4',
-      title: 'BCA 4th Semester',
-      subtitle: 'Previous Year Questions 2020 - 2024',
-      sem: 'Sem 4',
-      semNumber: 4,
-      questionsCount: '160 Questions',
-      papersCount: 6,
-      themeColor: '#7C3AED', // Purple
-      iconBg: '#EDE9FE',
-      years: '2020 - 2024',
-      downloadUrl: '/api/pyqs?course=BCA&semester=Semester%204'
-    },
-    {
-      id: 'bca-sem-5',
-      title: 'BCA 5th Semester',
-      subtitle: 'Previous Year Questions 2020 - 2024',
-      sem: 'Sem 5',
-      semNumber: 5,
-      questionsCount: '170 Questions',
-      papersCount: 6,
-      themeColor: '#0D9488', // Teal/Cyan
-      iconBg: '#CCFBF1',
-      years: '2020 - 2024',
-      downloadUrl: '/api/pyqs?course=BCA&semester=Semester%205'
-    },
-    {
-      id: 'bca-sem-6',
-      title: 'BCA 6th Semester',
-      subtitle: 'Previous Year Questions 2020 - 2024',
-      sem: 'Sem 6',
-      semNumber: 6,
-      questionsCount: '200 Questions',
-      papersCount: 6,
-      themeColor: '#D97706', // Yellow/Gold
-      iconBg: '#FEF3C7',
-      years: '2020 - 2024',
-      downloadUrl: '/api/pyqs?course=BCA&semester=Semester%206'
+  // Sync course if prop changes
+  useEffect(() => {
+    if (courseKey) {
+      const n = normalizeCourseKey(courseKey);
+      setSelectedCourse(n);
     }
-  ];
+  }, [courseKey]);
 
-  // Enrich with real dbPyqs if available
-  const bundlesWithRealData = useMemo(() => {
-    return defaultPyqBundles.map(bundle => {
-      const matchedPyqs = (Array.isArray(dbPyqs) ? dbPyqs : []).filter(pyq => {
-        const s = String(pyq.semester || '').toLowerCase();
-        return s.includes(`semester ${bundle.semNumber}`) || s.includes(`sem ${bundle.semNumber}`) || s.includes(bundle.sem.toLowerCase());
+  // Year options for selected course
+  const yearOptions = useMemo(() => {
+    if (selectedCourse === 'B.Tech') return ['1st Year', '2nd Year', '3rd Year', '4th Year'];
+    if (selectedCourse === 'BCA') return ['1st Year', '2nd Year', '3rd Year'];
+    if (selectedCourse === 'MCA' || selectedCourse === 'MBA') return ['1st Year', '2nd Year'];
+    return ['1st Year', '2nd Year', '3rd Year', '4th Year'];
+  }, [selectedCourse]);
+
+  // Dynamic Semester options
+  const semesterOptions = useMemo(() => {
+    if (selectedCourse === 'B.Tech' || selectedCourse === 'BCA') {
+      if (selectedYear === '1st Year') return ['All', 'Sem 1', 'Sem 2'];
+      if (selectedYear === '2nd Year') return ['All', 'Sem 3', 'Sem 4'];
+      if (selectedYear === '3rd Year') return ['All', 'Sem 5', 'Sem 6'];
+      if (selectedYear === '4th Year') return ['All', 'Sem 7', 'Sem 8'];
+    }
+    return ['All', 'Sem 1', 'Sem 2'];
+  }, [selectedCourse, selectedYear]);
+
+  const handleYearChange = (newYear) => {
+    setSelectedYear(newYear);
+    setSelectedSem('All');
+    setSelectedSubject(null);
+  };
+
+  const btechBranches = ['CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'];
+
+  // Compute subjects list for Course + Branch + Year + Semester
+  const subjectsList = useMemo(() => {
+    const semParam = selectedSem !== 'All' ? selectedSem.replace('Sem ', 'Semester ') : null;
+    const branchParam = selectedCourse === 'B.Tech' ? selectedBranch : null;
+    const rawSubs = getSubjectsForCourse(selectedCourse, semParam, null, selectedYear, branchParam);
+
+    let list = (rawSubs || []).map(s => ({
+      code: s.code || '',
+      name: s.name,
+      semester: s.semester || '',
+      year: selectedYear,
+      branch: selectedBranch
+    }));
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      list = list.filter(s =>
+        s.name.toLowerCase().includes(q) ||
+        s.code.toLowerCase().includes(q)
+      );
+    }
+
+    return list;
+  }, [selectedCourse, selectedBranch, selectedYear, selectedSem, searchQuery]);
+
+  // Fetch real PYQs when a subject is clicked
+  useEffect(() => {
+    if (!selectedSubject) return;
+
+    let isSubscribed = true;
+    setIsLoadingPyqs(true);
+
+    const subName = selectedSubject.name;
+    const subCode = selectedSubject.code;
+
+    const queryParams = new URLSearchParams({
+      course: selectedCourse,
+      branch: selectedCourse === 'B.Tech' ? selectedBranch : '',
+      subject: subName
+    });
+    if (subCode) queryParams.set('subjectCode', subCode);
+
+    fetch(`/api/pyqs?${queryParams.toString()}&_t=${Date.now()}`)
+      .then(res => res.json())
+      .then(data => {
+        if (!isSubscribed) return;
+        if (data && data.success && Array.isArray(data.pyqs)) {
+          const matched = data.pyqs.filter(p => {
+            const pSub = String(p.subjectName || p.subject || '').toLowerCase();
+            const pCode = String(p.subjectCode || '').toLowerCase();
+            const targetSub = subName.toLowerCase();
+            const targetCode = subCode.toLowerCase();
+            return (
+              (targetCode && pCode === targetCode) ||
+              pSub.includes(targetSub) ||
+              targetSub.includes(pSub) ||
+              targetSub.replace(/s$/, '') === pSub.replace(/s$/, '')
+            );
+          });
+          setSubjectPyqs(matched.length > 0 ? matched : data.pyqs);
+        } else {
+          setSubjectPyqs([]);
+        }
+      })
+      .catch(err => {
+        if (isSubscribed) {
+          console.error('Error fetching subject PYQs:', err);
+          setSubjectPyqs([]);
+        }
+      })
+      .finally(() => {
+        if (isSubscribed) setIsLoadingPyqs(false);
       });
 
-      return {
-        ...bundle,
-        realPyqs: matchedPyqs,
-        effectivePaperCount: matchedPyqs.length > 0 ? matchedPyqs.length : bundle.papersCount
-      };
-    });
-  }, [dbPyqs]);
+    return () => {
+      isSubscribed = false;
+    };
+  }, [selectedSubject, selectedCourse, selectedBranch]);
 
-  // Filter
-  const filteredBundles = useMemo(() => {
-    return bundlesWithRealData.filter(bundle => {
-      if (selectedSem !== 'All' && bundle.sem !== selectedSem) {
-        return false;
-      }
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        return bundle.title.toLowerCase().includes(q) || 
-               bundle.subtitle.toLowerCase().includes(q) || 
-               bundle.sem.toLowerCase().includes(q);
-      }
-      return true;
-    });
-  }, [bundlesWithRealData, selectedSem, searchQuery]);
-
-  const handleDownloadAction = (bundle) => {
-    // If bundle has real papers in DB
-    if (bundle.realPyqs && bundle.realPyqs.length > 0) {
-      setSelectedPyqDetails(bundle);
-    } else {
-      // Direct open or prompt
-      if (bundle.downloadUrl) {
-        window.open(bundle.downloadUrl, '_blank');
+  const handleOpenPaper = (pyq) => {
+    const rawUrl = pyq.pdfUrl || pyq.fileUrl || pyq.driveUrl || pyq.resourceUrl || pyq.url;
+    if (rawUrl) {
+      if (onOpenPdf) {
+        onOpenPdf(pyq);
       } else {
-        alert(`Downloading verified PYQ bank for ${bundle.title}...`);
+        window.open(rawUrl, '_blank', 'noopener,noreferrer');
       }
+    } else {
+      alert('This question paper is currently unavailable.');
     }
   };
 
   return (
-    <div style={{
-      backgroundColor: '#FAF7F2',
-      minHeight: '100vh',
-      paddingBottom: '80px',
-      color: '#1F2421',
-      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-    }}>
-      {/* Individual Papers Modal if user clicks a semester bundle with papers */}
-      {selectedPyqDetails && (
+    <div
+      className="pv-mobile-pyqs-screen"
+      style={{
+        backgroundColor: '#FAF7F2',
+        minHeight: '100vh',
+        paddingBottom: '5rem'
+      }}
+    >
+      {/* ========================================================================= */}
+      {/* SCREEN A: SUBJECT PYQ PAPERS LIST */}
+      {/* ========================================================================= */}
+      {selectedSubject && (
         <div style={{
           position: 'fixed',
           top: 0,
@@ -173,19 +186,20 @@ export default function MobilePYQsScreen({
           overflowY: 'auto',
           paddingBottom: '80px'
         }}>
+          {/* Header */}
           <div style={{
             position: 'sticky',
             top: 0,
             zIndex: 10,
             backgroundColor: '#FAF7F2',
-            borderBottom: '1px solid #E8E2D5',
+            borderBottom: '1.5px solid #E8E2D5',
             padding: '0.85rem 1rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between'
           }}>
             <button
-              onClick={() => setSelectedPyqDetails(null)}
+              onClick={() => setSelectedSubject(null)}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -193,88 +207,156 @@ export default function MobilePYQsScreen({
                 background: 'none',
                 border: 'none',
                 color: '#7A1C28',
-                fontWeight: 700,
+                fontWeight: 800,
                 fontSize: '0.92rem',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                padding: '0.3rem 0'
               }}
             >
-              <ArrowLeft size={18} /> Back to PYQ List
+              <ArrowLeft size={18} /> Back to Subjects
             </button>
-            <span style={{ fontSize: '0.82rem', fontWeight: 600, color: '#78716C' }}>
-              {selectedPyqDetails.sem}
+            <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#64748B' }}>
+              {selectedSubject.code || selectedSubject.branch}
             </span>
           </div>
 
           <div style={{ padding: '1rem' }}>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1F2421', margin: '0 0 0.25rem 0' }}>
-              {selectedPyqDetails.title}
-            </h2>
-            <p style={{ fontSize: '0.82rem', color: '#78716C', margin: '0 0 1rem 0' }}>
-              {selectedPyqDetails.subtitle}
-            </p>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {selectedPyqDetails.realPyqs.map((pyq, idx) => (
-                <div
-                  key={pyq.id || idx}
-                  style={{
-                    backgroundColor: '#ffffff',
-                    borderRadius: '14px',
-                    padding: '1rem',
-                    border: '1px solid #E8E2D5',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                  }}
-                >
-                  <div style={{ flex: 1, minWidth: 0, marginRight: '0.75rem' }}>
-                    <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#7A1C28' }}>
-                      {pyq.academicYear || '2023-2024'} • {pyq.examType || 'End Semester'}
-                    </div>
-                    <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#1F2421', marginTop: '0.2rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                      {pyq.subject || pyq.title || 'University Question Paper'}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => {
-                      if (onOpenPdf && pyq.pdfUrl) {
-                        onOpenPdf(pyq.pdfUrl);
-                      } else if (pyq.pdfUrl || pyq.fileUrl) {
-                        window.open(pyq.pdfUrl || pyq.fileUrl, '_blank');
-                      } else {
-                        alert('Question paper is opening...');
-                      }
-                    }}
-                    style={{
-                      width: '40px',
-                      height: '40px',
-                      borderRadius: '50%',
-                      backgroundColor: '#FDF2F4',
-                      color: '#7A1C28',
-                      border: '1.5px solid #F6D6DC',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      flexShrink: 0
-                    }}
-                  >
-                    <Download size={17} />
-                  </button>
-                </div>
-              ))}
+            {/* Subject Banner */}
+            <div style={{
+              backgroundColor: '#FFFFFF',
+              borderRadius: '16px',
+              padding: '1.15rem',
+              border: '1.5px solid #E8E2D5',
+              boxShadow: '0 4px 14px rgba(35,30,25,0.03)',
+              marginBottom: '1rem'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.25rem' }}>
+                {selectedSubject.code && (
+                  <span style={{
+                    backgroundColor: '#E11D48',
+                    color: '#FFFFFF',
+                    fontSize: '0.7rem',
+                    fontWeight: 800,
+                    padding: '0.15rem 0.45rem',
+                    borderRadius: '4px'
+                  }}>
+                    {selectedSubject.code}
+                  </span>
+                )}
+                <span style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: 600 }}>
+                  {selectedYear} • {selectedSubject.semester || selectedSem}
+                </span>
+              </div>
+              <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1C1E21', margin: 0 }}>
+                {selectedSubject.name}
+              </h2>
+              <p style={{ margin: '0.25rem 0 0', fontSize: '0.78rem', color: '#64748B' }}>
+                Previous Year Question Papers from MongoDB
+              </p>
             </div>
+
+            {/* PYQ Papers List */}
+            {isLoadingPyqs ? (
+              <div style={{ textAlign: 'center', padding: '3rem 1rem', color: '#64748B' }}>
+                <Sparkles size={28} style={{ animation: 'spin 2s linear infinite', color: '#E11D48', marginBottom: '0.5rem' }} />
+                <p style={{ fontSize: '0.82rem', fontWeight: 600 }}>Loading question papers...</p>
+              </div>
+            ) : subjectPyqs.length === 0 ? (
+              <div style={{
+                backgroundColor: '#FFFFFF',
+                borderRadius: '14px',
+                padding: '2.5rem 1rem',
+                textAlign: 'center',
+                border: '1.5px dashed #CBD5E1',
+                color: '#64748B'
+              }}>
+                <FileText size={36} style={{ color: '#94A3B8', marginBottom: '0.5rem' }} />
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#1C1E21', margin: '0 0 0.25rem' }}>
+                  No Question Papers Uploaded Yet
+                </h4>
+                <p style={{ fontSize: '0.78rem', margin: 0 }}>
+                  Question papers for this subject have not been uploaded to the database yet.
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {subjectPyqs.map((pyq, idx) => {
+                  const academicYear = pyq.academicYear || pyq.examYear || 'Recent Year';
+                  const rawUrl = pyq.pdfUrl || pyq.fileUrl || pyq.driveUrl || pyq.resourceUrl || pyq.url;
+
+                  return (
+                    <div
+                      key={pyq.id || idx}
+                      style={{
+                        backgroundColor: '#FFFFFF',
+                        borderRadius: '14px',
+                        padding: '1rem',
+                        border: '1.5px solid #E8E2D5',
+                        boxShadow: '0 2px 8px rgba(35,30,25,0.03)'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                        <span style={{
+                          backgroundColor: '#FFF1F2',
+                          color: '#9F1239',
+                          padding: '0.15rem 0.5rem',
+                          borderRadius: '6px',
+                          fontSize: '0.72rem',
+                          fontWeight: 800,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.3rem'
+                        }}>
+                          <Calendar size={12} /> {academicYear}
+                        </span>
+                        <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 600 }}>
+                          {pyq.examType || 'End Semester'}
+                        </span>
+                      </div>
+
+                      <h4 style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1C1E21', margin: '0 0 0.75rem', lineHeight: 1.35 }}>
+                        {selectedSubject.name} — Paper {academicYear}
+                      </h4>
+
+                      <button
+                        onClick={() => handleOpenPaper(pyq)}
+                        style={{
+                          width: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '0.4rem',
+                          backgroundColor: '#E11D48',
+                          color: '#FFFFFF',
+                          border: 'none',
+                          borderRadius: '8px',
+                          padding: '0.55rem',
+                          fontSize: '0.82rem',
+                          fontWeight: 700,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <Eye size={15} /> View Question Paper
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       )}
 
+      {/* ========================================================================= */}
+      {/* SCREEN B: MAIN PYQs WORKSPACE */}
+      {/* ========================================================================= */}
+
       {/* 1. Search Bar */}
-      <div style={{ padding: '0.75rem 1rem 0.5rem 1rem' }}>
+      <div style={{ padding: '0.75rem 1rem 0.4rem 1rem' }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          backgroundColor: '#ffffff',
+          backgroundColor: '#FFFFFF',
           borderRadius: '14px',
           padding: '0.65rem 0.85rem',
           border: '1.5px solid #E8E2D5',
@@ -283,7 +365,7 @@ export default function MobilePYQsScreen({
           <Search size={18} style={{ color: '#A8A29E', marginRight: '0.5rem', flexShrink: 0 }} />
           <input
             type="text"
-            placeholder="Search PYQs by semester, year, subject..."
+            placeholder="Search PYQs by subject or code..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
@@ -291,8 +373,8 @@ export default function MobilePYQsScreen({
               border: 'none',
               outline: 'none',
               backgroundColor: 'transparent',
-              fontSize: '0.92rem',
-              color: '#1F2421',
+              fontSize: '0.9rem',
+              color: '#1C1E21',
               fontWeight: 500
             }}
           />
@@ -315,150 +397,303 @@ export default function MobilePYQsScreen({
         </div>
       </div>
 
-      {/* 2. Semester Filter Pills */}
+      {/* 2. Course Selection Pills */}
       <div style={{
         display: 'flex',
-        gap: '0.45rem',
-        padding: '0.35rem 1rem 0.85rem 1rem',
+        gap: '0.4rem',
         overflowX: 'auto',
+        padding: '0.35rem 1rem 0.6rem 1rem',
         scrollbarWidth: 'none',
-        WebkitOverflowScrolling: 'touch'
+        msOverflowStyle: 'none'
       }}>
-        {semesters.map((sem) => {
-          const isActive = selectedSem === sem;
+        {COURSES.map(c => {
+          const isSelected = selectedCourse === c.key;
           return (
             <button
-              key={sem}
-              onClick={() => setSelectedSem(sem)}
+              key={c.id}
+              onClick={() => {
+                setSelectedCourse(c.key);
+                setSelectedYear('1st Year');
+                setSelectedSem('All');
+                setSelectedSubject(null);
+              }}
               style={{
-                padding: '0.45rem 1.1rem',
-                borderRadius: '9999px',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                backgroundColor: isActive ? '#7A1C28' : '#ffffff',
-                color: isActive ? '#ffffff' : '#57534E',
-                boxShadow: isActive ? '0 4px 12px rgba(122, 28, 40, 0.25)' : '0 1px 4px rgba(0,0,0,0.03)',
-                border: isActive ? '1px solid #7A1C28' : '1px solid #E8E2D5',
-                cursor: 'pointer',
+                padding: '0.35rem 0.85rem',
+                borderRadius: '999px',
+                border: isSelected ? '1.5px solid #E11D48' : '1px solid #E8E2D5',
+                backgroundColor: isSelected ? '#E11D48' : '#FFFFFF',
+                color: isSelected ? '#FFFFFF' : '#44403C',
+                fontSize: '0.78rem',
+                fontWeight: isSelected ? 800 : 600,
                 whiteSpace: 'nowrap',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer',
+                boxShadow: isSelected ? '0 2px 8px rgba(225,29,72,0.18)' : 'none',
+                flexShrink: 0
               }}
             >
-              {sem}
+              {c.name}
             </button>
           );
         })}
       </div>
 
-      {/* 3. PYQ Cards List */}
+      {/* 3. Branch Selection (When B.Tech is selected) */}
+      {selectedCourse === 'B.Tech' && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.4rem',
+          overflowX: 'auto',
+          padding: '0 1rem 0.65rem 1rem',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none'
+        }}>
+          <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase', marginRight: '0.2rem', flexShrink: 0 }}>
+            Branch:
+          </span>
+          {btechBranches.map(b => {
+            const isSelected = selectedBranch === b;
+            return (
+              <button
+                key={b}
+                onClick={() => {
+                  setSelectedBranch(b);
+                  setSelectedSubject(null);
+                }}
+                style={{
+                  padding: '0.25rem 0.7rem',
+                  borderRadius: '8px',
+                  border: isSelected ? '1.5px solid #0284C7' : '1px solid #E8E2D5',
+                  backgroundColor: isSelected ? '#E0F2FE' : '#FFFFFF',
+                  color: isSelected ? '#0369A1' : '#475569',
+                  fontSize: '0.75rem',
+                  fontWeight: isSelected ? 800 : 600,
+                  whiteSpace: 'nowrap',
+                  cursor: 'pointer',
+                  flexShrink: 0
+                }}
+              >
+                {b}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {/* 4. Select Year Controls */}
+      <div style={{ padding: '0 1rem 0.85rem 1rem' }}>
+        <div style={{
+          backgroundColor: '#FFFFFF',
+          borderRadius: '16px',
+          padding: '0.85rem 1rem',
+          border: '1.5px solid #E8E2D5',
+          boxShadow: '0 2px 10px rgba(35,30,25,0.03)'
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: '0.65rem'
+          }}>
+            <span style={{
+              fontSize: '0.75rem',
+              fontWeight: 800,
+              textTransform: 'uppercase',
+              color: '#E11D48',
+              letterSpacing: '0.04em',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem'
+            }}>
+              <Calendar size={13} /> Select Academic Year
+            </span>
+            <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 600 }}>
+              {selectedYear}
+            </span>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${yearOptions.length}, 1fr)`,
+            gap: '0.45rem'
+          }}>
+            {yearOptions.map(y => {
+              const isSelected = selectedYear === y;
+              const shortLabel = y.replace('st Year', '').replace('nd Year', '').replace('rd Year', '').replace('th Year', '');
+              return (
+                <button
+                  key={y}
+                  onClick={() => handleYearChange(y)}
+                  style={{
+                    padding: '0.55rem 0.2rem',
+                    borderRadius: '10px',
+                    border: isSelected ? '2px solid #E11D48' : '1.5px solid #E8E2D5',
+                    backgroundColor: isSelected ? '#E11D48' : '#FAF7F2',
+                    color: isSelected ? '#FFFFFF' : '#1C1E21',
+                    fontSize: '0.82rem',
+                    fontWeight: isSelected ? 800 : 700,
+                    cursor: 'pointer',
+                    textAlign: 'center',
+                    transition: 'all 0.15s ease',
+                    boxShadow: isSelected ? '0 3px 8px rgba(225,29,72,0.22)' : 'none'
+                  }}
+                >
+                  Year {shortLabel}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Semester Chips */}
+          {semesterOptions.length > 1 && (
+            <div style={{
+              marginTop: '0.75rem',
+              paddingTop: '0.65rem',
+              borderTop: '1px solid #F1ECE1',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              overflowX: 'auto',
+              scrollbarWidth: 'none'
+            }}>
+              <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#78716C', marginRight: '0.2rem' }}>
+                Semester:
+              </span>
+              {semesterOptions.map(sem => {
+                const isSelected = selectedSem === sem;
+                return (
+                  <button
+                    key={sem}
+                    onClick={() => setSelectedSem(sem)}
+                    style={{
+                      padding: '0.22rem 0.65rem',
+                      borderRadius: '999px',
+                      border: isSelected ? '1.5px solid #E11D48' : '1px solid #E8E2D5',
+                      backgroundColor: isSelected ? '#FFF1F2' : '#FFFFFF',
+                      color: isSelected ? '#9F1239' : '#64748B',
+                      fontSize: '0.74rem',
+                      fontWeight: isSelected ? 800 : 600,
+                      cursor: 'pointer',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0
+                    }}
+                  >
+                    {sem}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* 5. Section Header */}
+      <div style={{
+        padding: '0 1rem 0.5rem 1rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}>
+        <h2 style={{ fontSize: '1rem', fontWeight: 800, color: '#1C1E21', margin: 0 }}>
+          Select Subject for PYQs
+        </h2>
+        <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 500 }}>
+          {selectedYear} ({subjectsList.length} Subjects)
+        </span>
+      </div>
+
+      {/* 6. Subjects List */}
       <div style={{
         padding: '0 1rem',
         display: 'flex',
         flexDirection: 'column',
         gap: '0.65rem'
       }}>
-        {filteredBundles.length > 0 ? (
-          filteredBundles.map((bundle) => {
-            return (
-              <div
-                key={bundle.id}
-                onClick={() => handleDownloadAction(bundle)}
-                style={{
-                  backgroundColor: '#ffffff',
-                  borderRadius: '16px',
-                  padding: '0.9rem 1rem',
-                  border: '1.5px solid #F0ECE4',
-                  boxShadow: '0 3px 10px rgba(0,0,0,0.02)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.85rem',
-                  cursor: 'pointer',
-                  transition: 'transform 0.15s ease, box-shadow 0.15s ease'
-                }}
-              >
-                {/* Document Icon Squircle */}
-                <div style={{
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '13px',
-                  backgroundColor: bundle.iconBg,
-                  color: bundle.themeColor,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <FileText size={22} strokeWidth={2.2} />
-                </div>
-
-                {/* Info */}
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{
-                    fontSize: '0.98rem',
-                    fontWeight: 800,
-                    color: '#1F2421',
-                    letterSpacing: '-0.01em',
-                    lineHeight: 1.25,
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis'
-                  }}>
-                    {bundle.title}
-                  </div>
-                  <div style={{
-                    fontSize: '0.75rem',
-                    color: '#78716C',
-                    marginTop: '0.15rem',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis'
-                  }}>
-                    {bundle.subtitle}
-                  </div>
-                  <div style={{
-                    fontSize: '0.72rem',
-                    color: '#A8A29E',
-                    fontWeight: 600,
-                    marginTop: '0.2rem'
-                  }}>
-                    {bundle.questionsCount}
-                  </div>
-                </div>
-
-                {/* Circular Download Action Button */}
-                <div
-                  style={{
-                    width: '38px',
-                    height: '38px',
-                    borderRadius: '50%',
-                    border: '1.5px solid #F6D6DC',
-                    backgroundColor: '#FDF2F4',
-                    color: '#7A1C28',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    boxShadow: '0 2px 6px rgba(122, 28, 40, 0.08)'
-                  }}
-                >
-                  <Download size={17} strokeWidth={2.2} />
-                </div>
-              </div>
-            );
-          })
-        ) : (
+        {subjectsList.length === 0 ? (
           <div style={{
-            textAlign: 'center',
-            padding: '3rem 1rem',
-            backgroundColor: '#ffffff',
+            backgroundColor: '#FFFFFF',
             borderRadius: '16px',
-            border: '1.5px dashed #E8E2D5',
-            color: '#78716C'
+            border: '1.5px dashed #CBD5E1',
+            padding: '2.5rem 1rem',
+            textAlign: 'center',
+            color: '#64748B'
           }}>
-            <FileText size={36} style={{ color: '#D6D3D1', margin: '0 auto 0.5rem auto' }} />
-            <p style={{ fontWeight: 700, margin: 0 }}>No PYQ papers found</p>
-            <p style={{ fontSize: '0.8rem', color: '#A8A29E', margin: '0.25rem 0 0 0' }}>Try searching another term or semester</p>
+            <FileText size={36} style={{ color: '#94A3B8', marginBottom: '0.5rem' }} />
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#1C1E21', margin: '0 0 0.25rem' }}>
+              No Subjects Found
+            </h4>
+            <p style={{ fontSize: '0.78rem', margin: 0 }}>
+              No subjects mapped for {selectedCourse} {selectedBranch} {selectedYear}.
+            </p>
           </div>
+        ) : (
+          subjectsList.map((subject, idx) => (
+            <div
+              key={subject.code || idx}
+              onClick={() => setSelectedSubject(subject)}
+              style={{
+                backgroundColor: '#FFFFFF',
+                borderRadius: '16px',
+                padding: '0.9rem 1rem',
+                border: '1.5px solid #E8E2D5',
+                boxShadow: '0 2px 8px rgba(35,30,25,0.02)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginBottom: '0.15rem' }}>
+                  {subject.code && (
+                    <span style={{
+                      backgroundColor: '#FFF1F2',
+                      color: '#9F1239',
+                      fontSize: '0.68rem',
+                      fontWeight: 800,
+                      padding: '0.1rem 0.35rem',
+                      borderRadius: '4px'
+                    }}>
+                      {subject.code}
+                    </span>
+                  )}
+                  {subject.semester && (
+                    <span style={{ fontSize: '0.68rem', color: '#64748B', fontWeight: 500 }}>
+                      {subject.semester}
+                    </span>
+                  )}
+                </div>
+
+                <h3 style={{
+                  fontSize: '0.92rem',
+                  fontWeight: 800,
+                  color: '#1C1E21',
+                  margin: 0,
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
+                }}>
+                  {subject.name}
+                </h3>
+              </div>
+
+              <div style={{
+                width: '30px',
+                height: '30px',
+                borderRadius: '50%',
+                backgroundColor: '#FAF7F2',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#E11D48',
+                flexShrink: 0,
+                marginLeft: '0.5rem'
+              }}>
+                <ChevronRight size={16} />
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>
