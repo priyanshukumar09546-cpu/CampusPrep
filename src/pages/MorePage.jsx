@@ -124,7 +124,7 @@ export default function MorePage({ onNavigate, initialTool }) {
       badge: 'Instant AI',
       badgeBg: '#FEE2E2',
       badgeColor: '#B91C1C',
-      action: () => setIsPlagiarismCheckerOpen(true)
+      action: () => onNavigate('plagiarism')
     },
     {
       id: 'interview-pro',

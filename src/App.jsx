@@ -51,6 +51,7 @@ import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminLoginPage from './pages/AdminLoginPage';
 import SubjectPage from './pages/SubjectPage';
+import PlagiarismCheckerPage from './pages/PlagiarismCheckerPage';
 
 // Exact Reference Image 1 & 2 Screens
 import SignIn from './pages/Auth/SignIn';
@@ -164,6 +165,7 @@ export default function App() {
     if (path === 'interview-pro/hr' || path === 'interview-hr') return 'interview-hr';
     if (path === 'interview-pro/report' || path === 'interview-report') return 'interview-report';
     if (path === 'resume-maker') return 'resume-maker';
+    if (path === 'plagiarism' || path === 'plagiarism-checker') return 'plagiarism';
     if (path === 'pdf-maker' || path === 'pdfmaker' || path === 'pdf') return 'pdf-maker';
     if (path === 'result-cgpa' || path === 'result' || path === 'results' || path === 'cgpa') return 'result-cgpa';
     if (path === 'timetable' || path === 'time-table' || path === 'planner') return 'timetable';
@@ -305,6 +307,8 @@ export default function App() {
         targetPath = '/interview-report';
       } else if (tab === 'resume-maker') {
         targetPath = '/resume-maker';
+      } else if (tab === 'plagiarism') {
+        targetPath = '/plagiarism';
       } else if (tab === 'pdf-maker') {
         targetPath = '/pdf-maker';
       } else if (tab === 'result-cgpa') {
@@ -383,6 +387,8 @@ export default function App() {
         setActiveTabState('interview-start');
       } else if (path === 'resume-maker') {
         setActiveTabState('resume-maker');
+      } else if (path === 'plagiarism' || path === 'plagiarism-checker') {
+        setActiveTabState('plagiarism');
       } else if (path === 'pdf-maker' || path === 'pdfmaker' || path === 'pdf') {
         setActiveTabState('pdf-maker');
       } else if (path === 'result-cgpa' || path === 'result' || path === 'results' || path === 'cgpa') {
@@ -689,6 +695,14 @@ export default function App() {
           />
         ) : activeTab === 'resume-maker' ? (
           <ResumeMakerPage
+            onNavigate={(tab) => {
+              setActiveTab(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenAuth={handleOpenAuth}
+          />
+        ) : activeTab === 'plagiarism' ? (
+          <PlagiarismCheckerPage
             onNavigate={(tab) => {
               setActiveTab(tab);
               window.scrollTo({ top: 0, behavior: 'smooth' });

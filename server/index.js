@@ -18,6 +18,7 @@ import { createResultRouter } from './routes/resultRoutes.js';
 import { createAttendanceRouter } from './routes/attendanceRoutes.js';
 import { createTimetableRouter } from './routes/timetableRoutes.js';
 import { createInterviewRouter } from './routes/interviewRoutes.js';
+import { createPlagiarismRouter } from './routes/plagiarismRoutes.js';
 import OpenAI from 'openai';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -9566,6 +9567,9 @@ app.use('/api/timetable', createTimetableRouter({ isDbConnected, verifyJwtToken 
 
 // INTERVIEW PRO ROUTER
 app.use('/api/interview', createInterviewRouter());
+
+// AI PLAGIARISM CHECKER ROUTER
+app.use('/api/plagiarism', createPlagiarismRouter());
 
 // STUDENT ACADEMIC UPDATES & EXAM ALERTS NEWSLETTER
 app.post('/api/updates/subscribe', (req, res) => {
