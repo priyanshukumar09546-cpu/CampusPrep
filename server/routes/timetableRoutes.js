@@ -19,13 +19,16 @@ import {
 } from '../timetableEngine.js';
 
 // Setup file paths for persistent JSON disk storage in server/data
-const DATA_DIR = path.resolve(process.cwd(), 'server', 'data');
+const IS_VERCEL = !!(process.env.VERCEL || process.env.VERCEL_ENV || process.env.VERCEL_URL);
+const DATA_DIR = IS_VERCEL ? '/tmp/data' : path.resolve(process.cwd(), 'server', 'data');
 const TIMETABLES_FILE = path.join(DATA_DIR, 'timetables.json');
 
 // Ensure data directory exists
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+} catch (e) {}
 
 // ----------------------------------------------------------------------------
 // MONGOOSE SCHEMAS & MODELS

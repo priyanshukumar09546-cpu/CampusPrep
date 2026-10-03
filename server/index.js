@@ -53,12 +53,14 @@ const PORT = process.env.PORT || 5000;
 const getServerBaseUrl = () => {
   if (process.env.BACKEND_URL) return process.env.BACKEND_URL.replace(/\/+$/, '');
   if (process.env.RENDER_EXTERNAL_URL) return process.env.RENDER_EXTERNAL_URL.replace(/\/+$/, '');
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
   return `http://localhost:${PORT}`;
 };
 
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
+  'https://campusprep-chi.vercel.app',
   'https://campusprep.vercel.app',
   'https://professorvirus.com',
   'https://www.professorvirus.com',
@@ -814,6 +816,7 @@ async function syncMongoDbWithLocalStores() {
         saveGoogleTokensToDisk(dbToken);
         console.log(`[DATABASE] Restored Google Drive tokens from MongoDB to disk (${dbToken.accountEmail || 'Connected'}).`);
       }
+      refreshGoogleTokenOnStartup().catch(() => {});
     }
 
     // 6. Sync Projects
@@ -3961,11 +3964,23 @@ function loadGoogleTokensFromDisk() {
       console.error('[GOOGLE DRIVE] Error reading tokens from disk:', e.message);
     }
   }
+  const bundledTokensFile = path.join(__dirname, 'data', 'google_drive_tokens.json');
+  if (bundledTokensFile !== GOOGLE_TOKENS_FILE && fs.existsSync(bundledTokensFile)) {
+    try {
+      const content = fs.readFileSync(bundledTokensFile, 'utf-8');
+      return JSON.parse(content);
+    } catch (e) {
+      console.error('[GOOGLE DRIVE] Error reading bundled tokens:', e.message);
+    }
+  }
   return null;
 }
 
 function saveGoogleTokensToDisk(tokenData) {
   try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
     fs.writeFileSync(GOOGLE_TOKENS_FILE, JSON.stringify(tokenData, null, 2), 'utf-8');
   } catch (e) {
     console.error('[GOOGLE DRIVE] Error saving tokens to disk:', e.message);
@@ -4133,7 +4148,7 @@ app.get('/api/google-drive/auth', (req, res) => {
 // 2. GET /api/google-drive/callback (OAuth Callback target for Google)
 app.get('/api/google-drive/callback', async (req, res) => {
   const { code, state, error } = req.query;
-  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  const frontendUrl = process.env.FRONTEND_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
   if (error) {
     console.error('[GOOGLE DRIVE OAUTH] OAuth access denied/error from Google:', error);

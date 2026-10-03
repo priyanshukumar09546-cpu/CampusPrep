@@ -12,15 +12,18 @@ import { CodingQuestion } from '../models/CodingQuestion.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DATA_DIR = path.resolve(__dirname, '..', 'data');
+const IS_VERCEL = !!(process.env.VERCEL || process.env.VERCEL_ENV || process.env.VERCEL_URL);
+const DATA_DIR = IS_VERCEL ? '/tmp/data' : path.resolve(__dirname, '..', 'data');
 const SESSIONS_FILE = path.join(DATA_DIR, 'interview_sessions.json');
 const HISTORY_FILE = path.join(DATA_DIR, 'interview_history.json');
 const CODING_QUESTIONS_FILE = path.join(DATA_DIR, 'coding_questions.json');
 
 // Ensure data dir exists
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+} catch (e) {}
 
 // Helpers for persistent disk storage
 function readJsonSafe(filePath, fallback = {}) {
