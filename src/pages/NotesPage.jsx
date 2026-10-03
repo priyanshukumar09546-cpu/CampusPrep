@@ -1003,7 +1003,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            {Object.keys(courses).filter(c => !c.includes('.')).map(courseName => {
+            {['BTech', 'MTech', 'BCA', 'MCA', 'BBA', 'MBA', 'BPharm'].map(courseName => {
               const isSelected = normalizedCourse === courseName;
               return (
                 <button
@@ -1025,7 +1025,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
                     transition: 'all 0.2s ease'
                   }}
                 >
-                  <span>{courseName}</span>
+                  <span>{courseName === 'BTech' ? 'B.Tech' : courseName === 'MTech' ? 'M.Tech' : courseName === 'BPharm' ? 'B.Pharm' : courseName}</span>
                   {isSelected && <Check size={14} strokeWidth={3} />}
                 </button>
               );
@@ -1034,150 +1034,8 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         </div>
       </div>
 
-      {/* 1. LARGE NOTES HERO BANNER */}
-      <section style={{
-        position: 'relative',
-        backgroundColor: '#FAF7F2',
-        backgroundImage: `
-          radial-gradient(rgba(200, 141, 45, 0.08) 1.5px, transparent 1.5px),
-          linear-gradient(180deg, #FAF7F2 0%, #EFE8DA 100%)
-        `,
-        backgroundSize: '24px 24px, 100% 100%',
-        padding: '1.75rem 0 2rem 0',
-        borderBottom: '2px solid #E8E2D5',
-        overflow: 'hidden',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)'
-      }}>
-        <div style={{
-          position: 'absolute',
-          top: 0, left: 0, right: 0, bottom: 0,
-          background: 'radial-gradient(circle at 50% 30%, rgba(200, 141, 45, 0.08), transparent 70%)',
-          pointerEvents: 'none'
-        }} />
-
-        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '250px 1fr 320px',
-            gap: '1.25rem',
-            alignItems: 'center'
-          }} className="notes-hero-grid">
-
-            {/* LEFT: Virus Teacher Mascot */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }} className="notes-left-mascot">
-              <div style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '16px',
-                padding: '0.6rem 0.85rem',
-                marginBottom: '0.5rem',
-                border: '2px solid #C88D2D',
-                boxShadow: '0 8px 20px rgba(0,0,0,0.06)',
-                fontSize: '0.85rem',
-                fontWeight: 700,
-                color: '#1C1E21',
-                fontFamily: "'Kalam', cursive",
-                lineHeight: 1.3,
-                textAlign: 'center',
-                position: 'relative'
-              }}>
-                “Notes banao, <br />
-                life set karo!” <br />
-                <span style={{ color: '#C88D2D' }}>— ProfessorVirus</span>
-                <div style={{
-                  position: 'absolute', bottom: '-10px', left: '50%', transform: 'translateX(-50%)',
-                  width: 0, height: 0, borderLeft: '7px solid transparent', borderRight: '7px solid transparent', borderTop: '10px solid #C88D2D'
-                }} />
-              </div>
-
-              <div style={{ width: '240px', height: '200px', position: 'relative', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.15))' }}>
-                <img
-                  src="/assets/hero_board.png"
-                  alt="AKTU Study Board"
-                  loading="eager"
-                  fetchpriority="high"
-                  width={240}
-                  height={200}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = '/assets/navbar_logo.png';
-                  }}
-                />
-              </div>
-            </div>
-
-            {/* CENTER: Title & Main Search */}
-            <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.65rem' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem' }}>
-                <h1 style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: '3.4rem',
-                  fontWeight: 900,
-                  color: '#1F2421',
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.02em'
-                }}>
-                  AKTU Notes Hub
-                </h1>
-                <BookOpen size={42} style={{ color: '#C88D2D' }} />
-              </div>
-
-              <div style={{
-                fontFamily: "'Kalam', cursive",
-                color: '#7A5835',
-                fontSize: '1.35rem',
-                fontWeight: 700
-              }}>
-                Quantum • Gateway Classes • Bitwise Learning • Multi Atom
-              </div>
-
-              <p style={{ color: '#64748b', fontSize: '0.95rem', fontWeight: 500, maxWidth: '520px' }}>
-                Unit-wise verified notes and Quantum series for AKTU B.Tech engineering branches.
-              </p>
-
-              {/* SEARCH BAR */}
-              <form onSubmit={(e) => e.preventDefault()} style={{ width: '100%', maxWidth: '560px', position: 'relative', marginTop: '0.75rem' }}>
-                <div style={{
-                  display: 'flex', alignItems: 'center', backgroundColor: '#ffffff', borderRadius: '9999px',
-                  padding: '0.35rem 0.4rem 0.35rem 1.25rem', boxShadow: '0 8px 25px rgba(0,0,0,0.08)', border: '1px solid #E8E2D5'
-                }}>
-                  <Search size={18} style={{ color: '#7A5835', marginRight: '0.6rem', flexShrink: 0 }} />
-                  <input
-                    type="text"
-                    placeholder="Search notes by subject, code, or source (e.g. Gateway, KAS-103)..."
-                    value={heroSearchQuery}
-                    onChange={(e) => setHeroSearchQuery(e.target.value)}
-                    style={{ width: '100%', border: 'none', outline: 'none', fontSize: '0.92rem', color: '#1C1E21', fontWeight: 500, backgroundColor: 'transparent' }}
-                  />
-                  {heroSearchQuery && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setHeroSearchQuery('');
-                        if (onClearSearch) onClearSearch();
-                      }}
-                      style={{ background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', padding: '0 0.5rem', display: 'flex', alignItems: 'center', marginRight: '0.25rem' }}
-                      title="Clear search"
-                    >
-                      <X size={16} />
-                    </button>
-                  )}
-                  <button type="submit" className="btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, backgroundColor: '#1F2421', borderRadius: '9999px', flexShrink: 0 }}>
-                    Search
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            {/* RIGHT GRAPHIC: All Izz Well Shared Banner */}
-            <AllIzzWellBanner title={"Semester Top Karna Hai?\nNotes Padhna Shuru Karo! :)"} className="notes-right-mascot" />
-
-          </div>
-        </div>
-      </section>
-
       {/* 2. MAIN CONTENT: UNIFIED COURSE NOTES VIEW (Notes & Quantum) */}
-      <div className="container" style={{ padding: '2rem 1.25rem 3rem 1.25rem' }}>
+      <div className="container" style={{ padding: '1.25rem 1.25rem 3rem 1.25rem' }}>
 
         {/* Unified Course Notes View for detailed quantum/gateway series browsing */}
         <CourseNotesView

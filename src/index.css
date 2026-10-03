@@ -759,6 +759,16 @@ pre, code {
     -webkit-overflow-scrolling: touch;
   }
 
+  /* Dual view responsive control: on mobile, show mobile view and hide desktop view */
+  .pv-desktop-notes-view,
+  .pv-desktop-pyqs-view {
+    display: none !important;
+  }
+  .pv-mobile-notes-view,
+  .pv-mobile-pyqs-view {
+    display: block !important;
+  }
+
   /* Responsive image scaling */
   img {
     max-width: 100%;
@@ -766,8 +776,14 @@ pre, code {
   }
 }
 
-@media (min-width: 768px) {
-  .pv-mobile-bottom-nav {
+@media (min-width: 769px) {
+  .pv-mobile-bottom-nav,
+  .pv-mobile-notes-view,
+  .pv-mobile-pyqs-view {
     display: none !important;
+  }
+  .pv-desktop-notes-view,
+  .pv-desktop-pyqs-view {
+    display: block !important;
   }
 }
