@@ -48,6 +48,7 @@ import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CourseNotesView from '../components/CourseNotesView';
 import MobileNotesScreen from '../components/MobileNotesScreen';
 import { COURSES } from '../data/coursesCatalog';
+import { trackNoteViewed } from '../utils/progressTracker';
 import { API_URL } from '../config/api';
 import CourseSelectModal from '../components/CourseSelectModal';
 import { notesData as localNotesData, notesData } from '../data/notesData';
@@ -872,6 +873,13 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
       return;
     }
 
+    trackNoteViewed({
+      noteId: noteObj.id || noteObj.uniqueKey || `${activeSubject?.subject || 'Note'}_Unit${activeUnit || 1}`,
+      noteName: noteObj.title || `${activeSubject?.subject || 'Subject'} Unit ${activeUnit || 1} Notes`,
+      subject: activeSubject?.subject || '',
+      course: selectedCourse || 'B.Tech'
+    });
+
     setActiveViewerNote({
       note: noteObj,
       subject: activeSubject,
@@ -971,6 +979,12 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
           onSelectYear={(y) => setActiveYear(y)}
           onSelectBranch={(b) => setActiveBranch(b)}
           onOpenViewer={({ note, subject, unit }) => {
+            trackNoteViewed({
+              noteId: note?.id || note?.uniqueKey || `${subject?.name || subject?.subject || 'Note'}_Unit${unit || 1}`,
+              noteName: note?.title || `${subject?.name || subject?.subject || 'Subject'} Unit ${unit || 1} Notes`,
+              subject: subject?.name || subject?.subject || activeSubject?.subject || '',
+              course: selectedCourse || 'B.Tech'
+            });
             setActiveViewerNote({ note, subject, unit: unit ? { unitNo: unit, topics: [] } : null });
           }}
           onRequestNotes={(subject, unit) => {
@@ -1042,6 +1056,12 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
           courseKey={normalizedCourse}
           dbNotes={dbNotes}
           onOpenViewer={({ note, subject, unit }) => {
+            trackNoteViewed({
+              noteId: note?.id || note?.uniqueKey || `${subject?.name || subject?.subject || 'Note'}_Unit${unit || 1}`,
+              noteName: note?.title || `${subject?.name || subject?.subject || 'Subject'} Unit ${unit || 1} Notes`,
+              subject: subject?.name || subject?.subject || activeSubject?.subject || '',
+              course: selectedCourse || 'B.Tech'
+            });
             setActiveViewerNote({ note, subject, unit: unit ? { unitNo: unit, topics: [] } : null });
           }}
           onRequestNotes={(subject, unit) => {

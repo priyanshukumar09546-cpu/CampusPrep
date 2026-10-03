@@ -52,6 +52,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminLoginPage from './pages/AdminLoginPage';
 import SubjectPage from './pages/SubjectPage';
 import PlagiarismCheckerPage from './pages/PlagiarismCheckerPage';
+import ProgressPage from './pages/ProgressPage';
 
 // Exact Reference Image 1 & 2 Screens
 import SignIn from './pages/Auth/SignIn';
@@ -156,6 +157,7 @@ export default function App() {
     if (path === 'quizzes') return 'quizzes';
     if (path === 'interview-pro') return 'interview-pro';
     if (path === 'more') return 'more';
+    if (path === 'progress' || path === 'analytics' || path === 'student-progress') return 'progress';
     if (path === 'admin/login') return 'admin-login';
     if (path === 'interview-pro/confirm' || path === 'interview-confirm') return 'interview-confirm';
     if (path === 'interview-pro/instructions' || path === 'interview-instructions') return 'interview-instructions';
@@ -289,6 +291,8 @@ export default function App() {
         targetPath = '/quizzes';
       } else if (tab === 'more') {
         targetPath = '/more';
+      } else if (tab === 'progress') {
+        targetPath = '/progress';
       } else if (tab === 'interview-pro') {
         targetPath = '/interview-pro';
       } else if (tab === 'interview-confirm') {
@@ -375,6 +379,8 @@ export default function App() {
         setActiveTabState('quizzes');
       } else if (path === 'more') {
         setActiveTabState('more');
+      } else if (path === 'progress' || path === 'analytics' || path === 'student-progress') {
+        setActiveTabState('progress');
       } else if (path === 'interview-pro') {
         setActiveTabState('interview-pro');
       } else if (path === 'admin/login') {
@@ -807,13 +813,20 @@ export default function App() {
             }}
             onOpenAuth={handleOpenAuth}
           />
-        ) : activeTab === 'more' || activeTab === 'progress' ? (
+        ) : activeTab === 'more' ? (
           <MorePage
-            initialTool={activeTab === 'progress' ? 'attendance' : null}
             onNavigate={(tab) => {
               setActiveTab(tab);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+          />
+        ) : activeTab === 'progress' ? (
+          <ProgressPage
+            onNavigate={(tab) => {
+              setActiveTab(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenAuth={handleOpenAuth}
           />
         ) : (
           <Home

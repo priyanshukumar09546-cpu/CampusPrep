@@ -54,6 +54,7 @@ import {
   startNewInterviewSession,
   calculateOverallScore
 } from '../utils/interviewSessionManager';
+import { trackInterviewRoundCompleted } from '../utils/progressTracker';
 
 export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
   const attemptId = getActiveAttemptId();
@@ -126,9 +127,19 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
   // Exact Mathematical Overall Score
   const overallScore = calculateOverallScore(aptScore, codeScore, techScore, hScore, WEIGHTS);
 
-  // Active accordion tabs: 'all' | 'aptitude' | 'coding' | 'technical' | 'hr' | 'transcript'
   const [activeTab, setActiveTab] = useState('overview');
   const [expandedAptQuestion, setExpandedAptQuestion] = useState(null);
+
+  useEffect(() => {
+    if (overallScore > 0) {
+      trackInterviewRoundCompleted({
+        roundType: 'composite',
+        roundName: `Interview Pro - ${activeTest?.targetRole || 'Full Assessment'}`,
+        score: overallScore,
+        subject: activeTest?.targetRole || 'Interview Preparation'
+      });
+    }
+  }, [attemptId]);
 
   const handleStartNewAttempt = () => {
     startNewInterviewSession({

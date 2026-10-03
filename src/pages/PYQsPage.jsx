@@ -18,6 +18,7 @@ import CourseSelectModal from '../components/CourseSelectModal';
 import { pyqsData as localPyqsData, pyqsData } from '../data/pyqsData';
 import { notesData } from '../data/notesData';
 import { allCourses } from '../data/subjectsData';
+import { trackPYQOpened } from '../utils/progressTracker';
 
 // NORMALIZE FOR ALL 7 COURSES
 export const normalizeCourse = (param) => {
@@ -200,6 +201,13 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
       : (pyqItem.pdfUrl || pyqItem.fileUrl || pyqItem.driveUrl || pyqItem.resourceUrl || pyqItem.url);
 
     if (driveUrl) {
+      trackPYQOpened({
+        pyqId: typeof pyqItem === 'object' ? (pyqItem.id || pyqItem._id || pyqItem.subjectName) : pyqItem,
+        pyqName: typeof pyqItem === 'object' ? `${pyqItem.subjectName || pyqItem.subject || 'Paper'} (${pyqItem.academicYear || pyqItem.examYear || ''})` : 'Question Paper',
+        subject: typeof pyqItem === 'object' ? (pyqItem.subjectName || pyqItem.subject || '') : '',
+        course: selectedCourse || 'B.Tech',
+        year: typeof pyqItem === 'object' ? (pyqItem.academicYear || pyqItem.examYear || '') : ''
+      });
       window.open(driveUrl, '_blank', 'noopener,noreferrer');
     } else {
       alert('This paper is being processed. Please check back shortly.');

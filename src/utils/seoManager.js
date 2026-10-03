@@ -102,6 +102,12 @@ export const SEO_PAGE_CONFIG = {
     path: '/timetable',
     schemaType: 'WebApplication'
   },
+  progress: {
+    title: 'Student Progress & Analytics Dashboard | ProfessorVirus',
+    description: 'Track your study time, streaks, subjects, PYQs, quizzes and overall academic progress with real-time analytics.',
+    path: '/progress',
+    schemaType: 'WebApplication'
+  },
   'competitive-exams': {
     title: 'Career Paths & Competitive Exams Guidance | ProfessorVirus',
     description: 'Detailed roadmaps for GATE, CAT, UPSC, ESE, and public sector engineering opportunities after B.Tech.',

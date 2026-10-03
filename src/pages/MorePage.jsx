@@ -19,7 +19,8 @@ import {
   Sparkles,
   X,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  TrendingUp
 } from 'lucide-react';
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
 
@@ -42,6 +43,21 @@ export default function MorePage({ onNavigate, initialTool }) {
   const [plagiarismResult, setPlagiarismResult] = useState(null);
 
   const toolsList = [
+    {
+      id: 'progress',
+      name: 'Progress',
+      description: 'Track your study time, streaks, subjects, PYQs, quizzes and overall academic progress.',
+      category: 'Student Tools',
+      icon: TrendingUp,
+      color: '#7A2327',
+      bgColor: '#FDF2F2',
+      borderColor: '#FCDAD7',
+      badge: 'Analytics',
+      badgeBg: '#FCE7E7',
+      badgeColor: '#7A2327',
+      keywords: ['progress', 'study progress', 'analytics', 'streak', 'study time', 'tracker', 'dashboard', 'performance'],
+      action: () => onNavigate('progress')
+    },
     {
       id: 'cgpa-calculator',
       name: 'CGPA Calculator',
@@ -271,7 +287,17 @@ export default function MorePage({ onNavigate, initialTool }) {
   const filteredTools = toolsList.filter(t => {
     if (!searchQuery.trim()) return true;
     const q = searchQuery.toLowerCase().trim();
-    return t.name.toLowerCase().includes(q) || t.description.toLowerCase().includes(q) || t.category.toLowerCase().includes(q);
+    const matchesBasic = t.name.toLowerCase().includes(q) || 
+                         t.description.toLowerCase().includes(q) || 
+                         t.category.toLowerCase().includes(q);
+    const matchesKeywords = Array.isArray(t.keywords) && t.keywords.some(k => 
+      k.toLowerCase().includes(q) || q.includes(k.toLowerCase())
+    );
+    const searchWords = q.split(/\s+/).filter(Boolean);
+    const combinedText = `${t.name} ${t.description} ${t.category} ${(t.keywords || []).join(' ')}`.toLowerCase();
+    const matchesAllWords = searchWords.length > 1 && searchWords.every(w => combinedText.includes(w));
+
+    return matchesBasic || matchesKeywords || matchesAllWords;
   });
 
   const handlePredictBranch = (e) => {

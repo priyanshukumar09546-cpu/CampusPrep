@@ -23,6 +23,7 @@ export const SEARCH_INDEX = [
   { title: 'Resume Maker (ATS)', type: 'Tool', route: 'resume-maker', keywords: 'resume maker ats cv curriculum vitae job application' },
   { title: 'PDF Tools', type: 'Tool', route: 'pdf-maker', keywords: 'pdf merger converter compress split tools' },
   { title: 'Timetable Planner', type: 'Tool', route: 'timetable', keywords: 'timetable schedule planner classes weekly daily' },
+  { title: 'Student Progress & Analytics', type: 'Tool', route: 'progress', keywords: 'progress study progress analytics streak study time performance tracker dashboard' },
 
   // ─── Career & Opportunities ────────────────
   { title: 'Competitive Exams & Careers', type: 'Career', route: 'competitive-exams', keywords: 'gate cat mat upsc ssc competitive exam career guidance' },
