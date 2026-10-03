@@ -30,16 +30,6 @@ export default function SelectCoursePage({ onNavigate }) {
       borderColor: '#FECACA'
     },
     {
-      id: 'bca',
-      key: 'BCA',
-      name: 'BCA',
-      fullName: 'Bachelor of Computer Applications',
-      icon: Cpu,
-      iconBg: '#DBEAFE',
-      iconColor: '#2563EB',
-      borderColor: '#BFDBFE'
-    },
-    {
       id: 'mtech',
       key: 'M.Tech',
       name: 'M.Tech',
@@ -50,6 +40,16 @@ export default function SelectCoursePage({ onNavigate }) {
       borderColor: '#E9D5FF'
     },
     {
+      id: 'bca',
+      key: 'BCA',
+      name: 'BCA',
+      fullName: 'Bachelor of Computer Applications',
+      icon: Cpu,
+      iconBg: '#DBEAFE',
+      iconColor: '#2563EB',
+      borderColor: '#BFDBFE'
+    },
+    {
       id: 'mca',
       key: 'MCA',
       name: 'MCA',
@@ -57,6 +57,16 @@ export default function SelectCoursePage({ onNavigate }) {
       icon: BookOpen,
       iconBg: '#FEF3C7',
       iconColor: '#D97706',
+      borderColor: '#FDE68A'
+    },
+    {
+      id: 'bba',
+      key: 'BBA',
+      name: 'BBA',
+      fullName: 'Bachelor of Business Administration',
+      icon: TrendingUp,
+      iconBg: '#FEF3C7',
+      iconColor: '#B45309',
       borderColor: '#FDE68A'
     },
     {
@@ -78,16 +88,6 @@ export default function SelectCoursePage({ onNavigate }) {
       iconBg: '#DCFCE7',
       iconColor: '#16A34A',
       borderColor: '#BBF7D0'
-    },
-    {
-      id: 'bba',
-      key: 'BBA',
-      name: 'BBA',
-      fullName: 'Bachelor of Business Administration',
-      icon: TrendingUp,
-      iconBg: '#FEF3C7',
-      iconColor: '#B45309',
-      borderColor: '#FDE68A'
     }
   ];
 

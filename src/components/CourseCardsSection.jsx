@@ -5,6 +5,7 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
   const courses = [
     {
       id: 'btech',
+      order: 1,
       courseName: 'B.Tech',
       fullName: 'Bachelor of Technology',
       tagline: 'Build Innovate Create !',
@@ -37,7 +38,42 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
       )
     },
     {
+      id: 'mtech',
+      order: 2,
+      courseName: 'M.Tech',
+      fullName: 'Master of Technology',
+      tagline: 'Research Innovate Lead !',
+      description: 'For future researchers, innovators and tech leaders.',
+      badgeColor: '#6D28D9',
+      bgGradient: 'linear-gradient(180deg, #EDE9FE 0%, #FFFFFF 100%)',
+      borderColor: '#DDD6FE',
+      btnColor: '#6D28D9',
+      btnHover: '#5B21B6',
+      illustration: (
+        <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', maxHeight: '115px' }}>
+          {/* Laptop Base & Screen */}
+          <rect x="25" y="32" width="95" height="62" rx="6" fill="#1E1B4B" stroke="#4338CA" strokeWidth="2" />
+          <rect x="30" y="37" width="85" height="52" rx="3" fill="#0F172A" />
+          {/* Research / AI text and circuit on screen */}
+          <text x="72" y="66" fill="#A78BFA" fontFamily="monospace" fontSize="15" fontWeight="bold" textAnchor="middle">&lt;R&amp;D / AI&gt;</text>
+          {/* Laptop Keyboard Base */}
+          <path d="M12 94 L133 94 L124 103 L21 103 Z" fill="#94A3B8" stroke="#64748B" strokeWidth="1.5" />
+          {/* Gear & Research Circuit Node */}
+          <circle cx="150" cy="40" r="14" fill="#DDD6FE" stroke="#8B5CF6" strokeWidth="2" strokeDasharray="4,2" />
+          <circle cx="150" cy="40" r="6" fill="#6D28D9" />
+          {/* Circuit lines */}
+          <path d="M150 54 V70 H136" stroke="#8B5CF6" strokeWidth="2" strokeLinecap="round" />
+          <circle cx="134" cy="70" r="3" fill="#A78BFA" />
+          {/* Advanced Engineering Thesis / Research Books Stack */}
+          <rect x="18" y="99" width="55" height="9" rx="2" fill="#6D28D9" />
+          <rect x="22" y="94" width="48" height="6" rx="1.5" fill="#8B5CF6" />
+          <rect x="25" y="89" width="42" height="6" rx="1.5" fill="#C4B5FD" />
+        </svg>
+      )
+    },
+    {
       id: 'bca',
+      order: 3,
       courseName: 'BCA',
       fullName: 'Bachelor of Computer Applications',
       tagline: 'Code Create Connect !',
@@ -71,6 +107,7 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
     },
     {
       id: 'mca',
+      order: 4,
       courseName: 'MCA',
       fullName: 'Master of Computer Applications',
       tagline: 'Code Learn Lead !',
@@ -102,14 +139,47 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
       )
     },
     {
+      id: 'bba',
+      order: 5,
+      courseName: 'BBA',
+      fullName: 'Bachelor of Business Administration',
+      tagline: 'Learn Manage Grow !',
+      description: 'Foundation for modern business, management and entrepreneurship.',
+      badgeColor: '#D97706',
+      bgGradient: 'linear-gradient(180deg, #FFFBEB 0%, #FFFFFF 100%)',
+      borderColor: '#FDE68A',
+      btnColor: '#D97706',
+      btnHover: '#B45309',
+      illustration: (
+        <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', maxHeight: '115px' }}>
+          {/* Ascending Growth Bars */}
+          <rect x="28" y="72" width="11" height="24" rx="2" fill="#FDE68A" />
+          <rect x="43" y="56" width="11" height="40" rx="2" fill="#FCD34D" />
+          <rect x="58" y="40" width="11" height="56" rx="2" fill="#F59E0B" />
+          <rect x="73" y="26" width="11" height="70" rx="2" fill="#D97706" />
+          {/* Growth Arrow line */}
+          <path d="M24 78 L78 22 L88 32" stroke="#D97706" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+          {/* Modern Business Folder / Portfolio */}
+          <rect x="94" y="52" width="62" height="44" rx="6" fill="#F59E0B" stroke="#D97706" strokeWidth="1.5" />
+          <path d="M94 62 H156" stroke="#D97706" strokeWidth="1.5" />
+          <rect x="117" y="58" width="16" height="8" rx="2" fill="#FFFBEB" stroke="#D97706" strokeWidth="1" />
+          {/* Small Globe / Connection circle */}
+          <circle cx="160" cy="38" r="12" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="1.5" />
+          <ellipse cx="160" cy="38" rx="6" ry="12" stroke="#F59E0B" strokeWidth="1" />
+          <line x1="148" y1="38" x2="172" y2="38" stroke="#F59E0B" strokeWidth="1" />
+        </svg>
+      )
+    },
+    {
       id: 'mba',
+      order: 6,
       courseName: 'MBA',
       fullName: 'Master of Business Administration',
       tagline: 'Think Plan Lead !',
       description: 'Learn to lead, manage and create impact.',
       badgeColor: '#92400E',
-      bgGradient: 'linear-gradient(180deg, #FFFBEB 0%, #FFFFFF 100%)',
-      borderColor: '#FDE68A',
+      bgGradient: 'linear-gradient(180deg, #FEF3C7 0%, #FFFFFF 100%)',
+      borderColor: '#FCD34D',
       btnColor: '#B45309',
       btnHover: '#92400E',
       illustration: (
@@ -136,6 +206,7 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
     },
     {
       id: 'bpharm',
+      order: 7,
       courseName: 'B.Pharm',
       fullName: 'Bachelor of Pharmacy',
       tagline: 'Research Heal Serve !',
@@ -172,58 +243,20 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
           <rect x="148" y="82" width="32" height="7" rx="1.5" fill="#BE185D" />
         </svg>
       )
-    },
-    {
-      id: 'mtech',
-      courseName: 'M.Tech',
-      fullName: 'Master of Technology',
-      tagline: 'Research Innovate Lead !',
-      description: 'Advanced postgraduate engineering and specialization mastery.',
-      badgeColor: '#7C3AED',
-      bgGradient: 'linear-gradient(180deg, #F5F3FF 0%, #FFFFFF 100%)',
-      borderColor: '#DDD6FE',
-      btnColor: '#7C3AED',
-      btnHover: '#6D28D9',
-      illustration: (
-        <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', maxHeight: '115px' }}>
-          <rect x="30" y="28" width="90" height="60" rx="6" fill="#1E1B4B" stroke="#4338CA" strokeWidth="2" />
-          <rect x="35" y="33" width="80" height="50" rx="3" fill="#0F172A" />
-          <text x="75" y="64" fill="#A78BFA" fontFamily="monospace" fontSize="18" fontWeight="bold" textAnchor="middle">&lt;AI/ML&gt;</text>
-          <circle cx="145" cy="50" r="16" fill="#8B5CF6" opacity="0.8" />
-          <path d="M135 75 L155 75 L145 95 Z" fill="#6366F1" />
-          <rect x="22" y="96" width="55" height="8" rx="2" fill="#7C3AED" />
-        </svg>
-      )
-    },
-    {
-      id: 'bba',
-      courseName: 'BBA',
-      fullName: 'Bachelor of Business Administration',
-      tagline: 'Strategize Grow Succeed !',
-      description: 'Business leadership, entrepreneurship, marketing and corporate management.',
-      badgeColor: '#C2410C',
-      bgGradient: 'linear-gradient(180deg, #FFF7ED 0%, #FFFFFF 100%)',
-      borderColor: '#FFEDD5',
-      btnColor: '#EA580C',
-      btnHover: '#C2410C',
-      illustration: (
-        <svg viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', maxHeight: '115px' }}>
-          <rect x="32" y="65" width="12" height="30" rx="2" fill="#FDBA74" />
-          <rect x="48" y="48" width="12" height="47" rx="2" fill="#FB923C" />
-          <rect x="64" y="32" width="12" height="63" rx="2" fill="#EA580C" />
-          <path d="M30 68 L66 28 L76 36" stroke="#C2410C" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-          <rect x="85" y="50" width="62" height="42" rx="5" fill="#7C2D12" stroke="#431407" strokeWidth="1.5" />
-          <rect x="108" y="42" width="16" height="8" rx="2" fill="#F97316" />
-        </svg>
-      )
     }
   ];
 
-  const handleCardClick = (courseId) => {
+  // Sort by order before rendering
+  const sortedCourses = [...courses].sort((a, b) => a.order - b.order);
+
+  const handleCardClick = (course) => {
+    const courseId = course?.id || course;
     if (onSelectCourse) {
       onSelectCourse(courseId);
     } else if (onNavigate) {
-      onNavigate('notes');
+      onNavigate('notes', { course: course?.courseName || courseId });
+    } else {
+      window.location.href = `/notes?course=${encodeURIComponent(course?.courseName || courseId)}`;
     }
   };
 
@@ -277,10 +310,10 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
             alignItems: 'stretch'
           }}
         >
-          {courses.map(course => (
+          {sortedCourses.map(course => (
             <div
               key={course.id}
-              onClick={() => handleCardClick(course.id)}
+              onClick={() => handleCardClick(course)}
               style={{
                 background: course.bgGradient,
                 border: `1.5px solid ${course.borderColor}`,
