@@ -47,3 +47,6 @@ server/scraped_*.json
 server/sync_*.cjs
 server/test_*.cjs
 *.timestamp-*
+
+.vercel
+.env*

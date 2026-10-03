@@ -1,0 +1,7 @@
+node_modules
+uploads
+backups
+scratch
+server/data
+eng.traineddata
+*.log
