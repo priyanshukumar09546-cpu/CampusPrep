@@ -19,23 +19,31 @@ import { pyqsData as localPyqsData, pyqsData } from '../data/pyqsData';
 import { notesData } from '../data/notesData';
 import { allCourses } from '../data/subjectsData';
 import { trackPYQOpened } from '../utils/progressTracker';
+import { normalizeCourseKey, getDataCourseValue, AVAILABLE_COURSES } from '../data/courseMapping.ts';
 
-// NORMALIZE FOR ALL 7 COURSES
+// NORMALIZE COURSE — uses centralized mapping for all 24 AKTU programmes
 export const normalizeCourse = (param) => {
   if (!param) return 'BTech';
-  const p = String(param).toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
-  const map = {
-    'btech': 'BTech',
-    'bca': 'BCA',
-    'mtech': 'MTech',
-    'mca': 'MCA',
-    'mba': 'MBA',
-    'bba': 'BBA',
-    'bpharm': 'BPharm',
-    'bpharma': 'BPharm',
-    'bpharmacy': 'BPharm'
+  const result = normalizeCourseKey(param);
+  return result || 'BTech';
+};
+
+// Map a normalized course key to the allCourses data key for subject hierarchy
+const getAllCoursesKey = (normalizedKey) => {
+  const courses = allCourses || {};
+  if (courses[normalizedKey]) return normalizedKey;
+  const PARENT_MAP = {
+    'BTechBiotechnology': 'BTech', 'BTechAgriculture': 'BTech', 'BTechLateral': 'BTech',
+    'BBA_BMS': 'BBA',
+    'BPharmLateral': 'BPharm', 'PharmD': 'BPharm',
+    'MPharm': null,
+    'MCAIntegrated': 'MCA', 'MCALateral': 'MCA',
+    'MBAIntegrated': 'MBA', 'MBALateral': 'MBA',
+    'BArch': null, 'BDes': null, 'BHMCT': null, 'BFAD': null, 'BFA': null, 'BVoc': null
   };
-  return map[p] || 'BTech';
+  const parent = PARENT_MAP[normalizedKey];
+  if (parent && courses[parent]) return parent;
+  return null;
 };
 
 export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTech', onSelectCourse }) {
@@ -52,8 +60,9 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
 
   let courseParam = getCourseParam();
   const normalizedCourse = normalizeCourse(courseParam);
+  const allCoursesKey = getAllCoursesKey(normalizedCourse);
   const courses = allCourses || {};
-  const selectedCourseData = courses[normalizedCourse];
+  const selectedCourseData = allCoursesKey ? courses[allCoursesKey] : null;
 
   // Course State for backward compatibility with child components
   const [selectedCourse, setSelectedCourse] = useState(normalizedCourse);
@@ -135,7 +144,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
       localStorage.setItem('campusprep_selected_course', norm);
     } catch (e) {}
     if (onSelectCourse) onSelectCourse(norm);
-    window.location.href = `/pyqs?course=${norm}`;
+    window.location.href = `/pyqs?course=${encodeURIComponent(norm)}`;
   };
 
   // Hero Search State
@@ -274,30 +283,31 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            {['BTech', 'MTech', 'BCA', 'MCA', 'BBA', 'MBA', 'BPharm'].map(courseName => {
-              const isSelected = normalizedCourse === courseName;
+            {AVAILABLE_COURSES.map(({ key: courseKey, name: displayName }) => {
+              const isSelected = normalizedCourse === courseKey;
               return (
                 <button
-                  key={courseName}
-                  onClick={() => handleCourseTabChange(courseName)}
+                  key={courseKey}
+                  onClick={() => handleCourseTabChange(courseKey)}
                   style={{
-                    padding: '0.45rem 1.25rem',
+                    padding: '0.4rem 0.9rem',
                     borderRadius: '9999px',
                     border: isSelected ? '2px solid #7A2327' : '1.5px solid #E8E2D5',
                     backgroundColor: isSelected ? '#7A2327' : '#ffffff',
                     color: isSelected ? '#ffffff' : '#3A3530',
                     fontWeight: isSelected ? 800 : 600,
-                    fontSize: '0.85rem',
+                    fontSize: '0.78rem',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.4rem',
+                    gap: '0.35rem',
                     boxShadow: isSelected ? '0 4px 12px rgba(122,35,39,0.3)' : '0 1px 3px rgba(0,0,0,0.04)',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.2s ease',
+                    whiteSpace: 'nowrap'
                   }}
                 >
-                  <span>{courseName === 'BTech' ? 'B.Tech' : courseName === 'MTech' ? 'M.Tech' : courseName === 'BPharm' ? 'B.Pharm' : courseName}</span>
-                  {isSelected && <Check size={14} strokeWidth={3} />}
+                  <span>{displayName}</span>
+                  {isSelected && <Check size={13} strokeWidth={3} />}
                 </button>
               );
             })}

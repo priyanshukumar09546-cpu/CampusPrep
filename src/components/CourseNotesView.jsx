@@ -31,7 +31,7 @@ export default function CourseNotesView({
   onNavigate
 }) {
   const normKey = normalizeCourseKey(courseKey);
-  const isBTech = normKey === 'B.Tech';
+  const isBTech = normKey === 'B.Tech' || normKey === 'BTech';
   const courseMeta = getCourseMeta(normKey) || COURSES[0];
 
   // Read URL query params on initial load

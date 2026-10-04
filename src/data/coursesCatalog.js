@@ -1,4 +1,5 @@
 import { btechCatalogData } from './btechCatalogData.js';
+import { normalizeCourseKey as mapNormalizeCourseKey, AVAILABLE_COURSES, COURSE_CONFIG } from './courseMapping.ts';
 
 // Comprehensive Course Catalog & Architecture Definition for ProfessorVirus
 // Covers B.Tech, MCA, MBA, and B.Pharm with unified metadata, navigation flows, and curriculum
@@ -425,8 +426,64 @@ export const COURSES = [{
 
 export function getCourseById(courseId) {
   if (!courseId) return COURSES[0];
-  const norm = String(courseId).toLowerCase().replace(/[^a-z]/g, '');
-  return COURSES.find(c => c.id === norm || c.key.toLowerCase().replace(/[^a-z]/g, '') === norm) || COURSES[0];
+  const norm = String(courseId).toLowerCase().replace(/[^a-z0-9]/g, '');
+  const existing = COURSES.find(c => c.id === norm || c.key.toLowerCase().replace(/[^a-z0-9]/g, '') === norm);
+  if (existing) return existing;
+
+  // Support all 24 AKTU programmes via central courseMapping
+  const normKey = mapNormalizeCourseKey(courseId);
+  const avail = AVAILABLE_COURSES.find(ac => ac.key === normKey || ac.name.toLowerCase().replace(/[^a-z0-9]/g, '') === norm);
+  const cfg = (normKey && COURSE_CONFIG[normKey]) || (avail && COURSE_CONFIG[avail.key]) || null;
+
+  if (avail || cfg) {
+    const name = (avail && avail.name) || (cfg && cfg.name) || courseId;
+    const fullName = (avail && avail.fullName) || (cfg && cfg.fullName) || name;
+    const badgeColor = (avail && avail.badgeColor) || '#0F766E';
+    const years = (cfg && cfg.years) || ['1st Year', '2nd Year'];
+
+    let sems = [];
+    let subjectsBySemester = {};
+    if (cfg && cfg.sems) {
+      Object.entries(cfg.sems).forEach(([yr, semNums]) => {
+        (semNums || []).forEach(sn => {
+          const semKey = `Semester ${sn}`;
+          sems.push(semKey);
+          const rawSubs = (cfg.subjects && cfg.subjects[sn]) || [];
+          subjectsBySemester[semKey] = rawSubs.map((sub, idx) => {
+            if (typeof sub === 'string') {
+              const codePrefix = name.replace(/[^A-Za-z]/g, '').toUpperCase().slice(0, 3) || 'SUB';
+              return { code: `${codePrefix}-${sn}0${idx + 1}`, name: sub };
+            }
+            return sub;
+          });
+        });
+      });
+    }
+    if (sems.length === 0) {
+      sems = ['Semester 1', 'Semester 2'];
+    }
+
+    return {
+      id: (avail && avail.key.toLowerCase()) || norm,
+      key: (avail && avail.key) || normKey || courseId,
+      name,
+      fullName,
+      tagline: 'AKTU Verified Curriculum',
+      description: `Official AKTU syllabus, notes, and academic resources for ${fullName}.`,
+      badgeColor,
+      btnColor: badgeColor,
+      btnHover: badgeColor,
+      bgGradient: 'linear-gradient(180deg, #FAF7F2 0%, #FFFFFF 100%)',
+      borderColor: '#E8E2D5',
+      filterType: 'semester',
+      years,
+      semesters: sems,
+      units: [1, 2, 3, 4, 5],
+      subjectsBySemester
+    };
+  }
+
+  return COURSES[0];
 }
 
 export function getCourseMeta(courseKey) {
@@ -482,12 +539,9 @@ export function getSubjectsForCourse(courseKey, semester, specialization = null,
 
 export function normalizeCourseKey(courseStr) {
   if (!courseStr) return 'B.Tech';
-  const s = String(courseStr).toLowerCase().replace(/[^a-z]/g, '');
-  if (s === 'bca') return 'BCA';
-  if (s === 'mca') return 'MCA';
-  if (s === 'mba') return 'MBA';
-  if (s === 'bba') return 'BBA';
-  if (s === 'mtech') return 'M.Tech';
-  if (s === 'bpharm' || s.includes('pharm')) return 'B.Pharm';
-  return 'B.Tech';
+  const norm = mapNormalizeCourseKey(courseStr);
+  if (norm === 'BTech') return 'B.Tech';
+  if (norm === 'BPharma') return 'B.Pharm';
+  if (norm === 'MTech') return 'M.Tech';
+  return norm || 'B.Tech';
 }

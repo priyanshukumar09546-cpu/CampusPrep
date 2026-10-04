@@ -55,7 +55,7 @@ export default function CoursePyqsView({
   onNavigate
 }) {
   const normKey = normalizeCourseKey(courseKey);
-  const isBTech = normKey === 'B.Tech';
+  const isBTech = normKey === 'B.Tech' || normKey === 'BTech';
   const courseMeta = getCourseMeta(normKey) || COURSES[0];
 
   // Helper to read URL query params on initial mount

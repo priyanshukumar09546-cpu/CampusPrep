@@ -54,40 +54,33 @@ import CourseSelectModal from '../components/CourseSelectModal';
 import { notesData as localNotesData, notesData } from '../data/notesData';
 import { pyqsData as localPyqsData, pyqsData } from '../data/pyqsData';
 import { allCourses } from '../data/subjectsData';
+import { normalizeCourseKey, getDataCourseValue, AVAILABLE_COURSES } from '../data/courseMapping.ts';
 
-// NORMALIZE FOR ALL 7 COURSES
+// NORMALIZE COURSE — uses centralized mapping for all 24 AKTU programmes
 export const normalizeCourse = (param) => {
   if (!param) return 'BTech';
-  const p = String(param).toLowerCase().replace(/\s+/g, '').replace(/\./g, '').replace(/\//g, '');
-  const map = {
-    'btech': 'BTech',
-    'btechbiotechnology': 'BTech',
-    'btechagriculture': 'BTech',
-    'btechlateralentry': 'BTech',
-    'bca': 'BCA',
-    'mtech': 'MTech',
-    'mca': 'MCA',
-    'mcaintegrated': 'MCA',
-    'mcalateralentry': 'MCA',
-    'mba': 'MBA',
-    'mbaintegrated': 'MBA',
-    'mbalateralentry': 'MBA',
-    'bba': 'BBA',
-    'bbabms': 'BBA',
-    'bpharm': 'BPharm',
-    'bpharma': 'BPharm',
-    'bpharmacy': 'BPharm',
-    'bpharmlateralentry': 'BPharm',
-    'pharmd': 'BPharm',
-    'mpharm': 'MTech',
-    'barch': 'BTech',
-    'bdes': 'BTech',
-    'bhmct': 'BTech',
-    'bfad': 'BTech',
-    'bfa': 'BTech',
-    'bvoc': 'BTech'
+  const result = normalizeCourseKey(param);
+  return result || 'BTech'; // fallback only for truly unknown values
+};
+
+// Map a normalized course key to the allCourses data key for subject hierarchy
+const getAllCoursesKey = (normalizedKey) => {
+  // allCourses has keys: BTech, BCA, MTech, MCA, MBA, BPharm, BBA (and aliases)
+  const courses = allCourses || {};
+  if (courses[normalizedKey]) return normalizedKey;
+  // Map sub-courses to their parent allCourses key
+  const PARENT_MAP = {
+    'BTechBiotechnology': 'BTech', 'BTechAgriculture': 'BTech', 'BTechLateral': 'BTech',
+    'BBA_BMS': 'BBA',
+    'BPharmLateral': 'BPharm', 'PharmD': 'BPharm',
+    'MPharm': null,
+    'MCAIntegrated': 'MCA', 'MCALateral': 'MCA',
+    'MBAIntegrated': 'MBA', 'MBALateral': 'MBA',
+    'BArch': null, 'BDes': null, 'BHMCT': null, 'BFAD': null, 'BFA': null, 'BVoc': null
   };
-  return map[p] || 'BTech';
+  const parent = PARENT_MAP[normalizedKey];
+  if (parent && courses[parent]) return parent;
+  return null;
 };
 
 export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'BTech', onSelectCourse }) {
@@ -104,8 +97,9 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
 
   let courseParam = getCourseParam();
   const normalizedCourse = normalizeCourse(courseParam);
+  const allCoursesKey = getAllCoursesKey(normalizedCourse);
   const courses = allCourses || {};
-  const selectedCourseData = courses[normalizedCourse];
+  const selectedCourseData = allCoursesKey ? courses[allCoursesKey] : null;
 
   // Course State for backward compatibility with child components
   const [selectedCourse, setSelectedCourse] = useState(normalizedCourse);
@@ -141,7 +135,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
     } catch (e) {}
   };
 
-  // Course Switcher Tab Handler
+  // Course Switcher Tab Handler — uses unique stable keys, never index-based
   const handleCourseTabChange = (courseKey) => {
     const norm = normalizeCourse(courseKey);
     setSelectedCourse(norm);
@@ -149,7 +143,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
       localStorage.setItem('campusprep_selected_course', norm);
     } catch (e) {}
     if (onSelectCourse) onSelectCourse(norm);
-    window.location.href = `/notes?course=${norm}`;
+    window.location.href = `/notes?course=${encodeURIComponent(norm)}`;
   };
 
   // SAFE RENDERING FOR ALL
@@ -214,13 +208,13 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
 
   const fetchBackendNotes = React.useCallback((courseVal, branchVal, yearVal) => {
     const c = courseVal || normalizedCourse || 'BTech';
+    const dataCourse = getDataCourseValue(c);
     
     // STEP 1: ALWAYS load local first (instant, works offline)
     try {
-      const localMatches = Object.values(notesData).flat().filter(n => {
-        const nc = normalizeCourse(n.course);
-        return nc === normalizeCourse(c);
-      });
+      const localMatches = dataCourse ? Object.values(notesData).flat().filter(n => {
+        return n.course === dataCourse;
+      }) : [];
       if (localMatches.length > 0) {
         setDbNotes(localMatches);
       }
@@ -228,8 +222,9 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
       console.log('[LOCAL NOTES] Fallback error', e);
     }
 
-    let url = `${API_URL}/api/notes?course=${encodeURIComponent(c)}`;
-    if (c === 'BTech' || c === 'B.Tech') {
+    if (!dataCourse) return; // No data exists for this course yet
+    let url = `${API_URL}/api/notes?course=${encodeURIComponent(dataCourse)}`;
+    if (dataCourse === 'B.Tech') {
       const b = branchVal || selectedBranch || 'CSE';
       const y = yearVal || selectedYear || '1st Year';
       url += `&branch=${encodeURIComponent(b)}&year=${encodeURIComponent(y)}`;
@@ -1034,30 +1029,31 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            {['BTech', 'MTech', 'BCA', 'MCA', 'BBA', 'MBA', 'BPharm'].map(courseName => {
-              const isSelected = normalizedCourse === courseName;
+            {AVAILABLE_COURSES.map(({ key: courseKey, name: displayName }) => {
+              const isSelected = normalizedCourse === courseKey;
               return (
                 <button
-                  key={courseName}
-                  onClick={() => handleCourseTabChange(courseName)}
+                  key={courseKey}
+                  onClick={() => handleCourseTabChange(courseKey)}
                   style={{
-                    padding: '0.45rem 1.25rem',
+                    padding: '0.4rem 0.9rem',
                     borderRadius: '9999px',
                     border: isSelected ? '2px solid #7A2327' : '1.5px solid #E8E2D5',
                     backgroundColor: isSelected ? '#7A2327' : '#ffffff',
                     color: isSelected ? '#ffffff' : '#3A3530',
                     fontWeight: isSelected ? 800 : 600,
-                    fontSize: '0.85rem',
+                    fontSize: '0.78rem',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.4rem',
+                    gap: '0.35rem',
                     boxShadow: isSelected ? '0 4px 12px rgba(122,35,39,0.3)' : '0 1px 3px rgba(0,0,0,0.04)',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.2s ease',
+                    whiteSpace: 'nowrap'
                   }}
                 >
-                  <span>{courseName === 'BTech' ? 'B.Tech' : courseName === 'MTech' ? 'M.Tech' : courseName === 'BPharm' ? 'B.Pharm' : courseName}</span>
-                  {isSelected && <Check size={14} strokeWidth={3} />}
+                  <span>{displayName}</span>
+                  {isSelected && <Check size={13} strokeWidth={3} />}
                 </button>
               );
             })}

@@ -16,6 +16,7 @@ import StayConnectedPopup from './components/StayConnectedPopup';
 import MobileBottomNav from './components/MobileBottomNav';
 import CookieConsent from './components/CookieConsent';
 import Home from './pages/Home';
+import { normalizeCourseKey } from './data/courseMapping.ts';
 
 import { Clock } from 'lucide-react';
 // Pages
@@ -844,35 +845,9 @@ export default function App() {
             onFeatureClick={handleFeatureClick}
             onSelectCourse={(courseId, courseKey) => {
               // CourseCardsSection passes (course.id, course.key)
-              // Use the key directly if provided, otherwise map from id
-              const courseIdMap = {
-                'btech': 'B.Tech',
-                'btech-biotech': 'B.Tech Biotechnology',
-                'btech-agri': 'B.Tech Agriculture',
-                'btech-lateral': 'B.Tech Lateral Entry',
-                'bca': 'BCA',
-                'bba': 'BBA',
-                'bba-bms': 'BBA / BMS',
-                'bpharm': 'B.Pharm',
-                'bpharm-lateral': 'B.Pharm Lateral Entry',
-                'pharmd': 'Pharm.D',
-                'mtech': 'M.Tech',
-                'mpharm': 'M.Pharm',
-                'mca': 'MCA',
-                'mca-integrated': 'MCA Integrated',
-                'mca-lateral': 'MCA Lateral Entry',
-                'mba': 'MBA',
-                'mba-integrated': 'MBA Integrated',
-                'mba-lateral': 'MBA Lateral Entry',
-                'barch': 'B.Arch',
-                'bdes': 'B.Des',
-                'bhmct': 'BHMCT',
-                'bfad': 'BFAD',
-                'bfa': 'BFA',
-                'bvoc': 'B.Voc'
-              };
-              const resolvedKey = courseKey || courseIdMap[courseId] || 'B.Tech';
-              handleCourseSelected(resolvedKey, 'notes');
+              // Use centralized normalizeCourseKey for stable mapping
+              const resolved = normalizeCourseKey(courseKey) || normalizeCourseKey(courseId) || 'BTech';
+              handleCourseSelected(resolved, 'notes');
             }}
             onSelectYear={handleSelectYear}
             onOpenAI={() => setIsAIModalOpen(true)}
