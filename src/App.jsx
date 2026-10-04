@@ -842,15 +842,37 @@ export default function App() {
             onSearch={handleSearch}
             onSelectBranch={handleSelectBranch}
             onFeatureClick={handleFeatureClick}
-            onSelectCourse={(courseId) => {
-              let courseKey = 'B.Tech';
-              if (courseId === 'bca') courseKey = 'BCA';
-              else if (courseId === 'mca') courseKey = 'MCA';
-              else if (courseId === 'mba') courseKey = 'MBA';
-              else if (courseId === 'bpharm') courseKey = 'B.Pharm';
-              else if (courseId === 'bba') courseKey = 'BBA';
-              else if (courseId === 'mtech') courseKey = 'M.Tech';
-              handleCourseSelected(courseKey, 'notes');
+            onSelectCourse={(courseId, courseKey) => {
+              // CourseCardsSection passes (course.id, course.key)
+              // Use the key directly if provided, otherwise map from id
+              const courseIdMap = {
+                'btech': 'B.Tech',
+                'btech-biotech': 'B.Tech Biotechnology',
+                'btech-agri': 'B.Tech Agriculture',
+                'btech-lateral': 'B.Tech Lateral Entry',
+                'bca': 'BCA',
+                'bba': 'BBA',
+                'bba-bms': 'BBA / BMS',
+                'bpharm': 'B.Pharm',
+                'bpharm-lateral': 'B.Pharm Lateral Entry',
+                'pharmd': 'Pharm.D',
+                'mtech': 'M.Tech',
+                'mpharm': 'M.Pharm',
+                'mca': 'MCA',
+                'mca-integrated': 'MCA Integrated',
+                'mca-lateral': 'MCA Lateral Entry',
+                'mba': 'MBA',
+                'mba-integrated': 'MBA Integrated',
+                'mba-lateral': 'MBA Lateral Entry',
+                'barch': 'B.Arch',
+                'bdes': 'B.Des',
+                'bhmct': 'BHMCT',
+                'bfad': 'BFAD',
+                'bfa': 'BFA',
+                'bvoc': 'B.Voc'
+              };
+              const resolvedKey = courseKey || courseIdMap[courseId] || 'B.Tech';
+              handleCourseSelected(resolvedKey, 'notes');
             }}
             onSelectYear={handleSelectYear}
             onOpenAI={() => setIsAIModalOpen(true)}

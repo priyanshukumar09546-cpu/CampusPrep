@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { 
   ArrowLeft, 
   Search, 
@@ -29,7 +29,7 @@ export default function SelectYearPage({ onNavigate }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl">
+    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
       
       {/* Corner Leaves Decoration */}
       <div 

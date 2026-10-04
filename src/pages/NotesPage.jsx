@@ -58,17 +58,34 @@ import { allCourses } from '../data/subjectsData';
 // NORMALIZE FOR ALL 7 COURSES
 export const normalizeCourse = (param) => {
   if (!param) return 'BTech';
-  const p = String(param).toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
+  const p = String(param).toLowerCase().replace(/\s+/g, '').replace(/\./g, '').replace(/\//g, '');
   const map = {
     'btech': 'BTech',
+    'btechbiotechnology': 'BTech',
+    'btechagriculture': 'BTech',
+    'btechlateralentry': 'BTech',
     'bca': 'BCA',
     'mtech': 'MTech',
     'mca': 'MCA',
+    'mcaintegrated': 'MCA',
+    'mcalateralentry': 'MCA',
     'mba': 'MBA',
+    'mbaintegrated': 'MBA',
+    'mbalateralentry': 'MBA',
     'bba': 'BBA',
+    'bbabms': 'BBA',
     'bpharm': 'BPharm',
     'bpharma': 'BPharm',
-    'bpharmacy': 'BPharm'
+    'bpharmacy': 'BPharm',
+    'bpharmlateralentry': 'BPharm',
+    'pharmd': 'BPharm',
+    'mpharm': 'MTech',
+    'barch': 'BTech',
+    'bdes': 'BTech',
+    'bhmct': 'BTech',
+    'bfad': 'BTech',
+    'bfa': 'BTech',
+    'bvoc': 'BTech'
   };
   return map[p] || 'BTech';
 };

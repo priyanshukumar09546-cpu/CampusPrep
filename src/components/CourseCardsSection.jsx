@@ -411,10 +411,11 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
 
   const handleCardClick = (course) => {
     if (onSelectCourse) {
+      // onSelectCourse already handles navigation to the Notes page
       onSelectCourse(course.id, course.key);
-    }
-    if (onNavigate) {
-      onNavigate('select-year');
+    } else if (onNavigate) {
+      // Fallback: navigate to notes if no onSelectCourse handler
+      onNavigate('notes');
     }
   };
 
