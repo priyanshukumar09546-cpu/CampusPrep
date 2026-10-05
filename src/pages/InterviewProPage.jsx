@@ -29,7 +29,6 @@ import {
   HelpCircle,
   Lightbulb
 } from 'lucide-react';
-import MobileInterviewProScreen from '../components/MobileInterviewProScreen';
 
 export default function InterviewProPage({ onNavigate, onOpenAuth }) {
   // Interactive Modals State
@@ -195,12 +194,7 @@ export default function InterviewProPage({ onNavigate, onOpenAuth }) {
   ];
 
   return (
-    <>
-      <div className="pv-mobile-interview-pro-view">
-        <MobileInterviewProScreen onNavigate={onNavigate} />
-      </div>
-
-      <div className="pv-desktop-interview-pro-view" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
       {/* =========================================================================
           HERO SECTION
@@ -1883,6 +1877,5 @@ export default function InterviewProPage({ onNavigate, onOpenAuth }) {
       `}</style>
 
     </div>
-    </>
   );
 }
