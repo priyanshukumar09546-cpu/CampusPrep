@@ -1,5 +1,6 @@
 // Centralized Subject Data Catalog for CampusPrep / ProfessorVirus
 // Covers B.Tech, BCA, M.Tech, MCA, MBA, and B.Pharm across all years and semesters
+import { COURSE_CONFIG } from './courseMapping.ts';
 
 export interface SubjectItem {
   id: string;
@@ -751,4 +752,30 @@ allCourses["B.Pharm"] = allCourses["BPharm"];
 allCourses["B.Pharma"] = allCourses["BPharm"];
 allCourses["BPharma"] = allCourses["BPharm"];
 allCourses["M.Tech"] = allCourses["MTech"];
+
+// Enrich allCourses for all 24 AKTU programmes from COURSE_CONFIG
+Object.entries(COURSE_CONFIG).forEach(([cKey, conf]: [string, any]) => {
+  if (!allCourses[cKey] && conf.sems && conf.subjects) {
+    const branchName = (conf.branches && conf.branches[0]) || "General";
+    const yearObj: Record<string, SubjectRef[]> = {};
+    Object.entries(conf.sems).forEach(([yr, semArr]: [string, any]) => {
+      const subList: SubjectRef[] = [];
+      const seen = new Set<string>();
+      (semArr || []).forEach((sn: number) => {
+        const rawSubs = conf.subjects[sn] || [];
+        rawSubs.forEach((item: any, idx: number) => {
+          const name = typeof item === 'object' && item.name ? item.name : String(item);
+          const code = typeof item === 'object' && item.code ? item.code : `${cKey}-${sn}0${idx + 1}`;
+          if (!seen.has(code)) {
+            seen.add(code);
+            subList.push({ code, name });
+          }
+        });
+      });
+      yearObj[yr] = subList;
+    });
+    allCourses[cKey] = { [branchName]: yearObj };
+  }
+});
+
 

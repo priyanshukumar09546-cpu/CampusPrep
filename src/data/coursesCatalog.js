@@ -1,5 +1,5 @@
 import { btechCatalogData } from './btechCatalogData.js';
-import { normalizeCourseKey as mapNormalizeCourseKey, AVAILABLE_COURSES, COURSE_CONFIG } from './courseMapping.ts';
+import { normalizeCourseKey as mapNormalizeCourseKey, AVAILABLE_COURSES, COURSE_CONFIG, normalizeYearStr } from './courseMapping.ts';
 
 // Comprehensive Course Catalog & Architecture Definition for ProfessorVirus
 // Covers B.Tech, MCA, MBA, and B.Pharm with unified metadata, navigation flows, and curriculum
@@ -443,11 +443,13 @@ export function getCourseById(courseId) {
 
     let sems = [];
     let subjectsBySemester = {};
+    let semestersByYear = {};
     if (cfg && cfg.sems) {
       Object.entries(cfg.sems).forEach(([yr, semNums]) => {
+        semestersByYear[yr] = ['All Semesters', ...((semNums || []).map(sn => `Semester ${sn}`))];
         (semNums || []).forEach(sn => {
           const semKey = `Semester ${sn}`;
-          sems.push(semKey);
+          if (!sems.includes(semKey)) sems.push(semKey);
           const rawSubs = (cfg.subjects && cfg.subjects[sn]) || [];
           subjectsBySemester[semKey] = rawSubs.map((sub, idx) => {
             if (typeof sub === 'string') {
@@ -478,6 +480,7 @@ export function getCourseById(courseId) {
       filterType: 'semester',
       years,
       semesters: sems,
+      semestersByYear,
       units: [1, 2, 3, 4, 5],
       subjectsBySemester
     };
@@ -493,7 +496,15 @@ export function getCourseMeta(courseKey) {
 export function getSubjectsForCourse(courseKey, semester, specialization = null, year = null, branch = null) {
   const normKey = normalizeCourseKey(courseKey);
   if (normKey === 'B.Tech') {
-    const y = year || '1st Year';
+    let y = year;
+    if (!y && semester && semester !== 'All Semesters' && semester !== 'All') {
+      const sNum = Number(String(semester).replace(/[^0-9]/g, ''));
+      if (sNum === 1 || sNum === 2) y = '1st Year';
+      else if (sNum === 3 || sNum === 4) y = '2nd Year';
+      else if (sNum === 5 || sNum === 6) y = '3rd Year';
+      else if (sNum === 7 || sNum === 8) y = '4th Year';
+    }
+    if (!y) y = '1st Year';
     const b = branch || 'CSE';
     const yearData = btechCatalogData[y] || btechCatalogData['1st Year'];
     let subjects = (yearData && yearData[b]) ? yearData[b] : [];
@@ -512,21 +523,30 @@ export function getSubjectsForCourse(courseKey, semester, specialization = null,
   if (!course || !course.subjectsBySemester) return [];
 
   if (semester && semester !== 'All Semesters' && semester !== 'All') {
-    const semSubjects = course.subjectsBySemester[semester] || [];
+    let semSubjects = course.subjectsBySemester[semester];
+    if (!semSubjects) {
+      const semDigit = String(semester).replace(/[^0-9]/g, '');
+      semSubjects = course.subjectsBySemester[`Semester ${semDigit}`] || course.subjectsBySemester[`Sem ${semDigit}`] || [];
+    }
     if (specialization && specialization !== 'All' && specialization !== 'Core Management') {
       return semSubjects.filter(s => !s.spec || s.spec === specialization || s.spec === 'Core Management');
     }
     return semSubjects;
   }
 
-  // If year is specified (e.g. BCA 1st Year, 2nd Year, 3rd Year)
-  if (year && course.semestersByYear && course.semestersByYear[year]) {
-    const yearSems = course.semestersByYear[year];
-    let res = [];
-    yearSems.forEach(s => {
-      if (course.subjectsBySemester[s]) res.push(...course.subjectsBySemester[s]);
-    });
-    return res;
+  // If year is specified (e.g. BCA 1st Year, 2nd Year, 3rd Year, Pharm.D 5th Year, etc.)
+  if (year) {
+    const normYr = normalizeYearStr(year);
+    const yearSems = (course.semestersByYear && (course.semestersByYear[year] || course.semestersByYear[normYr])) || [];
+    if (yearSems && yearSems.length > 0) {
+      let res = [];
+      yearSems.forEach(s => {
+        if (s !== 'All Semesters' && course.subjectsBySemester[s]) {
+          res.push(...course.subjectsBySemester[s]);
+        }
+      });
+      if (res.length > 0) return res;
+    }
   }
 
   // Fallback: return all subjects for this course
