@@ -32,6 +32,8 @@ import {
 } from '../data/courseMapping.ts';
 import { getAktuSyllabusForSubject } from '../data/aktuSyllabusData';
 import { API_URL } from '../config/api';
+import { notesData as localNotesData } from '../data/notesData';
+import { pyqsData as localPyqsData } from '../data/pyqsData';
 
 // Icons mapping helper for subjects
 function getSubjectIcon(name = '', code = '') {
@@ -48,7 +50,7 @@ function getSubjectIcon(name = '', code = '') {
 }
 
 export default function MobileNotesScreen({ 
-  courseKey = 'BCA', 
+  courseKey = 'BTech', 
   selectedYearProp = '1st Year',
   selectedBranchProp = 'CSE',
   dbNotes = [], 
@@ -62,7 +64,7 @@ export default function MobileNotesScreen({
   const normKey = normalizeCourseKey(courseKey);
 
   // 1. Navigation Flow States: Course -> Branch -> Year -> Semester -> Subject
-  const [selectedCourse, setSelectedCourse] = useState(normKey || 'BCA');
+  const [selectedCourse, setSelectedCourse] = useState(normKey || 'BTech');
   const [selectedBranch, setSelectedBranch] = useState(selectedBranchProp || 'CSE');
   const [selectedYear, setSelectedYear] = useState(normalizeYearStr(selectedYearProp) || '1st Year');
   const [selectedSem, setSelectedSem] = useState('All');
@@ -229,8 +231,34 @@ export default function MobileNotesScreen({
       fetch(pyqsUrl, { cache: 'no-store' }).then(r => r.json()).catch(() => ({ pyqs: [] }))
     ]).then(([notesData, pyqsData]) => {
       if (!isSubscribed) return;
-      setSubjectLiveNotes(Array.isArray(notesData.notes) ? notesData.notes : []);
-      setSubjectLivePyqs(Array.isArray(pyqsData.pyqs) ? pyqsData.pyqs : []);
+      let fetchedNotes = Array.isArray(notesData.notes) ? notesData.notes : [];
+      if (fetchedNotes.length === 0) {
+        const clean = String(subCode || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const hyphen = clean.replace(/^([A-Z]+)(\d+)$/, '$1-$2');
+        const candidates = [subCode, clean, hyphen, subCode?.toUpperCase(), subCode?.toLowerCase()];
+        for (const k of candidates) {
+          if (k && localNotesData[k] && localNotesData[k].length > 0) {
+            fetchedNotes = localNotesData[k];
+            break;
+          }
+        }
+      }
+
+      let fetchedPyqs = Array.isArray(pyqsData.pyqs) ? pyqsData.pyqs : [];
+      if (fetchedPyqs.length === 0) {
+        const clean = String(subCode || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const hyphen = clean.replace(/^([A-Z]+)(\d+)$/, '$1-$2');
+        const candidates = [subCode, clean, hyphen, subCode?.toUpperCase(), subCode?.toLowerCase()];
+        for (const k of candidates) {
+          if (k && localPyqsData[k] && localPyqsData[k].length > 0) {
+            fetchedPyqs = localPyqsData[k];
+            break;
+          }
+        }
+      }
+
+      setSubjectLiveNotes(fetchedNotes);
+      setSubjectLivePyqs(fetchedPyqs);
       setIsLoadingDetail(false);
     });
 

@@ -533,33 +533,34 @@ export function normalizeCourseKey(c) {
 // Returns null if no data exists for this course yet.
 // ============================================================================
 export function getDataCourseValue(normalizedKey: string): string | null {
+  const norm = normalizeCourseKey(normalizedKey) || normalizedKey;
   const DATA_COURSE_MAP: Record<string, string> = {
     'BTech': 'B.Tech',
     'BTechBiotechnology': 'B.Tech',   // shares B.Tech data pool
     'BTechAgriculture': 'B.Tech',     // shares B.Tech data pool
     'BTechLateral': 'B.Tech',         // shares B.Tech data pool
     'BCA': 'BCA',
-    'BBA': null,       // no data yet
-    'BBA_BMS': null,   // no data yet
+    'BBA': 'BBA',
+    'BBA_BMS': 'BBA',
     'BPharma': 'B.Pharm',
     'BPharmLateral': 'B.Pharm',       // shares B.Pharm data pool
-    'PharmD': null,    // no data yet
-    'MTech': null,     // no data yet
-    'MPharm': null,    // no data yet
+    'PharmD': 'B.Pharm',
+    'MTech': 'M.Tech',
+    'MPharm': 'B.Pharm',
     'MCA': 'MCA',
     'MCAIntegrated': 'MCA',           // shares MCA data pool
     'MCALateral': 'MCA',             // shares MCA data pool
     'MBA': 'MBA',
     'MBAIntegrated': 'MBA',           // shares MBA data pool
     'MBALateral': 'MBA',             // shares MBA data pool
-    'BArch': null,     // no data yet
-    'BDes': null,      // no data yet
-    'BHMCT': null,     // no data yet
-    'BFAD': null,      // no data yet
-    'BFA': null,       // no data yet
-    'BVoc': null       // no data yet
+    'BArch': 'B.Tech',
+    'BDes': 'B.Tech',
+    'BHMCT': 'B.Tech',
+    'BFAD': 'B.Tech',
+    'BFA': 'B.Tech',
+    'BVoc': 'B.Tech'
   };
-  return DATA_COURSE_MAP[normalizedKey] ?? null;
+  return DATA_COURSE_MAP[norm] ?? DATA_COURSE_MAP[normalizedKey] ?? 'B.Tech';
 }
 
 // Year string normalizer (1 -> '1st Year', '2nd Year', etc.)

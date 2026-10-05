@@ -386,21 +386,95 @@ export default function CourseNotesView({
     return raw;
   };
 
+  // Helper to fetch all offline local notes matching a subject from notesData
+  const getSubjectNotesFromLocal = useCallback((targetSubject) => {
+    if (!targetSubject) return [];
+    const subCode = targetSubject.code || '';
+    const cleanCode = String(subCode).toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const cleanHyphen = cleanCode.replace(/^([A-Z]+)(\d+)$/, '$1-$2');
+
+    // 1. Candidate lookup keys in localNotesData
+    const candidateKeys = [
+      subCode,
+      subCode.toUpperCase(),
+      subCode.toLowerCase(),
+      cleanCode,
+      cleanHyphen
+    ];
+    // AKTU prefix equivalence: BAS <-> KAS, BCS <-> KCS, BEE <-> KEE, BEC <-> KEC, BME <-> KME
+    if (cleanCode.startsWith('BAS')) candidateKeys.push('KAS' + cleanCode.slice(3), 'KAS-' + cleanCode.slice(3));
+    if (cleanCode.startsWith('KAS')) candidateKeys.push('BAS' + cleanCode.slice(3), 'BAS-' + cleanCode.slice(3));
+    if (cleanCode.startsWith('BCS')) candidateKeys.push('KCS' + cleanCode.slice(3), 'KCS-' + cleanCode.slice(3));
+    if (cleanCode.startsWith('KCS')) candidateKeys.push('BCS' + cleanCode.slice(3), 'BCS-' + cleanCode.slice(3));
+    if (cleanCode.startsWith('BEE')) candidateKeys.push('KEE' + cleanCode.slice(3), 'KEE-' + cleanCode.slice(3));
+    if (cleanCode.startsWith('KEE')) candidateKeys.push('BEE' + cleanCode.slice(3), 'BEE-' + cleanCode.slice(3));
+    if (cleanCode.startsWith('BEC')) candidateKeys.push('KEC' + cleanCode.slice(3), 'KEC-' + cleanCode.slice(3));
+    if (cleanCode.startsWith('KEC')) candidateKeys.push('BEC' + cleanCode.slice(3), 'BEC-' + cleanCode.slice(3));
+    if (cleanCode.startsWith('BME')) candidateKeys.push('KME' + cleanCode.slice(3), 'KME-' + cleanCode.slice(3));
+    if (cleanCode.startsWith('KME')) candidateKeys.push('BME' + cleanCode.slice(3), 'BME-' + cleanCode.slice(3));
+
+    const found = [];
+    const seenIds = new Set();
+    for (const k of candidateKeys) {
+      if (k && localNotesData[k] && Array.isArray(localNotesData[k])) {
+        for (const n of localNotesData[k]) {
+          const key = n.id || `${n.title}_${n.unit}_${n.pdfUrl || n.driveUrl}`;
+          if (!seenIds.has(key)) {
+            seenIds.add(key);
+            found.push(n);
+          }
+        }
+      }
+    }
+
+    // 2. If nothing found by direct keys, check all local notes matching subject
+    if (found.length === 0) {
+      const allNotes = Object.values(localNotesData).flat();
+      for (const n of allNotes) {
+        if (isSubjectStrictMatch(targetSubject, n)) {
+          const key = n.id || `${n.title}_${n.unit}_${n.pdfUrl || n.driveUrl}`;
+          if (!seenIds.has(key)) {
+            seenIds.add(key);
+            found.push(n);
+          }
+        }
+      }
+    }
+
+    return found;
+  }, [isSubjectStrictMatch]);
+
+  // Unified merged source notes helper ensuring NO notes are ever dropped
+  const getMergedSourceNotes = useCallback((targetSubject) => {
+    if (!targetSubject) return [];
+    const localMatches = getSubjectNotesFromLocal(targetSubject);
+    const bcaMatches = (normKey === 'BCA') ? BCA_NOTES_CATALOG.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
+    const apiNotes = Array.isArray(dbNotes) ? dbNotes.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
+    const btechNotes = isBTech && Array.isArray(localBTechNotes) ? localBTechNotes.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
+
+    const merged = [];
+    const seen = new Set();
+    const addNote = (n) => {
+      if (!n) return;
+      const key = n.id || `${n.title || ''}_${n.unit || n.unitNumber || ''}_${n.pdfUrl || n.driveUrl || n.url || ''}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        merged.push(n);
+      }
+    };
+
+    apiNotes.forEach(addNote);
+    btechNotes.forEach(addNote);
+    localMatches.forEach(addNote);
+    bcaMatches.forEach(addNote);
+
+    return merged;
+  }, [getSubjectNotesFromLocal, normKey, dbNotes, isBTech, localBTechNotes, isSubjectStrictMatch]);
+
   // Available units dynamic based on notes for active subject
   const availableUnitsForActiveSubject = useMemo(() => {
     if (!activeSubject) return ['All', 1, 2, 3, 4, 5];
-    const subCode = activeSubject.code || '';
-    const fallbackNotes = (subCode && (localNotesData[subCode] || localNotesData[subCode.toUpperCase()] || localNotesData[subCode.toLowerCase()])) || [];
-
-    const sourceNotes = (Array.isArray(dbNotes) && dbNotes.length > 0)
-      ? dbNotes
-      : (isBTech 
-          ? (Array.isArray(localBTechNotes) && localBTechNotes.length > 0 ? localBTechNotes : fallbackNotes)
-          : (normKey === 'BCA' 
-              ? BCA_NOTES_CATALOG 
-              : fallbackNotes));
-
-    const notesForSubject = sourceNotes.filter(n => isSubjectStrictMatch(activeSubject, n));
+    const notesForSubject = getMergedSourceNotes(activeSubject);
     if (notesForSubject.length === 0) return ['All', 1, 2, 3, 4, 5];
 
     const unitSet = new Set();
@@ -418,22 +492,12 @@ export default function CourseNotesView({
     const result = ['All', ...sortedUnits];
     if (hasExtra) result.push('Extra');
     return result;
-  }, [activeSubject, isBTech, localBTechNotes, dbNotes, normKey, isSubjectStrictMatch]);
+  }, [activeSubject, getMergedSourceNotes]);
 
   // Filter notes for active subject and active unit with strict isolation
   const matchedNotes = useMemo(() => {
-    const subCode = activeSubject?.code || '';
-    const fallbackNotes = (subCode && (localNotesData[subCode] || localNotesData[subCode.toUpperCase()] || localNotesData[subCode.toLowerCase()])) || [];
-
-    const sourceNotes = (Array.isArray(dbNotes) && dbNotes.length > 0)
-      ? dbNotes
-      : (isBTech 
-          ? (Array.isArray(localBTechNotes) && localBTechNotes.length > 0 ? localBTechNotes : fallbackNotes)
-          : (normKey === 'BCA' 
-              ? BCA_NOTES_CATALOG 
-              : fallbackNotes));
-
-    if (!Array.isArray(sourceNotes) || !activeSubject) return [];
+    if (!activeSubject) return [];
+    const sourceNotes = getMergedSourceNotes(activeSubject);
 
     return sourceNotes.filter(n => {
       // 0. Strict Course Isolation
@@ -480,7 +544,7 @@ export default function CourseNotesView({
           if (nSemClean && semClean !== nSemClean) return false;
         }
       } else {
-        if (n.semester && activeSemester) {
+        if (n.semester && activeSemester && activeSemester !== 'All' && activeSemester !== 'All Semesters') {
           const semClean = String(activeSemester).replace(/[^0-9]/g, '');
           const nSemClean = String(n.semester).replace(/[^0-9]/g, '');
           if (semClean && nSemClean && semClean !== nSemClean) return false;
@@ -509,7 +573,7 @@ export default function CourseNotesView({
         return !isExtra && nUnitNum === Number(activeUnit);
       }
     });
-  }, [isBTech, localBTechNotes, dbNotes, activeSubject, activeYear, activeBranch, activeSemester, activeUnit, normKey, subjectSearch, isSubjectStrictMatch]);
+  }, [activeSubject, getMergedSourceNotes, isBTech, activeYear, activeBranch, activeSemester, activeUnit, normKey, subjectSearch, isSubjectStrictMatch]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>

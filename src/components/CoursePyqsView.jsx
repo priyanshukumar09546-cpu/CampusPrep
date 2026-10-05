@@ -45,6 +45,43 @@ const ACADEMIC_YEARS = [
 
 const EXAM_TYPES = ['All', 'Odd Semester', 'Even Semester', 'End Semester'];
 
+// Helper to reliably derive course for any PYQ item (even when p.course is undefined)
+export const getPyqCourse = (p) => {
+  if (!p) return 'B.Tech';
+  if (p.course) {
+    const norm = normalizeCourseKey(p.course);
+    return norm || p.course;
+  }
+  const code = String(p.subjectCode || p.code || '').toUpperCase().trim();
+  const sub = String(p.subject || p.subjectName || '').toLowerCase().trim();
+
+  if (code.startsWith('BBA') || sub.includes('bba')) return 'BBA';
+  if (code.startsWith('BCA') || code.startsWith('RCA') || sub.includes('bca')) return 'BCA';
+  if (code.startsWith('KMBN') || code.startsWith('MBA') || code.startsWith('RMB') || sub.includes('mba')) return 'MBA';
+  if (code.startsWith('KCA') || code.startsWith('MCA') || sub.includes('mca')) return 'MCA';
+  if (code.startsWith('BP') || code.startsWith('BPH') || sub.includes('pharm')) return 'B.Pharm';
+  if (code.startsWith('MTCS') || code.startsWith('MCS') || code.startsWith('MEC') || code.startsWith('MT') || sub.includes('m.tech') || sub.includes('mtech')) return 'M.Tech';
+
+  return 'B.Tech';
+};
+
+// Safe deduplicating merge helper so fallback data is never discarded
+const mergePyqLists = (primary, fallback) => {
+  const merged = [];
+  const seen = new Set();
+  const add = (p) => {
+    if (!p) return;
+    const key = p.id || `${p.subjectCode || ''}_${p.examYear || p.academicYear || p.session || p.year || ''}_${p.pdfUrl || p.driveUrl || p.url || ''}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      merged.push(p);
+    }
+  };
+  (primary || []).forEach(add);
+  (fallback || []).forEach(add);
+  return merged;
+};
+
 export default function CoursePyqsView({ 
   courseKey = 'B.Tech', 
   dbPyqs = [], 
@@ -110,17 +147,20 @@ export default function CoursePyqsView({
   }, []);
 
   const [localPyqs, setLocalPyqs] = useState(() => {
-    if (Array.isArray(dbPyqs) && dbPyqs.length > 0) return dbPyqs;
     try {
-      return Object.values(localPyqsData).flat();
+      const fallback = Object.values(localPyqsData).flat();
+      if (Array.isArray(dbPyqs) && dbPyqs.length > 0) {
+        return mergePyqLists(dbPyqs, fallback);
+      }
+      return fallback;
     } catch (e) {
-      return [];
+      return Array.isArray(dbPyqs) ? dbPyqs : [];
     }
   });
 
   useEffect(() => {
     if (Array.isArray(dbPyqs) && dbPyqs.length > 0) {
-      setLocalPyqs(dbPyqs);
+      setLocalPyqs(mergePyqLists(dbPyqs, allFallbackPyqs));
       return;
     }
     
@@ -140,7 +180,7 @@ export default function CoursePyqsView({
       .then(data => {
         const pyqList = Array.isArray(data) ? data : (data?.pyqs || []);
         if (pyqList.length > 0) {
-          setLocalPyqs(pyqList);
+          setLocalPyqs(mergePyqLists(pyqList, allFallbackPyqs));
         }
       })
       .catch(err => console.log('Backend not available, keeping local fallback pyqs:', err));
@@ -320,7 +360,7 @@ export default function CoursePyqsView({
 
     localPyqs.forEach(p => {
       // 1. Course Filter
-      const pCourse = cleanAlpha(p.course || 'B.Tech');
+      const pCourse = cleanAlpha(getPyqCourse(p));
       if (isBTech ? pCourse !== 'btech' : pCourse !== cleanAlpha(normKey)) return;
 
       if (isBTech) {
@@ -466,6 +506,9 @@ export default function CoursePyqsView({
       const sCanonName = normSubCanonical(sub.name);
 
       const count = localPyqs.filter(p => {
+        const pCourse = cleanAlpha(getPyqCourse(p));
+        if (isBTech ? pCourse !== 'btech' : pCourse !== cleanAlpha(normKey)) return false;
+
         if (isBTech) {
           const pYear = String(p.year || p.btechYear || '').replace(/[^0-9]/g, '');
           if (pYear && pYear !== targetYearDigit) return false;
@@ -559,7 +602,7 @@ export default function CoursePyqsView({
 
     return localPyqs.filter(p => {
       // 1. Course
-      const pCourse = cleanAlpha(p.course || 'B.Tech');
+      const pCourse = cleanAlpha(getPyqCourse(p));
       if (isBTech ? pCourse !== 'btech' : pCourse !== cleanAlpha(normKey)) return false;
 
       // 2. Branch & Year for B.Tech

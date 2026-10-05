@@ -72,7 +72,7 @@ const getAllCoursesKey = (normalizedKey) => {
   const PARENT_MAP = {
     'BTechBiotechnology': 'BTech', 'BTechAgriculture': 'BTech', 'BTechLateral': 'BTech',
     'BBA_BMS': 'BBA',
-    'BPharmLateral': 'BPharm', 'PharmD': 'BPharm',
+    'BPharmLateral': 'BPharm', 'PharmD': 'BPharm', 'BPharma': 'BPharm',
     'MPharm': null,
     'MCAIntegrated': 'MCA', 'MCALateral': 'MCA',
     'MBAIntegrated': 'MBA', 'MBALateral': 'MBA',
@@ -80,7 +80,7 @@ const getAllCoursesKey = (normalizedKey) => {
   };
   const parent = PARENT_MAP[normalizedKey];
   if (parent && courses[parent]) return parent;
-  return null;
+  return 'BTech';
 };
 
 export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'BTech', onSelectCourse }) {
@@ -99,22 +99,13 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   const normalizedCourse = normalizeCourse(courseParam);
   const allCoursesKey = getAllCoursesKey(normalizedCourse);
   const courses = allCourses || {};
-  const selectedCourseData = allCoursesKey ? courses[allCoursesKey] : null;
+  const selectedCourseData = allCoursesKey ? courses[allCoursesKey] : courses['BTech'];
 
   // Course State for backward compatibility with child components
   const [selectedCourse, setSelectedCourse] = useState(normalizedCourse);
 
-  // Modal open on first open if no course is selected/stored
-  const [isCourseModalOpen, setIsCourseModalOpen] = useState(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const c = params.get('course');
-      const saved = localStorage.getItem('campusprep_selected_course');
-      return !c && !saved;
-    } catch (e) {
-      return false;
-    }
-  });
+  // Modal disabled — course selector is always visible in the page tabs bar
+  const [isCourseModalOpen, setIsCourseModalOpen] = useState(false);
 
   useEffect(() => {
     if (initialCourse && normalizeCourse(initialCourse) !== normalizeCourse(selectedCourse)) {
@@ -143,7 +134,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
       localStorage.setItem('campusprep_selected_course', norm);
     } catch (e) {}
     if (onSelectCourse) onSelectCourse(norm);
-    window.location.href = `/notes?course=${encodeURIComponent(norm)}`;
+    updateUrlParams({ course: norm });
   };
 
   // SAFE RENDERING FOR ALL

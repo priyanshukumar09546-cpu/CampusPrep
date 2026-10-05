@@ -83,17 +83,12 @@ export default function App() {
       const params = new URLSearchParams(window.location.search);
       const c = params.get('course');
       if (c) {
-        const cLower = c.toLowerCase().replace(/\s+/g, '').replace(/\./g, '');
-        if (cLower === 'bca') return 'BCA';
-        if (cLower === 'mca') return 'MCA';
-        if (cLower === 'mba') return 'MBA';
-        if (cLower === 'bba') return 'BBA';
-        if (cLower === 'mtech') return 'MTech';
-        if (cLower.includes('pharm')) return 'BPharm';
-        return 'BTech';
+        return normalizeCourseKey(c) || 'BTech';
       }
+      const saved = localStorage.getItem('campusprep_selected_course');
+      if (saved) return normalizeCourseKey(saved) || saved;
     } catch (e) {}
-    return null;
+    return 'BTech';
   };
 
   const parseProjectSlug = () => {
@@ -239,13 +234,13 @@ export default function App() {
       return;
     }
 
-    const courseToUse = courseOverride !== undefined ? courseOverride : selectedCourse;
-    
-    // If navigating to notes or pyqs without a course selected, prompt Choose Your Course
-    if ((tab === 'notes' || tab === 'pyqs') && !courseToUse) {
-      setPendingCourseTarget(tab);
-      setIsCourseModalOpen(true);
-      return;
+    // Use stored course or fall back to BTech — never block navigation with a popup
+    const courseToUse = (courseOverride !== undefined && courseOverride !== null)
+      ? (normalizeCourseKey(courseOverride) || courseOverride)
+      : (selectedCourse || 'BTech');
+
+    if (!selectedCourse && courseToUse) {
+      setSelectedCourse(courseToUse);
     }
 
     let targetPath = '';

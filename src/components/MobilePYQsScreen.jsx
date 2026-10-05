@@ -25,9 +25,10 @@ import {
   getSubjectsForCourseMapping
 } from '../data/courseMapping.ts';
 import { API_URL } from '../config/api';
+import { pyqsData as localPyqsData } from '../data/pyqsData';
 
 export default function MobilePYQsScreen({ 
-  courseKey = 'BCA', 
+  courseKey = 'BTech', 
   selectedYearProp = '1st Year',
   selectedBranchProp = 'CSE',
   dbPyqs = [], 
@@ -40,7 +41,7 @@ export default function MobilePYQsScreen({
   const normKey = normalizeCourseKey(courseKey);
 
   // Navigation states: Course -> Branch -> Year -> Semester -> Subject -> PYQs
-  const [selectedCourse, setSelectedCourse] = useState(normKey || 'BCA');
+  const [selectedCourse, setSelectedCourse] = useState(normKey || 'BTech');
   const [selectedBranch, setSelectedBranch] = useState(selectedBranchProp || 'CSE');
   const [selectedYear, setSelectedYear] = useState(normalizeYearStr(selectedYearProp) || '1st Year');
   const [selectedSem, setSelectedSem] = useState('All');
@@ -205,16 +206,53 @@ export default function MobilePYQsScreen({
               targetSub.replace(/s$/, '') === pSub.replace(/s$/, '')
             );
           });
-          setSubjectPyqs(matched.length > 0 ? matched : data.pyqs);
+
+          let finalPyqs = matched.length > 0 ? matched : data.pyqs;
+          if ((!finalPyqs || finalPyqs.length === 0) && subCode) {
+            const clean = String(subCode || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+            const hyphen = clean.replace(/^([A-Z]+)(\d+)$/, '$1-$2');
+            const candidates = [subCode, clean, hyphen, subCode?.toUpperCase(), subCode?.toLowerCase()];
+            for (const k of candidates) {
+              if (k && localPyqsData[k] && localPyqsData[k].length > 0) {
+                finalPyqs = localPyqsData[k];
+                break;
+              }
+            }
+          }
+          setSubjectPyqs(finalPyqs || []);
         } else {
-          setSubjectPyqs([]);
+          let fallbackPyqs = [];
+          if (subCode) {
+            const clean = String(subCode || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+            const hyphen = clean.replace(/^([A-Z]+)(\d+)$/, '$1-$2');
+            const candidates = [subCode, clean, hyphen, subCode?.toUpperCase(), subCode?.toLowerCase()];
+            for (const k of candidates) {
+              if (k && localPyqsData[k] && localPyqsData[k].length > 0) {
+                fallbackPyqs = localPyqsData[k];
+                break;
+              }
+            }
+          }
+          setSubjectPyqs(fallbackPyqs);
         }
         setIsLoadingPyqs(false);
       })
       .catch(err => {
         if (!isSubscribed) return;
         console.error('Error fetching subject PYQs:', err);
-        setSubjectPyqs([]);
+        let fallbackPyqs = [];
+        if (subCode) {
+          const clean = String(subCode || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+          const hyphen = clean.replace(/^([A-Z]+)(\d+)$/, '$1-$2');
+          const candidates = [subCode, clean, hyphen, subCode?.toUpperCase(), subCode?.toLowerCase()];
+          for (const k of candidates) {
+            if (k && localPyqsData[k] && localPyqsData[k].length > 0) {
+              fallbackPyqs = localPyqsData[k];
+              break;
+            }
+          }
+        }
+        setSubjectPyqs(fallbackPyqs);
         setIsLoadingPyqs(false);
       });
 
