@@ -3599,6 +3599,7 @@ app.get('/api/notes', async (req, res) => {
     if (course) {
       const cNorm = course.toLowerCase().replace(/[^a-z]/g, '');
       if (cNorm === 'bca') findQuery.course = 'BCA';
+      else if (cNorm === 'bba') findQuery.course = 'BBA';
       else if (cNorm === 'mca') findQuery.course = 'MCA';
       else if (cNorm === 'mba') findQuery.course = 'MBA';
       else if (cNorm === 'bpharm') findQuery.course = 'B.Pharm';

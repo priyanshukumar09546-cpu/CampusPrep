@@ -43,13 +43,16 @@ export function isValidPdfUrl(url) {
     return false;
   }
 
-  // Placeholders, dummy domain links, and broken external BCA routes
+  // Placeholders, dummy domain links, broken external routes, and dead NPTEL mock links
   if (
     lower.includes('example.com') ||
     lower.includes('dummy.pdf') ||
     lower.includes('placeholder.pdf') ||
     lower.includes('fake.pdf') ||
-    lower.includes('aktupyq.com/bca/notes')
+    lower.includes('aktupyq.com/bca/notes') ||
+    lower.includes('nptel.ac.in/courses/106106145') ||
+    lower.includes('nptel.ac.in') ||
+    lower.includes('egyankosh.ac.in')
   ) {
     return false;
   }

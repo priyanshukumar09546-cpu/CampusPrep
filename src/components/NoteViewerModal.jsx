@@ -90,8 +90,13 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
     window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const providerName = note.provider || note.source || 'Faculty Lecture Notes';
-  const displayCategory = note.category || note.type || 'Verified Study Resource';
+  let rawProvider = (note.provider || note.source || 'Academic Notes').trim();
+  if (rawProvider.toLowerCase().includes('nptel') || rawProvider.toLowerCase().includes('aktu verified academic faculty')) {
+    rawProvider = 'Academic Notes';
+  }
+  const providerName = rawProvider;
+  const isGenuinelyVerified = Boolean(note.isVerified) && isAvailable && (targetUrl.includes('drive.google.com') || targetUrl.includes('docs.google.com'));
+  const displayCategory = note.category || note.type || 'Study Notes';
 
   return (
     <div style={{
@@ -183,7 +188,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                 }}
               >
                 <ExternalLink size={13} />
-                <span>{isMobile ? 'Drive' : 'Open Tab'}</span>
+                <span>{targetUrl.includes('drive.google.com') ? (isMobile ? 'Drive' : 'Open in Drive') : (isMobile ? 'Open' : 'Open Tab')}</span>
               </button>
             )}
 
@@ -302,8 +307,16 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
 
               <div>
                 <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600 }}>Verification</div>
-                <div style={{ fontSize: isMobile ? '0.76rem' : '0.84rem', fontWeight: 700, color: '#0284c7', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                  <ShieldCheck size={14} style={{ color: '#C88D2D' }} /> Verified Authentic
+                <div style={{ fontSize: isMobile ? '0.76rem' : '0.84rem', fontWeight: 700, color: isGenuinelyVerified ? '#059669' : '#64748b', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                  {isGenuinelyVerified ? (
+                    <>
+                      <ShieldCheck size={14} style={{ color: '#059669' }} /> Verified Document
+                    </>
+                  ) : (
+                    <>
+                      <FileText size={14} style={{ color: '#64748b' }} /> Academic Resource
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -378,7 +391,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                     cursor: 'pointer'
                   }}
                 >
-                  <ExternalLink size={12} /> Drive Tab
+                  <ExternalLink size={12} /> {targetUrl.includes('drive.google.com') ? 'Open in Drive' : 'Open Tab'}
                 </button>
 
                 <button

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
 import { BCA_NOTES_CATALOG } from '../data/bcaNotesData';
+import { BBA_NOTES_CATALOG } from '../data/bbaNotesData';
 import { notesData as localNotesData } from '../data/notesData';
 import { API_URL } from '../config/api';
 
@@ -224,6 +225,9 @@ export default function CourseNotesView({
     if (normKey === 'BCA') {
       return ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5', 'Semester 6'];
     }
+    if (normKey === 'BBA' || normKey === 'BBA_BMS') {
+      return ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5', 'Semester 6'];
+    }
     return courseMeta.semesters || ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4'];
   }, [isBTech, normKey, courseMeta, activeYear]);
 
@@ -272,6 +276,17 @@ export default function CourseNotesView({
 
       if (normKey === 'BCA') {
         const hasMatchingNote = BCA_NOTES_CATALOG.some(n => 
+          isSubjectStrictMatch(s, n) && (
+            (n.title && n.title.toLowerCase().includes(q)) ||
+            (n.fileName && n.fileName.toLowerCase().includes(q)) ||
+            (n.subjectName && n.subjectName.toLowerCase().includes(q))
+          )
+        );
+        if (hasMatchingNote) return true;
+      }
+
+      if (normKey === 'BBA' || normKey === 'BBA_BMS') {
+        const hasMatchingNote = BBA_NOTES_CATALOG.some(n => 
           isSubjectStrictMatch(s, n) && (
             (n.title && n.title.toLowerCase().includes(q)) ||
             (n.fileName && n.fileName.toLowerCase().includes(q)) ||
@@ -449,6 +464,7 @@ export default function CourseNotesView({
     if (!targetSubject) return [];
     const localMatches = getSubjectNotesFromLocal(targetSubject);
     const bcaMatches = (normKey === 'BCA') ? BCA_NOTES_CATALOG.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
+    const bbaMatches = (normKey === 'BBA' || normKey === 'BBA_BMS') ? BBA_NOTES_CATALOG.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
     const apiNotes = Array.isArray(dbNotes) ? dbNotes.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
     const btechNotes = isBTech && Array.isArray(localBTechNotes) ? localBTechNotes.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
 
@@ -467,6 +483,7 @@ export default function CourseNotesView({
     btechNotes.forEach(addNote);
     localMatches.forEach(addNote);
     bcaMatches.forEach(addNote);
+    bbaMatches.forEach(addNote);
 
     return merged;
   }, [getSubjectNotesFromLocal, normKey, dbNotes, isBTech, localBTechNotes, isSubjectStrictMatch]);
@@ -1220,16 +1237,20 @@ export default function CourseNotesView({
             }}>
               <BookOpen size={36} style={{ color: courseMeta.badgeColor, opacity: 0.8 }} />
               <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
-                No Notes available for this subject/unit yet.
+                {(normKey === 'BBA' || normKey === 'BBA_BMS')
+                  ? 'No verified notes available yet.'
+                  : 'No Notes available for this subject/unit yet.'}
               </h4>
               <p style={{ color: '#64748B', fontSize: '0.85rem', maxWidth: '380px', margin: 0 }}>
                 {String(activeUnit).toLowerCase() === 'extra'
                   ? `There are no standalone extra resources (formula sheets, complete sets) uploaded for ${activeSubject?.name} yet. You can view individual unit notes above.`
                   : activeUnit !== 'All' 
                     ? `There are no specific Unit ${activeUnit} notes verified yet for ${activeSubject?.name}. You can switch to "All Units" to view complete subject notes.`
-                    : normKey === 'BCA'
-                      ? 'No verified BCA resources available for this semester yet.'
-                      : `Our team is currently verifying and digitizing curriculum resources for ${activeSubject?.name}.`}
+                    : (normKey === 'BBA' || normKey === 'BBA_BMS')
+                      ? 'No verified BBA notes available yet from NotesGallery for this subject.'
+                      : normKey === 'BCA'
+                        ? 'No verified BCA resources available for this semester yet.'
+                        : `Our team is currently verifying and digitizing curriculum resources for ${activeSubject?.name}.`}
               </p>
               {onRequestNotes && (
                 <button
