@@ -164205,4 +164205,23 @@ export const notesData: Record<string, NoteItem[]> = {
   ]
 };
 
+// Additively enrich notesData with supplementary notes for all courses
+import { supplementaryNotesData } from './supplementaryNotesData.ts';
+Object.entries(supplementaryNotesData).forEach(([code, notes]) => {
+  if (!notesData[code]) {
+    notesData[code] = notes;
+  } else {
+    const existing = notesData[code];
+    const seen = new Set(existing.map(n => n.id || (n.title + '_' + n.unit)));
+    notes.forEach(n => {
+      const key = n.id || (n.title + '_' + n.unit);
+      if (!seen.has(key)) {
+        seen.add(key);
+        existing.push(n);
+      }
+    });
+  }
+});
+
 export default notesData;
+

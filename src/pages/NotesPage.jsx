@@ -204,7 +204,8 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
     // STEP 1: ALWAYS load local first (instant, works offline)
     try {
       const localMatches = dataCourse ? Object.values(notesData).flat().filter(n => {
-        return n.course === dataCourse;
+        const nCourseNorm = normalizeCourseKey(n.course);
+        return nCourseNorm === normalizeCourseKey(c) || n.course === dataCourse;
       }) : [];
       if (localMatches.length > 0) {
         setDbNotes(localMatches);

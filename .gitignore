@@ -8,6 +8,7 @@
 uploads/
 server/data/*.json
 !server/data/academicCorpus.json
+!server/data/notes.json
 
 # Logs
 logs

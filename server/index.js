@@ -3602,7 +3602,13 @@ app.get('/api/notes', async (req, res) => {
       else if (cNorm === 'mca') findQuery.course = 'MCA';
       else if (cNorm === 'mba') findQuery.course = 'MBA';
       else if (cNorm === 'bpharm') findQuery.course = 'B.Pharm';
-      else if (cNorm === 'btech') {
+      else if (cNorm === 'btechlateral' || cNorm === 'btechlateralentry') {
+        findQuery.course = { $in: ['BTechLateral', 'B.Tech Lateral Entry', 'btechlateral', 'BTech Lateral Entry'] };
+      } else if (cNorm === 'btechbiotechnology' || cNorm === 'btechbiotech') {
+        findQuery.course = { $in: ['BTechBiotechnology', 'B.Tech Biotechnology', 'btechbiotechnology'] };
+      } else if (cNorm === 'btechagriculture' || cNorm === 'btechagri') {
+        findQuery.course = { $in: ['BTechAgriculture', 'B.Tech Agriculture', 'btechagriculture'] };
+      } else if (cNorm === 'btech') {
         const btechOr = [{ course: 'B.Tech' }, { course: { $exists: false } }, { course: null }, { course: '' }];
         findQuery.$or = btechOr;
       } else {
@@ -3732,6 +3738,15 @@ app.get('/api/notes', async (req, res) => {
       const cNorm = course.toLowerCase().replace(/[^a-z]/g, '');
       notesList = notesList.filter(n => {
         const nCourse = (n.course || 'B.Tech').toLowerCase().replace(/[^a-z]/g, '');
+        if (cNorm === 'btechlateral' || cNorm === 'btechlateralentry') {
+          return nCourse === 'btechlateral' || nCourse === 'btechlateralentry';
+        }
+        if (cNorm === 'btechbiotechnology' || cNorm === 'btechbiotech') {
+          return nCourse === 'btechbiotechnology' || nCourse === 'btechbiotech';
+        }
+        if (cNorm === 'btechagriculture' || cNorm === 'btechagri') {
+          return nCourse === 'btechagriculture' || nCourse === 'btechagri';
+        }
         return nCourse === cNorm;
       });
     } else {

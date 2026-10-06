@@ -8046,6 +8046,9 @@ function AdminManageNoteModal({ note, initialData, onClose, onSaved }) {
             <label style={modalLabelStyle}>Course *</label>
             <select value={course} onChange={e => setCourse(e.target.value)} style={modalInputStyle}>
               <option value="B.Tech">B.Tech (Bachelor of Technology)</option>
+              <option value="BTechBiotechnology">B.Tech Biotechnology</option>
+              <option value="BTechAgriculture">B.Tech Agriculture</option>
+              <option value="BTechLateral">B.Tech Lateral Entry</option>
               <option value="MCA">MCA (Master of Computer Applications)</option>
               <option value="MBA">MBA (Master of Business Administration)</option>
               <option value="B.Pharm">B.Pharm (Bachelor of Pharmacy)</option>
@@ -8053,28 +8056,54 @@ function AdminManageNoteModal({ note, initialData, onClose, onSaved }) {
           </div>
 
           {/* Conditional: Branch & Year vs Semester / Specialization */}
-          {course === 'B.Tech' ? (
+          {(course === 'B.Tech' || course === 'BTechBiotechnology' || course === 'BTechAgriculture' || course === 'BTechLateral') ? (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
               <div>
-                <label style={modalLabelStyle}>Branch *</label>
+                <label style={modalLabelStyle}>Branch / Stream *</label>
                 <select value={branch} onChange={e => setBranch(e.target.value)} style={modalInputStyle}>
-                  <option value="CSE">CSE</option>
-                  <option value="ECE">ECE</option>
-                  <option value="ME">ME</option>
-                  <option value="CE">CE</option>
-                  <option value="IT">IT</option>
-                  <option value="EE">EE</option>
-                  <option value="AI & ML">AI & ML</option>
-                  <option value="DS">DS</option>
+                  {course === 'BTechBiotechnology' && <option value="Biotechnology">Biotechnology</option>}
+                  {course === 'BTechAgriculture' && <option value="Agriculture">Agriculture</option>}
+                  {course === 'BTechLateral' && (
+                    <>
+                      <option value="CSE">CSE</option>
+                      <option value="ECE">ECE</option>
+                      <option value="ME">ME</option>
+                      <option value="CE">CE</option>
+                      <option value="IT">IT</option>
+                      <option value="EE">EE</option>
+                    </>
+                  )}
+                  {course === 'B.Tech' && (
+                    <>
+                      <option value="CSE">CSE</option>
+                      <option value="ECE">ECE</option>
+                      <option value="ME">ME</option>
+                      <option value="CE">CE</option>
+                      <option value="IT">IT</option>
+                      <option value="EE">EE</option>
+                      <option value="AI & ML">AI & ML</option>
+                      <option value="DS">DS</option>
+                    </>
+                  )}
                 </select>
               </div>
               <div>
                 <label style={modalLabelStyle}>Year *</label>
                 <select value={year} onChange={e => setYear(e.target.value)} style={modalInputStyle}>
-                  <option value="Year 1">Year 1</option>
-                  <option value="Year 2">Year 2</option>
-                  <option value="Year 3">Year 3</option>
-                  <option value="Year 4">Year 4</option>
+                  {course === 'BTechLateral' ? (
+                    <>
+                      <option value="Year 2">Year 2 (Sem 3-4)</option>
+                      <option value="Year 3">Year 3 (Sem 5-6)</option>
+                      <option value="Year 4">Year 4 (Sem 7-8)</option>
+                    </>
+                  ) : (
+                    <>
+                      <option value="Year 1">Year 1</option>
+                      <option value="Year 2">Year 2</option>
+                      <option value="Year 3">Year 3</option>
+                      <option value="Year 4">Year 4</option>
+                    </>
+                  )}
                 </select>
               </div>
             </div>

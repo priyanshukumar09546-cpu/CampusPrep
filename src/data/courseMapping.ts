@@ -1334,29 +1334,29 @@ export function getDataCourseValue(normalizedKey: string): string | null {
   const norm = normalizeCourseKey(normalizedKey) || normalizedKey;
   const DATA_COURSE_MAP: Record<string, string> = {
     'BTech': 'B.Tech',
-    'BTechBiotechnology': 'B.Tech',   // shares B.Tech data pool
-    'BTechAgriculture': 'B.Tech',     // shares B.Tech data pool
-    'BTechLateral': 'B.Tech',         // shares B.Tech data pool
+    'BTechBiotechnology': 'BTechBiotechnology',
+    'BTechAgriculture': 'BTechAgriculture',
+    'BTechLateral': 'BTechLateral',
     'BCA': 'BCA',
     'BBA': 'BBA',
-    'BBA_BMS': 'BBA',
+    'BBA_BMS': 'BBA_BMS',
     'BPharma': 'B.Pharm',
-    'BPharmLateral': 'B.Pharm',       // shares B.Pharm data pool
-    'PharmD': 'B.Pharm',
+    'BPharmLateral': 'B.Pharm',
+    'PharmD': 'PharmD',
     'MTech': 'M.Tech',
-    'MPharm': 'B.Pharm',
+    'MPharm': 'MPharm',
     'MCA': 'MCA',
-    'MCAIntegrated': 'MCA',           // shares MCA data pool
-    'MCALateral': 'MCA',             // shares MCA data pool
+    'MCAIntegrated': 'MCAIntegrated',
+    'MCALateral': 'MCA',
     'MBA': 'MBA',
-    'MBAIntegrated': 'MBA',           // shares MBA data pool
-    'MBALateral': 'MBA',             // shares MBA data pool
-    'BArch': 'B.Tech',
-    'BDes': 'B.Tech',
-    'BHMCT': 'B.Tech',
-    'BFAD': 'B.Tech',
-    'BFA': 'B.Tech',
-    'BVoc': 'B.Tech'
+    'MBAIntegrated': 'MBAIntegrated',
+    'MBALateral': 'MBA',
+    'BArch': 'BArch',
+    'BDes': 'BDes',
+    'BHMCT': 'BHMCT',
+    'BFAD': 'BFAD',
+    'BFA': 'BFA',
+    'BVoc': 'BVoc'
   };
   return DATA_COURSE_MAP[norm] ?? DATA_COURSE_MAP[normalizedKey] ?? 'B.Tech';
 }

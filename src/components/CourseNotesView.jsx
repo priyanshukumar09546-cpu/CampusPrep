@@ -500,10 +500,19 @@ export default function CourseNotesView({
     const sourceNotes = getMergedSourceNotes(activeSubject);
 
     return sourceNotes.filter(n => {
-      // 0. Strict Course Isolation
+      // 0. Strict Course Isolation with degree compatibility support
       if (n.course) {
         const nCourseNorm = normalizeCourseKey(n.course);
-        if (nCourseNorm !== normKey) return false;
+        if (nCourseNorm !== normKey) {
+          const isCompatible = (
+            (nCourseNorm === 'B.Tech' && ['BTech', 'BTechLateral', 'BTechBiotechnology', 'BTechAgriculture'].includes(normKey)) ||
+            (nCourseNorm === 'B.Pharm' && ['BPharma', 'BPharmLateral'].includes(normKey)) ||
+            (nCourseNorm === 'MCA' && ['MCA', 'MCALateral'].includes(normKey)) ||
+            (nCourseNorm === 'MBA' && ['MBA', 'MBALateral'].includes(normKey)) ||
+            (nCourseNorm === 'BBA' && ['BBA', 'BBA_BMS'].includes(normKey))
+          );
+          if (!isCompatible) return false;
+        }
       }
 
       // 1. Strict Subject Isolation
