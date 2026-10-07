@@ -57,6 +57,7 @@ const DEFAULT_RESUME_DATA = {
     {
       degree: '',
       fieldOfStudy: '',
+      board: '',
       institution: '',
       location: '',
       duration: '',
@@ -1197,7 +1198,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                         ...prev,
                         education: [
                           ...prev.education,
-                          { degree: '', fieldOfStudy: '', institution: '', location: '', duration: '', cgpaOrPercentage: '' }
+                          { degree: '', fieldOfStudy: '', board: '', institution: '', location: '', duration: '', cgpaOrPercentage: '' }
                         ]
                       }));
                     }}
@@ -1240,10 +1241,10 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
-                        placeholder="Degree (e.g. B.Tech)"
+                        placeholder="Degree (e.g. B.Tech / Class 12th)"
                         value={edu.degree}
                         onChange={(e) => {
                           const val = e.target.value;
@@ -1257,13 +1258,27 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                       <input
                         type="text"
-                        placeholder="Major (e.g. Computer Science)"
+                        placeholder="Major / Stream (e.g. ECE / PCM)"
                         value={edu.fieldOfStudy}
                         onChange={(e) => {
                           const val = e.target.value;
                           setResumeData(prev => {
                             const ed = [...prev.education];
                             ed[idx].fieldOfStudy = val;
+                            return { ...prev, education: ed };
+                          });
+                        }}
+                        style={{ padding: '0.45rem 0.6rem', borderRadius: '6px', border: '1px solid #DDD3C3', fontSize: '0.78rem', outline: 'none' }}
+                      />
+                      <input
+                        type="text"
+                        placeholder="Board / Univ (e.g. AKTU / CBSE)"
+                        value={edu.board || ''}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setResumeData(prev => {
+                            const ed = [...prev.education];
+                            ed[idx].board = val;
                             return { ...prev, education: ed };
                           });
                         }}

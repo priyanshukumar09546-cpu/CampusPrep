@@ -1,6 +1,6 @@
 /**
- * CampusPrep ATS Resume LaTeX Generator
- * Generates clean, standard Overleaf-compatible ATS-friendly LaTeX code.
+ * CampusPrep ATS Resume LaTeX Generator (ABES Master Format)
+ * Generates exact Overleaf-compatible LaTeX code matching the attached ABES Resume Reference.
  */
 
 // Escapes special characters for LaTeX safely
@@ -59,43 +59,39 @@ export function normalizePhone(phone) {
   return `tel:${hasPlus ? '+' : ''}${digits}`;
 }
 
-// Formats display phone cleanly (e.g. +91 7668016628)
+// Formats display phone cleanly
 export function formatDisplayPhone(phone) {
   if (!phone) return '';
   const str = String(phone).trim();
   if (!str) return '';
-  if (/[ ()\-]/.test(str)) return str;
-  const match = str.match(/^(\+\d{1,3})(\d{10})$/);
-  if (match) {
-    return `${match[1]} ${match[2]}`;
-  }
   return str;
 }
 
-// Formats CGPA or percentage for standard professional ATS display
+// Formats CGPA or percentage matching ABES reference: CGPA-7.0 or 76.2%
 export function formatEducationScore(raw) {
   if (!raw && raw !== 0) return '';
   const str = String(raw).trim();
   if (!str) return '';
-  if (/^(cgpa|percentage|percent|grade|score|gpa|cpi)/i.test(str)) {
-    return str;
+  
+  if (/^cgpa/i.test(str)) {
+    return str.replace(/^cgpa[:\s-]*/i, 'CGPA-');
   }
   if (str.endsWith('%')) {
-    return `Percentage: ${str}`;
+    return str;
   }
   const cleanNum = str.replace(/[^\d.]/g, '');
   const num = parseFloat(cleanNum);
   if (!isNaN(num)) {
     if (num <= 10) {
-      return `CGPA: ${str}`;
+      return `CGPA-${cleanNum}`;
     } else {
-      return `Percentage: ${str}${str.includes('%') ? '' : '%'}`;
+      return `${cleanNum}%`;
     }
   }
   return str;
 }
 
-// Extracts duration from education entry supporting duration, start/end dates and years
+// Extracts duration from education entry
 export function getEducationDuration(edu) {
   if (!edu) return '';
   let str = '';
@@ -111,18 +107,26 @@ export function getEducationDuration(edu) {
   return str.replace(/[–—]/g, '--');
 }
 
-// Combines degree and field of study cleanly without redundant duplication
+// Combines degree, field and board: e.g. B.Tech in ECE (AKTU), Class 12th (CBSE)
 export function getEducationDegreeTitle(edu) {
   if (!edu) return 'Degree';
   const degree = (edu.degree || '').trim();
   const field = (edu.fieldOfStudy || edu.field || edu.major || '').trim();
+  const board = (edu.board || edu.university || '').trim();
+  let title = '';
   if (degree && field) {
     if (degree.toLowerCase().includes(field.toLowerCase())) {
-      return degree;
+      title = degree;
+    } else {
+      title = `${degree} in ${field}`;
     }
-    return `${degree} in ${field}`;
+  } else {
+    title = degree || field || 'Degree';
   }
-  return degree || field || 'Degree';
+  if (board && !title.toLowerCase().includes(board.toLowerCase())) {
+    title = `${title} (${board})`;
+  }
+  return title;
 }
 
 // Generates complete, valid, Overleaf-compilable .tex source from resume data
@@ -135,7 +139,7 @@ export function generateLatex(resumeData, options = {}) {
   // Filter sections to include ONLY non-empty user data
   const rawEducation = Array.isArray(resumeData.education) ? resumeData.education : [];
   const education = rawEducation.filter(e => 
-    e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.duration?.trim() || e.cgpaOrPercentage?.trim() || e.cgpa?.trim())
+    e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.duration?.trim() || e.cgpaOrPercentage?.trim() || e.cgpa?.trim() || e.board?.trim())
   );
 
   let rawSkills = [];
@@ -143,11 +147,12 @@ export function generateLatex(resumeData, options = {}) {
     rawSkills = resumeData.skills;
   } else if (resumeData.skills && typeof resumeData.skills === 'object') {
     const s = resumeData.skills;
-    if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
-    if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks & Libraries', items: s.frameworks });
     if (s.tools?.trim()) rawSkills.push({ category: 'Developer Tools', items: s.tools });
+    if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
+    if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks', items: s.frameworks });
     if (s.databases?.trim()) rawSkills.push({ category: 'Databases', items: s.databases });
     if (s.coreConcepts?.trim()) rawSkills.push({ category: 'Core CS Concepts', items: s.coreConcepts });
+    if (s.skills?.trim()) rawSkills.push({ category: 'Skills', items: s.skills });
     if (s.other?.trim()) rawSkills.push({ category: 'Other Skills', items: s.other });
   }
   const skills = rawSkills.filter(s => {
@@ -183,11 +188,10 @@ export function generateLatex(resumeData, options = {}) {
 
   const fontSize = options.fontSize || '10pt';
   const margin = options.margin || '0.45in';
-  const template = options.template || resumeData.template || 'classic-tech';
 
   let tex = `%----------------------------------------------------------------------------------------
-% CampusPrep ATS One-Page Resume Template (${template})
-% Overleaf Standard Compatible (Single-page, text-based, machine readable)
+% ABES Resume Format - LaTeX Master Template
+% Matching exact typography, layout, icons, and single-page structure
 %----------------------------------------------------------------------------------------
 
 \\documentclass[${fontSize},a4paper]{article}
@@ -215,11 +219,12 @@ export function generateLatex(resumeData, options = {}) {
     pdfauthor={${escapeLatex(p.fullName || 'CampusPrep Resume')}}
 }
 
-% Clean ATS Section formatting
+% Exact ABES Section formatting: Title Case, large bold, full-width titlerule
 \\titleformat{\\section}{\\large\\bfseries}{}{0em}{}[\\titlerule]
-\\titlespacing*{\\section}{0pt}{5pt}{3pt}
+\\titlespacing*{\\section}{0pt}{6pt}{3pt}
 
-\\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=1.2em}
+% Exact ABES En-dash Bullet Points
+\\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=1.2em, label=--}
 \\pagestyle{empty}
 
 \\begin{document}
@@ -227,145 +232,116 @@ export function generateLatex(resumeData, options = {}) {
 `;
 
   //---------- HEADING ----------
-  const contactItems = [];
+  const line1Contacts = [];
   if (p.phone && p.phone.trim()) {
     const rawPhone = p.phone.trim();
-    contactItems.push(`\\faPhone\\ \\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
+    line1Contacts.push(`\\faPhone\\ \\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
   }
   if (p.email && p.email.trim()) {
     const cleanEmail = p.email.trim();
-    contactItems.push(`\\faEnvelope\\ \\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
-  }
-  if (p.location && p.location.trim()) {
-    contactItems.push(`\\faMapMarker\\ ${escapeLatex(p.location.trim())}`);
+    line1Contacts.push(`\\faEnvelope\\ \\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
   }
   const linkedin = p.linkedinUrl || p.linkedin;
   if (linkedin && linkedin.trim()) {
     const rawLink = linkedin.trim();
-    contactItems.push(`\\faLinkedin\\ \\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
+    line1Contacts.push(`\\faLinkedin\\ \\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
   }
   const github = p.githubUrl || p.github;
   if (github && github.trim()) {
     const rawGit = github.trim();
-    contactItems.push(`\\faGithub\\ \\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
+    line1Contacts.push(`\\faGithub\\ \\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
   }
+
   const portfolio = p.portfolioUrl || p.portfolio;
-  if (portfolio && portfolio.trim()) {
-    const rawPort = portfolio.trim();
-    contactItems.push(`\\faGlobe\\ \\href{${normalizeUrl(rawPort)}}{${escapeLatex(cleanDisplayUrl(rawPort))}}`);
-  }
+  const hasPortfolio = Boolean(portfolio && portfolio.trim());
 
   const hasName = !!(p.fullName && p.fullName.trim());
-  const hasContact = contactItems.length > 0;
+  const location = (p.location || '').trim();
 
-  if (hasName || hasContact) {
-    const isCenter = template !== 'modern-clean';
-    if (isCenter) {
-      tex += `%---------- HEADING ----------\n\\begin{center}\n`;
-      if (hasName) {
-        tex += `    {\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}}`;
-        const roleTitle = (p.targetRole || p.professionalHeadline || p.role || '').trim();
-        if (roleTitle) {
-          tex += ` \\\\[2pt]\n    {\\normalsize\\itshape ${escapeLatex(roleTitle)}}`;
-        }
-        if (hasContact) {
-          tex += ` \\\\[3pt]\n`;
-        } else {
-          tex += `\n`;
-        }
-      }
-      if (hasContact) {
-        tex += `    \\small\n    ${contactItems.join(' $|$ ')}\n`;
-      }
-      tex += `\\end{center}\n\\vspace{-6pt}\n\n`;
-    } else {
-      tex += `%---------- HEADING ----------\n\\noindent\n`;
-      if (hasName) {
-        tex += `{\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}}`;
-        const roleTitle = (p.targetRole || p.professionalHeadline || p.role || '').trim();
-        if (roleTitle) {
-          tex += ` \\hfill {\\normalsize\\itshape ${escapeLatex(roleTitle)}}`;
-        }
-        tex += ` \\\\[3pt]\n`;
-      }
-      if (hasContact) {
-        tex += `{\\small ${contactItems.join(' $|$ ')}}\n`;
-      }
-      tex += `\\vspace{4pt}\n\\hrule\n\\vspace{6pt}\n\n`;
+  if (hasName || line1Contacts.length > 0 || hasPortfolio) {
+    tex += `%---------- HEADING ----------\n\\begin{center}\n`;
+    if (hasName) {
+      tex += `    {\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}} \\\\[2pt]\n`;
     }
+    if (location) {
+      tex += `    {\\small ${escapeLatex(location)}} \\\\[3pt]\n`;
+    }
+    if (line1Contacts.length > 0) {
+      tex += `    {\\small ${line1Contacts.join(' \\quad ')}}\n`;
+    }
+    if (hasPortfolio) {
+      const rawPort = portfolio.trim();
+      tex += `    \\\\[2pt]\n    {\\small \\faGlobe\\ \\href{${normalizeUrl(rawPort)}}{Portfolio}}\n`;
+    }
+    tex += `\\end{center}\n\\vspace{-8pt}\n\n`;
   }
 
-  //---------- PROFESSIONAL SUMMARY ----------
+  //---------- PROFESSIONAL SUMMARY (if provided) ----------
   if (summary) {
-    tex += `%---------- PROFESSIONAL SUMMARY ----------\n\\section{PROFESSIONAL SUMMARY}\n${escapeLatex(summary)}\n\n`;
+    tex += `%---------- PROFESSIONAL SUMMARY ----------\n\\section{Professional Summary}\n${escapeLatex(summary)}\n\n`;
   }
 
   //---------- EDUCATION ----------
   if (education.length > 0) {
-    tex += `%---------- EDUCATION ----------\n\\section{EDUCATION}\n`;
+    tex += `%---------- EDUCATION ----------\n\\section{Education}\n`;
     education.forEach(edu => {
       const dates = getEducationDuration(edu);
       const degreeTitle = getEducationDegreeTitle(edu);
       const score = formatEducationScore(edu.cgpaOrPercentage || edu.cgpa || edu.percentage || edu.grade || edu.score);
+      const institution = (edu.institution || '').trim();
 
       tex += `\\noindent\\textbf{${escapeLatex(degreeTitle)}}`;
       if (dates) {
-        tex += ` \\hfill ${escapeLatex(dates)}`;
+        tex += ` \\hfill \\textbf{${escapeLatex(dates)}}`;
       }
       tex += ` \\\\\n`;
 
-      const subParts = [];
-      if (edu.institution && edu.institution.trim()) subParts.push(`\\textit{${escapeLatex(edu.institution.trim())}}`);
-      if (edu.board && edu.board.trim()) subParts.push(`(${escapeLatex(edu.board.trim())})`);
-      if (edu.location && edu.location.trim()) subParts.push(escapeLatex(edu.location.trim()));
-
-      if (subParts.length > 0) {
-        tex += `${subParts.join(' $|$ ')}`;
+      if (institution) {
+        tex += `\\textit{${escapeLatex(institution)}}`;
       }
       if (score) {
-        tex += ` \\hfill \\textbf{${escapeLatex(score)}}`;
+        tex += ` \\hfill \\textit{${escapeLatex(score)}}`;
       }
-      tex += ` \\\\\n`;
+      tex += ` \\\\[3pt]\n`;
 
       if (edu.description && edu.description.trim()) {
-        tex += `\\small ${escapeLatex(edu.description.trim())} \\\\\n`;
+        tex += `{\\small ${escapeLatex(edu.description.trim())}} \\\\[2pt]\n`;
       }
-      tex += `\\vspace{2pt}\n`;
     });
     tex += `\n`;
   }
 
   //---------- TECHNICAL SKILLS ----------
   if (skills.length > 0) {
-    tex += `%---------- TECHNICAL SKILLS ----------\n\\section{TECHNICAL SKILLS}\n\\begin{itemize}[leftmargin=0.15in, label={}]\n`;
-    skills.forEach(sk => {
+    tex += `%---------- TECHNICAL SKILLS ----------\n\\section{Technical Skills}\n\\noindent\n`;
+    const skillLines = skills.map(sk => {
       const cat = escapeLatex(sk.category || 'Skills');
-      const itemsList = Array.isArray(sk.items) ? sk.items.join(', ') : (sk.items || '');
-      tex += `    \\item \\textbf{${cat}:} ${escapeLatex(itemsList)}\n`;
+      const itemsList = escapeLatex(Array.isArray(sk.items) ? sk.items.join(', ') : (sk.items || ''));
+      return `\\textbf{${cat}:} ${itemsList}`;
     });
-    tex += `\\end{itemize}\n\n`;
+    tex += `${skillLines.join(' \\\\\n')}\n\n`;
   }
 
-  //---------- PROFESSIONAL EXPERIENCE ----------
+  //---------- INTERNSHIPS ----------
   if (experience.length > 0) {
-    tex += `%---------- PROFESSIONAL EXPERIENCE ----------\n\\section{PROFESSIONAL EXPERIENCE}\n`;
+    tex += `%---------- INTERNSHIPS ----------\n\\section{Internships}\n`;
     experience.forEach(exp => {
       const dates = exp.duration || [exp.startDate, exp.current ? 'Present' : exp.endDate].filter(Boolean).join(' -- ');
+      const company = exp.company || 'Company';
       const role = exp.title || exp.role || 'Role';
+      const locationOrMode = exp.location || '';
 
-      tex += `\\noindent\\textbf{${escapeLatex(role)}}`;
+      tex += `\\noindent\\textbf{${escapeLatex(company)}}`;
       if (dates) {
-        tex += ` \\hfill ${escapeLatex(dates)}`;
+        tex += ` \\hfill \\textbf{${escapeLatex(dates.replace(/[–—]/g, '--'))}}`;
       }
       tex += ` \\\\\n`;
 
-      const companyLine = [];
-      if (exp.company) companyLine.push(`\\textit{${escapeLatex(exp.company)}}`);
-      if (exp.location) companyLine.push(escapeLatex(exp.location));
-
-      if (companyLine.length > 0) {
-        tex += `${companyLine.join(' $|$ ')} \\\\\n`;
+      tex += `\\textit{${escapeLatex(role)}}`;
+      if (locationOrMode) {
+        tex += ` \\hfill \\textit{${escapeLatex(locationOrMode)}}`;
       }
+      tex += `\n`;
 
       const bullets = Array.isArray(exp.bullets) ? exp.bullets.filter(b => b && b.trim()) : [];
       if (bullets.length > 0) {
@@ -382,7 +358,7 @@ export function generateLatex(resumeData, options = {}) {
 
   //---------- PROJECTS ----------
   if (projects.length > 0) {
-    tex += `%---------- PROJECTS ----------\n\\section{PROJECTS}\n`;
+    tex += `%---------- PROJECTS ----------\n\\section{Projects}\n`;
     projects.forEach(proj => {
       const links = [];
       if (proj.githubUrl && proj.githubUrl.trim()) {
@@ -391,18 +367,14 @@ export function generateLatex(resumeData, options = {}) {
       if (proj.liveUrl && proj.liveUrl.trim()) {
         links.push(`\\href{${normalizeUrl(proj.liveUrl)}}{[Live Demo]}`);
       }
-      const linkStr = links.length > 0 ? ` \\hfill ${links.join(' ')}` : '';
-      const tech = proj.techStack || proj.technologies;
+      const linkStr = links.length > 0 ? ` ${links.join(' ')}` : '';
+      const dates = proj.date || proj.duration || '';
 
-      tex += `\\noindent\\textbf{${escapeLatex(proj.title || 'Project')}}`;
-      if (tech) {
-        tex += ` $|$ \\textit{\\small ${escapeLatex(tech)}}`;
+      tex += `\\noindent\\textbf{${escapeLatex(proj.title || 'Project')}}${linkStr}`;
+      if (dates) {
+        tex += ` \\hfill \\textbf{${escapeLatex(dates.replace(/[–—]/g, '--'))}}`;
       }
-      tex += `${linkStr} \\\\\n`;
-
-      if (proj.description && proj.description.trim()) {
-        tex += `{\\small ${escapeLatex(proj.description.trim())}} \\\\\n`;
-      }
+      tex += `\n`;
 
       const bullets = Array.isArray(proj.bullets) ? proj.bullets.filter(b => b && b.trim()) : [];
       if (bullets.length > 0) {
@@ -411,49 +383,80 @@ export function generateLatex(resumeData, options = {}) {
           tex += `    \\item ${escapeLatex(b.trim())}\n`;
         });
         tex += `\\end{itemize}\n`;
+      } else if (proj.description && proj.description.trim()) {
+        tex += `\\begin{itemize}\n    \\item ${escapeLatex(proj.description.trim())}\n\\end{itemize}\n`;
       }
       tex += `\\vspace{2pt}\n`;
     });
     tex += `\n`;
   }
 
-  //---------- ACHIEVEMENTS ----------
+  //---------- ACHIEVEMENT ----------
   if (achievements.length > 0) {
-    tex += `%---------- ACHIEVEMENTS ----------\n\\section{ACHIEVEMENTS}\n\\begin{itemize}\n`;
+    tex += `%---------- ACHIEVEMENT ----------\n\\section{Achievement}\n`;
     achievements.forEach(ach => {
       const title = escapeLatex(ach.title || '');
-      const desc = ach.description ? ' -- ' + escapeLatex(ach.description) : '';
-      const date = (ach.year || ach.date) ? ` \\hfill \\textit{${escapeLatex(ach.year || ach.date)}}` : '';
-      tex += `    \\item \\textbf{${title}}${desc}${date}\n`;
+      const desc = escapeLatex(ach.description || ach.organization || '');
+      const date = (ach.year || ach.date) ? escapeLatex((ach.year || ach.date).replace(/[–—]/g, '--')) : '';
+
+      tex += `\\noindent\\textbf{${title}}`;
+      if (date) {
+        tex += ` \\hfill \\textbf{${date}}`;
+      }
+      tex += ` \\\\\n`;
+      if (desc) {
+        tex += `\\textit{${desc}} \\\\[3pt]\n`;
+      }
     });
-    tex += `\\end{itemize}\n\n`;
+    tex += `\n`;
   }
 
-  //---------- CERTIFICATIONS & PROGRAMS ----------
+  //---------- CERTIFICATES ----------
   if (certifications.length > 0) {
-    tex += `%---------- CERTIFICATIONS \\& PROGRAMS ----------\n\\section{CERTIFICATIONS \\& PROGRAMS}\n\\begin{itemize}\n`;
+    tex += `%---------- CERTIFICATES ----------\n\\section{Certificates}\n`;
     certifications.forEach(cert => {
       const name = escapeLatex(cert.name || '');
-      const issuer = cert.issuer ? ` (${escapeLatex(cert.issuer)})` : '';
-      const date = cert.date ? ` \\hfill \\textit{${escapeLatex(cert.date)}}` : '';
-      const link = cert.url && cert.url.trim() ? ` \\href{${normalizeUrl(cert.url)}}{[Verify]}` : '';
-      tex += `    \\item \\textbf{${name}}${issuer}${link}${date}\n`;
+      const issuer = escapeLatex(cert.issuer || '');
+      const date = cert.date ? escapeLatex(cert.date.replace(/[–—]/g, '--')) : '';
+      const link = cert.url && cert.url.trim() ? ` \\hfill \\href{${normalizeUrl(cert.url)}}{[Verify]}` : '';
+
+      tex += `\\noindent\\textbf{${name}}`;
+      if (date) {
+        tex += ` \\hfill \\textbf{${date}}`;
+      }
+      tex += ` \\\\\n`;
+      if (issuer) {
+        tex += `\\textit{${issuer}}${link} \\\\[3pt]\n`;
+      } else if (link) {
+        tex += `${link} \\\\[3pt]\n`;
+      }
     });
-    tex += `\\end{itemize}\n\n`;
+    tex += `\n`;
   }
 
   //---------- EXTRACURRICULAR ----------
   if (extracurricular.length > 0) {
-    tex += `%---------- EXTRACURRICULAR ----------\n\\section{EXTRACURRICULAR ACTIVITIES}\n\\begin{itemize}\n`;
+    tex += `%---------- EXTRACURRICULAR ----------\n\\section{Extracurricular}\n`;
     extracurricular.forEach(ext => {
-      const act = escapeLatex(ext.activity || ext.role || 'Activity');
-      const org = ext.organization ? `, ${escapeLatex(ext.organization)}` : '';
-      const desc = ext.description ? `: ${escapeLatex(ext.description)}` : '';
-      const dates = [ext.startDate, ext.endDate].filter(Boolean).join(' -- ');
-      const dateStr = dates ? ` \\hfill \\textit{${escapeLatex(dates)}}` : '';
-      tex += `    \\item \\textbf{${act}}${org}${desc}${dateStr}\n`;
+      const act = escapeLatex(ext.organization || ext.activity || '');
+      const role = escapeLatex(ext.role || '');
+      const dates = [ext.startDate, ext.endDate].filter(Boolean).join(' -- ') || (ext.duration || '');
+
+      tex += `\\noindent\\textbf{${act}}`;
+      if (dates) {
+        tex += ` \\hfill \\textbf{${escapeLatex(dates.replace(/[–—]/g, '--'))}}`;
+      }
+      tex += ` \\\\\n`;
+      if (role) {
+        tex += `\\textit{${role}}\n`;
+      }
+
+      if (ext.description && ext.description.trim()) {
+        tex += `\\begin{itemize}\n    \\item ${escapeLatex(ext.description.trim())}\n\\end{itemize}\n`;
+      }
+      tex += `\\vspace{2pt}\n`;
     });
-    tex += `\\end{itemize}\n\n`;
+    tex += `\n`;
   }
 
   tex += `\\end{document}\n`;
