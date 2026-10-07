@@ -81,6 +81,69 @@ function formatDisplayPhone(phone) {
   return str;
 }
 
+// Vector SVG path definitions for professional ATS contact icons (24x24 viewBox standard)
+const CONTACT_ICONS = {
+  phone: 'M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z',
+  email: 'M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z',
+  location: 'M12 2a8 8 0 0 0-8 8c0 5.25 7 11.4 7.35 11.7a1 1 0 0 0 1.3 0c.35-.3 7.35-6.45 7.35-11.7a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 3-3 3 3 0 0 1-3 3z',
+  linkedin: 'M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c.97 0 1.75-.79 1.75-1.76s-.78-1.75-1.75-1.75a1.75 1.75 0 0 0-1.75 1.75c0 .97.78 1.76 1.75 1.76m1.39 9.74v-8.37H5.07v8.37h2.78z',
+  github: 'M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z',
+  portfolio: 'M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8 8 0 0 1 18.93 8zM12 4.07a14 14 0 0 1 1.83 3.93h-3.66A14 14 0 0 1 12 4.07zM4.26 14a8 8 0 0 1 0-4h3.38a16.7 16.7 0 0 0 0 4zm.81 2h2.95a15.65 15.65 0 0 0 1.38 3.56A8 8 0 0 1 5.07 16zm2.95-8H5.07a8 8 0 0 1 3.95-3.56A15.65 15.65 0 0 0 8.02 8zm3.98 11.93A14 14 0 0 1 10.17 16h3.66a14 14 0 0 1-1.83 3.93zm2.17-5.93h-4.34a14.7 14.7 0 0 1 0-4h4.34a14.7 14.7 0 0 1 0 4zm.85 5.56A15.65 15.65 0 0 0 16.4 16h2.95a8 8 0 0 1-3.97 3.56zM16.36 14a16.7 16.7 0 0 0 0-4h3.38a8 8 0 0 1 0 4z'
+};
+
+// Formats CGPA or percentage for standard professional ATS display
+function formatEducationScore(raw) {
+  if (!raw && raw !== 0) return '';
+  const str = String(raw).trim();
+  if (!str) return '';
+  if (/^(cgpa|percentage|percent|grade|score|gpa|cpi)/i.test(str)) {
+    return str;
+  }
+  if (str.endsWith('%')) {
+    return `Percentage: ${str}`;
+  }
+  const cleanNum = str.replace(/[^\d.]/g, '');
+  const num = parseFloat(cleanNum);
+  if (!isNaN(num)) {
+    if (num <= 10) {
+      return `CGPA: ${str}`;
+    } else {
+      return `Percentage: ${str}${str.includes('%') ? '' : '%'}`;
+    }
+  }
+  return str;
+}
+
+// Extracts duration from education entry supporting duration, start/end dates and years
+function getEducationDuration(edu) {
+  if (!edu) return '';
+  let str = '';
+  if (edu.duration && String(edu.duration).trim()) {
+    str = String(edu.duration).trim();
+  } else {
+    const start = (edu.startDate || edu.startYear || '').toString().trim();
+    const end = (edu.endDate || edu.endYear || '').toString().trim();
+    if (start && end) str = `${start} - ${end}`;
+    else if (start || end) str = (start || end);
+  }
+  if (!str) return '';
+  return str.replace(/[–—]/g, '-');
+}
+
+// Combines degree and field of study cleanly without redundant duplication
+function getEducationDegreeTitle(edu) {
+  if (!edu) return 'Degree';
+  const degree = (edu.degree || '').trim();
+  const field = (edu.fieldOfStudy || edu.field || edu.major || '').trim();
+  if (degree && field) {
+    if (degree.toLowerCase().includes(field.toLowerCase())) {
+      return degree;
+    }
+    return `${degree} in ${field}`;
+  }
+  return degree || field || 'Degree';
+}
+
 // Helper to register clickable PDF Link Annotation with pdf-lib
 function addLinkAnnotation(page, pdfDoc, x, y, width, height, url) {
   if (!url || typeof url !== 'string') return;
@@ -120,7 +183,7 @@ function generateLatex(resumeData, options = {}) {
   // Filter sections to include ONLY non-empty user data
   const rawEducation = Array.isArray(resumeData.education) ? resumeData.education : [];
   const education = rawEducation.filter(e => 
-    e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.cgpaOrPercentage?.trim())
+    e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.duration?.trim() || e.cgpaOrPercentage?.trim() || e.cgpa?.trim())
   );
 
   let rawSkills = [];
@@ -178,6 +241,7 @@ function generateLatex(resumeData, options = {}) {
 \\usepackage[utf8]{inputenc}
 \\usepackage[margin=${margin}]{geometry}
 \\usepackage[hidelinks]{hyperref}
+\\usepackage{fontawesome5}
 \\usepackage{titlesec}
 \\usepackage{enumitem}
 \\usepackage{tabularx}
@@ -204,29 +268,29 @@ function generateLatex(resumeData, options = {}) {
   const contactItems = [];
   if (p.phone && p.phone.trim()) {
     const rawPhone = p.phone.trim();
-    contactItems.push(`\\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
+    contactItems.push(`\\faPhone\\ \\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
   }
   if (p.email && p.email.trim()) {
     const cleanEmail = p.email.trim();
-    contactItems.push(`\\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
+    contactItems.push(`\\faEnvelope\\ \\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
   }
   if (p.location && p.location.trim()) {
-    contactItems.push(escapeLatex(p.location.trim()));
+    contactItems.push(`\\faMapMarker*\\ ${escapeLatex(p.location.trim())}`);
   }
   const linkedin = p.linkedinUrl || p.linkedin;
   if (linkedin && linkedin.trim()) {
     const rawLink = linkedin.trim();
-    contactItems.push(`\\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
+    contactItems.push(`\\faLinkedin\\ \\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
   }
   const github = p.githubUrl || p.github;
   if (github && github.trim()) {
     const rawGit = github.trim();
-    contactItems.push(`\\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
+    contactItems.push(`\\faGithub\\ \\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
   }
   const portfolio = p.portfolioUrl || p.portfolio;
   if (portfolio && portfolio.trim()) {
     const rawPort = portfolio.trim();
-    contactItems.push(`\\href{${normalizeUrl(rawPort)}}{${escapeLatex(cleanDisplayUrl(rawPort))}}`);
+    contactItems.push(`\\faGlobe\\ \\href{${normalizeUrl(rawPort)}}{${escapeLatex(cleanDisplayUrl(rawPort))}}`);
   }
 
   const hasName = !!(p.fullName && p.fullName.trim());
@@ -257,11 +321,10 @@ function generateLatex(resumeData, options = {}) {
   if (education.length > 0) {
     tex += `%---------- EDUCATION ----------\n\\section{EDUCATION}\n`;
     education.forEach(edu => {
-      const dates = edu.duration || [edu.startYear, edu.endYear].filter(Boolean).join(' -- ');
-      const field = edu.fieldOfStudy || edu.field;
-      const score = edu.cgpaOrPercentage || edu.cgpa;
+      const dates = getEducationDuration(edu);
+      const degreeTitle = getEducationDegreeTitle(edu);
+      const score = formatEducationScore(edu.cgpaOrPercentage || edu.cgpa || edu.percentage || edu.grade || edu.score);
 
-      const degreeTitle = `${edu.degree || 'Degree'}${field ? ' in ' + field : ''}`;
       tex += `\\noindent\\textbf{${escapeLatex(degreeTitle)}}`;
       if (dates) {
         tex += ` \\hfill ${escapeLatex(dates)}`;
@@ -269,20 +332,20 @@ function generateLatex(resumeData, options = {}) {
       tex += ` \\\\\n`;
 
       const subParts = [];
-      if (edu.institution) subParts.push(`\\textit{${escapeLatex(edu.institution)}}`);
-      if (edu.board) subParts.push(`(${escapeLatex(edu.board)})`);
-      if (edu.location) subParts.push(escapeLatex(edu.location));
+      if (edu.institution && edu.institution.trim()) subParts.push(`\\textit{${escapeLatex(edu.institution.trim())}}`);
+      if (edu.board && edu.board.trim()) subParts.push(`(${escapeLatex(edu.board.trim())})`);
+      if (edu.location && edu.location.trim()) subParts.push(escapeLatex(edu.location.trim()));
 
       if (subParts.length > 0) {
         tex += `${subParts.join(' $|$ ')}`;
       }
       if (score) {
-        tex += ` \\hfill \\textbf{Score: ${escapeLatex(score)}}`;
+        tex += ` \\hfill \\textbf{${escapeLatex(score)}}`;
       }
       tex += ` \\\\\n`;
 
-      if (edu.description) {
-        tex += `\\small ${escapeLatex(edu.description)} \\\\\n`;
+      if (edu.description && edu.description.trim()) {
+        tex += `\\small ${escapeLatex(edu.description.trim())} \\\\\n`;
       }
       tex += `\\vspace{2pt}\n`;
     });
@@ -481,7 +544,7 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       // Filter sections to include ONLY non-empty user data
       const rawEducation = Array.isArray(resumeData.education) ? resumeData.education : [];
       const education = rawEducation.filter(e => 
-        e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.cgpaOrPercentage?.trim())
+        e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.duration?.trim() || e.cgpaOrPercentage?.trim() || e.cgpa?.trim())
       );
 
       let rawSkills = [];
@@ -603,32 +666,59 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       if (contactItems.length > 0) {
         const sepText = '  |  ';
         const sepWidth = regularFont.widthOfTextAtSize(sepText, cfg.baseFont - 0.5);
-        const itemWidths = contactItems.map(it => regularFont.widthOfTextAtSize(it.text, cfg.baseFont - 0.5));
+        const iconScale = 0.28;
+        const iconW = 24 * iconScale;
+        const iconGap = 2.5;
+
+        const getItemWidth = (it) => {
+          const textW = regularFont.widthOfTextAtSize(it.text, cfg.baseFont - 0.5);
+          const hasIcon = Boolean(CONTACT_ICONS[it.type]);
+          return textW + (hasIcon ? (iconW + iconGap) : 0);
+        };
+
+        const itemWidths = contactItems.map(getItemWidth);
         const totalWidth = itemWidths.reduce((a, b) => a + b, 0) + (contactItems.length - 1) * sepWidth;
+
+        const drawSingleItem = (item, curX, curY, totalW) => {
+          const hasIcon = Boolean(CONTACT_ICONS[item.type]);
+          let textX = curX;
+
+          if (hasIcon) {
+            page.drawSvgPath(CONTACT_ICONS[item.type], {
+              x: curX,
+              y: curY + ((cfg.baseFont - 0.5) * 0.72),
+              scale: iconScale,
+              color: item.isLink ? rgb(0.18, 0.22, 0.26) : rgb(0.35, 0.38, 0.4)
+            });
+            textX = curX + iconW + iconGap;
+          }
+
+          if (item.isLink) {
+            page.drawText(item.text, {
+              x: textX,
+              y: curY,
+              size: cfg.baseFont - 0.5,
+              font: regularFont,
+              color: rgb(0.05, 0.35, 0.75)
+            });
+            addLinkAnnotation(page, pdfDoc, curX, curY - 1.5, totalW, (cfg.baseFont - 0.5) + 3, item.url);
+          } else {
+            page.drawText(item.text, {
+              x: textX,
+              y: curY,
+              size: cfg.baseFont - 0.5,
+              font: regularFont,
+              color: rgb(0.3, 0.35, 0.35)
+            });
+          }
+        };
 
         if (totalWidth <= contentWidth) {
           let curX = margin + Math.max(0, (contentWidth - totalWidth) / 2);
           const curY = cursorY - (cfg.baseFont - 0.5);
           contactItems.forEach((item, idx) => {
             const w = itemWidths[idx];
-            if (item.isLink) {
-              page.drawText(item.text, {
-                x: curX,
-                y: curY,
-                size: cfg.baseFont - 0.5,
-                font: regularFont,
-                color: rgb(0.05, 0.35, 0.75)
-              });
-              addLinkAnnotation(page, pdfDoc, curX, curY, w, cfg.baseFont, item.url);
-            } else {
-              page.drawText(item.text, {
-                x: curX,
-                y: curY,
-                size: cfg.baseFont - 0.5,
-                font: regularFont,
-                color: rgb(0.3, 0.35, 0.35)
-              });
-            }
+            drawSingleItem(item, curX, curY, w);
             curX += w;
             if (idx < contactItems.length - 1) {
               page.drawText(sepText, {
@@ -648,30 +738,13 @@ async function compileResumePdf(resumeData, customOptions = {}) {
           const lines = [line1, line2].filter(l => l.length > 0);
 
           lines.forEach(lineItems => {
-            const lWidths = lineItems.map(it => regularFont.widthOfTextAtSize(it.text, cfg.baseFont - 0.5));
+            const lWidths = lineItems.map(getItemWidth);
             const lTotal = lWidths.reduce((a, b) => a + b, 0) + (lineItems.length - 1) * sepWidth;
             let curX = margin + Math.max(0, (contentWidth - lTotal) / 2);
             const curY = cursorY - (cfg.baseFont - 0.5);
             lineItems.forEach((item, idx) => {
               const w = lWidths[idx];
-              if (item.isLink) {
-                page.drawText(item.text, {
-                  x: curX,
-                  y: curY,
-                  size: cfg.baseFont - 0.5,
-                  font: regularFont,
-                  color: rgb(0.05, 0.35, 0.75)
-                });
-                addLinkAnnotation(page, pdfDoc, curX, curY, w, cfg.baseFont, item.url);
-              } else {
-                page.drawText(item.text, {
-                  x: curX,
-                  y: curY,
-                  size: cfg.baseFont - 0.5,
-                  font: regularFont,
-                  color: rgb(0.3, 0.35, 0.35)
-                });
-              }
+              drawSingleItem(item, curX, curY, w);
               curX += w;
               if (idx < lineItems.length - 1) {
                 page.drawText(sepText, {
@@ -733,10 +806,11 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       if (education.length > 0) {
         renderSectionHeading('Education');
         education.forEach((edu, eIdx) => {
-          const degTitle = `${edu.degree || 'Degree'}${edu.field ? ' in ' + edu.field : ''}`;
-          const dateStr = [edu.startYear, edu.endYear].filter(Boolean).join(' - ');
+          const degTitle = getEducationDegreeTitle(edu);
+          const dateStr = getEducationDuration(edu);
+          const scoreStr = formatEducationScore(edu.cgpaOrPercentage || edu.cgpa || edu.percentage || edu.grade || edu.score);
 
-          // Degree (bold) + Date (right aligned)
+          // Line 1: Degree (bold, left) + Duration (right aligned)
           page.drawText(degTitle, {
             x: margin,
             y: cursorY - cfg.baseFont,
@@ -754,23 +828,53 @@ async function compileResumePdf(resumeData, customOptions = {}) {
               color: rgb(0.3, 0.3, 0.3)
             });
           }
-          cursorY -= (cfg.baseFont + 1.5);
+          cursorY -= (cfg.baseFont + 2);
 
-          // Institution + Location + CGPA
-          let subLine = edu.institution || '';
-          if (edu.board) subLine += ` (${edu.board})`;
-          if (edu.location) subLine += ` | ${edu.location}`;
-          if (edu.cgpa) subLine += ` | CGPA/Score: ${edu.cgpa}`;
+          // Line 2: Institution + Location (left) and CGPA/Score (right aligned)
+          let instLine = edu.institution ? edu.institution.trim() : '';
+          if (edu.board && edu.board.trim()) instLine += ` (${edu.board.trim()})`;
+          if (edu.location && edu.location.trim()) {
+            instLine += (instLine ? ' | ' : '') + edu.location.trim();
+          }
 
-          if (subLine) {
-            page.drawText(subLine, {
-              x: margin,
-              y: cursorY - cfg.baseFont + 0.5,
-              size: cfg.baseFont - 0.5,
-              font: regularFont,
-              color: rgb(0.35, 0.35, 0.35)
-            });
+          if (instLine || scoreStr) {
+            if (instLine) {
+              page.drawText(instLine, {
+                x: margin,
+                y: cursorY - (cfg.baseFont - 0.5),
+                size: cfg.baseFont - 0.5,
+                font: regularFont,
+                color: rgb(0.35, 0.35, 0.35)
+              });
+            }
+            if (scoreStr) {
+              const scoreW = boldFont.widthOfTextAtSize(scoreStr, cfg.baseFont - 0.5);
+              page.drawText(scoreStr, {
+                x: margin + contentWidth - scoreW,
+                y: cursorY - (cfg.baseFont - 0.5),
+                size: cfg.baseFont - 0.5,
+                font: boldFont,
+                color: rgb(0.18, 0.22, 0.2)
+              });
+            }
             cursorY -= (cfg.baseFont + cfg.itemGap);
+          } else {
+            cursorY -= cfg.itemGap;
+          }
+
+          if (edu.description && edu.description.trim()) {
+            const descLines = wrapText(edu.description.trim(), regularFont, cfg.baseFont - 1, contentWidth);
+            descLines.forEach(line => {
+              page.drawText(line, {
+                x: margin,
+                y: cursorY - (cfg.baseFont - 1),
+                size: cfg.baseFont - 1,
+                font: regularFont,
+                color: rgb(0.3, 0.3, 0.3)
+              });
+              cursorY -= (cfg.baseFont + 1);
+            });
+            cursorY -= 2;
           }
         });
       }
@@ -1328,6 +1432,9 @@ module.exports = {
   normalizeEmail,
   normalizePhone,
   formatDisplayPhone,
+  formatEducationScore,
+  getEducationDuration,
+  getEducationDegreeTitle,
   generateLatex,
   compileResumePdf,
   performAiAction,

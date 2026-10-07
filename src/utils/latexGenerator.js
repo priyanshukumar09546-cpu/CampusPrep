@@ -72,6 +72,59 @@ export function formatDisplayPhone(phone) {
   return str;
 }
 
+// Formats CGPA or percentage for standard professional ATS display
+export function formatEducationScore(raw) {
+  if (!raw && raw !== 0) return '';
+  const str = String(raw).trim();
+  if (!str) return '';
+  if (/^(cgpa|percentage|percent|grade|score|gpa|cpi)/i.test(str)) {
+    return str;
+  }
+  if (str.endsWith('%')) {
+    return `Percentage: ${str}`;
+  }
+  const cleanNum = str.replace(/[^\d.]/g, '');
+  const num = parseFloat(cleanNum);
+  if (!isNaN(num)) {
+    if (num <= 10) {
+      return `CGPA: ${str}`;
+    } else {
+      return `Percentage: ${str}${str.includes('%') ? '' : '%'}`;
+    }
+  }
+  return str;
+}
+
+// Extracts duration from education entry supporting duration, start/end dates and years
+export function getEducationDuration(edu) {
+  if (!edu) return '';
+  let str = '';
+  if (edu.duration && String(edu.duration).trim()) {
+    str = String(edu.duration).trim();
+  } else {
+    const start = (edu.startDate || edu.startYear || '').toString().trim();
+    const end = (edu.endDate || edu.endYear || '').toString().trim();
+    if (start && end) str = `${start} -- ${end}`;
+    else if (start || end) str = (start || end);
+  }
+  if (!str) return '';
+  return str.replace(/[–—]/g, '--');
+}
+
+// Combines degree and field of study cleanly without redundant duplication
+export function getEducationDegreeTitle(edu) {
+  if (!edu) return 'Degree';
+  const degree = (edu.degree || '').trim();
+  const field = (edu.fieldOfStudy || edu.field || edu.major || '').trim();
+  if (degree && field) {
+    if (degree.toLowerCase().includes(field.toLowerCase())) {
+      return degree;
+    }
+    return `${degree} in ${field}`;
+  }
+  return degree || field || 'Degree';
+}
+
 // Generates complete, valid, Overleaf-compilable .tex source from resume data
 export function generateLatex(resumeData, options = {}) {
   if (!resumeData) return '';
@@ -82,7 +135,7 @@ export function generateLatex(resumeData, options = {}) {
   // Filter sections to include ONLY non-empty user data
   const rawEducation = Array.isArray(resumeData.education) ? resumeData.education : [];
   const education = rawEducation.filter(e => 
-    e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.cgpaOrPercentage?.trim())
+    e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.duration?.trim() || e.cgpaOrPercentage?.trim() || e.cgpa?.trim())
   );
 
   let rawSkills = [];
@@ -141,6 +194,7 @@ export function generateLatex(resumeData, options = {}) {
 \\usepackage[utf8]{inputenc}
 \\usepackage[margin=${margin}]{geometry}
 \\usepackage[hidelinks]{hyperref}
+\\usepackage{fontawesome5}
 \\usepackage{titlesec}
 \\usepackage{enumitem}
 \\usepackage{tabularx}
@@ -167,29 +221,29 @@ export function generateLatex(resumeData, options = {}) {
   const contactItems = [];
   if (p.phone && p.phone.trim()) {
     const rawPhone = p.phone.trim();
-    contactItems.push(`\\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
+    contactItems.push(`\\faPhone\\ \\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
   }
   if (p.email && p.email.trim()) {
     const cleanEmail = p.email.trim();
-    contactItems.push(`\\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
+    contactItems.push(`\\faEnvelope\\ \\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
   }
   if (p.location && p.location.trim()) {
-    contactItems.push(escapeLatex(p.location.trim()));
+    contactItems.push(`\\faMapMarker*\\ ${escapeLatex(p.location.trim())}`);
   }
   const linkedin = p.linkedinUrl || p.linkedin;
   if (linkedin && linkedin.trim()) {
     const rawLink = linkedin.trim();
-    contactItems.push(`\\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
+    contactItems.push(`\\faLinkedin\\ \\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
   }
   const github = p.githubUrl || p.github;
   if (github && github.trim()) {
     const rawGit = github.trim();
-    contactItems.push(`\\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
+    contactItems.push(`\\faGithub\\ \\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
   }
   const portfolio = p.portfolioUrl || p.portfolio;
   if (portfolio && portfolio.trim()) {
     const rawPort = portfolio.trim();
-    contactItems.push(`\\href{${normalizeUrl(rawPort)}}{${escapeLatex(cleanDisplayUrl(rawPort))}}`);
+    contactItems.push(`\\faGlobe\\ \\href{${normalizeUrl(rawPort)}}{${escapeLatex(cleanDisplayUrl(rawPort))}}`);
   }
 
   const hasName = !!(p.fullName && p.fullName.trim());
@@ -239,11 +293,10 @@ export function generateLatex(resumeData, options = {}) {
   if (education.length > 0) {
     tex += `%---------- EDUCATION ----------\n\\section{EDUCATION}\n`;
     education.forEach(edu => {
-      const dates = edu.duration || [edu.startYear, edu.endYear].filter(Boolean).join(' -- ');
-      const field = edu.fieldOfStudy || edu.field;
-      const score = edu.cgpaOrPercentage || edu.cgpa;
-      
-      const degreeTitle = `${edu.degree || 'Degree'}${field ? ' in ' + field : ''}`;
+      const dates = getEducationDuration(edu);
+      const degreeTitle = getEducationDegreeTitle(edu);
+      const score = formatEducationScore(edu.cgpaOrPercentage || edu.cgpa || edu.percentage || edu.grade || edu.score);
+
       tex += `\\noindent\\textbf{${escapeLatex(degreeTitle)}}`;
       if (dates) {
         tex += ` \\hfill ${escapeLatex(dates)}`;
@@ -251,20 +304,20 @@ export function generateLatex(resumeData, options = {}) {
       tex += ` \\\\\n`;
 
       const subParts = [];
-      if (edu.institution) subParts.push(`\\textit{${escapeLatex(edu.institution)}}`);
-      if (edu.board) subParts.push(`(${escapeLatex(edu.board)})`);
-      if (edu.location) subParts.push(escapeLatex(edu.location));
+      if (edu.institution && edu.institution.trim()) subParts.push(`\\textit{${escapeLatex(edu.institution.trim())}}`);
+      if (edu.board && edu.board.trim()) subParts.push(`(${escapeLatex(edu.board.trim())})`);
+      if (edu.location && edu.location.trim()) subParts.push(escapeLatex(edu.location.trim()));
 
       if (subParts.length > 0) {
         tex += `${subParts.join(' $|$ ')}`;
       }
       if (score) {
-        tex += ` \\hfill \\textbf{Score: ${escapeLatex(score)}}`;
+        tex += ` \\hfill \\textbf{${escapeLatex(score)}}`;
       }
       tex += ` \\\\\n`;
 
-      if (edu.description) {
-        tex += `\\small ${escapeLatex(edu.description)} \\\\\n`;
+      if (edu.description && edu.description.trim()) {
+        tex += `\\small ${escapeLatex(edu.description.trim())} \\\\\n`;
       }
       tex += `\\vspace{2pt}\n`;
     });
