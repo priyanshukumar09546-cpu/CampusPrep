@@ -44,6 +44,7 @@ const DEFAULT_RESUME_DATA = {
   personal: {
     fullName: '',
     professionalHeadline: '',
+    targetRole: '',
     email: '',
     phone: '',
     location: '',
@@ -59,6 +60,7 @@ const DEFAULT_RESUME_DATA = {
       institution: '',
       location: '',
       duration: '',
+      cgpa: '',
       cgpaOrPercentage: ''
     }
   ],
@@ -144,10 +146,13 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
   // Compilation & PDF States
   const [pdfUrl, setPdfUrl] = useState('');
+  const [pdfBlobUrl, setPdfBlobUrl] = useState('');
+  const [serverPdfUrl, setServerPdfUrl] = useState('');
   const [latexSource, setLatexSource] = useState(() => generateLatex(DEFAULT_RESUME_DATA, { template: 'classic-tech' }));
   const [compileStatus, setCompileStatus] = useState(null); // { isOnePage, pageCount, levelName, message, overflowWarning }
   const [compileError, setCompileError] = useState(null);
   const [isCompiling, setIsCompiling] = useState(false);
+  const [compileTrigger, setCompileTrigger] = useState(0);
   const [copiedLatex, setCopiedLatex] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');
@@ -229,7 +234,14 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     fetchMyResumes();
   }, [fetchMyResumes]);
 
-  // 2. Debounced Compile Engine with generation guard and client-side Blob URL
+  // Retry compile handler
+  const handleRetryCompile = () => {
+    setCompileError(null);
+    setIsCompiling(true);
+    setCompileTrigger(c => c + 1);
+  };
+
+  // 2. Debounced Compile Engine with generation guard, synchronized LaTeX, and client-side Blob URL
   useEffect(() => {
     if (!hasMinimumData) {
       setIsCompiling(false);
@@ -253,22 +265,38 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       const controller = new AbortController();
       abortControllerRef.current = controller;
 
+      // 1. Generate EXACT same LaTeX for preview tab & compiler
+      const exactLatex = generateLatex(resumeData, { template });
+      setLatexSource(exactLatex);
+
       try {
         const res = await fetch('/api/resumes/compile', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             resumeData,
+            latex: exactLatex,
             template,
+            generationId: currentGen,
             options: { template }
           }),
           signal: controller.signal
         });
 
+        if (!res.ok) {
+          const errText = await res.text();
+          let parsed = null;
+          try { parsed = JSON.parse(errText); } catch (_) {}
+          throw new Error(parsed?.error || parsed?.details || parsed?.message || `Server returned HTTP ${res.status}`);
+        }
+
         const data = await res.json();
 
         // Stale response guard: ignore if user has typed further
         if (currentGen !== generationRef.current) {
+          return;
+        }
+        if (data.generationId && data.generationId !== generationRef.current) {
           return;
         }
 
@@ -290,15 +318,19 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 URL.revokeObjectURL(activeBlobUrlRef.current);
               }
               activeBlobUrlRef.current = blobUrl;
+              setPdfBlobUrl(blobUrl);
               setPdfUrl(blobUrl);
             } catch (blobErr) {
               console.warn('Failed to parse pdfBase64 to blob:', blobErr);
-              if (data.pdfUrl) {
-                setPdfUrl(`${data.pdfUrl}?t=${Date.now()}`);
-              }
             }
-          } else if (data.pdfUrl) {
-            setPdfUrl(`${data.pdfUrl}?t=${Date.now()}`);
+          }
+
+          if (data.pdfUrl) {
+            const absoluteOrRelativeUrl = `${data.pdfUrl}?t=${Date.now()}`;
+            setServerPdfUrl(absoluteOrRelativeUrl);
+            if (!data.pdfBase64) {
+              setPdfUrl(absoluteOrRelativeUrl);
+            }
           }
 
           if (data.latexSource || data.generatedLatex) {
@@ -313,7 +345,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           });
           setCompileError(null);
         } else {
-          setCompileError(data.message || (data.compileErrors && data.compileErrors.join(', ')) || 'Resume compilation failed.');
+          setCompileError(data.error || data.details || data.message || (data.compileErrors && data.compileErrors.join(', ')) || 'Resume compilation failed.');
         }
       } catch (err) {
         if (err.name === 'AbortError') return;
@@ -325,14 +357,14 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           setIsCompiling(false);
         }
       }
-    }, 700);
+    }, 600);
 
     return () => {
       if (compileTimeoutRef.current) {
         clearTimeout(compileTimeoutRef.current);
       }
     };
-  }, [resumeData, template, hasMinimumData]);
+  }, [resumeData, template, hasMinimumData, compileTrigger]);
 
   // 3. Save Resume to Backend
   const handleSaveResume = async () => {
@@ -387,13 +419,14 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
   // 4. Download PDF
   const handleDownloadPdf = () => {
-    if (!pdfUrl) {
+    const downloadHref = activeBlobUrlRef.current || pdfBlobUrl || pdfUrl;
+    if (!downloadHref) {
       alert('Generating PDF, please wait a moment...');
       return;
     }
     const link = document.createElement('a');
-    link.href = pdfUrl;
-    const cleanName = (resumeData.personal.fullName || 'Resume').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
+    link.href = downloadHref;
+    const cleanName = (resumeData.personal?.fullName || 'Resume').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
     link.download = `${cleanName || 'Resume'}_ATS.pdf`;
     document.body.appendChild(link);
     link.click();
@@ -1046,8 +1079,8 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                     <input
                       type="text"
                       placeholder="e.g. Software Development Engineer"
-                      value={resumeData.personal.professionalHeadline}
-                      onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, professionalHeadline: e.target.value } }))}
+                      value={resumeData.personal.professionalHeadline || resumeData.personal.targetRole || ''}
+                      onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, professionalHeadline: e.target.value, targetRole: e.target.value } }))}
                       style={{ width: '100%', padding: '0.5rem 0.65rem', borderRadius: '6px', border: '1px solid #DDD3C3', fontSize: '0.8rem', outline: 'none' }}
                     />
                   </div>
@@ -1255,8 +1288,8 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                       <input
                         type="text"
-                        placeholder="Duration (e.g. 2021 - 2025)"
-                        value={edu.duration}
+                        placeholder="Duration (e.g. 2023 - 2027)"
+                        value={edu.duration || ''}
                         onChange={(e) => {
                           const val = e.target.value;
                           setResumeData(prev => {
@@ -1269,13 +1302,14 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                       <input
                         type="text"
-                        placeholder="CGPA / Percentage"
-                        value={edu.cgpaOrPercentage}
+                        placeholder="CGPA / Percentage (e.g. 8.5)"
+                        value={edu.cgpaOrPercentage !== undefined ? edu.cgpaOrPercentage : (edu.cgpa || '')}
                         onChange={(e) => {
                           const val = e.target.value;
                           setResumeData(prev => {
                             const ed = [...prev.education];
                             ed[idx].cgpaOrPercentage = val;
+                            ed[idx].cgpa = val;
                             return { ...prev, education: ed };
                           });
                         }}
@@ -2279,13 +2313,31 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                 {isCompiling ? (
                   <span style={{ fontSize: '0.72rem', color: '#D48816', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <RefreshCw size={12} className="animate-spin" /> Generating preview...
+                    <RefreshCw size={12} className="animate-spin" /> Generating PDF...
                   </span>
                 ) : compileError ? (
-                  <span style={{ fontSize: '0.72rem', color: '#DC2626', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <AlertTriangle size={12} /> Compilation Issue
-                  </span>
-                ) : hasMinimumData && pdfUrl ? (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ fontSize: '0.72rem', color: '#DC2626', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <AlertTriangle size={12} /> PDF generation failed
+                    </span>
+                    <button
+                      type="button"
+                      onClick={handleRetryCompile}
+                      style={{
+                        backgroundColor: '#DC2626',
+                        color: '#FFFFFF',
+                        border: 'none',
+                        borderRadius: '4px',
+                        padding: '2px 7px',
+                        fontSize: '0.68rem',
+                        fontWeight: 700,
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Retry
+                    </button>
+                  </div>
+                ) : hasMinimumData && (pdfBlobUrl || pdfUrl) ? (
                   <span style={{ fontSize: '0.72rem', color: '#16A34A', fontWeight: 700 }}>
                     ● Preview updated
                   </span>
@@ -2329,26 +2381,44 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                     }}>
                       {compileError}
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => setRightPanelTab('latex')}
-                      style={{
-                        backgroundColor: '#781416',
-                        color: '#FFFFFF',
-                        border: 'none',
-                        borderRadius: '6px',
-                        padding: '0.45rem 0.85rem',
-                        fontSize: '0.75rem',
-                        fontWeight: 700,
-                        cursor: 'pointer'
-                      }}
-                    >
-                      View Generated LaTeX Source
-                    </button>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <button
+                        type="button"
+                        onClick={handleRetryCompile}
+                        style={{
+                          backgroundColor: '#DC2626',
+                          color: '#FFFFFF',
+                          border: 'none',
+                          borderRadius: '6px',
+                          padding: '0.45rem 0.85rem',
+                          fontSize: '0.75rem',
+                          fontWeight: 700,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Retry Compilation
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setRightPanelTab('latex')}
+                        style={{
+                          backgroundColor: '#781416',
+                          color: '#FFFFFF',
+                          border: 'none',
+                          borderRadius: '6px',
+                          padding: '0.45rem 0.85rem',
+                          fontSize: '0.75rem',
+                          fontWeight: 700,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        View Generated LaTeX Source
+                      </button>
+                    </div>
                   </div>
-                ) : pdfUrl && hasMinimumData ? (
+                ) : (pdfBlobUrl || serverPdfUrl || pdfUrl) && hasMinimumData ? (
                   <iframe
-                    src={`${pdfUrl}#toolbar=0&navpanes=0`}
+                    src={pdfBlobUrl || serverPdfUrl || pdfUrl}
                     title="Live Resume Preview"
                     style={{ width: '100%', height: '100%', border: 'none' }}
                   />

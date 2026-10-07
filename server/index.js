@@ -144,8 +144,8 @@ if (IS_VERCEL) {
   }
 }
 
-// DEDICATED ROUTE: Serve generated resume PDFs with in-memory + filesystem fallback
-app.get('/uploads/resumes/:filename', (req, res) => {
+// DEDICATED ROUTE: Serve generated resume PDFs with in-memory + filesystem + MongoDB + on-demand compilation
+const serveResumePdf = async (req, res) => {
   const filename = path.basename(req.params.filename);
 
   // 1. In-memory cache check (zero-disk, instantaneous across serverless invocations)
@@ -172,16 +172,89 @@ app.get('/uploads/resumes/:filename', (req, res) => {
   for (const p of possiblePaths) {
     try {
       if (fs.existsSync(p)) {
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
-        res.setHeader('Cache-Control', 'public, max-age=3600');
-        return res.sendFile(path.resolve(p));
+        const fileBuf = fs.readFileSync(p);
+        if (fileBuf && fileBuf.length > 0) {
+          if (typeof resumeEngine.saveRecentPdf === 'function') {
+            resumeEngine.saveRecentPdf(filename, fileBuf);
+          }
+          res.setHeader('Content-Type', 'application/pdf');
+          res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
+          res.setHeader('Cache-Control', 'public, max-age=3600');
+          return res.send(fileBuf);
+        }
       }
     } catch (_) {}
   }
 
-  res.status(404).send(`Cannot GET /uploads/resumes/${filename}`);
-});
+  // 3. MongoDB Cache Check (cross-lambda persistent retrieval on Vercel)
+  if (isDbConnected) {
+    try {
+      const cachedDoc = await ResumePdfCacheModel.findOne({ filename }).lean();
+      if (cachedDoc && cachedDoc.pdfBase64) {
+        const pdfBuf = Buffer.from(cachedDoc.pdfBase64, 'base64');
+        if (typeof resumeEngine.saveRecentPdf === 'function') {
+          resumeEngine.saveRecentPdf(filename, pdfBuf);
+        }
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+        return res.send(pdfBuf);
+      }
+    } catch (dbErr) {
+      console.warn('[RESUME ENGINE] MongoDB cache lookup error:', dbErr.message);
+    }
+  }
+
+  // 4. Saved Resume lookup from Database / Memory & On-Demand Recompile
+  try {
+    const rawId = filename.replace(/\.pdf$/i, '').replace(/^resume_/, '').replace(/^res_/, '');
+    const cleanId = filename.replace(/\.pdf$/i, '');
+    let resumeRecord = dbResumes.find(r => r.id === cleanId || r.id === rawId || (r.pdfUrl && r.pdfUrl.includes(filename)));
+    if (!resumeRecord && isDbConnected) {
+      resumeRecord = await ResumeModel.findOne({
+        $or: [
+          { id: cleanId },
+          { id: rawId },
+          { pdfUrl: { $regex: filename } }
+        ]
+      }).lean();
+    }
+
+    if (resumeRecord) {
+      if (resumeRecord.pdfBase64) {
+        const pdfBuf = Buffer.from(resumeRecord.pdfBase64, 'base64');
+        if (typeof resumeEngine.saveRecentPdf === 'function') {
+          resumeEngine.saveRecentPdf(filename, pdfBuf);
+        }
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+        return res.send(pdfBuf);
+      }
+
+      // Recompile on the fly
+      const compiled = await resumeEngine.compileResumePdf(resumeRecord);
+      if (compiled && compiled.pdfBytes && compiled.pdfBytes.length > 0) {
+        const pdfBuf = Buffer.from(compiled.pdfBytes);
+        if (typeof resumeEngine.saveRecentPdf === 'function') {
+          resumeEngine.saveRecentPdf(filename, pdfBuf);
+        }
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+        return res.send(pdfBuf);
+      }
+    }
+  } catch (recompileErr) {
+    console.warn('[RESUME ENGINE] On-demand compile error:', recompileErr.message);
+  }
+
+  // 5. Clean 404 JSON
+  res.status(404).json({ success: false, error: 'Resume PDF not found or expired', filename });
+};
+
+app.get('/uploads/resumes/:filename', serveResumePdf);
+app.get('/api/resumes/pdf/:filename', serveResumePdf);
 
 // CONFIGURE MULTER FOR PDF FILE UPLOADS
 const storage = multer.diskStorage({
@@ -460,6 +533,7 @@ const ResumeSchema = new mongoose.Schema({
   extracurricular: { type: Array, default: [] },
   generatedLatex: { type: String, default: '' },
   pdfUrl: { type: String, default: '' },
+  pdfBase64: { type: String, default: '' },
   pageCount: { type: Number, default: 1 },
   compileStatus: { type: String, default: 'success' },
   compileErrors: { type: Array, default: [] },
@@ -511,6 +585,15 @@ const GoogleTokenModel = mongoose.models.GoogleToken || mongoose.model('GoogleTo
 const ResumeModel = mongoose.models.Resume || mongoose.model('Resume', ResumeSchema);
 const ResumeTemplateModel = mongoose.models.ResumeTemplate || mongoose.model('ResumeTemplate', ResumeTemplateSchema);
 const ResumeSettingsModel = mongoose.models.ResumeSettings || mongoose.model('ResumeSettings', ResumeSettingsSchema);
+
+// Ephemeral PDF cache schema with 24h TTL for production serverless cross-instance retrieval
+const ResumePdfCacheSchema = new mongoose.Schema({
+  filename: { type: String, required: true, unique: true, index: true },
+  pdfBase64: { type: String, required: true },
+  latexSource: { type: String, default: '' },
+  createdAt: { type: Date, default: Date.now, expires: 86400 } // TTL 24 hours
+});
+const ResumePdfCacheModel = mongoose.models.ResumePdfCache || mongoose.model('ResumePdfCache', ResumePdfCacheSchema);
 
 // PROJECT IDEAS SCHEMAS & MODELS (REAL PROJECTS ONLY)
 const ProjectSchema = new mongoose.Schema({
@@ -6567,14 +6650,39 @@ app.post('/api/resumes/import', (req, res) => {
 // Compile Resume Preview (Real-time debounced compilation & 1-page check)
 app.post('/api/resumes/compile', async (req, res) => {
   try {
-    const { resumeData, options, template } = req.body;
+    const { resumeData, latex, options, template, generationId } = req.body;
     if (!resumeData) return res.status(400).json({ success: false, message: 'No resume data provided.' });
 
-    const compileOptions = options || (template ? { template } : {});
+    const compileOptions = { ...(options || {}), ...(template ? { template } : {}), ...(latex ? { latex } : {}) };
     const result = await resumeEngine.compileResumePdf(resumeData, compileOptions);
+
+    if (generationId !== undefined) {
+      result.generationId = generationId;
+    }
+
+    // Persist compiled PDF to MongoDB cache for zero-friction cross-container serving
+    if (result.success && result.pdfBase64 && isDbConnected) {
+      const pdfFileName = path.basename(result.pdfUrl || `resume_${Date.now()}.pdf`);
+      try {
+        await ResumePdfCacheModel.updateOne(
+          { filename: pdfFileName },
+          { $set: { filename: pdfFileName, pdfBase64: result.pdfBase64, latexSource: result.latexSource || '', createdAt: new Date() } },
+          { upsert: true }
+        );
+      } catch (cacheErr) {
+        console.warn('[PDF CACHE] MongoDB save warning:', cacheErr.message);
+      }
+    }
+
     res.json(result);
   } catch (err) {
-    res.status(500).json({ success: false, compileStatus: 'failed', message: err.message });
+    res.status(500).json({
+      success: false,
+      compileStatus: 'failed',
+      error: 'LaTeX compilation failed',
+      details: err.message,
+      message: err.message
+    });
   }
 });
 
@@ -6649,6 +6757,7 @@ app.post('/api/resumes', optionalUserToken, async (req, res) => {
       userId,
       title: resumeData.title || (resumeData.personalDetails && resumeData.personalDetails.fullName ? `${resumeData.personalDetails.fullName} Resume` : 'My Resume'),
       pdfUrl: compileResult.pdfUrl || '',
+      pdfBase64: compileResult.pdfBase64 || '',
       generatedLatex: compileResult.generatedLatex || '',
       pageCount: compileResult.pageCount || 1,
       compileStatus: compileResult.compileStatus || 'success',
@@ -6700,6 +6809,7 @@ app.put('/api/resumes/:id', optionalUserToken, async (req, res) => {
       id,
       userId: existing ? existing.userId : userId,
       pdfUrl: compileResult.pdfUrl || (existing ? existing.pdfUrl : ''),
+      pdfBase64: compileResult.pdfBase64 || (existing ? existing.pdfBase64 : ''),
       generatedLatex: compileResult.generatedLatex || '',
       pageCount: compileResult.pageCount || 1,
       compileStatus: compileResult.compileStatus || 'success',
@@ -6814,21 +6924,35 @@ app.get('/api/resumes/:id/download-pdf', optionalUserToken, async (req, res) => 
     if (isDbConnected && !resume) resume = await ResumeModel.findOne({ id }).lean();
     if (!resume) return res.status(404).send('Resume not found.');
 
-    let filePath = path.join(PROJECT_ROOT, 'uploads', 'resumes', `${id}.pdf`);
-    if (!fs.existsSync(filePath)) {
-      const compiled = await resumeEngine.compileResumePdf(resume);
-      filePath = compiled.pdfFilePath;
-    }
+    const safeTitle = (resume.title || (resume.personalDetails?.fullName ? `${resume.personalDetails.fullName}_Resume` : 'Resume')).replace(/[^a-zA-Z0-9_-]/g, '_');
 
-    if (fs.existsSync(filePath)) {
-      const safeTitle = (resume.title || 'resume').replace(/[^a-zA-Z0-9_-]/g, '_');
+    // 1. If base64 exists in DB record
+    if (resume.pdfBase64) {
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="${safeTitle}.pdf"`);
-      return res.sendFile(filePath);
+      return res.send(Buffer.from(resume.pdfBase64, 'base64'));
     }
-    res.status(404).send('PDF not available for this resume.');
+
+    // 2. Check in-memory cache
+    const pdfFileName = `${id}.pdf`;
+    const cachedBytes = typeof resumeEngine.getRecentPdf === 'function' ? resumeEngine.getRecentPdf(pdfFileName) : null;
+    if (cachedBytes) {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${safeTitle}.pdf"`);
+      return res.send(Buffer.from(cachedBytes));
+    }
+
+    // 3. Compile directly into buffer
+    const compiled = await resumeEngine.compileResumePdf(resume);
+    if (compiled && compiled.pdfBytes && compiled.pdfBytes.length > 0) {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${safeTitle}.pdf"`);
+      return res.send(Buffer.from(compiled.pdfBytes));
+    }
+
+    res.status(500).send('Unable to generate PDF buffer.');
   } catch (err) {
-    res.status(500).send('Error downloading PDF.');
+    res.status(500).send('Error downloading PDF: ' + err.message);
   }
 });
 

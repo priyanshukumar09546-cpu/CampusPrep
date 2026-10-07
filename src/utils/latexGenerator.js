@@ -194,7 +194,16 @@ export function generateLatex(resumeData, options = {}) {
 \\usepackage[utf8]{inputenc}
 \\usepackage[margin=${margin}]{geometry}
 \\usepackage[hidelinks]{hyperref}
-\\usepackage{fontawesome5}
+\\IfFileExists{fontawesome5.sty}{
+  \\usepackage{fontawesome5}
+}{
+  \\providecommand{\\faPhone}{\\textbf{P:}}
+  \\providecommand{\\faEnvelope}{\\textbf{E:}}
+  \\providecommand{\\faMapMarker}{\\textbf{L:}}
+  \\providecommand{\\faLinkedin}{\\textbf{in:}}
+  \\providecommand{\\faGithub}{\\textbf{gh:}}
+  \\providecommand{\\faGlobe}{\\textbf{web:}}
+}
 \\usepackage{titlesec}
 \\usepackage{enumitem}
 \\usepackage{tabularx}
@@ -228,7 +237,7 @@ export function generateLatex(resumeData, options = {}) {
     contactItems.push(`\\faEnvelope\\ \\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
   }
   if (p.location && p.location.trim()) {
-    contactItems.push(`\\faMapMarker*\\ ${escapeLatex(p.location.trim())}`);
+    contactItems.push(`\\faMapMarker\\ ${escapeLatex(p.location.trim())}`);
   }
   const linkedin = p.linkedinUrl || p.linkedin;
   if (linkedin && linkedin.trim()) {
@@ -255,8 +264,9 @@ export function generateLatex(resumeData, options = {}) {
       tex += `%---------- HEADING ----------\n\\begin{center}\n`;
       if (hasName) {
         tex += `    {\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}}`;
-        if (p.professionalHeadline && p.professionalHeadline.trim()) {
-          tex += ` \\\\[2pt]\n    {\\normalsize\\itshape ${escapeLatex(p.professionalHeadline.trim())}}`;
+        const roleTitle = (p.targetRole || p.professionalHeadline || p.role || '').trim();
+        if (roleTitle) {
+          tex += ` \\\\[2pt]\n    {\\normalsize\\itshape ${escapeLatex(roleTitle)}}`;
         }
         if (hasContact) {
           tex += ` \\\\[3pt]\n`;
@@ -272,8 +282,9 @@ export function generateLatex(resumeData, options = {}) {
       tex += `%---------- HEADING ----------\n\\noindent\n`;
       if (hasName) {
         tex += `{\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}}`;
-        if (p.professionalHeadline && p.professionalHeadline.trim()) {
-          tex += ` \\hfill {\\normalsize\\itshape ${escapeLatex(p.professionalHeadline.trim())}}`;
+        const roleTitle = (p.targetRole || p.professionalHeadline || p.role || '').trim();
+        if (roleTitle) {
+          tex += ` \\hfill {\\normalsize\\itshape ${escapeLatex(roleTitle)}}`;
         }
         tex += ` \\\\[3pt]\n`;
       }

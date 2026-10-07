@@ -241,7 +241,16 @@ function generateLatex(resumeData, options = {}) {
 \\usepackage[utf8]{inputenc}
 \\usepackage[margin=${margin}]{geometry}
 \\usepackage[hidelinks]{hyperref}
-\\usepackage{fontawesome5}
+\\IfFileExists{fontawesome5.sty}{
+  \\usepackage{fontawesome5}
+}{
+  \\providecommand{\\faPhone}{\\textbf{P:}}
+  \\providecommand{\\faEnvelope}{\\textbf{E:}}
+  \\providecommand{\\faMapMarker}{\\textbf{L:}}
+  \\providecommand{\\faLinkedin}{\\textbf{in:}}
+  \\providecommand{\\faGithub}{\\textbf{gh:}}
+  \\providecommand{\\faGlobe}{\\textbf{web:}}
+}
 \\usepackage{titlesec}
 \\usepackage{enumitem}
 \\usepackage{tabularx}
@@ -275,7 +284,7 @@ function generateLatex(resumeData, options = {}) {
     contactItems.push(`\\faEnvelope\\ \\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
   }
   if (p.location && p.location.trim()) {
-    contactItems.push(`\\faMapMarker*\\ ${escapeLatex(p.location.trim())}`);
+    contactItems.push(`\\faMapMarker\\ ${escapeLatex(p.location.trim())}`);
   }
   const linkedin = p.linkedinUrl || p.linkedin;
   if (linkedin && linkedin.trim()) {
@@ -300,6 +309,10 @@ function generateLatex(resumeData, options = {}) {
     tex += `%---------- HEADING ----------\n\\begin{center}\n`;
     if (hasName) {
       tex += `    {\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}}`;
+      const roleTitle = (p.targetRole || p.professionalHeadline || p.role || '').trim();
+      if (roleTitle) {
+        tex += ` \\\\[2pt]\n    {\\normalsize\\itshape ${escapeLatex(roleTitle)}}`;
+      }
       if (hasContact) {
         tex += ` \\\\[3pt]\n`;
       } else {
@@ -602,7 +615,22 @@ async function compileResumePdf(resumeData, customOptions = {}) {
           font: boldFont,
           color: rgb(0.12, 0.14, 0.13)
         });
-        cursorY -= (cfg.nameSize + 4);
+        cursorY -= (cfg.nameSize + 3);
+
+        const roleTitle = (p.targetRole || p.professionalHeadline || p.role || '').trim();
+        if (roleTitle) {
+          const roleWidth = obliqueFont.widthOfTextAtSize(roleTitle, cfg.baseFont + 0.5);
+          page.drawText(roleTitle, {
+            x: margin + Math.max(0, (contentWidth - roleWidth) / 2),
+            y: cursorY - (cfg.baseFont + 0.5),
+            size: cfg.baseFont + 0.5,
+            font: obliqueFont,
+            color: rgb(0.35, 0.35, 0.35)
+          });
+          cursorY -= (cfg.baseFont + 3.5);
+        } else {
+          cursorY -= 1;
+        }
       }
 
       // Contact info bar with clickable hyperlinks
@@ -1211,14 +1239,21 @@ async function compileResumePdf(resumeData, customOptions = {}) {
   const latexMargin = successfulConfig ? `${(successfulConfig.margin / 72).toFixed(2)}in` : '0.45in';
   const latexFontSize = successfulConfig ? `${Math.round(successfulConfig.baseFont)}pt` : '10pt';
   const activeTemplate = (customOptions && customOptions.template) || resumeData.template || 'classic-tech';
-  generatedLatexCode = generateLatex(resumeData, { margin: latexMargin, fontSize: latexFontSize, template: activeTemplate });
+  if (customOptions && typeof customOptions.latex === 'string' && customOptions.latex.trim()) {
+    generatedLatexCode = customOptions.latex.trim();
+  } else {
+    generatedLatexCode = generateLatex(resumeData, { margin: latexMargin, fontSize: latexFontSize, template: activeTemplate });
+  }
 
-  if (!selectedPdfBytes) {
+  if (!selectedPdfBytes || selectedPdfBytes.length === 0) {
+    const errorDetails = compileErrors.length > 0 ? compileErrors.join('; ') : 'PDF vector compiler failed to generate document bytes.';
     return {
       success: false,
       compileStatus: 'failed',
       pageCount: 0,
-      compileErrors: compileErrors.length > 0 ? compileErrors : ['PDF layout engine failed to render page.'],
+      error: 'LaTeX compilation failed',
+      details: errorDetails,
+      compileErrors: compileErrors.length > 0 ? compileErrors : [errorDetails],
       latexSource: generatedLatexCode,
       generatedLatex: generatedLatexCode,
       durationMs: Date.now() - startTime
