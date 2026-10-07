@@ -1,12 +1,15 @@
 /**
- * ProfessorVirus ATS Resume LaTeX Generator
+ * CampusPrep ATS Resume LaTeX Generator
  * Generates clean, standard Overleaf-compatible ATS-friendly LaTeX code.
  */
 
-// Escapes special characters for LaTeX
+// Escapes special characters for LaTeX safely
 export function escapeLatex(text) {
-  if (!text) return '';
-  return String(text)
+  if (text === null || text === undefined) return '';
+  if (typeof text === 'object') return '';
+  const str = String(text);
+  if (!str.trim() || str === 'undefined' || str === 'null' || str === '[object Object]') return '';
+  return str
     .replace(/\\/g, '\\textbackslash ')
     .replace(/([&%$#_{}])/g, (m) => '\\' + m)
     .replace(/~/g, '\\textasciitilde ')
@@ -18,10 +21,21 @@ export function normalizeUrl(url) {
   if (!url) return '';
   const trimmed = String(url).trim();
   if (!trimmed) return '';
-  if (/^(https?:\/\/|mailto:)/i.test(trimmed)) {
+  if (/^(https?:\/\/)/i.test(trimmed)) {
     return trimmed;
   }
   return `https://${trimmed}`;
+}
+
+// Clean URL for professional ATS display
+export function cleanDisplayUrl(url) {
+  if (!url) return '';
+  let str = String(url).trim();
+  if (!str) return '';
+  str = str.replace(/^https?:\/\//i, '');
+  str = str.replace(/^www\./i, '');
+  str = str.replace(/\/+$/, '');
+  return str;
 }
 
 // Normalizes email addresses to mailto: URIs
@@ -33,6 +47,29 @@ export function normalizeEmail(email) {
     return trimmed;
   }
   return `mailto:${trimmed}`;
+}
+
+// Normalizes phone numbers to tel: URIs preserving digits and leading +
+export function normalizePhone(phone) {
+  if (!phone) return '';
+  const trimmed = String(phone).trim();
+  if (!trimmed) return '';
+  const hasPlus = trimmed.startsWith('+');
+  const digits = trimmed.replace(/\D/g, '');
+  return `tel:${hasPlus ? '+' : ''}${digits}`;
+}
+
+// Formats display phone cleanly (e.g. +91 7668016628)
+export function formatDisplayPhone(phone) {
+  if (!phone) return '';
+  const str = String(phone).trim();
+  if (!str) return '';
+  if (/[ ()\-]/.test(str)) return str;
+  const match = str.match(/^(\+\d{1,3})(\d{10})$/);
+  if (match) {
+    return `${match[1]} ${match[2]}`;
+  }
+  return str;
 }
 
 // Generates complete, valid, Overleaf-compilable .tex source from resume data
@@ -88,35 +125,31 @@ export function generateLatex(resumeData, options = {}) {
 
   const rawExtracurricular = Array.isArray(resumeData.extracurricular) ? resumeData.extracurricular : [];
   const extracurricular = rawExtracurricular.filter(x =>
-    x && (x.role?.trim() || x.organization?.trim() || x.description?.trim())
+    x && (x.role?.trim() || x.organization?.trim() || x.description?.trim() || x.activity?.trim())
   );
 
   const fontSize = options.fontSize || '10pt';
   const margin = options.margin || '0.45in';
-  const template = options.template || 'classic-tech';
+  const template = options.template || resumeData.template || 'classic-tech';
 
   let tex = `%----------------------------------------------------------------------------------------
-% ProfessorVirus ATS One-Page Resume Template
+% CampusPrep ATS One-Page Resume Template (${template})
 % Overleaf Standard Compatible (Single-page, text-based, machine readable)
 %----------------------------------------------------------------------------------------
 
 \\documentclass[${fontSize},a4paper]{article}
 \\usepackage[utf8]{inputenc}
 \\usepackage[margin=${margin}]{geometry}
-\\usepackage{hyperref}
+\\usepackage[hidelinks]{hyperref}
 \\usepackage{titlesec}
 \\usepackage{enumitem}
 \\usepackage{tabularx}
 \\usepackage{microtype}
 
-% PDF Metadata & Clickable Hyperlinks Configuration
+% PDF Metadata
 \\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    filecolor=black,
-    urlcolor=[rgb]{0.05, 0.35, 0.75},
     pdftitle={${escapeLatex(p.fullName || 'Resume')}},
-    pdfauthor={${escapeLatex(p.fullName || 'ProfessorVirus Resume')}}
+    pdfauthor={${escapeLatex(p.fullName || 'CampusPrep Resume')}}
 }
 
 % Clean ATS Section formatting
@@ -133,7 +166,8 @@ export function generateLatex(resumeData, options = {}) {
   //---------- HEADING ----------
   const contactItems = [];
   if (p.phone && p.phone.trim()) {
-    contactItems.push(escapeLatex(p.phone.trim()));
+    const rawPhone = p.phone.trim();
+    contactItems.push(`\\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
   }
   if (p.email && p.email.trim()) {
     const cleanEmail = p.email.trim();
@@ -144,34 +178,56 @@ export function generateLatex(resumeData, options = {}) {
   }
   const linkedin = p.linkedinUrl || p.linkedin;
   if (linkedin && linkedin.trim()) {
-    contactItems.push(`\\href{${normalizeUrl(linkedin)}}{LinkedIn}`);
+    const rawLink = linkedin.trim();
+    contactItems.push(`\\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
   }
   const github = p.githubUrl || p.github;
   if (github && github.trim()) {
-    contactItems.push(`\\href{${normalizeUrl(github)}}{GitHub}`);
+    const rawGit = github.trim();
+    contactItems.push(`\\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
   }
   const portfolio = p.portfolioUrl || p.portfolio;
   if (portfolio && portfolio.trim()) {
-    contactItems.push(`\\href{${normalizeUrl(portfolio)}}{Portfolio}`);
+    const rawPort = portfolio.trim();
+    contactItems.push(`\\href{${normalizeUrl(rawPort)}}{${escapeLatex(cleanDisplayUrl(rawPort))}}`);
   }
 
   const hasName = !!(p.fullName && p.fullName.trim());
   const hasContact = contactItems.length > 0;
 
   if (hasName || hasContact) {
-    tex += `%---------- HEADING ----------\n\\begin{center}\n`;
-    if (hasName) {
-      tex += `    {\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}}`;
-      if (hasContact) {
-        tex += ` \\\\[3pt]\n`;
-      } else {
-        tex += `\n`;
+    const isCenter = template !== 'modern-clean';
+    if (isCenter) {
+      tex += `%---------- HEADING ----------\n\\begin{center}\n`;
+      if (hasName) {
+        tex += `    {\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}}`;
+        if (p.professionalHeadline && p.professionalHeadline.trim()) {
+          tex += ` \\\\[2pt]\n    {\\normalsize\\itshape ${escapeLatex(p.professionalHeadline.trim())}}`;
+        }
+        if (hasContact) {
+          tex += ` \\\\[3pt]\n`;
+        } else {
+          tex += `\n`;
+        }
       }
+      if (hasContact) {
+        tex += `    \\small\n    ${contactItems.join(' $|$ ')}\n`;
+      }
+      tex += `\\end{center}\n\\vspace{-6pt}\n\n`;
+    } else {
+      tex += `%---------- HEADING ----------\n\\noindent\n`;
+      if (hasName) {
+        tex += `{\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}}`;
+        if (p.professionalHeadline && p.professionalHeadline.trim()) {
+          tex += ` \\hfill {\\normalsize\\itshape ${escapeLatex(p.professionalHeadline.trim())}}`;
+        }
+        tex += ` \\\\[3pt]\n`;
+      }
+      if (hasContact) {
+        tex += `{\\small ${contactItems.join(' $|$ ')}}\n`;
+      }
+      tex += `\\vspace{4pt}\n\\hrule\n\\vspace{6pt}\n\n`;
     }
-    if (hasContact) {
-      tex += `    \\small\n    ${contactItems.join(' $|$ ')}\n`;
-    }
-    tex += `\\end{center}\n\\vspace{-6pt}\n\n`;
   }
 
   //---------- PROFESSIONAL SUMMARY ----------

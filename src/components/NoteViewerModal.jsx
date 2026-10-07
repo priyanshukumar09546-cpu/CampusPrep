@@ -90,9 +90,10 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
     window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
-  let rawProvider = (note.provider || note.source || 'Academic Notes').trim();
-  if (rawProvider.toLowerCase().includes('nptel') || rawProvider.toLowerCase().includes('aktu verified academic faculty')) {
-    rawProvider = 'Academic Notes';
+  let rawProvider = (note.provider || note.source || 'Faculty Lecture Notes').trim();
+  const lowerProv = rawProvider.toLowerCase();
+  if (lowerProv.includes('nptel') || lowerProv.includes('academic faculty') || lowerProv.includes('artu') || lowerProv.includes('aktu verified')) {
+    rawProvider = 'Faculty Lecture Notes';
   }
   const providerName = rawProvider;
   const isGenuinelyVerified = Boolean(note.isVerified) && isAvailable && (targetUrl.includes('drive.google.com') || targetUrl.includes('docs.google.com'));
@@ -465,7 +466,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                   color: '#1C1E21',
                   margin: '0 0 0.35rem 0'
                 }}>
-                  Resource Preview Available via Direct Link
+                  {targetUrl.includes('drive.google.com') ? 'Open in Google Drive' : 'Open Original Document'}
                 </h3>
 
                 <p style={{
@@ -475,7 +476,11 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                   lineHeight: 1.5,
                   margin: '0 auto 1.25rem auto'
                 }}>
-                  Curriculum notes for <strong>{note.title || (subject?.name || 'this subject')}</strong> are verified. Click below to open directly in Google Drive.
+                  {isGenuinelyVerified ? (
+                    <>Official curriculum document for <strong>{note.title || (subject?.name || 'this subject')}</strong> is verified. Click below to open directly in Google Drive.</>
+                  ) : (
+                    <>Study resource for <strong>{note.title || (subject?.name || 'this subject')}</strong>. Click below to view the original document.</>
+                  )}
                 </p>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -497,7 +502,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                         cursor: 'pointer'
                       }}
                     >
-                      <ExternalLink size={14} /> Open in Google Drive
+                      <ExternalLink size={14} /> {targetUrl.includes('drive.google.com') ? 'Open in Google Drive' : 'Open Original Document'}
                     </button>
                   )}
 

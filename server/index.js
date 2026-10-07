@@ -136,6 +136,52 @@ try {
 
 // SERVE UPLOADED FILES STATICALLY
 app.use('/uploads', express.static(path.join(PROJECT_ROOT, 'uploads')));
+if (IS_VERCEL) {
+  try {
+    app.use('/uploads', express.static('/tmp/uploads'));
+  } catch (e) {
+    console.warn('[VERCEL FS] Cannot attach /tmp/uploads static route:', e.message);
+  }
+}
+
+// DEDICATED ROUTE: Serve generated resume PDFs with in-memory + filesystem fallback
+app.get('/uploads/resumes/:filename', (req, res) => {
+  const filename = path.basename(req.params.filename);
+
+  // 1. In-memory cache check (zero-disk, instantaneous across serverless invocations)
+  try {
+    const cachedBytes = typeof resumeEngine.getRecentPdf === 'function' ? resumeEngine.getRecentPdf(filename) : null;
+    if (cachedBytes) {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
+      res.setHeader('Cache-Control', 'public, max-age=3600');
+      return res.send(Buffer.from(cachedBytes));
+    }
+  } catch (memErr) {
+    console.warn('[RESUME ENGINE] Error checking memory cache:', memErr.message);
+  }
+
+  // 2. Multi-path filesystem fallback
+  const possiblePaths = [
+    path.join(RESUMES_UPLOADS_DIR, filename),
+    path.join('/tmp', 'uploads', 'resumes', filename),
+    path.join(PROJECT_ROOT, 'uploads', 'resumes', filename),
+    path.join(__dirname, '..', 'uploads', 'resumes', filename)
+  ];
+
+  for (const p of possiblePaths) {
+    try {
+      if (fs.existsSync(p)) {
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `inline; filename="${filename}"`);
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+        return res.sendFile(path.resolve(p));
+      }
+    } catch (_) {}
+  }
+
+  res.status(404).send(`Cannot GET /uploads/resumes/${filename}`);
+});
 
 // CONFIGURE MULTER FOR PDF FILE UPLOADS
 const storage = multer.diskStorage({
@@ -6521,10 +6567,11 @@ app.post('/api/resumes/import', (req, res) => {
 // Compile Resume Preview (Real-time debounced compilation & 1-page check)
 app.post('/api/resumes/compile', async (req, res) => {
   try {
-    const { resumeData, options } = req.body;
+    const { resumeData, options, template } = req.body;
     if (!resumeData) return res.status(400).json({ success: false, message: 'No resume data provided.' });
 
-    const result = await resumeEngine.compileResumePdf(resumeData, options);
+    const compileOptions = options || (template ? { template } : {});
+    const result = await resumeEngine.compileResumePdf(resumeData, compileOptions);
     res.json(result);
   } catch (err) {
     res.status(500).json({ success: false, compileStatus: 'failed', message: err.message });

@@ -12,10 +12,13 @@ const path = require('path');
 const { PDFDocument, PDFName, PDFString, PDFArray, rgb, StandardFonts } = require('pdf-lib');
 const JSZip = require('jszip');
 
-// Escapes special characters for LaTeX
+// Escapes special characters for LaTeX safely
 function escapeLatex(text) {
-  if (!text) return '';
-  return String(text)
+  if (text === null || text === undefined) return '';
+  if (typeof text === 'object') return '';
+  const str = String(text);
+  if (!str.trim() || str === 'undefined' || str === 'null' || str === '[object Object]') return '';
+  return str
     .replace(/\\/g, '\\textbackslash ')
     .replace(/([&%$#_{}])/g, (m) => '\\' + m)
     .replace(/~/g, '\\textasciitilde ')
@@ -27,10 +30,21 @@ function normalizeUrl(url) {
   if (!url) return '';
   const trimmed = String(url).trim();
   if (!trimmed) return '';
-  if (/^(https?:\/\/|mailto:)/i.test(trimmed)) {
+  if (/^(https?:\/\/)/i.test(trimmed)) {
     return trimmed;
   }
   return `https://${trimmed}`;
+}
+
+// Clean URL for professional ATS display
+function cleanDisplayUrl(url) {
+  if (!url) return '';
+  let str = String(url).trim();
+  if (!str) return '';
+  str = str.replace(/^https?:\/\//i, '');
+  str = str.replace(/^www\./i, '');
+  str = str.replace(/\/+$/, '');
+  return str;
 }
 
 // Normalizes email addresses to mailto: URIs
@@ -44,6 +58,29 @@ function normalizeEmail(email) {
   return `mailto:${trimmed}`;
 }
 
+// Normalizes phone numbers to tel: URIs preserving digits and leading +
+function normalizePhone(phone) {
+  if (!phone) return '';
+  const trimmed = String(phone).trim();
+  if (!trimmed) return '';
+  const hasPlus = trimmed.startsWith('+');
+  const digits = trimmed.replace(/\D/g, '');
+  return `tel:${hasPlus ? '+' : ''}${digits}`;
+}
+
+// Formats display phone cleanly (e.g. +91 7668016628)
+function formatDisplayPhone(phone) {
+  if (!phone) return '';
+  const str = String(phone).trim();
+  if (!str) return '';
+  if (/[ ()\-]/.test(str)) return str;
+  const match = str.match(/^(\+\d{1,3})(\d{10})$/);
+  if (match) {
+    return `${match[1]} ${match[2]}`;
+  }
+  return str;
+}
+
 // Helper to register clickable PDF Link Annotation with pdf-lib
 function addLinkAnnotation(page, pdfDoc, x, y, width, height, url) {
   if (!url || typeof url !== 'string') return;
@@ -54,6 +91,7 @@ function addLinkAnnotation(page, pdfDoc, x, y, width, height, url) {
       Rect: [x, y - 2, x + width, y + height + 2],
       Border: [0, 0, 0],
       C: [0, 0, 1],
+      F: 4,
       A: {
         Type: 'Action',
         S: 'URI',
@@ -139,20 +177,16 @@ function generateLatex(resumeData, options = {}) {
 \\documentclass[${fontSize},a4paper]{article}
 \\usepackage[utf8]{inputenc}
 \\usepackage[margin=${margin}]{geometry}
-\\usepackage{hyperref}
+\\usepackage[hidelinks]{hyperref}
 \\usepackage{titlesec}
 \\usepackage{enumitem}
 \\usepackage{tabularx}
 \\usepackage{microtype}
 
-% PDF Metadata & Clickable Hyperlinks Configuration
+% PDF Metadata
 \\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    filecolor=black,
-    urlcolor=[rgb]{0.05, 0.35, 0.75},
     pdftitle={${escapeLatex(p.fullName || 'Resume')}},
-    pdfauthor={${escapeLatex(p.fullName || 'ProfessorVirus Resume')}}
+    pdfauthor={${escapeLatex(p.fullName || 'CampusPrep Resume')}}
 }
 
 % Clean ATS Section formatting
@@ -169,7 +203,8 @@ function generateLatex(resumeData, options = {}) {
   //---------- HEADING ----------
   const contactItems = [];
   if (p.phone && p.phone.trim()) {
-    contactItems.push(escapeLatex(p.phone.trim()));
+    const rawPhone = p.phone.trim();
+    contactItems.push(`\\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
   }
   if (p.email && p.email.trim()) {
     const cleanEmail = p.email.trim();
@@ -180,15 +215,18 @@ function generateLatex(resumeData, options = {}) {
   }
   const linkedin = p.linkedinUrl || p.linkedin;
   if (linkedin && linkedin.trim()) {
-    contactItems.push(`\\href{${normalizeUrl(linkedin)}}{LinkedIn}`);
+    const rawLink = linkedin.trim();
+    contactItems.push(`\\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
   }
   const github = p.githubUrl || p.github;
   if (github && github.trim()) {
-    contactItems.push(`\\href{${normalizeUrl(github)}}{GitHub}`);
+    const rawGit = github.trim();
+    contactItems.push(`\\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
   }
   const portfolio = p.portfolioUrl || p.portfolio;
   if (portfolio && portfolio.trim()) {
-    contactItems.push(`\\href{${normalizeUrl(portfolio)}}{Portfolio}`);
+    const rawPort = portfolio.trim();
+    contactItems.push(`\\href{${normalizeUrl(rawPort)}}{${escapeLatex(cleanDisplayUrl(rawPort))}}`);
   }
 
   const hasName = !!(p.fullName && p.fullName.trim());
@@ -507,26 +545,59 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       // Contact info bar with clickable hyperlinks
       const contactItems = [];
       if (p.phone && p.phone.trim()) {
-        contactItems.push({ text: p.phone.trim(), isLink: false });
+        const rawPhone = p.phone.trim();
+        contactItems.push({
+          type: 'phone',
+          text: formatDisplayPhone(rawPhone),
+          isLink: true,
+          url: normalizePhone(rawPhone)
+        });
       }
       if (p.email && p.email.trim()) {
         const cleanEmail = p.email.trim();
-        contactItems.push({ text: cleanEmail, isLink: true, url: normalizeEmail(cleanEmail) });
+        contactItems.push({
+          type: 'email',
+          text: cleanEmail,
+          isLink: true,
+          url: normalizeEmail(cleanEmail)
+        });
       }
       if (p.location && p.location.trim()) {
-        contactItems.push({ text: p.location.trim(), isLink: false });
+        contactItems.push({
+          type: 'location',
+          text: p.location.trim(),
+          isLink: false
+        });
       }
       const linkedin = p.linkedinUrl || p.linkedin;
       if (linkedin && linkedin.trim()) {
-        contactItems.push({ text: 'LinkedIn', isLink: true, url: normalizeUrl(linkedin) });
+        const rawLink = linkedin.trim();
+        contactItems.push({
+          type: 'linkedin',
+          text: cleanDisplayUrl(rawLink),
+          isLink: true,
+          url: normalizeUrl(rawLink)
+        });
       }
       const github = p.githubUrl || p.github;
       if (github && github.trim()) {
-        contactItems.push({ text: 'GitHub', isLink: true, url: normalizeUrl(github) });
+        const rawGit = github.trim();
+        contactItems.push({
+          type: 'github',
+          text: cleanDisplayUrl(rawGit),
+          isLink: true,
+          url: normalizeUrl(rawGit)
+        });
       }
       const portfolio = p.portfolioUrl || p.portfolio;
       if (portfolio && portfolio.trim()) {
-        contactItems.push({ text: 'Portfolio', isLink: true, url: normalizeUrl(portfolio) });
+        const rawPort = portfolio.trim();
+        contactItems.push({
+          type: 'portfolio',
+          text: cleanDisplayUrl(rawPort),
+          isLink: true,
+          url: normalizeUrl(rawPort)
+        });
       }
 
       if (contactItems.length > 0) {
@@ -572,8 +643,8 @@ async function compileResumePdf(resumeData, customOptions = {}) {
           });
           cursorY -= (cfg.baseFont + cfg.sectionGap);
         } else {
-          const line1 = contactItems.filter(i => !i.url || i.url.startsWith('mailto:'));
-          const line2 = contactItems.filter(i => i.url && !i.url.startsWith('mailto:'));
+          const line1 = contactItems.filter(i => ['phone', 'email', 'location'].includes(i.type));
+          const line2 = contactItems.filter(i => ['linkedin', 'github', 'portfolio'].includes(i.type));
           const lines = [line1, line2].filter(l => l.length > 0);
 
           lines.forEach(lineItems => {
@@ -1035,7 +1106,8 @@ async function compileResumePdf(resumeData, customOptions = {}) {
   // Generate corresponding LaTeX source
   const latexMargin = successfulConfig ? `${(successfulConfig.margin / 72).toFixed(2)}in` : '0.45in';
   const latexFontSize = successfulConfig ? `${Math.round(successfulConfig.baseFont)}pt` : '10pt';
-  generatedLatexCode = generateLatex(resumeData, { margin: latexMargin, fontSize: latexFontSize });
+  const activeTemplate = (customOptions && customOptions.template) || resumeData.template || 'classic-tech';
+  generatedLatexCode = generateLatex(resumeData, { margin: latexMargin, fontSize: latexFontSize, template: activeTemplate });
 
   if (!selectedPdfBytes) {
     return {
@@ -1065,11 +1137,16 @@ async function compileResumePdf(resumeData, customOptions = {}) {
     fs.writeFileSync(pdfFilePath, selectedPdfBytes);
   } catch (e) { console.warn('[RESUME ENGINE] Cannot write PDF file:', e.message); }
 
+  // Store in memory cache for instant zero-disk retrieval across serverless invocations
+  saveRecentPdf(pdfFileName, selectedPdfBytes);
+  const pdfBase64 = Buffer.from(selectedPdfBytes).toString('base64');
+
   return {
     success: finalStatus === 'success',
     compileStatus: finalStatus,
     pageCount: 1,
     pdfUrl: `/uploads/resumes/${pdfFileName}`,
+    pdfBase64,
     pdfFilePath,
     buffer: selectedPdfBytes,
     pdfBytes: selectedPdfBytes,
@@ -1228,10 +1305,34 @@ async function parseUploadedResume(fileBuffer, mimetype = '', originalname = '')
   return parsed;
 }
 
+// In-memory LRU cache of recently generated PDF buffers for zero-latency retrieval
+const recentPdfsMap = new Map();
+
+function saveRecentPdf(filename, bytes) {
+  if (!filename || !bytes) return;
+  if (recentPdfsMap.size >= 100) {
+    const firstKey = recentPdfsMap.keys().next().value;
+    recentPdfsMap.delete(firstKey);
+  }
+  recentPdfsMap.set(filename, bytes);
+}
+
+function getRecentPdf(filename) {
+  return recentPdfsMap.get(filename) || null;
+}
+
 module.exports = {
   escapeLatex,
+  normalizeUrl,
+  cleanDisplayUrl,
+  normalizeEmail,
+  normalizePhone,
+  formatDisplayPhone,
   generateLatex,
   compileResumePdf,
   performAiAction,
-  parseUploadedResume
+  parseUploadedResume,
+  saveRecentPdf,
+  getRecentPdf
 };
+

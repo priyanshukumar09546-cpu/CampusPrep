@@ -39,7 +39,6 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { generateLatex } from '../utils/latexGenerator';
-import MobileResumeBuilderScreen from '../components/MobileResumeBuilderScreen';
 
 const DEFAULT_RESUME_DATA = {
   personal: {
@@ -136,7 +135,6 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     }
   })();
 
-  const [mobileEditorOpen, setMobileEditorOpen] = useState(false);
   const [activeResumeId, setActiveResumeId] = useState(null);
   const [resumeTitle, setResumeTitle] = useState('My ATS Resume');
   const [resumeData, setResumeData] = useState(DEFAULT_RESUME_DATA);
@@ -171,10 +169,45 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   });
 
   const compileTimeoutRef = useRef(null);
+  const generationRef = useRef(0);
+  const activeBlobUrlRef = useRef(null);
+  const abortControllerRef = useRef(null);
 
-  // Get Auth Token
-  const getAuthToken = () => {
-    return localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+  // Check if minimal required data is present to compile
+  const hasMinimumData = Boolean(
+    resumeData?.personal?.fullName?.trim() ||
+    resumeData?.personal?.email?.trim() ||
+    resumeData?.personal?.phone?.trim()
+  );
+
+  // Cleanup active blob URL on unmount
+  useEffect(() => {
+    return () => {
+      if (activeBlobUrlRef.current) {
+        URL.revokeObjectURL(activeBlobUrlRef.current);
+      }
+      if (compileTimeoutRef.current) {
+        clearTimeout(compileTimeoutRef.current);
+      }
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
+
+  // Synchronously update LaTeX source immediately on every form update
+  useEffect(() => {
+    const tex = generateLatex(resumeData, { template });
+    setLatexSource(tex);
+  }, [resumeData, template]);
+
+  // Handle template selection change
+  const handleTemplateChange = (newTemplate) => {
+    setTemplate(newTemplate);
+    setResumeData(prev => ({
+      ...prev,
+      template: newTemplate
+    }));
   };
 
   // 1. Fetch User's Saved Resumes List
@@ -196,8 +229,14 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     fetchMyResumes();
   }, [fetchMyResumes]);
 
-  // 2. Debounced Compile Engine
-  const triggerCompile = useCallback((currentData, chosenTemplate) => {
+  // 2. Debounced Compile Engine with generation guard and client-side Blob URL
+  useEffect(() => {
+    if (!hasMinimumData) {
+      setIsCompiling(false);
+      setCompileError(null);
+      return;
+    }
+
     if (compileTimeoutRef.current) {
       clearTimeout(compileTimeoutRef.current);
     }
@@ -206,46 +245,94 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     setCompileError(null);
 
     compileTimeoutRef.current = setTimeout(async () => {
+      const currentGen = ++generationRef.current;
+
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+      const controller = new AbortController();
+      abortControllerRef.current = controller;
+
       try {
         const res = await fetch('/api/resumes/compile', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            resumeData: currentData,
-            template: chosenTemplate
-          })
+            resumeData,
+            template,
+            options: { template }
+          }),
+          signal: controller.signal
         });
 
         const data = await res.json();
+
+        // Stale response guard: ignore if user has typed further
+        if (currentGen !== generationRef.current) {
+          return;
+        }
+
         if (data.success) {
-          setPdfUrl(data.pdfUrl);
+          // If server returned base64 bytes, convert to client-side Blob URL for zero-network instantaneous render
+          if (data.pdfBase64) {
+            try {
+              const binaryString = window.atob(data.pdfBase64);
+              const len = binaryString.length;
+              const bytes = new Uint8Array(len);
+              for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+              }
+              const blob = new Blob([bytes], { type: 'application/pdf' });
+              const blobUrl = URL.createObjectURL(blob);
+
+              // Revoke previous blob URL to prevent browser memory leaks
+              if (activeBlobUrlRef.current) {
+                URL.revokeObjectURL(activeBlobUrlRef.current);
+              }
+              activeBlobUrlRef.current = blobUrl;
+              setPdfUrl(blobUrl);
+            } catch (blobErr) {
+              console.warn('Failed to parse pdfBase64 to blob:', blobErr);
+              if (data.pdfUrl) {
+                setPdfUrl(`${data.pdfUrl}?t=${Date.now()}`);
+              }
+            }
+          } else if (data.pdfUrl) {
+            setPdfUrl(`${data.pdfUrl}?t=${Date.now()}`);
+          }
+
           if (data.latexSource || data.generatedLatex) {
             setLatexSource(data.latexSource || data.generatedLatex);
           }
+
           setCompileStatus(data.stats || {
             isOnePage: true,
             pageCount: 1,
             levelName: 'Standard',
             message: 'Strict 1-Page Layout Verified'
           });
+          setCompileError(null);
         } else {
-          setCompileError(data.message || (data.compileErrors && data.compileErrors.join(', ')) || 'Resume compilation failed. Please check the highlighted issue.');
+          setCompileError(data.message || (data.compileErrors && data.compileErrors.join(', ')) || 'Resume compilation failed.');
         }
       } catch (err) {
+        if (err.name === 'AbortError') return;
+        if (currentGen !== generationRef.current) return;
         console.error('Compile error:', err);
         setCompileError(err.message || 'Network error communicating with resume compiler.');
       } finally {
-        setIsCompiling(false);
+        if (currentGen === generationRef.current) {
+          setIsCompiling(false);
+        }
       }
-    }, 400);
-  }, []);
+    }, 700);
 
-  // Synchronously update LaTeX source immediately on every form update, debouncing PDF compilation
-  useEffect(() => {
-    const tex = generateLatex(resumeData, { template });
-    setLatexSource(tex);
-    triggerCompile(resumeData, template);
-  }, [resumeData, template, triggerCompile]);
+    return () => {
+      if (compileTimeoutRef.current) {
+        clearTimeout(compileTimeoutRef.current);
+      }
+    };
+  }, [resumeData, template, hasMinimumData]);
 
   // 3. Save Resume to Backend
   const handleSaveResume = async () => {
@@ -315,20 +402,23 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
   // 5. Download LaTeX Source (.tex) - Overleaf standard resume.tex
   const handleDownloadLatex = () => {
-    if (!latexSource) return;
-    const blob = new Blob([latexSource], { type: 'text/x-tex;charset=utf-8' });
+    const currentTex = latexSource || generateLatex(resumeData, { template });
+    if (!currentTex) return;
+    const blob = new Blob([currentTex], { type: 'text/x-tex;charset=utf-8' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = 'resume.tex';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
   };
 
   // 6. Copy LaTeX
   const handleCopyLatex = () => {
-    if (!latexSource) return;
-    navigator.clipboard.writeText(latexSource);
+    const currentTex = latexSource || generateLatex(resumeData, { template });
+    if (!currentTex) return;
+    navigator.clipboard.writeText(currentTex);
     setCopiedLatex(true);
     setTimeout(() => setCopiedLatex(false), 2000);
   };
@@ -336,9 +426,14 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   // 7. Load an existing resume
   const handleLoadResume = (item) => {
     setActiveResumeId(item.id || item._id);
-    setResumeTitle(item.title || 'Engineering Resume');
-    if (item.template) setTemplate(item.template);
-    if (item.resumeData) setResumeData(item.resumeData);
+    setResumeTitle(item.title || 'My ATS Resume');
+    const loadedTemplate = item.template || 'classic-tech';
+    setTemplate(loadedTemplate);
+    if (item.resumeData) {
+      setResumeData(item.resumeData);
+      const tex = item.latexSource || generateLatex(item.resumeData, { template: loadedTemplate });
+      setLatexSource(tex);
+    }
     setShowMyResumesDrawer(false);
   };
 
@@ -534,14 +629,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   };
 
   return (
-    <>
-      {!mobileEditorOpen && (
-        <div className="pv-mobile-resume-builder-view">
-          <MobileResumeBuilderScreen onStartBuilder={() => setMobileEditorOpen(true)} />
-        </div>
-      )}
-
-      <div className={`pv-desktop-resume-builder-view ${mobileEditorOpen ? 'pv-force-show-mobile' : ''}`} style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div className="pv-resume-maker-page" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
       {/* =========================================================================
           TOP NAV & ATS COMPLIANCE TOOLBAR
@@ -681,7 +769,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               <span style={{ fontSize: '0.72rem', color: '#70675D', fontWeight: 700 }}>Template:</span>
               <select
                 value={template}
-                onChange={(e) => setTemplate(e.target.value)}
+                onChange={(e) => handleTemplateChange(e.target.value)}
                 style={{
                   backgroundColor: '#FAF7F2',
                   border: '1px solid #E2DAD0',
@@ -2190,16 +2278,20 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               {/* Status indicator in top right */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                 {isCompiling ? (
-                  <span style={{ fontSize: '0.72rem', color: '#D48816', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '3px' }}>
-                    <RefreshCw size={12} className="animate-spin" /> Compiling resume...
+                  <span style={{ fontSize: '0.72rem', color: '#D48816', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <RefreshCw size={12} className="animate-spin" /> Generating preview...
                   </span>
                 ) : compileError ? (
-                  <span style={{ fontSize: '0.72rem', color: '#DC2626', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '3px' }}>
+                  <span style={{ fontSize: '0.72rem', color: '#DC2626', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <AlertTriangle size={12} /> Compilation Issue
                   </span>
-                ) : (
+                ) : hasMinimumData && pdfUrl ? (
                   <span style={{ fontSize: '0.72rem', color: '#16A34A', fontWeight: 700 }}>
                     ● Preview updated
+                  </span>
+                ) : (
+                  <span style={{ fontSize: '0.72rem', color: '#888888', fontWeight: 600 }}>
+                    ● Ready
                   </span>
                 )}
               </div>
@@ -2254,15 +2346,43 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       View Generated LaTeX Source
                     </button>
                   </div>
-                ) : pdfUrl ? (
+                ) : pdfUrl && hasMinimumData ? (
                   <iframe
                     src={`${pdfUrl}#toolbar=0&navpanes=0`}
                     title="Live Resume Preview"
                     style={{ width: '100%', height: '100%', border: 'none' }}
                   />
                 ) : (
-                  <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFFFFF', fontSize: '0.85rem' }}>
-                    Compiling resume preview...
+                  <div style={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '2.5rem',
+                    textAlign: 'center',
+                    backgroundColor: '#262626',
+                    color: '#A3A3A3'
+                  }}>
+                    <div style={{
+                      width: '64px',
+                      height: '64px',
+                      borderRadius: '16px',
+                      backgroundColor: '#333333',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: '1.25rem',
+                      border: '1px solid #404040'
+                    }}>
+                      <FileText size={32} color="#D4D4D8" />
+                    </div>
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#F5F5F5', marginBottom: '0.5rem' }}>
+                      Your resume preview will appear here
+                    </h3>
+                    <p style={{ fontSize: '0.85rem', color: '#A3A3A3', maxWidth: '340px', lineHeight: 1.6, margin: 0 }}>
+                      Start entering your personal details on the left. The live ATS resume preview and Overleaf LaTeX will update automatically as you type.
+                    </p>
                   </div>
                 )}
               </div>
@@ -2807,6 +2927,5 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       `}</style>
 
     </div>
-    </>
   );
 }
