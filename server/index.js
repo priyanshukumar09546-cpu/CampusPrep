@@ -68,6 +68,8 @@ const getServerBaseUrl = () => {
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
+  'https://professorvirus.site',
+  'https://www.professorvirus.site',
   'https://campusprep-official.vercel.app',
   'https://campusprep-chi.vercel.app',
   'https://campusprep.vercel.app',
@@ -6660,21 +6662,23 @@ app.post('/api/resumes/compile', async (req, res) => {
       result.generationId = generationId;
     }
 
-    // Persist compiled PDF to MongoDB cache for zero-friction cross-container serving
+    // Persist compiled PDF to MongoDB cache in the background without blocking the HTTP preview response
     if (result.success && result.pdfBase64 && isDbConnected) {
       const pdfFileName = path.basename(result.pdfUrl || `resume_${Date.now()}.pdf`);
-      try {
-        await ResumePdfCacheModel.updateOne(
-          { filename: pdfFileName },
-          { $set: { filename: pdfFileName, pdfBase64: result.pdfBase64, latexSource: result.latexSource || '', createdAt: new Date() } },
-          { upsert: true }
-        );
-      } catch (cacheErr) {
+      ResumePdfCacheModel.updateOne(
+        { filename: pdfFileName },
+        { $set: { filename: pdfFileName, pdfBase64: result.pdfBase64, latexSource: result.latexSource || '', createdAt: new Date() } },
+        { upsert: true }
+      ).catch(cacheErr => {
         console.warn('[PDF CACHE] MongoDB save warning:', cacheErr.message);
-      }
+      });
     }
 
-    res.json(result);
+    const responsePayload = { ...result };
+    delete responsePayload.buffer;
+    delete responsePayload.pdfBytes;
+
+    res.json(responsePayload);
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -6898,7 +6902,7 @@ app.delete('/api/resumes/:id', optionalUserToken, async (req, res) => {
   }
 });
 
-// Download LaTeX (.tex) Source
+// Download LaTeX (.tex) Source — ALWAYS regenerate fresh to pick up latest display logic
 app.get('/api/resumes/:id/download-latex', optionalUserToken, async (req, res) => {
   try {
     const { id } = req.params;
@@ -6906,7 +6910,8 @@ app.get('/api/resumes/:id/download-latex', optionalUserToken, async (req, res) =
     if (isDbConnected && !resume) resume = await ResumeModel.findOne({ id }).lean();
     if (!resume) return res.status(404).send('Resume not found.');
 
-    const texCode = resume.generatedLatex || resumeEngine.generateLatex(resume);
+    // Always regenerate from resume data (never serve stale cached LaTeX)
+    const texCode = resumeEngine.generateLatex(resume);
     const safeTitle = (resume.title || 'resume').replace(/[^a-zA-Z0-9_-]/g, '_');
     res.setHeader('Content-Type', 'text/x-tex; charset=utf-8');
     res.setHeader('Content-Disposition', `attachment; filename="${safeTitle}.tex"`);
@@ -6916,7 +6921,7 @@ app.get('/api/resumes/:id/download-latex', optionalUserToken, async (req, res) =
   }
 });
 
-// Download Compiled PDF
+// Download Compiled PDF — ALWAYS recompile fresh to pick up latest display logic
 app.get('/api/resumes/:id/download-pdf', optionalUserToken, async (req, res) => {
   try {
     const { id } = req.params;
@@ -6926,25 +6931,22 @@ app.get('/api/resumes/:id/download-pdf', optionalUserToken, async (req, res) => 
 
     const safeTitle = (resume.title || (resume.personalDetails?.fullName ? `${resume.personalDetails.fullName}_Resume` : 'Resume')).replace(/[^a-zA-Z0-9_-]/g, '_');
 
-    // 1. If base64 exists in DB record
-    if (resume.pdfBase64) {
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `attachment; filename="${safeTitle}.pdf"`);
-      return res.send(Buffer.from(resume.pdfBase64, 'base64'));
-    }
-
-    // 2. Check in-memory cache
-    const pdfFileName = `${id}.pdf`;
-    const cachedBytes = typeof resumeEngine.getRecentPdf === 'function' ? resumeEngine.getRecentPdf(pdfFileName) : null;
-    if (cachedBytes) {
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `attachment; filename="${safeTitle}.pdf"`);
-      return res.send(Buffer.from(cachedBytes));
-    }
-
-    // 3. Compile directly into buffer
+    // ALWAYS recompile from resume data (never serve stale cached PDF with old URL display)
     const compiled = await resumeEngine.compileResumePdf(resume);
     if (compiled && compiled.pdfBytes && compiled.pdfBytes.length > 0) {
+      // Update the cached pdfBase64 in DB so future serves are also fresh
+      const freshBase64 = Buffer.from(compiled.pdfBytes).toString('base64');
+      if (isDbConnected) {
+        try {
+          await ResumeModel.updateOne({ id }, { $set: { pdfBase64: freshBase64, generatedLatex: compiled.generatedLatex || '' } });
+        } catch (e) {}
+      }
+      const idx = dbResumes.findIndex(r => r.id === id);
+      if (idx !== -1) {
+        dbResumes[idx].pdfBase64 = freshBase64;
+        dbResumes[idx].generatedLatex = compiled.generatedLatex || '';
+      }
+
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="${safeTitle}.pdf"`);
       return res.send(Buffer.from(compiled.pdfBytes));

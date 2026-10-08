@@ -1249,7 +1249,7 @@ export async function generateStudentNotes100Pages() {
       height: 1,
       color: rgb(0.82, 0.78, 0.72)
     });
-    page.drawText('Free Student Resource - https://professorvirus.com', {
+    page.drawText('Free Student Resource - https://professorvirus.site', {
       x: 36,
       y: 28,
       size: 8,

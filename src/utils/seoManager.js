@@ -3,7 +3,7 @@
 // Provides crawlable, unique title, description, canonical, OG, & schema data
 // ============================================================================
 
-const BASE_DOMAIN = 'https://professorvirus.com';
+const BASE_DOMAIN = 'https://professorvirus.site';
 
 export const SEO_PAGE_CONFIG = {
   home: {

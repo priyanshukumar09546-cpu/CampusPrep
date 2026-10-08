@@ -39,6 +39,50 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { generateLatex } from '../utils/latexGenerator';
+import SearchableSkillsSelector from '../components/SearchableSkillsSelector';
+
+// Normalizes resume skills between structured arrays and legacy string fields
+function normalizeResumeSkills(raw) {
+  if (!raw) return raw;
+  const copy = { ...raw };
+  const rawTech = copy.technicalSkills || {};
+  const rawSkills = copy.skills || {};
+
+  const parseStringSkills = (str) => {
+    if (!str || typeof str !== 'string') return [];
+    return str.split(',').map(s => s.trim()).filter(Boolean);
+  };
+
+  const technicalSkills = {
+    programmingLanguages: Array.isArray(rawTech.programmingLanguages)
+      ? rawTech.programmingLanguages
+      : parseStringSkills(rawSkills.languages),
+    frameworks: Array.isArray(rawTech.frameworks)
+      ? rawTech.frameworks
+      : parseStringSkills(rawSkills.frameworks),
+    developerTools: Array.isArray(rawTech.developerTools)
+      ? rawTech.developerTools
+      : parseStringSkills(rawSkills.tools),
+    databases: Array.isArray(rawTech.databases)
+      ? rawTech.databases
+      : parseStringSkills(rawSkills.databases),
+    coreConcepts: Array.isArray(rawTech.coreConcepts)
+      ? rawTech.coreConcepts
+      : parseStringSkills(rawSkills.coreConcepts)
+  };
+
+  const skills = {
+    languages: technicalSkills.programmingLanguages.join(', '),
+    frameworks: technicalSkills.frameworks.join(', '),
+    tools: technicalSkills.developerTools.join(', '),
+    databases: technicalSkills.databases.join(', '),
+    coreConcepts: technicalSkills.coreConcepts.join(', ')
+  };
+
+  copy.technicalSkills = technicalSkills;
+  copy.skills = skills;
+  return copy;
+}
 
 const DEFAULT_RESUME_DATA = {
   personal: {
@@ -65,6 +109,13 @@ const DEFAULT_RESUME_DATA = {
       cgpaOrPercentage: ''
     }
   ],
+  technicalSkills: {
+    programmingLanguages: [],
+    frameworks: [],
+    developerTools: [],
+    databases: [],
+    coreConcepts: []
+  },
   skills: {
     languages: '',
     frameworks: '',
@@ -178,6 +229,38 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   const generationRef = useRef(0);
   const activeBlobUrlRef = useRef(null);
   const abortControllerRef = useRef(null);
+  const lastCompiledPayloadRef = useRef('');
+
+  // Handler for searchable technical skills change
+  const handleSkillCategoryChange = useCallback((categoryKey, newList) => {
+    setResumeData(prev => {
+      const updatedTechnical = {
+        ...(prev.technicalSkills || {
+          programmingLanguages: [],
+          frameworks: [],
+          developerTools: [],
+          databases: [],
+          coreConcepts: []
+        }),
+        [categoryKey]: newList
+      };
+
+      // Also keep legacy string format fully synced for backward compatibility
+      const updatedSkills = {
+        languages: (updatedTechnical.programmingLanguages || []).join(', '),
+        frameworks: (updatedTechnical.frameworks || []).join(', '),
+        tools: (updatedTechnical.developerTools || []).join(', '),
+        databases: (updatedTechnical.databases || []).join(', '),
+        coreConcepts: (updatedTechnical.coreConcepts || []).join(', ')
+      };
+
+      return {
+        ...prev,
+        technicalSkills: updatedTechnical,
+        skills: updatedSkills
+      };
+    });
+  }, []);
 
   // Check if minimal required data is present to compile
   const hasMinimumData = Boolean(
@@ -201,7 +284,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     };
   }, []);
 
-  // Synchronously update LaTeX source immediately on every form update
+  // Synchronously update LaTeX source immediately on every form update (0ms delay)
   useEffect(() => {
     const tex = generateLatex(resumeData, { template });
     setLatexSource(tex);
@@ -238,11 +321,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   // Retry compile handler
   const handleRetryCompile = () => {
     setCompileError(null);
-    setIsCompiling(true);
+    lastCompiledPayloadRef.current = '';
     setCompileTrigger(c => c + 1);
   };
 
-  // 2. Debounced Compile Engine with generation guard, synchronized LaTeX, and client-side Blob URL
+  // 2. Optimized Debounced Compile Engine (850ms debounce, deduplication, stale guard, 15s timeout protection)
   useEffect(() => {
     if (!hasMinimumData) {
       setIsCompiling(false);
@@ -254,21 +337,33 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       clearTimeout(compileTimeoutRef.current);
     }
 
-    setIsCompiling(true);
-    setCompileError(null);
+    // Deduplicate: avoid compiling identical data when typing didn't change content
+    const currentPayload = JSON.stringify({ resumeData, template });
+    if (currentPayload === lastCompiledPayloadRef.current && compileTrigger === 0) {
+      return;
+    }
 
+    // Debounce: wait 850ms after the user stops editing before invoking the compiler
     compileTimeoutRef.current = setTimeout(async () => {
       const currentGen = ++generationRef.current;
 
+      // Abort any in-flight request
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
       const controller = new AbortController();
       abortControllerRef.current = controller;
 
-      // 1. Generate EXACT same LaTeX for preview tab & compiler
+      // Activate compiling state ONLY when network request is actually dispatched
+      setIsCompiling(true);
+      setCompileError(null);
+
+      // 15-second safety timeout prevents UI from ever getting stuck indefinitely
+      const safetyTimeout = setTimeout(() => {
+        controller.abort();
+      }, 15000);
+
       const exactLatex = generateLatex(resumeData, { template });
-      setLatexSource(exactLatex);
 
       try {
         const res = await fetch('/api/resumes/compile', {
@@ -284,6 +379,8 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           signal: controller.signal
         });
 
+        clearTimeout(safetyTimeout);
+
         if (!res.ok) {
           const errText = await res.text();
           let parsed = null;
@@ -293,16 +390,14 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
         const data = await res.json();
 
-        // Stale response guard: ignore if user has typed further
+        // Stale response protection: drop response if user edited further
         if (currentGen !== generationRef.current) {
-          return;
-        }
-        if (data.generationId && data.generationId !== generationRef.current) {
           return;
         }
 
         if (data.success) {
-          // If server returned base64 bytes, convert to client-side Blob URL for zero-network instantaneous render
+          lastCompiledPayloadRef.current = currentPayload;
+
           if (data.pdfBase64) {
             try {
               const binaryString = window.atob(data.pdfBase64);
@@ -314,7 +409,6 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               const blob = new Blob([bytes], { type: 'application/pdf' });
               const blobUrl = URL.createObjectURL(blob);
 
-              // Revoke previous blob URL to prevent browser memory leaks
               if (activeBlobUrlRef.current) {
                 URL.revokeObjectURL(activeBlobUrlRef.current);
               }
@@ -349,7 +443,14 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           setCompileError(data.error || data.details || data.message || (data.compileErrors && data.compileErrors.join(', ')) || 'Resume compilation failed.');
         }
       } catch (err) {
-        if (err.name === 'AbortError') return;
+        clearTimeout(safetyTimeout);
+        if (err.name === 'AbortError') {
+          // Newer generation is running or timeout triggered
+          if (currentGen === generationRef.current) {
+            setCompileError('Compilation timed out. Click Retry to recompile.');
+          }
+          return;
+        }
         if (currentGen !== generationRef.current) return;
         console.error('Compile error:', err);
         setCompileError(err.message || 'Network error communicating with resume compiler.');
@@ -358,7 +459,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           setIsCompiling(false);
         }
       }
-    }, 600);
+    }, 850);
 
     return () => {
       if (compileTimeoutRef.current) {
@@ -464,8 +565,9 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     const loadedTemplate = item.template || 'classic-tech';
     setTemplate(loadedTemplate);
     if (item.resumeData) {
-      setResumeData(item.resumeData);
-      const tex = item.latexSource || generateLatex(item.resumeData, { template: loadedTemplate });
+      const normalized = normalizeResumeSkills(item.resumeData);
+      setResumeData(normalized);
+      const tex = item.latexSource || generateLatex(normalized, { template: loadedTemplate });
       setLatexSource(tex);
     }
     setShowMyResumesDrawer(false);
@@ -628,30 +730,34 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   // Apply parsed data to editor
   const handleConfirmImport = () => {
     if (!importReviewData) return;
-    setResumeData(prev => ({
-      personal: {
-        ...prev.personal,
-        fullName: importReviewData.personal?.fullName || prev.personal.fullName,
-        email: importReviewData.personal?.email || prev.personal.email,
-        phone: importReviewData.personal?.phone || prev.personal.phone,
-        location: importReviewData.personal?.location || prev.personal.location,
-        linkedinUrl: importReviewData.personal?.linkedinUrl || prev.personal.linkedinUrl,
-        githubUrl: importReviewData.personal?.githubUrl || prev.personal.githubUrl
-      },
-      education: importReviewData.education?.length ? importReviewData.education : prev.education,
-      skills: {
-        languages: importReviewData.skills?.languages || prev.skills.languages,
-        frameworks: importReviewData.skills?.frameworks || prev.skills.frameworks,
-        tools: importReviewData.skills?.tools || prev.skills.tools,
-        databases: importReviewData.skills?.databases || prev.skills.databases,
-        coreConcepts: importReviewData.skills?.coreConcepts || prev.skills.coreConcepts
-      },
-      experience: importReviewData.experience?.length ? importReviewData.experience : prev.experience,
-      projects: importReviewData.projects?.length ? importReviewData.projects : prev.projects,
-      achievements: prev.achievements,
-      certifications: prev.certifications,
-      extracurricular: prev.extracurricular
-    }));
+    setResumeData(prev => {
+      const merged = {
+        ...prev,
+        personal: {
+          ...prev.personal,
+          fullName: importReviewData.personal?.fullName || prev.personal.fullName,
+          email: importReviewData.personal?.email || prev.personal.email,
+          phone: importReviewData.personal?.phone || prev.personal.phone,
+          location: importReviewData.personal?.location || prev.personal.location,
+          linkedinUrl: importReviewData.personal?.linkedinUrl || prev.personal.linkedinUrl,
+          githubUrl: importReviewData.personal?.githubUrl || prev.personal.githubUrl
+        },
+        education: importReviewData.education?.length ? importReviewData.education : prev.education,
+        skills: {
+          languages: importReviewData.skills?.languages || prev.skills?.languages || '',
+          frameworks: importReviewData.skills?.frameworks || prev.skills?.frameworks || '',
+          tools: importReviewData.skills?.tools || prev.skills?.tools || '',
+          databases: importReviewData.skills?.databases || prev.skills?.databases || '',
+          coreConcepts: importReviewData.skills?.coreConcepts || prev.skills?.coreConcepts || ''
+        },
+        experience: importReviewData.experience?.length ? importReviewData.experience : prev.experience,
+        projects: importReviewData.projects?.length ? importReviewData.projects : prev.projects,
+        achievements: prev.achievements,
+        certifications: prev.certifications,
+        extracurricular: prev.extracurricular
+      };
+      return normalizeResumeSkills(merged);
+    });
     setImportReviewData(null);
   };
 
@@ -1339,76 +1445,19 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             {/* STEP 3: TECHNICAL SKILLS */}
             {activeStep === 2 && (
               <div>
-                <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', marginBottom: '0.85rem' }}>
-                  3. Technical Skills (Categorized for ATS)
-                </h3>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  <div>
-                    <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
-                      Programming Languages
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. C++, Python, Java, JavaScript, TypeScript, SQL"
-                      value={resumeData.skills.languages}
-                      onChange={(e) => setResumeData(prev => ({ ...prev, skills: { ...prev.skills, languages: e.target.value } }))}
-                      style={{ width: '100%', padding: '0.5rem 0.65rem', borderRadius: '6px', border: '1px solid #DDD3C3', fontSize: '0.8rem', outline: 'none' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
-                      Frameworks & Libraries
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. React.js, Node.js, Express, Tailwind CSS, Next.js, Django"
-                      value={resumeData.skills.frameworks}
-                      onChange={(e) => setResumeData(prev => ({ ...prev, skills: { ...prev.skills, frameworks: e.target.value } }))}
-                      style={{ width: '100%', padding: '0.5rem 0.65rem', borderRadius: '6px', border: '1px solid #DDD3C3', fontSize: '0.8rem', outline: 'none' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
-                      Developer Tools & Platforms
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Git, GitHub, Docker, Postman, VS Code, Linux, AWS, Vercel"
-                      value={resumeData.skills.tools}
-                      onChange={(e) => setResumeData(prev => ({ ...prev, skills: { ...prev.skills, tools: e.target.value } }))}
-                      style={{ width: '100%', padding: '0.5rem 0.65rem', borderRadius: '6px', border: '1px solid #DDD3C3', fontSize: '0.8rem', outline: 'none' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
-                      Databases
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. MongoDB, PostgreSQL, MySQL, Redis, Firebase"
-                      value={resumeData.skills.databases}
-                      onChange={(e) => setResumeData(prev => ({ ...prev, skills: { ...prev.skills, databases: e.target.value } }))}
-                      style={{ width: '100%', padding: '0.5rem 0.65rem', borderRadius: '6px', border: '1px solid #DDD3C3', fontSize: '0.8rem', outline: 'none' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
-                      Core CS Concepts
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Data Structures & Algorithms, Object-Oriented Programming (OOP), OS, DBMS, Computer Networks"
-                      value={resumeData.skills.coreConcepts}
-                      onChange={(e) => setResumeData(prev => ({ ...prev, skills: { ...prev.skills, coreConcepts: e.target.value } }))}
-                      style={{ width: '100%', padding: '0.5rem 0.65rem', borderRadius: '6px', border: '1px solid #DDD3C3', fontSize: '0.8rem', outline: 'none' }}
-                    />
-                  </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                    3. Technical Skills (Categorized for ATS)
+                  </h3>
+                  <span style={{ fontSize: '0.7rem', color: '#8C7E72', fontWeight: 600 }}>
+                    Search & select skills or type custom skills
+                  </span>
                 </div>
+
+                <SearchableSkillsSelector
+                  technicalSkills={resumeData.technicalSkills}
+                  onChange={handleSkillCategoryChange}
+                />
               </div>
             )}
 

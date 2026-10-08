@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- 1. Home -->
   <url>
-    <loc>https://professorvirus.com/</loc>
+    <loc>https://professorvirus.site/</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -10,25 +10,25 @@
 
   <!-- 2. Academic Core -->
   <url>
-    <loc>https://professorvirus.com/notes</loc>
+    <loc>https://professorvirus.site/notes</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/pyqs</loc>
+    <loc>https://professorvirus.site/pyqs</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/syllabus</loc>
+    <loc>https://professorvirus.site/syllabus</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/quizzes</loc>
+    <loc>https://professorvirus.site/quizzes</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -36,7 +36,7 @@
 
   <!-- 3. Placement & Interviews -->
   <url>
-    <loc>https://professorvirus.com/interview-pro</loc>
+    <loc>https://professorvirus.site/interview-pro</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -44,37 +44,37 @@
 
   <!-- 4. Student Productivity Engines -->
   <url>
-    <loc>https://professorvirus.com/result-cgpa</loc>
+    <loc>https://professorvirus.site/result-cgpa</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/attendance-calculator</loc>
+    <loc>https://professorvirus.site/attendance-calculator</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/progress</loc>
+    <loc>https://professorvirus.site/progress</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/resume-maker</loc>
+    <loc>https://professorvirus.site/resume-maker</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/pdf-maker</loc>
+    <loc>https://professorvirus.site/pdf-maker</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/timetable</loc>
+    <loc>https://professorvirus.site/timetable</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -82,31 +82,31 @@
 
   <!-- 5. Opportunities & Resources -->
   <url>
-    <loc>https://professorvirus.com/competitive-exams</loc>
+    <loc>https://professorvirus.site/competitive-exams</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/project-ideas</loc>
+    <loc>https://professorvirus.site/project-ideas</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/internships-jobs</loc>
+    <loc>https://professorvirus.site/internships-jobs</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/scholarships</loc>
+    <loc>https://professorvirus.site/scholarships</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://professorvirus.com/important-links</loc>
+    <loc>https://professorvirus.site/important-links</loc>
     <lastmod>2026-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

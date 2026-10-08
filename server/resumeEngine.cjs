@@ -19,8 +19,13 @@ try {
   console.warn('[RESUME ENGINE] fontkit not loaded:', e.message);
 }
 
-// Helper to reliably find and read bundled TrueType font files
+const fontCache = new Map();
+
+// Helper to reliably find and read bundled TrueType font files (cached in RAM)
 function loadFontBytes(filename) {
+  if (fontCache.has(filename)) {
+    return fontCache.get(filename);
+  }
   const candidateDirs = [
     path.join(__dirname, 'fonts'),
     path.join(process.cwd(), 'server', 'fonts'),
@@ -32,7 +37,9 @@ function loadFontBytes(filename) {
     const fullPath = path.join(dir, filename);
     if (fs.existsSync(fullPath)) {
       try {
-        return fs.readFileSync(fullPath);
+        const bytes = fs.readFileSync(fullPath);
+        fontCache.set(filename, bytes);
+        return bytes;
       } catch (err) {
         console.warn(`[RESUME ENGINE] Failed to read font file ${fullPath}:`, err.message);
       }
@@ -238,17 +245,38 @@ function generateLatex(resumeData, options = {}) {
   );
 
   let rawSkills = [];
-  if (Array.isArray(resumeData.skills)) {
-    rawSkills = resumeData.skills;
-  } else if (resumeData.skills && typeof resumeData.skills === 'object') {
-    const s = resumeData.skills;
-    if (s.tools?.trim()) rawSkills.push({ category: 'Developer Tools', items: s.tools });
-    if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
-    if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks', items: s.frameworks });
-    if (s.databases?.trim()) rawSkills.push({ category: 'Databases', items: s.databases });
-    if (s.coreConcepts?.trim()) rawSkills.push({ category: 'Core CS Concepts', items: s.coreConcepts });
-    if (s.skills?.trim()) rawSkills.push({ category: 'Skills', items: s.skills });
-    if (s.other?.trim()) rawSkills.push({ category: 'Other Skills', items: s.other });
+  if (resumeData.technicalSkills && typeof resumeData.technicalSkills === 'object') {
+    const ts = resumeData.technicalSkills;
+    if (Array.isArray(ts.programmingLanguages) && ts.programmingLanguages.length > 0) {
+      rawSkills.push({ category: 'Programming Languages', items: ts.programmingLanguages });
+    }
+    if (Array.isArray(ts.frameworks) && ts.frameworks.length > 0) {
+      rawSkills.push({ category: 'Frameworks & Libraries', items: ts.frameworks });
+    }
+    if (Array.isArray(ts.developerTools) && ts.developerTools.length > 0) {
+      rawSkills.push({ category: 'Developer Tools & Platforms', items: ts.developerTools });
+    }
+    if (Array.isArray(ts.databases) && ts.databases.length > 0) {
+      rawSkills.push({ category: 'Databases', items: ts.databases });
+    }
+    if (Array.isArray(ts.coreConcepts) && ts.coreConcepts.length > 0) {
+      rawSkills.push({ category: 'Core Concepts', items: ts.coreConcepts });
+    }
+  }
+
+  if (rawSkills.length === 0) {
+    if (Array.isArray(resumeData.skills)) {
+      rawSkills = resumeData.skills;
+    } else if (resumeData.skills && typeof resumeData.skills === 'object') {
+      const s = resumeData.skills;
+      if (s.tools?.trim()) rawSkills.push({ category: 'Developer Tools', items: s.tools });
+      if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
+      if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks', items: s.frameworks });
+      if (s.databases?.trim()) rawSkills.push({ category: 'Databases', items: s.databases });
+      if (s.coreConcepts?.trim()) rawSkills.push({ category: 'Core CS Concepts', items: s.coreConcepts });
+      if (s.skills?.trim()) rawSkills.push({ category: 'Skills', items: s.skills });
+      if (s.other?.trim()) rawSkills.push({ category: 'Other Skills', items: s.other });
+    }
   }
   const skills = rawSkills.filter(s => {
     if (!s) return false;
@@ -327,33 +355,62 @@ function generateLatex(resumeData, options = {}) {
 `;
 
   //---------- HEADING ----------
-  const line1Contacts = [];
+  const contactEntries = [];
   if (p.phone && p.phone.trim()) {
     const rawPhone = p.phone.trim();
-    line1Contacts.push(`\\faPhone\\ \\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
+    contactEntries.push({
+      type: 'phone',
+      url: normalizePhone(rawPhone),
+      label: escapeLatex(formatDisplayPhone(rawPhone)),
+      iconMacro: '\\faPhone'
+    });
   }
   if (p.email && p.email.trim()) {
     const cleanEmail = p.email.trim();
-    line1Contacts.push(`\\faEnvelope\\ \\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
+    contactEntries.push({
+      type: 'email',
+      url: normalizeEmail(cleanEmail),
+      label: 'Email',
+      iconMacro: '\\faEnvelope'
+    });
   }
   const linkedin = p.linkedinUrl || p.linkedin;
   if (linkedin && linkedin.trim()) {
     const rawLink = linkedin.trim();
-    line1Contacts.push(`\\faLinkedin\\ \\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
+    contactEntries.push({
+      type: 'linkedin',
+      url: normalizeUrl(rawLink),
+      label: 'LinkedIn',
+      iconMacro: '\\faLinkedin'
+    });
   }
   const github = p.githubUrl || p.github;
   if (github && github.trim()) {
     const rawGit = github.trim();
-    line1Contacts.push(`\\faGithub\\ \\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
+    contactEntries.push({
+      type: 'github',
+      url: normalizeUrl(rawGit),
+      label: 'GitHub',
+      iconMacro: '\\faGithub'
+    });
+  }
+  const portfolio = p.portfolioUrl || p.portfolio;
+  if (portfolio && portfolio.trim()) {
+    const rawPort = portfolio.trim();
+    contactEntries.push({
+      type: 'portfolio',
+      url: normalizeUrl(rawPort),
+      label: 'Portfolio',
+      iconMacro: '\\faGlobe'
+    });
   }
 
-  const portfolio = p.portfolioUrl || p.portfolio;
-  const hasPortfolio = Boolean(portfolio && portfolio.trim());
+  const line1Contacts = contactEntries.map(c => `\\href{${c.url}}{${c.iconMacro}\\ ${c.label}}`);
 
   const hasName = !!(p.fullName && p.fullName.trim());
   const location = (p.location || '').trim();
 
-  if (hasName || line1Contacts.length > 0 || hasPortfolio) {
+  if (hasName || line1Contacts.length > 0) {
     tex += `%---------- HEADING ----------\n\\begin{center}\n`;
     if (hasName) {
       tex += `    {\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}} \\\\[2pt]\n`;
@@ -363,10 +420,6 @@ function generateLatex(resumeData, options = {}) {
     }
     if (line1Contacts.length > 0) {
       tex += `    {\\small ${line1Contacts.join(' \\quad ')}}\n`;
-    }
-    if (hasPortfolio) {
-      const rawPort = portfolio.trim();
-      tex += `    \\\\[2pt]\n    {\\small \\faGlobe\\ \\href{${normalizeUrl(rawPort)}}{Portfolio}}\n`;
     }
     tex += `\\end{center}\n\\vspace{-8pt}\n\n`;
   }
@@ -650,17 +703,38 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       );
 
       let rawSkills = [];
-      if (Array.isArray(resumeData.skills)) {
-        rawSkills = resumeData.skills;
-      } else if (resumeData.skills && typeof resumeData.skills === 'object') {
-        const s = resumeData.skills;
-        if (s.tools?.trim()) rawSkills.push({ category: 'Developer Tools', items: s.tools });
-        if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
-        if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks', items: s.frameworks });
-        if (s.databases?.trim()) rawSkills.push({ category: 'Databases', items: s.databases });
-        if (s.coreConcepts?.trim()) rawSkills.push({ category: 'Core CS Concepts', items: s.coreConcepts });
-        if (s.skills?.trim()) rawSkills.push({ category: 'Skills', items: s.skills });
-        if (s.other?.trim()) rawSkills.push({ category: 'Other Skills', items: s.other });
+      if (resumeData.technicalSkills && typeof resumeData.technicalSkills === 'object') {
+        const ts = resumeData.technicalSkills;
+        if (Array.isArray(ts.programmingLanguages) && ts.programmingLanguages.length > 0) {
+          rawSkills.push({ category: 'Programming Languages', items: ts.programmingLanguages });
+        }
+        if (Array.isArray(ts.frameworks) && ts.frameworks.length > 0) {
+          rawSkills.push({ category: 'Frameworks & Libraries', items: ts.frameworks });
+        }
+        if (Array.isArray(ts.developerTools) && ts.developerTools.length > 0) {
+          rawSkills.push({ category: 'Developer Tools & Platforms', items: ts.developerTools });
+        }
+        if (Array.isArray(ts.databases) && ts.databases.length > 0) {
+          rawSkills.push({ category: 'Databases', items: ts.databases });
+        }
+        if (Array.isArray(ts.coreConcepts) && ts.coreConcepts.length > 0) {
+          rawSkills.push({ category: 'Core Concepts', items: ts.coreConcepts });
+        }
+      }
+
+      if (rawSkills.length === 0) {
+        if (Array.isArray(resumeData.skills)) {
+          rawSkills = resumeData.skills;
+        } else if (resumeData.skills && typeof resumeData.skills === 'object') {
+          const s = resumeData.skills;
+          if (s.tools?.trim()) rawSkills.push({ category: 'Developer Tools', items: s.tools });
+          if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
+          if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks', items: s.frameworks });
+          if (s.databases?.trim()) rawSkills.push({ category: 'Databases', items: s.databases });
+          if (s.coreConcepts?.trim()) rawSkills.push({ category: 'Core CS Concepts', items: s.coreConcepts });
+          if (s.skills?.trim()) rawSkills.push({ category: 'Skills', items: s.skills });
+          if (s.other?.trim()) rawSkills.push({ category: 'Other Skills', items: s.other });
+        }
       }
       const skills = rawSkills.filter(s => {
         if (!s) return false;
@@ -723,22 +797,24 @@ async function compileResumePdf(resumeData, customOptions = {}) {
         }
       }
 
-      // Contact Info Lines (Line 1: Phone, Email, LinkedIn, GitHub. Line 2: Portfolio)
-      const line1Items = [];
+      // Contact Info Line (Phone, Email, LinkedIn, GitHub, Portfolio)
+      const contactItems = [];
       if (p.phone && p.phone.trim()) {
         const rawPhone = p.phone.trim();
-        line1Items.push({
+        contactItems.push({
           type: 'phone',
           text: formatDisplayPhone(rawPhone),
+          label: formatDisplayPhone(rawPhone),
           isLink: true,
           url: normalizePhone(rawPhone)
         });
       }
       if (p.email && p.email.trim()) {
         const cleanEmail = p.email.trim();
-        line1Items.push({
+        contactItems.push({
           type: 'email',
-          text: cleanEmail,
+          text: 'Email',
+          label: 'Email',
           isLink: true,
           url: normalizeEmail(cleanEmail)
         });
@@ -746,9 +822,10 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       const linkedin = p.linkedinUrl || p.linkedin;
       if (linkedin && linkedin.trim()) {
         const rawLink = linkedin.trim();
-        line1Items.push({
+        contactItems.push({
           type: 'linkedin',
-          text: cleanDisplayUrl(rawLink),
+          text: 'LinkedIn',
+          label: 'LinkedIn',
           isLink: true,
           url: normalizeUrl(rawLink)
         });
@@ -756,21 +833,21 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       const github = p.githubUrl || p.github;
       if (github && github.trim()) {
         const rawGit = github.trim();
-        line1Items.push({
+        contactItems.push({
           type: 'github',
-          text: cleanDisplayUrl(rawGit),
+          text: 'GitHub',
+          label: 'GitHub',
           isLink: true,
           url: normalizeUrl(rawGit)
         });
       }
-
-      const line2Items = [];
       const portfolio = p.portfolioUrl || p.portfolio;
       if (portfolio && portfolio.trim()) {
         const rawPort = portfolio.trim();
-        line2Items.push({
+        contactItems.push({
           type: 'portfolio',
           text: 'Portfolio',
+          label: 'Portfolio',
           isLink: true,
           url: normalizeUrl(rawPort)
         });
@@ -779,6 +856,16 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       const contactFontSize = cfg.baseFont - 0.5;
       const iconGap = 2.5;
       const itemSepGap = 14.0;
+
+      const calcLineWidth = (items) => {
+        if (!items || items.length === 0) return 0;
+        const totalW = items.reduce((sum, it) => {
+          const tW = regularFont.widthOfTextAtSize(it.text, contactFontSize);
+          const iconCfg = CONTACT_ICONS[it.type];
+          return sum + tW + (iconCfg ? (iconCfg.width + iconGap) : 0);
+        }, 0);
+        return totalW + (items.length - 1) * itemSepGap;
+      };
 
       const drawContactLine = (items) => {
         if (!items || items.length === 0) return;
@@ -824,11 +911,14 @@ async function compileResumePdf(resumeData, customOptions = {}) {
         cursorY -= (contactFontSize + 2.5);
       };
 
-      if (line1Items.length > 0) {
-        drawContactLine(line1Items);
-      }
-      if (line2Items.length > 0) {
-        drawContactLine(line2Items);
+      if (contactItems.length > 0) {
+        if (calcLineWidth(contactItems) <= contentWidth) {
+          drawContactLine(contactItems);
+        } else {
+          const mid = Math.ceil(contactItems.length / 2);
+          drawContactLine(contactItems.slice(0, mid));
+          drawContactLine(contactItems.slice(mid));
+        }
       }
       cursorY -= 2;
 
@@ -1405,15 +1495,13 @@ async function compileResumePdf(resumeData, customOptions = {}) {
   saveRecentPdf(pdfFileName, selectedPdfBytes);
   const pdfBase64 = Buffer.from(selectedPdfBytes).toString('base64');
 
-  return {
+  const returnPayload = {
     success: finalStatus === 'success',
     compileStatus: finalStatus,
     pageCount: 1,
     pdfUrl: `/uploads/resumes/${pdfFileName}`,
     pdfBase64,
     pdfFilePath,
-    buffer: selectedPdfBytes,
-    pdfBytes: selectedPdfBytes,
     latexSource: generatedLatexCode,
     generatedLatex: generatedLatexCode,
     onePageOptimized,
@@ -1427,6 +1515,13 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       overflowWarning: finalStatus !== 'success'
     }
   };
+
+  // Define buffer and pdfBytes as non-enumerable so server callers can still access them,
+  // but JSON.stringify / res.json will NEVER serialize 24MB of numeric keys
+  Object.defineProperty(returnPayload, 'buffer', { value: selectedPdfBytes, enumerable: false, writable: true, configurable: true });
+  Object.defineProperty(returnPayload, 'pdfBytes', { value: selectedPdfBytes, enumerable: false, writable: true, configurable: true });
+
+  return returnPayload;
 }
 
 /**

@@ -143,17 +143,38 @@ export function generateLatex(resumeData, options = {}) {
   );
 
   let rawSkills = [];
-  if (Array.isArray(resumeData.skills)) {
-    rawSkills = resumeData.skills;
-  } else if (resumeData.skills && typeof resumeData.skills === 'object') {
-    const s = resumeData.skills;
-    if (s.tools?.trim()) rawSkills.push({ category: 'Developer Tools', items: s.tools });
-    if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
-    if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks', items: s.frameworks });
-    if (s.databases?.trim()) rawSkills.push({ category: 'Databases', items: s.databases });
-    if (s.coreConcepts?.trim()) rawSkills.push({ category: 'Core CS Concepts', items: s.coreConcepts });
-    if (s.skills?.trim()) rawSkills.push({ category: 'Skills', items: s.skills });
-    if (s.other?.trim()) rawSkills.push({ category: 'Other Skills', items: s.other });
+  if (resumeData.technicalSkills && typeof resumeData.technicalSkills === 'object') {
+    const ts = resumeData.technicalSkills;
+    if (Array.isArray(ts.programmingLanguages) && ts.programmingLanguages.length > 0) {
+      rawSkills.push({ category: 'Programming Languages', items: ts.programmingLanguages });
+    }
+    if (Array.isArray(ts.frameworks) && ts.frameworks.length > 0) {
+      rawSkills.push({ category: 'Frameworks & Libraries', items: ts.frameworks });
+    }
+    if (Array.isArray(ts.developerTools) && ts.developerTools.length > 0) {
+      rawSkills.push({ category: 'Developer Tools & Platforms', items: ts.developerTools });
+    }
+    if (Array.isArray(ts.databases) && ts.databases.length > 0) {
+      rawSkills.push({ category: 'Databases', items: ts.databases });
+    }
+    if (Array.isArray(ts.coreConcepts) && ts.coreConcepts.length > 0) {
+      rawSkills.push({ category: 'Core Concepts', items: ts.coreConcepts });
+    }
+  }
+
+  if (rawSkills.length === 0) {
+    if (Array.isArray(resumeData.skills)) {
+      rawSkills = resumeData.skills;
+    } else if (resumeData.skills && typeof resumeData.skills === 'object') {
+      const s = resumeData.skills;
+      if (s.tools?.trim()) rawSkills.push({ category: 'Developer Tools', items: s.tools });
+      if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
+      if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks', items: s.frameworks });
+      if (s.databases?.trim()) rawSkills.push({ category: 'Databases', items: s.databases });
+      if (s.coreConcepts?.trim()) rawSkills.push({ category: 'Core CS Concepts', items: s.coreConcepts });
+      if (s.skills?.trim()) rawSkills.push({ category: 'Skills', items: s.skills });
+      if (s.other?.trim()) rawSkills.push({ category: 'Other Skills', items: s.other });
+    }
   }
   const skills = rawSkills.filter(s => {
     if (!s) return false;
@@ -232,33 +253,62 @@ export function generateLatex(resumeData, options = {}) {
 `;
 
   //---------- HEADING ----------
-  const line1Contacts = [];
+  const contactEntries = [];
   if (p.phone && p.phone.trim()) {
     const rawPhone = p.phone.trim();
-    line1Contacts.push(`\\faPhone\\ \\href{${normalizePhone(rawPhone)}}{${escapeLatex(formatDisplayPhone(rawPhone))}}`);
+    contactEntries.push({
+      type: 'phone',
+      url: normalizePhone(rawPhone),
+      label: escapeLatex(formatDisplayPhone(rawPhone)),
+      iconMacro: '\\faPhone'
+    });
   }
   if (p.email && p.email.trim()) {
     const cleanEmail = p.email.trim();
-    line1Contacts.push(`\\faEnvelope\\ \\href{${normalizeEmail(cleanEmail)}}{${escapeLatex(cleanEmail)}}`);
+    contactEntries.push({
+      type: 'email',
+      url: normalizeEmail(cleanEmail),
+      label: 'Email',
+      iconMacro: '\\faEnvelope'
+    });
   }
   const linkedin = p.linkedinUrl || p.linkedin;
   if (linkedin && linkedin.trim()) {
     const rawLink = linkedin.trim();
-    line1Contacts.push(`\\faLinkedin\\ \\href{${normalizeUrl(rawLink)}}{${escapeLatex(cleanDisplayUrl(rawLink))}}`);
+    contactEntries.push({
+      type: 'linkedin',
+      url: normalizeUrl(rawLink),
+      label: 'LinkedIn',
+      iconMacro: '\\faLinkedin'
+    });
   }
   const github = p.githubUrl || p.github;
   if (github && github.trim()) {
     const rawGit = github.trim();
-    line1Contacts.push(`\\faGithub\\ \\href{${normalizeUrl(rawGit)}}{${escapeLatex(cleanDisplayUrl(rawGit))}}`);
+    contactEntries.push({
+      type: 'github',
+      url: normalizeUrl(rawGit),
+      label: 'GitHub',
+      iconMacro: '\\faGithub'
+    });
+  }
+  const portfolio = p.portfolioUrl || p.portfolio;
+  if (portfolio && portfolio.trim()) {
+    const rawPort = portfolio.trim();
+    contactEntries.push({
+      type: 'portfolio',
+      url: normalizeUrl(rawPort),
+      label: 'Portfolio',
+      iconMacro: '\\faGlobe'
+    });
   }
 
-  const portfolio = p.portfolioUrl || p.portfolio;
-  const hasPortfolio = Boolean(portfolio && portfolio.trim());
+  const line1Contacts = contactEntries.map(c => `\\href{${c.url}}{${c.iconMacro}\\ ${c.label}}`);
 
   const hasName = !!(p.fullName && p.fullName.trim());
   const location = (p.location || '').trim();
 
-  if (hasName || line1Contacts.length > 0 || hasPortfolio) {
+  if (hasName || line1Contacts.length > 0) {
     tex += `%---------- HEADING ----------\n\\begin{center}\n`;
     if (hasName) {
       tex += `    {\\LARGE\\bfseries ${escapeLatex(p.fullName.trim())}} \\\\[2pt]\n`;
@@ -268,10 +318,6 @@ export function generateLatex(resumeData, options = {}) {
     }
     if (line1Contacts.length > 0) {
       tex += `    {\\small ${line1Contacts.join(' \\quad ')}}\n`;
-    }
-    if (hasPortfolio) {
-      const rawPort = portfolio.trim();
-      tex += `    \\\\[2pt]\n    {\\small \\faGlobe\\ \\href{${normalizeUrl(rawPort)}}{Portfolio}}\n`;
     }
     tex += `\\end{center}\n\\vspace{-8pt}\n\n`;
   }
