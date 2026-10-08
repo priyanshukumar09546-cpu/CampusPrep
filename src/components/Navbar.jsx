@@ -121,12 +121,14 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
 
   const navItems = [
     { name: 'Home', id: 'home' },
-    { name: 'PYQs', id: 'pyqs' },
     { name: 'Notes', id: 'notes' },
+    { name: 'PYQs', id: 'pyqs' },
     { name: 'Syllabus', id: 'syllabus' },
     { name: 'Quizzes', id: 'quizzes' },
-    { name: 'Interview Pro', id: 'interview-pro' },
-    { name: 'More', id: 'more' },
+    { name: 'Resume Maker', id: 'resume-maker' },
+    { name: 'Interview Pro', id: 'interview-pro', isBeta: true },
+    { name: 'Result & CGPA', id: 'result-cgpa' },
+    { name: 'More', id: 'more', isDropdown: true },
   ];
 
   const handleSearchSubmit = (e) => {
@@ -539,46 +541,50 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   activeTab === 'interview-instructions' ||
                   activeTab === 'interview-start'));
 
-
-
-            if (item.id === 'interview-pro') {
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavigate('interview-pro')}
-                  style={{
-                    backgroundColor: isActive ? '#781416' : 'transparent',
-                    color: isActive ? '#FFFFFF' : '#2D3238',
-                    padding: isActive ? '0.42rem 1.05rem' : '0.42rem 0.85rem',
-                    borderRadius: '9999px',
-                    fontWeight: isActive ? 700 : 600,
-                    fontSize: '0.88rem',
-                    border: 'none',
-                    cursor: 'pointer',
-                    boxShadow: isActive ? '0 4px 14px rgba(120, 20, 22, 0.32)' : 'none',
-                    transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
-                    whiteSpace: 'nowrap',
-                    flexShrink: 0,
-                    fontFamily: "'Plus Jakarta Sans', sans-serif"
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) e.currentTarget.style.color = '#781416';
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) e.currentTarget.style.color = '#2D3238';
-                  }}
-                >
-                  <span style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>Interview Pro</span>
+            return (
+              <button
+                key={item.id}
+                onClick={() => {
+                  if (item.isDropdown) {
+                    setMenuPanelOpen(true);
+                  } else {
+                    handleNavigate(item.id);
+                  }
+                }}
+                style={{
+                  position: 'relative',
+                  backgroundColor: 'transparent',
+                  color: isActive ? '#781416' : '#2D3238',
+                  padding: '0.45rem 0.75rem',
+                  borderRadius: '6px',
+                  fontWeight: isActive ? 800 : 600,
+                  fontSize: '0.86rem',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.18s ease',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0,
+                  fontFamily: "'Plus Jakarta Sans', sans-serif"
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) e.currentTarget.style.color = '#781416';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) e.currentTarget.style.color = '#2D3238';
+                }}
+              >
+                <span>{item.name}</span>
+                {item.isBeta && (
                   <span
                     style={{
                       backgroundColor: '#D48816',
                       color: '#FFFFFF',
-                      fontSize: '0.6rem',
+                      fontSize: '0.58rem',
                       fontWeight: 800,
-                      padding: '0.1rem 0.42rem',
+                      padding: '0.08rem 0.38rem',
                       borderRadius: '9999px',
                       lineHeight: 1.15,
                       letterSpacing: '0.02em',
@@ -590,22 +596,24 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   >
                     Beta
                   </span>
-                </button>
-              );
-            }
-
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleNavigate(item.id)}
-                className={`nav-link-item ${isActive ? 'active' : ''}`}
-                style={{
-                  whiteSpace: 'nowrap',
-                  flexShrink: 0,
-                  boxShadow: isActive ? '0 3px 10px rgba(200,141,45,0.28)' : 'none'
-                }}
-              >
-                {item.name}
+                )}
+                {item.isDropdown && (
+                  <ChevronDown size={13} style={{ color: '#7A6F62' }} />
+                )}
+                {isActive && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      bottom: '-2px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      width: '28px',
+                      height: '3px',
+                      borderRadius: '9999px',
+                      backgroundColor: '#781416'
+                    }}
+                  />
+                )}
               </button>
             );
           })}

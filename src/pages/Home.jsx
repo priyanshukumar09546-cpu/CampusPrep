@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroSection from '../components/HeroSection';
-import FeatureCards from '../components/FeatureCards';
+import QuickAccessStrip from '../components/QuickAccessStrip';
+import ExploreToolsSection from '../components/ExploreToolsSection';
 import CourseCardsSection from '../components/CourseCardsSection';
 import WhyStudentsLoveSection from '../components/WhyStudentsLoveSection';
 import RealStatsSection from '../components/RealStatsSection';
@@ -19,43 +20,53 @@ export default function Home({
   onOpenSubject
 }) {
   return (
-    <div className="w-full relative overflow-x-hidden" style={{ backgroundColor: '#FAF7F2' }}>
+    <div className="w-full relative overflow-x-hidden" style={{ backgroundColor: '#FAF5ED' }}>
       
-      {/* 1. Page 1: Hero Section with Branding, Pill Tag, Functional Search & Branch Filters */}
+      {/* 1. Hero Section matching Reference Design (Brand, Tagline, CTAs, Real Stats, Search, Branch Chips & Student Showcase) */}
       <HeroSection
         onSearch={onSearch}
         onSelectBranch={onSelectBranch}
+        onNavigate={onNavigate}
       />
 
-      {/* 2. Page 1: 8 Primary Academic Tools Strip */}
-      <FeatureCards
-        onCardClick={onFeatureClick}
-      />
+      {/* 2. Quick Access Tool Strip (Exactly 7 Horizontal Tools matching Reference Image) */}
+      <div id="quick-access-section">
+        <QuickAccessStrip
+          onNavigate={onNavigate}
+        />
+      </div>
 
-      {/* 3. Page 1 & 2: Choose Your Course Section (BTech, BCA, BBA, BPharm, MBA, MCA, MTech, More) */}
+      {/* 3. Explore Our Tools (Exactly 8 Tool Cards in 4-Col Grid matching Reference Image) */}
+      <div id="explore-tools">
+        <ExploreToolsSection
+          onNavigate={onNavigate}
+        />
+      </div>
+
+      {/* 4. Choose Your Course Section (BTech, BCA, BBA, BPharm, MBA, MCA, MTech, More) */}
       <CourseCardsSection
         onSelectCourse={onSelectCourse}
         onNavigate={onNavigate}
       />
 
-      {/* 4. Page 2: Why Students Love ProfessorVirus? (4 Verified Feature Cards) */}
+      {/* 5. Why Students Love ProfessorVirus? (Verified Student Features) */}
       <WhyStudentsLoveSection />
 
-      {/* 5. Page 2: Real Verified Academic Statistics */}
+      {/* 6. Real Verified Academic Statistics */}
       <RealStatsSection />
 
-      {/* 6. Page 2: Popular Subjects with Direct Course/Branch/Semester Navigation */}
+      {/* 7. Popular Subjects with Direct Course/Branch/Semester Navigation */}
       <PopularSubjectsSection
         onOpenSubject={onOpenSubject}
         onNavigate={onNavigate}
       />
 
-      {/* 7. Page 3: Promote Your Brand & App, Plans & Value Highlights */}
+      {/* 8. Promote Your Brand & App, Plans & Value Highlights */}
       <PromotionSection
         onNavigate={onNavigate}
       />
 
-      {/* 8. Page 4: Final Academic Call To Action & 4 Core Values */}
+      {/* 9. Final Academic Call To Action & Core Educational Values */}
       <FinalCtaSection
         onNavigate={onNavigate}
       />

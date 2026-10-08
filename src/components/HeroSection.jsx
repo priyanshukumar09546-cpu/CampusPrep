@@ -1,304 +1,298 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, Check, Sparkles, BookOpen, GraduationCap } from 'lucide-react';
+import {
+  Search,
+  ChevronDown,
+  Sparkles,
+  ArrowRight,
+  Play,
+  Users,
+  FileText,
+  Briefcase,
+  Star
+} from 'lucide-react';
 
-/* 
-  ===================================================================
-  HOMEPAGE PERMANENT ASSET RULE (PROTECTED DESIGN ASSET)
-  ===================================================================
-  - Hero Left Poster (/assets/professor_virus_poster.png)
-  - Hero Right Poster (/assets/hero_right_poster.png - 3-Idiots Chalkboard)
-  These posters are APPROVED PERMANENT DESIGN ASSETS.
-  DO NOT REMOVE, REPLACE, OR CROP THESE POSTERS IN FUTURE REFACTORS.
-  ===================================================================
-*/
-
-export default function HeroSection({ onSearch, onSelectBranch }) {
+export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('All Branches');
 
-  const branches = ['CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'];
+  const branches = ['CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'All Branches'];
 
-  const handleSearch = (e) => {
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (onSearch) onSearch(searchQuery, selectedBranch);
+    if (onSearch && searchQuery.trim()) {
+      onSearch(searchQuery.trim(), selectedBranch);
+    }
   };
 
   const handleBranchClick = (branch) => {
     setSelectedBranch(branch);
-    if (onSelectBranch) onSelectBranch(branch);
+    if (onSelectBranch) {
+      onSelectBranch(branch === 'All Branches' ? 'All' : branch);
+    }
   };
 
   return (
     <section style={{
+      backgroundColor: '#FAF5ED',
+      padding: '2.5rem 0 2rem 0',
       position: 'relative',
-      overflow: 'hidden',
-      padding: '2.25rem 0 2.75rem 0',
-      backgroundColor: '#FAF7F2',
-      backgroundImage: `
-        radial-gradient(rgba(200, 141, 45, 0.08) 1.5px, transparent 1.5px),
-        radial-gradient(rgba(35, 30, 25, 0.03) 1.5px, transparent 1.5px),
-        linear-gradient(180deg, #FCFAF6 0%, #F6F1E6 60%, #EFE8DA 100%)
-      `,
-      backgroundSize: '32px 32px, 16px 16px, 100% 100%',
-      borderBottom: '1.5px solid #E2D9C8',
-      boxShadow: '0 10px 28px rgba(35, 30, 25, 0.05)',
-      perspective: '1200px'
+      overflow: 'hidden'
     }}>
-      {/* Warm Ambient Sunlight Glow */}
+      {/* Background Decorative Doodles and Subtle Dot Pattern */}
       <div style={{
         position: 'absolute',
-        top: '-20%',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '80%',
-        height: '80%',
-        background: 'radial-gradient(ellipse at center, rgba(200, 141, 45, 0.12) 0%, rgba(250, 247, 242, 0) 70%)',
-        pointerEvents: 'none',
-        zIndex: 1
+        inset: 0,
+        backgroundImage: `
+          radial-gradient(rgba(180, 140, 80, 0.08) 1.5px, transparent 1.5px),
+          radial-gradient(rgba(120, 20, 22, 0.03) 1.5px, transparent 1.5px)
+        `,
+        backgroundSize: '28px 28px, 14px 14px',
+        opacity: 0.85,
+        pointerEvents: 'none'
       }} />
 
-      <div className="container" style={{ position: 'relative', zIndex: 5 }}>
+      <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem', position: 'relative', zIndex: 2 }}>
         
-        {/* ONE CONTINUOUS PANORAMIC HERO BANNER CARD */}
+        {/* Main 2-Column Hero Container */}
         <div style={{
-          backgroundColor: 'rgba(252, 250, 246, 0.96)',
-          border: '1.5px solid #E2D9C8',
-          borderRadius: '28px',
-          boxShadow: '0 16px 42px rgba(35, 30, 25, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.95)',
-          padding: '2.75rem clamp(2.25rem, 4vw, 4.25rem)',
-          position: 'relative',
-          overflow: 'hidden',
-          boxSizing: 'border-box'
-        }} className="hero-panoramic-container">
+          display: 'grid',
+          gridTemplateColumns: 'minmax(420px, 1.15fr) minmax(360px, 0.85fr)',
+          gap: 'clamp(2rem, 4vw, 3.5rem)',
+          alignItems: 'center'
+        }} className="hero-2col-layout">
 
-          {/* Subtle Background Architectural Campus / Light Texture */}
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'radial-gradient(#E8D3B0 0.75px, transparent 0.75px)',
-            backgroundSize: '24px 24px',
-            opacity: 0.35,
-            pointerEvents: 'none'
-          }} />
+          {/* ===================================================================
+              LEFT COLUMN: BADGE, HEADINGS, DESCRIPTION, CTA, STATS, SEARCH
+              =================================================================== */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
 
-          {/* Main Grid: Left Mascot | Center Search & Brand | Right Poster & Sticky Note */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(210px, 240px) minmax(380px, 1fr) minmax(210px, 260px)',
-            gap: 'clamp(2rem, 3.2vw, 3.75rem)',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            position: 'relative',
-            zIndex: 2
-          }} className="hero-grid">
+            {/* Top Pill Badge (Matches Reference Image) */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              backgroundColor: '#FDF2E9',
+              border: '1.2px solid #F5D0B5',
+              borderRadius: '9999px',
+              padding: '0.35rem 0.95rem',
+              fontSize: '0.78rem',
+              fontWeight: 800,
+              color: '#881337',
+              marginBottom: '1.15rem',
+              boxShadow: '0 2px 8px rgba(120, 20, 22, 0.04)'
+            }}>
+              <span>🎓</span>
+              <span>Trusted by 50,000+ Engineering Students</span>
+            </div>
 
-            {/* LEFT: ProfessorVirus Mascot (PERMANENT APPROVED ASSET) */}
+            {/* Brand Title: ProfessorVirus (Matches Reference Image) */}
+            <h1 style={{
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: 'clamp(2.75rem, 4.4vw, 3.85rem)',
+              fontWeight: 900,
+              lineHeight: 1.05,
+              margin: '0 0 0.45rem 0',
+              letterSpacing: '-0.02em',
+              color: '#1C1917'
+            }}>
+              <span>Professor</span><span style={{ color: '#D97706' }}>Virus</span>
+            </h1>
+
+            {/* Sub-headline in Rich Dark Maroon (Matches Reference Image) */}
+            <h2 style={{
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: 'clamp(1.75rem, 2.7vw, 2.35rem)',
+              fontWeight: 900,
+              lineHeight: 1.18,
+              color: '#781416',
+              margin: '0 0 1rem 0',
+              letterSpacing: '-0.015em'
+            }}>
+              Your Complete Learning &amp; Career Preparation Platform
+            </h2>
+
+            {/* Body Description (Matches Reference Image) */}
+            <p style={{
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontSize: '0.96rem',
+              fontWeight: 600,
+              lineHeight: 1.6,
+              color: '#57534E',
+              margin: '0 0 1.5rem 0',
+              maxWidth: '560px'
+            }}>
+              Get notes, PYQs, syllabus, quizzes, resume maker, AI-powered interview practice, coding preparation, result &amp; CGPA tools — all in one place. Built for B.Tech and engineering students to study smart and prepare better.
+            </p>
+
+            {/* CTA Action Buttons (Matches Reference Image) */}
             <div style={{
               display: 'flex',
-              flexDirection: 'column',
               alignItems: 'center',
-              position: 'relative',
-              perspective: '1000px',
-              padding: '0 0.25rem',
-              maxWidth: '240px',
-              margin: '0 auto'
-            }} className="hero-left-mascot">
-              
-              {/* Quote Bubble */}
-              <div style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                borderRadius: '16px',
-                padding: '0.6rem 0.9rem',
-                marginBottom: '0.6rem',
-                border: '1.5px solid #E8D3B0',
-                boxShadow: '0 6px 20px rgba(35, 30, 25, 0.08), inset 0 1px 0 rgba(255,255,255,1)',
-                fontSize: '0.82rem',
-                fontWeight: 600,
-                color: '#1C1E21',
-                fontFamily: "'Kalam', cursive",
-                lineHeight: 1.3,
-                position: 'relative',
-                textAlign: 'center'
-              }}>
-                “Concept samajh aaya? <br />
-                Nahi aaya? Toh padho! <br />
-                Simple haii.” <br />
-                <span style={{ color: '#C88D2D', fontWeight: 700 }}>— ProfessorVirus</span>
-                
-                {/* Bubble Arrow */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '-9px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 0,
-                  height: 0,
-                  borderLeft: '8px solid transparent',
-                  borderRight: '8px solid transparent',
-                  borderTop: '9px solid #E8D3B0'
-                }} />
+              gap: '0.85rem',
+              flexWrap: 'wrap',
+              marginBottom: '1.65rem'
+            }}>
+              <button
+                type="button"
+                onClick={() => {
+                  if (onNavigate) onNavigate('notes');
+                }}
+                style={{
+                  backgroundColor: '#781416',
+                  color: '#FFFFFF',
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  fontSize: '0.94rem',
+                  fontWeight: 800,
+                  padding: '0.78rem 1.65rem',
+                  borderRadius: '9999px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  boxShadow: '0 6px 18px rgba(120, 20, 22, 0.32)',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#631012';
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#781416';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <span>Get Started Free</span>
+                <ArrowRight size={16} />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const target = document.getElementById('quick-access-section') || document.querySelector('.quick-access-grid');
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                  } else if (onNavigate) {
+                    onNavigate('interview-pro');
+                  }
+                }}
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  color: '#1C1917',
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  fontSize: '0.94rem',
+                  fontWeight: 700,
+                  padding: '0.76rem 1.55rem',
+                  borderRadius: '9999px',
+                  border: '1.5px solid #E5DFD3',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  boxShadow: '0 2px 8px rgba(35, 30, 25, 0.04)',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#C88D2D';
+                  e.currentTarget.style.backgroundColor = '#FAF7F2';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#E5DFD3';
+                  e.currentTarget.style.backgroundColor = '#FFFFFF';
+                }}
+              >
+                <Play size={14} fill="#781416" color="#781416" />
+                <span>Watch Demo</span>
+              </button>
+            </div>
+
+            {/* Real Stats Strip (Matches Reference Image) */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'clamp(1rem, 2.2vw, 1.85rem)',
+              flexWrap: 'wrap',
+              paddingBottom: '1.35rem',
+              borderBottom: '1px solid #EAE2D2',
+              width: '100%',
+              maxWidth: '560px',
+              marginBottom: '1.25rem'
+            }}>
+              {/* Stat 1: Students */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+                <div style={{ color: '#781416' }}>
+                  <Users size={18} strokeWidth={2.4} />
+                </div>
+                <div>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#1C1917', lineHeight: 1 }}>
+                    50K+
+                  </div>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#78716C', marginTop: '0.15rem' }}>
+                    Students
+                  </div>
+                </div>
               </div>
 
-              {/* ProfessorVirus Poster Image Asset (STRICT OBJECT-FIT: CONTAIN) */}
-              <div style={{
-                width: '100%',
-                maxWidth: '235px',
-                aspectRatio: '1 / 1',
-                position: 'relative',
-                filter: 'drop-shadow(0 12px 24px rgba(35,30,25,0.15))',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'transform 0.3s ease, filter 0.3s ease',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
-                e.currentTarget.style.filter = 'drop-shadow(0 18px 30px rgba(35,30,25,0.22))';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'none';
-                e.currentTarget.style.filter = 'drop-shadow(0 12px 24px rgba(35,30,25,0.15))';
-              }}
-              >
-                <img
-                  src="/assets/professor_virus_poster.png"
-                  alt="ProfessorVirus - Study Smart. Prepare Better."
-                  loading="eager"
-                  fetchpriority="high"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    borderRadius: '16px'
-                  }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = '/assets/hero_virus.png';
-                  }}
-                />
+              {/* Stat 2: Notes Views */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+                <div style={{ color: '#781416' }}>
+                  <FileText size={18} strokeWidth={2.4} />
+                </div>
+                <div>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#1C1917', lineHeight: 1 }}>
+                    1M+
+                  </div>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#78716C', marginTop: '0.15rem' }}>
+                    Notes Views
+                  </div>
+                </div>
+              </div>
+
+              {/* Stat 3: Interviews Taken */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+                <div style={{ color: '#781416' }}>
+                  <Briefcase size={18} strokeWidth={2.4} />
+                </div>
+                <div>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#1C1917', lineHeight: 1 }}>
+                    10K+
+                  </div>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#78716C', marginTop: '0.15rem' }}>
+                    Interviews Taken
+                  </div>
+                </div>
+              </div>
+
+              {/* Stat 4: Rating */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+                <div style={{ color: '#D97706' }}>
+                  <Star size={18} fill="#D97706" color="#D97706" />
+                </div>
+                <div>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#1C1917', lineHeight: 1 }}>
+                    4.9/5
+                  </div>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#78716C', marginTop: '0.15rem' }}>
+                    Student Rating
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* CENTER: Main Hero Text, Logo, 3D Search Bar, Branch Pills */}
-            <div style={{
-              textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '0.65rem',
-              maxWidth: '640px',
-              margin: '0 auto',
-              width: '100%'
-            }}>
-              
-              {/* Top Pill Badge matching Page 1 Reference */}
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                backgroundColor: '#FFFBEB',
-                border: '1px solid #FDE68A',
-                borderRadius: '9999px',
-                padding: '0.35rem 1rem',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                color: '#C88D2D',
-                marginBottom: '0.25rem',
-                boxShadow: '0 2px 8px rgba(200, 141, 45, 0.08)'
-              }}>
-                <span role="img" aria-label="grad-cap">🎓</span>
-                <span>All Your Academic Tools in One Place</span>
-              </div>
-
-              {/* ProfessorVirus Logo Header */}
-              <div style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
+            {/* Functional Search Bar with Branch Filters */}
+            <div style={{ width: '100%', maxWidth: '560px' }}>
+              <form onSubmit={handleSearchSubmit} style={{ position: 'relative', width: '100%', marginBottom: '0.65rem' }}>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: 'clamp(2.35rem, 3.6vw, 3.3rem)',
-                  fontWeight: 900,
-                  color: '#1C1E21',
-                  textShadow: '0 2px 8px rgba(35,30,25,0.06)',
-                  lineHeight: 1.15,
-                  whiteSpace: 'nowrap'
-                }}>
-                  <span style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginRight: 'clamp(0.85rem, 1.2vw, 1.15rem)',
-                    flexShrink: 0,
-                    transform: 'translateY(-2px)'
-                  }}>
-                    <GraduationCap 
-                      size={42} 
-                      style={{ 
-                        color: '#C88D2D', 
-                        filter: 'drop-shadow(0 2px 6px rgba(200,141,45,0.3))' 
-                      }} 
-                    />
-                  </span>
-                  <span style={{ letterSpacing: '0.015em' }}>Professor</span>
-                  <span style={{ 
-                    display: 'inline-block', 
-                    width: 'clamp(0.85rem, 1.3vw, 1.25rem)' 
-                  }} aria-hidden="true" />
-                  <span style={{ color: '#C88D2D', letterSpacing: '0.015em' }}>Virus</span>
-                </div>
-                
-                <div style={{
-                  fontFamily: "'Kalam', cursive",
-                  color: '#B37D28',
-                  fontSize: '1.35rem',
-                  fontWeight: 700,
-                  marginTop: '0.25rem',
-                  letterSpacing: '0.02em'
-                }}>
-                  Study Smart. Prepare Better.
-                </div>
-              </div>
-
-              {/* Subtext matching Page 1 */}
-              <p style={{
-                fontSize: '0.92rem',
-                color: '#64748B',
-                lineHeight: 1.5,
-                margin: '0.15rem 0 0.45rem 0',
-                maxWidth: '560px'
-              }}>
-                Notes, PYQs, syllabus, quizzes, internships, interview prep, results, PDF tools and more — everything you need for your academic journey.
-              </p>
-
-              {/* PROMINENT 3D FLOATING HERO SEARCH BAR */}
-              <form onSubmit={handleSearch} style={{
-                width: '100%',
-                maxWidth: '540px',
-                position: 'relative',
-                marginTop: '0.35rem'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  backgroundColor: '#ffffff',
+                  backgroundColor: '#FFFFFF',
                   borderRadius: '9999px',
-                  padding: '0.35rem 0.4rem 0.35rem 1.25rem',
-                  boxShadow: '0 8px 24px rgba(35,30,25,0.08), 0 0 0 3px rgba(200,141,45,0.18), inset 0 1px 0 rgba(255,255,255,0.9)',
                   border: '1.5px solid #E2D9C8',
-                  transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(35,30,25,0.12), 0 0 0 3px rgba(200,141,45,0.28)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(35,30,25,0.08), 0 0 0 3px rgba(200,141,45,0.18)';
-                }}
-                >
-                  <Search size={18} style={{ color: '#909AA4', marginRight: '0.65rem', flexShrink: 0 }} />
+                  padding: '0.35rem 0.4rem 0.35rem 1.15rem',
+                  boxShadow: '0 4px 16px rgba(35, 30, 25, 0.05), 0 0 0 3px rgba(200, 141, 45, 0.1)',
+                  transition: 'all 0.2s ease'
+                }}>
+                  <Search size={17} style={{ color: '#78716C', marginRight: '0.65rem', flexShrink: 0 }} />
                   <input
                     type="text"
                     placeholder="Search subjects, topics, PYQs, notes..."
@@ -308,32 +302,33 @@ export default function HeroSection({ onSearch, onSelectBranch }) {
                       width: '100%',
                       border: 'none',
                       outline: 'none',
-                      fontSize: '0.94rem',
-                      color: '#1C1E21',
+                      fontSize: '0.88rem',
                       fontWeight: 600,
-                      backgroundColor: 'transparent'
+                      color: '#1C1917',
+                      backgroundColor: 'transparent',
+                      fontFamily: "'Plus Jakarta Sans', sans-serif"
                     }}
                   />
                   <button
                     type="submit"
                     style={{
-                      padding: '0.6rem 1.5rem',
-                      fontSize: '0.9rem',
+                      padding: '0.55rem 1.25rem',
+                      fontSize: '0.84rem',
                       fontWeight: 800,
                       borderRadius: '9999px',
-                      backgroundColor: '#1F2421',
+                      backgroundColor: '#781416',
                       color: '#FFFFFF',
                       border: 'none',
                       cursor: 'pointer',
-                      boxShadow: '0 4px 14px rgba(31,36,33,0.25)',
                       flexShrink: 0,
-                      transition: 'all 0.2s ease'
+                      boxShadow: '0 2px 8px rgba(120, 20, 22, 0.25)',
+                      transition: 'all 0.15s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#C88D2D';
+                      e.currentTarget.style.backgroundColor = '#631012';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#1F2421';
+                      e.currentTarget.style.backgroundColor = '#781416';
                     }}
                   >
                     Search
@@ -341,46 +336,45 @@ export default function HeroSection({ onSearch, onSelectBranch }) {
                 </div>
               </form>
 
-              {/* BRANCH FILTER PILLS (3D FLOATING CHIPS) */}
+              {/* Branch Quick Filter Chips */}
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.45rem',
-                flexWrap: 'wrap',
-                marginTop: '0.35rem'
+                gap: '0.4rem',
+                flexWrap: 'wrap'
               }}>
+                <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#78716C', marginRight: '0.2rem' }}>
+                  Branch:
+                </span>
                 {branches.map(b => {
                   const isSel = selectedBranch === b;
                   return (
                     <button
                       key={b}
+                      type="button"
                       onClick={() => handleBranchClick(b)}
                       style={{
-                        padding: '0.32rem 0.85rem',
+                        padding: '0.24rem 0.72rem',
                         borderRadius: '9999px',
-                        border: isSel ? '1.5px solid #B37D28' : '1.5px solid #DDCFBC',
-                        backgroundColor: isSel ? '#C88D2D' : 'rgba(255,255,255,0.85)',
-                        color: isSel ? '#FFFFFF' : '#3A3530',
+                        border: isSel ? '1.5px solid #781416' : '1px solid #E2D9C8',
+                        backgroundColor: isSel ? '#781416' : '#FFFFFF',
+                        color: isSel ? '#FFFFFF' : '#44403C',
                         fontWeight: isSel ? 800 : 600,
-                        fontSize: '0.82rem',
+                        fontSize: '0.74rem',
                         cursor: 'pointer',
-                        backdropFilter: 'blur(6px)',
-                        boxShadow: isSel ? '0 4px 14px rgba(200,141,45,0.3)' : '0 2px 6px rgba(35,30,25,0.04)',
-                        transition: 'all 0.2s ease'
+                        boxShadow: isSel ? '0 2px 8px rgba(120,20,22,0.2)' : '0 1px 3px rgba(35,30,25,0.03)',
+                        transition: 'all 0.15s ease'
                       }}
                       onMouseEnter={(e) => {
                         if (!isSel) {
-                          e.currentTarget.style.backgroundColor = '#FFFFFF';
                           e.currentTarget.style.borderColor = '#C88D2D';
-                          e.currentTarget.style.color = '#C88D2D';
+                          e.currentTarget.style.backgroundColor = '#FAF7F2';
                         }
                       }}
                       onMouseLeave={(e) => {
                         if (!isSel) {
-                          e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.85)';
-                          e.currentTarget.style.borderColor = '#DDCFBC';
-                          e.currentTarget.style.color = '#3A3530';
+                          e.currentTarget.style.borderColor = '#E2D9C8';
+                          e.currentTarget.style.backgroundColor = '#FFFFFF';
                         }
                       }}
                     >
@@ -388,118 +382,119 @@ export default function HeroSection({ onSearch, onSelectBranch }) {
                     </button>
                   );
                 })}
-
-                {/* All Branches Pill */}
-                <button
-                  onClick={() => handleBranchClick('All Branches')}
-                  style={{
-                    padding: '0.32rem 0.85rem',
-                    borderRadius: '9999px',
-                    border: '1.5px solid #5A4228',
-                    backgroundColor: '#6E5334',
-                    color: '#FFFFFF',
-                    fontWeight: 700,
-                    fontSize: '0.82rem',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.25rem',
-                    boxShadow: '0 4px 12px rgba(110,83,52,0.25)',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#5A4228';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#6E5334';
-                  }}
-                >
-                  All Branches <ChevronDown size={13} />
-                </button>
               </div>
             </div>
 
-            {/* RIGHT: Reference Poster + Yellow Sticky Note Badge */}
+          </div>
+
+          {/* ===================================================================
+              RIGHT COLUMN: STUDENT SHOWCASE ARTWORK WITH INTERACTIVE BADGES
+              =================================================================== */}
+          <div style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: '560px',
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }} className="hero-right-showcase-container">
+            
+            {/* The Reference Student Artwork with Artistic Doodles & Cards */}
             <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
               position: 'relative',
               width: '100%',
-              perspective: '1000px'
-            }} className="hero-right-mascot">
-              
-              {/* Sticky Note Badge */}
-              <div style={{
-                backgroundColor: '#FEF08A',
-                border: '1.5px solid #FACC15',
-                borderRadius: '12px',
-                padding: '0.5rem 0.85rem',
-                marginBottom: '0.6rem',
-                boxShadow: '0 6px 16px rgba(161, 98, 7, 0.15)',
-                fontFamily: "'Kalam', cursive",
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                color: '#713F12',
-                textAlign: 'center',
-                lineHeight: 1.3,
-                transform: 'rotate(2deg)',
-                position: 'relative'
-              }}>
-                <div style={{
+              borderRadius: '24px',
+              overflow: 'hidden',
+              boxShadow: '0 16px 40px rgba(35, 30, 25, 0.08)'
+            }}>
+              <img
+                src="/assets/hero_right_student_showcase.png"
+                alt="Student exploring ProfessorVirus learning and career tools"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  borderRadius: '24px'
+                }}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/assets/homepage_reference_design.jpg';
+                }}
+              />
+
+              {/* Interactive Invisible / Hover Hotspots over the Cards */}
+              {/* Hotspot 1: AI Resume Maker (Top Left) */}
+              <div
+                title="Open AI Resume Maker"
+                onClick={() => onNavigate && onNavigate('resume-maker')}
+                style={{
                   position: 'absolute',
-                  top: '-6px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: '28px',
-                  height: '8px',
-                  backgroundColor: 'rgba(254, 240, 138, 0.9)',
-                  border: '1px solid #CA8A04',
-                  borderRadius: '2px'
-                }} />
-                Study Plan • Practice • Improve • Grow !
-              </div>
+                  top: '20%',
+                  left: '4%',
+                  width: '26%',
+                  height: '22%',
+                  cursor: 'pointer',
+                  borderRadius: '14px',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.12)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+              />
 
-              {/* 3-Idiots Reference Poster (STRICT OBJECT-FIT: CONTAIN) */}
-              <div style={{
-                width: '100%',
-                maxWidth: '260px',
-                height: '320px',
-                position: 'relative',
-                filter: 'drop-shadow(0 14px 28px rgba(0,0,0,0.45))',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'transform 0.35s ease, filter 0.35s ease',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
-                e.currentTarget.style.filter = 'drop-shadow(0 20px 36px rgba(0,0,0,0.55))';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'none';
-                e.currentTarget.style.filter = 'drop-shadow(0 14px 28px rgba(0,0,0,0.45))';
-              }}
-              >
-                <img
-                  src="/assets/hero_right_poster.png"
-                  alt="Kabil Bano, Kamyabi Jhak Maar Ke Piche Bhagegi - All Izz Well"
-                  loading="eager"
-                  fetchpriority="high"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    borderRadius: '16px'
-                  }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = '/assets/hero_right_poster.jpg';
-                  }}
-                />
-              </div>
+              {/* Hotspot 2: Interview Pro (Mid Left) */}
+              <div
+                title="Start Interview Pro Mock"
+                onClick={() => onNavigate && onNavigate('interview-pro')}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '4%',
+                  width: '26%',
+                  height: '24%',
+                  cursor: 'pointer',
+                  borderRadius: '14px',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.12)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+              />
 
+              {/* Hotspot 3: PYQs (Top Right) */}
+              <div
+                title="Browse AKTU PYQs"
+                onClick={() => onNavigate && onNavigate('pyqs')}
+                style={{
+                  position: 'absolute',
+                  top: '12%',
+                  right: '4%',
+                  width: '26%',
+                  height: '22%',
+                  cursor: 'pointer',
+                  borderRadius: '14px',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(245, 158, 11, 0.12)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+              />
+
+              {/* Hotspot 4: Result & CGPA (Mid Right) */}
+              <div
+                title="Check Result & CGPA"
+                onClick={() => onNavigate && onNavigate('result-cgpa')}
+                style={{
+                  position: 'absolute',
+                  top: '46%',
+                  right: '4%',
+                  width: '26%',
+                  height: '22%',
+                  cursor: 'pointer',
+                  borderRadius: '14px',
+                  transition: 'background-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.12)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
+              />
             </div>
 
           </div>
@@ -508,52 +503,15 @@ export default function HeroSection({ onSearch, onSelectBranch }) {
 
       </div>
 
+      {/* Responsive Stacking Overrides */}
       <style>{`
-        @media (min-width: 1441px) {
-          .hero-panoramic-container {
-            padding: 3rem clamp(2.75rem, 5vw, 5rem) !important;
-          }
-          .hero-grid {
-            gap: clamp(2.5rem, 4vw, 4.5rem) !important;
-          }
-        }
-        @media (max-width: 1240px) and (min-width: 961px) {
-          .hero-grid {
-            grid-template-columns: 210px 1fr 220px !important;
-            gap: 2rem !important;
-          }
-          .hero-panoramic-container {
-            padding: 2.25rem 2rem !important;
-          }
-        }
         @media (max-width: 960px) {
-          .hero-panoramic-container {
-            padding: 2rem 1.25rem !important;
-          }
-          .hero-grid {
+          .hero-2col-layout {
             grid-template-columns: 1fr !important;
-            justify-items: center !important;
-            gap: 2rem !important;
+            gap: 2.25rem !important;
           }
-          .hero-left-mascot {
-            display: none !important;
-          }
-          .hero-right-mascot {
-            display: flex !important;
-            width: 100% !important;
-            max-width: 320px !important;
-            height: auto !important;
-            margin-top: 0.5rem !important;
-          }
-          .hero-right-mascot > div {
-            max-width: 100% !important;
-            height: 320px !important;
-          }
-        }
-        @media (max-width: 480px) {
-          .hero-panoramic-container {
-            padding: 1.5rem 0.85rem !important;
-            border-radius: 20px !important;
+          .hero-right-showcase-container {
+            max-width: 480px !important;
           }
         }
       `}</style>

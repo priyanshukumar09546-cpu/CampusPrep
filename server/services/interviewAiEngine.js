@@ -9,7 +9,17 @@ import JSZip from 'jszip';
 import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
-const pdfParse = require('pdf-parse');
+let pdfParse = null;
+async function getPdfParse() {
+  if (!pdfParse) {
+    try {
+      pdfParse = require('pdf-parse');
+    } catch (e) {
+      console.warn('[PDF-PARSE LAZY LOAD ERROR]', e.message);
+    }
+  }
+  return pdfParse;
+}
 
 // Candidate Gemini Model List in priority order
 const GEMINI_MODELS = [
@@ -73,7 +83,8 @@ export async function parseResumeDocument(buffer, mimetype = '', originalname = 
         extractedText = docXml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
       }
     } else if (ext === '.pdf' || mimetype.includes('pdf')) {
-      const parsed = await pdfParse(buffer);
+      const parser = await getPdfParse();
+      const parsed = parser ? await parser(buffer) : null;
       extractedText = (parsed && parsed.text) ? parsed.text : '';
       if (!extractedText || extractedText.length < 50) {
         const rawStr = buffer.toString('latin1');
