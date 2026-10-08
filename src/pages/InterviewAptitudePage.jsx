@@ -40,6 +40,7 @@ import {
   completeRound,
   isRoundAccessible
 } from '../utils/interviewSessionManager';
+import InterviewProctorMonitor from '../components/InterviewProctorMonitor';
 
 export default function InterviewAptitudePage({ onNavigate, onOpenAuth }) {
   // Active Attempt & Session Configuration
@@ -121,6 +122,15 @@ export default function InterviewAptitudePage({ onNavigate, onOpenAuth }) {
     localStorage.setItem(`interview_pro_aptitude_timer_end_${curAttempt}`, String(newEnd));
     return 35 * 60;
   });
+
+  // Security Gate: Ensure round is accessible and devices are verified
+  useEffect(() => {
+    if (!isRoundAccessible('aptitude', attemptId)) {
+      if (onNavigate) {
+        onNavigate('interview-instructions');
+      }
+    }
+  }, [attemptId, onNavigate]);
 
   // Mark first question as visited
   useEffect(() => {
@@ -1220,6 +1230,13 @@ export default function InterviewAptitudePage({ onNavigate, onOpenAuth }) {
           <span>{toastMessage.text}</span>
         </div>
       )}
+
+      {/* Universal Webcam Proctor Monitor */}
+      <InterviewProctorMonitor
+        attemptId={attemptId}
+        roundName="Aptitude"
+        position="bottom-right"
+      />
     </div>
   );
 }

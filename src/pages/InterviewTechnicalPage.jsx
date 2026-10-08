@@ -59,6 +59,7 @@ import {
   fetchNextTechnicalQuestion,
   submitTechnicalInterview
 } from '../utils/interviewSessionManager';
+import InterviewProctorMonitor from '../components/InterviewProctorMonitor';
 
 export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
   const attemptId = getActiveAttemptId();
@@ -114,6 +115,15 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
     localStorage.setItem(timerKey, String(newEnd));
     return 30 * 60;
   });
+
+  // Security Gate: Ensure round is accessible and devices are verified
+  useEffect(() => {
+    if (!isRoundAccessible('technical', attemptId)) {
+      if (onNavigate) {
+        onNavigate('interview-instructions');
+      }
+    }
+  }, [attemptId, onNavigate]);
 
   // 1. Initial Question Fetch
   useEffect(() => {
@@ -1464,6 +1474,14 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
           animation: bounceEqualizer 0.8s ease-in-out infinite;
         }
       `}</style>
+
+      {/* Universal Webcam Proctor Monitor with Mic Disconnect Monitoring */}
+      <InterviewProctorMonitor
+        attemptId={attemptId}
+        roundName="AI Technical"
+        checkMic={true}
+        position="bottom-right"
+      />
     </div>
   );
 }

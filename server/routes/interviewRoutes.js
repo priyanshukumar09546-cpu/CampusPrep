@@ -488,12 +488,21 @@ export function createInterviewRouter() {
   /**
    * POST /api/interview/start
    * Initializes a new interview attempt session
+   * Hard enforces mandatory webcam and microphone verification
    */
   router.post('/start', (req, res) => {
     try {
-      const { attemptId, userId = 'guest', targetRole, domain, course, branch, skills, candidateProfile } = req.body;
+      const { attemptId, userId = 'guest', targetRole, domain, course, branch, skills, candidateProfile, devicesVerified } = req.body;
       if (!attemptId) {
         return res.status(400).json({ success: false, error: 'attemptId is required' });
+      }
+
+      // Hard Server-Side Verification Gate
+      if (devicesVerified !== true) {
+        return res.status(403).json({
+          success: false,
+          error: '🔴 Mandatory webcam & microphone verification required before starting Interview Pro.'
+        });
       }
 
       const sessions = readJsonSafe(SESSIONS_FILE, {});
@@ -507,6 +516,11 @@ export function createInterviewRouter() {
           branch: branch || 'CSE',
           skills: skills || [],
           candidateProfile: candidateProfile || {},
+          devicesVerified: true,
+          proctorEvents: [{
+            eventType: 'DEVICES_VERIFIED_AT_START',
+            timestamp: new Date().toISOString()
+          }],
           currentRound: 'aptitude',
           completedRounds: [],
           startedAt: new Date().toISOString()
@@ -520,6 +534,34 @@ export function createInterviewRouter() {
       });
     } catch (err) {
       console.error('[INTERVIEW START ERROR]:', err);
+      return res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  /**
+   * POST /api/interview/proctor/event
+   * Records proctoring events (camera disconnect/reconnect, mic disconnect/reconnect)
+   */
+  router.post('/proctor/event', (req, res) => {
+    try {
+      const { attemptId, eventType, timestamp = new Date().toISOString(), details = {} } = req.body;
+      if (!attemptId || !eventType) {
+        return res.status(400).json({ success: false, error: 'attemptId and eventType required' });
+      }
+
+      const sessions = readJsonSafe(SESSIONS_FILE, {});
+      if (sessions[attemptId]) {
+        if (!Array.isArray(sessions[attemptId].proctorEvents)) {
+          sessions[attemptId].proctorEvents = [];
+        }
+        sessions[attemptId].proctorEvents.push({ eventType, timestamp, details });
+        writeJsonAtomic(SESSIONS_FILE, sessions);
+      }
+
+      console.log(`[PROCTOR EVENT] Attempt: ${attemptId} | Type: ${eventType} | Time: ${timestamp}`);
+      return res.json({ success: true });
+    } catch (err) {
+      console.error('[PROCTOR EVENT ERROR]:', err);
       return res.status(500).json({ success: false, error: err.message });
     }
   });

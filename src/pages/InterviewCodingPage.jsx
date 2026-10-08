@@ -54,6 +54,7 @@ import {
   runUserCodeAPI,
   submitUserCodeAPI
 } from '../utils/interviewSessionManager';
+import InterviewProctorMonitor from '../components/InterviewProctorMonitor';
 
 // 12 Supported Competitive Programming & Interview Languages
 const SUPPORTED_LANGUAGES = [
@@ -142,6 +143,15 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
     localStorage.setItem(timerKey, String(newEnd));
     return 3600;
   });
+
+  // Security Gate: Ensure round is accessible and devices are verified
+  useEffect(() => {
+    if (!isRoundAccessible('coding', attemptId)) {
+      if (onNavigate) {
+        onNavigate('interview-instructions');
+      }
+    }
+  }, [attemptId, onNavigate]);
 
   // 1. Fetch Question from MongoDB (Tied to Attempt for Refresh Safety)
   useEffect(() => {
@@ -2098,6 +2108,13 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
           }
         }
       `}</style>
+
+      {/* Universal Webcam Proctor Monitor */}
+      <InterviewProctorMonitor
+        attemptId={attemptId}
+        roundName="Coding"
+        position="bottom-right"
+      />
     </div>
   );
 }

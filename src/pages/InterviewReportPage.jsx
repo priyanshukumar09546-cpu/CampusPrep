@@ -55,8 +55,13 @@ import {
   calculateOverallScore
 } from '../utils/interviewSessionManager';
 import { trackInterviewRoundCompleted } from '../utils/progressTracker';
+import { stopProctorStream } from '../utils/interviewProctoring';
 
 export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
+  // Release camera hardware when test is finished
+  useEffect(() => {
+    stopProctorStream();
+  }, []);
   const attemptId = getActiveAttemptId();
   const attempt = getAttemptState(attemptId) || {};
 

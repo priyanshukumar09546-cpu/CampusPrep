@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Briefcase,
   Check,
@@ -20,9 +20,19 @@ import {
   XCircle,
   ArrowRight,
   ArrowLeft,
-  FileText
+  FileText,
+  Video,
+  VideoOff,
+  RefreshCw,
+  Lock,
+  Sparkles
 } from 'lucide-react';
 import { startNewInterviewSession } from '../utils/interviewSessionManager';
+import {
+  verifyCameraAndMicrophone,
+  getActiveMediaStream,
+  isCandidateDeviceVerified
+} from '../utils/interviewProctoring';
 
 export default function InterviewInstructionsPage({ onNavigate, onOpenAuth }) {
   // Load Active Test Configuration from InterviewConfirmPage
@@ -35,6 +45,77 @@ export default function InterviewInstructionsPage({ onNavigate, onOpenAuth }) {
     }
   })();
 
+  // Device verification states (Hard gate before starting test)
+  const [deviceCheckState, setDeviceCheckState] = useState({
+    isChecking: false,
+    hasChecked: false,
+    cameraStatus: 'UNCHECKED', // 'UNCHECKED' | 'CHECKING' | 'CONNECTED' | 'DENIED' | 'NOT_FOUND' | 'ERROR'
+    micStatus: 'UNCHECKED',    // 'UNCHECKED' | 'CHECKING' | 'CONNECTED' | 'DENIED' | 'NOT_FOUND' | 'ERROR'
+    errorMessage: null,
+    isVerified: false
+  });
+  const videoPreviewRef = useRef(null);
+  const [previewStream, setPreviewStream] = useState(null);
+
+  // Auto-check on mount if already verified in this session
+  useEffect(() => {
+    if (isCandidateDeviceVerified()) {
+      const existing = getActiveMediaStream();
+      setDeviceCheckState({
+        isChecking: false,
+        hasChecked: true,
+        cameraStatus: 'CONNECTED',
+        micStatus: 'CONNECTED',
+        errorMessage: null,
+        isVerified: true
+      });
+      if (existing) {
+        setPreviewStream(existing);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (previewStream && videoPreviewRef.current) {
+      videoPreviewRef.current.srcObject = previewStream;
+      videoPreviewRef.current.play().catch(() => {});
+    }
+  }, [previewStream, deviceCheckState.isVerified]);
+
+  const handleCheckDevices = async () => {
+    setDeviceCheckState(prev => ({
+      ...prev,
+      isChecking: true,
+      cameraStatus: 'CHECKING',
+      micStatus: 'CHECKING',
+      errorMessage: null
+    }));
+
+    const res = await verifyCameraAndMicrophone({ attemptId: 'PRECHECK' });
+
+    if (res.success && res.stream) {
+      setPreviewStream(res.stream);
+      setDeviceCheckState({
+        isChecking: false,
+        hasChecked: true,
+        cameraStatus: 'CONNECTED',
+        micStatus: 'CONNECTED',
+        errorMessage: null,
+        isVerified: true
+      });
+    } else {
+      setPreviewStream(null);
+      setDeviceCheckState({
+        isChecking: false,
+        hasChecked: true,
+        cameraStatus: res.cameraStatus || 'ERROR',
+        micStatus: res.micStatus || 'ERROR',
+        errorMessage: res.errorMessage || 'Failed to verify camera and microphone.',
+        isVerified: false
+      });
+    }
+  };
+
   // 8 Instruction Cards Data matching Reference Image
   const instructions = [
     {
@@ -46,10 +127,10 @@ export default function InterviewInstructionsPage({ onNavigate, onOpenAuth }) {
     },
     {
       num: 2,
-      title: 'Enable Camera & Microphone',
-      desc: 'Your camera and microphone will be used during AI Technical and HR Interview sections.',
+      title: '🔴 Mandatory Camera & Mic Monitored',
+      desc: 'Active camera monitoring is required across Aptitude, Coding, AI Technical, and HR rounds. Test is paused if camera is disconnected.',
       icon: Camera,
-      iconColor: '#1E3A8A'
+      iconColor: '#DC2626'
     },
     {
       num: 3,
@@ -457,6 +538,394 @@ export default function InterviewInstructionsPage({ onNavigate, onOpenAuth }) {
               </div>
             )}
 
+            {/* =========================================================================
+                MANDATORY WEBCAM & MICROPHONE SETUP CARD (CRITICAL HARD GATE)
+                ========================================================================= */}
+            <div
+              data-testid="mandatory-webcam-card"
+              style={{
+                backgroundColor: '#FFF8F8',
+                border: '2.5px solid #DC2626',
+                borderRadius: '16px',
+                padding: '1.35rem',
+                marginBottom: '1.45rem',
+                boxShadow: '0 8px 24px rgba(220, 38, 38, 0.12)'
+              }}
+            >
+              {/* Card Header */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '0.65rem',
+                marginBottom: '0.95rem'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                  <div style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    backgroundColor: '#FEE2E2',
+                    color: '#DC2626',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <Camera size={22} />
+                  </div>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                      <h3 style={{
+                        fontSize: '1.1rem',
+                        fontWeight: 900,
+                        color: '#991B1B',
+                        margin: 0,
+                        letterSpacing: '0.01em'
+                      }}>
+                        🔴 MANDATORY WEBCAM &amp; MICROPHONE SETUP
+                      </h3>
+                      <span style={{
+                        backgroundColor: '#DC2626',
+                        color: '#FFFFFF',
+                        fontSize: '0.68rem',
+                        fontWeight: 800,
+                        padding: '0.2rem 0.55rem',
+                        borderRadius: '4px',
+                        textTransform: 'uppercase'
+                      }}>
+                        Required for All Rounds
+                      </span>
+                    </div>
+                    <p style={{ fontSize: '0.8rem', color: '#7F1D1D', fontWeight: 600, margin: '2px 0 0 0' }}>
+                      You MUST have a working webcam and microphone connected and verified before starting Interview Pro.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Overall Verification Status Badge */}
+                <div
+                  data-testid="overall-device-status-badge"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    padding: '0.35rem 0.85rem',
+                    borderRadius: '999px',
+                    fontSize: '0.78rem',
+                    fontWeight: 800,
+                    backgroundColor: deviceCheckState.isVerified ? '#ECFDF5' : '#FEF2F2',
+                    color: deviceCheckState.isVerified ? '#047857' : '#B91C1C',
+                    border: deviceCheckState.isVerified ? '1.5px solid #A7F3D0' : '1.5px solid #FECACA'
+                  }}
+                >
+                  <span style={{
+                    width: '8px',
+                    height: '8px',
+                    borderRadius: '50%',
+                    backgroundColor: deviceCheckState.isVerified ? '#10B981' : '#EF4444'
+                  }} />
+                  <span>
+                    {deviceCheckState.isVerified
+                      ? '🟢 All Required Devices Verified'
+                      : (deviceCheckState.cameraStatus === 'DENIED' || deviceCheckState.micStatus === 'DENIED'
+                          ? '🔴 Permission Denied'
+                          : (deviceCheckState.cameraStatus === 'NOT_FOUND' || deviceCheckState.micStatus === 'NOT_FOUND'
+                              ? '🔴 No Devices Detected'
+                              : '🔴 Verification Required'))}
+                  </span>
+                </div>
+              </div>
+
+              {/* Step Checklist Box */}
+              <div style={{
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #FCA5A5',
+                borderRadius: '10px',
+                padding: '0.85rem 1rem',
+                marginBottom: '1rem'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  gap: '0.5rem',
+                  marginBottom: '0.55rem'
+                }}>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1C1814' }}>
+                    Setup Instructions:
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.76rem', fontWeight: 700 }}>
+                    <span style={{ color: '#781416' }}>📷 Webcam: REQUIRED</span>
+                    <span style={{ color: '#781416' }}>🎙 Microphone: REQUIRED</span>
+                  </div>
+                </div>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                  gap: '0.35rem',
+                  fontSize: '0.76rem',
+                  color: '#4B5563',
+                  lineHeight: 1.45
+                }}>
+                  <div>1. Connect your webcam.</div>
+                  <div>2. Connect your microphone/headset.</div>
+                  <div>3. Allow browser camera permission.</div>
+                  <div>4. Allow browser microphone permission.</div>
+                  <div>5. Check your live camera preview.</div>
+                  <div>6. Confirm camera and microphone are working correctly.</div>
+                </div>
+
+                <div style={{
+                  marginTop: '0.55rem',
+                  paddingTop: '0.45rem',
+                  borderTop: '1px dashed #FCA5A5',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  color: '#B91C1C',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem'
+                }}>
+                  <AlertTriangle size={14} color="#DC2626" />
+                  <span>⚠ You cannot start the interview without successful camera &amp; microphone verification.</span>
+                </div>
+              </div>
+
+              {/* 2-Column Device Check & Live Preview Widget */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                gap: '0.95rem',
+                alignItems: 'stretch'
+              }}>
+                {/* Left Subcard: Device Connection Status */}
+                <div style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1.5px solid #F3E8D8',
+                  borderRadius: '10px',
+                  padding: '1rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between'
+                }}>
+                  <div>
+                    <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1C1814', marginBottom: '0.65rem' }}>
+                      Device Verification Checklist
+                    </div>
+
+                    {/* Camera Status */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '0.5rem 0.65rem',
+                      borderRadius: '8px',
+                      backgroundColor: '#FAF7F2',
+                      marginBottom: '0.5rem',
+                      border: '1px solid #EFEAE3'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <Camera size={16} color="#781416" />
+                        <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1C1814' }}>Webcam</span>
+                      </div>
+                      <span
+                        data-testid="camera-status-indicator"
+                        style={{
+                          fontSize: '0.76rem',
+                          fontWeight: 800,
+                          color: deviceCheckState.cameraStatus === 'CONNECTED' ? '#047857' : (deviceCheckState.cameraStatus === 'UNCHECKED' ? '#6B7280' : '#DC2626')
+                        }}
+                      >
+                        {deviceCheckState.cameraStatus === 'CONNECTED' && '🟢 Connected'}
+                        {deviceCheckState.cameraStatus === 'CHECKING' && '🟡 Checking...'}
+                        {deviceCheckState.cameraStatus === 'DENIED' && '🔴 Camera Permission Required'}
+                        {deviceCheckState.cameraStatus === 'NOT_FOUND' && '🔴 No Webcam Detected'}
+                        {deviceCheckState.cameraStatus === 'ERROR' && '🔴 Webcam Required'}
+                        {deviceCheckState.cameraStatus === 'UNCHECKED' && '⚪ Not Checked'}
+                      </span>
+                    </div>
+
+                    {/* Mic Status */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '0.5rem 0.65rem',
+                      borderRadius: '8px',
+                      backgroundColor: '#FAF7F2',
+                      marginBottom: '0.5rem',
+                      border: '1px solid #EFEAE3'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <Mic size={16} color="#781416" />
+                        <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1C1814' }}>Microphone</span>
+                      </div>
+                      <span
+                        data-testid="mic-status-indicator"
+                        style={{
+                          fontSize: '0.76rem',
+                          fontWeight: 800,
+                          color: deviceCheckState.micStatus === 'CONNECTED' ? '#047857' : (deviceCheckState.micStatus === 'UNCHECKED' ? '#6B7280' : '#DC2626')
+                        }}
+                      >
+                        {deviceCheckState.micStatus === 'CONNECTED' && '🟢 Connected'}
+                        {deviceCheckState.micStatus === 'CHECKING' && '🟡 Checking...'}
+                        {deviceCheckState.micStatus === 'DENIED' && '🔴 Microphone Permission Required'}
+                        {deviceCheckState.micStatus === 'NOT_FOUND' && '🔴 No Microphone Detected'}
+                        {deviceCheckState.micStatus === 'ERROR' && '🔴 Microphone Required'}
+                        {deviceCheckState.micStatus === 'UNCHECKED' && '⚪ Not Checked'}
+                      </span>
+                    </div>
+
+                    {/* Detailed Error message if check failed */}
+                    {deviceCheckState.errorMessage && (
+                      <div
+                        data-testid="device-error-message"
+                        style={{
+                          backgroundColor: '#FEF2F2',
+                          border: '1px solid #FCA5A5',
+                          color: '#B91C1C',
+                          fontSize: '0.74rem',
+                          padding: '0.55rem 0.75rem',
+                          borderRadius: '6px',
+                          marginTop: '0.45rem',
+                          lineHeight: 1.4
+                        }}
+                      >
+                        {deviceCheckState.errorMessage}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Primary Trigger Button */}
+                  <div style={{ marginTop: '0.85rem' }}>
+                    <button
+                      type="button"
+                      data-testid="check-devices-btn"
+                      onClick={handleCheckDevices}
+                      disabled={deviceCheckState.isChecking}
+                      style={{
+                        width: '100%',
+                        backgroundColor: deviceCheckState.isVerified ? '#0E7A4A' : '#781416',
+                        color: '#FFFFFF',
+                        border: 'none',
+                        borderRadius: '8px',
+                        padding: '0.75rem 1.15rem',
+                        fontSize: '0.88rem',
+                        fontWeight: 800,
+                        cursor: deviceCheckState.isChecking ? 'not-allowed' : 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '0.5rem',
+                        boxShadow: '0 3px 12px rgba(0,0,0,0.15)',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      {deviceCheckState.isChecking ? (
+                        <>
+                          <RefreshCw size={16} className="animate-spin" />
+                          <span>Checking Camera &amp; Microphone...</span>
+                        </>
+                      ) : deviceCheckState.isVerified ? (
+                        <>
+                          <CheckCircle2 size={16} />
+                          <span>🟢 Devices Verified (Click to Re-check)</span>
+                        </>
+                      ) : (
+                        <>
+                          <Camera size={16} />
+                          <span>🎥 CHECK CAMERA &amp; MICROPHONE</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Right Subcard: Live Webcam Preview Feed */}
+                <div style={{
+                  backgroundColor: '#0F0D0B',
+                  border: '1.5px solid #292524',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  minHeight: '190px'
+                }}>
+                  <div style={{
+                    backgroundColor: '#1C1917',
+                    color: '#FFFFFF',
+                    padding: '0.45rem 0.75rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    fontSize: '0.72rem',
+                    fontWeight: 800
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <span style={{
+                        width: '7px',
+                        height: '7px',
+                        borderRadius: '50%',
+                        backgroundColor: deviceCheckState.isVerified ? '#22C55E' : '#9CA3AF',
+                        boxShadow: deviceCheckState.isVerified ? '0 0 6px #22C55E' : 'none'
+                      }} />
+                      <span style={{ letterSpacing: '0.4px' }}>
+                        {deviceCheckState.isVerified ? '● CAMERA ACTIVE' : 'CAMERA OFFLINE'}
+                      </span>
+                    </div>
+                    <span style={{ fontSize: '0.68rem', color: '#A8A29E' }}>
+                      {deviceCheckState.isVerified ? '🟢 Live Preview' : 'Preview Unavailable'}
+                    </span>
+                  </div>
+
+                  <div style={{
+                    flex: 1,
+                    position: 'relative',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#171412'
+                  }}>
+                    {deviceCheckState.isVerified ? (
+                      <video
+                        ref={videoPreviewRef}
+                        data-testid="live-preview-video"
+                        autoPlay
+                        playsInline
+                        muted
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          minHeight: '150px',
+                          objectFit: 'cover',
+                          transform: 'scaleX(-1)'
+                        }}
+                      />
+                    ) : (
+                      <div style={{
+                        textAlign: 'center',
+                        padding: '1.25rem',
+                        color: '#78716C'
+                      }}>
+                        <Camera size={32} style={{ margin: '0 auto 0.5rem auto', opacity: 0.5 }} />
+                        <div style={{ fontSize: '0.78rem', fontWeight: 700 }}>
+                          Live webcam preview will appear here
+                        </div>
+                        <div style={{ fontSize: '0.7rem', color: '#A8A29E', marginTop: '3px' }}>
+                          Click &quot;Check Camera &amp; Microphone&quot; to verify your live feed
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Introductory Highlighted Card: Complete Test Flow */}
             <div style={{
               backgroundColor: '#FEF9EE',
@@ -616,41 +1085,65 @@ export default function InterviewInstructionsPage({ onNavigate, onOpenAuth }) {
                 <span>Back to Profile</span>
               </button>
 
-              {/* Primary: I Understand, Start Test -> */}
+              {/* Primary: Start Test Button (HARD GATED by Device Verification) */}
               <button
                 type="button"
+                data-testid="start-test-btn"
+                disabled={!deviceCheckState.isVerified}
                 onClick={() => {
-                  startNewInterviewSession(activeTest || {});
+                  if (!deviceCheckState.isVerified) {
+                    alert('🔴 MANDATORY: You must verify your webcam and microphone before starting Interview Pro.');
+                    return;
+                  }
+                  startNewInterviewSession({
+                    ...(activeTest || {}),
+                    devicesVerified: true
+                  });
                   if (onNavigate) {
                     onNavigate('interview-start');
                   }
                 }}
                 style={{
-                  backgroundColor: '#781416',
+                  backgroundColor: deviceCheckState.isVerified ? '#781416' : '#9CA3AF',
                   color: '#FFFFFF',
                   border: 'none',
                   borderRadius: '10px',
                   padding: '0.8rem 1.75rem',
                   fontSize: '0.94rem',
                   fontWeight: 800,
-                  cursor: 'pointer',
+                  cursor: deviceCheckState.isVerified ? 'pointer' : 'not-allowed',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.55rem',
-                  boxShadow: '0 6px 18px rgba(120, 20, 22, 0.32)',
+                  boxShadow: deviceCheckState.isVerified ? '0 6px 18px rgba(120, 20, 22, 0.32)' : 'none',
+                  opacity: deviceCheckState.isVerified ? 1 : 0.65,
                   transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#631012';
-                  e.currentTarget.style.transform = 'translateY(-1px)';
+                  if (deviceCheckState.isVerified) {
+                    e.currentTarget.style.backgroundColor = '#631012';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#781416';
-                  e.currentTarget.style.transform = 'translateY(0)';
+                  if (deviceCheckState.isVerified) {
+                    e.currentTarget.style.backgroundColor = '#781416';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }
                 }}
+                title={!deviceCheckState.isVerified ? 'Please verify your webcam and microphone above to unlock Start Test' : 'Start Interview'}
               >
-                <span>I Understand, Start Test</span>
-                <ArrowRight size={17} />
+                {deviceCheckState.isVerified ? (
+                  <>
+                    <span>I Understand, Start Test</span>
+                    <ArrowRight size={17} />
+                  </>
+                ) : (
+                  <>
+                    <Lock size={16} />
+                    <span>Start Test (Webcam &amp; Mic Required)</span>
+                  </>
+                )}
               </button>
             </div>
 

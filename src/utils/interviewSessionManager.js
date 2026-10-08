@@ -227,9 +227,28 @@ export function getOrGenerateAptitudeAttempt(attemptId, options = {}) {
 
 /**
  * Initializes a brand new Interview Pro session
+/**
+ * Checks if webcam and microphone have been verified for current session
+ */
+export function areDevicesVerified(attemptId = getActiveAttemptId()) {
+  try {
+    const verified = sessionStorage.getItem('interview_pro_devices_verified');
+    if (verified === 'true') return true;
+    const attempt = getAttemptState(attemptId);
+    if (attempt && attempt.devicesVerified === true) return true;
+  } catch {}
+  return false;
+}
+
+/**
  * Called when user clicks "I Understand, Start Test"
  */
 export function startNewInterviewSession(userConfig = {}) {
+  const isVerified = userConfig.devicesVerified === true || sessionStorage.getItem('interview_pro_devices_verified') === 'true';
+  if (!isVerified) {
+    throw new Error('🔴 Mandatory webcam & microphone verification required before starting Interview Pro.');
+  }
+
   const userId = getCurrentUserId();
   const attemptId = `PV_ATT_${Date.now()}_${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
 
@@ -251,15 +270,41 @@ export function startNewInterviewSession(userConfig = {}) {
   // Generate question set
   const attemptData = getOrGenerateAptitudeAttempt(attemptId, { userId });
 
+  // Persist devicesVerified in attempt storage
+  try {
+    const attemptKey = `interview_pro_attempt_${attemptId}`;
+    const raw = localStorage.getItem(attemptKey);
+    const parsed = raw ? JSON.parse(raw) : {};
+    parsed.devicesVerified = true;
+    localStorage.setItem(attemptKey, JSON.stringify(parsed));
+  } catch (e) {}
+
   // Store candidate profile config if provided
   const candidateConfig = {
     ...userConfig,
     attemptId,
     userId,
+    devicesVerified: true,
     startedAt: new Date().toISOString()
   };
   try {
     sessionStorage.setItem('interview_pro_active_test', JSON.stringify(candidateConfig));
+  } catch (e) {}
+
+  // Inform backend
+  try {
+    fetch('/api/interview/start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        attemptId,
+        userId,
+        targetRole: candidateConfig.targetRole,
+        course: candidateConfig.course,
+        branch: candidateConfig.branch,
+        devicesVerified: true
+      })
+    }).catch(() => {});
   } catch (e) {}
 
   return attemptData;
@@ -389,9 +434,14 @@ export function evaluateAptitudeAnswers(attemptId, userAnswers = {}) {
 
 /**
  * Checks if a specific round is unlocked and accessible
- * Requirement 4 & 22: Prevent round skipping
+ * Hard requirement: Webcam & Microphone MUST be verified for ALL rounds
  */
 export function isRoundAccessible(targetRound, attemptId = getActiveAttemptId()) {
+  // Hard gate: All rounds require device verification
+  if (!areDevicesVerified(attemptId)) {
+    return false;
+  }
+
   if (targetRound === 'aptitude') return true; // Aptitude is always the first round
 
   const attempt = getAttemptState(attemptId);

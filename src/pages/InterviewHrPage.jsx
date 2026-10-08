@@ -51,6 +51,7 @@ import {
   fetchNextHrQuestion,
   submitHrInterview
 } from '../utils/interviewSessionManager';
+import InterviewProctorMonitor from '../components/InterviewProctorMonitor';
 
 export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
   const attemptId = getActiveAttemptId();
@@ -126,6 +127,15 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
       }, 12000);
     }, 10000);
   };
+
+  // Security Gate: Ensure round is accessible and devices are verified
+  useEffect(() => {
+    if (!isRoundAccessible('hr', attemptId)) {
+      if (onNavigate) {
+        onNavigate('interview-instructions');
+      }
+    }
+  }, [attemptId, onNavigate]);
 
   // 1. Initial Question Fetch
   useEffect(() => {
@@ -1412,6 +1422,14 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
           animation: bounceEqualizerHr 0.8s ease-in-out infinite;
         }
       `}</style>
+
+      {/* Universal Webcam Proctor Monitor with Mic Disconnect Monitoring */}
+      <InterviewProctorMonitor
+        attemptId={attemptId}
+        roundName="AI HR"
+        checkMic={true}
+        position="bottom-right"
+      />
     </div>
   );
 }
