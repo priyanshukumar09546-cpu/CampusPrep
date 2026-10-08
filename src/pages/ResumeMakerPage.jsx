@@ -42,6 +42,14 @@ import { generateLatex } from '../utils/latexGenerator';
 import SearchableSkillsSelector from '../components/SearchableSkillsSelector';
 
 // Normalizes resume skills between structured arrays and legacy string fields
+function getAuthToken() {
+  try {
+    return localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+  } catch {
+    return '';
+  }
+}
+
 function normalizeResumeSkills(raw) {
   if (!raw) return raw;
   const copy = { ...raw };

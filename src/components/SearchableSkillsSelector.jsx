@@ -230,6 +230,7 @@ function SkillCategorySelector({
             return (
               <div
                 key={`${skill}-${idx}`}
+                data-testid={`skill-chip-${skill}`}
                 draggable
                 onDragStart={(e) => handleDragStart(e, idx)}
                 onDragOver={(e) => handleDragOver(e, idx)}
@@ -258,6 +259,7 @@ function SkillCategorySelector({
                 <span>{skill}</span>
                 <button
                   type="button"
+                  data-testid={`skill-remove-${skill}`}
                   onClick={(e) => {
                     e.stopPropagation();
                     removeSkill(idx);
@@ -303,6 +305,8 @@ function SkillCategorySelector({
         >
           <Search size={14} color="#8C7E72" style={{ marginRight: '0.45rem', flexShrink: 0 }} />
           <input
+            id={`skills-input-${catKey}`}
+            data-category={catKey}
             ref={inputRef}
             type="text"
             value={query}
@@ -349,6 +353,7 @@ function SkillCategorySelector({
         {isOpen && (
           <div
             ref={dropdownRef}
+            data-testid={`skills-dropdown-${catKey}`}
             style={{
               position: 'absolute',
               top: 'calc(100% + 4px)',
@@ -367,75 +372,79 @@ function SkillCategorySelector({
             {filteredSkills.length === 0 && !canAddCustom ? (
               <div
                 style={{
-                  padding: '0.65rem 0.85rem',
-                  fontSize: '0.74rem',
-                  color: '#8C7E72',
-                  textAlign: 'center'
-                }}
-              >
-                No skills found
-              </div>
-            ) : (
-              <>
-                {filteredSkills.map((skill, idx) => {
-                  const isHighlighted = idx === highlightIndex;
-                  return (
-                    <div
-                      key={skill}
-                      onMouseDown={(e) => {
-                        e.preventDefault(); // Prevent input blur before click
-                        addSkill(skill);
-                      }}
-                      onMouseEnter={() => setHighlightIndex(idx)}
-                      style={{
-                        padding: '0.38rem 0.75rem',
-                        fontSize: '0.76rem',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        backgroundColor: isHighlighted ? '#F5F1EB' : 'transparent',
-                        color: isHighlighted ? '#8B6534' : '#1C1814',
-                        fontWeight: isHighlighted ? 700 : 500,
-                        transition: 'background-color 0.1s'
-                      }}
-                    >
-                      <span>{skill}</span>
-                      {isHighlighted && <Check size={12} color="#8B6534" />}
-                    </div>
-                  );
-                })}
-
-                {/* Option to add custom typed skill */}
-                {canAddCustom && (
+                padding: '0.65rem 0.85rem',
+                fontSize: '0.74rem',
+                color: '#8C7E72',
+                textAlign: 'center'
+              }}
+            >
+              No skills found
+            </div>
+          ) : (
+            <>
+              {filteredSkills.map((skill, idx) => {
+                const isHighlighted = idx === highlightIndex;
+                return (
                   <div
+                    key={skill}
+                    data-testid={`skill-option-${skill}`}
                     onMouseDown={(e) => {
-                      e.preventDefault();
-                      addSkill(trimmedQuery);
+                      e.preventDefault(); // Prevent input blur before click
+                      addSkill(skill);
                     }}
-                    onMouseEnter={() => setHighlightIndex(filteredSkills.length)}
+                    onClick={() => addSkill(skill)}
+                    onMouseEnter={() => setHighlightIndex(idx)}
                     style={{
                       padding: '0.38rem 0.75rem',
-                      fontSize: '0.74rem',
+                      fontSize: '0.76rem',
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '0.4rem',
-                      borderTop: filteredSkills.length > 0 ? '1px solid #EFEAE3' : 'none',
-                      backgroundColor:
-                        highlightIndex === filteredSkills.length ? '#F5F1EB' : '#FCFAF7',
-                      color: '#8B6534',
-                      fontWeight: 700
+                      justifyContent: 'space-between',
+                      backgroundColor: isHighlighted ? '#F5F1EB' : 'transparent',
+                      color: isHighlighted ? '#8B6534' : '#1C1814',
+                      fontWeight: isHighlighted ? 700 : 500,
+                      transition: 'background-color 0.1s'
                     }}
                   >
-                    <Plus size={12} color="#8B6534" />
-                    <span>Add custom skill &quot;{trimmedQuery}&quot;</span>
+                    <span>{skill}</span>
+                    {isHighlighted && <Check size={12} color="#8B6534" />}
                   </div>
-                )}
-              </>
-            )}
-          </div>
-        )}
+                );
+              })}
+
+              {/* Option to add custom typed skill */}
+              {canAddCustom && (
+                <div
+                  data-testid={`skill-option-custom-${trimmedQuery}`}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    addSkill(trimmedQuery);
+                  }}
+                  onClick={() => addSkill(trimmedQuery)}
+                  onMouseEnter={() => setHighlightIndex(filteredSkills.length)}
+                  style={{
+                    padding: '0.38rem 0.75rem',
+                    fontSize: '0.74rem',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    borderTop: filteredSkills.length > 0 ? '1px solid #EFEAE3' : 'none',
+                    backgroundColor:
+                      highlightIndex === filteredSkills.length ? '#F5F1EB' : '#FCFAF7',
+                    color: '#8B6534',
+                    fontWeight: 700
+                  }}
+                >
+                  <Plus size={12} color="#8B6534" />
+                  <span>Add custom skill &quot;{trimmedQuery}&quot;</span>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      )}
       </div>
     </div>
   );
