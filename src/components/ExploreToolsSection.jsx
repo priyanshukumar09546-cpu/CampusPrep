@@ -126,7 +126,7 @@ export default function ExploreToolsSection({ onNavigate }) {
       padding: '1rem 0 3.5rem 0',
       position: 'relative'
     }}>
-      <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
+      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
         
         {/* Section Header with Title & View All Tools Button */}
         <div style={{

@@ -51,12 +51,12 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
         pointerEvents: 'none'
       }} />
 
-      <div className="container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem', position: 'relative', zIndex: 2 }}>
+      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem', position: 'relative', zIndex: 2 }}>
         
         {/* Main 2-Column Hero Container */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(420px, 1.15fr) minmax(360px, 0.85fr)',
+          gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 0.85fr)',
           gap: 'clamp(2rem, 4vw, 3.5rem)',
           alignItems: 'center'
         }} className="hero-2col-layout">

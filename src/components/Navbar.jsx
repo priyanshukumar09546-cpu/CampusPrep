@@ -121,8 +121,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
 
   const navItems = [
     { name: 'Home', id: 'home' },
-    { name: 'Notes', id: 'notes' },
     { name: 'PYQs', id: 'pyqs' },
+    { name: 'Notes', id: 'notes' },
     { name: 'Syllabus', id: 'syllabus' },
     { name: 'Quizzes', id: 'quizzes' },
     { name: 'Resume Maker', id: 'resume-maker' },
@@ -415,35 +415,42 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
       }}
     >
       <div
-        className="container"
+        className="container pv-main-container"
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: '72px'
+          height: '66px',
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 1rem',
+          width: '100%',
+          boxSizing: 'border-box'
         }}
       >
         {/* LEFT WRAPPER: Menu, Complete ProfessorVirus Brand, and Desktop Nav */}
-        <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0, minWidth: 0 }}>
           <button
             onClick={() => setMenuPanelOpen(true)}
             title="Open Complete Academic & Tools Menu"
+            className="desktop-menu-pill"
             style={{
-              display: 'flex',
+              display: 'none',
               alignItems: 'center',
               gap: '0.4rem',
-              padding: '0.42rem 0.85rem',
+              padding: '0.36rem 0.75rem',
               borderRadius: '9999px',
               border: '1.5px solid #E8E2D5',
               backgroundColor: '#FFFFFF',
               color: '#1F2421',
               fontWeight: 700,
-              fontSize: '0.82rem',
+              fontSize: '0.8rem',
               cursor: 'pointer',
               boxShadow: '0 2px 6px rgba(35,30,25,0.04)',
               transition: 'all 0.2s ease',
               whiteSpace: 'nowrap',
-              flexShrink: 0
+              flexShrink: 0,
+              marginRight: '0.75rem'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#C88D2D';
@@ -456,18 +463,18 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               e.currentTarget.style.backgroundColor = '#FFFFFF';
             }}
           >
-            <Menu size={16} />
+            <Menu size={15} />
             <span style={{ whiteSpace: 'nowrap' }}>Menu</span>
           </button>
 
           <div
-            style={{ display: 'flex', alignItems: 'center', gap: '1.15rem', cursor: 'pointer', flexShrink: 0, marginLeft: '1.25rem' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', flexShrink: 0 }}
             onClick={() => handleNavigate('home')}
           >
             <div
               style={{
-                width: '46px',
-                height: '46px',
+                width: '38px',
+                height: '38px',
                 borderRadius: '50%',
                 overflow: 'hidden',
                 border: '2px solid #C88D2D',
@@ -475,7 +482,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 4px 12px rgba(200, 141, 45, 0.2)',
+                boxShadow: '0 4px 10px rgba(200, 141, 45, 0.18)',
                 transition: 'transform 0.2s ease',
                 flexShrink: 0
               }}
@@ -495,7 +502,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 style={{
                   fontFamily: "'Outfit', sans-serif",
                   fontWeight: 900,
-                  fontSize: '1.45rem',
+                  fontSize: '1.25rem',
                   color: '#1F2421',
                   lineHeight: 1.1,
                   letterSpacing: '0.01em',
@@ -507,8 +514,9 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 <span>Professor</span><span style={{ color: '#C88D2D' }}>Virus</span>
               </div>
               <div
+                className="pv-logo-subtitle"
                 style={{
-                  fontSize: '0.68rem',
+                  fontSize: '0.62rem',
                   fontWeight: 700,
                   color: '#7A6F62',
                   letterSpacing: '0.01em',
@@ -520,13 +528,13 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             </div>
           </div>
 
-          {/* CENTER: Navigation Links (Desktop — Strict Single-Line / No Wrap) — 24px Gap from Brand */}
+          {/* CENTER: Navigation Links (Desktop — Strict Single-Line / No Wrap) */}
           <nav
             style={{
               display: 'flex',
               alignItems: 'center',
-              marginLeft: '24px',
-              gap: '0.3rem',
+              marginLeft: '0.65rem',
+              gap: '0.14rem',
               flexWrap: 'nowrap',
               flexShrink: 0
             }}
@@ -551,20 +559,21 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     handleNavigate(item.id);
                   }
                 }}
+                className="nav-link-item"
                 style={{
                   position: 'relative',
                   backgroundColor: 'transparent',
                   color: isActive ? '#781416' : '#2D3238',
-                  padding: '0.45rem 0.75rem',
+                  padding: '0.3rem 0.38rem',
                   borderRadius: '6px',
                   fontWeight: isActive ? 800 : 600,
-                  fontSize: '0.86rem',
+                  fontSize: '0.78rem',
                   border: 'none',
                   cursor: 'pointer',
                   transition: 'all 0.18s ease',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.35rem',
+                  gap: '0.2rem',
                   whiteSpace: 'nowrap',
                   flexShrink: 0,
                   fontFamily: "'Plus Jakarta Sans', sans-serif"
@@ -582,9 +591,9 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     style={{
                       backgroundColor: '#D48816',
                       color: '#FFFFFF',
-                      fontSize: '0.58rem',
+                      fontSize: '0.52rem',
                       fontWeight: 800,
-                      padding: '0.08rem 0.38rem',
+                      padding: '0.05rem 0.28rem',
                       borderRadius: '9999px',
                       lineHeight: 1.15,
                       letterSpacing: '0.02em',
@@ -598,7 +607,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   </span>
                 )}
                 {item.isDropdown && (
-                  <ChevronDown size={13} style={{ color: '#7A6F62' }} />
+                  <ChevronDown size={11} style={{ color: '#7A6F62' }} />
                 )}
                 {isActive && (
                   <span
@@ -607,8 +616,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                       bottom: '-2px',
                       left: '50%',
                       transform: 'translateX(-50%)',
-                      width: '28px',
-                      height: '3px',
+                      width: '18px',
+                      height: '2.5px',
                       borderRadius: '9999px',
                       backgroundColor: '#781416'
                     }}
@@ -621,7 +630,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
         </div>
 
         {/* RIGHT: Search, Theme, Notifications, User Profile & Mobile Toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexShrink: 0, marginLeft: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.32rem', flexShrink: 0, marginLeft: 'auto' }}>
           {/* Quick Search Field with Real-Time Dropdown */}
           <div
             ref={searchRef}
@@ -630,13 +639,13 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
           >
             <form onSubmit={handleSearchSubmit} style={{ position: 'relative', display: 'flex', alignItems: 'center', width: '100%' }}>
               <Search
-                size={15}
-                style={{ position: 'absolute', left: '12px', color: searchFocused ? '#C88D2D' : '#909AA4', transition: 'color 0.2s ease', zIndex: 2 }}
+                size={13}
+                style={{ position: 'absolute', left: '9px', color: searchFocused ? '#C88D2D' : '#909AA4', transition: 'color 0.2s ease', zIndex: 2, pointerEvents: 'none' }}
                 className="search-icon"
               />
               <input
                 type="text"
-                placeholder="Search subjects, topics, PYQs..."
+                placeholder={searchFocused ? 'Search subjects...' : 'Search...'}
                 value={searchQuery}
                 onChange={handleSearchChange}
                 onFocus={() => { setSearchFocused(true); if (searchQuery.trim().length >= 2) { setSearchResults(searchLocalIndex(searchQuery, 8)); } }}
@@ -644,16 +653,17 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 className="navbar-search-input"
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  padding: '0.48rem 2.2rem 0.48rem 2.2rem',
+                  padding: '0.34rem 1.4rem 0.34rem 1.65rem',
                   borderRadius: '9999px',
                   border: searchFocused ? '1.5px solid #C88D2D' : '1.5px solid #E8E2D5',
                   backgroundColor: '#ffffff',
-                  fontSize: '0.84rem',
+                  fontSize: '0.78rem',
                   fontWeight: 600,
                   color: '#1C1E21',
-                  width: '260px',
+                  width: searchFocused ? '155px' : '105px',
+                  maxWidth: '160px',
                   outline: 'none',
-                  boxShadow: searchFocused ? '0 4px 16px rgba(200,141,45,0.12)' : '0 2px 8px rgba(35,30,25,0.04), inset 0 1px 0 rgba(255,255,255,0.8)',
+                  boxShadow: searchFocused ? '0 4px 16px rgba(200,141,45,0.12)' : '0 2px 6px rgba(35,30,25,0.03), inset 0 1px 0 rgba(255,255,255,0.8)',
                   transition: 'all 0.2s ease'
                 }}
               />
@@ -664,9 +674,9 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   onClick={clearSearch}
                   style={{
                     position: 'absolute',
-                    right: '10px',
-                    width: '22px',
-                    height: '22px',
+                    right: '7px',
+                    width: '16px',
+                    height: '16px',
                     borderRadius: '50%',
                     border: 'none',
                     backgroundColor: '#F1F5F9',
@@ -681,7 +691,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#E2E8F0'; e.currentTarget.style.color = '#1F2421'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#F1F5F9'; e.currentTarget.style.color = '#64748B'; }}
                 >
-                  <X size={13} />
+                  <X size={10} />
                 </button>
               )}
             </form>
@@ -806,8 +816,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             onClick={toggleTheme}
             title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
             style={{
-              width: '38px',
-              height: '38px',
+              width: '34px',
+              height: '34px',
               borderRadius: '50%',
               border: '1.5px solid #E8E2D5',
               backgroundColor: '#ffffff',
@@ -816,12 +826,12 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               justifyContent: 'center',
               cursor: 'pointer',
               color: '#1C1E21',
-              boxShadow: '0 2px 6px rgba(35,30,25,0.05)',
+              boxShadow: '0 2px 6px rgba(35,30,25,0.04)',
               transition: 'all 0.2s ease',
               flexShrink: 0
             }}
           >
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
           </button>
 
           {/* Notification Bell with Badge 1 */}
@@ -829,8 +839,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             onClick={() => handleNavigate('interview-pro')}
             title="1 New Placement Notification"
             style={{
-              width: '38px',
-              height: '38px',
+              width: '34px',
+              height: '34px',
               borderRadius: '50%',
               border: '1.5px solid #E8E2D5',
               backgroundColor: '#ffffff',
@@ -839,13 +849,13 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               justifyContent: 'center',
               cursor: 'pointer',
               color: '#1C1E21',
-              boxShadow: '0 2px 6px rgba(35,30,25,0.05)',
+              boxShadow: '0 2px 6px rgba(35,30,25,0.04)',
               position: 'relative',
               transition: 'all 0.2s ease',
               flexShrink: 0
             }}
           >
-            <Bell size={18} />
+            <Bell size={16} />
             <span
               style={{
                 position: 'absolute',
@@ -853,10 +863,10 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 right: '-2px',
                 backgroundColor: '#DC2626',
                 color: '#FFFFFF',
-                fontSize: '0.65rem',
+                fontSize: '0.6rem',
                 fontWeight: 800,
-                width: '16px',
-                height: '16px',
+                width: '15px',
+                height: '15px',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -992,14 +1002,14 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               )}
             </div>
           ) : (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
               <button
                 type="button"
                 onClick={() => onOpenAuth && onOpenAuth('login')}
                 className="btn-outline"
                 style={{
-                  fontSize: '0.82rem',
-                  padding: '0.38rem 0.95rem',
+                  fontSize: '0.8rem',
+                  padding: '0.36rem 0.75rem',
                   borderRadius: '9999px',
                   fontWeight: 700,
                   whiteSpace: 'nowrap'
@@ -1012,8 +1022,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 onClick={() => onOpenAuth && onOpenAuth('signup')}
                 className="btn-primary"
                 style={{
-                  fontSize: '0.82rem',
-                  padding: '0.38rem 1.05rem',
+                  fontSize: '0.8rem',
+                  padding: '0.36rem 0.85rem',
                   borderRadius: '9999px',
                   backgroundColor: '#781416',
                   color: '#FFFFFF',
@@ -1418,6 +1428,9 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
         .mobile-menu-toggle {
           display: none;
         }
+        .desktop-menu-pill {
+          display: none;
+        }
         @media (max-width: 1080px) {
           .desktop-nav {
             display: none !important;
@@ -1428,6 +1441,27 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
           .desktop-search {
             display: none !important;
           }
+          .desktop-menu-pill {
+            display: none !important;
+          }
+        }
+        .pv-logo-subtitle {
+          display: none !important;
+        }
+        @media (min-width: 1680px) {
+          .pv-logo-subtitle {
+            display: block !important;
+          }
+        }
+        .nav-link-item {
+          padding: 0.28rem 0.35rem !important;
+          font-size: 0.77rem !important;
+        }
+        .navbar-search-input {
+          width: 105px !important;
+        }
+        .navbar-search-input:focus {
+          width: 155px !important;
         }
         @media (max-width: 600px) {
           .desktop-user-profile {

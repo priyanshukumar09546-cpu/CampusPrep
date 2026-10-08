@@ -271,6 +271,14 @@ body {
   padding-inline: clamp(1rem, 2.5vw, 2.25rem);
 }
 
+.pv-main-container {
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin-inline: auto !important;
+  padding-inline: 1rem !important;
+  box-sizing: border-box !important;
+}
+
 .container-wide {
   width: 100%;
   max-width: clamp(1280px, 96vw, 1780px);
@@ -434,20 +442,23 @@ header {
   .desktop-nav {
     display: flex !important;
     align-items: center;
-    gap: clamp(0.2rem, 0.5vw, 0.45rem) !important;
+    gap: clamp(0.15rem, 0.25vw, 0.35rem) !important;
   }
   .mobile-menu-toggle {
     display: none !important;
   }
 }
 
-@media (max-width: 1240px) and (min-width: 1081px) {
+@media (max-width: 1366px) and (min-width: 1081px) {
   .navbar-search-input {
+    width: 110px !important;
+  }
+  .navbar-search-input:focus {
     width: 160px !important;
   }
   .nav-link-item {
-    padding: 0.4rem 0.65rem !important;
-    font-size: 0.82rem !important;
+    padding: 0.3rem 0.36rem !important;
+    font-size: 0.77rem !important;
   }
 }
 
