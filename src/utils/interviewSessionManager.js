@@ -302,6 +302,8 @@ export function startNewInterviewSession(userConfig = {}) {
         targetRole: candidateConfig.targetRole,
         course: candidateConfig.course,
         branch: candidateConfig.branch,
+        skills: candidateConfig.skills || [],
+        structuredProfile: candidateConfig.structuredProfile || null,
         devicesVerified: true
       })
     }).catch(() => {});
@@ -679,47 +681,55 @@ export async function fetchNextTechnicalQuestion(attemptId, questionIndex, lastA
     console.warn('[TECH NEXT QUESTION API ERROR]:', e);
   }
 
-  // Resilient Client Fallback with realistic human turn-taking questions
+  // Resilient Client Fallback with realistic human turn-taking questions grounded in resume
+  const p = candidateProfile || {};
+  const cName = p.name || p.fullName || 'Candidate';
+  const skills = Array.isArray(p.skills) && p.skills.length > 0 ? p.skills : ['React', 'Node.js', 'MongoDB', 'JavaScript'];
+  const projects = Array.isArray(p.projects) && p.projects.length > 0 ? p.projects : [{ title: 'Full Stack Project', techStack: skills.slice(0, 3) }];
+  const topProj = projects[0] || { title: 'Web Platform', techStack: skills.slice(0, 2) };
+  const primarySkill = skills[0] || 'Software Engineering';
+  const secondarySkill = skills[1] || 'System Architecture';
+
   const fallbackQuestions = [
     {
       id: 'TECH-FB-1',
       index: 1,
       total: 5,
-      title: 'Authentication & Security Architecture',
-      question: 'Can you explain how JWT authentication works in your project? Also, how would you handle token expiration and secure client storage?',
-      focus: 'Resume & Project Security'
+      title: 'Project Architecture & Tech Stack Selection',
+      question: `Hello ${cName}, welcome to your technical interview. I've reviewed your resume and noticed your project, "${topProj.title}". Could you walk me through the overall architecture and why you chose ${topProj.techStack?.slice(0, 2).join(' and ') || primarySkill} for its implementation?`,
+      focus: 'Resume Project Deep-Dive'
     },
     {
       id: 'TECH-FB-2',
       index: 2,
       total: 5,
-      title: 'Token Revocation & Deep Dive',
-      question: 'Following up on that: Since JWTs are stateless, how do you handle immediate token revocation on logout or compromise, and how does refresh token rotation work?',
-      focus: 'Follow-up & Concurrency'
+      title: 'Technical Problem Solving & Debugging',
+      question: `While building ${topProj.title}, what was the most difficult technical bottleneck or complex bug you faced, and walk me through how you diagnosed and resolved it?`,
+      focus: 'Engineering Challenges'
     },
     {
       id: 'TECH-FB-3',
       index: 3,
       total: 5,
-      title: 'Database Concurrency & Caching',
-      question: 'In a high-concurrency portal with concurrent writes, how do you prevent race conditions and optimize throughput using indexing and Redis caching?',
-      focus: 'Core Concepts & Database'
+      title: 'Fault Tolerance & Data Integrity',
+      question: `That makes sense. If an unexpected failure or network partition occurred between your services or database during that workflow, how did your architecture ensure data integrity without leaving the system in an inconsistent state?`,
+      focus: 'System Reliability'
     },
     {
       id: 'TECH-FB-4',
       index: 4,
       total: 5,
-      title: 'Production Incident Triage',
-      question: 'Suppose your production service spikes to 100% CPU and returns 504 Gateway Timeouts during peak placement traffic. Walk me through your step-by-step triage from metrics to code.',
-      focus: 'Problem Solving & Debugging'
+      title: 'System Scalability to 100,000 Users',
+      question: `If you had to scale ${topProj.title} to support 100,000 concurrent active users with sub-100 millisecond response times, what architectural bottlenecks would surface first, and what changes would you make regarding caching, load balancing, or database sharding?`,
+      focus: 'Scalability & Performance'
     },
     {
       id: 'TECH-FB-5',
       index: 5,
       total: 5,
-      title: 'System Architecture & Trade-offs',
-      question: 'When designing a scalable backend, what trade-offs do you consider between monoliths and microservices, and when should you adopt message queues like Kafka or RabbitMQ?',
-      focus: 'System Architecture & Trade-offs'
+      title: `${secondarySkill} Deep-Dive & Trade-offs`,
+      question: `Looking at your experience with ${secondarySkill} on your resume, what are the primary architectural trade-offs you evaluate when building with it, and what alternatives did you consider?`,
+      focus: 'Core Technical Mastery'
     }
   ];
 
@@ -729,7 +739,7 @@ export async function fetchNextTechnicalQuestion(attemptId, questionIndex, lastA
 
   let evaluation = null;
   if (!isSkipOrBlank) {
-    const scoreVal = isIdk ? 20 : (lastAnswer.trim().length > 50 ? 80 : 55);
+    const scoreVal = isIdk ? 25 : (lastAnswer.trim().length > 50 ? 82 : 55);
     evaluation = {
       questionId: `TECH-Q${questionIndex}`,
       question: previousQuestions[previousQuestions.length - 1]?.question || '',
@@ -793,7 +803,7 @@ export async function submitTechnicalInterview(attemptId, evaluations = [], tran
  * ============================================================================
  */
 
-export async function fetchNextHrQuestion(attemptId, questionIndex, lastAnswer, previousQuestions) {
+export async function fetchNextHrQuestion(attemptId, questionIndex, lastAnswer, previousQuestions, candidateProfile) {
   try {
     const res = await fetch('/api/interview/hr/next-question', {
       method: 'POST',
@@ -802,7 +812,8 @@ export async function fetchNextHrQuestion(attemptId, questionIndex, lastAnswer, 
         attemptId,
         questionIndex,
         lastAnswer,
-        previousQuestions
+        previousQuestions,
+        candidateProfile
       })
     });
     if (res.ok) {
@@ -812,45 +823,51 @@ export async function fetchNextHrQuestion(attemptId, questionIndex, lastAnswer, 
     console.warn('[HR NEXT QUESTION API ERROR]:', e);
   }
 
+  const p = candidateProfile || {};
+  const cName = p.name || p.fullName || 'Candidate';
+  const education = (Array.isArray(p.education) && p.education[0]) || { degree: 'Engineering', branch: 'Computer Science', college: 'your college' };
+  const projects = Array.isArray(p.projects) && p.projects.length > 0 ? p.projects : [{ title: 'Academic Project' }];
+  const topProj = projects[0];
+
   const fallbackQuestions = [
     {
       id: 'HR-FB-1',
       index: 1,
       total: 5,
-      title: 'Team Dynamics & Conflict Resolution',
-      question: 'Tell me about a time when you faced a difficult situation in a team or had a technical disagreement with a peer. How did you handle it and what did you learn from that experience?',
-      competencies: ['Communication', 'Teamwork', 'Conflict Resolution']
+      title: 'Professional Introduction & Motivation',
+      question: `Hello ${cName}, welcome to your HR and Behavioral interview. I've reviewed your resume and noted your background in ${education.branch || 'Engineering'}. Could you give me a brief introduction, sharing what inspired your journey into technology and what achievement on your resume you're most proud of?`,
+      competencies: ['Communication', 'Self-Awareness', 'Motivation']
     },
     {
       id: 'HR-FB-2',
       index: 2,
       total: 5,
-      title: 'Decision Rationale & Retrospective',
-      question: 'Why did you choose that particular approach to resolve the friction, and what would you do differently today with the hindsight and experience you now have?',
-      competencies: ['Self-Awareness', 'Critical Thinking', 'Accountability']
+      title: 'Project Ownership & Conflict Resolution',
+      question: `I noticed on your resume you worked on "${topProj.title}". What was your personal contribution to that project, and could you describe a situation where you had a difference of opinion or technical disagreement with a peer, and how you navigated it?`,
+      competencies: ['Teamwork', 'Conflict Resolution', 'Ownership']
     },
     {
       id: 'HR-FB-3',
       index: 3,
       total: 5,
-      title: 'Handling Pressure & Unexpected Roadblocks',
-      question: 'Describe a situation where a critical academic or project deadline was at risk, or an unexpected failure occurred right before delivery. How did you prioritize actions and manage personal stress?',
-      competencies: ['Resilience', 'Problem Solving', 'Emotional Intelligence']
+      title: 'Pressure Management & Overcoming Setbacks',
+      question: `Can you describe a situation where a critical deadline was at risk, or an unexpected technical failure occurred right before delivery? How did you prioritize your immediate actions and manage personal stress?`,
+      competencies: ['Resilience', 'Prioritization', 'Emotional Intelligence']
     },
     {
       id: 'HR-FB-4',
       index: 4,
       total: 5,
-      title: 'Adaptability & Fast-Paced Learning',
-      question: 'Tell me about a time when you had to learn an unfamiliar technology, framework, or methodology within a tight deadline. How did you structure your learning and maintain quality?',
+      title: 'Agility & Rapid Technical Learning',
+      question: `In fast-moving software environments, technologies shift quickly. Tell me about a time when you had to learn an unfamiliar tool, library, or framework on very short notice. How did you structure your learning to deliver results?`,
       competencies: ['Adaptability', 'Initiative', 'Continuous Learning']
     },
     {
       id: 'HR-FB-5',
       index: 5,
       total: 5,
-      title: 'Leadership & Career Ambition',
-      question: 'Where do you see yourself evolving as an engineering professional over the next 2 to 3 years, and what drives your motivation to start your career with our organization?',
+      title: 'Career Vision & Cultural Fit',
+      question: `Looking ahead, where do you see yourself evolving as an engineering professional over the next 2 to 3 years, and what kind of team values or culture enable you to perform at your highest level?`,
       competencies: ['Leadership', 'Cultural Alignment', 'Professional Vision']
     }
   ];

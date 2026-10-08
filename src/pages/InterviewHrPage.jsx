@@ -58,13 +58,19 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
   const userId = getCurrentUserId();
   const isAccessible = isRoundAccessible('hr', attemptId);
 
-  // Candidate Profile
+  // Candidate Profile (grounded in uploaded resume)
   const [candidateProfile] = useState(() => {
     try {
       const raw = sessionStorage.getItem('interview_pro_active_test');
-      if (raw) return JSON.parse(raw);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        return {
+          ...parsed,
+          ...(parsed.structuredProfile || {})
+        };
+      }
     } catch {}
-    return { targetRole: 'Software Engineer', domain: 'Engineering' };
+    return { name: 'Candidate', targetRole: 'Software Engineer', domain: 'Engineering' };
   });
 
   // Questions & Flow State
@@ -142,7 +148,7 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
     let isMounted = true;
     async function loadFirstQuestion() {
       try {
-        const data = await fetchNextHrQuestion(attemptId, 0, '', []);
+        const data = await fetchNextHrQuestion(attemptId, 0, '', [], candidateProfile);
         if (isMounted && data && data.nextQuestion) {
           setCurrentQuestion(data.nextQuestion);
           setPreviousQuestions([data.nextQuestion]);
@@ -351,7 +357,8 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
         attemptId,
         nextIdx,
         candidateAnswer,
-        previousQuestions
+        previousQuestions,
+        candidateProfile
       );
 
       let nextEvaluations = [...evaluations];
@@ -674,30 +681,34 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
             padding: '1.25rem',
             zIndex: 10
           }}>
-            {/* Top-Left Interviewer Card (Matches Reference Image 2) */}
+            {/* Top-Left Interviewer Card with Character Avatar & Speaking Glow */}
             <div style={{
-              backgroundColor: 'rgba(26, 16, 30, 0.85)',
+              backgroundColor: 'rgba(26, 16, 30, 0.90)',
               backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(244, 63, 94, 0.35)',
+              border: voiceState === 'ai_speaking' ? '1.5px solid #F43F5E' : '1px solid rgba(244, 63, 94, 0.35)',
               borderRadius: '12px',
               padding: '0.55rem 0.95rem',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+              boxShadow: voiceState === 'ai_speaking' ? '0 0 20px rgba(244, 63, 94, 0.35)' : '0 8px 24px rgba(0,0,0,0.3)',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.75rem'
+              gap: '0.75rem',
+              transition: 'all 0.3s ease'
             }}>
               <div style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '8px',
-                backgroundColor: 'rgba(219, 39, 119, 0.15)',
-                border: '1px solid #DB2777',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#F472B6'
+                width: '44px',
+                height: '44px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                border: voiceState === 'ai_speaking' ? '2.5px solid #F43F5E' : '2px solid rgba(244, 63, 94, 0.4)',
+                boxShadow: voiceState === 'ai_speaking' ? '0 0 12px #F43F5E' : 'none',
+                position: 'relative',
+                flexShrink: 0
               }}>
-                <Users size={20} strokeWidth={2.5} />
+                <img
+                  src="/assets/interviewer_hr_character.jpg"
+                  alt="AI HR Interviewer"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
               </div>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
@@ -708,53 +719,58 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
                     width: '8px',
                     height: '8px',
                     borderRadius: '50%',
-                    backgroundColor: '#10B981',
-                    boxShadow: '0 0 8px #10B981'
+                    backgroundColor: voiceState === 'ai_speaking' ? '#F43F5E' : '#10B981',
+                    boxShadow: voiceState === 'ai_speaking' ? '0 0 8px #F43F5E' : '0 0 8px #10B981'
                   }} />
                 </div>
                 <div style={{ fontSize: '0.72rem', color: '#F9A8D4', fontWeight: 600 }}>
-                  Personality, Behavior & Situational Interview
+                  Personality, Culture Fit &amp; Situational Interview
                 </div>
               </div>
             </div>
 
-            {/* Top-Right Evaluation Focus Card (Matches Reference Image 2) */}
+            {/* Top-Right Evaluation Focus Card (Grounded in Candidate Resume) */}
             <div style={{
-              backgroundColor: 'rgba(26, 16, 30, 0.85)',
+              backgroundColor: 'rgba(26, 16, 30, 0.90)',
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(244, 114, 182, 0.25)',
               borderRadius: '12px',
-              padding: '0.7rem 1rem',
+              padding: '0.65rem 0.95rem',
               boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
-              width: '210px'
+              maxWidth: '300px'
             }}>
-              <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#F472B6', marginBottom: '0.45rem', textTransform: 'uppercase', letterSpacing: '0.03em' }}>
-                Evaluation Focus
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
+                <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#F472B6', textTransform: 'uppercase', letterSpacing: '0.03em' }}>
+                  Candidate Profile Focus
+                </span>
+                <span style={{ fontSize: '0.62rem', backgroundColor: 'rgba(244, 63, 94, 0.15)', color: '#F472B6', padding: '0.1rem 0.35rem', borderRadius: '4px', fontWeight: 800 }}>
+                  Active
+                </span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.72rem', color: '#FCE7F3', fontWeight: 600 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', fontSize: '0.72rem', color: '#FCE7F3', fontWeight: 600 }}>
+                {candidateProfile.education && candidateProfile.education.length > 0 && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <FileText size={13} color="#F472B6" style={{ flexShrink: 0 }} />
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      Education: <strong style={{ color: '#FFFFFF' }}>{candidateProfile.education[0].degree || candidateProfile.education[0].branch || 'Degree'}</strong>
+                    </span>
+                  </div>
+                )}
+                {candidateProfile.projects && candidateProfile.projects.length > 0 && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <Briefcase size={13} color="#F472B6" style={{ flexShrink: 0 }} />
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      Project: <strong style={{ color: '#FFFFFF' }}>{candidateProfile.projects[0].title || candidateProfile.projects[0]}</strong>
+                    </span>
+                  </div>
+                )}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <MessageSquare size={13} color="#F472B6" />
-                  <span>Communication Skills</span>
+                  <Users size={13} color="#F472B6" style={{ flexShrink: 0 }} />
+                  <span>Teamwork, Ownership &amp; Conflict Handling</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <Cpu size={13} color="#F472B6" />
-                  <span>Problem Solving</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <Users size={13} color="#F472B6" />
-                  <span>Teamwork & Leadership</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <Brain size={13} color="#F472B6" />
-                  <span>Critical Thinking</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <RefreshCw size={13} color="#F472B6" />
-                  <span>Adaptability</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <Award size={13} color="#F472B6" />
-                  <span>Professional Behavior</span>
+                  <Brain size={13} color="#F472B6" style={{ flexShrink: 0 }} />
+                  <span>STAR Method (Situation, Task, Action, Result)</span>
                 </div>
               </div>
             </div>
@@ -766,7 +782,7 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            maxWidth: '680px',
+            maxWidth: '720px',
             zIndex: 10
           }}>
             <div style={{
@@ -779,11 +795,12 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
               display: 'flex',
               alignItems: 'flex-start',
               gap: '0.85rem',
-              animation: 'fadeIn 0.3s ease-out'
+              animation: 'fadeIn 0.3s ease-out',
+              border: '2px solid rgba(244, 63, 94, 0.4)'
             }}>
               <div style={{
-                width: '34px',
-                height: '34px',
+                width: '36px',
+                height: '36px',
                 borderRadius: '50%',
                 backgroundColor: '#FDF2F8',
                 color: '#DB2777',
@@ -795,9 +812,23 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
                 <Volume2 size={18} />
               </div>
               <div>
-                <div style={{ fontSize: '0.7rem', color: '#BE185D', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.2rem' }}>
+                <div style={{ fontSize: '0.7rem', color: '#BE185D', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.25rem' }}>
                   Question {currentQIndex + 1} of 5: {currentQuestion?.title || 'Behavioral Scenario'}
                 </div>
+                {currentQuestion?.conversationalAck && (
+                  <div style={{
+                    fontSize: '0.86rem',
+                    fontStyle: 'italic',
+                    color: '#9D174D',
+                    marginBottom: '0.4rem',
+                    fontWeight: 600,
+                    lineHeight: 1.4,
+                    borderLeft: '2.5px solid #F43F5E',
+                    paddingLeft: '0.55rem'
+                  }}>
+                    "{currentQuestion.conversationalAck}"
+                  </div>
+                )}
                 <p style={{
                   margin: 0,
                   fontSize: '0.98rem',

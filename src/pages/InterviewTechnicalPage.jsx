@@ -66,13 +66,20 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
   const userId = getCurrentUserId();
   const isAccessible = isRoundAccessible('technical', attemptId);
 
-  // Candidate Profile from assessment setup
+  // Candidate Profile from assessment setup (grounded in uploaded resume)
   const [candidateProfile] = useState(() => {
     try {
       const raw = sessionStorage.getItem('interview_pro_active_test');
-      if (raw) return JSON.parse(raw);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        return {
+          ...parsed,
+          ...(parsed.structuredProfile || {})
+        };
+      }
     } catch {}
     return {
+      name: 'Candidate',
       targetRole: 'Full Stack Software Engineer',
       domain: 'Computer Science & Engineering',
       skills: ['React', 'Node.js', 'MongoDB', 'JWT', 'System Architecture']
@@ -715,32 +722,38 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
             alignItems: 'flex-start',
             justifyContent: 'space-between',
             padding: '1.25rem',
-            zIndex: 10
+            zIndex: 10,
+            flexWrap: 'wrap',
+            gap: '0.75rem'
           }}>
-            {/* Top-Left Interviewer Card (Matches Reference Image) */}
+            {/* Top-Left Interviewer Card with Character Avatar & Speaking Glow */}
             <div style={{
-              backgroundColor: 'rgba(15, 23, 42, 0.85)',
+              backgroundColor: 'rgba(15, 23, 42, 0.90)',
               backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(45, 212, 191, 0.3)',
+              border: voiceState === 'ai_speaking' ? '1.5px solid #2DD4BF' : '1px solid rgba(45, 212, 191, 0.3)',
               borderRadius: '12px',
               padding: '0.55rem 0.95rem',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+              boxShadow: voiceState === 'ai_speaking' ? '0 0 20px rgba(45, 212, 191, 0.35)' : '0 8px 24px rgba(0,0,0,0.3)',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.75rem'
+              gap: '0.75rem',
+              transition: 'all 0.3s ease'
             }}>
               <div style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '8px',
-                backgroundColor: 'rgba(20, 184, 166, 0.15)',
-                border: '1px solid #14B8A6',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#2DD4BF'
+                width: '44px',
+                height: '44px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                border: voiceState === 'ai_speaking' ? '2.5px solid #2DD4BF' : '2px solid rgba(45, 212, 191, 0.4)',
+                boxShadow: voiceState === 'ai_speaking' ? '0 0 12px #2DD4BF' : 'none',
+                position: 'relative',
+                flexShrink: 0
               }}>
-                <Code size={20} strokeWidth={2.5} />
+                <img
+                  src="/assets/interviewer_tech_character.jpg"
+                  alt="AI Technical Interviewer"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
               </div>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
@@ -751,61 +764,70 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
                     width: '8px',
                     height: '8px',
                     borderRadius: '50%',
-                    backgroundColor: '#10B981',
-                    boxShadow: '0 0 8px #10B981'
+                    backgroundColor: voiceState === 'ai_speaking' ? '#2DD4BF' : '#10B981',
+                    boxShadow: voiceState === 'ai_speaking' ? '0 0 8px #2DD4BF' : '0 0 8px #10B981'
                   }} />
                 </div>
                 <div style={{ fontSize: '0.72rem', color: '#94A3B8', fontWeight: 600 }}>
-                  Resume & Domain Based Technical Interview
+                  Resume &amp; Domain Based Technical Interview
                 </div>
               </div>
             </div>
 
-            {/* Top-Right Interview Focus Card (Matches Reference Image) */}
+            {/* Top-Right Interview Focus Card (Grounded in Candidate Resume) */}
             <div style={{
-              backgroundColor: 'rgba(15, 23, 42, 0.85)',
+              backgroundColor: 'rgba(15, 23, 42, 0.90)',
               backdropFilter: 'blur(10px)',
               border: '1px solid rgba(56, 189, 248, 0.25)',
               borderRadius: '12px',
-              padding: '0.7rem 1rem',
+              padding: '0.65rem 0.95rem',
               boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
-              width: '210px'
+              maxWidth: '300px'
             }}>
-              <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#38BDF8', marginBottom: '0.45rem', textTransform: 'uppercase', letterSpacing: '0.03em' }}>
-                Interview Focus
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
+                <span style={{ fontSize: '0.74rem', fontWeight: 800, color: '#38BDF8', textTransform: 'uppercase', letterSpacing: '0.03em' }}>
+                  Resume Deep-Dive Focus
+                </span>
+                <span style={{ fontSize: '0.62rem', backgroundColor: 'rgba(45, 212, 191, 0.15)', color: '#2DD4BF', padding: '0.1rem 0.35rem', borderRadius: '4px', fontWeight: 800 }}>
+                  Active
+                </span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.72rem', color: '#CBD5E1', fontWeight: 600 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', fontSize: '0.72rem', color: '#CBD5E1', fontWeight: 600 }}>
+                {candidateProfile.projects && candidateProfile.projects.length > 0 && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <Briefcase size={13} color="#2DD4BF" style={{ flexShrink: 0 }} />
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      Project: <strong style={{ color: '#F1F5F9' }}>{candidateProfile.projects[0].title || candidateProfile.projects[0]}</strong>
+                    </span>
+                  </div>
+                )}
+                {candidateProfile.skills && candidateProfile.skills.length > 0 && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <Cpu size={13} color="#2DD4BF" style={{ flexShrink: 0 }} />
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      Skills: <strong style={{ color: '#F1F5F9' }}>{candidateProfile.skills.slice(0, 3).join(', ')}</strong>
+                    </span>
+                  </div>
+                )}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <FileText size={13} color="#2DD4BF" />
-                  <span>Resume Based Questions</span>
+                  <ShieldCheck size={13} color="#2DD4BF" style={{ flexShrink: 0 }} />
+                  <span>Architecture, Trade-offs &amp; 100k Scaling</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <Briefcase size={13} color="#2DD4BF" />
-                  <span>Project Discussion</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <ShieldCheck size={13} color="#2DD4BF" />
-                  <span>Core Concepts</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <Cpu size={13} color="#2DD4BF" />
-                  <span>Problem Solving</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                  <GitBranch size={13} color="#2DD4BF" />
-                  <span>Follow-up Questions</span>
+                  <GitBranch size={13} color="#2DD4BF" style={{ flexShrink: 0 }} />
+                  <span>Adaptive Dynamic Follow-ups</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Center: Speech Bubble with Current Question (Matches Reference Image) */}
+          {/* Center: Speech Bubble with Current Question & Conversational Follow-up */}
           <div style={{
             padding: '0 2rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            maxWidth: '680px',
+            maxWidth: '720px',
             zIndex: 10
           }}>
             <div style={{
@@ -818,11 +840,12 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
               display: 'flex',
               alignItems: 'flex-start',
               gap: '0.85rem',
-              animation: 'fadeIn 0.3s ease-out'
+              animation: 'fadeIn 0.3s ease-out',
+              border: '2px solid rgba(45, 212, 191, 0.4)'
             }}>
               <div style={{
-                width: '34px',
-                height: '34px',
+                width: '36px',
+                height: '36px',
                 borderRadius: '50%',
                 backgroundColor: '#E6FFFA',
                 color: '#0D9488',
@@ -834,9 +857,23 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
                 <Volume2 size={18} />
               </div>
               <div>
-                <div style={{ fontSize: '0.7rem', color: '#0D9488', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.2rem' }}>
-                  Question {currentQIndex + 1} of 5: {currentQuestion?.title || 'Technical Concept'}
+                <div style={{ fontSize: '0.7rem', color: '#0D9488', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.25rem' }}>
+                  Question {currentQIndex + 1} of 5: {currentQuestion?.title || 'Technical Challenge'}
                 </div>
+                {currentQuestion?.conversationalAck && (
+                  <div style={{
+                    fontSize: '0.86rem',
+                    fontStyle: 'italic',
+                    color: '#0F766E',
+                    marginBottom: '0.4rem',
+                    fontWeight: 600,
+                    lineHeight: 1.4,
+                    borderLeft: '2.5px solid #14B8A6',
+                    paddingLeft: '0.55rem'
+                  }}>
+                    "{currentQuestion.conversationalAck}"
+                  </div>
+                )}
                 <p style={{
                   margin: 0,
                   fontSize: '0.98rem',

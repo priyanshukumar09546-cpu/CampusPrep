@@ -143,6 +143,17 @@ export default function InterviewConfirmPage({ onNavigate, onOpenAuth }) {
   const [savedResumes, setSavedResumes] = useState([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
   const [previewResumeModal, setPreviewResumeModal] = useState(null);
+  const [isParsingResume, setIsParsingResume] = useState(false);
+  const [parsedResumeProfile, setParsedResumeProfile] = useState(() => {
+    try {
+      const active = sessionStorage.getItem('interview_pro_active_test');
+      if (active) {
+        const parsed = JSON.parse(active);
+        return parsed.structuredProfile || null;
+      }
+    } catch {}
+    return null;
+  });
 
   // Field Validation Errors
   const [errors, setErrors] = useState({});
@@ -177,6 +188,75 @@ export default function InterviewConfirmPage({ onNavigate, onOpenAuth }) {
   const handleRoleChange = (newRole) => {
     setTargetRole(newRole);
     if (errors.targetRole) setErrors(prev => ({ ...prev, targetRole: null }));
+  };
+
+  // Helper to convert saved Resume Maker resume to Structured Candidate Profile
+  const convertResumeMakerToStructuredProfile = (r) => {
+    if (!r) return null;
+    const p = r.personalDetails || r.personal || {};
+    const skillsList = [];
+    if (Array.isArray(r.skills)) skillsList.push(...r.skills);
+    if (r.technicalSkills && typeof r.technicalSkills === 'object') {
+      Object.values(r.technicalSkills).forEach(val => {
+        if (Array.isArray(val)) skillsList.push(...val);
+        else if (typeof val === 'string') skillsList.push(...val.split(',').map(s => s.trim()));
+      });
+    }
+    return {
+      name: p.fullName || r.title || 'Candidate',
+      email: p.email || '',
+      phone: p.phone || '',
+      education: Array.isArray(r.education) ? r.education : [],
+      skills: Array.from(new Set(skillsList.filter(Boolean))),
+      projects: Array.isArray(r.projects) ? r.projects : [],
+      internships: Array.isArray(r.experience) ? r.experience : [],
+      certifications: Array.isArray(r.certifications) ? r.certifications : [],
+      achievements: Array.isArray(r.achievements) ? r.achievements : []
+    };
+  };
+
+  // Resume File Upload with instant automatic AI parsing
+  const handleFileUpload = async (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      const ext = file.name.split('.').pop().toLowerCase();
+      if (!['pdf', 'doc', 'docx'].includes(ext)) {
+        alert('Please upload a valid PDF, DOC, or DOCX resume.');
+        return;
+      }
+      setUploadedResume({
+        name: file.name,
+        size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
+        uploadedAt: 'Uploaded successfully',
+        file
+      });
+      setSelectedResumeId('');
+      if (errors.resume) setErrors(prev => ({ ...prev, resume: null }));
+
+      // Trigger automatic resume parsing to extract structured profile for AI interviewers
+      setIsParsingResume(true);
+      try {
+        const formData = new FormData();
+        formData.append('resume', file);
+        const res = await fetch('/api/interview/resume/parse', {
+          method: 'POST',
+          body: formData
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.structuredProfile) {
+            setParsedResumeProfile(data.structuredProfile);
+            if (Array.isArray(data.structuredProfile.skills) && data.structuredProfile.skills.length > 0) {
+              setSkills(prev => Array.from(new Set([...prev, ...data.structuredProfile.skills])));
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('[RESUME PARSE ERROR]:', err);
+      } finally {
+        setIsParsingResume(false);
+      }
+    }
   };
 
   // Fetch Saved Resumes from Backend
@@ -234,26 +314,6 @@ export default function InterviewConfirmPage({ onNavigate, onOpenAuth }) {
     if (trimmed && !skills.includes(trimmed)) {
       setSkills(prev => [...prev, trimmed]);
       setNewSkillInput('');
-    }
-  };
-
-  // Resume File Upload
-  const handleFileUpload = (e) => {
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      const ext = file.name.split('.').pop().toLowerCase();
-      if (!['pdf', 'doc', 'docx'].includes(ext)) {
-        alert('Please upload a valid PDF, DOC, or DOCX resume.');
-        return;
-      }
-      setUploadedResume({
-        name: file.name,
-        size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
-        uploadedAt: 'Uploaded successfully',
-        file
-      });
-      setSelectedResumeId('');
-      if (errors.resume) setErrors(prev => ({ ...prev, resume: null }));
     }
   };
 
@@ -353,6 +413,20 @@ export default function InterviewConfirmPage({ onNavigate, onOpenAuth }) {
       return;
     }
 
+    // Construct Structured Candidate Profile grounded in uploaded/selected resume
+    const structuredProfile = parsedResumeProfile || (activeResumeInfo ? convertResumeMakerToStructuredProfile(activeResumeInfo) : null) || {
+      name: 'Candidate',
+      education: [{ degree: course || 'B.Tech', branch: branch || 'CSE', college: 'Engineering College', year: year || '2025' }],
+      skills: skills.length > 0 ? skills : ['React', 'Node.js', 'MongoDB', 'Python'],
+      projects: [
+        {
+          title: `${targetRole || 'Full Stack'} Platform`,
+          techStack: skills.slice(0, 3),
+          description: `Comprehensive application built with ${skills.slice(0, 3).join(', ')}.`
+        }
+      ]
+    };
+
     // Save complete assessment configuration
     const assessmentConfig = {
       course,
@@ -366,6 +440,7 @@ export default function InterviewConfirmPage({ onNavigate, onOpenAuth }) {
         id: activeResumeInfo.id || activeResumeInfo._id || null,
         type: resumeMode
       },
+      structuredProfile,
       difficulty,
       preparationTime: '140 Minutes',
       configuredAt: new Date().toISOString()
@@ -1146,9 +1221,17 @@ export default function InterviewConfirmPage({ onNavigate, onOpenAuth }) {
                           <div
                             key={r.id || r._id}
                             onClick={() => {
-                              setSelectedResumeId(r.id || r._id);
+                              const resumeId = r.id || r._id;
+                              setSelectedResumeId(resumeId);
                               setUploadedResume(null);
                               if (errors.resume) setErrors(prev => ({ ...prev, resume: null }));
+                              const prof = convertResumeMakerToStructuredProfile(r);
+                              if (prof) {
+                                setParsedResumeProfile(prof);
+                                if (Array.isArray(prof.skills) && prof.skills.length > 0) {
+                                  setSkills(prev => Array.from(new Set([...prev, ...prof.skills])));
+                                }
+                              }
                             }}
                             style={{
                               padding: '0.5rem 0.65rem',
@@ -1228,6 +1311,60 @@ export default function InterviewConfirmPage({ onNavigate, onOpenAuth }) {
                       No saved resumes found in your account yet.
                     </div>
                   )}
+                </div>
+              )}
+
+              {/* Live Resume Parsing Status & Verification Banner */}
+              {isParsingResume && (
+                <div style={{
+                  marginTop: '0.5rem',
+                  backgroundColor: '#EFF6FF',
+                  border: '1px solid #BFDBFE',
+                  borderRadius: '6px',
+                  padding: '0.6rem 0.8rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.6rem',
+                  fontSize: '0.74rem',
+                  color: '#1D4ED8',
+                  fontWeight: 700
+                }}>
+                  <Sparkles size={16} className="animate-spin" color="#2563EB" />
+                  <span>Analyzing uploaded resume & extracting structured candidate profile for AI Interviewers...</span>
+                </div>
+              )}
+
+              {parsedResumeProfile && (
+                <div style={{
+                  marginTop: '0.5rem',
+                  backgroundColor: '#F0FDF4',
+                  border: '1.5px solid #86EFAC',
+                  borderRadius: '8px',
+                  padding: '0.7rem 0.9rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.35rem'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#15803D', fontWeight: 800, fontSize: '0.78rem' }}>
+                      <CheckCircle2 size={16} color="#16A34A" />
+                      <span>Resume Profile Extracted & Verified for AI Interviewers</span>
+                    </div>
+                    <span style={{ fontSize: '0.68rem', backgroundColor: '#DCFCE7', color: '#15803D', padding: '0.1rem 0.45rem', borderRadius: '4px', fontWeight: 800 }}>
+                      Grounded Source
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', fontSize: '0.72rem', color: '#166534', fontWeight: 600 }}>
+                    {parsedResumeProfile.name && (
+                      <span><strong>Candidate:</strong> {parsedResumeProfile.name}</span>
+                    )}
+                    {parsedResumeProfile.projects && parsedResumeProfile.projects.length > 0 && (
+                      <span>• <strong>Projects:</strong> {parsedResumeProfile.projects.map(p => p.title).slice(0, 2).join(', ')}</span>
+                    )}
+                    {parsedResumeProfile.skills && parsedResumeProfile.skills.length > 0 && (
+                      <span>• <strong>Verified Skills:</strong> {parsedResumeProfile.skills.slice(0, 5).join(', ')}{parsedResumeProfile.skills.length > 5 ? ` +${parsedResumeProfile.skills.length - 5} more` : ''}</span>
+                    )}
+                  </div>
                 </div>
               )}
 

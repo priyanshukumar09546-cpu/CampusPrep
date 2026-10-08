@@ -8,7 +8,19 @@ import express from 'express';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import multer from 'multer';
 import { CodingQuestion } from '../models/CodingQuestion.js';
+import {
+  parseResumeDocument,
+  generateTechnicalTurn,
+  generateHrTurn,
+  extractStructuredProfileDeterministic
+} from '../services/interviewAiEngine.js';
+
+const uploadMemory = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 15 * 1024 * 1024 }
+});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -486,13 +498,43 @@ export function createInterviewRouter() {
   const router = express.Router();
 
   /**
+   * POST /api/interview/resume/parse
+   * Extracts candidate profile, projects, skills, education from uploaded PDF/DOCX or JSON
+   */
+  router.post('/resume/parse', uploadMemory.single('resume'), async (req, res) => {
+    try {
+      let result = null;
+      if (req.file) {
+        result = await parseResumeDocument(req.file.buffer, req.file.mimetype, req.file.originalname);
+      } else if (req.body.resumeData) {
+        const data = typeof req.body.resumeData === 'string' ? JSON.parse(req.body.resumeData) : req.body.resumeData;
+        result = { structuredProfile: data };
+      } else if (req.body.resumeText) {
+        result = await parseResumeDocument(Buffer.from(req.body.resumeText), 'text/plain', 'resume.txt');
+      }
+
+      if (!result || !result.structuredProfile) {
+        return res.status(400).json({ success: false, message: 'Could not parse resume content' });
+      }
+
+      return res.json({
+        success: true,
+        structuredProfile: result.structuredProfile
+      });
+    } catch (err) {
+      console.error('[RESUME PARSE ROUTE ERROR]:', err);
+      return res.status(500).json({ success: false, error: err.message });
+    }
+  });
+
+  /**
    * POST /api/interview/start
    * Initializes a new interview attempt session
    * Hard enforces mandatory webcam and microphone verification
    */
   router.post('/start', (req, res) => {
     try {
-      const { attemptId, userId = 'guest', targetRole, domain, course, branch, skills, candidateProfile, devicesVerified } = req.body;
+      const { attemptId, userId = 'guest', targetRole, domain, course, branch, skills, candidateProfile, structuredProfile, devicesVerified } = req.body;
       if (!attemptId) {
         return res.status(400).json({ success: false, error: 'attemptId is required' });
       }
@@ -507,6 +549,7 @@ export function createInterviewRouter() {
 
       const sessions = readJsonSafe(SESSIONS_FILE, {});
       if (!sessions[attemptId]) {
+        const resolvedStructured = structuredProfile || candidateProfile?.structuredProfile || null;
         sessions[attemptId] = {
           attemptId,
           userId,
@@ -516,6 +559,7 @@ export function createInterviewRouter() {
           branch: branch || 'CSE',
           skills: skills || [],
           candidateProfile: candidateProfile || {},
+          structuredProfile: resolvedStructured,
           devicesVerified: true,
           proctorEvents: [{
             eventType: 'DEVICES_VERIFIED_AT_START',
@@ -1022,52 +1066,10 @@ export function createInterviewRouter() {
   /**
    * ==========================================================================
    * AI TECHNICAL INTERVIEW ENGINE (Round 3)
-   * Real conversational interviewer with turn-taking, speech, & strict evaluation
+   * Real conversational interviewer grounded strictly in candidate's resume
+   * Uses Gemini AI with deterministic semantic turn-taking fallback
    * ==========================================================================
    */
-
-  const TECHNICAL_QUESTION_BANK = [
-    {
-      id: 'TECH-Q1',
-      title: 'Authentication & Security Architecture',
-      question: 'Can you explain how JWT authentication works in your project? Also, how would you handle token expiration and secure client storage?',
-      focus: 'Resume & Project Security',
-      hint: 'JWTs consist of Header, Payload, and Signature, where the secret verifies authenticity.',
-      misconceptions: ['encrypted', 'nobody can read', 'private by default']
-    },
-    {
-      id: 'TECH-Q2',
-      title: 'Token Revocation & Concurrency Follow-up',
-      question: 'Following up on that: Since JWTs are stateless, how do you handle immediate token revocation when a user logs out or is banned, and how does refresh token rotation work in production?',
-      focus: 'Follow-up & Concurrency',
-      hint: 'A Redis blacklist with TTL matching the access token lifetime is commonly used.',
-      misconceptions: ['delete from client only', 'cannot be revoked']
-    },
-    {
-      id: 'TECH-Q3',
-      title: 'Database Concurrency & Caching',
-      question: 'In a high-concurrency placement portal experiencing simultaneous registrations, how would you prevent race conditions and optimize database read/write throughput using indexing or Redis caching?',
-      focus: 'Core Concepts & Database',
-      hint: 'Optimistic locking with version numbers or distributed Redis locks prevent race conditions.',
-      misconceptions: ['just use mongodb', 'nosql has no race conditions']
-    },
-    {
-      id: 'TECH-Q4',
-      title: 'Production Incident Triage',
-      question: 'Imagine a production service suddenly spikes to 100% CPU utilization and starts dropping requests with 504 Gateway Timeouts during peak placement traffic. Walk me through your step-by-step triage from metrics down to code.',
-      focus: 'Problem Solving & Debugging',
-      hint: 'Inspect APM CPU profiles, thread dumps, slow query logs, connection pools, and circuit breakers.',
-      misconceptions: ['just restart the server']
-    },
-    {
-      id: 'TECH-Q5',
-      title: 'System Design & Architectural Trade-offs',
-      question: 'When designing a scalable web platform, what are the primary trade-offs you evaluate between a modular monolith and microservices, and when does it make sense to adopt asynchronous message queues like RabbitMQ or Kafka?',
-      focus: 'System Architecture & Trade-offs',
-      hint: 'Monoliths reduce operational complexity; microservices enable independent deployments but add network latency and distributed data consistency challenges.',
-      misconceptions: ['microservices are always better']
-    }
-  ];
 
   router.post('/technical/next-question', async (req, res) => {
     try {
@@ -1079,157 +1081,33 @@ export function createInterviewRouter() {
         userAnswer = '',
         isSkipped = false,
         previousQuestions = [],
-        candidateProfile = {}
+        candidateProfile = {},
+        currentDifficulty = 'Standard'
       } = req.body;
 
       const qIdx = parseInt(questionIndex ?? currentQuestionIndex ?? 0, 10) || 0;
-      const answerGiven = (lastAnswer || userAnswer || '').trim();
-      const skipQuestion = isSkipped || req.body.isSkip || (!answerGiven && (qIdx > 0 || (previousQuestions && previousQuestions.length > 0)));
+      const answerGiven = isSkipped ? 'skip' : (lastAnswer || userAnswer || '').trim();
 
-      let evaluation = null;
-      let conversationalAck = '';
-
-      const shouldEvaluate = (previousQuestions && previousQuestions.length > 0) || (qIdx > 0) || (isSkipped && previousQuestions.length === 0);
-
-      if (shouldEvaluate) {
-        const lastQ = (previousQuestions && previousQuestions.length > 0)
-          ? previousQuestions[previousQuestions.length - 1]
-          : TECHNICAL_QUESTION_BANK[Math.max(0, qIdx - 1)] || TECHNICAL_QUESTION_BANK[0];
-
-        const lower = answerGiven.toLowerCase();
-        const wordCount = answerGiven ? answerGiven.split(/\s+/).length : 0;
-
-        const isSkip = skipQuestion || lower === 'skip' || lower === 'next' || lower === 'pass';
-        const isIdk = lower.includes("don't know") || lower.includes("not sure") || lower.includes("no idea");
-
-        if (isSkip) {
-          conversationalAck = "No problem at all. Let's move on to the next topic.";
-          evaluation = {
-            questionId: lastQ.id || `TECH-Q${qIdx || 1}`,
-            question: lastQ.question,
-            userAnswer: 'Skipped',
-            status: 'skipped',
-            correctness: 0,
-            technicalDepth: 0,
-            relevance: 0,
-            score: 0,
-            feedback: 'Question was skipped by candidate.',
-            strengths: 'None noted.',
-            weaknesses: 'Question unanswered.'
-          };
-        } else if (isIdk) {
-          conversationalAck = `That is completely fine. In short, ${lastQ.hint || 'that concept centers on system integrity and secure state management.'} Let's explore a related area:`;
-          evaluation = {
-            questionId: lastQ.id || `TECH-Q${qIdx || 1}`,
-            question: lastQ.question,
-            userAnswer: answerGiven,
-            status: 'answered',
-            correctness: 2,
-            technicalDepth: 1,
-            relevance: 3,
-            score: 15,
-            feedback: 'Candidate indicated unfamiliarity with the specific concept. A hint was provided to guide learning.',
-            strengths: 'Honest communication regarding technical boundaries.',
-            weaknesses: 'Needs to review foundational architecture and protocols.'
-          };
-        } else {
-          // Check for misconceptions
-          const hasMisconception = (lastQ.misconceptions || []).some(m => lower.includes(m));
-
-          if (hasMisconception) {
-            conversationalAck = "You're touching on the right area, but there is an important distinction: JWTs are digitally signed rather than inherently encrypted. The payload is readable by anyone who decodes it, but the signature ensures authenticity. Let's build on that:";
-            evaluation = {
-              questionId: lastQ.id || `TECH-Q${qIdx || 1}`,
-              question: lastQ.question,
-              userAnswer: answerGiven,
-              status: 'answered',
-              correctness: 5,
-              technicalDepth: 4,
-              relevance: 7,
-              score: 45,
-              feedback: 'Addressed the question but harbored a common misconception between Base64Url payload encoding and asymmetric encryption.',
-              strengths: 'Demonstrated familiarity with token-based workflows.',
-              weaknesses: 'Confused digital signing with encryption.'
-            };
-          } else if (wordCount < 15) {
-            conversationalAck = "That gives a high-level overview. In practice, can you give me a more concrete example of how you implemented that in your project?";
-            evaluation = {
-              questionId: lastQ.id || `TECH-Q${qIdx || 1}`,
-              question: lastQ.question,
-              userAnswer: answerGiven,
-              status: 'answered',
-              correctness: 6,
-              technicalDepth: 5,
-              relevance: 6,
-              score: 50,
-              feedback: 'Brief conceptual answer, but lacked technical depth and concrete project examples.',
-              strengths: 'Recognizes key terms and definitions.',
-              weaknesses: 'Needs to elaborate on real-world constraints and trade-offs.'
-            };
-          } else {
-            // Strong answer
-            const calculatedScore = Math.min(95, Math.max(75, 75 + Math.min(20, Math.floor(wordCount / 5))));
-            conversationalAck = "That is a very clear and structured explanation. You clearly understand the core mechanics and trade-offs.";
-            evaluation = {
-              questionId: lastQ.id || `TECH-Q${qIdx || 1}`,
-              question: lastQ.question,
-              userAnswer: answerGiven,
-              status: 'answered',
-              correctness: Math.min(10, Math.floor(calculatedScore / 10)),
-              technicalDepth: Math.min(10, Math.floor(calculatedScore / 10)),
-              relevance: 9,
-              score: calculatedScore,
-              feedback: 'Strong technical demonstration. Well-articulated reasoning and solid grasp of system constraints.',
-              strengths: 'Demonstrated clarity of core concepts, structured explanation, and architectural understanding.',
-              weaknesses: 'Minor: keep detailing recovery strategies in distributed setups.'
-            };
-          }
-        }
-      }
-
-      // Check if interview completed
-      if (qIdx >= TECHNICAL_QUESTION_BANK.length) {
-        return res.json({
-          success: true,
-          isComplete: true,
-          evaluation,
-          conversationalAck,
-          spokenText: conversationalAck || "That concludes our technical interview. Thank you.",
-          nextQuestion: null
-        });
-      }
-
-      const rawQ = TECHNICAL_QUESTION_BANK[qIdx];
-      let personalizedQ = rawQ.question;
-
-      // Personalize question 1 with candidate resume skills if available
-      if (qIdx === 0 && candidateProfile.skills && candidateProfile.skills.length > 0) {
-        const topSkills = candidateProfile.skills.slice(0, 3).join(', ');
-        personalizedQ = `I see from your background that you have experience with ${topSkills}. Can you explain how you designed authentication and data flow in your primary project? Also, how do you handle token security and prevent unauthorized access?`;
-      }
-
-      // Combine conversational acknowledgment with question for natural speech
-      const spokenQuestion = conversationalAck ? `${conversationalAck} ${personalizedQ}` : personalizedQ;
-
-      const nextQuestion = {
-        id: rawQ.id,
-        index: qIdx + 1,
-        total: TECHNICAL_QUESTION_BANK.length,
-        title: rawQ.title,
-        question: personalizedQ,
-        spokenText: spokenQuestion,
-        conversationalAck,
-        focus: rawQ.focus
+      // Resolve candidate profile with session structured profile if available
+      const sessions = readJsonSafe(SESSIONS_FILE, {});
+      const session = attemptId ? sessions[attemptId] : null;
+      const resolvedProfile = {
+        ...(session?.candidateProfile || {}),
+        ...(session?.structuredProfile || {}),
+        ...(candidateProfile?.structuredProfile || {}),
+        ...candidateProfile
       };
 
-      return res.json({
-        success: true,
-        isComplete: false,
-        evaluation,
-        conversationalAck,
-        spokenText: spokenQuestion,
-        nextQuestion
+      const turnResult = await generateTechnicalTurn({
+        attemptId,
+        questionIndex: qIdx,
+        lastAnswer: answerGiven,
+        previousQuestions,
+        candidateProfile: resolvedProfile,
+        currentDifficulty
       });
+
+      return res.json(turnResult);
     } catch (err) {
       console.error('[TECHNICAL INTERVIEW NEXT QUESTION ERROR]:', err);
       return res.status(500).json({ success: false, error: err.message });
@@ -1288,42 +1166,11 @@ export function createInterviewRouter() {
   /**
    * ==========================================================================
    * AI HR / BEHAVIORAL INTERVIEW ENGINE (Round 4)
-   * Real conversational interviewer probing weak answers with STAR framework
+   * Real conversational interviewer probing with STAR framework
+   * Grounded strictly in candidate's uploaded resume
+   * Uses Gemini AI with deterministic semantic turn-taking fallback
    * ==========================================================================
    */
-
-  const HR_QUESTION_BANK = [
-    {
-      id: 'HR-Q1',
-      title: 'Team Dynamics & Conflict Resolution',
-      question: 'Tell me about a time when you faced a difficult situation in a team or had a technical disagreement with a peer. How did you handle it and what did you learn from that experience?',
-      competencies: ['Communication', 'Teamwork', 'Conflict Resolution']
-    },
-    {
-      id: 'HR-Q2',
-      title: 'Decision Rationale & Retrospective Follow-up',
-      question: 'Why did you choose that particular approach to resolve the friction, and what would you do differently today with the hindsight and experience you now have?',
-      competencies: ['Self-Awareness', 'Critical Thinking', 'Accountability']
-    },
-    {
-      id: 'HR-Q3',
-      title: 'Handling Pressure & Unexpected Failure',
-      question: 'Describe a situation where a critical academic or project deadline was at risk, or an unexpected failure occurred right before delivery. How did you prioritize actions and manage personal stress?',
-      competencies: ['Resilience', 'Problem Solving', 'Emotional Intelligence']
-    },
-    {
-      id: 'HR-Q4',
-      title: 'Fast-Paced Adaptability & Continuous Learning',
-      question: 'Tell me about a time when you had to learn an unfamiliar technology, framework, or methodology within a tight deadline. How did you structure your learning and maintain quality?',
-      competencies: ['Adaptability', 'Initiative', 'Continuous Learning']
-    },
-    {
-      id: 'HR-Q5',
-      title: 'Leadership, Ownership & Career Ambition',
-      question: 'Where do you see yourself evolving as an engineering professional over the next 2 to 3 years, and what drives your motivation to start your career with our organization?',
-      competencies: ['Leadership', 'Cultural Alignment', 'Professional Vision']
-    }
-  ];
 
   router.post('/hr/next-question', async (req, res) => {
     try {
@@ -1334,107 +1181,34 @@ export function createInterviewRouter() {
         lastAnswer = '',
         userAnswer = '',
         isSkipped = false,
-        previousQuestions = []
+        previousQuestions = [],
+        candidateProfile = {},
+        currentDifficulty = 'Standard'
       } = req.body;
 
       const qIdx = parseInt(questionIndex ?? currentQuestionIndex ?? 0, 10) || 0;
-      const answerGiven = (lastAnswer || userAnswer || '').trim();
-      const skipQuestion = isSkipped || req.body.isSkip || (!answerGiven && (qIdx > 0 || (previousQuestions && previousQuestions.length > 0)));
+      const answerGiven = isSkipped ? 'skip' : (lastAnswer || userAnswer || '').trim();
 
-      let evaluation = null;
-      let conversationalAck = '';
-
-      const shouldEvaluate = (previousQuestions && previousQuestions.length > 0) || (qIdx > 0) || (isSkipped && previousQuestions.length === 0);
-
-      if (shouldEvaluate) {
-        const lastQ = (previousQuestions && previousQuestions.length > 0)
-          ? previousQuestions[previousQuestions.length - 1]
-          : HR_QUESTION_BANK[Math.max(0, qIdx - 1)] || HR_QUESTION_BANK[0];
-
-        const lower = answerGiven.toLowerCase();
-        const wordCount = answerGiven ? answerGiven.split(/\s+/).length : 0;
-
-        const isSkip = skipQuestion || lower === 'skip' || lower === 'next' || lower === 'pass';
-        const isIdk = lower.includes("don't know") || lower.includes("not sure") || lower.includes("no idea");
-
-        if (isSkip) {
-          conversationalAck = "Understood. Let's move on to another scenario.";
-          evaluation = {
-            questionId: lastQ.id || `HR-Q${qIdx || 1}`,
-            question: lastQ.question,
-            userAnswer: 'Skipped',
-            status: 'skipped',
-            competencies: lastQ.competencies || ['Communication', 'Teamwork'],
-            score: 0,
-            feedback: 'Question was skipped by candidate.',
-            strengths: 'None noted.',
-            improvementAreas: 'Question unanswered.'
-          };
-        } else if (isIdk || wordCount < 15) {
-          conversationalAck = "Can you give me a specific real-world example from a team project? What part of the situation was your direct responsibility?";
-          evaluation = {
-            questionId: lastQ.id || `HR-Q${qIdx || 1}`,
-            question: lastQ.question,
-            userAnswer: answerGiven,
-            status: 'answered',
-            competencies: lastQ.competencies || ['Communication', 'Ownership'],
-            score: 45,
-            feedback: 'Answer was vague and lacked specific ownership or concrete examples.',
-            strengths: 'Basic awareness of collaboration principles.',
-            improvementAreas: 'Quantify personal actions and business/team impact using the STAR method.'
-          };
-        } else {
-          const score = Math.min(95, Math.max(70, 70 + Math.min(25, Math.floor(wordCount / 5))));
-          conversationalAck = "Thank you for sharing that experience. That shows great accountability, self-awareness, and team collaboration. Let's explore another dimension:";
-          evaluation = {
-            questionId: lastQ.id || `HR-Q${qIdx || 1}`,
-            question: lastQ.question,
-            userAnswer: answerGiven,
-            status: 'answered',
-            competencies: lastQ.competencies || ['Communication', 'Teamwork', 'Problem Solving'],
-            score,
-            strengths: 'Demonstrated maturity, collaborative mindset, and structured storytelling using the STAR format.',
-            improvementAreas: score < 85 ? 'Quantify business impact or team outcomes more explicitly.' : 'Maintain calm professional presence in high-stakes settings.',
-            feedback: score >= 85
-              ? 'Excellent behavioral maturity. Great self-awareness, active listening mindset, and clear reflection.'
-              : 'Good interpersonal perspective. Detail your direct influence on the final outcome further.'
-          };
-        }
-      }
-
-      if (qIdx >= HR_QUESTION_BANK.length) {
-        return res.json({
-          success: true,
-          isComplete: true,
-          evaluation,
-          conversationalAck,
-          spokenText: conversationalAck || "That concludes our HR interview. Thank you.",
-          nextQuestion: null
-        });
-      }
-
-      const rawQ = HR_QUESTION_BANK[qIdx];
-      const spokenQuestion = conversationalAck ? `${conversationalAck} ${rawQ.question}` : rawQ.question;
-
-      const nextQuestion = {
-        id: rawQ.id,
-        index: qIdx + 1,
-        total: HR_QUESTION_BANK.length,
-        title: rawQ.title,
-        question: rawQ.question,
-        spokenText: spokenQuestion,
-        conversationalAck,
-        competencies: rawQ.competencies
+      // Resolve candidate profile with session structured profile if available
+      const sessions = readJsonSafe(SESSIONS_FILE, {});
+      const session = attemptId ? sessions[attemptId] : null;
+      const resolvedProfile = {
+        ...(session?.candidateProfile || {}),
+        ...(session?.structuredProfile || {}),
+        ...(candidateProfile?.structuredProfile || {}),
+        ...candidateProfile
       };
 
-      return res.json({
-        success: true,
-        isComplete: false,
-        evaluation,
-        conversationalAck,
-        spokenText: spokenQuestion,
-        nextQuestion
+      const turnResult = await generateHrTurn({
+        attemptId,
+        questionIndex: qIdx,
+        lastAnswer: answerGiven,
+        previousQuestions,
+        candidateProfile: resolvedProfile,
+        currentDifficulty
       });
+
+      return res.json(turnResult);
     } catch (err) {
       console.error('[HR INTERVIEW NEXT QUESTION ERROR]:', err);
       return res.status(500).json({ success: false, error: err.message });
