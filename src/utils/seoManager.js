@@ -139,8 +139,8 @@ export const SEO_PAGE_CONFIG = {
     schemaType: 'ItemPage'
   },
   more: {
-    title: 'More Academic Tools & Student Utilities | ProfessorVirus',
-    description: 'Discover all academic resources, student productivity tools, and career guidance utilities on ProfessorVirus.',
+    title: 'ProfessorVirus More — Academic, Career & Student Tools',
+    description: 'Explore academic resources, career tools, productivity utilities, scholarships and student resources on ProfessorVirus.',
     path: '/more',
     schemaType: 'CollectionPage'
   }

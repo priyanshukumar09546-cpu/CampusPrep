@@ -813,9 +813,8 @@ export default function App() {
           />
         ) : activeTab === 'more' ? (
           <MorePage
-            onNavigate={(tab) => {
-              setActiveTab(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+            onNavigate={(tab, courseKey) => {
+              navigateToTab(tab, courseKey);
             }}
           />
         ) : activeTab === 'progress' ? (

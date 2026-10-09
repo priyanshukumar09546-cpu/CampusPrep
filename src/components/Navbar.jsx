@@ -33,10 +33,8 @@ import { searchLocalIndex } from '../data/searchIndex';
 
 export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }) {
   const [theme, setTheme] = useState('light');
-  const [menuPanelOpen, setMenuPanelOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [panelSearchQuery, setPanelSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [searchFocused, setSearchFocused] = useState(false);
   const [selectedSearchIdx, setSelectedSearchIdx] = useState(-1);
@@ -89,14 +87,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     document.body.classList.toggle('dark-mode');
   };
 
-  // Click outside & Escape key listeners + body scroll lock for mobile drawer
+  // Click outside & Escape key listeners
   useEffect(() => {
-    if (menuPanelOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
     const handleClickOutside = (e) => {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
         setUserMenuOpen(false);
@@ -105,7 +97,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
-        setMenuPanelOpen(false);
         setUserMenuOpen(false);
       }
     };
@@ -113,11 +104,10 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     document.addEventListener('mousedown', handleClickOutside);
     window.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.body.style.overflow = '';
       document.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [menuPanelOpen]);
+  }, []);
 
   const navItems = [
     { name: 'Home', id: 'home' },
@@ -128,7 +118,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     { name: 'Resume Maker', id: 'resume-maker' },
     { name: 'Interview Pro', id: 'interview-pro', isBeta: true },
     { name: 'Result & CGPA', id: 'result-cgpa' },
-    { name: 'More', id: 'more', isDropdown: true },
+    { name: 'More +', id: 'more' },
   ];
 
   const handleSearchSubmit = (e) => {
@@ -208,197 +198,10 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     return () => document.removeEventListener('mousedown', handleClickOutsideSearch);
   }, []);
 
-  const handlePanelSearchSubmit = (e) => {
-    e.preventDefault();
-    if (onSearch && panelSearchQuery.trim()) {
-      onSearch(panelSearchQuery.trim());
-      setMenuPanelOpen(false);
-    }
-  };
-
   const handleNavigate = (tabId) => {
     setActiveTab(tabId);
-    setMenuPanelOpen(false);
     setUserMenuOpen(false);
   };
-
-  // EXACTLY 3 LOGICAL SECTIONS FOR MENU PANEL
-  const menuSections = [
-    {
-      title: 'Core Academics',
-      description: 'Course curriculum, previous exams, verified notes & assessments',
-      badge: 'Academics',
-      items: [
-        {
-          id: 'pyqs',
-          title: 'Question Papers (PYQs)',
-          desc: 'AKTU, BCA, MCA past papers & solutions',
-          icon: <FileText size={18} color="#781416" />,
-          tag: 'AKTU',
-          tagColor: '#781416',
-          tagBg: '#FEF2F2'
-        },
-        {
-          id: 'notes',
-          title: 'Notes & Study Materials',
-          desc: 'Verified handwritten, faculty notes & Quantum',
-          icon: <BookOpen size={18} color="#C88D2D" />,
-          tag: '5K+ Docs',
-          tagColor: '#8A5D00',
-          tagBg: '#FEF9EE'
-        },
-        {
-          id: 'syllabus',
-          title: 'Syllabus & Units',
-          desc: 'Official curriculum, course units & credit scheme',
-          icon: <Layers size={18} color="#0D9488" />,
-          tag: 'Updated',
-          tagColor: '#0F766E',
-          tagBg: '#F0FDFA'
-        },
-        {
-          id: 'quizzes',
-          title: 'Practice Quizzes',
-          desc: 'Interactive subject quizzes & mock tests',
-          icon: <Sparkles size={18} color="#2563EB" />,
-          tag: 'Interactive',
-          tagColor: '#1D4ED8',
-          tagBg: '#EFF6FF'
-        },
-        {
-          id: 'home',
-          title: 'Choose Your Course Hub',
-          desc: 'B.Tech, BCA, MCA, MBA & B.Pharm curricula',
-          icon: <GraduationCap size={18} color="#7C3AED" />,
-          tag: '5 Degrees',
-          tagColor: '#6D28D9',
-          tagBg: '#F5F3FF'
-        }
-      ]
-    },
-    {
-      title: 'Student Productivity & Utilities',
-      description: 'Calculators, routine planners, PDF converters & academic engines',
-      badge: 'Productivity',
-      items: [
-        {
-          id: 'result-cgpa',
-          title: 'Result & CGPA Analyzer',
-          desc: 'AKTU marksheet parser, SGPA engine & active backlog tracker',
-          icon: <Award size={18} color="#DC2626" />,
-          tag: 'Smart Engine',
-          tagColor: '#B91C1C',
-          tagBg: '#FEF2F2'
-        },
-        {
-          id: 'attendance-calculator',
-          title: 'Attendance Calculator',
-          desc: '75% target requirement, bunk planner & live tracking',
-          icon: <BarChart2 size={18} color="#D97706" />,
-          tag: 'Bunk Planner',
-          tagColor: '#B45309',
-          tagBg: '#FFFBEB'
-        },
-        {
-          id: 'timetable',
-          title: 'Time Table & Schedule',
-          desc: 'Weekly routine, PDF extraction, live next class & .ics export',
-          icon: <Clock size={18} color="#0284C7" />,
-          tag: 'Adaptive',
-          tagColor: '#0369A1',
-          tagBg: '#F0F9FF'
-        },
-        {
-          id: 'pdf-maker',
-          title: 'PDF Maker & Studio',
-          desc: 'Merge 100+ pages, convert JPG/PNG, split, watermark & sign',
-          icon: <FileText size={18} color="#EA580C" />,
-          tag: '100+ Pgs',
-          tagColor: '#C2410C',
-          tagBg: '#FFF7ED'
-        },
-        {
-          id: 'resume-maker',
-          title: '1-Page Resume Maker',
-          desc: 'Clean ATS-friendly single page college resume builder',
-          icon: <FileText size={18} color="#16A34A" />,
-          tag: 'ATS Format',
-          tagColor: '#15803D',
-          tagBg: '#F0FDF4'
-        },
-        {
-          id: 'progress',
-          title: 'Progress & Goal Tracker',
-          desc: 'Track semester milestones, target CGPA & subject attendance',
-          icon: <CheckCircle2 size={18} color="#4F46E5" />,
-          tag: 'Tracker',
-          tagColor: '#4338CA',
-          tagBg: '#EEF2FF'
-        }
-      ]
-    },
-    {
-      title: 'Career & Opportunities',
-      description: 'Interviews, placement training, guidance, grants & real code',
-      badge: 'Opportunities',
-      items: [
-        {
-          id: 'interview-pro',
-          title: 'Interview Pro',
-          desc: 'AI mock interviews, company technical coding & HR practice',
-          icon: <Briefcase size={18} color="#781416" />,
-          tag: 'Beta',
-          tagColor: '#FFFFFF',
-          tagBg: '#D48816'
-        },
-        {
-          id: 'competitive-exams',
-          title: 'Competitive Exams & Careers',
-          desc: 'What can I do after my course? Guidance for 14+ degrees',
-          icon: <Compass size={18} color="#781416" />,
-          tag: '14+ Degrees',
-          tagColor: '#781416',
-          tagBg: '#FEF2F2'
-        },
-        {
-          id: 'internships-jobs',
-          title: 'Internships & Jobs',
-          desc: 'Verified student internships, off-campus drives & tech roles',
-          icon: <Briefcase size={18} color="#0D9488" />,
-          tag: 'Verified',
-          tagColor: '#0F766E',
-          tagBg: '#F0FDFA'
-        },
-        {
-          id: 'scholarships',
-          title: 'Scholarships & Grants',
-          desc: 'Govt & corporate grants with verified official portal links',
-          icon: <GraduationCap size={18} color="#C88D2D" />,
-          tag: 'Grants',
-          tagColor: '#8A5D00',
-          tagBg: '#FEF9EE'
-        },
-        {
-          id: 'project-ideas',
-          title: 'Project Ideas & Repos',
-          desc: 'Curated capstone & mini projects with real GitHub source code',
-          icon: <Code2 size={18} color="#2563EB" />,
-          tag: 'Real Code',
-          tagColor: '#1D4ED8',
-          tagBg: '#EFF6FF'
-        },
-        {
-          id: 'important-links',
-          title: 'Important University Links',
-          desc: 'Official AKTU ERP, circulars, exam portals & university resources',
-          icon: <Link2 size={18} color="#475569" />,
-          tag: 'Portals',
-          tagColor: '#334155',
-          tagBg: '#F1F5F9'
-        }
-      ]
-    }
-  ];
 
   return (
     <header
@@ -428,45 +231,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
           boxSizing: 'border-box'
         }}
       >
-        {/* LEFT WRAPPER: Menu, Complete ProfessorVirus Brand, and Desktop Nav */}
+        {/* LEFT WRAPPER: Complete ProfessorVirus Brand and Desktop Nav */}
         <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0, minWidth: 0 }}>
-          <button
-            onClick={() => setMenuPanelOpen(true)}
-            title="Open Complete Academic & Tools Menu"
-            className="desktop-menu-pill"
-            style={{
-              display: 'none',
-              alignItems: 'center',
-              gap: '0.4rem',
-              padding: '0.36rem 0.75rem',
-              borderRadius: '9999px',
-              border: '1.5px solid #E8E2D5',
-              backgroundColor: '#FFFFFF',
-              color: '#1F2421',
-              fontWeight: 700,
-              fontSize: '0.8rem',
-              cursor: 'pointer',
-              boxShadow: '0 2px 6px rgba(35,30,25,0.04)',
-              transition: 'all 0.2s ease',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-              marginRight: '0.75rem'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = '#C88D2D';
-              e.currentTarget.style.color = '#C88D2D';
-              e.currentTarget.style.backgroundColor = '#FEF9EE';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = '#E8E2D5';
-              e.currentTarget.style.color = '#1F2421';
-              e.currentTarget.style.backgroundColor = '#FFFFFF';
-            }}
-          >
-            <Menu size={15} />
-            <span style={{ whiteSpace: 'nowrap' }}>Menu</span>
-          </button>
-
           <div
             style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', flexShrink: 0 }}
             onClick={() => handleNavigate('home')}
@@ -552,13 +318,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             return (
               <button
                 key={item.id}
-                onClick={() => {
-                  if (item.isDropdown) {
-                    setMenuPanelOpen(true);
-                  } else {
-                    handleNavigate(item.id);
-                  }
-                }}
+                onClick={() => handleNavigate(item.id)}
                 className="nav-link-item"
                 style={{
                   position: 'relative',
@@ -605,9 +365,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   >
                     Beta
                   </span>
-                )}
-                {item.isDropdown && (
-                  <ChevronDown size={11} style={{ color: '#7A6F62' }} />
                 )}
                 {isActive && (
                   <span
@@ -1038,7 +795,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
 
           {/* Mobile Menu Toggle Button */}
           <button
-            onClick={() => setMenuPanelOpen(true)}
+            onClick={() => handleNavigate('more')}
             style={{
               display: 'none',
               background: 'none',
@@ -1048,380 +805,16 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               padding: '0.4rem'
             }}
             className="mobile-menu-toggle"
-            title="Open Menu"
+            title="All Tools & Resources"
+            aria-label="Open More Resources"
           >
             <Menu size={26} />
           </button>
         </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* ANIMATED MENU PANEL — EXACTLY 3 LOGICAL SECTIONS WITH BACKDROP BLUR      */}
-      {/* ========================================================================= */}
-      {menuPanelOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 99999,
-            backgroundColor: 'rgba(28, 30, 33, 0.58)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            display: 'flex',
-            justifyContent: 'flex-start',
-            animation: 'fadeInDrawer 0.22s ease-out'
-          }}
-          onClick={() => setMenuPanelOpen(false)}
-        >
-          <div
-            style={{
-              width: '100%',
-              maxWidth: '490px',
-              height: '100vh',
-              backgroundColor: '#FAF7F2',
-              boxShadow: '12px 0 45px rgba(28, 30, 33, 0.25)',
-              display: 'flex',
-              flexDirection: 'column',
-              borderRight: '1.5px solid #E8E2D5',
-              overflow: 'hidden',
-              animation: 'slideInLeft 0.28s cubic-bezier(0.16, 1, 0.3, 1)'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* PANEL HEADER */}
-            <div
-              style={{
-                padding: '1.25rem 1.4rem',
-                borderBottom: '1.5px solid #E8E2D5',
-                backgroundColor: '#FFFFFF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexShrink: 0
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div
-                  style={{
-                    width: '42px',
-                    height: '42px',
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                    border: '2px solid #C88D2D',
-                    backgroundColor: '#FAF7F2',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: '0 2px 8px rgba(200, 141, 45, 0.15)',
-                    flexShrink: 0
-                  }}
-                >
-                  <img
-                    src="/assets/navbar_logo.png"
-                    alt="ProfessorVirus Mascot"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                </div>
-                <div>
-                  <div
-                    style={{
-                      fontFamily: "'Outfit', sans-serif",
-                      fontWeight: 900,
-                      fontSize: '1.3rem',
-                      color: '#1F2421',
-                      lineHeight: 1.1,
-                      letterSpacing: '0.01em',
-                      display: 'flex',
-                      alignItems: 'center',
-                      whiteSpace: 'nowrap'
-                    }}
-                  >
-                    <span>Professor</span><span style={{ color: '#C88D2D' }}>Virus</span>
-                  </div>
-                  <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#7A6F62' }}>
-                    Student Platform • 3 Main Portals
-                  </div>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setMenuPanelOpen(false)}
-                title="Close Menu (Esc)"
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '50%',
-                  border: '1.5px solid #E8E2D5',
-                  backgroundColor: '#FAF7F2',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  color: '#1F2421',
-                  transition: 'all 0.18s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#1F2421';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FAF7F2';
-                  e.currentTarget.style.color = '#1F2421';
-                }}
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            {/* SEARCH BAR WITHIN PANEL */}
-            <div style={{ padding: '0.9rem 1.4rem', borderBottom: '1px solid #E8E2D5', backgroundColor: '#FFFFFF', flexShrink: 0 }}>
-              <form onSubmit={handlePanelSearchSubmit} style={{ position: 'relative' }}>
-                <Search
-                  size={15}
-                  style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#909AA4' }}
-                />
-                <input
-                  type="text"
-                  placeholder="Quick search any feature, subject or tool..."
-                  value={panelSearchQuery}
-                  onChange={(e) => setPanelSearchQuery(e.target.value)}
-                  style={{
-                    width: '100%',
-                    padding: '0.5rem 0.85rem 0.5rem 2.2rem',
-                    borderRadius: '12px',
-                    border: '1.5px solid #E8E2D5',
-                    backgroundColor: '#FAF7F2',
-                    fontSize: '0.84rem',
-                    fontWeight: 600,
-                    color: '#1C1E21',
-                    outline: 'none',
-                    boxSizing: 'border-box'
-                  }}
-                />
-              </form>
-            </div>
-
-            {/* SCROLLABLE 3 LOGICAL SECTIONS CONTAINER */}
-            <div
-              style={{
-                flex: 1,
-                overflowY: 'auto',
-                padding: '1.25rem 1.4rem',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1.4rem'
-              }}
-            >
-              {menuSections.map((section, sIdx) => (
-                <div
-                  key={section.title}
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: '16px',
-                    border: '1.5px solid #E8E2D5',
-                    padding: '1.15rem 1.1rem',
-                    boxShadow: '0 2px 10px rgba(35,30,25,0.03)'
-                  }}
-                >
-                  {/* Section Title & Badge */}
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      marginBottom: '0.25rem'
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                      <span
-                        style={{
-                          width: '20px',
-                          height: '20px',
-                          borderRadius: '6px',
-                          backgroundColor: '#781416',
-                          color: '#FFFFFF',
-                          fontSize: '0.72rem',
-                          fontWeight: 900,
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        }}
-                      >
-                        {sIdx + 1}
-                      </span>
-                      <h3
-                        style={{
-                          fontFamily: "'Outfit', sans-serif",
-                          fontSize: '0.98rem',
-                          fontWeight: 800,
-                          color: '#1F2421',
-                          margin: 0,
-                          letterSpacing: '-0.01em'
-                        }}
-                      >
-                        {section.title}
-                      </h3>
-                    </div>
-                    <span
-                      style={{
-                        fontSize: '0.66rem',
-                        fontWeight: 800,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.04em',
-                        backgroundColor: '#F3EFE6',
-                        color: '#6B6155',
-                        padding: '0.15rem 0.55rem',
-                        borderRadius: '9999px'
-                      }}
-                    >
-                      {section.badge}
-                    </span>
-                  </div>
-
-                  <p style={{ margin: '0 0 0.85rem 0', fontSize: '0.74rem', color: '#7A6F62', lineHeight: 1.35 }}>
-                    {section.description}
-                  </p>
-
-                  {/* Section Items */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    {section.items.map((item) => {
-                      const isItemActive = activeTab === item.id;
-                      return (
-                        <button
-                          key={item.id}
-                          onClick={() => handleNavigate(item.id)}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            padding: '0.55rem 0.7rem',
-                            borderRadius: '11px',
-                            border: isItemActive ? '1.5px solid #C88D2D' : '1px solid #F0ECE1',
-                            backgroundColor: isItemActive ? '#FEF9EE' : '#FAF8F4',
-                            cursor: 'pointer',
-                            textAlign: 'left',
-                            transition: 'all 0.16s ease',
-                            width: '100%'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = '#FFFFFF';
-                            e.currentTarget.style.borderColor = '#C88D2D';
-                            e.currentTarget.style.transform = 'translateX(3px)';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = isItemActive ? '#FEF9EE' : '#FAF8F4';
-                            e.currentTarget.style.borderColor = isItemActive ? '#C88D2D' : '#F0ECE1';
-                            e.currentTarget.style.transform = 'none';
-                          }}
-                        >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                            <div
-                              style={{
-                                width: '32px',
-                                height: '32px',
-                                borderRadius: '8px',
-                                backgroundColor: '#FFFFFF',
-                                border: '1px solid #E8E2D5',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                flexShrink: 0
-                              }}
-                            >
-                              {item.icon}
-                            </div>
-                            <div>
-                              <div
-                                style={{
-                                  fontSize: '0.84rem',
-                                  fontWeight: 700,
-                                  color: isItemActive ? '#781416' : '#1F2421',
-                                  lineHeight: 1.2
-                                }}
-                              >
-                                {item.title}
-                              </div>
-                              <div style={{ fontSize: '0.7rem', color: '#7A6F62', lineHeight: 1.2 }}>
-                                {item.desc}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
-                            <span
-                              style={{
-                                fontSize: '0.62rem',
-                                fontWeight: 800,
-                                padding: '0.12rem 0.45rem',
-                                borderRadius: '9999px',
-                                backgroundColor: item.tagBg,
-                                color: item.tagColor,
-                                border: `1px solid ${item.tagColor}30`,
-                                whiteSpace: 'nowrap'
-                              }}
-                            >
-                              {item.tag}
-                            </span>
-                            <ArrowRight size={13} color="#94A3B8" />
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* PANEL FOOTER */}
-            <div
-              style={{
-                padding: '0.9rem 1.4rem',
-                borderTop: '1.5px solid #E8E2D5',
-                backgroundColor: '#FFFFFF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexShrink: 0
-              }}
-            >
-              <div style={{ fontSize: '0.72rem', color: '#7A6F62', fontWeight: 600 }}>
-                Press <kbd style={{ padding: '0.1rem 0.35rem', backgroundColor: '#F3EFE6', borderRadius: '4px', border: '1px solid #E8E2D5' }}>Esc</kbd> or click outside to close
-              </div>
-              <button
-                onClick={() => {
-                  if (onOpenAuth) onOpenAuth('login');
-                  setMenuPanelOpen(false);
-                }}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: '#781416',
-                  fontSize: '0.76rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.25rem'
-                }}
-              >
-                <span>Student Login</span>
-                <ArrowRight size={13} />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* STYLES FOR ANIMATIONS & RESPONSIVE RULES */}
       <style>{`
-        @keyframes fadeInDrawer {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slideInLeft {
-          from { transform: translateX(-100%); }
-          to { transform: translateX(0); }
-        }
         .desktop-nav {
           display: flex;
         }
