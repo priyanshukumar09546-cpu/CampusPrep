@@ -155,7 +155,7 @@ export default function App() {
     if (path === 'quizzes') return 'quizzes';
     if (path === 'interview-pro') return 'interview-pro';
     if (path === 'more') return 'more';
-    if (path === 'progress' || path === 'analytics' || path === 'student-progress') return 'progress';
+    if (path === 'progress' || path === 'analytics' || path === 'student-progress' || path === 'profile') return 'progress';
     if (path === 'promotion' || path === 'advertise' || path === 'promote') return 'promotion';
     if (path === 'admin/login') return 'admin-login';
     if (path === 'interview-pro/confirm' || path === 'interview-confirm') return 'interview-confirm';
@@ -854,9 +854,9 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer: Rendered on all pages on desktop; on mobile hidden on home and more */}
+      {/* Footer: Rendered on all pages on desktop; on mobile hidden on home, more, notes, pyqs, and progress */}
       {!hideTopNav && (
-        <div className={(activeTab === 'more' || activeTab === 'home' || !activeTab) ? 'pv-hide-on-mobile' : ''}>
+        <div className={(activeTab === 'more' || activeTab === 'home' || activeTab === 'notes' || activeTab === 'pyqs' || activeTab === 'progress' || !activeTab) ? 'pv-hide-on-mobile' : ''}>
           <Footer
             onNavigate={(tab) => {
               setActiveTab(tab);

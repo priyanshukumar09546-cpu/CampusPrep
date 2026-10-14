@@ -21,6 +21,7 @@ import {
   createGoal, updateGoal
 } from '../utils/progressTracker';
 import { AKTU_SYLLABUS_DATA } from '../data/aktuSyllabusData';
+import MobileProfileScreen from '../components/MobileProfileScreen';
 
 // ============================================================================
 // FORMATTERS & HELPERS
@@ -310,76 +311,67 @@ export default function ProgressPage({ onNavigate, onOpenAuth }) {
     return `${m}:${String(ss).padStart(2, '0')}`;
   };
 
-  // ========================================================================
-  // NOT LOGGED IN STATE
-  // ========================================================================
-  if (!isLoggedIn) {
-    return (
-      <div style={{ minHeight: '100vh', background: '#FAF7F2', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-        <div style={{ maxWidth: 640, margin: '0 auto', padding: '100px 24px', textAlign: 'center' }}>
-          <div style={{
-            width: 80, height: 80, borderRadius: '50%', background: 'linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, margin: '0 auto 24px',
-            boxShadow: '0 8px 24px rgba(245, 158, 11, 0.25)'
-          }}>
-            📊
-          </div>
-          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: '#7A2327', marginBottom: 14 }}>
-            Student Progress & Analytics
-          </h2>
-          <p style={{ color: '#64748B', fontSize: '1.05rem', lineHeight: 1.65, marginBottom: 36 }}>
-            Track your real study hours, completed topics, note reading history, solved question papers, and test scores with zero fake data.
-          </p>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button
-              onClick={() => onOpenAuth?.({ mode: 'login' })}
-              style={{
-                padding: '14px 36px', background: '#7A2327', color: '#fff', border: 'none',
-                borderRadius: 12, fontSize: '1rem', fontWeight: 700, cursor: 'pointer',
-                boxShadow: '0 4px 16px rgba(122, 35, 39, 0.25)', transition: 'all 0.2s'
-              }}
-            >
-              Sign In to View Progress
-            </button>
-            <button
-              onClick={() => onOpenAuth?.({ mode: 'signup' })}
-              style={{
-                padding: '14px 28px', background: '#fff', color: '#7A2327', border: '1.5px solid #7A2327',
-                borderRadius: 12, fontSize: '1rem', fontWeight: 700, cursor: 'pointer'
-              }}
-            >
-              Create Account
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // ========================================================================
-  // LOADING STATE
-  // ========================================================================
-  if (loading) {
-    return (
-      <div style={{ minHeight: '100vh', background: '#FAF7F2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{
-            width: 52, height: 52, border: '4px solid #E5D5C0', borderTopColor: '#7A2327',
-            borderRadius: '50%', animation: 'pvSpin 0.8s linear infinite', margin: '0 auto 18px'
-          }} />
-          <h3 style={{ color: '#7A2327', fontWeight: 800, margin: '0 0 6px' }}>Loading Your Progress</h3>
-          <p style={{ color: '#94A3B8', fontSize: '0.85rem', margin: 0 }}>Aggregating study records & activity logs...</p>
-          <style>{`@keyframes pvSpin { to { transform: rotate(360deg); } }`}</style>
-        </div>
-      </div>
-    );
-  }
-
-  // ========================================================================
-  // MAIN DASHBOARD RENDER
-  // ========================================================================
   return (
-    <div style={{ minHeight: '100vh', background: '#FAF7F2', fontFamily: "'Plus Jakarta Sans', 'Outfit', sans-serif", color: '#1E293B' }}>
+    <>
+      <div className="pv-mobile-progress-view">
+        <MobileProfileScreen onNavigate={onNavigate} onOpenAuth={onOpenAuth} />
+      </div>
+
+      <div className="pv-desktop-progress-view">
+        {!isLoggedIn ? (
+          <div style={{ minHeight: '100vh', background: '#FAF7F2', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            <div style={{ maxWidth: 640, margin: '0 auto', padding: '100px 24px', textAlign: 'center' }}>
+              <div style={{
+                width: 80, height: 80, borderRadius: '50%', background: 'linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, margin: '0 auto 24px',
+                boxShadow: '0 8px 24px rgba(245, 158, 11, 0.25)'
+              }}>
+                📊
+              </div>
+              <h2 style={{ fontSize: '2rem', fontWeight: 900, color: '#7A2327', marginBottom: 14 }}>
+                Student Progress & Analytics
+              </h2>
+              <p style={{ color: '#64748B', fontSize: '1.05rem', lineHeight: 1.65, marginBottom: 36 }}>
+                Track your real study hours, completed topics, note reading history, solved question papers, and test scores with zero fake data.
+              </p>
+              <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => onOpenAuth?.({ mode: 'login' })}
+                  style={{
+                    padding: '14px 36px', background: '#7A2327', color: '#fff', border: 'none',
+                    borderRadius: 12, fontSize: '1rem', fontWeight: 700, cursor: 'pointer',
+                    boxShadow: '0 4px 16px rgba(122, 35, 39, 0.25)', transition: 'all 0.2s'
+                  }}
+                >
+                  Sign In to View Progress
+                </button>
+                <button
+                  onClick={() => onOpenAuth?.({ mode: 'signup' })}
+                  style={{
+                    padding: '14px 28px', background: '#fff', color: '#7A2327', border: '1.5px solid #7A2327',
+                    borderRadius: 12, fontSize: '1rem', fontWeight: 700, cursor: 'pointer'
+                  }}
+                >
+                  Create Account
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : loading ? (
+          <div style={{ minHeight: '100vh', background: '#FAF7F2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{
+                width: 52, height: 52, border: '4px solid #E5D5C0', borderTopColor: '#7A2327',
+                borderRadius: '50%', animation: 'pvSpin 0.8s linear infinite', margin: '0 auto 18px'
+              }} />
+              <h3 style={{ color: '#7A2327', fontWeight: 800, margin: '0 0 6px' }}>Loading Your Progress</h3>
+              <p style={{ color: '#94A3B8', fontSize: '0.85rem', margin: 0 }}>Aggregating study records & activity logs...</p>
+              <style>{`@keyframes pvSpin { to { transform: rotate(360deg); } }`}</style>
+            </div>
+          </div>
+        ) : (
+          <div style={{ minHeight: '100vh', background: '#FAF7F2', fontFamily: "'Plus Jakarta Sans', 'Outfit', sans-serif", color: '#1E293B' }}>
+
       {/* Top Breadcrumb */}
       <div style={{ maxWidth: 1440, margin: '0 auto', padding: '16px 24px 0' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.85rem', color: '#94A3B8' }}>
@@ -1662,6 +1654,10 @@ export default function ProgressPage({ onNavigate, onOpenAuth }) {
           }
         }
       `}</style>
-    </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
+

@@ -709,11 +709,13 @@ pre, code {
     display: none !important;
   }
   .pv-desktop-notes-view,
-  .pv-desktop-pyqs-view {
+  .pv-desktop-pyqs-view,
+  .pv-desktop-progress-view {
     display: block !important;
   }
   .pv-mobile-notes-view,
-  .pv-mobile-pyqs-view {
+  .pv-mobile-pyqs-view,
+  .pv-mobile-progress-view {
     display: none !important;
   }
   body {
@@ -831,11 +833,13 @@ pre, code {
 
   /* Switch Notes & PYQs Views */
   .pv-desktop-notes-view,
-  .pv-desktop-pyqs-view {
+  .pv-desktop-pyqs-view,
+  .pv-desktop-progress-view {
     display: none !important;
   }
   .pv-mobile-notes-view,
-  .pv-mobile-pyqs-view {
+  .pv-mobile-pyqs-view,
+  .pv-mobile-progress-view {
     display: block !important;
   }
 

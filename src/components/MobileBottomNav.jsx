@@ -52,16 +52,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
     } else if (tabId === 'tools') {
       onNavigate('more');
     } else if (tabId === 'profile') {
-      const user = localStorage.getItem('professorvirus_user') || sessionStorage.getItem('professorvirus_user');
-      if (user) {
-        onNavigate('progress');
-      } else {
-        if (onOpenAuth) {
-          onOpenAuth('login');
-        } else {
-          onNavigate('signin');
-        }
-      }
+      onNavigate('progress');
     }
   };
 
