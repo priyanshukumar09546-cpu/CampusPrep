@@ -744,6 +744,77 @@ pre, code {
   }
   .pv-mobile-more-view {
     display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: clip !important;
+  }
+
+  /* Scoped Tools Mobile Dashboard Layout */
+  .pv-single-screen-dashboard {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    padding: 8px 10px 24px !important;
+    margin: 0 auto !important;
+    overflow-x: clip !important;
+  }
+
+  .pv-single-screen-dashboard * {
+    box-sizing: border-box;
+  }
+
+  .pv-category-chips-scroll {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .pv-category-chips-scroll::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .pv-tools-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .pv-tools-grid > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  @media (max-width: 359px) {
+    .pv-tools-grid {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+  }
+
+  .pv-tool-card {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   /* Bottom Navigation */

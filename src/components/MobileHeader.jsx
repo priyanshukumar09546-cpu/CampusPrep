@@ -53,6 +53,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
         left: 0,
         right: 0,
         width: '100%',
+        maxWidth: '100vw',
         zIndex: 9997,
         backgroundColor: '#FFFFFF',
         borderBottom: '1px solid #F1F5F9',

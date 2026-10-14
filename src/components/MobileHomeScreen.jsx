@@ -285,10 +285,12 @@ export default function MobileHomeScreen({
       style={{
         backgroundColor: '#F8FAFC',
         minHeight: '100%',
-        padding: '6px 8px 18px',
-        maxWidth: '560px',
+        padding: '8px 10px 24px',
+        width: '100%',
+        maxWidth: '100%',
         margin: '0 auto',
         boxSizing: 'border-box',
+        overflowX: 'clip',
         fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif"
       }}
     >
@@ -308,11 +310,15 @@ export default function MobileHomeScreen({
           alignItems: 'center',
           justifyContent: 'space-between',
           overflow: 'hidden',
-          marginBottom: '8px'
+          marginBottom: '8px',
+          width: '100%',
+          maxWidth: '100%',
+          minWidth: 0,
+          boxSizing: 'border-box'
         }}
       >
         {/* Left Content */}
-        <div style={{ flex: '1 1 62%', zIndex: 2, paddingRight: '4px' }}>
+        <div style={{ flex: '1 1 0%', minWidth: 0, zIndex: 2, paddingRight: '6px' }}>
           {/* Brand Tag Pill */}
           <div style={{
             display: 'inline-flex',
@@ -326,20 +332,23 @@ export default function MobileHomeScreen({
             fontWeight: 800,
             color: '#6366F1',
             letterSpacing: '0.02em',
-            marginBottom: '3px'
+            marginBottom: '3px',
+            maxWidth: '100%',
+            boxSizing: 'border-box'
           }}>
-            <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366F1' }} />
-            PROFESSOR VIRUS
+            <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366F1', flexShrink: 0 }} />
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>PROFESSOR VIRUS</span>
           </div>
 
           {/* Headline */}
           <h2 style={{
-            fontSize: '15.5px',
+            fontSize: '15px',
             fontWeight: 900,
             lineHeight: 1.15,
             color: '#0F172A',
             margin: '0 0 2.5px 0',
-            letterSpacing: '-0.02em'
+            letterSpacing: '-0.02em',
+            wordBreak: 'break-word'
           }}>
             Everything You Need,<br />
             <span style={{
@@ -357,8 +366,9 @@ export default function MobileHomeScreen({
             color: '#475569',
             margin: 0,
             lineHeight: 1.25,
-            maxWidth: '185px',
-            fontWeight: 500
+            maxWidth: '100%',
+            fontWeight: 500,
+            wordBreak: 'break-word'
           }}>
             Notes, PYQs, tools, careers &amp; opportunities for your academic journey.
           </p>
@@ -366,7 +376,7 @@ export default function MobileHomeScreen({
 
         {/* Right Artwork: Stylized Stack of Books + Cap + Note */}
         <div style={{ flex: '0 0 auto', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <svg width="96" height="72" viewBox="0 0 102 78" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="86" height="66" viewBox="0 0 102 78" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: '100%', height: 'auto', display: 'block' }}>
             <defs>
               <linearGradient id="capGrad" x1="0" y1="0" x2="38" y2="28" gradientUnits="userSpaceOnUse">
                 <stop stopColor="#4338CA" />
@@ -418,14 +428,17 @@ export default function MobileHomeScreen({
       {/* =========================================================================
           2. SEARCH INPUT WITH FILTER ICON
           ========================================================================= */}
-      <section aria-label="Search" style={{ position: 'relative', marginBottom: '7px' }}>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          if (searchQuery.trim()) {
-            if (onSearch) onSearch(searchQuery.trim());
-            onNavigate('notes');
-          }
-        }}>
+      <section aria-label="Search" style={{ position: 'relative', marginBottom: '7px', width: '100%', maxWidth: '100%', minWidth: 0, boxSizing: 'border-box' }}>
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (searchQuery.trim()) {
+              if (onSearch) onSearch(searchQuery.trim());
+              onNavigate('notes');
+            }
+          }}
+          style={{ width: '100%', maxWidth: '100%', minWidth: 0, margin: 0 }}
+        >
           <div style={{
             position: 'relative',
             display: 'flex',
@@ -435,7 +448,11 @@ export default function MobileHomeScreen({
             border: isSearchFocused ? '1.5px solid #6366F1' : '1.5px solid #E2E8F0',
             boxShadow: isSearchFocused ? '0 0 0 3px rgba(99, 102, 241, 0.12)' : '0 1px 3px rgba(15, 23, 42, 0.03)',
             transition: 'all 0.2s ease',
-            padding: '1px 6px 1px 10px'
+            padding: '1px 6px 1px 10px',
+            width: '100%',
+            maxWidth: '100%',
+            minWidth: 0,
+            boxSizing: 'border-box'
           }}>
             <Search size={15} color="#94A3B8" style={{ flexShrink: 0, marginRight: '6px' }} />
             
@@ -448,6 +465,8 @@ export default function MobileHomeScreen({
               onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
               placeholder="Search subjects, notes, tools..."
               style={{
+                flex: '1 1 0%',
+                minWidth: 0,
                 width: '100%',
                 border: 'none',
                 outline: 'none',
@@ -455,7 +474,8 @@ export default function MobileHomeScreen({
                 padding: '7px 0',
                 fontSize: '12px',
                 color: '#0F172A',
-                fontWeight: 500
+                fontWeight: 500,
+                boxSizing: 'border-box'
               }}
             />
 
@@ -470,7 +490,8 @@ export default function MobileHomeScreen({
                   padding: '3px',
                   color: '#94A3B8',
                   display: 'flex',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  flexShrink: 0
                 }}
               >
                 <X size={13} />
@@ -491,7 +512,8 @@ export default function MobileHomeScreen({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#6366F1'
+                color: '#6366F1',
+                flexShrink: 0
               }}
             >
               <SlidersHorizontal size={15} />
@@ -561,16 +583,22 @@ export default function MobileHomeScreen({
           ========================================================================= */}
       <section 
         aria-label="Category Selection"
+        className="pv-category-chips-scroll"
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '5px',
+          gap: '6px',
           overflowX: 'auto',
-          paddingBottom: '2px',
-          marginBottom: '8px',
+          overflowY: 'hidden',
+          width: '100%',
+          maxWidth: '100%',
+          minWidth: 0,
+          boxSizing: 'border-box',
           WebkitOverflowScrolling: 'touch',
           scrollbarWidth: 'none',
-          msOverflowStyle: 'none'
+          msOverflowStyle: 'none',
+          padding: '2px 0 6px 0',
+          marginBottom: '8px'
         }}
       >
         {categories.map((cat) => {
@@ -586,7 +614,7 @@ export default function MobileHomeScreen({
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '4px',
-                padding: '5px 10px',
+                padding: '5px 11px',
                 borderRadius: '9999px',
                 border: isActive ? '1.5px solid #6366F1' : '1px solid #E2E8F0',
                 backgroundColor: isActive ? '#6366F1' : '#FFFFFF',
@@ -615,13 +643,19 @@ export default function MobileHomeScreen({
       {/* =========================================================================
           4. 2-COLUMN COMPACT FEATURE CARDS GRID
           ========================================================================= */}
-      <section aria-label="Feature Cards">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '6px',
-          boxSizing: 'border-box'
-        }}>
+      <section aria-label="Feature Cards" style={{ width: '100%', maxWidth: '100%', minWidth: 0, boxSizing: 'border-box' }}>
+        <div 
+          className="pv-tools-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: '8px',
+            width: '100%',
+            minWidth: 0,
+            maxWidth: '100%',
+            boxSizing: 'border-box'
+          }}
+        >
           {filteredCards.map((card) => {
             const IconComp = card.icon;
 
@@ -632,21 +666,25 @@ export default function MobileHomeScreen({
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => { if (e.key === 'Enter') handleCardClick(card); }}
+                className="pv-tool-card"
                 style={{
                   gridColumn: card.isFullWidth ? '1 / -1' : 'auto',
                   backgroundColor: '#FFFFFF',
                   borderRadius: '12px',
                   border: '1px solid #F1F5F9',
                   boxShadow: '0 1px 3px rgba(15, 23, 42, 0.03)',
-                  padding: card.isFullWidth ? '9px 11px' : '7px 6px 7px 8px',
+                  padding: card.isFullWidth ? '10px 12px' : '8px 8px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '6px',
+                  gap: '7px',
                   cursor: 'pointer',
                   transition: 'transform 0.12s ease, box-shadow 0.12s ease',
                   WebkitTapHighlightColor: 'transparent',
                   boxSizing: 'border-box',
-                  minHeight: '46px'
+                  width: '100%',
+                  minWidth: 0,
+                  maxWidth: '100%',
+                  minHeight: '50px'
                 }}
               >
                 {/* Card Icon */}
@@ -677,16 +715,19 @@ export default function MobileHomeScreen({
                 </div>
 
                 {/* Card Texts */}
-                <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ flex: '1 1 0%', minWidth: 0, overflow: 'hidden' }}>
                   <div style={{
-                    fontSize: '10.5px',
+                    fontSize: '11px',
                     fontWeight: 800,
                     color: '#0F172A',
-                    lineHeight: 1.15,
+                    lineHeight: 1.25,
                     letterSpacing: '-0.01em',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis'
+                    wordBreak: 'break-word',
+                    overflowWrap: 'break-word',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
                   }}>
                     {card.title}
                   </div>
@@ -694,12 +735,15 @@ export default function MobileHomeScreen({
                   <div style={{
                     fontSize: '8.5px',
                     color: '#64748B',
-                    lineHeight: 1.2,
-                    marginTop: '1px',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    fontWeight: 500
+                    lineHeight: 1.25,
+                    marginTop: '2px',
+                    wordBreak: 'break-word',
+                    overflowWrap: 'break-word',
+                    fontWeight: 500,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
                   }}>
                     {card.desc}
                   </div>
@@ -722,6 +766,7 @@ export default function MobileHomeScreen({
             );
           })}
         </div>
+
 
 
         {/* Empty state if search filters out all cards */}

@@ -564,7 +564,16 @@ export default function MorePage({ onNavigate }) {
   return (
     <>
       {/* 1. MOBILE-ONLY VIEW (< 1024px): Single-Screen Academic Dashboard matching Reference Mockup */}
-      <div className="pv-mobile-more-view">
+      <div 
+        className="pv-mobile-more-view"
+        style={{
+          width: '100%',
+          maxWidth: '100%',
+          minWidth: 0,
+          boxSizing: 'border-box',
+          overflowX: 'clip'
+        }}
+      >
         <MobileHeader
           activeTab="more"
           onNavigate={(tab) => {

@@ -76,6 +76,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
         left: 0,
         right: 0,
         width: '100%',
+        maxWidth: '100vw',
         backgroundColor: 'rgba(255, 255, 255, 0.96)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
