@@ -499,9 +499,9 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
-      {/* Responsive Navbar: Rendered across all pages; on mobile /more, MorePage renders its own compact header */}
+      {/* Responsive Navbar: On desktop always shown. On mobile, hidden on home and more because they render their own compact brand headers */}
       {!hideTopNav && (
-        <div className={activeTab === 'more' ? 'pv-hide-on-mobile' : ''}>
+        <div className={(activeTab === 'more' || activeTab === 'home' || !activeTab) ? 'pv-hide-on-mobile' : ''}>
           <Navbar
             onSearch={(query) => handleSearch(query, selectedBranch)}
             onOpenAuth={handleOpenAuth}
@@ -854,9 +854,9 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer: Rendered on all pages; on mobile /more hidden so single-screen dashboard fits initial phone viewport */}
+      {/* Footer: Rendered on all pages on desktop; on mobile hidden on home and more */}
       {!hideTopNav && (
-        <div className={activeTab === 'more' ? 'pv-hide-on-mobile' : ''}>
+        <div className={(activeTab === 'more' || activeTab === 'home' || !activeTab) ? 'pv-hide-on-mobile' : ''}>
           <Footer
             onNavigate={(tab) => {
               setActiveTab(tab);

@@ -20,7 +20,7 @@ export default function CookieConsent() {
   useEffect(() => {
     // If no preference stored, reveal banner after a small delay for smooth experience
     if (!consent) {
-      const timer = setTimeout(() => setIsBannerVisible(true), 800);
+      const timer = setTimeout(() => setIsBannerVisible(true), 3500);
       return () => clearTimeout(timer);
     }
   }, [consent]);

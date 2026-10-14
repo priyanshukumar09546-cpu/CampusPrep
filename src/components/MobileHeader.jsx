@@ -54,8 +54,8 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
         right: 0,
         width: '100%',
         zIndex: 9997,
-        backgroundColor: '#FAF9F6',
-        borderBottom: '1px solid #EBE6DF',
+        backgroundColor: '#FFFFFF',
+        borderBottom: '1px solid #F1F5F9',
         padding: '0.6rem 1rem',
         display: 'flex',
         alignItems: 'center',
@@ -69,12 +69,12 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
           {/* HOME BRANDING — Real ProfessorVirus Logo & Typography from reference */}
           <div 
             onClick={() => onNavigate('home')}
-            style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', minWidth: 0, flex: '1 1 auto' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', minWidth: 0, flex: '1 1 auto', overflow: 'hidden' }}
           >
             <div 
               style={{
-                width: '38px',
-                height: '38px',
+                width: '36px',
+                height: '36px',
                 borderRadius: '50%',
                 overflow: 'hidden',
                 border: '2px solid #C88D2D',
@@ -96,17 +96,18 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 }}
               />
             </div>
-            <div>
+            <div style={{ minWidth: 0, overflow: 'hidden' }}>
               <div 
                 style={{
-                  fontSize: '1.05rem',
+                  fontSize: '1rem',
                   fontWeight: 900,
                   lineHeight: 1.15,
                   letterSpacing: '0.01em',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.25rem',
-                  fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif"
+                  fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif",
+                  whiteSpace: 'nowrap'
                 }}
               >
                 <span style={{ color: '#0F172A' }}>PROFESSOR</span>
@@ -114,12 +115,15 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
               </div>
               <div 
                 style={{
-                  fontSize: '0.62rem',
+                  fontSize: '0.58rem',
                   color: '#64748B',
                   fontWeight: 800,
-                  letterSpacing: '0.04em',
+                  letterSpacing: '0.02em',
                   textTransform: 'uppercase',
-                  lineHeight: 1.1
+                  lineHeight: 1.1,
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
                 }}
               >
                 NOTES • PYQ • TOOLS • ALL COURSES
@@ -128,7 +132,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
           </div>
 
           {/* HOME RIGHT CONTROLS: Notification Bell with Red Badge Dot */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
             <button
               type="button"
               onClick={onOpenUpdates || (() => onNavigate('interview-pro'))}

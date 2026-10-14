@@ -696,6 +696,12 @@ pre, code {
   .pv-mobile-bottom-nav {
     display: none !important;
   }
+  .pv-desktop-home-view {
+    display: block !important;
+  }
+  .pv-mobile-home-view {
+    display: none !important;
+  }
   .pv-desktop-more-view {
     display: block !important;
   }
@@ -722,6 +728,14 @@ pre, code {
   /* Hide Navbar and Footer ONLY on pages that specify .pv-hide-on-mobile (e.g. /more) */
   .pv-hide-on-mobile {
     display: none !important;
+  }
+
+  /* Home Page: Switch to Mobile Redesign View */
+  .pv-desktop-home-view {
+    display: none !important;
+  }
+  .pv-mobile-home-view {
+    display: block !important;
   }
 
   /* More Page: Switch to Mobile Dashboard */
