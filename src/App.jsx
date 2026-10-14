@@ -14,6 +14,7 @@ import AuthModal from './components/AuthModal';
 import CourseSelectModal from './components/CourseSelectModal';
 import StayConnectedPopup from './components/StayConnectedPopup';
 import MobileBottomNav from './components/MobileBottomNav';
+import MobileHeader from './components/MobileHeader';
 import CookieConsent from './components/CookieConsent';
 import Home from './pages/Home';
 import { normalizeCourseKey } from './data/courseMapping.ts';
@@ -497,17 +498,38 @@ export default function App() {
   const hideTopNav = isStandaloneAuth;
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Responsive Navbar (Hidden only on standalone Auth & Admin Pages) */}
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
+      {/* Responsive Navigation: Desktop gets full Navbar, Mobile gets compact MobileHeader */}
       {!hideTopNav && (
-        <Navbar
-          onSearch={(query) => handleSearch(query, selectedBranch)}
-          onOpenAuth={handleOpenAuth}
-          activeTab={activeTab}
-          setActiveTab={(tab) => {
-            navigateToTab(tab);
-          }}
-        />
+        <>
+          <div className="pv-desktop-navbar-wrap">
+            <Navbar
+              onSearch={(query) => handleSearch(query, selectedBranch)}
+              onOpenAuth={handleOpenAuth}
+              activeTab={activeTab}
+              setActiveTab={(tab) => {
+                navigateToTab(tab);
+              }}
+            />
+          </div>
+          <div className="pv-mobile-header-wrap">
+            <MobileHeader
+              activeTab={activeTab}
+              onNavigate={(tab) => navigateToTab(tab)}
+              onOpenUpdates={() => {
+                const modal = document.querySelector('[data-student-updates-modal]');
+                if (modal) modal.style.display = 'block';
+                else navigateToTab('interview-pro');
+              }}
+              onOpenSearch={() => {
+                const searchInput = document.querySelector('.pv-mobile-search-input');
+                if (searchInput) searchInput.focus();
+                else navigateToTab('notes');
+              }}
+              selectedCourse={selectedCourse}
+            />
+          </div>
+        </>
       )}
 
       {/* Main Content View Switcher */}
@@ -851,14 +873,16 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
+      {/* Footer (Desktop Only) */}
       {!hideTopNav && (
-        <Footer
-          onNavigate={(tab) => {
-            setActiveTab(tab);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-        />
+        <div className="pv-desktop-footer-wrap">
+          <Footer
+            onNavigate={(tab) => {
+              setActiveTab(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          />
+        </div>
       )}
 
       {/* Modals */}
@@ -896,6 +920,7 @@ export default function App() {
         <MobileBottomNav
           activeTab={activeTab}
           onNavigate={(tab) => navigateToTab(tab)}
+          onOpenAuth={handleOpenAuth}
         />
       )}
 

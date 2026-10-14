@@ -1,4 +1,20 @@
-# CampusPrep
+# CampusPrep — All-in-One Engineering & BCA Academic Hub
+
+<p align="center">
+  <strong>Curated Academic Resources, Verified PYQs, AI Study Assistant (Ask Virus), and Interview Simulation Suite</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/Vite-5.0-646CFF?style=for-the-badge&logo=vite" alt="Vite" />
+  <img src="https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=nodedotjs" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Express.js-4.18-000000?style=for-the-badge&logo=express" alt="Express" />
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/AI%20Assistant-Ask%20Virus-4285F4?style=for-the-badge&logo=google" alt="AI Assistant" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
+</p>
+
+---
 
 CampusPrep (also known as ProfessorVirus) is an all-in-one educational platform engineered for undergraduate engineering and computer application students (AKTU B.Tech & BCA). It empowers students with verified handwritten notes, solved previous year question papers (PYQs), comprehensive syllabi, interactive quizzes, an AI-powered study companion (**Ask Virus**), and an end-to-end recruitment preparation suite (**Interview Pro**).
 
