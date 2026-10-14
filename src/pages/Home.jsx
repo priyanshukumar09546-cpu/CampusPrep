@@ -8,7 +8,6 @@ import RealStatsSection from '../components/RealStatsSection';
 import PopularSubjectsSection from '../components/PopularSubjectsSection';
 import PromotionSection from '../components/PromotionSection';
 import FinalCtaSection from '../components/FinalCtaSection';
-import MobileHomeScreen from '../components/MobileHomeScreen';
 
 export default function Home({
   onSearch,
@@ -21,71 +20,57 @@ export default function Home({
   onOpenSubject
 }) {
   return (
-    <>
-      {/* 1. MOBILE-ONLY HOME VIEW (< 1024px) Inspired by Reference Screenshot */}
-      <div className="pv-mobile-home-container">
-        <MobileHomeScreen
-          onSearch={onSearch}
-          onSelectCourse={onSelectCourse}
+    <div className="w-full relative overflow-x-hidden" style={{ backgroundColor: '#FAF5ED' }}>
+      
+      {/* 1. Hero Section matching Reference Design (Brand, Tagline, CTAs, Real Stats, Search, Branch Chips & Student Showcase) */}
+      <HeroSection
+        onSearch={onSearch}
+        onSelectBranch={onSelectBranch}
+        onNavigate={onNavigate}
+      />
+
+      {/* 2. Quick Access Tool Strip (Exactly 7 Horizontal Tools matching Reference Image) */}
+      <div id="quick-access-section">
+        <QuickAccessStrip
           onNavigate={onNavigate}
-          onOpenSubject={onOpenSubject}
-          onOpenAI={onOpenAI}
         />
       </div>
 
-      {/* 2. DESKTOP-ONLY HOME VIEW (>= 1024px) — 100% Visually Pristine & Unchanged */}
-      <div className="pv-desktop-home-container w-full relative overflow-x-hidden" style={{ backgroundColor: '#FAF5ED' }}>
-        
-        {/* 1. Hero Section matching Reference Design (Brand, Tagline, CTAs, Real Stats, Search, Branch Chips & Student Showcase) */}
-        <HeroSection
-          onSearch={onSearch}
-          onSelectBranch={onSelectBranch}
+      {/* 3. Explore Our Tools (Exactly 8 Tool Cards in 4-Col Grid matching Reference Image) */}
+      <div id="explore-tools">
+        <ExploreToolsSection
           onNavigate={onNavigate}
         />
-
-        {/* 2. Quick Access Tool Strip (Exactly 7 Horizontal Tools matching Reference Image) */}
-        <div id="quick-access-section">
-          <QuickAccessStrip
-            onNavigate={onNavigate}
-          />
-        </div>
-
-        {/* 3. Explore Our Tools (Exactly 8 Tool Cards in 4-Col Grid matching Reference Image) */}
-        <div id="explore-tools">
-          <ExploreToolsSection
-            onNavigate={onNavigate}
-          />
-        </div>
-
-        {/* 4. Choose Your Course Section (BTech, BCA, BBA, BPharm, MBA, MCA, MTech, More) */}
-        <CourseCardsSection
-          onSelectCourse={onSelectCourse}
-          onNavigate={onNavigate}
-        />
-
-        {/* 5. Why Students Love ProfessorVirus? (Verified Student Features) */}
-        <WhyStudentsLoveSection />
-
-        {/* 6. Real Verified Academic Statistics */}
-        <RealStatsSection />
-
-        {/* 7. Popular Subjects with Direct Course/Branch/Semester Navigation */}
-        <PopularSubjectsSection
-          onOpenSubject={onOpenSubject}
-          onNavigate={onNavigate}
-        />
-
-        {/* 8. Promote Your Brand & App, Plans & Value Highlights */}
-        <PromotionSection
-          onNavigate={onNavigate}
-        />
-
-        {/* 9. Final Academic Call To Action & Core Educational Values */}
-        <FinalCtaSection
-          onNavigate={onNavigate}
-        />
-
       </div>
-    </>
+
+      {/* 4. Choose Your Course Section (BTech, BCA, BBA, BPharm, MBA, MCA, MTech, More) */}
+      <CourseCardsSection
+        onSelectCourse={onSelectCourse}
+        onNavigate={onNavigate}
+      />
+
+      {/* 5. Why Students Love ProfessorVirus? (Verified Student Features) */}
+      <WhyStudentsLoveSection />
+
+      {/* 6. Real Verified Academic Statistics */}
+      <RealStatsSection />
+
+      {/* 7. Popular Subjects with Direct Course/Branch/Semester Navigation */}
+      <PopularSubjectsSection
+        onOpenSubject={onOpenSubject}
+        onNavigate={onNavigate}
+      />
+
+      {/* 8. Promote Your Brand & App, Plans & Value Highlights */}
+      <PromotionSection
+        onNavigate={onNavigate}
+      />
+
+      {/* 9. Final Academic Call To Action & Core Educational Values */}
+      <FinalCtaSection
+        onNavigate={onNavigate}
+      />
+
+    </div>
   );
 }

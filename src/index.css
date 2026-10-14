@@ -696,11 +696,10 @@ pre, code {
   .pv-mobile-bottom-nav {
     display: none !important;
   }
-  .pv-desktop-home-container {
+  .pv-desktop-more-view {
     display: block !important;
   }
-  .pv-mobile-home-container,
-  .pv-mobile-home-view {
+  .pv-mobile-more-view {
     display: none !important;
   }
   .pv-desktop-notes-view,
@@ -720,18 +719,17 @@ pre, code {
    MOBILE & TABLET VIEWPORT (< 1024px, 320px - 1023px) — App-Style Redesign
    ========================================================================= */
 @media (max-width: 1023px) {
-  /* Hide Desktop Top Navbar and Desktop Footer on Mobile */
-  .pv-desktop-navbar-wrap,
-  .pv-desktop-footer-wrap {
+  /* Hide Navbar and Footer ONLY on pages that specify .pv-hide-on-mobile (e.g. /more) */
+  .pv-hide-on-mobile {
     display: none !important;
   }
-  .pv-mobile-header-wrap {
-    display: block !important;
+
+  /* More Page: Switch to Mobile Dashboard */
+  .pv-desktop-more-view {
+    display: none !important;
   }
-  .pv-mobile-header {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
+  .pv-mobile-more-view {
+    display: block !important;
   }
 
   /* Bottom Navigation */
@@ -744,15 +742,6 @@ pre, code {
   /* Safe space for fixed bottom navigation */
   body {
     padding-bottom: 68px !important;
-  }
-
-  /* Switch Home Views */
-  .pv-desktop-home-container {
-    display: none !important;
-  }
-  .pv-mobile-home-container,
-  .pv-mobile-home-view {
-    display: block !important;
   }
 
   /* Switch Notes & PYQs Views */

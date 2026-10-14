@@ -499,37 +499,18 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
-      {/* Responsive Navigation: Desktop gets full Navbar, Mobile gets compact MobileHeader */}
+      {/* Responsive Navbar: Rendered across all pages; on mobile /more, MorePage renders its own compact header */}
       {!hideTopNav && (
-        <>
-          <div className="pv-desktop-navbar-wrap">
-            <Navbar
-              onSearch={(query) => handleSearch(query, selectedBranch)}
-              onOpenAuth={handleOpenAuth}
-              activeTab={activeTab}
-              setActiveTab={(tab) => {
-                navigateToTab(tab);
-              }}
-            />
-          </div>
-          <div className="pv-mobile-header-wrap">
-            <MobileHeader
-              activeTab={activeTab}
-              onNavigate={(tab) => navigateToTab(tab)}
-              onOpenUpdates={() => {
-                const modal = document.querySelector('[data-student-updates-modal]');
-                if (modal) modal.style.display = 'block';
-                else navigateToTab('interview-pro');
-              }}
-              onOpenSearch={() => {
-                const searchInput = document.querySelector('.pv-mobile-search-input');
-                if (searchInput) searchInput.focus();
-                else navigateToTab('notes');
-              }}
-              selectedCourse={selectedCourse}
-            />
-          </div>
-        </>
+        <div className={activeTab === 'more' ? 'pv-hide-on-mobile' : ''}>
+          <Navbar
+            onSearch={(query) => handleSearch(query, selectedBranch)}
+            onOpenAuth={handleOpenAuth}
+            activeTab={activeTab}
+            setActiveTab={(tab) => {
+              navigateToTab(tab);
+            }}
+          />
+        </div>
       )}
 
       {/* Main Content View Switcher */}
@@ -873,9 +854,9 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer (Desktop Only) */}
+      {/* Footer: Rendered on all pages; on mobile /more hidden so single-screen dashboard fits initial phone viewport */}
       {!hideTopNav && (
-        <div className="pv-desktop-footer-wrap">
+        <div className={activeTab === 'more' ? 'pv-hide-on-mobile' : ''}>
           <Footer
             onNavigate={(tab) => {
               setActiveTab(tab);
