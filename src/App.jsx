@@ -16,6 +16,7 @@ import StayConnectedPopup from './components/StayConnectedPopup';
 import MobileBottomNav from './components/MobileBottomNav';
 import MobileHeader from './components/MobileHeader';
 import CookieConsent from './components/CookieConsent';
+import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 import { normalizeCourseKey } from './data/courseMapping.ts';
 
@@ -290,8 +291,9 @@ export default function App() {
         targetPath = '/quizzes';
       } else if (tab === 'more') {
         targetPath = '/more';
-      } else if (tab === 'progress') {
-        targetPath = '/progress';
+      } else if (tab === 'progress' || tab === 'profile') {
+        setActiveTabState('progress');
+        targetPath = '/profile';
       } else if (tab === 'interview-pro') {
         targetPath = '/interview-pro';
       } else if (tab === 'interview-confirm') {
@@ -497,15 +499,21 @@ export default function App() {
   const isStandaloneAuth = activeTab === 'signin' || activeTab === 'signup' || activeTab === 'login' || activeTab === 'admin' || activeTab === 'admin-login';
   const hideTopNav = isStandaloneAuth;
 
+  const pagesWithOwnMobileHeader = [
+    'home', 'notes', 'pyqs', 'more', 'progress', 'profile',
+    'signin', 'signup', 'login', 'admin', 'admin-login', 'resume-maker'
+  ];
+  const showStandaloneMobileHeader = !hideTopNav && !pagesWithOwnMobileHeader.includes(activeTab);
+
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
-      {/* Responsive Navbar: On desktop always shown. On mobile, hidden on pages that render their own dedicated compact brand headers (home, more, notes, pyqs, progress) */}
+      {/* Responsive Navbar: On desktop always shown. On mobile, suppressed to let mobile headers manage navigation */}
       {!hideTopNav && (
-        <div className={(activeTab === 'more' || activeTab === 'home' || activeTab === 'notes' || activeTab === 'pyqs' || activeTab === 'progress' || !activeTab) ? 'pv-hide-on-mobile' : ''}>
+        <div className="pv-desktop-navbar-wrap">
           <Navbar
             onSearch={(query) => handleSearch(query, selectedBranch)}
             onOpenAuth={handleOpenAuth}
-            activeTab={activeTab}
+            activeTab={activeTab === 'profile' ? 'progress' : activeTab}
             setActiveTab={(tab) => {
               navigateToTab(tab);
             }}
@@ -513,8 +521,25 @@ export default function App() {
         </div>
       )}
 
+      {/* Standalone Mobile Header: Dedicated single mobile header for sub-routes, shown only on mobile */}
+      {showStandaloneMobileHeader && (
+        <div className="pv-mobile-header-wrap">
+          <MobileHeader
+            activeTab={activeTab}
+            onNavigate={(tab) => navigateToTab(tab)}
+            selectedCourse={selectedCourse}
+            onOpenUpdates={() => {
+              const modal = document.querySelector('[data-student-updates-modal]');
+              if (modal) modal.style.display = 'block';
+            }}
+            onOpenSearch={() => navigateToTab('notes')}
+          />
+        </div>
+      )}
+
       {/* Main Content View Switcher */}
       <main style={{ flex: 1 }}>
+        <ErrorBoundary title="Page failed to load">
         {activeTab === 'signin' ? (
           <SignIn onNavigate={(tab) => navigateToTab(tab)} />
         ) : activeTab === 'signup' ? (
@@ -820,7 +845,7 @@ export default function App() {
               navigateToTab(tab, courseKey);
             }}
           />
-        ) : activeTab === 'progress' ? (
+        ) : (activeTab === 'progress' || activeTab === 'profile') ? (
           <ProgressPage
             onNavigate={(tab) => {
               setActiveTab(tab);
@@ -852,11 +877,12 @@ export default function App() {
             onOpenSubject={handleOpenSubject}
           />
         )}
+        </ErrorBoundary>
       </main>
 
       {/* Footer: Rendered on all pages on desktop; on mobile hidden on home, more, notes, pyqs, and progress */}
       {!hideTopNav && (
-        <div className={(activeTab === 'more' || activeTab === 'home' || activeTab === 'notes' || activeTab === 'pyqs' || activeTab === 'progress' || !activeTab) ? 'pv-hide-on-mobile' : ''}>
+        <div className="pv-desktop-footer-wrap">
           <Footer
             onNavigate={(tab) => {
               setActiveTab(tab);

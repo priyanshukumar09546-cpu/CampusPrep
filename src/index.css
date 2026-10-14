@@ -696,6 +696,27 @@ pre, code {
   .pv-mobile-bottom-nav {
     display: none !important;
   }
+  .resume-form-grid-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  .resume-form-grid-3 {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+  .pv-resume-split-view {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  .pv-resume-desktop-only {
+    display: block !important;
+  }
+  .pv-resume-mobile-only {
+    display: none !important;
+  }
   .pv-desktop-home-view {
     display: block !important;
   }
@@ -727,9 +748,18 @@ pre, code {
    MOBILE & TABLET VIEWPORT (< 1024px, 320px - 1023px) — App-Style Redesign
    ========================================================================= */
 @media (max-width: 1023px) {
-  /* Hide Navbar and Footer ONLY on pages that specify .pv-hide-on-mobile (e.g. /more) */
+  /* Desktop Navbar and Footer wrappers are NEVER shown on mobile */
+  .pv-desktop-navbar-wrap,
+  .pv-desktop-footer-wrap,
   .pv-hide-on-mobile {
     display: none !important;
+  }
+
+  /* Universal mobile header wrapper shown only on mobile */
+  .pv-mobile-header-wrap {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100vw !important;
   }
 
   /* Home Page: Switch to Mobile Redesign View */
@@ -804,7 +834,7 @@ pre, code {
     box-sizing: border-box !important;
   }
 
-  @media (max-width: 359px) {
+  @media (max-width: 374px) {
     .pv-tools-grid {
       grid-template-columns: minmax(0, 1fr) !important;
     }
@@ -826,9 +856,28 @@ pre, code {
     justify-content: space-around !important;
   }
 
-  /* Safe space for fixed bottom navigation */
+  /* Safe space for fixed bottom navigation with iPhone home indicator support */
   body {
-    padding-bottom: 68px !important;
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 16px)) !important;
+  }
+
+  /* Resume Maker Mobile Single-Column Form Grid & Layout */
+  .resume-form-grid-2,
+  .resume-form-grid-3 {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  .pv-resume-split-view {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+  .pv-resume-desktop-only {
+    display: none !important;
+  }
+  .pv-resume-mobile-only {
+    display: flex !important;
   }
 
   /* Switch Notes & PYQs Views */

@@ -204,7 +204,7 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
   // 2. Text-to-Speech: AI speaks current question aloud with natural tone
   useEffect(() => {
     const textToSpeak = currentQuestion?.spokenText || currentQuestion?.question;
-    if (!textToSpeak || !synthRef.current) return;
+    if (!textToSpeak || !synthRef.current || typeof window === 'undefined' || !('SpeechSynthesisUtterance' in window)) return;
 
     // AI is speaking: stop speech recognition so AI audio is not recorded
     stopSpeechRecognition();
@@ -212,7 +212,7 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
     synthRef.current.cancel();
     setVoiceState('ai_speaking');
 
-    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    const utterance = new window.SpeechSynthesisUtterance(textToSpeak);
     utterance.rate = 1.0;
     utterance.pitch = 0.95; // Confident, professional male pitch
 
@@ -359,11 +359,11 @@ export default function InterviewTechnicalPage({ onNavigate, onOpenAuth }) {
 
   // Repeat Question Aloud
   const handleRepeatQuestion = () => {
-    if (!currentQuestion || !synthRef.current) return;
+    if (!currentQuestion || !synthRef.current || typeof window === 'undefined' || !('SpeechSynthesisUtterance' in window)) return;
     clearSilenceTimers();
     synthRef.current.cancel();
     const text = currentQuestion.spokenText || currentQuestion.question;
-    const utterance = new SpeechSynthesisUtterance("Let me repeat the question: " + text);
+    const utterance = new window.SpeechSynthesisUtterance("Let me repeat the question: " + text);
     synthRef.current.speak(utterance);
   };
 

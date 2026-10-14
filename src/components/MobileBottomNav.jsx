@@ -33,10 +33,17 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
   // Map active sub-routes to parent bottom nav tab
   const getActiveNavId = () => {
     if (!activeTab || activeTab === 'home') return 'home';
-    if (activeTab === 'notes' || activeTab === 'select-course' || activeTab === 'select-year' || activeTab === 'select-subject' || activeTab === 'subject' || activeTab === 'syllabus') return 'notes';
+    if (activeTab === 'notes' || activeTab === 'select-course' || activeTab === 'select-year' || activeTab === 'select-subject' || activeTab === 'subject' || activeTab === 'subject-detail' || activeTab === 'syllabus') return 'notes';
     if (activeTab === 'pyqs') return 'pyqs';
-    if (['more', 'resume-maker', 'pdf-maker', 'result-cgpa', 'attendance-calculator', 'timetable', 'scholarships', 'internships-jobs', 'project-ideas', 'competitive-exams', 'interview-pro', 'quizzes', 'plagiarism'].includes(activeTab)) return 'tools';
-    if (['signin', 'signup', 'login', 'progress'].includes(activeTab)) return 'profile';
+    if ([
+      'more', 'resume-maker', 'pdf-maker', 'result-cgpa', 'attendance-calculator',
+      'timetable', 'scholarships', 'scholarship-detail', 'internships-jobs', 'opportunity-detail',
+      'project-ideas', 'project-detail', 'competitive-exams', 'important-links',
+      'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start',
+      'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr',
+      'interview-report', 'aistudy', 'quizzes', 'plagiarism', 'promotion'
+    ].includes(activeTab)) return 'tools';
+    if (['signin', 'signup', 'login', 'progress', 'profile'].includes(activeTab)) return 'profile';
     return 'home';
   };
 

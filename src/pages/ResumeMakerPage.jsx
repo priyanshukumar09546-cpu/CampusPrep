@@ -175,10 +175,44 @@ const DEFAULT_RESUME_DATA = {
   ]
 };
 
+const RESUME_TEMPLATES = [
+  {
+    id: 'classic-tech',
+    name: "Classic Tech ATS",
+    subtitle: "Jake's Standard",
+    badge: "Recommended",
+    badgeColor: "#0E7A4A",
+    badgeBg: "#E7F5EE",
+    desc: "Single-column clean engineering layout. 99.8% ATS compatibility across Workday, Lever & Greenhouse. Perfect for Software Engineers and Tech roles.",
+    features: ["Single Column", "Max ATS Score", "Overleaf Standard", "LaTeX Certified"]
+  },
+  {
+    id: 'modern-clean',
+    name: "Modern Clean Engineering",
+    subtitle: "Modern Professional",
+    badge: "Popular",
+    badgeColor: "#6366F1",
+    badgeBg: "#EEF2FF",
+    desc: "Refined modern typography with subtle dividing lines, highlighted tech stack chips, and clear section hierarchy.",
+    features: ["Visual Hierarchy", "Compact Spacing", "ATS Compliant", "Modern Typography"]
+  },
+  {
+    id: 'minimalist',
+    name: "Minimalist Executive",
+    subtitle: "Clean Standard",
+    badge: "Dense Format",
+    badgeColor: "#D97706",
+    badgeBg: "#FFFBEB",
+    desc: "High density layout designed to maximize content fitting on a single page. Ideal for experienced developers and campus placements.",
+    features: ["Ultra Compact", "High Content Density", "Strict 1-Page Fit", "Crisp Serif"]
+  }
+];
+
 const FORM_STEPS = [
-  { id: 'personal', title: 'Personal Details', icon: User },
+  { id: 'templates', title: 'Templates', icon: Layers },
+  { id: 'personal', title: 'Personal', icon: User },
   { id: 'education', title: 'Education', icon: GraduationCap },
-  { id: 'skills', title: 'Technical Skills', icon: Wrench },
+  { id: 'skills', title: 'Skills', icon: Wrench },
   { id: 'experience', title: 'Experience', icon: Briefcase },
   { id: 'projects', title: 'Projects', icon: BookOpen },
   { id: 'achievements', title: 'Achievements', icon: Award },
@@ -203,6 +237,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   const [activeStep, setActiveStep] = useState(0);
   const [template, setTemplate] = useState('classic-tech');
   const [rightPanelTab, setRightPanelTab] = useState('preview'); // 'preview' | 'latex'
+  const [mobileViewTab, setMobileViewTab] = useState('editor'); // 'editor' | 'preview'
 
   // Compilation & PDF States
   const [pdfUrl, setPdfUrl] = useState('');
@@ -878,23 +913,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
           {/* Middle: 1-Page Constraint Badge */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            {compileStatus?.isOnePage ? (
-              <div style={{
-                backgroundColor: '#E7F5EE',
-                border: '1px solid #A3E0C1',
-                color: '#0E7A4A',
-                padding: '0.3rem 0.65rem',
-                borderRadius: '9999px',
-                fontSize: '0.74rem',
-                fontWeight: 800,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.35rem'
-              }}>
-                <CheckCircle2 size={13} />
-                <span>Strict 1-Page Layout ({compileStatus.levelName || 'Standard'})</span>
-              </div>
-            ) : (
+            {(compileStatus && (compileStatus.isOnePage === false || compileStatus.overflowWarning)) ? (
               <div style={{
                 backgroundColor: '#FEF2F2',
                 border: '1px solid #FCA5A5',
@@ -909,6 +928,22 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               }}>
                 <AlertTriangle size={13} />
                 <span>Overflow Warning: {compileStatus?.pageCount || 2} Pages</span>
+              </div>
+            ) : (
+              <div style={{
+                backgroundColor: '#E7F5EE',
+                border: '1px solid #A3E0C1',
+                color: '#0E7A4A',
+                padding: '0.3rem 0.65rem',
+                borderRadius: '9999px',
+                fontSize: '0.74rem',
+                fontWeight: 800,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem'
+              }}>
+                <CheckCircle2 size={13} />
+                <span>Strict 1-Page Layout ({compileStatus?.levelName || 'Standard'})</span>
               </div>
             )}
 
@@ -1090,18 +1125,80 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           MAIN 2-COLUMN WORKSPACE: LEFT FORM EDITOR & RIGHT LIVE DUAL-VIEW
           ========================================================================= */}
       <main className="container-wide" style={{ padding: '1rem 1.25rem 3rem 1.25rem' }}>
-        <div className="resume-split-view resume-maker-grid">
+        {/* Mobile View Switcher (Only visible on mobile screens) */}
+        <div className="pv-resume-mobile-only" style={{ marginBottom: '1rem', width: '100%' }}>
+          <div style={{
+            display: 'flex',
+            width: '100%',
+            backgroundColor: '#EDE5D6',
+            borderRadius: '10px',
+            padding: '3px',
+            boxSizing: 'border-box'
+          }}>
+            <button
+              type="button"
+              onClick={() => setMobileViewTab('editor')}
+              style={{
+                flex: 1,
+                padding: '0.55rem 0.5rem',
+                borderRadius: '8px',
+                border: 'none',
+                backgroundColor: mobileViewTab === 'editor' ? '#781416' : 'transparent',
+                color: mobileViewTab === 'editor' ? '#FFFFFF' : '#4A4036',
+                fontSize: '0.78rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.35rem',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <FileText size={14} />
+              <span>Edit Form ({activeStep + 1}/9)</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobileViewTab('preview')}
+              style={{
+                flex: 1,
+                padding: '0.55rem 0.5rem',
+                borderRadius: '8px',
+                border: 'none',
+                backgroundColor: mobileViewTab === 'preview' ? '#781416' : 'transparent',
+                color: mobileViewTab === 'preview' ? '#FFFFFF' : '#4A4036',
+                fontSize: '0.78rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.35rem',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <Eye size={14} />
+              <span>Live Preview & PDF</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="resume-split-view resume-maker-grid pv-resume-split-view">
 
           {/* ===================================================================
-              LEFT COLUMN: 8-STEP GUIDED FORM EDITOR
+              LEFT COLUMN: 9-STEP GUIDED FORM EDITOR
               =================================================================== */}
-          <div style={{
-            backgroundColor: '#FFFFFF',
-            border: '1.5px solid #EDE5D6',
-            borderRadius: '16px',
-            padding: '1.25rem',
-            boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)'
-          }}>
+          <div
+            className={mobileViewTab === 'preview' ? 'pv-resume-desktop-only' : ''}
+            style={{
+              backgroundColor: '#FFFFFF',
+              border: '1.5px solid #EDE5D6',
+              borderRadius: '16px',
+              padding: '1.25rem',
+              boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)'
+            }}
+          >
 
             {/* Stepper Tabs Bar */}
             <div style={{
@@ -1144,12 +1241,117 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               })}
             </div>
 
-            {/* STEP 1: PERSONAL DETAILS */}
+            {/* STEP 0: TEMPLATES */}
             {activeStep === 0 && (
+              <div>
+                <div style={{ marginBottom: '1rem' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: '0 0 0.25rem 0' }}>
+                    1. Choose ATS Resume Template
+                  </h3>
+                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: 0 }}>
+                    All templates are engineered to score 95+ on ATS screening software (Workday, Taleo, Greenhouse) and format strictly to a single page.
+                  </p>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  {RESUME_TEMPLATES.map((tmpl) => {
+                    const isSelected = template === tmpl.id;
+                    return (
+                      <div
+                        key={tmpl.id}
+                        onClick={() => handleTemplateChange(tmpl.id)}
+                        style={{
+                          padding: '1rem',
+                          borderRadius: '12px',
+                          border: isSelected ? '2px solid #781416' : '1.5px solid #E5DCCF',
+                          backgroundColor: isSelected ? '#FDF8F7' : '#FFFFFF',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                          boxShadow: isSelected ? '0 4px 12px rgba(120, 20, 22, 0.08)' : 'none'
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <span style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1C1814' }}>{tmpl.name}</span>
+                            <span style={{
+                              fontSize: '0.68rem',
+                              fontWeight: 700,
+                              backgroundColor: tmpl.badgeBg,
+                              color: tmpl.badgeColor,
+                              padding: '0.15rem 0.45rem',
+                              borderRadius: '999px'
+                            }}>
+                              {tmpl.badge}
+                            </span>
+                          </div>
+                          <div style={{
+                            width: '20px',
+                            height: '20px',
+                            borderRadius: '50%',
+                            border: isSelected ? '6px solid #781416' : '2px solid #D1C7B7',
+                            backgroundColor: '#FFFFFF',
+                            boxSizing: 'border-box'
+                          }} />
+                        </div>
+
+                        <p style={{ fontSize: '0.76rem', color: '#5A5044', margin: '0 0 0.65rem 0', lineHeight: 1.45 }}>
+                          {tmpl.desc}
+                        </p>
+
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+                          {tmpl.features.map((feat, fIdx) => (
+                            <span
+                              key={fIdx}
+                              style={{
+                                fontSize: '0.68rem',
+                                fontWeight: 600,
+                                backgroundColor: isSelected ? '#FAF0F0' : '#F4EFE6',
+                                color: isSelected ? '#781416' : '#6A5E50',
+                                padding: '0.18rem 0.45rem',
+                                borderRadius: '4px'
+                              }}
+                            >
+                              ✓ {feat}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div style={{ marginTop: '1.25rem', display: 'flex', justifyContent: 'flex-end' }}>
+                  <button
+                    type="button"
+                    onClick={() => setActiveStep(1)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.4rem',
+                      backgroundColor: '#781416',
+                      color: '#FFFFFF',
+                      border: 'none',
+                      borderRadius: '8px',
+                      padding: '0.55rem 1.1rem',
+                      fontSize: '0.8rem',
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 8px rgba(120, 20, 22, 0.2)'
+                    }}
+                  >
+                    <span>Continue to Personal Details</span>
+                    <ChevronRight size={14} />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* STEP 1: PERSONAL DETAILS */}
+            {activeStep === 1 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    1. Personal & Contact Details
+                    2. Personal & Contact Details
                   </h3>
                   <button
                     type="button"
@@ -1173,7 +1375,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                   </button>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                <div className="resume-form-grid-2" style={{ marginBottom: '0.75rem' }}>
                   <div>
                     <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
                       Full Name *
@@ -1201,7 +1403,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                <div className="resume-form-grid-3" style={{ marginBottom: '0.75rem' }}>
                   <div>
                     <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
                       Email Address *
@@ -1242,7 +1444,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                <div className="resume-form-grid-3" style={{ marginBottom: '0.75rem' }}>
                   <div>
                     <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
                       LinkedIn URL
@@ -1299,11 +1501,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 2: EDUCATION */}
-            {activeStep === 1 && (
+            {activeStep === 2 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    2. Education
+                    3. Education
                   </h3>
                   <button
                     type="button"
@@ -1355,7 +1557,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div className="resume-form-grid-3" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Degree (e.g. B.Tech / Class 12th)"
@@ -1400,7 +1602,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.55rem' }}>
+                    <div className="resume-form-grid-3" style={{ gap: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Institution / College"
@@ -1451,11 +1653,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 3: TECHNICAL SKILLS */}
-            {activeStep === 2 && (
+            {activeStep === 3 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    3. Technical Skills (Categorized for ATS)
+                    4. Technical Skills (Categorized for ATS)
                   </h3>
                   <span style={{ fontSize: '0.7rem', color: '#8C7E72', fontWeight: 600 }}>
                     Search & select skills or type custom skills
@@ -1470,11 +1672,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 4: EXPERIENCE */}
-            {activeStep === 3 && (
+            {activeStep === 4 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    4. Experience & Internships
+                    5. Experience & Internships
                   </h3>
                   <button
                     type="button"
@@ -1526,7 +1728,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Job Title (e.g. Software Engineer Intern)"
@@ -1557,7 +1759,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.65rem' }}>
+                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.65rem' }}>
                       <input
                         type="text"
                         placeholder="Duration (e.g. May 2024 - July 2024)"
@@ -1684,11 +1886,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 5: PROJECTS */}
-            {activeStep === 4 && (
+            {activeStep === 5 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    5. Academic & Personal Projects
+                    6. Academic & Personal Projects
                   </h3>
                   <button
                     type="button"
@@ -1740,7 +1942,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Project Title (e.g. Distributed Task Queue)"
@@ -1771,7 +1973,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.65rem' }}>
+                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.65rem' }}>
                       <input
                         type="text"
                         placeholder="Live Demo URL (optional)"
@@ -1898,11 +2100,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 6: ACHIEVEMENTS */}
-            {activeStep === 5 && (
+            {activeStep === 6 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    6. Achievements & Honors
+                    7. Achievements & Honors
                   </h3>
                   <button
                     type="button"
@@ -1954,7 +2156,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div className="resume-form-grid-3" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Achievement Title (e.g. 1st Place Smart India Hackathon)"
@@ -2019,11 +2221,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 7: CERTIFICATIONS */}
-            {activeStep === 6 && (
+            {activeStep === 7 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    7. Certifications
+                    8. Certifications
                   </h3>
                   <button
                     type="button"
@@ -2075,7 +2277,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Certificate Name (e.g. AWS Certified Developer)"
@@ -2106,7 +2308,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem' }}>
+                    <div className="resume-form-grid-2" style={{ gap: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Date (e.g. Dec 2024)"
@@ -2142,11 +2344,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 8: EXTRACURRICULAR */}
-            {activeStep === 7 && (
+            {activeStep === 8 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    8. Extracurricular & Leadership
+                    9. Extracurricular & Leadership
                   </h3>
                   <button
                     type="button"
@@ -2198,7 +2400,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div className="resume-form-grid-3" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Role (e.g. Lead Coordinator)"
@@ -2286,27 +2488,53 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 <span>Previous Step</span>
               </button>
 
-              <button
-                type="button"
-                disabled={activeStep === FORM_STEPS.length - 1}
-                onClick={() => setActiveStep(prev => Math.min(FORM_STEPS.length - 1, prev + 1))}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.35rem',
-                  backgroundColor: '#781416',
-                  color: '#FFFFFF',
-                  border: 'none',
-                  borderRadius: '6px',
-                  padding: '0.45rem 0.85rem',
-                  fontSize: '0.78rem',
-                  fontWeight: 800,
-                  cursor: activeStep === FORM_STEPS.length - 1 ? 'not-allowed' : 'pointer'
-                }}
-              >
-                <span>Next Step</span>
-                <ChevronRight size={14} />
-              </button>
+              {activeStep < FORM_STEPS.length - 1 ? (
+                <button
+                  type="button"
+                  onClick={() => setActiveStep(prev => Math.min(FORM_STEPS.length - 1, prev + 1))}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    backgroundColor: '#781416',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '0.45rem 0.85rem',
+                    fontSize: '0.78rem',
+                    fontWeight: 800,
+                    cursor: 'pointer'
+                  }}
+                >
+                  <span>Next Step</span>
+                  <ChevronRight size={14} />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileViewTab('preview');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    backgroundColor: '#0E7A4A',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '0.45rem 0.85rem',
+                    fontSize: '0.78rem',
+                    fontWeight: 800,
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 8px rgba(14, 122, 74, 0.25)'
+                  }}
+                >
+                  <Eye size={14} />
+                  <span>Preview & Export PDF →</span>
+                </button>
+              )}
             </div>
 
           </div>
@@ -2314,18 +2542,74 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           {/* ===================================================================
               RIGHT COLUMN: LIVE DUAL-VIEW (LIVE PDF PREVIEW & GENERATED LATEX)
               =================================================================== */}
-          <div style={{
-            backgroundColor: '#FFFFFF',
-            border: '1.5px solid #EDE5D6',
-            borderRadius: '16px',
-            overflow: 'hidden',
-            boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)',
-            display: 'flex',
-            flexDirection: 'column',
-            height: 'calc(100vh - 120px)',
-            position: 'sticky',
-            top: '80px'
-          }}>
+          <div
+            className={mobileViewTab === 'editor' ? 'pv-resume-desktop-only' : ''}
+            style={{
+              backgroundColor: '#FFFFFF',
+              border: '1.5px solid #EDE5D6',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)',
+              display: 'flex',
+              flexDirection: 'column',
+              height: 'calc(100vh - 120px)',
+              position: 'sticky',
+              top: '80px'
+            }}
+          >
+            {/* Mobile Back-to-Editor & Quick Action Bar */}
+            <div className="pv-resume-mobile-only" style={{
+              backgroundColor: '#FAF5ED',
+              borderBottom: '1px solid #E8E0D0',
+              padding: '0.55rem 0.85rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}>
+              <button
+                type="button"
+                onClick={() => setMobileViewTab('editor')}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.3rem',
+                  backgroundColor: '#FAF7F2',
+                  border: '1px solid #D5C7B2',
+                  borderRadius: '6px',
+                  padding: '0.35rem 0.65rem',
+                  fontSize: '0.74rem',
+                  fontWeight: 700,
+                  color: '#4A4036',
+                  cursor: 'pointer'
+                }}
+              >
+                <ChevronLeft size={13} />
+                <span>Back to Form ({activeStep + 1}/9)</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleDownloadPdf}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.3rem',
+                  backgroundColor: '#781416',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  borderRadius: '6px',
+                  padding: '0.35rem 0.75rem',
+                  fontSize: '0.74rem',
+                  fontWeight: 800,
+                  cursor: 'pointer'
+                }}
+              >
+                <Download size={13} />
+                <span>Export PDF</span>
+              </button>
+            </div>
 
             {/* Top View Toggle: PDF Preview vs LaTeX Source */}
             <div style={{

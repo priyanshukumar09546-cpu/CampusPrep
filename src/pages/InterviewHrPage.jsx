@@ -167,7 +167,7 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
   // 2. Text-to-Speech: AI speaks HR question aloud with friendly, professional female voice
   useEffect(() => {
     const textToSpeak = currentQuestion?.spokenText || currentQuestion?.question;
-    if (!textToSpeak || !synthRef.current) return;
+    if (!textToSpeak || !synthRef.current || typeof window === 'undefined' || !('SpeechSynthesisUtterance' in window)) return;
 
     // Stop recognition while AI is speaking so microphone doesn't capture AI audio
     stopSpeechRecognition();
@@ -175,7 +175,7 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
     synthRef.current.cancel();
     setVoiceState('ai_speaking');
 
-    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    const utterance = new window.SpeechSynthesisUtterance(textToSpeak);
     utterance.rate = 0.98;
     utterance.pitch = 1.05; // Friendly, warm female tone
 
@@ -319,11 +319,11 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
 
   // Repeat Question Aloud
   const handleRepeatQuestion = () => {
-    if (!currentQuestion || !synthRef.current) return;
+    if (!currentQuestion || !synthRef.current || typeof window === 'undefined' || !('SpeechSynthesisUtterance' in window)) return;
     clearSilenceTimers();
     synthRef.current.cancel();
     const text = currentQuestion.spokenText || currentQuestion.question;
-    const utterance = new SpeechSynthesisUtterance("Let me repeat the scenario: " + text);
+    const utterance = new window.SpeechSynthesisUtterance("Let me repeat the scenario: " + text);
     synthRef.current.speak(utterance);
   };
 

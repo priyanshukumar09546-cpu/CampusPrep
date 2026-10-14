@@ -210,15 +210,37 @@ export default function MobilePYQsScreen({
     }
   }, [selectedBranchProp]);
 
-  // Year options
+  // Year options for the selected course dynamically as per COURSE_CONFIG
   const yearOptions = useMemo(() => {
-    return ['1st Year', '2nd Year', '3rd Year', '4th Year'];
-  }, []);
+    return getYearsForCourse(selectedCourse);
+  }, [selectedCourse]);
 
-  // Semester tabs
+  // Semester options: strictly the corresponding semesters for the selected course and year
   const semesterTabs = useMemo(() => {
-    return ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4'];
-  }, []);
+    const norm = normalizeCourseKey(selectedCourse);
+    const normYear = normalizeYearStr(selectedYear);
+    const sems = COURSE_CONFIG[norm]?.sems?.[normYear] || (norm === 'BTech' ? (
+      normYear === '1st Year' ? [1, 2] :
+      normYear === '2nd Year' ? [3, 4] :
+      normYear === '3rd Year' ? [5, 6] : [7, 8]
+    ) : [1, 2]);
+    return sems.map(s => `Semester ${s}`);
+  }, [selectedCourse, selectedYear]);
+
+  // Automatically keep selectedSem aligned with supported semesters of selected course & year
+  useEffect(() => {
+    const norm = normalizeCourseKey(selectedCourse);
+    const normYear = normalizeYearStr(selectedYear);
+    const sems = COURSE_CONFIG[norm]?.sems?.[normYear] || (norm === 'BTech' ? (
+      normYear === '1st Year' ? [1, 2] :
+      normYear === '2nd Year' ? [3, 4] :
+      normYear === '3rd Year' ? [5, 6] : [7, 8]
+    ) : [1, 2]);
+    const validTabs = sems.map(s => `Semester ${s}`);
+    if (!validTabs.includes(selectedSem)) {
+      setSelectedSem(validTabs[0] || 'Semester 1');
+    }
+  }, [selectedCourse, selectedYear, selectedSem]);
 
   // Course change handler
   const handleCourseChange = (newCourse) => {
@@ -231,7 +253,9 @@ export default function MobilePYQsScreen({
     const years = getYearsForCourse(norm);
     const defaultYear = years[0] || '1st Year';
     setSelectedYear(defaultYear);
-    setSelectedSem('Semester 1');
+
+    const sems = COURSE_CONFIG[norm]?.sems?.[defaultYear] || [1, 2];
+    setSelectedSem(`Semester ${sems[0] || 1}`);
 
     if (onSelectCourse) onSelectCourse(norm);
     if (onSelectYear) onSelectYear(defaultYear);
@@ -241,10 +265,13 @@ export default function MobilePYQsScreen({
   const handleYearChange = (newYear) => {
     const normYear = normalizeYearStr(newYear);
     setSelectedYear(normYear);
-    if (normYear === '1st Year') setSelectedSem('Semester 1');
-    else if (normYear === '2nd Year') setSelectedSem('Semester 3');
-    else if (normYear === '3rd Year') setSelectedSem('Semester 5');
-    else if (normYear === '4th Year') setSelectedSem('Semester 7');
+    const norm = normalizeCourseKey(selectedCourse);
+    const sems = COURSE_CONFIG[norm]?.sems?.[normYear] || (norm === 'BTech' ? (
+      normYear === '1st Year' ? [1, 2] :
+      normYear === '2nd Year' ? [3, 4] :
+      normYear === '3rd Year' ? [5, 6] : [7, 8]
+    ) : [1, 2]);
+    setSelectedSem(`Semester ${sems[0] || 1}`);
     if (onSelectYear) onSelectYear(normYear);
   };
 
