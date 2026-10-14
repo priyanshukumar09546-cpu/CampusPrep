@@ -151,14 +151,38 @@ export default function ProgressPage({ onNavigate, onOpenAuth }) {
     title: '', category: 'custom', targetValue: 1, unit: 'hours', priority: 'medium', dueDate: ''
   });
 
-  // Auth check
-  const isLoggedIn = !!(localStorage.getItem('token') || sessionStorage.getItem('token'));
+  // Auth check across all supported keys
+  const checkIsLoggedIn = () => {
+    return !!(
+      localStorage.getItem('professorvirus_token') ||
+      sessionStorage.getItem('professorvirus_token') ||
+      localStorage.getItem('token') ||
+      sessionStorage.getItem('token') ||
+      localStorage.getItem('professorvirus_user') ||
+      sessionStorage.getItem('professorvirus_user') ||
+      localStorage.getItem('campusprep_auth_user')
+    );
+  };
+
+  const [isLoggedIn, setIsLoggedIn] = useState(checkIsLoggedIn);
+
+  useEffect(() => {
+    const handleAuthChange = () => {
+      setIsLoggedIn(checkIsLoggedIn());
+    };
+    window.addEventListener('auth_state_changed', handleAuthChange);
+    window.addEventListener('storage', handleAuthChange);
+    return () => {
+      window.removeEventListener('auth_state_changed', handleAuthChange);
+      window.removeEventListener('storage', handleAuthChange);
+    };
+  }, []);
 
   // ========================================================================
   // DATA LOADER
   // ========================================================================
   const loadAllData = useCallback(async (isRefresh = false) => {
-    if (!isLoggedIn) {
+    if (!checkIsLoggedIn()) {
       setLoading(false);
       return;
     }
@@ -295,7 +319,7 @@ export default function ProgressPage({ onNavigate, onOpenAuth }) {
   const quizAttempts = quizPerf?.attempts || [];
 
   const completedTopicIds = useMemo(() => {
-    return new Set(topicsData.filter(t => t.status === 'completed').map(t => t.topicId));
+    return new Set((topicsData || []).filter(t => t && t.status === 'completed').map(t => t.topicId));
   }, [topicsData]);
 
   // Current Subject for topic progress
@@ -634,7 +658,7 @@ export default function ProgressPage({ onNavigate, onOpenAuth }) {
                   {trendData.length > 0 ? (
                     <div style={{ position: 'relative', height: 210 }}>
                       {(() => {
-                        const maxMin = Math.max(...trendData.map(d => d.minutes), 1);
+                        const maxMin = Math.max(...trendData.map(d => Number(d?.minutes) || 0), 1);
                         const steps = [0, Math.round(maxMin * 0.33), Math.round(maxMin * 0.66), maxMin];
                         return (
                           <div style={{ position: 'absolute', left: 0, top: 0, bottom: 26, width: 44, display: 'flex', flexDirection: 'column-reverse', justifyContent: 'space-between' }}>
@@ -646,8 +670,8 @@ export default function ProgressPage({ onNavigate, onOpenAuth }) {
                       })()}
                       <div style={{ marginLeft: 50, display: 'flex', alignItems: 'flex-end', gap: trendData.length > 14 ? 3 : 8, height: 180 }}>
                         {trendData.map((d, i) => {
-                          const maxMin = Math.max(...trendData.map(x => x.minutes), 1);
-                          const barH = Math.max(3, (d.minutes / maxMin) * 160);
+                          const maxMin = Math.max(...trendData.map(x => Number(x?.minutes) || 0), 1);
+                          const barH = Math.max(3, ((Number(d?.minutes) || 0) / maxMin) * 160);
                           const isToday = d.date === new Date().toISOString().split('T')[0];
                           return (
                             <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5 }}>

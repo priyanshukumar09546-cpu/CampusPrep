@@ -84,7 +84,7 @@ function getSubjectIcon(name = '', code = '') {
     return { icon: Users, bg: '#FEF3C7', color: '#D97706' };
   }
   if (n.includes('electronic') || n.includes('digital') || n.includes('computer') || n.includes('hardware')) {
-    return { icon: Laptop, bg: '#F3E8FF', color: '#9333EA' };
+    return { icon: Monitor, bg: '#F3E8FF', color: '#9333EA' };
   }
   if (n.includes('communication') || n.includes('english') || n.includes('soft skill') || n.includes('human value')) {
     return { icon: FileText, bg: '#FFE4E6', color: '#E11D48' };

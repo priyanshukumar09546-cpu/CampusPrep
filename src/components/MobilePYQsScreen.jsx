@@ -171,7 +171,9 @@ export default function MobilePYQsScreen({
   onSelectYear,
   onSelectBranch,
   onOpenPdf, 
-  onRequestPyq 
+  onRequestPyq,
+  onNavigate,
+  onOpenAuth
 }) {
   const normKey = normalizeCourseKey(courseKey);
 

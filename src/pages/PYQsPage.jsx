@@ -249,6 +249,8 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
             });
             setIsRequestModalOpen(true);
           }}
+          onNavigate={onNavigate}
+          onOpenAuth={onOpenAuth}
         />
       </div>
 

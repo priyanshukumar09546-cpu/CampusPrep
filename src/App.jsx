@@ -499,9 +499,9 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
-      {/* Responsive Navbar: On desktop always shown. On mobile, hidden on home and more because they render their own compact brand headers */}
+      {/* Responsive Navbar: On desktop always shown. On mobile, hidden on pages that render their own dedicated compact brand headers (home, more, notes, pyqs, progress) */}
       {!hideTopNav && (
-        <div className={(activeTab === 'more' || activeTab === 'home' || !activeTab) ? 'pv-hide-on-mobile' : ''}>
+        <div className={(activeTab === 'more' || activeTab === 'home' || activeTab === 'notes' || activeTab === 'pyqs' || activeTab === 'progress' || !activeTab) ? 'pv-hide-on-mobile' : ''}>
           <Navbar
             onSearch={(query) => handleSearch(query, selectedBranch)}
             onOpenAuth={handleOpenAuth}

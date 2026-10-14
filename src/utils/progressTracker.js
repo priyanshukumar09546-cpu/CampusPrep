@@ -7,7 +7,11 @@
 import { API_URL } from '../config/api';
 
 function getAuthToken() {
-  return localStorage.getItem('token') || sessionStorage.getItem('token') || '';
+  return localStorage.getItem('professorvirus_token') ||
+    sessionStorage.getItem('professorvirus_token') ||
+    localStorage.getItem('token') ||
+    sessionStorage.getItem('token') ||
+    '';
 }
 
 function getUserTimezoneOffset() {

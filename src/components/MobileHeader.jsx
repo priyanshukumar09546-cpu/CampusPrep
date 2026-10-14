@@ -69,7 +69,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
         <>
           {/* HOME BRANDING — Real ProfessorVirus Logo & Typography from reference */}
           <div 
-            onClick={() => onNavigate('home')}
+            onClick={() => onNavigate ? onNavigate('home') : (window.location.href = '/')}
             style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', minWidth: 0, flex: '1 1 auto', overflow: 'hidden' }}
           >
             <div 
@@ -175,7 +175,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
             <button
               type="button"
-              onClick={() => onNavigate('home')}
+              onClick={() => onNavigate ? onNavigate('home') : (window.location.href = '/')}
               aria-label="Go back to Home"
               style={{
                 width: '34px',
@@ -211,7 +211,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
             <button
               type="button"
-              onClick={() => onNavigate('notes')}
+              onClick={() => onNavigate ? onNavigate('notes') : (window.location.href = '/notes')}
               aria-label="Search study material"
               style={{
                 width: '34px',
