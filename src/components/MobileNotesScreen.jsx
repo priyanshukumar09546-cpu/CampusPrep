@@ -92,6 +92,25 @@ function getSubjectIcon(name = '', code = '') {
   return { icon: BookOpen, bg: '#EEF2FF', color: '#6366F1' };
 }
 
+// Helper to accurately extract unit number from a note object without fabricating
+function extractNoteUnit(note) {
+  if (!note) return null;
+  if (note.unit !== undefined && note.unit !== null && note.unit !== '') {
+    const u = Number(note.unit);
+    if (!isNaN(u) && u > 0) return u;
+  }
+  if (note.unitNumber !== undefined && note.unitNumber !== null && note.unitNumber !== '') {
+    const u = Number(note.unitNumber);
+    if (!isNaN(u) && u > 0) return u;
+  }
+  const title = String(note.title || note.name || '');
+  const match = title.match(/unit\s*[-:_#]?\s*([1-9])/i);
+  if (match) {
+    return parseInt(match[1], 10);
+  }
+  return null;
+}
+
 // Crisp inline SVG matching the Notes Hero Banner in Image 1
 function NotesHeroArt() {
   return (
@@ -188,9 +207,17 @@ export default function MobileNotesScreen({
   const [selectedCourse, setSelectedCourse] = useState(normKey || 'BTech');
   const [selectedBranch, setSelectedBranch] = useState(selectedBranchProp || 'CSE');
   const [selectedYear, setSelectedYear] = useState(normalizeYearStr(selectedYearProp) || '1st Year');
-  const [selectedSem, setSelectedSem] = useState('Semester 1');
+  const [selectedSem, setSelectedSem] = useState(() => {
+    const norm = normalizeCourseKey(courseKey) || 'BTech';
+    const normYear = normalizeYearStr(selectedYearProp) || '1st Year';
+    const sems = COURSE_CONFIG[norm]?.sems?.[normYear] || [1, 2];
+    return `Semester ${sems[0] || 1}`;
+  });
   const [searchQuery, setSearchQuery] = useState('');
   const [isRefreshing, setIsRefreshing] = useState(false);
+
+  // Unit filter state for active subject details
+  const [selectedUnitFilter, setSelectedUnitFilter] = useState('ALL');
 
   // Modals
   const [showAllCoursesModal, setShowAllCoursesModal] = useState(false);
@@ -201,6 +228,11 @@ export default function MobileNotesScreen({
   // 2. Active Subject Detail Screen (Full Unit notes & PYQs)
   const [activeSubjectDetail, setActiveSubjectDetail] = useState(null);
   const [activeDetailTab, setActiveDetailTab] = useState('notes'); // 'notes' | 'pyqs' | 'syllabus'
+
+  // Reset unit filter when subject changes
+  useEffect(() => {
+    setSelectedUnitFilter('ALL');
+  }, [activeSubjectDetail]);
 
   // Live subject data fetched from database API
   const [subjectLiveNotes, setSubjectLiveNotes] = useState([]);
@@ -227,15 +259,29 @@ export default function MobileNotesScreen({
     }
   }, [selectedBranchProp]);
 
-  // Year options for the selected course as per COURSE_CONFIG
+  // Year options for the selected course dynamically as per COURSE_CONFIG
   const yearOptions = useMemo(() => {
-    return ['1st Year', '2nd Year', '3rd Year', '4th Year'];
-  }, []);
+    return getYearsForCourse(selectedCourse);
+  }, [selectedCourse]);
 
-  // Semester options: Semester 1, Semester 2, Semester 3, Semester 4
+  // Semester options: strictly the corresponding semesters for the selected course and year
   const semesterTabs = useMemo(() => {
-    return ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4'];
-  }, []);
+    const norm = normalizeCourseKey(selectedCourse);
+    const normYear = normalizeYearStr(selectedYear);
+    const sems = COURSE_CONFIG[norm]?.sems?.[normYear] || [1, 2];
+    return sems.map(s => `Semester ${s}`);
+  }, [selectedCourse, selectedYear]);
+
+  // Automatically keep selectedSem aligned with supported semesters of selected course & year
+  useEffect(() => {
+    const norm = normalizeCourseKey(selectedCourse);
+    const normYear = normalizeYearStr(selectedYear);
+    const sems = COURSE_CONFIG[norm]?.sems?.[normYear] || [1, 2];
+    const validTabs = sems.map(s => `Semester ${s}`);
+    if (!validTabs.includes(selectedSem)) {
+      setSelectedSem(validTabs[0] || 'Semester 1');
+    }
+  }, [selectedCourse, selectedYear, selectedSem]);
 
   // Course change handler
   const handleCourseChange = (newCourse) => {
@@ -248,23 +294,26 @@ export default function MobileNotesScreen({
     const years = getYearsForCourse(norm);
     const defaultYear = years[0] || '1st Year';
     setSelectedYear(defaultYear);
-    setSelectedSem('Semester 1');
+
+    const sems = COURSE_CONFIG[norm]?.sems?.[defaultYear] || [1, 2];
+    setSelectedSem(`Semester ${sems[0] || 1}`);
     setActiveSubjectDetail(null);
 
     if (onSelectCourse) onSelectCourse(norm);
     if (onSelectYear) onSelectYear(defaultYear);
   };
 
-  // Year change handler
+  // Year change handler: sets selectedYear and auto-selects first corresponding semester of that year
   const handleYearChange = (newYear) => {
     const normYear = normalizeYearStr(newYear);
     setSelectedYear(normYear);
-    // Auto adjust semester based on year if needed
-    if (normYear === '1st Year') setSelectedSem('Semester 1');
-    else if (normYear === '2nd Year') setSelectedSem('Semester 3');
-    else if (normYear === '3rd Year') setSelectedSem('Semester 5');
-    else if (normYear === '4th Year') setSelectedSem('Semester 7');
+
+    const norm = normalizeCourseKey(selectedCourse);
+    const sems = COURSE_CONFIG[norm]?.sems?.[normYear] || [1, 2];
+    const defaultSem = `Semester ${sems[0] || 1}`;
+    setSelectedSem(defaultSem);
     setActiveSubjectDetail(null);
+
     if (onSelectYear) onSelectYear(normYear);
   };
 
@@ -396,6 +445,49 @@ export default function MobileNotesScreen({
       isSubscribed = false;
     };
   }, [activeSubjectDetail, selectedCourse, selectedBranch]);
+
+  // Supported units for the active subject (from AKTU syllabus or notes data)
+  const supportedUnits = useMemo(() => {
+    if (!activeSubjectDetail) return [1, 2, 3, 4, 5];
+
+    const syllabus = getAktuSyllabusForSubject(activeSubjectDetail.code, activeSubjectDetail.name);
+    const syllabusUnits = (syllabus?.units || [])
+      .map(u => Number(u.unitNo || u.unit))
+      .filter(u => !isNaN(u) && u > 0);
+
+    const notesUnits = subjectLiveNotes
+      .map(n => extractNoteUnit(n))
+      .filter(u => u !== null);
+
+    const allUnits = new Set([...syllabusUnits, ...notesUnits]);
+
+    // If syllabus has specific units, use those (plus any units found in notes)
+    if (syllabusUnits.length > 0) {
+      const sorted = Array.from(allUnits).sort((a, b) => a - b);
+      return sorted.length > 0 ? sorted : [1, 2, 3, 4, 5];
+    }
+
+    // If notes have explicit units, adapt to max unit (e.g. 4 or 5)
+    if (notesUnits.length > 0) {
+      const maxU = Math.max(...notesUnits);
+      const count = maxU >= 5 ? 5 : (maxU === 4 ? 4 : 5);
+      const arr = [];
+      for (let i = 1; i <= count; i++) arr.push(i);
+      return arr;
+    }
+
+    // Default standard AKTU university curriculum has 5 units
+    return [1, 2, 3, 4, 5];
+  }, [activeSubjectDetail, subjectLiveNotes]);
+
+  // Filtered notes list honoring selectedUnitFilter
+  const filteredNotes = useMemo(() => {
+    if (selectedUnitFilter === 'ALL') {
+      return subjectLiveNotes;
+    }
+    const targetUnit = Number(selectedUnitFilter);
+    return subjectLiveNotes.filter(note => extractNoteUnit(note) === targetUnit);
+  }, [subjectLiveNotes, selectedUnitFilter]);
 
   // Dynamic note count calculation from real database or local data
   const getSubjectCounts = (sub, idx) => {
@@ -611,6 +703,89 @@ export default function MobileNotesScreen({
             {/* TAB CONTENT 1: Notes */}
             {activeDetailTab === 'notes' && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {/* Compact Unit Filter Strip */}
+                {!isLoadingDetail && subjectLiveNotes.length > 0 && (
+                  <div 
+                    aria-label="Filter notes by unit"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      overflowX: 'auto',
+                      WebkitOverflowScrolling: 'touch',
+                      scrollbarWidth: 'none',
+                      msOverflowStyle: 'none',
+                      padding: '2px 0 6px',
+                      marginBottom: '2px'
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setSelectedUnitFilter('ALL')}
+                      style={{
+                        padding: '5px 12px',
+                        borderRadius: '9999px',
+                        border: selectedUnitFilter === 'ALL' ? 'none' : '1.5px solid #E2E8F0',
+                        backgroundColor: selectedUnitFilter === 'ALL' ? '#6366F1' : '#FFFFFF',
+                        color: selectedUnitFilter === 'ALL' ? '#FFFFFF' : '#475569',
+                        fontSize: '11px',
+                        fontWeight: selectedUnitFilter === 'ALL' ? 800 : 700,
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0,
+                        cursor: 'pointer',
+                        boxShadow: selectedUnitFilter === 'ALL' ? '0 2px 6px rgba(99, 102, 241, 0.22)' : 'none',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      All Units {subjectLiveNotes.length > 0 ? `(${subjectLiveNotes.length})` : ''}
+                    </button>
+
+                    {supportedUnits.map(unitNum => {
+                      const isSelected = selectedUnitFilter === unitNum;
+                      const countForUnit = subjectLiveNotes.filter(n => extractNoteUnit(n) === unitNum).length;
+
+                      return (
+                        <button
+                          key={unitNum}
+                          type="button"
+                          onClick={() => setSelectedUnitFilter(unitNum)}
+                          style={{
+                            padding: '5px 12px',
+                            borderRadius: '9999px',
+                            border: isSelected ? 'none' : '1.5px solid #E2E8F0',
+                            backgroundColor: isSelected ? '#6366F1' : '#FFFFFF',
+                            color: isSelected ? '#FFFFFF' : '#475569',
+                            fontSize: '11px',
+                            fontWeight: isSelected ? 800 : 700,
+                            whiteSpace: 'nowrap',
+                            flexShrink: 0,
+                            cursor: 'pointer',
+                            boxShadow: isSelected ? '0 2px 6px rgba(99, 102, 241, 0.22)' : 'none',
+                            transition: 'all 0.15s ease',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px'
+                          }}
+                        >
+                          <span>Unit {unitNum}</span>
+                          {countForUnit > 0 && (
+                            <span style={{
+                              fontSize: '9.5px',
+                              fontWeight: 800,
+                              padding: '1px 5px',
+                              borderRadius: '9999px',
+                              backgroundColor: isSelected ? 'rgba(255, 255, 255, 0.28)' : '#EEF2FF',
+                              color: isSelected ? '#FFFFFF' : '#6366F1'
+                            }}>
+                              {countForUnit}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
                 {isLoadingDetail ? (
                   <div style={{ textAlign: 'center', padding: '24px 10px', color: '#64748B' }}>
                     <Sparkles size={24} style={{ animation: 'spin 1.5s linear infinite', color: '#6366F1', margin: '0 auto 8px' }} />
@@ -650,10 +825,61 @@ export default function MobileNotesScreen({
                       </button>
                     )}
                   </div>
+                ) : filteredNotes.length === 0 ? (
+                  <div style={{
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: '14px',
+                    padding: '24px 14px',
+                    textAlign: 'center',
+                    border: '1.5px dashed #CBD5E1',
+                    color: '#64748B'
+                  }}>
+                    <BookOpen size={28} style={{ color: '#94A3B8', marginBottom: '8px' }} />
+                    <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', margin: '0 0 4px' }}>
+                      No Unit {selectedUnitFilter} Notes Available
+                    </h4>
+                    <p style={{ fontSize: '11px', margin: '0 0 14px 0', lineHeight: 1.4 }}>
+                      Handwritten notes for Unit {selectedUnitFilter} of {activeSubjectDetail.name} are currently being verified.
+                    </p>
+                    <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+                      <button
+                        onClick={() => setSelectedUnitFilter('ALL')}
+                        style={{
+                          backgroundColor: '#EEF2FF',
+                          color: '#6366F1',
+                          border: '1px solid #DDD6FE',
+                          borderRadius: '8px',
+                          padding: '7px 14px',
+                          fontSize: '11.5px',
+                          fontWeight: 700,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Show All Units ({subjectLiveNotes.length})
+                      </button>
+                      {onRequestNotes && (
+                        <button
+                          onClick={() => onRequestNotes(activeSubjectDetail, selectedUnitFilter)}
+                          style={{
+                            backgroundColor: '#6366F1',
+                            color: '#FFFFFF',
+                            border: 'none',
+                            borderRadius: '8px',
+                            padding: '7px 14px',
+                            fontSize: '11.5px',
+                            fontWeight: 700,
+                            cursor: 'pointer'
+                          }}
+                        >
+                          Request Unit {selectedUnitFilter}
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 ) : (
-                  subjectLiveNotes.map((note, idx) => {
+                  filteredNotes.map((note, idx) => {
                     const rawUrl = note.driveUrl || note.fileUrl || note.pdfUrl || note.url || note.resourceUrl;
-                    const unitNo = note.unit || note.unitNumber || (idx + 1);
+                    const unitNo = extractNoteUnit(note);
 
                     return (
                       <div
@@ -670,12 +896,12 @@ export default function MobileNotesScreen({
                           <span style={{
                             fontSize: '10px',
                             fontWeight: 800,
-                            backgroundColor: '#EEF2FF',
-                            color: '#6366F1',
+                            backgroundColor: unitNo ? '#EEF2FF' : '#F1F5F9',
+                            color: unitNo ? '#6366F1' : '#475569',
                             padding: '2px 6px',
                             borderRadius: '4px'
                           }}>
-                            Unit {unitNo}
+                            {unitNo ? `Unit ${unitNo}` : (note.category || 'Complete Notes')}
                           </span>
                           <span style={{ fontSize: '10px', color: '#64748B', fontWeight: 600 }}>
                             {note.source || 'Curated PDF'}
@@ -683,7 +909,7 @@ export default function MobileNotesScreen({
                         </div>
 
                         <h4 style={{ fontSize: '12.5px', fontWeight: 800, color: '#0F172A', margin: '0 0 10px', lineHeight: 1.3 }}>
-                          {note.title || `${activeSubjectDetail.name} — Unit ${unitNo}`}
+                          {note.title || (unitNo ? `${activeSubjectDetail.name} — Unit ${unitNo}` : activeSubjectDetail.name)}
                         </h4>
 
                         <div style={{ display: 'flex', gap: '8px' }}>
@@ -693,7 +919,7 @@ export default function MobileNotesScreen({
                                 onOpenViewer({
                                   note,
                                   subject: { name: activeSubjectDetail.name, code: activeSubjectDetail.code },
-                                  unit: unitNo || 1
+                                  unit: unitNo || 'All'
                                 });
                               } else if (rawUrl) {
                                 window.open(rawUrl, '_blank', 'noopener,noreferrer');
@@ -1149,10 +1375,10 @@ export default function MobileNotesScreen({
             Select Year
           </h2>
 
-          {/* 4-Tab Segmented Pill */}
+          {/* Year Segmented Pill */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: `repeat(${yearOptions.length}, minmax(0, 1fr))`,
             backgroundColor: '#FFFFFF',
             border: '1.5px solid #E2E8F0',
             borderRadius: '9999px',
@@ -1189,7 +1415,7 @@ export default function MobileNotesScreen({
           {/* Semester Selector Horizontal Pills */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: `repeat(${semesterTabs.length}, minmax(0, 1fr))`,
             backgroundColor: '#FFFFFF',
             border: '1.5px solid #E2E8F0',
             borderRadius: '9999px',
@@ -1628,7 +1854,7 @@ export default function MobileNotesScreen({
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '14px' }}>
               <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748B' }}>SEMESTER FILTER</span>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: `repeat(${semesterTabs.length}, minmax(0, 1fr))`, gap: '6px' }}>
                 {semesterTabs.map(sem => (
                   <button
                     key={sem}
