@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowLeft, Bell, Search, GraduationCap, Sparkles, SlidersHorizontal } from 'lucide-react';
 
 export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onOpenSearch, selectedCourse = 'B.Tech' }) {
-  const isHome = activeTab === 'home' || !activeTab;
+  const isHome = activeTab === 'home' || activeTab === 'more' || !activeTab;
 
   const getPageTitle = () => {
     switch (activeTab) {
