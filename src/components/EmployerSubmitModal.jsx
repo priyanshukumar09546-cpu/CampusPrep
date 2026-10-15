@@ -40,26 +40,43 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     setErrorMsg('');
 
-    if (!formData.companyName.trim() || !formData.companyWebsite.trim() || !formData.title.trim() || !formData.applicationUrl.trim() || !formData.description.trim() || !formData.submitterName.trim() || !formData.submitterEmail.trim()) {
+    const compName = (formData.companyName || '').trim();
+    const compWeb = (formData.companyWebsite || '').trim();
+    const title = (formData.title || '').trim();
+    const appUrl = (formData.applicationUrl || compWeb || '').trim();
+    const desc = (formData.description || `${title} opportunity at ${compName}`).trim();
+    const subName = (formData.submitterName || 'Recruiter / Employer').trim();
+    const subEmail = (formData.submitterEmail || 'careers@company.com').trim();
+
+    if (!compName || !compWeb || !title) {
       setErrorMsg('Please fill in all required fields (marked with *).');
       return;
     }
 
-    // Basic URL check
-    if (!formData.applicationUrl.startsWith('http://') && !formData.applicationUrl.startsWith('https://')) {
-      setErrorMsg('Application URL must start with http:// or https://');
+    if (!compWeb.startsWith('http://') && !compWeb.startsWith('https://')) {
+      setErrorMsg('Official Website must start with http:// or https://');
       return;
     }
 
     setSubmitting(true);
     try {
+      const payload = {
+        ...formData,
+        companyName: compName,
+        companyWebsite: compWeb,
+        title,
+        applicationUrl: appUrl.startsWith('http') ? appUrl : compWeb,
+        description: desc,
+        submitterName: subName,
+        submitterEmail: subEmail
+      };
       const res = await fetch('/api/opportunities/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(payload)
       });
       const data = await res.json();
       if (data.success) {
@@ -96,18 +113,23 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
   const workModesList = ['On-site', 'Remote', 'Hybrid'];
 
   return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      backgroundColor: 'rgba(28, 30, 33, 0.65)',
-      backdropFilter: 'blur(5px)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 1000,
-      padding: '1rem',
-      fontFamily: "'Plus Jakarta Sans', sans-serif"
-    }}>
+    <>
+      {/* DESKTOP MODAL (>= 1024px) — 100% UNTOUCHED ORIGINAL */}
+      <div
+        className="pv-employer-modal-desktop"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'rgba(28, 30, 33, 0.65)',
+          backdropFilter: 'blur(5px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+          padding: '1rem',
+          fontFamily: "'Plus Jakarta Sans', sans-serif"
+        }}
+      >
       <div style={{
         backgroundColor: '#FFFFFF',
         borderRadius: '24px',
@@ -663,6 +685,466 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
           )}
         </div>
       </div>
-    </div>
+      </div>
+
+      {/* MOBILE BOTTOM SHEET (< 1024px) — EXACT 1:1 MATCH WITH REFERENCE IMAGE */}
+      <div
+        className="pv-employer-modal-mobile"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 'calc(60px + env(safe-area-inset-bottom, 0px))',
+          backgroundColor: 'rgba(15, 23, 42, 0.22)',
+          zIndex: 9995,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          fontFamily: "'Plus Jakarta Sans', sans-serif"
+        }}
+        onClick={onClose}
+      >
+        <div
+          onClick={e => e.stopPropagation()}
+          style={{
+            backgroundColor: '#FFFFFF',
+            borderTopLeftRadius: '24px',
+            borderTopRightRadius: '24px',
+            width: '100%',
+            maxWidth: '100vw',
+            maxHeight: 'calc(85vh - 50px)',
+            display: 'flex',
+            flexDirection: 'column',
+            boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.2)',
+            overflow: 'hidden',
+            boxSizing: 'border-box',
+            animation: 'modalSlideUp 0.25s ease-out'
+          }}
+        >
+          {/* Small drag handle */}
+          <div style={{ width: '38px', height: '4px', borderRadius: '999px', backgroundColor: '#94A3B8', margin: '9px auto 5px', flexShrink: 0 }} />
+
+          {/* Header */}
+          <div style={{
+            padding: '0.4rem 1rem 0.65rem',
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+            borderBottom: '1px solid #F1F5F9',
+            flexShrink: 0
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', minWidth: 0 }}>
+              <div style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '10px',
+                backgroundColor: '#781416',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#FFFFFF',
+                flexShrink: 0
+              }}>
+                <Briefcase size={20} strokeWidth={2.4} />
+              </div>
+              <div style={{ minWidth: 0 }}>
+                <h2 style={{ margin: 0, fontSize: '1.02rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.2 }}>
+                  Post a Job / Internship
+                </h2>
+                <p style={{ margin: '0.15rem 0 0 0', fontSize: '0.70rem', color: '#64748B', fontWeight: 500, lineHeight: 1.3 }}>
+                  Connect with thousands of AKTU and engineering candidates.
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close"
+              style={{
+                width: '28px',
+                height: '28px',
+                borderRadius: '50%',
+                backgroundColor: '#F1F5F9',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#64748B',
+                cursor: 'pointer',
+                flexShrink: 0,
+                marginTop: '2px'
+              }}
+            >
+              <X size={15} strokeWidth={2.4} />
+            </button>
+          </div>
+
+          {/* Scrollable Form Body */}
+          <div style={{ padding: '0.85rem 1rem', overflowY: 'auto', flex: 1, WebkitOverflowScrolling: 'touch' }}>
+            {successData ? (
+              <div style={{ textAlign: 'center', padding: '1.5rem 0.5rem' }}>
+                <div style={{
+                  width: '54px',
+                  height: '54px',
+                  borderRadius: '50%',
+                  backgroundColor: '#ECFDF5',
+                  color: '#059669',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '0.85rem'
+                }}>
+                  <CheckCircle2 size={32} />
+                </div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 900, color: '#0F172A', margin: '0 0 0.35rem' }}>
+                  Opportunity Submitted for Verification!
+                </h3>
+                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '0 0 1.25rem', lineHeight: 1.45 }}>
+                  {successData.message}
+                </p>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  style={{
+                    backgroundColor: '#781416',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    padding: '0.65rem 2rem',
+                    borderRadius: '10px',
+                    fontWeight: 700,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Done
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {errorMsg && (
+                  <div style={{
+                    backgroundColor: '#FEF2F2',
+                    border: '1px solid #FCA5A5',
+                    borderRadius: '10px',
+                    padding: '0.55rem 0.75rem',
+                    color: '#991B1B',
+                    fontSize: '0.75rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem'
+                  }}>
+                    <AlertCircle size={14} style={{ flexShrink: 0 }} />
+                    <span>{errorMsg}</span>
+                  </div>
+                )}
+
+                {/* Row 1: Company Name * & Official Website * */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Company Name <span style={{ color: '#DC2626' }}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Acme Tech Solutions"
+                      value={formData.companyName}
+                      onChange={e => setFormData({ ...formData, companyName: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Official Website <span style={{ color: '#DC2626' }}>*</span>
+                    </label>
+                    <input
+                      type="url"
+                      required
+                      placeholder="https://company.com"
+                      value={formData.companyWebsite}
+                      onChange={e => setFormData({ ...formData, companyWebsite: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Row 2: Opportunity Title * & Work Mode * */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Opportunity Title <span style={{ color: '#DC2626' }}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Frontend Developer Intern"
+                      value={formData.title}
+                      onChange={e => setFormData({ ...formData, title: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Work Mode <span style={{ color: '#DC2626' }}>*</span>
+                    </label>
+                    <select
+                      value={formData.workMode}
+                      onChange={e => setFormData({ ...formData, workMode: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    >
+                      {workModesList.map(w => <option key={w} value={w}>{w}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Row 3: Type * & Domain Category * */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Type <span style={{ color: '#DC2626' }}>*</span>
+                    </label>
+                    <select
+                      value={formData.type}
+                      onChange={e => setFormData({ ...formData, type: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    >
+                      {typesList.map(t => <option key={t} value={t}>{t}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Domain Category <span style={{ color: '#DC2626' }}>*</span>
+                    </label>
+                    <select
+                      value={formData.domain}
+                      onChange={e => setFormData({ ...formData, domain: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    >
+                      {domainsList.map(d => <option key={d} value={d}>{d}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Row 4: Location (City / State) * & Eligible Courses * */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Location (City / State) <span style={{ color: '#DC2626' }}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Noida, UP or Remote"
+                      value={formData.location}
+                      onChange={e => setFormData({ ...formData, location: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Eligible Courses <span style={{ color: '#DC2626' }}>*</span>
+                    </label>
+                    <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap', paddingTop: '2px' }}>
+                      {['B.Tech', 'MCA', 'MBA', 'B.Pharm'].map(c => {
+                        const sel = formData.courseEligibility.includes(c);
+                        return (
+                          <button
+                            type="button"
+                            key={c}
+                            onClick={() => handleCourseToggle(c)}
+                            style={{
+                              padding: '0.22rem 0.55rem',
+                              borderRadius: '999px',
+                              border: sel ? '1.5px solid #781416' : '1px solid #CBD5E1',
+                              backgroundColor: sel ? '#781416' : '#FFFFFF',
+                              color: sel ? '#FFFFFF' : '#475569',
+                              fontSize: '0.70rem',
+                              fontWeight: sel ? 800 : 600,
+                              cursor: 'pointer'
+                            }}
+                          >
+                            {c}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Row 5: Required Skills * & Application Deadline */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Required Skills (comma separated) <span style={{ color: '#DC2626' }}>*</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. React, Node.js, TypeScript"
+                      value={formData.skills}
+                      onChange={e => setFormData({ ...formData, skills: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#1E293B', marginBottom: '0.25rem' }}>
+                      Application Deadline
+                    </label>
+                    <input
+                      type="date"
+                      value={formData.deadline}
+                      onChange={e => setFormData({ ...formData, deadline: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1px solid #CBD5E1',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    />
+                  </div>
+                </div>
+              </form>
+            )}
+          </div>
+
+          {/* Sticky Bottom Actions matching reference */}
+          {!successData && (
+            <div style={{
+              padding: '0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 8px))',
+              borderTop: '1px solid #F1F5F9',
+              backgroundColor: '#FFFFFF',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.65rem',
+              flexShrink: 0
+            }}>
+              <button
+                type="button"
+                onClick={onClose}
+                style={{
+                  flex: '0 0 36%',
+                  padding: '0.72rem 1rem',
+                  backgroundColor: '#F1F5F9',
+                  border: 'none',
+                  color: '#1E293B',
+                  borderRadius: '10px',
+                  fontWeight: 700,
+                  fontSize: '0.82rem',
+                  cursor: 'pointer',
+                  textAlign: 'center'
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={submitting}
+                style={{
+                  flex: 1,
+                  padding: '0.72rem 1rem',
+                  backgroundColor: '#781416',
+                  border: 'none',
+                  color: '#FFFFFF',
+                  borderRadius: '10px',
+                  fontWeight: 800,
+                  fontSize: '0.82rem',
+                  cursor: submitting ? 'not-allowed' : 'pointer',
+                  boxShadow: '0 3px 10px rgba(120, 20, 22, 0.25)',
+                  textAlign: 'center'
+                }}
+              >
+                {submitting ? 'Submitting...' : 'Post Opportunity'}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
   );
 }

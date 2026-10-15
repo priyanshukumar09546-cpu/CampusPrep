@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="22" fill="#FFFFFF"/>
+  <rect x="18" y="32" width="14" height="14" rx="3" fill="#E42528"/>
+  <text x="25" y="43" fill="#FFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="11" text-anchor="middle">Z</text>
+  <rect x="36" y="32" width="14" height="14" rx="3" fill="#226BB3"/>
+  <text x="43" y="43" fill="#FFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="11" text-anchor="middle">O</text>
+  <rect x="54" y="32" width="14" height="14" rx="3" fill="#71AC38"/>
+  <text x="61" y="43" fill="#FFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="11" text-anchor="middle">H</text>
+  <rect x="72" y="32" width="14" height="14" rx="3" fill="#E9AC1B"/>
+  <text x="79" y="43" fill="#FFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="11" text-anchor="middle">O</text>
+</svg>

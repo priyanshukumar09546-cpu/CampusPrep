@@ -1,5 +1,5 @@
 // src/pages/ProjectIdeasPage.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Search, 
   Filter, 
@@ -31,7 +31,10 @@ import {
   Clock, 
   Users, 
   SlidersHorizontal,
-  LayoutGrid
+  LayoutGrid,
+  Home,
+  Check,
+  FileText
 } from 'lucide-react';
 import ProjectSubmitModal from '../components/ProjectSubmitModal';
 import ProjectGuideModal from '../components/ProjectGuideModal';
@@ -186,10 +189,68 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
     }
   };
 
+  const getProjectThumbnail = (proj) => {
+    if (!proj) return '/assets/projects/mern_ecommerce.jpg';
+    const slug = (proj.slug || proj.id || '').toLowerCase();
+    const title = (proj.title || '').toLowerCase();
+    if (slug.includes('mern') || title.includes('mern') || slug.includes('ecommerce') || title.includes('ecommerce') || slug.includes('proshop')) {
+      return '/assets/projects/mern_ecommerce.jpg';
+    }
+    if (slug.includes('resume') || title.includes('resume') || slug.includes('pyresparser') || title.includes('skill extractor')) {
+      return '/assets/projects/resume_analyzer.jpg';
+    }
+    if (proj.thumbnail && (proj.thumbnail.startsWith('http') || proj.thumbnail.startsWith('/'))) {
+      return proj.thumbnail;
+    }
+    return '/assets/projects/mern_ecommerce.jpg';
+  };
+
+  const mobileDomainsList = [
+    { id: 'all', name: 'All Domains', count: domainCounts.all || projects.length || 25, icon: LayoutGrid },
+    { id: 'web-development', name: 'Web Development', count: domainCounts['Web Development'] || 2, icon: Globe },
+    { id: 'ai-machine-learning', name: 'AI / Machine Learning', count: domainCounts['AI / Machine Learning'] || 3, icon: Brain },
+    { id: 'computer-vision', name: 'Computer Vision', count: domainCounts['Computer Vision'] || 4, icon: Eye },
+    { id: 'android-app-development', name: 'Android App Development', count: domainCounts['Android App Development'] || 2, icon: Smartphone },
+    { id: 'iot-embedded-systems', name: 'IoT & Embedded Systems', count: domainCounts['IoT & Embedded Systems'] || 2, icon: Cpu },
+    { id: 'cyber-security', name: 'Cyber Security', count: domainCounts['Cyber Security'] || 2, icon: Shield },
+    { id: 'cloud-devops', name: 'Cloud & DevOps', count: domainCounts['Cloud & DevOps'] || 2, icon: Cloud },
+    { id: 'blockchain-web3', name: 'Blockchain & Web3', count: domainCounts['Blockchain & Web3'] || 2, icon: Boxes },
+    { id: 'data-science', name: 'Data Science', count: domainCounts['Data Science'] || 2, icon: BarChart3 },
+    { id: 'college-academic', name: 'College & Academic', count: domainCounts['College & Academic'] || 1, icon: GraduationCap },
+    { id: 'game-development', name: 'Game Development', count: domainCounts['Game Development'] || 1, icon: Gamepad2 }
+  ];
+
+  const mobileDisplayProjects = useMemo(() => {
+    let list = projects;
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      list = list.filter(p => 
+        (p.title || '').toLowerCase().includes(q) ||
+        (p.description || '').toLowerCase().includes(q) ||
+        (p.tagline || '').toLowerCase().includes(q) ||
+        (p.technologies || []).some(t => t.toLowerCase().includes(q))
+      );
+    }
+    if (selectedDomain && selectedDomain !== 'all') {
+      list = list.filter(p => 
+        (p.domainId || '').toLowerCase() === selectedDomain.toLowerCase() ||
+        (p.domain || '').toLowerCase().includes(selectedDomain.toLowerCase())
+      );
+    } else {
+      // Prioritize MERN and AI Resume analyzer at top if default
+      const mernProj = list.find(p => (p.slug || '').includes('mern') || (p.title || '').toLowerCase().includes('mern'));
+      const resumeProj = list.find(p => (p.slug || '').includes('resume') || (p.title || '').toLowerCase().includes('resume'));
+      const others = list.filter(p => p !== mernProj && p !== resumeProj);
+      list = [mernProj, resumeProj, ...others].filter(Boolean);
+    }
+    return list;
+  }, [projects, searchQuery, selectedDomain]);
+
   return (
     <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F2421', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-      
-      {/* 1. BREADCRUMB */}
+      {/* DESKTOP VIEW (>= 1024px) — 100% UNTOUCHED ORIGINAL */}
+      <div className="pv-projects-desktop-only">
+        {/* 1. BREADCRUMB */}
       <div style={{ borderBottom: '1px solid #E8E2D5', backgroundColor: '#FFFFFF' }}>
         <div className="container" style={{ padding: '0.65rem 1rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#78716C' }}>
@@ -1054,6 +1115,756 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
           </div>
         </div>
       </section>
+      </div>
+
+      {/* =========================================================================
+          MOBILE VIEW (< 1024px) — EXACT 1:1 MATCH WITH REFERENCE IMAGE
+          ========================================================================= */}
+      <div className="pv-projects-mobile-only" style={{
+        backgroundColor: '#FAF7F2',
+        minHeight: '100vh',
+        padding: '0.75rem 1rem 5.5rem',
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.9rem',
+        fontFamily: "'Plus Jakarta Sans', sans-serif"
+      }}>
+        {/* A. Breadcrumb */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.78rem', color: '#64748B' }}>
+          <button
+            type="button"
+            onClick={() => onNavigate && onNavigate('home')}
+            style={{ background: 'none', border: 'none', color: '#64748B', display: 'flex', alignItems: 'center', gap: '0.25rem', padding: 0, cursor: 'pointer', fontSize: 'inherit', fontWeight: 600 }}
+          >
+            <Home size={14} />
+            <span>Home</span>
+          </button>
+          <ChevronRight size={13} color="#94A3B8" />
+          <button
+            type="button"
+            onClick={() => onNavigate && onNavigate('more')}
+            style={{ background: 'none', border: 'none', color: '#64748B', padding: 0, cursor: 'pointer', fontSize: 'inherit', fontWeight: 600 }}
+          >
+            More
+          </button>
+          <ChevronRight size={13} color="#94A3B8" />
+          <span style={{ color: '#0F172A', fontWeight: 800 }}>Project Ideas</span>
+        </div>
+
+        {/* B. Hero Section */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+          <div style={{
+            width: '46px',
+            height: '46px',
+            borderRadius: '12px',
+            backgroundColor: '#781416',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#FFFFFF',
+            flexShrink: 0,
+            boxShadow: '0 4px 12px rgba(120, 20, 22, 0.22)'
+          }}>
+            <Code2 size={22} strokeWidth={2.4} />
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+              <h1 style={{
+                margin: 0,
+                fontSize: '1.38rem',
+                fontWeight: 900,
+                color: '#0F172A',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.15
+              }}>
+                Project Ideas
+              </h1>
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                backgroundColor: '#FEF3C7',
+                color: '#B45309',
+                fontSize: '0.68rem',
+                fontWeight: 800,
+                padding: '0.18rem 0.5rem',
+                borderRadius: '6px'
+              }}>
+                <Star size={11} fill="#B45309" color="#B45309" />
+                Curated Engineering Projects & Source Code
+              </span>
+            </div>
+            <p style={{
+              margin: '0.2rem 0 0',
+              fontSize: '0.80rem',
+              color: '#475569',
+              fontWeight: 500,
+              lineHeight: 1.35
+            }}>
+              B.Tech final-year & mini project ideas by domain, with source code, guides and resources.
+            </p>
+          </div>
+        </div>
+
+        {/* C. 5 Feature Badges (wrapping pills matching reference) */}
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '0.45rem',
+          alignItems: 'center'
+        }}>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            backgroundColor: '#DCFCE7',
+            color: '#15803D',
+            border: '1px solid #BBF7D0',
+            borderRadius: '999px',
+            padding: '0.3rem 0.7rem',
+            fontSize: '0.72rem',
+            fontWeight: 700
+          }}>
+            <CheckCircle2 size={13} strokeWidth={2.5} />
+            Verified Source Code
+          </span>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            backgroundColor: '#FEE2E2',
+            color: '#B91C1C',
+            border: '1px solid #FECACA',
+            borderRadius: '999px',
+            padding: '0.3rem 0.7rem',
+            fontSize: '0.72rem',
+            fontWeight: 700
+          }}>
+            <FileText size={13} strokeWidth={2.5} />
+            AKTU Project Format
+          </span>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            backgroundColor: '#DBEAFE',
+            color: '#1D4ED8',
+            border: '1px solid #BFDBFE',
+            borderRadius: '999px',
+            padding: '0.3rem 0.7rem',
+            fontSize: '0.72rem',
+            fontWeight: 700
+          }}>
+            <GraduationCap size={13} strokeWidth={2.5} />
+            Viva Questions Included
+          </span>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            backgroundColor: '#EDE9FE',
+            color: '#6D28D9',
+            border: '1px solid #DDD6FE',
+            borderRadius: '999px',
+            padding: '0.3rem 0.7rem',
+            fontSize: '0.72rem',
+            fontWeight: 700
+          }}>
+            <BookOpen size={13} strokeWidth={2.5} />
+            Synopsis & SRS Guides
+          </span>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            backgroundColor: '#FFEDD5',
+            color: '#C2410C',
+            border: '1px solid #FED7AA',
+            borderRadius: '999px',
+            padding: '0.3rem 0.7rem',
+            fontSize: '0.72rem',
+            fontWeight: 700
+          }}>
+            <Shield size={13} strokeWidth={2.5} />
+            Zero Fake Links
+          </span>
+        </div>
+
+        {/* D. Search & Filter Controls */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+            <div style={{
+              flex: 1,
+              backgroundColor: '#FFFFFF',
+              border: '1.5px solid #E2E8F0',
+              borderRadius: '12px',
+              padding: '0.55rem 0.85rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.55rem',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+            }}>
+              <Search size={18} color="#94A3B8" style={{ flexShrink: 0 }} />
+              <input
+                type="text"
+                placeholder="Search project ideas by keyword, title, technology..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                style={{
+                  border: 'none',
+                  outline: 'none',
+                  width: '100%',
+                  fontSize: '0.82rem',
+                  color: '#0F172A',
+                  backgroundColor: 'transparent',
+                  fontFamily: 'inherit'
+                }}
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: 0 }}
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setSubmitModalOpen(true)}
+              title="Filter & Submit Project Idea"
+              aria-label="Filter & Submit"
+              style={{
+                width: '42px',
+                height: '42px',
+                borderRadius: '12px',
+                backgroundColor: '#FFFFFF',
+                border: '1.5px solid #E2E8F0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#0F172A',
+                cursor: 'pointer',
+                flexShrink: 0,
+                boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+              }}
+            >
+              <SlidersHorizontal size={18} strokeWidth={2.2} />
+            </button>
+          </div>
+
+          <div style={{ marginTop: '0.4rem', fontSize: '0.74rem', color: '#64748B' }}>
+            Showing <span style={{ color: '#781416', fontWeight: 800 }}>{mobileDisplayProjects.length}</span> verified projects
+          </div>
+        </div>
+
+        {/* E. PROJECT DOMAINS Panel */}
+        <div style={{
+          backgroundColor: '#FFFFFF',
+          borderRadius: '18px',
+          border: '1.5px solid #E2E8F0',
+          padding: '0.85rem 0.95rem',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+        }}>
+          {/* Header */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <LayoutGrid size={16} color="#0F172A" />
+              <h3 style={{ margin: 0, fontSize: '0.86rem', fontWeight: 900, color: '#0F172A', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
+                PROJECT DOMAINS
+              </h3>
+            </div>
+            <span style={{
+              backgroundColor: '#DCFCE7',
+              color: '#15803D',
+              fontSize: '0.68rem',
+              fontWeight: 800,
+              padding: '0.15rem 0.55rem',
+              borderRadius: '999px',
+              letterSpacing: '0.02em'
+            }}>
+              100% REAL
+            </span>
+          </div>
+
+          {/* 2-Column Domain Grid matching reference screenshot */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: '0.55rem'
+          }}>
+            {mobileDomainsList.map(domain => {
+              const isSelected = selectedDomain === domain.id || (domain.id === 'all' && selectedDomain === 'all');
+              const IconComp = domain.icon;
+              return (
+                <button
+                  key={domain.id}
+                  type="button"
+                  onClick={() => {
+                    setSelectedDomain(domain.id);
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.45rem',
+                    padding: '0.55rem 0.65rem',
+                    borderRadius: '12px',
+                    border: isSelected ? '1.5px solid #FCA5A5' : '1.5px solid #E2E8F0',
+                    backgroundColor: isSelected ? '#FEF2F2' : '#FFFFFF',
+                    textAlign: 'left',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                    minWidth: 0,
+                    boxSizing: 'border-box'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', minWidth: 0, flex: 1 }}>
+                    <div style={{
+                      color: isSelected ? '#781416' : '#334155',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <IconComp size={15} strokeWidth={2.2} />
+                    </div>
+                    <span style={{
+                      fontSize: '0.72rem',
+                      fontWeight: 800,
+                      color: isSelected ? '#781416' : '#0F172A',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      lineHeight: 1.2
+                    }}>
+                      {domain.name}
+                    </span>
+                  </div>
+
+                  {domain.id === 'all' ? (
+                    <span style={{
+                      backgroundColor: '#DC2626',
+                      color: '#FFFFFF',
+                      fontSize: '0.68rem',
+                      fontWeight: 800,
+                      padding: '0.08rem 0.45rem',
+                      borderRadius: '999px',
+                      flexShrink: 0
+                    }}>
+                      {domain.count}
+                    </span>
+                  ) : (
+                    <span style={{
+                      fontSize: '0.70rem',
+                      fontWeight: 700,
+                      color: isSelected ? '#781416' : '#64748B',
+                      flexShrink: 0
+                    }}>
+                      {domain.count}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* F. Project Cards List */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+          {loading ? (
+            <div style={{
+              padding: '2.5rem 1rem',
+              textAlign: 'center',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '16px',
+              border: '1.5px solid #E2E8F0',
+              color: '#64748B'
+            }}>
+              <div style={{
+                width: '32px',
+                height: '32px',
+                border: '3px solid #E2E8F0',
+                borderTopColor: '#781416',
+                borderRadius: '50%',
+                animation: 'spin 0.8s linear infinite',
+                margin: '0 auto 0.75rem'
+              }} />
+              <span style={{ fontSize: '0.82rem', fontWeight: 600 }}>Loading verified project ideas...</span>
+            </div>
+          ) : mobileDisplayProjects.length === 0 ? (
+            <div style={{
+              padding: '2rem 1rem',
+              textAlign: 'center',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '16px',
+              border: '1.5px solid #E2E8F0'
+            }}>
+              <Search size={28} color="#94A3B8" style={{ margin: '0 auto 0.5rem' }} />
+              <h4 style={{ margin: '0 0 0.25rem', fontSize: '0.92rem', fontWeight: 800, color: '#0F172A' }}>
+                No project ideas found
+              </h4>
+              <p style={{ margin: '0 0 0.85rem', fontSize: '0.76rem', color: '#64748B' }}>
+                No projects match your current filters.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedDomain('all');
+                }}
+                style={{
+                  padding: '0.45rem 1rem',
+                  borderRadius: '10px',
+                  border: 'none',
+                  backgroundColor: '#781416',
+                  color: '#FFFFFF',
+                  fontSize: '0.78rem',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                Reset Filters
+              </button>
+            </div>
+          ) : (
+            mobileDisplayProjects.map(project => {
+              const isBookmarked = bookmarkedIds.has(project.id);
+              const isWeb = (project.domain || '').toLowerCase().includes('web');
+              return (
+                <div
+                  key={project.id}
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    borderRadius: '18px',
+                    border: '1.5px solid #E2E8F0',
+                    overflow: 'hidden',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}
+                >
+                  {/* Project Thumbnail Image with Overlaid Domain Badge */}
+                  <div style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '175px',
+                    overflow: 'hidden',
+                    backgroundColor: '#F1F5F9'
+                  }}>
+                    <img
+                      src={getProjectThumbnail(project)}
+                      alt={project.title}
+                      loading="lazy"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/assets/projects/mern_ecommerce.jpg';
+                      }}
+                    />
+
+                    {/* Domain badge top-left overlay */}
+                    <div style={{
+                      position: 'absolute',
+                      top: '10px',
+                      left: '10px',
+                      backgroundColor: isWeb ? '#EFF6FF' : '#FAF5FF',
+                      color: isWeb ? '#1D4ED8' : '#7E22CE',
+                      border: isWeb ? '1px solid #BFDBFE' : '1px solid #E9D5FF',
+                      borderRadius: '8px',
+                      padding: '0.22rem 0.65rem',
+                      fontSize: '0.70rem',
+                      fontWeight: 800,
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.08)'
+                    }}>
+                      {project.domain || 'Engineering Project'}
+                    </div>
+                  </div>
+
+                  {/* Card Content Body */}
+                  <div style={{
+                    padding: '0.85rem 0.95rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.45rem'
+                  }}>
+                    {/* Top Row: Academic Level Badge + Bookmark Ribbon Icon */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <span style={{
+                        backgroundColor: '#FFEDD5',
+                        color: '#C2410C',
+                        fontSize: '0.68rem',
+                        fontWeight: 800,
+                        padding: '0.16rem 0.55rem',
+                        borderRadius: '6px'
+                      }}>
+                        {project.levelBadge || 'B.Tech Final Year Major'}
+                      </span>
+
+                      <button
+                        type="button"
+                        onClick={(e) => handleToggleBookmark(e, project.id)}
+                        disabled={bookmarkingId === project.id}
+                        title={isBookmarked ? 'Saved' : 'Save'}
+                        aria-label={isBookmarked ? 'Saved' : 'Save'}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          color: isBookmarked ? '#781416' : '#94A3B8',
+                          padding: '2px'
+                        }}
+                      >
+                        <Bookmark size={18} fill={isBookmarked ? '#781416' : 'none'} strokeWidth={2} />
+                      </button>
+                    </div>
+
+                    {/* Title */}
+                    <h3
+                      onClick={() => navigateToProject(project.slug)}
+                      style={{
+                        margin: '0.1rem 0 0',
+                        fontSize: '0.94rem',
+                        fontWeight: 900,
+                        color: '#0F172A',
+                        lineHeight: 1.3,
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {project.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p style={{
+                      margin: 0,
+                      fontSize: '0.74rem',
+                      color: '#64748B',
+                      lineHeight: 1.45
+                    }}>
+                      {project.tagline || project.description}
+                    </p>
+
+                    {/* Technologies Stack Chips */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', paddingTop: '0.1rem' }}>
+                      {(project.technologies || []).slice(0, 4).map((tech, tIdx) => (
+                        <span
+                          key={tIdx}
+                          style={{
+                            backgroundColor: '#F1F5F9',
+                            color: '#334155',
+                            fontSize: '0.68rem',
+                            fontWeight: 600,
+                            padding: '0.15rem 0.5rem',
+                            borderRadius: '6px'
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {(project.technologies || []).length > 4 && (
+                        <span
+                          style={{
+                            backgroundColor: '#F1F5F9',
+                            color: '#64748B',
+                            fontSize: '0.68rem',
+                            fontWeight: 600,
+                            padding: '0.15rem 0.5rem',
+                            borderRadius: '6px'
+                          }}
+                        >
+                          +{((project.technologies || []).length - 4)} more
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Bottom Metadata & Action Row: Verified Code + Rating + View Project Button */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      paddingTop: '0.5rem',
+                      borderTop: '1px solid #F1F5F9',
+                      marginTop: '0.15rem',
+                      fontSize: '0.74rem'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                        <CheckCircle2 size={13} color="#15803D" strokeWidth={2.8} />
+                        <span style={{ color: '#15803D', fontWeight: 800 }}>Verified Code</span>
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 800, color: '#0F172A' }}>
+                        <Star size={13} color="#F59E0B" fill="#F59E0B" />
+                        <span>4/5</span>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => navigateToProject(project.slug)}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          color: '#781416',
+                          fontSize: '0.76rem',
+                          fontWeight: 800,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '2px',
+                          padding: 0
+                        }}
+                      >
+                        <span>View Project</span>
+                        <ArrowRight size={13} strokeWidth={2.6} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+
+        {/* G. Why Build Projects? Panel */}
+        <div style={{
+          backgroundColor: '#FFFFFF',
+          borderRadius: '16px',
+          border: '1.5px solid #E2E8F0',
+          padding: '1rem',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.75rem' }}>
+            <Lightbulb size={18} color="#D97706" />
+            <h4 style={{ margin: 0, fontSize: '0.90rem', fontWeight: 900, color: '#0F172A' }}>
+              Why Build Projects?
+            </h4>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+            {[
+              'Stand Out in Campus Placements & Off-Campus Drives',
+              'Practical Mastery Beyond Textbook Theory',
+              'Crack Technical & System Design Interviews',
+              'Build an Impressive GitHub Portfolio',
+              'Gateway to National Hackathons & Tech Grants',
+              'Score Top Marks in External University Viva'
+            ].map((benefit, bIdx) => (
+              <div key={bIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.76rem', color: '#475569', lineHeight: 1.35 }}>
+                <Check size={13} color="#15803D" strokeWidth={3} style={{ flexShrink: 0, marginTop: '2px' }} />
+                <span>{benefit}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* H. Project Ideas Guide Panel */}
+        <div style={{
+          backgroundColor: '#FFFFFF',
+          borderRadius: '16px',
+          border: '1.5px solid #E2E8F0',
+          padding: '1rem',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.75rem' }}>
+            <BookOpen size={18} color="#781416" />
+            <h4 style={{ margin: 0, fontSize: '0.90rem', fontWeight: 900, color: '#0F172A' }}>
+              Project Ideas Guide
+            </h4>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+            {PROJECT_GUIDES.map(guide => (
+              <button
+                key={guide.id}
+                type="button"
+                onClick={() => setActiveGuide(guide)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '0.5rem',
+                  padding: '0.6rem 0.75rem',
+                  borderRadius: '10px',
+                  border: '1px solid #F1F5F9',
+                  backgroundColor: '#F8FAFC',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  width: '100%',
+                  boxSizing: 'border-box'
+                }}
+              >
+                <span style={{ fontSize: '0.76rem', fontWeight: 700, color: '#1E293B' }}>
+                  {guide.title}
+                </span>
+                <ChevronRight size={14} color="#94A3B8" style={{ flexShrink: 0 }} />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* I. Submit Your Project Idea Banner */}
+        <div style={{
+          backgroundColor: '#781416',
+          backgroundImage: 'linear-gradient(135deg, #781416 0%, #520d0f 100%)',
+          borderRadius: '16px',
+          padding: '1rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '0.75rem',
+          boxShadow: '0 4px 14px rgba(120, 20, 22, 0.25)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', minWidth: 0 }}>
+            <div style={{
+              width: '38px',
+              height: '38px',
+              borderRadius: '10px',
+              backgroundColor: '#FFFFFF',
+              color: '#781416',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <Code2 size={20} strokeWidth={2.4} />
+            </div>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: '0.88rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1.2 }}>
+                Submit Your Project Idea
+              </div>
+              <div style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.35, marginTop: '2px' }}>
+                Contribute your project idea, source code or documentation to help fellow students.
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setSubmitModalOpen(true)}
+            style={{
+              backgroundColor: '#F59E0B',
+              color: '#781416',
+              padding: '0.45rem 0.85rem',
+              borderRadius: '8px',
+              border: 'none',
+              fontWeight: 900,
+              fontSize: '0.76rem',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+              flexShrink: 0
+            }}
+          >
+            Submit Idea →
+          </button>
+        </div>
+      </div>
 
       {/* Guide Reader Modal */}
       <ProjectGuideModal

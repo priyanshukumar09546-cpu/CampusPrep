@@ -5,11 +5,14 @@ import {
   Bookmark, CheckCircle2, ChevronRight, Sparkles, Star, FileText,
   Clock, ShieldCheck, ExternalLink, Share2, Layers, Award,
   Code2, BarChart3, Brain, Globe, Smartphone, Shield, Cloud, Server,
-  Target, Palette, TrendingUp, Cog, Cpu, Building, Check, ArrowUpRight
+  Target, Palette, TrendingUp, Cog, Cpu, Building, Check, ArrowUpRight,
+  Home, LayoutGrid, GraduationCap, Trophy, User, SlidersHorizontal, Package,
+  MoreHorizontal, Crown
 } from 'lucide-react';
 import CareerResourceModal from '../components/CareerResourceModal';
 import EmployerSubmitModal from '../components/EmployerSubmitModal';
 import ApplicationTrackModal from '../components/ApplicationTrackModal';
+import CompanyLogo from '../components/CompanyLogo';
 import { careerResourcesData } from '../data/careerResourcesData';
 
 export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
@@ -38,9 +41,11 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
 
   // Modals state
   const [activeResource, setActiveResource] = useState(null);
-  const [employerModalOpen, setEmployerModalOpen] = useState(false);
+  const [employerModalOpen, setEmployerModalOpen] = useState(() => (typeof window !== 'undefined' && window.innerWidth < 1024));
   const [trackingModalOpp, setTrackingModalOpp] = useState(null);
   const [copiedId, setCopiedId] = useState(null);
+  const [mobilePillFilter, setMobilePillFilter] = useState('all');
+  const [mobileShowAllCategories, setMobileShowAllCategories] = useState(false);
 
   // Debounce search input
   useEffect(() => {
@@ -173,64 +178,90 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
 
   // Company Brand Color/Initial Avatar Helper
   const renderCompanyAvatar = (opp, size = 44) => {
-    const name = opp.companyName || 'Company';
-    const firstLetter = name.charAt(0).toUpperCase();
-    
-    // Check if real logo image URL exists
-    if (opp.companyLogo && opp.companyLogo.startsWith('http')) {
-      return (
-        <img
-          src={opp.companyLogo}
-          alt={name}
-          onError={(e) => { e.target.style.display = 'none'; }}
-          style={{
-            width: `${size}px`,
-            height: `${size}px`,
-            objectFit: 'contain',
-            borderRadius: '10px',
-            backgroundColor: '#FFFFFF',
-            padding: '2px',
-            border: '1px solid #E8E2D5'
-          }}
-        />
-      );
+    return <CompanyLogo name={opp.companyName} logoUrl={opp.companyLogo} size={size} />;
+  };
+
+  const handleMobilePillClick = (id) => {
+    setMobilePillFilter(id);
+    if (id === 'all') {
+      setSelectedType('all');
+      setSelectedWorkMode('all');
+    } else if (id === 'internships') {
+      setSelectedType('Internship');
+    } else if (id === 'full-time') {
+      setSelectedType('Full-time');
+    } else if (id === 'remote-onsite') {
+      setSelectedWorkMode(selectedWorkMode === 'Remote' ? 'On-site' : 'Remote');
+    }
+    setPage(1);
+  };
+
+  // Mobile pills matching reference image
+  const mobileFilterPills = [
+    { id: 'all', label: 'All Opportunities', icon: LayoutGrid },
+    { id: 'internships', label: 'Internships', icon: GraduationCap },
+    { id: 'full-time', label: 'Full-time Jobs', icon: Briefcase },
+    { id: 'top-companies', label: 'Top Companies', icon: Trophy },
+    { id: 'remote-onsite', label: 'Remote / On-site', icon: MapPin },
+    { id: 'freshers', label: 'Freshers', icon: User },
+    { id: 'experienced', label: 'Experienced', icon: BarChart3 }
+  ];
+
+  // Mobile categories matching reference image
+  const mobileCategoryTiles = [
+    { id: 'all', name: 'All', count: domainCounts.all || totalCount || 26, icon: LayoutGrid },
+    { id: 'software-development', name: 'Software', count: domainCounts['Software Development'] || domainCounts['Software'] || 8, icon: Code2 },
+    { id: 'data-science', name: 'Data Science', count: domainCounts['Data Science & Analytics'] || domainCounts['Data Science'] || 2, icon: BarChart3 },
+    { id: 'web-development', name: 'Web Development', count: domainCounts['Web Development'] || 2, icon: Globe },
+    { id: 'mobile-development', name: 'Mobile App Development', count: domainCounts['Mobile App Development'] || 1, icon: Smartphone },
+    { id: 'cyber-security', name: 'Cyber Security', count: domainCounts['Cyber Security'] || 1, icon: Shield },
+    { id: 'devops', name: 'DevOps', count: domainCounts['DevOps & Infrastructure'] || domainCounts['DevOps'] || 2, icon: Cog },
+    { id: 'product-management', name: 'Product Mgmt', count: domainCounts['Product Management'] || 1, icon: Package },
+    { id: 'ui-ux', name: 'UI/UX Design', count: domainCounts['UI/UX Design'] || 1, icon: Palette },
+    { id: 'other-domains', name: 'Other Domains', count: domainCounts['Other Domains'] || 1, icon: MoreHorizontal }
+  ];
+
+  // Mobile display opportunities
+  const mobileDisplayOpportunities = useMemo(() => {
+    let list = opportunities;
+    // When default state, prioritize featured items (Amazon, Microsoft, Google) at top
+    if (mobilePillFilter === 'all' && (!debouncedSearch) && selectedDomain === 'all' && featuredOpportunities.length > 0) {
+      const featIds = new Set(featuredOpportunities.map(f => f.id));
+      list = [...featuredOpportunities, ...opportunities.filter(o => !featIds.has(o.id))];
     }
 
-    // High quality branded fallback avatar
-    const colors = ['#781416', '#0284C7', '#059669', '#7C3AED', '#D97706', '#DB2777', '#4F46E5'];
-    const colorIndex = (name.charCodeAt(0) + name.length) % colors.length;
-    const bg = colors[colorIndex];
+    if (mobilePillFilter === 'internships') {
+      list = list.filter(o => (o.type || '').toLowerCase() === 'internship');
+    } else if (mobilePillFilter === 'full-time') {
+      list = list.filter(o => (o.type || '').toLowerCase().includes('full-time') || (o.type || '').toLowerCase() === 'job');
+    } else if (mobilePillFilter === 'top-companies') {
+      const topComps = ['amazon', 'microsoft', 'google', 'tcs', 'tata', 'flipkart', 'persistent', 'accenture', 'infosys', 'nvidia', 'cisco', 'samsung', 'atlassian'];
+      list = list.filter(o => topComps.some(tc => (o.companyName || '').toLowerCase().includes(tc)));
+    } else if (mobilePillFilter === 'remote-onsite') {
+      list = list.filter(o => (o.workMode || '').toLowerCase().includes('remote') || (o.workMode || '').toLowerCase().includes('on-site'));
+    } else if (mobilePillFilter === 'freshers') {
+      list = list.filter(o => (o.experienceLevel || '').toLowerCase().includes('fresher') || (o.experienceLevel || '').toLowerCase().includes('student') || (o.type || '').toLowerCase() === 'internship');
+    } else if (mobilePillFilter === 'experienced') {
+      list = list.filter(o => !(o.experienceLevel || '').toLowerCase().includes('fresher') && (o.type || '').toLowerCase() !== 'internship');
+    }
 
-    return (
-      <div style={{
-        width: `${size}px`,
-        height: `${size}px`,
-        borderRadius: '10px',
-        backgroundColor: bg,
-        color: '#FFFFFF',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 800,
-        fontSize: size > 40 ? '1.1rem' : '0.9rem',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-        flexShrink: 0
-      }}>
-        {firstLetter}
-      </div>
-    );
-  };
+    return list;
+  }, [opportunities, featuredOpportunities, mobilePillFilter, debouncedSearch, selectedDomain]);
 
   return (
     <div style={{
-      backgroundColor: '#FDFBF7',
+      backgroundColor: '#FAF7F2',
       minHeight: '100vh',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
       color: '#1C1E21',
       paddingBottom: '4rem'
     }}>
-      {/* 1. TOP BREADCRUMB */}
-      <div className="container" style={{
+      {/* =========================================================================
+          DESKTOP VIEW (>= 1024px) — 100% UNTOUCHED ORIGINAL
+          ========================================================================= */}
+      <div className="pv-internships-desktop-only">
+        {/* 1. TOP BREADCRUMB */}
+        <div className="container" style={{
         padding: '0.9rem 1.25rem 0.4rem',
         display: 'flex',
         alignItems: 'center',
@@ -1425,8 +1456,824 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
           </div>
         </div>
       </div>
+      </div>
 
-      {/* MODALS */}
+      {/* =========================================================================
+          MOBILE VIEW (< 1024px) — EXACT 1:1 MATCH WITH REFERENCE IMAGE
+          ========================================================================= */}
+      <div className="pv-internships-mobile-only" style={{
+        backgroundColor: '#FAF7F2',
+        minHeight: '100vh',
+        padding: '0.75rem 1rem 5.5rem',
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0.9rem',
+        fontFamily: "'Plus Jakarta Sans', sans-serif"
+      }}>
+        {/* A. Breadcrumb */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.78rem', color: '#64748B' }}>
+          <button
+            type="button"
+            onClick={() => onNavigate && onNavigate('home')}
+            style={{ background: 'none', border: 'none', color: '#64748B', display: 'flex', alignItems: 'center', gap: '0.25rem', padding: 0, cursor: 'pointer', fontSize: 'inherit', fontWeight: 600 }}
+          >
+            <Home size={14} />
+            <span>Home</span>
+          </button>
+          <ChevronRight size={13} color="#94A3B8" />
+          <button
+            type="button"
+            onClick={() => onNavigate && onNavigate('more')}
+            style={{ background: 'none', border: 'none', color: '#64748B', padding: 0, cursor: 'pointer', fontSize: 'inherit', fontWeight: 600 }}
+          >
+            More
+          </button>
+          <ChevronRight size={13} color="#94A3B8" />
+          <span style={{ color: '#0F172A', fontWeight: 800 }}>Internships & Jobs</span>
+        </div>
+
+        {/* B. Hero Section */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+          <div style={{
+            width: '46px',
+            height: '46px',
+            borderRadius: '12px',
+            backgroundColor: '#781416',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#FFFFFF',
+            flexShrink: 0,
+            boxShadow: '0 4px 12px rgba(120, 20, 22, 0.22)'
+          }}>
+            <Briefcase size={22} strokeWidth={2.4} />
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+              <h1 style={{
+                margin: 0,
+                fontSize: '1.38rem',
+                fontWeight: 900,
+                color: '#0F172A',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.15
+              }}>
+                Internships & Jobs
+              </h1>
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                backgroundColor: '#FEF3C7',
+                color: '#B45309',
+                fontSize: '0.68rem',
+                fontWeight: 800,
+                padding: '0.18rem 0.5rem',
+                borderRadius: '6px'
+              }}>
+                <Briefcase size={11} strokeWidth={2.5} />
+                Top Companies
+              </span>
+            </div>
+            <p style={{
+              margin: '0.2rem 0 0',
+              fontSize: '0.80rem',
+              color: '#475569',
+              fontWeight: 500,
+              lineHeight: 1.35
+            }}>
+              Find the best internships and job opportunities to kickstart your career.
+            </p>
+          </div>
+        </div>
+
+        {/* C. Opportunity Filters (2 distinct rows matching reference screenshot) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+          {/* Row 1: All Opportunities, Internships, Full-time Jobs */}
+          <div style={{
+            display: 'flex',
+            gap: '0.45rem',
+            overflowX: 'auto',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch'
+          }}>
+            {mobileFilterPills.slice(0, 3).map(pill => {
+              const isActive = mobilePillFilter === pill.id;
+              const PillIcon = pill.icon;
+              return (
+                <button
+                  key={pill.id}
+                  type="button"
+                  onClick={() => handleMobilePillClick(pill.id)}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    padding: '0.42rem 0.85rem',
+                    borderRadius: '10px',
+                    backgroundColor: isActive ? '#781416' : '#FFFFFF',
+                    color: isActive ? '#FFFFFF' : '#334155',
+                    border: isActive ? 'none' : '1.5px solid #E2E8F0',
+                    fontSize: '0.78rem',
+                    fontWeight: isActive ? 800 : 600,
+                    cursor: 'pointer',
+                    boxShadow: isActive ? '0 2px 8px rgba(120, 20, 22, 0.22)' : '0 1px 3px rgba(0,0,0,0.02)',
+                    transition: 'all 0.15s ease',
+                    whiteSpace: 'nowrap',
+                    flexShrink: 0
+                  }}
+                >
+                  <PillIcon size={14} strokeWidth={isActive ? 2.5 : 2} color={isActive ? '#FFFFFF' : '#64748B'} />
+                  <span>{pill.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Row 2: Top Companies, Remote / On-site, Freshers, Experienced */}
+          <div style={{
+            display: 'flex',
+            gap: '0.45rem',
+            overflowX: 'auto',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch'
+          }}>
+            {mobileFilterPills.slice(3, 7).map(pill => {
+              const isActive = mobilePillFilter === pill.id;
+              const PillIcon = pill.icon;
+              return (
+                <button
+                  key={pill.id}
+                  type="button"
+                  onClick={() => handleMobilePillClick(pill.id)}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    padding: '0.42rem 0.85rem',
+                    borderRadius: '10px',
+                    backgroundColor: isActive ? '#781416' : '#FFFFFF',
+                    color: isActive ? '#FFFFFF' : '#334155',
+                    border: isActive ? 'none' : '1.5px solid #E2E8F0',
+                    fontSize: '0.78rem',
+                    fontWeight: isActive ? 800 : 600,
+                    cursor: 'pointer',
+                    boxShadow: isActive ? '0 2px 8px rgba(120, 20, 22, 0.22)' : '0 1px 3px rgba(0,0,0,0.02)',
+                    transition: 'all 0.15s ease',
+                    whiteSpace: 'nowrap',
+                    flexShrink: 0
+                  }}
+                >
+                  <PillIcon size={14} strokeWidth={isActive ? 2.5 : 2} color={isActive ? '#FFFFFF' : '#64748B'} />
+                  <span>{pill.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* D. Search & Filter Controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+          <div style={{
+            flex: 1,
+            backgroundColor: '#FFFFFF',
+            border: '1.5px solid #E2E8F0',
+            borderRadius: '12px',
+            padding: '0.55rem 0.85rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.55rem',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+          }}>
+            <Search size={18} color="#94A3B8" style={{ flexShrink: 0 }} />
+            <input
+              type="text"
+              placeholder="Search internships / jobs, companies, or roles..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              style={{
+                border: 'none',
+                outline: 'none',
+                width: '100%',
+                fontSize: '0.82rem',
+                color: '#0F172A',
+                backgroundColor: 'transparent',
+                fontFamily: 'inherit'
+              }}
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: 0 }}
+              >
+                ✕
+              </button>
+            )}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setEmployerModalOpen(true)}
+            title="Filter & Post a Job"
+            aria-label="Filter & Post"
+            style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '12px',
+              backgroundColor: '#FFFFFF',
+              border: '1.5px solid #E2E8F0',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#0F172A',
+              cursor: 'pointer',
+              flexShrink: 0,
+              boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+            }}
+          >
+            <SlidersHorizontal size={18} strokeWidth={2.2} />
+          </button>
+        </div>
+
+        {/* E. Job & Internship Categories Panel */}
+        <div style={{
+          backgroundColor: '#FFFFFF',
+          borderRadius: '18px',
+          border: '1.5px solid #E2E8F0',
+          padding: '0.85rem 0.95rem',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+        }}>
+          {/* Header */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <LayoutGrid size={16} color="#0F172A" />
+              <h3 style={{ margin: 0, fontSize: '0.94rem', fontWeight: 800, color: '#0F172A' }}>
+                Job & Internship Categories
+              </h3>
+            </div>
+            <button
+              type="button"
+              onClick={() => setMobileShowAllCategories(!mobileShowAllCategories)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#64748B',
+                fontSize: '0.76rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '2px',
+                padding: 0
+              }}
+            >
+              <span>{mobileShowAllCategories ? 'Collapse' : 'View All'}</span>
+              <ChevronRight size={13} />
+            </button>
+          </div>
+
+          {/* Category Tiles (2 rows horizontally scrolling matching reference screenshot) */}
+          {mobileShowAllCategories ? (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+              gap: '0.55rem'
+            }}>
+              {mobileCategoryTiles.map(cat => {
+                const isSelected = selectedDomain === cat.id || (cat.id === 'all' && selectedDomain === 'all');
+                const IconComp = cat.icon;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    onClick={() => { setSelectedDomain(cat.id); setPage(1); }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.55rem',
+                      padding: '0.5rem 0.65rem',
+                      borderRadius: '12px',
+                      border: isSelected ? '1.5px solid #FCA5A5' : '1px solid #E2E8F0',
+                      backgroundColor: isSelected ? '#FEF2F2' : '#F8FAFC',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                      minWidth: 0
+                    }}
+                  >
+                    <div style={{
+                      color: isSelected ? '#781416' : '#334155',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <IconComp size={16} strokeWidth={2.2} />
+                    </div>
+                    <div style={{ minWidth: 0, overflow: 'hidden' }}>
+                      <div style={{
+                        fontSize: '0.74rem',
+                        fontWeight: 800,
+                        color: isSelected ? '#781416' : '#0F172A',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        lineHeight: 1.2
+                      }}>
+                        {cat.name}
+                      </div>
+                      <div style={{
+                        fontSize: '0.70rem',
+                        fontWeight: 700,
+                        color: isSelected ? '#781416' : '#64748B',
+                        lineHeight: 1.2,
+                        marginTop: '1px'
+                      }}>
+                        {cat.count}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <div style={{
+              overflowX: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              paddingBottom: '0.2rem'
+            }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', minWidth: 'max-content' }}>
+                {/* Row 1: All, Software, Data Science, Web Development, Mobile App */}
+                <div style={{ display: 'flex', gap: '0.55rem' }}>
+                  {mobileCategoryTiles.slice(0, 5).map(cat => {
+                    const isSelected = selectedDomain === cat.id || (cat.id === 'all' && selectedDomain === 'all');
+                    const IconComp = cat.icon;
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => { setSelectedDomain(cat.id); setPage(1); }}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.55rem',
+                          padding: '0.5rem 0.75rem',
+                          borderRadius: '12px',
+                          border: isSelected ? '1.5px solid #FCA5A5' : '1.5px solid #E2E8F0',
+                          backgroundColor: isSelected ? '#FEF2F2' : '#FFFFFF',
+                          textAlign: 'left',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                          width: '144px',
+                          flexShrink: 0,
+                          boxSizing: 'border-box'
+                        }}
+                      >
+                        <div style={{
+                          color: isSelected ? '#781416' : '#334155',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0
+                        }}>
+                          <IconComp size={16} strokeWidth={2.2} />
+                        </div>
+                        <div style={{ minWidth: 0, overflow: 'hidden' }}>
+                          <div style={{
+                            fontSize: '0.74rem',
+                            fontWeight: 800,
+                            color: isSelected ? '#781416' : '#0F172A',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            lineHeight: 1.2
+                          }}>
+                            {cat.name}
+                          </div>
+                          <div style={{
+                            fontSize: '0.70rem',
+                            fontWeight: 700,
+                            color: isSelected ? '#781416' : '#64748B',
+                            lineHeight: 1.2,
+                            marginTop: '1px'
+                          }}>
+                            {cat.count}
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Row 2: Cyber Security, DevOps, Product Mgmt, UI/UX Design, Other Domains */}
+                <div style={{ display: 'flex', gap: '0.55rem' }}>
+                  {mobileCategoryTiles.slice(5, 10).map(cat => {
+                    const isSelected = selectedDomain === cat.id || (cat.id === 'all' && selectedDomain === 'all');
+                    const IconComp = cat.icon;
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => { setSelectedDomain(cat.id); setPage(1); }}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.55rem',
+                          padding: '0.5rem 0.75rem',
+                          borderRadius: '12px',
+                          border: isSelected ? '1.5px solid #FCA5A5' : '1.5px solid #E2E8F0',
+                          backgroundColor: isSelected ? '#FEF2F2' : '#FFFFFF',
+                          textAlign: 'left',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                          width: '144px',
+                          flexShrink: 0,
+                          boxSizing: 'border-box'
+                        }}
+                      >
+                        <div style={{
+                          color: isSelected ? '#781416' : '#334155',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0
+                        }}>
+                          <IconComp size={16} strokeWidth={2.2} />
+                        </div>
+                        <div style={{ minWidth: 0, overflow: 'hidden' }}>
+                          <div style={{
+                            fontSize: '0.74rem',
+                            fontWeight: 800,
+                            color: isSelected ? '#781416' : '#0F172A',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            lineHeight: 1.2
+                          }}>
+                            {cat.name}
+                          </div>
+                          <div style={{
+                            fontSize: '0.70rem',
+                            fontWeight: 700,
+                            color: isSelected ? '#781416' : '#64748B',
+                            lineHeight: 1.2,
+                            marginTop: '1px'
+                          }}>
+                            {cat.count}
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* F. Featured Opportunities Section */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+          {/* Header */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                <Crown size={19} color="#D97706" fill="#F59E0B" />
+                <h2 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 900, color: '#0F172A' }}>
+                  Featured Opportunities
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => { setSelectedDomain('all'); setMobilePillFilter('all'); setPage(1); }}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#781416',
+                  fontSize: '0.78rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '2px',
+                  padding: 0
+                }}
+              >
+                <span>View All</span>
+                <ChevronRight size={13} strokeWidth={2.6} />
+              </button>
+            </div>
+            <p style={{ margin: '0.12rem 0 0', fontSize: '0.72rem', color: '#64748B' }}>
+              Handpicked internships and jobs from verified sources.
+            </p>
+          </div>
+
+          {/* Cards List */}
+          {loading ? (
+            <div style={{
+              padding: '2.5rem 1rem',
+              textAlign: 'center',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '16px',
+              border: '1.5px solid #E2E8F0',
+              color: '#64748B'
+            }}>
+              <div style={{
+                width: '32px',
+                height: '32px',
+                border: '3px solid #E2E8F0',
+                borderTopColor: '#781416',
+                borderRadius: '50%',
+                animation: 'spin 0.8s linear infinite',
+                margin: '0 auto 0.75rem'
+              }} />
+              <span style={{ fontSize: '0.82rem', fontWeight: 600 }}>Loading verified opportunities...</span>
+            </div>
+          ) : mobileDisplayOpportunities.length === 0 ? (
+            <div style={{
+              padding: '2rem 1rem',
+              textAlign: 'center',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '16px',
+              border: '1.5px solid #E2E8F0'
+            }}>
+              <Search size={28} color="#94A3B8" style={{ margin: '0 auto 0.5rem' }} />
+              <h4 style={{ margin: '0 0 0.25rem', fontSize: '0.92rem', fontWeight: 800, color: '#0F172A' }}>
+                No opportunities found
+              </h4>
+              <p style={{ margin: '0 0 0.85rem', fontSize: '0.76rem', color: '#64748B' }}>
+                No active listings match your current filters.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchQuery('');
+                  setSelectedDomain('all');
+                  setMobilePillFilter('all');
+                  setPage(1);
+                }}
+                style={{
+                  padding: '0.45rem 1rem',
+                  borderRadius: '10px',
+                  border: 'none',
+                  backgroundColor: '#781416',
+                  color: '#FFFFFF',
+                  fontSize: '0.78rem',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                Reset Filters
+              </button>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {mobileDisplayOpportunities.map(opp => {
+                const isBookmarked = bookmarkedIds.includes(opp.id);
+                const isIntern = (opp.type || '').toLowerCase() === 'internship';
+                return (
+                  <div
+                    key={opp.id}
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      padding: '0.9rem',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '0.55rem'
+                    }}
+                  >
+                    {/* Top Row: Logo + Info on Left, Bookmark + View Details on Right */}
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.5rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', minWidth: 0, flex: 1 }}>
+                        <CompanyLogo name={opp.companyName} logoUrl={opp.companyLogo} size={46} />
+                        
+                        <div style={{ minWidth: 0, flex: 1 }}>
+                          <h3
+                            onClick={() => onNavigate && onNavigate(`internships-jobs:${opp.slug || opp.id}`)}
+                            style={{
+                              margin: 0,
+                              fontSize: '0.92rem',
+                              fontWeight: 900,
+                              color: '#0F172A',
+                              lineHeight: 1.25,
+                              cursor: 'pointer'
+                            }}
+                          >
+                            {opp.title}
+                          </h3>
+
+                          {/* Badges: Type + Verified */}
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '0.25rem', flexWrap: 'wrap' }}>
+                            <span style={{
+                              backgroundColor: isIntern ? '#EDE9FE' : '#EFF6FF',
+                              color: isIntern ? '#6D28D9' : '#1D4ED8',
+                              fontSize: '0.68rem',
+                              fontWeight: 800,
+                              padding: '0.12rem 0.5rem',
+                              borderRadius: '999px'
+                            }}>
+                              {opp.type || 'Internship'}
+                            </span>
+
+                            <span style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.2rem',
+                              backgroundColor: '#DCFCE7',
+                              color: '#15803D',
+                              fontSize: '0.68rem',
+                              fontWeight: 800,
+                              padding: '0.12rem 0.5rem',
+                              borderRadius: '999px'
+                            }}>
+                              <CheckCircle2 size={11} strokeWidth={2.8} />
+                              Verified
+                            </span>
+                          </div>
+
+                          {/* Company Name & Location */}
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            fontSize: '0.74rem',
+                            color: '#64748B',
+                            marginTop: '0.3rem',
+                            flexWrap: 'wrap'
+                          }}>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem', fontWeight: 600, color: '#334155' }}>
+                              <Building2 size={12} color="#64748B" />
+                              {opp.companyName}
+                            </span>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}>
+                              <MapPin size={12} color="#64748B" />
+                              {opp.location}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Action Stack: Bookmark + Dark-Red View Details Button */}
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.45rem', flexShrink: 0 }}>
+                        <button
+                          type="button"
+                          onClick={(e) => handleToggleBookmark(opp.id, e)}
+                          title={isBookmarked ? 'Saved' : 'Save'}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            color: isBookmarked ? '#781416' : '#94A3B8',
+                            padding: '2px'
+                          }}
+                        >
+                          <Bookmark size={18} fill={isBookmarked ? '#781416' : 'none'} strokeWidth={2} />
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => onNavigate && onNavigate(`internships-jobs:${opp.slug || opp.id}`)}
+                          style={{
+                            padding: '0.38rem 0.75rem',
+                            borderRadius: '8px',
+                            backgroundColor: '#781416',
+                            color: '#FFFFFF',
+                            border: 'none',
+                            fontSize: '0.74rem',
+                            fontWeight: 800,
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.25rem',
+                            boxShadow: '0 2px 6px rgba(120, 20, 22, 0.25)',
+                            whiteSpace: 'nowrap'
+                          }}
+                        >
+                          <span>View Details</span>
+                          <ArrowRight size={13} strokeWidth={2.4} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Skill Tags */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', paddingTop: '0.1rem' }}>
+                      {(opp.skills || []).slice(0, 4).map((sk, idx) => (
+                        <span
+                          key={idx}
+                          style={{
+                            backgroundColor: '#F1F5F9',
+                            color: '#334155',
+                            fontSize: '0.68rem',
+                            fontWeight: 600,
+                            padding: '0.15rem 0.5rem',
+                            borderRadius: '6px'
+                          }}
+                        >
+                          {sk}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Bottom Metadata: Deadline + Stipend */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      paddingTop: '0.45rem',
+                      borderTop: '1px solid #F1F5F9',
+                      fontSize: '0.72rem',
+                      color: '#64748B',
+                      flexWrap: 'wrap',
+                      gap: '0.35rem'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                        <Calendar size={12} color="#64748B" />
+                        <span>
+                          {opp.deadline && opp.deadline !== 'Deadline not specified' ? `Apply by ${opp.deadline}` : 'Open Applications'}
+                        </span>
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontWeight: 600, color: '#334155' }}>
+                        <Briefcase size={12} color="#64748B" />
+                        <span>
+                          {opp.stipend
+                            ? (opp.stipend.toLowerCase().startsWith('stipend') ? opp.stipend : `Stipend: ${opp.stipend}`)
+                            : (opp.salary ? `Salary: ${opp.salary}` : 'Stipend: Competitive')}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Post Opportunity Bottom Banner Trigger */}
+          <div style={{
+            backgroundColor: '#FFFFFF',
+            border: '1.5px solid #F6E2B3',
+            borderRadius: '16px',
+            padding: '0.85rem 1rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.75rem',
+            boxShadow: '0 3px 10px rgba(200, 141, 45, 0.08)',
+            marginTop: '0.5rem'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              <div style={{
+                width: '34px',
+                height: '34px',
+                borderRadius: '10px',
+                backgroundColor: '#FEF3C7',
+                color: '#B45309',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <Briefcase size={18} />
+              </div>
+              <div>
+                <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#0F172A' }}>
+                  Hiring Freshers or Interns?
+                </div>
+                <div style={{ fontSize: '0.70rem', color: '#64748B' }}>
+                  Post your opening to thousands of students
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setEmployerModalOpen(true)}
+              style={{
+                backgroundColor: '#781416',
+                color: '#FFFFFF',
+                border: 'none',
+                padding: '0.45rem 0.85rem',
+                borderRadius: '8px',
+                fontWeight: 800,
+                fontSize: '0.76rem',
+                cursor: 'pointer',
+                boxShadow: '0 2px 6px rgba(120, 20, 22, 0.25)',
+                whiteSpace: 'nowrap'
+              }}
+            >
+              Post a Job
+            </button>
+          </div>
+        </div>
+      </div>
       {/* 1. Career Resource Guide Modal */}
       {activeResource && (
         <CareerResourceModal

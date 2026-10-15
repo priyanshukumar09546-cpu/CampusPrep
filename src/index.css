@@ -747,6 +747,12 @@ pre, code {
   .pv-internships-mobile-only {
     display: none !important;
   }
+  .pv-projects-desktop-only {
+    display: block !important;
+  }
+  .pv-projects-mobile-only {
+    display: none !important;
+  }
   .pv-employer-modal-desktop {
     display: flex !important;
   }
@@ -956,6 +962,16 @@ pre, code {
     display: none !important;
   }
   .pv-internships-mobile-only {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+  .pv-projects-desktop-only {
+    display: none !important;
+  }
+  .pv-projects-mobile-only {
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;

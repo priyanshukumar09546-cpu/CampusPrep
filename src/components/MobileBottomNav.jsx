@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, BookOpen, FileText, Wrench, User } from 'lucide-react';
+import { Home, BookOpen, FileText, Wrench, User, LayoutGrid, FileCheck } from 'lucide-react';
 
 export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
   const tabs = [
@@ -15,13 +15,13 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
     },
     {
       id: 'pyqs',
-      label: 'PYQ',
-      icon: FileText
+      label: 'PYQs',
+      icon: FileCheck
     },
     {
       id: 'tools',
       label: 'Tools',
-      icon: Wrench
+      icon: LayoutGrid
     },
     {
       id: 'profile',
@@ -96,6 +96,8 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
         const IconComponent = tab.icon;
         const activeColor = (tab.id === 'tools') ? '#781416' : '#6366F1';
 
+        const isToolsActive = isActive && tab.id === 'tools';
+
         return (
           <button
             key={tab.id}
@@ -113,7 +115,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              padding: '4px 0',
+              padding: '2px 0',
               position: 'relative',
               outline: 'none',
               WebkitTapHighlightColor: 'transparent',
@@ -123,35 +125,48 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
             <div 
               style={{
                 display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: isActive ? activeColor : '#64748B',
-                transform: isActive ? 'scale(1.08)' : 'scale(1)',
-                transition: 'transform 0.15s ease, color 0.15s ease'
+                padding: isToolsActive ? '3px 14px' : '3px 6px',
+                borderRadius: isToolsActive ? '10px' : '0px',
+                backgroundColor: isToolsActive ? '#FEE2E2' : 'transparent',
+                transition: 'all 0.15s ease'
               }}
             >
-              <IconComponent 
-                size={21} 
-                strokeWidth={isActive ? 2.6 : 2}
-                fill={isActive && (tab.id === 'home' || tab.id === 'profile') ? activeColor : 'none'}
-              />
+              <div 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: isActive ? activeColor : '#64748B',
+                  transform: isActive ? 'scale(1.05)' : 'scale(1)',
+                  transition: 'transform 0.15s ease, color 0.15s ease'
+                }}
+              >
+                <IconComponent 
+                  size={20} 
+                  strokeWidth={isActive ? 2.4 : 1.9}
+                  fill={isActive && (tab.id === 'home' || tab.id === 'profile') ? activeColor : 'none'}
+                />
+              </div>
+              
+              <span 
+                style={{
+                  fontSize: '10px',
+                  fontWeight: isActive ? 800 : 600,
+                  color: isActive ? activeColor : '#64748B',
+                  marginTop: '1px',
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.01em'
+                }}
+              >
+                {tab.label}
+              </span>
             </div>
-            
-            <span 
-              style={{
-                fontSize: '10px',
-                fontWeight: isActive ? 800 : 600,
-                color: isActive ? activeColor : '#64748B',
-                marginTop: '2px',
-                lineHeight: 1.1,
-                letterSpacing: '-0.01em'
-              }}
-            >
-              {tab.label}
-            </span>
 
-            {/* Active Indicator Bar */}
-            {isActive && (
+            {/* Active Indicator Bar for non-tools tabs */}
+            {isActive && !isToolsActive && (
               <span 
                 style={{
                   position: 'absolute',
