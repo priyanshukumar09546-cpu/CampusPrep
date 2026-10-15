@@ -1218,6 +1218,16 @@ export const btechCatalogData = {
         "semester": "Semester 6"
       },
       {
+        "code": "KCS-054",
+        "name": "Object-Oriented System Design with C++",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-052",
+        "name": "Data Analytics",
+        "semester": "Semester 6"
+      },
+      {
         "code": "KOE-062",
         "name": "Embedded System",
         "semester": "Semester 6"
