@@ -778,7 +778,8 @@ pre, code {
   }
   .pv-mobile-notes-view,
   .pv-mobile-pyqs-view,
-  .pv-mobile-progress-view {
+  .pv-mobile-progress-view,
+  .pv-mobile-auth-screen {
     display: none !important;
   }
   body {

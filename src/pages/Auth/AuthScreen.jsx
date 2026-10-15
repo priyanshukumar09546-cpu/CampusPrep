@@ -21,6 +21,7 @@ import {
   LogIn,
   UserPlus
 } from 'lucide-react';
+import MobileAuthScreen from '../../components/MobileAuthScreen';
 
 export default function AuthScreen({ initialMode = 'signin', onNavigate }) {
   const [mode, setMode] = useState(initialMode === 'signup' ? 'signup' : 'signin');
@@ -242,7 +243,17 @@ export default function AuthScreen({ initialMode = 'signin', onNavigate }) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#FAF7F2] text-[#1C1814] flex flex-col lg:flex-row overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif]">
+    <>
+      {/* MOBILE-ONLY VIEW (< 1024px): Dedicated Student Sign In & Create Account */}
+      <div className="block lg:hidden">
+        <MobileAuthScreen
+          initialMode={mode}
+          onNavigate={onNavigate}
+        />
+      </div>
+
+      {/* DESKTOP-ONLY VIEW (>= 1024px): 100% UNCHANGED AND INTACT */}
+      <div className="hidden lg:flex min-h-screen w-full bg-[#FAF7F2] text-[#1C1814] flex-col lg:flex-row overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif]">
       
       {/* ======================================================== */}
       {/* LEFT COLUMN: BRANDING & EDUCATIONAL SHOWCASE (DESKTOP)   */}
@@ -804,6 +815,7 @@ export default function AuthScreen({ initialMode = 'signin', onNavigate }) {
         </div>
       )}
 
-    </div>
+      </div>
+    </>
   );
 }
