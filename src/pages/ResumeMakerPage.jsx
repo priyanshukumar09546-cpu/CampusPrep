@@ -228,14 +228,14 @@ const RESUME_TEMPLATES = [
 // Mobile Stepper Definition matching reference image (All 9 sections accessible)
 const MOBILE_STEPS = [
   { id: 'templates', title: 'Templates', desktopIndex: 0, number: '1.' },
-  { id: 'personal', title: 'Personal Details', desktopIndex: 1, number: '2.' },
-  { id: 'education', title: 'Education', desktopIndex: 2, number: '3.' },
-  { id: 'skills', title: 'Technical Skills', desktopIndex: 3, number: '4.' },
-  { id: 'experience', title: 'Experience', desktopIndex: 4, number: '5.' },
-  { id: 'projects', title: 'Projects', desktopIndex: 5, number: '6.' },
-  { id: 'achievements', title: 'Achievements', desktopIndex: 6, number: '7.' },
-  { id: 'certifications', title: 'Certifications', desktopIndex: 7, number: '8.' },
-  { id: 'extracurricular', title: 'Extracurricular', desktopIndex: 8, number: '9.' }
+  { id: 'personal', title: 'Personal', desktopIndex: 0, number: '2.' },
+  { id: 'education', title: 'Education', desktopIndex: 1, number: '3.' },
+  { id: 'skills', title: 'Skills', desktopIndex: 2, number: '4.' },
+  { id: 'experience', title: 'Experience', desktopIndex: 3, number: '5.' },
+  { id: 'projects', title: 'Projects', desktopIndex: 4, number: '6.' },
+  { id: 'achievements', title: 'Achievements', desktopIndex: 5, number: '7.' },
+  { id: 'certifications', title: 'Certifications', desktopIndex: 6, number: '8.' },
+  { id: 'extracurricular', title: 'Extracurricular', desktopIndex: 7, number: '9.' }
 ];
 
 // Reusable Mobile Input Field with interior icon
@@ -928,10 +928,19 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   };
 
   const [mobileViewTab, setMobileViewTab] = useState('editor'); // 'editor' | 'preview'
-  const [mobileStepKey, setMobileStepKey] = useState('personal');
+  const [mobileStepKey, setMobileStepKey] = useState('templates');
   const mobileTabsRef = useRef(null);
 
   const currentMobileIndex = MOBILE_STEPS.findIndex(s => s.id === mobileStepKey);
+
+  useEffect(() => {
+    if (mobileTabsRef.current) {
+      const activeEl = mobileTabsRef.current.querySelector('[data-active-tab="true"]');
+      if (activeEl) {
+        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [mobileStepKey]);
 
   const handleNextMobileStep = () => {
     if (currentMobileIndex < MOBILE_STEPS.length - 1) {
@@ -3163,7 +3172,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               }}
             >
               <FileText size={15} />
-              <span>Edit Form</span>
+              <span>Edit Form ({currentMobileIndex + 1}/{MOBILE_STEPS.length})</span>
             </button>
             <button
               type="button"
@@ -3321,77 +3330,6 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           ) : (
             /* VIEW: STEP EDITOR */
             <>
-              {/* Stepper Tabs Strip */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.45rem',
-                marginBottom: '1rem',
-                width: '100%',
-                boxSizing: 'border-box'
-              }}>
-                <div
-                  ref={mobileTabsRef}
-                  className="pv-mobile-tabs-strip"
-                  style={{
-                    flex: 1,
-                    paddingBottom: '2px'
-                  }}
-                >
-                  {MOBILE_STEPS.map((step) => {
-                    const isActive = (mobileStepKey === step.id);
-                    return (
-                      <button
-                        key={step.id}
-                        data-active-tab={isActive ? "true" : "false"}
-                        type="button"
-                        onClick={() => {
-                          setMobileStepKey(step.id);
-                          setActiveStep(step.desktopIndex);
-                          if (mobileViewTab === 'preview') setMobileViewTab('editor');
-                        }}
-                        style={{
-                          backgroundColor: isActive ? '#FFFFFF' : '#F4EFE6',
-                          border: isActive ? '1.5px solid #781416' : '1px solid transparent',
-                          color: isActive ? '#781416' : '#6A5E50',
-                          borderRadius: '8px',
-                          padding: '0.52rem 0.95rem',
-                          fontSize: '0.78rem',
-                          fontWeight: isActive ? 800 : 600,
-                          whiteSpace: 'nowrap',
-                          cursor: 'pointer',
-                          flexShrink: 0,
-                          transition: 'all 0.15s ease'
-                        }}
-                      >
-                        {step.title}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <button
-                  type="button"
-                  onClick={handleScrollTabsRight}
-                  style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '8px',
-                    border: '1px solid #DDD3C3',
-                    backgroundColor: '#FFFFFF',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    flexShrink: 0,
-                    boxSizing: 'border-box'
-                  }}
-                  aria-label="Scroll steps"
-                >
-                  <ChevronRight size={16} color="#4A4036" />
-                </button>
-              </div>
-
               {/* STEP EDITOR FORM CARD */}
               <div style={{
                 backgroundColor: '#FFFFFF',
@@ -3403,29 +3341,88 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 boxSizing: 'border-box'
               }}>
 
+                {/* Stepper Tabs Strip inside the card */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  marginBottom: '1.15rem',
+                  width: '100%',
+                  boxSizing: 'border-box'
+                }}>
+                  <div
+                    ref={mobileTabsRef}
+                    className="pv-mobile-tabs-strip"
+                    style={{
+                      flex: 1,
+                      paddingBottom: '2px'
+                    }}
+                  >
+                    {MOBILE_STEPS.map((step) => {
+                      const isActive = (mobileStepKey === step.id);
+                      return (
+                        <button
+                          key={step.id}
+                          data-active-tab={isActive ? "true" : "false"}
+                          type="button"
+                          onClick={() => {
+                            setMobileStepKey(step.id);
+                            setActiveStep(step.desktopIndex);
+                            if (mobileViewTab === 'preview') setMobileViewTab('editor');
+                          }}
+                          style={{
+                            backgroundColor: isActive ? '#FFFFFF' : '#FAF7F2',
+                            border: isActive ? '1.5px solid #781416' : '1px solid transparent',
+                            color: isActive ? '#781416' : '#6A5E50',
+                            borderRadius: '8px',
+                            padding: '0.48rem 0.92rem',
+                            fontSize: '0.78rem',
+                            fontWeight: isActive ? 800 : 600,
+                            whiteSpace: 'nowrap',
+                            cursor: 'pointer',
+                            flexShrink: 0,
+                            transition: 'all 0.15s ease'
+                          }}
+                        >
+                          {step.title}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleScrollTabsRight}
+                    style={{
+                      width: '34px',
+                      height: '34px',
+                      borderRadius: '8px',
+                      border: '1px solid #DDD3C3',
+                      backgroundColor: '#FFFFFF',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      flexShrink: 0,
+                      boxSizing: 'border-box'
+                    }}
+                    aria-label="Scroll steps"
+                  >
+                    <ChevronRight size={16} color="#4A4036" />
+                  </button>
+                </div>
+
                 {/* STEP 0: TEMPLATES */}
                 {mobileStepKey === 'templates' && (
                   <div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                      <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                        1. Select Resume Template
-                      </h3>
-                      <span style={{
-                        backgroundColor: '#E7F5EE',
-                        color: '#0E7A4A',
-                        fontSize: '0.7rem',
-                        fontWeight: 800,
-                        padding: '0.2rem 0.55rem',
-                        borderRadius: '999px'
-                      }}>
-                        LaTeX Vector Ready
-                      </span>
-                    </div>
-                    <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
-                      Choose an ATS-compliant template. Overleaf LaTeX renders your resume with pixel-perfect typesetting.
+                    <h3 style={{ fontSize: '1.05rem', fontWeight: 900, color: '#1C1814', margin: '0 0 0.35rem 0' }}>
+                      1. Choose ATS Resume Template
+                    </h3>
+                    <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.45 }}>
+                      All templates are engineered to score 95+ on ATS screening across major tech hiring platforms.
                     </p>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                       {RESUME_TEMPLATES.map((tmpl) => {
                         const isSelected = template === tmpl.id;
                         return (
@@ -3433,33 +3430,23 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                             key={tmpl.id}
                             onClick={() => handleTemplateChange(tmpl.id)}
                             style={{
-                              backgroundColor: isSelected ? '#FAF5ED' : '#FAF8F5',
+                              backgroundColor: '#FFFFFF',
                               border: isSelected ? '2px solid #781416' : '1px solid #E8DFCF',
-                              borderRadius: '12px',
-                              padding: '0.85rem',
+                              borderRadius: '14px',
+                              padding: '0.95rem 1rem',
                               cursor: 'pointer',
                               transition: 'all 0.15s ease',
-                              boxShadow: isSelected ? '0 2px 8px rgba(120, 20, 22, 0.12)' : '0 1px 4px rgba(35, 30, 25, 0.02)'
+                              boxShadow: isSelected ? '0 2px 10px rgba(120, 20, 22, 0.08)' : '0 1px 3px rgba(35, 30, 25, 0.02)'
                             }}
                           >
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                                <div style={{
-                                  width: '18px',
-                                  height: '18px',
-                                  borderRadius: '50%',
-                                  border: isSelected ? '5px solid #781416' : '2px solid #CBD5E1',
-                                  backgroundColor: '#FFFFFF',
-                                  boxSizing: 'border-box'
-                                }} />
-                                <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#1C1814' }}>
-                                  {tmpl.name}
-                                </span>
-                              </div>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.45rem' }}>
+                              <span style={{ fontSize: '0.98rem', fontWeight: 800, color: '#1C1814' }}>
+                                {tmpl.name}
+                              </span>
                               <span style={{
-                                fontSize: '0.68rem',
-                                fontWeight: 800,
-                                padding: '0.15rem 0.5rem',
+                                fontSize: '0.7rem',
+                                fontWeight: 700,
+                                padding: '0.2rem 0.65rem',
                                 borderRadius: '999px',
                                 backgroundColor: tmpl.badgeBg,
                                 color: tmpl.badgeColor
@@ -3467,29 +3454,60 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                                 {tmpl.badge}
                               </span>
                             </div>
-                            <p style={{ fontSize: '0.74rem', color: '#6A5E50', margin: '0.25rem 0 0.55rem 1.6rem', lineHeight: 1.4 }}>
+                            <p style={{ fontSize: '0.76rem', color: '#5C5245', margin: '0 0 0.75rem 0', lineHeight: 1.45 }}>
                               {tmpl.desc}
                             </p>
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginLeft: '1.6rem' }}>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                               {tmpl.features.map((feat, fIdx) => (
                                 <span
                                   key={fIdx}
                                   style={{
-                                    fontSize: '0.66rem',
-                                    fontWeight: 600,
-                                    color: '#4A4036',
-                                    backgroundColor: '#EDE5D6',
-                                    padding: '0.15rem 0.45rem',
-                                    borderRadius: '4px'
+                                    fontSize: '0.7rem',
+                                    fontWeight: 700,
+                                    color: '#781416',
+                                    backgroundColor: '#FAF5ED',
+                                    border: '1px solid #F5DCDA',
+                                    padding: '0.22rem 0.55rem',
+                                    borderRadius: '6px',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.25rem'
                                   }}
                                 >
-                                  {feat}
+                                  <span style={{ fontSize: '0.75rem' }}>✓</span> {feat}
                                 </span>
                               ))}
                             </div>
                           </div>
                         );
                       })}
+                    </div>
+
+                    {/* Next Step Button for Templates */}
+                    <div style={{ marginTop: '1.25rem', paddingTop: '1rem', borderTop: '1px solid #EDE5D6' }}>
+                      <button
+                        type="button"
+                        onClick={handleNextMobileStep}
+                        style={{
+                          width: '100%',
+                          backgroundColor: '#781416',
+                          color: '#FFFFFF',
+                          border: 'none',
+                          borderRadius: '8px',
+                          padding: '0.65rem 1rem',
+                          fontSize: '0.86rem',
+                          fontWeight: 800,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '0.45rem',
+                          boxShadow: '0 2px 8px rgba(120, 20, 22, 0.25)'
+                        }}
+                      >
+                        <span>Next Step: Personal Details</span>
+                        <ArrowRight size={15} />
+                      </button>
                     </div>
                   </div>
                 )}
