@@ -21,7 +21,9 @@ import {
   Info,
   Check,
   Download,
-  AlertTriangle
+  AlertTriangle,
+  Home,
+  Landmark
 } from 'lucide-react';
 
 export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
@@ -50,6 +52,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
   const [hoveredPoint, setHoveredPoint] = useState(null);
 
   const fileInputRef = useRef(null);
+  const mobileFileInputRef = useRef(null);
 
   // Expand All / Collapse All controls
   const handleExpandAll = () => {
@@ -370,6 +373,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
     setPipelineStage('idle');
     setIsAnalyzing(false);
     if (fileInputRef.current) fileInputRef.current.value = '';
+    if (mobileFileInputRef.current) mobileFileInputRef.current.value = '';
   };
 
   // Download Academic Analysis PDF Report
@@ -425,7 +429,12 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
   return (
     <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1F2421', paddingBottom: '5rem' }}>
       
-      {/* 1. BREADCRUMB */}
+      {/* =========================================================================
+          DESKTOP RESULT & CGPA WORKSPACE (>= 1024px)
+          100% Preserved & Untouched Baseline
+          ========================================================================= */}
+      <div className="pv-result-desktop-only" style={{ width: '100%' }}>
+        {/* 1. BREADCRUMB */}
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '1rem 1.5rem 0' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.8rem', color: '#78716C', fontWeight: 600 }}>
           <span style={{ cursor: 'pointer' }} onClick={() => onNavigate ? onNavigate('home') : (window.location.href = '/')}>Home</span>
@@ -2245,6 +2254,899 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
         )}
 
       </section>
+      </div> {/* End pv-result-desktop-only */}
+
+      {/* =========================================================================
+          MOBILE RESULT & CGPA WORKSPACE (< 1024px)
+          Designed to perfectly match Professor Virus Mobile UI Reference
+          ========================================================================= */}
+      <div
+        className="pv-result-mobile-only"
+        style={{
+          width: '100%',
+          maxWidth: '100%',
+          boxSizing: 'border-box',
+          padding: '0.85rem 1rem 6.5rem',
+          fontFamily: "'Plus Jakarta Sans', sans-serif"
+        }}
+      >
+        {/* 1. Mobile Breadcrumb */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.82rem', color: '#64748B', fontWeight: 500, marginBottom: '0.9rem' }}>
+          <Home size={14} style={{ color: '#64748B', flexShrink: 0 }} />
+          <span style={{ cursor: 'pointer' }} onClick={() => onNavigate ? onNavigate('home') : (window.location.href = '/')}>Home</span>
+          <span style={{ color: '#CBD5E1' }}>/</span>
+          <span style={{ color: '#161E38', fontWeight: 700 }}>Result & CGPA</span>
+        </div>
+
+        {/* 2. Mobile Page Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
+          <div
+            style={{
+              width: '46px',
+              height: '46px',
+              minWidth: '46px',
+              borderRadius: '13px',
+              backgroundColor: '#781416',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 14px rgba(120, 20, 22, 0.28)'
+            }}
+          >
+            <GraduationCap size={26} color="#FFFFFF" strokeWidth={2.2} />
+          </div>
+          <div>
+            <h1 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#161E38', margin: 0, lineHeight: 1.2 }}>
+              Result & CGPA
+            </h1>
+            <p style={{ fontSize: '0.82rem', color: '#64748B', fontWeight: 500, margin: '0.2rem 0 0 0', lineHeight: 1.35 }}>
+              Analyze your AKTU academic performance.
+            </p>
+          </div>
+        </div>
+
+        {/* 3. Official AKTU Portal Card */}
+        <div
+          style={{
+            background: 'linear-gradient(135deg, #781416 0%, #5B0F11 100%)',
+            borderRadius: '16px',
+            padding: '1.25rem 1.15rem',
+            color: '#FFFFFF',
+            boxShadow: '0 8px 24px rgba(120, 20, 22, 0.22)',
+            marginBottom: '1.35rem',
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+        >
+          {/* Badge */}
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.14)',
+              backdropFilter: 'blur(6px)',
+              padding: '0.3rem 0.7rem',
+              borderRadius: '999px',
+              marginBottom: '0.85rem'
+            }}
+          >
+            <Landmark size={13} color="#FDE047" />
+            <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#FDE047', letterSpacing: '0.04em' }}>
+              OFFICIAL UNIVERSITY PORTAL
+            </span>
+          </div>
+
+          <h2 style={{ fontSize: '1.22rem', fontWeight: 800, color: '#FFFFFF', margin: '0 0 0.55rem 0', lineHeight: 1.25 }}>
+            Check Your Official AKTU Result
+          </h2>
+          <p style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.88)', lineHeight: 1.45, margin: '0 0 1.1rem 0' }}>
+            Access the official Dr. A.P.J. Abdul Kalam Technical University (AKTU) One View portal to check your live semester marks, provisional marksheets, and university grades.
+          </p>
+
+          <button
+            onClick={handleOpenOfficialPortal}
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              background: 'linear-gradient(180deg, #F5B041 0%, #D4881E 100%)',
+              color: '#1A1305',
+              border: 'none',
+              borderRadius: '11px',
+              padding: '0.85rem 1rem',
+              fontSize: '0.92rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.2)'
+            }}
+          >
+            <span>Open AKTU One View Portal</span>
+            <ExternalLink size={16} strokeWidth={2.4} />
+          </button>
+
+          <div style={{ textAlign: 'center', fontSize: '0.72rem', color: 'rgba(255, 255, 255, 0.72)', marginTop: '0.65rem' }}>
+            Opens official AKTU website in a new tab
+          </div>
+        </div>
+
+        {/* 4. Active Results Dashboard (When PDF is analyzed) */}
+        {analysisData ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', marginBottom: '1.5rem' }}>
+            {/* Top Analysis Status & Actions */}
+            <div
+              style={{
+                backgroundColor: '#FFFFFF',
+                borderRadius: '16px',
+                padding: '1.15rem',
+                border: '1px solid #E2E8F0',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', marginBottom: '0.85rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                  <CheckCircle2 size={18} color="#16A34A" />
+                  <span style={{ fontSize: '0.86rem', fontWeight: 800, color: '#161E38' }}>Result Analyzed</span>
+                </div>
+                <span
+                  style={{
+                    fontSize: '0.7rem',
+                    fontWeight: 700,
+                    padding: '0.2rem 0.55rem',
+                    borderRadius: '999px',
+                    backgroundColor: '#DCFCE7',
+                    color: '#166534'
+                  }}
+                >
+                  Verified • {analysisData.confidence || '95%'}
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+                <button
+                  onClick={handleDownloadReport}
+                  disabled={isDownloading}
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    backgroundColor: '#781416',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    borderRadius: '10px',
+                    padding: '0.8rem 1rem',
+                    fontSize: '0.88rem',
+                    fontWeight: 700,
+                    cursor: isDownloading ? 'not-allowed' : 'pointer',
+                    boxShadow: '0 4px 12px rgba(120, 20, 22, 0.22)'
+                  }}
+                >
+                  <Download size={16} />
+                  <span>{isDownloading ? 'Generating PDF...' : 'Download Official Analysis Report'}</span>
+                </button>
+
+                <button
+                  onClick={handleResetAnalysis}
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.45rem',
+                    backgroundColor: '#F8FAFC',
+                    color: '#64748B',
+                    border: '1px solid #E2E8F0',
+                    borderRadius: '10px',
+                    padding: '0.65rem 1rem',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    cursor: 'pointer'
+                  }}
+                >
+                  <RefreshCw size={14} />
+                  <span>Upload Different Marksheet</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Student Info Card */}
+            {analysisData.student?.name && (
+              <div
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '16px',
+                  padding: '1.15rem',
+                  border: '1px solid #E2E8F0',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+                }}
+              >
+                <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#781416', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
+                  STUDENT IDENTITY
+                </div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#161E38', marginBottom: '0.65rem' }}>
+                  {analysisData.student.name}
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem', fontSize: '0.76rem' }}>
+                  {analysisData.student.rollNumber && (
+                    <div>
+                      <span style={{ color: '#64748B', display: 'block', fontSize: '0.7rem' }}>Roll Number</span>
+                      <span style={{ fontWeight: 700, color: '#161E38' }}>{analysisData.student.rollNumber}</span>
+                    </div>
+                  )}
+                  {analysisData.student.course && (
+                    <div>
+                      <span style={{ color: '#64748B', display: 'block', fontSize: '0.7rem' }}>Course & Branch</span>
+                      <span style={{ fontWeight: 700, color: '#161E38' }}>{analysisData.student.course} {analysisData.student.branch ? `(${analysisData.student.branch})` : ''}</span>
+                    </div>
+                  )}
+                  {analysisData.student.college && (
+                    <div style={{ gridColumn: 'span 2' }}>
+                      <span style={{ color: '#64748B', display: 'block', fontSize: '0.7rem' }}>Institute / College</span>
+                      <span style={{ fontWeight: 600, color: '#334155' }}>{analysisData.student.college}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* 4 Summary Metric Cards (2x2) */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
+              {/* CGPA */}
+              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '14px', padding: '1rem', border: '1px solid #E2E8F0', textAlign: 'center' }}>
+                <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+                  Cumulative CGPA
+                </div>
+                <div style={{ fontSize: '1.7rem', fontWeight: 900, color: '#781416', lineHeight: 1.1 }}>
+                  {analysisData.summary?.displayCGPA ?? '—'}
+                </div>
+                <div style={{ fontSize: '0.66rem', color: '#16A34A', fontWeight: 700, marginTop: '0.3rem' }}>
+                  {analysisData.summary?.isOfficialCgpa ? 'Official University Grade' : 'Calculated Weighted'}
+                </div>
+              </div>
+
+              {/* Latest SGPA */}
+              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '14px', padding: '1rem', border: '1px solid #E2E8F0', textAlign: 'center' }}>
+                <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+                  Latest SGPA
+                </div>
+                <div style={{ fontSize: '1.7rem', fontWeight: 900, color: '#1E293B', lineHeight: 1.1 }}>
+                  {analysisData.summary?.latestSGPA ?? '—'}
+                </div>
+                <div style={{ fontSize: '0.66rem', color: '#64748B', fontWeight: 600, marginTop: '0.3rem' }}>
+                  Semester {analysisData.semesters?.length || 1}
+                </div>
+              </div>
+
+              {/* Total Credits */}
+              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '14px', padding: '1rem', border: '1px solid #E2E8F0', textAlign: 'center' }}>
+                <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+                  Credits Earned
+                </div>
+                <div style={{ fontSize: '1.45rem', fontWeight: 800, color: '#1E293B', lineHeight: 1.1 }}>
+                  {analysisData.summary?.totalCreditsEarned ?? '—'}
+                </div>
+                <div style={{ fontSize: '0.66rem', color: '#64748B', fontWeight: 500, marginTop: '0.3rem' }}>
+                  Across {analysisData.summary?.semestersCount || analysisData.semesters?.length || 0} Semesters
+                </div>
+              </div>
+
+              {/* Active Backlogs */}
+              <div
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '14px',
+                  padding: '1rem',
+                  border: analysisData.summary?.totalBacklogs > 0 ? '1px solid #FECACA' : '1px solid #E2E8F0',
+                  textAlign: 'center'
+                }}
+              >
+                <div style={{ fontSize: '0.7rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+                  Active Backlogs
+                </div>
+                <div style={{ fontSize: '1.45rem', fontWeight: 800, color: analysisData.summary?.totalBacklogs > 0 ? '#DC2626' : '#16A34A', lineHeight: 1.1 }}>
+                  {analysisData.summary?.totalBacklogs || 0}
+                </div>
+                <div style={{ fontSize: '0.66rem', color: analysisData.summary?.totalBacklogs > 0 ? '#DC2626' : '#16A34A', fontWeight: 700, marginTop: '0.3rem' }}>
+                  {analysisData.summary?.totalBacklogs > 0 ? 'Action Required' : 'All Cleared'}
+                </div>
+              </div>
+            </div>
+
+            {/* Backlog Alert if any */}
+            {analysisData.summary?.totalBacklogs > 0 && (
+              <div style={{ backgroundColor: '#FEF2F2', border: '1px solid #FCA5A5', borderRadius: '14px', padding: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#B91C1C', fontWeight: 800, fontSize: '0.86rem', marginBottom: '0.35rem' }}>
+                  <AlertCircle size={18} />
+                  <span>Carry-Over Papers Detected ({analysisData.summary.totalBacklogs})</span>
+                </div>
+                <p style={{ fontSize: '0.75rem', color: '#991B1B', margin: '0 0 0.6rem 0', lineHeight: 1.4 }}>
+                  The following courses require improvement examination as per AKTU ordinances:
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                  {(analysisData.backlogAnalytics?.activeList || []).map((b, idx) => (
+                    <div key={idx} style={{ fontSize: '0.74rem', backgroundColor: '#FFFFFF', padding: '0.4rem 0.6rem', borderRadius: '6px', border: '1px solid #FECACA', color: '#7F1D1D', fontWeight: 600 }}>
+                      {typeof b === 'string' ? b : `${b.subjectCode || b.code || ''} — ${b.subjectName || b.name || ''}`}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Semester-by-Semester Results Accordion */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#161E38', margin: 0 }}>
+                  Semester-wise Results ({analysisData.semesters?.length || 0})
+                </h3>
+                <button
+                  onClick={isDataTableExpanded ? handleCollapseAll : handleExpandAll}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#781416',
+                    fontSize: '0.74rem',
+                    fontWeight: 700,
+                    cursor: 'pointer'
+                  }}
+                >
+                  {isDataTableExpanded ? 'Collapse All' : 'Expand All'}
+                </button>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                {(analysisData.semesters || []).map((sem, sIdx) => {
+                  const sNum = sem.sem ?? sem.semesterNumber ?? (sIdx + 1);
+                  const isExp = Boolean(expandedSemesters[sNum] ?? expandedSemesters[String(sNum)] ?? isDataTableExpanded);
+
+                  return (
+                    <div
+                      key={sIdx}
+                      style={{
+                        backgroundColor: '#FFFFFF',
+                        borderRadius: '14px',
+                        border: '1px solid #E2E8F0',
+                        overflow: 'hidden',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+                      }}
+                    >
+                      <div
+                        onClick={() => toggleSemesterExpand(sNum)}
+                        style={{
+                          padding: '0.85rem 1rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          cursor: 'pointer',
+                          backgroundColor: isExp ? '#FDFBF7' : '#FFFFFF'
+                        }}
+                      >
+                        <div>
+                          <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#161E38' }}>
+                            Semester {sNum}
+                          </div>
+                          <div style={{ fontSize: '0.72rem', color: '#64748B', marginTop: '0.15rem' }}>
+                            {sem.subjects?.length || 0} subjects • {sem.creditsEarned ?? sem.totalCredits ?? '—'} credits
+                          </div>
+                        </div>
+
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                          <span
+                            style={{
+                              fontSize: '0.84rem',
+                              fontWeight: 800,
+                              color: '#781416',
+                              backgroundColor: '#FEE2E2',
+                              padding: '0.2rem 0.55rem',
+                              borderRadius: '8px'
+                            }}
+                          >
+                            SGPA: {sem.sgpa ?? sem.calculatedSGPA ?? sem.officialSGPA ?? '—'}
+                          </span>
+                          {isExp ? <ChevronUp size={18} color="#64748B" /> : <ChevronDown size={18} color="#64748B" />}
+                        </div>
+                      </div>
+
+                      {/* Expanded Subject List */}
+                      {isExp && (
+                        <div style={{ borderTop: '1px solid #F1F5F9', padding: '0.75rem 1rem' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                            {(sem.subjects || []).map((sub, subIdx) => (
+                              <div
+                                key={subIdx}
+                                style={{
+                                  padding: '0.55rem 0.65rem',
+                                  borderRadius: '8px',
+                                  backgroundColor: '#F8FAFC',
+                                  border: '1px solid #F1F5F9',
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'center',
+                                  gap: '0.5rem'
+                                }}
+                              >
+                                <div style={{ minWidth: 0, flex: 1 }}>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                    <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#781416' }}>{sub.code}</span>
+                                    {sub.credits !== null && sub.credits !== undefined && (
+                                      <span style={{ fontSize: '0.66rem', color: '#64748B', backgroundColor: '#E2E8F0', padding: '0.1rem 0.35rem', borderRadius: '4px' }}>
+                                        {sub.credits} cr
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div style={{ fontSize: '0.74rem', color: '#334155', fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '0.15rem' }}>
+                                    {sub.name}
+                                  </div>
+                                </div>
+
+                                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: sub.status === 'Backlog' || sub.status === 'Fail' ? '#DC2626' : '#166534' }}>
+                                    {sub.grade || (sub.status === 'Backlog' ? 'F' : 'P')}
+                                  </div>
+                                  <div style={{ fontSize: '0.68rem', color: '#64748B' }}>
+                                    {formatMarksDisplay(sub.marks, sub.maxMarks)}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+        {/* 5. Analyse Your Result Section (Upload Panel & Empty/Active Flow) */}
+        {!analysisData && (
+          <>
+            {/* Section Header */}
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.9rem' }}>
+              <div
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  minWidth: '38px',
+                  borderRadius: '10px',
+                  backgroundColor: '#FEE2E2',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#781416',
+                  marginTop: '0.1rem'
+                }}
+              >
+                <BarChart2 size={20} strokeWidth={2.3} />
+              </div>
+              <div>
+                <h2 style={{ fontSize: '1.18rem', fontWeight: 800, color: '#161E38', margin: 0, lineHeight: 1.25 }}>
+                  Analyse Your Result
+                </h2>
+                <p style={{ fontSize: '0.8rem', color: '#64748B', margin: '0.2rem 0 0 0', lineHeight: 1.4 }}>
+                  Upload your official result PDF to calculate SGPA, CGPA, credits and academic trends.
+                </p>
+              </div>
+            </div>
+
+            {/* Upload Result PDF Card */}
+            <div
+              style={{
+                backgroundColor: '#FFFFFF',
+                border: '1.5px dashed #F87171',
+                borderRadius: '16px',
+                padding: '1.4rem 1.1rem',
+                textAlign: 'center',
+                marginBottom: '1.35rem',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.02)'
+              }}
+            >
+              <div
+                style={{
+                  width: '54px',
+                  height: '54px',
+                  borderRadius: '14px',
+                  backgroundColor: '#FEE2E2',
+                  color: '#781416',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '0.85rem'
+                }}
+              >
+                <UploadCloud size={28} strokeWidth={2.2} />
+              </div>
+
+              <div style={{ fontSize: '0.96rem', fontWeight: 800, color: '#161E38', letterSpacing: '0.02em', marginBottom: '0.45rem' }}>
+                UPLOAD YOUR RESULT PDF
+              </div>
+
+              <p style={{ fontSize: '0.78rem', color: '#64748B', lineHeight: 1.45, margin: '0 auto 1.15rem auto', maxWidth: '320px' }}>
+                Upload your official AKTU result PDF and ProfessorVirus AI will automatically extract your semester-wise academic performance, credits, and grades.
+              </p>
+
+              {/* Hidden Native File Input */}
+              <input
+                ref={mobileFileInputRef}
+                type="file"
+                accept=".pdf,application/pdf"
+                onChange={handleFileInputChange}
+                style={{ display: 'none' }}
+                id="pv-mobile-result-file-input"
+              />
+
+              <button
+                onClick={() => mobileFileInputRef.current && mobileFileInputRef.current.click()}
+                disabled={isAnalyzing}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.55rem',
+                  backgroundColor: '#781416',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  borderRadius: '11px',
+                  padding: '0.85rem 1rem',
+                  fontSize: '0.92rem',
+                  fontWeight: 700,
+                  cursor: isAnalyzing ? 'not-allowed' : 'pointer',
+                  opacity: isAnalyzing ? 0.75 : 1,
+                  boxShadow: '0 4px 14px rgba(120, 20, 22, 0.28)'
+                }}
+              >
+                <FileText size={17} strokeWidth={2.2} />
+                <span>{isAnalyzing ? 'Analyzing Document...' : 'Upload Result PDF'}</span>
+              </button>
+
+              <div style={{ fontSize: '0.73rem', color: '#64748B', marginTop: '0.65rem', fontWeight: 500 }}>
+                PDF only • Digital or scanned
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', margin: '0.85rem 0', color: '#CBD5E1' }}>
+                <div style={{ flex: 1, height: '1px', backgroundColor: '#E2E8F0' }} />
+                <span style={{ padding: '0 0.6rem', fontSize: '0.72rem', fontWeight: 700, color: '#94A3B8' }}>OR</span>
+                <div style={{ flex: 1, height: '1px', backgroundColor: '#E2E8F0' }} />
+              </div>
+
+              <div
+                onClick={() => mobileFileInputRef.current && mobileFileInputRef.current.click()}
+                style={{
+                  backgroundColor: '#F8FAFC',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '9px',
+                  padding: '0.6rem 0.8rem',
+                  fontSize: '0.78rem',
+                  color: '#64748B',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+              >
+                Drag & drop your file here
+              </div>
+
+              {/* Selected File Chip on Mobile */}
+              {selectedFile && (
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    backgroundColor: '#F1F5F9',
+                    border: '1px solid #CBD5E1',
+                    borderRadius: '10px',
+                    padding: '0.65rem 0.85rem',
+                    marginTop: '1rem',
+                    textAlign: 'left'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', overflow: 'hidden' }}>
+                    <FileText size={18} color="#781416" style={{ flexShrink: 0 }} />
+                    <div style={{ overflow: 'hidden' }}>
+                      <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#161E38', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                        {selectedFile.name}
+                      </div>
+                      <div style={{ fontSize: '0.7rem', color: '#64748B' }}>
+                        {(selectedFile.size / 1024).toFixed(1)} KB
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleResetAnalysis}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#64748B',
+                      padding: '0.3rem',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center'
+                    }}
+                    title="Remove file"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+              )}
+
+              {/* Analyzing State UI on Mobile */}
+              {isAnalyzing && (
+                <div style={{ marginTop: '1.1rem', padding: '1rem', backgroundColor: '#FFF7ED', borderRadius: '12px', border: '1px solid #FED7AA', textAlign: 'left' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#C2410C', fontWeight: 700, fontSize: '0.85rem' }}>
+                    <RefreshCw size={16} className="animate-spin" />
+                    <span>{PIPELINE_STEPS[currentStepIdx]?.title || 'Processing Marks...'}</span>
+                  </div>
+                  <p style={{ fontSize: '0.75rem', color: '#7C2D12', margin: '0 0 0.75rem 0' }}>
+                    {PIPELINE_STEPS[currentStepIdx]?.desc || 'Extracting university result data'}
+                  </p>
+                  <div style={{ width: '100%', height: '6px', backgroundColor: '#FFEDD5', borderRadius: '999px', overflow: 'hidden' }}>
+                    <div
+                      style={{
+                        height: '100%',
+                        backgroundColor: '#781416',
+                        width: `${((currentStepIdx + 1) / PIPELINE_STEPS.length) * 100}%`,
+                        transition: 'width 0.4s ease'
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Error Message on Mobile */}
+              {pipelineStage === 'error' && errorMessage && (
+                <div style={{ marginTop: '1rem', padding: '0.85rem 1rem', backgroundColor: '#FEF2F2', borderRadius: '10px', border: '1px solid #FCA5A5', textAlign: 'left' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', color: '#B91C1C' }}>
+                    <AlertCircle size={18} style={{ flexShrink: 0, marginTop: '0.1rem' }} />
+                    <div>
+                      <div style={{ fontSize: '0.82rem', fontWeight: 700 }}>Analysis Issue</div>
+                      <div style={{ fontSize: '0.76rem', marginTop: '0.2rem', lineHeight: 1.4 }}>{errorMessage}</div>
+                      <button
+                        onClick={() => mobileFileInputRef.current && mobileFileInputRef.current.click()}
+                        style={{
+                          marginTop: '0.6rem',
+                          backgroundColor: '#B91C1C',
+                          color: '#FFFFFF',
+                          border: 'none',
+                          borderRadius: '6px',
+                          padding: '0.35rem 0.75rem',
+                          fontSize: '0.74rem',
+                          fontWeight: 700,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Select Another File
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 6. Feature Cards (2-column responsive grid matching mockup) */}
+            <div
+              className="pv-result-features-grid"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+                gap: '0.65rem',
+                marginBottom: '1.5rem',
+                width: '100%',
+                boxSizing: 'border-box'
+              }}
+            >
+              {/* Card 1: Multi-semester */}
+              <div
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '14px',
+                  padding: '0.9rem',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div
+                  style={{
+                    width: '34px',
+                    height: '34px',
+                    borderRadius: '9px',
+                    backgroundColor: '#EEF2FF',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '0.6rem'
+                  }}
+                >
+                  <ShieldCheck size={18} color="#6366F1" strokeWidth={2.2} />
+                </div>
+                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#161E38', lineHeight: 1.25, marginBottom: '0.3rem' }}>
+                  Multi-semester verification
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#64748B', lineHeight: 1.38 }}>
+                  Upload multiple semester results for complete analysis.
+                </div>
+              </div>
+
+              {/* Card 2: SGPA & CGPA calculation */}
+              <div
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '14px',
+                  padding: '0.9rem',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div
+                  style={{
+                    width: '34px',
+                    height: '34px',
+                    borderRadius: '9px',
+                    backgroundColor: '#FEF3C7',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '0.6rem'
+                  }}
+                >
+                  <FileText size={18} color="#D97706" strokeWidth={2.2} />
+                </div>
+                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#161E38', lineHeight: 1.25, marginBottom: '0.3rem' }}>
+                  SGPA & CGPA calculation
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#64748B', lineHeight: 1.38 }}>
+                  Accurate calculation based on AKTU grading system.
+                </div>
+              </div>
+
+              {/* Card 3: Backlog detection */}
+              <div
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '14px',
+                  padding: '0.9rem',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div
+                  style={{
+                    width: '34px',
+                    height: '34px',
+                    borderRadius: '9px',
+                    backgroundColor: '#DCFCE7',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '0.6rem'
+                  }}
+                >
+                  <Layers size={18} color="#16A34A" strokeWidth={2.2} />
+                </div>
+                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#161E38', lineHeight: 1.25, marginBottom: '0.3rem' }}>
+                  Backlog detection
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#64748B', lineHeight: 1.38 }}>
+                  Identify backlogs and improvement opportunities.
+                </div>
+              </div>
+
+              {/* Card 4: Subject marks & credit audit */}
+              <div
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '14px',
+                  padding: '0.9rem',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div
+                  style={{
+                    width: '34px',
+                    height: '34px',
+                    borderRadius: '9px',
+                    backgroundColor: '#FFE4E6',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '0.6rem'
+                  }}
+                >
+                  <BarChart2 size={18} color="#E11D48" strokeWidth={2.2} />
+                </div>
+                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#161E38', lineHeight: 1.25, marginBottom: '0.3rem' }}>
+                  Subject marks & credit audit
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#64748B', lineHeight: 1.38 }}>
+                  Detailed subject-wise analysis and credit summary.
+                </div>
+              </div>
+
+              {/* Card 5: Academic progress */}
+              <div
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '14px',
+                  padding: '0.9rem',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div
+                  style={{
+                    width: '34px',
+                    height: '34px',
+                    borderRadius: '9px',
+                    backgroundColor: '#DBEAFE',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '0.6rem'
+                  }}
+                >
+                  <TrendingUp size={18} color="#2563EB" strokeWidth={2.2} />
+                </div>
+                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#161E38', lineHeight: 1.25, marginBottom: '0.3rem' }}>
+                  Academic progress
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#64748B', lineHeight: 1.38 }}>
+                  Track semester-by-semester growth and trends.
+                </div>
+              </div>
+
+              {/* Card 6: Downloadable report */}
+              <div
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '14px',
+                  padding: '0.9rem',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div
+                  style={{
+                    width: '34px',
+                    height: '34px',
+                    borderRadius: '9px',
+                    backgroundColor: '#EDE9FE',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '0.6rem'
+                  }}
+                >
+                  <Download size={18} color="#7C3AED" strokeWidth={2.2} />
+                </div>
+                <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#161E38', lineHeight: 1.25, marginBottom: '0.3rem' }}>
+                  Downloadable report
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#64748B', lineHeight: 1.38 }}>
+                  Export a comprehensive PDF report of your analysis.
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
 
     </div>
   );

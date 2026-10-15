@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowLeft, Bell, Search, GraduationCap, Sparkles, SlidersHorizontal } from 'lucide-react';
 
 export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onOpenSearch, selectedCourse = 'B.Tech' }) {
-  const isHome = activeTab === 'home' || activeTab === 'more' || activeTab === 'notes' || activeTab === 'pyqs' || activeTab === 'progress' || activeTab === 'profile' || !activeTab;
+  const isHome = activeTab === 'home' || activeTab === 'more' || activeTab === 'notes' || activeTab === 'pyqs' || activeTab === 'progress' || activeTab === 'profile' || activeTab === 'result-cgpa' || !activeTab;
 
   const getPageTitle = () => {
     switch (activeTab) {
@@ -112,7 +112,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 }}
               >
                 <span style={{ color: '#0F172A' }}>PROFESSOR</span>
-                <span style={{ color: '#6366F1' }}>VIRUS</span>
+                <span style={{ color: '#781416' }}>VIRUS</span>
               </div>
               <div 
                 style={{

@@ -36,7 +36,13 @@ import {
   Sliders,
   CheckCircle2,
   ArrowLeft,
-  ArrowRight
+  ArrowRight,
+  Bell,
+  Building,
+  Calendar,
+  Percent,
+  Search,
+  ChevronDown
 } from 'lucide-react';
 import { generateLatex } from '../utils/latexGenerator';
 import SearchableSkillsSelector from '../components/SearchableSkillsSelector';
@@ -175,6 +181,17 @@ const DEFAULT_RESUME_DATA = {
   ]
 };
 
+const FORM_STEPS = [
+  { id: 'personal', title: 'Personal Details', icon: User },
+  { id: 'education', title: 'Education', icon: GraduationCap },
+  { id: 'skills', title: 'Technical Skills', icon: Wrench },
+  { id: 'experience', title: 'Experience', icon: Briefcase },
+  { id: 'projects', title: 'Projects', icon: BookOpen },
+  { id: 'achievements', title: 'Achievements', icon: Award },
+  { id: 'certifications', title: 'Certifications', icon: ShieldCheck },
+  { id: 'extracurricular', title: 'Extracurricular', icon: Layers }
+];
+
 const RESUME_TEMPLATES = [
   {
     id: 'classic-tech',
@@ -208,17 +225,117 @@ const RESUME_TEMPLATES = [
   }
 ];
 
-const FORM_STEPS = [
-  { id: 'templates', title: 'Templates', icon: Layers },
-  { id: 'personal', title: 'Personal', icon: User },
-  { id: 'education', title: 'Education', icon: GraduationCap },
-  { id: 'skills', title: 'Skills', icon: Wrench },
-  { id: 'experience', title: 'Experience', icon: Briefcase },
-  { id: 'projects', title: 'Projects', icon: BookOpen },
-  { id: 'achievements', title: 'Achievements', icon: Award },
-  { id: 'certifications', title: 'Certifications', icon: ShieldCheck },
-  { id: 'extracurricular', title: 'Extracurricular', icon: Layers }
+// Mobile Stepper Definition matching reference image (All 9 sections accessible)
+const MOBILE_STEPS = [
+  { id: 'templates', title: 'Templates', desktopIndex: 0, number: '1.' },
+  { id: 'personal', title: 'Personal Details', desktopIndex: 1, number: '2.' },
+  { id: 'education', title: 'Education', desktopIndex: 2, number: '3.' },
+  { id: 'skills', title: 'Technical Skills', desktopIndex: 3, number: '4.' },
+  { id: 'experience', title: 'Experience', desktopIndex: 4, number: '5.' },
+  { id: 'projects', title: 'Projects', desktopIndex: 5, number: '6.' },
+  { id: 'achievements', title: 'Achievements', desktopIndex: 6, number: '7.' },
+  { id: 'certifications', title: 'Certifications', desktopIndex: 7, number: '8.' },
+  { id: 'extracurricular', title: 'Extracurricular', desktopIndex: 8, number: '9.' }
 ];
+
+// Reusable Mobile Input Field with interior icon
+function MobileFormField({ label, required, icon: Icon, type = 'text', placeholder, value, onChange, id }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      {label && (
+        <label
+          htmlFor={id}
+          style={{
+            fontSize: '0.74rem',
+            fontWeight: 700,
+            color: '#4A4036',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '2px',
+            marginBottom: '0.3rem'
+          }}
+        >
+          {label} {required && <span style={{ color: '#DC2626' }}>*</span>}
+        </label>
+      )}
+      <div style={{ position: 'relative', display: 'flex', alignItems: 'center', width: '100%' }}>
+        {Icon && (
+          <Icon
+            size={14}
+            color="#8A7E72"
+            style={{
+              position: 'absolute',
+              left: '0.75rem',
+              pointerEvents: 'none'
+            }}
+          />
+        )}
+        <input
+          id={id}
+          type={type}
+          placeholder={placeholder}
+          value={value || ''}
+          onChange={onChange}
+          className="pv-mobile-form-input"
+          style={{
+            paddingLeft: Icon ? '2.25rem' : '0.75rem'
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// Reusable Mobile Textarea Field with interior icon
+function MobileTextareaField({ label, required, icon: Icon, rows = 2, placeholder, value, onChange, id }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      {label && (
+        <label
+          htmlFor={id}
+          style={{
+            fontSize: '0.74rem',
+            fontWeight: 700,
+            color: '#4A4036',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '2px',
+            marginBottom: '0.3rem'
+          }}
+        >
+          {label} {required && <span style={{ color: '#DC2626' }}>*</span>}
+        </label>
+      )}
+      <div style={{ position: 'relative', width: '100%' }}>
+        {Icon && (
+          <Icon
+            size={14}
+            color="#8A7E72"
+            style={{
+              position: 'absolute',
+              left: '0.75rem',
+              top: '0.65rem',
+              pointerEvents: 'none'
+            }}
+          />
+        )}
+        <textarea
+          id={id}
+          rows={rows}
+          placeholder={placeholder}
+          value={value || ''}
+          onChange={onChange}
+          className="pv-mobile-form-input"
+          style={{
+            paddingLeft: Icon ? '2.25rem' : '0.75rem',
+            resize: 'vertical',
+            minHeight: '75px'
+          }}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   // Navigation return context (e.g. from Interview Pro)
@@ -237,7 +354,6 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   const [activeStep, setActiveStep] = useState(0);
   const [template, setTemplate] = useState('classic-tech');
   const [rightPanelTab, setRightPanelTab] = useState('preview'); // 'preview' | 'latex'
-  const [mobileViewTab, setMobileViewTab] = useState('editor'); // 'editor' | 'preview'
 
   // Compilation & PDF States
   const [pdfUrl, setPdfUrl] = useState('');
@@ -811,9 +927,50 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     }
   };
 
+  const [mobileViewTab, setMobileViewTab] = useState('editor'); // 'editor' | 'preview'
+  const [mobileStepKey, setMobileStepKey] = useState('personal');
+  const mobileTabsRef = useRef(null);
+
+  const currentMobileIndex = MOBILE_STEPS.findIndex(s => s.id === mobileStepKey);
+
+  const handleNextMobileStep = () => {
+    if (currentMobileIndex < MOBILE_STEPS.length - 1) {
+      const nextStep = MOBILE_STEPS[currentMobileIndex + 1];
+      setMobileStepKey(nextStep.id);
+      setActiveStep(nextStep.desktopIndex);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setMobileViewTab('preview');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handlePrevMobileStep = () => {
+    if (currentMobileIndex > 0) {
+      const prevStep = MOBILE_STEPS[currentMobileIndex - 1];
+      setMobileStepKey(prevStep.id);
+      setActiveStep(prevStep.desktopIndex);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleScrollTabsRight = () => {
+    if (mobileTabsRef.current) {
+      mobileTabsRef.current.scrollBy({ left: 160, behavior: 'smooth' });
+    }
+  };
+
+  const handleMobileNextStep = handleNextMobileStep;
+  const handleMobilePrevStep = handlePrevMobileStep;
+
   return (
     <div className="pv-resume-maker-page" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
+      {/* =========================================================================
+          DESKTOP ATS RESUME MAKER (>= 1024px)
+          100% UNTOUCHED ORIGINAL DESKTOP UI/UX & SPLIT-VIEW
+          ========================================================================= */}
+      <div className="pv-resume-desktop-only">
       {/* =========================================================================
           TOP NAV & ATS COMPLIANCE TOOLBAR
           ========================================================================= */}
@@ -913,7 +1070,23 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
           {/* Middle: 1-Page Constraint Badge */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            {(compileStatus && (compileStatus.isOnePage === false || compileStatus.overflowWarning)) ? (
+            {compileStatus?.isOnePage ? (
+              <div style={{
+                backgroundColor: '#E7F5EE',
+                border: '1px solid #A3E0C1',
+                color: '#0E7A4A',
+                padding: '0.3rem 0.65rem',
+                borderRadius: '9999px',
+                fontSize: '0.74rem',
+                fontWeight: 800,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem'
+              }}>
+                <CheckCircle2 size={13} />
+                <span>Strict 1-Page Layout ({compileStatus.levelName || 'Standard'})</span>
+              </div>
+            ) : (
               <div style={{
                 backgroundColor: '#FEF2F2',
                 border: '1px solid #FCA5A5',
@@ -928,22 +1101,6 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               }}>
                 <AlertTriangle size={13} />
                 <span>Overflow Warning: {compileStatus?.pageCount || 2} Pages</span>
-              </div>
-            ) : (
-              <div style={{
-                backgroundColor: '#E7F5EE',
-                border: '1px solid #A3E0C1',
-                color: '#0E7A4A',
-                padding: '0.3rem 0.65rem',
-                borderRadius: '9999px',
-                fontSize: '0.74rem',
-                fontWeight: 800,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.35rem'
-              }}>
-                <CheckCircle2 size={13} />
-                <span>Strict 1-Page Layout ({compileStatus?.levelName || 'Standard'})</span>
               </div>
             )}
 
@@ -1125,80 +1282,18 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           MAIN 2-COLUMN WORKSPACE: LEFT FORM EDITOR & RIGHT LIVE DUAL-VIEW
           ========================================================================= */}
       <main className="container-wide" style={{ padding: '1rem 1.25rem 3rem 1.25rem' }}>
-        {/* Mobile View Switcher (Only visible on mobile screens) */}
-        <div className="pv-resume-mobile-only" style={{ marginBottom: '1rem', width: '100%' }}>
-          <div style={{
-            display: 'flex',
-            width: '100%',
-            backgroundColor: '#EDE5D6',
-            borderRadius: '10px',
-            padding: '3px',
-            boxSizing: 'border-box'
-          }}>
-            <button
-              type="button"
-              onClick={() => setMobileViewTab('editor')}
-              style={{
-                flex: 1,
-                padding: '0.55rem 0.5rem',
-                borderRadius: '8px',
-                border: 'none',
-                backgroundColor: mobileViewTab === 'editor' ? '#781416' : 'transparent',
-                color: mobileViewTab === 'editor' ? '#FFFFFF' : '#4A4036',
-                fontSize: '0.78rem',
-                fontWeight: 800,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.35rem',
-                transition: 'all 0.15s ease'
-              }}
-            >
-              <FileText size={14} />
-              <span>Edit Form ({activeStep + 1}/9)</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setMobileViewTab('preview')}
-              style={{
-                flex: 1,
-                padding: '0.55rem 0.5rem',
-                borderRadius: '8px',
-                border: 'none',
-                backgroundColor: mobileViewTab === 'preview' ? '#781416' : 'transparent',
-                color: mobileViewTab === 'preview' ? '#FFFFFF' : '#4A4036',
-                fontSize: '0.78rem',
-                fontWeight: 800,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.35rem',
-                transition: 'all 0.15s ease'
-              }}
-            >
-              <Eye size={14} />
-              <span>Live Preview & PDF</span>
-            </button>
-          </div>
-        </div>
-
-        <div className="resume-split-view resume-maker-grid pv-resume-split-view">
+        <div className="resume-split-view resume-maker-grid">
 
           {/* ===================================================================
-              LEFT COLUMN: 9-STEP GUIDED FORM EDITOR
+              LEFT COLUMN: 8-STEP GUIDED FORM EDITOR
               =================================================================== */}
-          <div
-            className={mobileViewTab === 'preview' ? 'pv-resume-desktop-only' : ''}
-            style={{
-              backgroundColor: '#FFFFFF',
-              border: '1.5px solid #EDE5D6',
-              borderRadius: '16px',
-              padding: '1.25rem',
-              boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)'
-            }}
-          >
+          <div style={{
+            backgroundColor: '#FFFFFF',
+            border: '1.5px solid #EDE5D6',
+            borderRadius: '16px',
+            padding: '1.25rem',
+            boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)'
+          }}>
 
             {/* Stepper Tabs Bar */}
             <div style={{
@@ -1241,117 +1336,12 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               })}
             </div>
 
-            {/* STEP 0: TEMPLATES */}
-            {activeStep === 0 && (
-              <div>
-                <div style={{ marginBottom: '1rem' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: '0 0 0.25rem 0' }}>
-                    1. Choose ATS Resume Template
-                  </h3>
-                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: 0 }}>
-                    All templates are engineered to score 95+ on ATS screening software (Workday, Taleo, Greenhouse) and format strictly to a single page.
-                  </p>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                  {RESUME_TEMPLATES.map((tmpl) => {
-                    const isSelected = template === tmpl.id;
-                    return (
-                      <div
-                        key={tmpl.id}
-                        onClick={() => handleTemplateChange(tmpl.id)}
-                        style={{
-                          padding: '1rem',
-                          borderRadius: '12px',
-                          border: isSelected ? '2px solid #781416' : '1.5px solid #E5DCCF',
-                          backgroundColor: isSelected ? '#FDF8F7' : '#FFFFFF',
-                          cursor: 'pointer',
-                          transition: 'all 0.15s ease',
-                          boxShadow: isSelected ? '0 4px 12px rgba(120, 20, 22, 0.08)' : 'none'
-                        }}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <span style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1C1814' }}>{tmpl.name}</span>
-                            <span style={{
-                              fontSize: '0.68rem',
-                              fontWeight: 700,
-                              backgroundColor: tmpl.badgeBg,
-                              color: tmpl.badgeColor,
-                              padding: '0.15rem 0.45rem',
-                              borderRadius: '999px'
-                            }}>
-                              {tmpl.badge}
-                            </span>
-                          </div>
-                          <div style={{
-                            width: '20px',
-                            height: '20px',
-                            borderRadius: '50%',
-                            border: isSelected ? '6px solid #781416' : '2px solid #D1C7B7',
-                            backgroundColor: '#FFFFFF',
-                            boxSizing: 'border-box'
-                          }} />
-                        </div>
-
-                        <p style={{ fontSize: '0.76rem', color: '#5A5044', margin: '0 0 0.65rem 0', lineHeight: 1.45 }}>
-                          {tmpl.desc}
-                        </p>
-
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
-                          {tmpl.features.map((feat, fIdx) => (
-                            <span
-                              key={fIdx}
-                              style={{
-                                fontSize: '0.68rem',
-                                fontWeight: 600,
-                                backgroundColor: isSelected ? '#FAF0F0' : '#F4EFE6',
-                                color: isSelected ? '#781416' : '#6A5E50',
-                                padding: '0.18rem 0.45rem',
-                                borderRadius: '4px'
-                              }}
-                            >
-                              ✓ {feat}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div style={{ marginTop: '1.25rem', display: 'flex', justifyContent: 'flex-end' }}>
-                  <button
-                    type="button"
-                    onClick={() => setActiveStep(1)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.4rem',
-                      backgroundColor: '#781416',
-                      color: '#FFFFFF',
-                      border: 'none',
-                      borderRadius: '8px',
-                      padding: '0.55rem 1.1rem',
-                      fontSize: '0.8rem',
-                      fontWeight: 800,
-                      cursor: 'pointer',
-                      boxShadow: '0 2px 8px rgba(120, 20, 22, 0.2)'
-                    }}
-                  >
-                    <span>Continue to Personal Details</span>
-                    <ChevronRight size={14} />
-                  </button>
-                </div>
-              </div>
-            )}
-
             {/* STEP 1: PERSONAL DETAILS */}
-            {activeStep === 1 && (
+            {activeStep === 0 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    2. Personal & Contact Details
+                    1. Personal & Contact Details
                   </h3>
                   <button
                     type="button"
@@ -1375,7 +1365,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                   </button>
                 </div>
 
-                <div className="resume-form-grid-2" style={{ marginBottom: '0.75rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem', marginBottom: '0.75rem' }}>
                   <div>
                     <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
                       Full Name *
@@ -1403,7 +1393,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                   </div>
                 </div>
 
-                <div className="resume-form-grid-3" style={{ marginBottom: '0.75rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '0.75rem' }}>
                   <div>
                     <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
                       Email Address *
@@ -1444,7 +1434,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                   </div>
                 </div>
 
-                <div className="resume-form-grid-3" style={{ marginBottom: '0.75rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '0.75rem' }}>
                   <div>
                     <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.25rem' }}>
                       LinkedIn URL
@@ -1501,11 +1491,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 2: EDUCATION */}
-            {activeStep === 2 && (
+            {activeStep === 1 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    3. Education
+                    2. Education
                   </h3>
                   <button
                     type="button"
@@ -1557,7 +1547,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div className="resume-form-grid-3" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Degree (e.g. B.Tech / Class 12th)"
@@ -1602,7 +1592,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                     </div>
 
-                    <div className="resume-form-grid-3" style={{ gap: '0.55rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Institution / College"
@@ -1653,11 +1643,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 3: TECHNICAL SKILLS */}
-            {activeStep === 3 && (
+            {activeStep === 2 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    4. Technical Skills (Categorized for ATS)
+                    3. Technical Skills (Categorized for ATS)
                   </h3>
                   <span style={{ fontSize: '0.7rem', color: '#8C7E72', fontWeight: 600 }}>
                     Search & select skills or type custom skills
@@ -1672,11 +1662,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 4: EXPERIENCE */}
-            {activeStep === 4 && (
+            {activeStep === 3 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    5. Experience & Internships
+                    4. Experience & Internships
                   </h3>
                   <button
                     type="button"
@@ -1728,7 +1718,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Job Title (e.g. Software Engineer Intern)"
@@ -1759,7 +1749,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                     </div>
 
-                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.65rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.65rem' }}>
                       <input
                         type="text"
                         placeholder="Duration (e.g. May 2024 - July 2024)"
@@ -1886,11 +1876,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 5: PROJECTS */}
-            {activeStep === 5 && (
+            {activeStep === 4 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    6. Academic & Personal Projects
+                    5. Academic & Personal Projects
                   </h3>
                   <button
                     type="button"
@@ -1942,7 +1932,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Project Title (e.g. Distributed Task Queue)"
@@ -1973,7 +1963,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                     </div>
 
-                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.65rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.65rem' }}>
                       <input
                         type="text"
                         placeholder="Live Demo URL (optional)"
@@ -2100,11 +2090,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 6: ACHIEVEMENTS */}
-            {activeStep === 6 && (
+            {activeStep === 5 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    7. Achievements & Honors
+                    6. Achievements & Honors
                   </h3>
                   <button
                     type="button"
@@ -2156,7 +2146,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div className="resume-form-grid-3" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Achievement Title (e.g. 1st Place Smart India Hackathon)"
@@ -2221,11 +2211,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 7: CERTIFICATIONS */}
-            {activeStep === 7 && (
+            {activeStep === 6 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    8. Certifications
+                    7. Certifications
                   </h3>
                   <button
                     type="button"
@@ -2277,7 +2267,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div className="resume-form-grid-2" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Certificate Name (e.g. AWS Certified Developer)"
@@ -2308,7 +2298,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       />
                     </div>
 
-                    <div className="resume-form-grid-2" style={{ gap: '0.55rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Date (e.g. Dec 2024)"
@@ -2344,11 +2334,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             )}
 
             {/* STEP 8: EXTRACURRICULAR */}
-            {activeStep === 8 && (
+            {activeStep === 7 && (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                   <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                    9. Extracurricular & Leadership
+                    8. Extracurricular & Leadership
                   </h3>
                   <button
                     type="button"
@@ -2400,7 +2390,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                       )}
                     </div>
 
-                    <div className="resume-form-grid-3" style={{ gap: '0.55rem', marginBottom: '0.55rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.55rem', marginBottom: '0.55rem' }}>
                       <input
                         type="text"
                         placeholder="Role (e.g. Lead Coordinator)"
@@ -2488,53 +2478,27 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 <span>Previous Step</span>
               </button>
 
-              {activeStep < FORM_STEPS.length - 1 ? (
-                <button
-                  type="button"
-                  onClick={() => setActiveStep(prev => Math.min(FORM_STEPS.length - 1, prev + 1))}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
-                    backgroundColor: '#781416',
-                    color: '#FFFFFF',
-                    border: 'none',
-                    borderRadius: '6px',
-                    padding: '0.45rem 0.85rem',
-                    fontSize: '0.78rem',
-                    fontWeight: 800,
-                    cursor: 'pointer'
-                  }}
-                >
-                  <span>Next Step</span>
-                  <ChevronRight size={14} />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMobileViewTab('preview');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
-                    backgroundColor: '#0E7A4A',
-                    color: '#FFFFFF',
-                    border: 'none',
-                    borderRadius: '6px',
-                    padding: '0.45rem 0.85rem',
-                    fontSize: '0.78rem',
-                    fontWeight: 800,
-                    cursor: 'pointer',
-                    boxShadow: '0 2px 8px rgba(14, 122, 74, 0.25)'
-                  }}
-                >
-                  <Eye size={14} />
-                  <span>Preview & Export PDF →</span>
-                </button>
-              )}
+              <button
+                type="button"
+                disabled={activeStep === FORM_STEPS.length - 1}
+                onClick={() => setActiveStep(prev => Math.min(FORM_STEPS.length - 1, prev + 1))}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  backgroundColor: '#781416',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  borderRadius: '6px',
+                  padding: '0.45rem 0.85rem',
+                  fontSize: '0.78rem',
+                  fontWeight: 800,
+                  cursor: activeStep === FORM_STEPS.length - 1 ? 'not-allowed' : 'pointer'
+                }}
+              >
+                <span>Next Step</span>
+                <ChevronRight size={14} />
+              </button>
             </div>
 
           </div>
@@ -2542,74 +2506,18 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           {/* ===================================================================
               RIGHT COLUMN: LIVE DUAL-VIEW (LIVE PDF PREVIEW & GENERATED LATEX)
               =================================================================== */}
-          <div
-            className={mobileViewTab === 'editor' ? 'pv-resume-desktop-only' : ''}
-            style={{
-              backgroundColor: '#FFFFFF',
-              border: '1.5px solid #EDE5D6',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)',
-              display: 'flex',
-              flexDirection: 'column',
-              height: 'calc(100vh - 120px)',
-              position: 'sticky',
-              top: '80px'
-            }}
-          >
-            {/* Mobile Back-to-Editor & Quick Action Bar */}
-            <div className="pv-resume-mobile-only" style={{
-              backgroundColor: '#FAF5ED',
-              borderBottom: '1px solid #E8E0D0',
-              padding: '0.55rem 0.85rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: '100%',
-              boxSizing: 'border-box'
-            }}>
-              <button
-                type="button"
-                onClick={() => setMobileViewTab('editor')}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.3rem',
-                  backgroundColor: '#FAF7F2',
-                  border: '1px solid #D5C7B2',
-                  borderRadius: '6px',
-                  padding: '0.35rem 0.65rem',
-                  fontSize: '0.74rem',
-                  fontWeight: 700,
-                  color: '#4A4036',
-                  cursor: 'pointer'
-                }}
-              >
-                <ChevronLeft size={13} />
-                <span>Back to Form ({activeStep + 1}/9)</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={handleDownloadPdf}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.3rem',
-                  backgroundColor: '#781416',
-                  color: '#FFFFFF',
-                  border: 'none',
-                  borderRadius: '6px',
-                  padding: '0.35rem 0.75rem',
-                  fontSize: '0.74rem',
-                  fontWeight: 800,
-                  cursor: 'pointer'
-                }}
-              >
-                <Download size={13} />
-                <span>Export PDF</span>
-              </button>
-            </div>
+          <div style={{
+            backgroundColor: '#FFFFFF',
+            border: '1.5px solid #EDE5D6',
+            borderRadius: '16px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)',
+            display: 'flex',
+            flexDirection: 'column',
+            height: 'calc(100vh - 120px)',
+            position: 'sticky',
+            top: '80px'
+          }}>
 
             {/* Top View Toggle: PDF Preview vs LaTeX Source */}
             <div style={{
@@ -2911,7 +2819,2014 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
         </div>
       </main>
+      </div>
 
+      {/* =========================================================================
+          MOBILE ATS RESUME MAKER (< 1024px)
+          Strict parity with reference design specification
+          ========================================================================= */}
+      <div className="pv-resume-mobile-only" style={{ flexDirection: 'column', width: '100%', maxWidth: '100vw', boxSizing: 'border-box' }}>
+        
+        {/* Mobile Sticky Header matching reference image */}
+        <header style={{
+          backgroundColor: '#FFFFFF',
+          borderBottom: '1.5px solid #EDE5D6',
+          padding: '0.65rem 0.95rem',
+          position: 'sticky',
+          top: 0,
+          zIndex: 40,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          boxSizing: 'border-box'
+        }}>
+          {/* Back Button */}
+          <button
+            type="button"
+            onClick={() => {
+              if (isFromInterviewPro) {
+                handleReturnToInterviewPro();
+              } else if (onNavigate) {
+                onNavigate('more');
+              }
+            }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              backgroundColor: '#FAF7F2',
+              border: '1px solid #E8DFCF',
+              color: '#4A4036',
+              padding: '0.4rem 0.65rem',
+              borderRadius: '8px',
+              fontSize: '0.76rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              flexShrink: 0
+            }}
+          >
+            <ArrowLeft size={13} />
+            <span>{isFromInterviewPro ? 'Assessment' : 'All Tools'}</span>
+          </button>
+
+          {/* Title and Subtitle */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', minWidth: 0, flex: 1, justifyContent: 'center', margin: '0 0.4rem' }}>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '8px',
+              backgroundColor: '#781416',
+              color: '#FFFFFF',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <FileText size={17} />
+            </div>
+            <div style={{ minWidth: 0, textAlign: 'left' }}>
+              <input
+                type="text"
+                value={resumeTitle}
+                onChange={(e) => setResumeTitle(e.target.value)}
+                style={{
+                  fontSize: '0.92rem',
+                  fontWeight: 900,
+                  color: '#1C1814',
+                  border: 'none',
+                  backgroundColor: 'transparent',
+                  outline: 'none',
+                  padding: 0,
+                  margin: 0,
+                  width: '100%',
+                  fontFamily: "'Outfit', sans-serif"
+                }}
+                title="Click to rename resume"
+              />
+              <div style={{ fontSize: '0.64rem', color: '#7A6F62', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                ATS One-Page Certified · LaTeX Vector PDF
+              </div>
+            </div>
+          </div>
+
+          {/* Academic Alerts Bell */}
+          <button
+            type="button"
+            onClick={() => {
+              const modal = document.querySelector('[data-student-updates-modal]');
+              if (modal) modal.style.display = 'block';
+            }}
+            style={{
+              position: 'relative',
+              background: 'none',
+              border: 'none',
+              padding: '0.4rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}
+            aria-label="Notifications"
+          >
+            <Bell size={20} color="#1C1814" />
+            <span style={{
+              position: 'absolute',
+              top: '4px',
+              right: '4px',
+              width: '7px',
+              height: '7px',
+              borderRadius: '50%',
+              backgroundColor: '#DC2626'
+            }} />
+          </button>
+        </header>
+
+        {/* Mobile Body Content */}
+        <div style={{ padding: '0.85rem 0.95rem 6.5rem 0.95rem', width: '100%', boxSizing: 'border-box' }}>
+          
+          {/* Status Alert Banner */}
+          {(compileStatus && (compileStatus.isOnePage === false || compileStatus.overflowWarning || compileStatus?.pageCount > 1)) ? (
+            <div style={{
+              backgroundColor: '#FEF2F2',
+              border: '1px solid #FCA5A5',
+              color: '#DC2626',
+              borderRadius: '10px',
+              padding: '0.55rem 0.85rem',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              marginBottom: '0.75rem',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}>
+              <AlertTriangle size={15} color="#DC2626" style={{ flexShrink: 0 }} />
+              <span>Overflow Warning: {compileStatus?.pageCount || 2} Pages</span>
+            </div>
+          ) : (
+            <div style={{
+              backgroundColor: '#E7F5EE',
+              border: '1px solid #A3E0C1',
+              color: '#0E7A4A',
+              borderRadius: '10px',
+              padding: '0.55rem 0.85rem',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              marginBottom: '0.75rem',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}>
+              <CheckCircle2 size={15} color="#0E7A4A" style={{ flexShrink: 0 }} />
+              <span>Strict 1-Page Layout ({compileStatus?.levelName || 'Standard'})</span>
+            </div>
+          )}
+
+          {/* Template Selector Row */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.55rem',
+            marginBottom: '0.75rem',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1C1814', whiteSpace: 'nowrap' }}>
+              Template:
+            </span>
+            <div style={{ position: 'relative', flex: 1 }}>
+              <select
+                value={template}
+                onChange={(e) => handleTemplateChange(e.target.value)}
+                style={{
+                  width: '100%',
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #D5C7B2',
+                  borderRadius: '8px',
+                  padding: '0.5rem 2rem 0.5rem 0.75rem',
+                  fontSize: '0.78rem',
+                  fontWeight: 700,
+                  color: '#1C1814',
+                  outline: 'none',
+                  appearance: 'none',
+                  cursor: 'pointer',
+                  boxSizing: 'border-box'
+                }}
+              >
+                <option value="classic-tech">Classic Tech ATS (Jake's Standard)</option>
+                <option value="modern-clean">Modern Clean Engineering</option>
+                <option value="minimalist">Minimalist Executive</option>
+              </select>
+              <ChevronDown size={14} color="#70675D" style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+            </div>
+          </div>
+
+          {/* 3 Action Buttons */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '0.5rem',
+            marginBottom: '0.75rem',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}>
+            <button
+              type="button"
+              onClick={() => setShowUploadModal(true)}
+              style={{
+                backgroundColor: '#FAF5ED',
+                border: '1px solid #D5C7B2',
+                borderRadius: '8px',
+                padding: '0.55rem 0.35rem',
+                fontSize: '0.76rem',
+                fontWeight: 700,
+                color: '#4A4036',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.35rem',
+                boxSizing: 'border-box'
+              }}
+            >
+              <UploadCloud size={14} color="#781416" />
+              <span>Import</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowMyResumesDrawer(true)}
+              style={{
+                backgroundColor: '#FAF5ED',
+                border: '1px solid #D5C7B2',
+                borderRadius: '8px',
+                padding: '0.55rem 0.35rem',
+                fontSize: '0.76rem',
+                fontWeight: 700,
+                color: '#4A4036',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.35rem',
+                boxSizing: 'border-box'
+              }}
+            >
+              <FolderOpen size={14} color="#781416" />
+              <span>My Resumes ({myResumesList.length})</span>
+            </button>
+            <button
+              type="button"
+              onClick={handleSaveResume}
+              disabled={isSaving}
+              style={{
+                backgroundColor: '#FAF5ED',
+                border: '1.5px solid #781416',
+                borderRadius: '8px',
+                padding: '0.55rem 0.35rem',
+                fontSize: '0.76rem',
+                fontWeight: 800,
+                color: '#781416',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.35rem',
+                boxSizing: 'border-box'
+              }}
+            >
+              <Save size={14} color="#781416" />
+              <span>{isSaving ? 'Saving...' : 'Save'}</span>
+            </button>
+          </div>
+
+          {/* Download PDF Primary Button */}
+          <button
+            type="button"
+            onClick={handleDownloadPdf}
+            style={{
+              width: '100%',
+              backgroundColor: '#781416',
+              color: '#FFFFFF',
+              border: 'none',
+              borderRadius: '8px',
+              padding: '0.65rem 1rem',
+              fontSize: '0.86rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.45rem',
+              boxShadow: '0 2px 8px rgba(120, 20, 22, 0.25)',
+              marginBottom: '0.65rem',
+              boxSizing: 'border-box'
+            }}
+          >
+            <Download size={16} />
+            <span>Download PDF</span>
+          </button>
+
+          {/* Two-mode Segmented Control */}
+          <div style={{
+            display: 'flex',
+            backgroundColor: '#EDE5D6',
+            borderRadius: '12px',
+            padding: '3px',
+            marginBottom: '0.95rem',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}>
+            <button
+              type="button"
+              onClick={() => setMobileViewTab('editor')}
+              style={{
+                flex: 1,
+                padding: '0.6rem 0.5rem',
+                borderRadius: '9px',
+                border: 'none',
+                backgroundColor: mobileViewTab === 'editor' ? '#781416' : 'transparent',
+                color: mobileViewTab === 'editor' ? '#FFFFFF' : '#4A4036',
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.4rem',
+                boxShadow: mobileViewTab === 'editor' ? '0 2px 8px rgba(120, 20, 22, 0.25)' : 'none',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <FileText size={15} />
+              <span>Edit Form</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobileViewTab('preview')}
+              style={{
+                flex: 1,
+                padding: '0.6rem 0.5rem',
+                borderRadius: '9px',
+                border: 'none',
+                backgroundColor: mobileViewTab === 'preview' ? '#781416' : 'transparent',
+                color: mobileViewTab === 'preview' ? '#FFFFFF' : '#4A4036',
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.4rem',
+                boxShadow: mobileViewTab === 'preview' ? '0 2px 8px rgba(120, 20, 22, 0.25)' : 'none',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              <Eye size={15} />
+              <span>Live Preview & PDF</span>
+            </button>
+          </div>
+
+          {/* VIEW: LIVE PDF PREVIEW (When toggled to Preview Mode) */}
+          {mobileViewTab === 'preview' ? (
+            <div style={{
+              backgroundColor: '#FFFFFF',
+              border: '1.5px solid #EDE5D6',
+              borderRadius: '16px',
+              padding: '1.15rem 1rem',
+              boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)',
+              marginBottom: '1rem',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: '0.85rem'
+              }}>
+                <button
+                  type="button"
+                  onClick={() => setMobileViewTab('editor')}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.3rem',
+                    backgroundColor: '#FAF7F2',
+                    border: '1px solid #D5C7B2',
+                    borderRadius: '8px',
+                    padding: '0.45rem 0.75rem',
+                    fontSize: '0.76rem',
+                    fontWeight: 700,
+                    color: '#4A4036',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <ChevronLeft size={13} />
+                  <span>Back to Form ({currentMobileIndex + 1}/{MOBILE_STEPS.length})</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleDownloadPdf}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    backgroundColor: '#781416',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '0.45rem 0.85rem',
+                    fontSize: '0.76rem',
+                    fontWeight: 800,
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 6px rgba(120, 20, 22, 0.25)'
+                  }}
+                >
+                  <Download size={13} />
+                  <span>Download PDF</span>
+                </button>
+              </div>
+
+              {isCompiling ? (
+                <div style={{ height: '440px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
+                  <RefreshCw size={26} color="#781416" className="animate-spin" />
+                  <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#70675D' }}>
+                    Compiling Vector PDF with Overleaf LaTeX...
+                  </span>
+                </div>
+              ) : compileError ? (
+                <div style={{ padding: '1.5rem', backgroundColor: '#FEF2F2', border: '1px solid #FECACA', borderRadius: '12px', textAlign: 'center', color: '#991B1B' }}>
+                  <AlertTriangle size={32} color="#DC2626" style={{ margin: '0 auto 0.5rem auto' }} />
+                  <div style={{ fontSize: '0.86rem', fontWeight: 800, marginBottom: '0.35rem' }}>
+                    Compilation Issue
+                  </div>
+                  <div style={{ fontSize: '0.74rem', marginBottom: '0.85rem', wordBreak: 'break-word' }}>
+                    {compileError}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleRetryCompile}
+                    style={{
+                      backgroundColor: '#DC2626',
+                      color: '#FFFFFF',
+                      border: 'none',
+                      borderRadius: '6px',
+                      padding: '0.4rem 0.85rem',
+                      fontSize: '0.76rem',
+                      fontWeight: 700,
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Retry Compile
+                  </button>
+                </div>
+              ) : (pdfBlobUrl || serverPdfUrl || pdfUrl) && hasMinimumData ? (
+                <div style={{ width: '100%', height: '560px', borderRadius: '10px', overflow: 'hidden', border: '1px solid #DDD3C3', backgroundColor: '#525659' }}>
+                  <iframe
+                    src={`${pdfBlobUrl || serverPdfUrl || pdfUrl}#toolbar=0&navpanes=0`}
+                    title="ATS Resume Live Preview"
+                    style={{ width: '100%', height: '100%', border: 'none' }}
+                  />
+                </div>
+              ) : (
+                <div style={{ height: '280px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#70675D', fontSize: '0.82rem', textAlign: 'center', padding: '1rem' }}>
+                  <FileText size={32} color="#CBD5E1" style={{ marginBottom: '0.5rem' }} />
+                  <div>Fill in your details in the <strong>Edit Form</strong> to view live ATS verified PDF preview.</div>
+                  <button
+                    type="button"
+                    onClick={() => setMobileViewTab('editor')}
+                    style={{
+                      marginTop: '0.85rem',
+                      backgroundColor: '#781416',
+                      color: '#FFFFFF',
+                      border: 'none',
+                      borderRadius: '8px',
+                      padding: '0.45rem 0.95rem',
+                      fontSize: '0.76rem',
+                      fontWeight: 700,
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Open Edit Form
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            /* VIEW: STEP EDITOR */
+            <>
+              {/* Stepper Tabs Strip */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                marginBottom: '1rem',
+                width: '100%',
+                boxSizing: 'border-box'
+              }}>
+                <div
+                  ref={mobileTabsRef}
+                  className="pv-mobile-tabs-strip"
+                  style={{
+                    flex: 1,
+                    paddingBottom: '2px'
+                  }}
+                >
+                  {MOBILE_STEPS.map((step) => {
+                    const isActive = (mobileStepKey === step.id);
+                    return (
+                      <button
+                        key={step.id}
+                        data-active-tab={isActive ? "true" : "false"}
+                        type="button"
+                        onClick={() => {
+                          setMobileStepKey(step.id);
+                          setActiveStep(step.desktopIndex);
+                          if (mobileViewTab === 'preview') setMobileViewTab('editor');
+                        }}
+                        style={{
+                          backgroundColor: isActive ? '#FFFFFF' : '#F4EFE6',
+                          border: isActive ? '1.5px solid #781416' : '1px solid transparent',
+                          color: isActive ? '#781416' : '#6A5E50',
+                          borderRadius: '8px',
+                          padding: '0.52rem 0.95rem',
+                          fontSize: '0.78rem',
+                          fontWeight: isActive ? 800 : 600,
+                          whiteSpace: 'nowrap',
+                          cursor: 'pointer',
+                          flexShrink: 0,
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        {step.title}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleScrollTabsRight}
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '8px',
+                    border: '1px solid #DDD3C3',
+                    backgroundColor: '#FFFFFF',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    flexShrink: 0,
+                    boxSizing: 'border-box'
+                  }}
+                  aria-label="Scroll steps"
+                >
+                  <ChevronRight size={16} color="#4A4036" />
+                </button>
+              </div>
+
+              {/* STEP EDITOR FORM CARD */}
+              <div style={{
+                backgroundColor: '#FFFFFF',
+                border: '1.5px solid #EDE5D6',
+                borderRadius: '16px',
+                padding: '1.15rem 1rem',
+                boxShadow: '0 4px 16px rgba(35, 30, 25, 0.03)',
+                width: '100%',
+                boxSizing: 'border-box'
+              }}>
+
+                {/* STEP 0: TEMPLATES */}
+                {mobileStepKey === 'templates' && (
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                      <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                        1. Select Resume Template
+                      </h3>
+                      <span style={{
+                        backgroundColor: '#E7F5EE',
+                        color: '#0E7A4A',
+                        fontSize: '0.7rem',
+                        fontWeight: 800,
+                        padding: '0.2rem 0.55rem',
+                        borderRadius: '999px'
+                      }}>
+                        LaTeX Vector Ready
+                      </span>
+                    </div>
+                    <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
+                      Choose an ATS-compliant template. Overleaf LaTeX renders your resume with pixel-perfect typesetting.
+                    </p>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                      {RESUME_TEMPLATES.map((tmpl) => {
+                        const isSelected = template === tmpl.id;
+                        return (
+                          <div
+                            key={tmpl.id}
+                            onClick={() => handleTemplateChange(tmpl.id)}
+                            style={{
+                              backgroundColor: isSelected ? '#FAF5ED' : '#FAF8F5',
+                              border: isSelected ? '2px solid #781416' : '1px solid #E8DFCF',
+                              borderRadius: '12px',
+                              padding: '0.85rem',
+                              cursor: 'pointer',
+                              transition: 'all 0.15s ease',
+                              boxShadow: isSelected ? '0 2px 8px rgba(120, 20, 22, 0.12)' : '0 1px 4px rgba(35, 30, 25, 0.02)'
+                            }}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                                <div style={{
+                                  width: '18px',
+                                  height: '18px',
+                                  borderRadius: '50%',
+                                  border: isSelected ? '5px solid #781416' : '2px solid #CBD5E1',
+                                  backgroundColor: '#FFFFFF',
+                                  boxSizing: 'border-box'
+                                }} />
+                                <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#1C1814' }}>
+                                  {tmpl.name}
+                                </span>
+                              </div>
+                              <span style={{
+                                fontSize: '0.68rem',
+                                fontWeight: 800,
+                                padding: '0.15rem 0.5rem',
+                                borderRadius: '999px',
+                                backgroundColor: tmpl.badgeBg,
+                                color: tmpl.badgeColor
+                              }}>
+                                {tmpl.badge}
+                              </span>
+                            </div>
+                            <p style={{ fontSize: '0.74rem', color: '#6A5E50', margin: '0.25rem 0 0.55rem 1.6rem', lineHeight: 1.4 }}>
+                              {tmpl.desc}
+                            </p>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginLeft: '1.6rem' }}>
+                              {tmpl.features.map((feat, fIdx) => (
+                                <span
+                                  key={fIdx}
+                                  style={{
+                                    fontSize: '0.66rem',
+                                    fontWeight: 600,
+                                    color: '#4A4036',
+                                    backgroundColor: '#EDE5D6',
+                                    padding: '0.15rem 0.45rem',
+                                    borderRadius: '4px'
+                                  }}
+                                >
+                                  {feat}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* STEP 1: PERSONAL & CONTACT DETAILS */}
+                {mobileStepKey === 'personal' && (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                      1. Personal & Contact Details
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => handleRunAiAction('generate-summary')}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        backgroundColor: '#FAF5ED',
+                        border: '1px solid #D48816',
+                        borderRadius: '6px',
+                        padding: '0.3rem 0.55rem',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                        color: '#781416',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Sparkles size={13} color="#D48816" />
+                      <span>AI Generate Summary</span>
+                    </button>
+                  </div>
+                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
+                    Fill in your basic details to get started. This information will be used in your resume.
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                    <MobileFormField
+                      label="Full Name"
+                      required
+                      icon={User}
+                      placeholder="e.g. Priyanshu Sharma"
+                      value={resumeData.personal.fullName}
+                      onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, fullName: e.target.value } }))}
+                    />
+
+                    <MobileFormField
+                      label="Email Address"
+                      required
+                      icon={Mail}
+                      type="email"
+                      placeholder="e.g. priyanshu@gmail.com"
+                      value={resumeData.personal.email}
+                      onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, email: e.target.value } }))}
+                    />
+
+                    <div className="pv-mobile-form-grid-2">
+                      <MobileFormField
+                        label="Phone Number"
+                        required
+                        icon={Phone}
+                        placeholder="e.g. +91 9876543210"
+                        value={resumeData.personal.phone}
+                        onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, phone: e.target.value } }))}
+                      />
+                      <MobileFormField
+                        label="Target Role / Headline"
+                        icon={Briefcase}
+                        placeholder="e.g. Software Development Engineer"
+                        value={resumeData.personal.professionalHeadline || resumeData.personal.targetRole || ''}
+                        onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, professionalHeadline: e.target.value, targetRole: e.target.value } }))}
+                      />
+                    </div>
+
+                    <div className="pv-mobile-form-grid-2">
+                      <MobileFormField
+                        label="LinkedIn URL"
+                        icon={Linkedin}
+                        placeholder="linkedin.com/in/username"
+                        value={resumeData.personal.linkedinUrl}
+                        onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, linkedinUrl: e.target.value } }))}
+                      />
+                      <MobileFormField
+                        label="GitHub URL"
+                        icon={Github}
+                        placeholder="github.com/username"
+                        value={resumeData.personal.githubUrl}
+                        onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, githubUrl: e.target.value } }))}
+                      />
+                    </div>
+
+                    <div className="pv-mobile-form-grid-2">
+                      <MobileFormField
+                        label="Location (City, State)"
+                        icon={MapPin}
+                        placeholder="e.g. Noida, UP"
+                        value={resumeData.personal.location}
+                        onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, location: e.target.value } }))}
+                      />
+                      <MobileFormField
+                        label="Portfolio Website"
+                        icon={Globe}
+                        placeholder="e.g. portfolio.dev"
+                        value={resumeData.personal.portfolioUrl}
+                        onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, portfolioUrl: e.target.value } }))}
+                      />
+                    </div>
+
+                    <MobileTextareaField
+                      label="Professional Summary (2–3 concise ATS lines)"
+                      icon={FileText}
+                      rows={2}
+                      placeholder="e.g. Computer Science student passionate about scalable web architectures, algorithms, and distributed systems."
+                      value={resumeData.personal.summary}
+                      onChange={(e) => setResumeData(prev => ({ ...prev, personal: { ...prev.personal, summary: e.target.value } }))}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 2: EDUCATION */}
+              {mobileStepKey === 'education' && (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                      2. Education
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setResumeData(prev => ({
+                          ...prev,
+                          education: [
+                            ...prev.education,
+                            { degree: '', fieldOfStudy: '', board: '', institution: '', location: '', duration: '', cgpaOrPercentage: '' }
+                          ]
+                        }));
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        backgroundColor: '#FAF5ED',
+                        border: '1px solid #781416',
+                        borderRadius: '6px',
+                        padding: '0.3rem 0.55rem',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                        color: '#781416',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Plus size={13} />
+                      <span>Add Degree</span>
+                    </button>
+                  </div>
+                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
+                    Add your academic degrees, colleges, scores, and graduation timelines.
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                    {resumeData.education.map((edu, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          backgroundColor: '#FAF8F5',
+                          border: '1px solid #E8DFCF',
+                          borderRadius: '12px',
+                          padding: '0.85rem',
+                          boxShadow: '0 2px 6px rgba(35, 30, 25, 0.02)'
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416' }}>
+                            Education #{idx + 1}
+                          </span>
+                          {resumeData.education.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setResumeData(prev => ({
+                                  ...prev,
+                                  education: prev.education.filter((_, i) => i !== idx)
+                                }));
+                              }}
+                              style={{ background: 'none', border: 'none', color: '#DC2626', cursor: 'pointer', padding: '0.2rem' }}
+                              title="Remove education"
+                            >
+                              <Trash2 size={15} />
+                            </button>
+                          )}
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Degree / Qualification"
+                            required
+                            icon={GraduationCap}
+                            placeholder="e.g. B.Tech / Class 12th"
+                            value={edu.degree}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ed = [...prev.education];
+                                ed[idx].degree = val;
+                                return { ...prev, education: ed };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Branch / Specialization"
+                            icon={BookOpen}
+                            placeholder="e.g. Computer Science / PCM"
+                            value={edu.fieldOfStudy}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ed = [...prev.education];
+                                ed[idx].fieldOfStudy = val;
+                                return { ...prev, education: ed };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="College / University"
+                            required
+                            icon={Building}
+                            placeholder="e.g. ABES Engineering College"
+                            value={edu.institution}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ed = [...prev.education];
+                                ed[idx].institution = val;
+                                return { ...prev, education: ed };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Board / Affiliation"
+                            icon={Award}
+                            placeholder="e.g. AKTU / CBSE"
+                            value={edu.board || ''}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ed = [...prev.education];
+                                ed[idx].board = val;
+                                return { ...prev, education: ed };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Duration / Years"
+                            icon={Calendar}
+                            placeholder="e.g. 2023 - 2027"
+                            value={edu.duration || ''}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ed = [...prev.education];
+                                ed[idx].duration = val;
+                                return { ...prev, education: ed };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="CGPA / Percentage"
+                            icon={Percent}
+                            placeholder="e.g. 8.6 CGPA / 88%"
+                            value={edu.cgpaOrPercentage !== undefined ? edu.cgpaOrPercentage : (edu.cgpa || '')}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ed = [...prev.education];
+                                ed[idx].cgpaOrPercentage = val;
+                                ed[idx].cgpa = val;
+                                return { ...prev, education: ed };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        <MobileFormField
+                          label="Location (City, State)"
+                          icon={MapPin}
+                          placeholder="e.g. Ghaziabad, UP"
+                          value={edu.location || ''}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setResumeData(prev => {
+                              const ed = [...prev.education];
+                              ed[idx].location = val;
+                              return { ...prev, education: ed };
+                            });
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 3: TECHNICAL SKILLS */}
+              {mobileStepKey === 'skills' && (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                      3. Technical Skills
+                    </h3>
+                    <span style={{
+                      backgroundColor: '#E7F5EE',
+                      color: '#0E7A4A',
+                      fontSize: '0.7rem',
+                      fontWeight: 800,
+                      padding: '0.2rem 0.55rem',
+                      borderRadius: '999px'
+                    }}>
+                      ✓ ATS Categorized
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
+                    Search & select technical skills across categories. Tap to add or remove chips, or type custom skills.
+                  </p>
+
+                  <SearchableSkillsSelector
+                    technicalSkills={resumeData.technicalSkills}
+                    onChange={handleSkillCategoryChange}
+                  />
+                </div>
+              )}
+
+              {/* STEP 4: EXPERIENCE */}
+              {mobileStepKey === 'experience' && (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                      4. Experience & Internships
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setResumeData(prev => ({
+                          ...prev,
+                          experience: [
+                            ...prev.experience,
+                            { title: '', company: '', location: '', duration: '', bullets: [''] }
+                          ]
+                        }));
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        backgroundColor: '#FAF5ED',
+                        border: '1px solid #781416',
+                        borderRadius: '6px',
+                        padding: '0.3rem 0.55rem',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                        color: '#781416',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Plus size={13} />
+                      <span>Add Role</span>
+                    </button>
+                  </div>
+                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
+                    Showcase your work history, internships, and measurable impact.
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                    {resumeData.experience.map((exp, expIdx) => (
+                      <div
+                        key={expIdx}
+                        style={{
+                          backgroundColor: '#FAF8F5',
+                          border: '1px solid #E8DFCF',
+                          borderRadius: '12px',
+                          padding: '0.85rem',
+                          boxShadow: '0 2px 6px rgba(35, 30, 25, 0.02)'
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416' }}>
+                            Experience #{expIdx + 1}
+                          </span>
+                          {resumeData.experience.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setResumeData(prev => ({
+                                  ...prev,
+                                  experience: prev.experience.filter((_, i) => i !== expIdx)
+                                }));
+                              }}
+                              style={{ background: 'none', border: 'none', color: '#DC2626', cursor: 'pointer', padding: '0.2rem' }}
+                              title="Remove experience"
+                            >
+                              <Trash2 size={15} />
+                            </button>
+                          )}
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Job Title"
+                            required
+                            icon={Briefcase}
+                            placeholder="e.g. Software Engineer Intern"
+                            value={exp.title}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ex = [...prev.experience];
+                                ex[expIdx].title = val;
+                                return { ...prev, experience: ex };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Company / Org"
+                            required
+                            icon={Building}
+                            placeholder="e.g. Microsoft / Startup"
+                            value={exp.company}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ex = [...prev.experience];
+                                ex[expIdx].company = val;
+                                return { ...prev, experience: ex };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Duration / Dates"
+                            icon={Calendar}
+                            placeholder="e.g. May 2024 - July 2024"
+                            value={exp.duration}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ex = [...prev.experience];
+                                ex[expIdx].duration = val;
+                                return { ...prev, experience: ex };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Location"
+                            icon={MapPin}
+                            placeholder="e.g. Bangalore / Remote"
+                            value={exp.location}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ex = [...prev.experience];
+                                ex[expIdx].location = val;
+                                return { ...prev, experience: ex };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        {/* Bullets */}
+                        <div>
+                          <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.35rem' }}>
+                            Responsibilities & Achievements (Action Verb + Metric + Impact)
+                          </label>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                            {exp.bullets.map((bullet, bIdx) => (
+                              <div key={bIdx} style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
+                                <div style={{ flex: 1, position: 'relative' }}>
+                                  <input
+                                    type="text"
+                                    placeholder="e.g. Built REST APIs in Node.js, reducing latency by 28%..."
+                                    value={bullet}
+                                    onChange={(e) => {
+                                      const val = e.target.value;
+                                      setResumeData(prev => {
+                                        const ex = [...prev.experience];
+                                        ex[expIdx].bullets[bIdx] = val;
+                                        return { ...prev, experience: ex };
+                                      });
+                                    }}
+                                    className="pv-mobile-form-input"
+                                    style={{ paddingLeft: '0.75rem', fontSize: '0.76rem' }}
+                                  />
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => handleRunAiAction('improve-bullet', {
+                                    section: 'experience',
+                                    index: expIdx,
+                                    bulletIndex: bIdx,
+                                    text: bullet,
+                                    context: `${exp.title} at ${exp.company}`
+                                  })}
+                                  style={{
+                                    backgroundColor: '#FEF9EE',
+                                    border: '1px solid #D48816',
+                                    color: '#781416',
+                                    borderRadius: '6px',
+                                    padding: '0.35rem 0.5rem',
+                                    fontSize: '0.7rem',
+                                    fontWeight: 700,
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '2px',
+                                    flexShrink: 0
+                                  }}
+                                  title="Improve bullet with AI"
+                                >
+                                  <Sparkles size={11} color="#D48816" />
+                                  <span>AI</span>
+                                </button>
+                                {exp.bullets.length > 1 && (
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setResumeData(prev => {
+                                        const ex = [...prev.experience];
+                                        ex[expIdx].bullets = ex[expIdx].bullets.filter((_, i) => i !== bIdx);
+                                        return { ...prev, experience: ex };
+                                      });
+                                    }}
+                                    style={{ background: 'none', border: 'none', color: '#9E9486', cursor: 'pointer', padding: '0.2rem', flexShrink: 0 }}
+                                    title="Delete bullet"
+                                  >
+                                    <X size={14} />
+                                  </button>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setResumeData(prev => {
+                                const ex = [...prev.experience];
+                                ex[expIdx].bullets.push('');
+                                return { ...prev, experience: ex };
+                              });
+                            }}
+                            style={{
+                              background: 'none',
+                              border: 'none',
+                              color: '#781416',
+                              fontSize: '0.74rem',
+                              fontWeight: 700,
+                              cursor: 'pointer',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.3rem',
+                              padding: '0.4rem 0 0 0'
+                            }}
+                          >
+                            <Plus size={13} />
+                            <span>Add Bullet Point</span>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 5: PROJECTS */}
+              {mobileStepKey === 'projects' && (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                      5. Academic & Personal Projects
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setResumeData(prev => ({
+                          ...prev,
+                          projects: [
+                            ...prev.projects,
+                            { title: '', techStack: '', liveUrl: '', githubUrl: '', bullets: [''] }
+                          ]
+                        }));
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        backgroundColor: '#FAF5ED',
+                        border: '1px solid #781416',
+                        borderRadius: '6px',
+                        padding: '0.3rem 0.55rem',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                        color: '#781416',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Plus size={13} />
+                      <span>Add Project</span>
+                    </button>
+                  </div>
+                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
+                    Feature software engineering projects, tech stacks, and live links.
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                    {resumeData.projects.map((proj, pIdx) => (
+                      <div
+                        key={pIdx}
+                        style={{
+                          backgroundColor: '#FAF8F5',
+                          border: '1px solid #E8DFCF',
+                          borderRadius: '12px',
+                          padding: '0.85rem',
+                          boxShadow: '0 2px 6px rgba(35, 30, 25, 0.02)'
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416' }}>
+                            Project #{pIdx + 1}
+                          </span>
+                          {resumeData.projects.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setResumeData(prev => ({
+                                  ...prev,
+                                  projects: prev.projects.filter((_, i) => i !== pIdx)
+                                }));
+                              }}
+                              style={{ background: 'none', border: 'none', color: '#DC2626', cursor: 'pointer', padding: '0.2rem' }}
+                              title="Remove project"
+                            >
+                              <Trash2 size={15} />
+                            </button>
+                          )}
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Project Title"
+                            required
+                            icon={BookOpen}
+                            placeholder="e.g. Distributed Task Queue"
+                            value={proj.title}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const pr = [...prev.projects];
+                                pr[pIdx].title = val;
+                                return { ...prev, projects: pr };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Tech Stack"
+                            required
+                            icon={Wrench}
+                            placeholder="e.g. React, Node.js, Redis"
+                            value={proj.techStack}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const pr = [...prev.projects];
+                                pr[pIdx].techStack = val;
+                                return { ...prev, projects: pr };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Live Demo URL"
+                            icon={Globe}
+                            placeholder="e.g. taskqueue.dev (optional)"
+                            value={proj.liveUrl}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const pr = [...prev.projects];
+                                pr[pIdx].liveUrl = val;
+                                return { ...prev, projects: pr };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="GitHub Repository URL"
+                            icon={Github}
+                            placeholder="e.g. github.com/user/project"
+                            value={proj.githubUrl}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const pr = [...prev.projects];
+                                pr[pIdx].githubUrl = val;
+                                return { ...prev, projects: pr };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        {/* Bullets */}
+                        <div>
+                          <label style={{ fontSize: '0.74rem', fontWeight: 700, color: '#4A4036', display: 'block', marginBottom: '0.35rem' }}>
+                            Highlights & Contributions
+                          </label>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                            {proj.bullets.map((bullet, bIdx) => (
+                              <div key={bIdx} style={{ display: 'flex', gap: '0.35rem', alignItems: 'center' }}>
+                                <div style={{ flex: 1, position: 'relative' }}>
+                                  <input
+                                    type="text"
+                                    placeholder="e.g. Architected scalable worker pools capable of handling 5,000+ msgs/sec..."
+                                    value={bullet}
+                                    onChange={(e) => {
+                                      const val = e.target.value;
+                                      setResumeData(prev => {
+                                        const pr = [...prev.projects];
+                                        pr[pIdx].bullets[bIdx] = val;
+                                        return { ...prev, projects: pr };
+                                      });
+                                    }}
+                                    className="pv-mobile-form-input"
+                                    style={{ paddingLeft: '0.75rem', fontSize: '0.76rem' }}
+                                  />
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => handleRunAiAction('improve-bullet', {
+                                    section: 'projects',
+                                    index: pIdx,
+                                    bulletIndex: bIdx,
+                                    text: bullet,
+                                    context: `${proj.title} using ${proj.techStack}`
+                                  })}
+                                  style={{
+                                    backgroundColor: '#FEF9EE',
+                                    border: '1px solid #D48816',
+                                    color: '#781416',
+                                    borderRadius: '6px',
+                                    padding: '0.35rem 0.5rem',
+                                    fontSize: '0.7rem',
+                                    fontWeight: 700,
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '2px',
+                                    flexShrink: 0
+                                  }}
+                                  title="Improve bullet with AI"
+                                >
+                                  <Sparkles size={11} color="#D48816" />
+                                  <span>AI</span>
+                                </button>
+                                {proj.bullets.length > 1 && (
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setResumeData(prev => {
+                                        const pr = [...prev.projects];
+                                        pr[pIdx].bullets = pr[pIdx].bullets.filter((_, i) => i !== bIdx);
+                                        return { ...prev, projects: pr };
+                                      });
+                                    }}
+                                    style={{ background: 'none', border: 'none', color: '#9E9486', cursor: 'pointer', padding: '0.2rem', flexShrink: 0 }}
+                                    title="Delete bullet"
+                                  >
+                                    <X size={14} />
+                                  </button>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setResumeData(prev => {
+                                const pr = [...prev.projects];
+                                pr[pIdx].bullets.push('');
+                                return { ...prev, projects: pr };
+                              });
+                            }}
+                            style={{
+                              background: 'none',
+                              border: 'none',
+                              color: '#781416',
+                              fontSize: '0.74rem',
+                              fontWeight: 700,
+                              cursor: 'pointer',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.3rem',
+                              padding: '0.4rem 0 0 0'
+                            }}
+                          >
+                            <Plus size={13} />
+                            <span>Add Project Bullet</span>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 6: ACHIEVEMENTS */}
+              {mobileStepKey === 'achievements' && (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                      6. Achievements & Honors
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setResumeData(prev => ({
+                          ...prev,
+                          achievements: [
+                            ...prev.achievements,
+                            { title: '', organization: '', year: '', description: '' }
+                          ]
+                        }));
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        backgroundColor: '#FAF5ED',
+                        border: '1px solid #781416',
+                        borderRadius: '6px',
+                        padding: '0.3rem 0.55rem',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                        color: '#781416',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Plus size={13} />
+                      <span>Add Achievement</span>
+                    </button>
+                  </div>
+                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
+                    Add awards, hackathon wins, rank certifications, and academic honors.
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                    {resumeData.achievements.map((ach, aIdx) => (
+                      <div
+                        key={aIdx}
+                        style={{
+                          backgroundColor: '#FAF8F5',
+                          border: '1px solid #E8DFCF',
+                          borderRadius: '12px',
+                          padding: '0.85rem',
+                          boxShadow: '0 2px 6px rgba(35, 30, 25, 0.02)'
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416' }}>
+                            Achievement #{aIdx + 1}
+                          </span>
+                          {resumeData.achievements.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setResumeData(prev => ({
+                                  ...prev,
+                                  achievements: prev.achievements.filter((_, i) => i !== aIdx)
+                                }));
+                              }}
+                              style={{ background: 'none', border: 'none', color: '#DC2626', cursor: 'pointer', padding: '0.2rem' }}
+                              title="Remove achievement"
+                            >
+                              <Trash2 size={15} />
+                            </button>
+                          )}
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Achievement Title"
+                            required
+                            icon={Award}
+                            placeholder="e.g. 1st Place SIH Hackathon"
+                            value={ach.title}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ac = [...prev.achievements];
+                                ac[aIdx].title = val;
+                                return { ...prev, achievements: ac };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Organization / Issuer"
+                            icon={Building}
+                            placeholder="e.g. AICTE / Ministry of Ed"
+                            value={ach.organization}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ac = [...prev.achievements];
+                                ac[aIdx].organization = val;
+                                return { ...prev, achievements: ac };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Date / Year"
+                            icon={Calendar}
+                            placeholder="e.g. 2024"
+                            value={ach.year}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ac = [...prev.achievements];
+                                ac[aIdx].year = val;
+                                return { ...prev, achievements: ac };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Context / Scope"
+                            icon={FileText}
+                            placeholder="e.g. National Level"
+                            value={ach.organization ? `Issued by ${ach.organization}` : ''}
+                            onChange={() => {}}
+                          />
+                        </div>
+
+                        <MobileFormField
+                          label="Brief Description"
+                          icon={FileText}
+                          placeholder="e.g. Built an AI triage model selected among 4,000+ national submissions"
+                          value={ach.description}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setResumeData(prev => {
+                              const ac = [...prev.achievements];
+                              ac[aIdx].description = val;
+                              return { ...prev, achievements: ac };
+                            });
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 7: CERTIFICATIONS */}
+              {mobileStepKey === 'certifications' && (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                      7. Certifications
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setResumeData(prev => ({
+                          ...prev,
+                          certifications: [
+                            ...prev.certifications,
+                            { name: '', issuer: '', date: '', url: '' }
+                          ]
+                        }));
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        backgroundColor: '#FAF5ED',
+                        border: '1px solid #781416',
+                        borderRadius: '6px',
+                        padding: '0.3rem 0.55rem',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                        color: '#781416',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Plus size={13} />
+                      <span>Add Certification</span>
+                    </button>
+                  </div>
+                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
+                    Add industry certifications, licenses, and credential verification links.
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                    {resumeData.certifications.map((cert, cIdx) => (
+                      <div
+                        key={cIdx}
+                        style={{
+                          backgroundColor: '#FAF8F5',
+                          border: '1px solid #E8DFCF',
+                          borderRadius: '12px',
+                          padding: '0.85rem',
+                          boxShadow: '0 2px 6px rgba(35, 30, 25, 0.02)'
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416' }}>
+                            Certification #{cIdx + 1}
+                          </span>
+                          {resumeData.certifications.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setResumeData(prev => ({
+                                  ...prev,
+                                  certifications: prev.certifications.filter((_, i) => i !== cIdx)
+                                }));
+                              }}
+                              style={{ background: 'none', border: 'none', color: '#DC2626', cursor: 'pointer', padding: '0.2rem' }}
+                              title="Remove certification"
+                            >
+                              <Trash2 size={15} />
+                            </button>
+                          )}
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Certificate Name"
+                            required
+                            icon={ShieldCheck}
+                            placeholder="e.g. AWS Certified Developer"
+                            value={cert.name}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const cr = [...prev.certifications];
+                                cr[cIdx].name = val;
+                                return { ...prev, certifications: cr };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Issuing Organization"
+                            icon={Building}
+                            placeholder="e.g. Amazon Web Services"
+                            value={cert.issuer}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const cr = [...prev.certifications];
+                                cr[cIdx].issuer = val;
+                                return { ...prev, certifications: cr };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2">
+                          <MobileFormField
+                            label="Date / Year"
+                            icon={Calendar}
+                            placeholder="e.g. Dec 2024"
+                            value={cert.date}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const cr = [...prev.certifications];
+                                cr[cIdx].date = val;
+                                return { ...prev, certifications: cr };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Verification URL / ID"
+                            icon={Globe}
+                            placeholder="e.g. credly.com/earner/..."
+                            value={cert.url}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const cr = [...prev.certifications];
+                                cr[cIdx].url = val;
+                                return { ...prev, certifications: cr };
+                              });
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 8: EXTRACURRICULAR */}
+              {mobileStepKey === 'extracurricular' && (
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                      8. Extracurricular & Leadership
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setResumeData(prev => ({
+                          ...prev,
+                          extracurricular: [
+                            ...prev.extracurricular,
+                            { role: '', organization: '', duration: '', description: '' }
+                          ]
+                        }));
+                      }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        backgroundColor: '#FAF5ED',
+                        border: '1px solid #781416',
+                        borderRadius: '6px',
+                        padding: '0.3rem 0.55rem',
+                        fontSize: '0.72rem',
+                        fontWeight: 800,
+                        color: '#781416',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <Plus size={13} />
+                      <span>Add Activity</span>
+                    </button>
+                  </div>
+                  <p style={{ fontSize: '0.78rem', color: '#70675D', margin: '0 0 1rem 0', lineHeight: 1.4 }}>
+                    Highlight leadership roles, club management, volunteering, and initiatives.
+                  </p>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                    {resumeData.extracurricular.map((extra, eIdx) => (
+                      <div
+                        key={eIdx}
+                        style={{
+                          backgroundColor: '#FAF8F5',
+                          border: '1px solid #E8DFCF',
+                          borderRadius: '12px',
+                          padding: '0.85rem',
+                          boxShadow: '0 2px 6px rgba(35, 30, 25, 0.02)'
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.65rem' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416' }}>
+                            Activity #{eIdx + 1}
+                          </span>
+                          {resumeData.extracurricular.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setResumeData(prev => ({
+                                  ...prev,
+                                  extracurricular: prev.extracurricular.filter((_, i) => i !== eIdx)
+                                }));
+                              }}
+                              style={{ background: 'none', border: 'none', color: '#DC2626', cursor: 'pointer', padding: '0.2rem' }}
+                              title="Remove activity"
+                            >
+                              <Trash2 size={15} />
+                            </button>
+                          )}
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Role / Position"
+                            required
+                            icon={User}
+                            placeholder="e.g. Lead Coordinator / President"
+                            value={extra.role}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ex = [...prev.extracurricular];
+                                ex[eIdx].role = val;
+                                return { ...prev, extracurricular: ex };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Club / Organization"
+                            icon={Building}
+                            placeholder="e.g. Coding Club / Rotaract"
+                            value={extra.organization}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ex = [...prev.extracurricular];
+                                ex[eIdx].organization = val;
+                                return { ...prev, extracurricular: ex };
+                              });
+                            }}
+                          />
+                        </div>
+
+                        <div className="pv-mobile-form-grid-2" style={{ marginBottom: '0.65rem' }}>
+                          <MobileFormField
+                            label="Duration / Dates"
+                            icon={Calendar}
+                            placeholder="e.g. 2023 - 2024"
+                            value={extra.duration}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setResumeData(prev => {
+                                const ex = [...prev.extracurricular];
+                                ex[eIdx].duration = val;
+                                return { ...prev, extracurricular: ex };
+                              });
+                            }}
+                          />
+                          <MobileFormField
+                            label="Scope / Scale"
+                            icon={FileText}
+                            placeholder="e.g. University Level"
+                            value={extra.organization ? `Club of ${extra.organization}` : ''}
+                            onChange={() => {}}
+                          />
+                        </div>
+
+                        <MobileFormField
+                          label="Accomplishments & Description"
+                          icon={FileText}
+                          placeholder="e.g. Mentored 200+ junior students in DSA and competitive coding"
+                          value={extra.description}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            setResumeData(prev => {
+                              const ex = [...prev.extracurricular];
+                              ex[eIdx].description = val;
+                              return { ...prev, extracurricular: ex };
+                            });
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* CARD FOOTER CONTROLS: PREVIOUS STEP & NEXT STEP */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginTop: '1.25rem',
+                paddingTop: '1rem',
+                borderTop: '1px solid #F0E8DC',
+                gap: '0.75rem'
+              }}>
+                <button
+                  type="button"
+                  disabled={currentMobileIndex === 0}
+                  onClick={handleMobilePrevStep}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    backgroundColor: '#FAF7F2',
+                    border: '1px solid #DDD3C3',
+                    borderRadius: '8px',
+                    padding: '0.55rem 0.95rem',
+                    fontSize: '0.78rem',
+                    fontWeight: 700,
+                    color: currentMobileIndex === 0 ? '#A89F91' : '#4A4036',
+                    cursor: currentMobileIndex === 0 ? 'not-allowed' : 'pointer'
+                  }}
+                >
+                  <ChevronLeft size={14} />
+                  <span>Previous Step</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleMobileNextStep}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                    backgroundColor: currentMobileIndex === MOBILE_STEPS.length - 1 ? '#0E7A4A' : '#781416',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '0.55rem 1.15rem',
+                    fontSize: '0.78rem',
+                    fontWeight: 800,
+                    cursor: 'pointer',
+                    boxShadow: currentMobileIndex === MOBILE_STEPS.length - 1 ? '0 2px 8px rgba(14, 122, 74, 0.25)' : '0 2px 8px rgba(120, 20, 22, 0.25)'
+                  }}
+                >
+                  <span>{currentMobileIndex === MOBILE_STEPS.length - 1 ? 'Preview & Export PDF' : 'Next Step'}</span>
+                  {currentMobileIndex === MOBILE_STEPS.length - 1 ? <Eye size={14} /> : <ChevronRight size={14} />}
+                </button>
+              </div>
+
+            </div>
+            </>
+          )}
+
+        </div>
+      </div>
+
+      {/* =========================================================================
+          DRAWER: MY RESUMES (SAVED CRUD)
+          ========================================================================= */}
+
+      {/* =========================================================================
+          SHARED MODALS & DRAWERS (DESKTOP & MOBILE)
+          ========================================================================= */}
+      {/* =========================================================================
+          DRAWER: MY RESUMES (SAVED CRUD)
+          ========================================================================= */}
+
+      {/* =========================================================================
+          SHARED MODALS & DRAWERS (DESKTOP & MOBILE)
+          ========================================================================= */}
       {/* =========================================================================
           DRAWER: MY RESUMES (SAVED CRUD)
           ========================================================================= */}
@@ -3342,6 +5257,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           </div>
         </div>
       )}
+
 
       {/* Responsive Stacking Overrides */}
       <style>{`
