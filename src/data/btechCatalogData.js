@@ -1122,49 +1122,25 @@ export const btechCatalogData = {
   },
   "3rd Year": {
     "CSE": [
-      {
-        "code": "KNC-501",
-        "name": "Indian Tradition Culture and Society",
-        "semester": "Semester 5"
-      },
-      {
-        "code": "KCS-602",
-        "name": "Web Technology",
-        "semester": "Semester 6"
-      },
-      {
-        "code": "KCS-502",
-        "name": "Compiler Design",
-        "semester": "Semester 5"
-      },
-      {
-        "code": "KCS-601",
-        "name": "Software Engineering",
-        "semester": "Semester 6"
-      },
+      // Semester 5 Core & Electives
       {
         "code": "KCS-501",
-        "name": "Database Management System (DBMS)",
+        "name": "Database Management System",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KCS-051",
+        "name": "Web Technology",
         "semester": "Semester 5"
       },
       {
         "code": "KCS-503",
-        "name": "Computer Networks",
+        "name": "Design and Analysis of Algorithm",
         "semester": "Semester 5"
       },
       {
-        "code": "KCS-054",
-        "name": "Object Oriented System Design",
-        "semester": "Semester 5"
-      },
-      {
-        "code": "KCS-055",
+        "code": "KCS-052",
         "name": "Data Analytics",
-        "semester": "Semester 5"
-      },
-      {
-        "code": "KCS-056",
-        "name": "Data Analysis Algorithms",
         "semester": "Semester 5"
       },
       {
@@ -1173,44 +1149,135 @@ export const btechCatalogData = {
         "semester": "Semester 5"
       },
       {
-        "code": "KCS-061",
-        "name": "Web Designing",
-        "semester": "Semester 6"
+        "code": "KCS-054",
+        "name": "Object-Oriented System Design with C++",
+        "semester": "Semester 5"
       },
       {
-        "code": "KCS-062",
-        "name": "Cyber Security",
-        "semester": "Semester 6"
+        "code": "BCS-055",
+        "name": "Machine Learning Techniques",
+        "semester": "Semester 5"
       },
       {
-        "code": "KCS-063",
-        "name": "Machine Learning Technology",
-        "semester": "Semester 6"
+        "code": "KCS-056",
+        "name": "Image Processing",
+        "semester": "Semester 5"
       },
       {
-        "code": "KNC-502",
+        "code": "BCS-058",
+        "name": "Data Warehousing & Data Mining",
+        "semester": "Semester 5"
+      },
+      {
+        "code": "KNC-501",
         "name": "Constitution of India, Law and Engineering",
         "semester": "Semester 5"
       },
       {
-        "code": "KCS-603",
-        "name": "Computer Networks",
-        "semester": "Semester 6"
+        "code": "KNC-502",
+        "name": "Essence of Indian Traditional Knowledge",
+        "semester": "Semester 5"
       },
       {
-        "code": "BCS-601",
+        "code": "BCS-051",
+        "name": "Statistical Computing",
+        "semester": "Semester 5",
+        "comingSoon": true
+      },
+      {
+        "code": "BCS-052",
+        "name": "Application of Soft Computing",
+        "semester": "Semester 5",
+        "comingSoon": true
+      },
+
+      // Semester 6 Core & Electives
+      {
+        "code": "KCS-601",
         "name": "Software Engineering",
         "semester": "Semester 6"
       },
       {
-        "code": "BCS-602",
+        "code": "KCS-602",
         "name": "Compiler Design",
         "semester": "Semester 6"
       },
       {
-        "code": "BCS-603",
-        "name": "Computer Networks",
+        "code": "KCS-603",
+        "name": "Computer Network",
         "semester": "Semester 6"
+      },
+      {
+        "code": "KOE-060",
+        "name": "Idea to Business Model (IBM)",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCS-061",
+        "name": "Big Data",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KOE-062",
+        "name": "Embedded System",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KOE-067",
+        "name": "Blockchain Architecture Design",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KOE-069",
+        "name": "Understanding the Human Being Comprehensively",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KNC-602",
+        "name": "Essence of Indian Traditional Knowledge",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCS-058",
+        "name": "Data Warehousing & Data Mining",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KCS-051",
+        "name": "Web Technology",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KOE-065",
+        "name": "GIS & Remote Sensing",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KOE-063",
+        "name": "Control System",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KOE-064",
+        "name": "Cyber Forensics Analysis",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "BCS-064",
+        "name": "Data Compression",
+        "semester": "Semester 6"
+      },
+      {
+        "code": "KOE-068",
+        "name": "Software Project Management",
+        "semester": "Semester 6",
+        "comingSoon": true
+      },
+      {
+        "code": "KOE-066",
+        "name": "AR & VR",
+        "semester": "Semester 6",
+        "comingSoon": true
       }
     ],
     "ECE": [
