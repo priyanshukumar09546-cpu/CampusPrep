@@ -16,6 +16,7 @@ import StayConnectedPopup from './components/StayConnectedPopup';
 import MobileBottomNav from './components/MobileBottomNav';
 import MobileHeader from './components/MobileHeader';
 import CookieConsent from './components/CookieConsent';
+import MobileSplashScreen from './components/MobileSplashScreen';
 import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 import { normalizeCourseKey } from './data/courseMapping.ts';
@@ -210,6 +211,13 @@ export default function App() {
   const [selectedBranch, setSelectedBranch] = useState('All');
   const [selectedYear, setSelectedYear] = useState(null);
   const [globalSearchQuery, setGlobalSearchQuery] = useState('');
+  const [showMobileSplash, setShowMobileSplash] = useState(() => {
+    try {
+      return typeof window !== 'undefined' && window.innerWidth < 1024;
+    } catch {
+      return false;
+    }
+  });
 
   const handleOpenSubject = (subjectData) => {
     const subObj = typeof subjectData === 'string' ? { name: subjectData } : (subjectData || {});
@@ -507,6 +515,11 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
+      {/* Native App-Style Mobile Splash Screen (Mobile Only, Initial Launch/Reload) */}
+      {showMobileSplash && (
+        <MobileSplashScreen onFinish={() => setShowMobileSplash(false)} />
+      )}
+
       {/* Responsive Navbar: On desktop always shown. On mobile, suppressed to let mobile headers manage navigation */}
       {!hideTopNav && (
         <div className="pv-desktop-navbar-wrap">

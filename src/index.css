@@ -790,6 +790,23 @@ pre, code {
    MOBILE & TABLET VIEWPORT (< 1024px, 320px - 1023px) — App-Style Redesign
    ========================================================================= */
 @media (max-width: 1023px) {
+  :root {
+    --pv-mobile-primary: #861820;
+    --pv-mobile-burgundy-deep: #681016;
+    --pv-mobile-gold: #D6A13D;
+    --pv-mobile-gold-light: #F8EAC9;
+    --pv-mobile-bg: #FFFCF7;
+    --pv-mobile-card: #FFFFFF;
+    --pv-mobile-text: #14243D;
+    --pv-mobile-text-muted: #66758B;
+    --pv-mobile-border: #E9D9CC;
+  }
+
+  html, body {
+    background-color: #FFFCF7 !important;
+    color: #14243D;
+  }
+
   /* Desktop Navbar and Footer wrappers are NEVER shown on mobile */
   .pv-desktop-navbar-wrap,
   .pv-desktop-footer-wrap,
@@ -1027,17 +1044,17 @@ pre, code {
     width: 100%;
     padding: 0.55rem 0.75rem 0.55rem 2.25rem;
     border-radius: 8px;
-    border: 1px solid #DDD3C3;
+    border: 1px solid #E9D9CC;
     background-color: #FFFFFF;
     font-size: 0.8rem;
-    color: #1C1814;
+    color: #14243D;
     outline: none;
     box-sizing: border-box;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
   .pv-mobile-form-input:focus {
-    border-color: #781416 !important;
-    box-shadow: 0 0 0 2px rgba(120, 20, 22, 0.1) !important;
+    border-color: #861820 !important;
+    box-shadow: 0 0 0 2px rgba(134, 24, 32, 0.12) !important;
   }
 
   /* Switch Notes & PYQs Views */

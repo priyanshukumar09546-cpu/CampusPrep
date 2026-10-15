@@ -45,7 +45,7 @@ import { pyqsData as localPyqsData } from '../data/pyqsData';
 
 // 10 Featured Courses matching Reference Screenshot Image 2
 const FEATURED_COURSES = [
-  { key: 'BTech', name: 'B.Tech', subLabel: '(All Branches)', icon: GraduationCap, color: '#6366F1', bg: '#EEF2FF' },
+  { key: 'BTech', name: 'B.Tech', subLabel: '(All Branches)', icon: GraduationCap, color: '#861820', bg: '#FDF2F2' },
   { key: 'MTech', name: 'M.Tech', subLabel: '', icon: Settings, color: '#0284C7', bg: '#F0F9FF' },
   { key: 'BCA', name: 'BCA', subLabel: '', icon: Monitor, color: '#0284C7', bg: '#F0F9FF' },
   { key: 'MCA', name: 'MCA', subLabel: '', icon: FileText, color: '#0284C7', bg: '#F0F9FF' },
@@ -81,7 +81,7 @@ function getSubjectIcon(name = '', code = '') {
   if (n.includes('communication') || n.includes('english') || n.includes('soft skill') || n.includes('human value')) {
     return { icon: FileText, bg: '#FFE4E6', color: '#E11D48' };
   }
-  return { icon: FileText, bg: '#EEF2FF', color: '#6366F1' };
+  return { icon: FileText, bg: '#FDF2F2', color: '#861820' };
 }
 
 // Crisp inline SVG matching the PYQs Hero Banner in Image 2
@@ -89,8 +89,8 @@ function PyqsHeroArt() {
   return (
     <div style={{ flexShrink: 0, width: 'clamp(92px, 28vw, 125px)', maxWidth: '38%' }}>
       <svg viewBox="0 0 130 98" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto', display: 'block' }}>
-      {/* Background Soft Purple Glow */}
-      <ellipse cx="65" cy="50" rx="55" ry="38" fill="#EDE9FE" fillOpacity="0.7" />
+      {/* Background Soft Glow */}
+      <ellipse cx="65" cy="50" rx="55" ry="38" fill="#F8EAC9" fillOpacity="0.7" />
 
       {/* Stack of 3 Books */}
       {/* Book 1 - Red / Bottom */}
@@ -99,39 +99,39 @@ function PyqsHeroArt() {
       <path d="M50 78 L50 84 L105 76 L105 70 Z" fill="#EF4444" />
       <path d="M44 72 L97 64 L102 68 L49 76 Z" fill="#FEF2F2" />
 
-      {/* Book 2 - Blue / Middle */}
-      <path d="M44 58 L96 52 L106 60 L54 66 Z" fill="#0284C7" />
-      <path d="M44 58 L44 64 L54 72 L54 66 Z" fill="#0369A1" />
-      <path d="M54 66 L54 72 L106 66 L106 60 Z" fill="#38BDF8" />
-      <path d="M48 60 L98 54 L103 58 L53 64 Z" fill="#F0F9FF" />
+      {/* Book 2 - Gold / Middle */}
+      <path d="M44 58 L96 52 L106 60 L54 66 Z" fill="#D6A13D" />
+      <path d="M44 58 L44 64 L54 72 L54 66 Z" fill="#B8860B" />
+      <path d="M54 66 L54 72 L106 66 L106 60 Z" fill="#F8EAC9" />
+      <path d="M48 60 L98 54 L103 58 L53 64 Z" fill="#FFFDF5" />
 
-      {/* Book 3 - Purple / Top */}
-      <path d="M48 46 L98 42 L107 50 L57 54 Z" fill="#6366F1" />
-      <path d="M48 46 L48 52 L57 60 L57 54 Z" fill="#4338CA" />
-      <path d="M57 54 L57 60 L107 56 L107 50 Z" fill="#818CF8" />
+      {/* Book 3 - Burgundy / Top */}
+      <path d="M48 46 L98 42 L107 50 L57 54 Z" fill="#861820" />
+      <path d="M48 46 L48 52 L57 60 L57 54 Z" fill="#681016" />
+      <path d="M57 54 L57 60 L107 56 L107 50 Z" fill="#A72832" />
 
       {/* Graduation Cap on top of books */}
-      <polygon points="68,20 95,28 68,36 41,28" fill="#1E1B4B" />
-      <path d="M52 32 L52 38 Q68 44 84 38 L84 32 Q68 37 52 32 Z" fill="#312E81" />
+      <polygon points="68,20 95,28 68,36 41,28" fill="#14243D" />
+      <path d="M52 32 L52 38 Q68 44 84 38 L84 32 Q68 37 52 32 Z" fill="#0A1424" />
       {/* Cap button & tassel */}
-      <circle cx="68" cy="28" r="2.5" fill="#F59E0B" />
-      <path d="M68 28 C64 34 58 36 56 42" stroke="#F59E0B" strokeWidth="1.5" fill="none" />
-      <circle cx="56" cy="43" r="1.5" fill="#D97706" />
+      <circle cx="68" cy="28" r="2.5" fill="#D6A13D" />
+      <path d="M68 28 C64 34 58 36 56 42" stroke="#D6A13D" strokeWidth="1.5" fill="none" />
+      <circle cx="56" cy="43" r="1.5" fill="#861820" />
 
       {/* Notepad with "PYQ" label */}
       <g transform="translate(14, 28) rotate(-6)">
-        <rect x="0" y="0" width="36" height="46" rx="4" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.08))" />
-        <rect x="0" y="0" width="36" height="8" rx="4" fill="#6366F1" />
+        <rect x="0" y="0" width="36" height="46" rx="4" fill="#FFFFFF" stroke="#E9D9CC" strokeWidth="1" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.08))" />
+        <rect x="0" y="0" width="36" height="8" rx="4" fill="#861820" />
         {/* Binder rings */}
         <circle cx="8" cy="4" r="1.5" fill="#FFFFFF" />
         <circle cx="18" cy="4" r="1.5" fill="#FFFFFF" />
         <circle cx="28" cy="4" r="1.5" fill="#FFFFFF" />
         {/* Label PYQ */}
-        <text x="18" y="20" fill="#1E1B4B" fontSize="7" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">PYQ</text>
+        <text x="18" y="20" fill="#14243D" fontSize="7" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">PYQ</text>
         {/* Ruled lines */}
-        <line x1="6" y1="26" x2="30" y2="26" stroke="#E2E8F0" strokeWidth="1.2" strokeLinecap="round" />
-        <line x1="6" y1="31" x2="30" y2="31" stroke="#E2E8F0" strokeWidth="1.2" strokeLinecap="round" />
-        <line x1="6" y1="36" x2="24" y2="36" stroke="#E2E8F0" strokeWidth="1.2" strokeLinecap="round" />
+        <line x1="6" y1="26" x2="30" y2="26" stroke="#E9D9CC" strokeWidth="1.2" strokeLinecap="round" />
+        <line x1="6" y1="31" x2="30" y2="31" stroke="#E9D9CC" strokeWidth="1.2" strokeLinecap="round" />
+        <line x1="6" y1="36" x2="24" y2="36" stroke="#E9D9CC" strokeWidth="1.2" strokeLinecap="round" />
       </g>
 
       {/* Yellow Sticky Note with Checklist */}
@@ -437,7 +437,7 @@ export default function MobilePYQsScreen({
     <div 
       className="pv-mobile-pyqs-screen"
       style={{
-        backgroundColor: '#FAFAFB',
+        backgroundColor: '#FFFCF7',
         minHeight: '100%',
         paddingBottom: '32px',
         width: '100%',
@@ -459,14 +459,14 @@ export default function MobilePYQsScreen({
 
       <div style={{ padding: '8px 10px 84px', maxWidth: '560px', margin: '0 auto', boxSizing: 'border-box' }}>
         
-        {/* 2. LAVENDER HERO BANNER (Image 2) */}
+        {/* 2. BURGUNDY & GOLD HERO BANNER */}
         <div style={{
           position: 'relative',
           borderRadius: '20px',
-          background: 'linear-gradient(135deg, #F3EEFF 0%, #EDE9FE 55%, #FDF4FF 100%)',
-          border: '1px solid #DDD6FE',
+          background: 'linear-gradient(135deg, #FFFCF7 0%, #F8EAC9 40%, #FFFFFF 100%)',
+          border: '1px solid #E9D9CC',
           padding: '14px 14px',
-          boxShadow: '0 3px 12px rgba(124, 58, 237, 0.05)',
+          boxShadow: '0 3px 12px rgba(134, 24, 32, 0.05)',
           marginBottom: '10px',
           display: 'flex',
           alignItems: 'center',
@@ -480,13 +480,13 @@ export default function MobilePYQsScreen({
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
-              backgroundColor: '#EDE9FE',
-              border: '1px solid #DDD6FE',
+              backgroundColor: '#F8EAC9',
+              border: '1px solid #D6A13D',
               borderRadius: '9999px',
               padding: '2px 8px',
               fontSize: '9.5px',
               fontWeight: 800,
-              color: '#6366F1',
+              color: '#681016',
               letterSpacing: '0.04em',
               marginBottom: '6px'
             }}>
@@ -496,17 +496,17 @@ export default function MobilePYQsScreen({
             <h1 style={{
               fontSize: '17px',
               fontWeight: 900,
-              color: '#0F172A',
+              color: '#14243D',
               margin: '0 0 5px 0',
               lineHeight: 1.22,
               letterSpacing: '-0.02em'
             }}>
-              All <span style={{ color: '#7C3AED' }}>PYQs</span> in One Place
+              All <span style={{ color: '#861820' }}>PYQs</span> in One Place
             </h1>
 
             <p style={{
               fontSize: '10.5px',
-              color: '#64748B',
+              color: '#66758B',
               margin: 0,
               lineHeight: 1.35,
               maxWidth: '220px'
@@ -525,12 +525,12 @@ export default function MobilePYQsScreen({
           alignItems: 'center',
           backgroundColor: '#FFFFFF',
           borderRadius: '9999px',
-          border: '1.5px solid #E2E8F0',
+          border: '1.5px solid #E9D9CC',
           padding: '6px 12px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
+          boxShadow: '0 1px 3px rgba(20, 36, 61, 0.02)',
           marginBottom: '12px'
         }}>
-          <Search size={16} color="#94A3B8" style={{ marginRight: '8px', flexShrink: 0 }} />
+          <Search size={16} color="#66758B" style={{ marginRight: '8px', flexShrink: 0 }} />
           <input
             type="text"
             placeholder="Search PYQ, subject, year, branch..."
@@ -542,7 +542,7 @@ export default function MobilePYQsScreen({
               outline: 'none',
               background: 'transparent',
               fontSize: '12px',
-              color: '#0F172A',
+              color: '#14243D',
               fontWeight: 600,
               padding: 0
             }}
@@ -550,7 +550,7 @@ export default function MobilePYQsScreen({
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              style={{ background: 'none', border: 'none', padding: '0 4px', cursor: 'pointer', color: '#94A3B8' }}
+              style={{ background: 'none', border: 'none', padding: '0 4px', cursor: 'pointer', color: '#66758B' }}
             >
               <X size={14} />
             </button>
@@ -565,7 +565,7 @@ export default function MobilePYQsScreen({
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              color: '#6366F1'
+              color: '#861820'
             }}
           >
             <SlidersHorizontal size={15} strokeWidth={2.4} />
@@ -575,7 +575,7 @@ export default function MobilePYQsScreen({
         {/* 4. SELECT COURSE SECTION (Image 2) */}
         <div style={{ marginBottom: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+            <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
               Select Course
             </h2>
             <button
@@ -583,7 +583,7 @@ export default function MobilePYQsScreen({
               style={{
                 background: 'none',
                 border: 'none',
-                color: '#6366F1',
+                color: '#861820',
                 fontSize: '11px',
                 fontWeight: 700,
                 cursor: 'pointer',
@@ -617,9 +617,9 @@ export default function MobilePYQsScreen({
                     justifyContent: 'center',
                     padding: '8px 2px 7px',
                     borderRadius: '12px',
-                    border: isSelected ? '1.5px solid #6366F1' : '1.5px solid #F1F5F9',
-                    backgroundColor: isSelected ? '#EEF2FF' : '#FFFFFF',
-                    boxShadow: isSelected ? '0 2px 6px rgba(99, 102, 241, 0.12)' : '0 1px 2px rgba(0,0,0,0.02)',
+                    border: isSelected ? '1.5px solid #861820' : '1.5px solid #E9D9CC',
+                    backgroundColor: isSelected ? '#FDF2F2' : '#FFFFFF',
+                    boxShadow: isSelected ? '0 2px 6px rgba(134, 24, 32, 0.12)' : '0 1px 2px rgba(20, 36, 61, 0.02)',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease',
                     minWidth: 0,
@@ -628,7 +628,7 @@ export default function MobilePYQsScreen({
                   }}
                 >
                   <div style={{
-                    color: isSelected ? '#6366F1' : course.color,
+                    color: isSelected ? '#861820' : course.color,
                     marginBottom: '4px',
                     display: 'flex',
                     alignItems: 'center',
@@ -639,7 +639,7 @@ export default function MobilePYQsScreen({
                   <span style={{
                     fontSize: '9.5px',
                     fontWeight: 800,
-                    color: isSelected ? '#4338CA' : '#1E293B',
+                    color: isSelected ? '#861820' : '#14243D',
                     textAlign: 'center',
                     lineHeight: 1.15,
                     whiteSpace: 'nowrap',
@@ -653,7 +653,7 @@ export default function MobilePYQsScreen({
                   {course.subLabel && (
                     <span style={{
                       fontSize: '7.5px',
-                      color: isSelected ? '#6366F1' : '#64748B',
+                      color: isSelected ? '#861820' : '#66758B',
                       fontWeight: 700,
                       lineHeight: 1,
                       marginTop: '1px'
@@ -671,7 +671,7 @@ export default function MobilePYQsScreen({
         {isBTech && (
           <div style={{ marginBottom: '12px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-              <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
                 Select Branch (B.Tech)
               </h2>
               <button
@@ -679,7 +679,7 @@ export default function MobilePYQsScreen({
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#6366F1',
+                  color: '#861820',
                   fontSize: '11px',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -712,15 +712,15 @@ export default function MobilePYQsScreen({
                     style={{
                       padding: '5px 14px',
                       borderRadius: '9999px',
-                      border: isSelected ? 'none' : '1.5px solid #E2E8F0',
-                      backgroundColor: isSelected ? '#6366F1' : '#FFFFFF',
-                      color: isSelected ? '#FFFFFF' : '#475569',
+                      border: isSelected ? 'none' : '1.5px solid #E9D9CC',
+                      backgroundColor: isSelected ? '#861820' : '#FFFFFF',
+                      color: isSelected ? '#FFFFFF' : '#14243D',
                       fontSize: '11px',
                       fontWeight: isSelected ? 800 : 700,
                       whiteSpace: 'nowrap',
                       flexShrink: 0,
                       cursor: 'pointer',
-                      boxShadow: isSelected ? '0 2px 6px rgba(99, 102, 241, 0.22)' : 'none'
+                      boxShadow: isSelected ? '0 2px 6px rgba(134, 24, 32, 0.22)' : 'none'
                     }}
                   >
                     {branch}
@@ -733,7 +733,7 @@ export default function MobilePYQsScreen({
 
         {/* 6. SELECT YEAR TABS (Image 2) */}
         <div style={{ marginBottom: '12px' }}>
-          <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#0F172A', margin: '0 0 6px 0' }}>
+          <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: '0 0 6px 0' }}>
             Select Year
           </h2>
 
@@ -742,11 +742,11 @@ export default function MobilePYQsScreen({
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
             backgroundColor: '#FFFFFF',
-            border: '1.5px solid #E2E8F0',
+            border: '1.5px solid #E9D9CC',
             borderRadius: '9999px',
             padding: '3px',
             gap: '2px',
-            boxShadow: '0 1px 2px rgba(0,0,0,0.02)'
+            boxShadow: '0 1px 2px rgba(20, 36, 61, 0.02)'
           }}>
             {yearOptions.map(year => {
               const isSelected = selectedYear === year;
@@ -758,13 +758,13 @@ export default function MobilePYQsScreen({
                     padding: '6px 0',
                     borderRadius: '9999px',
                     border: 'none',
-                    backgroundColor: isSelected ? '#6366F1' : 'transparent',
-                    color: isSelected ? '#FFFFFF' : '#64748B',
+                    backgroundColor: isSelected ? '#861820' : 'transparent',
+                    color: isSelected ? '#FFFFFF' : '#66758B',
                     fontSize: '11px',
                     fontWeight: isSelected ? 800 : 700,
                     textAlign: 'center',
                     cursor: 'pointer',
-                    boxShadow: isSelected ? '0 2px 5px rgba(99, 102, 241, 0.2)' : 'none',
+                    boxShadow: isSelected ? '0 2px 5px rgba(134, 24, 32, 0.2)' : 'none',
                     transition: 'all 0.15s ease'
                   }}
                 >
@@ -779,12 +779,12 @@ export default function MobilePYQsScreen({
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
             backgroundColor: '#FFFFFF',
-            border: '1.5px solid #E2E8F0',
+            border: '1.5px solid #E9D9CC',
             borderRadius: '9999px',
             padding: '3px',
             gap: '2px',
             marginTop: '6px',
-            boxShadow: '0 1px 2px rgba(0,0,0,0.02)'
+            boxShadow: '0 1px 2px rgba(20, 36, 61, 0.02)'
           }}>
             {semesterTabs.map(sem => {
               const isSelected = selectedSem === sem;
@@ -795,9 +795,9 @@ export default function MobilePYQsScreen({
                   style={{
                     padding: '5px 0',
                     borderRadius: '9999px',
-                    border: isSelected ? '1.5px solid #DDD6FE' : '1.5px solid transparent',
-                    backgroundColor: isSelected ? '#EEF2FF' : 'transparent',
-                    color: isSelected ? '#6366F1' : '#64748B',
+                    border: isSelected ? '1.5px solid #D6A13D' : '1.5px solid transparent',
+                    backgroundColor: isSelected ? '#F8EAC9' : 'transparent',
+                    color: isSelected ? '#681016' : '#66758B',
                     fontSize: '11px',
                     fontWeight: isSelected ? 800 : 600,
                     textAlign: 'center',
@@ -815,7 +815,7 @@ export default function MobilePYQsScreen({
         {/* 7. SUBJECT-WISE PYQ CARDS (Image 2 - Single Column Full Width) */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+            <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
               Subjects ({selectedSem})
             </h2>
             <button
@@ -823,7 +823,7 @@ export default function MobilePYQsScreen({
               style={{
                 background: 'none',
                 border: 'none',
-                color: '#6366F1',
+                color: '#861820',
                 fontSize: '11px',
                 fontWeight: 700,
                 cursor: 'pointer',
@@ -841,13 +841,13 @@ export default function MobilePYQsScreen({
             <div style={{
               backgroundColor: '#FFFFFF',
               borderRadius: '16px',
-              border: '1.5px dashed #CBD5E1',
+              border: '1.5px dashed #E9D9CC',
               padding: '28px 14px',
               textAlign: 'center',
-              color: '#64748B'
+              color: '#66758B'
             }}>
-              <FileText size={30} style={{ color: '#94A3B8', marginBottom: '6px' }} />
-              <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', margin: '0 0 4px' }}>
+              <FileText size={30} style={{ color: '#D6A13D', marginBottom: '6px' }} />
+              <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 4px' }}>
                 No PYQs Mapped
               </h4>
               <p style={{ fontSize: '11px', margin: 0 }}>
@@ -867,8 +867,8 @@ export default function MobilePYQsScreen({
                       backgroundColor: '#FFFFFF',
                       borderRadius: '14px',
                       padding: '10px 12px',
-                      border: '1.5px solid #F1F5F9',
-                      boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
+                      border: '1.5px solid #E9D9CC',
+                      boxShadow: '0 1px 3px rgba(20, 36, 61, 0.02)',
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '8px',
@@ -898,7 +898,7 @@ export default function MobilePYQsScreen({
                         <div style={{
                           fontSize: '11px',
                           fontWeight: 900,
-                          color: '#0F172A',
+                          color: '#14243D',
                           letterSpacing: '-0.01em',
                           lineHeight: 1.1
                         }}>
@@ -907,7 +907,7 @@ export default function MobilePYQsScreen({
                         <div style={{
                           fontSize: '11.5px',
                           fontWeight: 800,
-                          color: '#1E293B',
+                          color: '#14243D',
                           lineHeight: 1.25,
                           whiteSpace: 'nowrap',
                           overflow: 'hidden',
@@ -920,10 +920,10 @@ export default function MobilePYQsScreen({
                           alignItems: 'center',
                           gap: '4px',
                           fontSize: '9.5px',
-                          color: '#64748B',
+                          color: '#66758B',
                           marginTop: '2px'
                         }}>
-                          <FileText size={10} color="#94A3B8" />
+                          <FileText size={10} color="#66758B" />
                           <span>PYQ Available: {pyqMeta.startYear} - {pyqMeta.endYear} ({pyqMeta.yearsCount} Years)</span>
                         </div>
                       </div>
@@ -931,7 +931,7 @@ export default function MobilePYQsScreen({
                       {/* Right: Badge + Download Action */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
                         <span style={{
-                          backgroundColor: '#6366F1',
+                          backgroundColor: '#861820',
                           color: '#FFFFFF',
                           fontSize: '9.5px',
                           fontWeight: 800,
@@ -950,8 +950,8 @@ export default function MobilePYQsScreen({
                             width: '26px',
                             height: '26px',
                             borderRadius: '50%',
-                            backgroundColor: '#EEF2FF',
-                            color: '#6366F1',
+                            backgroundColor: '#F8EAC9',
+                            color: '#861820',
                             border: 'none',
                             display: 'flex',
                             alignItems: 'center',
@@ -982,9 +982,9 @@ export default function MobilePYQsScreen({
                           style={{
                             padding: '3px 8px',
                             borderRadius: '6px',
-                            border: '1px solid #E2E8F0',
-                            backgroundColor: '#F8FAFC',
-                            color: '#475569',
+                            border: '1px solid #E9D9CC',
+                            backgroundColor: '#FFFCF7',
+                            color: '#14243D',
                             fontSize: '9.5px',
                             fontWeight: 700,
                             cursor: 'pointer',
@@ -1058,9 +1058,9 @@ export default function MobilePYQsScreen({
                   style={{
                     padding: '10px',
                     borderRadius: '10px',
-                    border: selectedCourse === c.key ? '1.5px solid #6366F1' : '1px solid #E2E8F0',
-                    backgroundColor: selectedCourse === c.key ? '#EEF2FF' : '#F8FAFC',
-                    color: selectedCourse === c.key ? '#4338CA' : '#0F172A',
+                    border: selectedCourse === c.key ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                    backgroundColor: selectedCourse === c.key ? '#FDF2F2' : '#FFFFFF',
+                    color: selectedCourse === c.key ? '#861820' : '#14243D',
                     fontSize: '11px',
                     fontWeight: 700,
                     textAlign: 'left',
@@ -1083,7 +1083,7 @@ export default function MobilePYQsScreen({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(15, 23, 42, 0.45)',
+          backgroundColor: 'rgba(20, 36, 61, 0.45)',
           backdropFilter: 'blur(3px)',
           display: 'flex',
           alignItems: 'flex-end',
@@ -1100,12 +1100,12 @@ export default function MobilePYQsScreen({
             boxSizing: 'border-box'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#14243D', margin: 0 }}>
                 Select B.Tech Branch
               </h3>
               <button
                 onClick={() => setShowAllBranchesModal(false)}
-                style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#66758B', cursor: 'pointer' }}
               >
                 <X size={18} />
               </button>
@@ -1121,9 +1121,9 @@ export default function MobilePYQsScreen({
                   style={{
                     padding: '10px',
                     borderRadius: '10px',
-                    border: selectedBranch === b ? '1.5px solid #6366F1' : '1px solid #E2E8F0',
-                    backgroundColor: selectedBranch === b ? '#EEF2FF' : '#F8FAFC',
-                    color: selectedBranch === b ? '#4338CA' : '#0F172A',
+                    border: selectedBranch === b ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                    backgroundColor: selectedBranch === b ? '#FDF2F2' : '#FFFFFF',
+                    color: selectedBranch === b ? '#861820' : '#14243D',
                     fontSize: '11.5px',
                     fontWeight: 800,
                     textAlign: 'center',
@@ -1146,7 +1146,7 @@ export default function MobilePYQsScreen({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(15, 23, 42, 0.45)',
+          backgroundColor: 'rgba(20, 36, 61, 0.45)',
           backdropFilter: 'blur(3px)',
           display: 'flex',
           alignItems: 'center',
@@ -1163,17 +1163,17 @@ export default function MobilePYQsScreen({
             boxSizing: 'border-box'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#14243D', margin: 0 }}>
                 {selectedCourse} Examination Syllabus
               </h3>
               <button
                 onClick={() => setShowSyllabusModal(false)}
-                style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#66758B', cursor: 'pointer' }}
               >
                 <X size={18} />
               </button>
             </div>
-            <p style={{ fontSize: '12px', color: '#64748B', lineHeight: 1.45, margin: '0 0 14px' }}>
+            <p style={{ fontSize: '12px', color: '#66758B', lineHeight: 1.45, margin: '0 0 14px' }}>
               Comprehensive syllabus structure for {selectedCourse} {isBTech ? selectedBranch : ''} • {selectedYear} ({selectedSem}).
             </p>
             <div style={{ display: 'flex', gap: '8px' }}>
@@ -1187,7 +1187,7 @@ export default function MobilePYQsScreen({
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '6px',
-                  backgroundColor: '#6366F1',
+                  backgroundColor: '#861820',
                   color: '#FFFFFF',
                   padding: '9px',
                   borderRadius: '10px',
@@ -1203,9 +1203,9 @@ export default function MobilePYQsScreen({
                 style={{
                   padding: '9px 16px',
                   borderRadius: '10px',
-                  border: '1px solid #E2E8F0',
-                  backgroundColor: '#F8FAFC',
-                  color: '#475569',
+                  border: '1px solid #E9D9CC',
+                  backgroundColor: '#FFFCF7',
+                  color: '#14243D',
                   fontSize: '12px',
                   fontWeight: 700,
                   cursor: 'pointer'
@@ -1226,7 +1226,7 @@ export default function MobilePYQsScreen({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(15, 23, 42, 0.45)',
+          backgroundColor: 'rgba(20, 36, 61, 0.45)',
           backdropFilter: 'blur(3px)',
           display: 'flex',
           alignItems: 'flex-end',
@@ -1243,18 +1243,18 @@ export default function MobilePYQsScreen({
             boxSizing: 'border-box'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#14243D', margin: 0 }}>
                 Filter PYQ Papers
               </h3>
               <button
                 onClick={() => setShowFilterDrawer(false)}
-                style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#66758B', cursor: 'pointer' }}
               >
                 <X size={18} />
               </button>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '14px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748B' }}>SEMESTER FILTER</span>
+              <span style={{ fontSize: '11px', fontWeight: 800, color: '#66758B' }}>SEMESTER FILTER</span>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px' }}>
                 {semesterTabs.map(sem => (
                   <button
@@ -1266,9 +1266,9 @@ export default function MobilePYQsScreen({
                     style={{
                       padding: '8px',
                       borderRadius: '8px',
-                      border: selectedSem === sem ? '1.5px solid #6366F1' : '1px solid #E2E8F0',
-                      backgroundColor: selectedSem === sem ? '#EEF2FF' : '#F8FAFC',
-                      color: selectedSem === sem ? '#4338CA' : '#0F172A',
+                      border: selectedSem === sem ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                      backgroundColor: selectedSem === sem ? '#FDF2F2' : '#FFFFFF',
+                      color: selectedSem === sem ? '#861820' : '#14243D',
                       fontSize: '11px',
                       fontWeight: 700,
                       cursor: 'pointer'

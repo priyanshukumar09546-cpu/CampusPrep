@@ -192,10 +192,10 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
               style={{
                 position: 'relative',
                 borderRadius: '20px',
-                background: 'linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 45%, #FDF4FF 100%)',
-                border: '1px solid #E9D5FF',
+                background: 'linear-gradient(135deg, #FFFDFB 0%, #FDF8F3 45%, #FBF3EB 100%)',
+                border: '1px solid #E9D9CC',
                 padding: '18px 16px',
-                boxShadow: '0 3px 12px rgba(124, 58, 237, 0.05)',
+                boxShadow: '0 3px 12px rgba(134, 24, 32, 0.05)',
                 marginBottom: '10px',
                 boxSizing: 'border-box',
                 textAlign: 'center'
@@ -206,14 +206,14 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   width: '64px',
                   height: '64px',
                   borderRadius: '50%',
-                  backgroundColor: '#EEF2FF',
+                  backgroundColor: '#FDF2F2',
                   border: '2.5px solid #FFFFFF',
-                  boxShadow: '0 3px 10px rgba(99, 102, 241, 0.18)',
+                  boxShadow: '0 3px 10px rgba(134, 24, 32, 0.15)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 10px',
-                  color: '#6366F1'
+                  color: '#861820'
                 }}
               >
                 <User size={30} strokeWidth={2.2} />
@@ -308,7 +308,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '8px' }}>
                 <div style={{ padding: '9px', borderRadius: '12px', backgroundColor: '#F8FAFC', border: '1px solid #F1F5F9' }}>
                   <div style={{ fontSize: '11px', fontWeight: 800, color: '#0F172A', marginBottom: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <BarChart2 size={13} color="#6366F1" /> Real Analytics
+                    <BarChart2 size={13} color="#861820" /> Real Analytics
                   </div>
                   <div style={{ fontSize: '9px', color: '#64748B', lineHeight: 1.3 }}>
                     Live study timer, streaks and exam readiness metrics.
@@ -373,8 +373,8 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
                   <div style={{
-                    width: '32px', height: '32px', borderRadius: '9px', backgroundColor: '#F5F3FF',
-                    border: '1px solid #EDE9FE', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7C3AED', flexShrink: 0
+                    width: '32px', height: '32px', borderRadius: '9px', backgroundColor: '#FDF2F2',
+                    border: '1px solid #E9D9CC', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#861820', flexShrink: 0
                   }}>
                     <GraduationCap size={16} strokeWidth={2.2} />
                   </div>
@@ -464,10 +464,10 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
               style={{
                 position: 'relative',
                 borderRadius: '20px',
-                background: 'linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 45%, #FDF4FF 100%)',
-                border: '1px solid #E9D5FF',
+                background: 'linear-gradient(135deg, #FFFDFB 0%, #FDF8F3 45%, #FBF3EB 100%)',
+                border: '1px solid #E9D9CC',
                 padding: '14px 14px',
-                boxShadow: '0 3px 12px rgba(124, 58, 237, 0.05)',
+                boxShadow: '0 3px 12px rgba(134, 24, 32, 0.05)',
                 marginBottom: '10px',
                 boxSizing: 'border-box'
               }}
@@ -482,8 +482,8 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                       borderRadius: '50%',
                       overflow: 'hidden',
                       border: '2.5px solid #FFFFFF',
-                      boxShadow: '0 3px 10px rgba(99, 102, 241, 0.18)',
-                      backgroundColor: '#E0E7FF',
+                      boxShadow: '0 3px 10px rgba(134, 24, 32, 0.18)',
+                      backgroundColor: '#FDF2F2',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
@@ -497,13 +497,13 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                         onError={() => setAvatarError(true)}
                       />
                     ) : (
-                      <span style={{ fontSize: '22px', fontWeight: 800, color: '#6366F1' }}>
+                      <span style={{ fontSize: '22px', fontWeight: 800, color: '#861820' }}>
                         {displayName.charAt(0).toUpperCase()}
                       </span>
                     )}
                   </div>
 
-                  {/* Purple Camera Icon Badge */}
+                  {/* Burgundy Camera Icon Badge */}
                   <button
                     type="button"
                     onClick={() => setShowEditModal(true)}
@@ -515,7 +515,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                       width: '21px',
                       height: '21px',
                       borderRadius: '50%',
-                      backgroundColor: '#6366F1',
+                      backgroundColor: '#861820',
                       border: '2px solid #FFFFFF',
                       display: 'flex',
                       alignItems: 'center',
@@ -568,13 +568,13 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   <div style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    backgroundColor: '#EEF2FF',
-                    border: '1px solid #DDD6FE',
+                    backgroundColor: '#FDF2F2',
+                    border: '1px solid #E9D9CC',
                     borderRadius: '9999px',
                     padding: '2px 8px',
                     fontSize: '9.5px',
                     fontWeight: 800,
-                    color: '#6366F1',
+                    color: '#861820',
                     letterSpacing: '0.01em',
                     maxWidth: '100%',
                     overflow: 'hidden',
@@ -595,14 +595,14 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                       alignItems: 'center',
                       gap: '4px',
                       backgroundColor: '#FFFFFF',
-                      border: '1px solid #DDD6FE',
+                      border: '1px solid #E9D9CC',
                       borderRadius: '9999px',
                       padding: '4px 9px',
                       fontSize: '10px',
                       fontWeight: 800,
-                      color: '#6366F1',
+                      color: '#861820',
                       cursor: 'pointer',
-                      boxShadow: '0 1px 3px rgba(99, 102, 241, 0.08)',
+                      boxShadow: '0 1px 3px rgba(134, 24, 32, 0.08)',
                       transition: 'all 0.15s ease'
                     }}
                   >
@@ -632,7 +632,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
             >
               {/* Notes Viewed */}
               <div style={{ padding: '0 2px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6366F1', marginBottom: '3px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#861820', marginBottom: '3px' }}>
                   <BookOpen size={17} strokeWidth={2.2} />
                 </div>
                 <div style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
@@ -645,7 +645,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
 
               {/* PYQs Downloaded / Solved */}
               <div style={{ padding: '0 2px', borderLeft: '1px solid #F1F5F9' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6366F1', marginBottom: '3px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#861820', marginBottom: '3px' }}>
                   <FileText size={17} strokeWidth={2.2} />
                 </div>
                 <div style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
@@ -864,7 +864,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                 type="button"
                 onClick={() => setShowProModal(true)}
                 style={{
-                  backgroundColor: '#7C3AED',
+                  backgroundColor: '#861820',
                   color: '#FFFFFF',
                   border: 'none',
                   borderRadius: '9999px',
@@ -876,7 +876,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   alignItems: 'center',
                   gap: '3px',
                   flexShrink: 0,
-                  boxShadow: '0 2px 8px rgba(124, 58, 237, 0.28)'
+                  boxShadow: '0 2px 8px rgba(134, 24, 32, 0.28)'
                 }}
               >
                 <span>Get Pro</span>
@@ -913,8 +913,8 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
                   <div style={{
-                    width: '32px', height: '32px', borderRadius: '9px', backgroundColor: '#F5F3FF',
-                    border: '1px solid #EDE9FE', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7C3AED', flexShrink: 0
+                    width: '32px', height: '32px', borderRadius: '9px', backgroundColor: '#FDF2F2',
+                    border: '1px solid #E9D9CC', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#861820', flexShrink: 0
                   }}>
                     <GraduationCap size={16} strokeWidth={2.2} />
                   </div>
@@ -1261,7 +1261,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                     padding: '9px',
                     borderRadius: '10px',
                     border: 'none',
-                    backgroundColor: '#6366F1',
+                    backgroundColor: '#861820',
                     color: '#FFFFFF',
                     fontSize: '12px',
                     fontWeight: 800,
@@ -1400,14 +1400,14 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                 Unlock high-speed revision notes, unlimited AI mock interviews &amp; ad-free study!
               </p>
             </div>
-            <div style={{ backgroundColor: '#FAF5FF', border: '1px solid #E9D5FF', borderRadius: '12px', padding: '10px', marginBottom: '14px' }}>
-              <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#7C3AED', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
+            <div style={{ backgroundColor: '#FFFDF9', border: '1px solid #E9D9CC', borderRadius: '12px', padding: '10px', marginBottom: '14px' }}>
+              <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#861820', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
                 <Check size={13} strokeWidth={3} /> Verified Handwritten Quantum Notes
               </div>
-              <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#7C3AED', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
+              <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#861820', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
                 <Check size={13} strokeWidth={3} /> Official AKTU PYQ Solutions (2017–2026)
               </div>
-              <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#7C3AED', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{ fontSize: '10.5px', fontWeight: 700, color: '#861820', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <Check size={13} strokeWidth={3} /> Full AI Technical &amp; HR Interview Suite
               </div>
             </div>
@@ -1419,7 +1419,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
               }}
               style={{
                 width: '100%',
-                backgroundColor: '#7C3AED',
+                backgroundColor: '#861820',
                 color: '#FFFFFF',
                 border: 'none',
                 borderRadius: '12px',
@@ -1485,7 +1485,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   if (onNavigate) onNavigate('notes');
                 }}
                 style={{
-                  backgroundColor: '#6366F1',
+                  backgroundColor: '#861820',
                   color: '#FFFFFF',
                   border: 'none',
                   borderRadius: '8px',
@@ -1616,7 +1616,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
             <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', margin: '0 0 2px 0' }}>
               Professor Virus
             </h3>
-            <div style={{ fontSize: '10px', fontWeight: 800, color: '#6366F1', marginBottom: '8px' }}>
+            <div style={{ fontSize: '10px', fontWeight: 800, color: '#861820', marginBottom: '8px' }}>
               v2.4.0 — Independent Student Academic Platform
             </div>
             <p style={{ fontSize: '11px', color: '#64748B', lineHeight: 1.45, margin: '0 0 14px 0' }}>
@@ -1630,7 +1630,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                 padding: '9px',
                 borderRadius: '10px',
                 border: 'none',
-                backgroundColor: '#6366F1',
+                backgroundColor: '#861820',
                 color: '#FFFFFF',
                 fontSize: '11.5px',
                 fontWeight: 700,

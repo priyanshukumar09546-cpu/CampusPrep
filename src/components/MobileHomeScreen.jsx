@@ -51,9 +51,9 @@ export default function MobileHomeScreen({
       title: 'Engineering Notes',
       desc: 'Verified notes, books & faculty materials',
       icon: FileText,
-      iconColor: '#7C3AED',
-      iconBg: '#F5F3FF',
-      borderColor: '#EDE9FE',
+      iconColor: '#861820',
+      iconBg: '#FDF2F2',
+      borderColor: '#E9D9CC',
       category: 'Academics',
       route: 'notes',
       isFullWidth: false
@@ -64,9 +64,9 @@ export default function MobileHomeScreen({
       title: 'AKTU PYQs & Solutions',
       desc: 'Previous year papers with solutions',
       icon: FileText,
-      iconColor: '#E11D48',
-      iconBg: '#FFF1F2',
-      borderColor: '#FFE4E6',
+      iconColor: '#861820',
+      iconBg: '#FDF2F2',
+      borderColor: '#E9D9CC',
       category: 'Academics',
       route: 'pyqs',
       isFullWidth: false
@@ -103,9 +103,9 @@ export default function MobileHomeScreen({
       title: 'Result & CGPA Analyzer',
       desc: 'AKTU marksheet parser & CGPA analysis',
       icon: BarChart2,
-      iconColor: '#E11D48',
-      iconBg: '#FFF1F2',
-      borderColor: '#FFE4E6',
+      iconColor: '#861820',
+      iconBg: '#FDF2F2',
+      borderColor: '#E9D9CC',
       category: 'Productivity',
       route: 'result-cgpa',
       isFullWidth: false
@@ -116,9 +116,9 @@ export default function MobileHomeScreen({
       title: 'Attendance Calculator',
       desc: 'Track attendance & shortage analysis',
       icon: Calendar,
-      iconColor: '#D97706',
-      iconBg: '#FFFBEB',
-      borderColor: '#FEF3C7',
+      iconColor: '#D6A13D',
+      iconBg: '#FFFDF5',
+      borderColor: '#F8EAC9',
       category: 'Productivity',
       route: 'attendance-calculator',
       isFullWidth: false
@@ -156,9 +156,9 @@ export default function MobileHomeScreen({
       title: 'ATS Resume Maker',
       desc: 'Build professional resume in minutes',
       icon: FileText,
-      iconColor: '#7C3AED',
-      iconBg: '#F5F3FF',
-      borderColor: '#EDE9FE',
+      iconColor: '#861820',
+      iconBg: '#FDF2F2',
+      borderColor: '#E9D9CC',
       category: 'Career',
       route: 'resume-maker',
       isFullWidth: false
@@ -195,9 +195,9 @@ export default function MobileHomeScreen({
       title: 'Scholarships & Grants',
       desc: 'Find scholarships, schemes & eligibility',
       icon: GraduationCap,
-      iconColor: '#7C3AED',
-      iconBg: '#F5F3FF',
-      borderColor: '#EDE9FE',
+      iconColor: '#D6A13D',
+      iconBg: '#FFFDF5',
+      borderColor: '#F8EAC9',
       category: 'Opportunities',
       route: 'scholarships',
       isFullWidth: false
@@ -221,9 +221,9 @@ export default function MobileHomeScreen({
       title: 'Project Ideas & Repos',
       desc: 'Mini & major projects with source code',
       icon: Lightbulb,
-      iconColor: '#E11D48',
-      iconBg: '#FFF1F2',
-      borderColor: '#FFE4E6',
+      iconColor: '#861820',
+      iconBg: '#FDF2F2',
+      borderColor: '#E9D9CC',
       category: 'Opportunities',
       route: 'project-ideas',
       isFullWidth: false
@@ -234,9 +234,9 @@ export default function MobileHomeScreen({
       title: 'Important University Links',
       desc: 'AKTU portal, result, admission, official resources & more',
       icon: Link2,
-      iconColor: '#7C3AED',
-      iconBg: '#F5F3FF',
-      borderColor: '#EDE9FE',
+      iconColor: '#861820',
+      iconBg: '#FDF2F2',
+      borderColor: '#E9D9CC',
       category: 'Academics',
       route: 'important-links',
       isFullWidth: true
@@ -283,7 +283,7 @@ export default function MobileHomeScreen({
     <div 
       className="pv-single-screen-dashboard"
       style={{
-        backgroundColor: '#F8FAFC',
+        backgroundColor: '#FFFCF7',
         minHeight: '100%',
         padding: '8px 10px 24px',
         width: '100%',
@@ -302,10 +302,10 @@ export default function MobileHomeScreen({
         style={{
           position: 'relative',
           borderRadius: '16px',
-          background: 'linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 45%, #FDF4FF 100%)',
-          border: '1px solid #E9D5FF',
+          background: 'linear-gradient(135deg, #FFFCF7 0%, #F8EAC9 40%, #FFFFFF 100%)',
+          border: '1px solid #E9D9CC',
           padding: '10px 12px',
-          boxShadow: '0 3px 12px rgba(124, 58, 237, 0.05)',
+          boxShadow: '0 3px 12px rgba(134, 24, 32, 0.05)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -324,19 +324,19 @@ export default function MobileHomeScreen({
             display: 'inline-flex',
             alignItems: 'center',
             gap: '3.5px',
-            backgroundColor: '#EEF2FF',
-            border: '1px solid #DDD6FE',
+            backgroundColor: '#F8EAC9',
+            border: '1px solid #D6A13D',
             padding: '2px 7px',
             borderRadius: '9999px',
             fontSize: '9px',
             fontWeight: 800,
-            color: '#6366F1',
+            color: '#681016',
             letterSpacing: '0.02em',
             marginBottom: '3px',
             maxWidth: '100%',
             boxSizing: 'border-box'
           }}>
-            <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366F1', flexShrink: 0 }} />
+            <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#861820', flexShrink: 0 }} />
             <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>PROFESSOR VIRUS</span>
           </div>
 
@@ -345,14 +345,14 @@ export default function MobileHomeScreen({
             fontSize: '15px',
             fontWeight: 900,
             lineHeight: 1.15,
-            color: '#0F172A',
+            color: '#14243D',
             margin: '0 0 2.5px 0',
             letterSpacing: '-0.02em',
             wordBreak: 'break-word'
           }}>
             Everything You Need,<br />
             <span style={{
-              background: 'linear-gradient(90deg, #7C3AED 0%, #C026D3 100%)',
+              background: 'linear-gradient(90deg, #861820 0%, #D6A13D 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}>
@@ -363,7 +363,7 @@ export default function MobileHomeScreen({
           {/* Subtitle */}
           <p style={{
             fontSize: '9.5px',
-            color: '#475569',
+            color: '#66758B',
             margin: 0,
             lineHeight: 1.25,
             maxWidth: '100%',
@@ -379,48 +379,48 @@ export default function MobileHomeScreen({
           <svg width="86" height="66" viewBox="0 0 102 78" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: '100%', height: 'auto', display: 'block' }}>
             <defs>
               <linearGradient id="capGrad" x1="0" y1="0" x2="38" y2="28" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#4338CA" />
-                <stop offset="1" stopColor="#1E1B4B" />
+                <stop stopColor="#861820" />
+                <stop offset="1" stopColor="#681016" />
               </linearGradient>
               <linearGradient id="book1" x1="0" y1="0" x2="48" y2="0" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#6366F1" />
-                <stop offset="1" stopColor="#4F46E5" />
+                <stop stopColor="#861820" />
+                <stop offset="1" stopColor="#681016" />
               </linearGradient>
               <linearGradient id="book2" x1="0" y1="0" x2="52" y2="0" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#EC4899" />
-                <stop offset="1" stopColor="#BE185D" />
+                <stop stopColor="#D6A13D" />
+                <stop offset="1" stopColor="#B8860B" />
               </linearGradient>
             </defs>
 
             {/* Pencil Container */}
-            <rect x="8" y="32" width="16" height="24" rx="3" fill="#818CF8" />
-            <path d="M12 20L15 32H10L12 20Z" fill="#F59E0B" />
-            <path d="M16 23L19 32H14L16 23Z" fill="#EF4444" />
-            <path d="M20 22L22 32H18L20 22Z" fill="#10B981" />
+            <rect x="8" y="32" width="16" height="24" rx="3" fill="#D6A13D" opacity="0.8" />
+            <path d="M12 20L15 32H10L12 20Z" fill="#D6A13D" />
+            <path d="M16 23L19 32H14L16 23Z" fill="#861820" />
+            <path d="M20 22L22 32H18L20 22Z" fill="#14243D" />
 
             {/* Stack of Books */}
             <rect x="22" y="44" width="46" height="8" rx="2" fill="url(#book1)" />
             <rect x="20" y="46" width="3" height="4" rx="1" fill="#FFFFFF" />
             <rect x="20" y="36" width="44" height="7" rx="2" fill="url(#book2)" />
             <rect x="18" y="38" width="3" height="3" rx="1" fill="#FFFFFF" />
-            <rect x="24" y="29" width="38" height="6" rx="2" fill="#06B6D4" />
+            <rect x="24" y="29" width="38" height="6" rx="2" fill="#681016" />
 
             {/* Graduation Cap */}
             <path d="M43 14L22 22L43 30L64 22L43 14Z" fill="url(#capGrad)" />
-            <path d="M33 26V32C33 34 53 34 53 32V26" stroke="#312E81" strokeWidth="2" strokeLinecap="round" />
-            <path d="M64 22L67 27V34" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" />
-            <circle cx="67" cy="34" r="1.5" fill="#F59E0B" />
+            <path d="M33 26V32C33 34 53 34 53 32V26" stroke="#14243D" strokeWidth="2" strokeLinecap="round" />
+            <path d="M64 22L67 27V34" stroke="#D6A13D" strokeWidth="1.5" strokeLinecap="round" />
+            <circle cx="67" cy="34" r="1.5" fill="#D6A13D" />
 
             {/* Sticky Notepad */}
             <g transform="rotate(7 78 40)">
-              <rect x="65" y="22" width="32" height="40" rx="3" fill="#FFFBEB" stroke="#FDE68A" strokeWidth="1" />
-              <circle cx="81" cy="24" r="1.5" fill="#EF4444" />
-              <text x="81" y="32" fontSize="5.5" fontWeight="800" fill="#7C3AED" textAnchor="middle" fontStyle="italic">Study</text>
-              <text x="81" y="39" fontSize="5.5" fontWeight="800" fill="#2563EB" textAnchor="middle" fontStyle="italic">Practice</text>
-              <text x="81" y="46" fontSize="5.5" fontWeight="800" fill="#059669" textAnchor="middle" fontStyle="italic">Build</text>
-              <text x="81" y="53" fontSize="5.5" fontWeight="800" fill="#D97706" textAnchor="middle" fontStyle="italic">Grow</text>
+              <rect x="65" y="22" width="32" height="40" rx="3" fill="#FFFCF7" stroke="#E9D9CC" strokeWidth="1" />
+              <circle cx="81" cy="24" r="1.5" fill="#861820" />
+              <text x="81" y="32" fontSize="5.5" fontWeight="800" fill="#861820" textAnchor="middle">Study</text>
+              <text x="81" y="39" fontSize="5.5" fontWeight="800" fill="#681016" textAnchor="middle">Practice</text>
+              <text x="81" y="46" fontSize="5.5" fontWeight="800" fill="#D6A13D" textAnchor="middle">Build</text>
+              <text x="81" y="53" fontSize="5.5" fontWeight="800" fill="#14243D" textAnchor="middle">Grow</text>
             </g>
-            <path d="M96 15L97 18L100 19L97 20L96 23L95 20L92 19L95 18L96 15Z" fill="#F59E0B" opacity="0.9" />
+            <path d="M96 15L97 18L100 19L97 20L96 23L95 20L92 19L95 18L96 15Z" fill="#D6A13D" opacity="0.9" />
           </svg>
         </div>
       </section>
@@ -445,8 +445,8 @@ export default function MobileHomeScreen({
             alignItems: 'center',
             backgroundColor: '#FFFFFF',
             borderRadius: '12px',
-            border: isSearchFocused ? '1.5px solid #6366F1' : '1.5px solid #E2E8F0',
-            boxShadow: isSearchFocused ? '0 0 0 3px rgba(99, 102, 241, 0.12)' : '0 1px 3px rgba(15, 23, 42, 0.03)',
+            border: isSearchFocused ? '1.5px solid #861820' : '1.5px solid #E9D9CC',
+            boxShadow: isSearchFocused ? '0 0 0 3px rgba(134, 24, 32, 0.12)' : '0 1px 3px rgba(20, 36, 61, 0.03)',
             transition: 'all 0.2s ease',
             padding: '1px 6px 1px 10px',
             width: '100%',
@@ -454,7 +454,7 @@ export default function MobileHomeScreen({
             minWidth: 0,
             boxSizing: 'border-box'
           }}>
-            <Search size={15} color="#94A3B8" style={{ flexShrink: 0, marginRight: '6px' }} />
+            <Search size={15} color="#66758B" style={{ flexShrink: 0, marginRight: '6px' }} />
             
             <input
               type="text"
@@ -473,7 +473,7 @@ export default function MobileHomeScreen({
                 backgroundColor: 'transparent',
                 padding: '7px 0',
                 fontSize: '12px',
-                color: '#0F172A',
+                color: '#14243D',
                 fontWeight: 500,
                 boxSizing: 'border-box'
               }}
@@ -488,7 +488,7 @@ export default function MobileHomeScreen({
                   border: 'none',
                   cursor: 'pointer',
                   padding: '3px',
-                  color: '#94A3B8',
+                  color: '#66758B',
                   display: 'flex',
                   alignItems: 'center',
                   flexShrink: 0
@@ -503,7 +503,7 @@ export default function MobileHomeScreen({
               onClick={() => setShowFilterTray(prev => !prev)}
               aria-label="Filter Categories"
               style={{
-                background: showFilterTray ? '#EEF2FF' : 'none',
+                background: showFilterTray ? '#F8EAC9' : 'none',
                 border: 'none',
                 cursor: 'pointer',
                 padding: '5px',
@@ -512,7 +512,7 @@ export default function MobileHomeScreen({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#6366F1',
+                color: '#861820',
                 flexShrink: 0
               }}
             >
@@ -531,8 +531,8 @@ export default function MobileHomeScreen({
             marginTop: '5px',
             backgroundColor: '#FFFFFF',
             borderRadius: '12px',
-            border: '1px solid #E2E8F0',
-            boxShadow: '0 10px 25px rgba(15, 23, 42, 0.12)',
+            border: '1px solid #E9D9CC',
+            boxShadow: '0 10px 25px rgba(20, 36, 61, 0.12)',
             zIndex: 50,
             overflow: 'hidden'
           }}>
@@ -557,21 +557,21 @@ export default function MobileHomeScreen({
                   justifyContent: 'space-between',
                   padding: '8px 11px',
                   border: 'none',
-                  borderBottom: idx !== searchResults.length - 1 ? '1px solid #F1F5F9' : 'none',
+                  borderBottom: idx !== searchResults.length - 1 ? '1px solid #F8EAC9' : 'none',
                   backgroundColor: '#FFFFFF',
                   cursor: 'pointer',
                   textAlign: 'left'
                 }}
               >
                 <div>
-                  <div style={{ fontSize: '11px', fontWeight: 700, color: '#0F172A' }}>
+                  <div style={{ fontSize: '11px', fontWeight: 700, color: '#14243D' }}>
                     {item.title}
                   </div>
-                  <div style={{ fontSize: '9px', color: '#64748B' }}>
+                  <div style={{ fontSize: '9px', color: '#66758B' }}>
                     {item.code ? `${item.code} • ` : ''}{item.category || item.type}
                   </div>
                 </div>
-                <ChevronRight size={13} color="#94A3B8" />
+                <ChevronRight size={13} color="#66758B" />
               </button>
             ))}
           </div>
@@ -616,14 +616,14 @@ export default function MobileHomeScreen({
                 gap: '4px',
                 padding: '5px 11px',
                 borderRadius: '9999px',
-                border: isActive ? '1.5px solid #6366F1' : '1px solid #E2E8F0',
-                backgroundColor: isActive ? '#6366F1' : '#FFFFFF',
-                color: isActive ? '#FFFFFF' : '#334155',
+                border: isActive ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                backgroundColor: isActive ? '#861820' : '#FFFFFF',
+                color: isActive ? '#FFFFFF' : '#14243D',
                 fontSize: '10.5px',
                 fontWeight: isActive ? 800 : 600,
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                boxShadow: isActive ? '0 2px 6px rgba(99, 102, 241, 0.25)' : 'none',
+                boxShadow: isActive ? '0 2px 6px rgba(134, 24, 32, 0.25)' : 'none',
                 transition: 'all 0.15s ease',
                 flexShrink: 0
               }}
@@ -631,7 +631,7 @@ export default function MobileHomeScreen({
               {IconComp && (
                 <IconComp 
                   size={11} 
-                  color={isActive ? '#FFFFFF' : '#6366F1'} 
+                  color={isActive ? '#FFFFFF' : '#861820'} 
                 />
               )}
               <span>{cat.label}</span>
@@ -671,8 +671,8 @@ export default function MobileHomeScreen({
                   gridColumn: card.isFullWidth ? '1 / -1' : 'auto',
                   backgroundColor: '#FFFFFF',
                   borderRadius: '12px',
-                  border: '1px solid #F1F5F9',
-                  boxShadow: '0 1px 3px rgba(15, 23, 42, 0.03)',
+                  border: '1px solid #E9D9CC',
+                  boxShadow: '0 1px 3px rgba(20, 36, 61, 0.03)',
                   padding: card.isFullWidth ? '10px 12px' : '8px 8px',
                   display: 'flex',
                   alignItems: 'center',
@@ -719,7 +719,7 @@ export default function MobileHomeScreen({
                   <div style={{
                     fontSize: '11px',
                     fontWeight: 800,
-                    color: '#0F172A',
+                    color: '#14243D',
                     lineHeight: 1.25,
                     letterSpacing: '-0.01em',
                     wordBreak: 'break-word',
@@ -734,7 +734,7 @@ export default function MobileHomeScreen({
 
                   <div style={{
                     fontSize: '8.5px',
-                    color: '#64748B',
+                    color: '#66758B',
                     lineHeight: 1.25,
                     marginTop: '2px',
                     wordBreak: 'break-word',
@@ -754,13 +754,13 @@ export default function MobileHomeScreen({
                   width: '18px',
                   height: '18px',
                   borderRadius: '50%',
-                  backgroundColor: '#F5F3FF',
+                  backgroundColor: '#F8EAC9',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   flexShrink: 0
                 }}>
-                  <ArrowRight size={9} color="#7C3AED" strokeWidth={2.4} />
+                  <ArrowRight size={9} color="#861820" strokeWidth={2.4} />
                 </div>
               </div>
             );
@@ -776,17 +776,17 @@ export default function MobileHomeScreen({
             padding: '24px 16px',
             backgroundColor: '#FFFFFF',
             borderRadius: '14px',
-            border: '1px dashed #CBD5E1',
+            border: '1px dashed #E9D9CC',
             marginTop: '8px'
           }}>
-            <p style={{ fontSize: '12px', fontWeight: 700, color: '#334155', margin: '0 0 6px' }}>
+            <p style={{ fontSize: '12px', fontWeight: 700, color: '#14243D', margin: '0 0 6px' }}>
               No tools or resources found matching "{searchQuery}"
             </p>
             <button
               type="button"
               onClick={() => { setSearchQuery(''); setSelectedCategory('All'); }}
               style={{
-                backgroundColor: '#6366F1',
+                backgroundColor: '#861820',
                 color: '#FFFFFF',
                 border: 'none',
                 borderRadius: '8px',

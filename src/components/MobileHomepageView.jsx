@@ -46,7 +46,7 @@ export default function MobileHomepageView({
 
   // 22 Courses matching the reference screenshot in 5 columns
   const allCourses = [
-    { id: 'btech', label: 'B.Tech', subLabel: '(All Branches)', icon: GraduationCap, iconBg: '#F5F3FF', iconColor: '#7C3AED', courseKey: 'BTech' },
+    { id: 'btech', label: 'B.Tech', subLabel: '(All Branches)', icon: GraduationCap, iconBg: '#FDF2F2', iconColor: '#861820', courseKey: 'BTech' },
     { id: 'btech-biotech', label: 'B.Tech', subLabel: 'Biotechnology', icon: FlaskConical, iconBg: '#F0FDF4', iconColor: '#16A34A', courseKey: 'BTech' },
     { id: 'btech-agri', label: 'B.Tech', subLabel: 'Agriculture', icon: Leaf, iconBg: '#F0FDF4', iconColor: '#15803D', courseKey: 'BTech' },
     { id: 'btech-lateral', label: 'B.Tech', subLabel: 'Lateral Entry', icon: FileText, iconBg: '#EFF6FF', iconColor: '#2563EB', courseKey: 'BTechLateral' },
@@ -90,10 +90,10 @@ export default function MobileHomepageView({
       title: 'Notes',
       desc: 'Subject-wise notes for all years',
       icon: BookOpen,
-      iconColor: '#7C3AED',
-      iconBg: '#EDE9FE',
-      bg: '#F5F3FF',
-      borderColor: '#DDD6FE',
+      iconColor: '#861820',
+      iconBg: '#F8EAC9',
+      bg: '#FFFFFF',
+      borderColor: '#E9D9CC',
       route: 'notes'
     },
     {
@@ -101,10 +101,10 @@ export default function MobileHomepageView({
       title: 'PYQ',
       desc: 'Previous year question papers',
       icon: FileText,
-      iconColor: '#D97706',
-      iconBg: '#FEF3C7',
-      bg: '#FFFBEB',
-      borderColor: '#FDE68A',
+      iconColor: '#D6A13D',
+      iconBg: '#F8EAC9',
+      bg: '#FFFFFF',
+      borderColor: '#E9D9CC',
       route: 'pyqs'
     },
     {
@@ -112,10 +112,10 @@ export default function MobileHomepageView({
       title: 'Tools',
       desc: 'Useful tools for students',
       icon: Wrench,
-      iconColor: '#6366F1',
-      iconBg: '#EEF2FF',
-      bg: '#F5F3FF',
-      borderColor: '#E0E7FF',
+      iconColor: '#681016',
+      iconBg: '#F8EAC9',
+      bg: '#FFFFFF',
+      borderColor: '#E9D9CC',
       route: 'more'
     }
   ];
@@ -129,8 +129,8 @@ export default function MobileHomepageView({
       notesCount: 152,
       pyqCount: 28,
       icon: Code2,
-      iconColor: '#E11D48',
-      iconBg: '#FFF1F2',
+      iconColor: '#861820',
+      iconBg: '#F8EAC9',
       subjectData: {
         name: 'Data Structures',
         code: 'KCS-301',
@@ -147,8 +147,8 @@ export default function MobileHomepageView({
       notesCount: 118,
       pyqCount: 24,
       icon: Settings,
-      iconColor: '#2563EB',
-      iconBg: '#EFF6FF',
+      iconColor: '#681016',
+      iconBg: '#F8EAC9',
       subjectData: {
         name: 'Operating System',
         code: 'KCS-401',
@@ -185,10 +185,10 @@ export default function MobileHomepageView({
       title: 'LaTeX Resume in 2 Minutes',
       desc: 'Create a professional resume in seconds',
       badge: 'LaTeX',
-      badgeBg: '#EEF2FF',
-      badgeColor: '#6366F1',
-      bg: '#F8F7FF',
-      borderColor: '#E0E7FF',
+      badgeBg: '#F8EAC9',
+      badgeColor: '#681016',
+      bg: '#FFFFFF',
+      borderColor: '#E9D9CC',
       route: 'resume-maker'
     },
     {
@@ -196,10 +196,10 @@ export default function MobileHomepageView({
       title: 'All Types PDF Maker',
       desc: 'Merge, Convert, Compress, Edit PDF',
       badge: 'PDF',
-      badgeBg: '#FFF1F2',
-      badgeColor: '#E11D48',
-      bg: '#FFF5F5',
-      borderColor: '#FFE4E6',
+      badgeBg: 'rgba(134, 24, 32, 0.08)',
+      badgeColor: '#861820',
+      bg: '#FFFFFF',
+      borderColor: '#E9D9CC',
       route: 'pdf-maker'
     },
     {
@@ -207,10 +207,10 @@ export default function MobileHomepageView({
       title: 'Internship & Job',
       desc: 'Find internships & job opportunities',
       icon: Briefcase,
-      iconColor: '#D97706',
-      iconBg: '#FEF3C7',
-      bg: '#FFF7ED',
-      borderColor: '#FED7AA',
+      iconColor: '#861820',
+      iconBg: '#F8EAC9',
+      bg: '#FFFFFF',
+      borderColor: '#E9D9CC',
       route: 'internships-jobs'
     },
     {
@@ -256,7 +256,7 @@ export default function MobileHomepageView({
     <div 
       className="pv-mobile-homepage-root"
       style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#FFFCF7',
         minHeight: '100%',
         paddingBottom: '24px',
         width: '100%',
@@ -292,9 +292,9 @@ export default function MobileHomepageView({
           style={{
             position: 'relative',
             borderRadius: '20px',
-            background: 'linear-gradient(180deg, #F9F8FF 0%, #F5F3FF 42%, #FFFFFF 100%)',
-            border: '1.5px solid #E9D5FF',
-            boxShadow: '0 4px 18px rgba(124, 58, 237, 0.05)',
+            background: 'linear-gradient(180deg, #FFFCF7 0%, #F8EAC9 35%, #FFFFFF 100%)',
+            border: '1.5px solid #E9D9CC',
+            boxShadow: '0 4px 18px rgba(134, 24, 32, 0.05)',
             padding: '11px 9px 12px',
             marginBottom: '10px',
             overflow: 'hidden'
@@ -308,8 +308,8 @@ export default function MobileHomepageView({
               left: 0,
               right: 0,
               height: '4px',
-              background: 'linear-gradient(90deg, #C084FC 0%, #E879F9 50%, #FDE047 100%)',
-              opacity: 0.85
+              background: 'linear-gradient(90deg, #861820 0%, #D6A13D 100%)',
+              opacity: 0.95
             }} 
           />
 
@@ -322,17 +322,17 @@ export default function MobileHomepageView({
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '3.5px',
-                backgroundColor: '#EEF2FF',
-                border: '1px solid #DDD6FE',
+                backgroundColor: '#F8EAC9',
+                border: '1px solid #D6A13D',
                 padding: '2px 7px',
                 borderRadius: '9999px',
                 fontSize: '8.5px',
                 fontWeight: 800,
-                color: '#6366F1',
+                color: '#681016',
                 letterSpacing: '0.02em',
                 marginBottom: '3px'
               }}>
-                <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#6366F1' }} />
+                <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#861820' }} />
                 PROFESSOR VIRUS
               </div>
 
@@ -340,14 +340,14 @@ export default function MobileHomepageView({
               <h1 style={{
                 fontSize: '16.5px',
                 fontWeight: 900,
-                color: '#0F172A',
+                color: '#14243D',
                 lineHeight: 1.15,
                 margin: '0 0 5px 0',
                 letterSpacing: '-0.02em'
               }}>
                 All Course{' '}
                 <span style={{
-                  background: 'linear-gradient(90deg, #6366F1 0%, #A855F7 100%)',
+                  background: 'linear-gradient(90deg, #861820 0%, #D6A13D 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent'
                 }}>
@@ -359,16 +359,16 @@ export default function MobileHomepageView({
               {/* 4 Feature Badges */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 4px' }}>
                 <span style={heroPillStyle}>
-                  <FileText size={8.5} color="#6366F1" /> Subject-wise Notes
+                  <FileText size={8.5} color="#861820" /> Subject-wise Notes
                 </span>
                 <span style={heroPillStyle}>
-                  <FileText size={8.5} color="#EC4899" /> Previous Year Questions
+                  <FileText size={8.5} color="#D6A13D" /> Previous Year Questions
                 </span>
                 <span style={heroPillStyle}>
-                  <BookOpen size={8.5} color="#06B6D4" /> Updated Syllabus
+                  <BookOpen size={8.5} color="#681016" /> Updated Syllabus
                 </span>
                 <span style={heroPillStyle}>
-                  <Layers size={8.5} color="#8B5CF6" /> All in One Place
+                  <Layers size={8.5} color="#861820" /> All in One Place
                 </span>
               </div>
             </div>
@@ -378,31 +378,31 @@ export default function MobileHomepageView({
               <svg width="92" height="68" viewBox="0 0 102 78" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <linearGradient id="capGradHome" x1="0" y1="0" x2="38" y2="28" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#312E81" />
-                    <stop offset="1" stopColor="#1E1B4B" />
+                    <stop stopColor="#14243D" />
+                    <stop offset="1" stopColor="#0F172A" />
                   </linearGradient>
                   <linearGradient id="bookNotes" x1="0" y1="0" x2="48" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#6366F1" />
-                    <stop offset="1" stopColor="#4F46E5" />
+                    <stop stopColor="#861820" />
+                    <stop offset="1" stopColor="#681016" />
                   </linearGradient>
                   <linearGradient id="bookPyq" x1="0" y1="0" x2="52" y2="0" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#EC4899" />
-                    <stop offset="1" stopColor="#BE185D" />
+                    <stop stopColor="#D6A13D" />
+                    <stop offset="1" stopColor="#B38025" />
                   </linearGradient>
                 </defs>
 
                 {/* Pencil Container */}
-                <rect x="6" y="32" width="14" height="24" rx="3" fill="#818CF8" />
-                <path d="M10 20L13 32H8L10 20Z" fill="#F59E0B" />
-                <path d="M14 23L17 32H12L14 23Z" fill="#EF4444" />
-                <path d="M18 22L20 32H16L18 22Z" fill="#10B981" />
+                <rect x="6" y="32" width="14" height="24" rx="3" fill="#D6A13D" />
+                <path d="M10 20L13 32H8L10 20Z" fill="#F8EAC9" />
+                <path d="M14 23L17 32H12L14 23Z" fill="#861820" />
+                <path d="M18 22L20 32H16L18 22Z" fill="#14243D" />
 
                 {/* Stack of Books with Labels */}
                 <rect x="22" y="44" width="46" height="8" rx="2" fill="url(#bookNotes)" />
                 <rect x="20" y="46" width="3" height="4" rx="1" fill="#FFFFFF" />
                 <text x="44" y="50" fontSize="4.5" fontWeight="800" fill="#FFFFFF" textAnchor="middle">Syllabus</text>
 
-                <rect x="20" y="35" width="48" height="8" rx="2" fill="#D97706" />
+                <rect x="20" y="35" width="48" height="8" rx="2" fill="#D6A13D" />
                 <rect x="18" y="37" width="3" height="4" rx="1" fill="#FFFFFF" />
                 <text x="44" y="41" fontSize="4.5" fontWeight="800" fill="#FFFFFF" textAnchor="middle">PYQ</text>
 
@@ -411,18 +411,18 @@ export default function MobileHomepageView({
 
                 {/* Graduation Cap */}
                 <path d="M44 12L22 20L44 28L66 20L44 12Z" fill="url(#capGradHome)" />
-                <path d="M34 24V30C34 32 54 32 54 30V24" stroke="#312E81" strokeWidth="2" strokeLinecap="round" />
-                <path d="M66 20L69 25V32" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx="69" cy="32" r="1.5" fill="#F59E0B" />
+                <path d="M34 24V30C34 32 54 32 54 30V24" stroke="#14243D" strokeWidth="2" strokeLinecap="round" />
+                <path d="M66 20L69 25V32" stroke="#D6A13D" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="69" cy="32" r="1.5" fill="#D6A13D" />
 
                 {/* Angled Whiteboard: Study Smarter Score Higher */}
                 <g transform="rotate(7 78 40)">
-                  <rect x="65" y="20" width="33" height="42" rx="3" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1" />
-                  <rect x="67" y="22" width="29" height="38" rx="2" fill="#FAF5FF" />
-                  <text x="81.5" y="31" fontSize="4.5" fontWeight="800" fill="#6366F1" textAnchor="middle">Study</text>
-                  <text x="81.5" y="38" fontSize="4.5" fontWeight="800" fill="#3B82F6" textAnchor="middle">Smarter</text>
-                  <text x="81.5" y="45" fontSize="4.5" fontWeight="800" fill="#EC4899" textAnchor="middle">Score</text>
-                  <text x="81.5" y="52" fontSize="4.5" fontWeight="800" fill="#10B981" textAnchor="middle">Higher</text>
+                  <rect x="65" y="20" width="33" height="42" rx="3" fill="#FFFFFF" stroke="#E9D9CC" strokeWidth="1" />
+                  <rect x="67" y="22" width="29" height="38" rx="2" fill="#FFFCF7" />
+                  <text x="81.5" y="31" fontSize="4.5" fontWeight="800" fill="#861820" textAnchor="middle">Study</text>
+                  <text x="81.5" y="38" fontSize="4.5" fontWeight="800" fill="#D6A13D" textAnchor="middle">Smarter</text>
+                  <text x="81.5" y="45" fontSize="4.5" fontWeight="800" fill="#14243D" textAnchor="middle">Score</text>
+                  <text x="81.5" y="52" fontSize="4.5" fontWeight="800" fill="#681016" textAnchor="middle">Higher</text>
                 </g>
               </svg>
             </div>
@@ -544,19 +544,19 @@ export default function MobileHomepageView({
                   gap: '5px',
                   padding: '6px 14px',
                   borderRadius: '11px',
-                  border: isActive ? 'none' : '1px solid #E2E8F0',
-                  background: isActive ? 'linear-gradient(90deg, #6366F1 0%, #7C3AED 100%)' : '#FFFFFF',
-                  color: isActive ? '#FFFFFF' : '#334155',
+                  border: isActive ? 'none' : '1px solid #E9D9CC',
+                  background: isActive ? 'linear-gradient(90deg, #861820 0%, #681016 100%)' : '#FFFFFF',
+                  color: isActive ? '#FFFFFF' : '#14243D',
                   fontSize: '11px',
                   fontWeight: isActive ? 800 : 700,
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
-                  boxShadow: isActive ? '0 2px 8px rgba(99, 102, 241, 0.3)' : '0 1px 2px rgba(15, 23, 42, 0.03)',
+                  boxShadow: isActive ? '0 2px 8px rgba(134, 24, 32, 0.25)' : '0 1px 2px rgba(20, 36, 61, 0.03)',
                   transition: 'all 0.15s ease',
                   flexShrink: 0
                 }}
               >
-                <TabIcon size={12.5} color={isActive ? '#FFFFFF' : '#6366F1'} />
+                <TabIcon size={12.5} color={isActive ? '#FFFFFF' : '#861820'} />
                 <span>{tab.label}</span>
               </button>
             );
@@ -579,8 +579,8 @@ export default function MobileHomepageView({
               alignItems: 'center',
               backgroundColor: '#FFFFFF',
               borderRadius: '12px',
-              border: isSearchFocused ? '1.5px solid #6366F1' : '1.5px solid #E2E8F0',
-              boxShadow: isSearchFocused ? '0 0 0 3px rgba(99, 102, 241, 0.12)' : '0 1px 3px rgba(15, 23, 42, 0.03)',
+              border: isSearchFocused ? '1.5px solid #861820' : '1.5px solid #E9D9CC',
+              boxShadow: isSearchFocused ? '0 0 0 3px rgba(134, 24, 32, 0.12)' : '0 1px 3px rgba(20, 36, 61, 0.03)',
               transition: 'all 0.2s ease',
               padding: '2px 8px 2px 10px'
             }}>
@@ -600,7 +600,7 @@ export default function MobileHomepageView({
                   outline: 'none',
                   fontSize: '11.5px',
                   fontWeight: 600,
-                  color: '#0F172A',
+                  color: '#14243D',
                   backgroundColor: 'transparent',
                   padding: '7px 0',
                   minWidth: 0,
@@ -638,8 +638,8 @@ export default function MobileHomepageView({
                   height: '26px',
                   borderRadius: '7px',
                   border: 'none',
-                  backgroundColor: '#F8FAFC',
-                  color: '#6366F1',
+                  backgroundColor: '#F8EAC9',
+                  color: '#861820',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -803,7 +803,7 @@ export default function MobileHomepageView({
             marginBottom: '7px',
             padding: '0 2px'
           }}>
-            <h2 style={{ fontSize: '14.5px', fontWeight: 900, color: '#0F172A', margin: 0, letterSpacing: '-0.01em' }}>
+            <h2 style={{ fontSize: '14.5px', fontWeight: 900, color: '#14243D', margin: 0, letterSpacing: '-0.01em' }}>
               Popular Subjects
             </h2>
             <button
@@ -814,7 +814,7 @@ export default function MobileHomepageView({
                 border: 'none',
                 fontSize: '10.5px',
                 fontWeight: 700,
-                color: '#6366F1',
+                color: '#861820',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '2px',
@@ -932,7 +932,7 @@ export default function MobileHomepageView({
             marginBottom: '7px',
             padding: '0 2px'
           }}>
-            <h2 style={{ fontSize: '14.5px', fontWeight: 900, color: '#0F172A', margin: 0, letterSpacing: '-0.01em' }}>
+            <h2 style={{ fontSize: '14.5px', fontWeight: 900, color: '#14243D', margin: 0, letterSpacing: '-0.01em' }}>
               Most Used Tools
             </h2>
             <button
@@ -943,7 +943,7 @@ export default function MobileHomepageView({
                 border: 'none',
                 fontSize: '10.5px',
                 fontWeight: 700,
-                color: '#6366F1',
+                color: '#861820',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '2px',
@@ -970,8 +970,8 @@ export default function MobileHomepageView({
                 <div
                   key={tool.id}
                   style={{
-                    backgroundColor: tool.bg,
-                    border: `1px solid ${tool.borderColor}`,
+                    backgroundColor: tool.bg || '#FFFFFF',
+                    border: `1px solid ${tool.borderColor || '#E9D9CC'}`,
                     borderRadius: '12px',
                     padding: '8px 4px 7px',
                     display: 'flex',
@@ -979,7 +979,7 @@ export default function MobileHomepageView({
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     textAlign: 'center',
-                    boxShadow: '0 1px 3px rgba(15, 23, 42, 0.02)',
+                    boxShadow: '0 1px 3px rgba(20, 36, 61, 0.02)',
                     minHeight: '116px',
                     minWidth: 0,
                     width: '100%',
@@ -1016,7 +1016,7 @@ export default function MobileHomepageView({
                     <div style={{
                       fontSize: '9.5px',
                       fontWeight: 800,
-                      color: '#0F172A',
+                      color: '#14243D',
                       lineHeight: 1.15,
                       marginBottom: '2px'
                     }}>
@@ -1026,7 +1026,7 @@ export default function MobileHomepageView({
                     {/* Tool Desc */}
                     <div style={{
                       fontSize: '7px',
-                      color: '#64748B',
+                      color: '#66758B',
                       lineHeight: 1.2,
                       fontWeight: 500,
                       display: '-webkit-box',
@@ -1046,9 +1046,9 @@ export default function MobileHomepageView({
                       width: '100%',
                       padding: '4px 0',
                       borderRadius: '7px',
-                      border: '1px solid rgba(99, 102, 241, 0.25)',
+                      border: '1px solid rgba(134, 24, 32, 0.25)',
                       backgroundColor: '#FFFFFF',
-                      color: '#6366F1',
+                      color: '#861820',
                       fontSize: '8.5px',
                       fontWeight: 800,
                       cursor: 'pointer',
@@ -1077,10 +1077,10 @@ const heroPillStyle = {
   alignItems: 'center',
   gap: '3px',
   backgroundColor: '#FFFFFF',
-  border: '1px solid #EDE9FE',
+  border: '1px solid #E9D9CC',
   borderRadius: '9999px',
   padding: '2px 6px',
   fontSize: '8px',
   fontWeight: 700,
-  color: '#334155'
+  color: '#14243D'
 };

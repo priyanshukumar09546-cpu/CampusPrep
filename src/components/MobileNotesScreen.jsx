@@ -53,7 +53,7 @@ import { pyqsData as localPyqsData } from '../data/pyqsData';
 
 // 10 Featured Courses matching Reference Screenshot Image 1
 const FEATURED_COURSES = [
-  { key: 'BTech', name: 'B.Tech', subLabel: '(All Branches)', icon: GraduationCap, color: '#6366F1', bg: '#EEF2FF' },
+  { key: 'BTech', name: 'B.Tech', subLabel: '(All Branches)', icon: GraduationCap, color: '#861820', bg: '#FDF2F2' },
   { key: 'MTech', name: 'M.Tech', subLabel: '', icon: Settings, color: '#0284C7', bg: '#F0F9FF' },
   { key: 'BCA', name: 'BCA', subLabel: '', icon: Monitor, color: '#0284C7', bg: '#F0F9FF' },
   { key: 'MCA', name: 'MCA', subLabel: '', icon: FileText, color: '#0284C7', bg: '#F0F9FF' },
@@ -89,7 +89,7 @@ function getSubjectIcon(name = '', code = '') {
   if (n.includes('communication') || n.includes('english') || n.includes('soft skill') || n.includes('human value')) {
     return { icon: FileText, bg: '#FFE4E6', color: '#E11D48' };
   }
-  return { icon: BookOpen, bg: '#EEF2FF', color: '#6366F1' };
+  return { icon: BookOpen, bg: '#FDF2F2', color: '#861820' };
 }
 
 // Helper to accurately extract unit number from a note object without fabricating
@@ -116,8 +116,8 @@ function NotesHeroArt() {
   return (
     <div style={{ flexShrink: 0, width: 'clamp(92px, 28vw, 125px)', maxWidth: '38%' }}>
       <svg viewBox="0 0 130 98" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: 'auto', display: 'block' }}>
-      {/* Background Soft Purple Glow */}
-      <ellipse cx="65" cy="50" rx="55" ry="38" fill="#EDE9FE" fillOpacity="0.7" />
+      {/* Background Soft Glow */}
+      <ellipse cx="65" cy="50" rx="55" ry="38" fill="#F8EAC9" fillOpacity="0.7" />
 
       {/* Stack of 3 Books */}
       {/* Book 1 - Red / Bottom */}
@@ -126,29 +126,29 @@ function NotesHeroArt() {
       <path d="M50 78 L50 84 L105 76 L105 70 Z" fill="#EF4444" />
       <path d="M44 72 L97 64 L102 68 L49 76 Z" fill="#FEF2F2" />
 
-      {/* Book 2 - Blue / Middle */}
-      <path d="M44 58 L96 52 L106 60 L54 66 Z" fill="#0284C7" />
-      <path d="M44 58 L44 64 L54 72 L54 66 Z" fill="#0369A1" />
-      <path d="M54 66 L54 72 L106 66 L106 60 Z" fill="#38BDF8" />
-      <path d="M48 60 L98 54 L103 58 L53 64 Z" fill="#F0F9FF" />
+      {/* Book 2 - Gold / Middle */}
+      <path d="M44 58 L96 52 L106 60 L54 66 Z" fill="#D6A13D" />
+      <path d="M44 58 L44 64 L54 72 L54 66 Z" fill="#B8860B" />
+      <path d="M54 66 L54 72 L106 66 L106 60 Z" fill="#F8EAC9" />
+      <path d="M48 60 L98 54 L103 58 L53 64 Z" fill="#FFFDF5" />
 
-      {/* Book 3 - Purple / Top */}
-      <path d="M48 46 L98 42 L107 50 L57 54 Z" fill="#6366F1" />
-      <path d="M48 46 L48 52 L57 60 L57 54 Z" fill="#4338CA" />
-      <path d="M57 54 L57 60 L107 56 L107 50 Z" fill="#818CF8" />
+      {/* Book 3 - Burgundy / Top */}
+      <path d="M48 46 L98 42 L107 50 L57 54 Z" fill="#861820" />
+      <path d="M48 46 L48 52 L57 60 L57 54 Z" fill="#681016" />
+      <path d="M57 54 L57 60 L107 56 L107 50 Z" fill="#A72832" />
 
       {/* Graduation Cap on top of books */}
-      <polygon points="68,20 95,28 68,36 41,28" fill="#1E1B4B" />
-      <path d="M52 32 L52 38 Q68 44 84 38 L84 32 Q68 37 52 32 Z" fill="#312E81" />
+      <polygon points="68,20 95,28 68,36 41,28" fill="#14243D" />
+      <path d="M52 32 L52 38 Q68 44 84 38 L84 32 Q68 37 52 32 Z" fill="#0A1424" />
       {/* Cap button & tassel */}
-      <circle cx="68" cy="28" r="2.5" fill="#F59E0B" />
-      <path d="M68 28 C64 34 58 36 56 42" stroke="#F59E0B" strokeWidth="1.5" fill="none" />
-      <circle cx="56" cy="43" r="1.5" fill="#D97706" />
+      <circle cx="68" cy="28" r="2.5" fill="#D6A13D" />
+      <path d="M68 28 C64 34 58 36 56 42" stroke="#D6A13D" strokeWidth="1.5" fill="none" />
+      <circle cx="56" cy="43" r="1.5" fill="#861820" />
 
       {/* Notepad with "NOTES" label */}
       <g transform="translate(14, 28) rotate(-6)">
-        <rect x="0" y="0" width="36" height="46" rx="4" fill="#FFFFFF" stroke="#CBD5E1" strokeWidth="1" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.08))" />
-        <rect x="0" y="0" width="36" height="8" rx="4" fill="#6366F1" />
+        <rect x="0" y="0" width="36" height="46" rx="4" fill="#FFFFFF" stroke="#E9D9CC" strokeWidth="1" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.08))" />
+        <rect x="0" y="0" width="36" height="8" rx="4" fill="#861820" />
         {/* Binder rings */}
         <circle cx="8" cy="4" r="1.5" fill="#FFFFFF" />
         <circle cx="18" cy="4" r="1.5" fill="#FFFFFF" />
@@ -541,7 +541,7 @@ export default function MobileNotesScreen({
     <div 
       className="pv-mobile-notes-screen"
       style={{
-        backgroundColor: '#FAFAFB',
+        backgroundColor: '#FFFCF7',
         minHeight: '100%',
         paddingBottom: '32px',
         width: '100%',
@@ -572,7 +572,7 @@ export default function MobileNotesScreen({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#FFFCF7',
           zIndex: 1000,
           overflowY: 'auto',
           paddingBottom: '80px',
@@ -583,13 +583,13 @@ export default function MobileNotesScreen({
             position: 'sticky',
             top: 0,
             zIndex: 10,
-            backgroundColor: '#FFFFFF',
-            borderBottom: '1px solid #E2E8F0',
+            backgroundColor: '#FFFCF7',
+            borderBottom: '1px solid #E9D9CC',
             padding: '12px 14px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            boxShadow: '0 1px 4px rgba(0,0,0,0.03)'
+            boxShadow: '0 1px 4px rgba(20, 36, 61, 0.03)'
           }}>
             <button
               onClick={() => setActiveSubjectDetail(null)}
@@ -599,7 +599,7 @@ export default function MobileNotesScreen({
                 gap: '6px',
                 background: 'none',
                 border: 'none',
-                color: '#6366F1',
+                color: '#861820',
                 fontWeight: 800,
                 fontSize: '13px',
                 cursor: 'pointer',
@@ -642,8 +642,8 @@ export default function MobileNotesScreen({
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '2px' }}>
                   {activeSubjectDetail.code && (
                     <span style={{
-                      backgroundColor: '#EEF2FF',
-                      color: '#6366F1',
+                      backgroundColor: '#F8EAC9',
+                      color: '#681016',
                       fontSize: '10px',
                       fontWeight: 800,
                       padding: '2px 6px',
@@ -652,11 +652,11 @@ export default function MobileNotesScreen({
                       {activeSubjectDetail.code}
                     </span>
                   )}
-                  <span style={{ fontSize: '10.5px', color: '#64748B', fontWeight: 600 }}>
+                  <span style={{ fontSize: '10.5px', color: '#66758B', fontWeight: 600 }}>
                     {selectedYear} • {selectedSem}
                   </span>
                 </div>
-                <h3 style={{ fontSize: '14px', fontWeight: 900, color: '#0F172A', margin: 0, lineHeight: 1.25 }}>
+                <h3 style={{ fontSize: '14px', fontWeight: 900, color: '#14243D', margin: 0, lineHeight: 1.25 }}>
                   {activeSubjectDetail.name}
                 </h3>
               </div>
@@ -666,7 +666,7 @@ export default function MobileNotesScreen({
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              backgroundColor: '#F1F5F9',
+              backgroundColor: '#F8EAC9',
               borderRadius: '10px',
               padding: '3px',
               gap: '4px',
@@ -686,12 +686,12 @@ export default function MobileNotesScreen({
                       padding: '7px 0',
                       borderRadius: '8px',
                       border: 'none',
-                      backgroundColor: isTabActive ? '#FFFFFF' : 'transparent',
-                      color: isTabActive ? '#6366F1' : '#64748B',
+                      backgroundColor: isTabActive ? '#861820' : 'transparent',
+                      color: isTabActive ? '#FFFFFF' : '#681016',
                       fontSize: '11.5px',
                       fontWeight: isTabActive ? 800 : 600,
                       cursor: 'pointer',
-                      boxShadow: isTabActive ? '0 1px 3px rgba(0,0,0,0.06)' : 'none'
+                      boxShadow: isTabActive ? '0 1px 4px rgba(134, 24, 32, 0.25)' : 'none'
                     }}
                   >
                     {t.label}
@@ -725,15 +725,15 @@ export default function MobileNotesScreen({
                       style={{
                         padding: '5px 12px',
                         borderRadius: '9999px',
-                        border: selectedUnitFilter === 'ALL' ? 'none' : '1.5px solid #E2E8F0',
-                        backgroundColor: selectedUnitFilter === 'ALL' ? '#6366F1' : '#FFFFFF',
-                        color: selectedUnitFilter === 'ALL' ? '#FFFFFF' : '#475569',
+                        border: selectedUnitFilter === 'ALL' ? 'none' : '1.5px solid #E9D9CC',
+                        backgroundColor: selectedUnitFilter === 'ALL' ? '#861820' : '#FFFFFF',
+                        color: selectedUnitFilter === 'ALL' ? '#FFFFFF' : '#14243D',
                         fontSize: '11px',
                         fontWeight: selectedUnitFilter === 'ALL' ? 800 : 700,
                         whiteSpace: 'nowrap',
                         flexShrink: 0,
                         cursor: 'pointer',
-                        boxShadow: selectedUnitFilter === 'ALL' ? '0 2px 6px rgba(99, 102, 241, 0.22)' : 'none',
+                        boxShadow: selectedUnitFilter === 'ALL' ? '0 2px 6px rgba(134, 24, 32, 0.22)' : 'none',
                         transition: 'all 0.15s ease'
                       }}
                     >
@@ -752,15 +752,15 @@ export default function MobileNotesScreen({
                           style={{
                             padding: '5px 12px',
                             borderRadius: '9999px',
-                            border: isSelected ? 'none' : '1.5px solid #E2E8F0',
-                            backgroundColor: isSelected ? '#6366F1' : '#FFFFFF',
-                            color: isSelected ? '#FFFFFF' : '#475569',
+                            border: isSelected ? 'none' : '1.5px solid #E9D9CC',
+                            backgroundColor: isSelected ? '#861820' : '#FFFFFF',
+                            color: isSelected ? '#FFFFFF' : '#14243D',
                             fontSize: '11px',
                             fontWeight: isSelected ? 800 : 700,
                             whiteSpace: 'nowrap',
                             flexShrink: 0,
                             cursor: 'pointer',
-                            boxShadow: isSelected ? '0 2px 6px rgba(99, 102, 241, 0.22)' : 'none',
+                            boxShadow: isSelected ? '0 2px 6px rgba(134, 24, 32, 0.22)' : 'none',
                             transition: 'all 0.15s ease',
                             display: 'inline-flex',
                             alignItems: 'center',
@@ -774,8 +774,8 @@ export default function MobileNotesScreen({
                               fontWeight: 800,
                               padding: '1px 5px',
                               borderRadius: '9999px',
-                              backgroundColor: isSelected ? 'rgba(255, 255, 255, 0.28)' : '#EEF2FF',
-                              color: isSelected ? '#FFFFFF' : '#6366F1'
+                              backgroundColor: isSelected ? 'rgba(255, 255, 255, 0.28)' : '#F8EAC9',
+                              color: isSelected ? '#FFFFFF' : '#861820'
                             }}>
                               {countForUnit}
                             </span>
@@ -787,8 +787,8 @@ export default function MobileNotesScreen({
                 )}
 
                 {isLoadingDetail ? (
-                  <div style={{ textAlign: 'center', padding: '24px 10px', color: '#64748B' }}>
-                    <Sparkles size={24} style={{ animation: 'spin 1.5s linear infinite', color: '#6366F1', margin: '0 auto 8px' }} />
+                  <div style={{ textAlign: 'center', padding: '24px 10px', color: '#66758B' }}>
+                    <Sparkles size={24} style={{ animation: 'spin 1.5s linear infinite', color: '#861820', margin: '0 auto 8px' }} />
                     <p style={{ fontSize: '12px', fontWeight: 600 }}>Loading notes from library...</p>
                   </div>
                 ) : subjectLiveNotes.length === 0 ? (
@@ -811,7 +811,7 @@ export default function MobileNotesScreen({
                       <button
                         onClick={() => onRequestNotes(activeSubjectDetail, 1)}
                         style={{
-                          backgroundColor: '#6366F1',
+                          backgroundColor: '#861820',
                           color: '#FFFFFF',
                           border: 'none',
                           borderRadius: '8px',
@@ -845,9 +845,9 @@ export default function MobileNotesScreen({
                       <button
                         onClick={() => setSelectedUnitFilter('ALL')}
                         style={{
-                          backgroundColor: '#EEF2FF',
-                          color: '#6366F1',
-                          border: '1px solid #DDD6FE',
+                          backgroundColor: '#F8EAC9',
+                          color: '#681016',
+                          border: '1px solid #D6A13D',
                           borderRadius: '8px',
                           padding: '7px 14px',
                           fontSize: '11.5px',
@@ -861,7 +861,7 @@ export default function MobileNotesScreen({
                         <button
                           onClick={() => onRequestNotes(activeSubjectDetail, selectedUnitFilter)}
                           style={{
-                            backgroundColor: '#6366F1',
+                            backgroundColor: '#861820',
                             color: '#FFFFFF',
                             border: 'none',
                             borderRadius: '8px',
@@ -888,27 +888,27 @@ export default function MobileNotesScreen({
                           backgroundColor: '#FFFFFF',
                           borderRadius: '12px',
                           padding: '12px',
-                          border: '1px solid #E2E8F0',
-                          boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+                          border: '1px solid #E9D9CC',
+                          boxShadow: '0 1px 3px rgba(20, 36, 61, 0.03)'
                         }}
                       >
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                           <span style={{
                             fontSize: '10px',
                             fontWeight: 800,
-                            backgroundColor: unitNo ? '#EEF2FF' : '#F1F5F9',
-                            color: unitNo ? '#6366F1' : '#475569',
+                            backgroundColor: unitNo ? '#F8EAC9' : '#F1F5F9',
+                            color: unitNo ? '#861820' : '#475569',
                             padding: '2px 6px',
                             borderRadius: '4px'
                           }}>
                             {unitNo ? `Unit ${unitNo}` : (note.category || 'Complete Notes')}
                           </span>
-                          <span style={{ fontSize: '10px', color: '#64748B', fontWeight: 600 }}>
+                          <span style={{ fontSize: '10px', color: '#66758B', fontWeight: 600 }}>
                             {note.source || 'Curated PDF'}
                           </span>
                         </div>
 
-                        <h4 style={{ fontSize: '12.5px', fontWeight: 800, color: '#0F172A', margin: '0 0 10px', lineHeight: 1.3 }}>
+                        <h4 style={{ fontSize: '12.5px', fontWeight: 800, color: '#14243D', margin: '0 0 10px', lineHeight: 1.3 }}>
                           {note.title || (unitNo ? `${activeSubjectDetail.name} — Unit ${unitNo}` : activeSubjectDetail.name)}
                         </h4>
 
@@ -931,7 +931,7 @@ export default function MobileNotesScreen({
                               alignItems: 'center',
                               justifyContent: 'center',
                               gap: '6px',
-                              backgroundColor: '#6366F1',
+                              backgroundColor: '#861820',
                               color: '#FFFFFF',
                               border: 'none',
                               borderRadius: '8px',
@@ -955,9 +955,9 @@ export default function MobileNotesScreen({
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 padding: '8px 12px',
-                                backgroundColor: '#F8FAFC',
-                                color: '#0F172A',
-                                border: '1px solid #E2E8F0',
+                                backgroundColor: '#FFFCF7',
+                                color: '#14243D',
+                                border: '1px solid #E9D9CC',
                                 borderRadius: '8px',
                                 textDecoration: 'none'
                               }}
@@ -983,10 +983,10 @@ export default function MobileNotesScreen({
                     padding: '24px 14px',
                     textAlign: 'center',
                     border: '1.5px dashed #CBD5E1',
-                    color: '#64748B'
+                    color: '#66758B'
                   }}>
                     <FileText size={32} style={{ color: '#94A3B8', marginBottom: '8px' }} />
-                    <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', margin: '0 0 4px' }}>
+                    <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 4px' }}>
                       Question Papers Available in PYQ Tab
                     </h4>
                     <p style={{ fontSize: '11px', margin: '0 0 12px' }}>
@@ -995,7 +995,7 @@ export default function MobileNotesScreen({
                     <button
                       onClick={() => onNavigate && onNavigate('pyqs')}
                       style={{
-                        backgroundColor: '#6366F1',
+                        backgroundColor: '#861820',
                         color: '#FFFFFF',
                         border: 'none',
                         borderRadius: '8px',
@@ -1016,17 +1016,17 @@ export default function MobileNotesScreen({
                         backgroundColor: '#FFFFFF',
                         borderRadius: '12px',
                         padding: '12px',
-                        border: '1px solid #E2E8F0',
+                        border: '1px solid #E9D9CC',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between'
                       }}
                     >
                       <div>
-                        <span style={{ fontSize: '10px', fontWeight: 800, color: '#6366F1', backgroundColor: '#EEF2FF', padding: '2px 6px', borderRadius: '4px' }}>
+                        <span style={{ fontSize: '10px', fontWeight: 800, color: '#681016', backgroundColor: '#F8EAC9', padding: '2px 6px', borderRadius: '4px' }}>
                           {pyq.year || pyq.session || 'Paper'}
                         </span>
-                        <h4 style={{ fontSize: '12.5px', fontWeight: 800, color: '#0F172A', margin: '4px 0 0' }}>
+                        <h4 style={{ fontSize: '12.5px', fontWeight: 800, color: '#14243D', margin: '4px 0 0' }}>
                           {pyq.subject || activeSubjectDetail.name}
                         </h4>
                       </div>
@@ -1036,8 +1036,8 @@ export default function MobileNotesScreen({
                           if (url) window.open(url, '_blank', 'noopener,noreferrer');
                         }}
                         style={{
-                          backgroundColor: '#EEF2FF',
-                          color: '#6366F1',
+                          backgroundColor: '#F8EAC9',
+                          color: '#861820',
                           border: 'none',
                           borderRadius: '8px',
                           padding: '6px 10px',
@@ -1059,11 +1059,11 @@ export default function MobileNotesScreen({
 
             {/* TAB CONTENT 3: Syllabus */}
             {activeDetailTab === 'syllabus' && (
-              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '14px', border: '1px solid #E2E8F0', padding: '14px' }}>
-                <h3 style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', margin: '0 0 6px' }}>
+              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '14px', border: '1px solid #E9D9CC', padding: '14px' }}>
+                <h3 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 6px' }}>
                   {activeSubjectDetail.name} Curriculum Structure
                 </h3>
-                <p style={{ fontSize: '11.5px', color: '#64748B', lineHeight: 1.4, margin: '0 0 14px' }}>
+                <p style={{ fontSize: '11.5px', color: '#66758B', lineHeight: 1.4, margin: '0 0 14px' }}>
                   Standard university syllabus covering fundamental concepts across Units 1 to 5.
                 </p>
                 <a
@@ -1075,7 +1075,7 @@ export default function MobileNotesScreen({
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '6px',
-                    backgroundColor: '#6366F1',
+                    backgroundColor: '#861820',
                     color: '#FFFFFF',
                     padding: '8px',
                     borderRadius: '8px',
@@ -1097,14 +1097,14 @@ export default function MobileNotesScreen({
       {/* ========================================================================= */}
       <div style={{ padding: '8px 10px 84px', maxWidth: '560px', margin: '0 auto', boxSizing: 'border-box' }}>
         
-        {/* 2. LAVENDER HERO BANNER (Image 1) */}
+        {/* 2. BURGUNDY & GOLD HERO BANNER */}
         <div style={{
           position: 'relative',
           borderRadius: '20px',
-          background: 'linear-gradient(135deg, #F3EEFF 0%, #EDE9FE 55%, #FDF4FF 100%)',
-          border: '1px solid #DDD6FE',
+          background: 'linear-gradient(135deg, #FFFCF7 0%, #F8EAC9 40%, #FFFFFF 100%)',
+          border: '1px solid #E9D9CC',
           padding: '14px 14px',
-          boxShadow: '0 3px 12px rgba(124, 58, 237, 0.05)',
+          boxShadow: '0 3px 12px rgba(134, 24, 32, 0.05)',
           marginBottom: '10px',
           display: 'flex',
           alignItems: 'center',
@@ -1118,13 +1118,13 @@ export default function MobileNotesScreen({
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
-              backgroundColor: '#EDE9FE',
-              border: '1px solid #DDD6FE',
+              backgroundColor: '#F8EAC9',
+              border: '1px solid #D6A13D',
               borderRadius: '9999px',
               padding: '2px 8px',
               fontSize: '9.5px',
               fontWeight: 800,
-              color: '#6366F1',
+              color: '#681016',
               letterSpacing: '0.04em',
               marginBottom: '6px'
             }}>
@@ -1134,17 +1134,17 @@ export default function MobileNotesScreen({
             <h1 style={{
               fontSize: '17px',
               fontWeight: 900,
-              color: '#0F172A',
+              color: '#14243D',
               margin: '0 0 5px 0',
               lineHeight: 1.22,
               letterSpacing: '-0.02em'
             }}>
-              Subject-wise Notes<br />for All <span style={{ color: '#7C3AED' }}>Years</span>
+              Subject-wise Notes<br />for All <span style={{ color: '#861820' }}>Years</span>
             </h1>
 
             <p style={{
               fontSize: '10.5px',
-              color: '#64748B',
+              color: '#66758B',
               margin: 0,
               lineHeight: 1.35,
               maxWidth: '220px'
@@ -1163,12 +1163,12 @@ export default function MobileNotesScreen({
           alignItems: 'center',
           backgroundColor: '#FFFFFF',
           borderRadius: '9999px',
-          border: '1.5px solid #E2E8F0',
+          border: '1.5px solid #E9D9CC',
           padding: '6px 12px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
+          boxShadow: '0 1px 3px rgba(20, 36, 61, 0.02)',
           marginBottom: '12px'
         }}>
-          <Search size={16} color="#94A3B8" style={{ marginRight: '8px', flexShrink: 0 }} />
+          <Search size={16} color="#66758B" style={{ marginRight: '8px', flexShrink: 0 }} />
           <input
             type="text"
             placeholder="Search notes, subject, unit..."
@@ -1180,7 +1180,7 @@ export default function MobileNotesScreen({
               outline: 'none',
               background: 'transparent',
               fontSize: '12px',
-              color: '#0F172A',
+              color: '#14243D',
               fontWeight: 600,
               padding: 0
             }}
@@ -1188,7 +1188,7 @@ export default function MobileNotesScreen({
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              style={{ background: 'none', border: 'none', padding: '0 4px', cursor: 'pointer', color: '#94A3B8' }}
+              style={{ background: 'none', border: 'none', padding: '0 4px', cursor: 'pointer', color: '#66758B' }}
             >
               <X size={14} />
             </button>
@@ -1203,7 +1203,7 @@ export default function MobileNotesScreen({
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              color: '#6366F1'
+              color: '#861820'
             }}
           >
             <SlidersHorizontal size={15} strokeWidth={2.4} />
@@ -1213,7 +1213,7 @@ export default function MobileNotesScreen({
         {/* 4. SELECT COURSE SECTION (Image 1) */}
         <div style={{ marginBottom: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+            <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
               Select Course
             </h2>
             <button
@@ -1221,7 +1221,7 @@ export default function MobileNotesScreen({
               style={{
                 background: 'none',
                 border: 'none',
-                color: '#6366F1',
+                color: '#861820',
                 fontSize: '11px',
                 fontWeight: 700,
                 cursor: 'pointer',
@@ -1255,9 +1255,9 @@ export default function MobileNotesScreen({
                     justifyContent: 'center',
                     padding: '8px 2px 7px',
                     borderRadius: '12px',
-                    border: isSelected ? '1.5px solid #6366F1' : '1.5px solid #F1F5F9',
-                    backgroundColor: isSelected ? '#EEF2FF' : '#FFFFFF',
-                    boxShadow: isSelected ? '0 2px 6px rgba(99, 102, 241, 0.12)' : '0 1px 2px rgba(0,0,0,0.02)',
+                    border: isSelected ? '1.5px solid #861820' : '1.5px solid #E9D9CC',
+                    backgroundColor: isSelected ? '#FDF2F2' : '#FFFFFF',
+                    boxShadow: isSelected ? '0 2px 6px rgba(134, 24, 32, 0.12)' : '0 1px 2px rgba(20, 36, 61, 0.02)',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease',
                     minWidth: 0,
@@ -1266,7 +1266,7 @@ export default function MobileNotesScreen({
                   }}
                 >
                   <div style={{
-                    color: isSelected ? '#6366F1' : course.color,
+                    color: isSelected ? '#861820' : course.color,
                     marginBottom: '4px',
                     display: 'flex',
                     alignItems: 'center',
@@ -1277,7 +1277,7 @@ export default function MobileNotesScreen({
                   <span style={{
                     fontSize: '9.5px',
                     fontWeight: 800,
-                    color: isSelected ? '#4338CA' : '#1E293B',
+                    color: isSelected ? '#861820' : '#14243D',
                     textAlign: 'center',
                     lineHeight: 1.15,
                     whiteSpace: 'nowrap',
@@ -1291,7 +1291,7 @@ export default function MobileNotesScreen({
                   {course.subLabel && (
                     <span style={{
                       fontSize: '7.5px',
-                      color: isSelected ? '#6366F1' : '#64748B',
+                      color: isSelected ? '#861820' : '#66758B',
                       fontWeight: 700,
                       lineHeight: 1,
                       marginTop: '1px'
@@ -1309,7 +1309,7 @@ export default function MobileNotesScreen({
         {isBTech && (
           <div style={{ marginBottom: '12px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-              <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
                 Select Branch (B.Tech)
               </h2>
               <button
@@ -1317,7 +1317,7 @@ export default function MobileNotesScreen({
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#6366F1',
+                  color: '#861820',
                   fontSize: '11px',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -1350,15 +1350,15 @@ export default function MobileNotesScreen({
                     style={{
                       padding: '5px 14px',
                       borderRadius: '9999px',
-                      border: isSelected ? 'none' : '1.5px solid #E2E8F0',
-                      backgroundColor: isSelected ? '#6366F1' : '#FFFFFF',
-                      color: isSelected ? '#FFFFFF' : '#475569',
+                      border: isSelected ? 'none' : '1.5px solid #E9D9CC',
+                      backgroundColor: isSelected ? '#861820' : '#FFFFFF',
+                      color: isSelected ? '#FFFFFF' : '#14243D',
                       fontSize: '11px',
                       fontWeight: isSelected ? 800 : 700,
                       whiteSpace: 'nowrap',
                       flexShrink: 0,
                       cursor: 'pointer',
-                      boxShadow: isSelected ? '0 2px 6px rgba(99, 102, 241, 0.22)' : 'none'
+                      boxShadow: isSelected ? '0 2px 6px rgba(134, 24, 32, 0.22)' : 'none'
                     }}
                   >
                     {branch}
@@ -1371,7 +1371,7 @@ export default function MobileNotesScreen({
 
         {/* 6. SELECT YEAR TABS (Image 1) */}
         <div style={{ marginBottom: '12px' }}>
-          <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#0F172A', margin: '0 0 6px 0' }}>
+          <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: '0 0 6px 0' }}>
             Select Year
           </h2>
 
@@ -1380,11 +1380,11 @@ export default function MobileNotesScreen({
             display: 'grid',
             gridTemplateColumns: `repeat(${yearOptions.length}, minmax(0, 1fr))`,
             backgroundColor: '#FFFFFF',
-            border: '1.5px solid #E2E8F0',
+            border: '1.5px solid #E9D9CC',
             borderRadius: '9999px',
             padding: '3px',
             gap: '2px',
-            boxShadow: '0 1px 2px rgba(0,0,0,0.02)'
+            boxShadow: '0 1px 2px rgba(20, 36, 61, 0.02)'
           }}>
             {yearOptions.map(year => {
               const isSelected = selectedYear === year;
@@ -1396,13 +1396,13 @@ export default function MobileNotesScreen({
                     padding: '6px 0',
                     borderRadius: '9999px',
                     border: 'none',
-                    backgroundColor: isSelected ? '#6366F1' : 'transparent',
-                    color: isSelected ? '#FFFFFF' : '#64748B',
+                    backgroundColor: isSelected ? '#861820' : 'transparent',
+                    color: isSelected ? '#FFFFFF' : '#66758B',
                     fontSize: '11px',
                     fontWeight: isSelected ? 800 : 700,
                     textAlign: 'center',
                     cursor: 'pointer',
-                    boxShadow: isSelected ? '0 2px 5px rgba(99, 102, 241, 0.2)' : 'none',
+                    boxShadow: isSelected ? '0 2px 5px rgba(134, 24, 32, 0.2)' : 'none',
                     transition: 'all 0.15s ease'
                   }}
                 >
@@ -1417,12 +1417,12 @@ export default function MobileNotesScreen({
             display: 'grid',
             gridTemplateColumns: `repeat(${semesterTabs.length}, minmax(0, 1fr))`,
             backgroundColor: '#FFFFFF',
-            border: '1.5px solid #E2E8F0',
+            border: '1.5px solid #E9D9CC',
             borderRadius: '9999px',
             padding: '3px',
             gap: '2px',
             marginTop: '6px',
-            boxShadow: '0 1px 2px rgba(0,0,0,0.02)'
+            boxShadow: '0 1px 2px rgba(20, 36, 61, 0.02)'
           }}>
             {semesterTabs.map(sem => {
               const isSelected = selectedSem === sem;
@@ -1433,9 +1433,9 @@ export default function MobileNotesScreen({
                   style={{
                     padding: '5px 0',
                     borderRadius: '9999px',
-                    border: isSelected ? '1.5px solid #DDD6FE' : '1.5px solid transparent',
-                    backgroundColor: isSelected ? '#EEF2FF' : 'transparent',
-                    color: isSelected ? '#6366F1' : '#64748B',
+                    border: isSelected ? '1.5px solid #D6A13D' : '1.5px solid transparent',
+                    backgroundColor: isSelected ? '#F8EAC9' : 'transparent',
+                    color: isSelected ? '#681016' : '#66758B',
                     fontSize: '11px',
                     fontWeight: isSelected ? 800 : 600,
                     textAlign: 'center',
@@ -1453,7 +1453,7 @@ export default function MobileNotesScreen({
         {/* 7. SUBJECTS GRID (Image 1) */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+            <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
               Subjects ({selectedSem})
             </h2>
             <button
@@ -1461,7 +1461,7 @@ export default function MobileNotesScreen({
               style={{
                 background: 'none',
                 border: 'none',
-                color: '#6366F1',
+                color: '#861820',
                 fontSize: '11px',
                 fontWeight: 700,
                 cursor: 'pointer',
@@ -1479,13 +1479,13 @@ export default function MobileNotesScreen({
             <div style={{
               backgroundColor: '#FFFFFF',
               borderRadius: '16px',
-              border: '1.5px dashed #CBD5E1',
+              border: '1.5px dashed #E9D9CC',
               padding: '28px 14px',
               textAlign: 'center',
-              color: '#64748B'
+              color: '#66758B'
             }}>
-              <BookOpen size={30} style={{ color: '#94A3B8', marginBottom: '6px' }} />
-              <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', margin: '0 0 4px' }}>
+              <BookOpen size={30} style={{ color: '#D6A13D', marginBottom: '6px' }} />
+              <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 4px' }}>
                 No Subjects Mapped
               </h4>
               <p style={{ fontSize: '11px', margin: 0 }}>
@@ -1513,8 +1513,8 @@ export default function MobileNotesScreen({
                       backgroundColor: '#FFFFFF',
                       borderRadius: '14px',
                       padding: '10px 10px',
-                      border: '1.5px solid #F1F5F9',
-                      boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
+                      border: '1.5px solid #E9D9CC',
+                      boxShadow: '0 1px 3px rgba(20, 36, 61, 0.02)',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'space-between',
@@ -1543,8 +1543,8 @@ export default function MobileNotesScreen({
                         width: '20px',
                         height: '20px',
                         borderRadius: '50%',
-                        backgroundColor: '#EEF2FF',
-                        color: '#6366F1',
+                        backgroundColor: '#F8EAC9',
+                        color: '#861820',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center'
@@ -1557,7 +1557,7 @@ export default function MobileNotesScreen({
                     <div style={{
                       fontSize: '10.5px',
                       fontWeight: 900,
-                      color: '#0F172A',
+                      color: '#14243D',
                       marginBottom: '2px',
                       letterSpacing: '-0.01em'
                     }}>
@@ -1568,7 +1568,7 @@ export default function MobileNotesScreen({
                     <div style={{
                       fontSize: '11px',
                       fontWeight: 800,
-                      color: '#1E293B',
+                      color: '#14243D',
                       lineHeight: 1.25,
                       marginBottom: '8px',
                       height: '28px',
@@ -1586,15 +1586,15 @@ export default function MobileNotesScreen({
                       alignItems: 'center',
                       gap: '8px',
                       fontSize: '9.5px',
-                      color: '#64748B',
-                      borderTop: '1px solid #F8FAFC',
+                      color: '#66758B',
+                      borderTop: '1px solid #FFFCF7',
                       paddingTop: '6px'
                     }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                        <FileText size={10} color="#94A3B8" /> Notes {counts.notes}
+                        <FileText size={10} color="#66758B" /> Notes {counts.notes}
                       </span>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                        <BookOpen size={10} color="#94A3B8" /> PYQ {counts.pyqs}
+                        <BookOpen size={10} color="#66758B" /> PYQ {counts.pyqs}
                       </span>
                     </div>
                   </div>
@@ -1636,12 +1636,12 @@ export default function MobileNotesScreen({
             boxSizing: 'border-box'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#14243D', margin: 0 }}>
                 All Degree Courses
               </h3>
               <button
                 onClick={() => setShowAllCoursesModal(false)}
-                style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#66758B', cursor: 'pointer' }}
               >
                 <X size={18} />
               </button>
@@ -1657,9 +1657,9 @@ export default function MobileNotesScreen({
                   style={{
                     padding: '10px',
                     borderRadius: '10px',
-                    border: selectedCourse === c.key ? '1.5px solid #6366F1' : '1px solid #E2E8F0',
-                    backgroundColor: selectedCourse === c.key ? '#EEF2FF' : '#F8FAFC',
-                    color: selectedCourse === c.key ? '#4338CA' : '#0F172A',
+                    border: selectedCourse === c.key ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                    backgroundColor: selectedCourse === c.key ? '#FDF2F2' : '#FFFFFF',
+                    color: selectedCourse === c.key ? '#861820' : '#14243D',
                     fontSize: '11px',
                     fontWeight: 700,
                     textAlign: 'left',
@@ -1682,7 +1682,7 @@ export default function MobileNotesScreen({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(15, 23, 42, 0.45)',
+          backgroundColor: 'rgba(20, 36, 61, 0.45)',
           backdropFilter: 'blur(3px)',
           display: 'flex',
           alignItems: 'flex-end',
@@ -1699,12 +1699,12 @@ export default function MobileNotesScreen({
             boxSizing: 'border-box'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#14243D', margin: 0 }}>
                 Select B.Tech Branch
               </h3>
               <button
                 onClick={() => setShowAllBranchesModal(false)}
-                style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#66758B', cursor: 'pointer' }}
               >
                 <X size={18} />
               </button>
@@ -1720,9 +1720,9 @@ export default function MobileNotesScreen({
                   style={{
                     padding: '10px',
                     borderRadius: '10px',
-                    border: selectedBranch === b ? '1.5px solid #6366F1' : '1px solid #E2E8F0',
-                    backgroundColor: selectedBranch === b ? '#EEF2FF' : '#F8FAFC',
-                    color: selectedBranch === b ? '#4338CA' : '#0F172A',
+                    border: selectedBranch === b ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                    backgroundColor: selectedBranch === b ? '#FDF2F2' : '#FFFFFF',
+                    color: selectedBranch === b ? '#861820' : '#14243D',
                     fontSize: '11.5px',
                     fontWeight: 800,
                     textAlign: 'center',
@@ -1745,7 +1745,7 @@ export default function MobileNotesScreen({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(15, 23, 42, 0.45)',
+          backgroundColor: 'rgba(20, 36, 61, 0.45)',
           backdropFilter: 'blur(3px)',
           display: 'flex',
           alignItems: 'center',
@@ -1762,17 +1762,17 @@ export default function MobileNotesScreen({
             boxSizing: 'border-box'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#14243D', margin: 0 }}>
                 {selectedCourse} Syllabus
               </h3>
               <button
                 onClick={() => setShowSyllabusModal(false)}
-                style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#66758B', cursor: 'pointer' }}
               >
                 <X size={18} />
               </button>
             </div>
-            <p style={{ fontSize: '12px', color: '#64748B', lineHeight: 1.45, margin: '0 0 14px' }}>
+            <p style={{ fontSize: '12px', color: '#66758B', lineHeight: 1.45, margin: '0 0 14px' }}>
               Official curriculum for {selectedCourse} {isBTech ? selectedBranch : ''} • {selectedYear} ({selectedSem}). Covers Units 1 through 5 and practical curriculum.
             </p>
             <div style={{ display: 'flex', gap: '8px' }}>
@@ -1786,7 +1786,7 @@ export default function MobileNotesScreen({
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '6px',
-                  backgroundColor: '#6366F1',
+                  backgroundColor: '#861820',
                   color: '#FFFFFF',
                   padding: '9px',
                   borderRadius: '10px',
@@ -1802,9 +1802,9 @@ export default function MobileNotesScreen({
                 style={{
                   padding: '9px 16px',
                   borderRadius: '10px',
-                  border: '1px solid #E2E8F0',
-                  backgroundColor: '#F8FAFC',
-                  color: '#475569',
+                  border: '1px solid #E9D9CC',
+                  backgroundColor: '#FFFCF7',
+                  color: '#14243D',
                   fontSize: '12px',
                   fontWeight: 700,
                   cursor: 'pointer'
@@ -1825,7 +1825,7 @@ export default function MobileNotesScreen({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(15, 23, 42, 0.45)',
+          backgroundColor: 'rgba(20, 36, 61, 0.45)',
           backdropFilter: 'blur(3px)',
           display: 'flex',
           alignItems: 'flex-end',
@@ -1842,18 +1842,18 @@ export default function MobileNotesScreen({
             boxSizing: 'border-box'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              <h3 style={{ fontSize: '15px', fontWeight: 900, color: '#14243D', margin: 0 }}>
                 Filter Subjects
               </h3>
               <button
                 onClick={() => setShowFilterDrawer(false)}
-                style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: '#66758B', cursor: 'pointer' }}
               >
                 <X size={18} />
               </button>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '14px' }}>
-              <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748B' }}>SEMESTER FILTER</span>
+              <span style={{ fontSize: '11px', fontWeight: 800, color: '#66758B' }}>SEMESTER FILTER</span>
               <div style={{ display: 'grid', gridTemplateColumns: `repeat(${semesterTabs.length}, minmax(0, 1fr))`, gap: '6px' }}>
                 {semesterTabs.map(sem => (
                   <button
@@ -1865,9 +1865,9 @@ export default function MobileNotesScreen({
                     style={{
                       padding: '8px',
                       borderRadius: '8px',
-                      border: selectedSem === sem ? '1.5px solid #6366F1' : '1px solid #E2E8F0',
-                      backgroundColor: selectedSem === sem ? '#EEF2FF' : '#F8FAFC',
-                      color: selectedSem === sem ? '#4338CA' : '#0F172A',
+                      border: selectedSem === sem ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                      backgroundColor: selectedSem === sem ? '#FDF2F2' : '#FFFFFF',
+                      color: selectedSem === sem ? '#861820' : '#14243D',
                       fontSize: '11px',
                       fontWeight: 700,
                       cursor: 'pointer'

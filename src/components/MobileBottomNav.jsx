@@ -75,12 +75,12 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
         right: 0,
         width: '100%',
         maxWidth: '100vw',
-        backgroundColor: 'rgba(255, 255, 255, 0.96)',
+        backgroundColor: 'rgba(255, 252, 247, 0.98)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        borderTop: '1px solid #E2E8F0',
+        borderTop: '1px solid #E9D9CC',
         zIndex: 9998,
-        boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.05)',
+        boxShadow: '0 -4px 20px rgba(134, 24, 32, 0.05)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -94,7 +94,8 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
       {tabs.map((tab) => {
         const isActive = currentNav === tab.id;
         const IconComponent = tab.icon;
-        const activeColor = (tab.id === 'tools') ? '#781416' : '#6366F1';
+        const activeColor = '#861820';
+        const inactiveColor = '#66758B';
 
         const isToolsActive = isActive && tab.id === 'tools';
 
@@ -128,9 +129,9 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: isToolsActive ? '3px 14px' : '3px 6px',
-                borderRadius: isToolsActive ? '10px' : '0px',
-                backgroundColor: isToolsActive ? '#FEE2E2' : 'transparent',
+                padding: isToolsActive ? '3px 14px' : (isActive ? '3px 10px' : '3px 6px'),
+                borderRadius: '10px',
+                backgroundColor: isToolsActive ? '#F8EAC9' : (isActive ? 'rgba(134, 24, 32, 0.08)' : 'transparent'),
                 transition: 'all 0.15s ease'
               }}
             >
@@ -139,14 +140,14 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: isActive ? activeColor : '#64748B',
+                  color: isActive ? activeColor : inactiveColor,
                   transform: isActive ? 'scale(1.05)' : 'scale(1)',
                   transition: 'transform 0.15s ease, color 0.15s ease'
                 }}
               >
                 <IconComponent 
                   size={20} 
-                  strokeWidth={isActive ? 2.4 : 1.9}
+                  strokeWidth={isActive ? 2.5 : 1.9}
                   fill={isActive && (tab.id === 'home' || tab.id === 'profile') ? activeColor : 'none'}
                 />
               </div>
@@ -155,7 +156,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                 style={{
                   fontSize: '10px',
                   fontWeight: isActive ? 800 : 600,
-                  color: isActive ? activeColor : '#64748B',
+                  color: isActive ? activeColor : inactiveColor,
                   marginTop: '1px',
                   lineHeight: 1.1,
                   letterSpacing: '-0.01em'
@@ -171,10 +172,10 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                 style={{
                   position: 'absolute',
                   bottom: '-2px',
-                  width: '24px',
+                  width: '20px',
                   height: '2.5px',
                   borderRadius: '9999px',
-                  backgroundColor: activeColor
+                  backgroundColor: '#D6A13D'
                 }} 
               />
             )}
