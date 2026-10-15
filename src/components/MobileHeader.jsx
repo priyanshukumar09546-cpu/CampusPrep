@@ -1,8 +1,8 @@
 import React from 'react';
-import { ArrowLeft, Bell, Search, GraduationCap, Sparkles, SlidersHorizontal } from 'lucide-react';
+import { ArrowLeft, Bell, Search, GraduationCap, Sparkles, SlidersHorizontal, Menu } from 'lucide-react';
 
 export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onOpenSearch, selectedCourse = 'B.Tech' }) {
-  const isHome = activeTab === 'home' || activeTab === 'more' || activeTab === 'notes' || activeTab === 'pyqs' || activeTab === 'progress' || activeTab === 'profile' || activeTab === 'result-cgpa' || activeTab === 'pdf-maker' || !activeTab;
+  const isHome = activeTab === 'home' || activeTab === 'more' || activeTab === 'notes' || activeTab === 'pyqs' || activeTab === 'progress' || activeTab === 'profile' || activeTab === 'result-cgpa' || activeTab === 'pdf-maker' || activeTab === 'scholarships' || activeTab === 'internships-jobs' || activeTab === 'opportunity-detail' || activeTab === 'jobs' || !activeTab;
 
   const getPageTitle = () => {
     switch (activeTab) {
@@ -166,6 +166,26 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                   border: '1.5px solid #FFFFFF'
                 }} 
               />
+            </button>
+            <button
+              type="button"
+              onClick={() => onNavigate ? onNavigate('more') : (window.location.href = '/more')}
+              aria-label="Navigation Menu"
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '8px',
+                backgroundColor: 'transparent',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#1E293B',
+                cursor: 'pointer',
+                padding: 0
+              }}
+            >
+              <Menu size={22} strokeWidth={2.2} />
             </button>
           </div>
         </>

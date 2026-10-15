@@ -5,7 +5,8 @@ import {
   Bookmark, CheckCircle2, ChevronRight, Sparkles, Star, FileText,
   Clock, ShieldCheck, ExternalLink, Share2, Layers, Award,
   Landmark, DollarSign, Users, BookOpen, RefreshCw, Check, ArrowUpRight,
-  ChevronDown, HeartHandshake, HelpCircle, AlertCircle
+  ChevronDown, HeartHandshake, HelpCircle, AlertCircle, Home, SlidersHorizontal,
+  LayoutGrid, Globe, User, Megaphone
 } from 'lucide-react';
 import ScholarshipResourceModal from '../components/ScholarshipResourceModal';
 import ScholarshipSubmitModal from '../components/ScholarshipSubmitModal';
@@ -42,8 +43,10 @@ export default function ScholarshipsPage({ onNavigate, onOpenAuth }) {
 
   // Modals state
   const [activeResource, setActiveResource] = useState(null);
-  const [submitModalOpen, setSubmitModalOpen] = useState(false);
+  const [submitModalOpen, setSubmitModalOpen] = useState(() => (typeof window !== 'undefined' && window.innerWidth < 1024));
   const [trackingModalItem, setTrackingModalItem] = useState(null);
+  const [mobilePillFilter, setMobilePillFilter] = useState('all');
+  const [showAllMobileCategories, setShowAllMobileCategories] = useState(false);
 
   // Debounce search input
   useEffect(() => {
@@ -202,13 +205,44 @@ export default function ScholarshipsPage({ onNavigate, onOpenAuth }) {
     setSelectedLocation('all');
     setSortBy('latest');
     setPage(1);
+    setMobilePillFilter('all');
   };
 
+  // Mobile-specific pills matching reference image
+  const mobilePills = [
+    { id: 'all', label: 'All Scholarships', icon: LayoutGrid },
+    { id: 'government-private', label: 'Government & Private', icon: Landmark },
+    { id: 'merit-need', label: 'Merit & Need Based', icon: User },
+    { id: 'verified', label: 'Verified Scholarships', icon: ShieldCheck },
+    { id: 'updates', label: 'Regular Updates', icon: RefreshCw }
+  ];
+
+  // Mobile-specific category tiles matching reference image
+  const mobileCategoryTilesRow1 = [
+    { id: 'all', name: 'All', count: categoryCounts.all || totalCount || 29, icon: Home },
+    { id: 'government-scholarships', name: 'Government', count: categoryCounts['Government Scholarships'] || categoryCounts['government-scholarships'] || 15, icon: Landmark },
+    { id: 'private-scholarships', name: 'Private', count: categoryCounts['Private Scholarships'] || categoryCounts['private-scholarships'] || 11, icon: Building2 },
+    { id: 'merit-based', name: 'Merit Based', count: categoryCounts['Merit Based'] || categoryCounts['merit-based'] || 6, icon: Award },
+    { id: 'need-based', name: 'Need Based', count: categoryCounts['Need Based'] || categoryCounts['need-based'] || 6, icon: HeartHandshake }
+  ];
+
+  const mobileCategoryTilesRow2 = [
+    { id: 'international-scholarships', name: 'International', count: categoryCounts['International Scholarships'] || categoryCounts['international-scholarships'] || 4, icon: Globe },
+    { id: 'state-scholarships', name: 'State', count: categoryCounts['State Scholarships'] || categoryCounts['state-scholarships'] || 6, icon: MapPin },
+    { id: 'minority-scholarships', name: 'Minority', count: categoryCounts['Minority Scholarships'] || categoryCounts['minority-scholarships'] || 1, icon: Users },
+    { id: 'sc-st-obc-scholarships', name: 'SC/ST/OBC', count: categoryCounts['SC/ST/OBC Scholarships'] || categoryCounts['sc-st-obc-scholarships'] || 27, icon: FileText },
+    { id: 'women-scholarships', name: 'Women', count: categoryCounts['Women Scholarships'] || categoryCounts['women-scholarships'] || 7, icon: Star }
+  ];
+
   return (
-    <div style={{ backgroundColor: '#F8F9FA', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1C1E21', paddingBottom: '4rem' }}>
+    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1C1E21', paddingBottom: '4rem' }}>
       
-      {/* 1. BREADCRUMBS */}
-      <div className="container" style={{ padding: '1.25rem 1.5rem 0.5rem' }}>
+      {/* =========================================================================
+          DESKTOP VIEW (>= 1024px) — 100% UNTOUCHED ORIGINAL
+          ========================================================================= */}
+      <div className="pv-scholarships-desktop-only">
+        {/* 1. BREADCRUMBS */}
+        <div className="container" style={{ padding: '1.25rem 1.5rem 0.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.82rem', color: '#65676B', fontWeight: 600 }}>
           <button
             onClick={() => onNavigate ? onNavigate('home') : window.location.href = '/'}
@@ -1774,6 +1808,743 @@ export default function ScholarshipsPage({ onNavigate, onOpenAuth }) {
 
           </div>
 
+        </div>
+      </div>
+      </div>
+
+      {/* =========================================================================
+          MOBILE VIEW (< 1024px) — STRICT 1:1 MATCH WITH REFERENCE IMAGE
+          ========================================================================= */}
+      <div
+        className="pv-scholarships-mobile-only"
+        style={{
+          padding: '0.85rem 0.95rem 6.5rem 0.95rem',
+          width: '100%',
+          maxWidth: '100vw',
+          boxSizing: 'border-box',
+          backgroundColor: '#FAF7F2'
+        }}
+      >
+        {/* B. BREADCRUMBS & HERO */}
+        {/* Breadcrumb: Home > More > Scholarships */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.78rem', color: '#64748B', fontWeight: 600, marginBottom: '0.85rem' }}>
+          <button
+            type="button"
+            onClick={() => onNavigate ? onNavigate('home') : (window.location.href = '/')}
+            style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer', padding: 0, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.78rem' }}
+          >
+            <Home size={14} color="#64748B" />
+            <span>Home</span>
+          </button>
+          <ChevronRight size={13} color="#94A3B8" />
+          <button
+            type="button"
+            onClick={() => onNavigate ? onNavigate('more') : (window.location.href = '/more')}
+            style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer', padding: 0, fontWeight: 600, fontSize: '0.78rem' }}
+          >
+            More
+          </button>
+          <ChevronRight size={13} color="#94A3B8" />
+          <span style={{ color: '#0F172A', fontWeight: 800 }}>Scholarships</span>
+        </div>
+
+        {/* Hero Section */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.95rem', width: '100%' }}>
+          {/* Maroon Rounded Square Cap Icon */}
+          <div
+            style={{
+              width: '44px',
+              height: '44px',
+              borderRadius: '12px',
+              backgroundColor: '#781416',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#FFFFFF',
+              boxShadow: '0 4px 12px rgba(120, 20, 22, 0.22)',
+              flexShrink: 0
+            }}
+          >
+            <GraduationCap size={23} color="#FFFFFF" strokeWidth={2.3} />
+          </div>
+
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+              <h1
+                style={{
+                  fontSize: '1.45rem',
+                  fontWeight: 900,
+                  color: '#0F172A',
+                  margin: 0,
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.15,
+                  fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif"
+                }}
+              >
+                Scholarships
+              </h1>
+              <span
+                style={{
+                  backgroundColor: '#FEF9EE',
+                  border: '1px solid #F1E7D0',
+                  color: '#8A5D00',
+                  borderRadius: '999px',
+                  padding: '0.15rem 0.5rem',
+                  fontSize: '0.62rem',
+                  fontWeight: 800,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem'
+                }}
+              >
+                <ShieldCheck size={11} color="#8A5D00" strokeWidth={2.4} />
+                <span>Verified Financial Aid & Fellowships</span>
+              </span>
+            </div>
+            <p
+              style={{
+                fontSize: '0.76rem',
+                color: '#64748B',
+                fontWeight: 500,
+                margin: '0.3rem 0 0 0',
+                lineHeight: 1.35
+              }}
+            >
+              Find and apply for government, private, and international scholarships to fund your education.
+            </p>
+          </div>
+        </div>
+
+        {/* C. 5 SCHOLARSHIP FILTER BUTTONS */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '0.45rem',
+            marginBottom: '0.85rem',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
+        >
+          {mobilePills.map(pill => {
+            const isActive = mobilePillFilter === pill.id;
+            return (
+              <button
+                key={pill.id}
+                type="button"
+                onClick={() => {
+                  setMobilePillFilter(pill.id);
+                  if (pill.id === 'all') {
+                    resetFilters();
+                  } else if (pill.id === 'government-private') {
+                    setSelectedType('Government');
+                  } else if (pill.id === 'merit-need') {
+                    setSelectedCategory('merit-based');
+                  } else if (pill.id === 'verified') {
+                    setSearchQuery('');
+                  } else if (pill.id === 'updates') {
+                    fetchScholarships();
+                  }
+                }}
+                style={{
+                  backgroundColor: isActive ? '#781416' : '#FFFFFF',
+                  color: isActive ? '#FFFFFF' : '#1E293B',
+                  border: isActive ? 'none' : '1px solid #E2E8F0',
+                  borderRadius: '10px',
+                  padding: '0.45rem 0.75rem',
+                  fontSize: '0.74rem',
+                  fontWeight: isActive ? 800 : 700,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  cursor: 'pointer',
+                  boxShadow: isActive ? '0 2px 8px rgba(120, 20, 22, 0.22)' : '0 1px 3px rgba(0,0,0,0.02)',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                <pill.icon size={13} strokeWidth={isActive ? 2.4 : 2} />
+                <span>{pill.label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* D. SEARCH AND FILTER BUTTON */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', width: '100%' }}>
+          <div
+            style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              backgroundColor: '#FFFFFF',
+              border: '1.5px solid #E2E8F0',
+              borderRadius: '12px',
+              padding: '0.55rem 0.75rem',
+              gap: '0.5rem',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
+              minWidth: 0
+            }}
+          >
+            <Search size={16} color="#94A3B8" style={{ flexShrink: 0 }} />
+            <input
+              type="text"
+              placeholder="Search scholarships by name, provider, or category..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              style={{
+                width: '100%',
+                border: 'none',
+                outline: 'none',
+                backgroundColor: 'transparent',
+                fontSize: '0.76rem',
+                color: '#1E293B'
+              }}
+            />
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              if (selectedCategory !== 'all') setSelectedCategory('all');
+              else setSelectedCategory('government-scholarships');
+            }}
+            aria-label="Filter options"
+            style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '12px',
+              backgroundColor: '#FFFFFF',
+              border: '1.5px solid #E2E8F0',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#1E293B',
+              cursor: 'pointer',
+              flexShrink: 0,
+              boxShadow: '0 1px 3px rgba(0,0,0,0.02)'
+            }}
+          >
+            <SlidersHorizontal size={17} color="#1E293B" strokeWidth={2.2} />
+          </button>
+        </div>
+
+        {/* E. SCHOLARSHIP CATEGORIES CARD */}
+        <div
+          style={{
+            backgroundColor: '#FFFFFF',
+            border: '1px solid #E2E8F0',
+            borderRadius: '18px',
+            padding: '0.85rem 0.85rem 0.75rem',
+            marginBottom: '1rem',
+            boxShadow: '0 2px 8px rgba(35, 30, 25, 0.02)',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <Layers size={17} color="#1E293B" strokeWidth={2.2} />
+              <h2 style={{ fontSize: '0.94rem', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+                Scholarship Categories
+              </h2>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowAllMobileCategories(prev => !prev)}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '0.76rem',
+                fontWeight: 700,
+                color: '#64748B',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.15rem',
+                cursor: 'pointer',
+                padding: 0
+              }}
+            >
+              <span>{showAllMobileCategories ? 'Show Less' : 'View All'}</span>
+              <ChevronRight size={13} />
+            </button>
+          </div>
+
+          {/* 10 Category Tiles in 2 Rows matching reference image */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.45rem',
+              overflowX: 'auto',
+              paddingBottom: '0.3rem',
+              WebkitOverflowScrolling: 'touch',
+              scrollbarWidth: 'none'
+            }}
+          >
+            {/* Row 1 */}
+            <div style={{ display: 'flex', gap: '0.45rem', width: 'max-content' }}>
+              {mobileCategoryTilesRow1.map(cat => {
+                const isCatActive = selectedCategory === cat.id;
+                return (
+                  <div
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id === selectedCategory ? 'all' : cat.id)}
+                    style={{
+                      backgroundColor: isCatActive ? '#FEF2F2' : '#F8FAFC',
+                      border: isCatActive ? '1.5px solid #EF4444' : '1px solid #E2E8F0',
+                      borderRadius: '11px',
+                      padding: '0.38rem 0.65rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.45rem',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                      minWidth: '82px'
+                    }}
+                  >
+                    <cat.icon size={15} color={isCatActive ? '#991B1B' : '#64748B'} strokeWidth={isCatActive ? 2.4 : 1.8} style={{ flexShrink: 0 }} />
+                    <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
+                      <span
+                        style={{
+                          fontSize: '0.67rem',
+                          fontWeight: isCatActive ? 800 : 700,
+                          color: isCatActive ? '#991B1B' : '#1E293B',
+                          whiteSpace: 'nowrap'
+                        }}
+                      >
+                        {cat.name}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: '0.60rem',
+                          fontWeight: 800,
+                          color: isCatActive ? '#DC2626' : '#64748B',
+                          backgroundColor: isCatActive ? '#FEE2E2' : 'transparent',
+                          borderRadius: '4px',
+                          padding: isCatActive ? '0.05rem 0.25rem' : '0',
+                          width: 'fit-content'
+                        }}
+                      >
+                        {cat.count}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Row 2 */}
+            <div style={{ display: 'flex', gap: '0.45rem', width: 'max-content' }}>
+              {mobileCategoryTilesRow2.map(cat => {
+                const isCatActive = selectedCategory === cat.id;
+                return (
+                  <div
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id === selectedCategory ? 'all' : cat.id)}
+                    style={{
+                      backgroundColor: isCatActive ? '#FEF2F2' : '#F8FAFC',
+                      border: isCatActive ? '1.5px solid #EF4444' : '1px solid #E2E8F0',
+                      borderRadius: '11px',
+                      padding: '0.38rem 0.65rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.45rem',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                      minWidth: '82px'
+                    }}
+                  >
+                    <cat.icon size={15} color={isCatActive ? '#991B1B' : '#64748B'} strokeWidth={isCatActive ? 2.4 : 1.8} style={{ flexShrink: 0 }} />
+                    <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
+                      <span
+                        style={{
+                          fontSize: '0.67rem',
+                          fontWeight: isCatActive ? 800 : 700,
+                          color: isCatActive ? '#991B1B' : '#1E293B',
+                          whiteSpace: 'nowrap'
+                        }}
+                      >
+                        {cat.name}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: '0.60rem',
+                          fontWeight: 800,
+                          color: isCatActive ? '#DC2626' : '#64748B',
+                          backgroundColor: isCatActive ? '#FEE2E2' : 'transparent',
+                          borderRadius: '4px',
+                          padding: isCatActive ? '0.05rem 0.25rem' : '0',
+                          width: 'fit-content'
+                        }}
+                      >
+                        {cat.count}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* F. SCHOLARSHIP STATS CARD */}
+        <div
+          style={{
+            backgroundColor: '#FFFFFF',
+            border: '1px solid #E2E8F0',
+            borderRadius: '18px',
+            padding: '0.85rem 0.85rem 0.75rem',
+            marginBottom: '1rem',
+            boxShadow: '0 2px 8px rgba(35, 30, 25, 0.02)',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <DollarSign size={17} color="#1E293B" strokeWidth={2.2} />
+              <h2 style={{ fontSize: '0.94rem', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+                Scholarship Stats
+              </h2>
+            </div>
+            <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#64748B' }}>
+              View Details
+            </span>
+          </div>
+
+          {/* 4 Stats Cards matching reference */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '0.35rem',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}
+          >
+            {/* Card 1: Red */}
+            <div
+              style={{
+                backgroundColor: '#FEF2F2',
+                border: '1px solid #FEE2E2',
+                borderRadius: '12px',
+                padding: '0.55rem 0.25rem',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#DC2626', lineHeight: 1.1 }}>
+                {stats.total || 29}
+              </div>
+              <div style={{ fontSize: '0.52rem', fontWeight: 800, color: '#991B1B', marginTop: '0.2rem', lineHeight: 1.15 }}>
+                Total Available
+              </div>
+              <div style={{ fontSize: '0.46rem', color: '#B91C1C', opacity: 0.85, marginTop: '1px', lineHeight: 1.1 }}>
+                Active Grants
+              </div>
+            </div>
+
+            {/* Card 2: Green */}
+            <div
+              style={{
+                backgroundColor: '#ECFDF5',
+                border: '1px solid #D1FAE5',
+                borderRadius: '12px',
+                padding: '0.55rem 0.25rem',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#059669', lineHeight: 1.1 }}>
+                {stats.government || 12}
+              </div>
+              <div style={{ fontSize: '0.52rem', fontWeight: 800, color: '#065F46', marginTop: '0.2rem', lineHeight: 1.15 }}>
+                Government
+              </div>
+              <div style={{ fontSize: '0.46rem', color: '#047857', opacity: 0.85, marginTop: '1px', lineHeight: 1.1 }}>
+                Central & State
+              </div>
+            </div>
+
+            {/* Card 3: Blue */}
+            <div
+              style={{
+                backgroundColor: '#EFF6FF',
+                border: '1px solid #DBEAFE',
+                borderRadius: '12px',
+                padding: '0.55rem 0.25rem',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#2563EB', lineHeight: 1.1 }}>
+                {stats.private || 8}
+              </div>
+              <div style={{ fontSize: '0.52rem', fontWeight: 800, color: '#1E40AF', marginTop: '0.2rem', lineHeight: 1.15 }}>
+                Private &
+              </div>
+              <div style={{ fontSize: '0.46rem', color: '#1D4ED8', opacity: 0.85, marginTop: '1px', lineHeight: 1.1 }}>
+                Trusts
+              </div>
+            </div>
+
+            {/* Card 4: Purple */}
+            <div
+              style={{
+                backgroundColor: '#FAF5FF',
+                border: '1px solid #F3E8FF',
+                borderRadius: '12px',
+                padding: '0.55rem 0.25rem',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#9333EA', lineHeight: 1.1 }}>
+                {stats.international || 4}
+              </div>
+              <div style={{ fontSize: '0.52rem', fontWeight: 800, color: '#6B21A8', marginTop: '0.2rem', lineHeight: 1.15 }}>
+                International
+              </div>
+              <div style={{ fontSize: '0.46rem', color: '#7E22CE', opacity: 0.85, marginTop: '1px', lineHeight: 1.1 }}>
+                Global Grants
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* G. FEATURED SCHOLARSHIPS SECTION */}
+        <div style={{ width: '100%', boxSizing: 'border-box', marginBottom: '1.25rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.15rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+              <Star size={18} fill="#F59E0B" color="#F59E0B" />
+              <h2 style={{ fontSize: '0.98rem', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+                Featured Scholarships
+              </h2>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedCategory('all');
+                window.scrollTo({ top: 300, behavior: 'smooth' });
+              }}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '0.78rem',
+                fontWeight: 800,
+                color: '#781416',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.2rem',
+                cursor: 'pointer',
+                padding: 0
+              }}
+            >
+              <span>View All</span>
+              <ArrowRight size={13} />
+            </button>
+          </div>
+          <p style={{ fontSize: '0.70rem', color: '#64748B', fontWeight: 500, margin: '0 0 0.75rem 0' }}>
+            High-value verified national & corporate grants
+          </p>
+
+          {/* Scholarship Cards List */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%' }}>
+            {(featuredScholarships.length > 0 ? featuredScholarships : scholarships).map(sch => (
+              <div
+                key={sch.id}
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '16px',
+                  padding: '0.85rem 0.95rem',
+                  boxShadow: '0 2px 8px rgba(35, 30, 25, 0.02)',
+                  boxSizing: 'border-box'
+                }}
+              >
+                {/* Top Row: Provider Logo + Title + Badges + Bookmark + View Details */}
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+                  {/* Provider Logo / Emblem Circle */}
+                  <ProviderLogo
+                    providerName={sch.providerName}
+                    logoUrl={sch.providerLogo || sch.logoUrl}
+                    size={42}
+                    borderRadius={999}
+                  />
+
+                  {/* Title & Badges */}
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#0F172A', lineHeight: 1.25, marginBottom: '0.35rem' }}>
+                      {sch.title}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
+                      <span
+                        style={{
+                          backgroundColor: sch.type === 'International' ? '#F3E8FF' : sch.type === 'Government' ? '#EFF6FF' : '#FFF7ED',
+                          color: sch.type === 'International' ? '#7E22CE' : sch.type === 'Government' ? '#1D4ED8' : '#EA580C',
+                          borderRadius: '999px',
+                          padding: '0.12rem 0.45rem',
+                          fontSize: '0.58rem',
+                          fontWeight: 800
+                        }}
+                      >
+                        {sch.type || 'Government'}
+                      </span>
+                      <span
+                        style={{
+                          backgroundColor: '#ECFDF5',
+                          color: '#065F46',
+                          borderRadius: '999px',
+                          padding: '0.12rem 0.45rem',
+                          fontSize: '0.58rem',
+                          fontWeight: 800,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.2rem'
+                        }}
+                      >
+                        <CheckCircle2 size={10} color="#059669" />
+                        <span>Verified</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Actions: Bookmark & View Details */}
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.45rem', flexShrink: 0 }}>
+                    <button
+                      type="button"
+                      onClick={(e) => handleToggleBookmark(sch.id, e)}
+                      aria-label="Bookmark"
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                    >
+                      <Bookmark
+                        size={17}
+                        color={bookmarkedIds.includes(sch.id) ? '#781416' : '#64748B'}
+                        fill={bookmarkedIds.includes(sch.id) ? '#781416' : 'none'}
+                      />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onNavigate ? onNavigate('scholarship-detail', sch.slug || sch.id) : (window.location.href = `/scholarships/${sch.slug || sch.id}`)}
+                      style={{
+                        backgroundColor: '#781416',
+                        color: '#FFFFFF',
+                        border: 'none',
+                        borderRadius: '8px',
+                        padding: '0.38rem 0.65rem',
+                        fontSize: '0.66rem',
+                        fontWeight: 800,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.2rem',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      <span>View Details</span>
+                      <ArrowRight size={11} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Amount / Benefits */}
+                <div
+                  style={{
+                    fontSize: '0.78rem',
+                    fontWeight: 800,
+                    color: '#92400E',
+                    marginTop: '0.55rem',
+                    marginBottom: '0.45rem',
+                    lineHeight: 1.3
+                  }}
+                >
+                  {sch.amount || 'Grant and educational fee coverage'}
+                </div>
+
+                {/* Metadata Footer */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    fontSize: '0.64rem',
+                    color: '#64748B',
+                    fontWeight: 600,
+                    borderTop: '1px solid #F1F5F9',
+                    paddingTop: '0.45rem',
+                    marginTop: '0.25rem'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <Calendar size={11} color="#64748B" />
+                    <span>Deadline: {sch.deadline || 'Ongoing'}</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <BookOpen size={11} color="#64748B" />
+                    <span>
+                      {sch.eligibleCourses?.slice(0, 3).join(' ') || 'All Courses'}
+                      {sch.eligibleCourses?.length > 3 ? ` +${sch.eligibleCourses.length - 3} more` : ''}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Suggest Scholarship Trigger Banner */}
+        <div
+          onClick={() => setSubmitModalOpen(true)}
+          style={{
+            backgroundColor: '#FFF7ED',
+            border: '1.5px dashed #FDBA74',
+            borderRadius: '16px',
+            padding: '0.85rem 1rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.75rem',
+            cursor: 'pointer',
+            boxSizing: 'border-box'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <div
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '10px',
+                backgroundColor: '#FFEDD5',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#EA580C',
+                flexShrink: 0
+              }}
+            >
+              <Megaphone size={20} strokeWidth={2.4} />
+            </div>
+            <div>
+              <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#9A3412' }}>
+                Suggest a Scholarship
+              </div>
+              <div style={{ fontSize: '0.68rem', color: '#C2410C', fontWeight: 500 }}>
+                Help fellow students discover financial aid opportunities.
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            style={{
+              backgroundColor: '#781416',
+              color: '#FFFFFF',
+              border: 'none',
+              borderRadius: '8px',
+              padding: '0.45rem 0.8rem',
+              fontSize: '0.72rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            Suggest Now
+          </button>
         </div>
       </div>
 

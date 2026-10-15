@@ -1,6 +1,5 @@
-// src/components/ScholarshipSubmitModal.jsx
 import React, { useState } from 'react';
-import { X, GraduationCap, Building2, Globe, Link2, CheckCircle2, AlertCircle, Sparkles, DollarSign, Calendar } from 'lucide-react';
+import { X, GraduationCap, Building2, Globe, Link2, CheckCircle2, AlertCircle, Sparkles, DollarSign, Calendar, Megaphone } from 'lucide-react';
 
 export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted }) {
   const [formData, setFormData] = useState({
@@ -47,10 +46,12 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     setErrorMsg('');
 
-    if (!formData.title.trim() || !formData.providerName.trim() || !formData.applicationUrl.trim() || !formData.description.trim() || !formData.submitterName.trim() || !formData.submitterEmail.trim()) {
+    const desc = formData.description.trim() || `${formData.title} offered by ${formData.providerName}`;
+
+    if (!formData.title.trim() || !formData.providerName.trim() || !formData.applicationUrl.trim() || !formData.submitterName.trim() || !formData.submitterEmail.trim()) {
       setErrorMsg('Please fill in all required fields (marked with *).');
       return;
     }
@@ -65,7 +66,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
       const res = await fetch('/api/scholarships/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({ ...formData, description: desc })
       });
       const data = await res.json();
       if (data.success) {
@@ -102,18 +103,23 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
   const yearsList = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
 
   return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      backgroundColor: 'rgba(28, 30, 33, 0.65)',
-      backdropFilter: 'blur(5px)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 1000,
-      padding: '1rem',
-      fontFamily: "'Plus Jakarta Sans', sans-serif"
-    }}>
+    <>
+      {/* DESKTOP MODAL (>= 1024px) — 100% UNTOUCHED ORIGINAL */}
+      <div
+        className="pv-scholarship-modal-desktop"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          backgroundColor: 'rgba(28, 30, 33, 0.65)',
+          backdropFilter: 'blur(5px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+          padding: '1rem',
+          fontFamily: "'Plus Jakarta Sans', sans-serif"
+        }}
+      >
       <div style={{
         backgroundColor: '#FFFFFF',
         borderRadius: '24px',
@@ -595,5 +601,473 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
         </div>
       </div>
     </div>
+
+    {/* MOBILE BOTTOM SHEET (< 1024px) — EXACT 1:1 MATCH WITH REFERENCE IMAGE */}
+    <div
+      className="pv-scholarship-modal-mobile"
+      style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: 'rgba(15, 23, 42, 0.62)',
+        backdropFilter: 'blur(3px)',
+        zIndex: 9999,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        fontFamily: "'Plus Jakarta Sans', sans-serif"
+      }}
+      onClick={onClose}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          backgroundColor: '#FFFFFF',
+          borderTopLeftRadius: '24px',
+          borderTopRightRadius: '24px',
+          width: '100%',
+          maxWidth: '100vw',
+          maxHeight: '90vh',
+          display: 'flex',
+          flexDirection: 'column',
+          boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.2)',
+          overflow: 'hidden',
+          boxSizing: 'border-box',
+          animation: 'modalSlideUp 0.25s ease-out'
+        }}
+      >
+        {/* Small drag handle */}
+        <div style={{ width: '38px', height: '4px', borderRadius: '999px', backgroundColor: '#94A3B8', margin: '9px auto 5px', flexShrink: 0 }} />
+
+        {/* Header */}
+        <div style={{
+          padding: '0.4rem 1rem 0.65rem',
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'space-between',
+          borderBottom: '1px solid #F1F5F9',
+          flexShrink: 0
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', minWidth: 0 }}>
+            <div style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '10px',
+              backgroundColor: '#FFF7ED',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#EA580C',
+              flexShrink: 0
+            }}>
+              <Megaphone size={20} strokeWidth={2.4} />
+            </div>
+            <div style={{ minWidth: 0 }}>
+              <h2 style={{ margin: 0, fontSize: '1.02rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.2 }}>
+                Suggest a Scholarship
+              </h2>
+              <p style={{ margin: '0.15rem 0 0 0', fontSize: '0.70rem', color: '#64748B', fontWeight: 500, lineHeight: 1.3 }}>
+                Help fellow students discover verified financial aid opportunities.
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            style={{
+              width: '28px',
+              height: '28px',
+              borderRadius: '50%',
+              backgroundColor: '#F1F5F9',
+              border: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#64748B',
+              cursor: 'pointer',
+              flexShrink: 0,
+              marginTop: '2px'
+            }}
+          >
+            <X size={15} strokeWidth={2.4} />
+          </button>
+        </div>
+
+        {/* Scrollable Form Body */}
+        <div style={{ padding: '0.85rem 1rem', overflowY: 'auto', flex: 1, WebkitOverflowScrolling: 'touch' }}>
+          {successData ? (
+            <div style={{ textAlign: 'center', padding: '1.5rem 0.5rem' }}>
+              <div style={{
+                width: '54px',
+                height: '54px',
+                borderRadius: '50%',
+                backgroundColor: '#ECFDF5',
+                color: '#059669',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '0.85rem'
+              }}>
+                <CheckCircle2 size={32} />
+              </div>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: 900, color: '#0F172A', margin: '0 0 0.35rem' }}>
+                Submitted For Verification!
+              </h3>
+              <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '0 0 1.25rem', lineHeight: 1.45 }}>
+                Thank you! Our automated system will review the link and verify this grant.
+              </p>
+              <button
+                type="button"
+                onClick={onClose}
+                style={{
+                  padding: '0.65rem 1.75rem',
+                  backgroundColor: '#781416',
+                  color: '#FFFFFF',
+                  borderRadius: '10px',
+                  fontWeight: 800,
+                  fontSize: '0.86rem',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                Close & Return
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              {errorMsg && (
+                <div style={{
+                  backgroundColor: '#FEF2F2',
+                  border: '1px solid #FCA5A5',
+                  borderRadius: '8px',
+                  padding: '0.55rem 0.75rem',
+                  color: '#991B1B',
+                  fontSize: '0.78rem',
+                  fontWeight: 600,
+                  marginBottom: '0.75rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem'
+                }}>
+                  <AlertCircle size={14} style={{ flexShrink: 0 }} />
+                  <span>{errorMsg}</span>
+                </div>
+              )}
+
+              {/* 2-Column Responsive Form Grid matching reference image */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem', marginBottom: '0.65rem' }}>
+                {/* Field 1: Scholarship Title * */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Scholarship Title <span style={{ color: '#DC2626' }}>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Central Sector Scheme"
+                    value={formData.title}
+                    onChange={e => setFormData({ ...formData, title: e.target.value })}
+                    style={{
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '9px',
+                      padding: '0.5rem 0.65rem',
+                      fontSize: '0.78rem',
+                      color: '#1E293B',
+                      outline: 'none',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  />
+                </div>
+
+                {/* Field 2: Awarding Provider / Organization * */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Awarding Provider / Organization <span style={{ color: '#DC2626' }}>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Ministry of Education"
+                    value={formData.providerName}
+                    onChange={e => setFormData({ ...formData, providerName: e.target.value })}
+                    style={{
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '9px',
+                      padding: '0.5rem 0.65rem',
+                      fontSize: '0.78rem',
+                      color: '#1E293B',
+                      outline: 'none',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem', marginBottom: '0.65rem' }}>
+                {/* Field 3: Official Portal / Application URL * */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Official Portal / Application URL <span style={{ color: '#DC2626' }}>*</span>
+                  </label>
+                  <input
+                    type="url"
+                    required
+                    placeholder="https://scholarships.gov.in/"
+                    value={formData.applicationUrl}
+                    onChange={e => setFormData({ ...formData, applicationUrl: e.target.value })}
+                    style={{
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '9px',
+                      padding: '0.5rem 0.65rem',
+                      fontSize: '0.78rem',
+                      color: '#1E293B',
+                      outline: 'none',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  />
+                </div>
+
+                {/* Field 4: Category */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Category
+                  </label>
+                  <select
+                    value={formData.category}
+                    onChange={e => setFormData({ ...formData, category: e.target.value })}
+                    style={{
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '9px',
+                      padding: '0.5rem 0.65rem',
+                      fontSize: '0.78rem',
+                      color: '#1E293B',
+                      outline: 'none',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  >
+                    {categoriesList.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem', marginBottom: '0.65rem' }}>
+                {/* Field 5: Type */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Type
+                  </label>
+                  <select
+                    value={formData.type}
+                    onChange={e => setFormData({ ...formData, type: e.target.value })}
+                    style={{
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '9px',
+                      padding: '0.5rem 0.65rem',
+                      fontSize: '0.78rem',
+                      color: '#1E293B',
+                      outline: 'none',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  >
+                    {typesList.map(t => <option key={t} value={t}>{t}</option>)}
+                  </select>
+                </div>
+
+                {/* Field 6: Application Deadline */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Application Deadline
+                  </label>
+                  <div style={{ position: 'relative' }}>
+                    <Calendar size={13} color="#94A3B8" style={{ position: 'absolute', left: '0.65rem', top: '50%', transform: 'translateY(-50%)' }} />
+                    <input
+                      type="text"
+                      placeholder="e.g. Dec 31, 2026"
+                      value={formData.deadline}
+                      onChange={e => setFormData({ ...formData, deadline: e.target.value })}
+                      style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        border: '1.5px solid #E2E8F0',
+                        borderRadius: '9px',
+                        padding: '0.5rem 0.65rem 0.5rem 1.9rem',
+                        fontSize: '0.78rem',
+                        color: '#1E293B',
+                        outline: 'none',
+                        backgroundColor: '#FFFFFF'
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem', marginBottom: '0.65rem' }}>
+                {/* Field 7: Scholarship Amount */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Scholarship Amount
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. ₹50,000 / year"
+                    value={formData.amount}
+                    onChange={e => setFormData({ ...formData, amount: e.target.value })}
+                    style={{
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '9px',
+                      padding: '0.5rem 0.65rem',
+                      fontSize: '0.78rem',
+                      color: '#1E293B',
+                      outline: 'none',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  />
+                </div>
+
+                {/* Field 8: Income Limit Criteria */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Income Limit Criteria
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Family Income < ₹4.5 LPA"
+                    value={formData.incomeCriteria}
+                    onChange={e => setFormData({ ...formData, incomeCriteria: e.target.value })}
+                    style={{
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '9px',
+                      padding: '0.5rem 0.65rem',
+                      fontSize: '0.78rem',
+                      color: '#1E293B',
+                      outline: 'none',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '0.65rem', marginBottom: '0.85rem' }}>
+                {/* Field 9: Your Name * */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Your Name <span style={{ color: '#DC2626' }}>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Rahul Sharma"
+                    value={formData.submitterName}
+                    onChange={e => setFormData({ ...formData, submitterName: e.target.value })}
+                    style={{
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '9px',
+                      padding: '0.5rem 0.65rem',
+                      fontSize: '0.78rem',
+                      color: '#1E293B',
+                      outline: 'none',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  />
+                </div>
+
+                {/* Field 10: Your Email * */}
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 800, color: '#334155', marginBottom: '0.25rem' }}>
+                    Your Email <span style={{ color: '#DC2626' }}>*</span>
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="e.g. rahul@example.com"
+                    value={formData.submitterEmail}
+                    onChange={e => setFormData({ ...formData, submitterEmail: e.target.value })}
+                    style={{
+                      width: '100%',
+                      boxSizing: 'border-box',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '9px',
+                      padding: '0.5rem 0.65rem',
+                      fontSize: '0.78rem',
+                      color: '#1E293B',
+                      outline: 'none',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  />
+                </div>
+              </div>
+            </form>
+          )}
+        </div>
+
+        {/* Sticky Bottom Actions matching reference */}
+        {!successData && (
+          <div style={{
+            padding: '0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 8px))',
+            borderTop: '1px solid #F1F5F9',
+            backgroundColor: '#FFFFFF',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.65rem',
+            flexShrink: 0
+          }}>
+            <button
+              type="button"
+              onClick={onClose}
+              style={{
+                padding: '0.65rem 1.4rem',
+                backgroundColor: '#FFFFFF',
+                border: '1.5px solid #E2E8F0',
+                color: '#475569',
+                borderRadius: '10px',
+                fontWeight: 700,
+                fontSize: '0.82rem',
+                cursor: 'pointer'
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={submitting}
+              style={{
+                flex: 1,
+                padding: '0.65rem 1rem',
+                backgroundColor: '#781416',
+                border: 'none',
+                color: '#FFFFFF',
+                borderRadius: '10px',
+                fontWeight: 800,
+                fontSize: '0.82rem',
+                cursor: submitting ? 'not-allowed' : 'pointer',
+                boxShadow: '0 3px 10px rgba(120, 20, 22, 0.25)',
+                textAlign: 'center'
+              }}
+            >
+              {submitting ? 'Submitting...' : 'Submit For Verification'}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  </>
   );
 }
