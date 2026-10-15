@@ -36,7 +36,10 @@ import {
   ArrowDown,
   ExternalLink,
   BookOpen,
-  Check
+  Check,
+  ArrowRight,
+  UploadCloud,
+  Image as ImageIcon
 } from 'lucide-react';
 
 export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
@@ -49,6 +52,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
   const [processResult, setProcessResult] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [isDragOver, setIsDragOver] = useState(false);
+  const [showAllMobileTools, setShowAllMobileTools] = useState(false);
 
   // Cloud Import State
   const [cloudModal, setCloudModal] = useState(null);
@@ -1699,11 +1703,212 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
     }
   ];
 
+  // Mobile Tools matching the reference design specification
+  const MOBILE_FEATURED_TOOLS = [
+    {
+      id: 'merge',
+      title: 'Merge PDF',
+      desc: 'Combine multiple PDFs into one file.',
+      customIcon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="8" y="8" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+        </svg>
+      ),
+      iconBg: '#FDF2F2'
+    },
+    {
+      id: 'split',
+      title: 'Split PDF',
+      desc: 'Split one PDF into multiple files.',
+      icon: Scissors,
+      iconColor: '#DC2626',
+      iconBg: '#FDF2F2'
+    },
+    {
+      id: 'organize',
+      title: 'Organize PDF',
+      desc: 'Rearrange, delete or extract pages.',
+      customIcon: (
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+        </svg>
+      ),
+      iconBg: '#ECFDF5'
+    },
+    {
+      id: 'pdf-to-word',
+      title: 'PDF to Word',
+      desc: 'Convert PDF to editable Word (DOCX).',
+      customIcon: (
+        <div style={{ width: '22px', height: '22px', borderRadius: '4px', backgroundColor: '#2563EB', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '12px', fontFamily: 'system-ui, sans-serif' }}>
+          W
+        </div>
+      ),
+      iconBg: '#EFF6FF'
+    },
+    {
+      id: 'pdf-to-excel',
+      title: 'PDF to Excel',
+      desc: 'Extract tables from PDF to Excel (XLSX).',
+      customIcon: (
+        <div style={{ width: '22px', height: '22px', borderRadius: '4px', backgroundColor: '#10B981', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '12px', fontFamily: 'system-ui, sans-serif' }}>
+          X
+        </div>
+      ),
+      iconBg: '#ECFDF5'
+    },
+    {
+      id: 'jpg-to-pdf',
+      title: 'JPG/PNG to PDF',
+      desc: 'Convert images to high-quality PDF.',
+      icon: ImageIcon,
+      iconColor: '#EA580C',
+      iconBg: '#FFF7ED'
+    },
+    {
+      id: 'word-to-pdf',
+      title: 'Text / Notes to PDF',
+      desc: 'Create PDF from text and notes.',
+      customIcon: (
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+      ),
+      iconBg: '#EEF2FF'
+    },
+    {
+      id: 'pdf-to-markdown',
+      title: 'PDF to Markdown',
+      desc: 'Extract text and format into MD.',
+      customIcon: (
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="9" y1="15" x2="15" y2="15"></line>
+        </svg>
+      ),
+      iconBg: '#FDF2F2'
+    }
+  ];
+
+  const MOBILE_ALL_TOOLS = [
+    ...MOBILE_FEATURED_TOOLS,
+    {
+      id: 'compress',
+      title: 'Compress PDF',
+      desc: 'Reduce file size without losing quality.',
+      icon: Minimize2,
+      iconColor: '#16A34A',
+      iconBg: '#DCFCE7'
+    },
+    {
+      id: 'summarize',
+      title: 'AI Summarizer',
+      desc: 'Instant exam summary via Gemini AI.',
+      icon: Sparkles,
+      iconColor: '#B45309',
+      iconBg: '#FEF3C7'
+    },
+    {
+      id: 'rotate',
+      title: 'Rotate PDF',
+      desc: 'Rotate PDF pages (90°, 180°, 270°).',
+      icon: RotateCw,
+      iconColor: '#7C3AED',
+      iconBg: '#EDE9FE'
+    },
+    {
+      id: 'page-numbers',
+      title: 'Page Numbers',
+      desc: 'Insert numbered headers and footers.',
+      icon: Hash,
+      iconColor: '#0284C7',
+      iconBg: '#E0F2FE'
+    },
+    {
+      id: 'watermark',
+      title: 'Watermark',
+      desc: 'Insert custom anti-tamper watermark.',
+      icon: Droplet,
+      iconColor: '#0284C7',
+      iconBg: '#E0F2FE'
+    },
+    {
+      id: 'crop',
+      title: 'Crop PDF',
+      desc: 'Trim page margins and white space.',
+      icon: Scissors,
+      iconColor: '#DC2626',
+      iconBg: '#FEE2E2'
+    },
+    {
+      id: 'sign',
+      title: 'Sign PDF',
+      desc: 'Add your digital handwritten signature.',
+      icon: PenTool,
+      iconColor: '#2563EB',
+      iconBg: '#E0F2FE'
+    },
+    {
+      id: 'repair',
+      title: 'Repair PDF',
+      desc: 'Fix damaged streams and xref tables.',
+      icon: Wrench,
+      iconColor: '#DC2626',
+      iconBg: '#FEE2E2'
+    },
+    {
+      id: 'lock',
+      title: 'Lock PDF',
+      desc: 'Standard Acrobat password protection.',
+      icon: Lock,
+      iconColor: '#DC2626',
+      iconBg: '#FEE2E2'
+    },
+    {
+      id: 'unlock',
+      title: 'Unlock PDF',
+      desc: 'Remove password restrictions.',
+      icon: Unlock,
+      iconColor: '#D97706',
+      iconBg: '#FEF3C7'
+    }
+  ];
+
   return (
     <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1F2421', paddingBottom: '4rem' }}>
       
-      {/* 1. HERO SECTION */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '2.5rem 1.5rem 1.5rem' }}>
+      {/* Universal Hidden File Inputs (Accessible to both Desktop and Mobile Safari) */}
+      <input
+        type="file"
+        ref={fileInputRef}
+        style={{ display: 'none' }}
+        multiple
+        accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.txt"
+        onChange={(e) => handleFilesSelected(Array.from(e.target.files))}
+      />
+      <input
+        type="file"
+        ref={imageInputRef}
+        style={{ display: 'none' }}
+        multiple
+        accept="image/png,image/jpeg,image/webp"
+        onChange={handleImagesToPdfSubmit}
+      />
+
+      {/* =========================================================================
+          DESKTOP VIEW (>= 1024px) — 100% UNTOUCHED ORIGINAL
+          ========================================================================= */}
+      <div className="pv-pdf-desktop-only">
+        {/* 1. HERO SECTION */}
+        <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '2.5rem 1.5rem 1.5rem' }}>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', flexWrap: 'wrap' }}>
           
           <div style={{ flex: '1 1 540px', minWidth: '300px' }}>
@@ -2084,6 +2289,557 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
           ))}
         </div>
       </section>
+      </div>
+
+      {/* =========================================================================
+          MOBILE VIEW (< 1024px) — EXACT 1:1 MATCH WITH REFERENCE IMAGE
+          ========================================================================= */}
+      <div
+        className="pv-pdf-mobile-only"
+        style={{
+          padding: '0.85rem 0.95rem 6.5rem 0.95rem',
+          width: '100%',
+          maxWidth: '100vw',
+          boxSizing: 'border-box',
+          backgroundColor: '#FAF7F2'
+        }}
+      >
+        {/* B. PDF MAKER HERO */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '0.85rem', width: '100%' }}>
+          {/* Red PDF Icon with folded corner */}
+          <div
+            style={{
+              width: '46px',
+              height: '46px',
+              borderRadius: '12px',
+              backgroundColor: '#781416',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#FFFFFF',
+              boxShadow: '0 4px 12px rgba(120, 20, 22, 0.22)',
+              flexShrink: 0
+            }}
+          >
+            <FileText size={22} strokeWidth={2.4} />
+            <span style={{ fontSize: '0.52rem', fontWeight: 900, letterSpacing: '0.04em', marginTop: '-3px' }}>
+              PDF
+            </span>
+          </div>
+
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <h1
+              style={{
+                fontSize: '1.45rem',
+                fontWeight: 900,
+                color: '#1C1E21',
+                margin: 0,
+                letterSpacing: '-0.02em',
+                lineHeight: 1.15,
+                fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif"
+              }}
+            >
+              PDF Maker & Studio
+            </h1>
+            <p
+              style={{
+                fontSize: '0.78rem',
+                color: '#64748B',
+                fontWeight: 500,
+                margin: '0.2rem 0 0 0',
+                lineHeight: 1.35
+              }}
+            >
+              Create, edit, convert & manage PDFs in seconds.
+            </p>
+          </div>
+        </div>
+
+        {/* C. THREE FEATURE BADGES (100% Free, 100+ Pages, PDF + Images) */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '0.3rem',
+            marginBottom: '1rem',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
+        >
+          {/* Badge 1: 100% Free */}
+          <div
+            style={{
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #ECE4DA',
+              borderRadius: '12px',
+              padding: '0.45rem 0.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.25rem',
+              boxShadow: '0 1px 3px rgba(35, 30, 25, 0.02)',
+              minWidth: 0,
+              boxSizing: 'border-box'
+            }}
+          >
+            <div
+              style={{
+                width: '22px',
+                height: '22px',
+                borderRadius: '6px',
+                backgroundColor: '#FEF3C7',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#D97706',
+                flexShrink: 0
+              }}
+            >
+              <Zap size={11} fill="#D97706" />
+            </div>
+            <div style={{ minWidth: 0, flex: 1, overflow: 'hidden' }}>
+              <div style={{ fontSize: '0.66rem', fontWeight: 800, color: '#1C1E21', lineHeight: 1.15, whiteSpace: 'nowrap' }}>
+                100% Free
+              </div>
+              <div style={{ fontSize: '0.48rem', color: '#78716C', fontWeight: 600, lineHeight: 1.15, marginTop: '1px', whiteSpace: 'nowrap' }}>
+                No subscription
+              </div>
+            </div>
+          </div>
+
+          {/* Badge 2: 100+ Pages */}
+          <div
+            style={{
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #ECE4DA',
+              borderRadius: '12px',
+              padding: '0.45rem 0.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.25rem',
+              boxShadow: '0 1px 3px rgba(35, 30, 25, 0.02)',
+              minWidth: 0,
+              boxSizing: 'border-box'
+            }}
+          >
+            <div
+              style={{
+                width: '22px',
+                height: '22px',
+                borderRadius: '6px',
+                backgroundColor: '#FDF2F2',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#DC2626',
+                flexShrink: 0
+              }}
+            >
+              <FileText size={11} color="#DC2626" />
+            </div>
+            <div style={{ minWidth: 0, flex: 1, overflow: 'hidden' }}>
+              <div style={{ fontSize: '0.66rem', fontWeight: 800, color: '#1C1E21', lineHeight: 1.15, whiteSpace: 'nowrap' }}>
+                100+ Pages
+              </div>
+              <div style={{ fontSize: '0.48rem', color: '#78716C', fontWeight: 600, lineHeight: 1.15, marginTop: '1px', whiteSpace: 'nowrap' }}>
+                Single PDF support
+              </div>
+            </div>
+          </div>
+
+          {/* Badge 3: PDF + Images */}
+          <div
+            style={{
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #ECE4DA',
+              borderRadius: '12px',
+              padding: '0.45rem 0.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.25rem',
+              boxShadow: '0 1px 3px rgba(35, 30, 25, 0.02)',
+              minWidth: 0,
+              boxSizing: 'border-box'
+            }}
+          >
+            <div
+              style={{
+                width: '22px',
+                height: '22px',
+                borderRadius: '6px',
+                backgroundColor: '#FDF2F2',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#DC2626',
+                flexShrink: 0
+              }}
+            >
+              <ImageIcon size={11} color="#DC2626" />
+            </div>
+            <div style={{ minWidth: 0, flex: 1, overflow: 'hidden' }}>
+              <div style={{ fontSize: '0.66rem', fontWeight: 800, color: '#1C1E21', lineHeight: 1.15, whiteSpace: 'nowrap' }}>
+                PDF + Images
+              </div>
+              <div style={{ fontSize: '0.48rem', color: '#78716C', fontWeight: 600, lineHeight: 1.15, marginTop: '1px', whiteSpace: 'nowrap' }}>
+                Multiple formats
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* D. FILE UPLOAD PANEL (Dashed Red Border, Drop Files, Choose Files, Google Drive) */}
+        <div
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          style={{
+            backgroundColor: '#FFF9F9',
+            border: isDragOver ? '2px dashed #781416' : '1.5px dashed #D65A5A',
+            borderRadius: '22px',
+            padding: '1.45rem 1rem 1.15rem',
+            textAlign: 'center',
+            marginBottom: '1.25rem',
+            boxShadow: '0 4px 16px rgba(120, 20, 22, 0.04)',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
+        >
+          {/* Centered Upload Cloud Icon */}
+          <div
+            style={{
+              width: '52px',
+              height: '52px',
+              borderRadius: '16px',
+              backgroundColor: '#FDF2F2',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 0.75rem',
+              boxShadow: '0 2px 8px rgba(120, 20, 22, 0.08)'
+            }}
+          >
+            <UploadCloud size={26} color="#781416" strokeWidth={2.2} />
+          </div>
+
+          <h3 style={{ fontSize: '1.12rem', fontWeight: 800, color: '#1C1E21', margin: '0 0 0.3rem' }}>
+            Drop your files here
+          </h3>
+          <p style={{ fontSize: '0.76rem', color: '#64748B', fontWeight: 500, margin: '0 0 1.15rem' }}>
+            PDF, JPG, PNG, WEBP, Word, Excel
+          </p>
+
+          {/* Primary Choose Files Button */}
+          <button
+            type="button"
+            onClick={() => fileInputRef.current && fileInputRef.current.click()}
+            style={{
+              backgroundColor: '#781416',
+              color: '#FFFFFF',
+              border: 'none',
+              borderRadius: '10px',
+              padding: '0.65rem 1.6rem',
+              fontSize: '0.86rem',
+              fontWeight: 800,
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              boxShadow: '0 2px 8px rgba(120, 20, 22, 0.25)',
+              cursor: 'pointer'
+            }}
+          >
+            <Upload size={16} />
+            <span>Choose Files</span>
+          </button>
+
+          {/* OR IMPORT FROM divider */}
+          <div style={{ display: 'flex', alignItems: 'center', margin: '1.2rem 0 0.95rem', gap: '0.65rem' }}>
+            <div style={{ flex: 1, height: '1px', backgroundColor: '#EDE5D6' }} />
+            <span style={{ fontSize: '0.64rem', fontWeight: 800, color: '#94A3B8', letterSpacing: '0.04em' }}>
+              OR IMPORT FROM
+            </span>
+            <div style={{ flex: 1, height: '1px', backgroundColor: '#EDE5D6' }} />
+          </div>
+
+          {/* Google Drive Card */}
+          <div
+            onClick={() => handleOpenCloudModal('google-drive')}
+            style={{
+              backgroundColor: '#FFFFFF',
+              border: '1px solid #E2E8F0',
+              borderRadius: '12px',
+              padding: '0.6rem 0.95rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              cursor: 'pointer',
+              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.02)',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+              <svg width="20" height="20" viewBox="0 0 87.3 78" xmlns="http://www.w3.org/2000/svg">
+                <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.9 2.5 3.2 3.3l12.3-21.3H1.2c0 1.5.4 3 1.2 4.3z" fill="#0066da"/>
+                <path d="M43.65 25 29.35 0c-1.3.8-2.4 1.9-3.2 3.3L1.2 46.2c-.8 1.4-1.2 2.9-1.2 4.4h24.7z" fill="#00ac47"/>
+                <path d="M73.55 76.8c1.3-.8 2.4-1.9 3.2-3.3l1.6-2.75 7.75-13.4c.8-1.4 1.2-2.9 1.2-4.4H62.6l4.65 8.05z" fill="#ea4335"/>
+                <path d="M43.65 25h30.9c0-1.5-.4-3-1.2-4.4L61 3.3C60.2 1.9 59.1.8 57.8 0z" fill="#00832d"/>
+                <path d="M57.8 0H29.35L43.65 25z" fill="#2684fc"/>
+                <path d="m25.95 55.45-12.3 21.35c1.3.8 2.8 1.2 4.3 1.2h51.3c1.5 0 3-.4 4.3-1.2z" fill="#ffba00"/>
+              </svg>
+              <span style={{ fontWeight: 800, fontSize: '0.84rem', color: '#1E293B' }}>
+                Google Drive
+              </span>
+            </div>
+            <span
+              style={{
+                backgroundColor: '#ECFDF5',
+                color: '#047857',
+                borderRadius: '999px',
+                padding: '0.2rem 0.65rem',
+                fontSize: '0.68rem',
+                fontWeight: 800
+              }}
+            >
+              Connected
+            </span>
+          </div>
+
+          {/* Selected Files Count Indicator (if files uploaded) */}
+          {selectedFiles.length > 0 && (
+            <div
+              style={{
+                marginTop: '0.85rem',
+                backgroundColor: '#FDF6E8',
+                border: '1px solid #E8DFCF',
+                borderRadius: '10px',
+                padding: '0.5rem 0.75rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                fontSize: '0.74rem'
+              }}
+            >
+              <span style={{ fontWeight: 800, color: '#781416' }}>
+                {selectedFiles.length} {selectedFiles.length === 1 ? 'file' : 'files'} selected
+              </span>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setSelectedFiles([]); }}
+                style={{ background: 'none', border: 'none', color: '#78716C', cursor: 'pointer', fontWeight: 700 }}
+              >
+                Clear
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* E. PDF TOOLS SECTION (Heading, View All, 2-Column Grid) */}
+        <div style={{ marginBottom: '1.25rem', width: '100%', boxSizing: 'border-box' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '0.75rem'
+            }}
+          >
+            <h2
+              style={{
+                fontSize: '1.2rem',
+                fontWeight: 900,
+                color: '#1C1E21',
+                margin: 0,
+                fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif"
+              }}
+            >
+              PDF Tools
+            </h2>
+            <button
+              type="button"
+              onClick={() => setShowAllMobileTools(prev => !prev)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#781416',
+                fontWeight: 800,
+                fontSize: '0.82rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                cursor: 'pointer',
+                padding: 0
+              }}
+            >
+              <span>{showAllMobileTools ? 'Show Less' : 'View All'}</span>
+              <ArrowRight size={13} />
+            </button>
+          </div>
+
+          {/* 2-Column Grid of Tool Cards matching reference */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '0.65rem',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}
+          >
+            {(showAllMobileTools ? MOBILE_ALL_TOOLS : MOBILE_FEATURED_TOOLS).map((tool) => (
+              <div
+                key={tool.id}
+                onClick={() => openTool(tool.id)}
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid #EDE5D6',
+                  borderRadius: '16px',
+                  padding: '0.85rem 0.75rem',
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.65rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(35, 30, 25, 0.02)',
+                  transition: 'all 0.15s ease',
+                  boxSizing: 'border-box'
+                }}
+              >
+                {/* Tool Icon inside colored rounded square */}
+                <div
+                  style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '10px',
+                    backgroundColor: tool.iconBg,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: tool.iconColor,
+                    flexShrink: 0
+                  }}
+                >
+                  {tool.customIcon ? tool.customIcon : <tool.icon size={19} />}
+                </div>
+
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div
+                    style={{
+                      fontSize: '0.82rem',
+                      fontWeight: 800,
+                      color: '#1C1E21',
+                      lineHeight: 1.25,
+                      marginBottom: '0.2rem'
+                    }}
+                  >
+                    {tool.title}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: '0.65rem',
+                      color: '#64748B',
+                      lineHeight: 1.35
+                    }}
+                  >
+                    {tool.desc}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* F. FEATURED PDF GENERATOR (Bottom Highlight Card) */}
+        <div
+          style={{
+            backgroundColor: '#FFF8F8',
+            border: '1.5px solid #FCD4D4',
+            borderRadius: '16px',
+            padding: '0.95rem 1rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.75rem',
+            boxShadow: '0 4px 14px rgba(120, 20, 22, 0.04)',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', minWidth: 0, flex: 1 }}>
+            {/* Book Icon */}
+            <div
+              style={{
+                width: '42px',
+                height: '42px',
+                borderRadius: '12px',
+                backgroundColor: '#FDF2F2',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#781416',
+                flexShrink: 0
+              }}
+            >
+              <BookOpen size={22} color="#781416" strokeWidth={2.2} />
+            </div>
+
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '0.84rem', fontWeight: 800, color: '#1C1E21' }}>
+                  100-Page Notes Generator
+                </span>
+                <span
+                  style={{
+                    backgroundColor: '#FEF3C7',
+                    color: '#B45309',
+                    borderRadius: '999px',
+                    padding: '0.12rem 0.45rem',
+                    fontSize: '0.58rem',
+                    fontWeight: 800
+                  }}
+                >
+                  POPULAR
+                </span>
+              </div>
+              <p
+                style={{
+                  fontSize: '0.68rem',
+                  color: '#64748B',
+                  lineHeight: 1.35,
+                  margin: '0.2rem 0 0 0'
+                }}
+              >
+                Generate 100-page verified notes on any topic using AI. Perfect for exam preparation.
+              </p>
+            </div>
+          </div>
+
+          {/* Red Generate PDF Button */}
+          <button
+            type="button"
+            onClick={handleGenerate100PageNotes}
+            disabled={isProcessing}
+            style={{
+              backgroundColor: '#781416',
+              color: '#FFFFFF',
+              border: 'none',
+              borderRadius: '8px',
+              padding: '0.55rem 0.85rem',
+              fontSize: '0.74rem',
+              fontWeight: 800,
+              whiteSpace: 'nowrap',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              boxShadow: '0 2px 6px rgba(120, 20, 22, 0.25)',
+              cursor: 'pointer',
+              flexShrink: 0
+            }}
+          >
+            <span>Generate PDF</span>
+            <ArrowRight size={13} />
+          </button>
+        </div>
+      </div>
 
       {/* 4. TOOL MODAL WORKSPACE */}
       {activeTool && (

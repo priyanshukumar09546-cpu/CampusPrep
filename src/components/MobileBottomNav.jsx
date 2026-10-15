@@ -94,6 +94,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
       {tabs.map((tab) => {
         const isActive = currentNav === tab.id;
         const IconComponent = tab.icon;
+        const activeColor = (tab.id === 'tools') ? '#781416' : '#6366F1';
 
         return (
           <button
@@ -124,7 +125,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: isActive ? '#6366F1' : '#64748B',
+                color: isActive ? activeColor : '#64748B',
                 transform: isActive ? 'scale(1.08)' : 'scale(1)',
                 transition: 'transform 0.15s ease, color 0.15s ease'
               }}
@@ -132,7 +133,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
               <IconComponent 
                 size={21} 
                 strokeWidth={isActive ? 2.6 : 2}
-                fill={isActive && (tab.id === 'home' || tab.id === 'profile') ? '#6366F1' : 'none'}
+                fill={isActive && (tab.id === 'home' || tab.id === 'profile') ? activeColor : 'none'}
               />
             </div>
             
@@ -140,7 +141,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
               style={{
                 fontSize: '10px',
                 fontWeight: isActive ? 800 : 600,
-                color: isActive ? '#6366F1' : '#64748B',
+                color: isActive ? activeColor : '#64748B',
                 marginTop: '2px',
                 lineHeight: 1.1,
                 letterSpacing: '-0.01em'
@@ -158,7 +159,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                   width: '24px',
                   height: '2.5px',
                   borderRadius: '9999px',
-                  backgroundColor: '#6366F1'
+                  backgroundColor: activeColor
                 }} 
               />
             )}

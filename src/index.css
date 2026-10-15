@@ -723,6 +723,12 @@ pre, code {
   .pv-result-mobile-only {
     display: none !important;
   }
+  .pv-pdf-desktop-only {
+    display: block !important;
+  }
+  .pv-pdf-mobile-only {
+    display: none !important;
+  }
   .pv-desktop-home-view {
     display: block !important;
   }
@@ -889,6 +895,16 @@ pre, code {
     display: none !important;
   }
   .pv-result-mobile-only {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+  .pv-pdf-desktop-only {
+    display: none !important;
+  }
+  .pv-pdf-mobile-only {
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
