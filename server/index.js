@@ -105,8 +105,15 @@ app.get('/api/health', (req, res) => res.status(200).json({ status: 'ok', uptime
 
 app.use(express.json());
 
+// DETECT VERCEL SERVERLESS ENVIRONMENT (read-only filesystem except /tmp)
+const IS_VERCEL = !!(process.env.VERCEL || process.env.VERCEL_ENV || process.env.VERCEL_URL);
+
 // Ensure MongoDB is connected for serverless invocations (cold starts)
+// Fast-path: /api/resumes/compile, /health, and /uploads must NEVER block on MongoDB connection
 app.use(async (req, res, next) => {
+  if (req.path === '/api/resumes/compile' || req.path === '/health' || req.path.startsWith('/uploads')) {
+    return next();
+  }
   if (req.path.startsWith('/api') && !isDbConnected && process.env.MONGODB_URI) {
     try {
       await connectToDatabase();
@@ -116,9 +123,6 @@ app.use(async (req, res, next) => {
   }
   next();
 });
-
-// DETECT VERCEL SERVERLESS ENVIRONMENT (read-only filesystem except /tmp)
-const IS_VERCEL = !!(process.env.VERCEL || process.env.VERCEL_ENV || process.env.VERCEL_URL);
 
 // ENSURE STORAGE DIRECTORIES EXIST — use /tmp on Vercel
 const UPLOADS_DIR = IS_VERCEL ? '/tmp/uploads/pyqs' : path.join(PROJECT_ROOT, 'uploads', 'pyqs');
@@ -844,7 +848,12 @@ async function connectToDatabase() {
     isDbConnected = true;
     console.log('MongoDB connected successfully');
     console.log('[DATABASE] Target Cluster:', safeMaskUri(process.env.MONGODB_URI));
-    await syncMongoDbWithLocalStores();
+    // Only run local-to-mongo disk sync on persistent server in the background (never on serverless)
+    if (!IS_VERCEL) {
+      syncMongoDbWithLocalStores().catch(syncErr => {
+        console.warn('[DATABASE] Background store sync notice:', syncErr.message);
+      });
+    }
   } catch (err) {
     isDbConnected = false;
     console.warn('[DATABASE] MongoDB connection error:', safeErrorMessage(err));

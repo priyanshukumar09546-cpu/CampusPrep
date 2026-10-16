@@ -90,7 +90,21 @@ export default function MobileAuthScreen({
     }
   };
 
-  const handleOfflineFallback = (fallbackEmail, fallbackName, targetTab) => {
+  const getPostAuthDestination = () => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect');
+      if (redirect) {
+        const cleaned = redirect.replace(/^\//, '').toLowerCase();
+        if (cleaned && !['signin', 'signup', 'login', 'select-course'].includes(cleaned)) {
+          return cleaned;
+        }
+      }
+    } catch (e) {}
+    return 'home';
+  };
+
+  const handleOfflineFallback = (fallbackEmail, fallbackName, targetTab = 'home') => {
     const user = {
       name: fallbackName || fallbackEmail.split('@')[0],
       email: fallbackEmail,
@@ -100,10 +114,11 @@ export default function MobileAuthScreen({
     };
     persistUserSession(`pv_token_${Date.now()}`, user);
     setSuccessMsg('Authentication verified. Welcome to Professor Virus!');
+    const dest = targetTab && targetTab !== 'select-course' ? targetTab : getPostAuthDestination();
     setTimeout(() => {
       if (onLoginSuccess) onLoginSuccess(user);
-      if (onNavigate) onNavigate(targetTab);
-      else window.location.href = '/';
+      if (onNavigate) onNavigate(dest);
+      else window.location.href = dest === 'home' ? '/' : `/${dest}`;
     }, 600);
   };
 
@@ -146,13 +161,15 @@ export default function MobileAuthScreen({
 
         persistUserSession(token, user);
 
+        const dest = getPostAuthDestination();
         setTimeout(() => {
           if (onLoginSuccess) onLoginSuccess(user);
-          if (onNavigate) onNavigate('home');
-          else window.location.href = '/';
+          if (onNavigate) onNavigate(dest);
+          else window.location.href = dest === 'home' ? '/' : `/${dest}`;
         }, 600);
       } else {
-        if (!res.ok && res.status === 404) {
+        const isHtml = res.headers?.get('content-type')?.includes('text/html');
+        if ((!res.ok && res.status === 404) || isHtml) {
           handleOfflineFallback(trimmedInput, trimmedInput.split('@')[0], 'home');
         } else {
           setErrorMsg(data.message || 'Invalid email or password. Please verify your credentials.');
@@ -227,20 +244,22 @@ export default function MobileAuthScreen({
 
         persistUserSession(token, user);
 
+        const dest = getPostAuthDestination();
         setTimeout(() => {
           if (onLoginSuccess) onLoginSuccess(user);
-          if (onNavigate) onNavigate('select-course');
-          else window.location.href = '/select-course';
-        }, 700);
+          if (onNavigate) onNavigate(dest);
+          else window.location.href = dest === 'home' ? '/' : `/${dest}`;
+        }, 600);
       } else {
-        if (!res.ok && res.status === 404) {
-          handleOfflineFallback(trimmedEmail, trimmedName, 'select-course');
+        const isHtml = res.headers?.get('content-type')?.includes('text/html');
+        if ((!res.ok && res.status === 404) || isHtml) {
+          handleOfflineFallback(trimmedEmail, trimmedName, 'home');
         } else {
           setErrorMsg(data.message || 'Unable to register account. Please check your details or try signing in.');
         }
       }
     } catch (err) {
-      handleOfflineFallback(trimmedEmail, trimmedName, 'select-course');
+      handleOfflineFallback(trimmedEmail, trimmedName, 'home');
     } finally {
       setLoading(false);
     }
@@ -257,10 +276,11 @@ export default function MobileAuthScreen({
     };
     persistUserSession(`pv_google_token_${Date.now()}`, mockUser);
     setSuccessMsg('Signed in with Google! Redirecting...');
+    const dest = getPostAuthDestination();
     setTimeout(() => {
       if (onLoginSuccess) onLoginSuccess(mockUser);
-      if (onNavigate) onNavigate(mode === 'signup' ? 'select-course' : 'home');
-      else window.location.href = '/';
+      if (onNavigate) onNavigate(dest);
+      else window.location.href = dest === 'home' ? '/' : `/${dest}`;
     }, 500);
   };
 

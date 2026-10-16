@@ -46,6 +46,7 @@ import {
 } from 'lucide-react';
 import { generateLatex } from '../utils/latexGenerator';
 import SearchableSkillsSelector from '../components/SearchableSkillsSelector';
+import API_URL from '../config/api';
 
 // Normalizes resume skills between structured arrays and legacy string fields
 function getAuthToken() {
@@ -463,7 +464,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     try {
       const token = getAuthToken();
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
-      const res = await fetch('/api/resumes', { headers });
+      const res = await fetch(`${API_URL}/api/resumes`, { headers });
       const data = await res.json();
       if (data.success && Array.isArray(data.resumes)) {
         setMyResumesList(data.resumes);
@@ -481,10 +482,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   const handleRetryCompile = () => {
     setCompileError(null);
     lastCompiledPayloadRef.current = '';
+    setIsCompiling(true);
     setCompileTrigger(c => c + 1);
   };
 
-  // 2. Optimized Debounced Compile Engine (850ms debounce, deduplication, stale guard, 15s timeout protection)
+  // 2. Optimized Debounced Compile Engine (850ms debounce, deduplication, stale guard, 30s timeout protection)
   useEffect(() => {
     if (!hasMinimumData) {
       setIsCompiling(false);
@@ -517,15 +519,15 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       setIsCompiling(true);
       setCompileError(null);
 
-      // 15-second safety timeout prevents UI from ever getting stuck indefinitely
+      // 30-second safety timeout prevents UI from getting stuck indefinitely on slow networks
       const safetyTimeout = setTimeout(() => {
         controller.abort();
-      }, 15000);
+      }, 30000);
 
       const exactLatex = generateLatex(resumeData, { template });
 
       try {
-        const res = await fetch('/api/resumes/compile', {
+        const res = await fetch(`${API_URL}/api/resumes/compile`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -580,7 +582,8 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           }
 
           if (data.pdfUrl) {
-            const absoluteOrRelativeUrl = `${data.pdfUrl}?t=${Date.now()}`;
+            const serverUrl = data.pdfUrl.startsWith('http') ? data.pdfUrl : `${API_URL}${data.pdfUrl}`;
+            const absoluteOrRelativeUrl = `${serverUrl}?t=${Date.now()}`;
             setServerPdfUrl(absoluteOrRelativeUrl);
             if (!data.pdfBase64) {
               setPdfUrl(absoluteOrRelativeUrl);
@@ -606,13 +609,18 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
         if (err.name === 'AbortError') {
           // Newer generation is running or timeout triggered
           if (currentGen === generationRef.current) {
-            setCompileError('Compilation timed out. Click Retry to recompile.');
+            setCompileError('Compilation timed out. Please click Retry Compilation to try again.');
           }
           return;
         }
         if (currentGen !== generationRef.current) return;
         console.error('Compile error:', err);
-        setCompileError(err.message || 'Network error communicating with resume compiler.');
+        const msg = err.message || '';
+        if (msg.includes('Failed to fetch') || err instanceof TypeError) {
+          setCompileError('Unable to connect to the PDF compiler service. Please check your internet connection or click Retry Compilation.');
+        } else {
+          setCompileError(msg || 'Network error communicating with resume compiler.');
+        }
       } finally {
         if (currentGen === generationRef.current) {
           setIsCompiling(false);
@@ -648,13 +656,13 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
       let res;
       if (activeResumeId) {
-        res = await fetch(`/api/resumes/${activeResumeId}`, {
+        res = await fetch(`${API_URL}/api/resumes/${activeResumeId}`, {
           method: 'PUT',
           headers,
           body: JSON.stringify(payload)
         });
       } else {
-        res = await fetch('/api/resumes', {
+        res = await fetch(`${API_URL}/api/resumes`, {
           method: 'POST',
           headers,
           body: JSON.stringify(payload)
@@ -680,7 +688,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
   // 4. Download PDF
   const handleDownloadPdf = () => {
-    const downloadHref = activeBlobUrlRef.current || pdfBlobUrl || pdfUrl;
+    const downloadHref = activeBlobUrlRef.current || pdfBlobUrl || serverPdfUrl || pdfUrl;
     if (!downloadHref) {
       alert('Generating PDF, please wait a moment...');
       return;
@@ -739,7 +747,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     try {
       const token = getAuthToken();
       const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
-      await fetch(`/api/resumes/${id}`, { method: 'DELETE', headers });
+      await fetch(`${API_URL}/api/resumes/${id}`, { method: 'DELETE', headers });
       if (activeResumeId === id) {
         setActiveResumeId(null);
         setResumeData(DEFAULT_RESUME_DATA);
@@ -761,7 +769,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     });
 
     try {
-      const res = await fetch('/api/resumes/ai-action', {
+      const res = await fetch(`${API_URL}/api/resumes/ai-action`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -868,7 +876,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
     setIsImporting(true);
     try {
-      const res = await fetch('/api/resumes/import', {
+      const res = await fetch(`${API_URL}/api/resumes/import`, {
         method: 'POST',
         body: formData
       });
@@ -1079,7 +1087,39 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
           {/* Middle: 1-Page Constraint Badge */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            {compileStatus?.isOnePage ? (
+            {isCompiling ? (
+              <div style={{
+                backgroundColor: '#FEF3C7',
+                border: '1px solid #FCD34D',
+                color: '#B45309',
+                padding: '0.3rem 0.65rem',
+                borderRadius: '9999px',
+                fontSize: '0.74rem',
+                fontWeight: 800,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem'
+              }}>
+                <RefreshCw size={13} style={{ animation: 'spin 1s linear infinite' }} />
+                <span>Checking Layout...</span>
+              </div>
+            ) : compileError ? (
+              <div style={{
+                backgroundColor: '#FEF2F2',
+                border: '1px solid #FCA5A5',
+                color: '#DC2626',
+                padding: '0.3rem 0.65rem',
+                borderRadius: '9999px',
+                fontSize: '0.74rem',
+                fontWeight: 800,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem'
+              }}>
+                <AlertTriangle size={13} />
+                <span>Compilation Issue</span>
+              </div>
+            ) : compileStatus?.isOnePage ? (
               <div style={{
                 backgroundColor: '#E7F5EE',
                 border: '1px solid #A3E0C1',
@@ -1095,11 +1135,11 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 <CheckCircle2 size={13} />
                 <span>Strict 1-Page Layout ({compileStatus.levelName || 'Standard'})</span>
               </div>
-            ) : (
+            ) : compileStatus?.pageCount > 1 ? (
               <div style={{
-                backgroundColor: '#FEF2F2',
-                border: '1px solid #FCA5A5',
-                color: '#DC2626',
+                backgroundColor: '#FFFBEB',
+                border: '1px solid #FDE68A',
+                color: '#D97706',
                 padding: '0.3rem 0.65rem',
                 borderRadius: '9999px',
                 fontSize: '0.74rem',
@@ -1109,7 +1149,23 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 gap: '0.35rem'
               }}>
                 <AlertTriangle size={13} />
-                <span>Overflow Warning: {compileStatus?.pageCount || 2} Pages</span>
+                <span>Multi-Page ({compileStatus.pageCount} Pages)</span>
+              </div>
+            ) : (
+              <div style={{
+                backgroundColor: '#F3F4F6',
+                border: '1px solid #E5E7EB',
+                color: '#4B5563',
+                padding: '0.3rem 0.65rem',
+                borderRadius: '9999px',
+                fontSize: '0.74rem',
+                fontWeight: 800,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem'
+              }}>
+                <CheckCircle2 size={13} />
+                <span>ATS Standard Layout</span>
               </div>
             )}
 
@@ -2695,6 +2751,38 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                     title="Live Resume Preview"
                     style={{ width: '100%', height: '100%', border: 'none' }}
                   />
+                ) : isCompiling ? (
+                  <div style={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '2.5rem',
+                    textAlign: 'center',
+                    backgroundColor: '#262626',
+                    color: '#A3A3A3'
+                  }}>
+                    <div style={{
+                      width: '64px',
+                      height: '64px',
+                      borderRadius: '16px',
+                      backgroundColor: '#333333',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: '1.25rem',
+                      border: '1px solid #404040'
+                    }}>
+                      <RefreshCw size={30} color="#E2E8F0" style={{ animation: 'spin 1s linear infinite' }} />
+                    </div>
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#F5F5F5', marginBottom: '0.5rem' }}>
+                      Compiling ATS Resume Preview...
+                    </h3>
+                    <p style={{ fontSize: '0.85rem', color: '#A3A3A3', maxWidth: '340px', lineHeight: 1.6, margin: 0 }}>
+                      Rendering Computer Modern vector typography and checking page constraints in real-time.
+                    </p>
+                  </div>
                 ) : (
                   <div style={{
                     height: '100%',
@@ -2956,7 +3044,26 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
         <div style={{ padding: '0.85rem 0.95rem 6.5rem 0.95rem', width: '100%', boxSizing: 'border-box' }}>
           
           {/* Status Alert Banner */}
-          {(compileStatus && (compileStatus.isOnePage === false || compileStatus.overflowWarning || compileStatus?.pageCount > 1)) ? (
+          {isCompiling ? (
+            <div style={{
+              backgroundColor: '#FEF3C7',
+              border: '1px solid #FCD34D',
+              color: '#B45309',
+              borderRadius: '10px',
+              padding: '0.55rem 0.85rem',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              marginBottom: '0.75rem',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}>
+              <RefreshCw size={15} color="#B45309" style={{ flexShrink: 0, animation: 'spin 1s linear infinite' }} />
+              <span>Compiling ATS Resume Preview...</span>
+            </div>
+          ) : compileError ? (
             <div style={{
               backgroundColor: '#FEF2F2',
               border: '1px solid #FCA5A5',
@@ -2973,9 +3080,9 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               boxSizing: 'border-box'
             }}>
               <AlertTriangle size={15} color="#DC2626" style={{ flexShrink: 0 }} />
-              <span>Overflow Warning: {compileStatus?.pageCount || 2} Pages</span>
+              <span>Compilation Issue Detected</span>
             </div>
-          ) : (
+          ) : compileStatus?.isOnePage ? (
             <div style={{
               backgroundColor: '#E7F5EE',
               border: '1px solid #A3E0C1',
@@ -2993,6 +3100,44 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             }}>
               <CheckCircle2 size={15} color="#0E7A4A" style={{ flexShrink: 0 }} />
               <span>Strict 1-Page Layout ({compileStatus?.levelName || 'Standard'})</span>
+            </div>
+          ) : compileStatus?.pageCount > 1 ? (
+            <div style={{
+              backgroundColor: '#FFFBEB',
+              border: '1px solid #FDE68A',
+              color: '#D97706',
+              borderRadius: '10px',
+              padding: '0.55rem 0.85rem',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              marginBottom: '0.75rem',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}>
+              <AlertTriangle size={15} color="#D97706" style={{ flexShrink: 0 }} />
+              <span>Multi-Page ({compileStatus.pageCount} Pages)</span>
+            </div>
+          ) : (
+            <div style={{
+              backgroundColor: '#F3F4F6',
+              border: '1px solid #E5E7EB',
+              color: '#4B5563',
+              borderRadius: '10px',
+              padding: '0.55rem 0.85rem',
+              fontSize: '0.8rem',
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              marginBottom: '0.75rem',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}>
+              <CheckCircle2 size={15} color="#4B5563" style={{ flexShrink: 0 }} />
+              <span>ATS Standard Layout</span>
             </div>
           )}
 

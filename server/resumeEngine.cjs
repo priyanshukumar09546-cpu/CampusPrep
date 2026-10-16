@@ -633,23 +633,827 @@ function wrapText(text, font, fontSize, maxWidth) {
 }
 
 /**
+ * Printable dimensions (A4 standard: 595.28 x 841.89 points)
+ */
+const PAGE_WIDTH = 595.28;
+const PAGE_HEIGHT = 841.89;
+
+// Progressive compression levels for strict ABES One-Page guarantee
+const COMPRESSION_LEVELS = [
+  { name: 'Standard', margin: 34, baseFont: 9.5, nameSize: 20, locSize: 9.5, headSize: 11.5, sectionGap: 7.0, itemGap: 3.5, bulletGap: 1.8 },
+  { name: 'Mild Compress', margin: 30, baseFont: 9.0, nameSize: 18, locSize: 9.0, headSize: 11.0, sectionGap: 6.0, itemGap: 3.0, bulletGap: 1.5 },
+  { name: 'Moderate Compress', margin: 26, baseFont: 8.5, nameSize: 16.5, locSize: 8.5, headSize: 10.5, sectionGap: 5.0, itemGap: 2.2, bulletGap: 1.2 },
+  { name: 'Ultra Compact', margin: 22, baseFont: 8.0, nameSize: 15, locSize: 8.0, headSize: 10.0, sectionGap: 4.0, itemGap: 1.8, bulletGap: 1.0 }
+];
+
+/**
+ * Renders resume content to a PDFDocument with optional multi-page pagination.
+ */
+async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = false) {
+  let regularFont, boldFont, obliqueFont;
+  const romanBytes = loadFontBytes('CMU-Serif-Roman.ttf');
+  const boldBytes = loadFontBytes('CMU-Serif-Bold.ttf');
+  const italicBytes = loadFontBytes('CMU-Serif-Italic.ttf');
+
+  if (fontkit && romanBytes && boldBytes && italicBytes) {
+    try {
+      pdfDoc.registerFontkit(fontkit);
+      regularFont = await pdfDoc.embedFont(romanBytes);
+      boldFont = await pdfDoc.embedFont(boldBytes);
+      obliqueFont = await pdfDoc.embedFont(italicBytes);
+    } catch (fontErr) {
+      console.warn('[RESUME ENGINE] Error embedding TrueType fonts, falling back to standard fonts:', fontErr.message);
+      regularFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+      boldFont = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
+      obliqueFont = await pdfDoc.embedFont(StandardFonts.TimesRomanItalic);
+    }
+  } else {
+    regularFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+    boldFont = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
+    obliqueFont = await pdfDoc.embedFont(StandardFonts.TimesRomanItalic);
+  }
+
+  const margin = cfg.margin;
+  const contentWidth = PAGE_WIDTH - 2 * margin;
+  const minAcceptableY = margin / 2;
+
+  let page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+  let cursorY = PAGE_HEIGHT - margin;
+
+  const ensureSpace = (neededHeight) => {
+    if (cursorY - neededHeight < minAcceptableY) {
+      if (allowMultiPage) {
+        page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+        cursorY = PAGE_HEIGHT - margin;
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const p = resumeData.personalDetails || resumeData.personal || {};
+  const summary = (resumeData.summary || p.summary || '').trim();
+
+  // Filter sections to include ONLY non-empty user data
+  const rawEducation = Array.isArray(resumeData.education) ? resumeData.education : [];
+  const education = rawEducation.filter(e => 
+    e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.duration?.trim() || e.cgpaOrPercentage?.trim() || e.cgpa?.trim() || e.board?.trim())
+  );
+
+  let rawSkills = [];
+  if (resumeData.technicalSkills && typeof resumeData.technicalSkills === 'object') {
+    const ts = resumeData.technicalSkills;
+    if (Array.isArray(ts.programmingLanguages) && ts.programmingLanguages.length > 0) {
+      rawSkills.push({ category: 'Programming Languages', items: ts.programmingLanguages });
+    }
+    if (Array.isArray(ts.frameworks) && ts.frameworks.length > 0) {
+      rawSkills.push({ category: 'Frameworks & Libraries', items: ts.frameworks });
+    }
+    if (Array.isArray(ts.developerTools) && ts.developerTools.length > 0) {
+      rawSkills.push({ category: 'Developer Tools & Platforms', items: ts.developerTools });
+    }
+    if (Array.isArray(ts.databases) && ts.databases.length > 0) {
+      rawSkills.push({ category: 'Databases', items: ts.databases });
+    }
+    if (Array.isArray(ts.coreConcepts) && ts.coreConcepts.length > 0) {
+      rawSkills.push({ category: 'Core Concepts', items: ts.coreConcepts });
+    }
+  }
+
+  if (rawSkills.length === 0) {
+    if (Array.isArray(resumeData.skills)) {
+      rawSkills = resumeData.skills;
+    } else if (resumeData.skills && typeof resumeData.skills === 'object') {
+      const s = resumeData.skills;
+      if (s.tools?.trim()) rawSkills.push({ category: 'Developer Tools', items: s.tools });
+      if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
+      if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks', items: s.frameworks });
+      if (s.databases?.trim()) rawSkills.push({ category: 'Databases', items: s.databases });
+      if (s.coreConcepts?.trim()) rawSkills.push({ category: 'Core CS Concepts', items: s.coreConcepts });
+      if (s.skills?.trim()) rawSkills.push({ category: 'Skills', items: s.skills });
+      if (s.other?.trim()) rawSkills.push({ category: 'Other Skills', items: s.other });
+    }
+  }
+  const skills = rawSkills.filter(s => {
+    if (!s) return false;
+    const items = Array.isArray(s.items) ? s.items.join('') : (s.items || '');
+    return items.trim().length > 0;
+  });
+
+  const rawExperience = Array.isArray(resumeData.experience) ? resumeData.experience : [];
+  const experience = rawExperience.filter(e =>
+    e && (e.title?.trim() || e.company?.trim() || e.location?.trim() || (Array.isArray(e.bullets) && e.bullets.some(b => b && b.trim())))
+  );
+
+  const rawProjects = Array.isArray(resumeData.projects) ? resumeData.projects : [];
+  const projects = rawProjects.filter(pr =>
+    pr && (pr.title?.trim() || pr.techStack?.trim() || pr.githubUrl?.trim() || pr.liveUrl?.trim() || (Array.isArray(pr.bullets) && pr.bullets.some(b => b && b.trim())) || pr.description?.trim())
+  );
+
+  const rawAchievements = Array.isArray(resumeData.achievements) ? resumeData.achievements : [];
+  const achievements = rawAchievements.filter(a =>
+    a && (a.title?.trim() || a.organization?.trim() || a.description?.trim())
+  );
+
+  const rawCertifications = Array.isArray(resumeData.certifications) ? resumeData.certifications : [];
+  const certifications = rawCertifications.filter(c =>
+    c && (c.name?.trim() || c.issuer?.trim() || c.url?.trim())
+  );
+
+  const rawExtracurricular = Array.isArray(resumeData.extracurricular) ? resumeData.extracurricular : [];
+  const extracurricular = rawExtracurricular.filter(x =>
+    x && (x.role?.trim() || x.organization?.trim() || x.description?.trim() || x.activity?.trim())
+  );
+
+  // --- 1. HEADER (CENTERED, EXACT ABES FORMAT) ---
+  const hasName = !!(p.fullName && p.fullName.trim());
+  if (hasName) {
+    const fullName = p.fullName.trim();
+    const nameWidth = boldFont.widthOfTextAtSize(fullName, cfg.nameSize);
+    page.drawText(fullName, {
+      x: margin + Math.max(0, (contentWidth - nameWidth) / 2),
+      y: cursorY - cfg.nameSize,
+      size: cfg.nameSize,
+      font: boldFont,
+      color: rgb(0, 0, 0)
+    });
+    cursorY -= (cfg.nameSize + 3);
+
+    const location = (p.location || '').trim();
+    if (location) {
+      const locWidth = regularFont.widthOfTextAtSize(location, cfg.locSize);
+      page.drawText(location, {
+        x: margin + Math.max(0, (contentWidth - locWidth) / 2),
+        y: cursorY - cfg.locSize,
+        size: cfg.locSize,
+        font: regularFont,
+        color: rgb(0, 0, 0)
+      });
+      cursorY -= (cfg.locSize + 3.5);
+    } else {
+      cursorY -= 1;
+    }
+  }
+
+  // Contact Info Line (Phone, Email, LinkedIn, GitHub, Portfolio)
+  const contactItems = [];
+  if (p.phone && p.phone.trim()) {
+    const rawPhone = p.phone.trim();
+    contactItems.push({
+      type: 'phone',
+      text: formatDisplayPhone(rawPhone),
+      label: formatDisplayPhone(rawPhone),
+      isLink: true,
+      url: normalizePhone(rawPhone)
+    });
+  }
+  if (p.email && p.email.trim()) {
+    const cleanEmail = p.email.trim();
+    contactItems.push({
+      type: 'email',
+      text: 'Email',
+      label: 'Email',
+      isLink: true,
+      url: normalizeEmail(cleanEmail)
+    });
+  }
+  const linkedin = p.linkedinUrl || p.linkedin;
+  if (linkedin && linkedin.trim()) {
+    const rawLink = linkedin.trim();
+    contactItems.push({
+      type: 'linkedin',
+      text: 'LinkedIn',
+      label: 'LinkedIn',
+      isLink: true,
+      url: normalizeUrl(rawLink)
+    });
+  }
+  const github = p.githubUrl || p.github;
+  if (github && github.trim()) {
+    const rawGit = github.trim();
+    contactItems.push({
+      type: 'github',
+      text: 'GitHub',
+      label: 'GitHub',
+      isLink: true,
+      url: normalizeUrl(rawGit)
+    });
+  }
+  const portfolio = p.portfolioUrl || p.portfolio;
+  if (portfolio && portfolio.trim()) {
+    const rawPort = portfolio.trim();
+    contactItems.push({
+      type: 'portfolio',
+      text: 'Portfolio',
+      label: 'Portfolio',
+      isLink: true,
+      url: normalizeUrl(rawPort)
+    });
+  }
+
+  const contactFontSize = cfg.baseFont - 0.5;
+  const iconGap = 2.5;
+  const itemSepGap = 14.0;
+
+  const calcLineWidth = (items) => {
+    if (!items || items.length === 0) return 0;
+    const totalW = items.reduce((sum, it) => {
+      const tW = regularFont.widthOfTextAtSize(it.text, contactFontSize);
+      const iconCfg = CONTACT_ICONS[it.type];
+      return sum + tW + (iconCfg ? (iconCfg.width + iconGap) : 0);
+    }, 0);
+    return totalW + (items.length - 1) * itemSepGap;
+  };
+
+  const drawContactLine = (items) => {
+    if (!items || items.length === 0) return;
+    const itemWidths = items.map(it => {
+      const tW = regularFont.widthOfTextAtSize(it.text, contactFontSize);
+      const iconCfg = CONTACT_ICONS[it.type];
+      return tW + (iconCfg ? (iconCfg.width + iconGap) : 0);
+    });
+    const totalLineWidth = itemWidths.reduce((a, b) => a + b, 0) + (items.length - 1) * itemSepGap;
+    let curX = margin + Math.max(0, (contentWidth - totalLineWidth) / 2);
+    const curY = cursorY - contactFontSize;
+
+    items.forEach((item, idx) => {
+      const itemW = itemWidths[idx];
+      const iconCfg = CONTACT_ICONS[item.type];
+      let textX = curX;
+
+      if (iconCfg) {
+        page.drawSvgPath(iconCfg.path, {
+          x: curX,
+          y: curY + (contactFontSize * 0.78),
+          scale: iconCfg.scale,
+          color: rgb(0, 0, 0)
+        });
+        textX = curX + iconCfg.width + iconGap;
+      }
+
+      page.drawText(item.text, {
+        x: textX,
+        y: curY,
+        size: contactFontSize,
+        font: regularFont,
+        color: rgb(0, 0, 0)
+      });
+
+      if (item.isLink && item.url) {
+        addLinkAnnotation(page, pdfDoc, curX, curY - 2, itemW, contactFontSize + 4, item.url);
+      }
+
+      curX += itemW + itemSepGap;
+    });
+
+    cursorY -= (contactFontSize + 2.5);
+  };
+
+  if (contactItems.length > 0) {
+    if (calcLineWidth(contactItems) <= contentWidth) {
+      drawContactLine(contactItems);
+    } else {
+      const mid = Math.ceil(contactItems.length / 2);
+      drawContactLine(contactItems.slice(0, mid));
+      drawContactLine(contactItems.slice(mid));
+    }
+  }
+  cursorY -= 2;
+
+  // Helper to render section title with crisp horizontal rule
+  const renderSectionHeading = (title) => {
+    ensureSpace(cfg.sectionGap + cfg.headSize + 7 + cfg.baseFont * 2);
+    cursorY -= cfg.sectionGap;
+    const headSize = cfg.headSize;
+    page.drawText(title, {
+      x: margin,
+      y: cursorY - headSize,
+      size: headSize,
+      font: boldFont,
+      color: rgb(0, 0, 0)
+    });
+    cursorY -= (headSize + 2.5);
+
+    // Solid black horizontal rule
+    page.drawLine({
+      start: { x: margin, y: cursorY },
+      end: { x: margin + contentWidth, y: cursorY },
+      thickness: 0.5,
+      color: rgb(0, 0, 0)
+    });
+    cursorY -= 4.5;
+  };
+
+  // --- 2. PROFESSIONAL SUMMARY (if provided) ---
+  if (summary) {
+    renderSectionHeading('Professional Summary');
+    const sumLines = wrapText(summary, regularFont, cfg.baseFont, contentWidth);
+    sumLines.forEach(line => {
+      ensureSpace(cfg.baseFont + 2);
+      page.drawText(line, {
+        x: margin,
+        y: cursorY - cfg.baseFont,
+        size: cfg.baseFont,
+        font: regularFont,
+        color: rgb(0, 0, 0)
+      });
+      cursorY -= (cfg.baseFont + 2);
+    });
+  }
+
+  // --- 3. EDUCATION (EXACT ABES FORMAT) ---
+  if (education.length > 0) {
+    renderSectionHeading('Education');
+    education.forEach((edu) => {
+      ensureSpace(cfg.baseFont * 2 + cfg.itemGap);
+      const degTitle = getEducationDegreeTitle(edu);
+      const dateStr = getEducationDuration(edu).replace(/--/g, '–');
+      const scoreStr = formatEducationScore(edu.cgpaOrPercentage || edu.cgpa || edu.percentage || edu.grade || edu.score);
+
+      // Line 1: Degree in Field (Board) (Bold, Left) + Duration (Bold, Right)
+      page.drawText(degTitle, {
+        x: margin,
+        y: cursorY - cfg.baseFont,
+        size: cfg.baseFont,
+        font: boldFont,
+        color: rgb(0, 0, 0)
+      });
+      if (dateStr) {
+        const dateW = boldFont.widthOfTextAtSize(dateStr, cfg.baseFont);
+        page.drawText(dateStr, {
+          x: margin + contentWidth - dateW,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: boldFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      cursorY -= (cfg.baseFont + 1.5);
+
+      // Line 2: Institution (Italic, Left) + Score (Italic, Right)
+      let instLine = (edu.institution || '').trim();
+      if (instLine) {
+        page.drawText(instLine, {
+          x: margin,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: obliqueFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      if (scoreStr) {
+        const scoreW = obliqueFont.widthOfTextAtSize(scoreStr, cfg.baseFont);
+        page.drawText(scoreStr, {
+          x: margin + contentWidth - scoreW,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: obliqueFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      cursorY -= (cfg.baseFont + cfg.itemGap);
+
+      if (edu.description && edu.description.trim()) {
+        const descLines = wrapText(edu.description.trim(), regularFont, cfg.baseFont - 0.5, contentWidth);
+        descLines.forEach(line => {
+          ensureSpace(cfg.baseFont + 1);
+          page.drawText(line, {
+            x: margin,
+            y: cursorY - (cfg.baseFont - 0.5),
+            size: cfg.baseFont - 0.5,
+            font: regularFont,
+            color: rgb(0, 0, 0)
+          });
+          cursorY -= (cfg.baseFont + 1);
+        });
+      }
+    });
+  }
+
+  // --- 4. TECHNICAL SKILLS (EXACT ABES FORMAT) ---
+  if (skills.length > 0) {
+    renderSectionHeading('Technical Skills');
+    skills.forEach(sk => {
+      const cat = `${sk.category || 'Skills'}: `;
+      const itemsStr = Array.isArray(sk.items) ? sk.items.join(', ') : (sk.items || '');
+      const catWidth = boldFont.widthOfTextAtSize(cat, cfg.baseFont);
+
+      const itemLines = wrapText(itemsStr, regularFont, cfg.baseFont, contentWidth - catWidth);
+      const neededCatHeight = Math.max(1, itemLines.length) * (cfg.baseFont + 2.5);
+      ensureSpace(neededCatHeight);
+
+      page.drawText(cat, {
+        x: margin,
+        y: cursorY - cfg.baseFont,
+        size: cfg.baseFont,
+        font: boldFont,
+        color: rgb(0, 0, 0)
+      });
+
+      if (itemLines.length > 0) {
+        page.drawText(itemLines[0], {
+          x: margin + catWidth,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: regularFont,
+          color: rgb(0, 0, 0)
+        });
+        cursorY -= (cfg.baseFont + 2.5);
+
+        for (let li = 1; li < itemLines.length; li++) {
+          ensureSpace(cfg.baseFont + 2.5);
+          page.drawText(itemLines[li], {
+            x: margin + catWidth,
+            y: cursorY - cfg.baseFont,
+            size: cfg.baseFont,
+            font: regularFont,
+            color: rgb(0, 0, 0)
+          });
+          cursorY -= (cfg.baseFont + 2.5);
+        }
+      } else {
+        cursorY -= (cfg.baseFont + 2.5);
+      }
+    });
+  }
+
+  // --- 5. INTERNSHIPS (EXACT ABES FORMAT) ---
+  if (experience.length > 0) {
+    renderSectionHeading('Internships');
+    experience.forEach(exp => {
+      ensureSpace(cfg.baseFont * 2 + cfg.itemGap);
+      const company = exp.company || 'Company';
+      const dates = (exp.duration || [exp.startDate, exp.current ? 'Present' : exp.endDate].filter(Boolean).join(' – ')).replace(/--/g, '–');
+      const role = exp.title || exp.role || 'Role';
+      const location = exp.location || '';
+
+      // Line 1: Company (Bold, Left) + Dates (Bold, Right)
+      page.drawText(company, {
+        x: margin,
+        y: cursorY - cfg.baseFont,
+        size: cfg.baseFont,
+        font: boldFont,
+        color: rgb(0, 0, 0)
+      });
+      if (dates) {
+        const dateW = boldFont.widthOfTextAtSize(dates, cfg.baseFont);
+        page.drawText(dates, {
+          x: margin + contentWidth - dateW,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: boldFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      cursorY -= (cfg.baseFont + 1.5);
+
+      // Line 2: Role (Italic, Left) + Location (Italic, Right)
+      page.drawText(role, {
+        x: margin,
+        y: cursorY - cfg.baseFont,
+        size: cfg.baseFont,
+        font: obliqueFont,
+        color: rgb(0, 0, 0)
+      });
+      if (location) {
+        const locW = obliqueFont.widthOfTextAtSize(location, cfg.baseFont);
+        page.drawText(location, {
+          x: margin + contentWidth - locW,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: obliqueFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      cursorY -= (cfg.baseFont + 2);
+
+      // Bullets with en-dash (–)
+      if (Array.isArray(exp.bullets)) {
+        exp.bullets.forEach(b => {
+          if (b && b.trim()) {
+            const bLines = wrapText(b.trim(), regularFont, cfg.baseFont, contentWidth - 20);
+            bLines.forEach((bl, blIdx) => {
+              ensureSpace(cfg.baseFont + cfg.bulletGap);
+              if (blIdx === 0) {
+                page.drawText('–', {
+                  x: margin + 8,
+                  y: cursorY - cfg.baseFont,
+                  size: cfg.baseFont,
+                  font: regularFont,
+                  color: rgb(0, 0, 0)
+                });
+              }
+              page.drawText(bl, {
+                x: margin + 20,
+                y: cursorY - cfg.baseFont,
+                size: cfg.baseFont,
+                font: regularFont,
+                color: rgb(0, 0, 0)
+              });
+              cursorY -= (cfg.baseFont + cfg.bulletGap);
+            });
+          }
+        });
+      }
+      cursorY -= cfg.itemGap;
+    });
+  }
+
+  // --- 6. PROJECTS (EXACT ABES FORMAT) ---
+  if (projects.length > 0) {
+    renderSectionHeading('Projects');
+    projects.forEach(proj => {
+      ensureSpace(cfg.baseFont * 2 + cfg.itemGap);
+      const title = proj.title || 'Project';
+      const dates = (proj.date || proj.duration || '').replace(/--/g, '–');
+
+      page.drawText(title, {
+        x: margin,
+        y: cursorY - cfg.baseFont,
+        size: cfg.baseFont,
+        font: boldFont,
+        color: rgb(0, 0, 0)
+      });
+      const titleW = boldFont.widthOfTextAtSize(title, cfg.baseFont);
+
+      // Clickable link buttons next to title if available
+      let linkX = margin + titleW + 8;
+      if (proj.githubUrl && proj.githubUrl.trim()) {
+        const ghUrl = normalizeUrl(proj.githubUrl);
+        const ghStr = '[GitHub]';
+        const ghW = regularFont.widthOfTextAtSize(ghStr, cfg.baseFont - 0.5);
+        page.drawText(ghStr, {
+          x: linkX,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont - 0.5,
+          font: regularFont,
+          color: rgb(0, 0, 0)
+        });
+        addLinkAnnotation(page, pdfDoc, linkX, cursorY - cfg.baseFont - 1, ghW, cfg.baseFont + 2, ghUrl);
+        linkX += ghW + 6;
+      }
+      if (proj.liveUrl && proj.liveUrl.trim()) {
+        const liveUrl = normalizeUrl(proj.liveUrl);
+        const liveStr = '[Live Demo]';
+        const liveW = regularFont.widthOfTextAtSize(liveStr, cfg.baseFont - 0.5);
+        page.drawText(liveStr, {
+          x: linkX,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont - 0.5,
+          font: regularFont,
+          color: rgb(0, 0, 0)
+        });
+        addLinkAnnotation(page, pdfDoc, linkX, cursorY - cfg.baseFont - 1, liveW, cfg.baseFont + 2, liveUrl);
+      }
+
+      if (dates) {
+        const dateW = boldFont.widthOfTextAtSize(dates, cfg.baseFont);
+        page.drawText(dates, {
+          x: margin + contentWidth - dateW,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: boldFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      cursorY -= (cfg.baseFont + 2);
+
+      // Bullets with en-dash (–)
+      const bullets = Array.isArray(proj.bullets) ? proj.bullets.filter(b => b && b.trim()) : [];
+      if (bullets.length > 0) {
+        bullets.forEach(b => {
+          const bLines = wrapText(b.trim(), regularFont, cfg.baseFont, contentWidth - 20);
+          bLines.forEach((bl, blIdx) => {
+            ensureSpace(cfg.baseFont + cfg.bulletGap);
+            if (blIdx === 0) {
+              page.drawText('–', {
+                x: margin + 8,
+                y: cursorY - cfg.baseFont,
+                size: cfg.baseFont,
+                font: regularFont,
+                color: rgb(0, 0, 0)
+              });
+            }
+            page.drawText(bl, {
+              x: margin + 20,
+              y: cursorY - cfg.baseFont,
+              size: cfg.baseFont,
+              font: regularFont,
+              color: rgb(0, 0, 0)
+            });
+            cursorY -= (cfg.baseFont + cfg.bulletGap);
+          });
+        });
+      } else if (proj.description && proj.description.trim()) {
+        const dLines = wrapText(proj.description.trim(), regularFont, cfg.baseFont, contentWidth - 20);
+        dLines.forEach((dl, dlIdx) => {
+          ensureSpace(cfg.baseFont + cfg.bulletGap);
+          if (dlIdx === 0) {
+            page.drawText('–', {
+              x: margin + 8,
+              y: cursorY - cfg.baseFont,
+              size: cfg.baseFont,
+              font: regularFont,
+              color: rgb(0, 0, 0)
+            });
+          }
+          page.drawText(dl, {
+            x: margin + 20,
+            y: cursorY - cfg.baseFont,
+            size: cfg.baseFont,
+            font: regularFont,
+            color: rgb(0, 0, 0)
+          });
+          cursorY -= (cfg.baseFont + cfg.bulletGap);
+        });
+      }
+      cursorY -= cfg.itemGap;
+    });
+  }
+
+  // --- 7. ACHIEVEMENT (EXACT ABES FORMAT) ---
+  if (achievements.length > 0) {
+    renderSectionHeading('Achievement');
+    achievements.forEach(ach => {
+      ensureSpace(cfg.baseFont * 2 + cfg.itemGap);
+      const title = ach.title || '';
+      const desc = ach.description || ach.organization || '';
+      const date = (ach.year || ach.date || '').replace(/--/g, '–');
+
+      page.drawText(title, {
+        x: margin,
+        y: cursorY - cfg.baseFont,
+        size: cfg.baseFont,
+        font: boldFont,
+        color: rgb(0, 0, 0)
+      });
+      if (date) {
+        const dateW = boldFont.widthOfTextAtSize(date, cfg.baseFont);
+        page.drawText(date, {
+          x: margin + contentWidth - dateW,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: boldFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      cursorY -= (cfg.baseFont + 1.5);
+
+      if (desc) {
+        const dLines = wrapText(desc, obliqueFont, cfg.baseFont, contentWidth);
+        dLines.forEach(line => {
+          ensureSpace(cfg.baseFont + 1);
+          page.drawText(line, {
+            x: margin,
+            y: cursorY - cfg.baseFont,
+            size: cfg.baseFont,
+            font: obliqueFont,
+            color: rgb(0, 0, 0)
+          });
+          cursorY -= (cfg.baseFont + 1);
+        });
+      }
+      cursorY -= cfg.itemGap;
+    });
+  }
+
+  // --- 8. CERTIFICATES (EXACT ABES FORMAT) ---
+  if (certifications.length > 0) {
+    renderSectionHeading('Certificates');
+    certifications.forEach(cert => {
+      ensureSpace(cfg.baseFont + cfg.itemGap);
+      const name = cert.name || '';
+      const issuer = cert.issuer || '';
+      const date = (cert.date || '').replace(/--/g, '–');
+
+      page.drawText(name, {
+        x: margin,
+        y: cursorY - cfg.baseFont,
+        size: cfg.baseFont,
+        font: boldFont,
+        color: rgb(0, 0, 0)
+      });
+      if (date) {
+        const dateW = boldFont.widthOfTextAtSize(date, cfg.baseFont);
+        page.drawText(date, {
+          x: margin + contentWidth - dateW,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: boldFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      cursorY -= (cfg.baseFont + 1.5);
+
+      if (issuer) {
+        page.drawText(issuer, {
+          x: margin,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: obliqueFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      if (cert.url && cert.url.trim()) {
+        const vStr = '[Verify]';
+        const vW = regularFont.widthOfTextAtSize(vStr, cfg.baseFont - 0.5);
+        const vX = margin + contentWidth - vW;
+        const vY = cursorY - cfg.baseFont;
+        page.drawText(vStr, {
+          x: vX,
+          y: vY,
+          size: cfg.baseFont - 0.5,
+          font: regularFont,
+          color: rgb(0, 0, 0)
+        });
+        addLinkAnnotation(page, pdfDoc, vX, vY - 1, vW, cfg.baseFont + 2, normalizeUrl(cert.url));
+      }
+      cursorY -= (cfg.baseFont + cfg.itemGap);
+    });
+  }
+
+  // --- 9. EXTRACURRICULAR (EXACT ABES FORMAT) ---
+  if (extracurricular.length > 0) {
+    renderSectionHeading('Extracurricular');
+    extracurricular.forEach(ext => {
+      ensureSpace(cfg.baseFont * 2 + cfg.itemGap);
+      const act = ext.organization || ext.activity || '';
+      const role = ext.role || '';
+      const dates = ([ext.startDate, ext.endDate].filter(Boolean).join(' – ') || (ext.duration || '')).replace(/--/g, '–');
+
+      page.drawText(act, {
+        x: margin,
+        y: cursorY - cfg.baseFont,
+        size: cfg.baseFont,
+        font: boldFont,
+        color: rgb(0, 0, 0)
+      });
+      if (dates) {
+        const dateW = boldFont.widthOfTextAtSize(dates, cfg.baseFont);
+        page.drawText(dates, {
+          x: margin + contentWidth - dateW,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: boldFont,
+          color: rgb(0, 0, 0)
+        });
+      }
+      cursorY -= (cfg.baseFont + 1.5);
+
+      if (role) {
+        page.drawText(role, {
+          x: margin,
+          y: cursorY - cfg.baseFont,
+          size: cfg.baseFont,
+          font: obliqueFont,
+          color: rgb(0, 0, 0)
+        });
+        cursorY -= (cfg.baseFont + 1.5);
+      }
+
+      if (ext.description && ext.description.trim()) {
+        const eLines = wrapText(ext.description.trim(), regularFont, cfg.baseFont, contentWidth - 20);
+        eLines.forEach((el, elIdx) => {
+          ensureSpace(cfg.baseFont + cfg.bulletGap);
+          if (elIdx === 0) {
+            page.drawText('–', {
+              x: margin + 8,
+              y: cursorY - cfg.baseFont,
+              size: cfg.baseFont,
+              font: regularFont,
+              color: rgb(0, 0, 0)
+            });
+          }
+          page.drawText(el, {
+            x: margin + 20,
+            y: cursorY - cfg.baseFont,
+            size: cfg.baseFont,
+            font: regularFont,
+            color: rgb(0, 0, 0)
+          });
+          cursorY -= (cfg.baseFont + cfg.bulletGap);
+        });
+      }
+      cursorY -= cfg.itemGap;
+    });
+  }
+
+  const totalPages = pdfDoc.getPageCount();
+  const fitsOnePage = totalPages === 1 && cursorY >= minAcceptableY;
+  return {
+    fitsOnePage,
+    pageCount: totalPages,
+    cursorY,
+    minAcceptableY
+  };
+}
+
+/**
  * Deterministic Vector PDF Compiler (pdf-lib + fontkit + Computer Modern)
- * Strictly matches attached ABES Resume Reference PDF layout & guarantees 1 page.
+ * Strictly matches attached ABES Resume Reference PDF layout & guarantees 1 page (or clean multi-page if overflowing).
  */
 async function compileResumePdf(resumeData, customOptions = {}) {
   const startTime = Date.now();
-
-  // Printable dimensions (A4 standard: 595.28 x 841.89 points)
-  const PAGE_WIDTH = 595.28;
-  const PAGE_HEIGHT = 841.89;
-
-  // Progressive compression levels for strict ABES One-Page guarantee
-  const COMPRESSION_LEVELS = [
-    { name: 'Standard', margin: 34, baseFont: 9.5, nameSize: 20, locSize: 9.5, headSize: 11.5, sectionGap: 7.0, itemGap: 3.5, bulletGap: 1.8 },
-    { name: 'Mild Compress', margin: 30, baseFont: 9.0, nameSize: 18, locSize: 9.0, headSize: 11.0, sectionGap: 6.0, itemGap: 3.0, bulletGap: 1.5 },
-    { name: 'Moderate Compress', margin: 26, baseFont: 8.5, nameSize: 16.5, locSize: 8.5, headSize: 10.5, sectionGap: 5.0, itemGap: 2.2, bulletGap: 1.2 },
-    { name: 'Ultra Compact', margin: 22, baseFont: 8.0, nameSize: 15, locSize: 8.0, headSize: 10.0, sectionGap: 4.0, itemGap: 1.8, bulletGap: 1.0 }
-  ];
 
   let selectedPdfBytes = null;
   let finalStatus = 'failed';
@@ -658,795 +1462,45 @@ async function compileResumePdf(resumeData, customOptions = {}) {
   let generatedLatexCode = '';
   let successfulConfig = null;
 
+  // Phase 1: Progressive Compression Search for strict 1-Page Layout
   for (let i = 0; i < COMPRESSION_LEVELS.length; i++) {
     const cfg = COMPRESSION_LEVELS[i];
     try {
       const pdfDoc = await PDFDocument.create();
+      const renderRes = await renderResumeToDocument(pdfDoc, resumeData, cfg, false);
 
-      // Load TrueType Computer Modern fonts
-      let regularFont, boldFont, obliqueFont;
-      const romanBytes = loadFontBytes('CMU-Serif-Roman.ttf');
-      const boldBytes = loadFontBytes('CMU-Serif-Bold.ttf');
-      const italicBytes = loadFontBytes('CMU-Serif-Italic.ttf');
-
-      if (fontkit && romanBytes && boldBytes && italicBytes) {
-        try {
-          pdfDoc.registerFontkit(fontkit);
-          regularFont = await pdfDoc.embedFont(romanBytes);
-          boldFont = await pdfDoc.embedFont(boldBytes);
-          obliqueFont = await pdfDoc.embedFont(italicBytes);
-        } catch (fontErr) {
-          console.warn('[RESUME ENGINE] Error embedding TrueType fonts, falling back to standard fonts:', fontErr.message);
-          regularFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
-          boldFont = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
-          obliqueFont = await pdfDoc.embedFont(StandardFonts.TimesRomanItalic);
-        }
-      } else {
-        regularFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
-        boldFont = await pdfDoc.embedFont(StandardFonts.TimesRomanBold);
-        obliqueFont = await pdfDoc.embedFont(StandardFonts.TimesRomanItalic);
-      }
-
-      const page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
-      const margin = cfg.margin;
-      const contentWidth = PAGE_WIDTH - 2 * margin;
-
-      let cursorY = PAGE_HEIGHT - margin;
-
-      const p = resumeData.personalDetails || resumeData.personal || {};
-      const summary = (resumeData.summary || p.summary || '').trim();
-
-      // Filter sections to include ONLY non-empty user data
-      const rawEducation = Array.isArray(resumeData.education) ? resumeData.education : [];
-      const education = rawEducation.filter(e => 
-        e && (e.degree?.trim() || e.institution?.trim() || e.fieldOfStudy?.trim() || e.location?.trim() || e.duration?.trim() || e.cgpaOrPercentage?.trim() || e.cgpa?.trim() || e.board?.trim())
-      );
-
-      let rawSkills = [];
-      if (resumeData.technicalSkills && typeof resumeData.technicalSkills === 'object') {
-        const ts = resumeData.technicalSkills;
-        if (Array.isArray(ts.programmingLanguages) && ts.programmingLanguages.length > 0) {
-          rawSkills.push({ category: 'Programming Languages', items: ts.programmingLanguages });
-        }
-        if (Array.isArray(ts.frameworks) && ts.frameworks.length > 0) {
-          rawSkills.push({ category: 'Frameworks & Libraries', items: ts.frameworks });
-        }
-        if (Array.isArray(ts.developerTools) && ts.developerTools.length > 0) {
-          rawSkills.push({ category: 'Developer Tools & Platforms', items: ts.developerTools });
-        }
-        if (Array.isArray(ts.databases) && ts.databases.length > 0) {
-          rawSkills.push({ category: 'Databases', items: ts.databases });
-        }
-        if (Array.isArray(ts.coreConcepts) && ts.coreConcepts.length > 0) {
-          rawSkills.push({ category: 'Core Concepts', items: ts.coreConcepts });
-        }
-      }
-
-      if (rawSkills.length === 0) {
-        if (Array.isArray(resumeData.skills)) {
-          rawSkills = resumeData.skills;
-        } else if (resumeData.skills && typeof resumeData.skills === 'object') {
-          const s = resumeData.skills;
-          if (s.tools?.trim()) rawSkills.push({ category: 'Developer Tools', items: s.tools });
-          if (s.languages?.trim()) rawSkills.push({ category: 'Languages', items: s.languages });
-          if (s.frameworks?.trim()) rawSkills.push({ category: 'Frameworks', items: s.frameworks });
-          if (s.databases?.trim()) rawSkills.push({ category: 'Databases', items: s.databases });
-          if (s.coreConcepts?.trim()) rawSkills.push({ category: 'Core CS Concepts', items: s.coreConcepts });
-          if (s.skills?.trim()) rawSkills.push({ category: 'Skills', items: s.skills });
-          if (s.other?.trim()) rawSkills.push({ category: 'Other Skills', items: s.other });
-        }
-      }
-      const skills = rawSkills.filter(s => {
-        if (!s) return false;
-        const items = Array.isArray(s.items) ? s.items.join('') : (s.items || '');
-        return items.trim().length > 0;
-      });
-
-      const rawExperience = Array.isArray(resumeData.experience) ? resumeData.experience : [];
-      const experience = rawExperience.filter(e =>
-        e && (e.title?.trim() || e.company?.trim() || e.location?.trim() || (Array.isArray(e.bullets) && e.bullets.some(b => b && b.trim())))
-      );
-
-      const rawProjects = Array.isArray(resumeData.projects) ? resumeData.projects : [];
-      const projects = rawProjects.filter(pr =>
-        pr && (pr.title?.trim() || pr.techStack?.trim() || pr.githubUrl?.trim() || pr.liveUrl?.trim() || (Array.isArray(pr.bullets) && pr.bullets.some(b => b && b.trim())) || pr.description?.trim())
-      );
-
-      const rawAchievements = Array.isArray(resumeData.achievements) ? resumeData.achievements : [];
-      const achievements = rawAchievements.filter(a =>
-        a && (a.title?.trim() || a.organization?.trim() || a.description?.trim())
-      );
-
-      const rawCertifications = Array.isArray(resumeData.certifications) ? resumeData.certifications : [];
-      const certifications = rawCertifications.filter(c =>
-        c && (c.name?.trim() || c.issuer?.trim() || c.url?.trim())
-      );
-
-      const rawExtracurricular = Array.isArray(resumeData.extracurricular) ? resumeData.extracurricular : [];
-      const extracurricular = rawExtracurricular.filter(x =>
-        x && (x.role?.trim() || x.organization?.trim() || x.description?.trim() || x.activity?.trim())
-      );
-
-      // --- 1. HEADER (CENTERED, EXACT ABES FORMAT) ---
-      const hasName = !!(p.fullName && p.fullName.trim());
-      if (hasName) {
-        const fullName = p.fullName.trim();
-        const nameWidth = boldFont.widthOfTextAtSize(fullName, cfg.nameSize);
-        page.drawText(fullName, {
-          x: margin + Math.max(0, (contentWidth - nameWidth) / 2),
-          y: cursorY - cfg.nameSize,
-          size: cfg.nameSize,
-          font: boldFont,
-          color: rgb(0, 0, 0)
-        });
-        cursorY -= (cfg.nameSize + 3);
-
-        const location = (p.location || '').trim();
-        if (location) {
-          const locWidth = regularFont.widthOfTextAtSize(location, cfg.locSize);
-          page.drawText(location, {
-            x: margin + Math.max(0, (contentWidth - locWidth) / 2),
-            y: cursorY - cfg.locSize,
-            size: cfg.locSize,
-            font: regularFont,
-            color: rgb(0, 0, 0)
-          });
-          cursorY -= (cfg.locSize + 3.5);
-        } else {
-          cursorY -= 1;
-        }
-      }
-
-      // Contact Info Line (Phone, Email, LinkedIn, GitHub, Portfolio)
-      const contactItems = [];
-      if (p.phone && p.phone.trim()) {
-        const rawPhone = p.phone.trim();
-        contactItems.push({
-          type: 'phone',
-          text: formatDisplayPhone(rawPhone),
-          label: formatDisplayPhone(rawPhone),
-          isLink: true,
-          url: normalizePhone(rawPhone)
-        });
-      }
-      if (p.email && p.email.trim()) {
-        const cleanEmail = p.email.trim();
-        contactItems.push({
-          type: 'email',
-          text: 'Email',
-          label: 'Email',
-          isLink: true,
-          url: normalizeEmail(cleanEmail)
-        });
-      }
-      const linkedin = p.linkedinUrl || p.linkedin;
-      if (linkedin && linkedin.trim()) {
-        const rawLink = linkedin.trim();
-        contactItems.push({
-          type: 'linkedin',
-          text: 'LinkedIn',
-          label: 'LinkedIn',
-          isLink: true,
-          url: normalizeUrl(rawLink)
-        });
-      }
-      const github = p.githubUrl || p.github;
-      if (github && github.trim()) {
-        const rawGit = github.trim();
-        contactItems.push({
-          type: 'github',
-          text: 'GitHub',
-          label: 'GitHub',
-          isLink: true,
-          url: normalizeUrl(rawGit)
-        });
-      }
-      const portfolio = p.portfolioUrl || p.portfolio;
-      if (portfolio && portfolio.trim()) {
-        const rawPort = portfolio.trim();
-        contactItems.push({
-          type: 'portfolio',
-          text: 'Portfolio',
-          label: 'Portfolio',
-          isLink: true,
-          url: normalizeUrl(rawPort)
-        });
-      }
-
-      const contactFontSize = cfg.baseFont - 0.5;
-      const iconGap = 2.5;
-      const itemSepGap = 14.0;
-
-      const calcLineWidth = (items) => {
-        if (!items || items.length === 0) return 0;
-        const totalW = items.reduce((sum, it) => {
-          const tW = regularFont.widthOfTextAtSize(it.text, contactFontSize);
-          const iconCfg = CONTACT_ICONS[it.type];
-          return sum + tW + (iconCfg ? (iconCfg.width + iconGap) : 0);
-        }, 0);
-        return totalW + (items.length - 1) * itemSepGap;
-      };
-
-      const drawContactLine = (items) => {
-        if (!items || items.length === 0) return;
-        const itemWidths = items.map(it => {
-          const tW = regularFont.widthOfTextAtSize(it.text, contactFontSize);
-          const iconCfg = CONTACT_ICONS[it.type];
-          return tW + (iconCfg ? (iconCfg.width + iconGap) : 0);
-        });
-        const totalLineWidth = itemWidths.reduce((a, b) => a + b, 0) + (items.length - 1) * itemSepGap;
-        let curX = margin + Math.max(0, (contentWidth - totalLineWidth) / 2);
-        const curY = cursorY - contactFontSize;
-
-        items.forEach((item, idx) => {
-          const itemW = itemWidths[idx];
-          const iconCfg = CONTACT_ICONS[item.type];
-          let textX = curX;
-
-          if (iconCfg) {
-            page.drawSvgPath(iconCfg.path, {
-              x: curX,
-              y: curY + (contactFontSize * 0.78),
-              scale: iconCfg.scale,
-              color: rgb(0, 0, 0)
-            });
-            textX = curX + iconCfg.width + iconGap;
-          }
-
-          page.drawText(item.text, {
-            x: textX,
-            y: curY,
-            size: contactFontSize,
-            font: regularFont,
-            color: rgb(0, 0, 0)
-          });
-
-          if (item.isLink && item.url) {
-            addLinkAnnotation(page, pdfDoc, curX, curY - 2, itemW, contactFontSize + 4, item.url);
-          }
-
-          curX += itemW + itemSepGap;
-        });
-
-        cursorY -= (contactFontSize + 2.5);
-      };
-
-      if (contactItems.length > 0) {
-        if (calcLineWidth(contactItems) <= contentWidth) {
-          drawContactLine(contactItems);
-        } else {
-          const mid = Math.ceil(contactItems.length / 2);
-          drawContactLine(contactItems.slice(0, mid));
-          drawContactLine(contactItems.slice(mid));
-        }
-      }
-      cursorY -= 2;
-
-      // Helper to render section title with crisp horizontal rule
-      const renderSectionHeading = (title) => {
-        cursorY -= cfg.sectionGap;
-        const headSize = cfg.headSize;
-        page.drawText(title, {
-          x: margin,
-          y: cursorY - headSize,
-          size: headSize,
-          font: boldFont,
-          color: rgb(0, 0, 0)
-        });
-        cursorY -= (headSize + 2.5);
-
-        // Solid black horizontal rule
-        page.drawLine({
-          start: { x: margin, y: cursorY },
-          end: { x: margin + contentWidth, y: cursorY },
-          thickness: 0.5,
-          color: rgb(0, 0, 0)
-        });
-        cursorY -= 4.5;
-      };
-
-      // --- 2. PROFESSIONAL SUMMARY (if provided) ---
-      if (summary) {
-        renderSectionHeading('Professional Summary');
-        const sumLines = wrapText(summary, regularFont, cfg.baseFont, contentWidth);
-        sumLines.forEach(line => {
-          page.drawText(line, {
-            x: margin,
-            y: cursorY - cfg.baseFont,
-            size: cfg.baseFont,
-            font: regularFont,
-            color: rgb(0, 0, 0)
-          });
-          cursorY -= (cfg.baseFont + 2);
-        });
-      }
-
-      // --- 3. EDUCATION (EXACT ABES FORMAT) ---
-      if (education.length > 0) {
-        renderSectionHeading('Education');
-        education.forEach((edu) => {
-          const degTitle = getEducationDegreeTitle(edu);
-          const dateStr = getEducationDuration(edu).replace(/--/g, '–');
-          const scoreStr = formatEducationScore(edu.cgpaOrPercentage || edu.cgpa || edu.percentage || edu.grade || edu.score);
-
-          // Line 1: Degree in Field (Board) (Bold, Left) + Duration (Bold, Right)
-          page.drawText(degTitle, {
-            x: margin,
-            y: cursorY - cfg.baseFont,
-            size: cfg.baseFont,
-            font: boldFont,
-            color: rgb(0, 0, 0)
-          });
-          if (dateStr) {
-            const dateW = boldFont.widthOfTextAtSize(dateStr, cfg.baseFont);
-            page.drawText(dateStr, {
-              x: margin + contentWidth - dateW,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: boldFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          cursorY -= (cfg.baseFont + 1.5);
-
-          // Line 2: Institution (Italic, Left) + Score (Italic, Right)
-          let instLine = (edu.institution || '').trim();
-          if (instLine) {
-            page.drawText(instLine, {
-              x: margin,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: obliqueFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          if (scoreStr) {
-            const scoreW = obliqueFont.widthOfTextAtSize(scoreStr, cfg.baseFont);
-            page.drawText(scoreStr, {
-              x: margin + contentWidth - scoreW,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: obliqueFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          cursorY -= (cfg.baseFont + cfg.itemGap);
-
-          if (edu.description && edu.description.trim()) {
-            const descLines = wrapText(edu.description.trim(), regularFont, cfg.baseFont - 0.5, contentWidth);
-            descLines.forEach(line => {
-              page.drawText(line, {
-                x: margin,
-                y: cursorY - (cfg.baseFont - 0.5),
-                size: cfg.baseFont - 0.5,
-                font: regularFont,
-                color: rgb(0, 0, 0)
-              });
-              cursorY -= (cfg.baseFont + 1);
-            });
-          }
-        });
-      }
-
-      // --- 4. TECHNICAL SKILLS (EXACT ABES FORMAT) ---
-      if (skills.length > 0) {
-        renderSectionHeading('Technical Skills');
-        skills.forEach(sk => {
-          const cat = `${sk.category || 'Skills'}: `;
-          const itemsStr = Array.isArray(sk.items) ? sk.items.join(', ') : (sk.items || '');
-          const catWidth = boldFont.widthOfTextAtSize(cat, cfg.baseFont);
-
-          page.drawText(cat, {
-            x: margin,
-            y: cursorY - cfg.baseFont,
-            size: cfg.baseFont,
-            font: boldFont,
-            color: rgb(0, 0, 0)
-          });
-
-          const itemLines = wrapText(itemsStr, regularFont, cfg.baseFont, contentWidth - catWidth);
-          if (itemLines.length > 0) {
-            page.drawText(itemLines[0], {
-              x: margin + catWidth,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: regularFont,
-              color: rgb(0, 0, 0)
-            });
-            cursorY -= (cfg.baseFont + 2.5);
-
-            for (let li = 1; li < itemLines.length; li++) {
-              page.drawText(itemLines[li], {
-                x: margin + catWidth,
-                y: cursorY - cfg.baseFont,
-                size: cfg.baseFont,
-                font: regularFont,
-                color: rgb(0, 0, 0)
-              });
-              cursorY -= (cfg.baseFont + 2.5);
-            }
-          } else {
-            cursorY -= (cfg.baseFont + 2.5);
-          }
-        });
-      }
-
-      // --- 5. INTERNSHIPS (EXACT ABES FORMAT) ---
-      if (experience.length > 0) {
-        renderSectionHeading('Internships');
-        experience.forEach(exp => {
-          const company = exp.company || 'Company';
-          const dates = (exp.duration || [exp.startDate, exp.current ? 'Present' : exp.endDate].filter(Boolean).join(' – ')).replace(/--/g, '–');
-          const role = exp.title || exp.role || 'Role';
-          const location = exp.location || '';
-
-          // Line 1: Company (Bold, Left) + Dates (Bold, Right)
-          page.drawText(company, {
-            x: margin,
-            y: cursorY - cfg.baseFont,
-            size: cfg.baseFont,
-            font: boldFont,
-            color: rgb(0, 0, 0)
-          });
-          if (dates) {
-            const dateW = boldFont.widthOfTextAtSize(dates, cfg.baseFont);
-            page.drawText(dates, {
-              x: margin + contentWidth - dateW,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: boldFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          cursorY -= (cfg.baseFont + 1.5);
-
-          // Line 2: Role (Italic, Left) + Location (Italic, Right)
-          page.drawText(role, {
-            x: margin,
-            y: cursorY - cfg.baseFont,
-            size: cfg.baseFont,
-            font: obliqueFont,
-            color: rgb(0, 0, 0)
-          });
-          if (location) {
-            const locW = obliqueFont.widthOfTextAtSize(location, cfg.baseFont);
-            page.drawText(location, {
-              x: margin + contentWidth - locW,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: obliqueFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          cursorY -= (cfg.baseFont + 2);
-
-          // Bullets with en-dash (–)
-          if (Array.isArray(exp.bullets)) {
-            exp.bullets.forEach(b => {
-              if (b && b.trim()) {
-                const bLines = wrapText(b.trim(), regularFont, cfg.baseFont, contentWidth - 20);
-                bLines.forEach((bl, blIdx) => {
-                  if (blIdx === 0) {
-                    page.drawText('–', {
-                      x: margin + 8,
-                      y: cursorY - cfg.baseFont,
-                      size: cfg.baseFont,
-                      font: regularFont,
-                      color: rgb(0, 0, 0)
-                    });
-                  }
-                  page.drawText(bl, {
-                    x: margin + 20,
-                    y: cursorY - cfg.baseFont,
-                    size: cfg.baseFont,
-                    font: regularFont,
-                    color: rgb(0, 0, 0)
-                  });
-                  cursorY -= (cfg.baseFont + cfg.bulletGap);
-                });
-              }
-            });
-          }
-          cursorY -= cfg.itemGap;
-        });
-      }
-
-      // --- 6. PROJECTS (EXACT ABES FORMAT) ---
-      if (projects.length > 0) {
-        renderSectionHeading('Projects');
-        projects.forEach(proj => {
-          const title = proj.title || 'Project';
-          const dates = (proj.date || proj.duration || '').replace(/--/g, '–');
-
-          // Project title in bold
-          page.drawText(title, {
-            x: margin,
-            y: cursorY - cfg.baseFont,
-            size: cfg.baseFont,
-            font: boldFont,
-            color: rgb(0, 0, 0)
-          });
-          const titleW = boldFont.widthOfTextAtSize(title, cfg.baseFont);
-
-          // Clickable link buttons next to title if available
-          let linkX = margin + titleW + 8;
-          if (proj.githubUrl && proj.githubUrl.trim()) {
-            const ghUrl = normalizeUrl(proj.githubUrl);
-            const ghStr = '[GitHub]';
-            const ghW = regularFont.widthOfTextAtSize(ghStr, cfg.baseFont - 0.5);
-            page.drawText(ghStr, {
-              x: linkX,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont - 0.5,
-              font: regularFont,
-              color: rgb(0, 0, 0)
-            });
-            addLinkAnnotation(page, pdfDoc, linkX, cursorY - cfg.baseFont - 1, ghW, cfg.baseFont + 2, ghUrl);
-            linkX += ghW + 6;
-          }
-          if (proj.liveUrl && proj.liveUrl.trim()) {
-            const liveUrl = normalizeUrl(proj.liveUrl);
-            const liveStr = '[Live Demo]';
-            const liveW = regularFont.widthOfTextAtSize(liveStr, cfg.baseFont - 0.5);
-            page.drawText(liveStr, {
-              x: linkX,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont - 0.5,
-              font: regularFont,
-              color: rgb(0, 0, 0)
-            });
-            addLinkAnnotation(page, pdfDoc, linkX, cursorY - cfg.baseFont - 1, liveW, cfg.baseFont + 2, liveUrl);
-          }
-
-          if (dates) {
-            const dateW = boldFont.widthOfTextAtSize(dates, cfg.baseFont);
-            page.drawText(dates, {
-              x: margin + contentWidth - dateW,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: boldFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          cursorY -= (cfg.baseFont + 2);
-
-          // Bullets with en-dash (–)
-          const bullets = Array.isArray(proj.bullets) ? proj.bullets.filter(b => b && b.trim()) : [];
-          if (bullets.length > 0) {
-            bullets.forEach(b => {
-              const bLines = wrapText(b.trim(), regularFont, cfg.baseFont, contentWidth - 20);
-              bLines.forEach((bl, blIdx) => {
-                if (blIdx === 0) {
-                  page.drawText('–', {
-                    x: margin + 8,
-                    y: cursorY - cfg.baseFont,
-                    size: cfg.baseFont,
-                    font: regularFont,
-                    color: rgb(0, 0, 0)
-                  });
-                }
-                page.drawText(bl, {
-                  x: margin + 20,
-                  y: cursorY - cfg.baseFont,
-                  size: cfg.baseFont,
-                  font: regularFont,
-                  color: rgb(0, 0, 0)
-                });
-                cursorY -= (cfg.baseFont + cfg.bulletGap);
-              });
-            });
-          } else if (proj.description && proj.description.trim()) {
-            const dLines = wrapText(proj.description.trim(), regularFont, cfg.baseFont, contentWidth - 20);
-            dLines.forEach((dl, dlIdx) => {
-              if (dlIdx === 0) {
-                page.drawText('–', {
-                  x: margin + 8,
-                  y: cursorY - cfg.baseFont,
-                  size: cfg.baseFont,
-                  font: regularFont,
-                  color: rgb(0, 0, 0)
-                });
-              }
-              page.drawText(dl, {
-                x: margin + 20,
-                y: cursorY - cfg.baseFont,
-                size: cfg.baseFont,
-                font: regularFont,
-                color: rgb(0, 0, 0)
-              });
-              cursorY -= (cfg.baseFont + cfg.bulletGap);
-            });
-          }
-          cursorY -= cfg.itemGap;
-        });
-      }
-
-      // --- 7. ACHIEVEMENT (EXACT ABES FORMAT) ---
-      if (achievements.length > 0) {
-        renderSectionHeading('Achievement');
-        achievements.forEach(ach => {
-          const title = ach.title || '';
-          const desc = ach.description || ach.organization || '';
-          const date = (ach.year || ach.date || '').replace(/--/g, '–');
-
-          // Line 1: Title (Bold, Left) + Date (Bold, Right)
-          page.drawText(title, {
-            x: margin,
-            y: cursorY - cfg.baseFont,
-            size: cfg.baseFont,
-            font: boldFont,
-            color: rgb(0, 0, 0)
-          });
-          if (date) {
-            const dateW = boldFont.widthOfTextAtSize(date, cfg.baseFont);
-            page.drawText(date, {
-              x: margin + contentWidth - dateW,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: boldFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          cursorY -= (cfg.baseFont + 1.5);
-
-          // Line 2: Description (Italic, Left)
-          if (desc) {
-            const dLines = wrapText(desc, obliqueFont, cfg.baseFont, contentWidth);
-            dLines.forEach(line => {
-              page.drawText(line, {
-                x: margin,
-                y: cursorY - cfg.baseFont,
-                size: cfg.baseFont,
-                font: obliqueFont,
-                color: rgb(0, 0, 0)
-              });
-              cursorY -= (cfg.baseFont + 1);
-            });
-          }
-          cursorY -= cfg.itemGap;
-        });
-      }
-
-      // --- 8. CERTIFICATES (EXACT ABES FORMAT) ---
-      if (certifications.length > 0) {
-        renderSectionHeading('Certificates');
-        certifications.forEach(cert => {
-          const name = cert.name || '';
-          const issuer = cert.issuer || '';
-          const date = (cert.date || '').replace(/--/g, '–');
-
-          // Line 1: Certificate Name (Bold, Left) + Date (Bold, Right)
-          page.drawText(name, {
-            x: margin,
-            y: cursorY - cfg.baseFont,
-            size: cfg.baseFont,
-            font: boldFont,
-            color: rgb(0, 0, 0)
-          });
-          if (date) {
-            const dateW = boldFont.widthOfTextAtSize(date, cfg.baseFont);
-            page.drawText(date, {
-              x: margin + contentWidth - dateW,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: boldFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          cursorY -= (cfg.baseFont + 1.5);
-
-          // Line 2: Issuer (Italic, Left) + [Verify] (Right)
-          if (issuer) {
-            page.drawText(issuer, {
-              x: margin,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: obliqueFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          if (cert.url && cert.url.trim()) {
-            const vStr = '[Verify]';
-            const vW = regularFont.widthOfTextAtSize(vStr, cfg.baseFont - 0.5);
-            const vX = margin + contentWidth - vW;
-            const vY = cursorY - cfg.baseFont;
-            page.drawText(vStr, {
-              x: vX,
-              y: vY,
-              size: cfg.baseFont - 0.5,
-              font: regularFont,
-              color: rgb(0, 0, 0)
-            });
-            addLinkAnnotation(page, pdfDoc, vX, vY - 1, vW, cfg.baseFont + 2, normalizeUrl(cert.url));
-          }
-          cursorY -= (cfg.baseFont + cfg.itemGap);
-        });
-      }
-
-      // --- 9. EXTRACURRICULAR (EXACT ABES FORMAT) ---
-      if (extracurricular.length > 0) {
-        renderSectionHeading('Extracurricular');
-        extracurricular.forEach(ext => {
-          const act = ext.organization || ext.activity || '';
-          const role = ext.role || '';
-          const dates = ([ext.startDate, ext.endDate].filter(Boolean).join(' – ') || (ext.duration || '')).replace(/--/g, '–');
-
-          // Line 1: Organization/Activity (Bold, Left) + Dates (Bold, Right)
-          page.drawText(act, {
-            x: margin,
-            y: cursorY - cfg.baseFont,
-            size: cfg.baseFont,
-            font: boldFont,
-            color: rgb(0, 0, 0)
-          });
-          if (dates) {
-            const dateW = boldFont.widthOfTextAtSize(dates, cfg.baseFont);
-            page.drawText(dates, {
-              x: margin + contentWidth - dateW,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: boldFont,
-              color: rgb(0, 0, 0)
-            });
-          }
-          cursorY -= (cfg.baseFont + 1.5);
-
-          // Line 2: Role (Italic, Left)
-          if (role) {
-            page.drawText(role, {
-              x: margin,
-              y: cursorY - cfg.baseFont,
-              size: cfg.baseFont,
-              font: obliqueFont,
-              color: rgb(0, 0, 0)
-            });
-            cursorY -= (cfg.baseFont + 1.5);
-          }
-
-          // Bullets
-          if (ext.description && ext.description.trim()) {
-            const eLines = wrapText(ext.description.trim(), regularFont, cfg.baseFont, contentWidth - 20);
-            eLines.forEach((el, elIdx) => {
-              if (elIdx === 0) {
-                page.drawText('–', {
-                  x: margin + 8,
-                  y: cursorY - cfg.baseFont,
-                  size: cfg.baseFont,
-                  font: regularFont,
-                  color: rgb(0, 0, 0)
-                });
-              }
-              page.drawText(el, {
-                x: margin + 20,
-                y: cursorY - cfg.baseFont,
-                size: cfg.baseFont,
-                font: regularFont,
-                color: rgb(0, 0, 0)
-              });
-              cursorY -= (cfg.baseFont + cfg.bulletGap);
-            });
-          }
-          cursorY -= cfg.itemGap;
-        });
-      }
-
-      // CHECK BOTTOM MARGIN / ONE-PAGE OVERFLOW
-      const minAcceptableY = margin / 2;
-      if (cursorY >= minAcceptableY) {
-        // Fits comfortably on 1 page!
+      if (renderRes.fitsOnePage) {
         selectedPdfBytes = await pdfDoc.save();
         finalStatus = 'success';
         onePageOptimized = i > 0;
-        successfulConfig = cfg;
+        successfulConfig = { ...cfg, pageCount: 1, isMultiPage: false };
         break;
-      } else {
-        // Overflows page bottom, save candidate in case later iterations also overflow
-        if (!selectedPdfBytes) {
-          selectedPdfBytes = await pdfDoc.save();
-        }
       }
     } catch (err) {
       compileErrors.push(`Level ${i} (${cfg.name}): ${err.message}`);
+    }
+  }
+
+  // Phase 2: If content genuinely exceeds 1 page across all compression levels, cleanly paginate multi-page
+  if (!selectedPdfBytes || finalStatus !== 'success') {
+    try {
+      const multiDoc = await PDFDocument.create();
+      // Use Standard typography (level 0) so the 2-page document has readable, elegant spacing
+      const multiCfg = COMPRESSION_LEVELS[0];
+      await renderResumeToDocument(multiDoc, resumeData, multiCfg, true);
+      const actualPages = multiDoc.getPageCount();
+
+      selectedPdfBytes = await multiDoc.save();
+      finalStatus = 'success';
+      onePageOptimized = false;
+      successfulConfig = {
+        ...multiCfg,
+        name: `Compact (${actualPages} Pages)`,
+        pageCount: actualPages,
+        isMultiPage: true
+      };
+    } catch (multiErr) {
+      compileErrors.push(`Multi-page render failed: ${multiErr.message}`);
     }
   }
 
@@ -1495,10 +1549,13 @@ async function compileResumePdf(resumeData, customOptions = {}) {
   saveRecentPdf(pdfFileName, selectedPdfBytes);
   const pdfBase64 = Buffer.from(selectedPdfBytes).toString('base64');
 
+  const actualPageCount = successfulConfig?.pageCount || (successfulConfig?.isMultiPage ? 2 : 1);
+  const isStrictOnePage = finalStatus === 'success' && actualPageCount === 1;
+
   const returnPayload = {
     success: finalStatus === 'success',
     compileStatus: finalStatus,
-    pageCount: 1,
+    pageCount: actualPageCount,
     pdfUrl: `/uploads/resumes/${pdfFileName}`,
     pdfBase64,
     pdfFilePath,
@@ -1508,11 +1565,12 @@ async function compileResumePdf(resumeData, customOptions = {}) {
     durationMs: Date.now() - startTime,
     compressionLevel: successfulConfig ? successfulConfig.name : 'Overflow',
     stats: {
-      isOnePage: finalStatus === 'success',
-      pageCount: 1,
-      levelIndex: successfulConfig ? COMPRESSION_LEVELS.findIndex(l => l.name === successfulConfig.name) : 3,
-      levelName: successfulConfig ? successfulConfig.name : 'Overflow Warning',
-      overflowWarning: finalStatus !== 'success'
+      isOnePage: isStrictOnePage,
+      pageCount: actualPageCount,
+      levelIndex: successfulConfig?.isMultiPage ? 3 : (successfulConfig ? COMPRESSION_LEVELS.findIndex(l => l.name === successfulConfig.name) : 0),
+      levelName: successfulConfig ? successfulConfig.name : (finalStatus === 'success' ? 'Standard' : 'Overflow Warning'),
+      overflowWarning: !isStrictOnePage,
+      message: isStrictOnePage ? `Strict 1-Page Layout Verified (${successfulConfig?.name || 'Standard'})` : `Overflow Warning: ${actualPageCount} Pages`
     }
   };
 
