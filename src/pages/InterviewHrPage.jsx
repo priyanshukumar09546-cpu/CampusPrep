@@ -31,6 +31,8 @@ import {
   VideoOff,
   MessageSquare,
   Volume2,
+  VolumeX,
+  RotateCcw,
   Check,
   Award,
   HelpCircle,
@@ -51,6 +53,11 @@ import {
   fetchNextHrQuestion,
   submitHrInterview
 } from '../utils/interviewSessionManager';
+import {
+  speakInterviewQuestion,
+  stopInterviewSpeech,
+  isSpeechSupported
+} from '../utils/interviewVoiceEngine';
 import InterviewProctorMonitor from '../components/InterviewProctorMonitor';
 
 export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
@@ -86,6 +93,13 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
   const [liveSpokenText, setLiveSpokenText] = useState('');
   const [typedAnswer, setTypedAnswer] = useState('');
   const [isMicMuted, setIsMicMuted] = useState(false);
+  const [isAIMuted, setIsAIMuted] = useState(() => {
+    try {
+      return localStorage.getItem('interview_pro_ai_voice_muted') === 'true';
+    } catch {
+      return false;
+    }
+  });
   const [isCameraActive, setIsCameraActive] = useState(true);
   const [isChatDrawerOpen, setIsChatDrawerOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
@@ -94,7 +108,8 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
 
   // Speech Recognition & Synthesis references
   const recognitionRef = useRef(null);
-  const synthRef = useRef(window.speechSynthesis || null);
+  const synthRef = useRef(typeof window !== 'undefined' ? window.speechSynthesis : null);
+  const lastSpokenQuestionIdRef = useRef(null);
 
   // 15-Minute Persistent Countdown Timer
   const [timeLeft, setTimeLeft] = useState(() => {
@@ -164,51 +179,98 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
     return () => { isMounted = false; };
   }, [attemptId]);
 
-  // 2. Text-to-Speech: AI speaks HR question aloud with friendly, professional female voice
+  // 2. Text-to-Speech: AI speaks HR question aloud with natural, polished female voice
   useEffect(() => {
+    const qKey = currentQuestion?.questionId || currentQuestion?.title || currentQuestion?.question;
+    if (!qKey) return;
+
+    // Prevent duplicate speech on rerenders
+    if (lastSpokenQuestionIdRef.current === qKey) return;
+    lastSpokenQuestionIdRef.current = qKey;
+
     const textToSpeak = currentQuestion?.spokenText || currentQuestion?.question;
-    if (!textToSpeak || !synthRef.current || typeof window === 'undefined' || !('SpeechSynthesisUtterance' in window)) return;
+    if (!textToSpeak) return;
 
     // Stop recognition while AI is speaking so microphone doesn't capture AI audio
     stopSpeechRecognition();
     clearSilenceTimers();
-    synthRef.current.cancel();
     setVoiceState('ai_speaking');
 
-    const utterance = new window.SpeechSynthesisUtterance(textToSpeak);
-    utterance.rate = 0.98;
-    utterance.pitch = 1.05; // Friendly, warm female tone
-
-    const voices = synthRef.current.getVoices ? synthRef.current.getVoices() : [];
-    const femaleVoice = voices.find(v => (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Samantha') || v.name.includes('Victoria')) && v.lang.startsWith('en')) || voices[0];
-    if (femaleVoice) utterance.voice = femaleVoice;
-
-    utterance.onstart = () => {
-      setVoiceState('ai_speaking');
-    };
-
-    utterance.onend = () => {
-      setVoiceState('listening');
-      if (!isMicMuted) {
-        startSpeechRecognition();
-      } else {
+    speakInterviewQuestion(textToSpeak, {
+      isMuted: isAIMuted,
+      rate: 0.96,
+      pitch: 1.05,
+      onStart: () => {
+        setVoiceState('ai_speaking');
+      },
+      onEnd: () => {
+        setVoiceState(isMicMuted ? 'your_turn' : 'listening');
+        if (!isMicMuted) {
+          startSpeechRecognition();
+        }
+        startSilenceTimers();
+      },
+      onError: () => {
         setVoiceState('your_turn');
+        startSilenceTimers();
       }
-      startSilenceTimers();
-    };
-
-    utterance.onerror = () => {
-      setVoiceState('your_turn');
-      startSilenceTimers();
-    };
-
-    synthRef.current.speak(utterance);
+    });
 
     return () => {
-      if (synthRef.current) synthRef.current.cancel();
+      stopInterviewSpeech();
       clearSilenceTimers();
     };
-  }, [currentQuestion, isMicMuted]);
+  }, [currentQuestion, isAIMuted, isMicMuted]);
+
+  // Replay Current HR Question Aloud in Natural Female Voice
+  const handleReplayQuestion = () => {
+    const textToSpeak = currentQuestion?.spokenText || currentQuestion?.question;
+    if (!textToSpeak) return;
+
+    stopSpeechRecognition();
+    clearSilenceTimers();
+    setVoiceState('ai_speaking');
+
+    speakInterviewQuestion(textToSpeak, {
+      isMuted: false,
+      rate: 0.96,
+      pitch: 1.05,
+      onStart: () => {
+        setVoiceState('ai_speaking');
+      },
+      onEnd: () => {
+        setVoiceState(isMicMuted ? 'your_turn' : 'listening');
+        if (!isMicMuted) {
+          startSpeechRecognition();
+        }
+        startSilenceTimers();
+      },
+      onError: () => {
+        setVoiceState('your_turn');
+        startSilenceTimers();
+      }
+    });
+  };
+
+  // Toggle AI Voice Mute / Unmute
+  const toggleAIMute = () => {
+    setIsAIMuted(prev => {
+      const next = !prev;
+      try {
+        localStorage.setItem('interview_pro_ai_voice_muted', String(next));
+      } catch {}
+      if (next) {
+        stopInterviewSpeech();
+        if (voiceState === 'ai_speaking') {
+          setVoiceState(isMicMuted ? 'your_turn' : 'listening');
+          if (!isMicMuted) startSpeechRecognition();
+        }
+      } else {
+        handleReplayQuestion();
+      }
+      return next;
+    });
+  };
 
   // 3. Speech Recognition Engine
   const startSpeechRecognition = () => {
@@ -319,12 +381,7 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
 
   // Repeat Question Aloud
   const handleRepeatQuestion = () => {
-    if (!currentQuestion || !synthRef.current || typeof window === 'undefined' || !('SpeechSynthesisUtterance' in window)) return;
-    clearSilenceTimers();
-    synthRef.current.cancel();
-    const text = currentQuestion.spokenText || currentQuestion.question;
-    const utterance = new window.SpeechSynthesisUtterance("Let me repeat the scenario: " + text);
-    synthRef.current.speak(utterance);
+    handleReplayQuestion();
   };
 
   // 5. Submit Candidate Answer & Fetch Next Question
@@ -340,7 +397,7 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
     }
 
     stopSpeechRecognition();
-    if (synthRef.current) synthRef.current.cancel();
+    stopInterviewSpeech();
     setVoiceState('processing');
 
     const isSkipped = candidateAnswer.toLowerCase() === 'skip';
@@ -398,7 +455,7 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
   const handleFinishInterview = async (finalEvaluations = evaluations, finalTranscript = transcript) => {
     stopSpeechRecognition();
     clearSilenceTimers();
-    if (synthRef.current) synthRef.current.cancel();
+    stopInterviewSpeech();
 
     setToastMessage({
       type: 'success',
@@ -794,50 +851,100 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
               position: 'relative',
               display: 'flex',
               alignItems: 'flex-start',
+              justifyContent: 'space-between',
               gap: '0.85rem',
               animation: 'fadeIn 0.3s ease-out',
               border: '2px solid rgba(244, 63, 94, 0.4)'
             }}>
-              <div style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '50%',
-                backgroundColor: '#FDF2F8',
-                color: '#DB2777',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0
-              }}>
-                <Volume2 size={18} />
-              </div>
-              <div>
-                <div style={{ fontSize: '0.7rem', color: '#BE185D', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.25rem' }}>
-                  Question {currentQIndex + 1} of 5: {currentQuestion?.title || 'Behavioral Scenario'}
-                </div>
-                {currentQuestion?.conversationalAck && (
-                  <div style={{
-                    fontSize: '0.86rem',
-                    fontStyle: 'italic',
-                    color: '#9D174D',
-                    marginBottom: '0.4rem',
-                    fontWeight: 600,
-                    lineHeight: 1.4,
-                    borderLeft: '2.5px solid #F43F5E',
-                    paddingLeft: '0.55rem'
-                  }}>
-                    "{currentQuestion.conversationalAck}"
-                  </div>
-                )}
-                <p style={{
-                  margin: 0,
-                  fontSize: '0.98rem',
-                  fontWeight: 700,
-                  lineHeight: 1.45,
-                  color: '#1E1224'
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem', flex: 1 }}>
+                <div style={{
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  backgroundColor: isAIMuted ? '#FEE2E2' : '#FDF2F8',
+                  color: isAIMuted ? '#EF4444' : '#DB2777',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
                 }}>
-                  {currentQuestion?.question || 'Preparing your tailored behavioral dilemma...'}
-                </p>
+                  {isAIMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.7rem', color: '#BE185D', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '0.25rem' }}>
+                    Question {currentQIndex + 1} of 5: {currentQuestion?.title || 'Behavioral Scenario'}
+                  </div>
+                  {currentQuestion?.conversationalAck && (
+                    <div style={{
+                      fontSize: '0.86rem',
+                      fontStyle: 'italic',
+                      color: '#9D174D',
+                      marginBottom: '0.4rem',
+                      fontWeight: 600,
+                      lineHeight: 1.4,
+                      borderLeft: '2.5px solid #F43F5E',
+                      paddingLeft: '0.55rem'
+                    }}>
+                      "{currentQuestion.conversationalAck}"
+                    </div>
+                  )}
+                  <p style={{
+                    margin: 0,
+                    fontSize: '0.98rem',
+                    fontWeight: 700,
+                    lineHeight: 1.45,
+                    color: '#1E1224'
+                  }}>
+                    {currentQuestion?.question || 'Preparing your tailored behavioral dilemma...'}
+                  </p>
+                </div>
+              </div>
+
+              {/* AI Voice Action Controls: Replay + Mute/Unmute */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexShrink: 0 }}>
+                <button
+                  type="button"
+                  onClick={handleReplayQuestion}
+                  title="Replay Question with natural voice"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.3rem',
+                    backgroundColor: '#FFF1F2',
+                    color: '#BE185D',
+                    border: '1.5px solid #FECDD3',
+                    borderRadius: '8px',
+                    padding: '0.35rem 0.65rem',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    cursor: 'pointer'
+                  }}
+                >
+                  <RotateCcw size={13} />
+                  <span>Replay</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={toggleAIMute}
+                  title={isAIMuted ? 'Unmute AI Voice' : 'Mute AI Voice'}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.3rem',
+                    backgroundColor: isAIMuted ? '#FEF2F2' : '#FFF1F2',
+                    color: isAIMuted ? '#DC2626' : '#BE185D',
+                    border: isAIMuted ? '1.5px solid #FECACA' : '1.5px solid #FECDD3',
+                    borderRadius: '8px',
+                    padding: '0.35rem 0.65rem',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    cursor: 'pointer'
+                  }}
+                >
+                  {isAIMuted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+                  <span>{isAIMuted ? 'Unmute' : 'Mute AI'}</span>
+                </button>
               </div>
             </div>
           </div>
@@ -892,6 +999,38 @@ export default function InterviewHrPage({ onNavigate, onOpenAuth }) {
               gap: '1.25rem',
               boxShadow: '0 12px 32px rgba(0,0,0,0.45)'
             }}>
+              {/* AI Voice Toggle */}
+              <button
+                type="button"
+                onClick={toggleAIMute}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: isAIMuted ? '#F87171' : '#F472B6',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '0.2rem',
+                  fontSize: '0.68rem',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                <div style={{
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '50%',
+                  backgroundColor: isAIMuted ? '#831843' : '#4C1D95',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.15s ease'
+                }}>
+                  {isAIMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                </div>
+                <span>{isAIMuted ? 'AI Muted' : 'AI Voice'}</span>
+              </button>
+
               {/* Mute Toggle */}
               <button
                 type="button"

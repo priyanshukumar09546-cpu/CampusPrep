@@ -692,11 +692,21 @@ const OpportunitySchema = new mongoose.Schema({
   sourceUrl: { type: String, required: true },
   applicationUrl: { type: String, required: true },
   sourceType: { type: String, default: 'Official Careers Portal' },
-  verified: { type: Boolean, default: true },
-  verificationStatus: { type: String, enum: ['verified', 'needs_review', 'broken_link', 'expired', 'rejected'], default: 'verified' },
+  verified: { type: Boolean, default: false },
+  isEmployerVerified: { type: Boolean, default: false },
+  isLinkVerified: { type: Boolean, default: false },
+  verificationStatus: { type: String, enum: ['verified', 'needs_review', 'unverified', 'broken_link', 'expired', 'closed', 'rejected'], default: 'needs_review' },
+  applicationType: { type: String, enum: ['direct_ats', 'official_portal', 'external_form', 'careers_hub', 'unverified'], default: 'official_portal' },
+  verificationEvidenceUrl: { type: String, default: '' },
   lastVerifiedAt: { type: Date, default: Date.now },
   httpStatusCode: { type: Number, default: 200 },
-  verificationNotes: { type: String, default: 'Verified authentic official career portal' },
+  verificationNotes: { type: String, default: '' },
+  linkValidationDetails: {
+    isDirectForm: { type: Boolean, default: false },
+    isGenericHomepage: { type: Boolean, default: false },
+    lastCheckedAt: { type: Date, default: Date.now },
+    notes: { type: String, default: '' }
+  },
   publishedAt: { type: Date, default: Date.now },
   expiresAt: { type: Date, default: null },
   featured: { type: Boolean, default: false },
@@ -1008,21 +1018,24 @@ async function syncMongoDbWithLocalStores() {
       console.warn('[DATABASE] Project sync notice:', projSyncErr.message);
     }
 
-    // 7. Sync Opportunities (Internships & Jobs)
+    // 7. Sync Opportunities (Ensure verified schemas & direct application URLs take precedence)
     try {
-      const mongoOpps = await OpportunityModel.find({}).lean();
-      if (mongoOpps && mongoOpps.length > 0) {
-        dbOpportunities = mongoOpps;
-        saveOpportunitiesToDisk(dbOpportunities);
-        console.log(`[DATABASE] Synced ${dbOpportunities.length} Opportunities from MongoDB.`);
+      const diskOpps = loadOpportunitiesFromDisk();
+      if (diskOpps && diskOpps.length > 0) {
+        // Remove stale/dummy test submissions if present
+        await OpportunityModel.deleteMany({ id: { $in: ['opp-sub-mugruhsy', 'opp-sub-mugs0mse'] } });
+        for (const opp of diskOpps) {
+          const { _id, ...fieldsToSet } = opp;
+          await OpportunityModel.updateOne({ id: opp.id }, { $set: fieldsToSet }, { upsert: true });
+        }
+        dbOpportunities = diskOpps;
+        console.log(`[DATABASE] Synced ${diskOpps.length} verified Opportunities from disk to MongoDB.`);
       } else {
-        const diskOpps = loadOpportunitiesFromDisk();
-        if (diskOpps.length > 0) {
-          dbOpportunities = diskOpps;
-          for (const opp of diskOpps) {
-            await OpportunityModel.updateOne({ id: opp.id }, { $set: opp }, { upsert: true });
-          }
-          console.log(`[DATABASE] Synced ${diskOpps.length} Opportunities from disk to MongoDB.`);
+        const mongoOpps = await OpportunityModel.find({}).lean();
+        if (mongoOpps && mongoOpps.length > 0) {
+          dbOpportunities = mongoOpps;
+          saveOpportunitiesToDisk(dbOpportunities);
+          console.log(`[DATABASE] Synced ${dbOpportunities.length} Opportunities from MongoDB.`);
         }
       }
     } catch (oppSyncErr) {
@@ -7149,8 +7162,18 @@ app.get('/api/admin/resume-maker/analytics', verifyAdminToken, (req, res) => {
 
 async function verifyUrlReachability(targetUrl) {
   if (!targetUrl || typeof targetUrl !== 'string') {
-    return { ok: false, statusCode: 0, error: 'No URL provided' };
+    return { ok: false, statusCode: 0, error: 'No URL provided', isGenericHomepage: false };
   }
+
+  let isGenericHomepage = false;
+  try {
+    const u = new URL(targetUrl);
+    const p = u.pathname.toLowerCase().replace(/\/+$/, '');
+    if (!p || p === '' || p === '/careers' || p === '/jobs' || p === '/internships' || p === '/en' || p === '/in') {
+      isGenericHomepage = true;
+    }
+  } catch (_) {}
+
   const tryMethod = (method) => new Promise((resolve) => {
     try {
       const parsed = new URL(targetUrl);
@@ -7168,18 +7191,18 @@ async function verifyUrlReachability(targetUrl) {
         const code = res.statusCode || 0;
         const ok = (code >= 200 && code < 400);
         res.destroy();
-        resolve({ ok, statusCode: code, statusText: res.statusMessage || '' });
+        resolve({ ok, statusCode: code, statusText: res.statusMessage || '', isGenericHomepage });
       });
       req.on('error', (err) => {
-        resolve({ ok: false, statusCode: 0, error: err.message });
+        resolve({ ok: false, statusCode: 0, error: err.message, isGenericHomepage });
       });
       req.on('timeout', () => {
         req.destroy();
-        resolve({ ok: false, statusCode: 408, error: 'Request Timeout' });
+        resolve({ ok: false, statusCode: 408, error: 'Request Timeout', isGenericHomepage });
       });
       req.end();
     } catch (err) {
-      resolve({ ok: false, statusCode: 0, error: err.message });
+      resolve({ ok: false, statusCode: 0, error: err.message, isGenericHomepage });
     }
   });
 
@@ -7187,9 +7210,9 @@ async function verifyUrlReachability(targetUrl) {
   if (!result.ok && (result.statusCode === 405 || result.statusCode === 403 || result.statusCode === 400 || result.statusCode === 404)) {
     // Try GET fallback
     const getResult = await tryMethod('GET');
-    if (getResult.ok) return getResult;
+    if (getResult.ok) return { ...getResult, isGenericHomepage };
   }
-  return result;
+  return { ...result, isGenericHomepage };
 }
 
 // 1. PUBLIC GET PROJECTS LIST WITH DYNAMIC REAL DOMAIN COUNTS
@@ -7908,7 +7931,8 @@ const PREDEFINED_OPPORTUNITY_CATEGORIES = [
 // Helper to filter out expired items unless requested
 function isOpportunityActive(opp, showExpired = false) {
   if (showExpired) return true;
-  if (opp.status !== 'published' || !opp.verified) return false;
+  if (opp.status !== 'published') return false;
+  if (opp.status === 'closed' || opp.verificationStatus === 'expired') return false;
   if (opp.deadlineDate) {
     const d = new Date(opp.deadlineDate);
     // If deadline has passed by more than 24 hours, mark expired
@@ -7930,6 +7954,7 @@ app.get('/api/opportunities', async (req, res) => {
       location = '',
       workMode = '',
       featured = '',
+      trust = '',
       sort = 'latest',
       showExpired = 'false',
       page = 1,
@@ -7942,9 +7967,9 @@ app.get('/api/opportunities', async (req, res) => {
 
     let allItems = [];
     if (isDbConnected) {
-      allItems = await OpportunityModel.find({ status: 'published', verified: true }).sort({ createdAt: -1 }).lean();
+      allItems = await OpportunityModel.find({ status: 'published' }).sort({ createdAt: -1 }).lean();
     } else {
-      allItems = dbOpportunities.filter(o => o.status === 'published' && o.verified);
+      allItems = dbOpportunities.filter(o => o.status === 'published');
     }
 
     // Filter active items
@@ -8012,6 +8037,17 @@ app.get('/api/opportunities', async (req, res) => {
       filtered = filtered.filter(item => item.featured === true);
     }
 
+    // Trust Filter (all, verified/link_verified, employer_verified, needs_review)
+    if (trust && trust !== 'all') {
+      if (trust === 'verified' || trust === 'link_verified') {
+        filtered = filtered.filter(item => item.isLinkVerified);
+      } else if (trust === 'employer_verified') {
+        filtered = filtered.filter(item => item.isEmployerVerified);
+      } else if (trust === 'needs_review') {
+        filtered = filtered.filter(item => item.verificationStatus === 'needs_review');
+      }
+    }
+
     // Sorting
     if (sort === 'deadline') {
       filtered.sort((a, b) => {
@@ -8054,9 +8090,9 @@ app.get('/api/opportunities/categories', async (req, res) => {
   try {
     let allItems = [];
     if (isDbConnected) {
-      allItems = await OpportunityModel.find({ status: 'published', verified: true }).select('domain deadlineDate').lean();
+      allItems = await OpportunityModel.find({ status: 'published' }).select('domain deadlineDate isLinkVerified isEmployerVerified').lean();
     } else {
-      allItems = dbOpportunities.filter(o => o.status === 'published' && o.verified);
+      allItems = dbOpportunities.filter(o => o.status === 'published');
     }
 
     const activePool = allItems.filter(o => isOpportunityActive(o, false));
@@ -8086,8 +8122,7 @@ app.get('/api/opportunities/:slug', async (req, res) => {
     if (isDbConnected) {
       opp = await OpportunityModel.findOne({
         $or: [{ slug }, { id: slug }],
-        status: 'published',
-        verified: true
+        status: 'published'
       }).lean();
 
       if (opp) {
@@ -8095,7 +8130,7 @@ app.get('/api/opportunities/:slug', async (req, res) => {
         opp.viewsCount = (opp.viewsCount || 0) + 1;
       }
     } else {
-      opp = dbOpportunities.find(o => (o.slug === slug || o.id === slug) && o.status === 'published' && o.verified);
+      opp = dbOpportunities.find(o => (o.slug === slug || o.id === slug) && o.status === 'published');
       if (opp) {
         opp.viewsCount = (opp.viewsCount || 0) + 1;
         saveOpportunitiesToDisk(dbOpportunities);
@@ -8112,11 +8147,10 @@ app.get('/api/opportunities/:slug', async (req, res) => {
       related = await OpportunityModel.find({
         domain: opp.domain,
         id: { $ne: opp.id },
-        status: 'published',
-        verified: true
+        status: 'published'
       }).limit(4).lean();
     } else {
-      related = dbOpportunities.filter(o => o.domain === opp.domain && o.id !== opp.id && o.status === 'published' && o.verified).slice(0, 4);
+      related = dbOpportunities.filter(o => o.domain === opp.domain && o.id !== opp.id && o.status === 'published').slice(0, 4);
     }
 
     res.json({ success: true, opportunity: opp, relatedOpportunities: related });
@@ -8547,11 +8581,25 @@ app.post('/api/admin/opportunities', verifyAdminToken, async (req, res) => {
       sourceUrl: companyWebsite || applicationUrl,
       applicationUrl: applicationUrl.trim(),
       sourceType: 'Official Careers Portal',
-      verified: reachability.ok,
-      verificationStatus: reachability.ok ? 'verified' : (reachability.statusCode === 404 ? 'broken_link' : 'needs_review'),
+      isEmployerVerified: Boolean(req.body.isEmployerVerified !== false),
+      isLinkVerified: Boolean(reachability.ok && !reachability.isGenericHomepage),
+      verified: Boolean(reachability.ok && !reachability.isGenericHomepage),
+      verificationStatus: (reachability.ok && !reachability.isGenericHomepage)
+        ? 'verified'
+        : (reachability.statusCode === 404 ? 'broken_link' : 'needs_review'),
+      applicationType: reachability.isGenericHomepage ? 'careers_hub' : 'official_portal',
+      verificationEvidenceUrl: companyWebsite || applicationUrl,
       lastVerifiedAt: new Date(),
       httpStatusCode: reachability.statusCode || 0,
-      verificationNotes: reachability.ok ? `Verified live (HTTP ${reachability.statusCode || 200})` : `Verification flagged: HTTP ${reachability.statusCode || 'ERR'}`,
+      verificationNotes: reachability.isGenericHomepage
+        ? 'Generic careers portal detected. Direct role requisition pending verification.'
+        : (reachability.ok ? `Verified live (HTTP ${reachability.statusCode || 200})` : `Verification flagged: HTTP ${reachability.statusCode || 'ERR'}`),
+      linkValidationDetails: {
+        isDirectForm: !reachability.isGenericHomepage && reachability.ok,
+        isGenericHomepage: reachability.isGenericHomepage,
+        lastCheckedAt: new Date(),
+        notes: reachability.isGenericHomepage ? 'Generic homepage' : 'Direct application'
+      },
       publishedAt: new Date(),
       featured: Boolean(featured),
       status: status || 'published',
@@ -8583,9 +8631,24 @@ app.put('/api/admin/opportunities/:id', verifyAdminToken, async (req, res) => {
 
     if (updates.applicationUrl) {
       const reachability = await verifyUrlReachability(updates.applicationUrl);
-      updates.verificationStatus = reachability.ok ? 'verified' : (reachability.statusCode === 404 ? 'broken_link' : 'needs_review');
+      const isDirect = reachability.ok && !reachability.isGenericHomepage;
+      updates.isLinkVerified = isDirect;
+      updates.verified = isDirect;
+      updates.verificationStatus = isDirect
+        ? 'verified'
+        : (reachability.statusCode === 404 ? 'broken_link' : 'needs_review');
+      updates.applicationType = reachability.isGenericHomepage ? 'careers_hub' : 'official_portal';
       updates.httpStatusCode = reachability.statusCode || 0;
       updates.lastVerifiedAt = new Date();
+      updates.verificationNotes = reachability.isGenericHomepage
+        ? 'Generic careers portal detected. Direct role requisition pending verification.'
+        : (reachability.ok ? `Verified live (HTTP ${reachability.statusCode || 200})` : `Verification flagged: HTTP ${reachability.statusCode || 'ERR'}`);
+      updates.linkValidationDetails = {
+        isDirectForm: isDirect,
+        isGenericHomepage: reachability.isGenericHomepage,
+        lastCheckedAt: new Date(),
+        notes: reachability.isGenericHomepage ? 'Generic homepage' : 'Direct application'
+      };
     }
 
     if (updates.deadline && !isNaN(new Date(updates.deadline).getTime())) {
@@ -8646,17 +8709,27 @@ app.post('/api/admin/opportunities/:id/verify-link', verifyAdminToken, async (re
     }
 
     const reachability = await verifyUrlReachability(opp.applicationUrl);
-    const newStatus = reachability.ok 
+    const isDirect = reachability.ok && !reachability.isGenericHomepage;
+    const newStatus = isDirect 
       ? 'verified' 
       : (reachability.statusCode === 404 ? 'broken_link' : 'needs_review');
 
     const updatePayload = {
+      isLinkVerified: isDirect,
+      verified: isDirect,
       verificationStatus: newStatus,
+      applicationType: reachability.isGenericHomepage ? 'careers_hub' : 'official_portal',
       httpStatusCode: reachability.statusCode || 0,
       lastVerifiedAt: new Date(),
-      verificationNotes: reachability.ok 
-        ? `Re-verified live (HTTP ${reachability.statusCode || 200})` 
-        : `Check flagged (HTTP ${reachability.statusCode || 'ERR'}: ${reachability.error || reachability.statusText})`
+      verificationNotes: reachability.isGenericHomepage
+        ? 'Generic careers portal detected. Direct role requisition pending verification.'
+        : (reachability.ok ? `Re-verified live direct link (HTTP ${reachability.statusCode || 200})` : `Check flagged (HTTP ${reachability.statusCode || 'ERR'}: ${reachability.error || reachability.statusText})`),
+      linkValidationDetails: {
+        isDirectForm: isDirect,
+        isGenericHomepage: reachability.isGenericHomepage,
+        lastCheckedAt: new Date(),
+        notes: reachability.isGenericHomepage ? 'Generic homepage detected' : 'Direct application form'
+      }
     };
 
     if (isDbConnected) {
@@ -8670,6 +8743,8 @@ app.post('/api/admin/opportunities/:id/verify-link', verifyAdminToken, async (re
 
     res.json({
       success: true,
+      isLinkVerified: isDirect,
+      isGenericHomepage: reachability.isGenericHomepage,
       verificationStatus: newStatus,
       statusCode: reachability.statusCode,
       notes: updatePayload.verificationNotes

@@ -1,0 +1,2674 @@
+[
+  {
+    "_id": "6ab63a1e65683c555e92ab8b",
+    "id": "opp-persistent-cyber-intern",
+    "slug": "persistent-systems-cyber-security-intern",
+    "title": "Cyber Security Analyst Intern",
+    "companyId": "persistent",
+    "companyName": "Persistent Systems",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/9/98/Persistent_Systems_Logo.svg",
+    "companyWebsite": "https://www.persistent.com/",
+    "description": "Persistent Systems Security Operations Center (SOC) provides 24x7 monitoring, threat intelligence, and vulnerability assessments for global healthcare and banking clients. Interns gain real hands-on experience in defensive and offensive cybersecurity techniques.",
+    "type": "Internship",
+    "domain": "Cyber Security",
+    "domainId": "cyber-security",
+    "location": "Pune / Nagpur / Hyderabad, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "Cyber Security",
+      "Network Security",
+      "OWASP Top 10",
+      "Linux",
+      "Python"
+    ],
+    "eligibility": [
+      "B.Tech / MCA candidates with cybersecurity coursework or CTF experience",
+      "Final or pre-final year"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹25,000 - ₹35,000/month",
+    "deadline": "Dec 17, 2026",
+    "deadlineDate": "2026-12-17T18:29:59.000Z",
+    "sourceUrl": "https://www.persistent.com/careers/",
+    "applicationUrl": "https://www.persistent.com/careers/",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 302,
+    "verificationNotes": "Employer verified (Persistent Systems). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Assist in vulnerability scanning and penetration testing of web applications",
+      "Analyze security logs in SIEM tools to detect potential intrusion attempts",
+      "Prepare remediation advisories according to OWASP guidelines"
+    ],
+    "requirements": [
+      "Understanding of common web application attack vectors (SQLi, XSS, CSRF, SSRF)",
+      "Basic knowledge of firewalls, encryption standards (TLS/AES), and packet analysis (Wireshark)",
+      "Familiarity with scripting repetitive security checks in Python or Bash"
+    ],
+    "benefits": [
+      "Hands-on exposure to enterprise SOC environments",
+      "PPO opportunities for Security Consultant roles",
+      "Mentorship from Certified Ethical Hackers (CEH / OSCP holders)"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 290,
+    "bookmarksCount": 36,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.674Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.706Z",
+    "updatedAt": "2026-09-25T09:08:46.706Z",
+    "company": "Persistent Systems",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Persistent_Systems_Logo.svg",
+    "stipendOrSalary": "₹25,000 - ₹35,000/month",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.persistent.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab93",
+    "id": "opp-accenture-ase-2025",
+    "slug": "accenture-associate-software-engineer",
+    "title": "Associate Software Engineer (ASE)",
+    "companyId": "accenture",
+    "companyName": "Accenture India",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg",
+    "companyWebsite": "https://www.accenture.com/",
+    "description": "Accenture is a global professional services company leading in digital, cloud, and security. Associate Software Engineers design, develop, and deliver software solutions transforming the operations of Fortune 500 corporations.",
+    "type": "Full-time",
+    "domain": "Software Development",
+    "domainId": "software-development",
+    "location": "Gurugram / Noida / Bangalore / Pune / Hyderabad, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "Java",
+      "Cloud Technologies",
+      "Full Stack",
+      "Agile",
+      "SQL"
+    ],
+    "eligibility": [
+      "B.Tech / MCA graduating batch",
+      "Minimum 65% aggregate throughout academic career",
+      "No current backlogs"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹4.5 - ₹6.5 LPA (ASE / Advanced ASE)",
+    "stipend": "Not specified",
+    "deadline": "Feb 25, 2027",
+    "deadlineDate": "2027-02-25T18:29:59.000Z",
+    "sourceUrl": "https://indiacampus.accenture.com/",
+    "applicationUrl": "https://indiacampus.accenture.com/candidate/#/login/accenture",
+    "sourceType": "Official Employer Campus Portal",
+    "verified": true,
+    "verificationStatus": "verified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Direct Accenture India Campus student registration and application portal.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Develop modern cloud applications using industry best coding practices",
+      "Participate in daily agile standups and sprint retrospectives",
+      "Execute automated test suites and participate in continuous integration deployments"
+    ],
+    "requirements": [
+      "Strong logical problem-solving and coding ability in Java or C#",
+      "Fundamental understanding of databases, SQL queries, and web protocols",
+      "Good interpersonal communication and collaborative mindset"
+    ],
+    "benefits": [
+      "Global learning platforms and free certification sponsorships",
+      "Competitive compensation with annual performance bonus",
+      "Flexible hybrid working model with health insurance"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 450,
+    "bookmarksCount": 58,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.685Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.708Z",
+    "updatedAt": "2026-09-25T09:08:46.708Z",
+    "company": "Accenture India",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg",
+    "stipendOrSalary": "₹4.5 - ₹6.5 LPA (ASE / Advanced ASE)",
+    "isEmployerVerified": true,
+    "isLinkVerified": true,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://indiacampus.accenture.com/",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified Accenture India campus recruitment portal"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab96",
+    "id": "opp-unstop-national-hiring",
+    "slug": "national-tech-hiring-challenge-2025",
+    "title": "National Tech Hiring Challenge & Placement Drive",
+    "companyId": "unstop",
+    "companyName": "Unstop Campus Network",
+    "companyLogo": "https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/branding-guidelines/logos/blue/Unstop-Logo-Blue-Medium.png",
+    "companyWebsite": "https://unstop.com/",
+    "description": "A nationwide assessment and hiring challenge connecting top pre-final and final year students with 50+ hiring partners in tech and analytics. Top performers get direct interview shortlists for SDE and Data roles.",
+    "type": "Full-time",
+    "domain": "Software Development",
+    "domainId": "software-development",
+    "location": "Pan-India",
+    "workMode": "Remote",
+    "skills": [
+      "Data Structures",
+      "Algorithms",
+      "Competitive Programming",
+      "Problem Solving",
+      "Python"
+    ],
+    "eligibility": [
+      "Open to all engineering, MCA, MBA, and pharmacy students",
+      "Any graduation year eligible"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA",
+      "MBA",
+      "B.Pharm"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹5.0 - ₹12.0 LPA (Depending on matching company)",
+    "stipend": "Not specified",
+    "deadline": "Nov 16, 2026",
+    "deadlineDate": "2026-11-16T18:29:59.000Z",
+    "sourceUrl": "https://unstop.com/internships",
+    "applicationUrl": "https://unstop.com/internships",
+    "sourceType": "Verified Platform Drive",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 200,
+    "verificationNotes": "Employer verified (Unstop Campus Network). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Complete online coding and aptitude assessments within given timeframes",
+      "Participate in hackathons or case study rounds for shortlisted partner organizations",
+      "Attend virtual technical interviews with matching recruiters"
+    ],
+    "requirements": [
+      "Strong algorithmic thinking and speed in solving coding problems",
+      "Proficiency in any mainstream language (C++, Java, Python, or Go)",
+      "Clean academic conduct and valid identity documentation"
+    ],
+    "benefits": [
+      "Single test for multiple hiring companies",
+      "Certificates of merit and national leaderboard rank",
+      "Direct interview calls bypassing standard resume filters"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 490,
+    "bookmarksCount": 71,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.690Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.708Z",
+    "updatedAt": "2026-09-25T09:08:46.708Z",
+    "company": "Unstop Campus Network",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA",
+      "MBA",
+      "B.Pharm"
+    ],
+    "logoUrl": "https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/branding-guidelines/logos/blue/Unstop-Logo-Blue-Medium.png",
+    "stipendOrSalary": "₹5.0 - ₹12.0 LPA (Depending on matching company)",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://unstop.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab7f",
+    "id": "opp-amazon-sde-intern",
+    "slug": "amazon-sde-internship",
+    "title": "Amazon SDE Internship",
+    "companyId": "amazon",
+    "companyName": "Amazon",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+    "companyWebsite": "https://www.amazon.jobs/",
+    "description": "Amazon Software Development Engineer interns build solutions at massive global scale. You will work on real-world systems touching retail, AWS cloud services, or digital streaming, designing software that serves hundreds of millions of customers.",
+    "type": "Internship",
+    "domain": "Software Development",
+    "domainId": "software-development",
+    "location": "Hyderabad, India",
+    "workMode": "On-site",
+    "skills": [
+      "Java",
+      "Python",
+      "Algorithms",
+      "OOP",
+      "System Design"
+    ],
+    "eligibility": [
+      "Enrolled in B.Tech / M.Tech / MCA in Computer Science or related STEM field",
+      "Available for 6-month continuous internship"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹25,000/month",
+    "deadline": "Dec 17, 2026",
+    "deadlineDate": "2026-12-17T18:29:59.000Z",
+    "sourceUrl": "https://www.amazon.jobs/",
+    "applicationUrl": "https://www.amazon.jobs/en/business_categories/student-programs",
+    "sourceType": "Official Student Programs Portal",
+    "verified": true,
+    "verificationStatus": "verified",
+    "httpStatusCode": 301,
+    "verificationNotes": "Official Amazon Jobs student programs and university internship portal.",
+    "expiresAt": null,
+    "featured": true,
+    "status": "published",
+    "responsibilities": [
+      "Design, develop, and test scalable distributed services within AWS ecosystem",
+      "Write unit tests, automated integration tests, and participate in peer code reviews",
+      "Troubleshoot performance bottlenecks and participate in system operational reviews"
+    ],
+    "requirements": [
+      "Excellence in algorithms, data structures, and complexity analysis",
+      "Hands-on experience in Java, C++, or Python",
+      "Understanding of relational and NoSQL databases"
+    ],
+    "benefits": [
+      "Fast-track PPO evaluation for full-time SDE-1 roles",
+      "Free Amazon employee perks, mentorship, and equipment allowance",
+      "Exposure to world-class high-concurrency systems"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 476,
+    "bookmarksCount": 59,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.648Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.704Z",
+    "updatedAt": "2026-09-28T05:19:37.690Z",
+    "company": "Amazon",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+    "stipendOrSalary": "₹80,000 - ₹1,10,000/month",
+    "isEmployerVerified": true,
+    "isLinkVerified": true,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://www.amazon.jobs/",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified Amazon Student Programs destination"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab80",
+    "id": "opp-tcs-ninja-2025",
+    "slug": "tcs-ninja-hiring-2025",
+    "title": "TCS Ninja Hiring (2025)",
+    "companyId": "tcs",
+    "companyName": "Tata Consultancy Services",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg",
+    "companyWebsite": "https://www.tcs.com/",
+    "description": "TCS Ninja is Tata Consultancy Services pan-India flagship hiring program for graduating engineers and computer application students. Selected candidates undergo intensive foundational training in modern full-stack architectures and enterprise technologies.",
+    "type": "Full-time",
+    "domain": "Software Development",
+    "domainId": "software-development",
+    "location": "Pan India",
+    "workMode": "Hybrid",
+    "skills": [
+      "Java",
+      "SQL",
+      "C Programming",
+      "IT Services",
+      "Cloud Basics"
+    ],
+    "eligibility": [
+      "B.Tech / MCA / M.Tech (All engineering branches eligible)",
+      "Minimum 60% or 6.0 CGPA throughout 10th, 12th, and Degree",
+      "Maximum 1 active backlog permitted at test time"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹3.36 - ₹3.60 LPA (Ninja Band) + Upgrade opportunity to Digital (₹7.0+ LPA)",
+    "stipend": "Not specified",
+    "deadline": "Jan 18, 2027",
+    "deadlineDate": "2027-01-18T18:29:59.000Z",
+    "sourceUrl": "https://www.tcs.com/careers/india/tcs-fresher-hiring-yop",
+    "applicationUrl": "https://www.tcs.com/careers/india/tcs-fresher-hiring-yop",
+    "sourceType": "Official Fresher Hiring Portal",
+    "verified": true,
+    "verificationStatus": "verified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Official TCS Fresher Hiring portal for engineering graduates (Ninja, Digital, Prime tracks).",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Develop, configure, and maintain enterprise software solutions",
+      "Execute test scripts and troubleshoot application bugs",
+      "Collaborate in agile delivery squads on global client engagements"
+    ],
+    "requirements": [
+      "Sound analytical reasoning and numerical ability",
+      "Fundamental command of any core language (C, C++, Java, or Python)",
+      "Basic knowledge of DBMS and Operating Systems"
+    ],
+    "benefits": [
+      "Comprehensive TCS Initial Learning Program (ILP)",
+      "Wings 1 incentive assessments for accelerated career promotions",
+      "Health insurance and multinational mobility opportunities"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 610,
+    "bookmarksCount": 84,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.650Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.704Z",
+    "updatedAt": "2026-09-25T09:08:46.704Z",
+    "company": "Tata Consultancy Services",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg",
+    "stipendOrSalary": "₹3.36 - ₹3.60 LPA (Ninja Band) + Upgrade opportunity to Digital (₹7.0+ LPA)",
+    "isEmployerVerified": true,
+    "isLinkVerified": true,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://www.tcs.com/careers/india/tcs-fresher-hiring-yop",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified TCS National Qualifier & Fresher Hiring portal"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab90",
+    "id": "opp-atlassian-apm-intern",
+    "slug": "associate-product-manager-intern",
+    "title": "Associate Product Manager (APM) Intern",
+    "companyId": "atlassian",
+    "companyName": "Atlassian",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/0/01/Atlassian-Logo.svg",
+    "companyWebsite": "https://www.atlassian.com/",
+    "description": "Atlassian APM interns own real product features for Jira, Confluence, and Trello. You will analyze user metrics, define functional roadmaps, prioritize engineering backlogs, and collaborate across engineering, design, and marketing.",
+    "type": "Internship",
+    "domain": "Product Management",
+    "domainId": "product-management",
+    "location": "Bangalore, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "Product Management",
+      "Data Analytics",
+      "Agile/Scrum",
+      "User Stories",
+      "SQL"
+    ],
+    "eligibility": [
+      "Pre-final / Final year students in B.Tech or MBA programs",
+      "Strong leadership and product instincts"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MBA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹70,000 - ₹95,000/month",
+    "deadline": "Nov 22, 2026",
+    "deadlineDate": "2026-11-22T18:29:59.000Z",
+    "sourceUrl": "https://www.atlassian.com/company/careers",
+    "applicationUrl": "https://www.atlassian.com/company/careers",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 200,
+    "verificationNotes": "Employer verified (Atlassian). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Formulate product requirement documents (PRDs) and user story acceptance criteria",
+      "Run A/B test experiments and analyze telemetry data using SQL and Amplitude",
+      "Drive sprint planning and feature release coordination with tech leads"
+    ],
+    "requirements": [
+      "Outstanding structured thinking, written communication, and problem deconstruction",
+      "Working comfort with SQL and quantitative metrics (DAU, churn, conversion)",
+      "Passion for collaboration software and customer experience"
+    ],
+    "benefits": [
+      "PPO fast-track for full-time Associate Product Manager",
+      "Comprehensive wellness and technology equipment stipends",
+      "Global APM summit participation with worldwide peer cohorts"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 330,
+    "bookmarksCount": 46,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.681Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.707Z",
+    "updatedAt": "2026-09-25T09:08:46.707Z",
+    "company": "Atlassian",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MBA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/Atlassian-Logo.svg",
+    "stipendOrSalary": "₹70,000 - ₹95,000/month",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.atlassian.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab84",
+    "id": "opp-aicte-cloud-intern",
+    "slug": "aicte-virtual-cloud-internship",
+    "title": "AICTE Virtual Cloud Computing Internship",
+    "companyId": "aicte",
+    "companyName": "AICTE & EduSkills",
+    "companyLogo": "https://internship.aicte-india.org/images/logo.png",
+    "companyWebsite": "https://internship.aicte-india.org/",
+    "description": "Official Government of India internship organized by AICTE in partnership with industry leaders (AWS / Google Cloud / Palo Alto). Designed to upskill engineering undergraduates with hands-on labs, real cloud sandboxes, and recognized credentials.",
+    "type": "Internship",
+    "domain": "Cloud Computing",
+    "domainId": "cloud-computing",
+    "location": "Pan-India",
+    "workMode": "Remote",
+    "skills": [
+      "AWS",
+      "Cloud Architecture",
+      "Linux",
+      "Virtualization",
+      "Networking"
+    ],
+    "eligibility": [
+      "Open to all B.Tech / MCA / Polytechnic students across India",
+      "No minimum CGPA barrier"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "Government Sponsored Training & Project Certificate",
+    "deadline": "Nov 22, 2026",
+    "deadlineDate": "2026-11-22T18:29:59.000Z",
+    "sourceUrl": "https://internship.aicte-india.org/",
+    "applicationUrl": "https://internship.aicte-india.org/auth/register",
+    "sourceType": "Official Govt Portal",
+    "verified": true,
+    "verificationStatus": "verified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Direct student registration and application portal on AICTE National Internship Portal.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Complete designated cloud computing learning modules and guided hands-on labs",
+      "Deploy sample multi-tier web applications on cloud infrastructure",
+      "Submit capstone project architecture diagram and demonstration video"
+    ],
+    "requirements": [
+      "Enrolled student in an AICTE approved technical institution",
+      "Basic familiarity with computers and web browsing",
+      "Commitment of 8-10 hours per week for 8 weeks"
+    ],
+    "benefits": [
+      "Official Joint AICTE Certificate recognized for academic degree credits",
+      "Access to free cloud lab credits and exam discount vouchers",
+      "Direct inclusion in National Talent Search recruiter database"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 311,
+    "bookmarksCount": 45,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.659Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.705Z",
+    "updatedAt": "2026-09-25T09:35:39.259Z",
+    "company": "AICTE & EduSkills",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://internship.aicte-india.org/images/logo.png",
+    "stipendOrSalary": "Government Sponsored Training & Project Certificate",
+    "isEmployerVerified": true,
+    "isLinkVerified": true,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://internship.aicte-india.org/",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified national internship portal"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab86",
+    "id": "opp-samsung-prism-2025",
+    "slug": "samsung-prism-student-rnd-internship",
+    "title": "Samsung PRISM Student R&D Internship",
+    "companyId": "samsung",
+    "companyName": "Samsung R&D Institute India (SRI-B)",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
+    "companyWebsite": "https://www.samsungprism.com/",
+    "description": "Samsung PRISM (Preparing Students for Industry through Skills & Mentorship) is a collaborative initiative between Samsung R&D and premier Indian universities. Student teams work on real commercial AI, 5G, and IoT research problems mentored by Samsung engineers.",
+    "type": "Internship",
+    "domain": "Machine Learning & AI",
+    "domainId": "machine-learning-ai",
+    "location": "Bangalore / Remote",
+    "workMode": "Remote",
+    "skills": [
+      "PyTorch",
+      "Computer Vision",
+      "NLP",
+      "C++",
+      "Edge AI"
+    ],
+    "eligibility": [
+      "2nd, 3rd, and 4th year B.Tech / MCA students",
+      "Team participation (3-4 students per project)"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "Cash rewards up to ₹1,00,000 per project + Patent filing opportunities",
+    "deadline": "Jan 24, 2027",
+    "deadlineDate": "2027-01-24T18:29:59.000Z",
+    "sourceUrl": "https://www.samsungprism.com/",
+    "applicationUrl": "https://www.samsungprism.com/student-registration",
+    "sourceType": "Official Student R&D Portal",
+    "verified": true,
+    "verificationStatus": "verified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Official Samsung R&D Institute India (SRI-B) student registration and project application portal.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Design deep learning models for on-device mobile AI vision and audio processing",
+      "Benchmark inference speed and memory consumption on mobile edge processors",
+      "Prepare research papers and patent disclosures with Samsung co-inventors"
+    ],
+    "requirements": [
+      "Familiarity with PyTorch or TensorFlow model training",
+      "Knowledge of fundamental linear algebra and neural networks",
+      "Ability to collaborate effectively in an agile student team"
+    ],
+    "benefits": [
+      "Direct interview fast-track for Samsung R&D full-time engineering roles",
+      "Cash prize vouchers upon milestone signoffs",
+      "Opportunity to publish joint research papers and patents"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 410,
+    "bookmarksCount": 54,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.664Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.705Z",
+    "updatedAt": "2026-09-25T09:08:46.705Z",
+    "company": "Samsung R&D Institute India (SRI-B)",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
+    "stipendOrSalary": "Cash rewards up to ₹1,00,000 per project + Patent filing opportunities",
+    "isEmployerVerified": true,
+    "isLinkVerified": true,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://www.samsungprism.com/",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified direct student registration page"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab94",
+    "id": "opp-cognizant-genc-2025",
+    "slug": "cognizant-genc-developer",
+    "title": "Cognizant GenC Developer & Quality Engineer",
+    "companyId": "cognizant",
+    "companyName": "Cognizant",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/4/43/Cognizant_logo_2022.svg",
+    "companyWebsite": "https://www.cognizant.com/",
+    "description": "Cognizant GenC campus program recruits ambitious engineering graduates to build next-generation enterprise software, automation test frameworks, and cloud modernization solutions.",
+    "type": "Full-time",
+    "domain": "Web Development",
+    "domainId": "web-development",
+    "location": "Noida / Kolkata / Pune / Chennai, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "JavaScript",
+      "Java",
+      "HTML5",
+      "CSS3",
+      "SQL"
+    ],
+    "eligibility": [
+      "B.Tech / MCA graduating batch",
+      "Minimum 60% or 6.0 CGPA",
+      "Max 2-year academic gap allowed"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹4.0 - ₹6.75 LPA (GenC / GenC Next band)",
+    "stipend": "Not specified",
+    "deadline": "Mar 26, 2027",
+    "deadlineDate": "2027-03-26T18:29:59.000Z",
+    "sourceUrl": "https://www.cognizant.com/in/en/careers",
+    "applicationUrl": "https://www.cognizant.com/in/en/careers",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 301,
+    "verificationNotes": "Employer verified (Cognizant). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Build web applications using modern JavaScript libraries and enterprise Java backends",
+      "Perform automated test verification and defect logging",
+      "Participate in cloud migration activities"
+    ],
+    "requirements": [
+      "Good understanding of object-oriented programming concepts",
+      "Hands-on familiarity with HTML, CSS, JavaScript, and relational databases",
+      "Aptitude for quick learning in structured academy programs"
+    ],
+    "benefits": [
+      "Comprehensive Cognizant Academy training with industry certifications",
+      "Opportunities to transition into specialized AI/Cloud practices",
+      "Medical insurance and annual wellness allowances"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 381,
+    "bookmarksCount": 47,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.688Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.708Z",
+    "updatedAt": "2026-10-05T15:46:55.069Z",
+    "company": "Cognizant",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Cognizant_logo_2022.svg",
+    "stipendOrSalary": "₹4.0 - ₹6.75 LPA (GenC / GenC Next band)",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.cognizant.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab81",
+    "id": "opp-flipkart-fe-intern",
+    "slug": "flipkart-frontend-developer-intern",
+    "title": "Frontend Developer Intern",
+    "companyId": "flipkart",
+    "companyName": "Flipkart",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Flipkart_logo.svg/300px-Flipkart_logo.svg.png",
+    "companyWebsite": "https://www.flipkartcareers.com/",
+    "description": "Work with Flipkart UI and design teams to build high-performance e-commerce experiences accessed by hundreds of millions of Indian consumers. You will develop responsive user interfaces, optimize web vitals, and work with modern micro-frontend architectures.",
+    "type": "Internship",
+    "domain": "Web Development",
+    "domainId": "web-development",
+    "location": "Bangalore, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "React",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Web Performance"
+    ],
+    "eligibility": [
+      "B.Tech / MCA graduating in 2025/2026",
+      "Strong portfolio or web development project links"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹50,000 - ₹75,000/month",
+    "deadline": "Feb 19, 2027",
+    "deadlineDate": "2027-02-19T18:29:59.000Z",
+    "sourceUrl": "https://www.flipkartcareers.com/",
+    "applicationUrl": "https://www.flipkartcareers.com/",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 200,
+    "verificationNotes": "Employer verified (Flipkart). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Develop pixel-perfect web components using React, Redux, and TypeScript",
+      "Improve core web vitals (LCP, FID, CLS) across desktop and mobile browsers",
+      "Write end-to-end automated UI tests using Cypress/Playwright"
+    ],
+    "requirements": [
+      "Solid command of Vanilla JavaScript (ES6+), DOM manipulation, and CSS Grid/Flexbox",
+      "Proficiency in React.js and modern state management",
+      "Experience with bundle optimizers like Webpack or Vite"
+    ],
+    "benefits": [
+      "Direct contribution to high-traffic Big Billion Days platforms",
+      "PPO conversion opportunities",
+      "Subsidized meal cards and hybrid commute allowance"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 421,
+    "bookmarksCount": 51,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.652Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.704Z",
+    "updatedAt": "2026-10-15T07:28:07.466Z",
+    "company": "Flipkart",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Flipkart_logo.svg/300px-Flipkart_logo.svg.png",
+    "stipendOrSalary": "₹50,000 - ₹75,000/month",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.flipkartcareers.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab95",
+    "id": "opp-hcltech-graduate-trainee",
+    "slug": "hcltech-early-careers-graduate-trainee",
+    "title": "HCLTech Early Careers - Graduate Engineer Trainee",
+    "companyId": "hcltech",
+    "companyName": "HCLTech",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/9/95/HCL_Technologies_logo.svg",
+    "companyWebsite": "https://www.hcltech.com/",
+    "description": "HCLTech First Careers offers graduating engineers training and project deployment in enterprise digital workplace, infrastructure operations, cybersecurity, and cloud monitoring services.",
+    "type": "Full-time",
+    "domain": "DevOps & Infrastructure",
+    "domainId": "devops-infrastructure",
+    "location": "Noida / Lucknow / Chennai / Madurai, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "Linux",
+      "PowerShell",
+      "Cloud Operations",
+      "ITSM",
+      "Networking"
+    ],
+    "eligibility": [
+      "B.Tech / MCA graduating batch",
+      "Minimum 60% aggregate in graduation"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹3.6 - ₹4.75 LPA",
+    "stipend": "Not specified",
+    "deadline": "Oct 15, 2026",
+    "deadlineDate": "2026-10-15T18:29:59.000Z",
+    "sourceUrl": "https://www.hcltech.com/careers/early-careers",
+    "applicationUrl": "https://www.hcltech.com/careers/early-careers",
+    "sourceType": "Official Early Careers Portal",
+    "verified": true,
+    "verificationStatus": "verified",
+    "httpStatusCode": 307,
+    "verificationNotes": "Official HCLTech Early Careers graduate engineer trainee application portal.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Support client enterprise server, network, and cloud infrastructure systems",
+      "Troubleshoot incidents according to ITIL operational guidelines",
+      "Script routine maintenance tasks using PowerShell or Bash"
+    ],
+    "requirements": [
+      "Fundamental understanding of Windows and Linux operating systems",
+      "Knowledge of basic networking concepts (IP addressing, Subnetting, DNS)",
+      "Willingness to support critical enterprise systems in shifts"
+    ],
+    "benefits": [
+      "Industry-recognized certifications in cloud and infrastructure",
+      "Structured career growth framework towards DevOps Architect",
+      "Medical insurance coverage and employee assistance programs"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 310,
+    "bookmarksCount": 35,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.689Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.708Z",
+    "updatedAt": "2026-09-25T09:08:46.708Z",
+    "company": "HCLTech",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/HCL_Technologies_logo.svg",
+    "stipendOrSalary": "₹3.6 - ₹4.75 LPA",
+    "isEmployerVerified": true,
+    "isLinkVerified": true,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://www.hcltech.com/careers/early-careers",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified early careers portal destination"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab7e",
+    "id": "opp-msft-swe-intern",
+    "slug": "microsoft-software-engineer-intern",
+    "title": "Software Engineer Intern",
+    "companyId": "microsoft",
+    "companyName": "Microsoft",
+    "companyLogo": "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31",
+    "companyWebsite": "https://www.microsoft.com/",
+    "description": "As a Software Engineering Intern at Microsoft, you will work on core cloud services, developer productivity tools, and AI solutions that empower billions worldwide. You will collaborate with engineering leads, write production code, and experience an intensive end-to-end sprint lifecycle.",
+    "type": "Internship",
+    "domain": "Software Development",
+    "domainId": "software-development",
+    "location": "Bengaluru, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "C++",
+      "C#",
+      "Java",
+      "Data Structures",
+      "Distributed Systems"
+    ],
+    "eligibility": [
+      "Pursuing B.Tech or Dual Degree in Computer Science or related fields",
+      "Graduating in 2025 or 2026",
+      "Minimum 7.0 CGPA"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹50,000/month",
+    "deadline": "Nov 14, 2026",
+    "deadlineDate": "2026-11-16T18:29:59.000Z",
+    "sourceUrl": "https://careers.microsoft.com/",
+    "applicationUrl": "https://jobs.careers.microsoft.com/global/en/search?q=Software%20Engineer%20Intern&lc=India",
+    "sourceType": "Official Careers ATS Portal",
+    "verified": true,
+    "verificationStatus": "verified",
+    "httpStatusCode": 302,
+    "verificationNotes": "Official Microsoft Careers portal filtered directly for university student software engineering internships in India.",
+    "expiresAt": null,
+    "featured": true,
+    "status": "published",
+    "responsibilities": [
+      "Design, implement, test, and release robust features in cloud-native applications",
+      "Work alongside architects and product managers to clarify functional requirements",
+      "Optimize database queries and microservices throughput"
+    ],
+    "requirements": [
+      "Strong fundamentals in data structures, algorithms, and object-oriented design",
+      "Solid coding proficiency in C++, C#, Java, or Python",
+      "Demonstrated project work in systems or cloud computing"
+    ],
+    "benefits": [
+      "Pre-Placement Offer (PPO) opportunity for high performers",
+      "Comprehensive health coverage and relocation assistance",
+      "1-on-1 mentorship from principal engineers"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 522,
+    "bookmarksCount": 68,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.646Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.703Z",
+    "updatedAt": "2026-09-28T05:20:50.362Z",
+    "company": "Microsoft",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31",
+    "stipendOrSalary": "₹1,00,000 - ₹1,25,000/month (Industry Standard)",
+    "isEmployerVerified": true,
+    "isLinkVerified": true,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://careers.microsoft.com/",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified Microsoft university careers search"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab85",
+    "id": "opp-isro-research-intern",
+    "slug": "isro-student-research-internship",
+    "title": "ISRO Student Research & Live Project Training",
+    "companyId": "isro",
+    "companyName": "Indian Space Research Organisation (ISRO)",
+    "companyLogo": "https://www.isro.gov.in/media_isro/image/index/isro_logo.png",
+    "companyWebsite": "https://www.isro.gov.in/",
+    "description": "ISRO centres offer student project training and internships for pre-final and final year engineering students. Candidates work on research challenges in satellite data analysis, telemetry systems, signal processing, and orbital computations under ISRO scientists.",
+    "type": "Internship",
+    "domain": "Data Science & Analytics",
+    "domainId": "data-science-analytics",
+    "location": "Bengaluru / Dehradun / Ahmedabad, India",
+    "workMode": "On-site",
+    "skills": [
+      "Python",
+      "Remote Sensing",
+      "GIS",
+      "Image Processing",
+      "Signal Processing"
+    ],
+    "eligibility": [
+      "Pre-final / Final Year B.Tech or M.Tech students with minimum 65% or 6.84 CGPA",
+      "Official bonafide recommendation letter from College Principal/HOD mandatory"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE",
+      "Mechanical",
+      "Electrical"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "Academic Research Training (Unpaid / Institutional Facility Grant)",
+    "deadline": "Dec 23, 2026",
+    "deadlineDate": "2026-12-23T18:29:59.000Z",
+    "sourceUrl": "https://www.isro.gov.in/Internship.html",
+    "applicationUrl": "https://www.isro.gov.in/Internship.html",
+    "sourceType": "Official Govt Portal",
+    "verified": true,
+    "verificationStatus": "verified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Official ISRO student research, internship, and live project training application guidelines and portal.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Conduct exploratory analysis on space research datasets under guidance of ISRO scientists",
+      "Develop algorithms for imagery enhancement and geospatial classification",
+      "Submit comprehensive project dissertation complying with academic norms"
+    ],
+    "requirements": [
+      "Strong academic foundation in mathematics, algorithms, and domain engineering",
+      "Proficiency in scientific Python (NumPy, SciPy, OpenCV, GDAL) or MATLAB",
+      "College NOC (No Objection Certificate) for duration of project"
+    ],
+    "benefits": [
+      "Unmatched prestige of having ISRO project experience on your resume",
+      "Direct guidance from elite national scientists",
+      "Completion certificate valid for university final year major project requirements"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 650,
+    "bookmarksCount": 95,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.661Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.705Z",
+    "updatedAt": "2026-09-25T09:08:46.705Z",
+    "company": "Indian Space Research Organisation (ISRO)",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://www.isro.gov.in/media_isro/image/index/isro_logo.png",
+    "stipendOrSalary": "Academic Research Training (Unpaid / Institutional Facility Grant)",
+    "isEmployerVerified": true,
+    "isLinkVerified": true,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://www.isro.gov.in/Internship.html",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified official student internship portal"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab8f",
+    "id": "opp-figma-uiux-apprentice",
+    "slug": "product-design-and-uiux-apprentice",
+    "title": "Product Design & UI/UX Apprentice",
+    "companyId": "figma",
+    "companyName": "Figma Community Guild",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg",
+    "companyWebsite": "https://www.figma.com/",
+    "description": "Design intuitive interfaces, run usability tests, and build cohesive design systems for next-generation consumer applications. You will create user personas, wireframes, high-fidelity prototypes, and design tokens.",
+    "type": "Internship",
+    "domain": "UI/UX Design",
+    "domainId": "ui-ux-design",
+    "location": "Remote, India",
+    "workMode": "Remote",
+    "skills": [
+      "Figma",
+      "UI/UX Design",
+      "User Research",
+      "Wireframing",
+      "Design Systems"
+    ],
+    "eligibility": [
+      "Open to students from B.Tech, MCA, MBA, or Design schools with a Figma portfolio",
+      "No coding required"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA",
+      "MBA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹25,000 - ₹40,000/month",
+    "deadline": "Oct 21, 2026",
+    "deadlineDate": "2026-10-21T18:29:59.000Z",
+    "sourceUrl": "https://www.figma.com/careers/",
+    "applicationUrl": "https://www.figma.com/careers/",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "unverified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Unverified listing: submitted link is generic or employer association is unconfirmed.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "pending_verification",
+    "responsibilities": [
+      "Create interactive interactive prototypes and component libraries in Figma",
+      "Conduct user interviews to synthesize customer journey friction points",
+      "Collaborate with frontend engineers to ensure design spec fidelity"
+    ],
+    "requirements": [
+      "Comprehensive understanding of visual hierarchy, typography, and contrast standards (WCAG)",
+      "Mastery of Figma components, auto-layout, and variables",
+      "Curiosity for user empathy and data-driven design experiments"
+    ],
+    "benefits": [
+      "Figma Community creator badges and portfolio spotlight",
+      "Direct feedback from staff product designers",
+      "Flexible remote schedule with stipend compensation"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 275,
+    "bookmarksCount": 33,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.680Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.707Z",
+    "updatedAt": "2026-09-25T09:08:46.707Z",
+    "company": "Figma Community Guild",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA",
+      "MBA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg",
+    "stipendOrSalary": "₹25,000 - ₹40,000/month",
+    "isEmployerVerified": false,
+    "isLinkVerified": false,
+    "applicationType": "unverified",
+    "verificationEvidenceUrl": "",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Unverified external submission"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab88",
+    "id": "opp-nvidia-ai-intern",
+    "slug": "nvidia-ai-and-gpu-computing-intern",
+    "title": "AI & GPU Computing Engineer Intern",
+    "companyId": "nvidia",
+    "companyName": "NVIDIA",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg",
+    "companyWebsite": "https://www.nvidia.com/",
+    "description": "Join the world leader in accelerated computing. As an AI & GPU Computing Intern at NVIDIA Pune/Bangalore, you will work on CUDA optimization, LLM inference acceleration, and deep learning framework development.",
+    "type": "Internship",
+    "domain": "Machine Learning & AI",
+    "domainId": "machine-learning-ai",
+    "location": "Pune / Bangalore, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "CUDA",
+      "C++",
+      "PyTorch",
+      "Computer Vision",
+      "Deep Learning"
+    ],
+    "eligibility": [
+      "B.Tech / M.Tech in Computer Science, Electrical Engineering, or related technical disciplines",
+      "Graduation in 2025 or 2026"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹60,000 - ₹90,000/month",
+    "deadline": "Mar 26, 2027",
+    "deadlineDate": "2027-03-26T18:29:59.000Z",
+    "sourceUrl": "https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/",
+    "applicationUrl": "https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/",
+    "sourceType": "Official University Recruiting",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 200,
+    "verificationNotes": "Employer verified (NVIDIA). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Profile and optimize deep neural networks using NVIDIA TensorRT and CUDA",
+      "Benchmark throughput and latency on latest Hopper and Blackwell architecture GPUs",
+      "Implement custom GPU kernels for accelerated mathematical operators"
+    ],
+    "requirements": [
+      "Strong proficiency in C++ and Python",
+      "Fundamental understanding of GPU microarchitecture and parallel processing",
+      "Experience with PyTorch or JAX framework internals"
+    ],
+    "benefits": [
+      "Access to state-of-the-art supercomputing GPU clusters",
+      "Competitive monthly stipend and housing stipend support",
+      "High conversion rate to full-time System Software Engineer"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 395,
+    "bookmarksCount": 52,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.669Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.706Z",
+    "updatedAt": "2026-09-25T09:08:46.706Z",
+    "company": "NVIDIA",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/Nvidia_logo.svg",
+    "stipendOrSalary": "₹60,000 - ₹90,000/month",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.nvidia.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab89",
+    "id": "opp-cisco-network-engineer",
+    "slug": "cisco-network-engineer-intern",
+    "title": "Network & Cloud Infrastructure Intern",
+    "companyId": "cisco",
+    "companyName": "Cisco Systems",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg",
+    "companyWebsite": "https://jobs.cisco.com/",
+    "description": "Work at the foundation of the global internet. Cisco interns design software-defined networking (SDN) solutions, test network telemetry systems, and automate enterprise cloud infrastructure.",
+    "type": "Internship",
+    "domain": "DevOps & Infrastructure",
+    "domainId": "devops-infrastructure",
+    "location": "Bangalore, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Python",
+      "Routing & Switching",
+      "Automation"
+    ],
+    "eligibility": [
+      "B.Tech in CSE, IT, ECE, or Telecommunications",
+      "CGPA 7.0 and above"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹50,000 - ₹75,000/month",
+    "deadline": "Oct 15, 2026",
+    "deadlineDate": "2026-10-15T18:29:59.000Z",
+    "sourceUrl": "https://jobs.cisco.com/",
+    "applicationUrl": "https://jobs.cisco.com/",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 302,
+    "verificationNotes": "Employer verified (Cisco Systems). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Automate network provisioning scripts using Python and Ansible",
+      "Diagnose packet routing, latency, and throughput metrics in simulated topologies",
+      "Contribute to Cisco cloud management and telemetry platforms"
+    ],
+    "requirements": [
+      "Thorough knowledge of TCP/IP, DNS, BGP, and OSI reference model",
+      "Practical scripting ability in Python or Bash",
+      "Linux administration experience"
+    ],
+    "benefits": [
+      "CCNA/DevNet certification exam sponsorship",
+      "PPO opportunities for Cisco technical consulting roles",
+      "Flexible hybrid working arrangements"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 320,
+    "bookmarksCount": 39,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.671Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.706Z",
+    "updatedAt": "2026-09-25T09:08:46.706Z",
+    "company": "Cisco Systems",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg",
+    "stipendOrSalary": "₹50,000 - ₹75,000/month",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://jobs.cisco.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab82",
+    "id": "opp-wipro-data-analyst",
+    "slug": "wipro-data-analyst-intern",
+    "title": "Data Analyst Intern",
+    "companyId": "wipro",
+    "companyName": "Wipro",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Wipro_Primary_Logo_Color_RGB.svg/300px-Wipro_Primary_Logo_Color_RGB.svg.png",
+    "companyWebsite": "https://www.wipro.com/",
+    "description": "Join Wipros Analytics and AI practice to analyze real-world datasets, build interactive executive dashboards, and derive actionable business intelligence for global enterprise clients.",
+    "type": "Internship",
+    "domain": "Data Science & Analytics",
+    "domainId": "data-science-analytics",
+    "location": "Pune, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "Python",
+      "SQL",
+      "Data Science",
+      "Power BI",
+      "Excel"
+    ],
+    "eligibility": [
+      "B.Tech / MCA / MBA candidates with quantitative aptitude",
+      "No active backlogs"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA",
+      "MBA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹20,000 - ₹30,000/month",
+    "deadline": "Mar 20, 2027",
+    "deadlineDate": "2027-03-20T18:29:59.000Z",
+    "sourceUrl": "https://careers.wipro.com/careers-home/early-careers",
+    "applicationUrl": "https://careers.wipro.com/careers-home/early-careers",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 302,
+    "verificationNotes": "Employer verified (Wipro). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Clean, transform, and validate transactional datasets using SQL and Python Pandas",
+      "Design interactive KPIs dashboards in Power BI and Tableau",
+      "Present exploratory findings and analytical summaries to project managers"
+    ],
+    "requirements": [
+      "Proficiency in writing SQL joins, aggregations, and subqueries",
+      "Hands-on experience with Python data manipulation libraries",
+      "Effective written and oral communication skills"
+    ],
+    "benefits": [
+      "Mentorship from Senior Data Architects",
+      "Hands-on exposure to cloud data warehouses (Snowflake, BigQuery)",
+      "Pre-placement opportunity for full-time Data Analyst roles"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 390,
+    "bookmarksCount": 38,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.654Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.705Z",
+    "updatedAt": "2026-09-25T09:08:46.705Z",
+    "company": "Wipro",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA",
+      "MBA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Wipro_Primary_Logo_Color_RGB.svg/300px-Wipro_Primary_Logo_Color_RGB.svg.png",
+    "stipendOrSalary": "₹20,000 - ₹30,000/month",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.wipro.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab8a",
+    "id": "opp-oracle-oci-intern",
+    "slug": "oracle-cloud-infrastructure-software-intern",
+    "title": "Oracle Cloud Infrastructure (OCI) Software Intern",
+    "companyId": "oracle",
+    "companyName": "Oracle",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg",
+    "companyWebsite": "https://www.oracle.com/",
+    "description": "Build enterprise cloud services engineered for mission-critical enterprise workloads. Work on high-performance virtualization, storage management, and global distributed services in Oracle Cloud Infrastructure.",
+    "type": "Internship",
+    "domain": "Cloud Computing",
+    "domainId": "cloud-computing",
+    "location": "Bangalore / Hyderabad / Noida, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "Java",
+      "Distributed Systems",
+      "Docker",
+      "Kubernetes",
+      "Go"
+    ],
+    "eligibility": [
+      "B.Tech / MCA students graduating in 2025/2026",
+      "Strong academic track record"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹50,000 - ₹85,000/month",
+    "deadline": "Nov 16, 2026",
+    "deadlineDate": "2026-11-16T18:29:59.000Z",
+    "sourceUrl": "https://www.oracle.com/corporate/careers/students-grads/",
+    "applicationUrl": "https://www.oracle.com/corporate/careers/students-grads/",
+    "sourceType": "Official University Recruiting",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 301,
+    "verificationNotes": "Employer verified (Oracle). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Build scalable RESTful microservices for cloud resource orchestration",
+      "Containerize application components and deploy them onto Kubernetes clusters",
+      "Participate in high availability fault-injection testing"
+    ],
+    "requirements": [
+      "In-depth knowledge of Java or Go programming",
+      "Understanding of microservice concepts and distributed consensus",
+      "Experience with Unix/Linux environments"
+    ],
+    "benefits": [
+      "Top-tier technology stipend and wellness benefits",
+      "PPO conversion opportunities for Member of Technical Staff (MTS)",
+      "Direct guidance from seasoned cloud architects"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 365,
+    "bookmarksCount": 44,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.672Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.706Z",
+    "updatedAt": "2026-09-25T09:08:46.706Z",
+    "company": "Oracle",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg",
+    "stipendOrSalary": "₹50,000 - ₹85,000/month",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.oracle.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab92",
+    "id": "opp-cipla-pharma-trainee",
+    "slug": "cipla-quality-control-formulation-trainee",
+    "title": "Quality Control & Formulation Trainee",
+    "companyId": "cipla",
+    "companyName": "Cipla Limited",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Cipla_logo.svg",
+    "companyWebsite": "https://www.cipla.com/",
+    "description": "Cipla is a global pharmaceutical leader committed to high-quality healthcare. Trainees in Quality Assurance and Formulation R&D perform analytical testing of raw materials and finished pharmaceutical formulations adhering to international cGMP standards.",
+    "type": "Full-time",
+    "domain": "Other Domains",
+    "domainId": "other-domains",
+    "location": "Indore / Baddi / Goa / Sikkim, India",
+    "workMode": "On-site",
+    "skills": [
+      "Pharmacology",
+      "Quality Control",
+      "GMP/GLP",
+      "HPLC Analysis",
+      "Documentation"
+    ],
+    "eligibility": [
+      "B.Pharm / M.Pharm graduating batch",
+      "Minimum 60% aggregate without standing backlogs"
+    ],
+    "courseEligibility": [
+      "B.Pharm"
+    ],
+    "branchEligibility": [
+      "Pharmacy"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹3.2 - ₹4.5 LPA",
+    "stipend": "Not specified",
+    "deadline": "Jan 24, 2027",
+    "deadlineDate": "2027-01-24T18:29:59.000Z",
+    "sourceUrl": "https://www.cipla.com/careers",
+    "applicationUrl": "https://www.cipla.com/careers",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 200,
+    "verificationNotes": "Employer verified (Cipla Limited). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Conduct assay and impurity testing using HPLC, UV-Vis spectrophotometers, and dissolution apparatus",
+      "Document analytical findings in standard batch manufacturing records (BMR)",
+      "Participate in stability study audits and calibration of lab instruments"
+    ],
+    "requirements": [
+      "Sound foundation in pharmaceutical analysis, pharmaceutics, and medicinal chemistry",
+      "Thorough understanding of Good Laboratory Practices (GLP) and USFDA regulations",
+      "Rigorous attention to detail and precision in quantitative measurements"
+    ],
+    "benefits": [
+      "Comprehensive plant manufacturing safety induction and training",
+      "Subsidized company housing/canteen and group health insurance",
+      "Clear career progression path from Trainee to Executive"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 240,
+    "bookmarksCount": 25,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.683Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.707Z",
+    "updatedAt": "2026-09-25T09:08:46.707Z",
+    "company": "Cipla Limited",
+    "eligibilityCourses": [
+      "B.Pharm"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Cipla_logo.svg",
+    "stipendOrSalary": "₹3.2 - ₹4.5 LPA",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.cipla.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab83",
+    "id": "opp-infosys-se-2025",
+    "slug": "infosys-system-engineer",
+    "title": "System Engineer",
+    "companyId": "infosys",
+    "companyName": "Infosys",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg",
+    "companyWebsite": "https://www.infosys.com/",
+    "description": "Infosys System Engineer role is one of Indias premier entry-level engineering career launches. Successful candidates participate in world-renowned Mysore Campus training before deployment to cloud, fintech, and digital transformation initiatives.",
+    "type": "Full-time",
+    "domain": "Software Development",
+    "domainId": "software-development",
+    "location": "Mysuru / Bangalore / Noida / Pune, India",
+    "workMode": "On-site",
+    "skills": [
+      "Java",
+      "Python",
+      "Software Development",
+      "Data Structures",
+      "RDBMS"
+    ],
+    "eligibility": [
+      "B.Tech / MCA graduating batch with minimum 60% throughout academics",
+      "All engineering branches eligible"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹3.6 - ₹5.0 LPA (System Engineer / Specialist Programmer track up to ₹9.5 LPA)",
+    "stipend": "Not specified",
+    "deadline": "Oct 21, 2026",
+    "deadlineDate": "2026-10-21T18:29:59.000Z",
+    "sourceUrl": "https://infyspringboard.onwingspan.com/",
+    "applicationUrl": "https://infyspringboard.onwingspan.com/",
+    "sourceType": "Official Campus Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 301,
+    "verificationNotes": "Employer verified (Infosys). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Develop code according to design specifications and coding standards",
+      "Perform unit testing, peer review, and debugging",
+      "Support deployments and maintain application documentation"
+    ],
+    "requirements": [
+      "Sound foundation in object-oriented programming concepts",
+      "Understanding of database management and SQL",
+      "Positive attitude towards learning emerging cloud platforms"
+    ],
+    "benefits": [
+      "World-class training at Infosys Mysore Campus",
+      "Fast-track certifications on Infosys Springboard",
+      "Health insurance and provident fund benefits"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 541,
+    "bookmarksCount": 62,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.657Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.705Z",
+    "updatedAt": "2026-10-15T07:27:42.502Z",
+    "company": "Infosys",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg",
+    "stipendOrSalary": "₹3.6 - ₹5.0 LPA (System Engineer / Specialist Programmer track up to ₹9.5 LPA)",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.infosys.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab8e",
+    "id": "opp-tatamotors-mech-get",
+    "slug": "tata-motors-graduate-engineer-trainee",
+    "title": "Graduate Engineer Trainee (GET) - Automotive & EV",
+    "companyId": "tatamotors",
+    "companyName": "Tata Motors",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Tata_logo.svg",
+    "companyWebsite": "https://www.tatamotors.com/",
+    "description": "Join Indias leading automobile pioneer leading the electric vehicle revolution. As a Mechanical GET, you will participate in vehicle dynamics testing, powertrain development, lightweight chassis modeling, and smart manufacturing assembly lines.",
+    "type": "Full-time",
+    "domain": "Mechanical Engineering",
+    "domainId": "mechanical-engineering",
+    "location": "Pune / Jamshedpur / Pantnagar, India",
+    "workMode": "On-site",
+    "skills": [
+      "CAD/CAM",
+      "SolidWorks",
+      "Thermodynamics",
+      "Manufacturing",
+      "Automotive Engineering"
+    ],
+    "eligibility": [
+      "B.Tech in Mechanical, Automobile, or Production Engineering",
+      "Minimum 65% aggregate throughout academic career"
+    ],
+    "courseEligibility": [
+      "B.Tech"
+    ],
+    "branchEligibility": [
+      "Mechanical",
+      "Automobile",
+      "Production"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹5.0 - ₹6.5 LPA",
+    "stipend": "Not specified",
+    "deadline": "Mar 20, 2027",
+    "deadlineDate": "2027-03-20T18:29:59.000Z",
+    "sourceUrl": "https://www.tatamotors.com/careers/",
+    "applicationUrl": "https://www.tatamotors.com/careers/",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 200,
+    "verificationNotes": "Employer verified (Tata Motors). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Model 3D component assemblies and generate production drawings in CATIA/SolidWorks",
+      "Perform structural FEA and thermal CFD simulations on chassis components",
+      "Monitor plant shop-floor quality parameters and implement Kaizen improvements"
+    ],
+    "requirements": [
+      "Strong conceptual knowledge of mechanics of materials and machine design",
+      "Hands-on experience in 3D CAD modeling software",
+      "Familiarity with automotive propulsion and EV battery pack considerations"
+    ],
+    "benefits": [
+      "Prestigious Tata Group career foundation",
+      "Subsidized township housing and medical facilities",
+      "Sponsorship for higher studies / executive M.Tech programs"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 340,
+    "bookmarksCount": 37,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.678Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.707Z",
+    "updatedAt": "2026-09-25T09:08:46.707Z",
+    "company": "Tata Motors",
+    "eligibilityCourses": [
+      "B.Tech"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Tata_logo.svg",
+    "stipendOrSalary": "₹5.0 - ₹6.5 LPA",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.tatamotors.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab91",
+    "id": "opp-ncs-business-trainee",
+    "slug": "business-operations-and-marketing-trainee",
+    "title": "Business Operations & Marketing Trainee",
+    "companyId": "ncs",
+    "companyName": "National Career Service (NCS)",
+    "companyLogo": "https://www.ncs.gov.in/images/ncs-logo.png",
+    "companyWebsite": "https://www.ncs.gov.in/",
+    "description": "National Career Service initiative connecting fresh graduates with registered corporate partners in banking, telecom, and digital marketing. Positions encompass client onboarding, business analysis, and campaign operations.",
+    "type": "Full-time",
+    "domain": "Business & Marketing",
+    "domainId": "business-marketing",
+    "location": "Noida / Delhi NCR / Lucknow, India",
+    "workMode": "On-site",
+    "skills": [
+      "Business Analysis",
+      "Marketing",
+      "CRM",
+      "Excel",
+      "Client Relations"
+    ],
+    "eligibility": [
+      "MBA or B.Tech graduates seeking business/management roles",
+      "Freshers welcome"
+    ],
+    "courseEligibility": [
+      "MBA",
+      "B.Tech"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹3.5 - ₹5.5 LPA",
+    "stipend": "Not specified",
+    "deadline": "Dec 23, 2026",
+    "deadlineDate": "2026-12-23T18:29:59.000Z",
+    "sourceUrl": "https://www.ncs.gov.in/",
+    "applicationUrl": "https://www.ncs.gov.in/",
+    "sourceType": "Official Govt Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 301,
+    "verificationNotes": "National Career Service (Ministry of Labour & Employment) portal verified. Direct vacancy requisition in review.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Coordinate B2B client communications and lead qualification funnels",
+      "Generate weekly sales pipeline and market intelligence reports in Excel",
+      "Execute email marketing and digital outreach campaigns"
+    ],
+    "requirements": [
+      "Proficiency in Microsoft Office suite (Advanced Excel & PowerPoint)",
+      "Clear, professional business verbal and written communication",
+      "Basic understanding of customer relationship management (CRM) systems"
+    ],
+    "benefits": [
+      "Direct interview access through verified government employment drives",
+      "Structured on-the-job managerial mentorship",
+      "Performance incentives based on quarterly target achievements"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 260,
+    "bookmarksCount": 28,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.682Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.707Z",
+    "updatedAt": "2026-09-25T09:08:46.707Z",
+    "company": "National Career Service (NCS)",
+    "eligibilityCourses": [
+      "MBA",
+      "B.Tech"
+    ],
+    "logoUrl": "https://www.ncs.gov.in/images/ncs-logo.png",
+    "stipendOrSalary": "₹3.5 - ₹5.5 LPA",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://www.ncs.gov.in/",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified NCS national career portal"
+    },
+    "isGenericHomepage": true
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab7d",
+    "id": "opp-google-gsoc-2025",
+    "slug": "google-summer-of-code-contributor",
+    "title": "Google Summer of Code (GSoC) 2025 Contributor",
+    "companyId": "google",
+    "companyName": "Google",
+    "companyLogo": "https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg",
+    "companyWebsite": "https://about.google/",
+    "description": "Google Summer of Code is a global, online mentoring program focused on bringing new contributors into open source software development. Contributors work with an open source organization on a 12+ week programming project under the guidance of mentors.",
+    "type": "Internship",
+    "domain": "Software Development",
+    "domainId": "software-development",
+    "location": "Remote / Global",
+    "workMode": "Remote",
+    "skills": [
+      "Python",
+      "C++",
+      "Git",
+      "Open Source",
+      "Data Structures"
+    ],
+    "eligibility": [
+      "Enrolled in higher education or open source beginners (18+)",
+      "Must be eligible to work in your country of residence"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE",
+      "All Engineering"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "$2,500/month",
+    "deadline": "Oct 15, 2026",
+    "deadlineDate": "2026-10-15T18:29:59.000Z",
+    "sourceUrl": "https://summerofcode.withgoogle.com/",
+    "applicationUrl": "https://summerofcode.withgoogle.com/get-started/",
+    "sourceType": "Official Google Program Portal",
+    "verified": true,
+    "verificationStatus": "verified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Official Google Summer of Code 2025 contributor registration and program portal.",
+    "expiresAt": null,
+    "featured": true,
+    "status": "published",
+    "responsibilities": [
+      "Write clean, modular code for assigned open-source mentor organizations",
+      "Participate actively in weekly community standups and code reviews",
+      "Document architecture decisions and create user documentation"
+    ],
+    "requirements": [
+      "Familiarity with distributed version control (Git & GitHub/GitLab)",
+      "Working knowledge of at least one modern language (Python, C++, Java, Rust, or Go)",
+      "Ability to articulate problem statements in open-source proposals"
+    ],
+    "benefits": [
+      "Global mentorship from senior open-source maintainers",
+      "Google recognized completion certificate & global alumni network",
+      "Stipend directly wired upon passing midterm and final evaluations"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 392,
+    "bookmarksCount": 43,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.634Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.699Z",
+    "updatedAt": "2026-09-28T05:20:12.510Z",
+    "company": "Google",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg",
+    "stipendOrSalary": "Stipend provided based on purchasing power parity ($1500 - $3000)",
+    "isEmployerVerified": true,
+    "isLinkVerified": true,
+    "applicationType": "official_portal",
+    "verificationEvidenceUrl": "https://summerofcode.withgoogle.com/",
+    "linkValidationDetails": {
+      "isDirectForm": true,
+      "isGenericHomepage": false,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Verified direct contributor onboarding"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab97",
+    "id": "opp-sub-cloudnative-backend",
+    "slug": "cloudnative-labs-backend-intern",
+    "title": "Backend Developer Intern (Node.js & Go)",
+    "companyId": "cloudnative-labs",
+    "companyName": "CloudNative Labs",
+    "companyLogo": "",
+    "companyWebsite": "https://github.com/",
+    "description": "We are looking for an enthusiastic student intern to work on microservices in Node.js and Go. The intern will assist in building RESTful APIs, configuring Redis cache, and writing unit tests.",
+    "type": "Internship",
+    "domain": "Software Development",
+    "domainId": "software-development",
+    "location": "Noida, India",
+    "workMode": "Hybrid",
+    "skills": [
+      "Node.js",
+      "Go",
+      "Redis",
+      "Docker",
+      "PostgreSQL"
+    ],
+    "eligibility": [
+      "B.Tech / MCA 3rd or 4th Year",
+      "Experience building at least 1 full-stack backend application"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹20,000/month",
+    "deadline": "Dec 17, 2026",
+    "deadlineDate": "2026-12-17T18:29:59.000Z",
+    "sourceUrl": "https://github.com/",
+    "applicationUrl": "https://github.com/",
+    "sourceType": "Employer Direct Submission",
+    "verified": false,
+    "verificationStatus": "unverified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Unverified listing: submitted link is generic or employer association is unconfirmed.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "pending_verification",
+    "responsibilities": [
+      "Write clean REST endpoints in Express/NestJS",
+      "Setup automated CI pipeline runs with GitHub Actions",
+      "Collaborate on database schema migrations"
+    ],
+    "requirements": [
+      "Good understanding of asynchronous JavaScript and event loop",
+      "Familiarity with relational database design and indexing",
+      "Basic knowledge of containerization with Docker"
+    ],
+    "benefits": [
+      "Flexible working hours for university exams",
+      "PPO opportunity upon successful 3-month performance",
+      "Letter of recommendation from CTO"
+    ],
+    "submittedBy": {
+      "name": "Pooja Verma",
+      "email": "recruiting@cloudnativelabs.io",
+      "company": "CloudNative Labs",
+      "isEmployerSubmission": true
+    },
+    "viewsCount": 5,
+    "bookmarksCount": 0,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.695Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.708Z",
+    "updatedAt": "2026-09-25T09:08:46.708Z",
+    "company": "CloudNative Labs",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "",
+    "stipendOrSalary": "₹20,000/month",
+    "isEmployerVerified": false,
+    "isLinkVerified": false,
+    "applicationType": "unverified",
+    "verificationEvidenceUrl": "",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Unverified external submission"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab98",
+    "id": "opp-sub-nextgen-ai-fellow",
+    "slug": "nextgen-ai-research-fellow",
+    "title": "AI & LLM Research Fellow (Student Program)",
+    "companyId": "nextgen-ai",
+    "companyName": "NextGen AI Research Studio",
+    "companyLogo": "",
+    "companyWebsite": "https://huggingface.co/",
+    "description": "Work on fine-tuning open-source LLMs (Llama 3, Mistral) for Indian vernacular languages. Candidate will prepare instruction datasets, run LoRA fine-tuning, and evaluate benchmark accuracy.",
+    "type": "Internship",
+    "domain": "Machine Learning & AI",
+    "domainId": "machine-learning-ai",
+    "location": "Remote",
+    "workMode": "Remote",
+    "skills": [
+      "PyTorch",
+      "Transformers",
+      "Hugging Face",
+      "LoRA",
+      "NLP"
+    ],
+    "eligibility": [
+      "B.Tech / MCA students with proven interest in generative AI and NLP"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "CSE",
+      "IT",
+      "ECE"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹30,000/month",
+    "deadline": "Jan 18, 2027",
+    "deadlineDate": "2027-01-18T18:29:59.000Z",
+    "sourceUrl": "https://huggingface.co/",
+    "applicationUrl": "https://huggingface.co/",
+    "sourceType": "Employer Direct Submission",
+    "verified": false,
+    "verificationStatus": "unverified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Unverified listing: submitted link is generic or employer association is unconfirmed.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "pending_verification",
+    "responsibilities": [
+      "Preprocess bilingual Hindi-English text corpora for instruction tuning",
+      "Run quantization and LoRA parameter-efficient fine-tuning experiments",
+      "Document evaluation loss and human feedback validation metrics"
+    ],
+    "requirements": [
+      "Solid command of Python and PyTorch",
+      "Experience using Hugging Face Transformers, Datasets, and PEFT libraries",
+      "Clear understanding of attention mechanisms and tokenization"
+    ],
+    "benefits": [
+      "High-end GPU compute credits provided",
+      "Co-authorship on research publications",
+      "100% remote flexibility"
+    ],
+    "submittedBy": {
+      "name": "Dr. Siddharth Rao",
+      "email": "siddharth@nextgenai.org",
+      "company": "NextGen AI Research Studio",
+      "isEmployerSubmission": true
+    },
+    "viewsCount": 3,
+    "bookmarksCount": 0,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.698Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.708Z",
+    "updatedAt": "2026-09-25T09:08:46.708Z",
+    "company": "NextGen AI Research Studio",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "",
+    "stipendOrSalary": "₹30,000/month",
+    "isEmployerVerified": false,
+    "isLinkVerified": false,
+    "applicationType": "unverified",
+    "verificationEvidenceUrl": "",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Unverified external submission"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab87",
+    "id": "opp-zoho-swe-trainee",
+    "slug": "zoho-software-developer-trainee",
+    "title": "Software Developer Trainee",
+    "companyId": "zoho",
+    "companyName": "Zoho Corporation",
+    "companyLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Zoho_Corporation_logo.svg/300px-Zoho_Corporation_logo.svg.png",
+    "companyWebsite": "https://www.zoho.com/",
+    "description": "Zoho hires engineers solely on problem-solving ability, algorithmic thinking, and clean code craftsmanship — without filtering by degrees or college marks. Trainees work on Zohos 50+ SaaS business applications serving 100M+ users globally.",
+    "type": "Full-time",
+    "domain": "Software Development",
+    "domainId": "software-development",
+    "location": "Chennai / Tenkasi / Salem, India",
+    "workMode": "On-site",
+    "skills": [
+      "Java",
+      "C",
+      "Algorithms",
+      "Data Structures",
+      "OOP"
+    ],
+    "eligibility": [
+      "Fresh graduates and students graduating in 2025",
+      "Any degree or branch welcome",
+      "No minimum percentage criteria"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA",
+      "B.Pharm",
+      "MBA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹5.0 - ₹8.5 LPA",
+    "stipend": "Not specified",
+    "deadline": "Rolling / Ongoing Application",
+    "deadlineDate": null,
+    "sourceUrl": "https://www.zoho.com/careers/",
+    "applicationUrl": "https://www.zoho.com/careers/",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 200,
+    "verificationNotes": "Employer verified (Zoho Corporation). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Design and code scalable backend components for Zoho SaaS products",
+      "Solve algorithmic challenges related to data storage, caching, and concurrency",
+      "Participate in architecture reviews and automated test implementation"
+    ],
+    "requirements": [
+      "High coding fluency in C, C++, or Java",
+      "Superior aptitude for writing modular, efficient, and bug-free logic",
+      "Passion for building long-term sustainable software products"
+    ],
+    "benefits": [
+      "No bond policy & employee-centric work culture",
+      "Free gourmet campus dining and transportation facilities",
+      "Rapid internal promotions based strictly on merit"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 480,
+    "bookmarksCount": 65,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.666Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.706Z",
+    "updatedAt": "2026-09-25T09:08:46.706Z",
+    "company": "Zoho Corporation",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA",
+      "B.Pharm",
+      "MBA"
+    ],
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Zoho_Corporation_logo.svg/300px-Zoho_Corporation_logo.svg.png",
+    "stipendOrSalary": "₹5.0 - ₹8.5 LPA",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.zoho.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab8c",
+    "id": "opp-mobile-flutter-intern",
+    "slug": "flutter-mobile-app-developer-intern",
+    "title": "Mobile App Developer Intern (Flutter / Android)",
+    "companyId": "internshala",
+    "companyName": "TechVanguard Labs (via Internshala)",
+    "companyLogo": "https://internshala.com/static/images/common/new_internshala_logo.svg",
+    "companyWebsite": "https://internshala.com/",
+    "description": "Build native and cross-platform mobile apps for millions of users. You will craft fluid user interactions in Flutter, implement state management with Bloc/Riverpod, and connect mobile frontends with GraphQL and REST APIs.",
+    "type": "Internship",
+    "domain": "Mobile App Development",
+    "domainId": "mobile-app-development",
+    "location": "Remote, India",
+    "workMode": "Remote",
+    "skills": [
+      "Flutter",
+      "Android",
+      "Dart",
+      "Kotlin",
+      "Firebase"
+    ],
+    "eligibility": [
+      "B.Tech / MCA students with at least 1 published Play Store app or GitHub repository"
+    ],
+    "courseEligibility": [
+      "B.Tech",
+      "MCA"
+    ],
+    "branchEligibility": [
+      "All Branches"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "Not specified",
+    "stipend": "₹15,000 - ₹25,000/month",
+    "deadline": "Jan 18, 2027",
+    "deadlineDate": "2027-01-18T18:29:59.000Z",
+    "sourceUrl": "https://internshala.com/",
+    "applicationUrl": "https://internshala.com/",
+    "sourceType": "Verified Recruitment Platform",
+    "verified": false,
+    "verificationStatus": "unverified",
+    "httpStatusCode": 200,
+    "verificationNotes": "Unverified listing: submitted link is generic or employer association is unconfirmed.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "pending_verification",
+    "responsibilities": [
+      "Implement responsive mobile screens according to Figma design specifications",
+      "Integrate push notifications, offline caching, and biometric authentication",
+      "Optimize application launch times and memory footprint"
+    ],
+    "requirements": [
+      "Proficiency in Dart and Flutter or Kotlin and Android Jetpack",
+      "Experience handling asynchronous API calls and JSON deserialization",
+      "Understanding of Git branch management and pull requests"
+    ],
+    "benefits": [
+      "100% remote flexibility with modern tooling",
+      "Certificate of internship and recommendation letter",
+      "Performance-based full-time hiring offer"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 315,
+    "bookmarksCount": 41,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.675Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.706Z",
+    "updatedAt": "2026-09-25T09:08:46.706Z",
+    "company": "TechVanguard Labs (via Internshala)",
+    "eligibilityCourses": [
+      "B.Tech",
+      "MCA"
+    ],
+    "logoUrl": "https://internshala.com/static/images/common/new_internshala_logo.svg",
+    "stipendOrSalary": "₹15,000 - ₹25,000/month",
+    "isEmployerVerified": false,
+    "isLinkVerified": false,
+    "applicationType": "unverified",
+    "verificationEvidenceUrl": "",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Unverified external submission"
+    }
+  },
+  {
+    "_id": "6ab63a1e65683c555e92ab8d",
+    "id": "opp-ltts-embedded-get",
+    "slug": "ltts-graduate-engineer-trainee-embedded",
+    "title": "Graduate Engineer Trainee (GET) - Embedded & IoT",
+    "companyId": "ltts",
+    "companyName": "L&T Technology Services",
+    "companyLogo": "https://www.ltts.com/themes/custom/ltts/logo.svg",
+    "companyWebsite": "https://www.ltts.com/",
+    "description": "L&T Technology Services is Indias premier engineering services specialist. GETs in the Embedded division work on automotive electronics, medical device firmware, smart metering IoT systems, and industrial edge controllers.",
+    "type": "Full-time",
+    "domain": "Electronics & ECE",
+    "domainId": "electronics-ece",
+    "location": "Mysuru / Bangalore / Vadodara, India",
+    "workMode": "On-site",
+    "skills": [
+      "Embedded C",
+      "Microcontrollers",
+      "RTOS",
+      "IoT Protocols",
+      "Circuit Design"
+    ],
+    "eligibility": [
+      "B.Tech in ECE, EEE, Instrumentation, or Mechatronics",
+      "Minimum 60% with no current backlogs"
+    ],
+    "courseEligibility": [
+      "B.Tech"
+    ],
+    "branchEligibility": [
+      "ECE",
+      "EEE",
+      "Instrumentation"
+    ],
+    "experienceLevel": "Fresher / Student",
+    "salary": "₹4.2 - ₹5.5 LPA",
+    "stipend": "Not specified",
+    "deadline": "Feb 19, 2027",
+    "deadlineDate": "2027-02-19T18:29:59.000Z",
+    "sourceUrl": "https://www.ltts.com/careers",
+    "applicationUrl": "https://www.ltts.com/careers",
+    "sourceType": "Official Careers Portal",
+    "verified": false,
+    "verificationStatus": "needs_review",
+    "httpStatusCode": 200,
+    "verificationNotes": "Employer verified (L&T Technology Services). Direct role requisition link is currently under verification. General careers portal available.",
+    "expiresAt": null,
+    "featured": false,
+    "status": "published",
+    "responsibilities": [
+      "Write low-level hardware abstraction firmware in Embedded C",
+      "Interface sensor peripherals using I2C, SPI, UART, and CAN protocols",
+      "Conduct hardware testing using oscilloscopes, logic analyzers, and multimeters"
+    ],
+    "requirements": [
+      "Strong command of C programming and bitwise manipulation",
+      "Familiarity with ARM Cortex microcontrollers (STM32, NXP, or TI)",
+      "Understanding of digital electronics and PCB schematics"
+    ],
+    "benefits": [
+      "Comprehensive core engineering technical induction",
+      "Work on global automotive and aerospace engineering products",
+      "Health insurance, provident fund, and corporate transportation"
+    ],
+    "submittedBy": {
+      "name": "ProfessorVirus Career Desk",
+      "email": "careers@professorvirus.in",
+      "company": "",
+      "isEmployerSubmission": false
+    },
+    "viewsCount": 280,
+    "bookmarksCount": 31,
+    "lastVerifiedAt": "2026-10-16T06:16:49.596Z",
+    "publishedAt": "2026-09-25T09:08:46.677Z",
+    "__v": 0,
+    "createdAt": "2026-09-25T09:08:46.707Z",
+    "updatedAt": "2026-09-25T09:08:46.707Z",
+    "company": "L&T Technology Services",
+    "eligibilityCourses": [
+      "B.Tech"
+    ],
+    "logoUrl": "https://www.ltts.com/themes/custom/ltts/logo.svg",
+    "stipendOrSalary": "₹4.2 - ₹5.5 LPA",
+    "isEmployerVerified": true,
+    "isLinkVerified": false,
+    "applicationType": "careers_hub",
+    "verificationEvidenceUrl": "https://www.ltts.com/",
+    "linkValidationDetails": {
+      "isDirectForm": false,
+      "isGenericHomepage": true,
+      "lastCheckedAt": "2026-10-16T06:16:49.596Z",
+      "notes": "Generic careers portal link. Direct job requisition pending review."
+    }
+  }
+]

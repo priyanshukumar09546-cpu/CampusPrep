@@ -41,8 +41,11 @@ import {
   RotateCcw,
   ShieldAlert,
   Loader2,
-  RefreshCw
+  RefreshCw,
+  Sun,
+  Moon
 } from 'lucide-react';
+import Editor from '@monaco-editor/react';
 import {
   getActiveAttemptId,
   getCurrentUserId,
@@ -71,6 +74,31 @@ const SUPPORTED_LANGUAGES = [
   { id: 'swift', name: 'Swift', icon: '🟧', ext: 'swift' },
   { id: 'php', name: 'PHP', icon: '🐘', ext: 'php' }
 ];
+
+// VS Code Themes (Default: 'vs-dark')
+const EDITOR_THEMES = [
+  { id: 'vs-dark', name: 'VS Code Dark+', icon: '🌙' },
+  { id: 'light', name: 'VS Code Light+', icon: '☀️' }
+];
+
+// Monaco Editor Language Mapper
+const getMonacoLanguage = (langId) => {
+  switch (langId) {
+    case 'python': return 'python';
+    case 'javascript': return 'javascript';
+    case 'typescript': return 'typescript';
+    case 'cpp': return 'cpp';
+    case 'c': return 'c';
+    case 'java': return 'java';
+    case 'csharp': return 'csharp';
+    case 'go': return 'go';
+    case 'rust': return 'rust';
+    case 'kotlin': return 'kotlin';
+    case 'swift': return 'swift';
+    case 'php': return 'php';
+    default: return 'plaintext';
+  }
+};
 
 export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
   const attemptId = getActiveAttemptId();

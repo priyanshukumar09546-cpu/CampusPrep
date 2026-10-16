@@ -311,20 +311,65 @@ export default function OpportunityDetailPage({ slug, onNavigate, onOpenAuth }) 
                     {opportunity.domain}
                   </span>
 
-                  {opportunity.verified && (
+                  {opportunity.isLinkVerified ? (
                     <span style={{
-                      backgroundColor: '#F0FDF4',
-                      color: '#16A34A',
-                      fontSize: '0.72rem',
+                      backgroundColor: '#DCFCE7',
+                      color: '#15803D',
+                      fontSize: '0.74rem',
                       fontWeight: 800,
-                      padding: '0.2rem 0.6rem',
+                      padding: '0.22rem 0.65rem',
                       borderRadius: '9999px',
-                      border: '1px solid #BBF7D0',
+                      border: '1px solid #86EFAC',
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '0.3rem'
+                      gap: '0.35rem'
                     }}>
-                      <ShieldCheck size={13} /> Verified Opportunity
+                      <CheckCircle2 size={13} strokeWidth={2.8} /> Direct Application Verified
+                    </span>
+                  ) : opportunity.isEmployerVerified ? (
+                    <span style={{
+                      backgroundColor: '#FEF3C7',
+                      color: '#B45309',
+                      fontSize: '0.74rem',
+                      fontWeight: 800,
+                      padding: '0.22rem 0.65rem',
+                      borderRadius: '9999px',
+                      border: '1px solid #FDE68A',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem'
+                    }}>
+                      <Building2 size={13} /> Employer Verified · Link in Review
+                    </span>
+                  ) : opportunity.verificationStatus === 'broken_link' ? (
+                    <span style={{
+                      backgroundColor: '#FEE2E2',
+                      color: '#B91C1C',
+                      fontSize: '0.74rem',
+                      fontWeight: 800,
+                      padding: '0.22rem 0.65rem',
+                      borderRadius: '9999px',
+                      border: '1px solid #FECACA',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem'
+                    }}>
+                      <AlertCircle size={13} /> Application Link Unavailable
+                    </span>
+                  ) : (
+                    <span style={{
+                      backgroundColor: '#F1F5F9',
+                      color: '#475569',
+                      fontSize: '0.74rem',
+                      fontWeight: 700,
+                      padding: '0.22rem 0.65rem',
+                      borderRadius: '9999px',
+                      border: '1px solid #CBD5E1',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem'
+                    }}>
+                      <Clock size={13} /> Under Verification
                     </span>
                   )}
                 </div>
@@ -440,48 +485,115 @@ export default function OpportunityDetailPage({ slug, onNavigate, onOpenAuth }) 
               </div>
 
               {/* Direct Official Apply Button */}
-              {isLinkBroken ? (
-                <div style={{
-                  padding: '0.65rem 1.4rem',
-                  borderRadius: '12px',
-                  backgroundColor: '#F3F4F6',
-                  color: '#9CA3AF',
-                  fontSize: '0.9rem',
-                  fontWeight: 700,
-                  border: '1px solid #E5E7EB'
-                }}>
-                  Application link unavailable
-                </div>
-              ) : (
-                <a
-                  href={opportunity.applicationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    backgroundColor: '#781416',
-                    color: '#FFFFFF',
-                    textDecoration: 'none',
-                    padding: '0.75rem 1.85rem',
+              {isLinkBroken || opportunity.verificationStatus === 'broken_link' ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.35rem' }}>
+                  <div style={{
+                    padding: '0.7rem 1.4rem',
                     borderRadius: '12px',
-                    fontWeight: 800,
-                    fontSize: '0.95rem',
+                    backgroundColor: '#FEE2E2',
+                    color: '#B91C1C',
+                    fontSize: '0.88rem',
+                    fontWeight: 700,
+                    border: '1px solid #FECACA',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.5rem',
-                    boxShadow: '0 4px 14px rgba(120, 20, 22, 0.3)',
-                    transition: 'opacity 0.15s ease'
-                  }}
-                  onMouseEnter={e => e.currentTarget.style.opacity = '0.92'}
-                  onMouseLeave={e => e.currentTarget.style.opacity = '1'}
-                >
-                  <span>Apply Now</span>
-                  <ArrowUpRight size={18} />
-                </a>
+                    gap: '0.4rem'
+                  }}>
+                    <AlertCircle size={16} />
+                    <span>Application Link Unavailable</span>
+                  </div>
+                  <span style={{ fontSize: '0.72rem', color: '#DC2626' }}>
+                    Listing URL is currently unreachable. Flagged for review.
+                  </span>
+                </div>
+              ) : (opportunity.status === 'closed' || opportunity.verificationStatus === 'closed' || opportunity.verificationStatus === 'expired') ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.35rem' }}>
+                  <div style={{
+                    padding: '0.7rem 1.4rem',
+                    borderRadius: '12px',
+                    backgroundColor: '#F1F5F9',
+                    color: '#64748B',
+                    fontSize: '0.88rem',
+                    fontWeight: 700,
+                    border: '1px solid #CBD5E1'
+                  }}>
+                    Applications Closed
+                  </div>
+                  <span style={{ fontSize: '0.72rem', color: '#64748B' }}>
+                    This opportunity is closed or no longer accepting submissions.
+                  </span>
+                </div>
+              ) : opportunity.isLinkVerified ? (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.35rem' }}>
+                  <a
+                    href={opportunity.applicationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      backgroundColor: '#781416',
+                      color: '#FFFFFF',
+                      textDecoration: 'none',
+                      padding: '0.75rem 1.85rem',
+                      borderRadius: '12px',
+                      fontWeight: 800,
+                      fontSize: '0.95rem',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      boxShadow: '0 4px 14px rgba(120, 20, 22, 0.3)',
+                      transition: 'opacity 0.15s ease'
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = '0.92'}
+                    onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                  >
+                    <span>Apply on Official Website</span>
+                    <ArrowUpRight size={18} />
+                  </a>
+                  <span style={{ fontSize: '0.72rem', color: '#15803D', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <CheckCircle2 size={12} strokeWidth={2.5} /> Opens verified official application form in a new tab
+                  </span>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.45rem' }}>
+                  <a
+                    href={opportunity.applicationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      backgroundColor: '#1E293B',
+                      color: '#FFFFFF',
+                      textDecoration: 'none',
+                      padding: '0.75rem 1.6rem',
+                      borderRadius: '12px',
+                      fontWeight: 800,
+                      fontSize: '0.92rem',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      boxShadow: '0 4px 12px rgba(30, 41, 59, 0.25)',
+                      transition: 'opacity 0.15s ease'
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = '0.92'}
+                    onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                  >
+                    <span>Visit Careers Portal</span>
+                    <ArrowUpRight size={17} />
+                  </a>
+                  <div style={{
+                    maxWidth: '320px',
+                    padding: '0.5rem 0.65rem',
+                    borderRadius: '8px',
+                    backgroundColor: '#FEF3C7',
+                    border: '1px solid #FDE68A',
+                    color: '#92400E',
+                    fontSize: '0.72rem',
+                    lineHeight: 1.35,
+                    textAlign: 'right'
+                  }}>
+                    Direct application link is currently under verification. Browse the employer's official careers portal to search for this opening.
+                  </div>
+                </div>
               )}
-
-              <span style={{ fontSize: '0.74rem', color: '#6B7280' }}>
-                Opens official application portal directly
-              </span>
             </div>
           </div>
         </div>
@@ -721,17 +833,63 @@ export default function OpportunityDetailPage({ slug, onNavigate, onOpenAuth }) 
               border: '1.5px solid #E8E2D5',
               padding: '1.35rem'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.85rem' }}>
                 <ShieldCheck size={18} color="#16A34A" />
-                <h4 style={{ margin: 0, fontSize: '0.9rem', fontWeight: 800, color: '#1C1E21' }}>
-                  Verification Audit
+                <h4 style={{ margin: 0, fontSize: '0.92rem', fontWeight: 800, color: '#1C1E21' }}>
+                  Verification & Trust Audit
                 </h4>
               </div>
-              <p style={{ margin: '0 0 0.75rem', fontSize: '0.8rem', color: '#4B5563', lineHeight: 1.45 }}>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', marginBottom: '0.9rem' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.45rem', fontSize: '0.78rem' }}>
+                  {opportunity.isEmployerVerified ? (
+                    <CheckCircle2 size={15} color="#16A34A" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  ) : (
+                    <Clock size={15} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  )}
+                  <div>
+                    <strong style={{ color: '#1C1E21' }}>Employer Identity: </strong>
+                    <span style={{ color: opportunity.isEmployerVerified ? '#15803D' : '#B45309', fontWeight: 600 }}>
+                      {opportunity.isEmployerVerified ? `Verified Entity (${opportunity.companyName})` : 'Pending Direct Check'}
+                    </span>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.45rem', fontSize: '0.78rem' }}>
+                  {opportunity.isLinkVerified ? (
+                    <CheckCircle2 size={15} color="#16A34A" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  ) : (
+                    <AlertCircle size={15} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  )}
+                  <div>
+                    <strong style={{ color: '#1C1E21' }}>Application Link: </strong>
+                    <span style={{ color: opportunity.isLinkVerified ? '#15803D' : '#B45309', fontWeight: 600 }}>
+                      {opportunity.isLinkVerified ? 'Direct Form / Registration Portal' : 'Portal / Requisition in Review'}
+                    </span>
+                  </div>
+                </div>
+
+                {opportunity.verificationEvidenceUrl && (
+                  <div style={{ fontSize: '0.74rem', color: '#65676B', borderTop: '1px dashed #E8E2D5', paddingTop: '0.5rem' }}>
+                    <span style={{ display: 'block', fontWeight: 700, color: '#374151', marginBottom: '0.15rem' }}>Official Evidence Source:</span>
+                    <a
+                      href={opportunity.verificationEvidenceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#781416', wordBreak: 'break-all', textDecoration: 'underline' }}
+                    >
+                      {opportunity.verificationEvidenceUrl}
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              <p style={{ margin: '0 0 0.75rem', fontSize: '0.78rem', color: '#4B5563', lineHeight: 1.45 }}>
                 {opportunity.verificationNotes || 'Verified authentic listing on official company careers portal.'}
               </p>
-              <div style={{ fontSize: '0.74rem', color: '#65676B' }}>
-                Last Verified: {new Date(opportunity.lastVerifiedAt || opportunity.updatedAt || Date.now()).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+              <div style={{ fontSize: '0.72rem', color: '#65676B', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                <Clock size={12} />
+                <span>Last Verified: {new Date(opportunity.lastVerifiedAt || opportunity.updatedAt || Date.now()).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
               </div>
             </div>
 

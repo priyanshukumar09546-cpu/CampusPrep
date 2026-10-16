@@ -5250,30 +5250,68 @@ export default function AdminDashboard({ onNavigate }) {
                                 </div>
                               </td>
 
-                              {/* Link Health */}
+                              {/* Link Health & Trust */}
                               <td style={{ padding: '1rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                  <span style={{
-                                    display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
-                                    fontSize: '0.72rem', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 700,
-                                    backgroundColor: opp.verificationStatus === 'verified' ? '#f0fdf4' : '#fef2f2',
-                                    color: opp.verificationStatus === 'verified' ? '#16a34a' : '#dc2626',
-                                    border: `1px solid ${opp.verificationStatus === 'verified' ? '#bbf7d0' : '#fecaca'}`
-                                  }}>
-                                    {opp.verificationStatus === 'verified' ? <CheckCircle2 size={12} /> : <AlertCircle size={12} />}
-                                    {opp.httpStatusCode ? `HTTP ${opp.httpStatusCode}` : (opp.verificationStatus === 'verified' ? 'Verified' : 'Check')}
-                                  </span>
-                                  <button
-                                    onClick={() => handleVerifyOpportunityLink(opp.id)}
-                                    disabled={verifyingOpportunityId === opp.id}
-                                    title="Run live HTTP verification check"
-                                    style={{
-                                      padding: '0.25rem 0.4rem', borderRadius: '4px', border: '1px solid #cbd5e1',
-                                      backgroundColor: '#ffffff', color: '#475569', cursor: 'pointer'
-                                    }}
-                                  >
-                                    <RefreshCw size={12} className={verifyingOpportunityId === opp.id ? 'animate-spin' : ''} />
-                                  </button>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+                                    {opp.isLinkVerified ? (
+                                      <span style={{
+                                        display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
+                                        fontSize: '0.7rem', padding: '0.15rem 0.45rem', borderRadius: '4px', fontWeight: 800,
+                                        backgroundColor: '#dcfce7', color: '#15803d', border: '1px solid #86efac'
+                                      }}>
+                                        <CheckCircle2 size={11} strokeWidth={2.8} /> Direct Link
+                                      </span>
+                                    ) : opp.isEmployerVerified ? (
+                                      <span style={{
+                                        display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
+                                        fontSize: '0.7rem', padding: '0.15rem 0.45rem', borderRadius: '4px', fontWeight: 700,
+                                        backgroundColor: '#fef3c7', color: '#b45309', border: '1px solid #fde68a'
+                                      }}>
+                                        <Building2 size={11} /> Employer Only
+                                      </span>
+                                    ) : (
+                                      <span style={{
+                                        display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
+                                        fontSize: '0.7rem', padding: '0.15rem 0.45rem', borderRadius: '4px', fontWeight: 600,
+                                        backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1'
+                                      }}>
+                                        <Clock size={11} /> Unverified
+                                      </span>
+                                    )}
+
+                                    {opp.isGenericHomepage && (
+                                      <span style={{
+                                        fontSize: '0.65rem', padding: '0.1rem 0.35rem', borderRadius: '3px',
+                                        backgroundColor: '#FEF9EE', color: '#B45309', border: '1px solid #FDE68A', fontWeight: 700
+                                      }}>
+                                        Generic Portal
+                                      </span>
+                                    )}
+                                  </div>
+
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                    <span style={{
+                                      display: 'inline-flex', alignItems: 'center', gap: '0.25rem',
+                                      fontSize: '0.68rem', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: 700,
+                                      backgroundColor: (opp.httpStatusCode >= 200 && opp.httpStatusCode < 400) ? '#f0fdf4' : '#fef2f2',
+                                      color: (opp.httpStatusCode >= 200 && opp.httpStatusCode < 400) ? '#16a34a' : '#dc2626',
+                                      border: `1px solid ${(opp.httpStatusCode >= 200 && opp.httpStatusCode < 400) ? '#bbf7d0' : '#fecaca'}`
+                                    }}>
+                                      {opp.httpStatusCode ? `HTTP ${opp.httpStatusCode}` : (opp.verificationStatus === 'verified' ? 'HTTP 200' : 'Unchecked')}
+                                    </span>
+                                    <button
+                                      onClick={() => handleVerifyOpportunityLink(opp.id)}
+                                      disabled={verifyingOpportunityId === opp.id}
+                                      title="Run live HTTP verification check"
+                                      style={{
+                                        padding: '0.2rem 0.35rem', borderRadius: '4px', border: '1px solid #cbd5e1',
+                                        backgroundColor: '#ffffff', color: '#475569', cursor: 'pointer'
+                                      }}
+                                    >
+                                      <RefreshCw size={11} className={verifyingOpportunityId === opp.id ? 'animate-spin' : ''} />
+                                    </button>
+                                  </div>
                                 </div>
                               </td>
 
@@ -5563,6 +5601,94 @@ export default function AdminDashboard({ onNavigate }) {
                         <span style={{ fontSize: '0.72rem', color: '#64748b', marginTop: '0.2rem', display: 'block' }}>
                           Must be an authentic, publicly accessible career portal (returns HTTP 200/301).
                         </span>
+                      </div>
+
+                      {/* Trust & Verification Controls */}
+                      <div style={{
+                        padding: '1rem',
+                        backgroundColor: '#f8fafc',
+                        borderRadius: '10px',
+                        border: '1px solid #e2e8f0',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.85rem'
+                      }}>
+                        <div style={{ fontWeight: 800, fontSize: '0.85rem', color: '#1e293b' }}>
+                          🛡️ Trust & Verification Settings
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <input
+                              type="checkbox"
+                              id="adminEmployerVerified"
+                              checked={!!editingOpportunity.isEmployerVerified}
+                              onChange={e => setEditingOpportunity({ ...editingOpportunity, isEmployerVerified: e.target.checked })}
+                              style={{ width: '17px', height: '17px', accentColor: '#16a34a' }}
+                            />
+                            <label htmlFor="adminEmployerVerified" style={{ fontSize: '0.82rem', fontWeight: 700, color: '#334155', cursor: 'pointer' }}>
+                              Employer Identity Verified
+                            </label>
+                          </div>
+
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <input
+                              type="checkbox"
+                              id="adminLinkVerified"
+                              checked={!!editingOpportunity.isLinkVerified}
+                              onChange={e => setEditingOpportunity({ ...editingOpportunity, isLinkVerified: e.target.checked })}
+                              style={{ width: '17px', height: '17px', accentColor: '#16a34a' }}
+                            />
+                            <label htmlFor="adminLinkVerified" style={{ fontSize: '0.82rem', fontWeight: 700, color: '#334155', cursor: 'pointer' }}>
+                              Direct Application Link Verified
+                            </label>
+                          </div>
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                          <div>
+                            <label style={{ display: 'block', fontSize: '0.74rem', fontWeight: 700, color: '#475569', marginBottom: '0.25rem' }}>
+                              Verification Status
+                            </label>
+                            <select
+                              value={editingOpportunity.verificationStatus || 'needs_review'}
+                              onChange={e => setEditingOpportunity({ ...editingOpportunity, verificationStatus: e.target.value })}
+                              style={{ width: '100%', padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '0.82rem' }}
+                            >
+                              <option value="verified">Verified (Active Direct Link)</option>
+                              <option value="needs_review">Needs Review (Portal / In Review)</option>
+                              <option value="unverified">Unverified (Pending Initial Check)</option>
+                              <option value="broken_link">Broken Link (HTTP Error / 404)</option>
+                              <option value="closed">Closed / Expired</option>
+                            </select>
+                          </div>
+
+                          <div>
+                            <label style={{ display: 'block', fontSize: '0.74rem', fontWeight: 700, color: '#475569', marginBottom: '0.25rem' }}>
+                              Evidence Source URL
+                            </label>
+                            <input
+                              type="url"
+                              value={editingOpportunity.verificationEvidenceUrl || ''}
+                              onChange={e => setEditingOpportunity({ ...editingOpportunity, verificationEvidenceUrl: e.target.value })}
+                              style={{ width: '100%', padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '0.82rem' }}
+                              placeholder="https://company.com/official-careers"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <label style={{ display: 'block', fontSize: '0.74rem', fontWeight: 700, color: '#475569', marginBottom: '0.25rem' }}>
+                            Verification Notes / Audit Summary
+                          </label>
+                          <input
+                            type="text"
+                            value={editingOpportunity.verificationNotes || ''}
+                            onChange={e => setEditingOpportunity({ ...editingOpportunity, verificationNotes: e.target.value })}
+                            style={{ width: '100%', padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '0.82rem' }}
+                            placeholder="e.g. Official campus program verified on indiacampus.accenture.com"
+                          />
+                        </div>
                       </div>
 
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>

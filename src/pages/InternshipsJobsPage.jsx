@@ -7,7 +7,7 @@ import {
   Code2, BarChart3, Brain, Globe, Smartphone, Shield, Cloud, Server,
   Target, Palette, TrendingUp, Cog, Cpu, Building, Check, ArrowUpRight,
   Home, LayoutGrid, GraduationCap, Trophy, User, SlidersHorizontal, Package,
-  MoreHorizontal, Crown
+  MoreHorizontal, Crown, AlertCircle
 } from 'lucide-react';
 import CareerResourceModal from '../components/CareerResourceModal';
 import EmployerSubmitModal from '../components/EmployerSubmitModal';
@@ -31,6 +31,7 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
   const [selectedLocation, setSelectedLocation] = useState('all');
   const [selectedCourse, setSelectedCourse] = useState('all');
   const [selectedWorkMode, setSelectedWorkMode] = useState('all');
+  const [selectedTrust, setSelectedTrust] = useState('all');
   const [sortBy, setSortBy] = useState('latest');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -67,6 +68,7 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
       if (selectedCourse && selectedCourse !== 'all') params.append('course', selectedCourse);
       if (selectedLocation && selectedLocation !== 'all') params.append('location', selectedLocation);
       if (selectedWorkMode && selectedWorkMode !== 'all') params.append('workMode', selectedWorkMode);
+      if (selectedTrust && selectedTrust !== 'all') params.append('trust', selectedTrust);
       if (sortBy) params.append('sort', sortBy);
       params.append('page', page);
       params.append('limit', '20');
@@ -121,7 +123,7 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
 
   useEffect(() => {
     fetchOpportunities();
-  }, [debouncedSearch, selectedDomain, selectedType, selectedCourse, selectedLocation, selectedWorkMode, sortBy, page]);
+  }, [debouncedSearch, selectedDomain, selectedType, selectedCourse, selectedLocation, selectedWorkMode, selectedTrust, sortBy, page]);
 
   useEffect(() => {
     fetchCategories();
@@ -181,6 +183,111 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
     return <CompanyLogo name={opp.companyName} logoUrl={opp.companyLogo} size={size} />;
   };
 
+  // Truthful Multi-Level Verification Badge Helper
+  const renderTrustBadge = (opp, isSmall = false) => {
+    if (!opp) return null;
+    const isLinkVer = opp.isLinkVerified === true;
+    const isEmpVer = opp.isEmployerVerified === true;
+    const status = opp.verificationStatus;
+
+    if (status === 'closed' || opp.status === 'closed') {
+      return (
+        <span style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.2rem',
+          backgroundColor: '#F1F5F9',
+          color: '#64748B',
+          fontSize: isSmall ? '0.66rem' : '0.72rem',
+          fontWeight: 700,
+          padding: isSmall ? '0.12rem 0.45rem' : '0.18rem 0.55rem',
+          borderRadius: '999px',
+          border: '1px solid #CBD5E1'
+        }}>
+          Closed
+        </span>
+      );
+    }
+
+    if (status === 'broken_link') {
+      return (
+        <span style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.2rem',
+          backgroundColor: '#FEE2E2',
+          color: '#B91C1C',
+          fontSize: isSmall ? '0.66rem' : '0.72rem',
+          fontWeight: 700,
+          padding: isSmall ? '0.12rem 0.45rem' : '0.18rem 0.55rem',
+          borderRadius: '999px',
+          border: '1px solid #FECACA'
+        }}>
+          <AlertCircle size={isSmall ? 10 : 12} />
+          Link Broken
+        </span>
+      );
+    }
+
+    if (isLinkVer) {
+      return (
+        <span style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.22rem',
+          backgroundColor: '#DCFCE7',
+          color: '#15803D',
+          fontSize: isSmall ? '0.66rem' : '0.72rem',
+          fontWeight: 800,
+          padding: isSmall ? '0.12rem 0.5rem' : '0.18rem 0.6rem',
+          borderRadius: '999px',
+          border: '1px solid #86EFAC'
+        }} title="Verified authentic application link directly to official employer registration/form">
+          <CheckCircle2 size={isSmall ? 11 : 12} strokeWidth={2.8} />
+          Application Link Verified
+        </span>
+      );
+    }
+
+    if (isEmpVer) {
+      return (
+        <span style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.22rem',
+          backgroundColor: '#FEF3C7',
+          color: '#B45309',
+          fontSize: isSmall ? '0.66rem' : '0.72rem',
+          fontWeight: 700,
+          padding: isSmall ? '0.12rem 0.45rem' : '0.18rem 0.55rem',
+          borderRadius: '999px',
+          border: '1px solid #FDE68A'
+        }} title="Official employer recognized. Direct requisition URL is under review.">
+          <Building2 size={isSmall ? 10 : 12} />
+          Employer Verified · Link in Review
+        </span>
+      );
+    }
+
+    return (
+      <span style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.2rem',
+        backgroundColor: '#F1F5F9',
+        color: '#475569',
+        fontSize: isSmall ? '0.66rem' : '0.72rem',
+        fontWeight: 600,
+        padding: isSmall ? '0.12rem 0.45rem' : '0.18rem 0.55rem',
+        borderRadius: '999px',
+        border: '1px solid #E2E8F0'
+      }} title="Community / recruiter submission undergoing verification">
+        <Clock size={isSmall ? 10 : 12} />
+        Under Review
+      </span>
+    );
+  };
+
   const handleMobilePillClick = (id) => {
     setMobilePillFilter(id);
     if (id === 'all') {
@@ -196,9 +303,10 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
     setPage(1);
   };
 
-  // Mobile pills matching reference image
+  // Mobile pills matching reference image + trust verification
   const mobileFilterPills = [
     { id: 'all', label: 'All Opportunities', icon: LayoutGrid },
+    { id: 'link_verified', label: 'Direct Link Verified', icon: CheckCircle2 },
     { id: 'internships', label: 'Internships', icon: GraduationCap },
     { id: 'full-time', label: 'Full-time Jobs', icon: Briefcase },
     { id: 'top-companies', label: 'Top Companies', icon: Trophy },
@@ -230,7 +338,9 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
       list = [...featuredOpportunities, ...opportunities.filter(o => !featIds.has(o.id))];
     }
 
-    if (mobilePillFilter === 'internships') {
+    if (mobilePillFilter === 'link_verified') {
+      list = list.filter(o => o.isLinkVerified === true);
+    } else if (mobilePillFilter === 'internships') {
       list = list.filter(o => (o.type || '').toLowerCase() === 'internship');
     } else if (mobilePillFilter === 'full-time') {
       list = list.filter(o => (o.type || '').toLowerCase().includes('full-time') || (o.type || '').toLowerCase() === 'job');
@@ -626,6 +736,27 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
             </select>
 
             <select
+              value={selectedTrust}
+              onChange={e => { setSelectedTrust(e.target.value); setPage(1); }}
+              style={{
+                padding: '0.65rem 0.95rem',
+                borderRadius: '12px',
+                border: '1.5px solid #E8E2D5',
+                backgroundColor: '#FFFFFF',
+                fontSize: '0.86rem',
+                fontWeight: 600,
+                color: '#374151',
+                outline: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <option value="all">Trust: All Listings</option>
+              <option value="link_verified">Direct Link Verified</option>
+              <option value="employer_verified">Employer Verified</option>
+              <option value="needs_review">Link in Review</option>
+            </select>
+
+            <select
               value={sortBy}
               onChange={e => setSortBy(e.target.value)}
               style={{
@@ -881,7 +1012,7 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
                         <div>
                           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
                             {renderCompanyAvatar(opp, 44)}
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
                               <span style={{
                                 backgroundColor: isInternship ? '#ECFDF5' : '#EFF6FF',
                                 color: isInternship ? '#059669' : '#2563EB',
@@ -893,6 +1024,7 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
                               }}>
                                 {opp.type}
                               </span>
+                              {renderTrustBadge(opp, true)}
                               <button
                                 onClick={(e) => handleToggleBookmark(opp.id, e)}
                                 title={isBookmarked ? 'Remove Bookmark' : 'Save Opportunity'}
@@ -1158,6 +1290,8 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
                           }}>
                             {opp.type}
                           </span>
+
+                          {renderTrustBadge(opp, false)}
 
                           <span style={{
                             backgroundColor: '#F3EFE6',
@@ -2083,20 +2217,7 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
                               {opp.type || 'Internship'}
                             </span>
 
-                            <span style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '0.2rem',
-                              backgroundColor: '#DCFCE7',
-                              color: '#15803D',
-                              fontSize: '0.68rem',
-                              fontWeight: 800,
-                              padding: '0.12rem 0.5rem',
-                              borderRadius: '999px'
-                            }}>
-                              <CheckCircle2 size={11} strokeWidth={2.8} />
-                              Verified
-                            </span>
+                            {renderTrustBadge(opp, true)}
                           </div>
 
                           {/* Company Name & Location */}
