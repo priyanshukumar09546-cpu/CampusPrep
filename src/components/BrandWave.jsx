@@ -1,8 +1,9 @@
 import React from 'react';
 
 /**
- * BrandTopWave - Vector SVG top-left decorative wave for Professor Virus mobile screens
+ * BrandTopWave - Vector SVG top decorative wave for Professor Virus mobile screens
  * Recreated with pure CSS/SVG vectors to match reference designs identically.
+ * Spans full width of the mobile viewport with layered burgundy curves and metallic gold ribbon.
  */
 export function BrandTopWave({ className = '', style = {} }) {
   return (
@@ -12,17 +13,17 @@ export function BrandTopWave({ className = '', style = {} }) {
         position: 'absolute',
         top: 0,
         left: 0,
-        width: '65%',
-        maxWidth: '300px',
-        height: '75px',
+        width: '100%',
+        height: '110px',
         pointerEvents: 'none',
         zIndex: 1,
+        overflow: 'hidden',
         ...style
       }}
       aria-hidden="true"
     >
       <svg
-        viewBox="0 0 300 75"
+        viewBox="0 0 430 110"
         width="100%"
         height="100%"
         preserveAspectRatio="none"
@@ -50,23 +51,23 @@ export function BrandTopWave({ className = '', style = {} }) {
         </defs>
 
         {/* Soft ivory accent back wave */}
-        <path d="M 0,0 L 0,72 Q 80,52 155,28 T 300,0 Z" fill="#F8EEDC" opacity="0.65" />
+        <path d="M 0,0 L 0,82 Q 110,95 240,55 T 430,15 L 430,0 Z" fill="#F8EEDC" opacity="0.65" />
 
         {/* Main rich burgundy corner shape */}
-        <path d="M 0,0 L 0,60 Q 75,44 145,22 T 275,0 Z" fill="url(#pvAuthTopBurgundy)" />
+        <path d="M 0,0 L 0,68 Q 100,82 225,44 T 430,8 L 430,0 Z" fill="url(#pvAuthTopBurgundy)" />
 
         {/* Flowing metallic gold ribbon border */}
         <path
-          d="M 0,60 Q 75,44 145,22 T 275,0"
+          d="M 0,68 Q 100,82 225,44 T 430,8"
           fill="none"
           stroke="url(#pvAuthTopGold)"
-          strokeWidth="3.6"
+          strokeWidth="3.8"
           strokeLinecap="round"
         />
 
         {/* Secondary delicate champagne highlight */}
         <path
-          d="M 0,66 Q 78,48 150,25 T 288,0"
+          d="M 0,74 Q 105,88 232,49 T 430,13"
           fill="none"
           stroke="url(#pvAuthTopGoldSoft)"
           strokeWidth="1.8"
@@ -74,11 +75,17 @@ export function BrandTopWave({ className = '', style = {} }) {
         />
 
         {/* Star sparkles on top wave */}
-        <polygon points="105,28 106.5,32 111,33.5 106.5,35 105,39 103.5,35 99,33.5 103.5,32" fill="#FFF5D6" />
-        <circle cx="105" cy="33.5" r="1.1" fill="#FFFFFF" />
+        <polygon points="105,42 106.5,46 111,47.5 106.5,49 105,53 103.5,49 99,47.5 103.5,46" fill="#FFF5D6" />
+        <circle cx="105" cy="47.5" r="1.1" fill="#FFFFFF" />
 
-        <polygon points="190,12 191,15 194,16 191,17 190,20 189,17 186,16 189,15" fill="#FFF5D6" opacity="0.9" />
-        <circle cx="190" cy="16" r="0.8" fill="#FFFFFF" />
+        <polygon points="215,30 216.5,33 220,34 216.5,35 215,38 213.5,35 210,34 213.5,33" fill="#FFF5D6" opacity="0.95" />
+        <circle cx="215" cy="34" r="0.9" fill="#FFFFFF" />
+
+        <polygon points="330,16 331,18.5 334,19.5 331,20.5 330,23 329,20.5 326,19.5 329,18.5" fill="#FFF5D6" opacity="0.9" />
+        <circle cx="330" cy="19.5" r="0.8" fill="#FFFFFF" />
+
+        <polygon points="45,36 46,38.5 49,39.5 46,40.5 45,43 44,40.5 41,39.5 44,38.5" fill="#FFF5D6" opacity="0.85" />
+        <circle cx="45" cy="39.5" r="0.8" fill="#FFFFFF" />
       </svg>
     </div>
   );
@@ -87,6 +94,7 @@ export function BrandTopWave({ className = '', style = {} }) {
 /**
  * BrandBottomWave - Vector SVG bottom flowing wave for Professor Virus mobile screens
  * Recreated with pure CSS/SVG vectors to match reference designs identically.
+ * Grounds both screens with deep burgundy curves and glowing metallic ribbon border.
  */
 export function BrandBottomWave({ className = '', style = {} }) {
   return (
@@ -94,7 +102,7 @@ export function BrandBottomWave({ className = '', style = {} }) {
       className={`pv-brand-bottom-wave ${className}`}
       style={{
         width: '100%',
-        height: '115px',
+        height: '135px',
         pointerEvents: 'none',
         position: 'relative',
         marginTop: '-12px',
@@ -104,7 +112,7 @@ export function BrandBottomWave({ className = '', style = {} }) {
       aria-hidden="true"
     >
       <svg
-        viewBox="0 0 473 130"
+        viewBox="0 0 430 135"
         width="100%"
         height="100%"
         preserveAspectRatio="none"
@@ -134,7 +142,7 @@ export function BrandBottomWave({ className = '', style = {} }) {
             <stop offset="50%" stopColor="#FFF0D0" />
             <stop offset="100%" stopColor="#D9A952" />
           </linearGradient>
-          <radialGradient id="pvAuthBotGlow" cx="75%" cy="65%" r="45%">
+          <radialGradient id="pvAuthBotGlow" cx="72%" cy="60%" r="45%">
             <stop offset="0%" stopColor="#D6A13D" stopOpacity="0.32" />
             <stop offset="60%" stopColor="#861820" stopOpacity="0.1" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
@@ -142,23 +150,23 @@ export function BrandBottomWave({ className = '', style = {} }) {
         </defs>
 
         {/* Soft ivory accent back wave */}
-        <path d="M 0,72 Q 110,28 225,52 T 473,16 L 473,130 L 0,130 Z" fill="#F8EEDC" opacity="0.65" />
+        <path d="M 0,85 Q 110,38 230,64 T 430,22 L 430,135 L 0,135 Z" fill="#F8EEDC" opacity="0.65" />
 
         {/* Deep background burgundy wave */}
-        <path d="M 0,56 Q 120,16 245,38 T 473,8 L 473,130 L 0,130 Z" fill="url(#pvAuthBotBurgundy1)" />
+        <path d="M 0,65 Q 120,24 250,50 T 430,12 L 430,135 L 0,135 Z" fill="url(#pvAuthBotBurgundy1)" />
 
         {/* Back wave gold trim */}
-        <path d="M 0,56 Q 120,16 245,38 T 473,8" fill="none" stroke="url(#pvAuthBotGoldSoft)" strokeWidth="1.8" opacity="0.8" />
+        <path d="M 0,65 Q 120,24 250,50 T 430,12" fill="none" stroke="url(#pvAuthBotGoldSoft)" strokeWidth="1.8" opacity="0.8" />
 
         {/* Foreground sweeping burgundy wave */}
-        <path d="M 0,78 Q 140,28 280,58 T 473,26 L 473,130 L 0,130 Z" fill="url(#pvAuthBotBurgundy2)" />
+        <path d="M 0,92 Q 135,36 280,72 T 430,30 L 430,135 L 0,135 Z" fill="url(#pvAuthBotBurgundy2)" />
 
         {/* Subtle warm golden ambient glow inside dark burgundy base */}
-        <rect x="0" y="30" width="473" height="100" fill="url(#pvAuthBotGlow)" pointerEvents="none" />
+        <rect x="0" y="30" width="430" height="105" fill="url(#pvAuthBotGlow)" pointerEvents="none" />
 
         {/* Foreground primary metallic gold ribbon border */}
         <path
-          d="M 0,78 Q 140,28 280,58 T 473,26"
+          d="M 0,92 Q 135,36 280,72 T 430,30"
           fill="none"
           stroke="url(#pvAuthBotGold)"
           strokeWidth="3.8"
@@ -166,16 +174,17 @@ export function BrandBottomWave({ className = '', style = {} }) {
         />
 
         {/* Star sparkles on bottom wave */}
-        <polygon points="380,36 382,41 387,42.5 382,44 380,49 378,44 373,42.5 378,41" fill="#FFF5D6" />
-        <circle cx="380" cy="42.5" r="1.4" fill="#FFFFFF" />
+        <polygon points="345,42 347,47 352,48.5 347,50 345,55 343,50 338,48.5 343,47" fill="#FFF5D6" />
+        <circle cx="345" cy="48.5" r="1.3" fill="#FFFFFF" />
 
-        <polygon points="160,42 161.5,46 166,47.2 161.5,48.5 160,52 158.5,48.5 154,47.2 158.5,46" fill="#FFF5D6" opacity="0.9" />
-        <circle cx="160" cy="47.2" r="1.1" fill="#FFFFFF" />
+        <polygon points="145,52 146.5,56 151,57.2 146.5,58.5 145,62 143.5,58.5 139,57.2 143.5,56" fill="#FFF5D6" opacity="0.9" />
+        <circle cx="145" cy="57.2" r="1.0" fill="#FFFFFF" />
 
-        <polygon points="50,68 51,71 54,72 51,73 50,76 49,73 46,72 49,71" fill="#FFF5D6" opacity="0.8" />
-        <circle cx="50" cy="72" r="0.9" fill="#FFFFFF" />
+        <polygon points="45,78 46,81 49,82 46,83 45,86 44,83 41,82 44,81" fill="#FFF5D6" opacity="0.8" />
+        <circle cx="45" cy="82" r="0.9" fill="#FFFFFF" />
 
-        <polygon points="435,52 436,54 438,55 436,56 435,58 434,56 432,55 434,54" fill="#FFF5D6" opacity="0.85" />
+        <polygon points="395,62 396,64.5 399,65.5 396,66.5 395,69 394,66.5 391,65.5 394,64.5" fill="#FFF5D6" opacity="0.85" />
+        <circle cx="395" cy="65.5" r="0.8" fill="#FFFFFF" />
       </svg>
     </div>
   );
