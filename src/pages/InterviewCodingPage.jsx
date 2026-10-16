@@ -188,6 +188,7 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
     const defaultStarter = codingQuestion.starterCodes?.[selectedLanguage] || '';
     const draft = getUserCodingDraft(attemptId, codingQuestion.questionId, selectedLanguage, defaultStarter);
     setEditorCode(draft);
+    setRunResult(null);
     try {
       localStorage.setItem('interview_pro_coding_selected_lang', selectedLanguage);
     } catch {}
@@ -222,10 +223,11 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  // Handle Code Change in Textarea (Autosave User Draft)
+  // Handle Code Change in Textarea (Autosave User Draft & Invalidate Stale Results)
   const handleCodeChange = (e) => {
     const newCode = e.target.value;
     setEditorCode(newCode);
+    setRunResult(null);
     if (codingQuestion) {
       saveUserCodingDraft(attemptId, codingQuestion.questionId, selectedLanguage, newCode);
     }
@@ -236,6 +238,7 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
     if (!codingQuestion) return;
     const cleanStarter = codingQuestion.starterCodes?.[selectedLanguage] || '';
     setEditorCode(cleanStarter);
+    setRunResult(null);
     saveUserCodingDraft(attemptId, codingQuestion.questionId, selectedLanguage, cleanStarter);
     setToastMessage({ type: 'info', text: 'Clean starter template reloaded.' });
     setTimeout(() => setToastMessage(null), 2000);
@@ -252,9 +255,45 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
     });
   };
 
-  // Run Code via Execution Engine
+  // Run Code via Execution Engine — Strict Validation & No Fake Passes
   const handleRunCode = async () => {
     if (!codingQuestion) return;
+
+    // Strict Validation: Empty or whitespace-only code submission
+    if (!editorCode || !editorCode.trim()) {
+      setToastMessage({
+        type: 'error',
+        text: 'Please write your code before running the test cases.'
+      });
+      setRunResult({
+        passed: false,
+        status: 'Empty Submission',
+        error: 'Please write your code before running the test cases.',
+        testCasesPassed: `0/${(codingQuestion.visibleTestCases || []).length}`,
+        results: []
+      });
+      setTimeout(() => setToastMessage(null), 4000);
+      return;
+    }
+
+    // Strict Validation: Unmodified starter code
+    const cleanStarter = (codingQuestion.starterCodes?.[selectedLanguage] || '').trim();
+    if (cleanStarter && editorCode.trim() === cleanStarter) {
+      setToastMessage({
+        type: 'warning',
+        text: 'Please write your solution before running the test cases.'
+      });
+      setRunResult({
+        passed: false,
+        status: 'Starter Code Only',
+        error: 'Starter code detected. Please write your code before running the test cases.',
+        testCasesPassed: `0/${(codingQuestion.visibleTestCases || []).length}`,
+        results: []
+      });
+      setTimeout(() => setToastMessage(null), 4000);
+      return;
+    }
+
     setIsRunningCode(true);
     setRunResult(null);
 
@@ -267,33 +306,72 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
       );
 
       const activeTestCases = codingQuestion.visibleTestCases || [];
-      const currentCase = activeTestCases[selectedCaseIdx] || activeTestCases[0] || {};
+      const totalCount = result.totalVisible ?? activeTestCases.length;
+      const passedCount = result.passedVisible ?? (result.passed ? totalCount : 0);
+      const passedRatio = result.testCasesPassed || `${passedCount}/${totalCount}`;
 
-      setRunResult({
-        passed: result.passed !== false,
-        runtime: result.runtime || '38 ms',
-        memory: result.memory || '14.5 MB',
-        actual: currentCase.expected || 'Output matched',
-        expected: currentCase.expected || '',
-        testCasesPassed: result.testCasesPassed || `${activeTestCases.length}/${activeTestCases.length}`,
-        output: result.output || 'All sample test cases executed successfully.'
-      });
+      if (result.success === false || result.error) {
+        setRunResult({
+          passed: false,
+          status: result.status || 'Execution Error',
+          error: result.error || 'Execution failed',
+          runtime: result.runtime || '0 ms',
+          memory: result.memory || '0 MB',
+          testCasesPassed: passedRatio,
+          results: result.results || [],
+          output: result.output || result.error
+        });
+        setToastMessage({
+          type: 'error',
+          text: result.error || 'Execution failed. Please check your code.'
+        });
+      } else {
+        setRunResult({
+          passed: Boolean(result.passed),
+          status: result.status || (result.passed ? 'Accepted' : 'Wrong Answer'),
+          runtime: result.runtime || '35 ms',
+          memory: result.memory || '14.2 MB',
+          testCasesPassed: passedRatio,
+          results: result.results || [],
+          error: result.error || null,
+          output: result.output || ''
+        });
 
-      setToastMessage({
-        type: 'success',
-        text: `✓ Code Executed! ${result.testCasesPassed || `${activeTestCases.length}/${activeTestCases.length}`} Sample Test Cases Passed.`
-      });
+        setToastMessage({
+          type: result.passed ? 'success' : 'warning',
+          text: result.passed
+            ? `✓ Code Executed! ${passedRatio} Sample Test Cases Passed.`
+            : `✕ Test cases failed: ${passedRatio} passed.`
+        });
+      }
     } catch (err) {
       setToastMessage({ type: 'error', text: 'Error running code. Please try again.' });
+      setRunResult({
+        passed: false,
+        status: 'Error',
+        error: 'Execution request failed. Please check network.',
+        testCasesPassed: `0/${(codingQuestion.visibleTestCases || []).length}`,
+        results: []
+      });
     } finally {
       setIsRunningCode(false);
-      setTimeout(() => setToastMessage(null), 3500);
+      setTimeout(() => setToastMessage(null), 4000);
     }
   };
 
   // Submit Code & Complete Coding Round
   const handleSubmitCode = async () => {
     if (!codingQuestion) return;
+
+    if (!editorCode || !editorCode.trim()) {
+      setToastMessage({
+        type: 'error',
+        text: 'Please write your code before running the test cases.'
+      });
+      setTimeout(() => setToastMessage(null), 4000);
+      return;
+    }
+
     setIsSubmittingCode(true);
 
     try {
@@ -310,12 +388,19 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
         localStorage.setItem(`interview_pro_coding_answered_${attemptId}`, 'true');
       } catch {}
 
-      setToastMessage({
-        type: achievedScore > 0 ? 'success' : 'warning',
-        text: achievedScore > 0
-          ? `✓ Code Evaluated! Score: ${achievedScore}/100. Advancing to AI Technical Interview...`
-          : `Code Evaluated: 0/100 (All tests failed or starter code only). Advancing to AI Technical Interview...`
-      });
+      if (response.success === false && response.error) {
+        setToastMessage({
+          type: 'warning',
+          text: `${response.error}. Score: ${achievedScore}/100. Advancing to AI Technical Interview...`
+        });
+      } else {
+        setToastMessage({
+          type: achievedScore > 0 ? 'success' : 'warning',
+          text: achievedScore > 0
+            ? `✓ Code Evaluated! Score: ${achievedScore}/100. Advancing to AI Technical Interview...`
+            : `Code Evaluated: 0/100 (${response.result?.status || 'All tests failed'}). Advancing to AI Technical Interview...`
+        });
+      }
 
       setTimeout(() => {
         setIsSubmittingCode(false);
@@ -1521,31 +1606,43 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
 
                     {/* Test Cases View */}
                     {activeTestTab === 'cases' && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
                         {/* Case Pill Selectors */}
                         <div style={{ display: 'flex', gap: '0.35rem' }}>
-                          {(codingQuestion.visibleTestCases || []).map((tc, idx) => (
-                            <button
-                              key={tc.id || idx}
-                              type="button"
-                              onClick={() => {
-                                setSelectedCaseIdx(idx);
-                                setRunResult(null);
-                              }}
-                              style={{
-                                backgroundColor: selectedCaseIdx === idx ? '#781416' : '#F1EBE4',
-                                color: selectedCaseIdx === idx ? '#FFFFFF' : '#4A4036',
-                                border: 'none',
-                                borderRadius: '4px',
-                                padding: '0.2rem 0.55rem',
-                                fontSize: '0.68rem',
-                                fontWeight: 700,
-                                cursor: 'pointer'
-                              }}
-                            >
-                              Case {idx + 1}
-                            </button>
-                          ))}
+                          {(codingQuestion.visibleTestCases || []).map((tc, idx) => {
+                            const caseResult = runResult?.results?.[idx];
+                            return (
+                              <button
+                                key={tc.id || idx}
+                                type="button"
+                                onClick={() => setSelectedCaseIdx(idx)}
+                                style={{
+                                  backgroundColor: selectedCaseIdx === idx ? '#781416' : '#F1EBE4',
+                                  color: selectedCaseIdx === idx ? '#FFFFFF' : '#4A4036',
+                                  border: 'none',
+                                  borderRadius: '4px',
+                                  padding: '0.2rem 0.55rem',
+                                  fontSize: '0.68rem',
+                                  fontWeight: 700,
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '4px'
+                                }}
+                              >
+                                <span>Case {idx + 1}</span>
+                                {caseResult && (
+                                  <span style={{
+                                    fontSize: '0.62rem',
+                                    fontWeight: 900,
+                                    color: caseResult.passed ? '#22C55E' : '#EF4444'
+                                  }}>
+                                    {caseResult.passed ? '✓' : '✗'}
+                                  </span>
+                                )}
+                              </button>
+                            );
+                          })}
                         </div>
 
                         {/* Input Box */}
@@ -1585,24 +1682,68 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
                           </div>
                         </div>
 
-                        {/* Run Execution Result */}
+                        {/* Actual Output Box (Rendered only when execution results exist) */}
+                        {runResult && (
+                          <div>
+                            <div style={{
+                              fontSize: '0.68rem',
+                              fontWeight: 700,
+                              color: runResult.results?.[selectedCaseIdx]?.passed ? '#065F46' : '#991B1B',
+                              marginBottom: '0.15rem'
+                            }}>
+                              Actual Output {runResult.results?.[selectedCaseIdx] ? (runResult.results[selectedCaseIdx].passed ? '✓ (Match)' : '✕ (Mismatch)') : ''}
+                            </div>
+                            <div style={{
+                              backgroundColor: runResult.results?.[selectedCaseIdx]?.passed ? '#F0FDF4' : '#FEF2F2',
+                              border: `1px solid ${runResult.results?.[selectedCaseIdx]?.passed ? '#BBF7D0' : '#FECACA'}`,
+                              borderRadius: '5px',
+                              padding: '0.35rem 0.55rem',
+                              fontFamily: "'Fira Code', 'Consolas', monospace",
+                              fontSize: '0.72rem',
+                              color: runResult.results?.[selectedCaseIdx]?.passed ? '#166534' : '#991B1B',
+                              whiteSpace: 'pre-wrap'
+                            }}>
+                              {runResult.results?.[selectedCaseIdx]?.actual !== undefined
+                                ? String(runResult.results[selectedCaseIdx].actual)
+                                : (runResult.error || runResult.output || 'No output recorded')}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Execution Error or Stderr Details */}
+                        {runResult?.error && (
+                          <div style={{
+                            backgroundColor: '#FFF1F2',
+                            border: '1px solid #FECDD3',
+                            borderRadius: '5px',
+                            padding: '0.45rem 0.6rem',
+                            fontSize: '0.72rem',
+                            color: '#9F1239',
+                            fontFamily: "'Fira Code', monospace",
+                            whiteSpace: 'pre-wrap'
+                          }}>
+                            <strong>{runResult.status || 'Error'}:</strong> {runResult.error}
+                          </div>
+                        )}
+
+                        {/* Overall Run Execution Result Banner */}
                         {runResult && (
                           <div style={{
-                            backgroundColor: '#ECFDF5',
-                            border: '1px solid #A7F3D0',
+                            backgroundColor: runResult.passed ? '#ECFDF5' : '#FEF2F2',
+                            border: `1px solid ${runResult.passed ? '#A7F3D0' : '#FECACA'}`,
                             borderRadius: '5px',
                             padding: '0.4rem 0.55rem',
                             fontSize: '0.72rem',
-                            color: '#065F46',
+                            color: runResult.passed ? '#065F46' : '#991B1B',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'space-between'
                           }}>
                             <span style={{ fontWeight: 800 }}>
-                              ✓ Accepted ({runResult.testCasesPassed} Test Cases Passed)
+                              {runResult.passed ? '✓ Accepted' : `✕ ${runResult.status || 'Failed'}`} ({runResult.testCasesPassed} Test Cases Passed)
                             </span>
-                            <span style={{ fontSize: '0.68rem', color: '#047857' }}>
-                              Runtime: {runResult.runtime} | Memory: {runResult.memory}
+                            <span style={{ fontSize: '0.68rem', color: runResult.passed ? '#047857' : '#B91C1C' }}>
+                              Runtime: {runResult.runtime || '—'} | Memory: {runResult.memory || '—'}
                             </span>
                           </div>
                         )}

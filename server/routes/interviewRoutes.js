@@ -16,6 +16,13 @@ import {
   generateHrTurn,
   extractStructuredProfileDeterministic
 } from '../services/interviewAiEngine.js';
+import {
+  executeVisibleTestCases,
+  executeAllTestCasesForSubmission
+} from '../services/codingExecutionEngine.js';
+import {
+  generatePersonalizedReport
+} from '../services/interviewReportGenerator.js';
 
 const uploadMemory = multer({
   storage: multer.memoryStorage(),
@@ -920,132 +927,90 @@ export function createInterviewRouter() {
 
   /**
    * POST /api/interview/coding/run
-   * Executes user code against visible test cases
+   * Executes candidate's exact source code against visible test cases with sandbox isolation
    */
   router.post('/coding/run', async (req, res) => {
     try {
       const { questionId, language = 'python', code = '', customInput } = req.body;
       const allQuestions = await getAllCodingQuestions();
-      const question = allQuestions.find(q => q.questionId === questionId);
+      const question = allQuestions.find(q => q.questionId === questionId || q.id === questionId);
 
-      const totalTestCases = (question?.visibleTestCases || []).length || 3;
-      const isBlank = !code || code.trim().length === 0;
-      const isStarterOnly = code.includes('Write your code here') && !code.replace(/#.*|\/\/.*|\/\*[\s\S]*?\*\/|pass|return\s*null;|return\s*;/g, '').trim();
-
-      if (isBlank || isStarterOnly) {
-        return res.json({
-          success: true,
+      if (!question) {
+        return res.status(404).json({
+          success: false,
           passed: false,
-          testCasesPassed: `0/${totalTestCases}`,
-          runtime: '0 ms',
-          memory: '0 MB',
-          output: isBlank ? 'No code provided to execute.' : 'Starter template detected. Please implement your solution logic.'
+          error: `Coding question "${questionId}" was not found in the question bank.`,
+          testCasesPassed: '0/0',
+          results: []
         });
       }
 
-      const runtimeMs = Math.floor(Math.random() * 20 + 35);
-      const memoryMb = (Math.random() * 2 + 13.5).toFixed(1);
-
-      return res.json({
-        success: true,
-        passed: true,
-        testCasesPassed: `${totalTestCases}/${totalTestCases}`,
-        runtime: `${runtimeMs} ms`,
-        memory: `${memoryMb} MB`,
-        output: customInput ? 'Executed custom test case successfully.' : 'All visible sample test cases passed.'
-      });
+      const execResult = executeVisibleTestCases({ questionId, language, code, question, customInput });
+      if (!execResult.success && execResult.statusCode === 400) {
+        return res.status(400).json(execResult);
+      }
+      return res.json(execResult);
     } catch (err) {
-      return res.status(500).json({ success: false, error: err.message });
+      console.error('[CODING RUN ERROR]:', err);
+      return res.status(500).json({ success: false, passed: false, error: err.message });
     }
   });
 
   /**
    * POST /api/interview/coding/submit
-   * Evaluates user code against test cases server-side strictly
+   * Evaluates candidate's actual code against all test cases (visible + hidden)
+   * Hidden test inputs and expected outputs are kept strictly server-side.
    */
   router.post('/coding/submit', async (req, res) => {
     try {
-      const { attemptId, questionId, language = 'python', code = '', isSubmitted = true, userId = 'guest' } = req.body;
+      const { attemptId, questionId, language = 'python', code = '', userId = 'guest' } = req.body;
       const sessions = readJsonSafe(SESSIONS_FILE, {});
       const allQuestions = await getAllCodingQuestions();
       const question = allQuestions.find(q => q.questionId === questionId || q.id === questionId) || allQuestions[0];
 
-      const totalTests = ((question?.visibleTestCases || []).length + (question?.hiddenTestCases || []).length) || 5;
-
-      const isBlank = !code || code.trim().length === 0;
-      
-      const starterTemplate = question?.starterCodes?.[language] || '';
-      const isExactStarter = starterTemplate && code.trim() === starterTemplate.trim();
-      const stripped = (code || '')
-        .replace(/#.*|\/\/.*|\/\*[\s\S]*?\*\/|pass|return\s*null;|return\s*0;|return\s*;\s*|def\s+[a-zA-Z0-9_]+\s*\(.*?\)\s*:|function\s+[a-zA-Z0-9_]+\s*\(.*?\)\s*\{|class\s+[a-zA-Z0-9_]+[\s\S]*?\{|\}|\{|\(|\)|;|:/g, '')
-        .trim();
-      const hasNoLogic = stripped.length < 8;
-      const isStarterOnly = isExactStarter || hasNoLogic || (code.includes('Write your code here') && stripped.length < 15);
-
-      let score = 0;
-      let passed = false;
-      let testCasesPassed = `0/${totalTests}`;
-      let status = 'Failed';
-      let runtimeMs = 0;
-      let memoryMb = '0 MB';
-
-      if (!isSubmitted || isBlank) {
-        status = 'No Submission';
-        testCasesPassed = `0/${totalTests}`;
-        score = 0;
-        passed = false;
-      } else if (isStarterOnly) {
-        status = 'Starter Code Only (Tests Failed)';
-        testCasesPassed = `0/${totalTests}`;
-        score = 0;
-        passed = false;
-        runtimeMs = 12;
-        memoryMb = '14.1 MB';
-      } else {
-        // Candidate submitted actual implementation
-        const lowerCode = code.toLowerCase();
-        const hasControlFlow = lowerCode.includes('while') || lowerCode.includes('for') || lowerCode.includes('if') || lowerCode.includes('return');
-        if (hasControlFlow && stripped.length >= 8) {
-          runtimeMs = Math.floor(Math.random() * 20 + 35);
-          memoryMb = (Math.random() * 2 + 13.5).toFixed(1);
-          passed = true;
-          score = 100;
-          testCasesPassed = `${totalTests}/${totalTests}`;
-          status = 'Accepted';
-        } else {
-          score = 0;
-          passed = false;
-          testCasesPassed = `0/${totalTests}`;
-          status = 'Logic Incomplete (Tests Failed)';
-        }
+      if (!question) {
+        return res.status(404).json({
+          success: false,
+          error: `Coding question "${questionId}" not found.`
+        });
       }
 
-      const result = {
-        questionId: question?.questionId || questionId,
-        attemptId,
-        isSubmitted: isSubmitted && !isBlank && !isStarterOnly,
-        passed,
-        score,
-        testCasesPassed,
-        status,
-        submittedCode: isBlank ? '// No code was submitted for this challenge.' : code,
+      const execResult = executeAllTestCasesForSubmission({
+        questionId: question.questionId,
         language,
-        runtime: runtimeMs ? `${runtimeMs} ms` : '—',
-        memory: memoryMb !== '0 MB' ? memoryMb : '—',
-      };
+        code,
+        question,
+        attemptId: attemptId || `PV_ATT_${Date.now()}`
+      });
 
-      if (sessions[attemptId]) {
+      if (!execResult.success && execResult.statusCode === 400) {
+        // Return 400 validation error with zero-score failure result
+        if (attemptId && sessions[attemptId]) {
+          sessions[attemptId].codingResult = execResult.result;
+          writeJsonAtomic(SESSIONS_FILE, sessions);
+        }
+        return res.status(400).json({
+          success: false,
+          error: execResult.error,
+          result: execResult.result
+        });
+      }
+
+      const submissionResult = execResult.result;
+
+      if (attemptId && sessions[attemptId]) {
         sessions[attemptId].currentRound = 'technical';
         sessions[attemptId].completedRounds = Array.from(new Set([...(sessions[attemptId].completedRounds || []), 'coding']));
-        sessions[attemptId].codingResult = result;
+        sessions[attemptId].codingResult = submissionResult;
         writeJsonAtomic(SESSIONS_FILE, sessions);
       }
 
       return res.json({
         success: true,
-        result
+        result: submissionResult
       });
     } catch (err) {
+      console.error('[CODING SUBMIT ERROR]:', err);
       return res.status(500).json({ success: false, error: err.message });
     }
   });
@@ -1294,7 +1259,7 @@ export function createInterviewRouter() {
    * GET /api/interview/report/:attemptId
    * Retrieves aggregated final performance report strictly
    */
-  router.get('/report/:attemptId', (req, res) => {
+  router.get('/report/:attemptId', async (req, res) => {
     try {
       const { attemptId } = req.params;
       const sessions = readJsonSafe(SESSIONS_FILE, {});
@@ -1304,39 +1269,20 @@ export function createInterviewRouter() {
         return res.status(404).json({ success: false, error: 'Interview attempt session not found.' });
       }
 
-      const aptScore = session.aptitudeResult ? Number(session.aptitudeResult.percentage ?? 0) : 0;
-      const codeScore = session.codingResult ? Number(session.codingResult.score ?? 0) : 0;
-      const techScore = session.technicalResult ? Number(session.technicalResult.score ?? session.technicalResult.technicalScore ?? 0) : 0;
-      const hrScore = session.hrResult ? Number(session.hrResult.score ?? session.hrResult.hrScore ?? 0) : 0;
-
-      const overallScore = Math.round(
-        (aptScore * 0.25) +
-        (codeScore * 0.30) +
-        (techScore * 0.30) +
-        (hrScore * 0.15)
-      );
+      // Generate or retrieve cached personalized final report
+      let report = session.finalReport;
+      if (!report || req.query.refresh === 'true') {
+        report = await generatePersonalizedReport(session);
+        sessions[attemptId].finalReport = report;
+        writeJsonAtomic(SESSIONS_FILE, sessions);
+      }
 
       return res.json({
         success: true,
-        report: {
-          attemptId,
-          userId: session.userId,
-          aptitudeResult: session.aptitudeResult,
-          codingResult: session.codingResult,
-          technicalResult: session.technicalResult,
-          hrResult: session.hrResult,
-          scores: {
-            aptitude: aptScore,
-            coding: codeScore,
-            technical: techScore,
-            hr: hrScore,
-            overall: overallScore
-          },
-          weights: { aptitude: 0.25, coding: 0.30, technical: 0.30, hr: 0.15 },
-          generatedAt: session.finalReport?.generatedAt || new Date().toISOString()
-        }
+        report
       });
     } catch (err) {
+      console.error('[REPORT GENERATION ERROR]:', err);
       return res.status(500).json({ success: false, error: err.message });
     }
   });

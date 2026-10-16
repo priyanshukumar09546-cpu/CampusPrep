@@ -598,6 +598,7 @@ export function saveUserCodingDraft(attemptId, questionId, language, code) {
 
 /**
  * Run user code against test cases via backend execution engine
+ * Never fabricate fake passes on failure.
  */
 export async function runUserCodeAPI(attemptId, questionId, language, code) {
   try {
@@ -606,27 +607,34 @@ export async function runUserCodeAPI(attemptId, questionId, language, code) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ attemptId, questionId, language, code })
     });
+    const data = await res.json().catch(() => ({}));
     if (res.ok) {
-      return await res.json();
+      return data;
     }
+    return {
+      success: false,
+      passed: false,
+      error: data.error || 'Execution validation failed.',
+      results: data.results || [],
+      testCasesPassed: data.testCasesPassed || '0/0',
+      output: data.output || data.error || 'Execution failed.'
+    };
   } catch (e) {
     console.warn('[RUN CODE API ERROR]:', e);
+    return {
+      success: false,
+      passed: false,
+      error: 'Code execution service unreachable. Please ensure network connectivity.',
+      results: [],
+      testCasesPassed: '0/0',
+      output: 'Unable to reach code execution service.'
+    };
   }
-  // Client simulated evaluation fallback
-  return {
-    success: true,
-    compiled: true,
-    results: [
-      { id: 1, passed: true, status: 'Passed', output: 'Returned expected output', expected: 'Matched' },
-      { id: 2, passed: true, status: 'Passed', output: 'Returned expected output', expected: 'Matched' }
-    ],
-    executionTime: '0.04s',
-    memory: '14.2 MB'
-  };
 }
 
 /**
  * Submit user code to backend for final evaluation and advance to Technical round
+ * Never award marks or passes on error or empty submissions.
  */
 export async function submitUserCodeAPI(attemptId, questionId, language, code) {
   try {
@@ -635,24 +643,63 @@ export async function submitUserCodeAPI(attemptId, questionId, language, code) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ attemptId, questionId, language, code })
     });
-    if (res.ok) {
-      const data = await res.json();
-      completeRound('coding', data.result || {}, attemptId);
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && data.result) {
+      completeRound('coding', data.result, attemptId);
       return data;
     }
+    const failedResult = data.result || {
+      submissionId: `SUB_ERR_${Date.now()}`,
+      questionId,
+      attemptId,
+      isSubmitted: false,
+      passed: false,
+      score: 0,
+      testCasesPassed: '0/5',
+      status: data.error ? `Failed: ${data.error}` : 'Submission Rejected',
+      submittedCode: code || '// No code was submitted',
+      language,
+      runtime: '—',
+      memory: '—'
+    };
+    completeRound('coding', failedResult, attemptId);
+    return { success: false, error: data.error || 'Submission failed validation', result: failedResult };
   } catch (e) {
     console.warn('[SUBMIT CODE API ERROR]:', e);
+    const unverifiedResult = {
+      submissionId: `SUB_ERR_${Date.now()}`,
+      questionId,
+      attemptId,
+      isSubmitted: false,
+      passed: false,
+      score: 0,
+      testCasesPassed: '0/5',
+      status: 'Execution Service Error',
+      submittedCode: code || '// No code was submitted',
+      language,
+      runtime: '—',
+      memory: '—'
+    };
+    completeRound('coding', unverifiedResult, attemptId);
+    return { success: false, error: 'Network error submitting code', result: unverifiedResult };
   }
+}
 
-  // Fallback completion with strict zero score if unsubmitted or failed
-  const fallbackResult = {
-    passed: false,
-    status: 'No Submission',
-    score: 0,
-    testCasesPassed: '0/0 visible test cases passed'
-  };
-  completeRound('coding', fallbackResult, attemptId);
-  return { success: true, result: fallbackResult };
+/**
+ * Fetch authoritative personalized final report from backend
+ */
+export async function fetchInterviewReportAPI(attemptId) {
+  if (!attemptId) return null;
+  try {
+    const res = await fetch(`/api/interview/report/${encodeURIComponent(attemptId)}`);
+    if (res.ok) {
+      const data = await res.json().catch(() => ({}));
+      return data.report || null;
+    }
+  } catch (e) {
+    console.warn('[FETCH REPORT API ERROR]:', e);
+  }
+  return null;
 }
 
 /**

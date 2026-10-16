@@ -52,7 +52,8 @@ import {
   getActiveAttemptId,
   getAttemptState,
   startNewInterviewSession,
-  calculateOverallScore
+  calculateOverallScore,
+  fetchInterviewReportAPI
 } from '../utils/interviewSessionManager';
 import { trackInterviewRoundCompleted } from '../utils/progressTracker';
 import { stopProctorStream } from '../utils/interviewProctoring';
@@ -64,6 +65,28 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
   }, []);
   const attemptId = getActiveAttemptId();
   const attempt = getAttemptState(attemptId) || {};
+
+  const [personalizedReport, setPersonalizedReport] = useState(null);
+  const [isLoadingReport, setIsLoadingReport] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    async function loadReport() {
+      setIsLoadingReport(true);
+      try {
+        const data = await fetchInterviewReportAPI(attemptId);
+        if (isMounted && data && data.success && data.report) {
+          setPersonalizedReport(data.report);
+        }
+      } catch (e) {
+        console.warn('Failed to fetch personalized report from backend:', e);
+      } finally {
+        if (isMounted) setIsLoadingReport(false);
+      }
+    }
+    loadReport();
+    return () => { isMounted = false; };
+  }, [attemptId]);
 
   const activeTest = (() => {
     try {
@@ -129,22 +152,31 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
   const techScore = (technicalRes && (technicalRes.score !== undefined || technicalRes.technicalScore !== undefined)) ? Number(technicalRes.score ?? technicalRes.technicalScore) : 0;
   const hScore = (hrRes && (hrRes.score !== undefined || hrRes.hrScore !== undefined)) ? Number(hrRes.score ?? hrRes.hrScore) : 0;
 
-  // Exact Mathematical Overall Score
+  // Exact Mathematical Overall Score: Aptitude (25%) + Coding (30%) + Technical (30%) + HR (15%)
   const overallScore = calculateOverallScore(aptScore, codeScore, techScore, hScore, WEIGHTS);
+  const finalOverallScore = personalizedReport?.overallScore?.overallScore ?? overallScore;
+
+  // Real Section Completion Trackers (Evidence-Based, never fabricated)
+  const isAptCompleted = (attempt.completedRounds || []).includes('aptitude') || (aptitudeRes && aptitudeRes.percentage !== undefined && (aptitudeRes.correctCount > 0 || aptitudeRes.incorrectCount > 0));
+  const isCodeCompleted = (attempt.completedRounds || []).includes('coding') || (codingRes && (codingRes.isSubmitted || codingRes.status === 'Accepted' || codingRes.score > 0));
+  const isTechCompleted = (attempt.completedRounds || []).includes('technical') || (technicalRes && (technicalRes.evaluations?.length > 0 || technicalRes.score > 0));
+  const isHrCompleted = (attempt.completedRounds || []).includes('hr') || (hrRes && (hrRes.evaluations?.length > 0 || hrRes.score > 0));
+
+  const completedRoundsCount = [isAptCompleted, isCodeCompleted, isTechCompleted, isHrCompleted].filter(Boolean).length;
 
   const [activeTab, setActiveTab] = useState('overview');
   const [expandedAptQuestion, setExpandedAptQuestion] = useState(null);
 
   useEffect(() => {
-    if (overallScore > 0) {
+    if (finalOverallScore > 0) {
       trackInterviewRoundCompleted({
         roundType: 'composite',
         roundName: `Interview Pro - ${activeTest?.targetRole || 'Full Assessment'}`,
-        score: overallScore,
+        score: finalOverallScore,
         subject: activeTest?.targetRole || 'Interview Preparation'
       });
     }
-  }, [attemptId]);
+  }, [attemptId, finalOverallScore]);
 
   const handleStartNewAttempt = () => {
     startNewInterviewSession({
@@ -323,22 +355,22 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
                   color: '#781416',
                   lineHeight: 1
                 }}>
-                  {overallScore}
+                  {finalOverallScore}
                 </span>
                 <span style={{ fontSize: '1.25rem', fontWeight: 800, color: '#9CA3AF' }}>/ 100</span>
               </div>
 
               <div style={{
                 display: 'inline-block',
-                backgroundColor: overallScore >= 85 ? '#DCFCE7' : overallScore >= 50 ? '#FEF3C7' : overallScore > 0 ? '#FEE2E2' : '#F1F5F9',
-                color: overallScore >= 85 ? '#15803D' : overallScore >= 50 ? '#B45309' : overallScore > 0 ? '#B91C1C' : '#64748B',
+                backgroundColor: finalOverallScore >= 85 ? '#DCFCE7' : finalOverallScore >= 50 ? '#FEF3C7' : finalOverallScore > 0 ? '#FEE2E2' : '#F1F5F9',
+                color: finalOverallScore >= 85 ? '#15803D' : finalOverallScore >= 50 ? '#B45309' : finalOverallScore > 0 ? '#B91C1C' : '#64748B',
                 fontSize: '0.78rem',
                 fontWeight: 800,
                 padding: '0.25rem 0.75rem',
                 borderRadius: '9999px',
                 marginBottom: '1rem'
               }}>
-                {overallScore >= 85 ? '★ Tier 1 Placement Ready' : overallScore >= 50 ? '✓ Placement Ready Candidate' : overallScore > 0 ? '⚠ Needs Improvement' : '○ No Submissions Recorded'}
+                {finalOverallScore >= 85 ? '★ Tier 1 Placement Ready' : finalOverallScore >= 50 ? '✓ Placement Ready Candidate' : finalOverallScore > 0 ? '⚠ Needs Improvement' : '○ No Submissions Recorded'}
               </div>
 
               <p style={{ fontSize: '0.78rem', color: '#5A4E42', lineHeight: 1.45, margin: 0 }}>
@@ -357,8 +389,8 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
               alignItems: 'center',
               justifyContent: 'space-between'
             }}>
-              <span>Status: <strong>Completed & Verified</strong></span>
-              <span>4 / 4 Assessment Stages</span>
+              <span>Status: <strong>{completedRoundsCount === 4 ? 'All Rounds Completed & Verified' : `${completedRoundsCount} of 4 Rounds Completed`}</strong></span>
+              <span>{completedRoundsCount} / 4 Assessment Stages</span>
             </div>
           </div>
 
@@ -390,10 +422,12 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
                   Weight: 25% ({(aptScore * 0.25).toFixed(1)} pts)
                 </div>
               </div>
-              <div style={{ fontSize: '0.72rem', color: aptScore > 0 ? '#059669' : '#64748B', fontWeight: 700, marginTop: '0.75rem' }}>
-                {aptScore > 0
-                  ? `✓ ${aptitudeRes.correctCount ?? 0} / ${aptitudeRes.maxScore ? (aptitudeRes.maxScore / 1) : 20} Correct`
-                  : `0 answered • ${aptitudeRes.unattemptedCount ?? aptitudeRes.skippedCount ?? 20} skipped`}
+              <div style={{ fontSize: '0.72rem', color: isAptCompleted ? (aptScore > 0 ? '#059669' : '#64748B') : '#94A3B8', fontWeight: 700, marginTop: '0.75rem' }}>
+                {isAptCompleted
+                  ? (aptScore > 0
+                      ? `✓ ${aptitudeRes.correctCount ?? 0} / ${aptitudeRes.maxScore ? (aptitudeRes.maxScore / 1) : 20} Correct`
+                      : `0 answered • ${aptitudeRes.unattemptedCount ?? aptitudeRes.skippedCount ?? 20} skipped`)
+                  : 'Not Completed (0 marks)'}
               </div>
             </div>
 
@@ -419,10 +453,12 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
                   Weight: 30% ({(codeScore * 0.30).toFixed(1)} pts)
                 </div>
               </div>
-              <div style={{ fontSize: '0.72rem', color: codeScore > 0 ? '#059669' : '#64748B', fontWeight: 700, marginTop: '0.75rem' }}>
-                {codeScore > 0
-                  ? `✓ ${codingRes.testCasesPassed || '5/5'} Test Cases Passed`
-                  : (codingRes.status === 'No Submission' || !codingRes.isSubmitted ? 'No submission (0 marks)' : '✗ 0 Test Cases Passed')}
+              <div style={{ fontSize: '0.72rem', color: isCodeCompleted ? (codeScore > 0 ? '#059669' : '#DC2626') : '#94A3B8', fontWeight: 700, marginTop: '0.75rem' }}>
+                {isCodeCompleted
+                  ? (codeScore > 0
+                      ? `✓ ${codingRes.testCasesPassed || '5/5'} Test Cases Passed`
+                      : (codingRes.status === 'No Submission' || !codingRes.isSubmitted ? 'No submission (0 marks)' : `✗ 0 Passed (${codingRes.status || 'Failed'})`))
+                  : 'Not Completed (0 marks)'}
               </div>
             </div>
 
@@ -448,8 +484,10 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
                   Weight: 30% ({(techScore * 0.30).toFixed(1)} pts)
                 </div>
               </div>
-              <div style={{ fontSize: '0.72rem', color: techScore > 0 ? '#0D9488' : '#64748B', fontWeight: 700, marginTop: '0.75rem' }}>
-                {techScore > 0 ? `✓ Evaluated (${technicalRes.evaluations?.length || 5} Questions)` : '0 answered (0 marks)'}
+              <div style={{ fontSize: '0.72rem', color: isTechCompleted ? (techScore > 0 ? '#0D9488' : '#64748B') : '#94A3B8', fontWeight: 700, marginTop: '0.75rem' }}>
+                {isTechCompleted
+                  ? (techScore > 0 ? `✓ Evaluated (${technicalRes.evaluations?.length || 5} Questions)` : '0 answered (0 marks)')
+                  : 'Not Completed (0 marks)'}
               </div>
             </div>
 
@@ -475,8 +513,10 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
                   Weight: 15% ({(hScore * 0.15).toFixed(1)} pts)
                 </div>
               </div>
-              <div style={{ fontSize: '0.72rem', color: hScore > 0 ? '#DB2777' : '#64748B', fontWeight: 700, marginTop: '0.75rem' }}>
-                {hScore > 0 ? `✓ Evaluated (${hrRes.evaluations?.length || 5} Scenarios)` : '0 answered (0 marks)'}
+              <div style={{ fontSize: '0.72rem', color: isHrCompleted ? (hScore > 0 ? '#DB2777' : '#64748B') : '#94A3B8', fontWeight: 700, marginTop: '0.75rem' }}>
+                {isHrCompleted
+                  ? (hScore > 0 ? `✓ Evaluated (${hrRes.evaluations?.length || 5} Scenarios)` : '0 answered (0 marks)')
+                  : 'Not Completed (0 marks)'}
               </div>
             </div>
           </div>
@@ -533,13 +573,52 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
         {/* --- TAB 1: EXECUTIVE OVERVIEW & ACTION PLAN --- */}
         {activeTab === 'overview' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {/* AI Feedback Grid */}
+            {/* Assessment & Candidate Overview Card */}
+            <div style={{
+              backgroundColor: '#FFFFFF',
+              borderRadius: '12px',
+              border: '1.5px solid #EDE5D6',
+              padding: '1.15rem 1.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '1rem',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+            }}>
+              <div>
+                <div style={{ fontSize: '0.72rem', color: '#7A6F62', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  Candidate Assessment Profile
+                </div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 900, color: '#1C1814', marginTop: '0.15rem' }}>
+                  {activeTest?.targetRole || 'Software Development Engineer'} • {activeTest?.branch || 'Engineering / Technology'}
+                </div>
+                <div style={{ fontSize: '0.76rem', color: '#5A4E42', marginTop: '0.25rem' }}>
+                  Completed: <strong>{completedRoundsCount} of 4 Rounds</strong> {completedRoundsCount < 4 && <span style={{ color: '#B45309' }}>({4 - completedRoundsCount} unattempted section{4 - completedRoundsCount > 1 ? 's' : ''} scored 0)</span>}
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{
+                  backgroundColor: '#FAF7F2',
+                  border: '1px solid #EDE5D6',
+                  borderRadius: '8px',
+                  padding: '0.4rem 0.75rem',
+                  fontSize: '0.72rem',
+                  color: '#5A4E42'
+                }}>
+                  Evaluation Source: <strong style={{ color: '#781416' }}>{personalizedReport?.source === 'gemini' ? 'AI Evaluation + Test Engine' : 'Deterministic Evidence Engine'}</strong>
+                </div>
+              </div>
+            </div>
+
+            {/* AI Feedback Grid: Verified Strengths vs Knowledge Gaps */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
               gap: '1rem'
             }}>
-              {/* Strong Areas */}
+              {/* Strong Areas (Evidence-Based) */}
               <div style={{
                 backgroundColor: '#FFFFFF',
                 borderRadius: '12px',
@@ -553,14 +632,41 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
                     Verified Strong Competencies
                   </h3>
                 </div>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: '#334155', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-                  <li><strong>Core CS & Algorithmic Rigor:</strong> Clean handling of data structures, complexity trade-offs, and boundary constraints.</li>
-                  <li><strong>Quantitative Aptitude:</strong> High accuracy in mathematical problem solving and logical deductions.</li>
-                  <li><strong>Structured Behavioral Articulation:</strong> Clear usage of the STAR framework with accountability and teamwork emphasis.</li>
-                </ul>
+
+                {isLoadingReport ? (
+                  <div style={{ fontSize: '0.8rem', color: '#64748B', fontStyle: 'italic', padding: '0.5rem 0' }}>
+                    Synthesizing evidence-backed strengths...
+                  </div>
+                ) : (personalizedReport?.verifiedStrengths && personalizedReport.verifiedStrengths.length > 0) ? (
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: '#334155', display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+                    {personalizedReport.verifiedStrengths.map((item, idx) => (
+                      <li key={idx}>
+                        <strong>{item.topic}:</strong> {item.evidence}
+                        {item.excerpt && (
+                          <div style={{
+                            marginTop: '0.2rem',
+                            padding: '0.25rem 0.5rem',
+                            backgroundColor: '#F0FDF4',
+                            borderLeft: '2.5px solid #16A34A',
+                            borderRadius: '3px',
+                            fontStyle: 'italic',
+                            color: '#166534',
+                            fontSize: '0.74rem'
+                          }}>
+                            "{item.excerpt}"
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div style={{ fontSize: '0.8rem', color: '#64748B', lineHeight: 1.45 }}>
+                    Insufficient evidence to confirm strong competencies. Candidate must complete evaluation rounds with valid submissions to demonstrate mastery.
+                  </div>
+                )}
               </div>
 
-              {/* Areas to Improve */}
+              {/* Areas to Improve (Evidence-Based Knowledge Gaps) */}
               <div style={{
                 backgroundColor: '#FFFFFF',
                 borderRadius: '12px',
@@ -571,18 +677,41 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
                   <Target size={18} color="#B45309" />
                   <h3 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#B45309', margin: 0 }}>
-                    Recommended Growth Areas
+                    Identified Knowledge Gaps & Growth Areas
                   </h3>
                 </div>
-                <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: '#334155', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-                  <li><strong>Distributed Concurrency & Failure Recovery:</strong> Practice diving deeper into multi-datacenter race conditions and deadlocks.</li>
-                  <li><strong>Speed Under Pressure:</strong> Enhance timed puzzle deduction speed in Quantitative Data Interpretation.</li>
-                  <li><strong>Quantifiable Impact:</strong> In behavioral answers, quantify team metrics (e.g. reduced latency by 35%, deployed 3 weeks ahead).</li>
-                </ul>
+
+                {isLoadingReport ? (
+                  <div style={{ fontSize: '0.8rem', color: '#64748B', fontStyle: 'italic', padding: '0.5rem 0' }}>
+                    Identifying gaps from submitted answers and code...
+                  </div>
+                ) : (personalizedReport?.knowledgeGaps && personalizedReport.knowledgeGaps.length > 0) ? (
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.82rem', color: '#334155', display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+                    {personalizedReport.knowledgeGaps.map((item, idx) => (
+                      <li key={idx}>
+                        <strong>{item.topic}:</strong> {item.gap}
+                        {item.evidence && (
+                          <div style={{ fontSize: '0.73rem', color: '#92400E', marginTop: '0.15rem' }}>
+                            <strong>Observation:</strong> {item.evidence}
+                          </div>
+                        )}
+                        {item.recommendation && (
+                          <div style={{ fontSize: '0.73rem', color: '#047857', marginTop: '0.1rem' }}>
+                            <strong>Action:</strong> {item.recommendation}
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div style={{ fontSize: '0.8rem', color: '#64748B', lineHeight: 1.45 }}>
+                    No critical knowledge gaps recorded for attempted questions.
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* Preparation Roadmap */}
+            {/* Preparation Roadmap (Candidate-Specific) */}
             <div style={{
               backgroundColor: '#FFFFFF',
               borderRadius: '12px',
@@ -592,33 +721,54 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
               <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#1C1814', marginTop: 0, marginBottom: '0.75rem' }}>
                 Next-Step Placement Preparation Roadmap
               </h3>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
-                <div style={{ backgroundColor: '#FAF7F2', padding: '1rem', borderRadius: '8px', border: '1px solid #EDE5D6' }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416', marginBottom: '0.35rem' }}>
-                    1. High-Level System Architecture
-                  </div>
-                  <p style={{ margin: 0, fontSize: '0.78rem', color: '#5A4E42', lineHeight: 1.45 }}>
-                    Study event-driven architectures with Kafka and review caching invalidate policies with Redis.
-                  </p>
+
+              {isLoadingReport ? (
+                <div style={{ fontSize: '0.8rem', color: '#64748B', fontStyle: 'italic' }}>
+                  Customizing roadmap to candidate weaknesses...
                 </div>
-                <div style={{ backgroundColor: '#FAF7F2', padding: '1rem', borderRadius: '8px', border: '1px solid #EDE5D6' }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416', marginBottom: '0.35rem' }}>
-                    2. Coding Edge Cases
-                  </div>
-                  <p style={{ margin: 0, fontSize: '0.78rem', color: '#5A4E42', lineHeight: 1.45 }}>
-                    Solve sliding window and monotonic stack problems to optimize time complexity from $O(N^2)$ to $O(N)$.
-                  </p>
+              ) : (personalizedReport?.actionableRoadmap && personalizedReport.actionableRoadmap.length > 0) ? (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+                  {personalizedReport.actionableRoadmap.map((stepItem, idx) => (
+                    <div key={idx} style={{ backgroundColor: '#FAF7F2', padding: '1rem', borderRadius: '8px', border: '1px solid #EDE5D6' }}>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416', marginBottom: '0.35rem' }}>
+                        {stepItem.step || `${idx + 1}.`} {stepItem.title}
+                      </div>
+                      <p style={{ margin: 0, fontSize: '0.78rem', color: '#5A4E42', lineHeight: 1.45 }}>
+                        {stepItem.description}
+                      </p>
+                      {stepItem.targetArea && (
+                        <div style={{ fontSize: '0.68rem', fontWeight: 700, color: '#0D9488', marginTop: '0.4rem' }}>
+                          Target: {stepItem.targetArea}
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
-                <div style={{ backgroundColor: '#FAF7F2', padding: '1rem', borderRadius: '8px', border: '1px solid #EDE5D6' }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#781416', marginBottom: '0.35rem' }}>
-                    3. Mock Interview Rehearsal
-                  </div>
-                  <p style={{ margin: 0, fontSize: '0.78rem', color: '#5A4E42', lineHeight: 1.45 }}>
-                    Use the ProfessorVirus AI Interviewers to practice natural voice delivery and crisp technical summaries.
-                  </p>
+              ) : (
+                <div style={{ fontSize: '0.8rem', color: '#64748B' }}>
+                  Complete all assessment rounds to generate a prioritized preparation roadmap.
                 </div>
-              </div>
+              )}
             </div>
+
+            {/* Evaluation Limitations & Unverified Sections */}
+            {personalizedReport?.evaluationLimitations && personalizedReport.evaluationLimitations.length > 0 && (
+              <div style={{
+                backgroundColor: '#FFFBEB',
+                border: '1.5px solid #FDE68A',
+                borderRadius: '10px',
+                padding: '0.9rem 1.15rem'
+              }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#92400E', marginBottom: '0.35rem' }}>
+                  Evaluation Limitations & Unverified Evidence
+                </div>
+                <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.78rem', color: '#78350F', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+                  {personalizedReport.evaluationLimitations.map((lim, idx) => (
+                    <li key={idx}>{lim}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         )}
 
@@ -785,6 +935,76 @@ export default function InterviewReportPage({ onNavigate, onOpenAuth }) {
             }}>
               <strong>Automated Evaluation:</strong> {codeScore > 0 ? 'Code executed cleanly within runtime and memory limits. Test cases satisfied.' : (codingRes.status === 'No Submission' ? 'No code was submitted. Opening starter code is not an attempt. Candidate received 0 marks.' : 'All tests failed or only unmodified starter code was submitted. Candidate received 0 marks.')}
             </div>
+
+            {/* Personalized Algorithmic & Complexity Analysis */}
+            {personalizedReport?.codingAnalysis && (
+              <div style={{
+                marginTop: '1rem',
+                backgroundColor: '#FAF7F2',
+                border: '1.5px solid #EDE5D6',
+                borderRadius: '8px',
+                padding: '1rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.6rem'
+              }}>
+                <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#1C1814' }}>
+                  Algorithmic Rigor & Code Quality Analysis
+                </div>
+
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                  gap: '0.6rem',
+                  fontSize: '0.78rem'
+                }}>
+                  <div style={{ backgroundColor: '#FFFFFF', padding: '0.6rem 0.75rem', borderRadius: '6px', border: '1px solid #E8E0D2' }}>
+                    <div style={{ fontSize: '0.68rem', fontWeight: 800, color: '#781416', textTransform: 'uppercase' }}>Time Complexity</div>
+                    <div style={{ fontWeight: 700, color: '#1C1814', marginTop: '0.15rem' }}>{personalizedReport.codingAnalysis.timeComplexity || '—'}</div>
+                  </div>
+                  <div style={{ backgroundColor: '#FFFFFF', padding: '0.6rem 0.75rem', borderRadius: '6px', border: '1px solid #E8E0D2' }}>
+                    <div style={{ fontSize: '0.68rem', fontWeight: 800, color: '#781416', textTransform: 'uppercase' }}>Space Complexity</div>
+                    <div style={{ fontWeight: 700, color: '#1C1814', marginTop: '0.15rem' }}>{personalizedReport.codingAnalysis.spaceComplexity || '—'}</div>
+                  </div>
+                  <div style={{ backgroundColor: '#FFFFFF', padding: '0.6rem 0.75rem', borderRadius: '6px', border: '1px solid #E8E0D2' }}>
+                    <div style={{ fontSize: '0.68rem', fontWeight: 800, color: '#781416', textTransform: 'uppercase' }}>Algorithmic Approach</div>
+                    <div style={{ fontWeight: 700, color: '#1C1814', marginTop: '0.15rem' }}>{personalizedReport.codingAnalysis.approach || '—'}</div>
+                  </div>
+                </div>
+
+                {personalizedReport.codingAnalysis.correctness && (
+                  <div style={{ fontSize: '0.78rem', color: '#334155', marginTop: '0.2rem' }}>
+                    <strong>Correctness & Edge Handling:</strong> {personalizedReport.codingAnalysis.correctness}
+                  </div>
+                )}
+
+                {personalizedReport.codingAnalysis.failureCauses && (
+                  <div style={{
+                    fontSize: '0.78rem',
+                    color: '#991B1B',
+                    backgroundColor: '#FEF2F2',
+                    padding: '0.5rem 0.75rem',
+                    borderRadius: '5px',
+                    borderLeft: '3px solid #DC2626'
+                  }}>
+                    <strong>Specific Failure Causes / Bottlenecks:</strong> {personalizedReport.codingAnalysis.failureCauses}
+                  </div>
+                )}
+
+                {personalizedReport.codingAnalysis.suggestions && (
+                  <div style={{
+                    fontSize: '0.78rem',
+                    color: '#166534',
+                    backgroundColor: '#F0FDF4',
+                    padding: '0.5rem 0.75rem',
+                    borderRadius: '5px',
+                    borderLeft: '3px solid #16A34A'
+                  }}>
+                    <strong>Actionable Code Improvement:</strong> {personalizedReport.codingAnalysis.suggestions}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
 
