@@ -121,6 +121,25 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const langDropdownRef = useRef(null);
 
+  // VS Code Themes (Default: 'vs-dark', persisted to localStorage)
+  const [editorTheme, setEditorTheme] = useState(() => {
+    try {
+      return localStorage.getItem('interview_pro_editor_theme') || 'vs-dark';
+    } catch {
+      return 'vs-dark';
+    }
+  });
+  const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
+  const themeDropdownRef = useRef(null);
+
+  const handleThemeChange = (newTheme) => {
+    setEditorTheme(newTheme);
+    setIsThemeDropdownOpen(false);
+    try {
+      localStorage.setItem('interview_pro_editor_theme', newTheme);
+    } catch {}
+  };
+
   // User Code in Editor (Autosaved per attempt + question + language)
   const [editorCode, setEditorCode] = useState('');
 
@@ -240,25 +259,71 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
     return () => clearInterval(interval);
   }, [attemptId]);
 
-  // Close language dropdown on outside click
+  // Close language and theme dropdowns on outside click
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (langDropdownRef.current && !langDropdownRef.current.contains(e.target)) {
         setIsLangDropdownOpen(false);
+      }
+      if (themeDropdownRef.current && !themeDropdownRef.current.contains(e.target)) {
+        setIsThemeDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handleOutsideClick);
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  // Handle Code Change in Textarea (Autosave User Draft & Invalidate Stale Results)
-  const handleCodeChange = (e) => {
-    const newCode = e.target.value;
+  // Escape key listener to exit fullscreen
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreen]);
+
+  // Monaco Editor Options (Line numbers, brackets, indent, clean typography)
+  const monacoOptions = {
+    fontSize: 13,
+    fontFamily: "'Fira Code', 'Consolas', 'Courier New', monospace",
+    fontLigatures: true,
+    tabSize: selectedLanguage === 'python' ? 4 : 2,
+    lineNumbers: 'on',
+    roundedSelection: true,
+    scrollBeyondLastLine: false,
+    automaticLayout: true,
+    minimap: { enabled: false },
+    cursorBlinking: 'smooth',
+    cursorSmoothCaretAnimation: 'on',
+    formatOnPaste: true,
+    bracketPairColorization: { enabled: true },
+    autoClosingBrackets: 'always',
+    autoClosingQuotes: 'always',
+    renderLineHighlight: 'all',
+    quickSuggestions: true,
+    scrollbar: {
+      vertical: 'visible',
+      horizontal: 'visible',
+      verticalScrollbarSize: 8,
+      horizontalScrollbarSize: 8
+    }
+  };
+
+  // Handle Code Change in Monaco Editor (Autosave User Draft & Invalidate Stale Results)
+  const handleMonacoChange = (val) => {
+    const newCode = val ?? '';
     setEditorCode(newCode);
     setRunResult(null);
     if (codingQuestion) {
       saveUserCodingDraft(attemptId, codingQuestion.questionId, selectedLanguage, newCode);
     }
+  };
+
+  const handleCodeChange = (e) => {
+    const newCode = e && e.target ? e.target.value : (e ?? '');
+    handleMonacoChange(newCode);
   };
 
   // Reset Code Template (Resets to CLEAN Starter Code, NEVER Solution)
@@ -596,7 +661,7 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
           position: 'fixed',
           top: '80px',
           right: '24px',
-          zIndex: 10000,
+          zIndex: 100005,
           backgroundColor: toastMessage.type === 'success' ? '#065F46' : toastMessage.type === 'warning' ? '#92400E' : '#781416',
           color: '#FFFFFF',
           padding: '0.65rem 1.15rem',
@@ -1338,99 +1403,174 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
 
                   {/* Editor Container Card */}
                   <div style={{
-                    border: '1px solid #E2D9CC',
+                    border: editorTheme === 'vs-dark' ? '1px solid #333333' : '1px solid #E2D9CC',
                     borderRadius: '8px',
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: editorTheme === 'vs-dark' ? '#1E1E1E' : '#FFFFFF',
                     overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column'
                   }}>
-                    {/* Editor Top Bar: Language Dropdown + Clean Reset + Fullscreen */}
+                    {/* Editor Top Bar: Language Dropdown + Theme Selector + Clean Reset + Fullscreen */}
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
                       padding: '0.35rem 0.65rem',
-                      backgroundColor: '#FAF7F2',
-                      borderBottom: '1px solid #E8E0D2'
+                      backgroundColor: editorTheme === 'vs-dark' ? '#252526' : '#FAF7F2',
+                      borderBottom: editorTheme === 'vs-dark' ? '1px solid #333333' : '1px solid #E8E0D2'
                     }}>
-                      {/* Language Selector Dropdown */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', position: 'relative' }} ref={langDropdownRef}>
-                        <span style={{ fontSize: '0.74rem', color: '#5A4E42', fontWeight: 700 }}>
-                          Language:
-                        </span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                        {/* Language Selector Dropdown */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', position: 'relative' }} ref={langDropdownRef}>
+                          <span style={{ fontSize: '0.74rem', color: editorTheme === 'vs-dark' ? '#9E9E9E' : '#5A4E42', fontWeight: 700 }}>
+                            Lang:
+                          </span>
 
-                        <button
-                          type="button"
-                          onClick={() => setIsLangDropdownOpen(prev => !prev)}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.35rem',
-                            backgroundColor: '#FFFFFF',
-                            border: '1px solid #D5C9B8',
-                            borderRadius: '6px',
-                            padding: '0.25rem 0.55rem',
-                            fontSize: '0.76rem',
-                            fontWeight: 700,
-                            color: '#1C1814',
-                            cursor: 'pointer'
-                          }}
-                        >
-                          <span>{currentLangObj.icon}</span>
-                          <span>{currentLangObj.name}</span>
-                          <ChevronDown size={13} />
-                        </button>
+                          <button
+                            type="button"
+                            onClick={() => setIsLangDropdownOpen(prev => !prev)}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.35rem',
+                              backgroundColor: editorTheme === 'vs-dark' ? '#2D2D2D' : '#FFFFFF',
+                              border: editorTheme === 'vs-dark' ? '1px solid #3E3E3E' : '1px solid #D5C9B8',
+                              borderRadius: '6px',
+                              padding: '0.22rem 0.5rem',
+                              fontSize: '0.75rem',
+                              fontWeight: 700,
+                              color: editorTheme === 'vs-dark' ? '#E0E0E0' : '#1C1814',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            <span>{currentLangObj.icon}</span>
+                            <span>{currentLangObj.name}</span>
+                            <ChevronDown size={13} />
+                          </button>
 
-                        {/* Language Popover Menu */}
-                        {isLangDropdownOpen && (
-                          <div style={{
-                            position: 'absolute',
-                            top: '115%',
-                            left: '60px',
-                            zIndex: 50,
-                            backgroundColor: '#FFFFFF',
-                            border: '1.5px solid #EDE5D6',
-                            borderRadius: '8px',
-                            boxShadow: '0 8px 24px rgba(35,30,25,0.14)',
-                            width: '160px',
-                            maxHeight: '230px',
-                            overflowY: 'auto',
-                            padding: '0.25rem'
-                          }}>
-                            {SUPPORTED_LANGUAGES.map(lang => (
-                              <button
-                                key={lang.id}
-                                type="button"
-                                onClick={() => {
-                                  setSelectedLanguage(lang.id);
-                                  setIsLangDropdownOpen(false);
-                                }}
-                                style={{
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'space-between',
-                                  width: '100%',
-                                  padding: '0.32rem 0.55rem',
-                                  border: 'none',
-                                  borderRadius: '4px',
-                                  backgroundColor: selectedLanguage === lang.id ? '#FAF0EE' : 'transparent',
-                                  color: selectedLanguage === lang.id ? '#781416' : '#2D251E',
-                                  fontSize: '0.74rem',
-                                  fontWeight: selectedLanguage === lang.id ? 800 : 600,
-                                  cursor: 'pointer',
-                                  textAlign: 'left'
-                                }}
-                              >
-                                <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                                  <span>{lang.icon}</span>
-                                  <span>{lang.name}</span>
-                                </span>
-                                {selectedLanguage === lang.id && <Check size={13} color="#781416" />}
-                              </button>
-                            ))}
-                          </div>
-                        )}
+                          {/* Language Popover Menu */}
+                          {isLangDropdownOpen && (
+                            <div style={{
+                              position: 'absolute',
+                              top: '115%',
+                              left: '0px',
+                              zIndex: 50,
+                              backgroundColor: editorTheme === 'vs-dark' ? '#252526' : '#FFFFFF',
+                              border: editorTheme === 'vs-dark' ? '1.5px solid #3C3C3C' : '1.5px solid #EDE5D6',
+                              borderRadius: '8px',
+                              boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+                              width: '160px',
+                              maxHeight: '230px',
+                              overflowY: 'auto',
+                              padding: '0.25rem'
+                            }}>
+                              {SUPPORTED_LANGUAGES.map(lang => (
+                                <button
+                                  key={lang.id}
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedLanguage(lang.id);
+                                    setIsLangDropdownOpen(false);
+                                  }}
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    width: '100%',
+                                    padding: '0.32rem 0.55rem',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    backgroundColor: selectedLanguage === lang.id ? (editorTheme === 'vs-dark' ? '#37373D' : '#FAF0EE') : 'transparent',
+                                    color: selectedLanguage === lang.id ? (editorTheme === 'vs-dark' ? '#58A6FF' : '#781416') : (editorTheme === 'vs-dark' ? '#CCCCCC' : '#2D251E'),
+                                    fontSize: '0.74rem',
+                                    fontWeight: selectedLanguage === lang.id ? 800 : 600,
+                                    cursor: 'pointer',
+                                    textAlign: 'left'
+                                  }}
+                                >
+                                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                    <span>{lang.icon}</span>
+                                    <span>{lang.name}</span>
+                                  </span>
+                                  {selectedLanguage === lang.id && <Check size={13} color={editorTheme === 'vs-dark' ? '#58A6FF' : '#781416'} />}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Theme Selector Dropdown */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', position: 'relative' }} ref={themeDropdownRef}>
+                          <span style={{ fontSize: '0.74rem', color: editorTheme === 'vs-dark' ? '#9E9E9E' : '#5A4E42', fontWeight: 700 }}>
+                            Theme:
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={() => setIsThemeDropdownOpen(prev => !prev)}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.35rem',
+                              backgroundColor: editorTheme === 'vs-dark' ? '#2D2D2D' : '#FFFFFF',
+                              border: editorTheme === 'vs-dark' ? '1px solid #3E3E3E' : '1px solid #D5C9B8',
+                              borderRadius: '6px',
+                              padding: '0.22rem 0.5rem',
+                              fontSize: '0.75rem',
+                              fontWeight: 700,
+                              color: editorTheme === 'vs-dark' ? '#E0E0E0' : '#1C1814',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            <span>{editorTheme === 'vs-dark' ? '🌙' : '☀️'}</span>
+                            <span>{editorTheme === 'vs-dark' ? 'Dark+' : 'Light+'}</span>
+                            <ChevronDown size={13} />
+                          </button>
+
+                          {isThemeDropdownOpen && (
+                            <div style={{
+                              position: 'absolute',
+                              top: '115%',
+                              left: '0px',
+                              zIndex: 50,
+                              backgroundColor: editorTheme === 'vs-dark' ? '#252526' : '#FFFFFF',
+                              border: editorTheme === 'vs-dark' ? '1.5px solid #3C3C3C' : '1.5px solid #EDE5D6',
+                              borderRadius: '8px',
+                              boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+                              width: '165px',
+                              padding: '0.25rem'
+                            }}>
+                              {EDITOR_THEMES.map(theme => (
+                                <button
+                                  key={theme.id}
+                                  type="button"
+                                  onClick={() => handleThemeChange(theme.id)}
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    width: '100%',
+                                    padding: '0.35rem 0.55rem',
+                                    border: 'none',
+                                    borderRadius: '4px',
+                                    backgroundColor: editorTheme === theme.id ? (editorTheme === 'vs-dark' ? '#37373D' : '#FAF0EE') : 'transparent',
+                                    color: editorTheme === theme.id ? (editorTheme === 'vs-dark' ? '#58A6FF' : '#781416') : (editorTheme === 'vs-dark' ? '#CCCCCC' : '#2D251E'),
+                                    fontSize: '0.74rem',
+                                    fontWeight: editorTheme === theme.id ? 800 : 600,
+                                    cursor: 'pointer',
+                                    textAlign: 'left'
+                                  }}
+                                >
+                                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                                    <span>{theme.icon}</span>
+                                    <span>{theme.name}</span>
+                                  </span>
+                                  {editorTheme === theme.id && <Check size={13} color={editorTheme === 'vs-dark' ? '#58A6FF' : '#781416'} />}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
 
                       {/* Right: Reset Code + Fullscreen */}
@@ -1442,12 +1582,12 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
                           style={{
                             background: 'none',
                             border: 'none',
-                            color: '#7A6F62',
+                            color: editorTheme === 'vs-dark' ? '#9E9E9E' : '#7A6F62',
                             cursor: 'pointer',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.25rem',
-                            fontSize: '0.7rem',
+                            fontSize: '0.72rem',
                             fontWeight: 700,
                             padding: '0.2rem 0.4rem',
                             borderRadius: '4px'
@@ -1464,7 +1604,7 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
                           style={{
                             background: 'none',
                             border: 'none',
-                            color: '#781416',
+                            color: editorTheme === 'vs-dark' ? '#58A6FF' : '#781416',
                             cursor: 'pointer',
                             display: 'flex',
                             alignItems: 'center',
@@ -1476,54 +1616,35 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
                       </div>
                     </div>
 
-                    {/* Code Editor Surface: Gutter + Monospace Textarea */}
+                    {/* Monaco Code Editor Surface */}
                     <div style={{
-                      display: 'flex',
-                      backgroundColor: '#FFFFFF',
-                      height: '240px',
+                      height: '360px',
                       overflow: 'hidden',
-                      position: 'relative'
+                      position: 'relative',
+                      backgroundColor: editorTheme === 'vs-dark' ? '#1E1E1E' : '#FFFFFF'
                     }}>
-                      {/* Line Numbers Gutter */}
-                      <div style={{
-                        width: '32px',
-                        backgroundColor: '#FBF9F6',
-                        borderRight: '1px solid #EFE8DA',
-                        padding: '0.55rem 0',
-                        textAlign: 'right',
-                        fontFamily: "'Fira Code', 'Consolas', monospace",
-                        fontSize: '0.74rem',
-                        color: '#B8ABA0',
-                        lineHeight: '1.45rem',
-                        userSelect: 'none',
-                        flexShrink: 0
-                      }}>
-                        {Array.from({ length: lineCount }).map((_, i) => (
-                          <div key={i} style={{ paddingRight: '0.4rem' }}>{i + 1}</div>
-                        ))}
-                      </div>
-
-                      {/* Clean Code Textarea (NO SOLUTION) */}
-                      <textarea
+                      <Editor
+                        height="100%"
+                        language={getMonacoLanguage(selectedLanguage)}
+                        theme={editorTheme}
                         value={editorCode}
-                        onChange={handleCodeChange}
-                        spellCheck={false}
-                        placeholder="// Write your code here"
-                        style={{
-                          flex: 1,
-                          border: 'none',
-                          outline: 'none',
-                          resize: 'none',
-                          padding: '0.55rem 0.65rem',
-                          fontFamily: "'Fira Code', 'Consolas', monospace",
-                          fontSize: '0.74rem',
-                          lineHeight: '1.45rem',
-                          color: '#1E293B',
-                          backgroundColor: '#FFFFFF',
-                          whiteSpace: 'pre',
-                          overflowX: 'auto',
-                          overflowY: 'auto'
-                        }}
+                        onChange={handleMonacoChange}
+                        options={monacoOptions}
+                        loading={
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            height: '100%',
+                            gap: '0.5rem',
+                            color: editorTheme === 'vs-dark' ? '#CCCCCC' : '#5A4E42',
+                            fontSize: '0.82rem',
+                            fontFamily: 'monospace'
+                          }}>
+                            <Loader2 size={16} className="animate-spin" />
+                            <span>Loading VS Code Editor...</span>
+                          </div>
+                        }
                       />
                     </div>
                   </div>
@@ -1965,7 +2086,7 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
       </main>
 
       {/* =========================================================================
-          4. FULLSCREEN CODE EDITOR MODAL
+          4. FULLSCREEN CODE EDITOR WORKSPACE (Professional IDE Experience)
           ========================================================================= */}
       {isFullscreen && codingQuestion && (
         <div style={{
@@ -1975,52 +2096,188 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
           right: 0,
           bottom: 0,
           zIndex: 99999,
-          backgroundColor: '#FAF7F2',
+          backgroundColor: editorTheme === 'vs-dark' ? '#181818' : '#FAF7F2',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          overflow: 'hidden'
         }}>
-          {/* Fullscreen Header */}
+          {/* Fullscreen IDE Top Bar */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '0.6rem 1.25rem',
-            backgroundColor: '#FFFFFF',
-            borderBottom: '1.5px solid #EDE5D6'
+            padding: '0.5rem 1rem',
+            backgroundColor: editorTheme === 'vs-dark' ? '#1E1E1E' : '#FFFFFF',
+            borderBottom: editorTheme === 'vs-dark' ? '1px solid #333333' : '1.5px solid #EDE5D6',
+            flexWrap: 'wrap',
+            gap: '0.75rem',
+            flexShrink: 0
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <span style={{ fontSize: '1rem', fontWeight: 900, color: '#1C1814' }}>
+            {/* Left: Problem Title + Difficulty */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+              <span style={{
+                fontSize: '0.98rem',
+                fontWeight: 900,
+                color: editorTheme === 'vs-dark' ? '#FFFFFF' : '#1C1814'
+              }}>
                 {codingQuestion.title}
               </span>
               <span style={{
                 backgroundColor: codingQuestion.difficulty === 'Easy' ? '#DCFCE7' : '#FEF3C7',
                 color: codingQuestion.difficulty === 'Easy' ? '#15803D' : '#B45309',
-                fontSize: '0.7rem',
+                fontSize: '0.68rem',
                 fontWeight: 800,
-                padding: '0.12rem 0.5rem',
+                padding: '0.12rem 0.45rem',
                 borderRadius: '4px'
               }}>
                 {codingQuestion.difficulty}
               </span>
             </div>
 
-            {/* Timer + Exit Fullscreen */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#781416', fontWeight: 800 }}>
-                <Clock size={16} />
-                <span style={{ fontFamily: 'monospace', fontSize: '1.1rem' }}>{formatTime(timeLeft)}</span>
-              </div>
+            {/* Center: Synced Timer */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              color: '#781416',
+              backgroundColor: '#FAF0EE',
+              padding: '0.25rem 0.65rem',
+              borderRadius: '6px',
+              fontWeight: 800
+            }}>
+              <Clock size={15} />
+              <span style={{ fontFamily: 'monospace', fontSize: '1.05rem', letterSpacing: '0.05em' }}>
+                {formatTime(timeLeft)}
+              </span>
+            </div>
 
+            {/* Right: Controls & Actions */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexWrap: 'wrap' }}>
+              {/* Theme Selector */}
+              <select
+                value={editorTheme}
+                onChange={(e) => handleThemeChange(e.target.value)}
+                style={{
+                  backgroundColor: editorTheme === 'vs-dark' ? '#2D2D2D' : '#FFFFFF',
+                  color: editorTheme === 'vs-dark' ? '#E0E0E0' : '#1C1814',
+                  border: editorTheme === 'vs-dark' ? '1px solid #3E3E3E' : '1px solid #D5C9B8',
+                  borderRadius: '6px',
+                  padding: '0.3rem 0.55rem',
+                  fontSize: '0.76rem',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                <option value="vs-dark">🌙 VS Code Dark+</option>
+                <option value="light">☀️ VS Code Light+</option>
+              </select>
+
+              {/* Language Selector */}
+              <select
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                style={{
+                  backgroundColor: editorTheme === 'vs-dark' ? '#2D2D2D' : '#FFFFFF',
+                  color: editorTheme === 'vs-dark' ? '#E0E0E0' : '#1C1814',
+                  border: editorTheme === 'vs-dark' ? '1px solid #3E3E3E' : '1px solid #D5C9B8',
+                  borderRadius: '6px',
+                  padding: '0.3rem 0.55rem',
+                  fontSize: '0.76rem',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                {SUPPORTED_LANGUAGES.map(lang => (
+                  <option key={lang.id} value={lang.id}>
+                    {lang.icon} {lang.name}
+                  </option>
+                ))}
+              </select>
+
+              {/* Reset Code */}
+              <button
+                type="button"
+                onClick={handleResetCode}
+                title="Reset clean template"
+                style={{
+                  backgroundColor: editorTheme === 'vs-dark' ? '#2D2D2D' : '#FFFFFF',
+                  color: editorTheme === 'vs-dark' ? '#B0B0B0' : '#7A6F62',
+                  border: editorTheme === 'vs-dark' ? '1px solid #3E3E3E' : '1px solid #D5C9B8',
+                  borderRadius: '6px',
+                  padding: '0.3rem 0.6rem',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.3rem'
+                }}
+              >
+                <RotateCcw size={13} />
+                <span>Reset</span>
+              </button>
+
+              {/* Run Code Button */}
+              <button
+                type="button"
+                onClick={handleRunCode}
+                disabled={isRunningCode}
+                style={{
+                  backgroundColor: editorTheme === 'vs-dark' ? '#1E1E1E' : '#FFFFFF',
+                  color: '#781416',
+                  border: '1.5px solid #781416',
+                  borderRadius: '6px',
+                  padding: '0.32rem 0.85rem',
+                  fontSize: '0.76rem',
+                  fontWeight: 800,
+                  cursor: isRunningCode ? 'wait' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  opacity: isRunningCode ? 0.75 : 1
+                }}
+              >
+                {isRunningCode ? <Loader2 size={13} className="animate-spin" /> : <Play size={13} fill="#781416" />}
+                <span>{isRunningCode ? 'Running...' : 'Run Code'}</span>
+              </button>
+
+              {/* Submit Code Button */}
+              <button
+                type="button"
+                onClick={handleSubmitCode}
+                disabled={isSubmittingCode}
+                style={{
+                  backgroundColor: '#781416',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  borderRadius: '6px',
+                  padding: '0.35rem 0.95rem',
+                  fontSize: '0.76rem',
+                  fontWeight: 800,
+                  cursor: isSubmittingCode ? 'wait' : 'pointer',
+                  boxShadow: '0 2px 6px rgba(120, 20, 22, 0.35)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  opacity: isSubmittingCode ? 0.75 : 1
+                }}
+              >
+                {isSubmittingCode ? <Loader2 size={13} className="animate-spin" /> : <Send size={13} />}
+                <span>{isSubmittingCode ? 'Submitting...' : 'Submit Code'}</span>
+              </button>
+
+              {/* Exit Fullscreen Button */}
               <button
                 type="button"
                 onClick={() => setIsFullscreen(false)}
+                title="Exit Fullscreen (Escape)"
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  color: '#2C2620',
-                  border: '1.5px solid #D5C9B8',
+                  backgroundColor: editorTheme === 'vs-dark' ? '#333333' : '#FFFFFF',
+                  color: editorTheme === 'vs-dark' ? '#FFFFFF' : '#2C2620',
+                  border: editorTheme === 'vs-dark' ? '1px solid #444444' : '1.5px solid #D5C9B8',
                   borderRadius: '6px',
-                  padding: '0.35rem 0.85rem',
-                  fontSize: '0.8rem',
+                  padding: '0.32rem 0.75rem',
+                  fontSize: '0.76rem',
                   fontWeight: 700,
                   cursor: 'pointer',
                   display: 'flex',
@@ -2028,122 +2285,441 @@ export default function InterviewCodingPage({ onNavigate, onOpenAuth }) {
                   gap: '0.35rem'
                 }}
               >
-                <Minimize2 size={14} />
+                <Minimize2 size={13} />
                 <span>Exit Fullscreen</span>
+                <span style={{ opacity: 0.6, fontSize: '0.68rem' }}>(Esc)</span>
               </button>
             </div>
           </div>
 
-          {/* Fullscreen Body: Split Screen */}
+          {/* Fullscreen Split Workspace */}
           <div style={{
             flex: 1,
             display: 'grid',
-            gridTemplateColumns: '1fr 1.2fr',
+            gridTemplateColumns: 'minmax(340px, 420px) 1fr',
             overflow: 'hidden'
           }}>
-            {/* Left: Problem */}
+            {/* Left Panel: Problem Details & Examples */}
             <div style={{
               padding: '1.25rem',
               overflowY: 'auto',
-              borderRight: '1.5px solid #EDE5D6',
-              backgroundColor: '#FFFFFF'
+              borderRight: editorTheme === 'vs-dark' ? '1px solid #2D2D2D' : '1.5px solid #EDE5D6',
+              backgroundColor: editorTheme === 'vs-dark' ? '#1E1E1E' : '#FFFFFF',
+              color: editorTheme === 'vs-dark' ? '#D4D4D4' : '#1C1814'
             }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#1C1814', marginTop: 0 }}>
+              <h3 style={{
+                fontSize: '1.2rem',
+                fontWeight: 900,
+                marginTop: 0,
+                marginBottom: '0.5rem',
+                color: editorTheme === 'vs-dark' ? '#FFFFFF' : '#1C1814'
+              }}>
                 {codingQuestion.title}
               </h3>
-              <p style={{ fontSize: '0.88rem', lineHeight: 1.6, whiteSpace: 'pre-line', color: '#3A3228' }}>
+              <p style={{
+                fontSize: '0.86rem',
+                lineHeight: 1.6,
+                whiteSpace: 'pre-line',
+                color: editorTheme === 'vs-dark' ? '#CCCCCC' : '#3A3228'
+              }}>
                 {codingQuestion.description}
               </p>
 
               {/* Examples */}
-              <div style={{ marginTop: '1rem' }}>
+              <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {(codingQuestion.examples || []).map(ex => (
-                  <div key={ex.num} style={{ marginBottom: '0.75rem' }}>
-                    <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1C1814' }}>
+                  <div key={ex.num}>
+                    <div style={{
+                      fontSize: '0.8rem',
+                      fontWeight: 800,
+                      color: editorTheme === 'vs-dark' ? '#9CDCFE' : '#1C1814',
+                      marginBottom: '0.2rem'
+                    }}>
                       Example {ex.num}:
                     </div>
                     <div style={{
-                      backgroundColor: '#F8F9FA',
-                      border: '1px solid #E9ECEF',
+                      backgroundColor: editorTheme === 'vs-dark' ? '#252526' : '#F8F9FA',
+                      border: editorTheme === 'vs-dark' ? '1px solid #333333' : '1px solid #E9ECEF',
                       borderRadius: '6px',
-                      padding: '0.65rem',
+                      padding: '0.6rem 0.75rem',
                       fontFamily: "'Fira Code', monospace",
-                      fontSize: '0.78rem',
-                      marginTop: '0.25rem'
+                      fontSize: '0.76rem',
+                      lineHeight: 1.45,
+                      color: editorTheme === 'vs-dark' ? '#D4D4D4' : '#1E293B'
                     }}>
                       <div><strong>Input:</strong> {ex.input}</div>
                       <div><strong>Output:</strong> {ex.output}</div>
+                      {ex.explanation && (
+                        <div style={{ color: editorTheme === 'vs-dark' ? '#858585' : '#6A6054', marginTop: '3px' }}>
+                          <strong>Explanation:</strong> {ex.explanation}
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
+
+              {/* Constraints */}
+              {codingQuestion.constraints && codingQuestion.constraints.length > 0 && (
+                <div style={{ marginTop: '1rem' }}>
+                  <div style={{
+                    fontSize: '0.8rem',
+                    fontWeight: 800,
+                    color: editorTheme === 'vs-dark' ? '#9CDCFE' : '#1C1814',
+                    marginBottom: '0.35rem'
+                  }}>
+                    Constraints:
+                  </div>
+                  <ul style={{
+                    margin: 0,
+                    paddingLeft: '1rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.25rem',
+                    color: editorTheme === 'vs-dark' ? '#A0A0A0' : '#4A4036',
+                    fontFamily: "'Fira Code', monospace",
+                    fontSize: '0.74rem'
+                  }}>
+                    {codingQuestion.constraints.map((c, i) => (
+                      <li key={i}>{c}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
-            {/* Right: Code Editor & Runner */}
-            <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#FFFFFF' }}>
-              <div style={{
-                padding: '0.45rem 1rem',
-                backgroundColor: '#FAF7F2',
-                borderBottom: '1px solid #EDE5D6',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between'
-              }}>
-                <span style={{ fontSize: '0.82rem', fontWeight: 700 }}>
-                  Language: {currentLangObj.name}
-                </span>
-
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <button
-                    type="button"
-                    onClick={handleRunCode}
-                    style={{
-                      backgroundColor: '#FFFFFF',
-                      color: '#781416',
-                      border: '1.5px solid #781416',
-                      borderRadius: '6px',
-                      padding: '0.35rem 0.85rem',
-                      fontSize: '0.8rem',
-                      fontWeight: 800,
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Run Code
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={handleSubmitCode}
-                    style={{
-                      backgroundColor: '#781416',
-                      color: '#FFFFFF',
-                      border: 'none',
-                      borderRadius: '6px',
-                      padding: '0.35rem 0.95rem',
-                      fontSize: '0.8rem',
-                      fontWeight: 800,
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Submit Code
-                  </button>
-                </div>
+            {/* Right Panel: Monaco Editor + Full Test Runner Console */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              backgroundColor: editorTheme === 'vs-dark' ? '#1E1E1E' : '#FFFFFF',
+              overflow: 'hidden'
+            }}>
+              {/* Monaco Editor Surface (Takes flex-1) */}
+              <div style={{ flex: 1, minHeight: '300px', overflow: 'hidden', position: 'relative' }}>
+                <Editor
+                  height="100%"
+                  language={getMonacoLanguage(selectedLanguage)}
+                  theme={editorTheme}
+                  value={editorCode}
+                  onChange={handleMonacoChange}
+                  options={monacoOptions}
+                  loading={
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      height: '100%',
+                      gap: '0.5rem',
+                      color: editorTheme === 'vs-dark' ? '#CCCCCC' : '#5A4E42',
+                      fontSize: '0.82rem',
+                      fontFamily: 'monospace'
+                    }}>
+                      <Loader2 size={16} className="animate-spin" />
+                      <span>Loading VS Code Editor...</span>
+                    </div>
+                  }
+                />
               </div>
 
-              <textarea
-                value={editorCode}
-                onChange={handleCodeChange}
-                style={{
+              {/* Fullscreen Test Runner & Output Console */}
+              <div style={{
+                height: '270px',
+                borderTop: editorTheme === 'vs-dark' ? '1px solid #333333' : '1.5px solid #E2D9CC',
+                backgroundColor: editorTheme === 'vs-dark' ? '#181818' : '#FFFFFF',
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden'
+              }}>
+                {/* Console Header: Tabs + Run/Submit Buttons */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.4rem 0.85rem',
+                  borderBottom: editorTheme === 'vs-dark' ? '1px solid #282828' : '1px solid #F1EAE0',
+                  backgroundColor: editorTheme === 'vs-dark' ? '#1F1F1F' : '#FAF7F2',
+                  flexShrink: 0
+                }}>
+                  <div style={{ display: 'flex', gap: '0.75rem' }}>
+                    <button
+                      type="button"
+                      onClick={() => setActiveTestTab('cases')}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        padding: '0.2rem 0',
+                        fontSize: '0.76rem',
+                        fontWeight: activeTestTab === 'cases' ? 800 : 600,
+                        color: activeTestTab === 'cases' ? (editorTheme === 'vs-dark' ? '#58A6FF' : '#781416') : (editorTheme === 'vs-dark' ? '#8B949E' : '#5A4E42'),
+                        borderBottom: activeTestTab === 'cases' ? (editorTheme === 'vs-dark' ? '2px solid #58A6FF' : '2px solid #781416') : '2px solid transparent',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Test Cases
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setActiveTestTab('custom')}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        padding: '0.2rem 0',
+                        fontSize: '0.76rem',
+                        fontWeight: activeTestTab === 'custom' ? 800 : 600,
+                        color: activeTestTab === 'custom' ? (editorTheme === 'vs-dark' ? '#58A6FF' : '#781416') : (editorTheme === 'vs-dark' ? '#8B949E' : '#5A4E42'),
+                        borderBottom: activeTestTab === 'custom' ? (editorTheme === 'vs-dark' ? '2px solid #58A6FF' : '2px solid #781416') : '2px solid transparent',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      Custom Input
+                    </button>
+                  </div>
+
+                  {/* Console Action Buttons */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                    <button
+                      type="button"
+                      onClick={handleRunCode}
+                      disabled={isRunningCode}
+                      style={{
+                        backgroundColor: editorTheme === 'vs-dark' ? '#2D2D2D' : '#FFFFFF',
+                        color: editorTheme === 'vs-dark' ? '#FFFFFF' : '#781416',
+                        border: '1.5px solid #781416',
+                        borderRadius: '6px',
+                        padding: '0.28rem 0.75rem',
+                        fontSize: '0.74rem',
+                        fontWeight: 800,
+                        cursor: isRunningCode ? 'wait' : 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        opacity: isRunningCode ? 0.75 : 1
+                      }}
+                    >
+                      {isRunningCode ? <Loader2 size={12} className="animate-spin" /> : <Play size={12} fill="#781416" />}
+                      <span>{isRunningCode ? 'Running...' : 'Run Code'}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleSubmitCode}
+                      disabled={isSubmittingCode}
+                      style={{
+                        backgroundColor: '#781416',
+                        color: '#FFFFFF',
+                        border: 'none',
+                        borderRadius: '6px',
+                        padding: '0.32rem 0.85rem',
+                        fontSize: '0.74rem',
+                        fontWeight: 800,
+                        cursor: isSubmittingCode ? 'wait' : 'pointer',
+                        boxShadow: '0 2px 6px rgba(120, 20, 22, 0.28)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        opacity: isSubmittingCode ? 0.75 : 1
+                      }}
+                    >
+                      {isSubmittingCode ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
+                      <span>{isSubmittingCode ? 'Submitting...' : 'Submit Code'}</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Console Content: Scrollable */}
+                <div style={{
                   flex: 1,
-                  padding: '1rem',
-                  fontFamily: "'Fira Code', 'Consolas', monospace",
-                  fontSize: '0.86rem',
-                  lineHeight: '1.5rem',
-                  border: 'none',
-                  outline: 'none',
-                  resize: 'none'
-                }}
-              />
+                  padding: '0.65rem 0.85rem',
+                  overflowY: 'auto',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.5rem'
+                }}>
+                  {activeTestTab === 'cases' && (
+                    <>
+                      {/* Case Pills */}
+                      <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
+                        {(codingQuestion.visibleTestCases || []).map((tc, idx) => {
+                          const caseResult = runResult?.results?.[idx];
+                          return (
+                            <button
+                              key={tc.id || idx}
+                              type="button"
+                              onClick={() => setSelectedCaseIdx(idx)}
+                              style={{
+                                backgroundColor: selectedCaseIdx === idx ? '#781416' : (editorTheme === 'vs-dark' ? '#282828' : '#F1EBE4'),
+                                color: selectedCaseIdx === idx ? '#FFFFFF' : (editorTheme === 'vs-dark' ? '#CCCCCC' : '#4A4036'),
+                                border: 'none',
+                                borderRadius: '4px',
+                                padding: '0.2rem 0.55rem',
+                                fontSize: '0.7rem',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px'
+                              }}
+                            >
+                              <span>Case {idx + 1}</span>
+                              {caseResult && (
+                                <span style={{
+                                  fontSize: '0.65rem',
+                                  fontWeight: 900,
+                                  color: caseResult.passed ? '#22C55E' : '#EF4444'
+                                }}>
+                                  {caseResult.passed ? '✓' : '✗'}
+                                </span>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {/* Input Box */}
+                      <div>
+                        <div style={{ fontSize: '0.68rem', fontWeight: 700, color: editorTheme === 'vs-dark' ? '#8B949E' : '#5A4E42', marginBottom: '0.15rem' }}>
+                          Input
+                        </div>
+                        <div style={{
+                          backgroundColor: editorTheme === 'vs-dark' ? '#222222' : '#F8F9FA',
+                          border: editorTheme === 'vs-dark' ? '1px solid #333333' : '1px solid #E9ECEF',
+                          borderRadius: '5px',
+                          padding: '0.35rem 0.55rem',
+                          fontFamily: "'Fira Code', 'Consolas', monospace",
+                          fontSize: '0.72rem',
+                          color: editorTheme === 'vs-dark' ? '#E6EDF3' : '#1E293B',
+                          whiteSpace: 'pre-line'
+                        }}>
+                          {codingQuestion.visibleTestCases?.[selectedCaseIdx]?.input || ''}
+                        </div>
+                      </div>
+
+                      {/* Expected Output Box */}
+                      <div>
+                        <div style={{ fontSize: '0.68rem', fontWeight: 700, color: editorTheme === 'vs-dark' ? '#8B949E' : '#5A4E42', marginBottom: '0.15rem' }}>
+                          Expected Output
+                        </div>
+                        <div style={{
+                          backgroundColor: editorTheme === 'vs-dark' ? '#222222' : '#F8F9FA',
+                          border: editorTheme === 'vs-dark' ? '1px solid #333333' : '1px solid #E9ECEF',
+                          borderRadius: '5px',
+                          padding: '0.35rem 0.55rem',
+                          fontFamily: "'Fira Code', 'Consolas', monospace",
+                          fontSize: '0.72rem',
+                          color: editorTheme === 'vs-dark' ? '#E6EDF3' : '#1E293B'
+                        }}>
+                          {codingQuestion.visibleTestCases?.[selectedCaseIdx]?.expected || ''}
+                        </div>
+                      </div>
+
+                      {/* Actual Output Box (Shown when runResult exists) */}
+                      {runResult && (
+                        <div>
+                          <div style={{
+                            fontSize: '0.68rem',
+                            fontWeight: 700,
+                            color: runResult.results?.[selectedCaseIdx]?.passed ? '#22C55E' : '#EF4444',
+                            marginBottom: '0.15rem'
+                          }}>
+                            Actual Output {runResult.results?.[selectedCaseIdx] ? (runResult.results[selectedCaseIdx].passed ? '✓ (Match)' : '✕ (Mismatch)') : ''}
+                          </div>
+                          <div style={{
+                            backgroundColor: runResult.results?.[selectedCaseIdx]?.passed
+                              ? (editorTheme === 'vs-dark' ? '#0F2D1E' : '#F0FDF4')
+                              : (editorTheme === 'vs-dark' ? '#3B1219' : '#FEF2F2'),
+                            border: `1px solid ${runResult.results?.[selectedCaseIdx]?.passed
+                              ? (editorTheme === 'vs-dark' ? '#1E6B43' : '#BBF7D0')
+                              : (editorTheme === 'vs-dark' ? '#7A1C28' : '#FECACA')}`,
+                            borderRadius: '5px',
+                            padding: '0.35rem 0.55rem',
+                            fontFamily: "'Fira Code', 'Consolas', monospace",
+                            fontSize: '0.72rem',
+                            color: runResult.results?.[selectedCaseIdx]?.passed
+                              ? (editorTheme === 'vs-dark' ? '#4ADE80' : '#166534')
+                              : (editorTheme === 'vs-dark' ? '#F87171' : '#991B1B'),
+                            whiteSpace: 'pre-wrap'
+                          }}>
+                            {runResult.results?.[selectedCaseIdx]?.actual !== undefined
+                              ? String(runResult.results[selectedCaseIdx].actual)
+                              : (runResult.error || runResult.output || 'No output recorded')}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Execution Error or Stderr Details */}
+                      {runResult?.error && (
+                        <div style={{
+                          backgroundColor: editorTheme === 'vs-dark' ? '#3B1219' : '#FFF1F2',
+                          border: editorTheme === 'vs-dark' ? '1px solid #7A1C28' : '1px solid #FECDD3',
+                          borderRadius: '5px',
+                          padding: '0.45rem 0.6rem',
+                          fontSize: '0.72rem',
+                          color: editorTheme === 'vs-dark' ? '#FCA5A5' : '#9F1239',
+                          fontFamily: "'Fira Code', monospace",
+                          whiteSpace: 'pre-wrap'
+                        }}>
+                          <strong>{runResult.status || 'Error'}:</strong> {runResult.error}
+                        </div>
+                      )}
+
+                      {/* Overall Run Execution Result Banner */}
+                      {runResult && (
+                        <div style={{
+                          backgroundColor: runResult.passed
+                            ? (editorTheme === 'vs-dark' ? '#0F2D1E' : '#ECFDF5')
+                            : (editorTheme === 'vs-dark' ? '#3B1219' : '#FEF2F2'),
+                          border: `1px solid ${runResult.passed
+                            ? (editorTheme === 'vs-dark' ? '#1E6B43' : '#A7F3D0')
+                            : (editorTheme === 'vs-dark' ? '#7A1C28' : '#FECACA')}`,
+                          borderRadius: '5px',
+                          padding: '0.4rem 0.55rem',
+                          fontSize: '0.72rem',
+                          color: runResult.passed
+                            ? (editorTheme === 'vs-dark' ? '#4ADE80' : '#065F46')
+                            : (editorTheme === 'vs-dark' ? '#F87171' : '#991B1B'),
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between'
+                        }}>
+                          <span style={{ fontWeight: 800 }}>
+                            {runResult.passed ? '✓ Accepted' : `✕ ${runResult.status || 'Failed'}`} ({runResult.testCasesPassed} Test Cases Passed)
+                          </span>
+                          <span style={{ fontSize: '0.68rem', opacity: 0.85 }}>
+                            Runtime: {runResult.runtime || '—'} | Memory: {runResult.memory || '—'}
+                          </span>
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  {activeTestTab === 'custom' && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                      <div style={{ fontSize: '0.68rem', fontWeight: 700, color: editorTheme === 'vs-dark' ? '#8B949E' : '#5A4E42' }}>
+                        Provide custom test arguments:
+                      </div>
+                      <textarea
+                        value={customInputText}
+                        onChange={(e) => setCustomInputText(e.target.value)}
+                        placeholder="e.g. nums = [1, 5, 8], target = 9"
+                        style={{
+                          width: '100%',
+                          height: '65px',
+                          border: editorTheme === 'vs-dark' ? '1px solid #3E3E3E' : '1px solid #D5C9B8',
+                          borderRadius: '5px',
+                          padding: '0.4rem',
+                          fontFamily: "'Fira Code', monospace",
+                          fontSize: '0.72rem',
+                          resize: 'none',
+                          backgroundColor: editorTheme === 'vs-dark' ? '#222222' : '#FFFFFF',
+                          color: editorTheme === 'vs-dark' ? '#E6EDF3' : '#1C1814'
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
