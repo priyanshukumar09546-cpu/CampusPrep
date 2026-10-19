@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import MobileHeader from './MobileHeader';
 import { fetchProgressSummary } from '../utils/progressTracker';
+import { openInstallModal } from '../utils/pwaManager';
 
 export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
   // Load real authenticated user data from multiple supported keys
@@ -897,6 +898,45 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                 boxSizing: 'border-box'
               }}
             >
+              {/* 0. Install App (Universal Android & iOS PWA) */}
+              <div
+                onClick={() => openInstallModal('mobile_profile_menu')}
+                role="button"
+                tabIndex={0}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '11px 13px',
+                  borderBottom: '1px solid #F8FAFC',
+                  backgroundColor: '#FFFDF9',
+                  cursor: 'pointer'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+                  <div style={{
+                    width: '32px', height: '32px', borderRadius: '9px', backgroundColor: '#FEF3C7',
+                    border: '1px solid #FDE68A', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#B45309', flexShrink: 0
+                  }}>
+                    <Download size={16} strokeWidth={2.4} />
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ fontSize: '11.5px', fontWeight: 800, color: '#0F172A', lineHeight: 1.2 }}>
+                        Install App
+                      </span>
+                      <span style={{ fontSize: '8.5px', fontWeight: 800, backgroundColor: '#861820', color: '#FFFFFF', padding: '1px 5px', borderRadius: '4px' }}>
+                        Fast PWA
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '9px', color: '#64748B', lineHeight: 1.15, marginTop: '1px' }}>
+                      Add Professor Virus to your Android or iPhone home screen
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight size={15} color="#94A3B8" style={{ flexShrink: 0 }} />
+              </div>
+
               {/* 1. My Courses */}
               <div
                 onClick={() => onNavigate && onNavigate('select-course')}

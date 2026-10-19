@@ -20,6 +20,7 @@ import {
   Calendar 
 } from 'lucide-react';
 import { useCourse } from '../context/CourseContext';
+import { openInstallModal } from '../utils/pwaManager';
 
 export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
   const { selectedCourse, selectedBranch } = useCourse();
@@ -120,6 +121,12 @@ export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
   ];
 
   const menuItems = [
+    {
+      id: 'install-app',
+      title: 'Install App (Android & iPhone)',
+      icon: Download,
+      action: () => openInstallModal('mobile_more_screen')
+    },
     {
       id: 'bookmarks',
       title: 'My Bookmarks',

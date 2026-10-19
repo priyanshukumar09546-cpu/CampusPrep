@@ -1,0 +1,72 @@
+{
+  "id": "/?source=pwa",
+  "name": "Professor Virus — Student Academic Platform",
+  "short_name": "Professor Virus",
+  "description": "Study Smart. Prepare Better. Notes, PYQs, Quizzes, Tools & All Courses right on your device for AKTU students.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFFCF7",
+  "theme_color": "#861820",
+  "categories": ["education", "productivity", "books"],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/assets/pwa-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/pwa-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Notes",
+      "short_name": "Notes",
+      "description": "Access semester handwritten notes and units",
+      "url": "/notes?source=pwa_shortcut",
+      "icons": [{ "src": "/assets/pwa-icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "PYQs & Solutions",
+      "short_name": "PYQs",
+      "description": "Solved AKTU semester previous year question papers",
+      "url": "/pyqs?source=pwa_shortcut",
+      "icons": [{ "src": "/assets/pwa-icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Interview Pro",
+      "short_name": "Interview",
+      "description": "AI Mock Interviews and coding practice",
+      "url": "/interview-pro?source=pwa_shortcut",
+      "icons": [{ "src": "/assets/pwa-icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Student Tools",
+      "short_name": "Tools",
+      "description": "Resume Maker, CGPA calculator, Attendance and more",
+      "url": "/more?source=pwa_shortcut",
+      "icons": [{ "src": "/assets/pwa-icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

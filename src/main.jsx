@@ -21,6 +21,10 @@ if (API_URL && typeof window !== 'undefined' && window.fetch) {
 }
 
 import { CourseProvider } from './context/CourseContext.jsx';
+import { registerServiceWorker } from './utils/pwaManager.js';
+
+// Initialize PWA Service Worker for offline support and native install prompt eligibility
+registerServiceWorker();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

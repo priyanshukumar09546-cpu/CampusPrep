@@ -13,6 +13,7 @@ import AIStudyModal from './components/AIStudyModal';
 import AuthModal from './components/AuthModal';
 import CourseSelectModal from './components/CourseSelectModal';
 import StayConnectedPopup from './components/StayConnectedPopup';
+import PWAInstallPopup from './components/PWAInstallPopup';
 import MobileBottomNav from './components/MobileBottomNav';
 import MobileHeader from './components/MobileHeader';
 import CookieConsent from './components/CookieConsent';
@@ -928,6 +929,9 @@ export default function App() {
 
       {/* WhatsApp & Telegram Stay Connected Popup */}
       <StayConnectedPopup />
+
+      {/* Universal Android + iOS PWA Installation Popup */}
+      <PWAInstallPopup />
 
       {/* Mobile Bottom Navigation */}
       {!isStandaloneAuth && (

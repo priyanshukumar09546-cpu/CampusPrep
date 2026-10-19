@@ -27,9 +27,11 @@ import {
   LogOut,
   Calendar,
   FileText as FileTextIcon,
-  Zap
+  Zap,
+  Download
 } from 'lucide-react';
 import { searchLocalIndex } from '../data/searchIndex';
+import { openInstallModal } from '../utils/pwaManager';
 
 export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }) {
   const [theme, setTheme] = useState('light');
@@ -636,6 +638,41 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             </span>
           </button>
 
+          {/* Permanent Install App Button (Android, iOS & Desktop) */}
+          <button
+            onClick={() => openInstallModal('navbar_header')}
+            title="Install Professor Virus App (Android & iPhone)"
+            aria-label="Install Professor Virus App"
+            style={{
+              height: '34px',
+              padding: '0 0.65rem',
+              borderRadius: '9999px',
+              border: '1.5px solid #E8E2D5',
+              backgroundColor: '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              cursor: 'pointer',
+              color: '#861820',
+              fontWeight: 700,
+              fontSize: '0.74rem',
+              boxShadow: '0 2px 6px rgba(35,30,25,0.04)',
+              transition: 'all 0.2s ease',
+              flexShrink: 0
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#861820';
+              e.currentTarget.style.backgroundColor = '#FFFBF7';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = '#E8E2D5';
+              e.currentTarget.style.backgroundColor = '#ffffff';
+            }}
+          >
+            <Download size={14} strokeWidth={2.4} />
+            <span style={{ whiteSpace: 'nowrap' }}>Install App</span>
+          </button>
+
           {/* User Profile / Auth Action Area */}
           {currentUser ? (
             <div style={{ position: 'relative' }} ref={userMenuRef} className="desktop-user-profile">
@@ -737,6 +774,15 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     }}
                   >
                     <BookOpen size={14} style={{ color: '#C88D2D' }} /> My Notes &amp; Saved PYQs
+                  </button>
+                  <button
+                    style={dropdownBtnStyle}
+                    onClick={() => {
+                      openInstallModal('navbar_user_dropdown');
+                      setUserMenuOpen(false);
+                    }}
+                  >
+                    <Download size={14} style={{ color: '#861820' }} /> Install App (PWA)
                   </button>
                   <button
                     style={dropdownBtnStyle}
