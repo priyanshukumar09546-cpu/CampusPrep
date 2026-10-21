@@ -254,20 +254,16 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
     return '/assets/projects/mern_ecommerce.jpg';
   };
 
-  const mobileDomainsList = [
-    { id: 'all', name: 'All Domains', count: domainCounts.all || projects.length || 25, icon: LayoutGrid },
-    { id: 'web-development', name: 'Web Development', count: domainCounts['Web Development'] || 2, icon: Globe },
-    { id: 'ai-machine-learning', name: 'AI / Machine Learning', count: domainCounts['AI / Machine Learning'] || 3, icon: Brain },
-    { id: 'computer-vision', name: 'Computer Vision', count: domainCounts['Computer Vision'] || 4, icon: Eye },
-    { id: 'android-app-development', name: 'Android App Development', count: domainCounts['Android App Development'] || 2, icon: Smartphone },
-    { id: 'iot-embedded-systems', name: 'IoT & Embedded Systems', count: domainCounts['IoT & Embedded Systems'] || 2, icon: Cpu },
-    { id: 'cyber-security', name: 'Cyber Security', count: domainCounts['Cyber Security'] || 2, icon: Shield },
-    { id: 'cloud-devops', name: 'Cloud & DevOps', count: domainCounts['Cloud & DevOps'] || 2, icon: Cloud },
-    { id: 'blockchain-web3', name: 'Blockchain & Web3', count: domainCounts['Blockchain & Web3'] || 2, icon: Boxes },
-    { id: 'data-science', name: 'Data Science', count: domainCounts['Data Science'] || 2, icon: BarChart3 },
-    { id: 'college-academic', name: 'College & Academic', count: domainCounts['College & Academic'] || 1, icon: GraduationCap },
-    { id: 'game-development', name: 'Game Development', count: domainCounts['Game Development'] || 1, icon: Gamepad2 }
-  ];
+  const mobileDomainsList = useMemo(() => {
+    return domainMetadata.map(d => ({
+      id: d.id,
+      name: d.name,
+      count: d.id === 'all' ? (domainCounts.all || projects.length || 0) : (domainCounts[d.name] || 0),
+      icon: d.icon,
+      color: d.color,
+      bgColor: d.bgColor
+    }));
+  }, [domainCounts, projects.length]);
 
   const mobileDisplayProjects = useMemo(() => {
     let list = projects;

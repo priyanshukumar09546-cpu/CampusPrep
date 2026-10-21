@@ -13,7 +13,14 @@ import {
   AlertTriangle,
   RefreshCw,
   ArrowLeft,
-  Share2
+  Share2,
+  ZoomIn,
+  ZoomOut,
+  RotateCcw,
+  Scan,
+  Send,
+  CheckCircle2,
+  BookOpen
 } from 'lucide-react';
 import { isValidPdfUrl } from '../utils/pdfValidator';
 
@@ -22,6 +29,13 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
   const [reportSubmitted, setReportSubmitted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [iframeError, setIframeError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [zoom, setZoom] = useState(100);
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [requestSubmitted, setRequestSubmitted] = useState(false);
+  const [showRequestForm, setShowRequestForm] = useState(false);
+  const [requestEmail, setRequestEmail] = useState('');
+  const [requestDetails, setRequestDetails] = useState('');
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
 
   useEffect(() => {
@@ -32,35 +46,54 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Keyboard shortcut: Escape to close
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (isFullscreen) {
+          setIsFullscreen(false);
+        } else {
+          onClose();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFullscreen, onClose]);
+
   if (!note) return null;
 
   // Resolve target resource URL
   const targetUrl = (note.verifiedUrl || note.resourceUrl || note.fileUrl || note.url || note.pdfUrl || '').trim();
 
-  // Validate that the resource actually exists and is not a 404 / broken aktupyq link
-  const isBrokenOr404 = !targetUrl || 
+  // Validate that the resource actually exists and is a valid document
+  const isBrokenOrUnavailable = !targetUrl || 
     targetUrl.includes('aktupyq.com/bca/notes') || 
     !isValidPdfUrl(targetUrl) ||
     note.available === false ||
-    note.isAvailable === false;
+    note.isAvailable === false ||
+    note.status === 'not_available';
 
-  const isAvailable = !isBrokenOr404;
+  const isAvailable = !isBrokenOrUnavailable;
+
+  // Extract Drive file ID if present
+  const getDriveFileId = (url) => {
+    if (!url) return null;
+    if (note.driveFileId && note.driveFileId.length >= 20) return note.driveFileId;
+    const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    return match ? match[1] : null;
+  };
+
+  const driveFileId = getDriveFileId(targetUrl);
 
   // Generate safe embedded URL for iframe
   const getEmbedUrl = (rawUrl) => {
     if (!rawUrl) return '';
     let url = rawUrl.trim();
 
-    // Google Drive file: transform to /preview for embedded viewing
-    const driveFileMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-    if (driveFileMatch && driveFileMatch[1]) {
-      return `https://drive.google.com/file/d/${driveFileMatch[1]}/preview`;
-    }
-
-    // Google Drive folder: use embeddedfolderview
-    const driveFolderMatch = url.match(/\/drive\/folders\/([a-zA-Z0-9_-]+)/);
-    if (driveFolderMatch && driveFolderMatch[1]) {
-      return `https://drive.google.com/embeddedfolderview?id=${driveFolderMatch[1]}#grid`;
+    // Google Drive file: always use /preview for seamless inline viewing
+    if (driveFileId) {
+      return `https://drive.google.com/file/d/${driveFileId}/preview`;
     }
 
     // Direct Google Docs view
@@ -68,7 +101,11 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
       return url;
     }
 
-    // Other PDF URLs
+    // Direct PDF URL: append browser viewer parameters
+    if (url.toLowerCase().endsWith('.pdf') || url.includes('.pdf?')) {
+      return `${url}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
+    }
+
     return url;
   };
 
@@ -76,10 +113,13 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
 
   const handleDownload = () => {
     if (!targetUrl) return;
+    const downloadUrl = driveFileId 
+      ? `https://drive.google.com/uc?export=download&id=${driveFileId}`
+      : targetUrl;
     const link = document.createElement('a');
-    link.href = targetUrl;
+    link.href = downloadUrl;
     link.target = '_blank';
-    link.download = `${note.title || 'AKTU_Resource'}.pdf`;
+    link.download = `${note.title || 'ProfessorVirus_Resource'}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -90,60 +130,102 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
     window.open(targetUrl, '_blank', 'noopener,noreferrer');
   };
 
+  const handleZoomIn = () => {
+    setZoom(prev => Math.min(180, prev + 15));
+  };
+
+  const handleZoomOut = () => {
+    setZoom(prev => Math.max(70, prev - 15));
+  };
+
+  const handleResetZoom = () => {
+    setZoom(100);
+  };
+
+  const handleFitWidth = () => {
+    setZoom(120);
+  };
+
+  const handleReload = () => {
+    setIsLoading(true);
+    setIframeError(false);
+    setRefreshKey(k => k + 1);
+  };
+
+  const handleRequestSubmit = (e) => {
+    e.preventDefault();
+    setRequestSubmitted(true);
+    setShowRequestForm(false);
+  };
+
   let rawProvider = (note.provider || note.source || 'Faculty Lecture Notes').trim();
   const lowerProv = rawProvider.toLowerCase();
   if (lowerProv.includes('nptel') || lowerProv.includes('academic faculty') || lowerProv.includes('artu') || lowerProv.includes('aktu verified')) {
     rawProvider = 'Faculty Lecture Notes';
   }
   const providerName = rawProvider;
-  const isGenuinelyVerified = Boolean(note.isVerified) && isAvailable && (targetUrl.includes('drive.google.com') || targetUrl.includes('docs.google.com'));
+  const isGenuinelyVerified = Boolean(note.isVerified || note.verified) && isAvailable;
   const displayCategory = note.category || note.type || 'Study Notes';
+  const displaySubject = subject ? `${subject.code || ''} ${subject.subject || subject.name || ''}`.trim() : (note.subjectName || note.subject || note.subjectCode || 'Course Resource');
+  const displayCourse = note.course || (subject?.course) || 'B.Tech';
+  const displayUnit = note.unit ? `Unit ${note.unit}` : (unit?.unit ? `Unit ${unit.unit}` : null);
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0, left: 0, right: 0, bottom: 0,
-      backgroundColor: 'rgba(24, 20, 18, 0.88)',
-      backdropFilter: 'blur(8px)',
-      WebkitBackdropFilter: 'blur(8px)',
-      zIndex: 11000,
-      display: 'flex',
-      alignItems: isMobile ? 'flex-end' : 'center',
-      justifyContent: 'center',
-      padding: isFullscreen || isMobile ? '0' : '1.25rem'
-    }}>
-      <div style={{
-        backgroundColor: '#FFFFFF',
-        borderRadius: isFullscreen || isMobile ? '0' : '24px',
-        maxWidth: isFullscreen || isMobile ? '100vw' : '980px',
-        width: '100%',
-        height: isFullscreen || isMobile ? '100vh' : 'auto',
-        maxHeight: isFullscreen || isMobile ? '100vh' : '92vh',
-        overflowY: 'auto',
-        boxShadow: '0 25px 50px rgba(0,0,0,0.35)',
-        border: isFullscreen || isMobile ? 'none' : '1.5px solid #E8E2D5',
-        position: 'relative',
+    <div 
+      role="dialog"
+      aria-modal="true"
+      style={{
+        position: 'fixed',
+        top: 0, left: 0, right: 0, bottom: 0,
+        backgroundColor: 'rgba(12, 10, 11, 0.90)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        zIndex: 11000,
         display: 'flex',
-        flexDirection: 'column'
-      }}>
-        {/* Header Bar */}
+        alignItems: isFullscreen || isMobile ? 'flex-start' : 'center',
+        justifyContent: 'center',
+        padding: isFullscreen || isMobile ? '0' : '1rem'
+      }}
+    >
+      <div 
+        style={{
+          backgroundColor: '#0F172A',
+          borderRadius: isFullscreen || isMobile ? '0' : '20px',
+          maxWidth: isFullscreen || isMobile ? '100vw' : '96vw',
+          width: '100%',
+          height: isFullscreen || isMobile ? '100vh' : '94vh',
+          maxHeight: isFullscreen || isMobile ? '100vh' : '94vh',
+          boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
+          border: isFullscreen || isMobile ? 'none' : '1.5px solid #334155',
+          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden'
+        }}
+      >
+        {/* ======================================================== */}
+        {/* TOP HEADER BAR */}
+        {/* ======================================================== */}
         <div style={{
           backgroundColor: '#1C1618',
+          backgroundImage: 'linear-gradient(180deg, #241A1D 0%, #171214 100%)',
           color: '#ffffff',
-          padding: isMobile ? '0.75rem 1rem' : '1.1rem 1.5rem',
-          borderTopLeftRadius: isFullscreen || isMobile ? '0' : '22px',
-          borderTopRightRadius: isFullscreen || isMobile ? '0' : '22px',
+          padding: isMobile ? '0.65rem 0.85rem' : '0.75rem 1.25rem',
+          borderBottom: '1.5px solid #2F2428',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: '0.75rem',
-          position: 'relative',
           flexShrink: 0
         }}>
+          {/* Left Metadata */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{
-              fontSize: isMobile ? '0.68rem' : '0.74rem',
-              color: '#C88D2D',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              fontSize: isMobile ? '0.68rem' : '0.75rem',
+              color: '#FFD166',
               fontWeight: 800,
               textTransform: 'uppercase',
               letterSpacing: '0.04em',
@@ -151,35 +233,56 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}>
-              {note.course || note.branch || 'B.Tech'} • {note.year || 'All Years'} • {subject ? `${subject.code || ''} ${subject.subject || subject.name || ''}` : note.subjectName || note.subject || 'Resource'} {note.unit ? `• Unit ${note.unit}` : ''}
+              <span style={{
+                backgroundColor: 'rgba(200, 141, 45, 0.2)',
+                color: '#FFD166',
+                border: '1px solid rgba(200, 141, 45, 0.4)',
+                borderRadius: '6px',
+                padding: '0.1rem 0.45rem',
+                fontSize: '0.66rem'
+              }}>
+                {displayCourse}
+              </span>
+              <span>•</span>
+              <span>{displaySubject}</span>
+              {displayUnit && (
+                <>
+                  <span>•</span>
+                  <span style={{ color: '#F8FAFC' }}>{displayUnit}</span>
+                </>
+              )}
             </div>
+
             <h2 style={{
-              fontSize: isMobile ? '0.98rem' : '1.2rem',
-              fontWeight: 900,
+              fontSize: isMobile ? '0.92rem' : '1.15rem',
+              fontWeight: 800,
               marginTop: '0.15rem',
               color: '#ffffff',
               lineHeight: 1.25,
               whiteSpace: 'nowrap',
               overflow: 'hidden',
-              textOverflow: 'ellipsis'
+              textOverflow: 'ellipsis',
+              margin: '0.15rem 0 0 0'
             }}>
-              {note.title || 'Course Resource Document'}
+              {note.title || `${displaySubject} - ${displayUnit || 'Complete Study Notes'}`}
             </h2>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexShrink: 0 }}>
-            {targetUrl && (
+          {/* Right Action Controls */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexShrink: 0 }}>
+            {/* Direct Open in Drive / Tab */}
+            {isAvailable && targetUrl && (
               <button
                 type="button"
                 onClick={handleOpenDirect}
-                title="Open in Google Drive / New Tab"
+                title="Open directly in Google Drive or new browser tab"
                 style={{
                   backgroundColor: '#7A1C28',
                   backgroundImage: 'linear-gradient(135deg, #8C2232 0%, #681520 100%)',
                   border: '1px solid rgba(255,255,255,0.25)',
-                  borderRadius: '10px',
-                  padding: isMobile ? '0.4rem 0.65rem' : '0.45rem 0.85rem',
-                  fontSize: isMobile ? '0.72rem' : '0.78rem',
+                  borderRadius: '8px',
+                  padding: isMobile ? '0.35rem 0.55rem' : '0.4rem 0.8rem',
+                  fontSize: isMobile ? '0.70rem' : '0.76rem',
                   fontWeight: 800,
                   color: '#FFFFFF',
                   display: 'flex',
@@ -189,21 +292,47 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                 }}
               >
                 <ExternalLink size={13} />
-                <span>{targetUrl.includes('drive.google.com') ? (isMobile ? 'Drive' : 'Open in Drive') : (isMobile ? 'Open' : 'Open Tab')}</span>
+                <span>{driveFileId ? (isMobile ? 'Drive' : 'Open in Drive') : (isMobile ? 'Open' : 'Open Tab')}</span>
               </button>
             )}
 
+            {/* Download PDF button */}
+            {isAvailable && targetUrl && !isMobile && (
+              <button
+                type="button"
+                onClick={handleDownload}
+                title="Download original PDF"
+                style={{
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  borderRadius: '8px',
+                  padding: '0.4rem 0.75rem',
+                  fontSize: '0.76rem',
+                  fontWeight: 700,
+                  color: '#FFFFFF',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.3rem',
+                  cursor: 'pointer'
+                }}
+              >
+                <Download size={13} />
+                <span>Download</span>
+              </button>
+            )}
+
+            {/* Desktop Fullscreen Toggle */}
             {!isMobile && (
               <button
                 type="button"
                 onClick={() => setIsFullscreen(!isFullscreen)}
-                title={isFullscreen ? 'Exit Fullscreen' : 'View Fullscreen'}
+                title={isFullscreen ? 'Exit Fullscreen (Esc)' : 'Enter Fullscreen'}
                 style={{
-                  backgroundColor: 'rgba(255,255,255,0.12)',
-                  border: 'none',
-                  borderRadius: '10px',
-                  width: '34px',
-                  height: '34px',
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  borderRadius: '8px',
+                  width: '32px',
+                  height: '32px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -211,20 +340,21 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                   cursor: 'pointer'
                 }}
               >
-                {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                {isFullscreen ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
               </button>
             )}
 
+            {/* Close Button */}
             <button
               type="button"
               onClick={onClose}
-              aria-label="Close viewer"
+              aria-label="Close document viewer"
               style={{
                 backgroundColor: 'rgba(255,255,255,0.15)',
                 border: 'none',
-                borderRadius: '10px',
-                width: '34px',
-                height: '34px',
+                borderRadius: '8px',
+                width: '32px',
+                height: '32px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -232,279 +362,524 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                 cursor: 'pointer'
               }}
             >
-              <X size={18} />
+              <X size={17} />
             </button>
           </div>
         </div>
 
-        {/* Mobile Fast-Access Callout Bar */}
-        {isMobile && targetUrl && (
+        {/* ======================================================== */}
+        {/* DOCUMENT TOOLBAR (Zoom, Fit, Reload, Source Info) */}
+        {/* ======================================================== */}
+        {isAvailable && (
           <div style={{
-            backgroundColor: '#FFF8EC',
-            borderBottom: '1px solid #F6DFB5',
-            padding: '0.45rem 0.9rem',
+            backgroundColor: '#0F172A',
+            borderBottom: '1px solid #1E293B',
+            padding: '0.4rem 0.85rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: '0.5rem',
+            flexWrap: 'wrap',
             flexShrink: 0
           }}>
-            <div style={{ fontSize: '0.72rem', color: '#92400E', fontWeight: 600 }}>
-              💡 Tap Drive if PDF preview does not display
+            {/* Left: Interactive Zoom Controls */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <button
+                type="button"
+                onClick={handleZoomOut}
+                disabled={zoom <= 70}
+                title="Zoom Out (-15%)"
+                style={{
+                  backgroundColor: '#1E293B',
+                  border: '1px solid #334155',
+                  color: zoom <= 70 ? '#64748B' : '#E2E8F0',
+                  borderRadius: '6px',
+                  width: '28px',
+                  height: '28px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: zoom <= 70 ? 'not-allowed' : 'pointer'
+                }}
+              >
+                <ZoomOut size={14} />
+              </button>
+
+              <button
+                type="button"
+                onClick={handleResetZoom}
+                title="Reset zoom to 100%"
+                style={{
+                  backgroundColor: '#1E293B',
+                  border: '1px solid #334155',
+                  color: '#FFD166',
+                  borderRadius: '6px',
+                  padding: '0 0.55rem',
+                  height: '28px',
+                  fontSize: '0.72rem',
+                  fontWeight: 800,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.2rem',
+                  cursor: 'pointer'
+                }}
+              >
+                <span>{zoom}%</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleZoomIn}
+                disabled={zoom >= 180}
+                title="Zoom In (+15%)"
+                style={{
+                  backgroundColor: '#1E293B',
+                  border: '1px solid #334155',
+                  color: zoom >= 180 ? '#64748B' : '#E2E8F0',
+                  borderRadius: '6px',
+                  width: '28px',
+                  height: '28px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: zoom >= 180 ? 'not-allowed' : 'pointer'
+                }}
+              >
+                <ZoomIn size={14} />
+              </button>
+
+              {!isMobile && (
+                <button
+                  type="button"
+                  onClick={handleFitWidth}
+                  title="Fit to Width (120%)"
+                  style={{
+                    backgroundColor: '#1E293B',
+                    border: '1px solid #334155',
+                    color: '#94A3B8',
+                    borderRadius: '6px',
+                    padding: '0 0.55rem',
+                    height: '28px',
+                    fontSize: '0.70rem',
+                    fontWeight: 700,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.25rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <Scan size={12} />
+                  <span>Fit Width</span>
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={handleReload}
+                title="Reload Preview"
+                style={{
+                  backgroundColor: '#1E293B',
+                  border: '1px solid #334155',
+                  color: '#94A3B8',
+                  borderRadius: '6px',
+                  width: '28px',
+                  height: '28px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer'
+                }}
+              >
+                <RefreshCw size={13} className={isLoading ? 'animate-spin' : ''} />
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={handleOpenDirect}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: '#7A1C28',
-                fontSize: '0.72rem',
-                fontWeight: 800,
-                display: 'inline-flex',
+
+            {/* Right: Verification Status & Provider */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.72rem' }}>
+              <div style={{
+                color: isGenuinelyVerified ? '#34D399' : '#94A3B8',
+                fontWeight: 700,
+                display: 'flex',
                 alignItems: 'center',
-                gap: '0.2rem',
-                cursor: 'pointer',
-                padding: 0
-              }}
-            >
-              Open PDF <ExternalLink size={11} />
-            </button>
+                gap: '0.25rem'
+              }}>
+                {isGenuinelyVerified ? (
+                  <>
+                    <ShieldCheck size={13} color="#34D399" />
+                    <span>Verified Academic PDF</span>
+                  </>
+                ) : (
+                  <>
+                    <FileText size={13} color="#94A3B8" />
+                    <span>Curriculum Resource</span>
+                  </>
+                )}
+              </div>
+
+              {!isMobile && (
+                <div style={{ color: '#64748B' }}>
+                  Source: <strong style={{ color: '#CBD5E1' }}>{providerName}</strong>
+                </div>
+              )}
+            </div>
           </div>
         )}
 
-        {/* Content Details Body */}
-        <div style={{ 
-          padding: isMobile ? '0.75rem' : (isFullscreen ? '1rem 1.5rem' : '1.25rem 1.5rem'), 
-          display: 'flex', 
-          flexDirection: 'column', 
-          gap: '0.75rem', 
+        {/* ======================================================== */}
+        {/* DOCUMENT PREVIEW CONTAINER */}
+        {/* ======================================================== */}
+        <div style={{
           flex: 1,
-          overflowY: 'auto'
+          position: 'relative',
+          backgroundColor: '#090D16',
+          overflow: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: isAvailable ? 'flex-start' : 'center'
         }}>
-          
-          {/* Metadata Row (Desktop or Compact Mobile) */}
-          {!isFullscreen && (
+          {isAvailable && embedUrl && !iframeError ? (
+            <>
+              {/* Loading Shimmer Overlay */}
+              {isLoading && (
+                <div style={{
+                  position: 'absolute',
+                  top: 0, left: 0, right: 0, bottom: 0,
+                  backgroundColor: '#0F172A',
+                  zIndex: 10,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.75rem',
+                  color: '#94A3B8'
+                }}>
+                  <div style={{
+                    width: '38px',
+                    height: '38px',
+                    border: '3px solid rgba(200, 141, 45, 0.2)',
+                    borderTopColor: '#C88D2D',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite'
+                  }} />
+                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#E2E8F0' }}>
+                    Loading verified document preview...
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
+                    Auto-scaling to optimal reading view
+                  </div>
+                </div>
+              )}
+
+              {/* Scalable Iframe Container for Zoom & Auto-Fit */}
+              <div 
+                style={{
+                  width: `${100 / (zoom / 100)}%`,
+                  height: `${100 / (zoom / 100)}%`,
+                  minHeight: '100%',
+                  transform: `scale(${zoom / 100})`,
+                  transformOrigin: 'top center',
+                  transition: 'transform 0.15s ease-out',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <iframe
+                  key={refreshKey}
+                  src={embedUrl}
+                  title={note.title || 'Academic Resource Document'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    minHeight: isFullscreen || isMobile ? '100vh' : 'calc(94vh - 120px)',
+                    border: 'none',
+                    backgroundColor: '#FFFFFF'
+                  }}
+                  allow="autoplay; encrypted-media; fullscreen"
+                  onLoad={() => setIsLoading(false)}
+                  onError={() => {
+                    setIsLoading(false);
+                    setIframeError(true);
+                  }}
+                />
+              </div>
+            </>
+          ) : isAvailable && iframeError ? (
+            /* Error & Retry Fallback State */
             <div style={{
               display: 'flex',
-              flexWrap: 'wrap',
+              flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: isMobile ? '0.5rem' : '1rem',
-              backgroundColor: '#F8FAF9',
-              border: '1px solid #EBE5DB',
-              borderRadius: isMobile ? '12px' : '16px',
-              padding: isMobile ? '0.65rem 0.85rem' : '0.75rem 1.25rem'
+              justifyContent: 'center',
+              padding: '2rem 1.5rem',
+              textAlign: 'center',
+              maxWidth: '460px',
+              margin: 'auto'
             }}>
-              <div>
-                <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600 }}>Provider / Source</div>
-                <div style={{ fontSize: isMobile ? '0.78rem' : '0.86rem', fontWeight: 800, color: '#0f172a' }}>{providerName}</div>
-              </div>
-
-              <div>
-                <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600 }}>Category</div>
-                <div style={{ fontSize: isMobile ? '0.78rem' : '0.86rem', fontWeight: 800, color: '#C88D2D' }}>{displayCategory}</div>
-              </div>
-
-              <div>
-                <div style={{ fontSize: '0.68rem', color: '#64748b', fontWeight: 600 }}>Verification</div>
-                <div style={{ fontSize: isMobile ? '0.76rem' : '0.84rem', fontWeight: 700, color: isGenuinelyVerified ? '#059669' : '#64748b', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                  {isGenuinelyVerified ? (
-                    <>
-                      <ShieldCheck size={14} style={{ color: '#059669' }} /> Verified Document
-                    </>
-                  ) : (
-                    <>
-                      <FileText size={14} style={{ color: '#64748b' }} /> Academic Resource
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Topics Covered Box */}
-          {!isFullscreen && unit && unit.topics && unit.topics.length > 0 && (
-            <div>
-              <div style={{ fontSize: '0.74rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.35rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Unit Topics
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
-                {unit.topics.map((t, idx) => (
-                  <span
-                    key={idx}
-                    style={{
-                      backgroundColor: '#FDF6E8',
-                      border: '1px solid #E8D3B0',
-                      color: '#7A5835',
-                      fontSize: '0.70rem',
-                      fontWeight: 700,
-                      borderRadius: '9999px',
-                      padding: '0.2rem 0.55rem'
-                    }}
-                  >
-                    • {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* EMBEDDED RESOURCE VIEWER CONTAINER */}
-          <div style={{
-            position: 'relative',
-            width: '100%',
-            height: isMobile ? 'calc(100vh - 275px)' : (isFullscreen ? 'calc(100vh - 160px)' : '540px'),
-            minHeight: isMobile ? '380px' : '480px',
-            backgroundColor: '#0F172A',
-            borderRadius: isMobile ? '12px' : '16px',
-            overflow: 'hidden',
-            border: '1.5px solid #334155',
-            display: 'flex',
-            flexDirection: 'column',
-            boxShadow: 'inset 0 2px 8px rgba(0,0,0,0.35)'
-          }}>
-            {/* Quick Action Overlay Controls (Top Right) */}
-            {isAvailable && !iframeError && (
               <div style={{
-                position: 'absolute',
-                top: '10px',
-                right: '10px',
-                zIndex: 25,
+                width: '56px',
+                height: '56px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(239, 68, 68, 0.15)',
+                border: '1.5px solid rgba(239, 68, 68, 0.4)',
                 display: 'flex',
-                gap: '0.4rem'
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#EF4444',
+                marginBottom: '1rem'
               }}>
+                <AlertTriangle size={28} />
+              </div>
+
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#F8FAFC', margin: '0 0 0.5rem 0' }}>
+                Preview Restricted by Host
+              </h3>
+
+              <p style={{ fontSize: '0.84rem', color: '#94A3B8', lineHeight: 1.55, margin: '0 0 1.5rem 0' }}>
+                This educational document is hosted on Google Drive and security restrictions may prevent in-frame embedding in your browser. You can open it directly in full resolution.
+              </p>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                 <button
                   type="button"
                   onClick={handleOpenDirect}
                   style={{
-                    display: 'flex',
+                    display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.3rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.90)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#FFD166',
-                    border: '1px solid rgba(255, 209, 102, 0.4)',
-                    padding: '0.32rem 0.65rem',
-                    borderRadius: '8px',
-                    fontSize: '0.72rem',
-                    fontWeight: 700,
-                    cursor: 'pointer'
+                    gap: '0.45rem',
+                    padding: '0.6rem 1.25rem',
+                    borderRadius: '10px',
+                    backgroundColor: '#7A1C28',
+                    backgroundImage: 'linear-gradient(135deg, #8C2232 0%, #681520 100%)',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    fontWeight: 800,
+                    fontSize: '0.84rem',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 14px rgba(122, 28, 40, 0.4)'
                   }}
                 >
-                  <ExternalLink size={12} /> {targetUrl.includes('drive.google.com') ? 'Open in Drive' : 'Open Tab'}
+                  <ExternalLink size={14} /> Open in Google Drive
                 </button>
 
                 <button
                   type="button"
-                  onClick={handleDownload}
+                  onClick={handleReload}
                   style={{
-                    display: 'flex',
+                    display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.3rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.90)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#FFFFFF',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    padding: '0.32rem 0.65rem',
-                    borderRadius: '8px',
-                    fontSize: '0.72rem',
+                    gap: '0.4rem',
+                    padding: '0.6rem 1.15rem',
+                    borderRadius: '10px',
+                    backgroundColor: '#1E293B',
+                    border: '1px solid #334155',
+                    color: '#E2E8F0',
                     fontWeight: 700,
+                    fontSize: '0.84rem',
                     cursor: 'pointer'
                   }}
                 >
-                  <Download size={12} /> Save
+                  <RefreshCw size={13} /> Retry Preview
                 </button>
               </div>
-            )}
-
-            {/* Iframe Viewer or Friendly Fallback */}
-            {isAvailable && embedUrl && !iframeError ? (
-              <iframe
-                src={embedUrl}
-                title={note.title || 'Resource Viewer'}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  border: 'none',
-                  backgroundColor: '#FFFFFF'
-                }}
-                allow="autoplay; encrypted-media; fullscreen"
-                onError={() => setIframeError(true)}
-              />
-            ) : (
+            </div>
+          ) : (
+            /* ======================================================== */
+            /* CLEAN "NOTES NOT YET AVAILABLE" EMPTY STATE */
+            /* ======================================================== */
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '2.5rem 1.5rem',
+              textAlign: 'center',
+              maxWidth: '520px',
+              margin: 'auto'
+            }}>
               <div style={{
-                flex: 1,
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(200, 141, 45, 0.15)',
+                border: '1.5px solid rgba(200, 141, 45, 0.4)',
                 display: 'flex',
-                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '2rem 1.25rem',
-                textAlign: 'center',
-                backgroundColor: '#FAF7F2',
-                color: '#1C1E21',
-                height: '100%'
+                color: '#FFD166',
+                marginBottom: '1.25rem'
               }}>
+                <BookOpen size={30} />
+              </div>
+
+              <div style={{
+                fontSize: '0.72rem',
+                color: '#C88D2D',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '0.06em',
+                marginBottom: '0.35rem'
+              }}>
+                Curriculum Resource Status
+              </div>
+
+              <h3 style={{
+                fontSize: isMobile ? '1.15rem' : '1.35rem',
+                fontWeight: 900,
+                color: '#F8FAFC',
+                margin: '0 0 0.65rem 0',
+                lineHeight: 1.25
+              }}>
+                Notes for this subject/unit are not yet available
+              </h3>
+
+              <p style={{
+                fontSize: '0.85rem',
+                color: '#94A3B8',
+                lineHeight: 1.6,
+                margin: '0 0 1.5rem 0'
+              }}>
+                We are actively curating and verifying high-yield lecture notes for <strong style={{ color: '#F1F5F9' }}>{displaySubject}</strong> {displayUnit ? `(${displayUnit})` : ''} under the <strong style={{ color: '#FFD166' }}>{displayCourse}</strong> curriculum.
+              </p>
+
+              {requestSubmitted ? (
                 <div style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '50%',
-                  backgroundColor: '#FEF3C7',
-                  border: '1.5px solid #FCD34D',
+                  backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                  border: '1.5px solid rgba(16, 185, 129, 0.4)',
+                  borderRadius: '12px',
+                  padding: '1rem 1.25rem',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#D97706',
-                  marginBottom: '0.85rem'
-                }}>
-                  <AlertTriangle size={28} />
-                </div>
-
-                <h3 style={{
-                  fontSize: '1.15rem',
-                  fontWeight: 800,
-                  color: '#1C1E21',
-                  margin: '0 0 0.35rem 0'
-                }}>
-                  {targetUrl.includes('drive.google.com') ? 'Open in Google Drive' : 'Open Original Document'}
-                </h3>
-
-                <p style={{
-                  fontSize: '0.82rem',
-                  color: '#64748B',
+                  gap: '0.65rem',
+                  color: '#34D399',
                   maxWidth: '420px',
-                  lineHeight: 1.5,
-                  margin: '0 auto 1.25rem auto'
+                  textAlign: 'left'
                 }}>
-                  {isGenuinelyVerified ? (
-                    <>Official curriculum document for <strong>{note.title || (subject?.name || 'this subject')}</strong> is verified. Click below to open directly in Google Drive.</>
-                  ) : (
-                    <>Study resource for <strong>{note.title || (subject?.name || 'this subject')}</strong>. Click below to view the original document.</>
-                  )}
-                </p>
+                  <CheckCircle2 size={24} style={{ flexShrink: 0 }} />
+                  <div>
+                    <div style={{ fontWeight: 800, fontSize: '0.86rem' }}>Request Logged Successfully!</div>
+                    <div style={{ fontSize: '0.74rem', color: '#A7F3D0', marginTop: '0.15rem' }}>
+                      Our academic team prioritizes resources with multiple student requests. You will be notified once uploaded.
+                    </div>
+                  </div>
+                </div>
+              ) : showRequestForm ? (
+                <form 
+                  onSubmit={handleRequestSubmit}
+                  style={{
+                    backgroundColor: '#1E293B',
+                    border: '1.5px solid #334155',
+                    borderRadius: '14px',
+                    padding: '1.25rem',
+                    width: '100%',
+                    maxWidth: '400px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.75rem',
+                    textAlign: 'left'
+                  }}
+                >
+                  <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#F8FAFC' }}>
+                    Request Notes for this Subject
+                  </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-                  {targetUrl && (
+                  <input
+                    type="email"
+                    required
+                    placeholder="Your college email or Gmail"
+                    value={requestEmail}
+                    onChange={(e) => setRequestEmail(e.target.value)}
+                    style={{
+                      backgroundColor: '#0F172A',
+                      border: '1px solid #475569',
+                      borderRadius: '8px',
+                      padding: '0.55rem 0.85rem',
+                      color: '#F8FAFC',
+                      fontSize: '0.82rem',
+                      outline: 'none'
+                    }}
+                  />
+
+                  <input
+                    type="text"
+                    placeholder="Specific unit or topic needed (optional)"
+                    value={requestDetails}
+                    onChange={(e) => setRequestDetails(e.target.value)}
+                    style={{
+                      backgroundColor: '#0F172A',
+                      border: '1px solid #475569',
+                      borderRadius: '8px',
+                      padding: '0.55rem 0.85rem',
+                      color: '#F8FAFC',
+                      fontSize: '0.82rem',
+                      outline: 'none'
+                    }}
+                  />
+
+                  <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem' }}>
                     <button
-                      type="button"
-                      onClick={handleOpenDirect}
+                      type="submit"
                       style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.4rem',
-                        padding: '0.55rem 1.15rem',
-                        borderRadius: '12px',
+                        flex: 1,
                         backgroundColor: '#7A1C28',
+                        backgroundImage: 'linear-gradient(135deg, #8C2232 0%, #681520 100%)',
                         color: '#FFFFFF',
                         border: 'none',
-                        fontWeight: 800,
+                        borderRadius: '8px',
+                        padding: '0.55rem',
                         fontSize: '0.82rem',
+                        fontWeight: 800,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '0.35rem'
+                      }}
+                    >
+                      <Send size={13} /> Submit Request
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setShowRequestForm(false)}
+                      style={{
+                        backgroundColor: '#334155',
+                        color: '#CBD5E1',
+                        border: 'none',
+                        borderRadius: '8px',
+                        padding: '0.55rem 0.85rem',
+                        fontSize: '0.82rem',
+                        fontWeight: 700,
                         cursor: 'pointer'
                       }}
                     >
-                      <ExternalLink size={14} /> {targetUrl.includes('drive.google.com') ? 'Open in Google Drive' : 'Open Original Document'}
+                      Cancel
                     </button>
-                  )}
+                  </div>
+                </form>
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <button
+                    type="button"
+                    onClick={() => setShowRequestForm(true)}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.45rem',
+                      padding: '0.65rem 1.35rem',
+                      borderRadius: '10px',
+                      backgroundColor: '#C88D2D',
+                      backgroundImage: 'linear-gradient(135deg, #D49A3D 0%, #B67C20 100%)',
+                      color: '#1C1618',
+                      border: 'none',
+                      fontWeight: 900,
+                      fontSize: '0.84rem',
+                      cursor: 'pointer',
+                      boxShadow: '0 4px 14px rgba(200, 141, 45, 0.35)'
+                    }}
+                  >
+                    <BookOpen size={14} /> Request Notes for this Subject
+                  </button>
 
                   <button
                     type="button"
@@ -513,115 +888,138 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.4rem',
-                      padding: '0.55rem 1.15rem',
-                      borderRadius: '12px',
-                      backgroundColor: '#FFFFFF',
-                      border: '1.5px solid #CBD5E1',
-                      color: '#475569',
+                      padding: '0.65rem 1.25rem',
+                      borderRadius: '10px',
+                      backgroundColor: '#1E293B',
+                      border: '1px solid #334155',
+                      color: '#CBD5E1',
                       fontWeight: 700,
-                      fontSize: '0.82rem',
+                      fontSize: '0.84rem',
                       cursor: 'pointer'
                     }}
                   >
                     Close Viewer
                   </button>
                 </div>
-              </div>
-            )}
-          </div>
-
-          {/* Action Bar */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '0.5rem',
-            paddingTop: '0.5rem',
-            borderTop: '1px solid #ECE7E0',
-            flexWrap: isMobile ? 'wrap' : 'nowrap'
-          }}>
-            <div style={{ display: 'flex', gap: '0.45rem', width: isMobile ? '100%' : 'auto' }}>
-              <button
-                type="button"
-                onClick={() => setIsBookmarked(!isBookmarked)}
-                style={{
-                  flex: isMobile ? 1 : 'initial',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem',
-                  padding: '0.45rem 0.75rem', borderRadius: '10px',
-                  border: isBookmarked ? '1.5px solid #C88D2D' : '1px solid #cbd5e1',
-                  backgroundColor: isBookmarked ? '#FDF6E8' : '#ffffff',
-                  color: isBookmarked ? '#7A5835' : '#475569',
-                  fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer'
-                }}
-              >
-                <Bookmark size={13} fill={isBookmarked ? '#C88D2D' : 'none'} />
-                {isBookmarked ? 'Saved' : 'Save'}
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setReportSubmitted(true);
-                  alert('Thank you! If embedded preview is blocked, please use "Open Tab" or "Drive" to view directly.');
-                }}
-                disabled={reportSubmitted}
-                style={{
-                  flex: isMobile ? 1 : 'initial',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem',
-                  padding: '0.45rem 0.75rem', borderRadius: '10px',
-                  border: '1px solid #e2e8f0', backgroundColor: '#ffffff',
-                  color: reportSubmitted ? '#C88D2D' : '#64748b',
-                  fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer'
-                }}
-              >
-                <Flag size={13} />
-                {reportSubmitted ? 'Reported' : 'Report'}
-              </button>
+              )}
             </div>
+          )}
+        </div>
 
-            <div style={{ display: 'flex', gap: '0.45rem', width: isMobile ? '100%' : 'auto' }}>
-              <button
-                type="button"
-                onClick={handleOpenDirect}
-                style={{
-                  flex: isMobile ? 1 : 'initial',
-                  padding: '0.45rem 1rem',
-                  borderRadius: '10px',
-                  border: '1.5px solid #C88D2D',
-                  backgroundColor: '#FFFFFF',
-                  color: '#7A5835',
-                  fontSize: '0.78rem',
-                  fontWeight: 800,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.3rem',
-                  cursor: 'pointer'
-                }}
-              >
-                <ExternalLink size={13} /> Drive / Tab
-              </button>
-
-              <button
-                type="button"
-                onClick={onClose}
-                style={{
-                  flex: isMobile ? 1 : 'initial',
-                  padding: '0.45rem 1.25rem',
-                  borderRadius: '10px',
-                  backgroundColor: '#1C1618',
-                  color: '#FFFFFF',
-                  border: 'none',
-                  fontSize: '0.78rem',
-                  fontWeight: 800,
-                  cursor: 'pointer'
-                }}
-              >
-                Close
-              </button>
+        {/* ======================================================== */}
+        {/* BOTTOM METADATA & UTILITY FOOTER */}
+        {/* ======================================================== */}
+        <div style={{
+          backgroundColor: '#171E2E',
+          borderTop: '1.5px solid #243046',
+          padding: isMobile ? '0.55rem 0.85rem' : '0.65rem 1.25rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '0.5rem',
+          flexShrink: 0,
+          flexWrap: isMobile ? 'wrap' : 'nowrap'
+        }}>
+          {/* Topics Covered Pill Carousel */}
+          {unit && unit.topics && unit.topics.length > 0 && !isMobile ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', overflowX: 'auto', flex: 1, marginRight: '1rem' }}>
+              <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.04em', flexShrink: 0 }}>
+                Topics:
+              </span>
+              {unit.topics.slice(0, 5).map((t, idx) => (
+                <span
+                  key={idx}
+                  style={{
+                    backgroundColor: '#1E293B',
+                    border: '1px solid #334155',
+                    color: '#CBD5E1',
+                    fontSize: '0.68rem',
+                    fontWeight: 600,
+                    borderRadius: '6px',
+                    padding: '0.15rem 0.5rem',
+                    whiteSpace: 'nowrap'
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+              {unit.topics.length > 5 && (
+                <span style={{ fontSize: '0.68rem', color: '#64748B' }}>
+                  +{unit.topics.length - 5} more
+                </span>
+              )}
             </div>
-          </div>
+          ) : (
+            <div style={{ fontSize: '0.72rem', color: '#94A3B8' }}>
+              Official ProfessorVirus Academic Portal • Verified Study Material
+            </div>
+          )}
 
+          {/* User Utility Actions */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', width: isMobile ? '100%' : 'auto', justifyContent: isMobile ? 'space-between' : 'flex-end' }}>
+            <button
+              type="button"
+              onClick={() => setIsBookmarked(!isBookmarked)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem',
+                padding: '0.35rem 0.65rem',
+                borderRadius: '8px',
+                border: isBookmarked ? '1px solid #C88D2D' : '1px solid #334155',
+                backgroundColor: isBookmarked ? 'rgba(200, 141, 45, 0.15)' : '#1E293B',
+                color: isBookmarked ? '#FFD166' : '#94A3B8',
+                fontSize: '0.74rem',
+                fontWeight: 700,
+                cursor: 'pointer'
+              }}
+            >
+              <Bookmark size={12} fill={isBookmarked ? '#FFD166' : 'none'} />
+              <span>{isBookmarked ? 'Saved' : 'Save'}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setReportSubmitted(true);
+                alert('Thank you! Our academic team will inspect this resource link.');
+              }}
+              disabled={reportSubmitted}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem',
+                padding: '0.35rem 0.65rem',
+                borderRadius: '8px',
+                border: '1px solid #334155',
+                backgroundColor: '#1E293B',
+                color: reportSubmitted ? '#C88D2D' : '#94A3B8',
+                fontSize: '0.74rem',
+                fontWeight: 600,
+                cursor: 'pointer'
+              }}
+            >
+              <Flag size={12} />
+              <span>{reportSubmitted ? 'Reported' : 'Report'}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={onClose}
+              style={{
+                padding: '0.35rem 0.95rem',
+                borderRadius: '8px',
+                backgroundColor: '#334155',
+                color: '#FFFFFF',
+                border: 'none',
+                fontSize: '0.74rem',
+                fontWeight: 800,
+                cursor: 'pointer'
+              }}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
