@@ -808,9 +808,8 @@ pre, code {
     color: #14243D;
   }
 
-  /* Desktop Navbar and Footer wrappers are NEVER shown on mobile */
+  /* Desktop Navbar wrapper is suppressed on mobile */
   .pv-desktop-navbar-wrap,
-  .pv-desktop-footer-wrap,
   .pv-hide-on-mobile {
     display: none !important;
   }

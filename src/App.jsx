@@ -888,16 +888,14 @@ export default function App() {
         </ErrorBoundary>
       </main>
 
-      {/* Footer: Rendered on all pages on desktop; on mobile hidden on home, more, notes, pyqs, and progress */}
+      {/* Universal Footer: Rendered on all pages across desktop and mobile */}
       {!hideTopNav && (
-        <div className="pv-desktop-footer-wrap">
-          <Footer
-            onNavigate={(tab) => {
-              setActiveTab(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        </div>
+        <Footer
+          onNavigate={(tab) => {
+            setActiveTab(tab);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
       )}
 
       {/* Modals */}
