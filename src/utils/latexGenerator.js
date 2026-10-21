@@ -13,18 +13,29 @@ export function escapeLatex(text) {
     .replace(/\\/g, '\\textbackslash ')
     .replace(/([&%$#_{}])/g, (m) => '\\' + m)
     .replace(/~/g, '\\textasciitilde ')
-    .replace(/\^/g, '\\textasciicircum ');
+    .replace(/\^/g, '\\textasciicircum ')
+    .replace(/₹/g, 'Rs.~')
+    .replace(/→/g, '$\\rightarrow$')
+    .replace(/•/g, '--')
+    .replace(/[“”]/g, '"')
+    .replace(/[‘’]/g, "'")
+    .replace(/—/g, '---')
+    .replace(/–/g, '--')
+    .replace(/…/g, '\\ldots ');
 }
 
-// Normalizes user input URLs to ensure valid clickable hyperlinks
+// Normalizes user input URLs to ensure valid clickable hyperlinks in LaTeX \\href
 export function normalizeUrl(url) {
   if (!url) return '';
-  const trimmed = String(url).trim();
+  let trimmed = String(url).trim();
   if (!trimmed) return '';
-  if (/^(https?:\/\/)/i.test(trimmed)) {
-    return trimmed;
+  if (!/^(https?:\/\/|mailto:|tel:)/i.test(trimmed)) {
+    trimmed = `https://${trimmed}`;
   }
-  return `https://${trimmed}`;
+  // In LaTeX \href, '%' acts as a comment delimiter and '#' as parameter token unless escaped
+  return trimmed
+    .replace(/%/g, '\\%')
+    .replace(/#/g, '\\#');
 }
 
 // Clean URL for professional ATS display
@@ -35,7 +46,7 @@ export function cleanDisplayUrl(url) {
   str = str.replace(/^https?:\/\//i, '');
   str = str.replace(/^www\./i, '');
   str = str.replace(/\/+$/, '');
-  return str;
+  return escapeLatex(str);
 }
 
 // Normalizes email addresses to mailto: URIs

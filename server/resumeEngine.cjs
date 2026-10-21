@@ -58,18 +58,29 @@ function escapeLatex(text) {
     .replace(/\\/g, '\\textbackslash ')
     .replace(/([&%$#_{}])/g, (m) => '\\' + m)
     .replace(/~/g, '\\textasciitilde ')
-    .replace(/\^/g, '\\textasciicircum ');
+    .replace(/\^/g, '\\textasciicircum ')
+    .replace(/₹/g, 'Rs.~')
+    .replace(/→/g, '$\\rightarrow$')
+    .replace(/•/g, '--')
+    .replace(/[“”]/g, '"')
+    .replace(/[‘’]/g, "'")
+    .replace(/—/g, '---')
+    .replace(/–/g, '--')
+    .replace(/…/g, '\\ldots ');
 }
 
-// Normalizes user input URLs to ensure valid clickable hyperlinks
+// Normalizes user input URLs to ensure valid clickable hyperlinks in LaTeX \href
 function normalizeUrl(url) {
   if (!url) return '';
-  const trimmed = String(url).trim();
+  let trimmed = String(url).trim();
   if (!trimmed) return '';
-  if (/^(https?:\/\/)/i.test(trimmed)) {
-    return trimmed;
+  if (!/^(https?:\/\/|mailto:|tel:)/i.test(trimmed)) {
+    trimmed = `https://${trimmed}`;
   }
-  return `https://${trimmed}`;
+  // In LaTeX \href, '%' acts as a comment delimiter and '#' as parameter token unless escaped
+  return trimmed
+    .replace(/%/g, '\\%')
+    .replace(/#/g, '\\#');
 }
 
 // Clean URL for professional ATS display
@@ -80,7 +91,7 @@ function cleanDisplayUrl(url) {
   str = str.replace(/^https?:\/\//i, '');
   str = str.replace(/^www\./i, '');
   str = str.replace(/\/+$/, '');
-  return str;
+  return escapeLatex(str);
 }
 
 // Normalizes email addresses to mailto: URIs
@@ -611,10 +622,27 @@ function generateLatex(resumeData, options = {}) {
   return tex;
 }
 
+// Sanitizes text strings for pdf-lib rendering to ensure WinAnsi and fallback compatibility
+function sanitizePdfText(text) {
+  if (text === null || text === undefined) return '';
+  const str = String(text);
+  return str
+    .replace(/₹/g, 'Rs. ')
+    .replace(/→/g, '->')
+    .replace(/•/g, '-')
+    .replace(/[“”]/g, '"')
+    .replace(/[‘’]/g, "'")
+    .replace(/—/g, '---')
+    .replace(/–/g, '--')
+    .replace(/…/g, '...')
+    .replace(/\u00A0/g, ' ');
+}
+
 // Helper to wrap text into multiple lines for a given maximum width
 function wrapText(text, font, fontSize, maxWidth) {
   if (!text) return [];
-  const words = text.split(/\s+/);
+  const clean = sanitizePdfText(text);
+  const words = clean.split(/\s+/);
   const lines = [];
   let currentLine = '';
 
@@ -1135,7 +1163,7 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
             bLines.forEach((bl, blIdx) => {
               ensureSpace(cfg.baseFont + cfg.bulletGap);
               if (blIdx === 0) {
-                page.drawText('–', {
+                page.drawText('-', {
                   x: margin + 8,
                   y: cursorY - cfg.baseFont,
                   size: cfg.baseFont,
@@ -1226,7 +1254,7 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
           bLines.forEach((bl, blIdx) => {
             ensureSpace(cfg.baseFont + cfg.bulletGap);
             if (blIdx === 0) {
-              page.drawText('–', {
+              page.drawText('-', {
                 x: margin + 8,
                 y: cursorY - cfg.baseFont,
                 size: cfg.baseFont,
@@ -1249,7 +1277,7 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
         dLines.forEach((dl, dlIdx) => {
           ensureSpace(cfg.baseFont + cfg.bulletGap);
           if (dlIdx === 0) {
-            page.drawText('–', {
+            page.drawText('-', {
               x: margin + 8,
               y: cursorY - cfg.baseFont,
               size: cfg.baseFont,
@@ -1416,7 +1444,7 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
         eLines.forEach((el, elIdx) => {
           ensureSpace(cfg.baseFont + cfg.bulletGap);
           if (elIdx === 0) {
-            page.drawText('–', {
+            page.drawText('-', {
               x: margin + 8,
               y: cursorY - cfg.baseFont,
               size: cfg.baseFont,

@@ -240,8 +240,9 @@ const serveResumePdf = async (req, res) => {
 
       // Recompile on the fly
       const compiled = await resumeEngine.compileResumePdf(resumeRecord);
-      if (compiled && compiled.pdfBytes && compiled.pdfBytes.length > 0) {
-        const pdfBuf = Buffer.from(compiled.pdfBytes);
+      const rawPdfBytes = compiled && (compiled.pdfBytes || (compiled.pdfBase64 ? Buffer.from(compiled.pdfBase64, 'base64') : null));
+      if (rawPdfBytes && rawPdfBytes.length > 0) {
+        const pdfBuf = Buffer.isBuffer(rawPdfBytes) ? rawPdfBytes : Buffer.from(rawPdfBytes);
         if (typeof resumeEngine.saveRecentPdf === 'function') {
           resumeEngine.saveRecentPdf(filename, pdfBuf);
         }

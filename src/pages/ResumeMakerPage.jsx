@@ -478,15 +478,15 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     fetchMyResumes();
   }, [fetchMyResumes]);
 
-  // Retry compile handler
+  // Retry compile handler - immediate execution without debounce lag
   const handleRetryCompile = () => {
     setCompileError(null);
     lastCompiledPayloadRef.current = '';
     setIsCompiling(true);
-    setCompileTrigger(c => c + 1);
+    setCompileTrigger(Date.now());
   };
 
-  // 2. Optimized Debounced Compile Engine (850ms debounce, deduplication, stale guard, 30s timeout protection)
+  // 2. Optimized Debounced Compile Engine (0ms on retry/immediate, 850ms on typing, deduplication, stale guard, 30s timeout protection)
   useEffect(() => {
     if (!hasMinimumData) {
       setIsCompiling(false);
@@ -504,7 +504,9 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       return;
     }
 
-    // Debounce: wait 850ms after the user stops editing before invoking the compiler
+    const isImmediate = compileTrigger > 0;
+    const delay = isImmediate ? 0 : 850;
+
     compileTimeoutRef.current = setTimeout(async () => {
       const currentGen = ++generationRef.current;
 
@@ -519,8 +521,10 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       setIsCompiling(true);
       setCompileError(null);
 
-      // 30-second safety timeout prevents UI from getting stuck indefinitely on slow networks
+      // Track if abort was caused specifically by network timeout
+      let didSafetyTimeout = false;
       const safetyTimeout = setTimeout(() => {
+        didSafetyTimeout = true;
         controller.abort();
       }, 30000);
 
@@ -607,8 +611,8 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       } catch (err) {
         clearTimeout(safetyTimeout);
         if (err.name === 'AbortError') {
-          // Newer generation is running or timeout triggered
-          if (currentGen === generationRef.current) {
+          // Only flag as timeout if safety timeout actually triggered
+          if (didSafetyTimeout && currentGen === generationRef.current) {
             setCompileError('Compilation timed out. Please click Retry Compilation to try again.');
           }
           return;
@@ -626,7 +630,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           setIsCompiling(false);
         }
       }
-    }, 850);
+    }, delay);
 
     return () => {
       if (compileTimeoutRef.current) {
