@@ -87,6 +87,26 @@ export const ALL_COURSES = [
     iconColor: '#B45309',
     years: ['1st Year', '2nd Year', '3rd Year'],
     branches: ['General']
+  },
+  {
+    id: 'bhmct',
+    key: 'BHMCT',
+    name: 'BHMCT',
+    fullName: 'Bachelor of Hotel Management & Catering Technology',
+    iconBg: '#FEF3C7',
+    iconColor: '#D97706',
+    years: ['1st Year', '2nd Year', '3rd Year', '4th Year'],
+    branches: ['Hospitality']
+  },
+  {
+    id: 'mpharm',
+    key: 'M.Pharm',
+    name: 'M.Pharm',
+    fullName: 'Master of Pharmacy',
+    iconBg: '#DCFCE7',
+    iconColor: '#16A34A',
+    years: ['1st Year', '2nd Year'],
+    branches: ['Pharmaceutics', 'Pharmacology']
   }
 ];
 
@@ -118,6 +138,16 @@ export const YEARS_CONFIG: Record<string, { year: string; title: string; subtitl
     { year: '1st Year', title: '1st Year', subtitle: 'Management principles & business economics', iconBg: '#FEE2E2', iconColor: '#DC2626' },
     { year: '2nd Year', title: '2nd Year', subtitle: 'Marketing, HR & corporate financial systems', iconBg: '#FFEDD5', iconColor: '#EA580C' },
     { year: '3rd Year', title: '3rd Year', subtitle: 'Strategic management & entrepreneurship', iconBg: '#FEF3C7', iconColor: '#B45309' }
+  ],
+  'BHMCT': [
+    { year: '1st Year', title: '1st Year', subtitle: 'Food production & front office fundamentals', iconBg: '#FEE2E2', iconColor: '#DC2626' },
+    { year: '2nd Year', title: '2nd Year', subtitle: 'Food & beverage service, housekeeping operations', iconBg: '#FFEDD5', iconColor: '#EA580C' },
+    { year: '3rd Year', title: '3rd Year', subtitle: 'Industrial hotel training & kitchen management', iconBg: '#FEE2E2', iconColor: '#E11D48' },
+    { year: '4th Year', title: '4th Year', subtitle: 'Hospitality law, facility planning & projects', iconBg: '#EDE9FE', iconColor: '#7C3AED' }
+  ],
+  'M.Pharm': [
+    { year: '1st Year', title: '1st Year', subtitle: 'Advanced drug delivery & modern analytical techniques', iconBg: '#FEE2E2', iconColor: '#DC2626' },
+    { year: '2nd Year', title: '2nd Year', subtitle: 'Research methodology, dissertation & journal defense', iconBg: '#FFEDD5', iconColor: '#EA580C' }
   ]
 };
 

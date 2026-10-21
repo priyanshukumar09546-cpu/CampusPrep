@@ -428,8 +428,13 @@ const NoteSchema = new mongoose.Schema({
   driveUrl: { type: String, default: '' },
   mirrorStatus: { type: String, default: 'pending' },
   mirrorError: { type: String, default: '' },
-  mirroredAt: { type: Date, default: null }
 }, { timestamps: true, strict: false });
+
+PyqSchema.index({ course: 1, branch: 1, year: 1, semester: 1, subjectCode: 1 });
+PyqSchema.index({ course: 1, academicYear: 1, published: 1 });
+SubjectSchema.index({ course: 1, branchId: 1, semester: 1, code: 1 });
+NoteSchema.index({ course: 1, branch: 1, year: 1, semester: 1, subjectCode: 1, unitNumber: 1 });
+NoteSchema.index({ course: 1, published: 1, available: 1 });
 
 const UserSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
@@ -610,6 +615,8 @@ const ProjectSchema = new mongoose.Schema({
   description: { type: String, required: true },
   domain: { type: String, required: true },
   domainId: { type: String, default: '' },
+  course: { type: String, default: 'B.Tech' },
+  branch: { type: String, default: 'CSE' },
   level: { type: String, required: true },
   levelBadge: { type: String, default: '' },
   difficulty: { type: Number, default: 3 },
@@ -652,8 +659,10 @@ const ProjectSchema = new mongoose.Schema({
     isStudentSubmission: { type: Boolean, default: false }
   },
   viewsCount: { type: Number, default: 0 },
-  bookmarksCount: { type: Number, default: 0 }
 }, { timestamps: true });
+
+ProjectSchema.index({ course: 1, branch: 1, status: 1, linkStatus: 1 });
+ProjectSchema.index({ domainId: 1, status: 1 });
 
 const ProjectBookmarkSchema = new mongoose.Schema({
   userId: { type: String, required: true, index: true },
@@ -3089,7 +3098,16 @@ app.get('/api/pyqs', async (req, res) => {
     if (s === 'bca') return 'BCA';
     if (s === 'mca') return 'MCA';
     if (s === 'mba') return 'MBA';
+    if (s === 'bba') return 'BBA';
+    if (s === 'bhmct' || s.includes('hmct') || s.includes('hotel')) return 'BHMCT';
+    if (s === 'mpharm' || (s.includes('pharm') && s.startsWith('m'))) return 'M.Pharm';
     if (s === 'bpharm' || s.includes('pharm')) return 'B.Pharm';
+    if (s === 'mtech' || (s.includes('tech') && s.startsWith('m'))) return 'M.Tech';
+    if (s === 'barch' || s.includes('arch')) return 'B.Arch';
+    if (s === 'bdes' || s.includes('des')) return 'B.Des';
+    if (s === 'bfad') return 'BFAD';
+    if (s === 'bfa') return 'BFA';
+    if (s === 'bvoc' || s.includes('voc')) return 'B.Voc';
     return 'B.Tech';
   };
 
@@ -3114,11 +3132,11 @@ app.get('/api/pyqs', async (req, res) => {
     });
   }
 
-  // 3. Branch Filtering (strictly applied for B.Tech, preserves non-BTech records)
+  // 3. Branch Filtering (applied for B.Tech & M.Tech, preserves single-branch programs)
   if (branch) {
     const decodedBranch = decodeURIComponent(String(branch)).replace(/\+/g, ' ').toUpperCase().trim();
     result = result.filter(p => {
-      if (targetCourse !== 'B.Tech') return true;
+      if (targetCourse !== 'B.Tech' && targetCourse !== 'M.Tech') return true;
       const pBranch = String(p.branchId || p.branch || '').toUpperCase().trim();
       if (!pBranch || pBranch === 'ALL') return true;
       return pBranch === decodedBranch;
@@ -3756,6 +3774,14 @@ app.get('/api/notes', async (req, res) => {
       else if (cNorm === 'mca') findQuery.course = 'MCA';
       else if (cNorm === 'mba') findQuery.course = 'MBA';
       else if (cNorm === 'bpharm') findQuery.course = 'B.Pharm';
+      else if (cNorm === 'mpharm' || (cNorm.includes('pharm') && cNorm.startsWith('m'))) findQuery.course = 'M.Pharm';
+      else if (cNorm === 'bhmct' || cNorm.includes('hmct') || cNorm.includes('hotel')) findQuery.course = 'BHMCT';
+      else if (cNorm === 'mtech' || (cNorm.includes('tech') && cNorm.startsWith('m'))) findQuery.course = 'M.Tech';
+      else if (cNorm === 'barch' || cNorm.includes('arch')) findQuery.course = 'B.Arch';
+      else if (cNorm === 'bdes' || cNorm.includes('des')) findQuery.course = 'B.Des';
+      else if (cNorm === 'bfad') findQuery.course = 'BFAD';
+      else if (cNorm === 'bfa') findQuery.course = 'BFA';
+      else if (cNorm === 'bvoc' || cNorm.includes('voc')) findQuery.course = 'B.Voc';
       else if (cNorm === 'btechlateral' || cNorm === 'btechlateralentry') {
         findQuery.course = { $in: ['BTechLateral', 'B.Tech Lateral Entry', 'btechlateral', 'BTech Lateral Entry'] };
       } else if (cNorm === 'btechbiotechnology' || cNorm === 'btechbiotech') {
@@ -7220,6 +7246,8 @@ app.get('/api/projects', async (req, res) => {
   try {
     const {
       search = '',
+      course = '',
+      branch = '',
       domain = '',
       level = '',
       tech = '',
@@ -7230,26 +7258,59 @@ app.get('/api/projects', async (req, res) => {
     } = req.query;
 
     const pageNum = Math.max(1, parseInt(page) || 1);
-    const limitNum = Math.max(1, Math.min(50, parseInt(limit) || 12));
+    const limitNum = Math.max(1, Math.min(100, parseInt(limit) || 12));
 
     let projects = [];
     let total = 0;
     const domainCounts = { all: 0 };
+    const courseCounts = { all: 0 };
+    const branchCounts = { all: 0 };
 
     if (isDbConnected) {
       const baseFilter = { status: 'published', linkStatus: 'verified' };
 
-      const domainAgg = await ProjectModel.aggregate([
-        { $match: baseFilter },
-        { $group: { _id: '$domain', count: { $sum: 1 } } }
+      const [domainAgg, courseAgg, branchAgg, totalPublished] = await Promise.all([
+        ProjectModel.aggregate([
+          { $match: baseFilter },
+          { $group: { _id: '$domain', count: { $sum: 1 } } }
+        ]),
+        ProjectModel.aggregate([
+          { $match: baseFilter },
+          { $group: { _id: '$course', count: { $sum: 1 } } }
+        ]),
+        ProjectModel.aggregate([
+          { $match: baseFilter },
+          { $group: { _id: '$branch', count: { $sum: 1 } } }
+        ]),
+        ProjectModel.countDocuments(baseFilter)
       ]);
-      const totalPublished = await ProjectModel.countDocuments(baseFilter);
+
       domainCounts.all = totalPublished;
       domainAgg.forEach(d => {
         if (d._id) domainCounts[d._id] = d.count;
       });
 
+      courseCounts.all = totalPublished;
+      courseAgg.forEach(c => {
+        if (c._id) courseCounts[c._id] = c.count;
+      });
+
+      branchCounts.all = totalPublished;
+      branchAgg.forEach(b => {
+        if (b._id) branchCounts[b._id] = b.count;
+      });
+
       const filter = { ...baseFilter };
+
+      if (course && course !== 'all' && course !== 'All Courses') {
+        const cClean = course.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        filter.course = new RegExp(`^${cClean}$`, 'i');
+      }
+
+      if (branch && branch !== 'all' && branch !== 'All Branches') {
+        const bClean = branch.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        filter.branch = new RegExp(`^${bClean}$`, 'i');
+      }
 
       if (domain && domain !== 'all' && domain !== 'All Domains') {
         filter.$or = [
@@ -7277,7 +7338,9 @@ app.get('/api/projects', async (req, res) => {
           { description: sRegex },
           { tagline: sRegex },
           { technologies: sRegex },
-          { domain: sRegex }
+          { domain: sRegex },
+          { branch: sRegex },
+          { course: sRegex }
         ];
       }
 
@@ -7296,12 +7359,29 @@ app.get('/api/projects', async (req, res) => {
     } else {
       let list = dbProjects.filter(p => p.status === 'published' && p.linkStatus === 'verified');
       domainCounts.all = list.length;
+      courseCounts.all = list.length;
+      branchCounts.all = list.length;
+
       list.forEach(p => {
         if (p.domain) {
           domainCounts[p.domain] = (domainCounts[p.domain] || 0) + 1;
         }
+        if (p.course) {
+          courseCounts[p.course] = (courseCounts[p.course] || 0) + 1;
+        }
+        if (p.branch) {
+          branchCounts[p.branch] = (branchCounts[p.branch] || 0) + 1;
+        }
       });
 
+      if (course && course !== 'all' && course !== 'All Courses') {
+        const cLower = course.trim().toLowerCase();
+        list = list.filter(p => (p.course || '').toLowerCase() === cLower);
+      }
+      if (branch && branch !== 'all' && branch !== 'All Branches') {
+        const bLower = branch.trim().toLowerCase();
+        list = list.filter(p => (p.branch || '').toLowerCase() === bLower);
+      }
       if (domain && domain !== 'all' && domain !== 'All Domains') {
         list = list.filter(p => p.domain?.toLowerCase() === domain.toLowerCase() || p.domainId === domain.toLowerCase());
       }
@@ -7320,6 +7400,8 @@ app.get('/api/projects', async (req, res) => {
           (p.title && p.title.toLowerCase().includes(q)) ||
           (p.description && p.description.toLowerCase().includes(q)) ||
           (p.tagline && p.tagline.toLowerCase().includes(q)) ||
+          (p.branch && p.branch.toLowerCase().includes(q)) ||
+          (p.course && p.course.toLowerCase().includes(q)) ||
           (Array.isArray(p.technologies) && p.technologies.some(t => t.toLowerCase().includes(q)))
         );
       }
@@ -7345,7 +7427,9 @@ app.get('/api/projects', async (req, res) => {
       page: pageNum,
       limit: limitNum,
       totalPages: Math.ceil(total / limitNum) || 1,
-      domainCounts
+      domainCounts,
+      courseCounts,
+      branchCounts
     });
   } catch (err) {
     console.error('Error fetching projects:', err);
@@ -7368,7 +7452,19 @@ app.get('/api/projects/domains', async (req, res) => {
       { name: 'Blockchain & Web3', id: 'blockchain-web3', icon: 'Boxes', color: 'orange' },
       { name: 'Data Science', id: 'data-science', icon: 'BarChart3', color: 'teal' },
       { name: 'College & Academic', id: 'college-academic', icon: 'GraduationCap', color: 'rose' },
-      { name: 'Game Development', id: 'game-development', icon: 'Gamepad2', color: 'fuchsia' }
+      { name: 'Game Development', id: 'game-development', icon: 'Gamepad2', color: 'fuchsia' },
+      { name: 'Electrical & Power Systems', id: 'electrical-power-systems', icon: 'Zap', color: 'amber' },
+      { name: 'Thermal, Fluids & Robotics', id: 'thermal-fluids-robotics', icon: 'Flame', color: 'orange' },
+      { name: 'Civil & Structural Engineering', id: 'civil-structural-engineering', icon: 'Building2', color: 'stone' },
+      { name: 'Electronics & Embedded Systems', id: 'electronics-embedded-systems', icon: 'Cpu', color: 'cyan' },
+      { name: 'Pharmaceutical Sciences', id: 'pharmaceutical-sciences', icon: 'Pill', color: 'emerald' },
+      { name: 'Clinical & Industrial Pharmacy', id: 'clinical-industrial-pharmacy', icon: 'FlaskConical', color: 'green' },
+      { name: 'Hospitality & Culinary Management', id: 'hospitality-culinary-management', icon: 'UtensilsCrossed', color: 'amber' },
+      { name: 'Advanced Research & Machine Intelligence', id: 'advanced-research-machine-intelligence', icon: 'Sparkles', color: 'indigo' },
+      { name: 'Business Analytics & Marketing', id: 'business-analytics-marketing', icon: 'TrendingUp', color: 'blue' },
+      { name: 'Corporate Finance & Strategy', id: 'corporate-finance-strategy', icon: 'Briefcase', color: 'slate' },
+      { name: 'Cloud, Systems & Security', id: 'cloud-systems-security', icon: 'Lock', color: 'red' },
+      { name: 'Enterprise & Cloud Computing', id: 'enterprise-cloud-computing', icon: 'Server', color: 'violet' }
     ];
 
     let countsMap = {};
@@ -7390,11 +7486,28 @@ app.get('/api/projects/domains', async (req, res) => {
       });
     }
 
-    const domains = predefinedDomains.map(d => ({
-      ...d,
-      count: d.id === 'all' ? (countsMap['all'] || 0) : (countsMap[d.name] || 0)
-    }));
+    const domainMap = new Map();
+    predefinedDomains.forEach(d => {
+      domainMap.set(d.name, {
+        ...d,
+        count: d.id === 'all' ? (countsMap['all'] || 0) : (countsMap[d.name] || 0)
+      });
+    });
 
+    // Also include any domains from DB not in predefined list
+    Object.keys(countsMap).forEach(domainName => {
+      if (domainName !== 'all' && !domainMap.has(domainName)) {
+        domainMap.set(domainName, {
+          name: domainName,
+          id: domainName.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-'),
+          icon: 'Folder',
+          color: 'indigo',
+          count: countsMap[domainName] || 0
+        });
+      }
+    });
+
+    const domains = Array.from(domainMap.values());
     res.json({ success: true, domains });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Failed to fetch domain categories' });

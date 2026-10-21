@@ -1,15 +1,15 @@
 // Professor Virus - PWA Service Worker (Safe Caching & Offline Support)
-const CACHE_NAME = 'pv-cache-v1.0';
+const CACHE_NAME = 'pv-cache-v1.1';
 
 const PRECACHE_ASSETS = [
   '/',
   '/manifest.webmanifest',
   '/manifest.json',
   '/favicon.ico',
-  '/assets/navbar_logo.png',
-  '/assets/logo-icon.png',
+  '/assets/favicon-32x32.png',
   '/assets/pwa-icon-192.png',
   '/assets/pwa-icon-512.png',
+  '/assets/pwa-maskable-512.png',
   '/assets/apple-touch-icon.png'
 ];
 

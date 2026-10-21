@@ -88,6 +88,26 @@ export default function SelectCoursePage({ onNavigate }) {
       iconBg: '#DCFCE7',
       iconColor: '#16A34A',
       borderColor: '#BBF7D0'
+    },
+    {
+      id: 'mpharm',
+      key: 'M.Pharm',
+      name: 'M.Pharm',
+      fullName: 'Master of Pharmacy',
+      icon: Pill,
+      iconBg: '#DCFCE7',
+      iconColor: '#15803D',
+      borderColor: '#BBF7D0'
+    },
+    {
+      id: 'bhmct',
+      key: 'BHMCT',
+      name: 'BHMCT',
+      fullName: 'Bachelor of Hotel Management & Catering Technology',
+      icon: Briefcase,
+      iconBg: '#FEF3C7',
+      iconColor: '#D97706',
+      borderColor: '#FDE68A'
     }
   ];
 

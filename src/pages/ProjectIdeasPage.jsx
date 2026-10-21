@@ -34,7 +34,17 @@ import {
   LayoutGrid,
   Home,
   Check,
-  FileText
+  FileText,
+  Zap,
+  Flame,
+  Building2,
+  Pill,
+  FlaskConical,
+  UtensilsCrossed,
+  Briefcase,
+  TrendingUp,
+  Lock,
+  Server
 } from 'lucide-react';
 import ProjectSubmitModal from '../components/ProjectSubmitModal';
 import ProjectGuideModal from '../components/ProjectGuideModal';
@@ -47,11 +57,30 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
 
   // Filters & Search
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCourse, setSelectedCourse] = useState('all');
+  const [selectedBranch, setSelectedBranch] = useState('all');
   const [selectedDomain, setSelectedDomain] = useState('all');
   const [selectedLevel, setSelectedLevel] = useState('all');
   const [selectedTech, setSelectedTech] = useState('all');
   const [sortBy, setSortBy] = useState('popular');
   const [domainCounts, setDomainCounts] = useState({ all: 0 });
+  const [courseCounts, setCourseCounts] = useState({ all: 0 });
+  const [branchCounts, setBranchCounts] = useState({ all: 0 });
+
+  const COURSES_LIST = ['B.Tech', 'BCA', 'MCA', 'BBA', 'MBA', 'B.Pharm', 'M.Pharm', 'BHMCT', 'M.Tech'];
+
+  const getBranchesForCourse = (course) => {
+    if (course === 'B.Tech') return ['CSE', 'AIML', 'DS', 'IT', 'ECE', 'EE', 'ME', 'CE'];
+    if (course === 'BCA') return ['BCA'];
+    if (course === 'MCA') return ['MCA'];
+    if (course === 'BBA') return ['BBA'];
+    if (course === 'MBA') return ['MBA'];
+    if (course === 'B.Pharm') return ['B.Pharm'];
+    if (course === 'M.Pharm') return ['M.Pharm'];
+    if (course === 'BHMCT') return ['BHMCT'];
+    if (course === 'M.Tech') return ['M.Tech'];
+    return ['CSE', 'AIML', 'DS', 'IT', 'ECE', 'EE', 'ME', 'CE', 'BCA', 'MCA', 'BBA', 'MBA', 'B.Pharm', 'M.Pharm', 'BHMCT', 'M.Tech'];
+  };
 
   // Bookmarks
   const [bookmarkedIds, setBookmarkedIds] = useState(new Set());
@@ -74,7 +103,19 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
     { name: 'Blockchain & Web3', id: 'blockchain-web3', icon: Boxes, color: '#ea580c', bgColor: '#FFF7ED' },
     { name: 'Data Science', id: 'data-science', icon: BarChart3, color: '#0d9488', bgColor: '#F0FDFA' },
     { name: 'College & Academic', id: 'college-academic', icon: GraduationCap, color: '#e11d48', bgColor: '#FFF1F2' },
-    { name: 'Game Development', id: 'game-development', icon: Gamepad2, color: '#c026d3', bgColor: '#FDF4FF' }
+    { name: 'Game Development', id: 'game-development', icon: Gamepad2, color: '#c026d3', bgColor: '#FDF4FF' },
+    { name: 'Electrical & Power Systems', id: 'electrical-power-systems', icon: Zap, color: '#d97706', bgColor: '#FFFBEB' },
+    { name: 'Thermal, Fluids & Robotics', id: 'thermal-fluids-robotics', icon: Flame, color: '#ea580c', bgColor: '#FFF7ED' },
+    { name: 'Civil & Structural Engineering', id: 'civil-structural-engineering', icon: Building2, color: '#78716c', bgColor: '#F5F5F4' },
+    { name: 'Electronics & Embedded Systems', id: 'electronics-embedded-systems', icon: Cpu, color: '#0891b2', bgColor: '#ECFEFF' },
+    { name: 'Pharmaceutical Sciences', id: 'pharmaceutical-sciences', icon: Pill, color: '#059669', bgColor: '#ECFDF5' },
+    { name: 'Clinical & Industrial Pharmacy', id: 'clinical-industrial-pharmacy', icon: FlaskConical, color: '#16a34a', bgColor: '#F0FDF4' },
+    { name: 'Hospitality & Culinary Management', id: 'hospitality-culinary-management', icon: UtensilsCrossed, color: '#b45309', bgColor: '#FEF3C7' },
+    { name: 'Advanced Research & Machine Intelligence', id: 'advanced-research-machine-intelligence', icon: Sparkles, color: '#6366f1', bgColor: '#EEF2FF' },
+    { name: 'Business Analytics & Marketing', id: 'business-analytics-marketing', icon: TrendingUp, color: '#2563eb', bgColor: '#EFF6FF' },
+    { name: 'Corporate Finance & Strategy', id: 'corporate-finance-strategy', icon: Briefcase, color: '#475569', bgColor: '#F8FAFC' },
+    { name: 'Cloud, Systems & Security', id: 'cloud-systems-security', icon: Lock, color: '#dc2626', bgColor: '#FEF2F2' },
+    { name: 'Enterprise & Cloud Computing', id: 'enterprise-cloud-computing', icon: Server, color: '#7c3aed', bgColor: '#F5F3FF' }
   ];
 
   // Fetch bookmarked project IDs for current user
@@ -101,11 +142,13 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
         setLoading(true);
         const params = new URLSearchParams();
         if (searchQuery.trim()) params.append('search', searchQuery.trim());
+        if (selectedCourse && selectedCourse !== 'all') params.append('course', selectedCourse);
+        if (selectedBranch && selectedBranch !== 'all') params.append('branch', selectedBranch);
         if (selectedDomain && selectedDomain !== 'all') params.append('domain', selectedDomain);
         if (selectedLevel && selectedLevel !== 'all') params.append('level', selectedLevel);
         if (selectedTech && selectedTech !== 'all') params.append('tech', selectedTech);
         if (sortBy) params.append('sort', sortBy);
-        params.append('limit', '30');
+        params.append('limit', '50');
 
         const res = await fetch(`/api/projects?${params.toString()}`);
         if (!res.ok) {
@@ -125,6 +168,12 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
         if (data.domainCounts) {
           setDomainCounts(data.domainCounts);
         }
+        if (data.courseCounts) {
+          setCourseCounts(data.courseCounts);
+        }
+        if (data.branchCounts) {
+          setBranchCounts(data.branchCounts);
+        }
         setError(null);
       } catch (err) {
         console.error('Error fetching project ideas:', err);
@@ -139,7 +188,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
     }, 200);
 
     return () => clearTimeout(timer);
-  }, [searchQuery, selectedDomain, selectedLevel, selectedTech, sortBy]);
+  }, [searchQuery, selectedCourse, selectedBranch, selectedDomain, selectedLevel, selectedTech, sortBy]);
 
   // Handle Bookmark Toggle
   const handleToggleBookmark = async (e, projectId) => {
@@ -480,6 +529,37 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
 
             {/* Filter Dropdowns */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center' }}>
+              {/* Course Filter */}
+              <select
+                value={selectedCourse}
+                onChange={e => {
+                  setSelectedCourse(e.target.value);
+                  setSelectedBranch('all');
+                }}
+                style={filterSelectStyle}
+              >
+                <option value="all">All Courses ({courseCounts.all || 0})</option>
+                {COURSES_LIST.map(c => (
+                  <option key={c} value={c}>
+                    {c} ({courseCounts[c] || 0})
+                  </option>
+                ))}
+              </select>
+
+              {/* Branch Filter */}
+              <select
+                value={selectedBranch}
+                onChange={e => setSelectedBranch(e.target.value)}
+                style={filterSelectStyle}
+              >
+                <option value="all">All Branches</option>
+                {getBranchesForCourse(selectedCourse).map(b => (
+                  <option key={b} value={b}>
+                    {b} ({branchCounts[b] || 0})
+                  </option>
+                ))}
+              </select>
+
               {/* Domain Filter */}
               <select
                 value={selectedDomain}
@@ -543,11 +623,15 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.65rem', fontSize: '0.78rem', color: '#78716C' }}>
             <div>
               Showing <strong style={{ color: '#1F2421' }}>{projects.length}</strong> verified project{projects.length !== 1 ? 's' : ''}
+              {selectedCourse !== 'all' && <span> for <strong>{selectedCourse}</strong></span>}
+              {selectedBranch !== 'all' && <span> • <strong>{selectedBranch}</strong></span>}
               {selectedDomain !== 'all' && <span> in <strong>{domainMetadata.find(d => d.id === selectedDomain)?.name}</strong></span>}
             </div>
-            {(selectedDomain !== 'all' || selectedLevel !== 'all' || selectedTech !== 'all' || searchQuery) && (
+            {(selectedCourse !== 'all' || selectedBranch !== 'all' || selectedDomain !== 'all' || selectedLevel !== 'all' || selectedTech !== 'all' || searchQuery) && (
               <button
                 onClick={() => {
+                  setSelectedCourse('all');
+                  setSelectedBranch('all');
                   setSelectedDomain('all');
                   setSelectedLevel('all');
                   setSelectedTech('all');
@@ -866,7 +950,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
                               padding: '0.15rem 0.5rem',
                               borderRadius: '4px'
                             }}>
-                              {proj.levelBadge || proj.level}
+                              {proj.course && proj.branch ? `${proj.course} • ${proj.branch}` : (proj.levelBadge || proj.level)}
                             </span>
 
                             <div style={{ display: 'flex', alignItems: 'center', gap: '2px', color: '#FACC15', fontSize: '0.7rem', fontWeight: 800 }}>

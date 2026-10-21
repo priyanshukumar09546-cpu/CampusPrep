@@ -202,11 +202,11 @@ export default function PWAInstallPopup() {
           <div className="flex items-center gap-3.5 pr-8">
             <div className="relative w-13 h-13 rounded-2xl bg-white p-1 shadow-md border-2 border-[#D6A13D] flex-shrink-0 flex items-center justify-center overflow-hidden">
               <img
-                src="/assets/navbar_logo.png"
+                src="/assets/pwa-icon-192.png"
                 alt="Professor Virus App Icon"
                 className="w-full h-full object-contain"
                 onError={(e) => {
-                  e.currentTarget.src = '/assets/logo-icon.png';
+                  e.currentTarget.src = '/assets/pwa-icon-512.png';
                 }}
               />
               <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center">

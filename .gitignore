@@ -9,6 +9,8 @@ uploads/
 server/data/*.json
 !server/data/academicCorpus.json
 !server/data/notes.json
+!server/data/pyqs.json
+!server/data/projects.json
 !server/data/opportunities.json
 
 # Logs
