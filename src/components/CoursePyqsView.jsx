@@ -261,6 +261,27 @@ export default function CoursePyqsView({
     return () => window.removeEventListener('popstate', handlePopState);
   }, [isBTech]);
 
+  // Strict Hierarchy: Reset child selections when parent course changes
+  useEffect(() => {
+    if (isBTech) {
+      setActiveBranch('CSE');
+      setActiveYear('1st Year');
+      setActiveSemester('All Semesters');
+    } else {
+      setActiveBranch('ALL');
+      const firstYear = courseMeta.years ? courseMeta.years[0] : '1st Year';
+      setActiveYear(firstYear);
+      const firstSem = courseMeta.semesters ? courseMeta.semesters[0] : 'Semester 1';
+      setActiveSemester(firstSem);
+      if (courseMeta.specializations && courseMeta.specializations.length > 0) {
+        setActiveSpecialization(courseMeta.specializations[0]);
+      }
+    }
+    setSelectedAcademicYear('All');
+    setSelectedExamType('All');
+    setActiveSubject(null);
+  }, [normKey]);
+
   // Dynamic Semesters for selected Year (Progressive Hierarchy)
   const availableSemesters = useMemo(() => {
     if (isBTech || normKey === 'BCA') {

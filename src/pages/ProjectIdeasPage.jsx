@@ -100,22 +100,21 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
     { name: 'IoT & Embedded Systems', id: 'iot-embedded-systems', icon: Cpu, color: '#d97706', bgColor: '#FFFBEB' },
     { name: 'Cyber Security', id: 'cyber-security', icon: Shield, color: '#dc2626', bgColor: '#FEF2F2' },
     { name: 'Cloud & DevOps', id: 'cloud-devops', icon: Cloud, color: '#0ea5e9', bgColor: '#F0F9FF' },
+    { name: 'Cloud & Distributed Systems', id: 'cloud-distributed-systems', icon: Server, color: '#7c3aed', bgColor: '#F5F3FF' },
     { name: 'Blockchain & Web3', id: 'blockchain-web3', icon: Boxes, color: '#ea580c', bgColor: '#FFF7ED' },
     { name: 'Data Science', id: 'data-science', icon: BarChart3, color: '#0d9488', bgColor: '#F0FDFA' },
     { name: 'College & Academic', id: 'college-academic', icon: GraduationCap, color: '#e11d48', bgColor: '#FFF1F2' },
     { name: 'Game Development', id: 'game-development', icon: Gamepad2, color: '#c026d3', bgColor: '#FDF4FF' },
     { name: 'Electrical & Power Systems', id: 'electrical-power-systems', icon: Zap, color: '#d97706', bgColor: '#FFFBEB' },
+    { name: 'Electronics & Embedded Systems', id: 'electronics-embedded-systems', icon: Cpu, color: '#0891b2', bgColor: '#ECFEFF' },
     { name: 'Thermal, Fluids & Robotics', id: 'thermal-fluids-robotics', icon: Flame, color: '#ea580c', bgColor: '#FFF7ED' },
     { name: 'Civil & Structural Engineering', id: 'civil-structural-engineering', icon: Building2, color: '#78716c', bgColor: '#F5F5F4' },
-    { name: 'Electronics & Embedded Systems', id: 'electronics-embedded-systems', icon: Cpu, color: '#0891b2', bgColor: '#ECFEFF' },
+    { name: 'Software Engineering', id: 'software-engineering', icon: Code2, color: '#2563eb', bgColor: '#EFF6FF' },
+    { name: 'Enterprise & Web Applications', id: 'enterprise-web-applications', icon: LayoutGrid, color: '#4f46e5', bgColor: '#EEF2FF' },
+    { name: 'Management & Business Analytics', id: 'management-business-analytics', icon: TrendingUp, color: '#2563eb', bgColor: '#EFF6FF' },
     { name: 'Pharmaceutical Sciences', id: 'pharmaceutical-sciences', icon: Pill, color: '#059669', bgColor: '#ECFDF5' },
-    { name: 'Clinical & Industrial Pharmacy', id: 'clinical-industrial-pharmacy', icon: FlaskConical, color: '#16a34a', bgColor: '#F0FDF4' },
     { name: 'Hospitality & Culinary Management', id: 'hospitality-culinary-management', icon: UtensilsCrossed, color: '#b45309', bgColor: '#FEF3C7' },
-    { name: 'Advanced Research & Machine Intelligence', id: 'advanced-research-machine-intelligence', icon: Sparkles, color: '#6366f1', bgColor: '#EEF2FF' },
-    { name: 'Business Analytics & Marketing', id: 'business-analytics-marketing', icon: TrendingUp, color: '#2563eb', bgColor: '#EFF6FF' },
-    { name: 'Corporate Finance & Strategy', id: 'corporate-finance-strategy', icon: Briefcase, color: '#475569', bgColor: '#F8FAFC' },
-    { name: 'Cloud, Systems & Security', id: 'cloud-systems-security', icon: Lock, color: '#dc2626', bgColor: '#FEF2F2' },
-    { name: 'Enterprise & Cloud Computing', id: 'enterprise-cloud-computing', icon: Server, color: '#7c3aed', bgColor: '#F5F3FF' }
+    { name: 'Advanced Research & Machine Intelligence', id: 'advanced-research-machine-intelligence', icon: Sparkles, color: '#6366f1', bgColor: '#EEF2FF' }
   ];
 
   // Fetch bookmarked project IDs for current user
@@ -258,7 +257,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
     return domainMetadata.map(d => ({
       id: d.id,
       name: d.name,
-      count: d.id === 'all' ? (domainCounts.all || projects.length || 0) : (domainCounts[d.name] || 0),
+      count: d.id === 'all' ? (domainCounts.all || projects.length || 0) : (domainCounts[d.id] ?? domainCounts[d.name] ?? 0),
       icon: d.icon,
       color: d.color,
       bgColor: d.bgColor
@@ -277,9 +276,12 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
       );
     }
     if (selectedDomain && selectedDomain !== 'all') {
+      const sLower = selectedDomain.toLowerCase();
+      const sName = sLower.replace(/-/g, ' ');
       list = list.filter(p => 
-        (p.domainId || '').toLowerCase() === selectedDomain.toLowerCase() ||
-        (p.domain || '').toLowerCase().includes(selectedDomain.toLowerCase())
+        (p.domainId || '').toLowerCase() === sLower ||
+        (p.domain || '').toLowerCase().replace(/[^a-z0-9]+/g, '-') === sLower ||
+        (p.domain || '').toLowerCase() === sName
       );
     } else {
       // Prioritize MERN and AI Resume analyzer at top if default
@@ -565,7 +567,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
                 <option value="all">All Domains ({domainCounts.all || 0})</option>
                 {domainMetadata.filter(d => d.id !== 'all').map(d => (
                   <option key={d.id} value={d.id}>
-                    {d.name} ({domainCounts[d.name] || 0})
+                    {d.name} ({domainCounts[d.id] ?? domainCounts[d.name] ?? 0})
                   </option>
                 ))}
               </select>
@@ -685,7 +687,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
                 {domainMetadata.map(item => {
                   const Icon = item.icon;
                   const isSelected = selectedDomain === item.id;
-                  const count = item.id === 'all' ? (domainCounts.all || 0) : (domainCounts[item.name] || 0);
+                  const count = item.id === 'all' ? (domainCounts.all || 0) : (domainCounts[item.id] ?? domainCounts[item.name] ?? 0);
 
                   return (
                     <button

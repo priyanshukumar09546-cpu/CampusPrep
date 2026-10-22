@@ -17,168 +17,6 @@ export interface PyqItem {
 }
 
 export const pyqsData: Record<string, PyqItem[]> = {
-  "201920": [
-    {
-      "id": "pyq-bpharm-201920-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2019-20",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Bmt-S99MLFevaFrjN8FYDiKMJ3dNjtjT/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1Bmt-S99MLFevaFrjN8FYDiKMJ3dNjtjT/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-201920-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2019-20",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1VIC49B6UIlBejQ8nPxKU9Orq38rle3mv/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1VIC49B6UIlBejQ8nPxKU9Orq38rle3mv/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-201920-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2019-20",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1uGWgFIhlN_J1tzS3wcIN0PXH7skp_udj/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1uGWgFIhlN_J1tzS3wcIN0PXH7skp_udj/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-201920-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2019-20",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IeyhtGZqAnoDGnl8LfjYFoOk1WJ-YYsN/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1IeyhtGZqAnoDGnl8LfjYFoOk1WJ-YYsN/view?usp=sharing"
-    }
-  ],
-  "202021": [
-    {
-      "id": "pyq-bpharm-202021-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1NfHeDmtdtVZ1DDK6r-JoN3vQ4qVoEIWo/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NfHeDmtdtVZ1DDK6r-JoN3vQ4qVoEIWo/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202021-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HTSWm8Vbzmwc01GZ9du4j6eAbgzQXBVY/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1HTSWm8Vbzmwc01GZ9du4j6eAbgzQXBVY/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202021-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Uq3pG7Fm1Ak5RCOpKrQKsqgXNMteP45l/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1Uq3pG7Fm1Ak5RCOpKrQKsqgXNMteP45l/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202021-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1fGVT6rUiqvNK2loS3uGEV9wAqjlcXerz/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1fGVT6rUiqvNK2loS3uGEV9wAqjlcXerz/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202021-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1vDLEOm9wKbMVS4gnPv2d2eCR-IKs1R3G/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1vDLEOm9wKbMVS4gnPv2d2eCR-IKs1R3G/view?usp=sharing"
-    }
-  ],
-  "202223": [
-    {
-      "id": "pyq-bpharm-202223-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2022-23",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1mdBcNm8ds8yCiUuT9jGj4Zjt_-KHLfkN/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1mdBcNm8ds8yCiUuT9jGj4Zjt_-KHLfkN/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202223-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2022-23",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1kZpme0bVhR6YguWB3bJrJ8mlI7RbfKfU/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1kZpme0bVhR6YguWB3bJrJ8mlI7RbfKfU/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202223-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2022-23",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/10TSh4CRdmMvCo-U7yHkxvZe53S3c59np/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/10TSh4CRdmMvCo-U7yHkxvZe53S3c59np/view?usp=sharing"
-    }
-  ],
   "BBA-101": [
     {
       "year": "University 2024",
@@ -20260,19 +20098,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1oadoai4j3JhtUjG5l8LWOlGtMUhFo3lV/view",
       "url": "https://drive.google.com/file/d/1oadoai4j3JhtUjG5l8LWOlGtMUhFo3lV/view"
-    },
-    {
-      "id": "pyq-mba-kmbnom01-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Supply Chain & Logistics Management",
-      "subjectCode": "KMBNOM01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1biEvm69TsPOaz0TCVpX8ZvUVLqjwnQoI/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1biEvm69TsPOaz0TCVpX8ZvUVLqjwnQoI/view?usp=drive_web"
     }
   ],
   "kmbnom01": [
@@ -20340,19 +20165,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1oadoai4j3JhtUjG5l8LWOlGtMUhFo3lV/view",
       "url": "https://drive.google.com/file/d/1oadoai4j3JhtUjG5l8LWOlGtMUhFo3lV/view"
-    },
-    {
-      "id": "pyq-mba-kmbnom01-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Supply Chain & Logistics Management",
-      "subjectCode": "KMBNOM01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1biEvm69TsPOaz0TCVpX8ZvUVLqjwnQoI/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1biEvm69TsPOaz0TCVpX8ZvUVLqjwnQoI/view?usp=drive_web"
     }
   ],
   "KCA102": [
@@ -20461,36 +20273,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1GywXD1UgV1TuARV7JmbKwBd-t-XdgIn9/view",
       "url": "https://drive.google.com/file/d/1GywXD1UgV1TuARV7JmbKwBd-t-XdgIn9/view"
-    }
-  ],
-  "KMBNMK02": [
-    {
-      "id": "pyq-mba-kmbnmk02-2023-2024-j---q5",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Marketing Communication & Advertising",
-      "subjectCode": "KMBNMK02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Wr8efGjCubMPk5s8iTsiXIw5fYjVKBq5/view",
-      "url": "https://drive.google.com/file/d/1Wr8efGjCubMPk5s8iTsiXIw5fYjVKBq5/view"
-    }
-  ],
-  "kmbnmk02": [
-    {
-      "id": "pyq-mba-kmbnmk02-2023-2024-j---q5",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Marketing Communication & Advertising",
-      "subjectCode": "KMBNMK02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Wr8efGjCubMPk5s8iTsiXIw5fYjVKBq5/view",
-      "url": "https://drive.google.com/file/d/1Wr8efGjCubMPk5s8iTsiXIw5fYjVKBq5/view"
     }
   ],
   "KMBNFM01": [
@@ -20627,300 +20409,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1W9iJgTY3UdH9VPJ-Bt56wUXZNW1aW0gR/view"
     }
   ],
-  "KMBNFM02": [
-    {
-      "id": "pyq-mba-kmbnfm02-2023-2024---s8--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1BW_0ZlEbJQ17RmrTn9klgo5m6JXFs8HD/view",
-      "url": "https://drive.google.com/file/d/1BW_0ZlEbJQ17RmrTn9klgo5m6JXFs8HD/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-2025-2026--6-9bz",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1215Ei_5R-GdvUwIodsmbcvK9HRB6J9bz/view",
-      "url": "https://drive.google.com/file/d/1215Ei_5R-GdvUwIodsmbcvK9HRB6J9bz/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-2024-2025---7o--",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1qXnNEp7QYQisn9Cywbtt15iF5kRJ7oWE/view",
-      "url": "https://drive.google.com/file/d/1qXnNEp7QYQisn9Cywbtt15iF5kRJ7oWE/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-2021-2022--9g--m",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1V-evf3xYPzyhJQjO9irtnFPRQtT9gXXm/view",
-      "url": "https://drive.google.com/file/d/1V-evf3xYPzyhJQjO9irtnFPRQtT9gXXm/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-2022-2023---nnmd",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1fB6bcvkelxvO9ZRAOqjtgsfhNLVInnmd/view",
-      "url": "https://drive.google.com/file/d/1fB6bcvkelxvO9ZRAOqjtgsfhNLVInnmd/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Tax Planning & Management",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1GILREiH8dQ8N3zZHLFGY0ynjC6CoTXD0/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1GILREiH8dQ8N3zZHLFGY0ynjC6CoTXD0/view?usp=drive_web"
-    }
-  ],
-  "kmbnfm02": [
-    {
-      "id": "pyq-mba-kmbnfm02-2023-2024---s8--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1BW_0ZlEbJQ17RmrTn9klgo5m6JXFs8HD/view",
-      "url": "https://drive.google.com/file/d/1BW_0ZlEbJQ17RmrTn9klgo5m6JXFs8HD/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-2025-2026--6-9bz",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1215Ei_5R-GdvUwIodsmbcvK9HRB6J9bz/view",
-      "url": "https://drive.google.com/file/d/1215Ei_5R-GdvUwIodsmbcvK9HRB6J9bz/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-2024-2025---7o--",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1qXnNEp7QYQisn9Cywbtt15iF5kRJ7oWE/view",
-      "url": "https://drive.google.com/file/d/1qXnNEp7QYQisn9Cywbtt15iF5kRJ7oWE/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-2021-2022--9g--m",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1V-evf3xYPzyhJQjO9irtnFPRQtT9gXXm/view",
-      "url": "https://drive.google.com/file/d/1V-evf3xYPzyhJQjO9irtnFPRQtT9gXXm/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-2022-2023---nnmd",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Financial Markets & Commercial Banking",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1fB6bcvkelxvO9ZRAOqjtgsfhNLVInnmd/view",
-      "url": "https://drive.google.com/file/d/1fB6bcvkelxvO9ZRAOqjtgsfhNLVInnmd/view"
-    },
-    {
-      "id": "pyq-mba-kmbnfm02-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Tax Planning & Management",
-      "subjectCode": "KMBNFM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1GILREiH8dQ8N3zZHLFGY0ynjC6CoTXD0/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1GILREiH8dQ8N3zZHLFGY0ynjC6CoTXD0/view?usp=drive_web"
-    }
-  ],
-  "KMBNIB01": [
-    {
-      "id": "pyq-mba-kmbnib01-2023-2024-85-n93",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1876z0okmQ_vU8MU1gnWSDwKfdn85Qn93/view",
-      "url": "https://drive.google.com/file/d/1876z0okmQ_vU8MU1gnWSDwKfdn85Qn93/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib01-2024-2025-b-0n-y",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1AjiAP2D-IBd3E4Egs39vnzhScPbP0nZy/view",
-      "url": "https://drive.google.com/file/d/1AjiAP2D-IBd3E4Egs39vnzhScPbP0nZy/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib01-2022-2023-2a-9--",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1r8pqIqhF99ivfL3TAD13wooXok2aZ9BK/view",
-      "url": "https://drive.google.com/file/d/1r8pqIqhF99ivfL3TAD13wooXok2aZ9BK/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib01-2025-2026-6uu2y2",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IeQnew0vyfeh7ybbBe8OxXHEwl6uu2y2/view",
-      "url": "https://drive.google.com/file/d/1IeQnew0vyfeh7ybbBe8OxXHEwl6uu2y2/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib01-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1wmF-M1k-Dxr2OsQnvX-rA4RL6DWPo0bZ/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1wmF-M1k-Dxr2OsQnvX-rA4RL6DWPo0bZ/view?usp=drive_web"
-    }
-  ],
-  "kmbnib01": [
-    {
-      "id": "pyq-mba-kmbnib01-2023-2024-85-n93",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1876z0okmQ_vU8MU1gnWSDwKfdn85Qn93/view",
-      "url": "https://drive.google.com/file/d/1876z0okmQ_vU8MU1gnWSDwKfdn85Qn93/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib01-2024-2025-b-0n-y",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1AjiAP2D-IBd3E4Egs39vnzhScPbP0nZy/view",
-      "url": "https://drive.google.com/file/d/1AjiAP2D-IBd3E4Egs39vnzhScPbP0nZy/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib01-2022-2023-2a-9--",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1r8pqIqhF99ivfL3TAD13wooXok2aZ9BK/view",
-      "url": "https://drive.google.com/file/d/1r8pqIqhF99ivfL3TAD13wooXok2aZ9BK/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib01-2025-2026-6uu2y2",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IeQnew0vyfeh7ybbBe8OxXHEwl6uu2y2/view",
-      "url": "https://drive.google.com/file/d/1IeQnew0vyfeh7ybbBe8OxXHEwl6uu2y2/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib01-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "International Business Management",
-      "subjectCode": "KMBNIB01",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1wmF-M1k-Dxr2OsQnvX-rA4RL6DWPo0bZ/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1wmF-M1k-Dxr2OsQnvX-rA4RL6DWPo0bZ/view?usp=drive_web"
-    }
-  ],
   "KMBN104": [
     {
       "id": "pyq-mba-kmbn104-2024-2025-zdsc37",
@@ -20947,19 +20435,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1GEF3vXXvOfyEIJzyE30y3_esG9TrZLPk/view",
       "url": "https://drive.google.com/file/d/1GEF3vXXvOfyEIJzyE30y3_esG9TrZLPk/view"
-    },
-    {
-      "id": "pyq-mba-kmbn104-2023-2024-l-9---",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Business Statistics & Analytics",
-      "subjectCode": "KMBN104",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1VqHViLIiHwhPJdx7jlUnq37__XlD9B-Z/view",
-      "url": "https://drive.google.com/file/d/1VqHViLIiHwhPJdx7jlUnq37__XlD9B-Z/view"
     },
     {
       "id": "pyq-mba-kmbn104-2025-2026-398f--",
@@ -21001,19 +20476,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1GEF3vXXvOfyEIJzyE30y3_esG9TrZLPk/view",
       "url": "https://drive.google.com/file/d/1GEF3vXXvOfyEIJzyE30y3_esG9TrZLPk/view"
-    },
-    {
-      "id": "pyq-mba-kmbn104-2023-2024-l-9---",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Business Statistics & Analytics",
-      "subjectCode": "KMBN104",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1VqHViLIiHwhPJdx7jlUnq37__XlD9B-Z/view",
-      "url": "https://drive.google.com/file/d/1VqHViLIiHwhPJdx7jlUnq37__XlD9B-Z/view"
     },
     {
       "id": "pyq-mba-kmbn104-2025-2026-398f--",
@@ -21070,19 +20532,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/18zE-RJbZDSpZ6b_5qlQXNW2buVgJ6rPL/view"
     },
     {
-      "id": "pyq-mba-kmbn103-2023-2024---ef-z",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Financial Accounting & Analysis",
-      "subjectCode": "KMBN103",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1AtdaXFyW5MtQsV9qt8170n5SdOOGefOz/view",
-      "url": "https://drive.google.com/file/d/1AtdaXFyW5MtQsV9qt8170n5SdOOGefOz/view"
-    },
-    {
       "id": "pyq-mba-kmbn103-2020-2021-9k5---",
       "year": "AKTU 2020-2021",
       "session": "2020-2021 Exam",
@@ -21133,19 +20582,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
       "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view"
-    },
-    {
-      "id": "pyq-mba-kmbn103-202021",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Financial Accounting & Analysis",
-      "subjectCode": "KMBN103",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1_VlhWteEuag7YoIXE0GKwyS_4z5OB1qN/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1_VlhWteEuag7YoIXE0GKwyS_4z5OB1qN/view?usp=drive_web"
     }
   ],
   "kmbn103": [
@@ -21189,19 +20625,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/18zE-RJbZDSpZ6b_5qlQXNW2buVgJ6rPL/view"
     },
     {
-      "id": "pyq-mba-kmbn103-2023-2024---ef-z",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Financial Accounting & Analysis",
-      "subjectCode": "KMBN103",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1AtdaXFyW5MtQsV9qt8170n5SdOOGefOz/view",
-      "url": "https://drive.google.com/file/d/1AtdaXFyW5MtQsV9qt8170n5SdOOGefOz/view"
-    },
-    {
       "id": "pyq-mba-kmbn103-2020-2021-9k5---",
       "year": "AKTU 2020-2021",
       "session": "2020-2021 Exam",
@@ -21252,153 +20675,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view",
       "url": "https://drive.google.com/file/d/1qqmTFwq9y8b1StEFaJ9Vmwdg2KyXAXzJ/view"
-    },
-    {
-      "id": "pyq-mba-kmbn103-202021",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Financial Accounting & Analysis",
-      "subjectCode": "KMBN103",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1_VlhWteEuag7YoIXE0GKwyS_4z5OB1qN/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1_VlhWteEuag7YoIXE0GKwyS_4z5OB1qN/view?usp=drive_web"
-    }
-  ],
-  "KMBN101": [
-    {
-      "id": "pyq-mba-kmbn101-2023-2024-w2t-j-",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/13ilBPb7P-mcInZdIJuBrJ40Tvbw2tYjT/view",
-      "url": "https://drive.google.com/file/d/13ilBPb7P-mcInZdIJuBrJ40Tvbw2tYjT/view"
-    },
-    {
-      "id": "pyq-mba-kmbn101-2022-2023-4---y3",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Zs9KL0lRgcRSGRP7_oHr10khbn4YSBy3/view",
-      "url": "https://drive.google.com/file/d/1Zs9KL0lRgcRSGRP7_oHr10khbn4YSBy3/view"
-    },
-    {
-      "id": "pyq-mba-kmbn101-2025-2026-vm3---",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1S9CRN3dsczI-J2f5cPEY-cUnc_vm3IFN/view",
-      "url": "https://drive.google.com/file/d/1S9CRN3dsczI-J2f5cPEY-cUnc_vm3IFN/view"
-    },
-    {
-      "id": "pyq-mba-kmbn101-2024-2025---6yd-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1h0BhQw_bEfOUEVA-l6rWJhdLNyXV6ydH/view",
-      "url": "https://drive.google.com/file/d/1h0BhQw_bEfOUEVA-l6rWJhdLNyXV6ydH/view"
-    },
-    {
-      "id": "pyq-mba-kmbn101-2020-2021--k-rf-",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1-Nso7I2pMykE5nKN6sIkEk64DTVkPrfA/view",
-      "url": "https://drive.google.com/file/d/1-Nso7I2pMykE5nKN6sIkEk64DTVkPrfA/view"
-    }
-  ],
-  "kmbn101": [
-    {
-      "id": "pyq-mba-kmbn101-2023-2024-w2t-j-",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/13ilBPb7P-mcInZdIJuBrJ40Tvbw2tYjT/view",
-      "url": "https://drive.google.com/file/d/13ilBPb7P-mcInZdIJuBrJ40Tvbw2tYjT/view"
-    },
-    {
-      "id": "pyq-mba-kmbn101-2022-2023-4---y3",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Zs9KL0lRgcRSGRP7_oHr10khbn4YSBy3/view",
-      "url": "https://drive.google.com/file/d/1Zs9KL0lRgcRSGRP7_oHr10khbn4YSBy3/view"
-    },
-    {
-      "id": "pyq-mba-kmbn101-2025-2026-vm3---",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1S9CRN3dsczI-J2f5cPEY-cUnc_vm3IFN/view",
-      "url": "https://drive.google.com/file/d/1S9CRN3dsczI-J2f5cPEY-cUnc_vm3IFN/view"
-    },
-    {
-      "id": "pyq-mba-kmbn101-2024-2025---6yd-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1h0BhQw_bEfOUEVA-l6rWJhdLNyXV6ydH/view",
-      "url": "https://drive.google.com/file/d/1h0BhQw_bEfOUEVA-l6rWJhdLNyXV6ydH/view"
-    },
-    {
-      "id": "pyq-mba-kmbn101-2020-2021--k-rf-",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Management Concepts & Organisational Behaviour",
-      "subjectCode": "KMBN101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1-Nso7I2pMykE5nKN6sIkEk64DTVkPrfA/view",
-      "url": "https://drive.google.com/file/d/1-Nso7I2pMykE5nKN6sIkEk64DTVkPrfA/view"
     }
   ],
   "BP402T": [
@@ -21427,19 +20703,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/16ZbduQVoU-FVzGUQNLMZEG62356CSOc4/view",
       "url": "https://drive.google.com/file/d/16ZbduQVoU-FVzGUQNLMZEG62356CSOc4/view"
-    },
-    {
-      "id": "pyq-b-pharm--2023-2024-sf22--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 5th Semester PYQs",
-      "subjectCode": "BP402T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1UDVSCOZoJ_G5x8UJ2cJP5yx8Zdsf22YQ/view",
-      "url": "https://drive.google.com/file/d/1UDVSCOZoJ_G5x8UJ2cJP5yx8Zdsf22YQ/view"
     },
     {
       "id": "pyq-b-pharm-bp402t-2021-2022--6vk-z",
@@ -21522,19 +20785,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/16ZbduQVoU-FVzGUQNLMZEG62356CSOc4/view"
     },
     {
-      "id": "pyq-b-pharm--2023-2024-sf22--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 5th Semester PYQs",
-      "subjectCode": "BP402T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1UDVSCOZoJ_G5x8UJ2cJP5yx8Zdsf22YQ/view",
-      "url": "https://drive.google.com/file/d/1UDVSCOZoJ_G5x8UJ2cJP5yx8Zdsf22YQ/view"
-    },
-    {
       "id": "pyq-b-pharm-bp402t-2021-2022--6vk-z",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -21615,19 +20865,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1tf6Q-WTkGHINISwhjBRC5dHOpBC9lrdp/view"
     },
     {
-      "id": "pyq-b-pharm-bp502t-2024--t-jsh",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Industrial Pharmacy I",
-      "subjectCode": "BP502T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1jIIYzrG1PW1wyLAbaqjgja8dK1ItAjsh/view",
-      "url": "https://drive.google.com/file/d/1jIIYzrG1PW1wyLAbaqjgja8dK1ItAjsh/view"
-    },
-    {
       "id": "pyq-b-pharm-bp502t-2022-2023--yotm-",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
@@ -21654,19 +20891,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1ZnfC2HOmpdYnYDwWpFTsJdFeyMjQt1bm/view"
     },
     {
-      "id": "pyq-b-pharm-bp502t-2021---0mlm",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Industrial Pharmacy I",
-      "subjectCode": "BP502T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1_M5J59pGPF525gy8vIXGGJrbBiFO0mlm/view",
-      "url": "https://drive.google.com/file/d/1_M5J59pGPF525gy8vIXGGJrbBiFO0mlm/view"
-    },
-    {
       "id": "pyq-b-pharm-bp502t-2020-2021-----bf",
       "year": "AKTU 2020-2021",
       "session": "2020-2021 Exam",
@@ -21691,32 +20915,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1uBhsr5WZ8BeEkPrrBFkqN8BfEVb2ad4Q/view",
       "url": "https://drive.google.com/file/d/1uBhsr5WZ8BeEkPrrBFkqN8BfEVb2ad4Q/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp502t-2025--9i--p",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Industrial Pharmacy I",
-      "subjectCode": "BP502T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Ph5jrFH6Y5q2EiS-PAIMlnCLnbG9iLYp/view",
-      "url": "https://drive.google.com/file/d/1Ph5jrFH6Y5q2EiS-PAIMlnCLnbG9iLYp/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp502t-2023-wpwqeh",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Industrial Pharmacy I",
-      "subjectCode": "BP502T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1A9kqQdd7RnPA71TkHZalATae0Vwpwqeh/view",
-      "url": "https://drive.google.com/file/d/1A9kqQdd7RnPA71TkHZalATae0Vwpwqeh/view"
     }
   ],
   "bp502t": [
@@ -21747,19 +20945,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1tf6Q-WTkGHINISwhjBRC5dHOpBC9lrdp/view"
     },
     {
-      "id": "pyq-b-pharm-bp502t-2024--t-jsh",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Industrial Pharmacy I",
-      "subjectCode": "BP502T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1jIIYzrG1PW1wyLAbaqjgja8dK1ItAjsh/view",
-      "url": "https://drive.google.com/file/d/1jIIYzrG1PW1wyLAbaqjgja8dK1ItAjsh/view"
-    },
-    {
       "id": "pyq-b-pharm-bp502t-2022-2023--yotm-",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
@@ -21786,19 +20971,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1ZnfC2HOmpdYnYDwWpFTsJdFeyMjQt1bm/view"
     },
     {
-      "id": "pyq-b-pharm-bp502t-2021---0mlm",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Industrial Pharmacy I",
-      "subjectCode": "BP502T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1_M5J59pGPF525gy8vIXGGJrbBiFO0mlm/view",
-      "url": "https://drive.google.com/file/d/1_M5J59pGPF525gy8vIXGGJrbBiFO0mlm/view"
-    },
-    {
       "id": "pyq-b-pharm-bp502t-2020-2021-----bf",
       "year": "AKTU 2020-2021",
       "session": "2020-2021 Exam",
@@ -21823,32 +20995,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1uBhsr5WZ8BeEkPrrBFkqN8BfEVb2ad4Q/view",
       "url": "https://drive.google.com/file/d/1uBhsr5WZ8BeEkPrrBFkqN8BfEVb2ad4Q/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp502t-2025--9i--p",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Industrial Pharmacy I",
-      "subjectCode": "BP502T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Ph5jrFH6Y5q2EiS-PAIMlnCLnbG9iLYp/view",
-      "url": "https://drive.google.com/file/d/1Ph5jrFH6Y5q2EiS-PAIMlnCLnbG9iLYp/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp502t-2023-wpwqeh",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Industrial Pharmacy I",
-      "subjectCode": "BP502T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1A9kqQdd7RnPA71TkHZalATae0Vwpwqeh/view",
-      "url": "https://drive.google.com/file/d/1A9kqQdd7RnPA71TkHZalATae0Vwpwqeh/view"
     }
   ],
   "BP405T": [
@@ -22076,45 +21222,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1NjXxsYWPoOv3QdDTXEz5B4-XXn2Y36x-/view",
       "url": "https://drive.google.com/file/d/1NjXxsYWPoOv3QdDTXEz5B4-XXn2Y36x-/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp802t-2024--l----",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Social & Preventive Pharmacy",
-      "subjectCode": "BP802T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1QWt_Qe9UcrblmydghTvcOO25l-MlBLRP/view",
-      "url": "https://drive.google.com/file/d/1QWt_Qe9UcrblmydghTvcOO25l-MlBLRP/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp802t-2023---2-g-",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Social & Preventive Pharmacy",
-      "subjectCode": "BP802T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/15frvbaGLVRsQHFJhO8o2PfaBYuGK2QgH/view",
-      "url": "https://drive.google.com/file/d/15frvbaGLVRsQHFJhO8o2PfaBYuGK2QgH/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp802t-2025-z2-bc5",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Social & Preventive Pharmacy",
-      "subjectCode": "BP802T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HMs7AYd37TSSx9ZXOw2hpGbyNDz2Fbc5/view",
-      "url": "https://drive.google.com/file/d/1HMs7AYd37TSSx9ZXOw2hpGbyNDz2Fbc5/view"
     }
   ],
   "bp802t": [
@@ -22182,45 +21289,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1NjXxsYWPoOv3QdDTXEz5B4-XXn2Y36x-/view",
       "url": "https://drive.google.com/file/d/1NjXxsYWPoOv3QdDTXEz5B4-XXn2Y36x-/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp802t-2024--l----",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Social & Preventive Pharmacy",
-      "subjectCode": "BP802T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1QWt_Qe9UcrblmydghTvcOO25l-MlBLRP/view",
-      "url": "https://drive.google.com/file/d/1QWt_Qe9UcrblmydghTvcOO25l-MlBLRP/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp802t-2023---2-g-",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Social & Preventive Pharmacy",
-      "subjectCode": "BP802T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/15frvbaGLVRsQHFJhO8o2PfaBYuGK2QgH/view",
-      "url": "https://drive.google.com/file/d/15frvbaGLVRsQHFJhO8o2PfaBYuGK2QgH/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp802t-2025-z2-bc5",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Social & Preventive Pharmacy",
-      "subjectCode": "BP802T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HMs7AYd37TSSx9ZXOw2hpGbyNDz2Fbc5/view",
-      "url": "https://drive.google.com/file/d/1HMs7AYd37TSSx9ZXOw2hpGbyNDz2Fbc5/view"
     }
   ],
   "KMBNMK01": [
@@ -22517,170 +21585,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1yN3V9ewkU2ia3Xl9-U-xTy0JGiDFTabq/view"
     }
   ],
-  "KCA101": [
-    {
-      "id": "pyq-mca-kca101-2023-2024--19-um",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Problem Solving using Python",
-      "subjectCode": "KCA101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19qIbiEduemUTvpMQaHGzJnph2eM19Aum/view",
-      "url": "https://drive.google.com/file/d/19qIbiEduemUTvpMQaHGzJnph2eM19Aum/view"
-    }
-  ],
-  "kca101": [
-    {
-      "id": "pyq-mca-kca101-2023-2024--19-um",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Problem Solving using Python",
-      "subjectCode": "KCA101",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19qIbiEduemUTvpMQaHGzJnph2eM19Aum/view",
-      "url": "https://drive.google.com/file/d/19qIbiEduemUTvpMQaHGzJnph2eM19Aum/view"
-    }
-  ],
-  "KMBN301": [
-    {
-      "id": "pyq-mba-kmbn301-2023-2024-i--1--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1NwEwKKvfDlHh4_51DmAdlrk_5OiRL1_V/view",
-      "url": "https://drive.google.com/file/d/1NwEwKKvfDlHh4_51DmAdlrk_5OiRL1_V/view"
-    },
-    {
-      "id": "pyq-mba-kmbn301-2021-2022--0dfj-",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1N6rliPLDcC_P3qyGnyq6xEigJt-0dfjH/view",
-      "url": "https://drive.google.com/file/d/1N6rliPLDcC_P3qyGnyq6xEigJt-0dfjH/view"
-    },
-    {
-      "id": "pyq-mba-kmbn301-2024-2025--5dr5-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1yU8J_nqLdOif2m4OcpPncbsaWnW5dr5R/view",
-      "url": "https://drive.google.com/file/d/1yU8J_nqLdOif2m4OcpPncbsaWnW5dr5R/view"
-    },
-    {
-      "id": "pyq-mba-kmbn301-2022-2023--n---s",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1edtahVgDLJErH5Z0Zrd7b0VbBUEnWL_s/view",
-      "url": "https://drive.google.com/file/d/1edtahVgDLJErH5Z0Zrd7b0VbBUEnWL_s/view"
-    },
-    {
-      "id": "pyq-mba-kmbn301-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1PYHFVJYxt-Dxt21OBuGl1XOsN5Dmor0B/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1PYHFVJYxt-Dxt21OBuGl1XOsN5Dmor0B/view?usp=drive_web"
-    }
-  ],
-  "kmbn301": [
-    {
-      "id": "pyq-mba-kmbn301-2023-2024-i--1--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1NwEwKKvfDlHh4_51DmAdlrk_5OiRL1_V/view",
-      "url": "https://drive.google.com/file/d/1NwEwKKvfDlHh4_51DmAdlrk_5OiRL1_V/view"
-    },
-    {
-      "id": "pyq-mba-kmbn301-2021-2022--0dfj-",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1N6rliPLDcC_P3qyGnyq6xEigJt-0dfjH/view",
-      "url": "https://drive.google.com/file/d/1N6rliPLDcC_P3qyGnyq6xEigJt-0dfjH/view"
-    },
-    {
-      "id": "pyq-mba-kmbn301-2024-2025--5dr5-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1yU8J_nqLdOif2m4OcpPncbsaWnW5dr5R/view",
-      "url": "https://drive.google.com/file/d/1yU8J_nqLdOif2m4OcpPncbsaWnW5dr5R/view"
-    },
-    {
-      "id": "pyq-mba-kmbn301-2022-2023--n---s",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1edtahVgDLJErH5Z0Zrd7b0VbBUEnWL_s/view",
-      "url": "https://drive.google.com/file/d/1edtahVgDLJErH5Z0Zrd7b0VbBUEnWL_s/view"
-    },
-    {
-      "id": "pyq-mba-kmbn301-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Strategic Management",
-      "subjectCode": "KMBN301",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1PYHFVJYxt-Dxt21OBuGl1XOsN5Dmor0B/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1PYHFVJYxt-Dxt21OBuGl1XOsN5Dmor0B/view?usp=drive_web"
-    }
-  ],
   "KMBNMK03": [
     {
       "id": "pyq-mba-kmbnmk03-2020-2021--b6cic",
@@ -22737,6 +21641,114 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1Kfol9kwkyeZuGTr9IaCauO2x3ZwJjWdh/view"
     }
   ],
+  "KMBNFM02": [
+    {
+      "id": "pyq-mba-kmbnfm02-2025-2026--6-9bz",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Financial Markets & Commercial Banking",
+      "subjectCode": "KMBNFM02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1215Ei_5R-GdvUwIodsmbcvK9HRB6J9bz/view",
+      "url": "https://drive.google.com/file/d/1215Ei_5R-GdvUwIodsmbcvK9HRB6J9bz/view"
+    },
+    {
+      "id": "pyq-mba-kmbnfm02-2024-2025---7o--",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Financial Markets & Commercial Banking",
+      "subjectCode": "KMBNFM02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1qXnNEp7QYQisn9Cywbtt15iF5kRJ7oWE/view",
+      "url": "https://drive.google.com/file/d/1qXnNEp7QYQisn9Cywbtt15iF5kRJ7oWE/view"
+    },
+    {
+      "id": "pyq-mba-kmbnfm02-2021-2022--9g--m",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Financial Markets & Commercial Banking",
+      "subjectCode": "KMBNFM02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1V-evf3xYPzyhJQjO9irtnFPRQtT9gXXm/view",
+      "url": "https://drive.google.com/file/d/1V-evf3xYPzyhJQjO9irtnFPRQtT9gXXm/view"
+    },
+    {
+      "id": "pyq-mba-kmbnfm02-2022-2023---nnmd",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Financial Markets & Commercial Banking",
+      "subjectCode": "KMBNFM02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1fB6bcvkelxvO9ZRAOqjtgsfhNLVInnmd/view",
+      "url": "https://drive.google.com/file/d/1fB6bcvkelxvO9ZRAOqjtgsfhNLVInnmd/view"
+    }
+  ],
+  "kmbnfm02": [
+    {
+      "id": "pyq-mba-kmbnfm02-2025-2026--6-9bz",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Financial Markets & Commercial Banking",
+      "subjectCode": "KMBNFM02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1215Ei_5R-GdvUwIodsmbcvK9HRB6J9bz/view",
+      "url": "https://drive.google.com/file/d/1215Ei_5R-GdvUwIodsmbcvK9HRB6J9bz/view"
+    },
+    {
+      "id": "pyq-mba-kmbnfm02-2024-2025---7o--",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Financial Markets & Commercial Banking",
+      "subjectCode": "KMBNFM02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1qXnNEp7QYQisn9Cywbtt15iF5kRJ7oWE/view",
+      "url": "https://drive.google.com/file/d/1qXnNEp7QYQisn9Cywbtt15iF5kRJ7oWE/view"
+    },
+    {
+      "id": "pyq-mba-kmbnfm02-2021-2022--9g--m",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Financial Markets & Commercial Banking",
+      "subjectCode": "KMBNFM02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1V-evf3xYPzyhJQjO9irtnFPRQtT9gXXm/view",
+      "url": "https://drive.google.com/file/d/1V-evf3xYPzyhJQjO9irtnFPRQtT9gXXm/view"
+    },
+    {
+      "id": "pyq-mba-kmbnfm02-2022-2023---nnmd",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Financial Markets & Commercial Banking",
+      "subjectCode": "KMBNFM02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1fB6bcvkelxvO9ZRAOqjtgsfhNLVInnmd/view",
+      "url": "https://drive.google.com/file/d/1fB6bcvkelxvO9ZRAOqjtgsfhNLVInnmd/view"
+    }
+  ],
   "KMBN106": [
     {
       "id": "pyq-mba--2023-2024-sv387-",
@@ -22763,19 +21775,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1BQ5IYeg09NLILNvUAEekC9DsOjC8-kBz/view",
       "url": "https://drive.google.com/file/d/1BQ5IYeg09NLILNvUAEekC9DsOjC8-kBz/view"
-    },
-    {
-      "id": "pyq-mba-kmbn106-2023-2024--9-n-n",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Design Thinking & Business Communication",
-      "subjectCode": "KMBN106",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1jSrPCFy7x3r7ffjfumFNV-YGrxN9ZnYn/view",
-      "url": "https://drive.google.com/file/d/1jSrPCFy7x3r7ffjfumFNV-YGrxN9ZnYn/view"
     },
     {
       "id": "pyq-mba-kmbn106-2024-2025--6b---",
@@ -22845,19 +21844,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1BQ5IYeg09NLILNvUAEekC9DsOjC8-kBz/view"
     },
     {
-      "id": "pyq-mba-kmbn106-2023-2024--9-n-n",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Design Thinking & Business Communication",
-      "subjectCode": "KMBN106",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1jSrPCFy7x3r7ffjfumFNV-YGrxN9ZnYn/view",
-      "url": "https://drive.google.com/file/d/1jSrPCFy7x3r7ffjfumFNV-YGrxN9ZnYn/view"
-    },
-    {
       "id": "pyq-mba-kmbn106-2024-2025--6b---",
       "year": "AKTU 2024-2025",
       "session": "2024-2025 Exam",
@@ -22925,19 +21911,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1TRKbBU5fia2WEXhVSTHytd_ffzBo8p0z/view"
     },
     {
-      "id": "pyq-mba-kmbn105-2023-2024----je-",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Marketing Management",
-      "subjectCode": "KMBN105",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1UXfNs0hQhkoWvjzxxlRk8uIrxNVZPje_/view",
-      "url": "https://drive.google.com/file/d/1UXfNs0hQhkoWvjzxxlRk8uIrxNVZPje_/view"
-    },
-    {
       "id": "pyq-mba-kmbn105-2021-2022----tb2",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -22992,19 +21965,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1TRKbBU5fia2WEXhVSTHytd_ffzBo8p0z/view"
     },
     {
-      "id": "pyq-mba-kmbn105-2023-2024----je-",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Marketing Management",
-      "subjectCode": "KMBN105",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1UXfNs0hQhkoWvjzxxlRk8uIrxNVZPje_/view",
-      "url": "https://drive.google.com/file/d/1UXfNs0hQhkoWvjzxxlRk8uIrxNVZPje_/view"
-    },
-    {
       "id": "pyq-mba-kmbn105-2021-2022----tb2",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -23046,19 +22006,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1uYp54DJjBF5IdyNatymiE5MpdCc2PK0a/view"
     },
     {
-      "id": "pyq-mba-kmbn102-2023-2024-x1jq--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Managerial Economics",
-      "subjectCode": "KMBN102",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1s7rVOTgtF3IlyngM2b24-oPBwFx1jqW_/view",
-      "url": "https://drive.google.com/file/d/1s7rVOTgtF3IlyngM2b24-oPBwFx1jqW_/view"
-    },
-    {
       "id": "pyq-mba-kmbn102-2021-2022-k6v-u3",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -23096,19 +22043,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/152WSV-2-CsJejdaIAD1RYTSIW7pDiTPr/view",
       "url": "https://drive.google.com/file/d/152WSV-2-CsJejdaIAD1RYTSIW7pDiTPr/view"
-    },
-    {
-      "id": "pyq-mba-kmbn102-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Managerial Economics",
-      "subjectCode": "KMBN102",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1SmSUYFVtJ4D3bCRCs7UhvC2xOXZAVPs6/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1SmSUYFVtJ4D3bCRCs7UhvC2xOXZAVPs6/view?usp=drive_web"
     }
   ],
   "kmbn102": [
@@ -23126,19 +22060,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1uYp54DJjBF5IdyNatymiE5MpdCc2PK0a/view"
     },
     {
-      "id": "pyq-mba-kmbn102-2023-2024-x1jq--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Managerial Economics",
-      "subjectCode": "KMBN102",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1s7rVOTgtF3IlyngM2b24-oPBwFx1jqW_/view",
-      "url": "https://drive.google.com/file/d/1s7rVOTgtF3IlyngM2b24-oPBwFx1jqW_/view"
-    },
-    {
       "id": "pyq-mba-kmbn102-2021-2022-k6v-u3",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -23176,19 +22097,114 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/152WSV-2-CsJejdaIAD1RYTSIW7pDiTPr/view",
       "url": "https://drive.google.com/file/d/152WSV-2-CsJejdaIAD1RYTSIW7pDiTPr/view"
-    },
+    }
+  ],
+  "KMBN101": [
     {
-      "id": "pyq-mba-kmbn102-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Managerial Economics",
-      "subjectCode": "KMBN102",
+      "id": "pyq-mba-kmbn101-2022-2023-4---y3",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Management Concepts & Organisational Behaviour",
+      "subjectCode": "KMBN101",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1SmSUYFVtJ4D3bCRCs7UhvC2xOXZAVPs6/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1SmSUYFVtJ4D3bCRCs7UhvC2xOXZAVPs6/view?usp=drive_web"
+      "pdfUrl": "https://drive.google.com/file/d/1Zs9KL0lRgcRSGRP7_oHr10khbn4YSBy3/view",
+      "url": "https://drive.google.com/file/d/1Zs9KL0lRgcRSGRP7_oHr10khbn4YSBy3/view"
+    },
+    {
+      "id": "pyq-mba-kmbn101-2025-2026-vm3---",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Management Concepts & Organisational Behaviour",
+      "subjectCode": "KMBN101",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1S9CRN3dsczI-J2f5cPEY-cUnc_vm3IFN/view",
+      "url": "https://drive.google.com/file/d/1S9CRN3dsczI-J2f5cPEY-cUnc_vm3IFN/view"
+    },
+    {
+      "id": "pyq-mba-kmbn101-2024-2025---6yd-",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Management Concepts & Organisational Behaviour",
+      "subjectCode": "KMBN101",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1h0BhQw_bEfOUEVA-l6rWJhdLNyXV6ydH/view",
+      "url": "https://drive.google.com/file/d/1h0BhQw_bEfOUEVA-l6rWJhdLNyXV6ydH/view"
+    },
+    {
+      "id": "pyq-mba-kmbn101-2020-2021--k-rf-",
+      "year": "AKTU 2020-2021",
+      "session": "2020-2021 Exam",
+      "examYear": "2020-2021",
+      "subject": "Management Concepts & Organisational Behaviour",
+      "subjectCode": "KMBN101",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1-Nso7I2pMykE5nKN6sIkEk64DTVkPrfA/view",
+      "url": "https://drive.google.com/file/d/1-Nso7I2pMykE5nKN6sIkEk64DTVkPrfA/view"
+    }
+  ],
+  "kmbn101": [
+    {
+      "id": "pyq-mba-kmbn101-2022-2023-4---y3",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Management Concepts & Organisational Behaviour",
+      "subjectCode": "KMBN101",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1Zs9KL0lRgcRSGRP7_oHr10khbn4YSBy3/view",
+      "url": "https://drive.google.com/file/d/1Zs9KL0lRgcRSGRP7_oHr10khbn4YSBy3/view"
+    },
+    {
+      "id": "pyq-mba-kmbn101-2025-2026-vm3---",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Management Concepts & Organisational Behaviour",
+      "subjectCode": "KMBN101",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1S9CRN3dsczI-J2f5cPEY-cUnc_vm3IFN/view",
+      "url": "https://drive.google.com/file/d/1S9CRN3dsczI-J2f5cPEY-cUnc_vm3IFN/view"
+    },
+    {
+      "id": "pyq-mba-kmbn101-2024-2025---6yd-",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Management Concepts & Organisational Behaviour",
+      "subjectCode": "KMBN101",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1h0BhQw_bEfOUEVA-l6rWJhdLNyXV6ydH/view",
+      "url": "https://drive.google.com/file/d/1h0BhQw_bEfOUEVA-l6rWJhdLNyXV6ydH/view"
+    },
+    {
+      "id": "pyq-mba-kmbn101-2020-2021--k-rf-",
+      "year": "AKTU 2020-2021",
+      "session": "2020-2021 Exam",
+      "examYear": "2020-2021",
+      "subject": "Management Concepts & Organisational Behaviour",
+      "subjectCode": "KMBN101",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1-Nso7I2pMykE5nKN6sIkEk64DTVkPrfA/view",
+      "url": "https://drive.google.com/file/d/1-Nso7I2pMykE5nKN6sIkEk64DTVkPrfA/view"
     }
   ],
   "BP803ET": [
@@ -23206,19 +22222,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1K-fPOXeU2-rExB5amcBEQ21hSxOlND_W/view"
     },
     {
-      "id": "pyq-b-pharm-bp803et-2023-2024-tuq9n-",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharma Marketing Management",
-      "subjectCode": "BP803ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1M3-MUKRwYn3tnhrweY9cmUgYpituq9nG/view",
-      "url": "https://drive.google.com/file/d/1M3-MUKRwYn3tnhrweY9cmUgYpituq9nG/view"
-    },
-    {
       "id": "pyq-b-pharm-bp803et-2024-2025-o-8-ni",
       "year": "AKTU 2024-2025",
       "session": "2024-2025 Exam",
@@ -23243,19 +22246,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1zmHOPwOBBIBYYyJVdEAwkXAmfzPdGvX4/view",
       "url": "https://drive.google.com/file/d/1zmHOPwOBBIBYYyJVdEAwkXAmfzPdGvX4/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp803et-2025-uq7-9s",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharma Marketing Management",
-      "subjectCode": "BP803ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1xW5hR0df520Or74fdXm6wKGiAzuq7U9s/view",
-      "url": "https://drive.google.com/file/d/1xW5hR0df520Or74fdXm6wKGiAzuq7U9s/view"
     }
   ],
   "bp803et": [
@@ -23273,19 +22263,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1K-fPOXeU2-rExB5amcBEQ21hSxOlND_W/view"
     },
     {
-      "id": "pyq-b-pharm-bp803et-2023-2024-tuq9n-",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharma Marketing Management",
-      "subjectCode": "BP803ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1M3-MUKRwYn3tnhrweY9cmUgYpituq9nG/view",
-      "url": "https://drive.google.com/file/d/1M3-MUKRwYn3tnhrweY9cmUgYpituq9nG/view"
-    },
-    {
       "id": "pyq-b-pharm-bp803et-2024-2025-o-8-ni",
       "year": "AKTU 2024-2025",
       "session": "2024-2025 Exam",
@@ -23310,19 +22287,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1zmHOPwOBBIBYYyJVdEAwkXAmfzPdGvX4/view",
       "url": "https://drive.google.com/file/d/1zmHOPwOBBIBYYyJVdEAwkXAmfzPdGvX4/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp803et-2025-uq7-9s",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharma Marketing Management",
-      "subjectCode": "BP803ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1xW5hR0df520Or74fdXm6wKGiAzuq7U9s/view",
-      "url": "https://drive.google.com/file/d/1xW5hR0df520Or74fdXm6wKGiAzuq7U9s/view"
     }
   ],
   "BP804ET": [
@@ -23390,19 +22354,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1LZCmQIf795GE91b-UlbZ9FZ1fFboCjJx/view",
       "url": "https://drive.google.com/file/d/1LZCmQIf795GE91b-UlbZ9FZ1fFboCjJx/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp804et-2025--ae--n",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Regulatory Science",
-      "subjectCode": "BP804ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1tFnjBzPkunw-bZy6V6j_cstpi6Nae_Jn/view",
-      "url": "https://drive.google.com/file/d/1tFnjBzPkunw-bZy6V6j_cstpi6Nae_Jn/view"
     }
   ],
   "bp804et": [
@@ -23470,19 +22421,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1LZCmQIf795GE91b-UlbZ9FZ1fFboCjJx/view",
       "url": "https://drive.google.com/file/d/1LZCmQIf795GE91b-UlbZ9FZ1fFboCjJx/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp804et-2025--ae--n",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Regulatory Science",
-      "subjectCode": "BP804ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1tFnjBzPkunw-bZy6V6j_cstpi6Nae_Jn/view",
-      "url": "https://drive.google.com/file/d/1tFnjBzPkunw-bZy6V6j_cstpi6Nae_Jn/view"
     }
   ],
   "KMBNHR02": [
@@ -23576,32 +22514,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1LfF03kP7VzjaKRN5VKDA9bq-BFU5W6zs/view",
       "url": "https://drive.google.com/file/d/1LfF03kP7VzjaKRN5VKDA9bq-BFU5W6zs/view"
-    },
-    {
-      "id": "pyq-mba-kmbnhr02-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Employee Relations & Labour Laws",
-      "subjectCode": "KMBNHR02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1vTB-SoPT5ovedA5axHAhsibc1y6m3AD0/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1vTB-SoPT5ovedA5axHAhsibc1y6m3AD0/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-mba-kmbnhr02-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Employee Relations & Labour Laws",
-      "subjectCode": "KMBNHR02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1xfKb2vSukKVdNeibeRYryq4E__sLXITW/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1xfKb2vSukKVdNeibeRYryq4E__sLXITW/view?usp=drive_web"
     }
   ],
   "kmbnhr02": [
@@ -23695,114 +22607,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1LfF03kP7VzjaKRN5VKDA9bq-BFU5W6zs/view",
       "url": "https://drive.google.com/file/d/1LfF03kP7VzjaKRN5VKDA9bq-BFU5W6zs/view"
-    },
-    {
-      "id": "pyq-mba-kmbnhr02-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Employee Relations & Labour Laws",
-      "subjectCode": "KMBNHR02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1vTB-SoPT5ovedA5axHAhsibc1y6m3AD0/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1vTB-SoPT5ovedA5axHAhsibc1y6m3AD0/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-mba-kmbnhr02-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Employee Relations & Labour Laws",
-      "subjectCode": "KMBNHR02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1xfKb2vSukKVdNeibeRYryq4E__sLXITW/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1xfKb2vSukKVdNeibeRYryq4E__sLXITW/view?usp=drive_web"
-    }
-  ],
-  "KCA205": [
-    {
-      "id": "pyq-mca-kca205-2023-2024---0---",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Software Engineering",
-      "subjectCode": "KCA205",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1s8MoQBBzAOBzwLjwBZ-vmYcyGhWV0AGK/view",
-      "url": "https://drive.google.com/file/d/1s8MoQBBzAOBzwLjwBZ-vmYcyGhWV0AGK/view"
-    },
-    {
-      "id": "pyq-mca-kca205-2024-2025--9tf--",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Software Engineering",
-      "subjectCode": "KCA205",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1yLKflzbgm5nx6GJ-wz4nR8wM8LQ9tfXB/view",
-      "url": "https://drive.google.com/file/d/1yLKflzbgm5nx6GJ-wz4nR8wM8LQ9tfXB/view"
-    },
-    {
-      "id": "pyq-mca-kca205-2022-2023--cl8xx",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Software Engineering",
-      "subjectCode": "KCA205",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1zQ1TCnBzAzWUs_wf0buH6d__XFTcl8xx/view",
-      "url": "https://drive.google.com/file/d/1zQ1TCnBzAzWUs_wf0buH6d__XFTcl8xx/view"
-    }
-  ],
-  "kca205": [
-    {
-      "id": "pyq-mca-kca205-2023-2024---0---",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Software Engineering",
-      "subjectCode": "KCA205",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1s8MoQBBzAOBzwLjwBZ-vmYcyGhWV0AGK/view",
-      "url": "https://drive.google.com/file/d/1s8MoQBBzAOBzwLjwBZ-vmYcyGhWV0AGK/view"
-    },
-    {
-      "id": "pyq-mca-kca205-2024-2025--9tf--",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Software Engineering",
-      "subjectCode": "KCA205",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1yLKflzbgm5nx6GJ-wz4nR8wM8LQ9tfXB/view",
-      "url": "https://drive.google.com/file/d/1yLKflzbgm5nx6GJ-wz4nR8wM8LQ9tfXB/view"
-    },
-    {
-      "id": "pyq-mca-kca205-2022-2023--cl8xx",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Software Engineering",
-      "subjectCode": "KCA205",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1zQ1TCnBzAzWUs_wf0buH6d__XFTcl8xx/view",
-      "url": "https://drive.google.com/file/d/1zQ1TCnBzAzWUs_wf0buH6d__XFTcl8xx/view"
     }
   ],
   "KMBNHR01": [
@@ -23848,19 +22652,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1xmNV2iNVDx2bOeXf5T3fzzG4gYFav0K8/view",
       "url": "https://drive.google.com/file/d/1xmNV2iNVDx2bOeXf5T3fzzG4gYFav0K8/view"
-    },
-    {
-      "id": "pyq-mba-kmbnom02-2023-2024-g0-0nc",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Total Quality Management & Six Sigma",
-      "subjectCode": "KMBNOM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1GPa6Wx75o6TPxdYv-gB2vsWrdMg0L0nc/view",
-      "url": "https://drive.google.com/file/d/1GPa6Wx75o6TPxdYv-gB2vsWrdMg0L0nc/view"
     }
   ],
   "kmbnom02": [
@@ -23876,19 +22667,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1xmNV2iNVDx2bOeXf5T3fzzG4gYFav0K8/view",
       "url": "https://drive.google.com/file/d/1xmNV2iNVDx2bOeXf5T3fzzG4gYFav0K8/view"
-    },
-    {
-      "id": "pyq-mba-kmbnom02-2023-2024-g0-0nc",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Total Quality Management & Six Sigma",
-      "subjectCode": "KMBNOM02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1GPa6Wx75o6TPxdYv-gB2vsWrdMg0L0nc/view",
-      "url": "https://drive.google.com/file/d/1GPa6Wx75o6TPxdYv-gB2vsWrdMg0L0nc/view"
     }
   ],
   "KMBNIT02": [
@@ -23919,222 +22697,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1JfTBNQEeCc2lo7v5aR9h_nU_Y_eHKo7B/view",
       "url": "https://drive.google.com/file/d/1JfTBNQEeCc2lo7v5aR9h_nU_Y_eHKo7B/view"
-    }
-  ],
-  "KMBNIB02": [
-    {
-      "id": "pyq-mba-kmbnib02-2023-2024--5l0-b",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Export-Import Procedures & Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1xaBzod4EsQM4TgQrpb8vAcoo3tK5l0Mb/view",
-      "url": "https://drive.google.com/file/d/1xaBzod4EsQM4TgQrpb8vAcoo3tK5l0Mb/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib02-2024-2025--7-x-8",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Export-Import Procedures & Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1s3AU5Pt2cTxN3Tm1uW0BmkBbsmC7XxS8/view",
-      "url": "https://drive.google.com/file/d/1s3AU5Pt2cTxN3Tm1uW0BmkBbsmC7XxS8/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib02-2022-2023-9i-u-8",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Export-Import Procedures & Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1r_kyQwewJMmY92jwNxP46wT-Rk9iGuM8/view",
-      "url": "https://drive.google.com/file/d/1r_kyQwewJMmY92jwNxP46wT-Rk9iGuM8/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib02-2021-2022-h-r0h1",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Export-Import Procedures & Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ADl6LbCyQGsIEZC_0MYa1cwe_GhPr0h1/view",
-      "url": "https://drive.google.com/file/d/1ADl6LbCyQGsIEZC_0MYa1cwe_GhPr0h1/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib02-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Export Import Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1rcz1Pa3p5S86YGi_Ru7pvrT4Cjd3gJVx/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1rcz1Pa3p5S86YGi_Ru7pvrT4Cjd3gJVx/view?usp=drive_web"
-    }
-  ],
-  "kmbnib02": [
-    {
-      "id": "pyq-mba-kmbnib02-2023-2024--5l0-b",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Export-Import Procedures & Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1xaBzod4EsQM4TgQrpb8vAcoo3tK5l0Mb/view",
-      "url": "https://drive.google.com/file/d/1xaBzod4EsQM4TgQrpb8vAcoo3tK5l0Mb/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib02-2024-2025--7-x-8",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Export-Import Procedures & Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1s3AU5Pt2cTxN3Tm1uW0BmkBbsmC7XxS8/view",
-      "url": "https://drive.google.com/file/d/1s3AU5Pt2cTxN3Tm1uW0BmkBbsmC7XxS8/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib02-2022-2023-9i-u-8",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Export-Import Procedures & Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1r_kyQwewJMmY92jwNxP46wT-Rk9iGuM8/view",
-      "url": "https://drive.google.com/file/d/1r_kyQwewJMmY92jwNxP46wT-Rk9iGuM8/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib02-2021-2022-h-r0h1",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Export-Import Procedures & Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ADl6LbCyQGsIEZC_0MYa1cwe_GhPr0h1/view",
-      "url": "https://drive.google.com/file/d/1ADl6LbCyQGsIEZC_0MYa1cwe_GhPr0h1/view"
-    },
-    {
-      "id": "pyq-mba-kmbnib02-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Export Import Documentation",
-      "subjectCode": "KMBNIB02",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1rcz1Pa3p5S86YGi_Ru7pvrT4Cjd3gJVx/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1rcz1Pa3p5S86YGi_Ru7pvrT4Cjd3gJVx/view?usp=drive_web"
-    }
-  ],
-  "BP501T": [
-    {
-      "id": "pyq-b-pharm-bp501t-2024--q-a-h",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Medicinal Chemistry II",
-      "subjectCode": "BP501T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Tfn83FDkDrpopoUyC89STx3OZaQqYa-h/view",
-      "url": "https://drive.google.com/file/d/1Tfn83FDkDrpopoUyC89STx3OZaQqYa-h/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp501t-2023-p6-g-5",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Medicinal Chemistry II",
-      "subjectCode": "BP501T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HvRvROMmraw9_ORyQC5rDL7_yvp6MgB5/view",
-      "url": "https://drive.google.com/file/d/1HvRvROMmraw9_ORyQC5rDL7_yvp6MgB5/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp501t-2025-e-h-zd",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Medicinal Chemistry II",
-      "subjectCode": "BP501T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1xSG520fi2YrKuG3w-xsCrP5VcOeGhXzd/view",
-      "url": "https://drive.google.com/file/d/1xSG520fi2YrKuG3w-xsCrP5VcOeGhXzd/view"
-    }
-  ],
-  "bp501t": [
-    {
-      "id": "pyq-b-pharm-bp501t-2024--q-a-h",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Medicinal Chemistry II",
-      "subjectCode": "BP501T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Tfn83FDkDrpopoUyC89STx3OZaQqYa-h/view",
-      "url": "https://drive.google.com/file/d/1Tfn83FDkDrpopoUyC89STx3OZaQqYa-h/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp501t-2023-p6-g-5",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Medicinal Chemistry II",
-      "subjectCode": "BP501T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HvRvROMmraw9_ORyQC5rDL7_yvp6MgB5/view",
-      "url": "https://drive.google.com/file/d/1HvRvROMmraw9_ORyQC5rDL7_yvp6MgB5/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp501t-2025-e-h-zd",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Medicinal Chemistry II",
-      "subjectCode": "BP501T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1xSG520fi2YrKuG3w-xsCrP5VcOeGhXzd/view",
-      "url": "https://drive.google.com/file/d/1xSG520fi2YrKuG3w-xsCrP5VcOeGhXzd/view"
     }
   ],
   "BP801T": [
@@ -24202,45 +22764,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1uhXaW9tzqHeajabLEdveHjyL_H2Pf0nj/view",
       "url": "https://drive.google.com/file/d/1uhXaW9tzqHeajabLEdveHjyL_H2Pf0nj/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp801t-2024-e--wq1",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Biostatistics & Research Methodology",
-      "subjectCode": "BP801T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1LGL7UwVHmI7cTZMuii-k7K4OINeYCwq1/view",
-      "url": "https://drive.google.com/file/d/1LGL7UwVHmI7cTZMuii-k7K4OINeYCwq1/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp801t-2023--v-k3c",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Biostatistics & Research Methodology",
-      "subjectCode": "BP801T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Pf6BvR0-FjS1L8M9dD_x0AVRtAMvGk3c/view",
-      "url": "https://drive.google.com/file/d/1Pf6BvR0-FjS1L8M9dD_x0AVRtAMvGk3c/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp801t-2025-mfx-6-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Biostatistics & Research Methodology",
-      "subjectCode": "BP801T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1R8SS6aLxuoItRbhfE13IR0J6ubmfxW6L/view",
-      "url": "https://drive.google.com/file/d/1R8SS6aLxuoItRbhfE13IR0J6ubmfxW6L/view"
     }
   ],
   "bp801t": [
@@ -24308,75 +22831,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1uhXaW9tzqHeajabLEdveHjyL_H2Pf0nj/view",
       "url": "https://drive.google.com/file/d/1uhXaW9tzqHeajabLEdveHjyL_H2Pf0nj/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp801t-2024-e--wq1",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Biostatistics & Research Methodology",
-      "subjectCode": "BP801T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1LGL7UwVHmI7cTZMuii-k7K4OINeYCwq1/view",
-      "url": "https://drive.google.com/file/d/1LGL7UwVHmI7cTZMuii-k7K4OINeYCwq1/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp801t-2023--v-k3c",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Biostatistics & Research Methodology",
-      "subjectCode": "BP801T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Pf6BvR0-FjS1L8M9dD_x0AVRtAMvGk3c/view",
-      "url": "https://drive.google.com/file/d/1Pf6BvR0-FjS1L8M9dD_x0AVRtAMvGk3c/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp801t-2025-mfx-6-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Biostatistics & Research Methodology",
-      "subjectCode": "BP801T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1R8SS6aLxuoItRbhfE13IR0J6ubmfxW6L/view",
-      "url": "https://drive.google.com/file/d/1R8SS6aLxuoItRbhfE13IR0J6ubmfxW6L/view"
-    }
-  ],
-  "KCA105": [
-    {
-      "id": "pyq-mca-kca105-2023-2024-0--p-3",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Principles of Management & Communication",
-      "subjectCode": "KCA105",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/153FklMJisWKPvKs2SENB5z3PYz0VYpG3/view",
-      "url": "https://drive.google.com/file/d/153FklMJisWKPvKs2SENB5z3PYz0VYpG3/view"
-    }
-  ],
-  "kca105": [
-    {
-      "id": "pyq-mca-kca105-2023-2024-0--p-3",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Principles of Management & Communication",
-      "subjectCode": "KCA105",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/153FklMJisWKPvKs2SENB5z3PYz0VYpG3/view",
-      "url": "https://drive.google.com/file/d/153FklMJisWKPvKs2SENB5z3PYz0VYpG3/view"
     }
   ],
   "BMC101": [
@@ -24487,6 +22941,88 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1zPZIrXSBtmejULgO1FrHWQJGH2lS4xii/view"
     }
   ],
+  "KMBNIB02": [
+    {
+      "id": "pyq-mba-kmbnib02-2024-2025--7-x-8",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Export-Import Procedures & Documentation",
+      "subjectCode": "KMBNIB02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1s3AU5Pt2cTxN3Tm1uW0BmkBbsmC7XxS8/view",
+      "url": "https://drive.google.com/file/d/1s3AU5Pt2cTxN3Tm1uW0BmkBbsmC7XxS8/view"
+    },
+    {
+      "id": "pyq-mba-kmbnib02-2022-2023-9i-u-8",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Export-Import Procedures & Documentation",
+      "subjectCode": "KMBNIB02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1r_kyQwewJMmY92jwNxP46wT-Rk9iGuM8/view",
+      "url": "https://drive.google.com/file/d/1r_kyQwewJMmY92jwNxP46wT-Rk9iGuM8/view"
+    },
+    {
+      "id": "pyq-mba-kmbnib02-2021-2022-h-r0h1",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Export-Import Procedures & Documentation",
+      "subjectCode": "KMBNIB02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1ADl6LbCyQGsIEZC_0MYa1cwe_GhPr0h1/view",
+      "url": "https://drive.google.com/file/d/1ADl6LbCyQGsIEZC_0MYa1cwe_GhPr0h1/view"
+    }
+  ],
+  "kmbnib02": [
+    {
+      "id": "pyq-mba-kmbnib02-2024-2025--7-x-8",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Export-Import Procedures & Documentation",
+      "subjectCode": "KMBNIB02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1s3AU5Pt2cTxN3Tm1uW0BmkBbsmC7XxS8/view",
+      "url": "https://drive.google.com/file/d/1s3AU5Pt2cTxN3Tm1uW0BmkBbsmC7XxS8/view"
+    },
+    {
+      "id": "pyq-mba-kmbnib02-2022-2023-9i-u-8",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Export-Import Procedures & Documentation",
+      "subjectCode": "KMBNIB02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1r_kyQwewJMmY92jwNxP46wT-Rk9iGuM8/view",
+      "url": "https://drive.google.com/file/d/1r_kyQwewJMmY92jwNxP46wT-Rk9iGuM8/view"
+    },
+    {
+      "id": "pyq-mba-kmbnib02-2021-2022-h-r0h1",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Export-Import Procedures & Documentation",
+      "subjectCode": "KMBNIB02",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1ADl6LbCyQGsIEZC_0MYa1cwe_GhPr0h1/view",
+      "url": "https://drive.google.com/file/d/1ADl6LbCyQGsIEZC_0MYa1cwe_GhPr0h1/view"
+    }
+  ],
   "BP505T": [
     {
       "id": "pyq-b-pharm-bp505t-2020-2021-z6d-kr",
@@ -24515,19 +23051,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1rGdChkJb39ejs0Z0ZBikjZLtyLGLiys9/view"
     },
     {
-      "id": "pyq-b-pharm-bp505t-2024-vv6-i6",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmaceutical Jurisprudence",
-      "subjectCode": "BP505T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1euelrF56fhbsPXu8o5ZF7aFGBgvv6_i6/view",
-      "url": "https://drive.google.com/file/d/1euelrF56fhbsPXu8o5ZF7aFGBgvv6_i6/view"
-    },
-    {
       "id": "pyq-b-pharm-bp505t-2022-2023--0x-o-",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
@@ -24554,19 +23077,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1Sjhos2v1CuW8hrzT-Z7aGlhlP_AKyNJc/view"
     },
     {
-      "id": "pyq-b-pharm-bp505t-2026-m-----",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Jurisprudence",
-      "subjectCode": "BP505T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IlkxdXMxQJ-oh2GAwpnAOFA9qCmJTCFJ/view",
-      "url": "https://drive.google.com/file/d/1IlkxdXMxQJ-oh2GAwpnAOFA9qCmJTCFJ/view"
-    },
-    {
       "id": "pyq-b-pharm-bp505t-2021-2022-65d-e-",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -24591,32 +23101,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1R5AKjWP4tjBanJmVF2rsHud36kWZ2eaP/view",
       "url": "https://drive.google.com/file/d/1R5AKjWP4tjBanJmVF2rsHud36kWZ2eaP/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp505t-2023-------",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmaceutical Jurisprudence",
-      "subjectCode": "BP505T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1QV7A2cC5etgBpm5cFi0T9Vn2i5_ECPA_/view",
-      "url": "https://drive.google.com/file/d/1QV7A2cC5etgBpm5cFi0T9Vn2i5_ECPA_/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp505t-2025-g-d--1",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Jurisprudence",
-      "subjectCode": "BP505T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1PdTU99Ft_lOHm4iKmqHyZzqYjOgWdQM1/view",
-      "url": "https://drive.google.com/file/d/1PdTU99Ft_lOHm4iKmqHyZzqYjOgWdQM1/view"
     }
   ],
   "bp505t": [
@@ -24647,19 +23131,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1rGdChkJb39ejs0Z0ZBikjZLtyLGLiys9/view"
     },
     {
-      "id": "pyq-b-pharm-bp505t-2024-vv6-i6",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmaceutical Jurisprudence",
-      "subjectCode": "BP505T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1euelrF56fhbsPXu8o5ZF7aFGBgvv6_i6/view",
-      "url": "https://drive.google.com/file/d/1euelrF56fhbsPXu8o5ZF7aFGBgvv6_i6/view"
-    },
-    {
       "id": "pyq-b-pharm-bp505t-2022-2023--0x-o-",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
@@ -24686,19 +23157,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1Sjhos2v1CuW8hrzT-Z7aGlhlP_AKyNJc/view"
     },
     {
-      "id": "pyq-b-pharm-bp505t-2026-m-----",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Jurisprudence",
-      "subjectCode": "BP505T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IlkxdXMxQJ-oh2GAwpnAOFA9qCmJTCFJ/view",
-      "url": "https://drive.google.com/file/d/1IlkxdXMxQJ-oh2GAwpnAOFA9qCmJTCFJ/view"
-    },
-    {
       "id": "pyq-b-pharm-bp505t-2021-2022-65d-e-",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -24723,118 +23181,62 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1R5AKjWP4tjBanJmVF2rsHud36kWZ2eaP/view",
       "url": "https://drive.google.com/file/d/1R5AKjWP4tjBanJmVF2rsHud36kWZ2eaP/view"
-    },
+    }
+  ],
+  "KCA205": [
     {
-      "id": "pyq-b-pharm-bp505t-2023-------",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmaceutical Jurisprudence",
-      "subjectCode": "BP505T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1QV7A2cC5etgBpm5cFi0T9Vn2i5_ECPA_/view",
-      "url": "https://drive.google.com/file/d/1QV7A2cC5etgBpm5cFi0T9Vn2i5_ECPA_/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp505t-2025-g-d--1",
+      "id": "pyq-mca-kca205-2024-2025--9tf--",
       "year": "AKTU 2024-2025",
       "session": "2024-2025 Exam",
       "examYear": "2024-2025",
-      "subject": "Pharmaceutical Jurisprudence",
-      "subjectCode": "BP505T",
+      "subject": "Software Engineering",
+      "subjectCode": "KCA205",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1PdTU99Ft_lOHm4iKmqHyZzqYjOgWdQM1/view",
-      "url": "https://drive.google.com/file/d/1PdTU99Ft_lOHm4iKmqHyZzqYjOgWdQM1/view"
-    }
-  ],
-  "BP503T": [
+      "pdfUrl": "https://drive.google.com/file/d/1yLKflzbgm5nx6GJ-wz4nR8wM8LQ9tfXB/view",
+      "url": "https://drive.google.com/file/d/1yLKflzbgm5nx6GJ-wz4nR8wM8LQ9tfXB/view"
+    },
     {
-      "id": "pyq-b-pharm-bp503t-2023--ri-en",
+      "id": "pyq-mca-kca205-2022-2023--cl8xx",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
       "examYear": "2022-2023",
-      "subject": "Pharmacology II",
-      "subjectCode": "BP503T",
+      "subject": "Software Engineering",
+      "subjectCode": "KCA205",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1F8ixmsuhZCFCta00fI5srT2rK0UriVen/view",
-      "url": "https://drive.google.com/file/d/1F8ixmsuhZCFCta00fI5srT2rK0UriVen/view"
-    },
+      "pdfUrl": "https://drive.google.com/file/d/1zQ1TCnBzAzWUs_wf0buH6d__XFTcl8xx/view",
+      "url": "https://drive.google.com/file/d/1zQ1TCnBzAzWUs_wf0buH6d__XFTcl8xx/view"
+    }
+  ],
+  "kca205": [
     {
-      "id": "pyq-b-pharm-bp503t-2025--h--q-",
+      "id": "pyq-mca-kca205-2024-2025--9tf--",
       "year": "AKTU 2024-2025",
       "session": "2024-2025 Exam",
       "examYear": "2024-2025",
-      "subject": "Pharmacology II",
-      "subjectCode": "BP503T",
+      "subject": "Software Engineering",
+      "subjectCode": "KCA205",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1wRji5x4WAmn2KygjLOCOm3ZMmnFhEXqQ/view",
-      "url": "https://drive.google.com/file/d/1wRji5x4WAmn2KygjLOCOm3ZMmnFhEXqQ/view"
-    }
-  ],
-  "bp503t": [
+      "pdfUrl": "https://drive.google.com/file/d/1yLKflzbgm5nx6GJ-wz4nR8wM8LQ9tfXB/view",
+      "url": "https://drive.google.com/file/d/1yLKflzbgm5nx6GJ-wz4nR8wM8LQ9tfXB/view"
+    },
     {
-      "id": "pyq-b-pharm-bp503t-2023--ri-en",
+      "id": "pyq-mca-kca205-2022-2023--cl8xx",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
       "examYear": "2022-2023",
-      "subject": "Pharmacology II",
-      "subjectCode": "BP503T",
+      "subject": "Software Engineering",
+      "subjectCode": "KCA205",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1F8ixmsuhZCFCta00fI5srT2rK0UriVen/view",
-      "url": "https://drive.google.com/file/d/1F8ixmsuhZCFCta00fI5srT2rK0UriVen/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp503t-2025--h--q-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmacology II",
-      "subjectCode": "BP503T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1wRji5x4WAmn2KygjLOCOm3ZMmnFhEXqQ/view",
-      "url": "https://drive.google.com/file/d/1wRji5x4WAmn2KygjLOCOm3ZMmnFhEXqQ/view"
-    }
-  ],
-  "KMBNIT03": [
-    {
-      "id": "pyq-mba-kmbnit03-2023-2024-xwu5-h",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "E-Commerce & Digital Business Strategy",
-      "subjectCode": "KMBNIT03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1U1JhaXxiQc9qa9yqhEDOmVgP2Yxwu5Oh/view",
-      "url": "https://drive.google.com/file/d/1U1JhaXxiQc9qa9yqhEDOmVgP2Yxwu5Oh/view"
-    }
-  ],
-  "kmbnit03": [
-    {
-      "id": "pyq-mba-kmbnit03-2023-2024-xwu5-h",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "E-Commerce & Digital Business Strategy",
-      "subjectCode": "KMBNIT03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1U1JhaXxiQc9qa9yqhEDOmVgP2Yxwu5Oh/view",
-      "url": "https://drive.google.com/file/d/1U1JhaXxiQc9qa9yqhEDOmVgP2Yxwu5Oh/view"
+      "pdfUrl": "https://drive.google.com/file/d/1zQ1TCnBzAzWUs_wf0buH6d__XFTcl8xx/view",
+      "url": "https://drive.google.com/file/d/1zQ1TCnBzAzWUs_wf0buH6d__XFTcl8xx/view"
     }
   ],
   "KMBNIB03": [
@@ -24865,196 +23267,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/18LQrNWwE5dvagXE9WKaU52nDce8eT5W8/view",
       "url": "https://drive.google.com/file/d/18LQrNWwE5dvagXE9WKaU52nDce8eT5W8/view"
-    }
-  ],
-  "BP504T": [
-    {
-      "id": "pyq-b-pharm-bp504t-2025-477---",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmacognosy & Phytochemistry II",
-      "subjectCode": "BP504T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1J_qsKxndEkATGcfmfa_sOSL2sO477TVG/view",
-      "url": "https://drive.google.com/file/d/1J_qsKxndEkATGcfmfa_sOSL2sO477TVG/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp504t-2024---bd--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmacognosy & Phytochemistry II",
-      "subjectCode": "BP504T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/13SEKS3JXRQpxdBhsdi8dW6xiGQIPbdLD/view",
-      "url": "https://drive.google.com/file/d/13SEKS3JXRQpxdBhsdi8dW6xiGQIPbdLD/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp504t-2023--5---d",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmacognosy & Phytochemistry II",
-      "subjectCode": "BP504T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1CodC8qc9xVogIXIHhwIxLjwv-DZ5BJMd/view",
-      "url": "https://drive.google.com/file/d/1CodC8qc9xVogIXIHhwIxLjwv-DZ5BJMd/view"
-    }
-  ],
-  "bp504t": [
-    {
-      "id": "pyq-b-pharm-bp504t-2025-477---",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmacognosy & Phytochemistry II",
-      "subjectCode": "BP504T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1J_qsKxndEkATGcfmfa_sOSL2sO477TVG/view",
-      "url": "https://drive.google.com/file/d/1J_qsKxndEkATGcfmfa_sOSL2sO477TVG/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp504t-2024---bd--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmacognosy & Phytochemistry II",
-      "subjectCode": "BP504T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/13SEKS3JXRQpxdBhsdi8dW6xiGQIPbdLD/view",
-      "url": "https://drive.google.com/file/d/13SEKS3JXRQpxdBhsdi8dW6xiGQIPbdLD/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp504t-2023--5---d",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmacognosy & Phytochemistry II",
-      "subjectCode": "BP504T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1CodC8qc9xVogIXIHhwIxLjwv-DZ5BJMd/view",
-      "url": "https://drive.google.com/file/d/1CodC8qc9xVogIXIHhwIxLjwv-DZ5BJMd/view"
-    }
-  ],
-  "KMBNHR03": [
-    {
-      "id": "pyq-mba-kmbnhr03-2023-2024-----v-",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Industrial Relations & Labour Enactments",
-      "subjectCode": "KMBNHR03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ZObyOKhJcSUWXhIKOw3To-jFNWDK_NvK/view",
-      "url": "https://drive.google.com/file/d/1ZObyOKhJcSUWXhIKOw3To-jFNWDK_NvK/view"
-    },
-    {
-      "id": "pyq-mba-kmbnhr03-2024-2025--g6-xm",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Industrial Relations & Labour Enactments",
-      "subjectCode": "KMBNHR03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1KOPLPWUdARGNcyVvByWGybsDgUGg6Mxm/view",
-      "url": "https://drive.google.com/file/d/1KOPLPWUdARGNcyVvByWGybsDgUGg6Mxm/view"
-    },
-    {
-      "id": "pyq-mba-kmbnhr03-2025-2026--2t--3",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Industrial Relations & Labour Enactments",
-      "subjectCode": "KMBNHR03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1uikXvgccpvIL_YcnuYGSl4--gkE2tTE3/view",
-      "url": "https://drive.google.com/file/d/1uikXvgccpvIL_YcnuYGSl4--gkE2tTE3/view"
-    },
-    {
-      "id": "pyq-mba-kmbnhr03-2019-2020-k-l-w-",
-      "year": "AKTU 2019-2020",
-      "session": "2019-2020 Exam",
-      "examYear": "2019-2020",
-      "subject": "Industrial Relations & Labour Enactments",
-      "subjectCode": "KMBNHR03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/17PjAd5XAljRfr5Sr1v2OLweqdakClOwL/view",
-      "url": "https://drive.google.com/file/d/17PjAd5XAljRfr5Sr1v2OLweqdakClOwL/view"
-    }
-  ],
-  "kmbnhr03": [
-    {
-      "id": "pyq-mba-kmbnhr03-2023-2024-----v-",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Industrial Relations & Labour Enactments",
-      "subjectCode": "KMBNHR03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ZObyOKhJcSUWXhIKOw3To-jFNWDK_NvK/view",
-      "url": "https://drive.google.com/file/d/1ZObyOKhJcSUWXhIKOw3To-jFNWDK_NvK/view"
-    },
-    {
-      "id": "pyq-mba-kmbnhr03-2024-2025--g6-xm",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Industrial Relations & Labour Enactments",
-      "subjectCode": "KMBNHR03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1KOPLPWUdARGNcyVvByWGybsDgUGg6Mxm/view",
-      "url": "https://drive.google.com/file/d/1KOPLPWUdARGNcyVvByWGybsDgUGg6Mxm/view"
-    },
-    {
-      "id": "pyq-mba-kmbnhr03-2025-2026--2t--3",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Industrial Relations & Labour Enactments",
-      "subjectCode": "KMBNHR03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1uikXvgccpvIL_YcnuYGSl4--gkE2tTE3/view",
-      "url": "https://drive.google.com/file/d/1uikXvgccpvIL_YcnuYGSl4--gkE2tTE3/view"
-    },
-    {
-      "id": "pyq-mba-kmbnhr03-2019-2020-k-l-w-",
-      "year": "AKTU 2019-2020",
-      "session": "2019-2020 Exam",
-      "examYear": "2019-2020",
-      "subject": "Industrial Relations & Labour Enactments",
-      "subjectCode": "KMBNHR03",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/17PjAd5XAljRfr5Sr1v2OLweqdakClOwL/view",
-      "url": "https://drive.google.com/file/d/17PjAd5XAljRfr5Sr1v2OLweqdakClOwL/view"
     }
   ],
   "KCA104": [
@@ -25139,6 +23351,170 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1XMhSeNyZXMAouGc4im_wrfNoSaz0EgkO/view"
     }
   ],
+  "KMBNIB01": [
+    {
+      "id": "pyq-mba-kmbnib01-2024-2025-b-0n-y",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "International Business Management",
+      "subjectCode": "KMBNIB01",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1AjiAP2D-IBd3E4Egs39vnzhScPbP0nZy/view",
+      "url": "https://drive.google.com/file/d/1AjiAP2D-IBd3E4Egs39vnzhScPbP0nZy/view"
+    },
+    {
+      "id": "pyq-mba-kmbnib01-2022-2023-2a-9--",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "International Business Management",
+      "subjectCode": "KMBNIB01",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1r8pqIqhF99ivfL3TAD13wooXok2aZ9BK/view",
+      "url": "https://drive.google.com/file/d/1r8pqIqhF99ivfL3TAD13wooXok2aZ9BK/view"
+    },
+    {
+      "id": "pyq-mba-kmbnib01-2025-2026-6uu2y2",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "International Business Management",
+      "subjectCode": "KMBNIB01",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1IeQnew0vyfeh7ybbBe8OxXHEwl6uu2y2/view",
+      "url": "https://drive.google.com/file/d/1IeQnew0vyfeh7ybbBe8OxXHEwl6uu2y2/view"
+    }
+  ],
+  "kmbnib01": [
+    {
+      "id": "pyq-mba-kmbnib01-2024-2025-b-0n-y",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "International Business Management",
+      "subjectCode": "KMBNIB01",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1AjiAP2D-IBd3E4Egs39vnzhScPbP0nZy/view",
+      "url": "https://drive.google.com/file/d/1AjiAP2D-IBd3E4Egs39vnzhScPbP0nZy/view"
+    },
+    {
+      "id": "pyq-mba-kmbnib01-2022-2023-2a-9--",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "International Business Management",
+      "subjectCode": "KMBNIB01",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1r8pqIqhF99ivfL3TAD13wooXok2aZ9BK/view",
+      "url": "https://drive.google.com/file/d/1r8pqIqhF99ivfL3TAD13wooXok2aZ9BK/view"
+    },
+    {
+      "id": "pyq-mba-kmbnib01-2025-2026-6uu2y2",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "International Business Management",
+      "subjectCode": "KMBNIB01",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1IeQnew0vyfeh7ybbBe8OxXHEwl6uu2y2/view",
+      "url": "https://drive.google.com/file/d/1IeQnew0vyfeh7ybbBe8OxXHEwl6uu2y2/view"
+    }
+  ],
+  "KMBNHR03": [
+    {
+      "id": "pyq-mba-kmbnhr03-2024-2025--g6-xm",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Industrial Relations & Labour Enactments",
+      "subjectCode": "KMBNHR03",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1KOPLPWUdARGNcyVvByWGybsDgUGg6Mxm/view",
+      "url": "https://drive.google.com/file/d/1KOPLPWUdARGNcyVvByWGybsDgUGg6Mxm/view"
+    },
+    {
+      "id": "pyq-mba-kmbnhr03-2025-2026--2t--3",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Industrial Relations & Labour Enactments",
+      "subjectCode": "KMBNHR03",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1uikXvgccpvIL_YcnuYGSl4--gkE2tTE3/view",
+      "url": "https://drive.google.com/file/d/1uikXvgccpvIL_YcnuYGSl4--gkE2tTE3/view"
+    },
+    {
+      "id": "pyq-mba-kmbnhr03-2019-2020-k-l-w-",
+      "year": "AKTU 2019-2020",
+      "session": "2019-2020 Exam",
+      "examYear": "2019-2020",
+      "subject": "Industrial Relations & Labour Enactments",
+      "subjectCode": "KMBNHR03",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/17PjAd5XAljRfr5Sr1v2OLweqdakClOwL/view",
+      "url": "https://drive.google.com/file/d/17PjAd5XAljRfr5Sr1v2OLweqdakClOwL/view"
+    }
+  ],
+  "kmbnhr03": [
+    {
+      "id": "pyq-mba-kmbnhr03-2024-2025--g6-xm",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Industrial Relations & Labour Enactments",
+      "subjectCode": "KMBNHR03",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1KOPLPWUdARGNcyVvByWGybsDgUGg6Mxm/view",
+      "url": "https://drive.google.com/file/d/1KOPLPWUdARGNcyVvByWGybsDgUGg6Mxm/view"
+    },
+    {
+      "id": "pyq-mba-kmbnhr03-2025-2026--2t--3",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Industrial Relations & Labour Enactments",
+      "subjectCode": "KMBNHR03",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1uikXvgccpvIL_YcnuYGSl4--gkE2tTE3/view",
+      "url": "https://drive.google.com/file/d/1uikXvgccpvIL_YcnuYGSl4--gkE2tTE3/view"
+    },
+    {
+      "id": "pyq-mba-kmbnhr03-2019-2020-k-l-w-",
+      "year": "AKTU 2019-2020",
+      "session": "2019-2020 Exam",
+      "examYear": "2019-2020",
+      "subject": "Industrial Relations & Labour Enactments",
+      "subjectCode": "KMBNHR03",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/17PjAd5XAljRfr5Sr1v2OLweqdakClOwL/view",
+      "url": "https://drive.google.com/file/d/17PjAd5XAljRfr5Sr1v2OLweqdakClOwL/view"
+    }
+  ],
   "BP404T": [
     {
       "id": "pyq-b-pharm-bp404t-2020-2021--my--j",
@@ -25152,19 +23528,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1xel2ldvANAQ0pesTjCBAGfyCylEmyUCj/view",
       "url": "https://drive.google.com/file/d/1xel2ldvANAQ0pesTjCBAGfyCylEmyUCj/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp404t-2022-2023-9q-2--",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmacology I",
-      "subjectCode": "BP404T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1egs21tiqzbuYn5bcRZuSAQ__zM9qQ2UO/view",
-      "url": "https://drive.google.com/file/d/1egs21tiqzbuYn5bcRZuSAQ__zM9qQ2UO/view"
     },
     {
       "id": "pyq-b-pharm-bp404t-2023-2024-----p-",
@@ -25204,19 +23567,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1FGablWPwCK2QhaJ1F4fCa5ijtN5EeCvR/view",
       "url": "https://drive.google.com/file/d/1FGablWPwCK2QhaJ1F4fCa5ijtN5EeCvR/view"
-    },
-    {
-      "id": "pyq-b-pharm--2023-2024--v--0h",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 4th Semester PYQs(Syllabus, Subjects &amp; Study Guide)",
-      "subjectCode": "BP404T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Oz_ETDGH9OmpRJXG0HlWUrzcwrBvQS0h/view",
-      "url": "https://drive.google.com/file/d/1Oz_ETDGH9OmpRJXG0HlWUrzcwrBvQS0h/view"
     },
     {
       "id": "pyq-b-pharm-bp404t-2019-2020-h1-2c6",
@@ -25260,19 +23610,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1xel2ldvANAQ0pesTjCBAGfyCylEmyUCj/view"
     },
     {
-      "id": "pyq-b-pharm-bp404t-2022-2023-9q-2--",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmacology I",
-      "subjectCode": "BP404T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1egs21tiqzbuYn5bcRZuSAQ__zM9qQ2UO/view",
-      "url": "https://drive.google.com/file/d/1egs21tiqzbuYn5bcRZuSAQ__zM9qQ2UO/view"
-    },
-    {
       "id": "pyq-b-pharm-bp404t-2023-2024-----p-",
       "year": "AKTU 2023-2024",
       "session": "2023-2024 Exam",
@@ -25312,19 +23649,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1FGablWPwCK2QhaJ1F4fCa5ijtN5EeCvR/view"
     },
     {
-      "id": "pyq-b-pharm--2023-2024--v--0h",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 4th Semester PYQs(Syllabus, Subjects &amp; Study Guide)",
-      "subjectCode": "BP404T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Oz_ETDGH9OmpRJXG0HlWUrzcwrBvQS0h/view",
-      "url": "https://drive.google.com/file/d/1Oz_ETDGH9OmpRJXG0HlWUrzcwrBvQS0h/view"
-    },
-    {
       "id": "pyq-b-pharm-bp404t-2019-2020-h1-2c6",
       "year": "AKTU 2019-2020",
       "session": "2019-2020 Exam",
@@ -25351,64 +23675,86 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1src1iyv9Kxb4Z5oTuqcl0aXNKIOJJjJe/view"
     }
   ],
-  "KMBNFM03": [
+  "KMBN301": [
     {
-      "id": "pyq-mba-kmbnfm03-2023-2024-9---zu",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Corporate Tax Planning & Management",
-      "subjectCode": "KMBNFM03",
+      "id": "pyq-mba-kmbn301-2021-2022--0dfj-",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Strategic Management",
+      "subjectCode": "KMBN301",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1FIbIGA-9__o1VxLioO_Jq6u4V99CRAzu/view",
-      "url": "https://drive.google.com/file/d/1FIbIGA-9__o1VxLioO_Jq6u4V99CRAzu/view"
+      "pdfUrl": "https://drive.google.com/file/d/1N6rliPLDcC_P3qyGnyq6xEigJt-0dfjH/view",
+      "url": "https://drive.google.com/file/d/1N6rliPLDcC_P3qyGnyq6xEigJt-0dfjH/view"
+    },
+    {
+      "id": "pyq-mba-kmbn301-2024-2025--5dr5-",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Strategic Management",
+      "subjectCode": "KMBN301",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1yU8J_nqLdOif2m4OcpPncbsaWnW5dr5R/view",
+      "url": "https://drive.google.com/file/d/1yU8J_nqLdOif2m4OcpPncbsaWnW5dr5R/view"
+    },
+    {
+      "id": "pyq-mba-kmbn301-2022-2023--n---s",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Strategic Management",
+      "subjectCode": "KMBN301",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1edtahVgDLJErH5Z0Zrd7b0VbBUEnWL_s/view",
+      "url": "https://drive.google.com/file/d/1edtahVgDLJErH5Z0Zrd7b0VbBUEnWL_s/view"
     }
   ],
-  "kmbnfm03": [
+  "kmbn301": [
     {
-      "id": "pyq-mba-kmbnfm03-2023-2024-9---zu",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Corporate Tax Planning & Management",
-      "subjectCode": "KMBNFM03",
+      "id": "pyq-mba-kmbn301-2021-2022--0dfj-",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Strategic Management",
+      "subjectCode": "KMBN301",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1FIbIGA-9__o1VxLioO_Jq6u4V99CRAzu/view",
-      "url": "https://drive.google.com/file/d/1FIbIGA-9__o1VxLioO_Jq6u4V99CRAzu/view"
-    }
-  ],
-  "KMBNIT01": [
+      "pdfUrl": "https://drive.google.com/file/d/1N6rliPLDcC_P3qyGnyq6xEigJt-0dfjH/view",
+      "url": "https://drive.google.com/file/d/1N6rliPLDcC_P3qyGnyq6xEigJt-0dfjH/view"
+    },
     {
-      "id": "pyq-mba-kmbnit01-2023-2024-nl----",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Enterprise Resource Planning (ERP)",
-      "subjectCode": "KMBNIT01",
+      "id": "pyq-mba-kmbn301-2024-2025--5dr5-",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Strategic Management",
+      "subjectCode": "KMBN301",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/11cjuJREbydjSL5MkW1wqm5-D-KnlUBHC/view",
-      "url": "https://drive.google.com/file/d/11cjuJREbydjSL5MkW1wqm5-D-KnlUBHC/view"
-    }
-  ],
-  "kmbnit01": [
+      "pdfUrl": "https://drive.google.com/file/d/1yU8J_nqLdOif2m4OcpPncbsaWnW5dr5R/view",
+      "url": "https://drive.google.com/file/d/1yU8J_nqLdOif2m4OcpPncbsaWnW5dr5R/view"
+    },
     {
-      "id": "pyq-mba-kmbnit01-2023-2024-nl----",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Enterprise Resource Planning (ERP)",
-      "subjectCode": "KMBNIT01",
+      "id": "pyq-mba-kmbn301-2022-2023--n---s",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Strategic Management",
+      "subjectCode": "KMBN301",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/11cjuJREbydjSL5MkW1wqm5-D-KnlUBHC/view",
-      "url": "https://drive.google.com/file/d/11cjuJREbydjSL5MkW1wqm5-D-KnlUBHC/view"
+      "pdfUrl": "https://drive.google.com/file/d/1edtahVgDLJErH5Z0Zrd7b0VbBUEnWL_s/view",
+      "url": "https://drive.google.com/file/d/1edtahVgDLJErH5Z0Zrd7b0VbBUEnWL_s/view"
     }
   ],
   "BP805ET": [
@@ -25437,19 +23783,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/11o9MJe5hhU6gV1jHFYd4DmKUt_ZjTwl6/view",
       "url": "https://drive.google.com/file/d/11o9MJe5hhU6gV1jHFYd4DmKUt_ZjTwl6/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp805et-2025--of0r-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmacovigilance",
-      "subjectCode": "BP805ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1AjW2SMWugx-kT7tMFheF0i4Ka3Lof0rJ/view",
-      "url": "https://drive.google.com/file/d/1AjW2SMWugx-kT7tMFheF0i4Ka3Lof0rJ/view"
     },
     {
       "id": "pyq-b-pharm-bp805et-2023-2024----k--",
@@ -25519,19 +23852,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/11o9MJe5hhU6gV1jHFYd4DmKUt_ZjTwl6/view"
     },
     {
-      "id": "pyq-b-pharm-bp805et-2025--of0r-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmacovigilance",
-      "subjectCode": "BP805ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1AjW2SMWugx-kT7tMFheF0i4Ka3Lof0rJ/view",
-      "url": "https://drive.google.com/file/d/1AjW2SMWugx-kT7tMFheF0i4Ka3Lof0rJ/view"
-    },
-    {
       "id": "pyq-b-pharm-bp805et-2023-2024----k--",
       "year": "AKTU 2023-2024",
       "session": "2023-2024 Exam",
@@ -25569,62 +23889,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1rM7qTyX8o5-Hpk_Fi2_sMeDDXQ0P2pBk/view",
       "url": "https://drive.google.com/file/d/1rM7qTyX8o5-Hpk_Fi2_sMeDDXQ0P2pBk/view"
-    }
-  ],
-  "BP807ET": [
-    {
-      "id": "pyq-b-pharm--2023-2024---7o-e",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 8th Semester PYQs",
-      "subjectCode": "BP807ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1cgs2wR6XXLj3oDf_hE1iC2p8tLWD7oZe/view",
-      "url": "https://drive.google.com/file/d/1cgs2wR6XXLj3oDf_hE1iC2p8tLWD7oZe/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp807et-2022-2023-fpamxr",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Computer Aided Drug Design",
-      "subjectCode": "BP807ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1G8bbuCukmh4_qS2uShbd3694XHfpamxr/view",
-      "url": "https://drive.google.com/file/d/1G8bbuCukmh4_qS2uShbd3694XHfpamxr/view"
-    }
-  ],
-  "bp807et": [
-    {
-      "id": "pyq-b-pharm--2023-2024---7o-e",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 8th Semester PYQs",
-      "subjectCode": "BP807ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1cgs2wR6XXLj3oDf_hE1iC2p8tLWD7oZe/view",
-      "url": "https://drive.google.com/file/d/1cgs2wR6XXLj3oDf_hE1iC2p8tLWD7oZe/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp807et-2022-2023-fpamxr",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Computer Aided Drug Design",
-      "subjectCode": "BP807ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1G8bbuCukmh4_qS2uShbd3694XHfpamxr/view",
-      "url": "https://drive.google.com/file/d/1G8bbuCukmh4_qS2uShbd3694XHfpamxr/view"
     }
   ],
   "BP604T": [
@@ -25666,19 +23930,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1ciK1DsoHYn14hhl06rEfinerMskS7Xya/view",
       "url": "https://drive.google.com/file/d/1ciK1DsoHYn14hhl06rEfinerMskS7Xya/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp604t-2025--p60mk",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Biopharmaceutics & Pharmacokinetics",
-      "subjectCode": "BP604T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1k9x8IfQHWKFuYrpZnbcNFtmICnFp60mk/view",
-      "url": "https://drive.google.com/file/d/1k9x8IfQHWKFuYrpZnbcNFtmICnFp60mk/view"
     },
     {
       "id": "pyq-b-pharm-bp604t-2023-2024-86--f9",
@@ -25748,19 +23999,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1ciK1DsoHYn14hhl06rEfinerMskS7Xya/view"
     },
     {
-      "id": "pyq-b-pharm-bp604t-2025--p60mk",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Biopharmaceutics & Pharmacokinetics",
-      "subjectCode": "BP604T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1k9x8IfQHWKFuYrpZnbcNFtmICnFp60mk/view",
-      "url": "https://drive.google.com/file/d/1k9x8IfQHWKFuYrpZnbcNFtmICnFp60mk/view"
-    },
-    {
       "id": "pyq-b-pharm-bp604t-2023-2024-86--f9",
       "year": "AKTU 2023-2024",
       "session": "2023-2024 Exam",
@@ -25800,32 +24038,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/16RN8UZVRIEKXHofn0MVILLGCmMZtp62h/view",
       "url": "https://drive.google.com/file/d/16RN8UZVRIEKXHofn0MVILLGCmMZtp62h/view"
-    },
-    {
-      "id": "pyq-b-pharm--2023-2024---8--l",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 6th Semester PYQs",
-      "subjectCode": "BP606T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1QvihsHY6SjokqjUOWhndrF2-_NEQ8C-l/view",
-      "url": "https://drive.google.com/file/d/1QvihsHY6SjokqjUOWhndrF2-_NEQ8C-l/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp606t-2025---3a-n",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Quality Assurance",
-      "subjectCode": "BP606T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1sLEvyxV1-YnGu-SqYM26UJg5f4UP3aSn/view",
-      "url": "https://drive.google.com/file/d/1sLEvyxV1-YnGu-SqYM26UJg5f4UP3aSn/view"
     },
     {
       "id": "pyq-b-pharm-bp606t-2021-2022-aw----",
@@ -25882,32 +24094,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/16RN8UZVRIEKXHofn0MVILLGCmMZtp62h/view"
     },
     {
-      "id": "pyq-b-pharm--2023-2024---8--l",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 6th Semester PYQs",
-      "subjectCode": "BP606T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1QvihsHY6SjokqjUOWhndrF2-_NEQ8C-l/view",
-      "url": "https://drive.google.com/file/d/1QvihsHY6SjokqjUOWhndrF2-_NEQ8C-l/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp606t-2025---3a-n",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Quality Assurance",
-      "subjectCode": "BP606T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1sLEvyxV1-YnGu-SqYM26UJg5f4UP3aSn/view",
-      "url": "https://drive.google.com/file/d/1sLEvyxV1-YnGu-SqYM26UJg5f4UP3aSn/view"
-    },
-    {
       "id": "pyq-b-pharm-bp606t-2021-2022-aw----",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -25945,140 +24131,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1JROFNuy35cgQ9hmtQ54D5kaji1-RZbnN/view",
       "url": "https://drive.google.com/file/d/1JROFNuy35cgQ9hmtQ54D5kaji1-RZbnN/view"
-    }
-  ],
-  "BP601T": [
-    {
-      "id": "pyq-b-pharm-bp601t-2025-f-itn6",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1TCx2YfK5wpEa2NnbkFKsn6TsE3fUitn6/view",
-      "url": "https://drive.google.com/file/d/1TCx2YfK5wpEa2NnbkFKsn6TsE3fUitn6/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp601t-2023---erpg",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19K4XP8I44GAhlYl8RtQVAnlT-ZNJerpg/view",
-      "url": "https://drive.google.com/file/d/19K4XP8I44GAhlYl8RtQVAnlT-ZNJerpg/view"
-    },
-    {
-      "id": "pyq-bpharm-bp601t-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1scw5Qezgv2rlncw6qr3_AWoIp13af89l/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1scw5Qezgv2rlncw6qr3_AWoIp13af89l/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp601t-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Ls6oX6wU_E53Ac3RkQwoYhTw12c70zxw/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1Ls6oX6wU_E53Ac3RkQwoYhTw12c70zxw/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp601t-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1RVGY3jq9nGkOSua7OlyI-aYlHn0i68py/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1RVGY3jq9nGkOSua7OlyI-aYlHn0i68py/view?usp=drive_web"
-    }
-  ],
-  "bp601t": [
-    {
-      "id": "pyq-b-pharm-bp601t-2025-f-itn6",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1TCx2YfK5wpEa2NnbkFKsn6TsE3fUitn6/view",
-      "url": "https://drive.google.com/file/d/1TCx2YfK5wpEa2NnbkFKsn6TsE3fUitn6/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp601t-2023---erpg",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19K4XP8I44GAhlYl8RtQVAnlT-ZNJerpg/view",
-      "url": "https://drive.google.com/file/d/19K4XP8I44GAhlYl8RtQVAnlT-ZNJerpg/view"
-    },
-    {
-      "id": "pyq-bpharm-bp601t-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1scw5Qezgv2rlncw6qr3_AWoIp13af89l/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1scw5Qezgv2rlncw6qr3_AWoIp13af89l/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp601t-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Ls6oX6wU_E53Ac3RkQwoYhTw12c70zxw/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1Ls6oX6wU_E53Ac3RkQwoYhTw12c70zxw/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp601t-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Medicinal Chemistry III",
-      "subjectCode": "BP601T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1RVGY3jq9nGkOSua7OlyI-aYlHn0i68py/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1RVGY3jq9nGkOSua7OlyI-aYlHn0i68py/view?usp=drive_web"
     }
   ],
   "BP202T": [
@@ -26269,32 +24321,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/15cGKREQvulJwyL1ObXniD92fmsDqnz2d/view"
     },
     {
-      "id": "pyq-b-pharm-bp302t-2024------g",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Physical Pharmaceutics I",
-      "subjectCode": "BP302T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1E-lDsjb9LQZYGKkddIDv2QEEfoPEQPWg/view",
-      "url": "https://drive.google.com/file/d/1E-lDsjb9LQZYGKkddIDv2QEEfoPEQPWg/view"
-    },
-    {
-      "id": "pyq-b-pharm--2023-2024---x-xe",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 3rd Semester PYQs",
-      "subjectCode": "BP302T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HvPEl9Yn0igDUZ5O2S9AnO5U01DBxZxe/view",
-      "url": "https://drive.google.com/file/d/1HvPEl9Yn0igDUZ5O2S9AnO5U01DBxZxe/view"
-    },
-    {
       "id": "pyq-b-pharm-bp302t-2021-2022-ez-8l-",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -26306,19 +24332,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1WKg0e7tGoBrQwc44Qyh7DzBDpwezU8lA/view",
       "url": "https://drive.google.com/file/d/1WKg0e7tGoBrQwc44Qyh7DzBDpwezU8lA/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp302t-2026-l3mpm5",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Physical Pharmaceutics I",
-      "subjectCode": "BP302T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1On3BCE6ZQmApSWwkR9QK5G2jL0l3mpm5/view",
-      "url": "https://drive.google.com/file/d/1On3BCE6ZQmApSWwkR9QK5G2jL0l3mpm5/view"
     },
     {
       "id": "pyq-b-pharm-bp302t-2022-2023-eyp--4",
@@ -26375,32 +24388,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/15cGKREQvulJwyL1ObXniD92fmsDqnz2d/view"
     },
     {
-      "id": "pyq-b-pharm-bp302t-2024------g",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Physical Pharmaceutics I",
-      "subjectCode": "BP302T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1E-lDsjb9LQZYGKkddIDv2QEEfoPEQPWg/view",
-      "url": "https://drive.google.com/file/d/1E-lDsjb9LQZYGKkddIDv2QEEfoPEQPWg/view"
-    },
-    {
-      "id": "pyq-b-pharm--2023-2024---x-xe",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 3rd Semester PYQs",
-      "subjectCode": "BP302T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HvPEl9Yn0igDUZ5O2S9AnO5U01DBxZxe/view",
-      "url": "https://drive.google.com/file/d/1HvPEl9Yn0igDUZ5O2S9AnO5U01DBxZxe/view"
-    },
-    {
       "id": "pyq-b-pharm-bp302t-2021-2022-ez-8l-",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -26412,19 +24399,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1WKg0e7tGoBrQwc44Qyh7DzBDpwezU8lA/view",
       "url": "https://drive.google.com/file/d/1WKg0e7tGoBrQwc44Qyh7DzBDpwezU8lA/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp302t-2026-l3mpm5",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Physical Pharmaceutics I",
-      "subjectCode": "BP302T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1On3BCE6ZQmApSWwkR9QK5G2jL0l3mpm5/view",
-      "url": "https://drive.google.com/file/d/1On3BCE6ZQmApSWwkR9QK5G2jL0l3mpm5/view"
     },
     {
       "id": "pyq-b-pharm-bp302t-2022-2023-eyp--4",
@@ -26507,19 +24481,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1T37_stKWAxwdleo5DGibzpLidgUmdw3s/view"
     },
     {
-      "id": "pyq-b-pharm-bp303t-2023-s-----",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmaceutical Microbiology",
-      "subjectCode": "BP303T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1b78NueYOzHHErLTMWqxeqQN_bcsPCQQK/view",
-      "url": "https://drive.google.com/file/d/1b78NueYOzHHErLTMWqxeqQN_bcsPCQQK/view"
-    },
-    {
       "id": "pyq-b-pharm-bp303t-2025-2026--c----",
       "year": "AKTU 2025-2026",
       "session": "2025-2026 Exam",
@@ -26531,19 +24492,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1C0YXRY0uC41Yy_t5tE4luacrLMUcJXVK/view",
       "url": "https://drive.google.com/file/d/1C0YXRY0uC41Yy_t5tE4luacrLMUcJXVK/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp303t-2026---ojr-",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Microbiology",
-      "subjectCode": "BP303T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1pE9mFoReA3_jY0-X-ekWrmqnMoKXojrK/view",
-      "url": "https://drive.google.com/file/d/1pE9mFoReA3_jY0-X-ekWrmqnMoKXojrK/view"
     },
     {
       "id": "pyq-b-pharm-bp303t-2022-2023-n-c--l",
@@ -26613,19 +24561,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1T37_stKWAxwdleo5DGibzpLidgUmdw3s/view"
     },
     {
-      "id": "pyq-b-pharm-bp303t-2023-s-----",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmaceutical Microbiology",
-      "subjectCode": "BP303T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1b78NueYOzHHErLTMWqxeqQN_bcsPCQQK/view",
-      "url": "https://drive.google.com/file/d/1b78NueYOzHHErLTMWqxeqQN_bcsPCQQK/view"
-    },
-    {
       "id": "pyq-b-pharm-bp303t-2025-2026--c----",
       "year": "AKTU 2025-2026",
       "session": "2025-2026 Exam",
@@ -26637,19 +24572,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1C0YXRY0uC41Yy_t5tE4luacrLMUcJXVK/view",
       "url": "https://drive.google.com/file/d/1C0YXRY0uC41Yy_t5tE4luacrLMUcJXVK/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp303t-2026---ojr-",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Microbiology",
-      "subjectCode": "BP303T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1pE9mFoReA3_jY0-X-ekWrmqnMoKXojrK/view",
-      "url": "https://drive.google.com/file/d/1pE9mFoReA3_jY0-X-ekWrmqnMoKXojrK/view"
     },
     {
       "id": "pyq-b-pharm-bp303t-2022-2023-n-c--l",
@@ -26680,32 +24602,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/14QYoer5DIoDOlBfUoPd2MxkvznXwNKGV/view"
     },
     {
-      "id": "pyq-b-pharm-bp701t-2025--l-gu-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Instrumental Methods of Analysis",
-      "subjectCode": "BP701T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1zcrCKczyKz6Gpw50gwlhnQfMxAFlVguL/view",
-      "url": "https://drive.google.com/file/d/1zcrCKczyKz6Gpw50gwlhnQfMxAFlVguL/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp701t-2026---a--u",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Instrumental Methods of Analysis",
-      "subjectCode": "BP701T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Lqn3rxVlN6lFa6DspXrhNFOUpMGGaY-u/view",
-      "url": "https://drive.google.com/file/d/1Lqn3rxVlN6lFa6DspXrhNFOUpMGGaY-u/view"
-    },
-    {
       "id": "pyq-b-pharm-bp701t-2022-2023-r-t--s",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
@@ -26769,32 +24665,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/12uc6H5lOXGsiTIq8fykOVO0foMDd16Ux/view",
       "url": "https://drive.google.com/file/d/12uc6H5lOXGsiTIq8fykOVO0foMDd16Ux/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp701t-2024-4---io",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Instrumental Methods of Analysis",
-      "subjectCode": "BP701T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1C01tmPKeHdTsFob1VWNo0gYC_T4PUUio/view",
-      "url": "https://drive.google.com/file/d/1C01tmPKeHdTsFob1VWNo0gYC_T4PUUio/view"
-    },
-    {
-      "id": "pyq-bpharm-bp701t-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Instrumental Methods of Analysis",
-      "subjectCode": "BP701T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1O7jykmc4owXawmQVFpr9uMgh1zCMgTyq/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1O7jykmc4owXawmQVFpr9uMgh1zCMgTyq/view?usp=drive_web"
     }
   ],
   "bp701t": [
@@ -26812,32 +24682,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/14QYoer5DIoDOlBfUoPd2MxkvznXwNKGV/view"
     },
     {
-      "id": "pyq-b-pharm-bp701t-2025--l-gu-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Instrumental Methods of Analysis",
-      "subjectCode": "BP701T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1zcrCKczyKz6Gpw50gwlhnQfMxAFlVguL/view",
-      "url": "https://drive.google.com/file/d/1zcrCKczyKz6Gpw50gwlhnQfMxAFlVguL/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp701t-2026---a--u",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Instrumental Methods of Analysis",
-      "subjectCode": "BP701T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Lqn3rxVlN6lFa6DspXrhNFOUpMGGaY-u/view",
-      "url": "https://drive.google.com/file/d/1Lqn3rxVlN6lFa6DspXrhNFOUpMGGaY-u/view"
-    },
-    {
       "id": "pyq-b-pharm-bp701t-2022-2023-r-t--s",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
@@ -26901,32 +24745,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/12uc6H5lOXGsiTIq8fykOVO0foMDd16Ux/view",
       "url": "https://drive.google.com/file/d/12uc6H5lOXGsiTIq8fykOVO0foMDd16Ux/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp701t-2024-4---io",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Instrumental Methods of Analysis",
-      "subjectCode": "BP701T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1C01tmPKeHdTsFob1VWNo0gYC_T4PUUio/view",
-      "url": "https://drive.google.com/file/d/1C01tmPKeHdTsFob1VWNo0gYC_T4PUUio/view"
-    },
-    {
-      "id": "pyq-bpharm-bp701t-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Instrumental Methods of Analysis",
-      "subjectCode": "BP701T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1O7jykmc4owXawmQVFpr9uMgh1zCMgTyq/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1O7jykmc4owXawmQVFpr9uMgh1zCMgTyq/view?usp=drive_web"
     }
   ],
   "BP703T": [
@@ -26942,58 +24760,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1Jym6o-t3HPdtb4dTGP3ZsLXvMrf1zg_C/view",
       "url": "https://drive.google.com/file/d/1Jym6o-t3HPdtb4dTGP3ZsLXvMrf1zg_C/view"
-    },
-    {
-      "id": "pyq-b-pharm--2023-2024--k4--a",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 7th Semester PYQs",
-      "subjectCode": "BP703T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1_WTdTT7WWJL7pgX_ZnsiSD8SdEGk4MLa/view",
-      "url": "https://drive.google.com/file/d/1_WTdTT7WWJL7pgX_ZnsiSD8SdEGk4MLa/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp703t-2025-6--5-z",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmacy Practice",
-      "subjectCode": "BP703T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IT7E9KbZnOtXNEZMO0omhvyn5P6AY5Rz/view",
-      "url": "https://drive.google.com/file/d/1IT7E9KbZnOtXNEZMO0omhvyn5P6AY5Rz/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp703t-2024--3-u--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmacy Practice",
-      "subjectCode": "BP703T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ahdXbWOMTEnSFiWyxQGipsNhPuJ3WuBB/view",
-      "url": "https://drive.google.com/file/d/1ahdXbWOMTEnSFiWyxQGipsNhPuJ3WuBB/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp703t-2026-s-yep0",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmacy Practice",
-      "subjectCode": "BP703T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IYg1E_tP1-PM49dhRqlLpN27wpsPyep0/view",
-      "url": "https://drive.google.com/file/d/1IYg1E_tP1-PM49dhRqlLpN27wpsPyep0/view"
     },
     {
       "id": "pyq-b-pharm-bp703t-2020-2021--hn-21",
@@ -27061,58 +24827,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1Jym6o-t3HPdtb4dTGP3ZsLXvMrf1zg_C/view",
       "url": "https://drive.google.com/file/d/1Jym6o-t3HPdtb4dTGP3ZsLXvMrf1zg_C/view"
-    },
-    {
-      "id": "pyq-b-pharm--2023-2024--k4--a",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "AKTU B.Pharm 7th Semester PYQs",
-      "subjectCode": "BP703T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1_WTdTT7WWJL7pgX_ZnsiSD8SdEGk4MLa/view",
-      "url": "https://drive.google.com/file/d/1_WTdTT7WWJL7pgX_ZnsiSD8SdEGk4MLa/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp703t-2025-6--5-z",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmacy Practice",
-      "subjectCode": "BP703T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IT7E9KbZnOtXNEZMO0omhvyn5P6AY5Rz/view",
-      "url": "https://drive.google.com/file/d/1IT7E9KbZnOtXNEZMO0omhvyn5P6AY5Rz/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp703t-2024--3-u--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmacy Practice",
-      "subjectCode": "BP703T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ahdXbWOMTEnSFiWyxQGipsNhPuJ3WuBB/view",
-      "url": "https://drive.google.com/file/d/1ahdXbWOMTEnSFiWyxQGipsNhPuJ3WuBB/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp703t-2026-s-yep0",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmacy Practice",
-      "subjectCode": "BP703T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IYg1E_tP1-PM49dhRqlLpN27wpsPyep0/view",
-      "url": "https://drive.google.com/file/d/1IYg1E_tP1-PM49dhRqlLpN27wpsPyep0/view"
     },
     {
       "id": "pyq-b-pharm-bp703t-2020-2021--hn-21",
@@ -27195,19 +24909,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/13dCmEtFdoM0HiOG5ePS0-aay2o2QwbWZ/view"
     },
     {
-      "id": "pyq-b-pharm--2023---z---",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "AKTU B.Pharm 8th Semester PYQs",
-      "subjectCode": "BP808ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Gm68TncvzFo1sc_fnXERttoFcJNIzNNU/view",
-      "url": "https://drive.google.com/file/d/1Gm68TncvzFo1sc_fnXERttoFcJNIzNNU/view"
-    },
-    {
       "id": "pyq-b-pharm-bp808et-2023-2024--l--c-",
       "year": "AKTU 2023-2024",
       "session": "2023-2024 Exam",
@@ -27232,45 +24933,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1u9-LherhMKorRdpp0UxhzMUDn-yijZ6p/view",
       "url": "https://drive.google.com/file/d/1u9-LherhMKorRdpp0UxhzMUDn-yijZ6p/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp808et-2024---99s0",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Cell and Molecular Biology",
-      "subjectCode": "BP808ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19U5NWp30-b0ZhMuKfxfovgRGLOGZ99s0/view",
-      "url": "https://drive.google.com/file/d/19U5NWp30-b0ZhMuKfxfovgRGLOGZ99s0/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp808et-2025---bz-h",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Cell and Molecular Biology",
-      "subjectCode": "BP808ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Q0iYJjitR7tnQCmkDbze44wMsbDAbzAh/view",
-      "url": "https://drive.google.com/file/d/1Q0iYJjitR7tnQCmkDbze44wMsbDAbzAh/view"
-    },
-    {
-      "id": "pyq-bpharm-bp808et-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Cell and Molecular Biology",
-      "subjectCode": "BP808ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1LnqBE23ZDYC9jjO4GRsH2zGrvllS5ex4/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1LnqBE23ZDYC9jjO4GRsH2zGrvllS5ex4/view?usp=drive_web"
     }
   ],
   "bp808et": [
@@ -27301,19 +24963,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/13dCmEtFdoM0HiOG5ePS0-aay2o2QwbWZ/view"
     },
     {
-      "id": "pyq-b-pharm--2023---z---",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "AKTU B.Pharm 8th Semester PYQs",
-      "subjectCode": "BP808ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Gm68TncvzFo1sc_fnXERttoFcJNIzNNU/view",
-      "url": "https://drive.google.com/file/d/1Gm68TncvzFo1sc_fnXERttoFcJNIzNNU/view"
-    },
-    {
       "id": "pyq-b-pharm-bp808et-2023-2024--l--c-",
       "year": "AKTU 2023-2024",
       "session": "2023-2024 Exam",
@@ -27338,45 +24987,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1u9-LherhMKorRdpp0UxhzMUDn-yijZ6p/view",
       "url": "https://drive.google.com/file/d/1u9-LherhMKorRdpp0UxhzMUDn-yijZ6p/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp808et-2024---99s0",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Cell and Molecular Biology",
-      "subjectCode": "BP808ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19U5NWp30-b0ZhMuKfxfovgRGLOGZ99s0/view",
-      "url": "https://drive.google.com/file/d/19U5NWp30-b0ZhMuKfxfovgRGLOGZ99s0/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp808et-2025---bz-h",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Cell and Molecular Biology",
-      "subjectCode": "BP808ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Q0iYJjitR7tnQCmkDbze44wMsbDAbzAh/view",
-      "url": "https://drive.google.com/file/d/1Q0iYJjitR7tnQCmkDbze44wMsbDAbzAh/view"
-    },
-    {
-      "id": "pyq-bpharm-bp808et-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Cell and Molecular Biology",
-      "subjectCode": "BP808ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1LnqBE23ZDYC9jjO4GRsH2zGrvllS5ex4/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1LnqBE23ZDYC9jjO4GRsH2zGrvllS5ex4/view?usp=drive_web"
     }
   ],
   "BP812ET": [
@@ -27409,166 +25019,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1hpduRNmfKbwBiEtS3AB87VEjjZFzuOHL/view"
     }
   ],
-  "BP806ET": [
-    {
-      "id": "pyq-b-pharm-bp806et-2025-prpm-0",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1sqv3PEJt69n9r-us2sQhAQ6bVFprpmZ0/view",
-      "url": "https://drive.google.com/file/d/1sqv3PEJt69n9r-us2sQhAQ6bVFprpmZ0/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2021-2022--b-2-6",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1TABnUKGZJrfbg0IDeb_pp7j5kGFbK2H6/view",
-      "url": "https://drive.google.com/file/d/1TABnUKGZJrfbg0IDeb_pp7j5kGFbK2H6/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2022-2023-j--r-c",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/11M0iaDn3PBqqpKe6gfB3-lirJqjGXrCc/view",
-      "url": "https://drive.google.com/file/d/11M0iaDn3PBqqpKe6gfB3-lirJqjGXrCc/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2024-2025--m----",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1viJqmhMQ3_1CmtrNvsRAP0GhaJKm-TBO/view",
-      "url": "https://drive.google.com/file/d/1viJqmhMQ3_1CmtrNvsRAP0GhaJKm-TBO/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2023-2024-4wp---",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1beiDNpdlqrvd__kSAXaTqZYocC4wpHMI/view",
-      "url": "https://drive.google.com/file/d/1beiDNpdlqrvd__kSAXaTqZYocC4wpHMI/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2025-2026-5-mk5e",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Vt4QGhd8v6tEhV4adIgSWQ658b5_mk5e/view",
-      "url": "https://drive.google.com/file/d/1Vt4QGhd8v6tEhV4adIgSWQ658b5_mk5e/view"
-    }
-  ],
-  "bp806et": [
-    {
-      "id": "pyq-b-pharm-bp806et-2025-prpm-0",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1sqv3PEJt69n9r-us2sQhAQ6bVFprpmZ0/view",
-      "url": "https://drive.google.com/file/d/1sqv3PEJt69n9r-us2sQhAQ6bVFprpmZ0/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2021-2022--b-2-6",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1TABnUKGZJrfbg0IDeb_pp7j5kGFbK2H6/view",
-      "url": "https://drive.google.com/file/d/1TABnUKGZJrfbg0IDeb_pp7j5kGFbK2H6/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2022-2023-j--r-c",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/11M0iaDn3PBqqpKe6gfB3-lirJqjGXrCc/view",
-      "url": "https://drive.google.com/file/d/11M0iaDn3PBqqpKe6gfB3-lirJqjGXrCc/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2024-2025--m----",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1viJqmhMQ3_1CmtrNvsRAP0GhaJKm-TBO/view",
-      "url": "https://drive.google.com/file/d/1viJqmhMQ3_1CmtrNvsRAP0GhaJKm-TBO/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2023-2024-4wp---",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1beiDNpdlqrvd__kSAXaTqZYocC4wpHMI/view",
-      "url": "https://drive.google.com/file/d/1beiDNpdlqrvd__kSAXaTqZYocC4wpHMI/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp806et-2025-2026-5-mk5e",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Quality Control and Standardization of Herbal",
-      "subjectCode": "BP806ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Vt4QGhd8v6tEhV4adIgSWQ658b5_mk5e/view",
-      "url": "https://drive.google.com/file/d/1Vt4QGhd8v6tEhV4adIgSWQ658b5_mk5e/view"
-    }
-  ],
   "BP602T": [
     {
       "id": "pyq-b-pharm-bp602t-2022-2023-u--vqs",
@@ -27582,32 +25032,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1fe5LwbX-SU4Ky_vd5euLfofCx_uKAvqs/view",
       "url": "https://drive.google.com/file/d/1fe5LwbX-SU4Ky_vd5euLfofCx_uKAvqs/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp602t-2026--2d4-4",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19blsd6E5JF0e96i_5EzAI-blUrT2d4B4/view",
-      "url": "https://drive.google.com/file/d/19blsd6E5JF0e96i_5EzAI-blUrT2d4B4/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp602t-2025-----z-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/14JJZLxcifDQTex8uUYWzQxDBoMUILRzG/view",
-      "url": "https://drive.google.com/file/d/14JJZLxcifDQTex8uUYWzQxDBoMUILRzG/view"
     },
     {
       "id": "pyq-b-pharm-bp602t-2021-2022-3--ao4",
@@ -27649,19 +25073,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1a8vx5omxDKbFcNDmPPDFmdwovuRZTcho/view"
     },
     {
-      "id": "pyq-b-pharm-bp602t-2023-0-n77n",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1PwuBrjgR_Ow5uKLlYigDM2fzYV0Tn77n/view",
-      "url": "https://drive.google.com/file/d/1PwuBrjgR_Ow5uKLlYigDM2fzYV0Tn77n/view"
-    },
-    {
       "id": "pyq-b-pharm-bp602t-2025-2026-bk3xnh",
       "year": "AKTU 2025-2026",
       "session": "2025-2026 Exam",
@@ -27673,32 +25084,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/13NeenoUDb2HVznqsUqnLVduvmPbk3xnh/view",
       "url": "https://drive.google.com/file/d/13NeenoUDb2HVznqsUqnLVduvmPbk3xnh/view"
-    },
-    {
-      "id": "pyq-bpharm-bp602t-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1JWfXpTWhF6PzKr17oJKwCNGaMpgeoN0C/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1JWfXpTWhF6PzKr17oJKwCNGaMpgeoN0C/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp602t-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1oJBKg8BeD5rCyUuHZi6vmJUQQgUrlBTF/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1oJBKg8BeD5rCyUuHZi6vmJUQQgUrlBTF/view?usp=drive_web"
     }
   ],
   "bp602t": [
@@ -27716,32 +25101,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1fe5LwbX-SU4Ky_vd5euLfofCx_uKAvqs/view"
     },
     {
-      "id": "pyq-b-pharm-bp602t-2026--2d4-4",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19blsd6E5JF0e96i_5EzAI-blUrT2d4B4/view",
-      "url": "https://drive.google.com/file/d/19blsd6E5JF0e96i_5EzAI-blUrT2d4B4/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp602t-2025-----z-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/14JJZLxcifDQTex8uUYWzQxDBoMUILRzG/view",
-      "url": "https://drive.google.com/file/d/14JJZLxcifDQTex8uUYWzQxDBoMUILRzG/view"
-    },
-    {
       "id": "pyq-b-pharm-bp602t-2021-2022-3--ao4",
       "year": "AKTU 2021-2022",
       "session": "2021-2022 Exam",
@@ -27781,19 +25140,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1a8vx5omxDKbFcNDmPPDFmdwovuRZTcho/view"
     },
     {
-      "id": "pyq-b-pharm-bp602t-2023-0-n77n",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1PwuBrjgR_Ow5uKLlYigDM2fzYV0Tn77n/view",
-      "url": "https://drive.google.com/file/d/1PwuBrjgR_Ow5uKLlYigDM2fzYV0Tn77n/view"
-    },
-    {
       "id": "pyq-b-pharm-bp602t-2025-2026-bk3xnh",
       "year": "AKTU 2025-2026",
       "session": "2025-2026 Exam",
@@ -27805,140 +25151,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/13NeenoUDb2HVznqsUqnLVduvmPbk3xnh/view",
       "url": "https://drive.google.com/file/d/13NeenoUDb2HVznqsUqnLVduvmPbk3xnh/view"
-    },
-    {
-      "id": "pyq-bpharm-bp602t-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1JWfXpTWhF6PzKr17oJKwCNGaMpgeoN0C/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1JWfXpTWhF6PzKr17oJKwCNGaMpgeoN0C/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp602t-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmacology III",
-      "subjectCode": "BP602T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1oJBKg8BeD5rCyUuHZi6vmJUQQgUrlBTF/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1oJBKg8BeD5rCyUuHZi6vmJUQQgUrlBTF/view?usp=drive_web"
-    }
-  ],
-  "BP704T": [
-    {
-      "id": "pyq-b-pharm-bp704t-2024-z4--vo",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Novel Drug Delivery System",
-      "subjectCode": "BP704T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HWfgb-vnI9oDlWMDwO2yGup1tBz4OAvo/view",
-      "url": "https://drive.google.com/file/d/1HWfgb-vnI9oDlWMDwO2yGup1tBz4OAvo/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp704t-2025---65-k",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Novel Drug Delivery System",
-      "subjectCode": "BP704T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/18NUdu582qaCjNSTGSFU7i9CjAGON65_k/view",
-      "url": "https://drive.google.com/file/d/18NUdu582qaCjNSTGSFU7i9CjAGON65_k/view"
-    },
-    {
-      "id": "pyq-bpharm-bp704t-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Novel Drug Delivery System",
-      "subjectCode": "BP704T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1rnwtfGd8ac7HgYK_YiJ2mXR-D-LJ_4qQ/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1rnwtfGd8ac7HgYK_YiJ2mXR-D-LJ_4qQ/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp704t-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Novel Drug Delivery System",
-      "subjectCode": "BP704T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1BWI78-5uV4u3d9JKzrPgrYybqvYtUP10/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1BWI78-5uV4u3d9JKzrPgrYybqvYtUP10/view?usp=drive_web"
-    }
-  ],
-  "bp704t": [
-    {
-      "id": "pyq-b-pharm-bp704t-2024-z4--vo",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Novel Drug Delivery System",
-      "subjectCode": "BP704T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HWfgb-vnI9oDlWMDwO2yGup1tBz4OAvo/view",
-      "url": "https://drive.google.com/file/d/1HWfgb-vnI9oDlWMDwO2yGup1tBz4OAvo/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp704t-2025---65-k",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Novel Drug Delivery System",
-      "subjectCode": "BP704T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/18NUdu582qaCjNSTGSFU7i9CjAGON65_k/view",
-      "url": "https://drive.google.com/file/d/18NUdu582qaCjNSTGSFU7i9CjAGON65_k/view"
-    },
-    {
-      "id": "pyq-bpharm-bp704t-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Novel Drug Delivery System",
-      "subjectCode": "BP704T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1rnwtfGd8ac7HgYK_YiJ2mXR-D-LJ_4qQ/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1rnwtfGd8ac7HgYK_YiJ2mXR-D-LJ_4qQ/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp704t-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Novel Drug Delivery System",
-      "subjectCode": "BP704T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1BWI78-5uV4u3d9JKzrPgrYybqvYtUP10/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1BWI78-5uV4u3d9JKzrPgrYybqvYtUP10/view?usp=drive_web"
     }
   ],
   "BP103T": [
@@ -28101,36 +25313,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1csU1XdKNxJ_xupVxVKBrfmGb18bxNXBM/view"
     }
   ],
-  "BP603T": [
-    {
-      "id": "pyq-b-pharm-bp603t-2025--5----",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Herbal Drug Technology",
-      "subjectCode": "BP603T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1kgizli5j_nqF-THxaoVGc7AG2GW5TVIP/view",
-      "url": "https://drive.google.com/file/d/1kgizli5j_nqF-THxaoVGc7AG2GW5TVIP/view"
-    }
-  ],
-  "bp603t": [
-    {
-      "id": "pyq-b-pharm-bp603t-2025--5----",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Herbal Drug Technology",
-      "subjectCode": "BP603T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1kgizli5j_nqF-THxaoVGc7AG2GW5TVIP/view",
-      "url": "https://drive.google.com/file/d/1kgizli5j_nqF-THxaoVGc7AG2GW5TVIP/view"
-    }
-  ],
   "BP304T": [
     {
       "id": "pyq-b-pharm-bp304t-2025-2026-a----l",
@@ -28144,45 +25326,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1vXZmoCaKjOyUnTJx8fUTakTZgTaPPYGl/view",
       "url": "https://drive.google.com/file/d/1vXZmoCaKjOyUnTJx8fUTakTZgTaPPYGl/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp304t-2025-asr-f-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Engineering",
-      "subjectCode": "BP304T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1rSJYL_aRVQ0f_uMCDxGcuzp9buasrIfH/view",
-      "url": "https://drive.google.com/file/d/1rSJYL_aRVQ0f_uMCDxGcuzp9buasrIfH/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp304t-2024--42--d",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmaceutical Engineering",
-      "subjectCode": "BP304T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1_NQTRHAZfE3STnFt6kJ8MFYNnR-42FSd/view",
-      "url": "https://drive.google.com/file/d/1_NQTRHAZfE3STnFt6kJ8MFYNnR-42FSd/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp304t-2026-5tac-5",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Engineering",
-      "subjectCode": "BP304T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ieZdwVNl9-5-JH3v4PGf0ivW-k5tacE5/view",
-      "url": "https://drive.google.com/file/d/1ieZdwVNl9-5-JH3v4PGf0ivW-k5tacE5/view"
     }
   ],
   "bp304t": [
@@ -28198,309 +25341,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1vXZmoCaKjOyUnTJx8fUTakTZgTaPPYGl/view",
       "url": "https://drive.google.com/file/d/1vXZmoCaKjOyUnTJx8fUTakTZgTaPPYGl/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp304t-2025-asr-f-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Engineering",
-      "subjectCode": "BP304T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1rSJYL_aRVQ0f_uMCDxGcuzp9buasrIfH/view",
-      "url": "https://drive.google.com/file/d/1rSJYL_aRVQ0f_uMCDxGcuzp9buasrIfH/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp304t-2024--42--d",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmaceutical Engineering",
-      "subjectCode": "BP304T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1_NQTRHAZfE3STnFt6kJ8MFYNnR-42FSd/view",
-      "url": "https://drive.google.com/file/d/1_NQTRHAZfE3STnFt6kJ8MFYNnR-42FSd/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp304t-2026-5tac-5",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Engineering",
-      "subjectCode": "BP304T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ieZdwVNl9-5-JH3v4PGf0ivW-k5tacE5/view",
-      "url": "https://drive.google.com/file/d/1ieZdwVNl9-5-JH3v4PGf0ivW-k5tacE5/view"
-    }
-  ],
-  "BP301T": [
-    {
-      "id": "pyq-b-pharm-bp301t-2026-a--b3-",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1mhlL47b4phRzmd_BZJFK-pKN0jaUGb3B/view",
-      "url": "https://drive.google.com/file/d/1mhlL47b4phRzmd_BZJFK-pKN0jaUGb3B/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2023-2024-4-7n--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1OLWGaI8u9Ba2PQC-VkkbKLh4w24Q7nVI/view",
-      "url": "https://drive.google.com/file/d/1OLWGaI8u9Ba2PQC-VkkbKLh4w24Q7nVI/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2023-b-3sj-",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HcVWoi39ZSSMa3bvRHMWUPfKadbA3sjS/view",
-      "url": "https://drive.google.com/file/d/1HcVWoi39ZSSMa3bvRHMWUPfKadbA3sjS/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2021-2022-vq--1-",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/158V7CNyNSU-G-R0IaU55HK6LwZvqXN1N/view",
-      "url": "https://drive.google.com/file/d/158V7CNyNSU-G-R0IaU55HK6LwZvqXN1N/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2022-2023-wo--c4",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1hPkhIRLOwZQxPf5AT4wso1bY4_woCQc4/view",
-      "url": "https://drive.google.com/file/d/1hPkhIRLOwZQxPf5AT4wso1bY4_woCQc4/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2020-2021-so3---",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ID4uG9m-fAPb8L6Y0dy4Wmm84jso3ETC/view",
-      "url": "https://drive.google.com/file/d/1ID4uG9m-fAPb8L6Y0dy4Wmm84jso3ETC/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2024-2025-v3---5",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/14A6CdgnP7zOdTSI32sZq6vBZ7iv3B_M5/view",
-      "url": "https://drive.google.com/file/d/14A6CdgnP7zOdTSI32sZq6vBZ7iv3B_M5/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2025-2026--d9ws0",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1H558aCXPRjF1UFZ1XMq4xPAKSjId9ws0/view",
-      "url": "https://drive.google.com/file/d/1H558aCXPRjF1UFZ1XMq4xPAKSjId9ws0/view"
-    },
-    {
-      "id": "pyq-bpharm-bp301t-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Pe41Elx5EEyriZFokufCTba0q7s9HJ11/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1Pe41Elx5EEyriZFokufCTba0q7s9HJ11/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp301t-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1hvMm3x6M0CghP7UYTNDSgrSQqNQsn2gE/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1hvMm3x6M0CghP7UYTNDSgrSQqNQsn2gE/view?usp=drive_web"
-    }
-  ],
-  "bp301t": [
-    {
-      "id": "pyq-b-pharm-bp301t-2026-a--b3-",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1mhlL47b4phRzmd_BZJFK-pKN0jaUGb3B/view",
-      "url": "https://drive.google.com/file/d/1mhlL47b4phRzmd_BZJFK-pKN0jaUGb3B/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2023-2024-4-7n--",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1OLWGaI8u9Ba2PQC-VkkbKLh4w24Q7nVI/view",
-      "url": "https://drive.google.com/file/d/1OLWGaI8u9Ba2PQC-VkkbKLh4w24Q7nVI/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2023-b-3sj-",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HcVWoi39ZSSMa3bvRHMWUPfKadbA3sjS/view",
-      "url": "https://drive.google.com/file/d/1HcVWoi39ZSSMa3bvRHMWUPfKadbA3sjS/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2021-2022-vq--1-",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/158V7CNyNSU-G-R0IaU55HK6LwZvqXN1N/view",
-      "url": "https://drive.google.com/file/d/158V7CNyNSU-G-R0IaU55HK6LwZvqXN1N/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2022-2023-wo--c4",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1hPkhIRLOwZQxPf5AT4wso1bY4_woCQc4/view",
-      "url": "https://drive.google.com/file/d/1hPkhIRLOwZQxPf5AT4wso1bY4_woCQc4/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2020-2021-so3---",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1ID4uG9m-fAPb8L6Y0dy4Wmm84jso3ETC/view",
-      "url": "https://drive.google.com/file/d/1ID4uG9m-fAPb8L6Y0dy4Wmm84jso3ETC/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2024-2025-v3---5",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/14A6CdgnP7zOdTSI32sZq6vBZ7iv3B_M5/view",
-      "url": "https://drive.google.com/file/d/14A6CdgnP7zOdTSI32sZq6vBZ7iv3B_M5/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp301t-2025-2026--d9ws0",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1H558aCXPRjF1UFZ1XMq4xPAKSjId9ws0/view",
-      "url": "https://drive.google.com/file/d/1H558aCXPRjF1UFZ1XMq4xPAKSjId9ws0/view"
-    },
-    {
-      "id": "pyq-bpharm-bp301t-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Pe41Elx5EEyriZFokufCTba0q7s9HJ11/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1Pe41Elx5EEyriZFokufCTba0q7s9HJ11/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp301t-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Organic Chemistry II",
-      "subjectCode": "BP301T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1hvMm3x6M0CghP7UYTNDSgrSQqNQsn2gE/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1hvMm3x6M0CghP7UYTNDSgrSQqNQsn2gE/view?usp=drive_web"
     }
   ],
   "BP702T": [
@@ -28518,32 +25358,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/13GQjV_tAKdtLpVHwYTx3VJB7_YvQWant/view"
     },
     {
-      "id": "pyq-b-pharm-bp702t-2024--sj5-c",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1GX4tf6PQEVITB6QzFH2n8WoUF8Bsj5Kc/view",
-      "url": "https://drive.google.com/file/d/1GX4tf6PQEVITB6QzFH2n8WoUF8Bsj5Kc/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp702t-2026--mur--",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1AJUKxzqQDWQbwZCcP5lDEhUnkJImurWJ/view",
-      "url": "https://drive.google.com/file/d/1AJUKxzqQDWQbwZCcP5lDEhUnkJImurWJ/view"
-    },
-    {
       "id": "pyq-b-pharm-bp702t-2022-2023-2x-n-q",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
@@ -28583,19 +25397,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1FP_58fEZg65hvwnBOUbXpAVvSyLa12K1/view"
     },
     {
-      "id": "pyq-b-pharm-bp702t-2025---q---",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1NG0wfXdiVay4UBXi_4ytwuDj7NUGqPFS/view",
-      "url": "https://drive.google.com/file/d/1NG0wfXdiVay4UBXi_4ytwuDj7NUGqPFS/view"
-    },
-    {
       "id": "pyq-b-pharm-bp702t-2020-2021---x-4q",
       "year": "AKTU 2020-2021",
       "session": "2020-2021 Exam",
@@ -28620,45 +25421,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1GpPokzHCj2Ax45EpAHre37OpBJYqtdat/view",
       "url": "https://drive.google.com/file/d/1GpPokzHCj2Ax45EpAHre37OpBJYqtdat/view"
-    },
-    {
-      "id": "pyq-bpharm-bp702t-202021",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/17ukhMIiDE8p244vRiZOkupLj60E1haIj/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/17ukhMIiDE8p244vRiZOkupLj60E1haIj/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp702t-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1bwEiMqyTmnBAZkqCGFeKNUZHssnBzf1J/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1bwEiMqyTmnBAZkqCGFeKNUZHssnBzf1J/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp702t-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19DBlg1ds4_6rsMhc_P7iuHF3UVpXNLom/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/19DBlg1ds4_6rsMhc_P7iuHF3UVpXNLom/view?usp=drive_web"
     }
   ],
   "bp702t": [
@@ -28676,32 +25438,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/13GQjV_tAKdtLpVHwYTx3VJB7_YvQWant/view"
     },
     {
-      "id": "pyq-b-pharm-bp702t-2024--sj5-c",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1GX4tf6PQEVITB6QzFH2n8WoUF8Bsj5Kc/view",
-      "url": "https://drive.google.com/file/d/1GX4tf6PQEVITB6QzFH2n8WoUF8Bsj5Kc/view"
-    },
-    {
-      "id": "pyq-b-pharm-bp702t-2026--mur--",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1AJUKxzqQDWQbwZCcP5lDEhUnkJImurWJ/view",
-      "url": "https://drive.google.com/file/d/1AJUKxzqQDWQbwZCcP5lDEhUnkJImurWJ/view"
-    },
-    {
       "id": "pyq-b-pharm-bp702t-2022-2023-2x-n-q",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
@@ -28741,19 +25477,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/1FP_58fEZg65hvwnBOUbXpAVvSyLa12K1/view"
     },
     {
-      "id": "pyq-b-pharm-bp702t-2025---q---",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1NG0wfXdiVay4UBXi_4ytwuDj7NUGqPFS/view",
-      "url": "https://drive.google.com/file/d/1NG0wfXdiVay4UBXi_4ytwuDj7NUGqPFS/view"
-    },
-    {
       "id": "pyq-b-pharm-bp702t-2020-2021---x-4q",
       "year": "AKTU 2020-2021",
       "session": "2020-2021 Exam",
@@ -28778,45 +25501,140 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1GpPokzHCj2Ax45EpAHre37OpBJYqtdat/view",
       "url": "https://drive.google.com/file/d/1GpPokzHCj2Ax45EpAHre37OpBJYqtdat/view"
-    },
+    }
+  ],
+  "BP806ET": [
     {
-      "id": "pyq-bpharm-bp702t-202021",
-      "year": "AKTU 2020-2021",
-      "session": "2020-2021 Exam",
-      "examYear": "2020-2021",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
+      "id": "pyq-b-pharm-bp806et-2021-2022--b-2-6",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/17ukhMIiDE8p244vRiZOkupLj60E1haIj/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/17ukhMIiDE8p244vRiZOkupLj60E1haIj/view?usp=drive_web"
+      "pdfUrl": "https://drive.google.com/file/d/1TABnUKGZJrfbg0IDeb_pp7j5kGFbK2H6/view",
+      "url": "https://drive.google.com/file/d/1TABnUKGZJrfbg0IDeb_pp7j5kGFbK2H6/view"
     },
     {
-      "id": "pyq-bpharm-bp702t-202223",
+      "id": "pyq-b-pharm-bp806et-2022-2023-j--r-c",
       "year": "AKTU 2022-2023",
       "session": "2022-2023 Exam",
       "examYear": "2022-2023",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1bwEiMqyTmnBAZkqCGFeKNUZHssnBzf1J/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/1bwEiMqyTmnBAZkqCGFeKNUZHssnBzf1J/view?usp=drive_web"
+      "pdfUrl": "https://drive.google.com/file/d/11M0iaDn3PBqqpKe6gfB3-lirJqjGXrCc/view",
+      "url": "https://drive.google.com/file/d/11M0iaDn3PBqqpKe6gfB3-lirJqjGXrCc/view"
     },
     {
-      "id": "pyq-bpharm-bp702t-202324",
+      "id": "pyq-b-pharm-bp806et-2024-2025--m----",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1viJqmhMQ3_1CmtrNvsRAP0GhaJKm-TBO/view",
+      "url": "https://drive.google.com/file/d/1viJqmhMQ3_1CmtrNvsRAP0GhaJKm-TBO/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp806et-2023-2024-4wp---",
       "year": "AKTU 2023-2024",
       "session": "2023-2024 Exam",
       "examYear": "2023-2024",
-      "subject": "Industrial Pharmacy II",
-      "subjectCode": "BP702T",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
       "size": "1.3 MB",
       "questions": "30 Questions",
       "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/19DBlg1ds4_6rsMhc_P7iuHF3UVpXNLom/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/19DBlg1ds4_6rsMhc_P7iuHF3UVpXNLom/view?usp=drive_web"
+      "pdfUrl": "https://drive.google.com/file/d/1beiDNpdlqrvd__kSAXaTqZYocC4wpHMI/view",
+      "url": "https://drive.google.com/file/d/1beiDNpdlqrvd__kSAXaTqZYocC4wpHMI/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp806et-2025-2026-5-mk5e",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1Vt4QGhd8v6tEhV4adIgSWQ658b5_mk5e/view",
+      "url": "https://drive.google.com/file/d/1Vt4QGhd8v6tEhV4adIgSWQ658b5_mk5e/view"
+    }
+  ],
+  "bp806et": [
+    {
+      "id": "pyq-b-pharm-bp806et-2021-2022--b-2-6",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1TABnUKGZJrfbg0IDeb_pp7j5kGFbK2H6/view",
+      "url": "https://drive.google.com/file/d/1TABnUKGZJrfbg0IDeb_pp7j5kGFbK2H6/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp806et-2022-2023-j--r-c",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/11M0iaDn3PBqqpKe6gfB3-lirJqjGXrCc/view",
+      "url": "https://drive.google.com/file/d/11M0iaDn3PBqqpKe6gfB3-lirJqjGXrCc/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp806et-2024-2025--m----",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1viJqmhMQ3_1CmtrNvsRAP0GhaJKm-TBO/view",
+      "url": "https://drive.google.com/file/d/1viJqmhMQ3_1CmtrNvsRAP0GhaJKm-TBO/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp806et-2023-2024-4wp---",
+      "year": "AKTU 2023-2024",
+      "session": "2023-2024 Exam",
+      "examYear": "2023-2024",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1beiDNpdlqrvd__kSAXaTqZYocC4wpHMI/view",
+      "url": "https://drive.google.com/file/d/1beiDNpdlqrvd__kSAXaTqZYocC4wpHMI/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp806et-2025-2026-5-mk5e",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Quality Control and Standardization of Herbal",
+      "subjectCode": "BP806ET",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1Vt4QGhd8v6tEhV4adIgSWQ658b5_mk5e/view",
+      "url": "https://drive.google.com/file/d/1Vt4QGhd8v6tEhV4adIgSWQ658b5_mk5e/view"
     }
   ],
   "BP813ET": [
@@ -28942,19 +25760,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/17YMwOzgQRjAMyZT-gWFgK-kk_6-cDJlc/view"
     },
     {
-      "id": "pyq-b-pharm-bp605t-2025-----u-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Biotechnology",
-      "subjectCode": "BP605T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/10EpJ9E7CknKQH5nVkl1CnCEPgxOW_YuQ/view",
-      "url": "https://drive.google.com/file/d/10EpJ9E7CknKQH5nVkl1CnCEPgxOW_YuQ/view"
-    },
-    {
       "id": "pyq-b-pharm-bp605t-2024-2025-1-x-ix",
       "year": "AKTU 2024-2025",
       "session": "2024-2025 Exam",
@@ -29009,19 +25814,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://drive.google.com/file/d/17YMwOzgQRjAMyZT-gWFgK-kk_6-cDJlc/view"
     },
     {
-      "id": "pyq-b-pharm-bp605t-2025-----u-",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Pharmaceutical Biotechnology",
-      "subjectCode": "BP605T",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/10EpJ9E7CknKQH5nVkl1CnCEPgxOW_YuQ/view",
-      "url": "https://drive.google.com/file/d/10EpJ9E7CknKQH5nVkl1CnCEPgxOW_YuQ/view"
-    },
-    {
       "id": "pyq-b-pharm-bp605t-2024-2025-1-x-ix",
       "year": "AKTU 2024-2025",
       "session": "2024-2025 Exam",
@@ -29059,6 +25851,196 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1_abISCyIeurujyjcG5cKOjOc8xPCC9aZ/view",
       "url": "https://drive.google.com/file/d/1_abISCyIeurujyjcG5cKOjOc8xPCC9aZ/view"
+    }
+  ],
+  "BP301T": [
+    {
+      "id": "pyq-b-pharm-bp301t-2023-2024-4-7n--",
+      "year": "AKTU 2023-2024",
+      "session": "2023-2024 Exam",
+      "examYear": "2023-2024",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1OLWGaI8u9Ba2PQC-VkkbKLh4w24Q7nVI/view",
+      "url": "https://drive.google.com/file/d/1OLWGaI8u9Ba2PQC-VkkbKLh4w24Q7nVI/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2021-2022-vq--1-",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/158V7CNyNSU-G-R0IaU55HK6LwZvqXN1N/view",
+      "url": "https://drive.google.com/file/d/158V7CNyNSU-G-R0IaU55HK6LwZvqXN1N/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2022-2023-wo--c4",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1hPkhIRLOwZQxPf5AT4wso1bY4_woCQc4/view",
+      "url": "https://drive.google.com/file/d/1hPkhIRLOwZQxPf5AT4wso1bY4_woCQc4/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2020-2021-so3---",
+      "year": "AKTU 2020-2021",
+      "session": "2020-2021 Exam",
+      "examYear": "2020-2021",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1ID4uG9m-fAPb8L6Y0dy4Wmm84jso3ETC/view",
+      "url": "https://drive.google.com/file/d/1ID4uG9m-fAPb8L6Y0dy4Wmm84jso3ETC/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2024-2025-v3---5",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/14A6CdgnP7zOdTSI32sZq6vBZ7iv3B_M5/view",
+      "url": "https://drive.google.com/file/d/14A6CdgnP7zOdTSI32sZq6vBZ7iv3B_M5/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2025-2026--d9ws0",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1H558aCXPRjF1UFZ1XMq4xPAKSjId9ws0/view",
+      "url": "https://drive.google.com/file/d/1H558aCXPRjF1UFZ1XMq4xPAKSjId9ws0/view"
+    }
+  ],
+  "bp301t": [
+    {
+      "id": "pyq-b-pharm-bp301t-2023-2024-4-7n--",
+      "year": "AKTU 2023-2024",
+      "session": "2023-2024 Exam",
+      "examYear": "2023-2024",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1OLWGaI8u9Ba2PQC-VkkbKLh4w24Q7nVI/view",
+      "url": "https://drive.google.com/file/d/1OLWGaI8u9Ba2PQC-VkkbKLh4w24Q7nVI/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2021-2022-vq--1-",
+      "year": "AKTU 2021-2022",
+      "session": "2021-2022 Exam",
+      "examYear": "2021-2022",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/158V7CNyNSU-G-R0IaU55HK6LwZvqXN1N/view",
+      "url": "https://drive.google.com/file/d/158V7CNyNSU-G-R0IaU55HK6LwZvqXN1N/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2022-2023-wo--c4",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1hPkhIRLOwZQxPf5AT4wso1bY4_woCQc4/view",
+      "url": "https://drive.google.com/file/d/1hPkhIRLOwZQxPf5AT4wso1bY4_woCQc4/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2020-2021-so3---",
+      "year": "AKTU 2020-2021",
+      "session": "2020-2021 Exam",
+      "examYear": "2020-2021",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1ID4uG9m-fAPb8L6Y0dy4Wmm84jso3ETC/view",
+      "url": "https://drive.google.com/file/d/1ID4uG9m-fAPb8L6Y0dy4Wmm84jso3ETC/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2024-2025-v3---5",
+      "year": "AKTU 2024-2025",
+      "session": "2024-2025 Exam",
+      "examYear": "2024-2025",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/14A6CdgnP7zOdTSI32sZq6vBZ7iv3B_M5/view",
+      "url": "https://drive.google.com/file/d/14A6CdgnP7zOdTSI32sZq6vBZ7iv3B_M5/view"
+    },
+    {
+      "id": "pyq-b-pharm-bp301t-2025-2026--d9ws0",
+      "year": "AKTU 2025-2026",
+      "session": "2025-2026 Exam",
+      "examYear": "2025-2026",
+      "subject": "Pharmaceutical Organic Chemistry II",
+      "subjectCode": "BP301T",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1H558aCXPRjF1UFZ1XMq4xPAKSjId9ws0/view",
+      "url": "https://drive.google.com/file/d/1H558aCXPRjF1UFZ1XMq4xPAKSjId9ws0/view"
+    }
+  ],
+  "BP807ET": [
+    {
+      "id": "pyq-b-pharm-bp807et-2022-2023-fpamxr",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Computer Aided Drug Design",
+      "subjectCode": "BP807ET",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1G8bbuCukmh4_qS2uShbd3694XHfpamxr/view",
+      "url": "https://drive.google.com/file/d/1G8bbuCukmh4_qS2uShbd3694XHfpamxr/view"
+    }
+  ],
+  "bp807et": [
+    {
+      "id": "pyq-b-pharm-bp807et-2022-2023-fpamxr",
+      "year": "AKTU 2022-2023",
+      "session": "2022-2023 Exam",
+      "examYear": "2022-2023",
+      "subject": "Computer Aided Drug Design",
+      "subjectCode": "BP807ET",
+      "size": "1.3 MB",
+      "questions": "30 Questions",
+      "color": "bg-blue-100 text-blue-600",
+      "pdfUrl": "https://drive.google.com/file/d/1G8bbuCukmh4_qS2uShbd3694XHfpamxr/view",
+      "url": "https://drive.google.com/file/d/1G8bbuCukmh4_qS2uShbd3694XHfpamxr/view"
     }
   ],
   "BCA-101": [
@@ -33817,66 +30799,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "url": "https://aktupyq.com/bca/bca-604-2021-2022.pdf"
     }
   ],
-  "BMC102": [
-    {
-      "id": "pyq-mca-bmc102-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Problem Solving Using C",
-      "subjectCode": "BMC102",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1RJCMj5pOD6x-epfoomvGreZm60haKuhv/view?usp=drive_link",
-      "url": "https://drive.google.com/file/d/1RJCMj5pOD6x-epfoomvGreZm60haKuhv/view?usp=drive_link"
-    }
-  ],
-  "bmc102": [
-    {
-      "id": "pyq-mca-bmc102-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Problem Solving Using C",
-      "subjectCode": "BMC102",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1RJCMj5pOD6x-epfoomvGreZm60haKuhv/view?usp=drive_link",
-      "url": "https://drive.google.com/file/d/1RJCMj5pOD6x-epfoomvGreZm60haKuhv/view?usp=drive_link"
-    }
-  ],
-  "BMC103": [
-    {
-      "id": "pyq-mca-bmc103-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Principles of Management & Communication",
-      "subjectCode": "BMC103",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/12VLeDX95piQg87ymMvpwh2LFxWIwqw-T/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/12VLeDX95piQg87ymMvpwh2LFxWIwqw-T/view?usp=sharing"
-    }
-  ],
-  "bmc103": [
-    {
-      "id": "pyq-mca-bmc103-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "Principles of Management & Communication",
-      "subjectCode": "BMC103",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/12VLeDX95piQg87ymMvpwh2LFxWIwqw-T/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/12VLeDX95piQg87ymMvpwh2LFxWIwqw-T/view?usp=sharing"
-    }
-  ],
   "BMC104": [
     {
       "id": "pyq-mca-bmc104-202223",
@@ -33905,36 +30827,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-blue-100 text-blue-600",
       "pdfUrl": "https://drive.google.com/file/d/1dW58dflEXUUVCNGwa5Es6mKkr3weFN-4/view?usp=drive_link",
       "url": "https://drive.google.com/file/d/1dW58dflEXUUVCNGwa5Es6mKkr3weFN-4/view?usp=drive_link"
-    }
-  ],
-  "BMC106": [
-    {
-      "id": "pyq-mca-bmc106-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Cyber Security",
-      "subjectCode": "BMC106",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view?usp=drive_link",
-      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view?usp=drive_link"
-    }
-  ],
-  "bmc106": [
-    {
-      "id": "pyq-mca-bmc106-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "Cyber Security",
-      "subjectCode": "BMC106",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view?usp=drive_link",
-      "url": "https://drive.google.com/file/d/1M6RlAsjJF8VEM2hKo-F-A5BjDrJM_92I/view?usp=drive_link"
     }
   ],
   "KCS401": [
@@ -34255,224 +31147,6 @@ export const pyqsData: Record<string, PyqItem[]> = {
       "color": "bg-rose-100 text-rose-600",
       "pdfUrl": "https://cdn.aktuquestionpaper.com/btech-cs-4-sem-theory-of-automata-and-formal-languages-kcs402-2022.pdf",
       "url": "https://cdn.aktuquestionpaper.com/btech-cs-4-sem-theory-of-automata-and-formal-languages-kcs402-2022.pdf"
-    }
-  ],
-  "2019-20": [
-    {
-      "id": "pyq-bpharm-201920-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2019-20",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Bmt-S99MLFevaFrjN8FYDiKMJ3dNjtjT/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1Bmt-S99MLFevaFrjN8FYDiKMJ3dNjtjT/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-201920-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2019-20",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1VIC49B6UIlBejQ8nPxKU9Orq38rle3mv/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1VIC49B6UIlBejQ8nPxKU9Orq38rle3mv/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-201920-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2019-20",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1uGWgFIhlN_J1tzS3wcIN0PXH7skp_udj/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1uGWgFIhlN_J1tzS3wcIN0PXH7skp_udj/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-201920-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2019-20",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1IeyhtGZqAnoDGnl8LfjYFoOk1WJ-YYsN/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1IeyhtGZqAnoDGnl8LfjYFoOk1WJ-YYsN/view?usp=sharing"
-    }
-  ],
-  "2020-21": [
-    {
-      "id": "pyq-bpharm-202021-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1NfHeDmtdtVZ1DDK6r-JoN3vQ4qVoEIWo/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NfHeDmtdtVZ1DDK6r-JoN3vQ4qVoEIWo/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202021-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1HTSWm8Vbzmwc01GZ9du4j6eAbgzQXBVY/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1HTSWm8Vbzmwc01GZ9du4j6eAbgzQXBVY/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202021-202324",
-      "year": "AKTU 2023-2024",
-      "session": "2023-2024 Exam",
-      "examYear": "2023-2024",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1Uq3pG7Fm1Ak5RCOpKrQKsqgXNMteP45l/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1Uq3pG7Fm1Ak5RCOpKrQKsqgXNMteP45l/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202021-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1fGVT6rUiqvNK2loS3uGEV9wAqjlcXerz/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1fGVT6rUiqvNK2loS3uGEV9wAqjlcXerz/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202021-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "NA",
-      "subjectCode": "2020-21",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1vDLEOm9wKbMVS4gnPv2d2eCR-IKs1R3G/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1vDLEOm9wKbMVS4gnPv2d2eCR-IKs1R3G/view?usp=sharing"
-    }
-  ],
-  "2022-23": [
-    {
-      "id": "pyq-bpharm-202223-202122",
-      "year": "AKTU 2021-2022",
-      "session": "2021-2022 Exam",
-      "examYear": "2021-2022",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2022-23",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1mdBcNm8ds8yCiUuT9jGj4Zjt_-KHLfkN/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1mdBcNm8ds8yCiUuT9jGj4Zjt_-KHLfkN/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202223-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2022-23",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/1kZpme0bVhR6YguWB3bJrJ8mlI7RbfKfU/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1kZpme0bVhR6YguWB3bJrJ8mlI7RbfKfU/view?usp=sharing"
-    },
-    {
-      "id": "pyq-bpharm-202223-202526",
-      "year": "AKTU 2025-2026",
-      "session": "2025-2026 Exam",
-      "examYear": "2025-2026",
-      "subject": "DOWNLOAD",
-      "subjectCode": "2022-23",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/10TSh4CRdmMvCo-U7yHkxvZe53S3c59np/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/10TSh4CRdmMvCo-U7yHkxvZe53S3c59np/view?usp=sharing"
-    }
-  ],
-  "BP809ET": [
-    {
-      "id": "pyq-bpharm-bp809et-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Cosmetic Science",
-      "subjectCode": "BP809ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/12FADq9L9qMGjudhTfwveFAJDJBInj7Y-/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/12FADq9L9qMGjudhTfwveFAJDJBInj7Y-/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp809et-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Cosmetic Science",
-      "subjectCode": "BP809ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/15QmmdSWZlzyTnM4gGud20ugOpX2e_40L/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/15QmmdSWZlzyTnM4gGud20ugOpX2e_40L/view?usp=drive_web"
-    }
-  ],
-  "bp809et": [
-    {
-      "id": "pyq-bpharm-bp809et-202223",
-      "year": "AKTU 2022-2023",
-      "session": "2022-2023 Exam",
-      "examYear": "2022-2023",
-      "subject": "Cosmetic Science",
-      "subjectCode": "BP809ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/12FADq9L9qMGjudhTfwveFAJDJBInj7Y-/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/12FADq9L9qMGjudhTfwveFAJDJBInj7Y-/view?usp=drive_web"
-    },
-    {
-      "id": "pyq-bpharm-bp809et-202425",
-      "year": "AKTU 2024-2025",
-      "session": "2024-2025 Exam",
-      "examYear": "2024-2025",
-      "subject": "Cosmetic Science",
-      "subjectCode": "BP809ET",
-      "size": "1.3 MB",
-      "questions": "30 Questions",
-      "color": "bg-blue-100 text-blue-600",
-      "pdfUrl": "https://drive.google.com/file/d/15QmmdSWZlzyTnM4gGud20ugOpX2e_40L/view?usp=drive_web",
-      "url": "https://drive.google.com/file/d/15QmmdSWZlzyTnM4gGud20ugOpX2e_40L/view?usp=drive_web"
     }
   ],
   "BP810ET": [

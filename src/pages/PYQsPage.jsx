@@ -20,6 +20,7 @@ import { notesData } from '../data/notesData';
 import { allCourses } from '../data/subjectsData';
 import { trackPYQOpened } from '../utils/progressTracker';
 import { normalizeCourseKey, getDataCourseValue, AVAILABLE_COURSES } from '../data/courseMapping.ts';
+import NoteViewerModal from '../components/NoteViewerModal';
 
 // NORMALIZE COURSE — uses centralized mapping for all 24 AKTU programmes
 export const normalizeCourse = (param) => {
@@ -135,11 +136,14 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
       localStorage.setItem('campusprep_selected_course', norm);
     } catch (e) {}
     if (onSelectCourse) onSelectCourse(norm);
-    updateUrlParams({ course: norm });
+    updateUrlParams({ course: norm, branch: null, year: null, semester: null, subject: null });
   };
 
   // Hero Search State
   const [heroSearchQuery, setHeroSearchQuery] = useState('');
+
+  // Active PYQ Paper for Integrated In-Site Viewer
+  const [activePyqPaper, setActivePyqPaper] = useState(null);
 
   // Request PYQ Modal State
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
@@ -193,7 +197,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
     loadLiveData(selectedCourse);
   }, [selectedCourse]);
 
-  // Handle Opening PDF
+  // Handle Opening PDF (Opens inside ProfessorVirus NoteViewerModal without opening new tabs)
   const handleOpenPdf = (pyqItem) => {
     if (!pyqItem) return;
     const driveUrl = typeof pyqItem === 'string' 
@@ -208,7 +212,31 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
         course: selectedCourse || 'B.Tech',
         year: typeof pyqItem === 'object' ? (pyqItem.academicYear || pyqItem.examYear || '') : ''
       });
-      window.open(driveUrl, '_blank', 'noopener,noreferrer');
+
+      const paperObj = typeof pyqItem === 'object' ? pyqItem : {};
+      const subName = paperObj.subjectName || paperObj.subject || 'Previous Year Paper';
+      const examYr = paperObj.examYear || paperObj.academicYear || paperObj.year || '';
+      const examType = paperObj.examType || 'End-Semester Examination';
+
+      setActivePyqPaper({
+        id: paperObj.id || paperObj._id || 'pyq-paper',
+        title: `${subName} ${examYr ? `(${examYr})` : ''}`,
+        name: subName,
+        subjectName: subName,
+        subjectCode: paperObj.subjectCode || paperObj.code || '',
+        course: paperObj.course || selectedCourse || 'B.Tech',
+        branch: paperObj.branch || activeBranch || 'CSE',
+        semester: paperObj.semester || '',
+        examYear: examYr,
+        examType: examType,
+        fileUrl: driveUrl,
+        pdfUrl: driveUrl,
+        resourceUrl: driveUrl,
+        verifiedUrl: driveUrl,
+        driveFileId: paperObj.driveFileId,
+        available: true,
+        isAvailable: true
+      });
     } else {
       alert('This paper is being processed. Please check back shortly.');
     }
@@ -493,6 +521,21 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
         }}
       />
 
+      {/* INTEGRATED IN-SITE PDF VIEWER (Reusing Notes NoteViewerModal) */}
+      {activePyqPaper && (
+        <NoteViewerModal
+          note={activePyqPaper}
+          subject={{
+            name: activePyqPaper.subjectName,
+            code: activePyqPaper.subjectCode,
+            course: activePyqPaper.course,
+            branch: activePyqPaper.branch,
+            semester: activePyqPaper.semester
+          }}
+          unit={activePyqPaper.examYear ? `Exam Year: ${activePyqPaper.examYear} (${activePyqPaper.examType})` : 'Examination Paper'}
+          onClose={() => setActivePyqPaper(null)}
+        />
+      )}
     </>
   );
 }

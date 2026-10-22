@@ -7316,7 +7316,11 @@ app.get('/api/projects', async (req, res) => {
 
       domainCounts.all = totalPublished;
       domainAgg.forEach(d => {
-        if (d._id) domainCounts[d._id] = d.count;
+        if (d._id) {
+          domainCounts[d._id] = d.count;
+          const slug = d._id.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          domainCounts[slug] = d.count;
+        }
       });
 
       courseCounts.all = totalPublished;
@@ -7329,49 +7333,68 @@ app.get('/api/projects', async (req, res) => {
         if (b._id) branchCounts[b._id] = b.count;
       });
 
-      const filter = { ...baseFilter };
+      const DOMAIN_ALIASES = {
+        'business-analytics-marketing': 'Management & Business Analytics',
+        'corporate-finance-strategy': 'Management & Business Analytics',
+        'cloud-systems-security': 'Cloud & Distributed Systems',
+        'enterprise-cloud-computing': 'Enterprise & Web Applications',
+        'clinical-industrial-pharmacy': 'Pharmaceutical Sciences'
+      };
+
+      const conditions = [{ status: 'published', linkStatus: 'verified' }];
 
       if (course && course !== 'all' && course !== 'All Courses') {
         const cClean = course.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        filter.course = new RegExp(`^${cClean}$`, 'i');
+        conditions.push({ course: new RegExp(`^${cClean}$`, 'i') });
       }
 
       if (branch && branch !== 'all' && branch !== 'All Branches') {
         const bClean = branch.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        filter.branch = new RegExp(`^${bClean}$`, 'i');
+        conditions.push({ branch: new RegExp(`^${bClean}$`, 'i') });
       }
 
       if (domain && domain !== 'all' && domain !== 'All Domains') {
-        filter.$or = [
-          { domain: { $regex: new RegExp(`^${domain.replace(/-/g, ' ')}$`, 'i') } },
-          { domainId: domain.toLowerCase() }
-        ];
+        const dClean = domain.trim();
+        const slug = dClean.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+        const targetDomain = DOMAIN_ALIASES[slug] || dClean.replace(/-/g, ' ');
+        const targetClean = targetDomain.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        conditions.push({
+          $or: [
+            { domain: new RegExp(`^${targetClean}$`, 'i') },
+            { domainId: slug },
+            { domainId: slug.replace(/-/g, ' ') }
+          ]
+        });
       }
 
       if (level && level !== 'all' && level !== 'All Levels') {
-        filter.level = { $regex: new RegExp(`^${level}$`, 'i') };
+        conditions.push({ level: new RegExp(`^${level}$`, 'i') });
       }
 
       if (tech && tech !== 'all') {
-        filter.technologies = { $regex: new RegExp(tech, 'i') };
+        conditions.push({ technologies: new RegExp(tech, 'i') });
       }
 
       if (difficulty && difficulty !== 'all') {
-        filter.difficulty = parseInt(difficulty);
+        conditions.push({ difficulty: parseInt(difficulty) });
       }
 
       if (search && search.trim()) {
         const sRegex = new RegExp(search.trim(), 'i');
-        filter.$or = [
-          { title: sRegex },
-          { description: sRegex },
-          { tagline: sRegex },
-          { technologies: sRegex },
-          { domain: sRegex },
-          { branch: sRegex },
-          { course: sRegex }
-        ];
+        conditions.push({
+          $or: [
+            { title: sRegex },
+            { description: sRegex },
+            { tagline: sRegex },
+            { technologies: sRegex },
+            { domain: sRegex },
+            { branch: sRegex },
+            { course: sRegex }
+          ]
+        });
       }
+
+      const filter = conditions.length > 1 ? { $and: conditions } : conditions[0];
 
       let sortOption = { featured: -1, viewsCount: -1, createdAt: -1 };
       if (sort === 'newest') sortOption = { createdAt: -1 };
@@ -7394,6 +7417,8 @@ app.get('/api/projects', async (req, res) => {
       list.forEach(p => {
         if (p.domain) {
           domainCounts[p.domain] = (domainCounts[p.domain] || 0) + 1;
+          const slug = p.domain.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          domainCounts[slug] = domainCounts[p.domain];
         }
         if (p.course) {
           courseCounts[p.course] = (courseCounts[p.course] || 0) + 1;
@@ -7402,6 +7427,14 @@ app.get('/api/projects', async (req, res) => {
           branchCounts[p.branch] = (branchCounts[p.branch] || 0) + 1;
         }
       });
+
+      const DOMAIN_ALIASES = {
+        'business-analytics-marketing': 'Management & Business Analytics',
+        'corporate-finance-strategy': 'Management & Business Analytics',
+        'cloud-systems-security': 'Cloud & Distributed Systems',
+        'enterprise-cloud-computing': 'Enterprise & Web Applications',
+        'clinical-industrial-pharmacy': 'Pharmaceutical Sciences'
+      };
 
       if (course && course !== 'all' && course !== 'All Courses') {
         const cLower = course.trim().toLowerCase();
@@ -7412,7 +7445,13 @@ app.get('/api/projects', async (req, res) => {
         list = list.filter(p => (p.branch || '').toLowerCase() === bLower);
       }
       if (domain && domain !== 'all' && domain !== 'All Domains') {
-        list = list.filter(p => p.domain?.toLowerCase() === domain.toLowerCase() || p.domainId === domain.toLowerCase());
+        const dLower = domain.trim().toLowerCase();
+        const alias = DOMAIN_ALIASES[dLower]?.toLowerCase();
+        list = list.filter(p => 
+          (p.domain || '').toLowerCase() === dLower ||
+          (p.domainId || '').toLowerCase() === dLower ||
+          (alias && (p.domain || '').toLowerCase() === alias)
+        );
       }
       if (level && level !== 'all' && level !== 'All Levels') {
         list = list.filter(p => p.level?.toLowerCase() === level.toLowerCase());
@@ -7478,22 +7517,21 @@ app.get('/api/projects/domains', async (req, res) => {
       { name: 'IoT & Embedded Systems', id: 'iot-embedded-systems', icon: 'Cpu', color: 'amber' },
       { name: 'Cyber Security', id: 'cyber-security', icon: 'Shield', color: 'red' },
       { name: 'Cloud & DevOps', id: 'cloud-devops', icon: 'Cloud', color: 'sky' },
+      { name: 'Cloud & Distributed Systems', id: 'cloud-distributed-systems', icon: 'Server', color: 'violet' },
       { name: 'Blockchain & Web3', id: 'blockchain-web3', icon: 'Boxes', color: 'orange' },
       { name: 'Data Science', id: 'data-science', icon: 'BarChart3', color: 'teal' },
       { name: 'College & Academic', id: 'college-academic', icon: 'GraduationCap', color: 'rose' },
       { name: 'Game Development', id: 'game-development', icon: 'Gamepad2', color: 'fuchsia' },
       { name: 'Electrical & Power Systems', id: 'electrical-power-systems', icon: 'Zap', color: 'amber' },
+      { name: 'Electronics & Embedded Systems', id: 'electronics-embedded-systems', icon: 'Cpu', color: 'cyan' },
       { name: 'Thermal, Fluids & Robotics', id: 'thermal-fluids-robotics', icon: 'Flame', color: 'orange' },
       { name: 'Civil & Structural Engineering', id: 'civil-structural-engineering', icon: 'Building2', color: 'stone' },
-      { name: 'Electronics & Embedded Systems', id: 'electronics-embedded-systems', icon: 'Cpu', color: 'cyan' },
+      { name: 'Software Engineering', id: 'software-engineering', icon: 'Code', color: 'blue' },
+      { name: 'Enterprise & Web Applications', id: 'enterprise-web-applications', icon: 'LayoutGrid', color: 'indigo' },
+      { name: 'Management & Business Analytics', id: 'management-business-analytics', icon: 'TrendingUp', color: 'blue' },
       { name: 'Pharmaceutical Sciences', id: 'pharmaceutical-sciences', icon: 'Pill', color: 'emerald' },
-      { name: 'Clinical & Industrial Pharmacy', id: 'clinical-industrial-pharmacy', icon: 'FlaskConical', color: 'green' },
       { name: 'Hospitality & Culinary Management', id: 'hospitality-culinary-management', icon: 'UtensilsCrossed', color: 'amber' },
-      { name: 'Advanced Research & Machine Intelligence', id: 'advanced-research-machine-intelligence', icon: 'Sparkles', color: 'indigo' },
-      { name: 'Business Analytics & Marketing', id: 'business-analytics-marketing', icon: 'TrendingUp', color: 'blue' },
-      { name: 'Corporate Finance & Strategy', id: 'corporate-finance-strategy', icon: 'Briefcase', color: 'slate' },
-      { name: 'Cloud, Systems & Security', id: 'cloud-systems-security', icon: 'Lock', color: 'red' },
-      { name: 'Enterprise & Cloud Computing', id: 'enterprise-cloud-computing', icon: 'Server', color: 'violet' }
+      { name: 'Advanced Research & Machine Intelligence', id: 'advanced-research-machine-intelligence', icon: 'Sparkles', color: 'indigo' }
     ];
 
     let countsMap = {};
@@ -7505,21 +7543,32 @@ app.get('/api/projects/domains', async (req, res) => {
       const totalPublished = await ProjectModel.countDocuments({ status: 'published', linkStatus: 'verified' });
       countsMap['all'] = totalPublished;
       agg.forEach(item => {
-        if (item._id) countsMap[item._id] = item.count;
+        if (item._id) {
+          countsMap[item._id] = item.count;
+          const slug = item._id.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          countsMap[slug] = item.count;
+        }
       });
     } else {
       const valid = dbProjects.filter(p => p.status === 'published' && p.linkStatus === 'verified');
       countsMap['all'] = valid.length;
       valid.forEach(p => {
-        if (p.domain) countsMap[p.domain] = (countsMap[p.domain] || 0) + 1;
+        if (p.domain) {
+          countsMap[p.domain] = (countsMap[p.domain] || 0) + 1;
+          const slug = p.domain.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          countsMap[slug] = countsMap[p.domain];
+        }
       });
     }
 
     const domainMap = new Map();
     predefinedDomains.forEach(d => {
+      const cnt = d.id === 'all' 
+        ? (countsMap['all'] || 0) 
+        : (countsMap[d.id] ?? countsMap[d.name] ?? 0);
       domainMap.set(d.name, {
         ...d,
-        count: d.id === 'all' ? (countsMap['all'] || 0) : (countsMap[d.name] || 0)
+        count: cnt
       });
     });
 
