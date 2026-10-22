@@ -30,6 +30,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [iframeError, setIframeError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadTimeout, setLoadTimeout] = useState(false);
   const [zoom, setZoom] = useState(100);
   const [refreshKey, setRefreshKey] = useState(0);
   const [requestSubmitted, setRequestSubmitted] = useState(false);
@@ -37,6 +38,16 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
   const [requestEmail, setRequestEmail] = useState('');
   const [requestDetails, setRequestDetails] = useState('');
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setIframeError(false);
+    setLoadTimeout(false);
+    const timer = setTimeout(() => {
+      setLoadTimeout(true);
+    }, 6000);
+    return () => clearTimeout(timer);
+  }, [note, refreshKey]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -131,19 +142,23 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
   };
 
   const handleZoomIn = () => {
-    setZoom(prev => Math.min(180, prev + 15));
+    setZoom(prev => Math.min(200, prev + 15));
   };
 
   const handleZoomOut = () => {
-    setZoom(prev => Math.max(70, prev - 15));
+    setZoom(prev => Math.max(60, prev - 15));
   };
 
   const handleResetZoom = () => {
     setZoom(100);
   };
 
+  const handleFitPage = () => {
+    setZoom(100);
+  };
+
   const handleFitWidth = () => {
-    setZoom(120);
+    setZoom(125);
   };
 
   const handleReload = () => {
@@ -160,7 +175,13 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
 
   let rawProvider = (note.provider || note.source || 'Faculty Lecture Notes').trim();
   const lowerProv = rawProvider.toLowerCase();
-  if (lowerProv.includes('nptel') || lowerProv.includes('academic faculty') || lowerProv.includes('artu') || lowerProv.includes('aktu verified')) {
+  if (lowerProv.includes('notesgallery')) {
+    if (lowerProv.includes('archive')) rawProvider = 'Academic Resource Archive';
+    else if (lowerProv.includes('quantum')) rawProvider = 'Quantum Series';
+    else if (lowerProv.includes('agriculture')) rawProvider = 'Agriculture Faculty Lecture Notes';
+    else if (lowerProv.includes('verified')) rawProvider = 'Verified Study Material';
+    else rawProvider = 'Academic Resource';
+  } else if (lowerProv.includes('nptel') || lowerProv.includes('academic faculty') || lowerProv.includes('artu') || lowerProv.includes('aktu verified')) {
     rawProvider = 'Faculty Lecture Notes';
   }
   const providerName = rawProvider;
@@ -430,47 +451,71 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
               <button
                 type="button"
                 onClick={handleZoomIn}
-                disabled={zoom >= 180}
+                disabled={zoom >= 200}
                 title="Zoom In (+15%)"
                 style={{
                   backgroundColor: '#1E293B',
                   border: '1px solid #334155',
-                  color: zoom >= 180 ? '#64748B' : '#E2E8F0',
+                  color: zoom >= 200 ? '#64748B' : '#E2E8F0',
                   borderRadius: '6px',
                   width: '28px',
                   height: '28px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  cursor: zoom >= 180 ? 'not-allowed' : 'pointer'
+                  cursor: zoom >= 200 ? 'not-allowed' : 'pointer'
                 }}
               >
                 <ZoomIn size={14} />
               </button>
 
               {!isMobile && (
-                <button
-                  type="button"
-                  onClick={handleFitWidth}
-                  title="Fit to Width (120%)"
-                  style={{
-                    backgroundColor: '#1E293B',
-                    border: '1px solid #334155',
-                    color: '#94A3B8',
-                    borderRadius: '6px',
-                    padding: '0 0.55rem',
-                    height: '28px',
-                    fontSize: '0.70rem',
-                    fontWeight: 700,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.25rem',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <Scan size={12} />
-                  <span>Fit Width</span>
-                </button>
+                <>
+                  <button
+                    type="button"
+                    onClick={handleFitPage}
+                    title="Fit Page (100%)"
+                    style={{
+                      backgroundColor: '#1E293B',
+                      border: '1px solid #334155',
+                      color: zoom === 100 ? '#FFD166' : '#94A3B8',
+                      borderRadius: '6px',
+                      padding: '0 0.55rem',
+                      height: '28px',
+                      fontSize: '0.70rem',
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.25rem',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <span>Fit Page</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleFitWidth}
+                    title="Fit to Width (125%)"
+                    style={{
+                      backgroundColor: '#1E293B',
+                      border: '1px solid #334155',
+                      color: zoom === 125 ? '#FFD166' : '#94A3B8',
+                      borderRadius: '6px',
+                      padding: '0 0.55rem',
+                      height: '28px',
+                      fontSize: '0.70rem',
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.25rem',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <Scan size={12} />
+                    <span>Fit Width</span>
+                  </button>
+                </>
               )}
 
               <button
@@ -568,6 +613,63 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                   <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
                     Auto-scaling to optimal reading view
                   </div>
+                  {loadTimeout && (
+                    <div style={{
+                      marginTop: '0.5rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: '0.45rem',
+                      backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                      padding: '0.55rem 0.95rem',
+                      borderRadius: '10px',
+                      border: '1px solid #334155'
+                    }}>
+                      <div style={{ fontSize: '0.72rem', color: '#CBD5E1' }}>
+                        Preview taking longer to embed? You can open directly or download:
+                      </div>
+                      <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <button
+                          type="button"
+                          onClick={handleOpenDirect}
+                          style={{
+                            backgroundColor: '#7A1C28',
+                            color: '#FFFFFF',
+                            border: 'none',
+                            borderRadius: '6px',
+                            padding: '0.25rem 0.65rem',
+                            fontSize: '0.72rem',
+                            fontWeight: 800,
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.3rem'
+                          }}
+                        >
+                          <ExternalLink size={11} /> Open Document
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleDownload}
+                          style={{
+                            backgroundColor: '#C88D2D',
+                            color: '#1C1618',
+                            border: 'none',
+                            borderRadius: '6px',
+                            padding: '0.25rem 0.65rem',
+                            fontSize: '0.72rem',
+                            fontWeight: 800,
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.3rem'
+                          }}
+                        >
+                          <Download size={11} /> Download PDF
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -636,7 +738,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
               </h3>
 
               <p style={{ fontSize: '0.84rem', color: '#94A3B8', lineHeight: 1.55, margin: '0 0 1.5rem 0' }}>
-                This educational document is hosted on Google Drive and security restrictions may prevent in-frame embedding in your browser. You can open it directly in full resolution.
+                This educational resource is hosted securely on Google Drive and cross-origin security prevents in-frame embedding in this browser session. You can open it directly in full resolution or download the original file.
               </p>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -659,7 +761,29 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                     boxShadow: '0 4px 14px rgba(122, 28, 40, 0.4)'
                   }}
                 >
-                  <ExternalLink size={14} /> Open in Google Drive
+                  <ExternalLink size={14} /> Open PDF Document
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleDownload}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.45rem',
+                    padding: '0.6rem 1.25rem',
+                    borderRadius: '10px',
+                    backgroundColor: '#C88D2D',
+                    backgroundImage: 'linear-gradient(135deg, #D49A3D 0%, #B67C20 100%)',
+                    color: '#1C1618',
+                    border: 'none',
+                    fontWeight: 800,
+                    fontSize: '0.84rem',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 14px rgba(200, 141, 45, 0.3)'
+                  }}
+                >
+                  <Download size={14} /> Download PDF
                 </button>
 
                 <button

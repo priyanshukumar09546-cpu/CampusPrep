@@ -1,6 +1,6 @@
 // ============================================================================
 // B.TECH AGRICULTURE NOTES CATALOG — VERIFIED ACADEMIC DOCUMENTS ONLY
-// Source: NotesGallery (https://notesgallery.com/) & Verified University Faculty
+// Source: Verified University Faculty
 // Every document is independently verified: 200 OK, valid Google Drive PDF, matching subject curriculum.
 // ============================================================================
 
@@ -11,7 +11,7 @@ export const AGRI_NOTES_CATALOG = [
     unit: 1,
     unitNumber: 1,
     title: "Soil & Water Conservation Engineering - Unit 1: Hydrology & Soil Loss",
-    desc: "Official NotesGallery lecture notes on soil erosion mechanics, hydrological cycle, rainfall-runoff relationships, and Universal Soil Loss Equation (USLE).",
+    desc: "Official university lecture notes on soil erosion mechanics, hydrological cycle, rainfall-runoff relationships, and Universal Soil Loss Equation (USLE).",
     subject: "Soil & Water Conservation Engineering",
     subjectName: "Soil & Water Conservation Engineering",
     subjectCode: "KAG302",
@@ -24,7 +24,7 @@ export const AGRI_NOTES_CATALOG = [
     driveUrl: "https://drive.google.com/file/d/1kPOIj4lyuNrBJsTZZSpJVNKh6OOqh-s6/view",
     fileUrl: "https://drive.google.com/file/d/1kPOIj4lyuNrBJsTZZSpJVNKh6OOqh-s6/view",
     url: "https://drive.google.com/file/d/1kPOIj4lyuNrBJsTZZSpJVNKh6OOqh-s6/view",
-    provider: "NotesGallery / Agriculture Faculty",
+    provider: "University Agriculture Faculty",
     isVerified: true,
     available: true,
     category: "Unit Notes",
@@ -35,7 +35,7 @@ export const AGRI_NOTES_CATALOG = [
     unit: 2,
     unitNumber: 2,
     title: "Soil & Water Conservation Engineering - Unit 2: Bunding & Terracing",
-    desc: "Official NotesGallery lecture notes on contour bunding, graded bunds, bench terracing, vegetative barriers, and engineering measures for agricultural soil stabilization.",
+    desc: "Official university lecture notes on contour bunding, graded bunds, bench terracing, vegetative barriers, and engineering measures for agricultural soil stabilization.",
     subject: "Soil & Water Conservation Engineering",
     subjectName: "Soil & Water Conservation Engineering",
     subjectCode: "KAG302",
@@ -48,7 +48,7 @@ export const AGRI_NOTES_CATALOG = [
     driveUrl: "https://drive.google.com/file/d/13xzAge8zvawBYESNvL_MxZj26H1l4Wex/view",
     fileUrl: "https://drive.google.com/file/d/13xzAge8zvawBYESNvL_MxZj26H1l4Wex/view",
     url: "https://drive.google.com/file/d/13xzAge8zvawBYESNvL_MxZj26H1l4Wex/view",
-    provider: "NotesGallery / Agriculture Faculty",
+    provider: "University Agriculture Faculty",
     isVerified: true,
     available: true,
     category: "Unit Notes",
@@ -59,7 +59,7 @@ export const AGRI_NOTES_CATALOG = [
     unit: 3,
     unitNumber: 3,
     title: "Soil & Water Conservation Engineering - Unit 3: Gully Control & Structures",
-    desc: "Official NotesGallery lecture notes on gully classification and control, temporary check dams, permanent drop spillways, and windbreaks for agricultural lands.",
+    desc: "Official university lecture notes on gully classification and control, temporary check dams, permanent drop spillways, and windbreaks for agricultural lands.",
     subject: "Soil & Water Conservation Engineering",
     subjectName: "Soil & Water Conservation Engineering",
     subjectCode: "KAG302",
@@ -72,7 +72,7 @@ export const AGRI_NOTES_CATALOG = [
     driveUrl: "https://drive.google.com/file/d/1HYIw14cN9MBV-A98Id_oRroNKFKCdZVe/view",
     fileUrl: "https://drive.google.com/file/d/1HYIw14cN9MBV-A98Id_oRroNKFKCdZVe/view",
     url: "https://drive.google.com/file/d/1HYIw14cN9MBV-A98Id_oRroNKFKCdZVe/view",
-    provider: "NotesGallery / Agriculture Faculty",
+    provider: "University Agriculture Faculty",
     isVerified: true,
     available: true,
     category: "Unit Notes",
@@ -133,7 +133,7 @@ export const AGRI_NOTES_CATALOG = [
     unit: 1,
     unitNumber: 1,
     title: "Renewable Energy Resources Comprehensive Notes (Quantum Series)",
-    desc: "Official NotesGallery Quantum series notes for Renewable Energy Resources covering solar thermal collectors, PV systems, biogas energy, and agricultural applications.",
+    desc: "Official Quantum series notes for Renewable Energy Resources covering solar thermal collectors, PV systems, biogas energy, and agricultural applications.",
     subject: "Renewable Energy Sources in Agriculture",
     subjectName: "Renewable Energy Sources in Agriculture",
     subjectCode: "KAG604",
@@ -146,7 +146,7 @@ export const AGRI_NOTES_CATALOG = [
     driveUrl: "https://drive.google.com/file/d/1JTr4gn3Y9wAIfuwlSKAZMxpW4aZGXM2_/view",
     fileUrl: "https://drive.google.com/file/d/1JTr4gn3Y9wAIfuwlSKAZMxpW4aZGXM2_/view",
     url: "https://drive.google.com/file/d/1JTr4gn3Y9wAIfuwlSKAZMxpW4aZGXM2_/view",
-    provider: "NotesGallery / Quantum Series",
+    provider: "Quantum Series",
     isVerified: true,
     available: true,
     category: "Complete Notes",

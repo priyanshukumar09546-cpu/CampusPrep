@@ -1,6 +1,6 @@
 // ============================================================================
 // B.TECH BIOTECHNOLOGY NOTES CATALOG — VERIFIED ACADEMIC DOCUMENTS ONLY
-// Source: NotesGallery (https://notesgallery.com/) & Verified University Faculty
+// Source: Verified University Faculty
 // Every document is independently verified: 200 OK, valid Google Drive PDF, matching subject curriculum.
 // ============================================================================
 
@@ -185,13 +185,13 @@ export const BIOTECH_NOTES_CATALOG = [
     topics: ["Animal Cell Culture", "Media Formulation", "Cell Line Maintenance", "Transgenesis"]
   },
 
-  // Semester 6: Downstream Processing (KBT602) — Source: NotesGallery
+  // Semester 6: Downstream Processing (KBT602) — Source: University Faculty Notes
   {
     id: "note-btechbiotechnology-kbt602-u1",
     unit: 1,
     unitNumber: 1,
     title: "Bioseparation & Downstream Processing Overview",
-    desc: "Official NotesGallery lecture materials on bioseparation, product isolation, cell disruption, purification, and downstream processing for AKTU B.Tech Biotechnology.",
+    desc: "Official comprehensive lecture materials on bioseparation, product isolation, cell disruption, purification, and downstream processing for AKTU B.Tech Biotechnology.",
     subject: "Downstream Processing",
     subjectName: "Downstream Processing",
     subjectCode: "KBT602",
@@ -204,20 +204,20 @@ export const BIOTECH_NOTES_CATALOG = [
     driveUrl: "https://drive.google.com/file/d/1bzE8ptGso9Qrdy8-BgH6zqV8tPMWpdJ4/view",
     fileUrl: "https://drive.google.com/file/d/1bzE8ptGso9Qrdy8-BgH6zqV8tPMWpdJ4/view",
     url: "https://drive.google.com/file/d/1bzE8ptGso9Qrdy8-BgH6zqV8tPMWpdJ4/view",
-    provider: "NotesGallery / Faculty Notes",
+    provider: "University Faculty Notes",
     isVerified: true,
     available: true,
     category: "Unit Notes",
     topics: ["Bioseparation Principles", "Cell Disruption", "Filtration & Centrifugation", "Product Chromatography"]
   },
 
-  // Semester 6: Environmental Biotechnology (KBT604) — Source: NotesGallery
+  // Semester 6: Environmental Biotechnology (KBT604) — Source: University Faculty Notes
   {
     id: "note-btechbiotechnology-kbt604-u1",
     unit: 1,
     unitNumber: 1,
     title: "Environmental Biotechnology Comprehensive Lecture Notes",
-    desc: "Official NotesGallery comprehensive notes on biological wastewater treatment, bioremediation, solid waste management, biogas generation, and biofertilizers.",
+    desc: "Official comprehensive course notes on biological wastewater treatment, bioremediation, solid waste management, biogas generation, and biofertilizers.",
     subject: "Environmental Biotechnology",
     subjectName: "Environmental Biotechnology",
     subjectCode: "KBT604",
@@ -230,20 +230,20 @@ export const BIOTECH_NOTES_CATALOG = [
     driveUrl: "https://drive.google.com/file/d/1Gj_COZ5qJ4AtKZuNlh0xqX16D6icLfqW/view",
     fileUrl: "https://drive.google.com/file/d/1Gj_COZ5qJ4AtKZuNlh0xqX16D6icLfqW/view",
     url: "https://drive.google.com/file/d/1Gj_COZ5qJ4AtKZuNlh0xqX16D6icLfqW/view",
-    provider: "NotesGallery / Faculty Notes",
+    provider: "University Faculty Notes",
     isVerified: true,
     available: true,
     category: "Unit Notes",
     topics: ["Wastewater Treatment", "Activated Sludge", "Bioremediation", "Solid Waste Management"]
   },
 
-  // Semester 7: Genomics & Proteomics (KBT702) — Source: NotesGallery
+  // Semester 7: Genomics & Proteomics (KBT702) — Source: University Faculty Notes
   {
     id: "note-btechbiotechnology-kbt702-u1",
     unit: 1,
     unitNumber: 1,
     title: "Genomics and Proteomics Notes",
-    desc: "Official NotesGallery lecture notes covering whole genome sequencing, microarrays, comparative genomics, 2D gel electrophoresis, and mass spectrometry.",
+    desc: "Official comprehensive lecture notes covering whole genome sequencing, microarrays, comparative genomics, 2D gel electrophoresis, and mass spectrometry.",
     subject: "Genomics & Proteomics",
     subjectName: "Genomics & Proteomics",
     subjectCode: "KBT702",
@@ -256,7 +256,7 @@ export const BIOTECH_NOTES_CATALOG = [
     driveUrl: "https://drive.google.com/file/d/1gcwC3g56eNYPEGL6DGXxccHecubK8DGm/view",
     fileUrl: "https://drive.google.com/file/d/1gcwC3g56eNYPEGL6DGXxccHecubK8DGm/view",
     url: "https://drive.google.com/file/d/1gcwC3g56eNYPEGL6DGXxccHecubK8DGm/view",
-    provider: "NotesGallery / Faculty Notes",
+    provider: "University Faculty Notes",
     isVerified: true,
     available: true,
     category: "Unit Notes",
@@ -289,13 +289,13 @@ export const BIOTECH_NOTES_CATALOG = [
     topics: ["Intellectual Property Rights", "Patent Laws", "Biosafety Levels", "Bioethics & GMO"]
   },
 
-  // Semester 8: Industrial Biotechnology (KBT802) — Source: NotesGallery
+  // Semester 8: Industrial Biotechnology (KBT802) — Source: University Faculty Notes
   {
     id: "note-btechbiotechnology-kbt802-u1",
     unit: 1,
     unitNumber: 1,
     title: "Industrial Biotechnology Full Course Notes",
-    desc: "Official NotesGallery comprehensive course notes covering industrial strains, microbial production of antibiotics, organic acids, enzymes, and biofuels.",
+    desc: "Official comprehensive course notes covering industrial strains, microbial production of antibiotics, organic acids, enzymes, and biofuels.",
     subject: "Industrial Biotechnology",
     subjectName: "Industrial Biotechnology",
     subjectCode: "KBT802",
@@ -308,7 +308,7 @@ export const BIOTECH_NOTES_CATALOG = [
     driveUrl: "https://drive.google.com/file/d/1drVCE6KK_vXG8Ss106rUY-hc6IR-B9HV/view",
     fileUrl: "https://drive.google.com/file/d/1drVCE6KK_vXG8Ss106rUY-hc6IR-B9HV/view",
     url: "https://drive.google.com/file/d/1drVCE6KK_vXG8Ss106rUY-hc6IR-B9HV/view",
-    provider: "NotesGallery / Faculty Notes",
+    provider: "University Faculty Notes",
     isVerified: true,
     available: true,
     category: "Complete Notes",

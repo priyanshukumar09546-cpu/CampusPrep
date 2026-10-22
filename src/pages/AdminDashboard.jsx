@@ -2866,9 +2866,9 @@ export default function AdminDashboard({ onNavigate }) {
             const availableSubjectsForHier = getSubjectsForSelection(hierCourse, hierBranch, hierYear, hierSemester, hierSpec);
             const availableSubjectsForFilter = getSubjectsForSelection(noteCourseFilter, noteBranchFilter, noteYearFilter, noteSemesterFilter, noteSpecFilter);
 
-            // Note Sources array definition (supports NotesGallery, Quantum, Gateway, etc.)
+            // Note Sources array definition (supports Academic Resource, Quantum, Gateway, etc.)
             const ADMIN_NOTE_SOURCES = [
-              { id: 'notesgallery', name: 'NotesGallery', color: '#059669', bg: '#ecfdf5', border: '#a7f3d0' },
+              { id: 'academic', name: 'Academic Resource', color: '#059669', bg: '#ecfdf5', border: '#a7f3d0' },
               { id: 'quantum', name: 'Quantum Notes', color: '#1F2421', bg: '#FDF6E8', border: '#E8D3B0' },
               { id: 'gateway_classes', name: 'Gateway Classes', color: '#0284c7', bg: '#e0f2fe', border: '#bae6fd' },
               { id: 'faculty_notes', name: 'Faculty Lecture Notes', color: '#1e40af', bg: '#eff6ff', border: '#bfdbfe' },
@@ -2949,7 +2949,7 @@ export default function AdminDashboard({ onNavigate }) {
 
                 const src = String(n.source || n.sourceKey || '').toLowerCase();
                 const matchSource = src === sourceKey.toLowerCase() ||
-                  (sourceKey === 'notesgallery' && src.includes('notesgallery')) ||
+                  (sourceKey === 'academic' && (src.includes('academic') || src.includes('notesgallery'))) ||
                   (sourceKey === 'quantum' && src.includes('quantum')) ||
                   (sourceKey === 'gateway_classes' && src.includes('gateway')) ||
                   (sourceKey === 'faculty_notes' && (src.includes('faculty') || src.includes('lecture') || src.includes('tutorial'))) ||
@@ -3001,7 +3001,7 @@ export default function AdminDashboard({ onNavigate }) {
 
               const src = String(n.source || n.sourceKey || '').toLowerCase();
               const matchSource = noteSourceFilter === 'All' ||
-                (noteSourceFilter === 'notesgallery' && src.includes('notesgallery')) ||
+                (noteSourceFilter === 'academic' && (src.includes('academic') || src.includes('notesgallery'))) ||
                 (noteSourceFilter === 'quantum' && src.includes('quantum')) ||
                 (noteSourceFilter === 'gateway_classes' && src.includes('gateway')) ||
                 (noteSourceFilter.toLowerCase() === 'handwritten notes' && src.includes('handwritten')) ||
@@ -3085,9 +3085,12 @@ export default function AdminDashboard({ onNavigate }) {
                     <div style={{ fontSize: '0.7rem', color: '#C88D2D', fontWeight: 600 }}>Active for Students</div>
                   </div>
                   <div style={pyqStatCardStyle}>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748b' }}>NotesGallery Sources</div>
+                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748b' }}>Academic Sources</div>
                     <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#059669', marginTop: '0.2rem' }}>
-                      {adminNotes.filter(n => String(n.source || n.sourceKey || '').toLowerCase().includes('notesgallery')).length}
+                      {adminNotes.filter(n => {
+                        const s = String(n.source || n.sourceKey || '').toLowerCase();
+                        return s.includes('academic') || s.includes('notesgallery');
+                      }).length}
                     </div>
                     <div style={{ fontSize: '0.7rem', color: '#059669', fontWeight: 600 }}>MCA, MBA, B.Pharm</div>
                   </div>
@@ -3579,13 +3582,13 @@ export default function AdminDashboard({ onNavigate }) {
                       <label style={{ fontSize: '0.72rem', fontWeight: 800, color: '#64748b', display: 'block', marginBottom: '0.2rem' }}>Source</label>
                       <select value={noteSourceFilter} onChange={e => { setNoteSourceFilter(e.target.value); setNotePage(1); }} style={pyqSelectFilterStyle}>
                         <option value="All">All Sources</option>
-                        <option value="NotesGallery">NotesGallery</option>
+                        <option value="academic">Academic Resource</option>
                         <option value="quantum">Quantum Notes</option>
                         <option value="gateway_classes">Gateway Classes</option>
                         <option value="Faculty Lecture Notes">Faculty Lecture Notes</option>
                         <option value="AKTU Solved Papers">AKTU Solved Papers</option>
                         <option value="Handwritten Notes">Handwritten Notes</option>
-                        {Array.from(new Set(adminNotes.map(n => n.source).filter(Boolean))).filter(s => !['notesgallery', 'quantum', 'gateway_classes', 'bitwise_learning', 'multi_atom', 'quantum notes', 'quantum series', 'gateway classes', 'bitwise learning', 'multi atoms', 'handwritten notes', 'faculty lecture notes', 'aktu solved papers', 'edushine classes', 'core concepts', 'engineering being'].includes(s.toLowerCase())).map(customS => (
+                        {Array.from(new Set(adminNotes.map(n => n.source).filter(Boolean))).filter(s => !['notesgallery', 'academic', 'quantum', 'gateway_classes', 'bitwise_learning', 'multi_atom', 'quantum notes', 'quantum series', 'gateway classes', 'bitwise learning', 'multi atoms', 'handwritten notes', 'faculty lecture notes', 'aktu solved papers', 'edushine classes', 'core concepts', 'engineering being'].includes(s.toLowerCase())).map(customS => (
                           <option key={customS} value={customS}>{customS}</option>
                         ))}
                       </select>
@@ -8025,7 +8028,7 @@ function AdminManageNoteModal({ note, initialData, onClose, onSaved }) {
   const [subjectName, setSubjectName] = useState(note?.subjectName || note?.subject || initialData?.subjectName || 'Engineering Mathematics-I');
   const [subjectCode, setSubjectCode] = useState(note?.subjectCode || initialData?.subjectCode || '');
   const [unitNumber, setUnitNumber] = useState(note?.unitNumber || note?.unit || initialData?.unitNumber || 1);
-  const standardKnownSources = ['gateway_classes', 'quantum', 'bitwise_learning', 'multi_atom', 'NotesGallery', 'Handwritten Notes'];
+  const standardKnownSources = ['gateway_classes', 'quantum', 'bitwise_learning', 'multi_atom', 'academic', 'Handwritten Notes'];
   const initSource = note?.source || initialData?.source || 'gateway_classes';
   const isInitiallyCustom = !standardKnownSources.some(s => s.toLowerCase() === initSource.toLowerCase());
   const [sourceSelect, setSourceSelect] = useState(isInitiallyCustom ? 'custom' : initSource);
@@ -8304,7 +8307,7 @@ function AdminManageNoteModal({ note, initialData, onClose, onSaved }) {
                 <option value="gateway_classes">Gateway Classes Notes</option>
                 <option value="bitwise_learning">Bitwise Learning Notes</option>
                 <option value="multi_atom">Multi Atom Notes</option>
-                <option value="NotesGallery">NotesGallery</option>
+                <option value="academic">Academic Resource</option>
                 <option value="Handwritten Notes">Handwritten Notes</option>
                 <option value="custom">+ Enter Custom Source...</option>
               </select>
@@ -8312,7 +8315,7 @@ function AdminManageNoteModal({ note, initialData, onClose, onSaved }) {
                 <input
                   type="text"
                   required
-                  placeholder="Enter source name (e.g. NotesGallery, KDC Notes)"
+                  placeholder="Enter source name (e.g. Faculty Notes, KDC Notes)"
                   value={customSource}
                   onChange={e => setCustomSource(e.target.value)}
                   style={{ ...modalInputStyle, marginTop: '0.4rem' }}

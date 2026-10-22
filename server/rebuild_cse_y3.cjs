@@ -32,7 +32,7 @@ console.log(`Identified ${targetOldRecords.length} old Year 3 CSE records to rem
 console.log(`Preserving ${untouchedNotes.length} untouched records for other branches/years/courses.`);
 
 // 3. Helper functions for provider detection, unit parsing, and clean title formatting
-function detectProvider(name, defaultProv = 'NotesGallery Verified Resource') {
+function detectProvider(name, defaultProv = 'Academic Resource') {
   const n = (name || '').toLowerCase();
   if (n.includes('edushine')) return 'Edushine Classes';
   if (n.includes('gw') || n.includes('gateway')) return 'Gateway Classes';
@@ -83,7 +83,7 @@ function cleanTitle(rawName, subjectName, unit, provider) {
   }
 
   const unitPrefix = unit ? `Unit ${unit} - ` : '';
-  const provSuffix = provider && provider !== 'NotesGallery Verified Resource' ? ` (${provider})` : '';
+  const provSuffix = provider && provider !== 'Academic Resource' ? ` (${provider})` : '';
   return `${subjectName} - ${unitPrefix}${desc}${provSuffix}`.replace(/\s+/g, ' ').trim();
 }
 
@@ -92,7 +92,7 @@ const cleanRecords = [];
 const seenFileIds = new Set();
 let duplicatesSkipped = 0;
 
-// A. Process direct PDF resources from NotesGallery
+// A. Process direct PDF resources from Academic Archive
 verifiedDirect.forEach(item => {
   if (item.resourceType !== 'pdf_document') return;
   const fileId = item.driveFileId;
@@ -240,9 +240,9 @@ verifiedDirect.forEach(item => {
     fileUrl: folderUrl,
     downloadUrl: folderUrl,
     sourceUrl: item.url,
-    source: 'NotesGallery Verified Resource',
-    sourceName: 'NotesGallery Verified Resource',
-    provider: 'NotesGallery',
+    source: 'Academic Resource',
+    sourceName: 'Academic Resource',
+    provider: 'Academic Archive',
     verificationStatus: 'verified_active',
     mirrorStatus: 'success',
     notesStatus: 'published',
@@ -291,9 +291,9 @@ console.log(`- Subjects: ${stats.sem6.subjects.size}`);
 Array.from(stats.sem6.subjects).forEach(s => console.log(`   * ${s}`));
 console.log(`- Total resources: ${stats.sem6.total} (${stats.sem6.units} unit notes, ${stats.sem6.extra} complete/folder resources)`);
 
-console.log('\nUNAVAILABLE / COMING SOON SUBJECTS ON NOTESGALLERY:');
-console.log('   * Semester 5: Statistical Computing (marked "coming soon..." on NotesGallery - no link)');
-console.log('   * Semester 5: Application of Soft Computing (marked "coming soon..." on NotesGallery - no link)');
-console.log('   * Semester 6: Software Project Management (marked "coming soon" on NotesGallery - no link)');
-console.log('   * Semester 6: AR & VR (marked "coming soon..." on NotesGallery - no link)');
+console.log('\nUNAVAILABLE / COMING SOON SUBJECTS ON ACADEMIC_ARCHIVE:');
+console.log('   * Semester 5: Statistical Computing (marked "coming soon..." on Academic Archive - no link)');
+console.log('   * Semester 5: Application of Soft Computing (marked "coming soon..." on Academic Archive - no link)');
+console.log('   * Semester 6: Software Project Management (marked "coming soon" on Academic Archive - no link)');
+console.log('   * Semester 6: AR & VR (marked "coming soon..." on Academic Archive - no link)');
 console.log('========================================================\n');

@@ -277,13 +277,14 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
     if (s.includes('gopal')) return { id: 'gopal_sir', name: 'Gopal Sir Notes', color: '#0d9488', bg: '#f0fdfa', border: '#99f6e4', badge: 'Faculty' };
     if (s.includes('lecture') || s.includes('faculty') || s.includes('tutorial') || s.includes('notesgallery')) return { id: 'faculty_notes', name: 'Faculty Lecture Notes', color: '#1e40af', bg: '#eff6ff', border: '#bfdbfe', badge: 'Lecture Notes' };
     
+    const cleanName = (sourceName && String(sourceName).toLowerCase().includes('notesgallery')) ? 'Faculty Lecture Notes' : (sourceName || 'Study Material');
     return {
       id: s.replace(/[^a-z0-9]/g, '_') || 'custom_source',
-      name: sourceName || 'Study Material',
+      name: cleanName,
       color: '#4f46e5',
       bg: '#e0e7ff',
       border: '#c7d2fe',
-      badge: sourceName || 'Verified Resource'
+      badge: cleanName || 'Verified Resource'
     };
   };
 

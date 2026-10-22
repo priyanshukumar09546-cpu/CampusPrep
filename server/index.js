@@ -3233,7 +3233,13 @@ app.get('/api/pyqs', async (req, res) => {
     });
   }
 
-  res.json({ success: true, pyqs: result });
+  const cleanPyqs = result.map(p => ({
+    ...p,
+    source: (p.source && String(p.source).toLowerCase().includes('notesgallery')) ? 'Academic Resource Archive' : (p.source || 'Academic Resource Archive'),
+    sourceName: (p.sourceName && String(p.sourceName).toLowerCase().includes('notesgallery')) ? 'Academic Resource Archive' : (p.sourceName || p.source || 'Academic Resource Archive')
+  }));
+
+  res.json({ success: true, pyqs: cleanPyqs });
 });
 
 // GET ADMIN ALL PYQS
@@ -3618,6 +3624,21 @@ app.delete('/api/admin/pyqs/:id', verifyAdminToken, async (req, res) => {
 });
 
 // 10. REAL NOTES MANAGEMENT ENDPOINTS (STUDENT & ADMIN)
+function sanitizeEducationalSource(rawStr, fallback = 'Verified Study Material') {
+  if (!rawStr) return fallback;
+  const s = String(rawStr).trim();
+  const lower = s.toLowerCase();
+  if (lower.includes('notesgallery')) {
+    if (lower.includes('archive')) return 'Academic Resource Archive';
+    if (lower.includes('quantum')) return 'Quantum Series';
+    if (lower.includes('agriculture')) return 'Agriculture Faculty Notes';
+    if (lower.includes('faculty')) return 'Faculty Lecture Notes';
+    if (lower.includes('verified')) return 'Verified Study Material';
+    return fallback;
+  }
+  return s;
+}
+
 function normalizeNoteObject(n) {
   const rawSource = String(n.source || n.sourceKey || 'Quantum Notes').trim();
   const rawLower = rawSource.toLowerCase();
@@ -3688,11 +3709,14 @@ function normalizeNoteObject(n) {
     ? n.driveUrl
     : (n.verifiedUrl || n.resourceUrl || n.fileUrl || n.url || n.pdfUrl || '');
 
+  const sanitizedSource = sanitizeEducationalSource(n.source || n.provider || canonicalSource, canonicalSource);
+  const sanitizedProvider = sanitizeEducationalSource(n.provider || n.source || canonicalSource, canonicalSource);
+
   return {
     ...n,
-    source: n.provider || canonicalSource,
+    source: sanitizedSource,
     sourceKey: canonicalKey,
-    provider: n.provider || canonicalSource,
+    provider: sanitizedProvider,
     category: n.category || 'Unit Notes',
     year: yearVal,
     branch: (n.branch || n.branchId || 'CSE').toUpperCase(),
@@ -4046,6 +4070,8 @@ app.get('/api/notes', async (req, res) => {
         : (n.verifiedUrl || n.resourceUrl || (n.fileUrl && !n.fileUrl.includes('notesgallery') ? n.fileUrl : (n.url || '')));
       return {
         ...publicFields,
+        source: sanitizeEducationalSource(publicFields.source, 'Verified Study Material'),
+        provider: sanitizeEducationalSource(publicFields.provider, 'Faculty Lecture Notes'),
         url: safeUrl,
         pdfUrl: safeUrl,
         fileUrl: safeUrl,
@@ -4065,6 +4091,8 @@ app.get('/api/notes', async (req, res) => {
         : (n.verifiedUrl || n.resourceUrl || (n.fileUrl && !n.fileUrl.includes('notesgallery') ? n.fileUrl : (n.url || '')));
       return {
         ...publicFields,
+        source: sanitizeEducationalSource(publicFields.source, 'Verified Study Material'),
+        provider: sanitizeEducationalSource(publicFields.provider, 'Faculty Lecture Notes'),
         url: safeUrl,
         pdfUrl: safeUrl,
         fileUrl: safeUrl,

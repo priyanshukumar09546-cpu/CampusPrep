@@ -1,5 +1,5 @@
-// OFFICIAL NOTESGALLERY & AKTU B.TECH PREVIOUS YEAR QUESTION PAPERS
-// Primary Source: NotesGallery.com (https://notesgallery.com/) & Verified University Repositories
+// OFFICIAL AKTU B.TECH PREVIOUS YEAR QUESTION PAPERS ARCHIVE
+// Primary Source: AKTU Official Examinations Archive & Verified University Repositories
 // Direct Verified Official PDF / Google Drive Links • Zero Dummy URLs • Zero Guessed URLs
 // Zero ABESIT URLs • Audited & Synchronized: 2026-09-19
 
@@ -55,7 +55,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1ADctgtUNV22ndEC9H-swc7bDDX1__ksL/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
@@ -128,28 +128,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/121vfLOX3b0U4NEvcmLN05FlF48fJ1YDh/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1hrAS7qLguPGyQMpsua555Ers7LS9myjr/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/11z7kQww-FKt3rQCDeOeI4e4n4W2o7Onj/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1oKZ6_ueEpiyx_v8RzrThS_CghchEtIQK/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -204,28 +204,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/10b8LIjfhVsxyPZ7kcLgY0tHd2Y7FDM0P/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1psmqK-p4j1N29T9IL2irli5LfpYNmy_D/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/10j7hWHH8e0-tiB-1MLvTQvxH0pCZxgjS/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1eENTTif944EI6KqPQuV9WREP6lGcpb6Y/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -280,28 +280,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1e9YRRzDv7TsxJ-SM1-DA6spkw_bCuCx3/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1oCESwzkGKWMsKgv_F41tOOewx6nc5LqE/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1eyS4HB-4hfuCcNW-oGZHOTEZP3q6eUXX/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/12lowMn-FQKM0Lua0qi4zRTTDTobgFlUL/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -356,28 +356,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1npvrEX_Rpb5EIEq7Bd7kVIFF337Pcmuq/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/16fEQ9eC_16jnpJB3NozNhFPaYq2goJvP/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/16adZKCZfW18FEX8_PPbrkadIh28Hd4xd/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1iBp3Kvj4_D-Q8jjKua0qf8dIq5epFrBL/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -432,28 +432,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/121vfLOX3b0U4NEvcmLN05FlF48fJ1YDh/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1hrAS7qLguPGyQMpsua555Ers7LS9myjr/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/11z7kQww-FKt3rQCDeOeI4e4n4W2o7Onj/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1oKZ6_ueEpiyx_v8RzrThS_CghchEtIQK/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -508,28 +508,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/121vfLOX3b0U4NEvcmLN05FlF48fJ1YDh/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1hrAS7qLguPGyQMpsua555Ers7LS9myjr/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/11z7kQww-FKt3rQCDeOeI4e4n4W2o7Onj/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1oKZ6_ueEpiyx_v8RzrThS_CghchEtIQK/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -584,28 +584,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/10b8LIjfhVsxyPZ7kcLgY0tHd2Y7FDM0P/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1psmqK-p4j1N29T9IL2irli5LfpYNmy_D/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/10j7hWHH8e0-tiB-1MLvTQvxH0pCZxgjS/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1eENTTif944EI6KqPQuV9WREP6lGcpb6Y/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -660,28 +660,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1PTEDXLe0L8QeHzhUvHlwrlDTUPeoiNPF/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1vgx7rd--H8YEeoLveUGjAHrMd2K1hKAZ/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1h1mUPpzmhcphcKWl4SnyptksPCUninWA/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1vgx7rd--H8YEeoLveUGjAHrMd2K1hKAZ/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -736,28 +736,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1uV_vTQPiUPhoi-SnYtJrgJvET8Gc2t2f/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1hhHbD38vqm968THAwbYqVLDG04K5np65/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1GWOwPdQhTLSxNqkNwA_Ebmekq5LVQyB6/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1xkVvkQcOjbNyUjJdr7VbwgnoUEsQel03/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -812,28 +812,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1npvrEX_Rpb5EIEq7Bd7kVIFF337Pcmuq/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/16fEQ9eC_16jnpJB3NozNhFPaYq2goJvP/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/16adZKCZfW18FEX8_PPbrkadIh28Hd4xd/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1iBp3Kvj4_D-Q8jjKua0qf8dIq5epFrBL/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -888,28 +888,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/12HthW-PW4bocw2tHAAnyy6LMcPFInR7x/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/12EuoeaOLCEqgCgtyhl-5BWU24pjMuhvK/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/12LEXffhzRc-bRbhQn4GQZPp59OEYs45t/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1hKiMbYN6M6xy1fHm6ifhyvl31Llol3MP/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -964,28 +964,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/12HthW-PW4bocw2tHAAnyy6LMcPFInR7x/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/12EuoeaOLCEqgCgtyhl-5BWU24pjMuhvK/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/12LEXffhzRc-bRbhQn4GQZPp59OEYs45t/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1hKiMbYN6M6xy1fHm6ifhyvl31Llol3MP/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -1040,28 +1040,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17BqaB90ZXBzKJC5EfP8aFPj8hW7jnJLf/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17154gR9K4eIOfBx1un2hz9WqRrMClBzB/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17HgHnFTU5Z6s_lNVKiVjqGBEJWrpmP5b/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1SsyA145KYc6d-Ce8LlqTvAV0IUFJoVO2/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -1116,28 +1116,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17BqaB90ZXBzKJC5EfP8aFPj8hW7jnJLf/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17154gR9K4eIOfBx1un2hz9WqRrMClBzB/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17HgHnFTU5Z6s_lNVKiVjqGBEJWrpmP5b/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1SsyA145KYc6d-Ce8LlqTvAV0IUFJoVO2/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -1192,28 +1192,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17Y_q4tiN20hPVqHe3Fn8XsKL5LmUAJyN/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1dGk5D73UQoiiNgZYTLN_T81YkU5znJSf/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17ZAXI9AZ6CEjIzabOLVGUyyuKukttF7b/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1Xdd6DawzcVFxDFXP0WhHSQRlsT_0BOpq/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -1268,28 +1268,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17Y_q4tiN20hPVqHe3Fn8XsKL5LmUAJyN/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1dGk5D73UQoiiNgZYTLN_T81YkU5znJSf/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17ZAXI9AZ6CEjIzabOLVGUyyuKukttF7b/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1Xdd6DawzcVFxDFXP0WhHSQRlsT_0BOpq/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -1344,28 +1344,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/15bBo4YAQnR5pdNlHxQi_zj6QHTUVlOL_/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1d7lE3UuJyLcZDYKnv-s2U9BcZL9cK8Xg/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1hLgWHTg7e1VapF3MOH97DCl3zz5mBUat/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1WMUXDlv17_B3Ua_xbjGUEGEMH5OmBwQv/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -1420,28 +1420,28 @@ export const AKTU_PYQ_DATA = [
         "year": 2023,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/15bBo4YAQnR5pdNlHxQi_zj6QHTUVlOL_/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2024",
         "year": 2024,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1d7lE3UuJyLcZDYKnv-s2U9BcZL9cK8Xg/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2025",
         "year": 2025,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1hLgWHTg7e1VapF3MOH97DCl3zz5mBUat/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2026",
         "year": 2026,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1WMUXDlv17_B3Ua_xbjGUEGEMH5OmBwQv/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       }
     ]
   },
@@ -1472,14 +1472,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/126U3hEd_a7ASZYDmgIg9ONVLKNWlB7Po/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
         "year": 2020,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1k8KEF_w3d3ODkEiDy1PawYqHVeszT0GF/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2021",
@@ -1492,7 +1492,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1AnOB4kdJHUas4r3WH6-QMOP32uDOss87/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -1559,14 +1559,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2021,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1lcYytMeZsgCJZuSibFIeTzRcA-FKwjNO/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2022",
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1AnOB4kdJHUas4r3WH6-QMOP32uDOss87/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -1621,14 +1621,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1rodjkW9y5Wsk_pvms3W5VivbtayUSwwT/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
         "year": 2020,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/141QNx8sGTPTsbIq_Ia4m_EdWPb9JP2oY/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2021",
@@ -1641,7 +1641,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1oXYDnB9VWW7B7CmZpMqJ2RIPZ637NZjf/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -1708,14 +1708,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2021,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1zrxdOici3cXqv4RiL4F8S2BR7cxjZetn/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2022",
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1oXYDnB9VWW7B7CmZpMqJ2RIPZ637NZjf/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -1770,14 +1770,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1OIX1xcyTY2Ad4am5i_kwblosxuNHYhH3/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
         "year": 2020,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1OwL02L7I7ucWKAj0RW6gusSOEKEHz2we/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2021",
@@ -1790,7 +1790,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1XE9T71jprSNVny-ICqVXq8zylW4MM3rL/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -1857,14 +1857,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2021,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1TJ8ixHqIQ5hzpF-U4TSHwb9Lhs8YNRiZ/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2022",
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1XE9T71jprSNVny-ICqVXq8zylW4MM3rL/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -1919,7 +1919,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/126U3hEd_a7ASZYDmgIg9ONVLKNWlB7Po/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
@@ -2010,7 +2010,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1AnOB4kdJHUas4r3WH6-QMOP32uDOss87/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -2065,7 +2065,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1rodjkW9y5Wsk_pvms3W5VivbtayUSwwT/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
@@ -2156,7 +2156,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1oXYDnB9VWW7B7CmZpMqJ2RIPZ637NZjf/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -2211,7 +2211,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1p70VVKuK_OhXCdkTAzOlql1MKB-Vq75J/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
@@ -2302,7 +2302,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/13lGqWls04UvdKC7c0kfRDI6Hjrv5pPUX/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -2357,7 +2357,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/16TjB9KR59RtrF1WkKeAexICwtfh_Xp_-/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
@@ -2430,14 +2430,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1Chns5hZOXPkv6pTkTNDGitXZBBejFn_F/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
         "year": 2020,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1ETNGmmiX9Bn-kgVZFv5KkubCucWdOMWD/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2021",
@@ -2450,7 +2450,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/18pYuoopf2uXNrHHE1V6uNC2qGSoZ_77I/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -2517,14 +2517,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2021,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1XoHZVerxshyviDrw4bDlnJd36ENckuML/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2022",
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/18pYuoopf2uXNrHHE1V6uNC2qGSoZ_77I/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -2579,7 +2579,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1Chns5hZOXPkv6pTkTNDGitXZBBejFn_F/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
@@ -2670,7 +2670,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/18pYuoopf2uXNrHHE1V6uNC2qGSoZ_77I/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -2737,14 +2737,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2021,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/11fdr5z54whfI5rrXhcR1O1kSp9W3e_GJ/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2022",
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/177mI3Jy0gDUz4ievyqYnTbTBAIbZ8oAn/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -2817,7 +2817,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/177mI3Jy0gDUz4ievyqYnTbTBAIbZ8oAn/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -2872,14 +2872,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1vcC6lSrh8yPcHtJucCzi_yMhc4kvWvmA/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
         "year": 2020,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1iVlyFdfA_d-3RaNWH3S4mr53sZwvQdYy/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2021",
@@ -2892,7 +2892,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1h7b4H26KOpsdDP17mEVtyprt-Riomw7H/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -2959,14 +2959,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2021,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1-R3Qcc3kFaiYb38EzQkbAmHxpwcOO9c_/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2022",
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1h7b4H26KOpsdDP17mEVtyprt-Riomw7H/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -3021,7 +3021,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2019,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1vcC6lSrh8yPcHtJucCzi_yMhc4kvWvmA/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2020",
@@ -3112,7 +3112,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1h7b4H26KOpsdDP17mEVtyprt-Riomw7H/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -3467,14 +3467,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2021,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1s97V-yDwJT39i6WFJgxOwAhdZ9PUC7-L/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2022",
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1glQoDbo9g6iunpNu8tPWAv7MlymY27gu/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -3547,7 +3547,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1glQoDbo9g6iunpNu8tPWAv7MlymY27gu/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -3614,14 +3614,14 @@ export const AKTU_PYQ_DATA = [
         "year": 2021,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1FpYXH0cc-Cns_v9ysre6gysSPDCEkqSd/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2022",
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1tyyM-vv8fh9RTrd9sr2xnJS5ALBGsza3/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -3694,7 +3694,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2022,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1tyyM-vv8fh9RTrd9sr2xnJS5ALBGsza3/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2023",
@@ -3743,7 +3743,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1nPVDujaVI9aYJknJWAxGzqx2RYLfHCh_/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -3816,7 +3816,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/10YuAQ5a9a86WdDoc64RFWltIlpM2ytiP/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -3889,7 +3889,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1GXdrBqir3UV6KqrX2kRvKke3CLuWSZ8u/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -3962,7 +3962,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/16Se9AI_62ah1ulLbC4Ql5vCh29pfHx40/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4035,7 +4035,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1nPVDujaVI9aYJknJWAxGzqx2RYLfHCh_/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4108,7 +4108,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/10YuAQ5a9a86WdDoc64RFWltIlpM2ytiP/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4181,7 +4181,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1LA_VVFIRhouebJ7fVCFNc8Ie-B8_i1Y-/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4254,7 +4254,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/16Se9AI_62ah1ulLbC4Ql5vCh29pfHx40/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4327,7 +4327,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1B1AArha-ElLcCECsmcP-JIPHrNwaVHIk/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4400,7 +4400,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/1B1AArha-ElLcCECsmcP-JIPHrNwaVHIk/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4473,7 +4473,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/174qSGLu_YKWq6BLZLkOEVcQP3-WgOzCi/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4546,7 +4546,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/174qSGLu_YKWq6BLZLkOEVcQP3-WgOzCi/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4619,7 +4619,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17PRqkxMGnrUWWafUSalQ0L9pMcMULoUy/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4692,7 +4692,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/17PRqkxMGnrUWWafUSalQ0L9pMcMULoUy/view?usp=sharing",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4765,7 +4765,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/19jYxsfAm0GAgEa2_x0flHTt9B0sJdF2h/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",
@@ -4838,7 +4838,7 @@ export const AKTU_PYQ_DATA = [
         "year": 2018,
         "available": true,
         "pdfUrl": "https://drive.google.com/file/d/19jYxsfAm0GAgEa2_x0flHTt9B0sJdF2h/view?usp=drive_link",
-        "source": "NotesGallery"
+        "source": "AKTU Official Archive"
       },
       {
         "examYear": "2019",

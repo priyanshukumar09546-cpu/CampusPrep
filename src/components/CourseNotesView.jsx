@@ -1256,9 +1256,9 @@ export default function CourseNotesView({
                   : activeUnit !== 'All' 
                     ? `There are no specific Unit ${activeUnit} notes verified yet for ${activeSubject?.name}. You can switch to "All Units" to view complete subject notes.`
                     : (normKey === 'BBA' || normKey === 'BBA_BMS')
-                      ? 'No verified BBA notes available yet from NotesGallery for this subject.'
+                      ? 'No verified BBA study notes available yet for this subject.'
                       : (normKey === 'BTechBiotechnology' || normKey === 'BTechAgriculture')
-                        ? `No verified notes available yet from NotesGallery for ${activeSubject?.name}.`
+                        ? `No verified notes available yet for ${activeSubject?.name}.`
                         : normKey === 'BCA'
                           ? 'No verified BCA resources available for this semester yet.'
                           : `Our team is currently verifying and digitizing curriculum resources for ${activeSubject?.name}.`}

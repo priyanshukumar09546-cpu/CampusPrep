@@ -470,7 +470,11 @@ export default function SubjectPage({
               }}>
                 {notes.map((note, idx) => {
                   const title = note.title || `${subjectName} - Unit ${note.unit || note.unitNumber || 1} Notes`;
-                  const provider = note.provider || note.source || 'Faculty Lecture Notes';
+                  let rawProv = note.provider || note.source || 'Faculty Lecture Notes';
+                  if (String(rawProv).toLowerCase().includes('notesgallery')) {
+                    rawProv = 'Faculty Lecture Notes';
+                  }
+                  const provider = rawProv;
                   const unitNo = note.unit !== undefined ? note.unit : note.unitNumber;
 
                   return (
