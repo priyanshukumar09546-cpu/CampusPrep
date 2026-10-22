@@ -140,19 +140,21 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
           )}
 
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            {/* Email Field */}
+            {/* Email / Username Field */}
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: '#1F2421', marginBottom: '8px' }}>
-                Admin Email Address
+              <label htmlFor="admin-identity" style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: '#1F2421', marginBottom: '8px' }}>
+                Admin Email or Username
               </label>
               <div style={{ position: 'relative' }}>
                 <Mail size={18} color="#64748b" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
                 <input
-                  type="email"
+                  id="admin-identity"
+                  type="text"
+                  autoComplete="username"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@professorvirus.edu"
+                  placeholder="admin@professorvirus.edu or admin"
                   style={{
                     width: '100%',
                     padding: '12px 14px 12px 42px',
@@ -173,7 +175,7 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
             {/* Password Field */}
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <label style={{ fontSize: '13px', fontWeight: '600', color: '#1F2421' }}>
+                <label htmlFor="admin-password" style={{ fontSize: '13px', fontWeight: '600', color: '#1F2421' }}>
                   Password
                 </label>
                 <button
@@ -195,7 +197,9 @@ export default function AdminLoginPage({ onLoginSuccess, onNavigate }) {
               <div style={{ position: 'relative' }}>
                 <Lock size={18} color="#64748b" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
                 <input
+                  id="admin-password"
                   type={showPassword ? 'text' : 'password'}
+                  autoComplete="current-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

@@ -2368,7 +2368,7 @@ const verifyAdminToken = (req, res, next) => {
     return res.status(401).json({ success: false, message: 'Authentication required. Please log in.' });
   }
 
-  const rawToken = authHeader.replace('Bearer ', '').trim();
+  const rawToken = authHeader.replace(/^Bearer\s+/i, '').trim();
   
   // 1. Check in-memory activeSessions map
   let session = activeSessions.get(rawToken);
@@ -2603,6 +2603,8 @@ app.post('/api/admin/login', async (req, res) => {
         inputEmail === 'admin@campusprep.com' ||
         inputEmail === 'admin@aktu.ac.in' ||
         inputEmail === 'admin@professorvirus.com' ||
+        inputEmail === 'admin@professorvirus.site' ||
+        inputEmail === 'admin@professorvirus.in' ||
         inputEmail.includes('admin')
       ))
     );
@@ -2631,7 +2633,7 @@ app.post('/api/admin/login', async (req, res) => {
     }
 
     if (!user || user.role !== 'admin') {
-      return res.status(401).json({ success: false, message: 'Invalid credentials or non-admin account.' });
+      return res.status(401).json({ success: false, message: 'Invalid email or password.' });
     }
 
     // 4. Multi-scheme Password Verification (PBKDF2 SHA-512, SHA-256 with salt, SHA-256 plain, MD5, Plaintext)

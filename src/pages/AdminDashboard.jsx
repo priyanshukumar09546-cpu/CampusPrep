@@ -69,7 +69,7 @@ export const getAdminToken = () => {
   return localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token') || '';
 };
 
-export default function AdminDashboard({ onNavigate }) {
+export default function AdminDashboard({ onNavigate, onLogout }) {
   const [activeTab, setActiveTab] = useState('pyqs');
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [theme, setTheme] = useState('light');
@@ -101,10 +101,51 @@ export default function AdminDashboard({ onNavigate }) {
       localStorage.removeItem('admin_user');
       sessionStorage.removeItem('admin_token');
       sessionStorage.removeItem('admin_user');
-      if (onNavigate) onNavigate('admin-login');
-      else window.location.href = '/admin/login';
+      if (onLogout) {
+        onLogout();
+      } else if (onNavigate) {
+        onNavigate('admin-login');
+      } else {
+        window.location.href = '/admin/login';
+      }
     }
   };
+
+  // Server-side Admin Session Validation
+  useEffect(() => {
+    const token = getAdminToken();
+    if (!token) {
+      if (onLogout) onLogout();
+      return;
+    }
+
+    fetch('/api/admin/me', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(res => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem('admin_token');
+          localStorage.removeItem('admin_user');
+          sessionStorage.removeItem('admin_token');
+          sessionStorage.removeItem('admin_user');
+          if (onLogout) onLogout();
+          return null;
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (data && (!data.success || data.user?.role !== 'admin')) {
+          localStorage.removeItem('admin_token');
+          localStorage.removeItem('admin_user');
+          sessionStorage.removeItem('admin_token');
+          sessionStorage.removeItem('admin_user');
+          if (onLogout) onLogout();
+        }
+      })
+      .catch((err) => {
+        console.warn('[ADMIN SESSION] Server verification notice:', err?.message || err);
+      });
+  }, [onLogout]);
 
   // REAL DATABASE STATES
   const [loading, setLoading] = useState(true);

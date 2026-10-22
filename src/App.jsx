@@ -69,8 +69,12 @@ import SelectSubjectPage from './pages/SelectSubjectPage';
 import SubjectDetailPage from './pages/SubjectDetailPage';
 
 export default function App() {
+  const [adminAuthToken, setAdminAuthToken] = useState(() => {
+    return localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token') || null;
+  });
+
   const isAdminAuthenticated = () => {
-    const token = localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token');
+    const token = adminAuthToken || localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token');
     if (!token) return false;
     const userStr = localStorage.getItem('admin_user') || sessionStorage.getItem('admin_user');
     if (!userStr) return true;
@@ -80,6 +84,31 @@ export default function App() {
     } catch {
       return true;
     }
+  };
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const currentToken = localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token');
+      setAdminAuthToken(currentToken || null);
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+  const handleAdminLoginSuccess = (token, user) => {
+    if (token) setAdminAuthToken(token);
+    navigateToTab('admin');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleAdminLogout = () => {
+    setAdminAuthToken(null);
+    localStorage.removeItem('admin_token');
+    localStorage.removeItem('admin_user');
+    sessionStorage.removeItem('admin_token');
+    sessionStorage.removeItem('admin_user');
+    navigateToTab('admin-login');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const parseCourseFromUrl = () => {
@@ -613,13 +642,11 @@ export default function App() {
                 setActiveTab(tab);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
+              onLogout={handleAdminLogout}
             />
           ) : (
             <AdminLoginPage
-              onLoginSuccess={() => {
-                setActiveTab('admin');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+              onLoginSuccess={handleAdminLoginSuccess}
               onNavigate={(tab) => {
                 setActiveTab(tab);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -627,16 +654,23 @@ export default function App() {
             />
           )
         ) : activeTab === 'admin-login' ? (
-          <AdminLoginPage
-            onLoginSuccess={() => {
-              setActiveTab('admin');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            onNavigate={(tab) => {
-              setActiveTab(tab);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
+          isAdminAuthenticated() ? (
+            <AdminDashboard
+              onNavigate={(tab) => {
+                setActiveTab(tab);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onLogout={handleAdminLogout}
+            />
+          ) : (
+            <AdminLoginPage
+              onLoginSuccess={handleAdminLoginSuccess}
+              onNavigate={(tab) => {
+                setActiveTab(tab);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            />
+          )
         ) : activeTab === 'login' ? (
           <SignIn onNavigate={(tab) => navigateToTab(tab)} />
         ) : activeTab === 'interview-confirm' ? (
