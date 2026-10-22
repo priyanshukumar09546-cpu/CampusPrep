@@ -3762,25 +3762,44 @@ function isSubjectStrictMatchBackend(reqSub, reqCode, note) {
   const tName = normSubCanonical(reqSub);
   const nName = normSubCanonical(note.subject || note.subjectName);
 
-  // 1. Exact normalized name match or singular/plural variation
-  if (tName && nName && tName === nName) return true;
-  if (tName && nName && tName.replace(/s$/, '') === nName.replace(/s$/, '')) return true;
-
   const tCode = normCodeCanonical(reqCode || reqSub);
   const nCode = normCodeCanonical(note.subjectCode);
 
-  // 2. Exact code match (if not generic like 'KOE' or 'AKTU')
+  // 1. Exact code match (if not generic like 'KOE' or 'AKTU')
   if (tCode && nCode && tCode.length >= 4 && nCode.length >= 4 && !['KOE', 'AKTU', 'NOTES'].includes(tCode) && !['KOE', 'AKTU', 'NOTES'].includes(nCode)) {
     if (tCode === nCode) return true;
     // AKTU K/B prefix equivalence (e.g. KAS103 vs BAS103, KCS301 vs BCS301)
     const tEquiv = tCode.replace(/^[KB]/, '');
     const nEquiv = nCode.replace(/^[KB]/, '');
     if (tEquiv === nEquiv && tEquiv.length >= 4) return true;
+
+    // Check if both have 3-digit subject numbers (e.g., 501 vs 101 or 301 vs 101)
+    const tNumMatch = tCode.match(/[0-9]{3}/);
+    const nNumMatch = nCode.match(/[0-9]{3}/);
+    if (tNumMatch && nNumMatch) {
+      if (tNumMatch[0] !== nNumMatch[0]) return false;
+    }
   }
 
-  // 3. Substring containment for full subject names
-  if (tName && nName && (tName.includes(nName) || nName.includes(tName)) && (tName.length >= 6 && nName.length >= 6)) {
-    return true;
+  // 2. Exact normalized name match or singular/plural variation
+  if (tName && nName) {
+    if (tName === nName) return true;
+    if (tName.replace(/s$/, '') === nName.replace(/s$/, '')) return true;
+
+    // Check roman/arabic digit conflicts (e.g. 1 vs 2 vs 3 vs 4)
+    const tNum = (tName.match(/[1-4]/g) || []).join('');
+    const nNum = (nName.match(/[1-4]/g) || []).join('');
+    if (tNum && nNum && tNum !== nNum) return false;
+    if ((tNum && !nNum) || (!tNum && nNum)) return false;
+
+    // Substring containment ONLY if words match significantly and no number mismatch
+    if ((tName.includes(nName) || nName.includes(tName)) && (tName.length >= 8 && nName.length >= 8)) {
+      const minLen = Math.min(tName.length, nName.length);
+      const maxLen = Math.max(tName.length, nName.length);
+      if (minLen / maxLen >= 0.7) {
+        return true;
+      }
+    }
   }
 
   return false;
@@ -4112,7 +4131,7 @@ app.get('/api/notes', async (req, res) => {
 // SEARCH API FOR NOTES
 app.get('/api/notes/search', async (req, res) => {
   try {
-    const { q, query, search, branch, year } = req.query;
+    const { q, query, search, branch, year, course } = req.query;
     const searchTerm = (q || query || search || '').toLowerCase().trim();
 
     let allNotes = [];
@@ -4130,6 +4149,23 @@ app.get('/api/notes/search', async (req, res) => {
     }
 
     let results = allNotes.map(normalizeNoteObject);
+
+    if (course) {
+      const cNorm = course.toLowerCase().replace(/[^a-z]/g, '');
+      results = results.filter(n => {
+        const nCourse = (n.course || 'B.Tech').toLowerCase().replace(/[^a-z]/g, '');
+        if (cNorm === 'btechlateral' || cNorm === 'btechlateralentry') {
+          return nCourse === 'btechlateral' || nCourse === 'btechlateralentry';
+        }
+        if (cNorm === 'btechbiotechnology' || cNorm === 'btechbiotech') {
+          return nCourse === 'btechbiotechnology' || nCourse === 'btechbiotech';
+        }
+        if (cNorm === 'btechagriculture' || cNorm === 'btechagri') {
+          return nCourse === 'btechagriculture' || nCourse === 'btechagri';
+        }
+        return nCourse === cNorm;
+      });
+    }
 
     if (searchTerm) {
       const isGatewayQuery = searchTerm.includes('gateway');

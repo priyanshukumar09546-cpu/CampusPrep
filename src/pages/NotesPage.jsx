@@ -83,6 +83,99 @@ const getAllCoursesKey = (normalizedKey) => {
   return 'BTech';
 };
 
+// CANONICAL NORMALIZATION HELPERS FOR ROBUST NOTE RESOLUTION (MODULE SCOPE)
+export const normYearStr = (yearStr) => {
+  if (!yearStr) return '';
+  const s = String(yearStr).toLowerCase().replace(/b\.tech/g, '').replace(/st|nd|rd|th/g, '').replace(/year\s*/g, '').trim();
+  if (s === '1' || s.includes('1')) return '1';
+  if (s === '2' || s.includes('2')) return '2';
+  if (s === '3' || s.includes('3')) return '3';
+  if (s === '4' || s.includes('4')) return '4';
+  return s;
+};
+
+export const normBranchStr = (branchStr) => {
+  if (!branchStr) return '';
+  const b = String(branchStr).toUpperCase().trim();
+  if (b.includes('COMPUTER') || b === 'CSE') return 'CSE';
+  if (b.includes('ELECTRONIC') || b === 'ECE') return 'ECE';
+  if (b.includes('MECHANICAL') || b === 'ME') return 'ME';
+  if (b.includes('CIVIL') || b === 'CE') return 'CE';
+  if (b.includes('INFORMATION') || b === 'IT') return 'IT';
+  if (b.includes('ELECTRICAL') || b === 'EE') return 'EE';
+  if (b.includes('AI') && !b.includes('DS') && !b.includes('DATA')) return 'AI & ML';
+  if (b.includes('DS') || b.includes('DATA')) return 'DS';
+  if (b.includes('AI & DS') || b.includes('AIML') || b.includes('AI')) return 'AI & ML';
+  if (b.includes('MATH')) return 'Maths';
+  return b;
+};
+
+export const normSourceKey = (srcStr) => {
+  if (!srcStr) return '';
+  const s = String(srcStr).toLowerCase();
+  if (s.includes('gateway')) return 'gateway_classes';
+  if (s.includes('quantum')) return 'quantum';
+  if (s.includes('bitwise')) return 'bitwise_learning';
+  if (s.includes('multi')) return 'multi_atom';
+  return s;
+};
+
+export const cleanTokens = (str) => {
+  if (!str) return [];
+  return String(str)
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(t => t && !['and', 'of', 'the', 'in', 'for', 'with', 'to', 'a', 'an', 'pps', 'tafl', 'dbms'].includes(t))
+    .map(t => {
+      if (t === 'iv' || t === '4') return '4';
+      if (t === 'iii' || t === '3') return '3';
+      if (t === 'ii' || t === '2') return '2';
+      if (t === 'i' || t === '1') return '1';
+      return t.endsWith('s') ? t.slice(0, -1) : t;
+    });
+};
+
+export const isSubjectMatch = (codeA, nameA, codeB, nameB) => {
+  const normCodeA = codeA ? String(codeA).toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
+  const normCodeB = codeB ? String(codeB).toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
+
+  // If both codes exist and are valid (length >= 4), they MUST match exactly
+  if (normCodeA && normCodeB && normCodeA.length >= 4 && normCodeB.length >= 4) {
+    return normCodeA === normCodeB;
+  }
+
+  const tokensA = cleanTokens(nameA);
+  const tokensB = cleanTokens(nameB);
+  if (tokensA.length === 0 || tokensB.length === 0) return false;
+
+  // 1. Distinguishing number check (1 vs 2 vs 3 vs 4)
+  const numA = tokensA.find(t => ['1', '2', '3', '4'].includes(t));
+  const numB = tokensB.find(t => ['1', '2', '3', '4'].includes(t));
+  if (numA && numB && numA !== numB) return false;
+  if ((numA && !numB) || (!numA && numB)) return false;
+
+  // 2. Key topic check (physic vs chemistry vs mathematic vs electrical vs electronics vs mechanical vs civil)
+  const keyTopics = ['physic', 'chemistry', 'mathematic', 'electrical', 'electronic', 'mechanical', 'civil', 'environment', 'programming', 'soft', 'human', 'python', 'c', 'java', 'structure', 'algorithm', 'database', 'operating', 'network'];
+  const topicA = tokensA.find(t => keyTopics.includes(t));
+  const topicB = tokensB.find(t => keyTopics.includes(t));
+  if (topicA && topicB && topicA !== topicB) return false;
+
+  const strA = tokensA.join('');
+  const strB = tokensB.join('');
+  if (strA === strB) return true;
+
+  const setA = new Set(tokensA);
+  const setB = new Set(tokensB);
+  const intersection = tokensA.filter(x => setB.has(x));
+
+  if (intersection.length === tokensA.length && intersection.length === tokensB.length) return true;
+  if (intersection.length >= 2 && (intersection.length === tokensA.length || intersection.length === tokensB.length)) return true;
+
+  return false;
+};
+
 export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'BTech', onSelectCourse }) {
   const getCourseParam = () => {
     try {
@@ -186,33 +279,58 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   const [selectedSubject, setSelectedSubject] = useState('All Subjects');
   const [subjectDropdownSearch, setSubjectDropdownSearch] = useState('');
 
-  // Live Database Notes State with Local Fallback First
+  // Live Database Notes State with Local Fallback First (Strictly Scoped)
   const [dbNotes, setDbNotes] = useState(() => {
     try {
-      const allLocal = Object.values(notesData).flat();
-      return allLocal;
+      const targetCourse = normalizeCourse(courseParam);
+      const dataCourse = getDataCourseValue(targetCourse);
+      const yNorm = normYearStr(yearKeys[0] || '1st Year');
+      const bNorm = normBranchStr(branches[0] || 'CSE');
+      return Object.values(notesData).flat().filter(n => {
+        const nCourseNorm = normalizeCourseKey(n.course);
+        if (nCourseNorm !== normalizeCourseKey(targetCourse) && n.course !== dataCourse) return false;
+        if (dataCourse === 'B.Tech') {
+          const ny = normYearStr(n.year);
+          if (ny && ny !== yNorm) return false;
+          if (yNorm !== '1' && bNorm) {
+            const nb = normBranchStr(n.branch || n.branchId);
+            if (nb && nb !== 'ALL' && nb !== bNorm) return false;
+          }
+        }
+        return true;
+      });
     } catch (e) {
       return [];
     }
   });
   const notesCacheRef = React.useRef(new Map());
+  const requestSeqRef = React.useRef(0);
 
   const fetchBackendNotes = React.useCallback((courseVal, branchVal, yearVal) => {
     const c = courseVal || normalizedCourse || 'BTech';
     const dataCourse = getDataCourseValue(c);
     const yToUse = yearVal || activeYear || selectedYear || '1st Year';
     const bToUse = branchVal || activeBranch || selectedBranch || 'CSE';
+    const yTargetNorm = normYearStr(yToUse);
+    const bTargetNorm = normBranchStr(bToUse);
+    const seq = ++requestSeqRef.current;
     
-    // STEP 1: Load strictly matched local notes first (instant, scoped by course & year)
+    // STEP 1: Load strictly matched local notes first (instant, scoped by course, year & branch)
+    let localMatches = [];
     try {
-      const yTargetNorm = normYearStr(yToUse);
-      const localMatches = dataCourse ? Object.values(notesData).flat().filter(n => {
+      localMatches = dataCourse ? Object.values(notesData).flat().filter(n => {
         const nCourseNorm = normalizeCourseKey(n.course);
         const courseMatches = nCourseNorm === normalizeCourseKey(c) || n.course === dataCourse;
         if (!courseMatches) return false;
-        if (dataCourse === 'B.Tech' && yTargetNorm) {
-          const nYearNorm = normYearStr(n.year);
-          return nYearNorm === yTargetNorm;
+        if (dataCourse === 'B.Tech') {
+          if (yTargetNorm) {
+            const nYearNorm = normYearStr(n.year);
+            if (nYearNorm && nYearNorm !== yTargetNorm) return false;
+          }
+          if (bTargetNorm && yTargetNorm !== '1') {
+            const nBranchNorm = normBranchStr(n.branch || n.branchId);
+            if (nBranchNorm && nBranchNorm !== 'ALL' && nBranchNorm !== bTargetNorm) return false;
+          }
         }
         return true;
       }) : [];
@@ -242,13 +360,27 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         return res.json();
       })
       .then(data => {
-        const notesList = Array.isArray(data) ? data : (data?.notes || []);
-        if (notesList.length > 0) {
-          notesCacheRef.current.set(cacheKey, notesList);
-          setDbNotes(notesList);
-        }
+        if (seq !== requestSeqRef.current) return;
+        const rawList = Array.isArray(data) ? data : (data?.notes || []);
+        const filteredList = rawList.filter(n => {
+          if (dataCourse === 'B.Tech') {
+            const yNorm = normYearStr(n.year);
+            if (yTargetNorm && yNorm && yNorm !== yTargetNorm) return false;
+            if (yTargetNorm !== '1' && bTargetNorm) {
+              const bNorm = normBranchStr(n.branch || n.branchId);
+              if (bNorm && bNorm !== 'ALL' && bNorm !== bTargetNorm) return false;
+            }
+          }
+          return true;
+        });
+        notesCacheRef.current.set(cacheKey, filteredList);
+        setDbNotes(filteredList.length > 0 ? filteredList : localMatches);
       })
-      .catch(err => console.log('Backend not available, keeping local fallback notes:', err));
+      .catch(err => {
+        if (seq === requestSeqRef.current) {
+          console.log('Backend not available, keeping local fallback notes:', err);
+        }
+      });
   }, [normalizedCourse, selectedBranch, activeBranch, activeYear, selectedYear]);
 
   React.useEffect(() => {
@@ -292,99 +424,6 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
       border: '#c7d2fe',
       badge: cleanName || 'Verified Resource'
     };
-  };
-
-  // CANONICAL NORMALIZATION HELPERS FOR ROBUST NOTE RESOLUTION
-  const normYearStr = (yearStr) => {
-    if (!yearStr) return '';
-    const s = String(yearStr).toLowerCase().replace(/b\.tech/g, '').replace(/st|nd|rd|th/g, '').replace(/year\s*/g, '').trim();
-    if (s === '1' || s.includes('1')) return '1';
-    if (s === '2' || s.includes('2')) return '2';
-    if (s === '3' || s.includes('3')) return '3';
-    if (s === '4' || s.includes('4')) return '4';
-    return s;
-  };
-
-  const normBranchStr = (branchStr) => {
-    if (!branchStr) return '';
-    const b = String(branchStr).toUpperCase().trim();
-    if (b.includes('COMPUTER') || b === 'CSE') return 'CSE';
-    if (b.includes('ELECTRONIC') || b === 'ECE') return 'ECE';
-    if (b.includes('MECHANICAL') || b === 'ME') return 'ME';
-    if (b.includes('CIVIL') || b === 'CE') return 'CE';
-    if (b.includes('INFORMATION') || b === 'IT') return 'IT';
-    if (b.includes('ELECTRICAL') || b === 'EE') return 'EE';
-    if (b.includes('AI') && !b.includes('DS') && !b.includes('DATA')) return 'AI & ML';
-    if (b.includes('DS') || b.includes('DATA')) return 'DS';
-    if (b.includes('AI & DS') || b.includes('AIML') || b.includes('AI')) return 'AI & ML';
-    if (b.includes('MATH')) return 'Maths';
-    return b;
-  };
-
-  const normSourceKey = (srcStr) => {
-    if (!srcStr) return '';
-    const s = String(srcStr).toLowerCase();
-    if (s.includes('gateway')) return 'gateway_classes';
-    if (s.includes('quantum')) return 'quantum';
-    if (s.includes('bitwise')) return 'bitwise_learning';
-    if (s.includes('multi')) return 'multi_atom';
-    return s;
-  };
-
-  const cleanTokens = (str) => {
-    if (!str) return [];
-    return String(str)
-      .toLowerCase()
-      .replace(/&/g, ' and ')
-      .replace(/[^a-z0-9\s]/g, ' ')
-      .split(/\s+/)
-      .filter(t => t && !['and', 'of', 'the', 'in', 'for', 'with', 'to', 'a', 'an', 'pps', 'tafl', 'dbms'].includes(t))
-      .map(t => {
-        if (t === 'iv' || t === '4') return '4';
-        if (t === 'iii' || t === '3') return '3';
-        if (t === 'ii' || t === '2') return '2';
-        if (t === 'i' || t === '1') return '1';
-        return t.endsWith('s') ? t.slice(0, -1) : t;
-      });
-  };
-
-  const isSubjectMatch = (codeA, nameA, codeB, nameB) => {
-    const normCodeA = codeA ? String(codeA).toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
-    const normCodeB = codeB ? String(codeB).toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
-
-    // If both codes exist and are valid (length >= 4), they MUST match exactly
-    if (normCodeA && normCodeB && normCodeA.length >= 4 && normCodeB.length >= 4) {
-      return normCodeA === normCodeB;
-    }
-
-    const tokensA = cleanTokens(nameA);
-    const tokensB = cleanTokens(nameB);
-    if (tokensA.length === 0 || tokensB.length === 0) return false;
-
-    // 1. Distinguishing number check (1 vs 2 vs 3 vs 4)
-    const numA = tokensA.find(t => ['1', '2', '3', '4'].includes(t));
-    const numB = tokensB.find(t => ['1', '2', '3', '4'].includes(t));
-    if (numA && numB && numA !== numB) return false;
-    if ((numA && !numB) || (!numA && numB)) return false;
-
-    // 2. Key topic check (physic vs chemistry vs mathematic vs electrical vs electronics vs mechanical vs civil)
-    const keyTopics = ['physic', 'chemistry', 'mathematic', 'electrical', 'electronic', 'mechanical', 'civil', 'environment', 'programming', 'soft', 'human', 'python', 'c', 'java', 'structure', 'algorithm', 'database', 'operating', 'network'];
-    const topicA = tokensA.find(t => keyTopics.includes(t));
-    const topicB = tokensB.find(t => keyTopics.includes(t));
-    if (topicA && topicB && topicA !== topicB) return false;
-
-    const strA = tokensA.join('');
-    const strB = tokensB.join('');
-    if (strA === strB) return true;
-
-    const setA = new Set(tokensA);
-    const setB = new Set(tokensB);
-    const intersection = tokensA.filter(x => setB.has(x));
-
-    if (intersection.length === tokensA.length && intersection.length === tokensB.length) return true;
-    if (intersection.length >= 2 && (intersection.length === tokensA.length || intersection.length === tokensB.length)) return true;
-
-    return false;
   };
 
   // HELPER TO RESOLVE NOTE RESOURCE URL FOR A GIVEN SUBJECT, UNIT, AND SOURCE
@@ -440,6 +479,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   };
 
   // State sync from search query
+  const prevSearchQueryRef = React.useRef(searchQuery);
   React.useEffect(() => {
     if (searchQuery && typeof searchQuery === 'string') {
       const sq = searchQuery.toLowerCase();
@@ -455,8 +495,13 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
       else if (sq.includes('it') || sq.includes('information')) setActiveBranch('IT');
       else if (sq.includes('ai') || sq.includes('aiml')) setActiveBranch('AI & ML');
       else if (sq.includes('ds') || sq.includes('data science')) setActiveBranch('DS');
+    } else if (prevSearchQueryRef.current && !searchQuery) {
+      // User cleared the search: restore user's explicitly selected year and branch
+      setActiveYear(selectedYear || '1st Year');
+      setActiveBranch(selectedBranch || 'CSE');
     }
-  }, [searchQuery]);
+    prevSearchQueryRef.current = searchQuery;
+  }, [searchQuery, selectedYear, selectedBranch]);
 
   // Sidebar Filter Checkbox States
   const [selectedBranches, setSelectedBranches] = useState([]);
@@ -1093,6 +1138,16 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         <CourseNotesView
           courseKey={normalizedCourse}
           dbNotes={dbNotes}
+          activeYearProp={activeYear}
+          activeBranchProp={activeBranch}
+          onSelectYear={(yr) => {
+            setActiveYear(yr);
+            setSelectedYear(yr);
+          }}
+          onSelectBranch={(br) => {
+            setActiveBranch(br);
+            setSelectedBranch(br);
+          }}
           onOpenViewer={({ note, subject, unit }) => {
             trackNoteViewed({
               noteId: note?.id || note?.uniqueKey || `${subject?.name || subject?.subject || 'Note'}_Unit${unit || 1}`,

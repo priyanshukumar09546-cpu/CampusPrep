@@ -394,16 +394,22 @@ export default function MobileNotesScreen({
 
   // Fetch real notes and PYQs when a subject is opened
   useEffect(() => {
-    if (!activeSubjectDetail) return;
+    if (!activeSubjectDetail) {
+      setSubjectLiveNotes([]);
+      setSubjectLivePyqs([]);
+      return;
+    }
 
     let isSubscribed = true;
     setIsLoadingDetail(true);
+    setSubjectLiveNotes([]);
+    setSubjectLivePyqs([]);
 
     const subName = activeSubjectDetail.name;
     const subCode = activeSubjectDetail.code;
 
-    const notesUrl = `${API_URL}/api/notes?course=${encodeURIComponent(selectedCourse)}&branch=${encodeURIComponent(selectedBranch || '')}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode || '')}`;
-    const pyqsUrl = `${API_URL}/api/pyqs?course=${encodeURIComponent(selectedCourse)}&branch=${encodeURIComponent(selectedBranch || '')}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode || '')}`;
+    const notesUrl = `${API_URL}/api/notes?course=${encodeURIComponent(selectedCourse)}&branch=${encodeURIComponent(selectedBranch || '')}&year=${encodeURIComponent(selectedYear || '')}&semester=${encodeURIComponent(selectedSem || '')}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode || '')}`;
+    const pyqsUrl = `${API_URL}/api/pyqs?course=${encodeURIComponent(selectedCourse)}&branch=${encodeURIComponent(selectedBranch || '')}&year=${encodeURIComponent(selectedYear || '')}&semester=${encodeURIComponent(selectedSem || '')}&subject=${encodeURIComponent(subName)}&subjectCode=${encodeURIComponent(subCode || '')}`;
 
     Promise.all([
       fetch(notesUrl, { cache: 'no-store' }).then(r => r.json()).catch(() => ({ notes: [] })),
@@ -422,6 +428,21 @@ export default function MobileNotesScreen({
           }
         }
       }
+
+      // Filter notes strictly by selectedYear and selectedBranch
+      const targetYearNorm = normalizeYearStr(selectedYear);
+      fetchedNotes = fetchedNotes.filter(n => {
+        if (selectedYear && targetYearNorm) {
+          const ny = normalizeYearStr(n.year);
+          if (ny && ny !== targetYearNorm) return false;
+        }
+        if (selectedBranch && targetYearNorm !== '1st Year') {
+          const nb = String(n.branch || n.branchId || '').toUpperCase();
+          const sb = String(selectedBranch).toUpperCase();
+          if (nb && nb !== 'ALL' && nb !== sb) return false;
+        }
+        return true;
+      });
 
       let fetchedPyqs = Array.isArray(pyqsData.pyqs) ? pyqsData.pyqs : [];
       if (fetchedPyqs.length === 0) {
@@ -444,7 +465,7 @@ export default function MobileNotesScreen({
     return () => {
       isSubscribed = false;
     };
-  }, [activeSubjectDetail, selectedCourse, selectedBranch]);
+  }, [activeSubjectDetail, selectedCourse, selectedBranch, selectedYear, selectedSem]);
 
   // Supported units for the active subject (from AKTU syllabus or notes data)
   const supportedUnits = useMemo(() => {

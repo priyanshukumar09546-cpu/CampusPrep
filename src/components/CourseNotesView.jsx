@@ -27,6 +27,10 @@ import { API_URL } from '../config/api';
 
 export default function CourseNotesView({ 
   courseKey = 'B.Tech', 
+  activeYearProp,
+  activeBranchProp,
+  onSelectYear,
+  onSelectBranch,
   dbNotes = [], 
   onOpenViewer, 
   onRequestNotes,
@@ -71,8 +75,29 @@ export default function CourseNotesView({
   };
 
   // B.Tech Navigation States
-  const [activeYear, setActiveYear] = useState(() => normalizeYearStr(getInitialParam('year', '1st Year')));
-  const [activeBranch, setActiveBranch] = useState(() => getInitialParam('branch', 'CSE'));
+  const [activeYear, setActiveYear] = useState(() => {
+    if (activeYearProp) return normalizeYearStr(activeYearProp);
+    return normalizeYearStr(getInitialParam('year', '1st Year'));
+  });
+  const [activeBranch, setActiveBranch] = useState(() => {
+    if (activeBranchProp) return activeBranchProp;
+    return getInitialParam('branch', 'CSE');
+  });
+
+  // Sync with prop updates
+  useEffect(() => {
+    if (activeYearProp && normalizeYearStr(activeYearProp) !== activeYear) {
+      setActiveYear(normalizeYearStr(activeYearProp));
+      setLocalBTechNotes([]);
+    }
+  }, [activeYearProp]);
+
+  useEffect(() => {
+    if (activeBranchProp && activeBranchProp !== activeBranch) {
+      setActiveBranch(activeBranchProp);
+      setLocalBTechNotes([]);
+    }
+  }, [activeBranchProp]);
 
   // Semester State
   const initialSem = getInitialParam('semester', isBTech ? 'All Semesters' : (courseMeta.semesters ? courseMeta.semesters[0] : 'Semester 1'));
@@ -100,6 +125,27 @@ export default function CourseNotesView({
   const [localBTechNotes, setLocalBTechNotes] = useState([]);
   const [isLoadingNotes, setIsLoadingNotes] = useState(false);
   const notesCacheRef = useRef(new Map());
+  const fetchSeqRef = useRef(0);
+
+  // Reset when courseKey changes
+  useEffect(() => {
+    if (isBTech) {
+      const targetYear = activeYearProp ? normalizeYearStr(activeYearProp) : '1st Year';
+      const targetBranch = activeBranchProp || 'CSE';
+      setActiveYear(targetYear);
+      setActiveBranch(targetBranch);
+    } else {
+      const firstYear = courseMeta.years ? courseMeta.years[0] : '1st Year';
+      setActiveYear(firstYear);
+      setActiveBranch((courseMeta.branches && courseMeta.branches[0]?.id) || 'General');
+    }
+    const firstSem = isBTech ? 'All Semesters' : (courseMeta.semesters ? courseMeta.semesters[0] : 'Semester 1');
+    setActiveSemester(firstSem);
+    setActiveSubject(null);
+    setActiveUnit('All');
+    setLocalBTechNotes([]);
+    notesCacheRef.current.clear();
+  }, [normKey]);
 
   // Canonical subject and code normalization
   const normSubCanonical = (str) => {
@@ -118,28 +164,69 @@ export default function CourseNotesView({
 
   const isSubjectStrictMatch = useCallback((target, note) => {
     if (!target || !note) return false;
-    const tName = normSubCanonical(target.name || target.subject);
-    const nName = normSubCanonical(note.subject || note.subjectName);
 
-    // 1. Exact normalized name match or singular/plural variation
-    if (tName && nName && tName === nName) return true;
-    if (tName && nName && tName.replace(/s$/, '') === nName.replace(/s$/, '')) return true;
+    // 0. Strict Year Check between target subject and note
+    if (target.year && note.year) {
+      const tY = normYearNum(target.year);
+      const nY = normYearNum(note.year);
+      if (tY && nY && tY !== nY) return false;
+    }
 
     const tCode = normCodeCanonical(target.code);
     const nCode = normCodeCanonical(note.subjectCode);
 
-    // 2. Exact code match (if not generic like 'KOE' or 'AKTU')
+    // 1. Code Curriculum Sanity Check (prevent cross-year numeric digit mismatch e.g. 5 vs 1)
+    if (tCode && nCode) {
+      const tDigitMatch = tCode.match(/^[A-Z]{2,4}(\d)/);
+      const nDigitMatch = nCode.match(/^[A-Z]{2,4}(\d)/);
+      if (tDigitMatch && nDigitMatch && tDigitMatch[1] !== nDigitMatch[1]) {
+        return false;
+      }
+    }
+
+    // 2. Exact code match (with AKTU K/B prefix equivalence e.g. KCS301 == BCS301)
     if (tCode && nCode && tCode.length >= 4 && nCode.length >= 4 && !['KOE', 'AKTU', 'NOTES'].includes(tCode) && !['KOE', 'AKTU', 'NOTES'].includes(nCode)) {
       if (tCode === nCode) return true;
-      // AKTU K/B prefix equivalence (e.g. KAS103 vs BAS103, KCS301 vs BCS301)
       const tEquiv = tCode.replace(/^[KB]/, '');
       const nEquiv = nCode.replace(/^[KB]/, '');
       if (tEquiv === nEquiv && tEquiv.length >= 4) return true;
+      // If both have specific codes that don't match, they are different subjects!
+      return false;
     }
 
-    // 3. Substring containment for full subject names
-    if (tName && nName && (tName.includes(nName) || nName.includes(tName)) && (tName.length >= 6 && nName.length >= 6)) {
-      return true;
+    const tName = normSubCanonical(target.name || target.subject);
+    const nName = normSubCanonical(note.subject || note.subjectName);
+    if (!tName || !nName) return false;
+
+    // 3. Exact normalized name match or singular/plural variation
+    if (tName === nName) return true;
+    if (tName.replace(/s$/, '') === nName.replace(/s$/, '')) return true;
+
+    // 4. Token-level matching with distinguishing number enforcement
+    const tTokens = (target.name || target.subject || '').toLowerCase().replace(/[^a-z0-9]/g, ' ').split(/\s+/).filter(Boolean);
+    const nTokens = (note.subject || note.subjectName || '').toLowerCase().replace(/[^a-z0-9]/g, ' ').split(/\s+/).filter(Boolean);
+
+    // Distinguishing numbers (1 vs 2 vs 3 vs 4, or i vs ii vs iii vs iv) MUST match exactly
+    const numMap = { '1': '1', 'i': '1', 'first': '1', '2': '2', 'ii': '2', 'second': '2', '3': '3', 'iii': '3', 'third': '3', '4': '4', 'iv': '4', 'fourth': '4' };
+    const tNum = tTokens.map(t => numMap[t]).find(Boolean);
+    const nNum = nTokens.map(t => numMap[t]).find(Boolean);
+    if (tNum || nNum) {
+      if (tNum !== nNum) return false;
+    }
+
+    // Key topic check: if both have known topic keywords, they must match
+    const keyTopics = ['physics', 'chemistry', 'mathematics', 'math', 'electrical', 'electronic', 'electronics', 'mechanical', 'civil', 'compiler', 'automata', 'database', 'network', 'networks', 'algorithm', 'algorithms', 'operating', 'cloud', 'machine', 'learning', 'programming', 'python', 'java', 'web', 'discrete'];
+    const tTopic = tTokens.find(t => keyTopics.includes(t));
+    const nTopic = nTokens.find(t => keyTopics.includes(t));
+    if (tTopic && nTopic && tTopic !== nTopic) return false;
+
+    // Multi-token containment if at least 2 key words match and neither has conflicting topic
+    if (tTokens.length >= 2 && nTokens.length >= 2) {
+      const setN = new Set(nTokens);
+      const matches = tTokens.filter(x => setN.has(x) && !['and', 'of', 'the', 'in', 'for', 'to', 'a', 'an'].includes(x));
+      if (matches.length >= 2 && (matches.length >= tTokens.length * 0.7 || matches.length >= nTokens.length * 0.7)) {
+        return true;
+      }
     }
 
     return false;
@@ -346,18 +433,18 @@ export default function CourseNotesView({
       return;
     }
 
+    const currentSeq = ++fetchSeqRef.current;
     const yNum = normYearNum(activeYear);
     const subCode = activeSubject.code || '';
     const subName = activeSubject.name || '';
     const semParam = activeSemester && activeSemester !== 'All Semesters' ? activeSemester : '';
-    const cacheKey = `${activeBranch}_${yNum}_${semParam}_${subCode || subName}`;
+    const cacheKey = `${normKey}_${activeBranch}_${yNum}_${semParam}_${subCode || subName}`;
 
     if (notesCacheRef.current.has(cacheKey)) {
       setLocalBTechNotes(notesCacheRef.current.get(cacheKey));
       return;
     }
 
-    let isSubscribed = true;
     setIsLoadingNotes(true);
     setLocalBTechNotes([]); // Immediately clear stale resources
 
@@ -369,27 +456,43 @@ export default function CourseNotesView({
     fetch(apiUrl, { cache: 'no-store' })
       .then(res => res.json())
       .then(data => {
-        if (!isSubscribed) return;
+        if (currentSeq !== fetchSeqRef.current) return;
         if (data && Array.isArray(data.notes)) {
-          notesCacheRef.current.set(cacheKey, data.notes);
-          setLocalBTechNotes(data.notes);
+          // Strictly verify that notes match the active branch and year
+          const strictlyMatched = data.notes.filter(n => {
+            const ny = normYearNum(n.year);
+            if (yNum && (!ny || ny !== yNum)) return false;
+            const nb = String(n.branch || n.branchId || '').toUpperCase().trim();
+            if (activeYear !== '1st Year') {
+              if (!nb) return false;
+              if (nb !== activeBranch.toUpperCase().trim() && nb !== 'ALL') {
+                const bUpper = activeBranch.toUpperCase().trim();
+                const matchAi = (bUpper.includes('AI') && nb.includes('AI'));
+                const matchDs = (bUpper.includes('DS') && (nb.includes('DS') || nb.includes('DATA')));
+                if (!matchAi && !matchDs) return false;
+              }
+            }
+            return true;
+          });
+          notesCacheRef.current.set(cacheKey, strictlyMatched);
+          setLocalBTechNotes(strictlyMatched);
         } else {
           setLocalBTechNotes([]);
         }
       })
       .catch(err => {
-        if (!isSubscribed) return;
+        if (currentSeq !== fetchSeqRef.current) return;
         console.error('Error fetching B.Tech notes:', err);
         setLocalBTechNotes([]);
       })
       .finally(() => {
-        if (isSubscribed) setIsLoadingNotes(false);
+        if (currentSeq === fetchSeqRef.current) setIsLoadingNotes(false);
       });
 
     return () => {
-      isSubscribed = false;
+      fetchSeqRef.current++;
     };
-  }, [isBTech, activeBranch, activeYear, activeSemester, activeSubject]);
+  }, [isBTech, activeBranch, activeYear, activeSemester, activeSubject, normKey]);
 
   // Clean educational provider name helper
   const getCleanProvider = (note) => {
@@ -409,7 +512,7 @@ export default function CourseNotesView({
     return raw;
   };
 
-  // Helper to fetch all offline local notes matching a subject from notesData
+  // Helper to fetch all offline local notes matching a subject from notesData with strict isolation
   const getSubjectNotesFromLocal = useCallback((targetSubject) => {
     if (!targetSubject) return [];
     const subCode = targetSubject.code || '';
@@ -436,38 +539,56 @@ export default function CourseNotesView({
     if (cleanCode.startsWith('BME')) candidateKeys.push('KME' + cleanCode.slice(3), 'KME-' + cleanCode.slice(3));
     if (cleanCode.startsWith('KME')) candidateKeys.push('BME' + cleanCode.slice(3), 'BME-' + cleanCode.slice(3));
 
+    const yNum = normYearNum(activeYear);
+    const bUpper = activeBranch.toUpperCase().trim();
+
+    const checkNoteScope = (n) => {
+      if (!n) return false;
+      const nCourseNorm = normalizeCourseKey(n.course);
+      if (nCourseNorm !== normKey) {
+        const isCompatible = (
+          (nCourseNorm === 'B.Tech' && ['BTech', 'BTechLateral'].includes(normKey)) ||
+          (nCourseNorm === 'B.Pharm' && ['BPharma', 'BPharmLateral'].includes(normKey)) ||
+          (nCourseNorm === 'MCA' && ['MCA', 'MCALateral'].includes(normKey)) ||
+          (nCourseNorm === 'MBA' && ['MBA', 'MBALateral'].includes(normKey)) ||
+          (nCourseNorm === 'BBA' && ['BBA', 'BBA_BMS'].includes(normKey))
+        );
+        if (!isCompatible) return false;
+      }
+      const nYearNum = normYearNum(n.year);
+      if (yNum && (!nYearNum || nYearNum !== yNum)) return false;
+      if (isBTech && activeYear !== '1st Year') {
+        const nb = String(n.branch || n.branchId || '').toUpperCase().trim();
+        if (!nb) return false;
+        if (nb !== bUpper && nb !== 'ALL') {
+          const matchAi = (bUpper.includes('AI') && nb.includes('AI'));
+          const matchDs = (bUpper.includes('DS') && (nb.includes('DS') || nb.includes('DATA')));
+          if (!matchAi && !matchDs) return false;
+        }
+      }
+      return isSubjectStrictMatch(targetSubject, n);
+    };
+
     const found = [];
     const seenIds = new Set();
     for (const k of candidateKeys) {
       if (k && localNotesData[k] && Array.isArray(localNotesData[k])) {
         for (const n of localNotesData[k]) {
-          const key = n.id || `${n.title}_${n.unit}_${n.pdfUrl || n.driveUrl}`;
-          if (!seenIds.has(key)) {
-            seenIds.add(key);
-            found.push(n);
-          }
-        }
-      }
-    }
-
-    // 2. If nothing found by direct keys, check all local notes matching subject
-    if (found.length === 0) {
-      const allNotes = Object.values(localNotesData).flat();
-      for (const n of allNotes) {
-        if (isSubjectStrictMatch(targetSubject, n)) {
-          const key = n.id || `${n.title}_${n.unit}_${n.pdfUrl || n.driveUrl}`;
-          if (!seenIds.has(key)) {
-            seenIds.add(key);
-            found.push(n);
+          if (checkNoteScope(n)) {
+            const key = n.id || `${n.title}_${n.unit}_${n.pdfUrl || n.driveUrl}`;
+            if (!seenIds.has(key)) {
+              seenIds.add(key);
+              found.push(n);
+            }
           }
         }
       }
     }
 
     return found;
-  }, [isSubjectStrictMatch]);
+  }, [normKey, isBTech, activeYear, activeBranch, isSubjectStrictMatch]);
 
-  // Unified merged source notes helper ensuring NO notes are ever dropped
+  // Unified merged source notes helper ensuring NO cross-year or cross-branch leakage
   const getMergedSourceNotes = useCallback((targetSubject) => {
     if (!targetSubject) return [];
     const localMatches = getSubjectNotesFromLocal(targetSubject);
@@ -475,7 +596,37 @@ export default function CourseNotesView({
     const bbaMatches = (normKey === 'BBA' || normKey === 'BBA_BMS') ? BBA_NOTES_CATALOG.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
     const biotechMatches = (normKey === 'BTechBiotechnology') ? BIOTECH_NOTES_CATALOG.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
     const agriMatches = (normKey === 'BTechAgriculture') ? AGRI_NOTES_CATALOG.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
-    const apiNotes = Array.isArray(dbNotes) ? dbNotes.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
+
+    // Strictly filter dbNotes by current course, active year, and active branch
+    const yNum = normYearNum(activeYear);
+    const bUpper = activeBranch.toUpperCase().trim();
+
+    const apiNotes = Array.isArray(dbNotes) ? dbNotes.filter(n => {
+      const nCourseNorm = normalizeCourseKey(n.course);
+      if (nCourseNorm !== normKey) {
+        const isCompatible = (
+          (nCourseNorm === 'B.Tech' && ['BTech', 'BTechLateral'].includes(normKey)) ||
+          (nCourseNorm === 'B.Pharm' && ['BPharma', 'BPharmLateral'].includes(normKey)) ||
+          (nCourseNorm === 'MCA' && ['MCA', 'MCALateral'].includes(normKey)) ||
+          (nCourseNorm === 'MBA' && ['MBA', 'MBALateral'].includes(normKey)) ||
+          (nCourseNorm === 'BBA' && ['BBA', 'BBA_BMS'].includes(normKey))
+        );
+        if (!isCompatible) return false;
+      }
+      const nYearNum = normYearNum(n.year);
+      if (yNum && (!nYearNum || nYearNum !== yNum)) return false;
+      if (isBTech && activeYear !== '1st Year') {
+        const nb = String(n.branch || n.branchId || '').toUpperCase().trim();
+        if (!nb) return false;
+        if (nb !== bUpper && nb !== 'ALL') {
+          const matchAi = (bUpper.includes('AI') && nb.includes('AI'));
+          const matchDs = (bUpper.includes('DS') && (nb.includes('DS') || nb.includes('DATA')));
+          if (!matchAi && !matchDs) return false;
+        }
+      }
+      return isSubjectStrictMatch(targetSubject, n);
+    }) : [];
+
     const btechNotes = isBTech && Array.isArray(localBTechNotes) ? localBTechNotes.filter(n => isSubjectStrictMatch(targetSubject, n)) : [];
 
     const merged = [];
@@ -498,7 +649,7 @@ export default function CourseNotesView({
     agriMatches.forEach(addNote);
 
     return merged;
-  }, [getSubjectNotesFromLocal, normKey, dbNotes, isBTech, localBTechNotes, isSubjectStrictMatch]);
+  }, [getSubjectNotesFromLocal, normKey, dbNotes, isBTech, localBTechNotes, isSubjectStrictMatch, activeYear, activeBranch]);
 
   // Available units dynamic based on notes for active subject
   const availableUnitsForActiveSubject = useMemo(() => {
@@ -556,6 +707,7 @@ export default function CourseNotesView({
         const bUpper = activeBranch.toUpperCase().trim();
         const nb = String(n.branch || n.branchId || '').toUpperCase().trim();
         const isCommon = nb === 'ALL' || nb === 'COMMON' || (activeYear === '1st Year' && (!nb || nb === 'ALL' || nb === 'COMMON' || nb === bUpper));
+        if (activeYear !== '1st Year' && !nb) return false; // Missing branch in Year 2/3/4 never leaks!
         if (!isCommon && nb && nb !== bUpper) {
           const matchAi = (bUpper.includes('AI') && nb.includes('AI'));
           const matchDs = (bUpper.includes('DS') && (nb.includes('DS') || nb.includes('DATA')));
@@ -573,6 +725,13 @@ export default function CourseNotesView({
           const yNum = normYearNum(activeYear);
           const nYearNum = normYearNum(n.year);
           if (yNum && (!nYearNum || nYearNum !== yNum)) return false;
+        }
+
+        // Branch isolation for courses with branches (e.g. M.Tech)
+        if (courseMeta.branches && courseMeta.branches.length > 0 && activeBranch) {
+          const bUpper = activeBranch.toUpperCase().trim();
+          const nb = String(n.branch || n.branchId || '').toUpperCase().trim();
+          if (nb && nb !== 'ALL' && nb !== bUpper) return false;
         }
 
         // Strict Semester isolation for all courses
@@ -714,6 +873,8 @@ export default function CourseNotesView({
                     key={yr}
                     onClick={() => {
                       setActiveYear(yr);
+                      if (onSelectYear) onSelectYear(yr);
+                      setLocalBTechNotes([]);
                       let nextSem = 'All Semesters';
                       if (normKey === 'BCA') {
                         nextSem = yr === '1st Year' ? 'Semester 1' : yr === '2nd Year' ? 'Semester 3' : 'Semester 5';
@@ -757,6 +918,8 @@ export default function CourseNotesView({
                     key={br}
                     onClick={() => {
                       setActiveBranch(br);
+                      if (onSelectBranch) onSelectBranch(br);
+                      setLocalBTechNotes([]);
                       setActiveUnit('All');
                       updateUrl({ branch: br, subject: null, unit: 'All' });
                     }}

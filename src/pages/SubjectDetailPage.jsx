@@ -98,17 +98,29 @@ export default function SubjectDetailPage({
 
     // Try background API fetch if available
     try {
-      fetch(`${API_URL}/api/notes?subject=${encodeURIComponent(code)}`)
+      let fetchUrl = `${API_URL}/api/notes?subject=${encodeURIComponent(code)}`;
+      if (courseParam) fetchUrl += `&course=${encodeURIComponent(courseParam)}`;
+      if (subjectData?.branch) fetchUrl += `&branch=${encodeURIComponent(subjectData.branch)}`;
+      if (subjectData?.year) fetchUrl += `&year=${encodeURIComponent(subjectData.year)}`;
+      fetch(fetchUrl)
         .then(res => res.json())
         .then(apiData => {
           const apiNotes = Array.isArray(apiData) ? apiData : (apiData?.notes || []);
           if (apiNotes && apiNotes.length > 0) {
-            setNotes(apiNotes);
+            const filtered = apiNotes.filter(n => {
+              if (subjectData?.year) {
+                const ny = String(n.year || '').replace(/[^0-9]/g, '');
+                const ty = String(subjectData.year).replace(/[^0-9]/g, '');
+                if (ny && ty && ny !== ty) return false;
+              }
+              return true;
+            });
+            setNotes(filtered.length > 0 ? filtered : apiNotes);
           }
         })
         .catch(() => {});
     } catch (e) {}
-  }, [code]);
+  }, [code, courseParam, subjectData]);
 
   const firstItem = notes[0] || pyqs[0];
   const subjectName = subjectData?.name || subjectData?.title || firstItem?.subject || firstItem?.subjectName || (code === 'BCS301' ? 'Data Structure' : `${code} - Study Notes`);

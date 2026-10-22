@@ -65,6 +65,8 @@ export default function SubjectPage({
       subject: subjectName
     });
     if (subjectCode) queryParams.set('subjectCode', subjectCode);
+    if (year) queryParams.set('year', year);
+    if (semester) queryParams.set('semester', semester);
 
     fetch(`/api/notes?${queryParams.toString()}&_t=${Date.now()}`)
       .then(res => res.json())
@@ -72,6 +74,16 @@ export default function SubjectPage({
         if (!isSubscribed) return;
         if (data && data.success && Array.isArray(data.notes) && data.notes.length > 0) {
           const matched = data.notes.filter(n => {
+            if (year) {
+              const ny = String(n.year || '').replace(/[^0-9]/g, '');
+              const ty = String(year).replace(/[^0-9]/g, '');
+              if (ny && ty && ny !== ty) return false;
+            }
+            if (branch && branch !== 'ALL' && String(year).replace(/[^0-9]/g, '') !== '1') {
+              const nb = String(n.branch || n.branchId || '').toUpperCase();
+              const tb = String(branch).toUpperCase();
+              if (nb && nb !== 'ALL' && nb !== tb) return false;
+            }
             const nSub = String(n.subject || n.subjectName || '').toLowerCase();
             const nCode = String(n.subjectCode || '').toLowerCase();
             const targetSub = subjectName.toLowerCase();
@@ -93,7 +105,7 @@ export default function SubjectPage({
     return () => {
       isSubscribed = false;
     };
-  }, [subjectName, subjectCode, branch, course]);
+  }, [subjectName, subjectCode, branch, course, year, semester]);
 
   // Fetch real PYQs from MongoDB API with local fallback
   useEffect(() => {
@@ -109,6 +121,8 @@ export default function SubjectPage({
       subject: subjectName
     });
     if (subjectCode) queryParams.set('subjectCode', subjectCode);
+    if (year) queryParams.set('year', year);
+    if (semester) queryParams.set('semester', semester);
 
     fetch(`/api/pyqs?${queryParams.toString()}&_t=${Date.now()}`)
       .then(res => res.json())
@@ -116,6 +130,11 @@ export default function SubjectPage({
         if (!isSubscribed) return;
         if (data && data.success && Array.isArray(data.pyqs) && data.pyqs.length > 0) {
           const matched = data.pyqs.filter(p => {
+            if (year) {
+              const py = String(p.year || '').replace(/[^0-9]/g, '');
+              const ty = String(year).replace(/[^0-9]/g, '');
+              if (py && ty && py !== ty) return false;
+            }
             const pSub = String(p.subjectName || p.subject || '').toLowerCase();
             const pCode = String(p.subjectCode || '').toLowerCase();
             const targetSub = subjectName.toLowerCase();
@@ -137,7 +156,7 @@ export default function SubjectPage({
     return () => {
       isSubscribed = false;
     };
-  }, [subjectName, subjectCode, branch, course]);
+  }, [subjectName, subjectCode, branch, course, year, semester]);
 
   // Resolve note action
   const handleOpenNote = (note) => {
