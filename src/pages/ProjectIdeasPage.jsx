@@ -52,6 +52,9 @@ import { PROJECT_GUIDES } from '../data/projectGuidesData';
 
 export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
   const [projects, setProjects] = useState([]);
+  const [totalProjects, setTotalProjects] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -134,6 +137,12 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
     loadBookmarks();
   }, []);
 
+  // Reset page to 1 when filters change
+  const handleFilterChange = (setter) => (val) => {
+    setter(val);
+    setCurrentPage(1);
+  };
+
   // Fetch projects from backend CMS API
   useEffect(() => {
     async function fetchProjects() {
@@ -147,7 +156,8 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
         if (selectedLevel && selectedLevel !== 'all') params.append('level', selectedLevel);
         if (selectedTech && selectedTech !== 'all') params.append('tech', selectedTech);
         if (sortBy) params.append('sort', sortBy);
-        params.append('limit', '50');
+        params.append('page', String(currentPage));
+        params.append('limit', '24');
 
         const res = await fetch(`/api/projects?${params.toString()}`);
         if (!res.ok) {
@@ -164,6 +174,8 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
         }
 
         setProjects(data.projects || []);
+        setTotalProjects(data.total !== undefined ? data.total : (data.projects || []).length);
+        setTotalPages(data.totalPages || 1);
         if (data.domainCounts) {
           setDomainCounts(data.domainCounts);
         }
@@ -187,7 +199,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
     }, 200);
 
     return () => clearTimeout(timer);
-  }, [searchQuery, selectedCourse, selectedBranch, selectedDomain, selectedLevel, selectedTech, sortBy]);
+  }, [searchQuery, selectedCourse, selectedBranch, selectedDomain, selectedLevel, selectedTech, sortBy, currentPage]);
 
   // Handle Bookmark Toggle
   const handleToggleBookmark = async (e, projectId) => {
@@ -620,7 +632,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
           {/* Active Filter Indicators */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.65rem', fontSize: '0.78rem', color: '#78716C' }}>
             <div>
-              Showing <strong style={{ color: '#1F2421' }}>{projects.length}</strong> verified project{projects.length !== 1 ? 's' : ''}
+              Showing <strong style={{ color: '#1F2421' }}>{totalProjects > projects.length ? `${projects.length} of ${totalProjects}` : totalProjects}</strong> verified project{totalProjects !== 1 ? 's' : ''}
               {selectedCourse !== 'all' && <span> for <strong>{selectedCourse}</strong></span>}
               {selectedBranch !== 'all' && <span> • <strong>{selectedBranch}</strong></span>}
               {selectedDomain !== 'all' && <span> in <strong>{domainMetadata.find(d => d.id === selectedDomain)?.name}</strong></span>}
@@ -634,6 +646,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
                   setSelectedLevel('all');
                   setSelectedTech('all');
                   setSearchQuery('');
+                  setCurrentPage(1);
                 }}
                 style={{
                   background: 'none',
@@ -1040,6 +1053,85 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
                   })}
                 </div>
               )}
+
+              {/* Desktop Pagination Bar */}
+              {totalPages > 1 && (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  marginTop: '2rem',
+                  padding: '1rem',
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '16px',
+                  border: '1.5px solid #E8E2D5',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                }}>
+                  <button
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage <= 1}
+                    style={{
+                      padding: '0.45rem 0.9rem',
+                      borderRadius: '8px',
+                      border: '1px solid #E8E2D5',
+                      backgroundColor: currentPage <= 1 ? '#F5F5F4' : '#FFFFFF',
+                      color: currentPage <= 1 ? '#A8A29E' : '#1F2421',
+                      fontWeight: 700,
+                      fontSize: '0.8rem',
+                      cursor: currentPage <= 1 ? 'not-allowed' : 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    Previous
+                  </button>
+
+                  {Array.from({ length: totalPages }, (_, idx) => idx + 1).map(pageNum => {
+                    const isCurrent = pageNum === currentPage;
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => setCurrentPage(pageNum)}
+                        style={{
+                          width: '34px',
+                          height: '34px',
+                          borderRadius: '8px',
+                          border: isCurrent ? 'none' : '1px solid #E8E2D5',
+                          backgroundColor: isCurrent ? '#781416' : '#FFFFFF',
+                          color: isCurrent ? '#FFFFFF' : '#1F2421',
+                          fontWeight: 800,
+                          fontSize: '0.8rem',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
+
+                  <button
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage >= totalPages}
+                    style={{
+                      padding: '0.45rem 0.9rem',
+                      borderRadius: '8px',
+                      border: '1px solid #E8E2D5',
+                      backgroundColor: currentPage >= totalPages ? '#F5F5F4' : '#FFFFFF',
+                      color: currentPage >= totalPages ? '#A8A29E' : '#1F2421',
+                      fontWeight: 700,
+                      fontSize: '0.8rem',
+                      cursor: currentPage >= totalPages ? 'not-allowed' : 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </main>
 
             {/* ======================================================== */}
@@ -1439,7 +1531,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
           </div>
 
           <div style={{ marginTop: '0.4rem', fontSize: '0.74rem', color: '#64748B' }}>
-            Showing <span style={{ color: '#781416', fontWeight: 800 }}>{mobileDisplayProjects.length}</span> verified projects
+            Showing <span style={{ color: '#781416', fontWeight: 800 }}>{totalProjects > mobileDisplayProjects.length ? `${mobileDisplayProjects.length} of ${totalProjects}` : totalProjects}</span> verified projects
           </div>
         </div>
 
@@ -1812,6 +1904,59 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
             })
           )}
         </div>
+
+        {/* Mobile Pagination */}
+        {totalPages > 1 && (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.4rem',
+            margin: '1.25rem 0',
+            padding: '0.75rem',
+            backgroundColor: '#FFFFFF',
+            borderRadius: '14px',
+            border: '1.5px solid #E2E8F0'
+          }}>
+            <button
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage <= 1}
+              style={{
+                padding: '0.4rem 0.75rem',
+                borderRadius: '8px',
+                border: '1px solid #E2E8F0',
+                backgroundColor: currentPage <= 1 ? '#F8FAFC' : '#FFFFFF',
+                color: currentPage <= 1 ? '#94A3B8' : '#0F172A',
+                fontWeight: 700,
+                fontSize: '0.75rem',
+                cursor: currentPage <= 1 ? 'not-allowed' : 'pointer'
+              }}
+            >
+              Prev
+            </button>
+
+            <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#334155', padding: '0 0.5rem' }}>
+              Page {currentPage} of {totalPages}
+            </span>
+
+            <button
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage >= totalPages}
+              style={{
+                padding: '0.4rem 0.75rem',
+                borderRadius: '8px',
+                border: '1px solid #E2E8F0',
+                backgroundColor: currentPage >= totalPages ? '#F8FAFC' : '#FFFFFF',
+                color: currentPage >= totalPages ? '#94A3B8' : '#0F172A',
+                fontWeight: 700,
+                fontSize: '0.75rem',
+                cursor: currentPage >= totalPages ? 'not-allowed' : 'pointer'
+              }}
+            >
+              Next
+            </button>
+          </div>
+        )}
 
         {/* G. Why Build Projects? Panel */}
         <div style={{

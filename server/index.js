@@ -3126,11 +3126,12 @@ app.get('/api/pyqs', async (req, res) => {
     const reqDigit = decodedYear.replace(/[^0-9]/g, '');
     result = result.filter(p => {
       const pDigit = String(p.year || p.btechYear || '').replace(/[^0-9]/g, '');
-      if (reqDigit && pDigit) {
+      if (reqDigit) {
         return pDigit === reqDigit;
       }
       const pNorm = String(p.year || '').toLowerCase().replace(/[^a-z0-9]/g, '');
       const reqNorm = decodedYear.toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (!pNorm || !reqNorm) return false;
       return pNorm === reqNorm || pNorm.includes(reqNorm) || reqNorm.includes(pNorm);
     });
   }
@@ -3173,6 +3174,7 @@ app.get('/api/pyqs', async (req, res) => {
     const decodedAcademicYear = decodeURIComponent(String(academicYear)).replace(/\+/g, ' ').trim();
     result = result.filter(p => {
       const pYr = String(p.academicYear || p.examYear || '').trim();
+      if (!pYr) return false;
       return pYr === decodedAcademicYear || pYr.includes(decodedAcademicYear) || decodedAcademicYear.includes(pYr);
     });
   }
@@ -7297,64 +7299,64 @@ app.get('/api/projects', async (req, res) => {
     const courseCounts = { all: 0 };
     const branchCounts = { all: 0 };
 
+    const DOMAIN_ALIASES = {
+      'business-analytics-marketing': 'Management & Business Analytics',
+      'corporate-finance-strategy': 'Management & Business Analytics',
+      'cloud-systems-security': 'Cloud & Distributed Systems',
+      'enterprise-cloud-computing': 'Enterprise & Web Applications',
+      'clinical-industrial-pharmacy': 'Pharmaceutical Sciences'
+    };
+
+    let globalTotal = 0;
+    const globalDomainCounts = { all: 0 };
+
     if (isDbConnected) {
       const baseFilter = { status: 'published', linkStatus: 'verified' };
 
-      const [domainAgg, courseAgg, branchAgg, totalPublished] = await Promise.all([
-        ProjectModel.aggregate([
-          { $match: baseFilter },
-          { $group: { _id: '$domain', count: { $sum: 1 } } }
-        ]),
-        ProjectModel.aggregate([
-          { $match: baseFilter },
-          { $group: { _id: '$course', count: { $sum: 1 } } }
-        ]),
-        ProjectModel.aggregate([
-          { $match: baseFilter },
-          { $group: { _id: '$branch', count: { $sum: 1 } } }
-        ]),
-        ProjectModel.countDocuments(baseFilter)
-      ]);
-
-      domainCounts.all = totalPublished;
-      domainAgg.forEach(d => {
-        if (d._id) {
-          domainCounts[d._id] = d.count;
-          const slug = d._id.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-          domainCounts[slug] = d.count;
-        }
-      });
-
-      courseCounts.all = totalPublished;
-      courseAgg.forEach(c => {
-        if (c._id) courseCounts[c._id] = c.count;
-      });
-
-      branchCounts.all = totalPublished;
-      branchAgg.forEach(b => {
-        if (b._id) branchCounts[b._id] = b.count;
-      });
-
-      const DOMAIN_ALIASES = {
-        'business-analytics-marketing': 'Management & Business Analytics',
-        'corporate-finance-strategy': 'Management & Business Analytics',
-        'cloud-systems-security': 'Cloud & Distributed Systems',
-        'enterprise-cloud-computing': 'Enterprise & Web Applications',
-        'clinical-industrial-pharmacy': 'Pharmaceutical Sciences'
-      };
-
-      const conditions = [{ status: 'published', linkStatus: 'verified' }];
+      // Build conditions for non-domain filters (for computing contextual domainCounts)
+      const nonDomainConditions = [{ status: 'published', linkStatus: 'verified' }];
 
       if (course && course !== 'all' && course !== 'All Courses') {
         const cClean = course.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        conditions.push({ course: new RegExp(`^${cClean}$`, 'i') });
+        nonDomainConditions.push({ course: new RegExp(`^${cClean}$`, 'i') });
       }
 
       if (branch && branch !== 'all' && branch !== 'All Branches') {
         const bClean = branch.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        conditions.push({ branch: new RegExp(`^${bClean}$`, 'i') });
+        nonDomainConditions.push({ branch: new RegExp(`^${bClean}$`, 'i') });
       }
 
+      if (level && level !== 'all' && level !== 'All Levels') {
+        nonDomainConditions.push({ level: new RegExp(`^${level}$`, 'i') });
+      }
+
+      if (tech && tech !== 'all') {
+        nonDomainConditions.push({ technologies: new RegExp(tech, 'i') });
+      }
+
+      if (difficulty && difficulty !== 'all') {
+        nonDomainConditions.push({ difficulty: parseInt(difficulty) });
+      }
+
+      if (search && search.trim()) {
+        const sRegex = new RegExp(search.trim(), 'i');
+        nonDomainConditions.push({
+          $or: [
+            { title: sRegex },
+            { description: sRegex },
+            { tagline: sRegex },
+            { technologies: sRegex },
+            { domain: sRegex },
+            { branch: sRegex },
+            { course: sRegex }
+          ]
+        });
+      }
+
+      const nonDomainFilter = nonDomainConditions.length > 1 ? { $and: nonDomainConditions } : nonDomainConditions[0];
+
+      // Build domain condition if a specific domain is selected
+      const conditions = [...nonDomainConditions];
       if (domain && domain !== 'all' && domain !== 'All Domains') {
         const dClean = domain.trim();
         const slug = dClean.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -7369,34 +7371,62 @@ app.get('/api/projects', async (req, res) => {
         });
       }
 
-      if (level && level !== 'all' && level !== 'All Levels') {
-        conditions.push({ level: new RegExp(`^${level}$`, 'i') });
-      }
-
-      if (tech && tech !== 'all') {
-        conditions.push({ technologies: new RegExp(tech, 'i') });
-      }
-
-      if (difficulty && difficulty !== 'all') {
-        conditions.push({ difficulty: parseInt(difficulty) });
-      }
-
-      if (search && search.trim()) {
-        const sRegex = new RegExp(search.trim(), 'i');
-        conditions.push({
-          $or: [
-            { title: sRegex },
-            { description: sRegex },
-            { tagline: sRegex },
-            { technologies: sRegex },
-            { domain: sRegex },
-            { branch: sRegex },
-            { course: sRegex }
-          ]
-        });
-      }
-
       const filter = conditions.length > 1 ? { $and: conditions } : conditions[0];
+
+      // Aggregations:
+      // 1. Contextual domainCounts (matching course, branch, level, tech, search)
+      // 2. Global totals & global domain counts
+      // 3. Course and branch aggregations
+      const [contextDomainAgg, matchingCount, globalPublished, globalDomainAgg, courseAgg, branchAgg] = await Promise.all([
+        ProjectModel.aggregate([
+          { $match: nonDomainFilter },
+          { $group: { _id: '$domain', count: { $sum: 1 } } }
+        ]),
+        ProjectModel.countDocuments(nonDomainFilter),
+        ProjectModel.countDocuments(baseFilter),
+        ProjectModel.aggregate([
+          { $match: baseFilter },
+          { $group: { _id: '$domain', count: { $sum: 1 } } }
+        ]),
+        ProjectModel.aggregate([
+          { $match: baseFilter },
+          { $group: { _id: '$course', count: { $sum: 1 } } }
+        ]),
+        ProjectModel.aggregate([
+          { $match: baseFilter },
+          { $group: { _id: '$branch', count: { $sum: 1 } } }
+        ])
+      ]);
+
+      globalTotal = globalPublished;
+      globalDomainCounts.all = globalPublished;
+      globalDomainAgg.forEach(d => {
+        if (d._id) {
+          globalDomainCounts[d._id] = d.count;
+          const slug = d._id.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          globalDomainCounts[slug] = d.count;
+        }
+      });
+
+      // Contextual domainCounts for sidebar badges
+      domainCounts.all = matchingCount;
+      contextDomainAgg.forEach(d => {
+        if (d._id) {
+          domainCounts[d._id] = d.count;
+          const slug = d._id.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          domainCounts[slug] = d.count;
+        }
+      });
+
+      courseCounts.all = matchingCount;
+      courseAgg.forEach(c => {
+        if (c._id) courseCounts[c._id] = c.count;
+      });
+
+      branchCounts.all = matchingCount;
+      branchAgg.forEach(b => {
+        if (b._id) branchCounts[b._id] = b.count;
+      });
 
       let sortOption = { featured: -1, viewsCount: -1, createdAt: -1 };
       if (sort === 'newest') sortOption = { createdAt: -1 };
@@ -7412,11 +7442,52 @@ app.get('/api/projects', async (req, res) => {
         .lean();
     } else {
       let list = dbProjects.filter(p => p.status === 'published' && p.linkStatus === 'verified');
-      domainCounts.all = list.length;
-      courseCounts.all = list.length;
-      branchCounts.all = list.length;
-
+      globalTotal = list.length;
+      globalDomainCounts.all = list.length;
       list.forEach(p => {
+        if (p.domain) {
+          globalDomainCounts[p.domain] = (globalDomainCounts[p.domain] || 0) + 1;
+          const slug = p.domain.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+          globalDomainCounts[slug] = globalDomainCounts[p.domain];
+        }
+      });
+
+      // Contextual list matching all non-domain filters
+      let contextList = [...list];
+      if (course && course !== 'all' && course !== 'All Courses') {
+        const cLower = course.trim().toLowerCase();
+        contextList = contextList.filter(p => (p.course || '').toLowerCase() === cLower);
+      }
+      if (branch && branch !== 'all' && branch !== 'All Branches') {
+        const bLower = branch.trim().toLowerCase();
+        contextList = contextList.filter(p => (p.branch || '').toLowerCase() === bLower);
+      }
+      if (level && level !== 'all' && level !== 'All Levels') {
+        contextList = contextList.filter(p => p.level?.toLowerCase() === level.toLowerCase());
+      }
+      if (tech && tech !== 'all') {
+        contextList = contextList.filter(p => Array.isArray(p.technologies) && p.technologies.some(t => t.toLowerCase().includes(tech.toLowerCase())));
+      }
+      if (difficulty && difficulty !== 'all') {
+        contextList = contextList.filter(p => p.difficulty === parseInt(difficulty));
+      }
+      if (search && search.trim()) {
+        const q = search.trim().toLowerCase();
+        contextList = contextList.filter(p => 
+          (p.title && p.title.toLowerCase().includes(q)) ||
+          (p.description && p.description.toLowerCase().includes(q)) ||
+          (p.tagline && p.tagline.toLowerCase().includes(q)) ||
+          (p.branch && p.branch.toLowerCase().includes(q)) ||
+          (p.course && p.course.toLowerCase().includes(q)) ||
+          (Array.isArray(p.technologies) && p.technologies.some(t => t.toLowerCase().includes(q)))
+        );
+      }
+
+      domainCounts.all = contextList.length;
+      courseCounts.all = contextList.length;
+      branchCounts.all = contextList.length;
+
+      contextList.forEach(p => {
         if (p.domain) {
           domainCounts[p.domain] = (domainCounts[p.domain] || 0) + 1;
           const slug = p.domain.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -7430,64 +7501,30 @@ app.get('/api/projects', async (req, res) => {
         }
       });
 
-      const DOMAIN_ALIASES = {
-        'business-analytics-marketing': 'Management & Business Analytics',
-        'corporate-finance-strategy': 'Management & Business Analytics',
-        'cloud-systems-security': 'Cloud & Distributed Systems',
-        'enterprise-cloud-computing': 'Enterprise & Web Applications',
-        'clinical-industrial-pharmacy': 'Pharmaceutical Sciences'
-      };
-
-      if (course && course !== 'all' && course !== 'All Courses') {
-        const cLower = course.trim().toLowerCase();
-        list = list.filter(p => (p.course || '').toLowerCase() === cLower);
-      }
-      if (branch && branch !== 'all' && branch !== 'All Branches') {
-        const bLower = branch.trim().toLowerCase();
-        list = list.filter(p => (p.branch || '').toLowerCase() === bLower);
-      }
+      // Filter by domain
+      let filteredList = [...contextList];
       if (domain && domain !== 'all' && domain !== 'All Domains') {
         const dLower = domain.trim().toLowerCase();
         const alias = DOMAIN_ALIASES[dLower]?.toLowerCase();
-        list = list.filter(p => 
+        filteredList = filteredList.filter(p => 
           (p.domain || '').toLowerCase() === dLower ||
           (p.domainId || '').toLowerCase() === dLower ||
           (alias && (p.domain || '').toLowerCase() === alias)
         );
       }
-      if (level && level !== 'all' && level !== 'All Levels') {
-        list = list.filter(p => p.level?.toLowerCase() === level.toLowerCase());
-      }
-      if (tech && tech !== 'all') {
-        list = list.filter(p => Array.isArray(p.technologies) && p.technologies.some(t => t.toLowerCase().includes(tech.toLowerCase())));
-      }
-      if (difficulty && difficulty !== 'all') {
-        list = list.filter(p => p.difficulty === parseInt(difficulty));
-      }
-      if (search && search.trim()) {
-        const q = search.trim().toLowerCase();
-        list = list.filter(p => 
-          (p.title && p.title.toLowerCase().includes(q)) ||
-          (p.description && p.description.toLowerCase().includes(q)) ||
-          (p.tagline && p.tagline.toLowerCase().includes(q)) ||
-          (p.branch && p.branch.toLowerCase().includes(q)) ||
-          (p.course && p.course.toLowerCase().includes(q)) ||
-          (Array.isArray(p.technologies) && p.technologies.some(t => t.toLowerCase().includes(q)))
-        );
-      }
 
       if (sort === 'newest') {
-        list.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+        filteredList.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
       } else if (sort === 'difficulty-asc') {
-        list.sort((a, b) => (a.difficulty || 3) - (b.difficulty || 3));
+        filteredList.sort((a, b) => (a.difficulty || 3) - (b.difficulty || 3));
       } else if (sort === 'difficulty-desc') {
-        list.sort((a, b) => (b.difficulty || 3) - (a.difficulty || 3));
+        filteredList.sort((a, b) => (b.difficulty || 3) - (a.difficulty || 3));
       } else {
-        list.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || (b.viewsCount || 0) - (a.viewsCount || 0));
+        filteredList.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || (b.viewsCount || 0) - (a.viewsCount || 0));
       }
 
-      total = list.length;
-      projects = list.slice((pageNum - 1) * limitNum, pageNum * limitNum);
+      total = filteredList.length;
+      projects = filteredList.slice((pageNum - 1) * limitNum, pageNum * limitNum);
     }
 
     res.json({
@@ -7499,7 +7536,9 @@ app.get('/api/projects', async (req, res) => {
       totalPages: Math.ceil(total / limitNum) || 1,
       domainCounts,
       courseCounts,
-      branchCounts
+      branchCounts,
+      globalTotal,
+      globalDomainCounts
     });
   } catch (err) {
     console.error('Error fetching projects:', err);

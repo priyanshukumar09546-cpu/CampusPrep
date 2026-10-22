@@ -282,6 +282,27 @@ export default function CoursePyqsView({
     setActiveSubject(null);
   }, [normKey]);
 
+  // Strict Cascading Reset: when Branch changes, reset child subject selection
+  useEffect(() => {
+    setActiveSubject(null);
+  }, [activeBranch]);
+
+  // Strict Cascading Reset: when Year changes, reset child semester and subject
+  useEffect(() => {
+    if (isBTech) {
+      setActiveSemester('All Semesters');
+    } else {
+      const sems = (courseMeta.semestersByYear && courseMeta.semestersByYear[activeYear]) || courseMeta.semesters || [];
+      setActiveSemester(sems[0] || 'All Semesters');
+    }
+    setActiveSubject(null);
+  }, [activeYear, isBTech, courseMeta]);
+
+  // Strict Cascading Reset: when Semester changes, reset child subject
+  useEffect(() => {
+    setActiveSubject(null);
+  }, [activeSemester]);
+
   // Dynamic Semesters for selected Year (Progressive Hierarchy)
   const availableSemesters = useMemo(() => {
     if (isBTech || normKey === 'BCA') {
@@ -390,15 +411,31 @@ export default function CoursePyqsView({
         const targetBranch = activeBranch.toUpperCase().trim();
 
         const pYear = String(p.year || p.btechYear || '').replace(/[^0-9]/g, '');
-        if (pYear && pYear !== targetYearDigit) return;
+        if (!pYear || pYear !== targetYearDigit) return;
 
         const pBranch = String(p.branch || p.branchId || '').toUpperCase().trim();
         if (isY1) {
-          if (pBranch && pBranch !== 'ALL' && pBranch !== targetBranch) return;
+          if (pBranch && pBranch !== 'ALL' && pBranch !== 'COMMON' && pBranch !== targetBranch) return;
         } else {
-          if (pBranch && pBranch !== targetBranch) return;
+          if (!pBranch || (pBranch !== targetBranch && pBranch !== 'ALL')) return;
+        }
+
+        // Subject code sanity check: e.g. BCS301 cannot appear in Year 1
+        const rawCode = (p.subjectCode || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const codeDigitMatch = rawCode.match(/^[A-Z]{2,4}(\d)/);
+        if (codeDigitMatch) {
+          const semOrYearDigit = codeDigitMatch[1];
+          if (targetYearDigit === '1' && ['3', '4', '5', '6', '7', '8'].includes(semOrYearDigit)) return;
+          if (targetYearDigit === '2' && ['1', '2', '5', '6', '7', '8'].includes(semOrYearDigit)) return;
+          if (targetYearDigit === '3' && ['1', '2', '3', '4', '7', '8'].includes(semOrYearDigit)) return;
+          if (targetYearDigit === '4' && ['1', '2', '3', '4', '5', '6'].includes(semOrYearDigit)) return;
         }
       } else {
+        const targetYearDigit = String(activeYear).replace(/[^0-9]/g, '');
+        if (targetYearDigit) {
+          const pYear = String(p.year || '').replace(/[^0-9]/g, '');
+          if (pYear && pYear !== targetYearDigit) return;
+        }
         if (activeSemester && activeSemester !== 'All' && activeSemester !== 'All Semesters') {
           const semClean = String(activeSemester).replace(/[^0-9]/g, '');
           const pSemClean = String(p.semester || '').replace(/[^0-9]/g, '');

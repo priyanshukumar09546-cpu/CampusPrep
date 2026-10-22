@@ -601,6 +601,7 @@ export default function App() {
           />
         ) : activeTab === 'notes' ? (
           <NotesPage
+            key={`notes-${selectedCourse || 'B.Tech'}`}
             searchQuery={globalSearchQuery}
             onClearSearch={() => setGlobalSearchQuery('')}
             initialCourse={selectedCourse || 'B.Tech'}
@@ -620,6 +621,7 @@ export default function App() {
           />
         ) : activeTab === 'pyqs' ? (
           <PYQsPage
+            key={`pyqs-${selectedCourse || 'B.Tech'}`}
             initialCourse={selectedCourse || 'B.Tech'}
             onSelectCourse={(courseKey) => {
               setSelectedCourse(courseKey);

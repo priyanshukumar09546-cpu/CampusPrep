@@ -59,12 +59,15 @@ export default function CourseNotesView({
   };
 
   const normYearNum = (raw) => {
-    const s = String(raw || '').toLowerCase();
+    if (!raw) return '';
+    const s = String(raw).toLowerCase().trim();
     if (s.includes('1')) return '1';
     if (s.includes('2')) return '2';
     if (s.includes('3')) return '3';
     if (s.includes('4')) return '4';
-    return '1';
+    if (s.includes('5')) return '5';
+    if (s.includes('6')) return '6';
+    return '';
   };
 
   // B.Tech Navigation States
@@ -548,11 +551,11 @@ export default function CourseNotesView({
       if (isBTech) {
         const yNum = normYearNum(activeYear);
         const nYearNum = normYearNum(n.year);
-        if (nYearNum && nYearNum !== yNum) return false;
+        if (yNum && (!nYearNum || nYearNum !== yNum)) return false;
 
         const bUpper = activeBranch.toUpperCase().trim();
         const nb = String(n.branch || n.branchId || '').toUpperCase().trim();
-        const isCommon = nb === 'ALL' || nb === 'COMMON' || activeYear === '1st Year';
+        const isCommon = nb === 'ALL' || nb === 'COMMON' || (activeYear === '1st Year' && (!nb || nb === 'ALL' || nb === 'COMMON' || nb === bUpper));
         if (!isCommon && nb && nb !== bUpper) {
           const matchAi = (bUpper.includes('AI') && nb.includes('AI'));
           const matchDs = (bUpper.includes('DS') && (nb.includes('DS') || nb.includes('DATA')));
@@ -564,25 +567,19 @@ export default function CourseNotesView({
           const nSemClean = String(n.semester || '').replace(/[^0-9]/g, '');
           if (nSemClean && semClean !== nSemClean) return false;
         }
-      } else if (normKey === 'BCA') {
-        // BCA Year isolation
+      } else {
+        // Strict Year isolation for all other courses
         if (activeYear && activeYear !== 'All Years') {
           const yNum = normYearNum(activeYear);
           const nYearNum = normYearNum(n.year);
-          if (nYearNum && nYearNum !== yNum) return false;
+          if (yNum && (!nYearNum || nYearNum !== yNum)) return false;
         }
 
-        // BCA Semester isolation
+        // Strict Semester isolation for all courses
         if (activeSemester && activeSemester !== 'All Semesters' && activeSemester !== 'All') {
           const semClean = String(activeSemester).replace(/[^0-9]/g, '');
           const nSemClean = String(n.semester || '').replace(/[^0-9]/g, '');
           if (nSemClean && semClean !== nSemClean) return false;
-        }
-      } else {
-        if (n.semester && activeSemester && activeSemester !== 'All' && activeSemester !== 'All Semesters') {
-          const semClean = String(activeSemester).replace(/[^0-9]/g, '');
-          const nSemClean = String(n.semester).replace(/[^0-9]/g, '');
-          if (semClean && nSemClean && semClean !== nSemClean) return false;
         }
       }
 

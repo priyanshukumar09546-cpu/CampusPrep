@@ -200,29 +200,35 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   const fetchBackendNotes = React.useCallback((courseVal, branchVal, yearVal) => {
     const c = courseVal || normalizedCourse || 'BTech';
     const dataCourse = getDataCourseValue(c);
+    const yToUse = yearVal || activeYear || selectedYear || '1st Year';
+    const bToUse = branchVal || activeBranch || selectedBranch || 'CSE';
     
-    // STEP 1: ALWAYS load local first (instant, works offline)
+    // STEP 1: Load strictly matched local notes first (instant, scoped by course & year)
     try {
+      const yTargetNorm = normYearStr(yToUse);
       const localMatches = dataCourse ? Object.values(notesData).flat().filter(n => {
         const nCourseNorm = normalizeCourseKey(n.course);
-        return nCourseNorm === normalizeCourseKey(c) || n.course === dataCourse;
+        const courseMatches = nCourseNorm === normalizeCourseKey(c) || n.course === dataCourse;
+        if (!courseMatches) return false;
+        if (dataCourse === 'B.Tech' && yTargetNorm) {
+          const nYearNorm = normYearStr(n.year);
+          return nYearNorm === yTargetNorm;
+        }
+        return true;
       }) : [];
-      if (localMatches.length > 0) {
-        setDbNotes(localMatches);
-      }
+      setDbNotes(localMatches);
     } catch (e) {
       console.log('[LOCAL NOTES] Fallback error', e);
+      setDbNotes([]);
     }
 
     if (!dataCourse) return; // No data exists for this course yet
     let url = `${API_URL}/api/notes?course=${encodeURIComponent(dataCourse)}`;
     if (dataCourse === 'B.Tech') {
-      const b = branchVal || selectedBranch || 'CSE';
-      const y = yearVal || selectedYear || '1st Year';
-      url += `&branch=${encodeURIComponent(b)}&year=${encodeURIComponent(y)}`;
+      url += `&branch=${encodeURIComponent(bToUse)}&year=${encodeURIComponent(yToUse)}`;
     }
 
-    const cacheKey = `${c}_${url}`;
+    const cacheKey = `${c}_${bToUse}_${yToUse}_${url}`;
     if (notesCacheRef.current.has(cacheKey)) {
       setDbNotes(notesCacheRef.current.get(cacheKey));
       return;
@@ -243,11 +249,11 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         }
       })
       .catch(err => console.log('Backend not available, keeping local fallback notes:', err));
-  }, [normalizedCourse, selectedBranch, selectedYear]);
+  }, [normalizedCourse, selectedBranch, activeBranch, activeYear, selectedYear]);
 
   React.useEffect(() => {
-    fetchBackendNotes(normalizedCourse, selectedBranch, selectedYear);
-  }, [normalizedCourse, selectedBranch, selectedYear, fetchBackendNotes]);
+    fetchBackendNotes(normalizedCourse, activeBranch || selectedBranch, activeYear || selectedYear);
+  }, [normalizedCourse, activeBranch, selectedBranch, activeYear, selectedYear, fetchBackendNotes]);
 
   // 4 STANDARD NOTE SOURCES (AND DYNAMIC SOURCE SUPPORT)
   const NOTE_SOURCES = [
@@ -564,22 +570,42 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
       });
     }
 
-    // CRITICAL: DYNAMICALLY MERGE ANY SUBJECTS PRESENT IN dbNotes (includes uploaded Gateway Classes notes)
+    // CRITICAL: DYNAMICALLY MERGE ANY SUBJECTS PRESENT IN dbNotes (strictly isolated by course, branch, and year)
     if (dbNotes && dbNotes.length > 0) {
       const activeBranchNorm = normBranchStr(branchToUse);
       const activeYearNorm = normYearStr(yearToUse);
+      const targetCourseNorm = normalizeCourseKey(normalizedCourse);
 
-      dbNotes.forEach((n) => {
-        const nBranchNorm = normBranchStr(n.branch || n.branchId);
-        const nYearNorm = normYearStr(n.year);
+      if (activeYearNorm) {
+        dbNotes.forEach((n) => {
+          // 1. Strict Course Isolation
+          const nCourseNorm = normalizeCourseKey(n.course);
+          if (nCourseNorm !== targetCourseNorm) return;
 
-        const matchBranch = !activeBranchNorm || nBranchNorm === activeBranchNorm || nBranchNorm === 'ALL';
-        const matchYear = !activeYearNorm || nYearNorm === activeYearNorm;
+          // 2. Strict Year Isolation — never allow unassigned or mismatched year
+          const nYearNorm = normYearStr(n.year);
+          if (!nYearNorm || nYearNorm !== activeYearNorm) return;
 
-        if (matchBranch && matchYear) {
+          // 3. Strict Branch Isolation
+          const nBranchNorm = normBranchStr(n.branch || n.branchId);
+          const matchBranch = !activeBranchNorm || nBranchNorm === activeBranchNorm || nBranchNorm === 'ALL';
+          if (!matchBranch) return;
+
           const subName = (n.subject || n.subjectName || '').trim();
           const subCode = (n.subjectCode || '').trim();
           if (!subName) return;
+
+          // 4. Code Curriculum sanity check: prevent e.g. BCS301/KCS301 from entering Year 1
+          const cleanCode = subCode.toUpperCase().replace(/[^A-Z0-9]/g, '');
+          const codeDigitMatch = cleanCode.match(/^[A-Z]{2,4}(\d)/);
+          if (codeDigitMatch) {
+            const semOrYearDigit = codeDigitMatch[1];
+            // If code starts with 3, 4 (2nd year) or 5, 6 (3rd year) but active year is 1st Year, reject
+            if (activeYearNorm === '1' && ['3', '4', '5', '6', '7', '8'].includes(semOrYearDigit)) return;
+            if (activeYearNorm === '2' && ['1', '2', '5', '6', '7', '8'].includes(semOrYearDigit)) return;
+            if (activeYearNorm === '3' && ['1', '2', '3', '4', '7', '8'].includes(semOrYearDigit)) return;
+            if (activeYearNorm === '4' && ['1', '2', '3', '4', '5', '6'].includes(semOrYearDigit)) return;
+          }
 
           const alreadyExists = list.some(item => isSubjectMatch(item.code, item.subject, subCode, subName));
           if (!alreadyExists) {
@@ -594,8 +620,8 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
               description: `AKTU verified notes and units for ${subName}.`
             });
           }
-        }
-      });
+        });
+      }
     }
 
     if (sortBy === 'alphabetical') {
@@ -605,7 +631,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
     }
 
     return list;
-  }, [activeBranch, activeYear, selectedBranches, selectedYears, sortBy, dbNotes]);
+  }, [activeBranch, activeYear, selectedBranches, selectedYears, sortBy, dbNotes, normalizedCourse]);
 
   // FILTERED SUBJECT DROPDOWN OPTIONS (WITH SEARCH)
   const filteredSubjectDropdownList = useMemo(() => {
@@ -908,6 +934,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
   // Handle Year Click -> Reset Subject to null, Unit to null
   const handleSelectYearCard = (yStr) => {
     setActiveYear(yStr);
+    setSelectedYear(yStr);
     if (!activeBranch) setActiveBranch('CSE');
     setActiveSemester(null);
     setActiveSubject(null);
@@ -915,6 +942,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
     setSelectedSubject('All Subjects');
     setSubjectDropdownSearch('');
     setSelectedYears([yStr]);
+    fetchBackendNotes(normalizedCourse, activeBranch || 'CSE', yStr);
     updateUrlParams({ course: 'B.Tech', branch: activeBranch || 'CSE', year: yStr, subject: null, unit: null });
   };
 
@@ -981,7 +1009,11 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
           selectedBranchProp={activeBranch}
           dbNotes={dbNotes}
           onSelectCourse={handleCourseTabChange}
-          onSelectYear={(y) => setActiveYear(y)}
+          onSelectYear={(y) => {
+            setActiveYear(y);
+            setSelectedYear(y);
+            fetchBackendNotes(selectedCourse, activeBranch, y);
+          }}
           onSelectBranch={(b) => setActiveBranch(b)}
           onOpenViewer={({ note, subject, unit }) => {
             trackNoteViewed({

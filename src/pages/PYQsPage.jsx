@@ -152,7 +152,11 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
   // Live Database PYQ Papers State with Local Fallback First
   const [dbPyqs, setDbPyqs] = useState(() => {
     try {
-      const allLocal = Object.values(pyqsData).flat();
+      const targetNorm = normalizedCourse.toLowerCase().replace(/[^a-z]/g, '');
+      const allLocal = Object.values(pyqsData).flat().filter(p => {
+        const pNorm = (p.course || 'B.Tech').toLowerCase().replace(/[^a-z]/g, '');
+        return pNorm === targetNorm;
+      });
       return allLocal;
     } catch (e) {
       return [];
@@ -163,9 +167,13 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
   const loadLiveData = (courseKey) => {
     const c = courseKey || normalizedCourse || 'BTech';
     
-    // STEP 1: ALWAYS load local first
+    // STEP 1: Load strictly matched local notes first
     try {
-      const localMatches = Object.values(pyqsData).flat();
+      const targetNorm = normalizeCourse(c).toLowerCase().replace(/[^a-z]/g, '');
+      const localMatches = Object.values(pyqsData).flat().filter(p => {
+        const pNorm = (p.course || 'B.Tech').toLowerCase().replace(/[^a-z]/g, '');
+        return pNorm === targetNorm;
+      });
       if (localMatches.length > 0) {
         setDbPyqs(localMatches);
       }
