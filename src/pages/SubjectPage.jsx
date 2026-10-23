@@ -43,6 +43,9 @@ export default function SubjectPage({
     return localNotesData[subjectCode] || localNotesData[subjectCode?.toUpperCase()] || [];
   });
   const [pyqs, setPyqs] = useState(() => {
+    if (Array.isArray(localPyqsData)) {
+      return localPyqsData.filter(p => areSubjectsMatching({ code: subjectCode, name: subjectName }, p));
+    }
     return localPyqsData[subjectCode] || localPyqsData[subjectCode?.toUpperCase()] || [];
   });
   const [isLoadingNotes, setIsLoadingNotes] = useState(false);
@@ -111,7 +114,9 @@ export default function SubjectPage({
   // Fetch real PYQs from MongoDB API with local fallback
   useEffect(() => {
     let isSubscribed = true;
-    const local = localPyqsData[subjectCode] || localPyqsData[subjectCode?.toUpperCase()] || [];
+    const local = Array.isArray(localPyqsData)
+      ? localPyqsData.filter(p => areSubjectsMatching({ code: subjectCode, name: subjectName }, p))
+      : (localPyqsData[subjectCode] || localPyqsData[subjectCode?.toUpperCase()] || []);
     if (local.length > 0) {
       setPyqs(local);
     }

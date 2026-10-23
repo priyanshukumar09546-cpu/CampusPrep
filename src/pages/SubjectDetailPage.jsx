@@ -18,6 +18,7 @@ import { notesData as localNotesData, notesData } from '../data/notesData';
 import { pyqsData as localPyqsData, pyqsData } from '../data/pyqsData';
 import { allCourses } from '../data/subjectsData';
 import { API_URL } from '../config/api';
+import NoteViewerModal from '../components/NoteViewerModal';
 
 export default function SubjectDetailPage({ 
   subjectData, 
@@ -29,6 +30,7 @@ export default function SubjectDetailPage({
   const [bookmarked, setBookmarked] = useState(false);
   const [expandedUnits, setExpandedUnits] = useState({ 1: true });
   const [downloadSuccess, setDownloadSuccess] = useState(null);
+  const [activeModalNote, setActiveModalNote] = useState(null);
 
   // Subject details fallback
   const getSubjectCode = () => {
@@ -135,7 +137,13 @@ export default function SubjectDetailPage({
   const handleOpenResource = (item) => {
     const url = item?.pdfUrl || item?.driveUrl || item?.url || item?.fileUrl;
     if (url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
+      setActiveModalNote({
+        ...item,
+        title: item.title || `${subjectName} ${item.year || item.examYear || ''}`,
+        fileUrl: url,
+        pdfUrl: url,
+        url: url
+      });
       return;
     }
     setDownloadSuccess(item?.title || item?.year || 'Resource');
@@ -544,6 +552,16 @@ export default function SubjectDetailPage({
           <Check size={14} className="text-emerald-400" />
           <span>Opening {downloadSuccess}...</span>
         </div>
+      )}
+
+      {/* Integrated In-Site Document Viewer */}
+      {activeModalNote && (
+        <NoteViewerModal
+          note={activeModalNote}
+          subject={{ name: subjectName, code }}
+          unit={activeModalNote.examYear ? `Exam Year: ${activeModalNote.examYear}` : `Unit ${activeModalNote.unit || 1}`}
+          onClose={() => setActiveModalNote(null)}
+        />
       )}
 
     </div>

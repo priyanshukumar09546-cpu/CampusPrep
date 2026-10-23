@@ -114,6 +114,11 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
 
     // Direct PDF URL: append browser viewer parameters
     if (url.toLowerCase().endsWith('.pdf') || url.includes('.pdf?')) {
+      // For external third-party PDFs (e.g. cdn.aktuquestionpaper.com, aktupyq.com),
+      // embed via Google Docs Viewer so the user stays inside professorvirus.site without CORS or browser PDF plugin blocks
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        return `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+      }
       return `${url}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
     }
 
