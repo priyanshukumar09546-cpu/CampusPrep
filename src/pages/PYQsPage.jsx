@@ -21,6 +21,7 @@ import { allCourses } from '../data/subjectsData';
 import { trackPYQOpened } from '../utils/progressTracker';
 import { normalizeCourseKey, getDataCourseValue, AVAILABLE_COURSES } from '../data/courseMapping.ts';
 import NoteViewerModal from '../components/NoteViewerModal';
+import { deduplicatePyqs } from '../utils/pyqUtils';
 
 // NORMALIZE COURSE — uses centralized mapping for all 24 AKTU programmes
 export const normalizeCourse = (param) => {
@@ -157,7 +158,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
         const pNorm = (p.course || 'B.Tech').toLowerCase().replace(/[^a-z]/g, '');
         return pNorm === targetNorm;
       });
-      return allLocal;
+      return deduplicatePyqs(allLocal);
     } catch (e) {
       return [];
     }
@@ -195,7 +196,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
       .then(data => {
         const pyqList = Array.isArray(data) ? data : (data?.pyqs || []);
         if (pyqList.length > 0) {
-          setDbPyqs(pyqList);
+          setDbPyqs(deduplicatePyqs(pyqList));
         }
       })
       .catch(err => console.log('Backend not available, keeping local fallback pyqs:', err));

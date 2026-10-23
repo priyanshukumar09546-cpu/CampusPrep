@@ -3041,6 +3041,166 @@ app.post('/api/admin/pyqs/upload-pdf', verifyAdminToken, upload.single('pdf'), (
   }
 });
 
+// Canonical helpers for strict subject matching and deduplication across all 24 AKTU Courses
+function cleanAlpha(c) {
+  return String(c || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+}
+
+const CANONICAL_CODE_MAP = {
+  'BAS103': 'KAS103', 'KAS103': 'KAS103',
+  'BAS102': 'KAS102', 'KAS102': 'KAS102',
+  'BAS101': 'KAS101', 'KAS101': 'KAS101',
+  'BEE101': 'KEE101', 'KEE101': 'KEE101',
+  'BCS101': 'KCS101', 'KCS101': 'KCS101',
+  'BEC101': 'KEC101', 'KEC101': 'KEC101',
+  'BME101': 'KME101', 'KME101': 'KME101',
+  'BAS203': 'KAS203', 'KAS203': 'KAS203',
+  'BNC102': 'KNC102', 'KNC102': 'KNC102',
+  'BCS301': 'KCS301', 'KCS301': 'KCS301',
+  'BCS302': 'KCS302', 'KCS302': 'KCS302',
+  'BCS303': 'KCS303', 'KCS303': 'KCS303',
+  'BCS401': 'KCS401', 'KCS401': 'KCS401',
+  'BCS402': 'KCS402', 'KCS402': 'KCS402',
+  'BCS403': 'KCS403', 'KCS403': 'KCS403'
+};
+
+function getCanonicalCode(raw) {
+  const cl = cleanAlpha(raw);
+  return CANONICAL_CODE_MAP[cl] || cl;
+}
+
+function normalizeSubjectTitle(str) {
+  if (!str) return '';
+  let s = String(str).toLowerCase()
+    .replace(/&amp;/g, 'and')
+    .replace(/&/g, 'and')
+    .replace(/\s*\([^)]*\)/g, ' ');
+
+  s = s.replace(/\biv\b|\b4th\b/g, '4')
+       .replace(/\biii\b|\b3rd\b/g, '3')
+       .replace(/\bii\b|\b2nd\b/g, '2')
+       .replace(/\bi\b|\b1st\b/g, '1');
+
+  s = s.replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+  return s.split(' ').map(w => w.replace(/s$/, '')).join(' ');
+}
+
+function areSubjectsMatching(subjectOrCode, pyqPaper) {
+  if (!subjectOrCode || !pyqPaper) return false;
+
+  const sRawCode = typeof subjectOrCode === 'object' ? (subjectOrCode.code || subjectOrCode.subjectCode || '') : subjectOrCode;
+  const sRawName = typeof subjectOrCode === 'object' ? (subjectOrCode.name || subjectOrCode.subjectName || subjectOrCode.subject || '') : subjectOrCode;
+
+  const pRawCode = pyqPaper.subjectCode || pyqPaper.code || '';
+  const pRawName = pyqPaper.subjectName || pyqPaper.subject || pyqPaper.title || '';
+
+  const sCodeClean = cleanAlpha(sRawCode);
+  const pCodeClean = cleanAlpha(pRawCode);
+  const sCanon = getCanonicalCode(sRawCode);
+  const pCanon = getCanonicalCode(pRawCode);
+
+  // If both have subject codes -> STRICT CODE MATCHING
+  if (sCodeClean && pCodeClean) {
+    if (sCodeClean === pCodeClean) return true;
+    if (sCanon && pCanon && sCanon === pCanon) return true;
+    if (sCodeClean.length === 6 && pCodeClean.length === 6) {
+      const sPre = sCodeClean[0];
+      const pPre = pCodeClean[0];
+      if ((sPre === 'K' || sPre === 'B') && (pPre === 'K' || pPre === 'B')) {
+        if (sCodeClean.slice(1) === pCodeClean.slice(1)) return true;
+      }
+    }
+    return false; // Conflicting non-empty codes must NEVER match
+  }
+
+  // Name Matching
+  const sNorm = normalizeSubjectTitle(sRawName);
+  const pNorm = normalizeSubjectTitle(pRawName);
+
+  if (!sNorm || !pNorm) return false;
+  if (sNorm === pNorm) return true;
+
+  // Numeral conflict check
+  const sDigits = (sNorm.match(/\b[1-8]\b/g) || []).join('');
+  const pDigits = (pNorm.match(/\b[1-8]\b/g) || []).join('');
+  if (sDigits && pDigits && sDigits !== pDigits) {
+    return false;
+  }
+
+  if (sCodeClean && pNorm.replace(/[^a-z0-9]/g, '').includes(sCodeClean.toLowerCase())) {
+    return true;
+  }
+
+  const sTokens = sNorm.split(' ').filter(w => w.length > 2);
+  const pTokens = pNorm.split(' ').filter(w => w.length > 2);
+  if (sTokens.length > 0 && pTokens.length > 0) {
+    const allInP = sTokens.every(t => pTokens.includes(t));
+    const allInS = pTokens.every(t => sTokens.includes(t));
+    if ((allInP || allInS) && (sDigits === pDigits)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function deduplicatePyqs(list) {
+  if (!Array.isArray(list)) return [];
+  const result = [];
+  const seenDriveIds = new Set();
+  const seenUrls = new Set();
+  const seenIdentities = new Set();
+
+  const extractDriveId = (url) => {
+    if (!url) return '';
+    const m = String(url).match(/\/d\/([a-zA-Z0-9_-]+)/) || String(url).match(/id=([a-zA-Z0-9_-]+)/);
+    return m ? m[1] : '';
+  };
+
+  const normalizeUrl = (url) => {
+    if (!url) return '';
+    return String(url)
+      .toLowerCase()
+      .replace(/^https?:\/\//, '')
+      .replace(/[\?#].*$/, '')
+      .replace(/\/+$/, '')
+      .trim();
+  };
+
+  for (const p of list) {
+    if (!p) continue;
+    const url = p.pdfUrl || p.fileUrl || p.driveUrl || p.url || '';
+    const driveId = extractDriveId(url);
+    const normUrl = normalizeUrl(url);
+
+    if (driveId) {
+      if (seenDriveIds.has(driveId)) continue;
+      seenDriveIds.add(driveId);
+    }
+
+    if (normUrl && normUrl.length > 5) {
+      if (seenUrls.has(normUrl)) continue;
+      seenUrls.add(normUrl);
+    }
+
+    const c = String(p.course || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const code = cleanAlpha(p.subjectCode || p.code || '');
+    const yr = String(p.academicYear || p.examYear || p.year || '').replace(/[^0-9]/g, '');
+    const sem = String(p.semester || '').replace(/[^0-9]/g, '');
+    const type = String(p.examType || 'regular').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    if (c && code && yr) {
+      const identity = [c, code, yr, sem, type].join('|');
+      if (seenIdentities.has(identity)) continue;
+      seenIdentities.add(identity);
+    }
+
+    result.push(p);
+  }
+
+  return result;
+}
+
 // 9. REAL PYQs MANAGEMENT ENDPOINTS (PUBLIC & ADMIN)
 // GET PUBLIC PYQs (Supports Filtering by branch, year, academicYear, subject)
 app.get('/api/pyqs', async (req, res) => {
@@ -3048,7 +3208,7 @@ app.get('/api/pyqs', async (req, res) => {
   res.set('Pragma', 'no-cache');
   res.set('Expires', '0');
 
-  const { branch, year, academicYear, subject, subjectId, course, semester, specialization } = req.query;
+  const { branch, year, academicYear, subject, subjectId, course, semester, specialization, subjectCode } = req.query;
 
   let allPyqs = [];
   if (isDbConnected) {
@@ -3163,7 +3323,9 @@ app.get('/api/pyqs', async (req, res) => {
     if (semDigit) {
       result = result.filter(p => {
         const pSemDigit = String(p.semester || '').replace(/[^0-9]/g, '');
-        if (!pSemDigit) return true; // Don't filter out Year 1 common papers without explicit sem field
+        if (!pSemDigit) {
+          return targetCourse === 'B.Tech' && (p.year === 'Year 1' || p.year === '1st Year');
+        }
         return pSemDigit === semDigit;
       });
     }
@@ -3193,57 +3355,16 @@ app.get('/api/pyqs', async (req, res) => {
     result = result.filter(p => p.subjectId === subjectId || p.id === subjectId || p._id?.toString() === subjectId);
   }
 
-  // 8. Canonical Subject Code & Name Filtering
-  if (subject) {
-    const decodedSubject = decodeURIComponent(String(subject)).replace(/\+/g, ' ').trim();
-    const cleanAlpha = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    const canonicalMap = {
-      'bas103': 'KAS-103', 'kas103': 'KAS-103',
-      'bas102': 'KAS-102', 'kas102': 'KAS-102',
-      'bas101': 'KAS-101', 'kas101': 'KAS-101',
-      'bee101': 'KEE-101', 'kee101': 'KEE-101',
-      'bcs101': 'KCS-101', 'kcs101': 'KCS-101',
-      'bec101': 'KEC-101', 'kec101': 'KEC-101',
-      'bme101': 'KME-101', 'kme101': 'KME-101',
-      'bas104': 'BAS-104', 'kas203': 'KAS-203', 'bas203': 'KAS-203',
-      'knc102': 'KNC-102', 'bnc102': 'KNC-102',
-      'kcs301': 'KCS-301', 'bcs301': 'KCS-301',
-      'kcs302': 'KCS-302', 'bcs302': 'KCS-302',
-      'kcs303': 'KCS-303', 'bcs303': 'KCS-303',
-      'kcs401': 'KCS-401', 'bcs401': 'KCS-401',
-      'kcs402': 'KCS-402', 'bcs402': 'KCS-402',
-      'kcs403': 'KCS-403', 'bcs403': 'KCS-403'
-    };
-    const getCanonicalCode = (raw) => {
-      const cl = cleanAlpha(raw);
-      return canonicalMap[cl] || raw;
-    };
-    const normSub = (str) => {
-      return String(str || '')
-        .toLowerCase()
-        .replace(/&[a-z0-9#]+;/gi, '')
-        .replace(/\s*\([^)]*\)/g, '')
-        .replace(/[^a-z0-9]/g, '');
+  // 8. Canonical Subject Code & Strict Name Filtering
+  if (subject || subjectCode) {
+    const decodedSubject = subject ? decodeURIComponent(String(subject)).replace(/\+/g, ' ').trim() : '';
+    const decodedSubjectCode = subjectCode ? decodeURIComponent(String(subjectCode)).replace(/\+/g, ' ').trim() : '';
+    const querySubObj = {
+      code: decodedSubjectCode || decodedSubject,
+      name: decodedSubject
     };
 
-    const sCode = cleanAlpha(decodedSubject);
-    const sCanonCode = cleanAlpha(getCanonicalCode(decodedSubject));
-    const sNormName = normSub(decodedSubject);
-
-    result = result.filter(p => {
-      const pSub = cleanAlpha(p.subject || p.subjectName || '');
-      const pCanonSub = normSub(p.subject || p.subjectName || '');
-      const pCode = cleanAlpha(p.subjectCode || '');
-      const pCanonCode = cleanAlpha(getCanonicalCode(p.subjectCode || ''));
-
-      const codeMatches = (sCanonCode && pCanonCode && sCanonCode === pCanonCode) ||
-                          (sCode && pCode && (sCode === pCode || sCode.replace(/^[kb]/, '') === pCode.replace(/^[kb]/, ''))) ||
-                          (sCode && pSub && pSub.includes(sCode));
-      const nameMatches = (sNormName && pCanonSub && (sNormName === pCanonSub || pCanonSub.includes(sNormName) || sNormName.includes(pCanonSub))) ||
-                          (sCode && pSub && pSub.includes(sCode));
-
-      return codeMatches || nameMatches;
-    });
+    result = result.filter(p => areSubjectsMatching(querySubObj, p));
   }
 
   const cleanPyqs = result.map(p => ({
@@ -3252,7 +3373,8 @@ app.get('/api/pyqs', async (req, res) => {
     sourceName: (p.sourceName && String(p.sourceName).toLowerCase().includes('notesgallery')) ? 'Academic Resource Archive' : (p.sourceName || p.source || 'Academic Resource Archive')
   }));
 
-  res.json({ success: true, pyqs: cleanPyqs });
+  const dedupedPyqs = deduplicatePyqs(cleanPyqs);
+  res.json({ success: true, pyqs: dedupedPyqs });
 });
 
 // GET ADMIN ALL PYQS

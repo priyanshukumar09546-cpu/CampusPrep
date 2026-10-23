@@ -42,6 +42,7 @@ import {
 } from '../data/courseMapping.ts';
 import { API_URL } from '../config/api';
 import { pyqsData as localPyqsData } from '../data/pyqsData';
+import { areSubjectsMatching, deduplicatePyqs } from '../utils/pyqUtils';
 
 // 10 Featured Courses matching Reference Screenshot Image 2
 const FEATURED_COURSES = [
@@ -347,28 +348,33 @@ export default function MobilePYQsScreen({
   // Helper to get real available PYQ papers for each subject
   const getSubjectPyqs = (sub) => {
     let papers = [];
-    const targetCode = (sub.code || '').toLowerCase().trim();
-    const targetName = (sub.name || '').toLowerCase().trim();
+    const targetCourseNorm = String(selectedCourse || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
-    // 1. Check in dbPyqs
+    // 1. Check in dbPyqs with strict course, semester & subject matching
     if (Array.isArray(dbPyqs) && dbPyqs.length > 0) {
       papers = dbPyqs.filter(p => {
-        const pCode = String(p.subjectCode || '').toLowerCase().trim();
-        const pSub = String(p.subjectName || p.subject || '').toLowerCase().trim();
-        return (targetCode && pCode === targetCode) || pSub.includes(targetName) || targetName.includes(pSub);
+        const pCourseNorm = String(p.course || 'btech').toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (targetCourseNorm && pCourseNorm !== targetCourseNorm && (targetCourseNorm !== 'btech' || pCourseNorm !== 'btech')) {
+          return false;
+        }
+        if (sub.semester || semNum) {
+          const targetSemDigit = String(sub.semester || semNum).replace(/[^0-9]/g, '');
+          const pSemDigit = String(p.semester || '').replace(/[^0-9]/g, '');
+          if (pSemDigit && targetSemDigit && pSemDigit !== targetSemDigit) {
+            return false;
+          }
+        }
+        return areSubjectsMatching(sub, p);
       });
     }
 
-    // 2. Check in localPyqsData
+    // 2. Check in local fallback if dbPyqs had no papers for this subject
     if (papers.length === 0 && sub.code) {
-      const candidates = [sub.code, sub.code.toUpperCase(), sub.code.toLowerCase(), sub.code.replace('-', '')];
-      for (const c of candidates) {
-        if (localPyqsData[c] && localPyqsData[c].length > 0) {
-          papers = localPyqsData[c];
-          break;
-        }
-      }
+      const allLocal = Array.isArray(localPyqsData) ? localPyqsData : Object.values(localPyqsData).flat();
+      papers = allLocal.filter(p => areSubjectsMatching(sub, p));
     }
+
+    papers = deduplicatePyqs(papers);
 
     // Map into year lookup
     const defaultYears = ['2024', '2023', '2022', '2021', '2020'];

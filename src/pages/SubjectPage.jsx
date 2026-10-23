@@ -18,6 +18,7 @@ import { getAktuSyllabusForSubject } from '../data/aktuSyllabusData';
 import NoteViewerModal from '../components/NoteViewerModal';
 import { notesData as localNotesData } from '../data/notesData';
 import { pyqsData as localPyqsData } from '../data/pyqsData';
+import { areSubjectsMatching, deduplicatePyqs } from '../utils/pyqUtils';
 
 export default function SubjectPage({ 
   subjectData, 
@@ -129,24 +130,22 @@ export default function SubjectPage({
       .then(data => {
         if (!isSubscribed) return;
         if (data && data.success && Array.isArray(data.pyqs) && data.pyqs.length > 0) {
+          const subObj = { code: subjectCode, name: subjectName };
           const matched = data.pyqs.filter(p => {
             if (year) {
               const py = String(p.year || '').replace(/[^0-9]/g, '');
               const ty = String(year).replace(/[^0-9]/g, '');
               if (py && ty && py !== ty) return false;
             }
-            const pSub = String(p.subjectName || p.subject || '').toLowerCase();
-            const pCode = String(p.subjectCode || '').toLowerCase();
-            const targetSub = subjectName.toLowerCase();
-            const targetCode = subjectCode.toLowerCase();
-            return (
-              (targetCode && pCode === targetCode) ||
-              pSub.includes(targetSub) ||
-              targetSub.includes(pSub) ||
-              targetSub.replace(/s$/, '') === pSub.replace(/s$/, '')
-            );
+            if (semester) {
+              const ps = String(p.semester || '').replace(/[^0-9]/g, '');
+              const ts = String(semester).replace(/[^0-9]/g, '');
+              if (ps && ts && ps !== ts) return false;
+            }
+            return areSubjectsMatching(subObj, p);
           });
-          setPyqs(matched.length > 0 ? matched : data.pyqs);
+          const finalPyqs = deduplicatePyqs(matched.length > 0 ? matched : data.pyqs.filter(p => areSubjectsMatching(subObj, p)));
+          setPyqs(finalPyqs);
         }
       })
       .catch(err => {

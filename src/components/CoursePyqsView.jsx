@@ -19,6 +19,14 @@ import {
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
 import { pyqsData as localPyqsData } from '../data/pyqsData';
 import { API_URL } from '../config/api';
+import {
+  cleanCode,
+  getCanonicalCode,
+  normalizeSubjectTitle,
+  areSubjectsMatching,
+  deduplicatePyqs,
+  filterPyqs
+} from '../utils/pyqUtils';
 
 // Strict Real Database Branches ONLY — zero fake branches
 const BTECH_BRANCHES = [
@@ -65,21 +73,9 @@ export const getPyqCourse = (p) => {
   return 'B.Tech';
 };
 
-// Safe deduplicating merge helper so fallback data is never discarded
+// Safe deduplicating merge helper with universal drive ID & exam identity deduplication
 const mergePyqLists = (primary, fallback) => {
-  const merged = [];
-  const seen = new Set();
-  const add = (p) => {
-    if (!p) return;
-    const key = p.id || `${p.subjectCode || ''}_${p.examYear || p.academicYear || p.session || p.year || ''}_${p.pdfUrl || p.driveUrl || p.url || ''}`;
-    if (!seen.has(key)) {
-      seen.add(key);
-      merged.push(p);
-    }
-  };
-  (primary || []).forEach(add);
-  (fallback || []).forEach(add);
-  return merged;
+  return deduplicatePyqs([...(primary || []), ...(fallback || [])]);
 };
 
 export default function CoursePyqsView({ 
@@ -271,7 +267,9 @@ export default function CoursePyqsView({
       setActiveBranch('ALL');
       const firstYear = courseMeta.years ? courseMeta.years[0] : '1st Year';
       setActiveYear(firstYear);
-      const firstSem = courseMeta.semesters ? courseMeta.semesters[0] : 'Semester 1';
+      const firstSem = (courseMeta.semestersByYear && courseMeta.semestersByYear[firstYear])
+        ? courseMeta.semestersByYear[firstYear][0]
+        : (courseMeta.semesters ? courseMeta.semesters[0] : 'Semester 1');
       setActiveSemester(firstSem);
       if (courseMeta.specializations && courseMeta.specializations.length > 0) {
         setActiveSpecialization(courseMeta.specializations[0]);
@@ -279,6 +277,8 @@ export default function CoursePyqsView({
     }
     setSelectedAcademicYear('All');
     setSelectedExamType('All');
+    setSubjectSearch('');
+    setPyqSearchQuery('');
     setActiveSubject(null);
   }, [normKey]);
 
@@ -320,56 +320,7 @@ export default function CoursePyqsView({
   // Normalization & Canonical Code Helpers
   const cleanAlpha = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
-  const getCanonicalCode = (rawCode) => {
-    if (!rawCode) return '';
-    const clean = cleanAlpha(rawCode);
-    const canonicalMap = {
-      'bas103': 'KAS-103',
-      'kas103': 'KAS-103',
-      'bas102': 'KAS-102',
-      'kas102': 'KAS-102',
-      'bas101': 'KAS-101',
-      'kas101': 'KAS-101',
-      'bee101': 'KEE-101',
-      'kee101': 'KEE-101',
-      'bcs101': 'KCS-101',
-      'kcs101': 'KCS-101',
-      'bec101': 'KEC-101',
-      'kec101': 'KEC-101',
-      'bme101': 'KME-101',
-      'kme101': 'KME-101',
-      'bas104': 'BAS-104',
-      'kas203': 'KAS-203',
-      'bas203': 'KAS-203',
-      'knc102': 'KNC-102',
-      'bnc102': 'KNC-102',
-      'kcs301': 'KCS-301',
-      'bcs301': 'KCS-301',
-      'kcs302': 'KCS-302',
-      'bcs302': 'KCS-302',
-      'kcs303': 'KCS-303',
-      'bcs303': 'KCS-303',
-      'kcs401': 'KCS-401',
-      'bcs401': 'KCS-401',
-      'kcs402': 'KCS-402',
-      'bcs402': 'KCS-402',
-      'kcs403': 'KCS-403',
-      'bcs403': 'KCS-403'
-    };
-    return canonicalMap[clean] || rawCode;
-  };
-
-  const normSubCanonical = (str) => {
-    return String(str || '')
-      .toLowerCase()
-      .replace(/&[a-z0-9#]+;/gi, '')
-      .replace(/\s*\([^)]*\)/g, '')
-      .replace(/[-_\s]iv\b/g, '4')
-      .replace(/[-_\s]iii\b/g, '3')
-      .replace(/[-_\s]ii\b/g, '2')
-      .replace(/[-_\s]i\b/g, '1')
-      .replace(/[^a-z0-9]/g, '');
-  };
+  const normSubCanonical = normalizeSubjectTitle;
 
   const normalizeAcademicYear = (raw) => {
     if (!raw) return '';
@@ -548,58 +499,27 @@ export default function CoursePyqsView({
     }
   }, [availableSubjects]);
 
-  // Subject Paper Counts in DB (for display in subject list)
+  // Subject Paper Counts in DB (Strictly Synchronized with Filtered Unique Papers)
   const subjectPaperCounts = useMemo(() => {
     const counts = {};
     if (!Array.isArray(localPyqs)) return counts;
 
-    const targetYearDigit = String(activeYear).replace(/[^0-9]/g, '');
-    const isY1 = targetYearDigit === '1';
-    const targetBranch = activeBranch.toUpperCase().trim();
-
     availableSubjects.forEach(sub => {
-      const sCode = cleanAlpha(sub.code);
-      const sCanonCode = cleanAlpha(getCanonicalCode(sub.code));
-      const sName = cleanAlpha(sub.name);
-      const sCanonName = normSubCanonical(sub.name);
-
-      const count = localPyqs.filter(p => {
-        const pCourse = cleanAlpha(getPyqCourse(p));
-        if (isBTech ? pCourse !== 'btech' : pCourse !== cleanAlpha(normKey)) return false;
-
-        if (isBTech) {
-          const pYear = String(p.year || p.btechYear || '').replace(/[^0-9]/g, '');
-          if (pYear && pYear !== targetYearDigit) return false;
-          const pBranch = String(p.branch || p.branchId || '').toUpperCase().trim();
-          if (isY1) {
-            if (pBranch && pBranch !== 'ALL' && pBranch !== targetBranch) return false;
-          } else {
-            if (pBranch && pBranch !== targetBranch) return false;
-          }
-        }
-        const pSub = cleanAlpha(p.subject || p.subjectName || '');
-        const pCanonSub = normSubCanonical(p.subject || p.subjectName || '');
-        const pCode = cleanAlpha(p.subjectCode || '');
-        const pCanonCode = cleanAlpha(getCanonicalCode(p.subjectCode || ''));
-
-        const codeMatches = (sCanonCode && pCanonCode && sCanonCode === pCanonCode) ||
-                            (sCode && pCode && (sCode === pCode || sCode.replace(/^[kb]/, '') === pCode.replace(/^[kb]/, ''))) ||
-                            (sCode && pSub && pSub.includes(sCode));
-        const nameMatches = (sCanonName && pCanonSub && sCanonName === pCanonSub) ||
-                            (sName && pSub && (
-                              pSub === sName || 
-                              pSub.replace(/s$/, '') === sName.replace(/s$/, '') || 
-                              pSub.includes(sName) || 
-                              sName.includes(pSub)
-                            ));
-        return codeMatches || nameMatches;
-      }).length;
-
-      counts[sub.code || sub.name] = count;
+      const papers = filterPyqs(localPyqs, sub, {
+        normKey,
+        isBTech,
+        activeBranch,
+        activeYear,
+        activeSemester,
+        selectedAcademicYear,
+        selectedExamType,
+        pyqSearchQuery
+      });
+      counts[sub.code || sub.name] = papers.length;
     });
 
     return counts;
-  }, [localPyqs, availableSubjects, isBTech, activeYear, activeBranch]);
+  }, [localPyqs, availableSubjects, normKey, isBTech, activeBranch, activeYear, activeSemester, selectedAcademicYear, selectedExamType, pyqSearchQuery]);
 
   // Acronym, Alternate Code & Keyword Search for Subject List
   const filteredSubjects = useMemo(() => {
@@ -647,90 +567,20 @@ export default function CoursePyqsView({
   }, [availableSubjects, subjectSearch]);
 
   // Strict Matched PYQs calculation
+  // Matched PYQs for Currently Selected Subject (Strict Deduplication & Accurate Counting)
   const matchedPyqs = useMemo(() => {
-    if (!Array.isArray(localPyqs) || !activeSubject) return [];
-    const sName = cleanAlpha(activeSubject.name);
-    const sCanonName = normSubCanonical(activeSubject.name);
-    const sCode = cleanAlpha(activeSubject.code);
-    const sCanonCode = cleanAlpha(getCanonicalCode(activeSubject.code));
-
-    const targetYearDigit = String(activeYear).replace(/[^0-9]/g, '');
-    const isY1 = targetYearDigit === '1';
-    const targetBranch = activeBranch.toUpperCase().trim();
-
-    return localPyqs.filter(p => {
-      // 1. Course
-      const pCourse = cleanAlpha(getPyqCourse(p));
-      if (isBTech ? pCourse !== 'btech' : pCourse !== cleanAlpha(normKey)) return false;
-
-      // 2. Branch & Year for B.Tech
-      if (isBTech) {
-        const pYear = String(p.year || p.btechYear || '').replace(/[^0-9]/g, '');
-        if (pYear && pYear !== targetYearDigit) return false;
-
-        const pBranch = String(p.branch || p.branchId || '').toUpperCase().trim();
-        if (isY1) {
-          if (pBranch && pBranch !== 'ALL' && pBranch !== targetBranch) return false;
-        } else {
-          if (pBranch && pBranch !== targetBranch) return false;
-        }
-      }
-
-      // 3. Semester
-      if (activeSemester && activeSemester !== 'All Semesters' && activeSemester !== 'All') {
-        const semClean = String(activeSemester).replace(/[^0-9]/g, '');
-        const pSemClean = String(p.semester || '').replace(/[^0-9]/g, '');
-        if (pSemClean && semClean !== pSemClean) return false;
-      }
-
-      // 4. Academic Year
-      if (selectedAcademicYear !== 'All') {
-        const pNorm = normalizeAcademicYear(p.academicYear || p.examYear);
-        const selNorm = normalizeAcademicYear(selectedAcademicYear);
-        if (pNorm !== selNorm) return false;
-      }
-
-      // 5. Exam Type
-      if (selectedExamType !== 'All') {
-        const pType = String(p.examType || '').toLowerCase();
-        const selType = String(selectedExamType).toLowerCase();
-        if (!pType.includes(selType) && !selType.includes(pType)) return false;
-      }
-
-      // 6. Subject Match (supports Canonical Codes, Historical Codes & Normalized Names)
-      const pSub = cleanAlpha(p.subject || p.subjectName || '');
-      const pCanonSub = normSubCanonical(p.subject || p.subjectName || '');
-      const pCode = cleanAlpha(p.subjectCode || '');
-      const pCanonCode = cleanAlpha(getCanonicalCode(p.subjectCode || ''));
-
-      const codeMatches = (sCanonCode && pCanonCode && sCanonCode === pCanonCode) ||
-                          (sCode && pCode && (sCode === pCode || sCode.replace(/^[kb]/, '') === pCode.replace(/^[kb]/, ''))) ||
-                          (sCode && pSub && pSub.includes(sCode));
-      const nameMatches = (sCanonName && pCanonSub && sCanonName === pCanonSub) ||
-                          (sName && pSub && (
-                            pSub === sName || 
-                            pSub.replace(/s$/, '') === sName.replace(/s$/, '') || 
-                            pSub.includes(sName) || 
-                            sName.includes(pSub)
-                          ));
-
-      if (!codeMatches && !nameMatches) return false;
-
-      // 7. Search Query
-      if (pyqSearchQuery.trim()) {
-        const q = pyqSearchQuery.toLowerCase().trim();
-        const pTitle = String(p.title || p.fileName || '').toLowerCase();
-        const pSubName = String(p.subjectName || p.subject || '').toLowerCase();
-        const pSubCode = String(p.subjectCode || '').toLowerCase();
-        const pType = String(p.examType || '').toLowerCase();
-        const pYr = String(p.academicYear || p.examYear || '').toLowerCase();
-        const matches = pTitle.includes(q) || pSubName.includes(q) || pSubCode.includes(q) || pType.includes(q) || pYr.includes(q);
-        if (!matches) return false;
-      }
-
-      return true;
+    if (!activeSubject || !Array.isArray(localPyqs)) return [];
+    return filterPyqs(localPyqs, activeSubject, {
+      normKey,
+      isBTech,
+      activeBranch,
+      activeYear,
+      activeSemester,
+      selectedAcademicYear,
+      selectedExamType,
+      pyqSearchQuery
     });
-  }, [localPyqs, normKey, isBTech, activeBranch, activeYear, activeSemester, selectedAcademicYear, selectedExamType, activeSubject, pyqSearchQuery]);
+  }, [localPyqs, activeSubject, normKey, isBTech, activeBranch, activeYear, activeSemester, selectedAcademicYear, selectedExamType, pyqSearchQuery]);
 
   // Reset Filters Handler
   const handleResetFilters = () => {
