@@ -44,32 +44,34 @@ export default function MobileHomepageView({
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
-  // 22 Courses matching the reference screenshot in 5 columns
+  // 24 Official AKTU Programmes in 5 columns with clean labels
   const allCourses = [
     { id: 'btech', label: 'B.Tech', subLabel: '(All Branches)', icon: GraduationCap, iconBg: '#FDF2F2', iconColor: '#861820', courseKey: 'BTech' },
-    { id: 'btech-biotech', label: 'B.Tech', subLabel: 'Biotechnology', icon: FlaskConical, iconBg: '#F0FDF4', iconColor: '#16A34A', courseKey: 'BTech' },
-    { id: 'btech-agri', label: 'B.Tech', subLabel: 'Agriculture', icon: Leaf, iconBg: '#F0FDF4', iconColor: '#15803D', courseKey: 'BTech' },
+    { id: 'btech-biotech', label: 'B.Tech', subLabel: 'Biotechnology', icon: FlaskConical, iconBg: '#F0FDF4', iconColor: '#16A34A', courseKey: 'BTechBiotechnology' },
+    { id: 'btech-agri', label: 'B.Tech', subLabel: 'Agriculture', icon: Leaf, iconBg: '#F0FDF4', iconColor: '#15803D', courseKey: 'BTechAgriculture' },
     { id: 'btech-lateral', label: 'B.Tech', subLabel: 'Lateral Entry', icon: FileText, iconBg: '#EFF6FF', iconColor: '#2563EB', courseKey: 'BTechLateral' },
     { id: 'bca', label: 'BCA', subLabel: '', icon: Monitor, iconBg: '#F5F3FF', iconColor: '#7C3AED', courseKey: 'BCA' },
 
-    { id: 'bba', label: 'BBA / BMS', subLabel: '', icon: BarChart2, iconBg: '#FFF1F2', iconColor: '#E11D48', courseKey: 'BBA' },
+    { id: 'bba', label: 'BBA', subLabel: 'Business Admin', icon: BarChart2, iconBg: '#FFF1F2', iconColor: '#E11D48', courseKey: 'BBA' },
+    { id: 'bms', label: 'BMS', subLabel: 'Management Studies', icon: Briefcase, iconBg: '#FAF5FF', iconColor: '#8B5CF6', courseKey: 'BBA_BMS' },
     { id: 'bpharm', label: 'B.Pharm', subLabel: '', icon: Pill, iconBg: '#FFF1F2', iconColor: '#DC2626', courseKey: 'BPharm' },
     { id: 'bpharm-lateral', label: 'B.Pharm', subLabel: 'Lateral Entry', icon: FileText, iconBg: '#EFF6FF', iconColor: '#2563EB', courseKey: 'BPharmLateral' },
-    { id: 'pharmd', label: 'Pharm.D', subLabel: '', icon: FlaskConical, iconBg: '#F5F3FF', iconColor: '#9333EA', courseKey: 'PharmD' },
-    { id: 'mtech', label: 'M.Tech', subLabel: '', icon: Settings, iconBg: '#FFFBEB', iconColor: '#D97706', courseKey: 'MTech' },
+    { id: 'pharmd', label: 'Pharm.D', subLabel: 'Doctor of Pharmacy', icon: FlaskConical, iconBg: '#F5F3FF', iconColor: '#9333EA', courseKey: 'PharmD' },
 
+    { id: 'mtech', label: 'M.Tech', subLabel: '', icon: Settings, iconBg: '#FFFBEB', iconColor: '#D97706', courseKey: 'MTech' },
     { id: 'mpharm', label: 'M.Pharm', subLabel: '', icon: Pill, iconBg: '#FFF1F2', iconColor: '#E11D48', courseKey: 'MPharm' },
     { id: 'mca', label: 'MCA', subLabel: '', icon: Monitor, iconBg: '#F5F3FF', iconColor: '#6366F1', courseKey: 'MCA' },
     { id: 'mca-int', label: 'MCA', subLabel: 'Integrated', icon: Layers, iconBg: '#F0FDF4', iconColor: '#16A34A', courseKey: 'MCAIntegrated' },
     { id: 'mca-lateral', label: 'MCA', subLabel: 'Lateral Entry', icon: FileText, iconBg: '#EFF6FF', iconColor: '#2563EB', courseKey: 'MCALateral' },
-    { id: 'mba', label: 'MBA', subLabel: '', icon: BarChart2, iconBg: '#FFFBEB', iconColor: '#D97706', courseKey: 'MBA' },
 
+    { id: 'mba', label: 'MBA', subLabel: '', icon: BarChart2, iconBg: '#FFFBEB', iconColor: '#D97706', courseKey: 'MBA' },
     { id: 'mba-int', label: 'MBA', subLabel: 'Integrated', icon: Users, iconBg: '#FFF1F2', iconColor: '#E11D48', courseKey: 'MBAIntegrated' },
+    { id: 'mba-lateral', label: 'MBA', subLabel: 'Lateral Entry', icon: FileText, iconBg: '#EFF6FF', iconColor: '#2563EB', courseKey: 'MBALateral' },
     { id: 'barch', label: 'B.Arch', subLabel: '', icon: Compass, iconBg: '#F5F3FF', iconColor: '#7C3AED', courseKey: 'BArch' },
     { id: 'bdes', label: 'B.Des', subLabel: '', icon: Palette, iconBg: '#FFFBEB', iconColor: '#D97706', courseKey: 'BDes' },
+
     { id: 'bhmct', label: 'BHMCT', subLabel: '', icon: ChefHat, iconBg: '#FFF1F2', iconColor: '#E11D48', courseKey: 'BHMCT' },
     { id: 'bfad', label: 'BFAD', subLabel: '', icon: PenTool, iconBg: '#EFF6FF', iconColor: '#2563EB', courseKey: 'BFAD' },
-
     { id: 'bfa', label: 'BFA', subLabel: '', icon: Image, iconBg: '#F5F3FF', iconColor: '#7C3AED', courseKey: 'BFA' },
     { id: 'bvoc', label: 'B.Voc', subLabel: '', icon: Sprout, iconBg: '#F0FDF4', iconColor: '#16A34A', courseKey: 'BVoc' }
   ];
@@ -465,6 +467,8 @@ export default function MobileHomepageView({
                     boxSizing: 'border-box',
                     overflow: 'hidden'
                   }}
+                  aria-label={`${c.label}${c.subLabel ? ' ' + c.subLabel : ''}`}
+                  data-course-name={c.label}
                 >
                   <div style={{
                     width: '21px',
@@ -477,7 +481,7 @@ export default function MobileHomepageView({
                     marginBottom: '2px',
                     flexShrink: 0
                   }}>
-                    <IconComponent size={11.5} color={c.iconColor} strokeWidth={2.2} />
+                    <IconComponent size={11.5} color={c.iconColor} strokeWidth={2.2} aria-hidden="true" focusable="false" />
                   </div>
                   <span style={{
                     fontSize: '7.5px',

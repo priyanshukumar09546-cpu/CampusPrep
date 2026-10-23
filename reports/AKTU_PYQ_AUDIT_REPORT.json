@@ -1,0 +1,213 @@
+{
+  "executedAt": "2026-10-23T10:03:01.026Z",
+  "totalCoursesAudited": 24,
+  "coursesList": [
+    "B.Tech",
+    "B.Tech Biotechnology",
+    "B.Tech Agriculture",
+    "B.Tech Lateral Entry",
+    "BCA",
+    "BBA",
+    "BBA / BMS",
+    "B.Pharm",
+    "B.Pharm Lateral Entry",
+    "Pharm.D",
+    "M.Tech",
+    "M.Pharm",
+    "MCA",
+    "MCA Integrated",
+    "MCA Lateral Entry",
+    "MBA",
+    "MBA Integrated",
+    "MBA Lateral Entry",
+    "B.Arch",
+    "B.Des",
+    "BHMCT",
+    "BFAD",
+    "BFA",
+    "B.Voc"
+  ],
+  "distinctCoursesInDatabase": [
+    "B.Tech",
+    "MBA",
+    "MCA",
+    "B.Pharm",
+    "BCA",
+    "B.Arch",
+    "BFA",
+    "BFAD",
+    "BHMCT",
+    "B.Tech Biotechnology",
+    "B.Tech Agriculture",
+    "MBA Integrated",
+    "M.Tech",
+    "M.Pharm"
+  ],
+  "targetExamYears": [
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018",
+    "2017",
+    "2016",
+    "2015"
+  ],
+  "totalSubjectYearCombinationsInvestigated": 7220,
+  "totalAuthenticPapersFound": 838,
+  "totalCatalogPapersInDatabase": 5508,
+  "totalMissingCombinationsDocumented": 6605,
+  "courseBreakdown": {
+    "B.Tech": {
+      "subjectsCount": 39,
+      "investigated": 390,
+      "found": 186,
+      "missing": 260
+    },
+    "B.Tech Biotechnology": {
+      "subjectsCount": 35,
+      "investigated": 350,
+      "found": 4,
+      "missing": 346
+    },
+    "B.Tech Agriculture": {
+      "subjectsCount": 35,
+      "investigated": 350,
+      "found": 2,
+      "missing": 348
+    },
+    "B.Tech Lateral Entry": {
+      "subjectsCount": 28,
+      "investigated": 280,
+      "found": 108,
+      "missing": 196
+    },
+    "BCA": {
+      "subjectsCount": 29,
+      "investigated": 290,
+      "found": 87,
+      "missing": 203
+    },
+    "BBA": {
+      "subjectsCount": 29,
+      "investigated": 290,
+      "found": 0,
+      "missing": 290
+    },
+    "BBA / BMS": {
+      "subjectsCount": 28,
+      "investigated": 280,
+      "found": 0,
+      "missing": 280
+    },
+    "B.Pharm": {
+      "subjectsCount": 37,
+      "investigated": 370,
+      "found": 216,
+      "missing": 248
+    },
+    "B.Pharm Lateral Entry": {
+      "subjectsCount": 29,
+      "investigated": 290,
+      "found": 0,
+      "missing": 290
+    },
+    "Pharm.D": {
+      "subjectsCount": 56,
+      "investigated": 560,
+      "found": 0,
+      "missing": 560
+    },
+    "M.Tech": {
+      "subjectsCount": 14,
+      "investigated": 140,
+      "found": 0,
+      "missing": 140
+    },
+    "M.Pharm": {
+      "subjectsCount": 13,
+      "investigated": 130,
+      "found": 3,
+      "missing": 128
+    },
+    "MCA": {
+      "subjectsCount": 19,
+      "investigated": 190,
+      "found": 67,
+      "missing": 139
+    },
+    "MCA Integrated": {
+      "subjectsCount": 42,
+      "investigated": 420,
+      "found": 0,
+      "missing": 420
+    },
+    "MCA Lateral Entry": {
+      "subjectsCount": 16,
+      "investigated": 160,
+      "found": 0,
+      "missing": 160
+    },
+    "MBA": {
+      "subjectsCount": 22,
+      "investigated": 220,
+      "found": 99,
+      "missing": 149
+    },
+    "MBA Integrated": {
+      "subjectsCount": 42,
+      "investigated": 420,
+      "found": 17,
+      "missing": 406
+    },
+    "MBA Lateral Entry": {
+      "subjectsCount": 10,
+      "investigated": 100,
+      "found": 0,
+      "missing": 100
+    },
+    "B.Arch": {
+      "subjectsCount": 42,
+      "investigated": 420,
+      "found": 18,
+      "missing": 402
+    },
+    "B.Des": {
+      "subjectsCount": 32,
+      "investigated": 320,
+      "found": 0,
+      "missing": 320
+    },
+    "BHMCT": {
+      "subjectsCount": 36,
+      "investigated": 360,
+      "found": 8,
+      "missing": 352
+    },
+    "BFAD": {
+      "subjectsCount": 33,
+      "investigated": 330,
+      "found": 23,
+      "missing": 308
+    },
+    "BFA": {
+      "subjectsCount": 33,
+      "investigated": 330,
+      "found": 0,
+      "missing": 330
+    },
+    "B.Voc": {
+      "subjectsCount": 23,
+      "investigated": 230,
+      "found": 0,
+      "missing": 230
+    }
+  },
+  "generatedFiles": [
+    "reports/AKTU_PYQ_10_YEAR_COVERAGE_MATRIX.csv",
+    "reports/AKTU_PYQ_MISSING_PAPERS_REPORT.csv",
+    "public/AKTU_PYQ_10_YEAR_COVERAGE_MATRIX.csv"
+  ]
+}

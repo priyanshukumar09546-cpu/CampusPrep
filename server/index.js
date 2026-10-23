@@ -2759,24 +2759,20 @@ app.get('/api/admin/stats', verifyAdminToken, async (req, res) => {
     let totalPYQs = dbPyqs.length;
     let publishedPYQs = dbPyqs.filter(p => p.published !== false && p.status !== 'unpublished').length;
 
-    const courseBreakdown = {
-      'B.Tech': {
-        notes: dbNotes.filter(n => (!n.course || n.course === 'B.Tech' || n.course === 'btech')).length,
-        pyqs: dbPyqs.filter(p => (!p.course || p.course === 'B.Tech' || p.course === 'btech')).length
-      },
-      'MCA': {
-        notes: dbNotes.filter(n => n.course === 'MCA').length,
-        pyqs: dbPyqs.filter(p => p.course === 'MCA').length
-      },
-      'MBA': {
-        notes: dbNotes.filter(n => n.course === 'MBA').length,
-        pyqs: dbPyqs.filter(p => p.course === 'MBA').length
-      },
-      'B.Pharm': {
-        notes: dbNotes.filter(n => n.course === 'B.Pharm' || n.course === 'BPharm').length,
-        pyqs: dbPyqs.filter(p => p.course === 'B.Pharm' || p.course === 'BPharm').length
-      }
-    };
+    const ALL_PROGRAMMES = [
+      'B.Tech', 'B.Tech Biotechnology', 'B.Tech Agriculture', 'B.Tech Lateral Entry',
+      'BCA', 'BBA', 'BBA / BMS', 'B.Pharm', 'B.Pharm Lateral Entry', 'Pharm.D',
+      'M.Tech', 'M.Pharm', 'MCA', 'MCA Integrated', 'MCA Lateral Entry',
+      'MBA', 'MBA Integrated', 'MBA Lateral Entry',
+      'B.Arch', 'B.Des', 'BHMCT', 'BFAD', 'BFA', 'B.Voc'
+    ];
+    const courseBreakdown = {};
+    ALL_PROGRAMMES.forEach(c => {
+      courseBreakdown[c] = {
+        notes: dbNotes.filter(n => (n.course === c || (c === 'B.Tech' && (!n.course || n.course === 'btech')))).length,
+        pyqs: dbPyqs.filter(p => (p.course === c || (c === 'B.Tech' && (!p.course || p.course === 'btech')))).length
+      };
+    });
 
     if (isDbConnected) {
       try {
@@ -2796,14 +2792,14 @@ app.get('/api/admin/stats', verifyAdminToken, async (req, res) => {
 
         notesByCourse.forEach(nc => {
           const c = nc._id || 'B.Tech';
-          if (courseBreakdown[c]) courseBreakdown[c].notes = nc.count;
-          else if (c === 'BPharm' && courseBreakdown['B.Pharm']) courseBreakdown['B.Pharm'].notes = nc.count;
+          if (!courseBreakdown[c]) courseBreakdown[c] = { notes: 0, pyqs: 0 };
+          courseBreakdown[c].notes = nc.count;
         });
 
         pyqsByCourse.forEach(pc => {
           const c = pc._id || 'B.Tech';
-          if (courseBreakdown[c]) courseBreakdown[c].pyqs = pc.count;
-          else if (c === 'BPharm' && courseBreakdown['B.Pharm']) courseBreakdown['B.Pharm'].pyqs = pc.count;
+          if (!courseBreakdown[c]) courseBreakdown[c] = { notes: 0, pyqs: 0 };
+          courseBreakdown[c].pyqs = pc.count;
         });
       } catch (dbErr) {
         console.warn('Admin stats aggregation warning:', dbErr.message);
@@ -3094,24 +3090,37 @@ app.get('/api/pyqs', async (req, res) => {
     return true;
   });
 
-  // 1. Canonical Course Isolation Filtering
+  // 1. Canonical Course Isolation Filtering (All 24 AKTU Programmes)
   const normalizeCourseParam = (c) => {
     if (!c) return 'B.Tech';
-    const s = String(c).toLowerCase().replace(/[^a-z]/g, '');
+    const raw = String(c).trim();
+    const s = raw.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    if (s === 'btechbiotechnology' || s === 'btechbiotech' || s === 'biotech') return 'B.Tech Biotechnology';
+    if (s === 'btechagriculture' || s === 'btechagri' || s === 'agri') return 'B.Tech Agriculture';
+    if (s === 'btechlateral' || s === 'btechlateralentry') return 'B.Tech Lateral Entry';
     if (s === 'bca') return 'BCA';
-    if (s === 'mca') return 'MCA';
-    if (s === 'mba') return 'MBA';
+    if (s === 'bbabms' || s === 'bms') return 'BBA / BMS';
     if (s === 'bba') return 'BBA';
+    if (s === 'bpharmlateral' || s === 'bpharmlateralentry') return 'B.Pharm Lateral Entry';
+    if (s === 'pharmd' || s === 'doctorofpharmacy') return 'Pharm.D';
+    if (s === 'bpharm' || s === 'bpharma' || s === 'bpharmacy') return 'B.Pharm';
+    if (s === 'mpharm' || s === 'mpharma' || s === 'mpharmacy') return 'M.Pharm';
+    if (s === 'mtech' || s === 'mtechnology') return 'M.Tech';
+    if (s === 'mcaintegrated') return 'MCA Integrated';
+    if (s === 'mcalateral' || s === 'mcalateralentry') return 'MCA Lateral Entry';
+    if (s === 'mca') return 'MCA';
+    if (s === 'mbaintegrated' || s === 'mam') return 'MBA Integrated';
+    if (s === 'mbalateral' || s === 'mbalateralentry') return 'MBA Lateral Entry';
+    if (s === 'mba') return 'MBA';
+    if (s === 'barch' || s === 'architecture') return 'B.Arch';
+    if (s === 'bdes' || s === 'bdesign') return 'B.Des';
     if (s === 'bhmct' || s.includes('hmct') || s.includes('hotel')) return 'BHMCT';
-    if (s === 'mpharm' || (s.includes('pharm') && s.startsWith('m'))) return 'M.Pharm';
-    if (s === 'bpharm' || s.includes('pharm')) return 'B.Pharm';
-    if (s === 'mtech' || (s.includes('tech') && s.startsWith('m'))) return 'M.Tech';
-    if (s === 'barch' || s.includes('arch')) return 'B.Arch';
-    if (s === 'bdes' || s.includes('des')) return 'B.Des';
     if (s === 'bfad') return 'BFAD';
     if (s === 'bfa') return 'BFA';
     if (s === 'bvoc' || s.includes('voc')) return 'B.Voc';
-    return 'B.Tech';
+    if (s === 'btech' || s === 'btechnology') return 'B.Tech';
+    return raw;
   };
 
   const targetCourse = normalizeCourseParam(course);
@@ -3266,6 +3275,36 @@ app.get('/api/admin/pyqs', verifyAdminToken, async (req, res) => {
     res.json({ success: true, pyqs });
   } catch (err) {
     res.json({ success: true, pyqs: dbPyqs });
+  }
+});
+
+// GET ADMIN COVERAGE MATRIX & METRICS
+app.get('/api/admin/pyqs/coverage-matrix', verifyAdminToken, (req, res) => {
+  try {
+    const csvPath = path.join(__dirname, '../reports/AKTU_PYQ_10_YEAR_COVERAGE_MATRIX.csv');
+    const jsonPath = path.join(__dirname, '../reports/AKTU_PYQ_AUDIT_REPORT.json');
+
+    if (req.query.download === 'csv') {
+      if (fs.existsSync(csvPath)) {
+        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader('Content-Disposition', 'attachment; filename="AKTU_PYQ_10_YEAR_COVERAGE_MATRIX.csv"');
+        return res.sendFile(csvPath);
+      }
+    }
+
+    let summary = null;
+    if (fs.existsSync(jsonPath)) {
+      summary = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+    }
+
+    res.json({
+      success: true,
+      summary,
+      csvAvailable: fs.existsSync(csvPath),
+      downloadUrl: '/api/admin/pyqs/coverage-matrix?download=csv'
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 

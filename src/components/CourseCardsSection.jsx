@@ -581,7 +581,7 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                       border: `1px solid ${c.borderColor}`,
                       flexShrink: 0
                     }}>
-                      <Icon size={22} strokeWidth={2.2} />
+                      <Icon size={22} strokeWidth={2.2} aria-hidden="true" focusable="false" />
                     </div>
 
                     <span 

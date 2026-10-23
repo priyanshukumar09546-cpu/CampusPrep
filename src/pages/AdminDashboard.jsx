@@ -23,6 +23,7 @@ import {
   ArrowDownRight, 
   Plus, 
   Upload, 
+  Download,
   CheckCircle2, 
   AlertCircle, 
   X, 
@@ -64,6 +65,39 @@ import { AKTU_PYQ_DATA } from '../data/aktuPyqData';
 import { COURSES } from '../data/coursesCatalog';
 import AdminQuizManager from '../components/AdminQuizManager';
 
+
+export const ALL_COURSES_METADATA = [
+  { key: 'B.Tech', label: 'B.Tech (Bachelor of Technology)', maxSems: 8, hasBranches: true },
+  { key: 'B.Tech Biotechnology', label: 'B.Tech Biotechnology', maxSems: 8, hasBranches: false },
+  { key: 'B.Tech Agriculture', label: 'B.Tech Agriculture', maxSems: 8, hasBranches: false },
+  { key: 'B.Tech Lateral Entry', label: 'B.Tech Lateral Entry', maxSems: 6, hasBranches: true },
+  { key: 'BCA', label: 'BCA (Bachelor of Computer Applications)', maxSems: 6, hasBranches: false },
+  { key: 'BBA', label: 'BBA (Bachelor of Business Administration)', maxSems: 6, hasBranches: false },
+  { key: 'BBA / BMS', label: 'BBA / BMS (Management Studies)', maxSems: 6, hasBranches: false },
+  { key: 'B.Pharm', label: 'B.Pharm (Bachelor of Pharmacy)', maxSems: 8, hasBranches: false },
+  { key: 'B.Pharm Lateral Entry', label: 'B.Pharm Lateral Entry', maxSems: 6, hasBranches: false },
+  { key: 'Pharm.D', label: 'Pharm.D (Doctor of Pharmacy)', maxSems: 12, hasBranches: false },
+  { key: 'M.Tech', label: 'M.Tech (Master of Technology)', maxSems: 4, hasBranches: true },
+  { key: 'M.Pharm', label: 'M.Pharm (Master of Pharmacy)', maxSems: 4, hasBranches: false },
+  { key: 'MCA', label: 'MCA (Master of Computer Applications)', maxSems: 4, hasBranches: false },
+  { key: 'MCA Integrated', label: 'MCA Integrated (5 Year)', maxSems: 10, hasBranches: false },
+  { key: 'MCA Lateral Entry', label: 'MCA Lateral Entry', maxSems: 4, hasBranches: false },
+  { key: 'MBA', label: 'MBA (Master of Business Administration)', maxSems: 4, hasBranches: false },
+  { key: 'MBA Integrated', label: 'MBA Integrated (5 Year)', maxSems: 10, hasBranches: false },
+  { key: 'MBA Lateral Entry', label: 'MBA Lateral Entry', maxSems: 4, hasBranches: false },
+  { key: 'B.Arch', label: 'B.Arch (Bachelor of Architecture)', maxSems: 10, hasBranches: false },
+  { key: 'B.Des', label: 'B.Des (Bachelor of Design)', maxSems: 8, hasBranches: false },
+  { key: 'BHMCT', label: 'BHMCT (Hotel Management & Catering)', maxSems: 8, hasBranches: false },
+  { key: 'BFAD', label: 'BFAD (Fashion & Apparel Design)', maxSems: 8, hasBranches: false },
+  { key: 'BFA', label: 'BFA (Bachelor of Fine Arts)', maxSems: 8, hasBranches: false },
+  { key: 'B.Voc', label: 'B.Voc (Bachelor of Vocation)', maxSems: 6, hasBranches: false }
+];
+
+export const getCourseSemesters = (courseKey) => {
+  const meta = ALL_COURSES_METADATA.find(c => c.key === courseKey);
+  const total = meta ? meta.maxSems : 8;
+  return Array.from({ length: total }, (_, i) => `Semester ${i + 1}`);
+};
 
 export const getAdminToken = () => {
   return localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token') || '';
@@ -1396,20 +1430,24 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
   };
 
   const renderCourseKpiCards = (onSelectCourse) => {
-    const btech = getCourseStats('B.Tech');
-    const mca = getCourseStats('MCA');
-    const mba = getCourseStats('MBA');
-    const bpharm = getCourseStats('B.Pharm');
+    const totalN = adminNotes.length || stats.totalNotes || 0;
+    const totalP = adminPyqs.length || stats.totalPYQs || 5508;
 
-    const totalN = adminNotes.length || stats.totalNotes || (btech.notes + mca.notes + mba.notes + bpharm.notes);
-    const totalP = adminPyqs.length || stats.totalPYQs || (btech.pyqs + mca.pyqs + mba.pyqs + bpharm.pyqs);
-
-    const coursesList = [
-      { name: 'B.Tech', fullName: 'Bachelor of Technology', color: '#0F766E', bg: '#F0FDFA', border: '#99F6E4', notes: btech.notes, pyqs: btech.pyqs },
-      { name: 'MCA', fullName: 'Master of Computer Applications', color: '#1E40AF', bg: '#F0F5FF', border: '#BFDBFE', notes: mca.notes, pyqs: mca.pyqs },
-      { name: 'MBA', fullName: 'Master of Business Administration', color: '#92400E', bg: '#FFFBEB', border: '#FDE68A', notes: mba.notes, pyqs: mba.pyqs },
-      { name: 'B.Pharm', fullName: 'Bachelor of Pharmacy', color: '#9D174D', bg: '#FDF2F8', border: '#FBCFE8', notes: bpharm.notes, pyqs: bpharm.pyqs },
+    const keyCourses = [
+      { name: 'B.Tech', fullName: 'Bachelor of Technology', color: '#0F766E', bg: '#F0FDFA', border: '#99F6E4' },
+      { name: 'B.Tech Agriculture', fullName: 'Agricultural Engineering', color: '#65A30D', bg: '#F7FEE7', border: '#D9F99D' },
+      { name: 'B.Tech Biotechnology', fullName: 'Biotechnology & Life Sciences', color: '#16A34A', bg: '#F0FDF4', border: '#BBF7D0' },
+      { name: 'MCA', fullName: 'Master of Computer Applications', color: '#1E40AF', bg: '#F0F5FF', border: '#BFDBFE' },
+      { name: 'MBA', fullName: 'Master of Business Administration', color: '#92400E', bg: '#FFFBEB', border: '#FDE68A' },
+      { name: 'B.Pharm', fullName: 'Bachelor of Pharmacy', color: '#9D174D', bg: '#FDF2F8', border: '#FBCFE8' },
+      { name: 'B.Arch', fullName: 'Bachelor of Architecture', color: '#CA8A04', bg: '#FEFCE8', border: '#FEF08A' },
+      { name: 'M.Tech', fullName: 'Master of Technology', color: '#4F46E5', bg: '#EEF2FF', border: '#C7D2FE' }
     ];
+
+    const coursesList = keyCourses.map(c => {
+      const cStat = getCourseStats(c.name);
+      return { ...c, notes: cStat.notes, pyqs: cStat.pyqs };
+    });
 
     return (
       <div style={{ backgroundColor: '#ffffff', borderRadius: '16px', border: '1.5px solid #E8E2D5', padding: '1.15rem', marginBottom: '1.5rem', boxShadow: '0 4px 14px rgba(0,0,0,0.02)' }}>
@@ -1423,7 +1461,7 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
                 Course Overview KPI & Resource Inventory
               </h3>
               <p style={{ fontSize: '0.74rem', color: '#64748b', margin: 0 }}>
-                Live database breakdown across B.Tech, MCA, MBA, and B.Pharm
+                Live database breakdown across all 24 AKTU programmes covering 10-year examination history (2015–2024)
               </p>
             </div>
           </div>
@@ -1955,56 +1993,66 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
             };
 
             const getSubjectsForPyq = () => {
-              if (pyqCourseFilter === 'MCA') {
-                const mcaCourse = COURSES.find(c => c.key === 'MCA');
-                const subs = (mcaCourse && mcaCourse.subjectsBySemester && mcaCourse.subjectsBySemester[pyqSemesterFilter]) || [];
-                const subjectsMap = new Map();
-                subs.forEach(s => {
-                  subjectsMap.set(s.name.toLowerCase(), { id: s.code, name: s.name, code: s.code, aliases: new Set([s.name.toLowerCase(), s.code.toLowerCase()]) });
-                });
-                adminPyqs.filter(p => p.course === 'MCA' && (!pyqSemesterFilter || pyqSemesterFilter === 'All' || p.semester === pyqSemesterFilter || p.year === pyqSemesterFilter)).forEach(p => {
-                  const name = p.subjectName || p.subject;
-                  if (name && !subjectsMap.has(name.toLowerCase())) {
-                    subjectsMap.set(name.toLowerCase(), { id: p.subjectCode || name, name, code: p.subjectCode || 'MCA', aliases: new Set([name.toLowerCase(), (p.subjectCode || '').toLowerCase()]) });
-                  }
-                });
-                return Array.from(subjectsMap.values());
+              if (pyqCourseFilter === 'B.Tech') {
+                return getSubjectsForBranchAndYear(pyqBranchFilter, pyqYearFilter);
               }
 
-              if (pyqCourseFilter === 'MBA') {
-                const mbaCourse = COURSES.find(c => c.key === 'MBA');
-                const subs = (mbaCourse && mbaCourse.subjectsBySemester && mbaCourse.subjectsBySemester[pyqSemesterFilter]) || [];
-                const subjectsMap = new Map();
-                subs.forEach(s => {
-                  if (pyqSpecFilter && pyqSpecFilter !== 'All' && s.spec && s.spec !== pyqSpecFilter) return;
-                  subjectsMap.set(s.name.toLowerCase(), { id: s.code, name: s.name, code: s.code, aliases: new Set([s.name.toLowerCase(), s.code.toLowerCase()]) });
+              const subjectsMap = new Map();
+              const cConfigCourse = COURSES.find(c => c.key === pyqCourseFilter || c.name === pyqCourseFilter);
+              const subs = (cConfigCourse && cConfigCourse.subjectsBySemester && cConfigCourse.subjectsBySemester[pyqSemesterFilter]) || [];
+              subs.forEach(s => {
+                if (pyqSpecFilter && pyqSpecFilter !== 'All' && s.spec && s.spec !== pyqSpecFilter) return;
+                subjectsMap.set(s.name.toLowerCase().trim(), {
+                  id: s.code || s.name,
+                  name: s.name,
+                  code: s.code || pyqCourseFilter,
+                  aliases: new Set([s.name.toLowerCase().trim(), (s.code || '').toLowerCase().trim()])
                 });
-                adminPyqs.filter(p => p.course === 'MBA' && (!pyqSemesterFilter || pyqSemesterFilter === 'All' || p.semester === pyqSemesterFilter || p.year === pyqSemesterFilter)).forEach(p => {
-                  const name = p.subjectName || p.subject;
-                  if (name && !subjectsMap.has(name.toLowerCase())) {
-                    subjectsMap.set(name.toLowerCase(), { id: p.subjectCode || name, name, code: p.subjectCode || 'MBA', aliases: new Set([name.toLowerCase(), (p.subjectCode || '').toLowerCase()]) });
+              });
+
+              // Harvest from adminPyqs matching this course
+              const targetNorm = (pyqCourseFilter || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+              adminPyqs.filter(p => {
+                const pNorm = (p.course || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+                if (pyqCourseFilter !== 'All' && pNorm !== targetNorm) return false;
+                if (pyqSemesterFilter && pyqSemesterFilter !== 'All') {
+                  const pSem = (p.semester || p.year || '').toString().toLowerCase();
+                  const targetSem = pyqSemesterFilter.toLowerCase();
+                  if (pSem && !pSem.includes(targetSem) && !targetSem.includes(pSem)) {
+                    return false;
                   }
-                });
-                return Array.from(subjectsMap.values());
+                }
+                if (pyqCourseFilter === 'MBA' && pyqSpecFilter !== 'All' && p.specialization && p.specialization !== pyqSpecFilter) {
+                  return false;
+                }
+                return true;
+              }).forEach(p => {
+                const rawName = p.subjectName || p.subject;
+                if (!rawName) return;
+                const cName = getCanonicalSubjectName(rawName);
+                const cKey = cName.toLowerCase().trim();
+                const code = p.subjectCode || '';
+                if (!subjectsMap.has(cKey)) {
+                  subjectsMap.set(cKey, {
+                    id: code || cKey,
+                    name: cName,
+                    code: code || pyqCourseFilter,
+                    branchId: p.branch || p.branchId || 'ALL',
+                    year: p.year || pyqSemesterFilter,
+                    aliases: new Set([rawName.toLowerCase().trim(), code.toLowerCase().trim()])
+                  });
+                } else {
+                  const item = subjectsMap.get(cKey);
+                  item.aliases.add(rawName.toLowerCase().trim());
+                  if (code) item.aliases.add(code.toLowerCase().trim());
+                }
+              });
+
+              if (subjectsMap.size === 0 && pyqCourseFilter === 'All') {
+                return getSubjectsForBranchAndYear(pyqBranchFilter, pyqYearFilter);
               }
 
-              if (pyqCourseFilter === 'B.Pharm') {
-                const bpharmCourse = COURSES.find(c => c.key === 'B.Pharm');
-                const subs = (bpharmCourse && bpharmCourse.subjectsBySemester && bpharmCourse.subjectsBySemester[pyqSemesterFilter]) || [];
-                const subjectsMap = new Map();
-                subs.forEach(s => {
-                  subjectsMap.set(s.name.toLowerCase(), { id: s.code, name: s.name, code: s.code, aliases: new Set([s.name.toLowerCase(), s.code.toLowerCase()]) });
-                });
-                adminPyqs.filter(p => (p.course === 'B.Pharm' || p.course === 'BPharm') && (!pyqSemesterFilter || pyqSemesterFilter === 'All' || p.semester === pyqSemesterFilter || p.year === pyqSemesterFilter)).forEach(p => {
-                  const name = p.subjectName || p.subject;
-                  if (name && !subjectsMap.has(name.toLowerCase())) {
-                    subjectsMap.set(name.toLowerCase(), { id: p.subjectCode || name, name, code: p.subjectCode || 'B.Pharm', aliases: new Set([name.toLowerCase(), (p.subjectCode || '').toLowerCase()]) });
-                  }
-                });
-                return Array.from(subjectsMap.values());
-              }
-
-              return getSubjectsForBranchAndYear(pyqBranchFilter, pyqYearFilter);
+              return Array.from(subjectsMap.values()).sort((a, b) => a.name.localeCompare(b.name));
             };
 
             const activeSubjects = getSubjectsForPyq() || [];
@@ -2125,17 +2173,47 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => window.open('/pyqs', '_blank', 'noopener,noreferrer')}
-                    style={{
-                      backgroundColor: '#ffffff', border: '1.5px solid #E8E2D5', borderRadius: '10px',
-                      padding: '0.55rem 1rem', fontSize: '0.82rem', fontWeight: 800, color: '#1F2421',
-                      cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem',
-                      boxShadow: '0 2px 5px rgba(0,0,0,0.03)', transition: 'all 0.15s ease'
-                    }}
-                  >
-                    <ExternalLink size={15} style={{ color: '#C88D2D' }} /> View Public PYQ Page
-                  </button>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                    <a
+                      href="/api/admin/pyqs/coverage-matrix?download=csv"
+                      download="AKTU_PYQ_10_YEAR_COVERAGE_MATRIX.csv"
+                      style={{
+                        backgroundColor: '#0F766E', border: 'none', borderRadius: '10px',
+                        padding: '0.55rem 0.95rem', fontSize: '0.82rem', fontWeight: 800, color: '#ffffff',
+                        cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none',
+                        boxShadow: '0 2px 6px rgba(15,118,110,0.25)', transition: 'all 0.15s ease'
+                      }}
+                      title="Download full 10-year coverage matrix CSV across all 24 courses"
+                    >
+                      <Download size={15} /> Export 10-Yr Coverage CSV
+                    </a>
+
+                    <a
+                      href="/AKTU_PYQ_MISSING_PAPERS_REPORT.csv"
+                      download="AKTU_PYQ_MISSING_PAPERS_REPORT.csv"
+                      style={{
+                        backgroundColor: '#ffffff', border: '1.5px solid #E8E2D5', borderRadius: '10px',
+                        padding: '0.55rem 0.95rem', fontSize: '0.82rem', fontWeight: 800, color: '#DC2626',
+                        cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none',
+                        boxShadow: '0 2px 5px rgba(0,0,0,0.03)', transition: 'all 0.15s ease'
+                      }}
+                      title="Download report of missing years across subjects"
+                    >
+                      <AlertCircle size={15} /> Missing Papers CSV
+                    </a>
+
+                    <button
+                      onClick={() => window.open('/pyqs', '_blank', 'noopener,noreferrer')}
+                      style={{
+                        backgroundColor: '#ffffff', border: '1.5px solid #E8E2D5', borderRadius: '10px',
+                        padding: '0.55rem 0.95rem', fontSize: '0.82rem', fontWeight: 800, color: '#1F2421',
+                        cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.4rem',
+                        boxShadow: '0 2px 5px rgba(0,0,0,0.03)', transition: 'all 0.15s ease'
+                      }}
+                    >
+                      <ExternalLink size={15} style={{ color: '#C88D2D' }} /> View Public PYQ Page
+                    </button>
+                  </div>
                 </div>
 
                 {/* COURSE OVERVIEW KPI CARDS SECTION */}
@@ -2147,9 +2225,9 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
                     
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
                       {/* COURSE SELECTOR */}
-                      <div style={{ minWidth: '160px', flex: 1 }}>
+                      <div style={{ minWidth: '180px', flex: 1 }}>
                         <label style={{ fontSize: '0.74rem', fontWeight: 800, color: '#475569', display: 'block', marginBottom: '0.3rem' }}>
-                          Course *
+                          Course ({ALL_COURSES_METADATA.length} Programmes) *
                         </label>
                         <select
                           value={pyqCourseFilter}
@@ -2157,7 +2235,7 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
                             const c = e.target.value;
                             setPyqCourseFilter(c);
                             setPyqPage(1);
-                            if (c === 'MCA' || c === 'MBA' || c === 'B.Pharm') {
+                            if (c !== 'B.Tech' && c !== 'All') {
                               setPyqSemesterFilter('Semester 1');
                             }
                           }}
@@ -2166,11 +2244,10 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
                             fontSize: '0.84rem', fontWeight: 800, color: '#1F2421', backgroundColor: '#FAF7F2', outline: 'none', cursor: 'pointer'
                           }}
                         >
-                          <option value="B.Tech">B.Tech (Bachelor of Technology)</option>
-                          <option value="MCA">MCA (Master of Computer Applications)</option>
-                          <option value="MBA">MBA (Master of Business Administration)</option>
-                          <option value="B.Pharm">B.Pharm (Bachelor of Pharmacy)</option>
-                          <option value="All">All Courses</option>
+                          <option value="All">All Courses (24 Programmes)</option>
+                          {ALL_COURSES_METADATA.map(c => (
+                            <option key={c.key} value={c.key}>{c.label}</option>
+                          ))}
                         </select>
                       </div>
 
@@ -2235,10 +2312,9 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
                                 fontSize: '0.84rem', fontWeight: 800, color: '#1F2421', backgroundColor: '#FAF7F2', outline: 'none', cursor: 'pointer'
                               }}
                             >
-                              {pyqCourseFilter === 'B.Pharm'
-                                ? [1,2,3,4,5,6,7,8].map(s => <option key={s} value={`Semester ${s}`}>Semester {s}</option>)
-                                : [1,2,3,4].map(s => <option key={s} value={`Semester ${s}`}>Semester {s}</option>)
-                              }
+                              {getCourseSemesters(pyqCourseFilter).map(s => (
+                                <option key={s} value={s}>{s}</option>
+                              ))}
                             </select>
                           </div>
 
@@ -7247,17 +7323,16 @@ function AdminAddPyqModal({ subjects, initialData, onClose, onCreated, onNavigat
           
           {/* Course Selector */}
           <div>
-            <label style={modalLabelStyle}>Course *</label>
+            <label style={modalLabelStyle}>Course ({ALL_COURSES_METADATA.length} AKTU Programmes) *</label>
             <select value={course} onChange={e => setCourse(e.target.value)} style={modalInputStyle}>
-              <option value="B.Tech">B.Tech (Bachelor of Technology)</option>
-              <option value="MCA">MCA (Master of Computer Applications)</option>
-              <option value="MBA">MBA (Master of Business Administration)</option>
-              <option value="B.Pharm">B.Pharm (Bachelor of Pharmacy)</option>
+              {ALL_COURSES_METADATA.map(c => (
+                <option key={c.key} value={c.key}>{c.label}</option>
+              ))}
             </select>
           </div>
 
           {/* Conditional: Branch & B.Tech Year vs Semester / Specialization */}
-          {course === 'B.Tech' ? (
+          {(course === 'B.Tech' || course === 'B.Tech Lateral Entry') ? (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
               <div>
                 <label style={modalLabelStyle}>Branch *</label>
@@ -7274,7 +7349,7 @@ function AdminAddPyqModal({ subjects, initialData, onClose, onCreated, onNavigat
               </div>
 
               <div>
-                <label style={modalLabelStyle}>B.Tech Year *</label>
+                <label style={modalLabelStyle}>Year *</label>
                 <select value={year} onChange={e => setYear(e.target.value)} style={modalInputStyle}>
                   <option value="Year 1">1st Year</option>
                   <option value="Year 2">2nd Year</option>
@@ -7288,10 +7363,9 @@ function AdminAddPyqModal({ subjects, initialData, onClose, onCreated, onNavigat
               <div>
                 <label style={modalLabelStyle}>Semester *</label>
                 <select value={semester} onChange={e => setSemester(e.target.value)} style={modalInputStyle}>
-                  {course === 'B.Pharm'
-                    ? [1,2,3,4,5,6,7,8].map(s => <option key={s} value={`Semester ${s}`}>Semester {s}</option>)
-                    : [1,2,3,4].map(s => <option key={s} value={`Semester ${s}`}>Semester {s}</option>)
-                  }
+                  {getCourseSemesters(course).map(s => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
                 </select>
               </div>
 
@@ -7611,16 +7685,15 @@ function AdminEditPyqModal({ pyq, subjects, onClose, onSaved }) {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
           
           <div>
-            <label style={modalLabelStyle}>Course *</label>
+            <label style={modalLabelStyle}>Course ({ALL_COURSES_METADATA.length} AKTU Programmes) *</label>
             <select value={course} onChange={e => setCourse(e.target.value)} style={modalInputStyle}>
-              <option value="B.Tech">B.Tech (Bachelor of Technology)</option>
-              <option value="MCA">MCA (Master of Computer Applications)</option>
-              <option value="MBA">MBA (Master of Business Administration)</option>
-              <option value="B.Pharm">B.Pharm (Bachelor of Pharmacy)</option>
+              {ALL_COURSES_METADATA.map(c => (
+                <option key={c.key} value={c.key}>{c.label}</option>
+              ))}
             </select>
           </div>
 
-          {course === 'B.Tech' ? (
+          {(course === 'B.Tech' || course === 'B.Tech Lateral Entry') ? (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
               <div>
                 <label style={modalLabelStyle}>Branch *</label>
@@ -7636,7 +7709,7 @@ function AdminEditPyqModal({ pyq, subjects, onClose, onSaved }) {
                 </select>
               </div>
               <div>
-                <label style={modalLabelStyle}>B.Tech Year *</label>
+                <label style={modalLabelStyle}>Year *</label>
                 <select value={year} onChange={e => setYear(e.target.value)} style={modalInputStyle}>
                   <option value="Year 1">1st Year</option>
                   <option value="Year 2">2nd Year</option>
@@ -7650,10 +7723,9 @@ function AdminEditPyqModal({ pyq, subjects, onClose, onSaved }) {
               <div>
                 <label style={modalLabelStyle}>Semester *</label>
                 <select value={semester} onChange={e => setSemester(e.target.value)} style={modalInputStyle}>
-                  {course === 'B.Pharm'
-                    ? [1,2,3,4,5,6,7,8].map(s => <option key={s} value={`Semester ${s}`}>Semester {s}</option>)
-                    : [1,2,3,4].map(s => <option key={s} value={`Semester ${s}`}>Semester {s}</option>)
-                  }
+                  {getCourseSemesters(course).map(s => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
                 </select>
               </div>
               {course === 'MBA' && (
