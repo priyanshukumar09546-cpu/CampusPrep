@@ -17,6 +17,9 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
       case 'interview-hr':
       case 'interview-report':
         return 'Interview Pro';
+      case 'hoollow':
+      case 'hoolow':
+        return 'HOOLLOW AI Roadmap';
       case 'resume-maker': return 'LaTeX Resume Maker';
       case 'aistudy': return 'Ask Virus';
       case 'attendance-calculator': return 'Attendance Calculator';

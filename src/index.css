@@ -1192,5 +1192,45 @@ pre, code {
   }
 }
 
+/* HOOLLOW AI Roadmap Generator Styles */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
+@keyframes pvFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
 
+.pv-float-card {
+  animation: pvFloat 4.5s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pv-float-card:nth-child(2) {
+  animation-delay: 1.1s;
+}
+
+.pv-float-card:nth-child(3) {
+  animation-delay: 2.2s;
+}
+
+.pv-float-card:nth-child(4) {
+  animation-delay: 3.3s;
+}
+
+.pv-float-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(104, 19, 27, 0.15) !important;
+}
+
+@media (max-width: 950px) {
+  .pv-dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

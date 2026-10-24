@@ -59,6 +59,7 @@ import SubjectPage from './pages/SubjectPage';
 import PlagiarismCheckerPage from './pages/PlagiarismCheckerPage';
 import ProgressPage from './pages/ProgressPage';
 import PromotionPage from './pages/PromotionPage';
+import HoollowPage from './pages/HoollowPage';
 
 // Exact Reference Image 1 & 2 Screens
 import SignIn from './pages/Auth/SignIn';
@@ -188,6 +189,7 @@ export default function App() {
     if (path === 'interview-pro') return 'interview-pro';
     if (path === 'more') return 'more';
     if (path === 'progress' || path === 'analytics' || path === 'student-progress' || path === 'profile') return 'progress';
+    if (path === 'hoollow' || path === 'hoolow') return 'hoollow';
     if (path === 'promotion' || path === 'advertise' || path === 'promote') return 'promotion';
     if (path === 'admin/login') return 'admin-login';
     if (path === 'interview-pro/confirm' || path === 'interview-confirm') return 'interview-confirm';
@@ -221,8 +223,9 @@ export default function App() {
       if (parts[1]) return 'scholarship-detail';
     }
     if (path === 'community') return 'home';
-    if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'promotion', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
+    if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'promotion', 'hoollow', 'hoolow', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
       if (path === 'aistudy') return 'interview-pro';
+      if (path === 'hoolow') return 'hoollow';
       return path;
     }
     return 'home';
@@ -358,6 +361,8 @@ export default function App() {
         targetPath = '/important-links';
       } else if (tab === 'timetable') {
         targetPath = '/timetable';
+      } else if (tab === 'hoollow' || tab === 'hoolow') {
+        targetPath = '/hoollow';
       } else if (tab === 'admin-login') {
         targetPath = '/admin/login';
       } else if (tab === 'subject') {
@@ -436,6 +441,8 @@ export default function App() {
         setActiveTabState('timetable');
       } else if (path === 'attendance-calculator' || path === 'attendance') {
         setActiveTabState('attendance-calculator');
+      } else if (path === 'hoollow' || path === 'hoolow') {
+        setActiveTabState('hoollow');
       } else if (path === 'competitive-exams' || path === 'competitive-exam' || path === 'career-guidance' || path === 'exams') {
         setActiveTabState('competitive-exams');
       } else if (path === 'important-links' || path === 'links') {
@@ -903,6 +910,14 @@ export default function App() {
               setActiveTab(tab);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
+          />
+        ) : (activeTab === 'hoollow' || activeTab === 'hoolow') ? (
+          <HoollowPage
+            onNavigate={(tab) => {
+              setActiveTab(tab);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenAuth={handleOpenAuth}
           />
         ) : (
           <Home

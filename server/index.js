@@ -21,6 +21,7 @@ import { createInterviewRouter } from './routes/interviewRoutes.js';
 import { createPlagiarismRouter } from './routes/plagiarismRoutes.js';
 import { createProgressRouter } from './routes/progressRoutes.js';
 import { createQuizRouter } from './routes/quizRoutes.js';
+import { createHoollowRouter } from './routes/hoollowRoutes.js';
 import OpenAI from 'openai';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -10313,6 +10314,9 @@ app.use('/api/progress', createProgressRouter({ verifyJwtToken }));
 
 // FIRST-PARTY QUIZ ENGINE ROUTER
 app.use('/api/quizzes', createQuizRouter({ verifyAdminToken }));
+
+// HOOLLOW AI ROADMAP GENERATOR ROUTER
+app.use('/api/hoollow', createHoollowRouter({ isDbConnected, verifyJwtToken }));
 
 // STUDENT ACADEMIC UPDATES & EXAM ALERTS NEWSLETTER
 app.post('/api/updates/subscribe', (req, res) => {

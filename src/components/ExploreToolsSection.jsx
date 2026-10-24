@@ -8,11 +8,25 @@ import {
   FileCode2,
   BarChart2,
   Award,
-  ArrowRight
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 
 export default function ExploreToolsSection({ onNavigate }) {
   const tools = [
+    {
+      id: 'hoollow',
+      title: 'HOOLLOW AI Roadmap',
+      desc: 'AI-generated personalized learning roadmaps with curated resources & tasks.',
+      buttonText: 'Generate Roadmap →',
+      icon: Sparkles,
+      iconBg: '#FFF0E8',
+      iconBorder: '#FAD6C5',
+      iconColor: '#8B101D',
+      btnBg: '#FFF0E8',
+      btnColor: '#8B101D',
+      hoverBorder: '#F28A16'
+    },
     {
       id: 'notes',
       title: 'Notes',

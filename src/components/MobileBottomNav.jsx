@@ -41,7 +41,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
       'project-ideas', 'project-detail', 'competitive-exams', 'important-links',
       'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start',
       'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr',
-      'interview-report', 'aistudy', 'quizzes', 'plagiarism', 'promotion'
+      'interview-report', 'aistudy', 'quizzes', 'plagiarism', 'promotion', 'hoollow', 'hoolow'
     ].includes(activeTab)) return 'tools';
     if (['signin', 'signup', 'login', 'progress', 'profile'].includes(activeTab)) return 'profile';
     return 'home';

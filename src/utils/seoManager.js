@@ -102,6 +102,12 @@ export const SEO_PAGE_CONFIG = {
     path: '/timetable',
     schemaType: 'WebApplication'
   },
+  hoollow: {
+    title: 'HOOLLOW — AI Roadmap Generator & Guided Learning Path | ProfessorVirus',
+    description: 'Turn your tech goals into a personalized learning roadmap with step-by-step guidance, curated resources, practice tasks, streaks, and progress tracking.',
+    path: '/hoollow',
+    schemaType: 'WebApplication'
+  },
   progress: {
     title: 'Student Progress & Analytics Dashboard | ProfessorVirus',
     description: 'Track your study time, streaks, subjects, PYQs, quizzes and overall academic progress with real-time analytics.',

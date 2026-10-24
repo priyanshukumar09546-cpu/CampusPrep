@@ -45,6 +45,21 @@ export default function MorePage({ onNavigate }) {
   // 1. POPULAR TOOLS (FEATURED)
   const popularTools = [
     {
+      id: 'hoollow',
+      title: 'HOOLLOW — AI Roadmap Generator',
+      desc: 'Turn your tech goals into a personalized learning roadmap with curated resources, tasks, and streaks.',
+      category: 'AI & Career',
+      badge: 'New AI',
+      badgeBg: '#FFF0E8',
+      badgeColor: '#8B101D',
+      icon: Sparkles,
+      iconBg: '#FFF0E8',
+      iconColor: '#8B101D',
+      borderColor: '#FAD6C5',
+      route: 'hoollow',
+      tags: ['hoollow', 'roadmap', 'ai roadmap', 'curriculum', 'learning path', 'skills', 'career']
+    },
+    {
       id: 'notes',
       title: 'Engineering Notes',
       desc: 'Verified unit notes, handwritten guides, Quantum series & faculty materials.',

@@ -113,6 +113,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
 
   const navItems = [
     { name: 'Home', id: 'home' },
+    { name: 'HOOLLOW', id: 'hoollow', hasSparkle: true },
     { name: 'PYQs', id: 'pyqs' },
     { name: 'Notes', id: 'notes' },
     { name: 'Syllabus', id: 'syllabus' },
@@ -309,13 +310,17 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             className="desktop-nav"
           >
           {navItems.map((item) => {
+            const isHoollow = item.id === 'hoollow';
             const isActive =
               activeTab === item.id ||
+              (item.id === 'hoollow' && (activeTab === 'hoollow' || activeTab === 'hoolow')) ||
               (item.id === 'interview-pro' &&
                 (activeTab === 'aistudy' ||
                   activeTab === 'interview-confirm' ||
                   activeTab === 'interview-instructions' ||
                   activeTab === 'interview-start'));
+
+            const isPillActive = isHoollow && isActive;
 
             return (
               <button
@@ -324,10 +329,10 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 className="nav-link-item"
                 style={{
                   position: 'relative',
-                  backgroundColor: 'transparent',
-                  color: isActive ? '#781416' : '#2D3238',
-                  padding: '0.3rem 0.38rem',
-                  borderRadius: '6px',
+                  backgroundColor: isPillActive ? '#8B101D' : 'transparent',
+                  color: isPillActive ? '#FFFFFF' : isActive ? '#781416' : '#2D3238',
+                  padding: isPillActive ? '0.24rem 0.65rem' : '0.3rem 0.38rem',
+                  borderRadius: isPillActive ? '9999px' : '6px',
                   fontWeight: isActive ? 800 : 600,
                   fontSize: '0.78rem',
                   border: 'none',
@@ -335,18 +340,22 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   transition: 'all 0.18s ease',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.2rem',
+                  gap: '0.25rem',
                   whiteSpace: 'nowrap',
                   flexShrink: 0,
+                  boxShadow: isPillActive ? '0 2px 8px rgba(139, 16, 29, 0.28)' : 'none',
                   fontFamily: "'Plus Jakarta Sans', sans-serif"
                 }}
                 onMouseEnter={(e) => {
-                  if (!isActive) e.currentTarget.style.color = '#781416';
+                  if (!isPillActive && !isActive) e.currentTarget.style.color = '#781416';
                 }}
                 onMouseLeave={(e) => {
-                  if (!isActive) e.currentTarget.style.color = '#2D3238';
+                  if (!isPillActive && !isActive) e.currentTarget.style.color = '#2D3238';
                 }}
               >
+                {item.hasSparkle && (
+                  <Sparkles size={12} color={isPillActive ? '#FFD700' : '#8B101D'} />
+                )}
                 <span>{item.name}</span>
                 {item.isBeta && (
                   <span
@@ -368,7 +377,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     Beta
                   </span>
                 )}
-                {isActive && (
+                {isActive && !isPillActive && (
                   <span
                     style={{
                       position: 'absolute',
