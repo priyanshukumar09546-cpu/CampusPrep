@@ -1,140 +1,177 @@
-# CampusPrep — All-in-One Engineering & BCA Academic Hub
+# ProfessorVirus (CampusPrep) — Comprehensive Academic & Career Platform
 
 <p align="center">
-  <strong>Curated Academic Resources, Verified PYQs, AI Study Assistant (Ask Virus), and Interview Simulation Suite</strong>
+  <strong>Curated Academic Archives, Verified AKTU PYQs, HOOLLOW AI Roadmap Generator, Resume Studio, and Interview Pro Simulation Suite</strong>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react" alt="React" />
-  <img src="https://img.shields.io/badge/Vite-5.0-646CFF?style=for-the-badge&logo=vite" alt="Vite" />
+  <img src="https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite" alt="Vite" />
   <img src="https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=nodedotjs" alt="Node.js" />
-  <img src="https://img.shields.io/badge/Express.js-4.18-000000?style=for-the-badge&logo=express" alt="Express" />
+  <img src="https://img.shields.io/badge/Express-5.2-000000?style=for-the-badge&logo=express" alt="Express" />
   <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb" alt="MongoDB" />
-  <img src="https://img.shields.io/badge/AI%20Assistant-Ask%20Virus-4285F4?style=for-the-badge&logo=google" alt="AI Assistant" />
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/badge/AI%20Engine-Gemini%20%26%20OpenAI-4285F4?style=for-the-badge&logo=google" alt="AI Engine" />
+  <img src="https://img.shields.io/badge/Production%20URL-professorvirus.site-8B101D?style=for-the-badge" alt="Live Website" />
 </p>
 
 ---
 
-CampusPrep (also known as ProfessorVirus) is an all-in-one educational platform engineered for undergraduate engineering and computer application students (AKTU B.Tech & BCA). It empowers students with verified handwritten notes, solved previous year question papers (PYQs), comprehensive syllabi, interactive quizzes, an AI-powered study companion (**Ask Virus**), and an end-to-end recruitment preparation suite (**Interview Pro**).
+## Overview
+
+**ProfessorVirus** (repository: `CampusPrep`) is a full-featured, production-ready educational platform designed primarily for undergraduate engineering and professional degree students (AKTU B.Tech, BCA, MCA, MBA, and M.Pharm). 
+
+The platform bridges university curriculum learning with career placement preparation by providing verified lecture notes, 10-year previous year question papers (PYQs), interactive quizzes, marksheet CGPA analyzers, ATS resume generation, a comprehensive AI recruitment interview simulator, and **HOOLLOW — an AI-Powered Learning Roadmap Generator**.
+
+- **Live Production Website**: [https://www.professorvirus.site](https://www.professorvirus.site/)
+- **GitHub Repository**: [https://github.com/priyanshukumar09546-cpu/CampusPrep](https://github.com/priyanshukumar09546-cpu/CampusPrep)
 
 ---
 
-## Features
+## Core Features & Academic Tools
 
-- **Academic Hub**: Fast, course-wise categorization across Computer Science, Electronics, Mechanical, Civil, and BCA.
-- **Verified Notes**: Unit-wise and topic-wise lecture notes, Quantum guides, and teacher-recommended reference PDFs.
-- **Previous Year Question Papers (PYQs)**: Organized question papers with university exam session filters, solution keys, and direct preview/download.
-- **Interactive Quizzes**: Unit-level and subject-level practice tests with immediate scoring, answer reviews, and explanations.
-- **Global Search**: Instant cross-platform search across thousands of academic resources, subjects, and papers.
-- **Attendance & Timetable Planners**: Dynamic college attendance target calculators and weekly class schedule planners.
-- **Scholarships & Opportunities**: Curated repository of government/private scholarships and internship opportunities.
-- **Dark/Light Theming & Modern Responsive UI**: Glassmorphic styling, intuitive desktop, tablet, and mobile layouts.
+### 1. HOOLLOW — AI Roadmap Generator
+A dedicated, AI-driven learning roadmap engine designed to convert students' engineering and technology career goals into step-by-step master plans:
+- **10 Core Goal Tracks & Custom Goals**:
+  - Python Developer
+  - Modern Full-Stack Web Development
+  - AI/ML Engineer
+  - Data Science & Analytics
+  - Cyber Security & Ethical Hacking
+  - App Development (Android/iOS)
+  - Cloud Computing (AWS/Docker/K8s)
+  - Data Structures & Algorithms (Placement Problem Solving)
+  - DevOps & CI/CD
+  - Custom Goal input for specialized tracks (e.g., Rust, Web3, Systems Engineering).
+- **Personalized Pace Configuration**:
+  - Current Experience Level: *Beginner*, *Intermediate*, *Advanced*.
+  - Daily Study Commitment: *30 minutes*, *1 hour*, *2 hours*, *3+ hours*.
+  - Timeline: *3 months*, *6 months*, *1 year*, *Flexible*.
+  - Learning Style: *Video + Notes + Practice*, *Video Focused*, *Reading & Docs*, *Hands-on Projects*.
+- **5-Phase Structured Learning Path**:
+  - Phase 1: Foundation & Prerequisite Tooling
+  - Phase 2: Core Concepts & Architectural Patterns
+  - Phase 3: Real-World Hands-on Projects
+  - Phase 4: Advanced Specialization & Optimization
+  - Phase 5: Career Launch & Technical Interview Drills
+- **Task-Level Curated Resources**:
+  - Verified video lessons from top educators.
+  - Official documentation, cheat-sheets, and syntax guides.
+  - Interactive coding challenges (LeetCode, HackerRank, GitHub projects).
+- **Interactive 60-Second Demo**:
+  - Step-by-step visual demonstration with live 60-second countdown, play/pause controls, step stepper, and sample tour.
+- **Gamification & Habit Building**:
+  - Date-based daily learning streaks with flame indicators.
+  - XP Points accumulation (+50 XP per completed task, anti-duplication safeguards).
+  - Milestone achievement badges (*First Step*, *Consistent Coder*, *Phase Crusher*).
+- **HOOLLOW AI Learning Mentor**:
+  - Side-drawer Q&A mentor powered by Gemini and OpenAI providing real-time code examples, explanations, and interview tips.
 
----
+### 2. AKTU 10-Year Previous Year Question Papers (PYQs)
+- Complete, verified catalog of 5,508+ past university exam papers (2015–2025).
+- Course streams: B.Tech (CSE, IT, ECE, EE, ME, Civil, Chemical, Biotech), BCA, MCA, MBA, and M.Pharm.
+- In-site high-performance PDF viewer supporting full-screen reading, bookmarks, and direct downloads.
+- Filterable by Course, Branch, Academic Year, and Semester.
 
-## AI Features
+### 3. Verified Handwritten Notes & Quantum Series
+- Thousands of unit-wise lecture notes, Quantum reference booklets, and faculty-recommended study guides.
+- Categorized by year, semester, and individual subject codes (e.g., BCS202, KCS301).
+- Integrated search indexing with keyword suggestion pills.
 
-- **Ask Virus (AI Study Assistant)**: Context-aware study partner powered by server-side OpenAI integration (`gpt-4o-mini`). Students can ask conceptual questions, summarize unit notes, and clarify difficult exam problems on-demand.
-- **Secure Architecture**: All AI requests are mediated via secure backend proxies with rate-limiting, timeout guards, and strict protection of API credentials.
+### 4. Interview Pro — Campus Placement Simulation
+An end-to-end multi-round interview simulator:
+1. **Round 1: Aptitude Reasoning**: 35-minute timed quantitative aptitude, verbal ability, and logical reasoning assessment.
+2. **Round 2: Technical Coding Challenge**: Live browser-based IDE powered by Monaco Editor with multi-language execution and test case verification.
+3. **Round 3: AI Technical Interviewer**: Interactive voice-enabled technical interviewer evaluating core computer science fundamentals, projects, and architecture.
+4. **Round 4: AI HR Behavioral Interview**: Situational, leadership, and STAR-method behavioral viva.
+5. **Round 5: Comprehensive Performance Report**: Mathematical composite score, transcripts, strengths, weaknesses, and hiring recommendations.
 
----
+### 5. ATS 1-Page LaTeX Resume Maker
+- Real-time LaTeX compilation engine generating clean, single-page, ATS-compliant technical resumes.
+- Tailored section builders: Education, Technical Skills, Projects, Experience, and Certifications.
+- Live PDF preview and direct export.
 
-## Interview Pro
-
-A complete simulation suite for campus placement and job recruitment rounds:
-
-1. **Aptitude Assessment**: Quantitative, logical reasoning, and verbal practice rounds with timer constraints.
-2. **Coding Challenge**: Interactive code editor supporting popular languages with automated sample test cases.
-3. **AI Technical Interview**: Role-focused technical viva asking architecture, algorithmic, and core computer science questions.
-4. **AI HR / Behavioral Interview**: Situational, leadership, and behavioral questions with instant feedback.
-5. **Comprehensive Performance Report**: Detailed score breakdown, strengths, areas for improvement, and round-wise evaluation summaries.
-
----
-
-## Resume Builder
-
-- **ATS-Friendly Templates**: Professional LaTeX and standard layouts optimized for applicant tracking systems.
-- **Live Preview & Customization**: Real-time rendering of education, projects, technical skills, certifications, and work experience.
-- **Direct Export**: One-click download of polished resume documents ready for job applications.
-
----
-
-## Study Resources
-
-- **B.Tech (AKTU)**: 1st Year Foundations, CSE/IT, ECE, Mechanical, and Civil Engineering core curriculum coverage.
-- **BCA**: Standardized university semester subjects from Programming in C/Java, Operating Systems, Computer Networks, to Cloud Computing and Software Engineering.
-- **Quantum Series & Notes**: Direct access to exam-focused Quantum modules and curated handwritten notes.
-
----
-
-## Screenshots
-
-### Home
-![CampusPrep Home](docs/screenshots/home.png)
-
-### Notes
-![CampusPrep Notes](docs/screenshots/notes.png)
-
-### PYQs
-![CampusPrep PYQs](docs/screenshots/pyqs.png)
-
-### Quizzes
-![CampusPrep Quizzes](docs/screenshots/quizzes.png)
-
-### Interview Pro
-![CampusPrep Interview Pro](docs/screenshots/interview-pro.png)
-
-### Resume Builder
-![CampusPrep Resume Builder](docs/screenshots/resume-builder.png)
-
-### Ask Virus
-![CampusPrep Ask Virus](docs/screenshots/ask-virus.png)
-
-### Mobile Experience
-
-| Mobile Home | Mobile Notes | Mobile PYQs |
-| :---: | :---: | :---: |
-| ![Mobile Home](docs/screenshots/mobile-home.png) | ![Mobile Notes](docs/screenshots/mobile-notes.png) | ![Mobile PYQs](docs/screenshots/mobile-pyqs.png) |
+### 6. Academic Productivity Suite
+- **AKTU Result & SGPA Analyzer**: Automated marksheet parser calculating exact semester SGPA, cumulative CGPA, and tracking backlogs.
+- **75% Attendance Calculator & Bunk Planner**: Computes mandatory class hours needed to meet 75% university eligibility criteria safely.
+- **Weekly Timetable & Schedule Planner**: Dynamic college schedule organizer with class alerts.
+- **Scholarships & Internships Portal**: Verified repository of government scholarships, hackathons, and corporate internships.
+- **In-Browser PDF Studio**: Merge, split, convert, watermark, and organize assignments and lecture slides.
+- **AI Plagiarism Checker**: Scans technical text and assignments for similarity and AI-generated phrasing.
 
 ---
 
-## Tech Stack
+## Technology Stack
 
-- **Frontend**: React 18, Vite, Vanilla CSS & Modern Design System, Lucide Icons
-- **Backend**: Node.js, Express.js (REST API, CORS protection, rate-limiting, PDF utilities)
-- **Database**: MongoDB Atlas with Mongoose ODM (with seamless disk-based fallback mode)
-- **AI Engine**: OpenAI API (`gpt-4o-mini`) via backend middleware
-- **Authentication**: JWT (JSON Web Tokens) with bcrypt password hashing
+| Layer | Technology | Details |
+|---|---|---|
+| **Frontend** | React 18.2 | Functional components, Hooks, Context API |
+| **Build Tool** | Vite 5.4 | Ultra-fast HMR and Rollup production bundling |
+| **Styling** | Vanilla CSS + Tailwind | Custom design tokens, glassmorphism, responsive grid |
+| **Icons** | Lucide React | Clean, scalable SVG icons across desktop and mobile |
+| **Editor** | Monaco Editor | VS Code-style browser code editor |
+| **PDF Processing** | PDF-Lib & PDF-Parse | In-browser and server-side PDF manipulation |
+| **Backend** | Node.js (v18+) & Express 5.2 | RESTful API routes, rate-limiting, secure headers |
+| **Database** | MongoDB Atlas & Mongoose 9.10 | Cloud NoSQL persistence with disk-based offline fallback |
+| **AI Integration** | Google Gemini & OpenAI | `@google/generative-ai` & `openai` with model failover |
+| **Cloud Storage** | Google Drive API & CDN | Google Drive OAuth 2.0 integration for academic PDFs |
 
 ---
 
-## Project Structure
+## Project Architecture
 
 ```
 CampusPrep/
-├── docs/
-│   └── screenshots/              # Real application screenshots
-├── public/                       # Static public assets & PDFs
-├── server/                       # Node.js / Express backend
-│   ├── models/                   # Mongoose data models
-│   ├── routes/                   # API route controllers
-│   ├── resultEngine/             # AKTU marksheet & CGPA parsing engine
-│   └── index.js                  # Main server entry point
-├── src/                          # React client application
-│   ├── components/               # Reusable UI components & modals
-│   ├── config/                   # Client-side configuration
-│   ├── data/                     # Offline catalog & fallback banks
-│   ├── pages/                    # Primary application route pages
-│   ├── utils/                    # Client helper utilities
-│   ├── App.jsx                   # Main React entry & tab router
-│   ├── index.css                 # Global design system & typography
-│   └── main.jsx                  # React DOM mount point
-├── .env.example                  # Environment variable reference
-├── .gitignore                    # Git exclusion rules
-├── package.json                  # Dependencies and execution scripts
-├── render.yaml                   # Render deployment configuration
-└── vite.config.js                # Vite build configuration
+├── api/                              # Vercel serverless entrypoint
+│   └── index.js                      # Serverless proxy to Express app
+├── docs/                             # Documentation and screenshots
+├── public/                           # Static assets, logos, and illustrations
+│   └── assets/                       # Mascot images, logos, and icons
+├── reports/                          # Audit matrix & migration verification reports
+│   ├── AKTU_PYQ_10_YEAR_COVERAGE_MATRIX.csv
+│   └── pyq_10_year_coverage_matrix.json
+├── server/                           # Node.js Express backend application
+│   ├── data/                         # Local JSON data stores & caches
+│   ├── routes/                       # Express API routers
+│   │   ├── attendanceRoutes.js       # Attendance calculation endpoints
+│   │   ├── hoollowRoutes.js          # HOOLLOW AI Roadmap & Mentor router
+│   │   ├── interviewRoutes.js        # Interview Pro simulation routes
+│   │   ├── pdfRoutes.js              # PDF manipulation & OCR endpoints
+│   │   ├── progressRoutes.js         # Student analytics & streak tracker
+│   │   ├── quizRoutes.js             # Quiz engine endpoints
+│   │   ├── resultRoutes.js           # Marksheet parsing endpoints
+│   │   └── timetableRoutes.js        # Timetable schedule endpoints
+│   ├── services/                     # AI interviewer & report engines
+│   └── index.js                      # Main Express server configuration & mount point
+├── src/                              # React frontend source code
+│   ├── assets/                       # Local component graphic assets
+│   ├── components/                   # Reusable UI components & modals
+│   │   ├── HoollowDemoModal.jsx      # Interactive 60-second tour modal
+│   │   ├── HoollowMentorDrawer.jsx   # AI Learning Mentor drawer
+│   │   ├── HoollowTaskModal.jsx      # Task learning & completion modal
+│   │   ├── Navbar.jsx                # Responsive header with HOOLLOW active pill
+│   │   ├── MobileHeader.jsx          # Mobile view header
+│   │   └── MobileBottomNav.jsx       # Bottom tab bar for smartphones
+│   ├── config/                       # Centralized API endpoint configuration
+│   ├── data/                         # Offline curriculum & syllabus catalog
+│   │   ├── courseMapping.ts          # Course key normalization
+│   │   └── hoollowCurriculum.js      # Curated 10-track roadmap presets
+│   ├── pages/                        # Primary route pages
+│   │   ├── HoollowPage.jsx           # HOOLLOW master landing & dashboard
+│   │   ├── Home.jsx                  # Main academic landing page
+│   │   ├── NotesPage.jsx             # Notes browsing and viewer
+│   │   ├── PYQsPage.jsx              # AKTU 10-year PYQ browser
+│   │   ├── InterviewProPage.jsx      # Interview simulation portal
+│   │   ├── ResumeMakerPage.jsx       # ATS resume builder
+│   │   ├── ResultCgpaPage.jsx        # Marksheet SGPA analyzer
+│   │   └── MorePage.jsx              # All tools directory
+│   ├── utils/                        # SEO manager & PWA helpers
+│   ├── App.jsx                       # Master client-side routing & state
+│   ├── index.css                     # Global theme tokens & animations
+│   └── main.jsx                      # React application DOM root
+├── package.json                      # Project dependencies & scripts
+├── render.yaml                       # Render.com backend deployment configuration
+├── vercel.json                       # Vercel serverless & SPA rewrite routing
+└── vite.config.js                    # Vite bundler configuration
 ```
 
 ---
@@ -142,80 +179,86 @@ CampusPrep/
 ## Getting Started
 
 ### Prerequisites
-
-- Node.js (v18.0.0 or higher recommended)
-- npm or yarn
+- **Node.js**: v18.0.0 or higher
+- **npm** or **yarn**
+- **MongoDB Atlas** cluster URI (or runs in local disk fallback mode)
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/priyanshukumar09546-cpu/CampusPrep.git
    cd CampusPrep
    ```
 
-2. Install dependencies:
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-3. Configure environment variables (see below).
+3. **Configure Environment Variables**:
+   Create a `.env` file in the project root (reference `.env.example`):
+   ```env
+   # SERVER PORT & SECURITY
+   PORT=5000
+   JWT_SECRET=your_jwt_secret_key_here
+   FRONTEND_URL=http://localhost:5173
 
-4. Start development mode (concurrently runs backend server & Vite frontend):
+   # MONGODB ATLAS CONNECTION URI
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/ProfessorVirus
+
+   # AI ENGINE CREDENTIALS (SERVER-SIDE ONLY)
+   GEMINI_API_KEY=your_gemini_api_key_here
+   OPENAI_API_KEY=your_openai_api_key_here
+
+   # GOOGLE DRIVE OAUTH (OPTIONAL)
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   GOOGLE_REDIRECT_URI=http://localhost:5000/api/google-drive/callback
+   GOOGLE_DRIVE_FOLDER_ID=your_drive_folder_id
+   ```
+
+4. **Run in Development Mode**:
+   Starts both the Node.js backend server and the Vite client simultaneously:
    ```bash
    npm run dev
    ```
+   - Frontend: `http://localhost:5173`
+   - Backend API: `http://localhost:5000`
 
-5. Access the application in your browser at `http://localhost:3000`.
+5. **Build for Production**:
+   ```bash
+   npm run build
+   ```
 
----
-
-## Environment Variables
-
-Create a `.env` file in the project root based on `.env.example`:
-
-```env
-# MONGODB ATLAS CONNECTION URI
-MONGODB_URI=your_mongodb_connection_uri
-
-# BACKEND SERVER PORT & JWT SECRET
-PORT=5000
-JWT_SECRET=your_jwt_secret_key_here
-
-# FRONTEND URL (FOR CORS)
-FRONTEND_URL=http://localhost:3000
-
-# OPENAI API KEY (SERVER-SIDE ONLY)
-OPENAI_API_KEY=your_openai_api_key
-OPENAI_MODEL=gpt-4o-mini
-
-# SEED ADMIN CREDENTIALS
-ADMIN_EMAIL=your_admin_email
-ADMIN_PASSWORD=your_admin_password
-ADMIN_NAME=CampusPrep Administrator
-
-# GOOGLE DRIVE INTEGRATION (OPTIONAL)
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-GOOGLE_REDIRECT_URI=http://localhost:5000/api/google-drive/callback
-GOOGLE_DRIVE_FOLDER_ID=your_google_drive_folder_id
-```
+6. **Preview Production Build**:
+   ```bash
+   npm run preview
+   ```
 
 ---
 
-## Security
+## Deployment Configuration
 
-- **Zero Client-Side Secrets**: All sensitive credentials (such as `OPENAI_API_KEY`, `MONGODB_URI`, `JWT_SECRET`) reside strictly in server-side environment variables. No secrets are bundled into client-side Vite builds or exposed through `VITE_` variables.
-- **Git Protection**: Sensitive environment files (`.env`, `.env.local`, `*.env`) and private logs are strictly excluded via `.gitignore`.
-- **CORS & Rate Limiting**: The backend is configured to accept requests only from designated frontend origins with appropriate timeout boundaries.
+The repository is configured for modern continuous deployment:
+
+- **Frontend & Edge Routing**: Hosted on **Vercel** connected to the `main` branch.
+  - Rewrites all web traffic `/(.*)` to `index.html` for single-page client routing.
+  - Rewrites `/api/(.*)` to `api/index.js` for serverless backend API execution.
+  - Production Domain: [https://www.professorvirus.site](https://www.professorvirus.site)
+- **Backend Services**: Can run serverless on Vercel or continuously on **Render** via `render.yaml`.
+- **Database**: Cloud MongoDB Atlas with replica sets, SRV DNS resolution, and automatic connection retries.
 
 ---
 
-## Deployment
+## Security Practices
 
-The intended production architecture for CampusPrep:
+- **Zero Client-Side Secrets**: All API keys (`GEMINI_API_KEY`, `OPENAI_API_KEY`, `MONGODB_URI`, `JWT_SECRET`) reside strictly in server environment variables and are never bundled into the client build.
+- **CORS Protection**: Access to API routes is constrained to authorized frontend domains.
+- **Git Hygiene**: Environment files (`.env`, `.env.local`), database credentials, and build caches are excluded via `.gitignore`.
 
-- **Frontend**: Hosted on [Vercel](https://vercel.com) for edge distribution and performance.
-- **Backend API**: Hosted on [Render](https://render.com) using the included `render.yaml` configuration.
-- **Database**: Cloud-hosted [MongoDB Atlas](https://www.mongodb.com/atlas) cluster.
-- **AI Services**: [OpenAI API](https://platform.openai.com) accessed through backend proxy routes.
+---
+
+## License
+
+This project is licensed under the MIT License. Developed with care for the engineering student community.

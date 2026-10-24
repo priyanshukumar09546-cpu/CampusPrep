@@ -1,0 +1,362 @@
+{
+  "timestamp": "2026-10-23T11:47:03.782Z",
+  "totalRemoved": 89,
+  "details": [
+    {
+      "id": "6aad940924da3b9cdf8fe899",
+      "reason": "Malformed / invalid URL"
+    },
+    {
+      "id": "6aad9a0b666053962a877f74",
+      "reason": "Malformed / invalid URL"
+    },
+    {
+      "id": "6ab97adf94e02d4ee70b83c7",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97adf94e02d4ee70b83c8",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97adf94e02d4ee70b83c9",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97adf94e02d4ee70b83ca",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97adf94e02d4ee70b83cb",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97adf94e02d4ee70b83cc",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83cd",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83ce",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83cf",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d0",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d1",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d2",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d3",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d4",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d5",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d6",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d7",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d8",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83d9",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83da",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83db",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae094e02d4ee70b83dc",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83dd",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83de",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83df",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83e0",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83e1",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83e2",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83e3",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83e4",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83e5",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83e6",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83e7",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae194e02d4ee70b83e8",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83e9",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83ea",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83eb",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83ec",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83ed",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83ee",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83ef",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f0",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f1",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f2",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f3",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f4",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f5",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f6",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f7",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f8",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae294e02d4ee70b83f9",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b83fa",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b83fb",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b83fc",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b83fd",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b83fe",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b83ff",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8400",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8401",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8402",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8403",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8404",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8405",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8406",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8407",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8408",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b8409",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae394e02d4ee70b840a",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b840b",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b840c",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b840d",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b840e",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b840f",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8410",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8411",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8412",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8413",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8414",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8415",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8416",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8417",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8418",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b8419",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b841a",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae494e02d4ee70b841b",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae594e02d4ee70b841d",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    },
+    {
+      "id": "6ab97ae594e02d4ee70b841e",
+      "reason": "Fake/broken aktupyq.com placeholder causing frontend duplicates"
+    }
+  ]
+}
