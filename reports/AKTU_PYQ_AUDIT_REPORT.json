@@ -1,33 +1,46 @@
 {
-  "auditDate": "2026-10-26T04:03:35.963Z",
-  "action": "PROFESSORVIRUS — AUTHORIZED FULL PYQ CLEANUP",
-  "totalPriorPyqs": 5159,
-  "totalPyqsRemoved": 5159,
-  "totalPyqsRemaining": 0,
-  "backupLocation": "backups/pyq_pre_cleanup_backup_2026-10-26T04-00-38-610Z",
-  "backupFiles": [
-    "mongodb_pyqs_complete_backup.json (5,159 records)",
-    "disk_pyqs_json_backup.json (5,159 records)",
-    "aktuPyqData_backup.js",
-    "pyqsData_backup.ts",
-    "uploads_pyqs/ (6 files)"
-  ],
+  "auditDate": "2026-10-26T10:19:48.843Z",
+  "action": "PROFESSORVIRUS — COMPLETE PYQ DATABASE CLEANUP & NOTESGALLERY-BASED REBUILD",
+  "cleanedPriorPyqs": 653,
+  "rebuiltVerifiedPyqs": 1084,
+  "duplicatesRemoved": 250,
+  "hierarchy": "Academic Year -> Branch -> B.Tech Year -> Semester -> Subject -> Available Exam Papers",
+  "yearBreakdown": {
+    "1st Year": {
+      "subjectCount": 10,
+      "paperCount": 84,
+      "note": "Strictly 10 common subjects from NotesGallery 1st Year page. All non-10 subjects purged."
+    },
+    "2nd Year": {
+      "subjectCount": 35,
+      "paperCount": 525,
+      "note": "Branch-wise subjects from NotesGallery 2nd Year hub (CSE, ECE, EEE, ME, CE, Open Electives)."
+    },
+    "3rd Year": {
+      "subjectCount": 91,
+      "paperCount": 475,
+      "note": "Branch-wise subjects from NotesGallery 3rd Year hub (CSE, AIML, Data Science, ECE, EEE, ME, CE, Open Electives)."
+    },
+    "4th Year": {
+      "subjectCount": 0,
+      "paperCount": 0,
+      "note": "NotesGallery 4th Year PYQs explicitly marked 'PYQs Coming Soon'. Clean honest empty state displayed."
+    }
+  },
+  "chapterQuestions": {
+    "totalVerifiedQuestions": 1416,
+    "prunedOrphanedQuestions": 386
+  },
   "preservedEntities": {
     "notesInMongoDB": 5384,
-    "notesOnDisk": 4997,
     "subjectsCatalog": 84,
     "registeredUsers": 7,
     "projects": 249,
     "scholarships": 29,
     "opportunities": 28,
     "codingQuestions": 8,
-    "googleDriveAuth": "Intact and untouched"
+    "hollowRoadmaps": 6,
+    "authAndAccounts": "100% Intact and untouched"
   },
-  "pyqSystemState": {
-    "mongoCollectionPyqs": 0,
-    "serverDiskPyqs": 0,
-    "frontendBundledPyqs": 0,
-    "aktuSubjectCatalogPreserved": 280,
-    "readyForFreshUploads": true
-  }
+  "status": "COMPLETE_AND_VERIFIED"
 }

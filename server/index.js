@@ -887,11 +887,22 @@ connectToDatabase();
 async function syncMongoDbWithLocalStores() {
   if (!isDbConnected) return;
   try {
-    // 1. Sync PYQs (bidirectional merge: never overwrite newly seeded disk records)
-    const mongoPyqs = await PyqModel.find({}).lean();
+    // 1. Sync PYQs (disk-authoritative for verified B.Tech catalogs)
     const diskPyqs = loadPyqsFromDisk();
     const currentPyqs = (Array.isArray(diskPyqs) && diskPyqs.length > 0) ? diskPyqs : dbPyqs;
+    const diskIdSet = new Set(currentPyqs.map(p => p.id));
 
+    // Remove orphaned/obsolete B.Tech records from MongoDB that are no longer in disk
+    if (currentPyqs.length > 0) {
+      try {
+        await PyqModel.deleteMany({
+          $or: [{ course: 'B.Tech' }, { course: 'btech' }],
+          id: { $nin: Array.from(diskIdSet) }
+        });
+      } catch (e) {}
+    }
+
+    const mongoPyqs = await PyqModel.find({}).lean();
     const mongoIdSet = new Set((mongoPyqs || []).map(p => p.id));
     const pyqsToUpsert = currentPyqs.filter(p => !mongoIdSet.has(p.id));
 
@@ -902,22 +913,12 @@ async function syncMongoDbWithLocalStores() {
           await PyqModel.updateOne({ id: p.id }, { $set: p }, { upsert: true });
         } catch (e) {}
       }
-      const allUpdatedPyqs = await PyqModel.find({}).lean();
-      dbPyqs.length = 0;
-      dbPyqs.push(...allUpdatedPyqs);
-      savePyqsToDisk(dbPyqs);
-      console.log(`[DATABASE] Synced total ${dbPyqs.length} PYQs across MongoDB & disk.`);
-    } else if (mongoPyqs && mongoPyqs.length > 0) {
-      dbPyqs.length = 0;
-      dbPyqs.push(...mongoPyqs);
-      savePyqsToDisk(dbPyqs);
-      console.log(`[DATABASE] Loaded ${dbPyqs.length} PYQs from MongoDB into memory & disk.`);
-    } else if (currentPyqs.length > 0) {
-      for (const p of currentPyqs) {
-        await PyqModel.updateOne({ id: p.id }, { $set: p }, { upsert: true });
-      }
-      console.log(`[DATABASE] Synced ${currentPyqs.length} existing PYQs into MongoDB.`);
     }
+    const allUpdatedPyqs = await PyqModel.find({}).lean();
+    dbPyqs.length = 0;
+    dbPyqs.push(...(allUpdatedPyqs.length > 0 ? allUpdatedPyqs : currentPyqs));
+    savePyqsToDisk(dbPyqs);
+    console.log(`[DATABASE] Synced total ${dbPyqs.length} PYQs across MongoDB & disk.`);
 
     // 2. Sync Subjects
     const mongoSubjects = await SubjectModel.find({}).lean();

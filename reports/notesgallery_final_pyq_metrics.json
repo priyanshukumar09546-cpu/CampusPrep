@@ -1,0 +1,1347 @@
+{
+  "timestamp": "2026-10-26T10:20:51.582Z",
+  "totalVerifiedPapers": 1084,
+  "duplicatesRemoved": 250,
+  "papersByYear": {
+    "1st Year": 84,
+    "2nd Year": 525,
+    "3rd Year": 475
+  },
+  "papersByBranch": {
+    "1st Year - ALL": 84,
+    "2nd Year - CSE": 110,
+    "2nd Year - ALL": 16,
+    "2nd Year - ECE": 105,
+    "2nd Year - EEE": 84,
+    "2nd Year - ME": 103,
+    "2nd Year - CE": 107,
+    "3rd Year - CSE": 80,
+    "3rd Year - ALL": 45,
+    "3rd Year - AIML": 59,
+    "3rd Year - Data Science": 59,
+    "3rd Year - ECE": 68,
+    "3rd Year - EEE": 44,
+    "3rd Year - ME": 52,
+    "3rd Year - CE": 68
+  },
+  "subjectCountsByYear": {
+    "1st Year": 10,
+    "2nd Year": 35,
+    "3rd Year": 91
+  },
+  "subjectCountsByBranch": {
+    "1st Year - ALL": 10,
+    "2nd Year - CSE": 11,
+    "2nd Year - ALL": 3,
+    "2nd Year - ECE": 12,
+    "2nd Year - EEE": 8,
+    "2nd Year - ME": 12,
+    "2nd Year - CE": 12,
+    "3rd Year - CSE": 17,
+    "3rd Year - ALL": 11,
+    "3rd Year - AIML": 14,
+    "3rd Year - Data Science": 14,
+    "3rd Year - ECE": 19,
+    "3rd Year - EEE": 12,
+    "3rd Year - ME": 18,
+    "3rd Year - CE": 15
+  },
+  "firstYearSubjects": [
+    "Engineering Mathematics - I",
+    "Engineering Mathematics - II",
+    "Basic Electrical Engineering",
+    "Fundamentals of Electronics Engineering",
+    "Programming for Problem Solving",
+    "Soft Skills",
+    "Engineering Physics",
+    "Engineering Chemistry",
+    "Fundamentals of Mechanical Engineering",
+    "Environment and Ecology"
+  ],
+  "academicYearsBySubject": {
+    "[1st Year] [ALL] BAS103 - Engineering Mathematics - I": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[1st Year] [ALL] BAS203 - Engineering Mathematics - II": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[1st Year] [ALL] BEE101 - Basic Electrical Engineering": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[1st Year] [ALL] BEC101 - Fundamentals of Electronics Engineering": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[1st Year] [ALL] BCS101 - Programming for Problem Solving": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[1st Year] [ALL] BAS105 - Soft Skills": [
+      "2017-2018",
+      "2018-2019",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[1st Year] [ALL] BAS101 - Engineering Physics": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[1st Year] [ALL] BAS102 - Engineering Chemistry": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[1st Year] [ALL] BME101 - Fundamentals of Mechanical Engineering": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[1st Year] [ALL] BAS104 - Environment and Ecology": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CSE] OPEN ELECTIVE": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [CSE] BCS302 - Computer Organization and Architecture": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [CSE] BCS301 - Data Structures": [
+      "2017-2018",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [CSE] BCS303 - Discrete Structures & Theory of Logic": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CSE] BAS303 - Mathematics - IV": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ALL] BCS403 - Object Oriented Programming with Java": [
+      "2023-2024"
+    ],
+    "[2nd Year] [CSE] BCC302 - Python Programming": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CSE] BCC301 - Cyber Security": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CSE] BCE301 - Technical Communication": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CSE] BCS401 - Operating Systems": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CSE] BVE301 - Universal Human Values": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CSE] BCS402 - Theory of Automata and Formal Languages": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ECE] OPEN ELECTIVE": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ECE] BEC301 - Electronic Devices": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ECE] BEC302 - Digital System Design": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ECE] BEC303 - Network Analysis and Synthesis": [
+      "2017-2018",
+      "2018-2019",
+      "2020-2024"
+    ],
+    "[2nd Year] [ECE] BAS303 - Mathematics - IV": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ECE] BEC401 - Communication Engineering": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ECE] BCC302 - Python Programming": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ECE] BCC301 - Cyber Security": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ECE] BCE301 - Technical Communication": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ECE] BEC403 - Signal and Systems": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ECE] BVE301 - Universal Human Values": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ECE] BEC402 - Analog Circuits": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [EEE] Networks Analysis & Synthesis": [
+      "2017-2018",
+      "2018-2019",
+      "2020-2024"
+    ],
+    "[2nd Year] [EEE] BVE301 - Universal Human Values": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [EEE] BAS303 - Mathematics - IV": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [EEE] BCC302 - Python Programming": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [EEE] BCC301 - Cyber Security": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [EEE] BCE301 - Technical Communication": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [EEE] BEE401 - Electrical Machines - I": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [EEE] BAS103 - Engineering Mathematics - I": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ME] OPEN ELECTIVE": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ME] BME302 - Fluid Mechanics and Fluid Machines": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ME] BME402 - Strength of Materials": [
+      "2023-2024"
+    ],
+    "[2nd Year] [ME] BME301 - Thermodynamics": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ME] BAS303 - Mathematics - IV": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ME] BME403 - Manufacturing Processes": [
+      "2017-2018",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ME] BCC302 - Python Programming": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ME] BCC301 - Cyber Security": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ME] BCE301 - Technical Communication": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ME] BME303 - Materials Engineering": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ME] BVE301 - Universal Human Values": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [ME] BME401 - Applied Thermodynamics": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CE] OPEN ELECTIVE": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [CE] BCE301 - Engineering Mechanics": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CE] BCE303 - Fluid Mechanics": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CE] BCE302 - Surveying & Geomatics": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CE] BAS303 - Mathematics - III": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CE] BVE301 - Universal Human Values": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CE] BCC302 - Python Programming": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CE] BCC301 - Cyber Security": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CE] BCE301 - Technical Communication": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[2nd Year] [CE] BCE403 - Hydraulic Engineering & Machines": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CE] BCE401 - Materials, Testing & Construction Practices": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CE] BCE402 - Introduction to Solid Mechanics": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ALL] BAS103 - Engineering Mathematics - I": [
+      "2017-2018",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] AKTU 3RD YEAR PYQs": [
+      "2018-2019",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS501 - Database Management Systems": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS503 - Design and Analysis of Algorithms": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS603 - Web Technology": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [ALL] KOE058 - Constitution of India": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS055 - Data Analytics": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [CSE] BCS064 - Object Oriented Software Development with C++": [
+      "2020-2021",
+      "2021-2022",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS061 - Computer Graphics": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS054 - Machine Learning Techniques": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [CSE] BCS056 - Application of Soft Computing": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS063 - Statistical Computing": [
+      "2023-2024"
+    ],
+    "[3rd Year] [CSE] BCS601 - Software Engineering": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS502 - Compiler Design": [
+      "2018-2019",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS602 - Computer Networks": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [CSE] KVE001 - Essence of Indian Traditional Knowledge": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS051 - Big Data": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [CSE] BCS067 - Blockchain Architecture Design": [
+      "2021-2022",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS065 - Data Compression": [
+      "2016-2017",
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS066 - Augmented & Virtual Reality": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE068 - Software Project Management": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE069 - Understanding the Human Being Comprehensively": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE066 - Idea to Business Model": [
+      "2021-2022",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE065 - Quality Control & Reliability": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE064 - Embedded System": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE062 - Introduction to MEMS": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE060 - Object Oriented Programming": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE061 - Computer Based Numerical Techniques": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE063 - GIS & Remote Sensing": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ALL] KOE067 - Basics of Database Management System": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS501 - Database Management Systems": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS503 - Design and Analysis of Algorithms": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS053 - Artificial Intelligence": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS055 - Data Analytics": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [AIML] BCS064 - Object Oriented Software Development with C++": [
+      "2020-2021",
+      "2021-2022",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS052 - Cloud Computing": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS056 - Application of Soft Computing": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS601 - Software Engineering": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS054 - Machine Learning Techniques": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [AIML] BCS602 - Computer Networks": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [AIML] KVE001 - Essence of Indian Traditional Knowledge": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BDS052 - Cyber Forensic Analytics": [
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BDS053 - Image Analytics": [
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BDS054 - Social Media Analytics and Data Analysis": [
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BCS501 - Database Management Systems": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BCS503 - Design and Analysis of Algorithms": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BCS055 - Data Analytics": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [Data Science] BCS064 - Object Oriented Software Development with C++": [
+      "2020-2021",
+      "2021-2022",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BCS052 - Cloud Computing": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BCS056 - Application of Soft Computing": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BCS601 - Software Engineering": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BCS054 - Machine Learning Techniques": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [Data Science] BCS602 - Computer Networks": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [Data Science] KVE001 - Essence of Indian Traditional Knowledge": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BDS052 - Cyber Forensic Analytics": [
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BDS053 - Image Analytics": [
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BDS054 - Social Media Analytics and Data Analysis": [
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BCS051 - Big Data": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC603 - Integrated Circuits": [
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC504 - Microprocessor & Microcontroller": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC602 - Digital Signal Processing": [
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC064 - Internet of Things": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC065 - Bio-Medical Sensors & Instrumentation": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC066 - Intelligent Systems and Robotics": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC062 - VLSI Design": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC067 - Electronics Switching": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC068 - Bio-Medical Signal Processing": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC063 - Optical Communication": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC069 - CMOS Analog VLSI Design": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC502 - Digital Communication": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC501 - Control System": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC503 - Antenna and Wave Propagation": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] KVE001 - Essence of Indian Traditional Knowledge": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC061 - Satellite Communication": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC051 - Data Communication Networks": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC052 - CMOS Digital Design Techniques": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC601 - Microwave Engineering": [
+      "2016-2017",
+      "2017-2018",
+      "2018-2019",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE601 - Power System - I": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEC501 - Control System": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE501 - Electrical Machines - II": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEC602 - Digital Signal Processing": [
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE602 - Power System - II": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BCS404 - Microprocessor": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE061 - Special Electrical Machines": [
+      "2016-2017",
+      "2017-2018",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] KVE001 - Essence of Indian Traditional Knowledge": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE503 - Power Electronics": [
+      "2016-2017",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE063 - Digital Control System": [
+      "2016-2017",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE064 - Electrical and Hybrid Vehicles": [
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE066 - Electrical Machine Design": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME502 - Heat & Mass Transfer": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME503 - Machine Design": [
+      "2020-2021",
+      "2021-2022",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME504 - Industrial Engineering": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME051 - Advance Manufacturing Processes": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME052 - I C Engine Fuel & Lubrication": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME053 - Finite Element Methods": [
+      "2022-2023"
+    ],
+    "[3rd Year] [ME] BME054 - Automobile Engines & Combustion": [
+      "2023-2024"
+    ],
+    "[3rd Year] [ME] BME055 - Mechatronic Systems": [
+      "2020-2021",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME056 - Turbo Machines": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME057 - Mechanical Vibrations": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME058 - Automotive Chassis & Suspension": [
+      "2023-2024"
+    ],
+    "[3rd Year] [ME] BME601 - Refrigeration & Air Conditioning": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME602 - CAD/CAM": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME501 - Theory of Machines": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] KVE001 - Essence of Indian Traditional Knowledge": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME062 - Industrial Robotics": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME063 - Computational Fluid Dynamics": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME061 - Tribology": [
+      "2021-2022",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE502 - Geotechnical Engineering": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE504 - Structural Analysis": [
+      "2017-2018",
+      "2019-2020",
+      "2020-2021",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE508 - Concrete Technology": [
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE505 - Modern Construction Materials": [
+      "2018-2019",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE506 - Open Channel Flow": [
+      "2021-2022",
+      "2023-2024"
+    ],
+    "[3rd Year] [CE] BCE509 - Engineering Geology": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [CE] BCE507 - Engineering Hydrology": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [CE] BCE501 - Design of Concrete Structures": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE503 - Transportation Engineering": [
+      "2016-2017",
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE601 - Environmental Engineering": [
+      "2016-2017",
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] KVE001 - Essence of Indian Traditional Knowledge": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE061 - Advanced Structural Analysis": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE062 - River Engineering": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE063 - Repair and Rehabilitation of Structures": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE064 - Foundation Design": [
+      "2022-2023",
+      "2023-2024"
+    ]
+  }
+}
