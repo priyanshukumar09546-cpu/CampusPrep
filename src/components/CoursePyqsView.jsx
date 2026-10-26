@@ -14,10 +14,16 @@ import {
   Search,
   X,
   RotateCcw,
-  Filter
+  Filter,
+  BookOpen,
+  Layers,
+  CheckCircle,
+  Tag
 } from 'lucide-react';
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
 import { pyqsData as localPyqsData } from '../data/pyqsData';
+import { pyqQuestionsData } from '../data/pyqQuestionsData';
+import { AKTU_SYLLABUS_DATA } from '../data/aktuSyllabusData';
 import { API_URL } from '../config/api';
 import {
   cleanCode,
@@ -132,6 +138,11 @@ export default function CoursePyqsView({
 
   // Subject Selection
   const [activeSubject, setActiveSubject] = useState(null);
+
+  // Chapter-Wise & Unit Filtering States
+  const [pyqViewMode, setPyqViewMode] = useState('papers'); // 'papers' | 'chapters'
+  const [selectedUnitFilter, setSelectedUnitFilter] = useState('all'); // 'all' | 1 | 2 | 3 | 4 | 5 | 'unclassified'
+  const [questionSearch, setQuestionSearch] = useState('');
 
   // Local state for fetched PYQs (resilient fallback if dbPyqs prop is empty/loading)
   const allFallbackPyqs = useMemo(() => {
@@ -584,6 +595,56 @@ export default function CoursePyqsView({
       pyqSearchQuery
     });
   }, [localPyqs, activeSubject, normKey, isBTech, activeBranch, activeYear, activeSemester, selectedAcademicYear, selectedExamType, pyqSearchQuery]);
+
+  // Verified Syllabus Matching for Currently Active Subject
+  const currentSubjectSyllabus = useMemo(() => {
+    if (!activeSubject) return null;
+    const codeClean = cleanAlpha(getCanonicalCode(activeSubject.code || ''));
+    const nameClean = cleanAlpha(activeSubject.name || '');
+    return AKTU_SYLLABUS_DATA.find(s => {
+      const sCode = cleanAlpha(getCanonicalCode(s.code || ''));
+      const sName = cleanAlpha(s.subject || '');
+      if (codeClean && sCode && (codeClean === sCode || codeClean.includes(sCode) || sCode.includes(codeClean))) return true;
+      if (nameClean && sName && (nameClean.includes(sName) || sName.includes(nameClean))) return true;
+      return false;
+    });
+  }, [activeSubject]);
+
+  // Questions for Active Subject (from pyqQuestionsData)
+  const allSubjectQuestions = useMemo(() => {
+    if (!activeSubject) return [];
+    const codeClean = cleanAlpha(getCanonicalCode(activeSubject.code || ''));
+    const nameClean = cleanAlpha(activeSubject.name || '');
+    return (pyqQuestionsData || []).filter(q => {
+      const qCode = cleanAlpha(getCanonicalCode(q.subjectCode || ''));
+      const qName = cleanAlpha(q.subjectName || '');
+      if (codeClean && qCode && (codeClean === qCode || codeClean.includes(qCode) || qCode.includes(codeClean))) return true;
+      if (nameClean && qName && (nameClean.includes(qName) || qName.includes(nameClean))) return true;
+      return false;
+    });
+  }, [activeSubject]);
+
+  // Filtered Chapter/Unit Questions based on Selected Unit & Question Search
+  const filteredChapterQuestions = useMemo(() => {
+    let list = allSubjectQuestions;
+    if (selectedUnitFilter !== 'all') {
+      if (selectedUnitFilter === 'unclassified') {
+        list = list.filter(q => q.unitNo === 0 || q.isUnclassified);
+      } else {
+        const uInt = parseInt(selectedUnitFilter, 10);
+        list = list.filter(q => q.unitNo === uInt);
+      }
+    }
+    if (questionSearch.trim()) {
+      const q = questionSearch.toLowerCase().trim();
+      list = list.filter(item => 
+        (item.questionText || '').toLowerCase().includes(q) ||
+        (item.questionNo || '').toLowerCase().includes(q) ||
+        (item.unitTitle || '').toLowerCase().includes(q)
+      );
+    }
+    return list;
+  }, [allSubjectQuestions, selectedUnitFilter, questionSearch]);
 
   // Reset Filters Handler
   const handleResetFilters = () => {
@@ -1285,13 +1346,93 @@ export default function CoursePyqsView({
             </div>
           )}
 
-          {/* PAPERS CONTENT: If matched papers exist, display them; otherwise show "No PYQs available yet" */}
-          {matchedPyqs.length > 0 ? (
+          {/* VIEW MODE TOGGLE TABS (QUESTION PAPERS vs CHAPTER-WISE QUESTIONS) */}
+          {activeSubject && (
             <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-              gap: '1rem'
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              backgroundColor: '#FAF7F2',
+              padding: '0.35rem',
+              borderRadius: '14px',
+              border: '1.5px solid #E8E2D5',
+              width: 'fit-content'
             }}>
+              <button
+                onClick={() => setPyqViewMode('papers')}
+                style={{
+                  padding: '0.45rem 1rem',
+                  borderRadius: '10px',
+                  border: 'none',
+                  backgroundColor: pyqViewMode === 'papers' ? '#ffffff' : 'transparent',
+                  color: pyqViewMode === 'papers' ? '#1F2421' : '#64748B',
+                  fontWeight: pyqViewMode === 'papers' ? 800 : 600,
+                  fontSize: '0.82rem',
+                  cursor: 'pointer',
+                  boxShadow: pyqViewMode === 'papers' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <FileText size={15} style={{ color: pyqViewMode === 'papers' ? courseMeta.btnColor : '#94A3B8' }} />
+                <span>Question Papers</span>
+                <span style={{
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  backgroundColor: pyqViewMode === 'papers' ? courseMeta.btnColor : '#E2E8F0',
+                  color: pyqViewMode === 'papers' ? '#ffffff' : '#64748B',
+                  padding: '0.05rem 0.4rem',
+                  borderRadius: '999px'
+                }}>
+                  {matchedPyqs.length}
+                </span>
+              </button>
+
+              <button
+                onClick={() => setPyqViewMode('chapters')}
+                style={{
+                  padding: '0.45rem 1rem',
+                  borderRadius: '10px',
+                  border: 'none',
+                  backgroundColor: pyqViewMode === 'chapters' ? '#ffffff' : 'transparent',
+                  color: pyqViewMode === 'chapters' ? '#1F2421' : '#64748B',
+                  fontWeight: pyqViewMode === 'chapters' ? 800 : 600,
+                  fontSize: '0.82rem',
+                  cursor: 'pointer',
+                  boxShadow: pyqViewMode === 'chapters' ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <Layers size={15} style={{ color: pyqViewMode === 'chapters' ? courseMeta.btnColor : '#94A3B8' }} />
+                <span>Chapter-wise Questions</span>
+                <span style={{
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  backgroundColor: pyqViewMode === 'chapters' ? courseMeta.btnColor : '#E2E8F0',
+                  color: pyqViewMode === 'chapters' ? '#ffffff' : '#64748B',
+                  padding: '0.05rem 0.4rem',
+                  borderRadius: '999px'
+                }}>
+                  {allSubjectQuestions.length}
+                </span>
+              </button>
+            </div>
+          )}
+
+          {/* VIEW 1: FULL QUESTION PAPERS CONTENT */}
+          {pyqViewMode === 'papers' && (
+            <>
+              {matchedPyqs.length > 0 ? (
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                  gap: '1rem'
+                }}>
               {matchedPyqs.map((pyq, idx) => {
                 const paperUrl = pyq.pdfUrl || pyq.fileUrl || pyq.driveUrl || pyq.resourceUrl || pyq.url || pyq.verifiedUrl;
                 return (
@@ -1505,10 +1646,353 @@ export default function CoursePyqsView({
               </div>
             </div>
           )}
+          </>
+          )}
 
-        </div>
+          {/* VIEW 2: CHAPTER-WISE & UNIT QUESTIONS */}
+          {pyqViewMode === 'chapters' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {allSubjectQuestions.length === 0 ? (
+                <div style={{
+                  backgroundColor: '#ffffff',
+                  border: '1.5px dashed #DDCFBC',
+                  borderRadius: '24px',
+                  padding: '3rem 2rem',
+                  textAlign: 'center',
+                  boxShadow: '0 8px 24px rgba(35,30,25,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '1rem'
+                }}>
+                  <div style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    backgroundColor: '#FFF8EB',
+                    border: '2px solid #C88D2D',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#C88D2D'
+                  }}>
+                    <BookOpen size={28} />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1F2421', margin: '0 0 0.35rem 0' }}>
+                      Full Examination Papers Available
+                    </h4>
+                    <p style={{ fontSize: '0.86rem', color: '#64748B', maxWidth: '480px', lineHeight: 1.5, margin: '0 auto' }}>
+                      All complete previous-year examination PDFs for <b>{activeSubject?.name}</b> are ready to view and download under the <b>Question Papers</b> tab above. Automated question-level chapter mapping for this subject is currently scheduled.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setPyqViewMode('papers')}
+                    style={{
+                      padding: '0.5rem 1.25rem',
+                      borderRadius: '999px',
+                      backgroundColor: '#1F2421',
+                      color: '#ffffff',
+                      border: 'none',
+                      fontSize: '0.82rem',
+                      fontWeight: 700,
+                      cursor: 'pointer'
+                    }}
+                  >
+                    View Examination Papers ({matchedPyqs.length})
+                  </button>
+                </div>
+              ) : (
+                <>
+                  {/* Unit Selector Pills Bar */}
+                  <div style={{
+                    backgroundColor: '#ffffff',
+                    border: '1.5px solid #E8E2D5',
+                    borderRadius: '18px',
+                    padding: '1rem',
+                    boxShadow: '0 4px 14px rgba(35,30,25,0.03)'
+                  }}>
+                    <div style={{
+                      fontSize: '0.74rem',
+                      fontWeight: 800,
+                      color: '#64748B',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.04em',
+                      marginBottom: '0.65rem'
+                    }}>
+                      Filter Questions by Syllabus Unit
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+                      {/* All Units Option */}
+                      <button
+                        onClick={() => setSelectedUnitFilter('all')}
+                        style={{
+                          padding: '0.38rem 0.95rem',
+                          borderRadius: '999px',
+                          border: selectedUnitFilter === 'all' ? `2px solid ${courseMeta.btnColor}` : '1.5px solid #E2E8F0',
+                          backgroundColor: selectedUnitFilter === 'all' ? courseMeta.btnColor : '#FAF7F2',
+                          color: selectedUnitFilter === 'all' ? '#ffffff' : '#334155',
+                          fontSize: '0.8rem',
+                          fontWeight: selectedUnitFilter === 'all' ? 800 : 600,
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        All Units ({allSubjectQuestions.length})
+                      </button>
+
+                      {/* Units 1 through 5 from Verified Syllabus */}
+                      {(currentSubjectSyllabus?.units || [
+                        { unitNo: 1, title: 'Unit 1' },
+                        { unitNo: 2, title: 'Unit 2' },
+                        { unitNo: 3, title: 'Unit 3' },
+                        { unitNo: 4, title: 'Unit 4' },
+                        { unitNo: 5, title: 'Unit 5' }
+                      ]).map(u => {
+                        const count = allSubjectQuestions.filter(q => q.unitNo === u.unitNo).length;
+                        const isSel = selectedUnitFilter === u.unitNo;
+                        return (
+                          <button
+                            key={u.unitNo}
+                            onClick={() => setSelectedUnitFilter(u.unitNo)}
+                            title={u.title}
+                            style={{
+                              padding: '0.38rem 0.95rem',
+                              borderRadius: '999px',
+                              border: isSel ? `2px solid ${courseMeta.btnColor}` : '1.5px solid #E2E8F0',
+                              backgroundColor: isSel ? courseMeta.btnColor : '#FAF7F2',
+                              color: isSel ? '#ffffff' : '#334155',
+                              fontSize: '0.8rem',
+                              fontWeight: isSel ? 800 : 600,
+                              cursor: 'pointer',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.35rem',
+                              transition: 'all 0.15s ease'
+                            }}
+                          >
+                            <span>Unit {u.unitNo}: {u.title.length > 25 ? u.title.slice(0, 25) + '...' : u.title}</span>
+                            <span style={{
+                              fontSize: '0.68rem',
+                              backgroundColor: isSel ? 'rgba(255,255,255,0.25)' : '#E2E8F0',
+                              color: isSel ? '#ffffff' : '#64748B',
+                              padding: '0.05rem 0.35rem',
+                              borderRadius: '999px'
+                            }}>
+                              {count}
+                            </span>
+                          </button>
+                        );
+                      })}
+
+                      {/* Unclassified Filter (if any) */}
+                      {allSubjectQuestions.some(q => q.unitNo === 0 || q.isUnclassified) && (
+                        <button
+                          onClick={() => setSelectedUnitFilter('unclassified')}
+                          style={{
+                            padding: '0.38rem 0.95rem',
+                            borderRadius: '999px',
+                            border: selectedUnitFilter === 'unclassified' ? '2px solid #F59E0B' : '1.5px solid #FDE68A',
+                            backgroundColor: selectedUnitFilter === 'unclassified' ? '#F59E0B' : '#FEF3C7',
+                            color: selectedUnitFilter === 'unclassified' ? '#ffffff' : '#92400E',
+                            fontSize: '0.8rem',
+                            fontWeight: selectedUnitFilter === 'unclassified' ? 800 : 600,
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.35rem',
+                            transition: 'all 0.15s ease'
+                          }}
+                        >
+                          <span>Unclassified</span>
+                          <span style={{
+                            fontSize: '0.68rem',
+                            backgroundColor: selectedUnitFilter === 'unclassified' ? 'rgba(255,255,255,0.25)' : '#FDE68A',
+                            color: selectedUnitFilter === 'unclassified' ? '#ffffff' : '#92400E',
+                            padding: '0.05rem 0.35rem',
+                            borderRadius: '999px'
+                          }}>
+                            {allSubjectQuestions.filter(q => q.unitNo === 0 || q.isUnclassified).length}
+                          </span>
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Question Search Input */}
+                    <div style={{ position: 'relative', marginTop: '0.85rem' }}>
+                      <Search size={14} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#64748B' }} />
+                      <input
+                        type="text"
+                        placeholder={`Search questions in ${activeSubject?.name}...`}
+                        value={questionSearch}
+                        onChange={(e) => setQuestionSearch(e.target.value)}
+                        style={{
+                          width: '100%',
+                          padding: '0.45rem 2rem 0.45rem 2.1rem',
+                          borderRadius: '10px',
+                          border: '1px solid #E2E8F0',
+                          backgroundColor: '#FAF7F2',
+                          fontSize: '0.84rem',
+                          color: '#1F2421',
+                          outline: 'none'
+                        }}
+                      />
+                      {questionSearch && (
+                        <button
+                          onClick={() => setQuestionSearch('')}
+                          style={{
+                            position: 'absolute',
+                            right: '10px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            background: 'none',
+                            border: 'none',
+                            color: '#94A3B8',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          <X size={13} />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Questions Grid List */}
+                  {filteredChapterQuestions.length === 0 ? (
+                    <div style={{
+                      backgroundColor: '#ffffff',
+                      border: '1.5px dashed #E2E8F0',
+                      borderRadius: '18px',
+                      padding: '2.5rem',
+                      textAlign: 'center',
+                      color: '#64748B',
+                      fontSize: '0.85rem'
+                    }}>
+                      No questions found matching your filter.
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                      {filteredChapterQuestions.map((qItem) => (
+                        <div
+                          key={qItem.id}
+                          style={{
+                            backgroundColor: '#ffffff',
+                            border: '1.5px solid #E8E2D5',
+                            borderRadius: '16px',
+                            padding: '1.15rem 1.35rem',
+                            boxShadow: '0 2px 10px rgba(35,30,25,0.02)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '0.65rem',
+                            transition: 'all 0.2s ease'
+                          }}
+                        >
+                          {/* Top Badges Row */}
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.45rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+                              <span style={{
+                                fontSize: '0.74rem',
+                                fontWeight: 800,
+                                color: '#1F2421',
+                                backgroundColor: '#F1F5F9',
+                                padding: '0.15rem 0.55rem',
+                                borderRadius: '6px',
+                                fontFamily: 'monospace'
+                              }}>
+                                {qItem.questionNo}
+                              </span>
+                              <span style={{
+                                fontSize: '0.72rem',
+                                fontWeight: 700,
+                                color: '#0369A1',
+                                backgroundColor: '#E0F2FE',
+                                padding: '0.15rem 0.55rem',
+                                borderRadius: '6px'
+                              }}>
+                                {qItem.marks} Marks
+                              </span>
+                              <span style={{
+                                fontSize: '0.72rem',
+                                fontWeight: 600,
+                                color: '#475569',
+                                backgroundColor: '#F8FAFC',
+                                border: '1px solid #E2E8F0',
+                                padding: '0.15rem 0.5rem',
+                                borderRadius: '6px'
+                              }}>
+                                AKTU {qItem.examYear} ({qItem.examType})
+                              </span>
+                            </div>
+
+                            {/* Syllabus Unit Pill */}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                              <span style={{
+                                fontSize: '0.72rem',
+                                fontWeight: 700,
+                                color: qItem.unitNo > 0 ? '#15803D' : '#B45309',
+                                backgroundColor: qItem.unitNo > 0 ? '#DCFCE7' : '#FEF3C7',
+                                padding: '0.15rem 0.55rem',
+                                borderRadius: '999px',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.25rem'
+                              }}>
+                                {qItem.unitNo > 0 && <CheckCircle size={11} />}
+                                {qItem.unitNo > 0 ? `Unit ${qItem.unitNo}: ${qItem.unitTitle}` : 'Unclassified'}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Question Text */}
+                          <div style={{
+                            fontSize: '0.92rem',
+                            fontWeight: 600,
+                            color: '#1E293B',
+                            lineHeight: 1.5,
+                            padding: '0.2rem 0'
+                          }}>
+                            {qItem.questionText}
+                          </div>
+
+                          {/* Action Footer */}
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid #F1F5F9', paddingTop: '0.6rem' }}>
+                            <span style={{ fontSize: '0.7rem', color: '#94A3B8' }}>
+                              Source: {qItem.paperTitle}
+                            </span>
+                            {qItem.sourceUrl && (
+                              <button
+                                onClick={() => window.open(qItem.sourceUrl, '_blank', 'noopener,noreferrer')}
+                                style={{
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '0.35rem',
+                                  padding: '0.25rem 0.65rem',
+                                  borderRadius: '6px',
+                                  border: '1px solid #E2E8F0',
+                                  backgroundColor: '#FAF7F2',
+                                  color: '#334155',
+                                  fontSize: '0.74rem',
+                                  fontWeight: 600,
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                <Eye size={12} />
+                                <span>View in Paper</span>
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          )}
 
       </div>
+        </div>
 
         </>
       )}

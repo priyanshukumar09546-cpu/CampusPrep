@@ -1,0 +1,972 @@
+[
+  {
+    "id": "bca-pyq-bca-101-2023-2024",
+    "course": "BCA",
+    "subject": "Mathematics - I",
+    "subjectCode": "BCA-101",
+    "academicYear": "2023-2024",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-101-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-101-2022-2023",
+    "course": "BCA",
+    "subject": "Mathematics - I",
+    "subjectCode": "BCA-101",
+    "academicYear": "2022-2023",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-101-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-101-2021-2022",
+    "course": "BCA",
+    "subject": "Mathematics - I",
+    "subjectCode": "BCA-101",
+    "academicYear": "2021-2022",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-101-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-102-2023-2024",
+    "course": "BCA",
+    "subject": "Programming Principle & Algorithm",
+    "subjectCode": "BCA-102",
+    "academicYear": "2023-2024",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-102-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-102-2022-2023",
+    "course": "BCA",
+    "subject": "Programming Principle & Algorithm",
+    "subjectCode": "BCA-102",
+    "academicYear": "2022-2023",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-102-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-102-2021-2022",
+    "course": "BCA",
+    "subject": "Programming Principle & Algorithm",
+    "subjectCode": "BCA-102",
+    "academicYear": "2021-2022",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-102-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-103-2023-2024",
+    "course": "BCA",
+    "subject": "Computer Fundamentals & Office Automation",
+    "subjectCode": "BCA-103",
+    "academicYear": "2023-2024",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-103-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-103-2022-2023",
+    "course": "BCA",
+    "subject": "Computer Fundamentals & Office Automation",
+    "subjectCode": "BCA-103",
+    "academicYear": "2022-2023",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-103-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-103-2021-2022",
+    "course": "BCA",
+    "subject": "Computer Fundamentals & Office Automation",
+    "subjectCode": "BCA-103",
+    "academicYear": "2021-2022",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-103-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-104-2023-2024",
+    "course": "BCA",
+    "subject": "Principle of Management",
+    "subjectCode": "BCA-104",
+    "academicYear": "2023-2024",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-104-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-104-2022-2023",
+    "course": "BCA",
+    "subject": "Principle of Management",
+    "subjectCode": "BCA-104",
+    "academicYear": "2022-2023",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-104-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-104-2021-2022",
+    "course": "BCA",
+    "subject": "Principle of Management",
+    "subjectCode": "BCA-104",
+    "academicYear": "2021-2022",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-104-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-105-2023-2024",
+    "course": "BCA",
+    "subject": "Business Communication",
+    "subjectCode": "BCA-105",
+    "academicYear": "2023-2024",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-105-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-105-2022-2023",
+    "course": "BCA",
+    "subject": "Business Communication",
+    "subjectCode": "BCA-105",
+    "academicYear": "2022-2023",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-105-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-105-2021-2022",
+    "course": "BCA",
+    "subject": "Business Communication",
+    "subjectCode": "BCA-105",
+    "academicYear": "2021-2022",
+    "semester": "Semester 1",
+    "url": "https://aktupyq.com/bca/bca-105-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-201-2023-2024",
+    "course": "BCA",
+    "subject": "Mathematics - II",
+    "subjectCode": "BCA-201",
+    "academicYear": "2023-2024",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-201-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-201-2022-2023",
+    "course": "BCA",
+    "subject": "Mathematics - II",
+    "subjectCode": "BCA-201",
+    "academicYear": "2022-2023",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-201-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-201-2021-2022",
+    "course": "BCA",
+    "subject": "Mathematics - II",
+    "subjectCode": "BCA-201",
+    "academicYear": "2021-2022",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-201-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-202-2023-2024",
+    "course": "BCA",
+    "subject": "Data Structure Using C",
+    "subjectCode": "BCA-202",
+    "academicYear": "2023-2024",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-202-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-202-2022-2023",
+    "course": "BCA",
+    "subject": "Data Structure Using C",
+    "subjectCode": "BCA-202",
+    "academicYear": "2022-2023",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-202-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-202-2021-2022",
+    "course": "BCA",
+    "subject": "Data Structure Using C",
+    "subjectCode": "BCA-202",
+    "academicYear": "2021-2022",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-202-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-203-2023-2024",
+    "course": "BCA",
+    "subject": "Digital Electronics & Computer Architecture",
+    "subjectCode": "BCA-203",
+    "academicYear": "2023-2024",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-203-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-203-2022-2023",
+    "course": "BCA",
+    "subject": "Digital Electronics & Computer Architecture",
+    "subjectCode": "BCA-203",
+    "academicYear": "2022-2023",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-203-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-203-2021-2022",
+    "course": "BCA",
+    "subject": "Digital Electronics & Computer Architecture",
+    "subjectCode": "BCA-203",
+    "academicYear": "2021-2022",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-203-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-204-2023-2024",
+    "course": "BCA",
+    "subject": "Financial Accounting & Management",
+    "subjectCode": "BCA-204",
+    "academicYear": "2023-2024",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-204-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-204-2022-2023",
+    "course": "BCA",
+    "subject": "Financial Accounting & Management",
+    "subjectCode": "BCA-204",
+    "academicYear": "2022-2023",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-204-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-204-2021-2022",
+    "course": "BCA",
+    "subject": "Financial Accounting & Management",
+    "subjectCode": "BCA-204",
+    "academicYear": "2021-2022",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-204-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-205-2023-2024",
+    "course": "BCA",
+    "subject": "Environmental Studies",
+    "subjectCode": "BCA-205",
+    "academicYear": "2023-2024",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-205-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-205-2022-2023",
+    "course": "BCA",
+    "subject": "Environmental Studies",
+    "subjectCode": "BCA-205",
+    "academicYear": "2022-2023",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-205-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-205-2021-2022",
+    "course": "BCA",
+    "subject": "Environmental Studies",
+    "subjectCode": "BCA-205",
+    "academicYear": "2021-2022",
+    "semester": "Semester 2",
+    "url": "https://aktupyq.com/bca/bca-205-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-301-2023-2024",
+    "course": "BCA",
+    "subject": "Object Oriented Programming Using C++",
+    "subjectCode": "BCA-301",
+    "academicYear": "2023-2024",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-301-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-301-2022-2023",
+    "course": "BCA",
+    "subject": "Object Oriented Programming Using C++",
+    "subjectCode": "BCA-301",
+    "academicYear": "2022-2023",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-301-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-301-2021-2022",
+    "course": "BCA",
+    "subject": "Object Oriented Programming Using C++",
+    "subjectCode": "BCA-301",
+    "academicYear": "2021-2022",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-301-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-302-2023-2024",
+    "course": "BCA",
+    "subject": "Database Management System (DBMS)",
+    "subjectCode": "BCA-302",
+    "academicYear": "2023-2024",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-302-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-302-2022-2023",
+    "course": "BCA",
+    "subject": "Database Management System (DBMS)",
+    "subjectCode": "BCA-302",
+    "academicYear": "2022-2023",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-302-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-302-2021-2022",
+    "course": "BCA",
+    "subject": "Database Management System (DBMS)",
+    "subjectCode": "BCA-302",
+    "academicYear": "2021-2022",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-302-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-303-2023-2024",
+    "course": "BCA",
+    "subject": "Operating System",
+    "subjectCode": "BCA-303",
+    "academicYear": "2023-2024",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-303-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-303-2022-2023",
+    "course": "BCA",
+    "subject": "Operating System",
+    "subjectCode": "BCA-303",
+    "academicYear": "2022-2023",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-303-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-303-2021-2022",
+    "course": "BCA",
+    "subject": "Operating System",
+    "subjectCode": "BCA-303",
+    "academicYear": "2021-2022",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-303-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-304-2023-2024",
+    "course": "BCA",
+    "subject": "Data Communication & Computer Networks",
+    "subjectCode": "BCA-304",
+    "academicYear": "2023-2024",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-304-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-304-2022-2023",
+    "course": "BCA",
+    "subject": "Data Communication & Computer Networks",
+    "subjectCode": "BCA-304",
+    "academicYear": "2022-2023",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-304-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-304-2021-2022",
+    "course": "BCA",
+    "subject": "Data Communication & Computer Networks",
+    "subjectCode": "BCA-304",
+    "academicYear": "2021-2022",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-304-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-305-2023-2024",
+    "course": "BCA",
+    "subject": "Indian Constitution & Human Values",
+    "subjectCode": "BCA-305",
+    "academicYear": "2023-2024",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-305-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-305-2022-2023",
+    "course": "BCA",
+    "subject": "Indian Constitution & Human Values",
+    "subjectCode": "BCA-305",
+    "academicYear": "2022-2023",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-305-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-305-2021-2022",
+    "course": "BCA",
+    "subject": "Indian Constitution & Human Values",
+    "subjectCode": "BCA-305",
+    "academicYear": "2021-2022",
+    "semester": "Semester 3",
+    "url": "https://aktupyq.com/bca/bca-305-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-401-2023-2024",
+    "course": "BCA",
+    "subject": "Web Designing & Internet Technologies",
+    "subjectCode": "BCA-401",
+    "academicYear": "2023-2024",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-401-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-401-2022-2023",
+    "course": "BCA",
+    "subject": "Web Designing & Internet Technologies",
+    "subjectCode": "BCA-401",
+    "academicYear": "2022-2023",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-401-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-401-2021-2022",
+    "course": "BCA",
+    "subject": "Web Designing & Internet Technologies",
+    "subjectCode": "BCA-401",
+    "academicYear": "2021-2022",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-401-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-402-2023-2024",
+    "course": "BCA",
+    "subject": "Software Engineering",
+    "subjectCode": "BCA-402",
+    "academicYear": "2023-2024",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-402-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-402-2022-2023",
+    "course": "BCA",
+    "subject": "Software Engineering",
+    "subjectCode": "BCA-402",
+    "academicYear": "2022-2023",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-402-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-402-2021-2022",
+    "course": "BCA",
+    "subject": "Software Engineering",
+    "subjectCode": "BCA-402",
+    "academicYear": "2021-2022",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-402-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-403-2023-2024",
+    "course": "BCA",
+    "subject": "Computer Graphics & Multimedia",
+    "subjectCode": "BCA-403",
+    "academicYear": "2023-2024",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-403-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-403-2022-2023",
+    "course": "BCA",
+    "subject": "Computer Graphics & Multimedia",
+    "subjectCode": "BCA-403",
+    "academicYear": "2022-2023",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-403-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-403-2021-2022",
+    "course": "BCA",
+    "subject": "Computer Graphics & Multimedia",
+    "subjectCode": "BCA-403",
+    "academicYear": "2021-2022",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-403-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-404-2023-2024",
+    "course": "BCA",
+    "subject": "Optimization Techniques",
+    "subjectCode": "BCA-404",
+    "academicYear": "2023-2024",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-404-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-404-2022-2023",
+    "course": "BCA",
+    "subject": "Optimization Techniques",
+    "subjectCode": "BCA-404",
+    "academicYear": "2022-2023",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-404-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-404-2021-2022",
+    "course": "BCA",
+    "subject": "Optimization Techniques",
+    "subjectCode": "BCA-404",
+    "academicYear": "2021-2022",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-404-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-405-2023-2024",
+    "course": "BCA",
+    "subject": "Python Programming",
+    "subjectCode": "BCA-405",
+    "academicYear": "2023-2024",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-405-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-405-2022-2023",
+    "course": "BCA",
+    "subject": "Python Programming",
+    "subjectCode": "BCA-405",
+    "academicYear": "2022-2023",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-405-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-405-2021-2022",
+    "course": "BCA",
+    "subject": "Python Programming",
+    "subjectCode": "BCA-405",
+    "academicYear": "2021-2022",
+    "semester": "Semester 4",
+    "url": "https://aktupyq.com/bca/bca-405-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-501-2023-2024",
+    "course": "BCA",
+    "subject": "Java Programming & J2EE",
+    "subjectCode": "BCA-501",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-501-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-501-2022-2023",
+    "course": "BCA",
+    "subject": "Java Programming & J2EE",
+    "subjectCode": "BCA-501",
+    "academicYear": "2022-2023",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-501-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-501-2021-2022",
+    "course": "BCA",
+    "subject": "Java Programming & J2EE",
+    "subjectCode": "BCA-501",
+    "academicYear": "2021-2022",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-501-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-502-2023-2024",
+    "course": "BCA",
+    "subject": "Network Security & Cryptography",
+    "subjectCode": "BCA-502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-502-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-502-2022-2023",
+    "course": "BCA",
+    "subject": "Network Security & Cryptography",
+    "subjectCode": "BCA-502",
+    "academicYear": "2022-2023",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-502-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-502-2021-2022",
+    "course": "BCA",
+    "subject": "Network Security & Cryptography",
+    "subjectCode": "BCA-502",
+    "academicYear": "2021-2022",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-502-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-503-2023-2024",
+    "course": "BCA",
+    "subject": "Cloud Computing Technologies",
+    "subjectCode": "BCA-503",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-503-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-503-2022-2023",
+    "course": "BCA",
+    "subject": "Cloud Computing Technologies",
+    "subjectCode": "BCA-503",
+    "academicYear": "2022-2023",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-503-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-503-2021-2022",
+    "course": "BCA",
+    "subject": "Cloud Computing Technologies",
+    "subjectCode": "BCA-503",
+    "academicYear": "2021-2022",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-503-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-504-2023-2024",
+    "course": "BCA",
+    "subject": "Numerical Analysis & Statistical Techniques",
+    "subjectCode": "BCA-504",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-504-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-504-2022-2023",
+    "course": "BCA",
+    "subject": "Numerical Analysis & Statistical Techniques",
+    "subjectCode": "BCA-504",
+    "academicYear": "2022-2023",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-504-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-504-2021-2022",
+    "course": "BCA",
+    "subject": "Numerical Analysis & Statistical Techniques",
+    "subjectCode": "BCA-504",
+    "academicYear": "2021-2022",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-504-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-505-2023-2024",
+    "course": "BCA",
+    "subject": "Web Application Development with PHP/Node",
+    "subjectCode": "BCA-505",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-505-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-505-2022-2023",
+    "course": "BCA",
+    "subject": "Web Application Development with PHP/Node",
+    "subjectCode": "BCA-505",
+    "academicYear": "2022-2023",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-505-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-505-2021-2022",
+    "course": "BCA",
+    "subject": "Web Application Development with PHP/Node",
+    "subjectCode": "BCA-505",
+    "academicYear": "2021-2022",
+    "semester": "Semester 5",
+    "url": "https://aktupyq.com/bca/bca-505-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-601-2023-2024",
+    "course": "BCA",
+    "subject": "Information Security & Cyber Laws",
+    "subjectCode": "BCA-601",
+    "academicYear": "2023-2024",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-601-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-601-2022-2023",
+    "course": "BCA",
+    "subject": "Information Security & Cyber Laws",
+    "subjectCode": "BCA-601",
+    "academicYear": "2022-2023",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-601-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-601-2021-2022",
+    "course": "BCA",
+    "subject": "Information Security & Cyber Laws",
+    "subjectCode": "BCA-601",
+    "academicYear": "2021-2022",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-601-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-602-2023-2024",
+    "course": "BCA",
+    "subject": "Mobile Application Development (Android)",
+    "subjectCode": "BCA-602",
+    "academicYear": "2023-2024",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-602-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-602-2022-2023",
+    "course": "BCA",
+    "subject": "Mobile Application Development (Android)",
+    "subjectCode": "BCA-602",
+    "academicYear": "2022-2023",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-602-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-602-2021-2022",
+    "course": "BCA",
+    "subject": "Mobile Application Development (Android)",
+    "subjectCode": "BCA-602",
+    "academicYear": "2021-2022",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-602-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-603-2023-2024",
+    "course": "BCA",
+    "subject": "E-Commerce & Digital Governance",
+    "subjectCode": "BCA-603",
+    "academicYear": "2023-2024",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-603-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-603-2022-2023",
+    "course": "BCA",
+    "subject": "E-Commerce & Digital Governance",
+    "subjectCode": "BCA-603",
+    "academicYear": "2022-2023",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-603-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-603-2021-2022",
+    "course": "BCA",
+    "subject": "E-Commerce & Digital Governance",
+    "subjectCode": "BCA-603",
+    "academicYear": "2021-2022",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-603-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-604-2023-2024",
+    "course": "BCA",
+    "subject": "Major Project & Viva-Voce",
+    "subjectCode": "BCA-604",
+    "academicYear": "2023-2024",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-604-2023-2024.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-604-2022-2023",
+    "course": "BCA",
+    "subject": "Major Project & Viva-Voce",
+    "subjectCode": "BCA-604",
+    "academicYear": "2022-2023",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-604-2022-2023.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "bca-pyq-bca-604-2021-2022",
+    "course": "BCA",
+    "subject": "Major Project & Viva-Voce",
+    "subjectCode": "BCA-604",
+    "academicYear": "2021-2022",
+    "semester": "Semester 6",
+    "url": "https://aktupyq.com/bca/bca-604-2021-2022.pdf",
+    "reason": "Broken document / Fake URL returning HTML webpage instead of PDF"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-1",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/1BC8sIfDABiSKPRAOq6tuRSyjrtLxtMv8/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-2",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/1u4-vEw3yj7eXVTTA9il1XElDyRGFTYUE/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-3",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/1HVT5ttxuF-sX_k_DxsZYNQJA5-HgTdP-/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-4",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/1eJyU_sukiXHdKPdp8SqugiGWjuohjgIC/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-5",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/12CaAb9gOuTk4I-xs-6s7wt9wo3vTAJx1/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-6",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/1QmRHOzRoBgpKRz1wCGHsgO4huKe-fB7e/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-7",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/1Jxa2Ixw8OWNuUbHEqzH52iB8p-We_Bkd/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-8",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/1inD8LXfTsquedZKsWC7B1qTCjhiwtqi3/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-9",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/1iRxxjpsH-CPCtqlUTBfXRkFDwPFa3Obf/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  },
+  {
+    "id": "pyq-btech-cse-bcs502-abes-st-10",
+    "course": "B.Tech",
+    "subject": "Web Technology",
+    "subjectCode": "BCS502",
+    "academicYear": "2023-2024",
+    "semester": "Semester 5",
+    "url": "https://drive.google.com/file/d/12Y6-MIpYbKKvYaXo9EgyUZ2Vp3Dad3m-/preview",
+    "reason": "Internal college sessional test falsely presented as AKTU previous year paper"
+  }
+]

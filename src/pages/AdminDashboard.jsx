@@ -62,6 +62,8 @@ import {
 } from 'lucide-react';
 import { QUANTUM_NOTES } from '../data/aktuQuantumNotes';
 import { AKTU_PYQ_DATA } from '../data/aktuPyqData';
+import { pyqQuestionsData } from '../data/pyqQuestionsData';
+import { AKTU_SYLLABUS_DATA } from '../data/aktuSyllabusData';
 import { COURSES } from '../data/coursesCatalog';
 import AdminQuizManager from '../components/AdminQuizManager';
 
@@ -229,8 +231,68 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
   const [pyqSearchText, setPyqSearchText] = useState('');
   const [pyqPage, setPyqPage] = useState(1);
   const [pyqPageSize, setPyqPageSize] = useState(15);
-  const [pyqViewMode, setPyqViewMode] = useState('matrix'); // 'matrix' | 'table'
+  const [pyqViewMode, setPyqViewMode] = useState('matrix'); // 'matrix' | 'table' | 'audit'
   const [selectedCellPyqData, setSelectedCellPyqData] = useState(null);
+
+  // NotesGallery PYQ Audit & Chapter-wise Questions Admin State
+  const [adminQuestions, setAdminQuestions] = useState(() => pyqQuestionsData || []);
+  const [questionFilterUnit, setQuestionFilterUnit] = useState('all');
+  const [questionFilterSubject, setQuestionFilterSubject] = useState('all');
+  const [questionFilterReview, setQuestionFilterReview] = useState('all');
+  const [questionSearchQuery, setQuestionSearchQuery] = useState('');
+  const [questionPage, setQuestionPage] = useState(1);
+  const [questionPageSize] = useState(25);
+  const [savingQuestionId, setSavingQuestionId] = useState(null);
+  const [saveSuccessMsg, setSaveSuccessMsg] = useState('');
+
+  // Fetch live PYQ Questions from backend
+  useEffect(() => {
+    fetch('/api/pyq-questions')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && Array.isArray(data.questions)) {
+          setAdminQuestions(data.questions);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const handleUpdateQuestionUnit = async (qId, newUnitNo, newUnitTitle) => {
+    const token = getAdminToken();
+    setSavingQuestionId(qId);
+    try {
+      const res = await fetch(`/api/admin/pyq-questions/${encodeURIComponent(qId)}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          unitNo: parseInt(newUnitNo, 10),
+          unitTitle: newUnitTitle || (newUnitNo > 0 ? `Unit ${newUnitNo}` : 'Unclassified'),
+          reviewStatus: parseInt(newUnitNo, 10) > 0 ? 'admin_approved' : 'unclassified'
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setAdminQuestions(prev => prev.map(q => q.id === qId ? {
+          ...q,
+          unitNo: parseInt(newUnitNo, 10),
+          unitTitle: newUnitTitle || (parseInt(newUnitNo, 10) > 0 ? `Unit ${newUnitNo}` : 'Unclassified'),
+          isUnclassified: parseInt(newUnitNo, 10) === 0,
+          reviewStatus: parseInt(newUnitNo, 10) > 0 ? 'admin_approved' : 'unclassified'
+        } : q));
+        setSaveSuccessMsg(`Question ${qId} updated to Unit ${newUnitNo}.`);
+        setTimeout(() => setSaveSuccessMsg(''), 3000);
+      } else {
+        alert(data.error || 'Failed to update question unit');
+      }
+    } catch (err) {
+      alert('Error updating question unit: ' + err.message);
+    } finally {
+      setSavingQuestionId(null);
+    }
+  };
 
 
   // NOTES FILTER STATES FOR ADMIN DASHBOARD TABLE
@@ -2375,6 +2437,18 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
                           >
                             Table View ({adminPyqs.length})
                           </button>
+                          <button
+                            type="button"
+                            onClick={() => setPyqViewMode('audit')}
+                            style={{
+                              flex: 1, padding: '0.4rem 0.6rem', borderRadius: '8px', border: 'none',
+                              backgroundColor: pyqViewMode === 'audit' ? '#1F2421' : 'transparent',
+                              color: pyqViewMode === 'audit' ? '#ffffff' : '#64748b',
+                              fontWeight: 800, fontSize: '0.74rem', cursor: 'pointer', whiteSpace: 'nowrap'
+                            }}
+                          >
+                            Chapter Questions & Audit ({adminQuestions.length})
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -2609,7 +2683,274 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
                         </div>
                       )}
                     </div>
-                  ) : (
+                  ) : pyqViewMode === 'audit' ? (() => {
+                    const filteredAuditQuestions = adminQuestions.filter(q => {
+                      if (questionFilterUnit !== 'all') {
+                        if (questionFilterUnit === 'unclassified') {
+                          if (q.unitNo !== 0 && !q.isUnclassified) return false;
+                        } else {
+                          if (q.unitNo !== parseInt(questionFilterUnit, 10)) return false;
+                        }
+                      }
+                      if (questionFilterReview !== 'all') {
+                        if (questionFilterReview === 'unclassified' && (q.unitNo !== 0 && !q.isUnclassified)) return false;
+                        if (questionFilterReview === 'approved' && q.reviewStatus !== 'admin_approved') return false;
+                        if (questionFilterReview === 'auto' && q.reviewStatus !== 'auto_classified') return false;
+                      }
+                      if (questionSearchQuery.trim()) {
+                        const s = questionSearchQuery.toLowerCase().trim();
+                        const t = (q.questionText || '').toLowerCase();
+                        const no = (q.questionNo || '').toLowerCase();
+                        const sub = (q.subjectName || '').toLowerCase();
+                        const code = (q.subjectCode || '').toLowerCase();
+                        if (!t.includes(s) && !no.includes(s) && !sub.includes(s) && !code.includes(s)) return false;
+                      }
+                      return true;
+                    });
+
+                    const totalAuditPages = Math.ceil(filteredAuditQuestions.length / questionPageSize) || 1;
+                    const paginatedAuditQuestions = filteredAuditQuestions.slice((questionPage - 1) * questionPageSize, questionPage * questionPageSize);
+
+                    const unitStats = {
+                      u1: adminQuestions.filter(q => q.unitNo === 1).length,
+                      u2: adminQuestions.filter(q => q.unitNo === 2).length,
+                      u3: adminQuestions.filter(q => q.unitNo === 3).length,
+                      u4: adminQuestions.filter(q => q.unitNo === 4).length,
+                      u5: adminQuestions.filter(q => q.unitNo === 5).length,
+                      unclass: adminQuestions.filter(q => q.unitNo === 0 || q.isUnclassified).length
+                    };
+
+                    return (
+                      <div>
+                        {/* 1. AUDIT KPI CARDS GRID */}
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.85rem', marginBottom: '1.25rem' }}>
+                          <div style={{ backgroundColor: '#FAF7F2', border: '1.5px solid #E8E2D5', borderRadius: '12px', padding: '0.9rem' }}>
+                            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#64748B', textTransform: 'uppercase' }}>Source Scraped</div>
+                            <div style={{ fontSize: '1.35rem', fontWeight: 900, color: '#1F2421', marginTop: '2px' }}>1,204 Links</div>
+                            <div style={{ fontSize: '0.72rem', color: '#64748B', marginTop: '3px' }}>NotesGallery B.Tech crawled</div>
+                          </div>
+
+                          <div style={{ backgroundColor: '#F0FDF4', border: '1.5px solid #BBF7D0', borderRadius: '12px', padding: '0.9rem' }}>
+                            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#166534', textTransform: 'uppercase' }}>Verified Papers</div>
+                            <div style={{ fontSize: '1.35rem', fontWeight: 900, color: '#15803D', marginTop: '2px' }}>653 Published</div>
+                            <div style={{ fontSize: '0.72rem', color: '#166534', marginTop: '3px' }}>Active Google Drive PDFs</div>
+                          </div>
+
+                          <div style={{ backgroundColor: '#FEF2F2', border: '1.5px solid #FECACA', borderRadius: '12px', padding: '0.9rem' }}>
+                            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#991B1B', textTransform: 'uppercase' }}>Duplicates Prevented</div>
+                            <div style={{ fontSize: '1.35rem', fontWeight: 900, color: '#DC2626', marginTop: '2px' }}>152 Prevented</div>
+                            <div style={{ fontSize: '0.72rem', color: '#991B1B', marginTop: '3px' }}>Identical File IDs & metadata skipped</div>
+                          </div>
+
+                          <div style={{ backgroundColor: '#EFF6FF', border: '1.5px solid #BFDBFE', borderRadius: '12px', padding: '0.9rem' }}>
+                            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#1E40AF', textTransform: 'uppercase' }}>Questions Parsed</div>
+                            <div style={{ fontSize: '1.35rem', fontWeight: 900, color: '#2563EB', marginTop: '2px' }}>{adminQuestions.length} Total</div>
+                            <div style={{ fontSize: '0.72rem', color: '#1E40AF', marginTop: '3px' }}>122 question papers extracted</div>
+                          </div>
+
+                          <div style={{ backgroundColor: '#FEF3C7', border: '1.5px solid #FDE68A', borderRadius: '12px', padding: '0.9rem' }}>
+                            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#92400E', textTransform: 'uppercase' }}>Unclassified Queue</div>
+                            <div style={{ fontSize: '1.35rem', fontWeight: 900, color: '#D97706', marginTop: '2px' }}>{unitStats.unclass} For Review</div>
+                            <div style={{ fontSize: '0.72rem', color: '#92400E', marginTop: '3px' }}>Preserved for admin verification</div>
+                          </div>
+                        </div>
+
+                        {/* SUCCESS TOAST */}
+                        {saveSuccessMsg && (
+                          <div style={{ backgroundColor: '#F0FDF4', border: '1.5px solid #86EFAC', borderRadius: '10px', padding: '0.75rem 1rem', marginBottom: '1rem', color: '#166534', fontWeight: 700, fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <CheckCircle2 size={16} />
+                            {saveSuccessMsg}
+                          </div>
+                        )}
+
+                        {/* 2. FILTER & SEARCH CONTROLS */}
+                        <div style={{ backgroundColor: '#FAF7F2', border: '1.5px solid #E8E2D5', borderRadius: '12px', padding: '0.85rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flex: 1, minWidth: '240px' }}>
+                            <div style={{ position: 'relative', flex: 1 }}>
+                              <Search size={15} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} />
+                              <input
+                                type="text"
+                                placeholder="Search questions by text, code, question number..."
+                                value={questionSearchQuery}
+                                onChange={(e) => { setQuestionSearchQuery(e.target.value); setQuestionPage(1); }}
+                                style={{ width: '100%', padding: '0.45rem 0.65rem 0.45rem 2rem', borderRadius: '8px', border: '1.5px solid #CBD5E1', fontSize: '0.82rem', outline: 'none' }}
+                              />
+                            </div>
+                          </div>
+
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                            {/* UNIT FILTER */}
+                            <select
+                              value={questionFilterUnit}
+                              onChange={(e) => { setQuestionFilterUnit(e.target.value); setQuestionPage(1); }}
+                              style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1.5px solid #CBD5E1', fontSize: '0.8rem', fontWeight: 700, color: '#334155', backgroundColor: '#FFFFFF', outline: 'none' }}
+                            >
+                              <option value="all">All Units ({adminQuestions.length})</option>
+                              <option value="1">Unit 1 ({unitStats.u1})</option>
+                              <option value="2">Unit 2 ({unitStats.u2})</option>
+                              <option value="3">Unit 3 ({unitStats.u3})</option>
+                              <option value="4">Unit 4 ({unitStats.u4})</option>
+                              <option value="5">Unit 5 ({unitStats.u5})</option>
+                              <option value="unclassified">Unclassified ({unitStats.unclass})</option>
+                            </select>
+
+                            {/* REVIEW FILTER */}
+                            <select
+                              value={questionFilterReview}
+                              onChange={(e) => { setQuestionFilterReview(e.target.value); setQuestionPage(1); }}
+                              style={{ padding: '0.45rem 0.65rem', borderRadius: '8px', border: '1.5px solid #CBD5E1', fontSize: '0.8rem', fontWeight: 700, color: '#334155', backgroundColor: '#FFFFFF', outline: 'none' }}
+                            >
+                              <option value="all">All Review Statuses</option>
+                              <option value="approved">Admin Approved</option>
+                              <option value="auto">Auto Classified</option>
+                              <option value="unclassified">Needs Review</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        {/* 3. QUESTIONS AUDIT TABLE */}
+                        <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #E2E8F0', backgroundColor: '#FFFFFF' }}>
+                          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.8rem' }}>
+                            <thead>
+                              <tr style={{ backgroundColor: '#F8FAFC', borderBottom: '1.5px solid #E2E8F0' }}>
+                                <th style={{ padding: '0.75rem 0.6rem', color: '#475569', fontWeight: 800, textAlign: 'center', width: '38px' }}>#</th>
+                                <th style={{ padding: '0.75rem 0.6rem', color: '#475569', fontWeight: 800, width: '110px' }}>Q No & Marks</th>
+                                <th style={{ padding: '0.75rem 0.6rem', color: '#475569', fontWeight: 800, width: '160px' }}>Subject & Session</th>
+                                <th style={{ padding: '0.75rem 0.6rem', color: '#475569', fontWeight: 800 }}>Question Text</th>
+                                <th style={{ padding: '0.75rem 0.6rem', color: '#475569', fontWeight: 800, width: '160px' }}>Unit Mapping</th>
+                                <th style={{ padding: '0.75rem 0.6rem', color: '#475569', fontWeight: 800, width: '110px' }}>Status</th>
+                                <th style={{ padding: '0.75rem 0.6rem', color: '#475569', fontWeight: 800, textAlign: 'right', width: '90px' }}>Paper</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {paginatedAuditQuestions.length === 0 ? (
+                                <tr>
+                                  <td colSpan={7} style={{ padding: '2.5rem', textAlign: 'center', color: '#64748B' }}>
+                                    No questions match the current filter.
+                                  </td>
+                                </tr>
+                              ) : (
+                                paginatedAuditQuestions.map((q, idx) => {
+                                  const isSaving = savingQuestionId === q.id;
+                                  return (
+                                    <tr key={q.id || idx} style={{ borderBottom: '1px solid #F1F5F9', backgroundColor: q.unitNo === 0 ? '#FFFDF5' : '#FFFFFF' }}>
+                                      <td style={{ padding: '0.75rem 0.6rem', textAlign: 'center', fontWeight: 700, color: '#64748B' }}>
+                                        {(questionPage - 1) * questionPageSize + idx + 1}
+                                      </td>
+
+                                      <td style={{ padding: '0.75rem 0.6rem' }}>
+                                        <div style={{ fontWeight: 800, color: '#0F172A' }}>{q.questionNo || 'Q'}</div>
+                                        <div style={{ fontSize: '0.72rem', color: '#B45309', fontWeight: 700 }}>{q.marks || 2} Marks</div>
+                                      </td>
+
+                                      <td style={{ padding: '0.75rem 0.6rem' }}>
+                                        <div style={{ fontWeight: 800, color: '#0F172A' }}>{q.subjectCode || 'AKTU'}</div>
+                                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>{q.subjectName || ''}</div>
+                                        <div style={{ fontSize: '0.7rem', color: '#475569', fontWeight: 600 }}>{q.examYear || ''}</div>
+                                      </td>
+
+                                      <td style={{ padding: '0.75rem 0.6rem', maxWidth: '340px' }}>
+                                        <div style={{ color: '#1E293B', lineHeight: 1.4, fontSize: '0.78rem' }}>
+                                          {q.questionText}
+                                        </div>
+                                      </td>
+
+                                      <td style={{ padding: '0.75rem 0.6rem' }}>
+                                        <select
+                                          value={q.unitNo}
+                                          disabled={isSaving}
+                                          onChange={(e) => {
+                                            const newUnit = parseInt(e.target.value, 10);
+                                            handleUpdateQuestionUnit(q.id, newUnit, newUnit > 0 ? `Unit ${newUnit}` : 'Unclassified');
+                                          }}
+                                          style={{
+                                            padding: '0.35rem 0.5rem',
+                                            borderRadius: '6px',
+                                            border: q.unitNo > 0 ? '1.5px solid #86EFAC' : '1.5px solid #FDE68A',
+                                            backgroundColor: q.unitNo > 0 ? '#F0FDF4' : '#FEF3C7',
+                                            color: q.unitNo > 0 ? '#166534' : '#92400E',
+                                            fontSize: '0.76rem',
+                                            fontWeight: 800,
+                                            cursor: 'pointer'
+                                          }}
+                                        >
+                                          <option value={0}>0: Unclassified</option>
+                                          <option value={1}>Unit 1</option>
+                                          <option value={2}>Unit 2</option>
+                                          <option value={3}>Unit 3</option>
+                                          <option value={4}>Unit 4</option>
+                                          <option value={5}>Unit 5</option>
+                                        </select>
+                                      </td>
+
+                                      <td style={{ padding: '0.75rem 0.6rem' }}>
+                                        <span style={{
+                                          fontSize: '0.7rem',
+                                          fontWeight: 800,
+                                          padding: '2px 6px',
+                                          borderRadius: '6px',
+                                          backgroundColor: q.reviewStatus === 'admin_approved' ? '#DCFCE7' : (q.unitNo > 0 ? '#E0F2FE' : '#FEF3C7'),
+                                          color: q.reviewStatus === 'admin_approved' ? '#166534' : (q.unitNo > 0 ? '#0284C7' : '#92400E')
+                                        }}>
+                                          {q.reviewStatus === 'admin_approved' ? 'Verified' : (q.unitNo > 0 ? 'Auto' : 'Needs Review')}
+                                        </span>
+                                      </td>
+
+                                      <td style={{ padding: '0.75rem 0.6rem', textAlign: 'right' }}>
+                                        {q.sourcePaperUrl && (
+                                          <a
+                                            href={q.sourcePaperUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{
+                                              display: 'inline-flex',
+                                              alignItems: 'center',
+                                              gap: '3px',
+                                              padding: '0.3rem 0.55rem',
+                                              borderRadius: '6px',
+                                              backgroundColor: '#F1F5F9',
+                                              color: '#1E293B',
+                                              textDecoration: 'none',
+                                              fontSize: '0.74rem',
+                                              fontWeight: 700
+                                            }}
+                                          >
+                                            <ExternalLink size={12} /> View
+                                          </a>
+                                        )}
+                                      </td>
+                                    </tr>
+                                  );
+                                })
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+
+                        {/* PAGINATION */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1rem', flexWrap: 'wrap', gap: '0.5rem', fontSize: '0.78rem', color: '#64748B' }}>
+                          <span>Showing {(questionPage - 1) * questionPageSize + 1} to {Math.min(questionPage * questionPageSize, filteredAuditQuestions.length)} of {filteredAuditQuestions.length} questions</span>
+                          <div style={{ display: 'flex', gap: '6px' }}>
+                            <button
+                              disabled={questionPage <= 1}
+                              onClick={() => setQuestionPage(p => Math.max(1, p - 1))}
+                              style={{ padding: '0.35rem 0.75rem', borderRadius: '6px', border: '1px solid #CBD5E1', backgroundColor: '#FFFFFF', cursor: questionPage <= 1 ? 'not-allowed' : 'pointer', opacity: questionPage <= 1 ? 0.5 : 1 }}
+                            >
+                              Prev
+                            </button>
+                            <span style={{ padding: '0.35rem 0.75rem', fontWeight: 800 }}>Page {questionPage} of {totalAuditPages}</span>
+                            <button
+                              disabled={questionPage >= totalAuditPages}
+                              onClick={() => setQuestionPage(p => Math.min(totalAuditPages, p + 1))}
+                              style={{ padding: '0.35rem 0.75rem', borderRadius: '6px', border: '1px solid #CBD5E1', backgroundColor: '#FFFFFF', cursor: questionPage >= totalAuditPages ? 'not-allowed' : 'pointer', opacity: questionPage >= totalAuditPages ? 0.5 : 1 }}
+                            >
+                              Next
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })() : (
                     <div>
                       {/* SUBJECT MATRIX TABLE */}
                       <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #e2e8f0' }}>

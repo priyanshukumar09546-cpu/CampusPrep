@@ -42,6 +42,8 @@ import {
 } from '../data/courseMapping.ts';
 import { API_URL } from '../config/api';
 import { pyqsData as localPyqsData } from '../data/pyqsData';
+import { pyqQuestionsData } from '../data/pyqQuestionsData';
+import { AKTU_SYLLABUS_DATA } from '../data/aktuSyllabusData';
 import { areSubjectsMatching, deduplicatePyqs } from '../utils/pyqUtils';
 
 // 10 Featured Courses matching Reference Screenshot Image 2
@@ -184,6 +186,9 @@ export default function MobilePYQsScreen({
   const [selectedYear, setSelectedYear] = useState(normalizeYearStr(selectedYearProp) || '1st Year');
   const [selectedSem, setSelectedSem] = useState('Semester 1');
   const [searchQuery, setSearchQuery] = useState('');
+  const [mobilePyqTab, setMobilePyqTab] = useState('papers'); // 'papers' | 'questions'
+  const [selectedSubjectForQuestions, setSelectedSubjectForQuestions] = useState(null);
+  const [selectedUnitFilter, setSelectedUnitFilter] = useState('all'); // 'all' | '1' | '2' | '3' | '4' | '5' | 'unclassified'
 
   // Modals
   const [showAllCoursesModal, setShowAllCoursesModal] = useState(false);
@@ -460,6 +465,71 @@ export default function MobilePYQsScreen({
       alert(`Request received for ${sub.name} PYQ papers!`);
     }
   };
+
+  const cleanAlpha = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  const getSubjectSyllabus = (sub) => {
+    if (!sub) return null;
+    const codeClean = cleanAlpha(sub.code || '');
+    const nameClean = cleanAlpha(sub.name || '');
+    return AKTU_SYLLABUS_DATA.find(s => {
+      const sCode = cleanAlpha(s.code || '');
+      const sName = cleanAlpha(s.subject || '');
+      if (codeClean && sCode && (codeClean === sCode || codeClean.includes(sCode) || sCode.includes(codeClean))) return true;
+      if (nameClean && sName && (nameClean === sName || sName.includes(nameClean))) return true;
+      return false;
+    });
+  };
+
+  const getSubjectQuestions = (sub) => {
+    if (!sub) return [];
+    const codeClean = cleanAlpha(sub.code || '');
+    const nameClean = cleanAlpha(sub.name || '');
+    return (pyqQuestionsData || []).filter(q => {
+      const qCode = cleanAlpha(q.subjectCode || '');
+      const qName = cleanAlpha(q.subjectName || '');
+      if (codeClean && qCode && (codeClean === qCode || codeClean.includes(qCode) || qCode.includes(codeClean))) return true;
+      if (nameClean && qName && (nameClean === qName || qName.includes(nameClean))) return true;
+      return false;
+    });
+  };
+
+  const activeSubjectObj = useMemo(() => {
+    if (selectedSubjectForQuestions) {
+      const found = subjectsList.find(s => s.code === selectedSubjectForQuestions.code || s.name === selectedSubjectForQuestions.name);
+      if (found) return found;
+    }
+    return subjectsList[0] || null;
+  }, [selectedSubjectForQuestions, subjectsList]);
+
+  const activeSyllabus = useMemo(() => {
+    return getSubjectSyllabus(activeSubjectObj);
+  }, [activeSubjectObj]);
+
+  const allActiveSubjectQuestions = useMemo(() => {
+    return getSubjectQuestions(activeSubjectObj);
+  }, [activeSubjectObj]);
+
+  const filteredChapterQuestions = useMemo(() => {
+    let list = allActiveSubjectQuestions;
+    if (selectedUnitFilter !== 'all') {
+      if (selectedUnitFilter === 'unclassified') {
+        list = list.filter(q => q.unitNo === 0 || q.isUnclassified);
+      } else {
+        const uNum = parseInt(selectedUnitFilter, 10);
+        list = list.filter(q => q.unitNo === uNum);
+      }
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      list = list.filter(item =>
+        (item.questionText || '').toLowerCase().includes(q) ||
+        (item.questionNo || '').toLowerCase().includes(q) ||
+        (item.unitTitle || '').toLowerCase().includes(q)
+      );
+    }
+    return list;
+  }, [allActiveSubjectQuestions, selectedUnitFilter, searchQuery]);
 
   return (
     <div 
@@ -888,208 +958,567 @@ export default function MobilePYQsScreen({
           </div>
         </div>
 
-        {/* 7. SUBJECT-WISE PYQ CARDS (Image 2 - Single Column Full Width) */}
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
-              Subjects ({selectedSem})
-            </h2>
-            <button
-              onClick={() => setShowSyllabusModal(true)}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: '#861820',
-                fontSize: '11px',
-                fontWeight: 700,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '2px'
-              }}
-            >
-              View Syllabus <ArrowRight size={11} />
-            </button>
-          </div>
+        {/* VIEW MODE TOGGLE: Question Papers vs Chapter-wise Questions */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          backgroundColor: '#FFFFFF',
+          border: '1.5px solid #E9D9CC',
+          borderRadius: '12px',
+          padding: '3px',
+          marginBottom: '12px',
+          boxShadow: '0 1px 3px rgba(20, 36, 61, 0.02)'
+        }}>
+          <button
+            onClick={() => setMobilePyqTab('papers')}
+            style={{
+              padding: '7px 0',
+              borderRadius: '9px',
+              border: 'none',
+              backgroundColor: mobilePyqTab === 'papers' ? '#861820' : 'transparent',
+              color: mobilePyqTab === 'papers' ? '#FFFFFF' : '#64748B',
+              fontSize: '11px',
+              fontWeight: 800,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '5px',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <FileText size={13} /> Question Papers
+          </button>
+          <button
+            onClick={() => setMobilePyqTab('questions')}
+            style={{
+              padding: '7px 0',
+              borderRadius: '9px',
+              border: 'none',
+              backgroundColor: mobilePyqTab === 'questions' ? '#861820' : 'transparent',
+              color: mobilePyqTab === 'questions' ? '#FFFFFF' : '#64748B',
+              fontSize: '11px',
+              fontWeight: 800,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '5px',
+              transition: 'all 0.15s ease'
+            }}
+          >
+            <BookOpen size={13} /> Chapter Questions
+          </button>
+        </div>
 
-          {/* Single Column PYQ Cards List */}
-          {subjectsList.length === 0 ? (
-            <div style={{
-              backgroundColor: '#FFFFFF',
-              borderRadius: '16px',
-              border: '1.5px dashed #E9D9CC',
-              padding: '28px 14px',
-              textAlign: 'center',
-              color: '#66758B'
-            }}>
-              <FileText size={30} style={{ color: '#D6A13D', marginBottom: '6px' }} />
-              <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 4px' }}>
-                No PYQs Mapped
-              </h4>
-              <p style={{ fontSize: '11px', margin: 0 }}>
-                No question papers found for {selectedCourse} {selectedYear} ({selectedSem}).
-              </p>
+        {/* 7. SUBJECT-WISE PYQ CARDS (PAPERS MODE) */}
+        {mobilePyqTab === 'papers' ? (
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+              <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
+                Subjects ({selectedSem})
+              </h2>
+              <button
+                onClick={() => setShowSyllabusModal(true)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#861820',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '2px'
+                }}
+              >
+                View Syllabus <ArrowRight size={11} />
+              </button>
             </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {subjectsList.map((subject, idx) => {
-                const IconComp = subject.icon;
-                const pyqMeta = getSubjectPyqs(subject);
 
-                return (
-                  <div
-                    key={subject.id || idx}
-                    style={{
-                      backgroundColor: '#FFFFFF',
-                      borderRadius: '14px',
-                      padding: '10px 12px',
-                      border: '1.5px solid #E9D9CC',
-                      boxShadow: '0 1px 3px rgba(20, 36, 61, 0.02)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '8px',
-                      boxSizing: 'border-box'
-                    }}
-                  >
-                    {/* Top Row: Icon + Subject Info + Year Badge + Download Button */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
-                      
-                      {/* Left: Pastel Icon Box */}
-                      <div style={{
-                        width: '34px',
-                        height: '34px',
-                        borderRadius: '10px',
-                        backgroundColor: subject.iconBg,
-                        color: subject.iconColor,
+            {/* Single Column PYQ Cards List */}
+            {subjectsList.length === 0 ? (
+              <div style={{
+                backgroundColor: '#FFFFFF',
+                borderRadius: '16px',
+                border: '1.5px dashed #E9D9CC',
+                padding: '28px 14px',
+                textAlign: 'center',
+                color: '#66758B'
+              }}>
+                <FileText size={30} style={{ color: '#D6A13D', marginBottom: '6px' }} />
+                <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 4px' }}>
+                  No PYQs Mapped
+                </h4>
+                <p style={{ fontSize: '11px', margin: 0 }}>
+                  No question papers found for {selectedCourse} {selectedYear} ({selectedSem}).
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {subjectsList.map((subject, idx) => {
+                  const IconComp = subject.icon;
+                  const pyqMeta = getSubjectPyqs(subject);
+                  const subQCount = getSubjectQuestions(subject).length;
+
+                  return (
+                    <div
+                      key={subject.id || idx}
+                      style={{
+                        backgroundColor: '#FFFFFF',
+                        borderRadius: '14px',
+                        padding: '10px 12px',
+                        border: '1.5px solid #E9D9CC',
+                        boxShadow: '0 1px 3px rgba(20, 36, 61, 0.02)',
                         display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                      }}>
-                        <IconComp size={18} strokeWidth={2.4} />
+                        flexDirection: 'column',
+                        gap: '8px',
+                        boxSizing: 'border-box'
+                      }}
+                    >
+                      {/* Top Row: Icon + Subject Info + Year Badge + Download Button */}
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px' }}>
+                        
+                        {/* Left: Pastel Icon Box */}
+                        <div style={{
+                          width: '34px',
+                          height: '34px',
+                          borderRadius: '10px',
+                          backgroundColor: subject.iconBg,
+                          color: subject.iconColor,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0
+                        }}>
+                          <IconComp size={18} strokeWidth={2.4} />
+                        </div>
+
+                        {/* Middle: Subject Code + Name + Available Range */}
+                        <div style={{ flex: '1 1 0%', minWidth: 0 }}>
+                          <div style={{
+                            fontSize: '11px',
+                            fontWeight: 900,
+                            color: '#14243D',
+                            letterSpacing: '-0.01em',
+                            lineHeight: 1.1
+                          }}>
+                            {subject.code || 'CORE'}
+                          </div>
+                          <div style={{
+                            fontSize: '11.5px',
+                            fontWeight: 800,
+                            color: '#14243D',
+                            lineHeight: 1.25,
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis'
+                          }}>
+                            {subject.name}
+                          </div>
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            fontSize: '9.5px',
+                            color: '#66758B',
+                            marginTop: '2px'
+                          }}>
+                            <FileText size={10} color="#66758B" />
+                            <span>{pyqMeta.yearsCount > 0 ? `PYQ Available: ${pyqMeta.startYear} - ${pyqMeta.endYear} (${pyqMeta.yearsCount} Years)` : 'No PYQs available yet'}</span>
+                          </div>
+                        </div>
+
+                        {/* Right: Badge + Download Action */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                          <span style={{
+                            backgroundColor: pyqMeta.yearsCount > 0 ? '#861820' : '#E2E8F0',
+                            color: pyqMeta.yearsCount > 0 ? '#FFFFFF' : '#64748B',
+                            fontSize: '9.5px',
+                            fontWeight: 800,
+                            padding: '2px 8px',
+                            borderRadius: '9999px',
+                            whiteSpace: 'nowrap'
+                          }}>
+                            {pyqMeta.yearsCount > 0 ? `${pyqMeta.yearsCount} Years` : '0 Papers'}
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={() => handleDownloadClick(pyqMeta, subject)}
+                            aria-label={`Download ${subject.name} PYQ`}
+                            style={{
+                              width: '26px',
+                              height: '26px',
+                              borderRadius: '50%',
+                              backgroundColor: '#F8EAC9',
+                              color: '#861820',
+                              border: 'none',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              cursor: 'pointer',
+                              padding: 0
+                            }}
+                          >
+                            <Download size={13} strokeWidth={2.5} />
+                          </button>
+                        </div>
                       </div>
 
-                      {/* Middle: Subject Code + Name + Available Range */}
-                      <div style={{ flex: '1 1 0%', minWidth: 0 }}>
-                        <div style={{
-                          fontSize: '11px',
-                          fontWeight: 900,
-                          color: '#14243D',
-                          letterSpacing: '-0.01em',
-                          lineHeight: 1.1
-                        }}>
-                          {subject.code || 'CORE'}
-                        </div>
-                        <div style={{
-                          fontSize: '11.5px',
-                          fontWeight: 800,
-                          color: '#14243D',
-                          lineHeight: 1.25,
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis'
-                        }}>
-                          {subject.name}
-                        </div>
+                      {/* Middle Row: Horizontal Examination Year Chips */}
+                      {pyqMeta.displayYears.length > 0 ? (
                         <div style={{
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '4px',
-                          fontSize: '9.5px',
-                          color: '#66758B',
-                          marginTop: '2px'
+                          gap: '6px',
+                          overflowX: 'auto',
+                          scrollbarWidth: 'none',
+                          msOverflowStyle: 'none',
+                          paddingTop: '2px'
                         }}>
-                          <FileText size={10} color="#66758B" />
-                          <span>{pyqMeta.yearsCount > 0 ? `PYQ Available: ${pyqMeta.startYear} - ${pyqMeta.endYear} (${pyqMeta.yearsCount} Years)` : 'No PYQs available yet'}</span>
+                          {pyqMeta.displayYears.map(year => (
+                            <button
+                              key={year}
+                              onClick={() => handleYearChipClick(year, pyqMeta, subject)}
+                              style={{
+                                padding: '3px 8px',
+                                borderRadius: '6px',
+                                border: '1px solid #E9D9CC',
+                                backgroundColor: '#FFFCF7',
+                                color: '#14243D',
+                                fontSize: '9.5px',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                                whiteSpace: 'nowrap',
+                                transition: 'all 0.15s ease'
+                              }}
+                            >
+                              {year}
+                            </button>
+                          ))}
                         </div>
+                      ) : (
+                        <div style={{
+                          fontSize: '9.5px',
+                          color: '#94A3B8',
+                          paddingTop: '2px',
+                          fontStyle: 'italic'
+                        }}>
+                          No papers uploaded yet • Upload via Admin
+                        </div>
+                      )}
+
+                      {/* Bottom Row: Chapter Questions Shortcut Button */}
+                      {subQCount > 0 && (
+                        <div style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          paddingTop: '4px',
+                          borderTop: '1px dashed #F1E5DB'
+                        }}>
+                          <button
+                            onClick={() => {
+                              setSelectedSubjectForQuestions(subject);
+                              setSelectedUnitFilter('all');
+                              setMobilePyqTab('questions');
+                            }}
+                            style={{
+                              background: 'none',
+                              border: 'none',
+                              color: '#861820',
+                              fontSize: '10px',
+                              fontWeight: 800,
+                              cursor: 'pointer',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              padding: '2px 0'
+                            }}
+                          >
+                            <BookOpen size={11} />
+                            <span>Browse {subQCount} Questions by Unit</span>
+                            <ChevronRight size={11} />
+                          </button>
+                        </div>
+                      )}
+
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        ) : (
+          /* CHAPTER-WISE QUESTIONS MODE */
+          <div>
+            {/* Subject Selector Horizontal Chips */}
+            <div style={{ marginBottom: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                <span style={{ fontSize: '10px', fontWeight: 800, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  Select Subject
+                </span>
+                <span style={{ fontSize: '10px', fontWeight: 700, color: '#861820' }}>
+                  {allActiveSubjectQuestions.length} Questions Available
+                </span>
+              </div>
+              <div style={{
+                display: 'flex',
+                gap: '6px',
+                overflowX: 'auto',
+                scrollbarWidth: 'none',
+                paddingBottom: '2px'
+              }}>
+                {subjectsList.map(sub => {
+                  const isSel = (activeSubjectObj?.code === sub.code) || (activeSubjectObj?.name === sub.name);
+                  const qCount = getSubjectQuestions(sub).length;
+                  return (
+                    <button
+                      key={sub.code || sub.name}
+                      onClick={() => {
+                        setSelectedSubjectForQuestions(sub);
+                        setSelectedUnitFilter('all');
+                      }}
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: '9999px',
+                        border: isSel ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                        backgroundColor: isSel ? '#861820' : '#FFFFFF',
+                        color: isSel ? '#FFFFFF' : '#14243D',
+                        fontSize: '10px',
+                        fontWeight: isSel ? 800 : 700,
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0,
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {sub.code || sub.name} ({qCount})
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Verified Syllabus Unit Filter Pills */}
+            <div style={{ marginBottom: '12px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 800, color: '#64748B', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Filter by Syllabus Unit
+              </div>
+              <div style={{
+                display: 'flex',
+                gap: '6px',
+                overflowX: 'auto',
+                scrollbarWidth: 'none',
+                paddingBottom: '2px'
+              }}>
+                {/* All Units */}
+                <button
+                  onClick={() => setSelectedUnitFilter('all')}
+                  style={{
+                    padding: '4px 10px',
+                    borderRadius: '8px',
+                    border: selectedUnitFilter === 'all' ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                    backgroundColor: selectedUnitFilter === 'all' ? '#FDF2F2' : '#FFFFFF',
+                    color: selectedUnitFilter === 'all' ? '#861820' : '#475569',
+                    fontSize: '10px',
+                    fontWeight: selectedUnitFilter === 'all' ? 800 : 600,
+                    whiteSpace: 'nowrap',
+                    cursor: 'pointer',
+                    flexShrink: 0
+                  }}
+                >
+                  All Units ({allActiveSubjectQuestions.length})
+                </button>
+
+                {/* Units 1 to 5 from Verified Syllabus */}
+                {[1, 2, 3, 4, 5].map(uNum => {
+                  const unitMeta = activeSyllabus?.units?.[uNum - 1];
+                  const unitQuestions = allActiveSubjectQuestions.filter(q => q.unitNo === uNum);
+                  const isSel = selectedUnitFilter === String(uNum);
+                  return (
+                    <button
+                      key={uNum}
+                      onClick={() => setSelectedUnitFilter(String(uNum))}
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: '8px',
+                        border: isSel ? '1.5px solid #861820' : '1px solid #E9D9CC',
+                        backgroundColor: isSel ? '#FDF2F2' : '#FFFFFF',
+                        color: isSel ? '#861820' : '#475569',
+                        fontSize: '10px',
+                        fontWeight: isSel ? 800 : 600,
+                        whiteSpace: 'nowrap',
+                        cursor: 'pointer',
+                        flexShrink: 0
+                      }}
+                    >
+                      Unit {uNum}{unitMeta ? `: ${unitMeta.title}` : ''} ({unitQuestions.length})
+                    </button>
+                  );
+                })}
+
+                {/* Unclassified filter */}
+                {(() => {
+                  const unclassCount = allActiveSubjectQuestions.filter(q => q.unitNo === 0 || q.isUnclassified).length;
+                  if (unclassCount === 0) return null;
+                  const isSel = selectedUnitFilter === 'unclassified';
+                  return (
+                    <button
+                      onClick={() => setSelectedUnitFilter('unclassified')}
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: '8px',
+                        border: isSel ? '1.5px solid #D97706' : '1px solid #FDE68A',
+                        backgroundColor: isSel ? '#FEF3C7' : '#FFFFFF',
+                        color: isSel ? '#92400E' : '#B45309',
+                        fontSize: '10px',
+                        fontWeight: isSel ? 800 : 600,
+                        whiteSpace: 'nowrap',
+                        cursor: 'pointer',
+                        flexShrink: 0
+                      }}
+                    >
+                      Unclassified ({unclassCount})
+                    </button>
+                  );
+                })()}
+              </div>
+            </div>
+
+            {/* Questions List */}
+            {filteredChapterQuestions.length === 0 ? (
+              <div style={{
+                backgroundColor: '#FFFFFF',
+                borderRadius: '16px',
+                border: '1.5px dashed #E9D9CC',
+                padding: '24px 14px',
+                textAlign: 'center',
+                color: '#66758B'
+              }}>
+                <FileText size={26} style={{ color: '#D6A13D', marginBottom: '6px' }} />
+                <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 4px' }}>
+                  No Questions Found
+                </h4>
+                <p style={{ fontSize: '11px', margin: 0 }}>
+                  {selectedUnitFilter !== 'all' ? `No questions mapped to this unit yet.` : `No questions parsed for ${activeSubjectObj?.name || 'this subject'}.`}
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {filteredChapterQuestions.map((q, idx) => {
+                  return (
+                    <div
+                      key={q.id || idx}
+                      style={{
+                        backgroundColor: '#FFFFFF',
+                        borderRadius: '14px',
+                        padding: '12px',
+                        border: '1.5px solid #E9D9CC',
+                        boxShadow: '0 1px 3px rgba(20, 36, 61, 0.02)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '8px'
+                      }}
+                    >
+                      {/* Top Badges Row */}
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                          <span style={{
+                            backgroundColor: '#14243D',
+                            color: '#FFFFFF',
+                            fontSize: '9.5px',
+                            fontWeight: 800,
+                            padding: '2px 6px',
+                            borderRadius: '5px'
+                          }}>
+                            {q.questionNo || `Q${idx + 1}`}
+                          </span>
+                          <span style={{
+                            backgroundColor: '#FEF3C7',
+                            color: '#92400E',
+                            fontSize: '9px',
+                            fontWeight: 800,
+                            padding: '2px 6px',
+                            borderRadius: '5px'
+                          }}>
+                            {q.marks || 2} Marks
+                          </span>
+                          <span style={{
+                            backgroundColor: '#F1F5F9',
+                            color: '#475569',
+                            fontSize: '9px',
+                            fontWeight: 700,
+                            padding: '2px 6px',
+                            borderRadius: '5px'
+                          }}>
+                            {q.examYear || 'AKTU'}
+                          </span>
+                        </div>
+
+                        <span style={{
+                          backgroundColor: q.unitNo > 0 ? '#F0FDF4' : '#FEF3C7',
+                          color: q.unitNo > 0 ? '#166534' : '#92400E',
+                          border: q.unitNo > 0 ? '1px solid #BBF7D0' : '1px solid #FDE68A',
+                          fontSize: '9px',
+                          fontWeight: 800,
+                          padding: '2px 7px',
+                          borderRadius: '9999px',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '3px'
+                        }}>
+                          {q.unitNo > 0 ? `Unit ${q.unitNo}: ${q.unitTitle || 'Verified'}` : 'Unclassified'}
+                        </span>
                       </div>
 
-                      {/* Right: Badge + Download Action */}
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-                        <span style={{
-                          backgroundColor: pyqMeta.yearsCount > 0 ? '#861820' : '#E2E8F0',
-                          color: pyqMeta.yearsCount > 0 ? '#FFFFFF' : '#64748B',
-                          fontSize: '9.5px',
-                          fontWeight: 800,
-                          padding: '2px 8px',
-                          borderRadius: '9999px',
-                          whiteSpace: 'nowrap'
-                        }}>
-                          {pyqMeta.yearsCount > 0 ? `${pyqMeta.yearsCount} Years` : '0 Papers'}
-                        </span>
+                      {/* Question Text */}
+                      <p style={{
+                        fontSize: '12px',
+                        lineHeight: 1.5,
+                        color: '#1E293B',
+                        margin: 0,
+                        fontWeight: 600
+                      }}>
+                        {q.questionText}
+                      </p>
 
+                      {/* Card Footer: View in Paper */}
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingTop: '4px', borderTop: '1px dashed #F1E5DB' }}>
                         <button
-                          type="button"
-                          onClick={() => handleDownloadClick(pyqMeta, subject)}
-                          aria-label={`Download ${subject.name} PYQ`}
+                          onClick={() => {
+                            if (q.sourcePaperUrl) {
+                              if (onOpenPdf) {
+                                onOpenPdf({ pdfUrl: q.sourcePaperUrl, title: `${q.subjectName} (${q.examYear})` });
+                              } else {
+                                window.open(q.sourcePaperUrl, '_blank', 'noopener,noreferrer');
+                              }
+                            }
+                          }}
                           style={{
-                            width: '26px',
-                            height: '26px',
-                            borderRadius: '50%',
-                            backgroundColor: '#F8EAC9',
-                            color: '#861820',
+                            background: 'none',
                             border: 'none',
+                            color: '#861820',
+                            fontSize: '10px',
+                            fontWeight: 800,
+                            cursor: 'pointer',
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            padding: 0
+                            gap: '3px'
                           }}
                         >
-                          <Download size={13} strokeWidth={2.5} />
+                          <FileText size={11} />
+                          <span>View in Paper</span>
+                          <ExternalLink size={10} />
                         </button>
                       </div>
                     </div>
-
-                    {/* Bottom Row: Horizontal Examination Year Chips (Image 2) */}
-                    {pyqMeta.displayYears.length > 0 ? (
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        overflowX: 'auto',
-                        scrollbarWidth: 'none',
-                        msOverflowStyle: 'none',
-                        paddingTop: '2px'
-                      }}>
-                        {pyqMeta.displayYears.map(year => (
-                          <button
-                            key={year}
-                            onClick={() => handleYearChipClick(year, pyqMeta, subject)}
-                            style={{
-                              padding: '3px 8px',
-                              borderRadius: '6px',
-                              border: '1px solid #E9D9CC',
-                              backgroundColor: '#FFFCF7',
-                              color: '#14243D',
-                              fontSize: '9.5px',
-                              fontWeight: 700,
-                              cursor: 'pointer',
-                              whiteSpace: 'nowrap',
-                              transition: 'all 0.15s ease'
-                            }}
-                          >
-                            {year}
-                          </button>
-                        ))}
-                      </div>
-                    ) : (
-                      <div style={{
-                        fontSize: '9.5px',
-                        color: '#94A3B8',
-                        paddingTop: '2px',
-                        fontStyle: 'italic'
-                      }}>
-                        No papers uploaded yet • Upload via Admin
-                      </div>
-                    )}
-
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
           </>
         )}
 

@@ -2146,6 +2146,28 @@ const dbUsers = loadUsersFromDisk();
 const dbNotes = loadNotesFromDisk();
 const dbPyqs = loadPyqsFromDisk();
 const dbSubjects = loadSubjectsFromDisk();
+
+const PYQ_QUESTIONS_FILE = path.join(__dirname, 'data', 'pyqQuestions.json');
+function loadPyqQuestionsFromDisk() {
+  try {
+    if (fs.existsSync(PYQ_QUESTIONS_FILE)) {
+      return JSON.parse(fs.readFileSync(PYQ_QUESTIONS_FILE, 'utf8'));
+    }
+  } catch (e) {
+    console.warn('Error loading pyqQuestions from disk:', e.message);
+  }
+  return [];
+}
+function savePyqQuestionsToDisk(questions) {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(PYQ_QUESTIONS_FILE, JSON.stringify(questions, null, 2), 'utf8');
+  } catch (e) {
+    console.error('Error saving pyqQuestions to disk:', e.message);
+  }
+}
+let dbPyqQuestions = loadPyqQuestionsFromDisk();
+
 const RESUMES_FILE = path.join(__dirname, 'data', 'resumes.json');
 const RESUME_TEMPLATES_FILE = path.join(__dirname, 'data', 'resume_templates.json');
 const RESUME_SETTINGS_FILE = path.join(__dirname, 'data', 'resume_settings.json');
@@ -3443,6 +3465,172 @@ app.get('/api/pyqs/:id', async (req, res) => {
     const pyq = dbPyqs.find(p => p.id === req.params.id);
     if (!pyq) return res.status(404).json({ success: false, message: 'PYQ paper not found.' });
     res.json({ success: true, pyq });
+  }
+});
+
+// GET CHAPTER-WISE QUESTIONS (FILTER BY SUBJECT, UNIT, YEAR, SEARCH)
+app.get('/api/pyq-questions', async (req, res) => {
+  try {
+    const { subjectCode, subjectName, unitNo, year, examYear, q, branch, course } = req.query;
+
+    const questions = loadPyqQuestionsFromDisk();
+    let result = Array.isArray(questions) && questions.length > 0 ? questions : dbPyqQuestions;
+
+    // Course filter
+    const targetCourse = (course || 'B.Tech').toLowerCase().replace(/[^a-z0-9]/g, '');
+    result = result.filter(item => {
+      const c = (item.course || 'B.Tech').toLowerCase().replace(/[^a-z0-9]/g, '');
+      return c === targetCourse;
+    });
+
+    // Branch filter
+    if (branch && branch !== 'ALL' && branch !== 'All') {
+      const targetBranch = branch.toUpperCase().trim();
+      result = result.filter(item => {
+        const b = (item.branch || 'ALL').toUpperCase().trim();
+        return b === 'ALL' || b === targetBranch;
+      });
+    }
+
+    // Subject Code or Subject Name filter
+    if (subjectCode || subjectName) {
+      const codeClean = subjectCode ? String(subjectCode).toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
+      const nameClean = subjectName ? String(subjectName).toLowerCase().replace(/[^a-z0-9]/g, '') : '';
+
+      result = result.filter(item => {
+        const itemCodeClean = (item.subjectCode || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const itemNameClean = (item.subjectName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+        if (codeClean && itemCodeClean) {
+          if (codeClean === itemCodeClean || areSubjectsMatching({ code: codeClean }, { subjectCode: itemCodeClean })) {
+            return true;
+          }
+        }
+        if (nameClean && itemNameClean) {
+          if (itemNameClean.includes(nameClean) || nameClean.includes(itemNameClean)) {
+            return true;
+          }
+        }
+        return false;
+      });
+    }
+
+    // Unit filter (0 = Unclassified, 1-5 = Unit 1 to 5)
+    if (unitNo !== undefined && unitNo !== null && unitNo !== '' && unitNo !== 'all' && unitNo !== 'All') {
+      const uInt = parseInt(unitNo, 10);
+      result = result.filter(item => item.unitNo === uInt);
+    }
+
+    // Exam year filter
+    if (examYear && examYear !== 'All' && examYear !== 'all') {
+      const yrClean = String(examYear).trim();
+      result = result.filter(item => String(item.examYear || '').includes(yrClean));
+    }
+
+    // Keyword search filter
+    if (q) {
+      const queryLower = String(q).toLowerCase().trim();
+      result = result.filter(item => {
+        const text = (item.questionText || '').toLowerCase();
+        const num = (item.questionNo || '').toLowerCase();
+        const title = (item.unitTitle || '').toLowerCase();
+        return text.includes(queryLower) || num.includes(queryLower) || title.includes(queryLower);
+      });
+    }
+
+    res.json({
+      success: true,
+      total: result.length,
+      questions: result
+    });
+  } catch (err) {
+    console.error('Error fetching PYQ questions:', err);
+    res.status(500).json({ success: false, message: 'Server error loading questions.', error: err.message });
+  }
+});
+
+// UPDATE QUESTION UNIT MAPPING (ADMIN)
+app.put('/api/admin/pyq-questions/:id', verifyAdminToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { unitNo, unitTitle, questionText, marks, reviewStatus } = req.body;
+
+    const questions = loadPyqQuestionsFromDisk();
+    const qIndex = questions.findIndex(q => q.id === id);
+    if (qIndex === -1) {
+      return res.status(404).json({ success: false, message: 'Question not found.' });
+    }
+
+    const q = questions[qIndex];
+    if (unitNo !== undefined) q.unitNo = parseInt(unitNo, 10);
+    if (unitTitle !== undefined) q.unitTitle = unitTitle;
+    if (questionText !== undefined) q.questionText = questionText;
+    if (marks !== undefined) q.marks = parseInt(marks, 10);
+    if (reviewStatus !== undefined) q.reviewStatus = reviewStatus;
+    q.isUnclassified = (q.unitNo === 0);
+    q.updatedAt = new Date().toISOString();
+
+    questions[qIndex] = q;
+    savePyqQuestionsToDisk(questions);
+    dbPyqQuestions = questions;
+
+    logSystemActivity('Question Mapping Updated', `Updated mapping for question ${q.questionNo} to Unit ${q.unitNo}`, req.adminUser.name, '#0284c7');
+    res.json({ success: true, message: 'Question unit mapping updated successfully!', question: q });
+  } catch (err) {
+    console.error('Error updating question mapping:', err);
+    res.status(500).json({ success: false, message: 'Server error updating question mapping.' });
+  }
+});
+
+// CREATE PYQ QUESTION (ADMIN)
+app.post('/api/admin/pyq-questions', verifyAdminToken, async (req, res) => {
+  try {
+    const {
+      pyqId, paperTitle, course, branch, semester,
+      subjectCode, subjectName, examYear, examType,
+      section, questionNo, questionText, marks,
+      unitNo, unitTitle, confidence, reviewStatus, sourceUrl
+    } = req.body;
+
+    if (!questionText || !questionNo) {
+      return res.status(400).json({ success: false, message: 'Question number and question text are required.' });
+    }
+
+    const questions = loadPyqQuestionsFromDisk();
+    const newQ = {
+      id: `q-custom-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
+      pyqId: pyqId || '',
+      paperTitle: paperTitle || '',
+      course: course || 'B.Tech',
+      branch: branch || 'ALL',
+      semester: semester || 'Semester 1',
+      subjectCode: subjectCode || '',
+      subjectName: subjectName || 'Subject',
+      examYear: examYear || '2023-2024',
+      examType: examType || 'Odd Semester',
+      section: section || 'Section A',
+      questionNo: questionNo,
+      questionText: questionText,
+      marks: marks ? parseInt(marks, 10) : 7,
+      unitNo: unitNo !== undefined ? parseInt(unitNo, 10) : 0,
+      unitTitle: unitTitle || (unitNo > 0 ? `Unit ${unitNo}` : 'Unclassified'),
+      isUnclassified: !unitNo || unitNo === 0,
+      confidence: confidence || 1.0,
+      reviewStatus: reviewStatus || (unitNo > 0 ? 'verified' : 'needs_review'),
+      sourceUrl: sourceUrl || '',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    questions.unshift(newQ);
+    savePyqQuestionsToDisk(questions);
+    dbPyqQuestions = questions;
+
+    logSystemActivity('Question Created', `Added chapter question ${newQ.questionNo} for ${newQ.subjectName}`, req.adminUser.name, '#10b981');
+    res.json({ success: true, message: 'Question created successfully!', question: newQ });
+  } catch (err) {
+    console.error('Error creating question:', err);
+    res.status(500).json({ success: false, message: 'Server error creating question.' });
   }
 });
 
