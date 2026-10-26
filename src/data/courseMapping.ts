@@ -136,31 +136,33 @@ export const COURSE_CONFIG = {
     },
     subjects: {
       1: [
-        "Problem Solving using Python",
-        "Computer Organization & Architecture",
-        "Discrete Mathematics",
-        "Data Structures",
-        "Principles of Management & Communication"
+        { code: "BMC101", name: "Fundamental of Computers & Emerging Technologies" },
+        { code: "BMC102", name: "Problem Solving using C" },
+        { code: "BMC103", name: "Principles of Management & Communication" },
+        { code: "BMC104", name: "Discrete Mathematics" },
+        { code: "BMC105", name: "Computer Organization & Architecture" },
+        { code: "KCA-CS", name: "Cyber Security" }
       ],
       2: [
-        "Object Oriented Programming using Java",
-        "Operating Systems",
-        "Database Management Systems",
-        "Web Technologies",
-        "Software Engineering"
+        { code: "KCA201", name: "Object Oriented Programming" },
+        { code: "KCA202", name: "Operating Systems" },
+        { code: "KCA203", name: "Database Management Systems" },
+        { code: "KCA204", name: "Web Technologies" },
+        { code: "KCA205", name: "Software Engineering" },
+        { code: "KCA-DSA", name: "Data Structures & Analysis of Algorithms" }
       ],
       3: [
-        "Artificial Intelligence & Machine Learning",
-        "Computer Networks",
-        "Cloud Computing",
-        "Design and Analysis of Algorithms",
-        "Data Analytics"
+        { code: "KCA301", name: "Artificial Intelligence & Machine Learning" },
+        { code: "KCA302", name: "Computer Networks" },
+        { code: "KCA303", name: "Cloud Computing" },
+        { code: "KCA304", name: "Design and Analysis of Algorithms" },
+        { code: "KCA305", name: "Data Analytics" }
       ],
       4: [
-        "Major Project & Seminar",
-        "DevOps & Agile Methodology",
-        "Advanced Web Development",
-        "Information & Cyber Security"
+        { code: "KCA401", name: "Major Project & Seminar" },
+        { code: "KCA402", name: "DevOps & Agile Methodology" },
+        { code: "KCA403", name: "Advanced Web Development" },
+        { code: "KCA404", name: "Information & Cyber Security" }
       ]
     }
   },
@@ -174,34 +176,60 @@ export const COURSE_CONFIG = {
     },
     subjects: {
       1: [
-        "Management Concepts & Organisational Behaviour",
-        "Managerial Economics",
-        "Financial Accounting & Analysis",
-        "Business Statistics & Analytics",
-        "Marketing Management",
-        "Design Thinking & Business Communication"
+        { code: "BMB101", name: "Management Concepts & Organisational Behaviour" },
+        { code: "BMB102", name: "Managerial Economics" },
+        { code: "BMB103", name: "Financial Accounting & Analysis" },
+        { code: "BMB104", name: "Business Statistics & Analytics" },
+        { code: "BMB105", name: "Marketing Management" },
+        { code: "BMB106", name: "Creativity, Innovation and Entrepreneurship" },
+        { code: "BMB107", name: "Business Communication" },
+        { code: "BMB151", name: "IT Skills – I" }
       ],
       2: [
-        "Business Environment & Legal Aspects of Business",
-        "Human Resource Management",
-        "Corporate Financial Management",
-        "Operations Management",
-        "Quantitative Techniques for Managers",
-        "Business Research Methods"
+        { code: "BMB201", name: "Business Environment & Legal Aspects of Business" },
+        { code: "BMB202", name: "Human Resource Management" },
+        { code: "BMB203", name: "Corporate Financial Management" },
+        { code: "BMB204", name: "Operations Management" },
+        { code: "BMB205", name: "Quantitative Techniques for Managers" },
+        { code: "BMB206", name: "Business Research Methods" }
       ],
       3: [
-        "Consumer Behaviour",
-        "Security Analysis & Portfolio Management",
-        "Talent Management & Acquisition",
-        "Supply Chain & Logistics Management",
-        "Enterprise Resource Planning (ERP)"
+        { code: "BMB301", name: "Strategic Management" },
+        { code: "BMBMK01", name: "Consumer Behaviour and Neuro Marketing" },
+        { code: "BMBMK02", name: "Marketing & Web Analytics" },
+        { code: "BMBMK03", name: "Sales and Distribution Management" },
+        { code: "BMBFM01", name: "Investment and Portfolio Management" },
+        { code: "BMBFM02", name: "Tax Planning and Management" },
+        { code: "BMBFM03", name: "Financial and Credit Risk Analysis" },
+        { code: "BMBHR01", name: "Talent Acquisition Management" },
+        { code: "BMBHR02", name: "Employee Relations and Labour Laws" },
+        { code: "BMBHR03", name: "Performance and Reward Management" },
+        { code: "BMBOM01", name: "Supply Chain and Logistics Management" },
+        { code: "BMBOM02", name: "Business Process Reengineering" },
+        { code: "BMBOM03", name: "Quality Management" },
+        { code: "BMBIT01", name: "Software Engineering and Management" },
+        { code: "BMBIT02", name: "Emerging Technologies for Business" },
+        { code: "BMBIT03", name: "Database Management System" },
+        { code: "BMBIB01", name: "International Business Management" },
+        { code: "BMBIB02", name: "Export Import Documentation" },
+        { code: "BMBIB03", name: "Geo-Politics and Trade" },
+        { code: "BMBCM01", name: "Principles and Practices of Co-Operation" },
+        { code: "BMBCM02", name: "Co-Operative Legislation" },
+        { code: "BMBCM03", name: "Credit Co-Operatives" }
       ],
       4: [
-        "Sales & Distribution Management",
-        "International Financial Management",
-        "Strategic Human Resource Management",
-        "Operations Planning & Inventory Control",
-        "IT Strategy & Project Governance"
+        { code: "BMBMK04", name: "Sales & Distribution Management" },
+        { code: "BMBMK05", name: "Strategic Brand Management" },
+        { code: "BMBFM04", name: "International Financial Management" },
+        { code: "BMBFM05", name: "Financial Derivatives & Risk Management" },
+        { code: "BMBHR04", name: "Strategic Human Resource Management" },
+        { code: "BMBHR05", name: "Organizational Change & Cross-Cultural HRM" },
+        { code: "BMBOM04", name: "Operations Planning & Inventory Control" },
+        { code: "BMBOM05", name: "World Class Manufacturing" },
+        { code: "BMBIT04", name: "Cloud Computing & Cyber Security for Business" },
+        { code: "BMBIT05", name: "IT Strategy & Project Governance" },
+        { code: "BMBIB04", name: "Global Logistics & Supply Chain" },
+        { code: "BMBIB05", name: "International Financial Markets" }
       ]
     }
   },
@@ -217,57 +245,71 @@ export const COURSE_CONFIG = {
     },
     subjects: {
       1: [
-        "Human Anatomy & Physiology I",
-        "Pharmaceutical Analysis I",
-        "Pharmaceutics I",
-        "Pharmaceutical Inorganic Chemistry",
-        "Communication Skills"
+        { code: "BP101T", name: "Human Anatomy and Physiology I" },
+        { code: "BP102T", name: "Pharmaceutical Analysis I" },
+        { code: "BP103T", name: "Pharmaceutics I" },
+        { code: "BP104T", name: "Pharmaceutical Inorganic Chemistry" },
+        { code: "BP105T", name: "Communication Skills" },
+        { code: "BP106RBT", name: "Remedial Biology" },
+        { code: "BP106RMT", name: "Remedial Mathematics" }
       ],
       2: [
-        "Human Anatomy & Physiology II",
-        "Pharmaceutical Organic Chemistry I",
-        "Biochemistry",
-        "Pathophysiology",
-        "Computer Applications in Pharmacy"
+        { code: "BP201T", name: "Human Anatomy and Physiology II" },
+        { code: "BP202T", name: "Pharmaceutical Organic Chemistry I" },
+        { code: "BP203T", name: "Biochemistry" },
+        { code: "BP204T", name: "Pathophysiology" },
+        { code: "BP205T", name: "Computer Applications in Pharmacy" },
+        { code: "BP206T", name: "Environmental Sciences" }
       ],
       3: [
-        "Pharmaceutical Organic Chemistry II",
-        "Physical Pharmaceutics I",
-        "Pharmaceutical Microbiology",
-        "Pharmaceutical Engineering"
+        { code: "BP301T", name: "Pharmaceutical Organic Chemistry II" },
+        { code: "BP302T", name: "Physical Pharmaceutics I" },
+        { code: "BP303T", name: "Pharmaceutical Microbiology" },
+        { code: "BP304T", name: "Pharmaceutical Engineering" },
+        { code: "KVE301", name: "Universal Human Values and Professional Ethics" }
       ],
       4: [
-        "Pharmaceutical Organic Chemistry III",
-        "Medicinal Chemistry I",
-        "Physical Pharmaceutics II",
-        "Pharmacology I",
-        "Pharmacognosy & Phytochemistry I"
+        { code: "BP401T", name: "Pharmaceutical Organic Chemistry III" },
+        { code: "BP402T", name: "Medicinal Chemistry I" },
+        { code: "BP403T", name: "Physical Pharmaceutics II" },
+        { code: "BP404T", name: "Pharmacology I" },
+        { code: "BP405T", name: "Pharmacognosy & Phytochemistry I" }
       ],
       5: [
-        "Medicinal Chemistry II",
-        "Industrial Pharmacy I",
-        "Pharmacology II",
-        "Pharmacognosy & Phytochemistry II",
-        "Pharmaceutical Jurisprudence"
+        { code: "BP501T", name: "Medicinal Chemistry II" },
+        { code: "BP502T", name: "Industrial Pharmacy I" },
+        { code: "BP503T", name: "Pharmacology II" },
+        { code: "BP504T", name: "Pharmacognosy and Phytochemistry II" },
+        { code: "BP505T", name: "Pharmaceutical Jurisprudence" }
       ],
       6: [
-        "Medicinal Chemistry III",
-        "Pharmacology III",
-        "Herbal Drug Technology",
-        "Biopharmaceutics & Pharmacokinetics",
-        "Pharmaceutical Biotechnology"
+        { code: "BP601T", name: "Medicinal Chemistry III" },
+        { code: "BP602T", name: "Pharmacology III" },
+        { code: "BP603T", name: "Herbal Drug Technology" },
+        { code: "BP604T", name: "Biopharmaceutics and Pharmacokinetics" },
+        { code: "BP605T", name: "Pharmaceutical Biotechnology" },
+        { code: "BP606T", name: "Quality Assurance" }
       ],
       7: [
-        "Instrumental Methods of Analysis",
-        "Industrial Pharmacy II",
-        "Pharmacy Practice",
-        "Novel Drug Delivery System"
+        { code: "BP701T", name: "Instrumental Methods of Analysis" },
+        { code: "BP702T", name: "Industrial Pharmacy II" },
+        { code: "BP703T", name: "Pharmacy Practice" },
+        { code: "BP704T", name: "Novel Drug Delivery System" }
       ],
       8: [
-        "Biostatistics & Research Methodology",
-        "Social & Preventive Pharmacy",
-        "Pharma Marketing Management",
-        "Pharmaceutical Regulatory Science"
+        { code: "BP801T", name: "Biostatistics and Research Methodology" },
+        { code: "BP802T", name: "Social and Preventive Pharmacy" },
+        { code: "BP803ET", name: "Pharma Marketing Management" },
+        { code: "BP804ET", name: "Pharmaceutical Regulatory Science" },
+        { code: "BP805ET", name: "Pharmacovigilance" },
+        { code: "BP806ET", name: "Quality Control and Standardization of Herbal Drugs" },
+        { code: "BP807ET", name: "Computer Aided Drug Design" },
+        { code: "BP808ET", name: "Cell and Molecular Biology" },
+        { code: "BP809ET", name: "Cosmetic Science" },
+        { code: "BP810ET", name: "Pharmacological Screening Methods" },
+        { code: "BP811ET", name: "Advanced Instrumentation Techniques" },
+        { code: "BP812ET", name: "Dietary Supplements and Nutraceuticals" },
+        { code: "BP813ET", name: "Pharmaceutical Product Development" }
       ]
     }
   },

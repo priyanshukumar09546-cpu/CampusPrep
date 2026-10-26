@@ -161,20 +161,20 @@ export const COURSES = [{
     units: [1, 2, 3, 4, 5],
     subjectsBySemester: {
       'Semester 1': [
-        { code: 'KCA101', name: 'Problem Solving using Python' },
-        { code: 'KCA102', name: 'Computer Organization & Architecture' },
-        { code: 'KCA103', name: 'Discrete Mathematics' },
-        { code: 'KCA104', name: 'Data Structures' },
-        { code: 'KCA105', name: 'Principles of Management & Communication' },
-        { code: 'KCA-CS', name: 'Cyber Security' },
-        { code: 'KCA-FCET', name: 'Fundamental of Computers & Emerging Technologies' }
+        { code: 'BMC101', name: 'Fundamental of Computers & Emerging Technologies' },
+        { code: 'BMC102', name: 'Problem Solving using C' },
+        { code: 'BMC103', name: 'Principles of Management & Communication' },
+        { code: 'BMC104', name: 'Discrete Mathematics' },
+        { code: 'BMC105', name: 'Computer Organization & Architecture' },
+        { code: 'KCA-CS', name: 'Cyber Security' }
       ],
       'Semester 2': [
-        { code: 'KCA201', name: 'Object Oriented Programming using Java' },
+        { code: 'KCA201', name: 'Object Oriented Programming' },
         { code: 'KCA202', name: 'Operating Systems' },
         { code: 'KCA203', name: 'Database Management Systems' },
         { code: 'KCA204', name: 'Web Technologies' },
-        { code: 'KCA205', name: 'Software Engineering' }
+        { code: 'KCA205', name: 'Software Engineering' },
+        { code: 'KCA-DSA', name: 'Data Structures & Analysis of Algorithms' }
       ],
       'Semester 3': [
         { code: 'KCA301', name: 'Artificial Intelligence & Machine Learning' },
@@ -272,72 +272,80 @@ export const COURSES = [{
       'Human Resources',
       'Operations & Supply Chain',
       'Information Technology',
-      'International Business'
+      'International Business',
+      'Co-Operative Management'
     ],
     units: [1, 2, 3, 4, 5],
     subjectsBySemester: {
       'Semester 1': [
-        { code: 'KMBN101', name: 'Management Concepts & Organisational Behaviour', spec: 'Core Management' },
-        { code: 'KMBN102', name: 'Managerial Economics', spec: 'Core Management' },
-        { code: 'KMBN103', name: 'Financial Accounting & Analysis', spec: 'Core Management' },
-        { code: 'KMBN104', name: 'Business Statistics & Analytics', spec: 'Core Management' },
-        { code: 'KMBN105', name: 'Marketing Management', spec: 'Core Management' },
-        { code: 'KMBN106', name: 'Design Thinking & Business Communication', spec: 'Core Management' },
-        { code: 'KMBN107', name: 'Creativity, Innovation & Entrepreneurship', spec: 'Core Management' }
+        { code: 'BMB101', name: 'Management Concepts & Organisational Behaviour', spec: 'Core Management' },
+        { code: 'BMB102', name: 'Managerial Economics', spec: 'Core Management' },
+        { code: 'BMB103', name: 'Financial Accounting & Analysis', spec: 'Core Management' },
+        { code: 'BMB104', name: 'Business Statistics & Analytics', spec: 'Core Management' },
+        { code: 'BMB105', name: 'Marketing Management', spec: 'Core Management' },
+        { code: 'BMB106', name: 'Creativity, Innovation and Entrepreneurship', spec: 'Core Management' },
+        { code: 'BMB107', name: 'Business Communication', spec: 'Core Management' },
+        { code: 'BMB151', name: 'IT Skills – I', spec: 'Core Management' }
       ],
       'Semester 2': [
-        { code: 'KMBN201', name: 'Business Environment & Legal Aspects of Business', spec: 'Core Management' },
-        { code: 'KMBN202', name: 'Human Resource Management', spec: 'Core Management' },
-        { code: 'KMBN203', name: 'Corporate Financial Management', spec: 'Core Management' },
-        { code: 'KMBN204', name: 'Operations Management', spec: 'Core Management' },
-        { code: 'KMBN205', name: 'Quantitative Techniques for Managers', spec: 'Core Management' },
-        { code: 'KMBN206', name: 'Business Research Methods', spec: 'Core Management' }
+        { code: 'BMB201', name: 'Business Environment & Legal Aspects of Business', spec: 'Core Management' },
+        { code: 'BMB202', name: 'Human Resource Management', spec: 'Core Management' },
+        { code: 'BMB203', name: 'Corporate Financial Management', spec: 'Core Management' },
+        { code: 'BMB204', name: 'Operations Management', spec: 'Core Management' },
+        { code: 'BMB205', name: 'Quantitative Techniques for Managers', spec: 'Core Management' },
+        { code: 'BMB206', name: 'Business Research Methods', spec: 'Core Management' }
       ],
       'Semester 3': [
+        // Core
+        { code: 'BMB301', name: 'Strategic Management', spec: 'Core Management' },
         // Marketing
-        { code: 'KMBNMK01', name: 'Consumer Behaviour', spec: 'Marketing' },
-        { code: 'KMBNMK02', name: 'Marketing Communication & Advertising', spec: 'Marketing' },
-        { code: 'KMBNMK03', name: 'Digital & Social Media Marketing', spec: 'Marketing' },
+        { code: 'BMBMK01', name: 'Consumer Behaviour and Neuro Marketing', spec: 'Marketing' },
+        { code: 'BMBMK02', name: 'Marketing & Web Analytics', spec: 'Marketing' },
+        { code: 'BMBMK03', name: 'Sales and Distribution Management', spec: 'Marketing' },
         // Finance
-        { code: 'KMBNFM01', name: 'Security Analysis & Portfolio Management', spec: 'Finance' },
-        { code: 'KMBNFM02', name: 'Financial Markets & Commercial Banking', spec: 'Finance' },
-        { code: 'KMBNFM03', name: 'Corporate Tax Planning & Management', spec: 'Finance' },
+        { code: 'BMBFM01', name: 'Investment and Portfolio Management', spec: 'Finance' },
+        { code: 'BMBFM02', name: 'Tax Planning and Management', spec: 'Finance' },
+        { code: 'BMBFM03', name: 'Financial and Credit Risk Analysis', spec: 'Finance' },
         // HR
-        { code: 'KMBNHR01', name: 'Talent Management & Acquisition', spec: 'Human Resources' },
-        { code: 'KMBNHR02', name: 'Performance Management Systems', spec: 'Human Resources' },
-        { code: 'KMBNHR03', name: 'Industrial Relations & Labour Enactments', spec: 'Human Resources' },
-        // Operations
-        { code: 'KMBNOM01', name: 'Supply Chain & Logistics Management', spec: 'Operations & Supply Chain' },
-        { code: 'KMBNOM02', name: 'Total Quality Management & Six Sigma', spec: 'Operations & Supply Chain' },
-        { code: 'KMBNOM03', name: 'Project Management', spec: 'Operations & Supply Chain' },
+        { code: 'BMBHR01', name: 'Talent Acquisition Management', spec: 'Human Resources' },
+        { code: 'BMBHR02', name: 'Employee Relations and Labour Laws', spec: 'Human Resources' },
+        { code: 'BMBHR03', name: 'Performance and Reward Management', spec: 'Human Resources' },
+        // Operations & Supply Chain
+        { code: 'BMBOM01', name: 'Supply Chain and Logistics Management', spec: 'Operations & Supply Chain' },
+        { code: 'BMBOM02', name: 'Business Process Reengineering', spec: 'Operations & Supply Chain' },
+        { code: 'BMBOM03', name: 'Quality Management', spec: 'Operations & Supply Chain' },
         // IT
-        { code: 'KMBNIT01', name: 'Enterprise Resource Planning (ERP)', spec: 'Information Technology' },
-        { code: 'KMBNIT02', name: 'Business Intelligence & Data Mining', spec: 'Information Technology' },
-        { code: 'KMBNIT03', name: 'E-Commerce & Digital Business Strategy', spec: 'Information Technology' },
+        { code: 'BMBIT01', name: 'Software Engineering and Management', spec: 'Information Technology' },
+        { code: 'BMBIT02', name: 'Emerging Technologies for Business', spec: 'Information Technology' },
+        { code: 'BMBIT03', name: 'Database Management System', spec: 'Information Technology' },
         // IB
-        { code: 'KMBNIB01', name: 'International Business Management', spec: 'International Business' },
-        { code: 'KMBNIB02', name: 'Export-Import Procedures & Documentation', spec: 'International Business' },
-        { code: 'KMBNIB03', name: 'International Trade Laws', spec: 'International Business' }
+        { code: 'BMBIB01', name: 'International Business Management', spec: 'International Business' },
+        { code: 'BMBIB02', name: 'Export Import Documentation', spec: 'International Business' },
+        { code: 'BMBIB03', name: 'Geo-Politics and Trade', spec: 'International Business' },
+        // Co-Operative Management
+        { code: 'BMBCM01', name: 'Principles and Practices of Co-Operation', spec: 'Co-Operative Management' },
+        { code: 'BMBCM02', name: 'Co-Operative Legislation', spec: 'Co-Operative Management' },
+        { code: 'BMBCM03', name: 'Credit Co-Operatives', spec: 'Co-Operative Management' }
       ],
       'Semester 4': [
         // Marketing
-        { code: 'KMBNMK04', name: 'Sales & Distribution Management', spec: 'Marketing' },
-        { code: 'KMBNMK05', name: 'Strategic Brand Management', spec: 'Marketing' },
+        { code: 'BMBMK04', name: 'Sales & Distribution Management', spec: 'Marketing' },
+        { code: 'BMBMK05', name: 'Strategic Brand Management', spec: 'Marketing' },
         // Finance
-        { code: 'KMBNFM04', name: 'International Financial Management', spec: 'Finance' },
-        { code: 'KMBNFM05', name: 'Financial Derivatives & Risk Management', spec: 'Finance' },
+        { code: 'BMBFM04', name: 'International Financial Management', spec: 'Finance' },
+        { code: 'BMBFM05', name: 'Financial Derivatives & Risk Management', spec: 'Finance' },
         // HR
-        { code: 'KMBNHR04', name: 'Strategic Human Resource Management', spec: 'Human Resources' },
-        { code: 'KMBNHR05', name: 'Organizational Change & Cross-Cultural HRM', spec: 'Human Resources' },
+        { code: 'BMBHR04', name: 'Strategic Human Resource Management', spec: 'Human Resources' },
+        { code: 'BMBHR05', name: 'Organizational Change & Cross-Cultural HRM', spec: 'Human Resources' },
         // Operations
-        { code: 'KMBNOM04', name: 'Operations Planning & Inventory Control', spec: 'Operations & Supply Chain' },
-        { code: 'KMBNOM05', name: 'World Class Manufacturing', spec: 'Operations & Supply Chain' },
+        { code: 'BMBOM04', name: 'Operations Planning & Inventory Control', spec: 'Operations & Supply Chain' },
+        { code: 'BMBOM05', name: 'World Class Manufacturing', spec: 'Operations & Supply Chain' },
         // IT
-        { code: 'KMBNIT04', name: 'Cloud Computing & Cyber Security for Business', spec: 'Information Technology' },
-        { code: 'KMBNIT05', name: 'IT Strategy & Project Governance', spec: 'Information Technology' },
+        { code: 'BMBIT04', name: 'Cloud Computing & Cyber Security for Business', spec: 'Information Technology' },
+        { code: 'BMBIT05', name: 'IT Strategy & Project Governance', spec: 'Information Technology' },
         // IB
-        { code: 'KMBNIB04', name: 'Global Logistics & Supply Chain', spec: 'International Business' },
-        { code: 'KMBNIB05', name: 'International Financial Markets', spec: 'International Business' }
+        { code: 'BMBIB04', name: 'Global Logistics & Supply Chain', spec: 'International Business' },
+        { code: 'BMBIB05', name: 'International Financial Markets', spec: 'International Business' }
       ]
     }
   },
@@ -368,22 +376,28 @@ export const COURSES = [{
     units: [1, 2, 3, 4, 5],
     subjectsBySemester: {
       'Semester 1': [
-        { code: 'BP101T', name: 'Human Anatomy & Physiology I' },
+        { code: 'BP101T', name: 'Human Anatomy and Physiology I' },
         { code: 'BP102T', name: 'Pharmaceutical Analysis I' },
         { code: 'BP103T', name: 'Pharmaceutics I' },
-        { code: 'BP104T', name: 'Pharmaceutical Inorganic Chemistry' }
+        { code: 'BP104T', name: 'Pharmaceutical Inorganic Chemistry' },
+        { code: 'BP105T', name: 'Communication Skills' },
+        { code: 'BP106RBT', name: 'Remedial Biology' },
+        { code: 'BP106RMT', name: 'Remedial Mathematics' }
       ],
       'Semester 2': [
-        { code: 'BP201T', name: 'Human Anatomy & Physiology II' },
+        { code: 'BP201T', name: 'Human Anatomy and Physiology II' },
         { code: 'BP202T', name: 'Pharmaceutical Organic Chemistry I' },
         { code: 'BP203T', name: 'Biochemistry' },
-        { code: 'BP204T', name: 'Pathophysiology' }
+        { code: 'BP204T', name: 'Pathophysiology' },
+        { code: 'BP205T', name: 'Computer Applications in Pharmacy' },
+        { code: 'BP206T', name: 'Environmental Sciences' }
       ],
       'Semester 3': [
         { code: 'BP301T', name: 'Pharmaceutical Organic Chemistry II' },
         { code: 'BP302T', name: 'Physical Pharmaceutics I' },
         { code: 'BP303T', name: 'Pharmaceutical Microbiology' },
-        { code: 'BP304T', name: 'Pharmaceutical Engineering' }
+        { code: 'BP304T', name: 'Pharmaceutical Engineering' },
+        { code: 'KVE301', name: 'Universal Human Values and Professional Ethics' }
       ],
       'Semester 4': [
         { code: 'BP401T', name: 'Pharmaceutical Organic Chemistry III' },
@@ -396,14 +410,14 @@ export const COURSES = [{
         { code: 'BP501T', name: 'Medicinal Chemistry II' },
         { code: 'BP502T', name: 'Industrial Pharmacy I' },
         { code: 'BP503T', name: 'Pharmacology II' },
-        { code: 'BP504T', name: 'Pharmacognosy & Phytochemistry II' },
+        { code: 'BP504T', name: 'Pharmacognosy and Phytochemistry II' },
         { code: 'BP505T', name: 'Pharmaceutical Jurisprudence' }
       ],
       'Semester 6': [
         { code: 'BP601T', name: 'Medicinal Chemistry III' },
         { code: 'BP602T', name: 'Pharmacology III' },
         { code: 'BP603T', name: 'Herbal Drug Technology' },
-        { code: 'BP604T', name: 'Biopharmaceutics & Pharmacokinetics' },
+        { code: 'BP604T', name: 'Biopharmaceutics and Pharmacokinetics' },
         { code: 'BP605T', name: 'Pharmaceutical Biotechnology' },
         { code: 'BP606T', name: 'Quality Assurance' }
       ],
@@ -414,11 +428,19 @@ export const COURSES = [{
         { code: 'BP704T', name: 'Novel Drug Delivery System' }
       ],
       'Semester 8': [
-        { code: 'BP801T', name: 'Biostatistics & Research Methodology' },
-        { code: 'BP802T', name: 'Social & Preventive Pharmacy' },
+        { code: 'BP801T', name: 'Biostatistics and Research Methodology' },
+        { code: 'BP802T', name: 'Social and Preventive Pharmacy' },
         { code: 'BP803ET', name: 'Pharma Marketing Management' },
         { code: 'BP804ET', name: 'Pharmaceutical Regulatory Science' },
-        { code: 'BP805ET', name: 'Pharmacovigilance' }
+        { code: 'BP805ET', name: 'Pharmacovigilance' },
+        { code: 'BP806ET', name: 'Quality Control and Standardization of Herbal Drugs' },
+        { code: 'BP807ET', name: 'Computer Aided Drug Design' },
+        { code: 'BP808ET', name: 'Cell and Molecular Biology' },
+        { code: 'BP809ET', name: 'Cosmetic Science' },
+        { code: 'BP810ET', name: 'Pharmacological Screening Methods' },
+        { code: 'BP811ET', name: 'Advanced Instrumentation Techniques' },
+        { code: 'BP812ET', name: 'Dietary Supplements and Nutraceuticals' },
+        { code: 'BP813ET', name: 'Pharmaceutical Product Development' }
       ]
     }
   }

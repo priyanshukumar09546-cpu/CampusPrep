@@ -1,0 +1,3607 @@
+[
+  {
+    "id": "kas-103",
+    "name": "Engineering Mathematics-I",
+    "code": "KAS-103",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 1"
+  },
+  {
+    "id": "kas-101",
+    "name": "Programming for Problem Solving (PPS)",
+    "code": "KCS-101",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 1"
+  },
+  {
+    "id": "kas-101-phy",
+    "name": "Engineering Physics",
+    "code": "KAS-101",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 1"
+  },
+  {
+    "id": "kee-101",
+    "name": "Basic Electrical Engineering",
+    "code": "KEE-101",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 1"
+  },
+  {
+    "id": "kas-203",
+    "name": "Engineering Mathematics-II",
+    "code": "KAS-203",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 2"
+  },
+  {
+    "id": "kas-102",
+    "name": "Engineering Chemistry",
+    "code": "KAS-102",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 2"
+  },
+  {
+    "id": "kec-201",
+    "name": "Emerging Domain in Electronics Engineering",
+    "code": "KEC-201",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 2"
+  },
+  {
+    "id": "kme-201",
+    "name": "Fundamentals of Mechanical Engineering",
+    "code": "KME-201",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 2"
+  },
+  {
+    "id": "bas-104-env",
+    "name": "Environment & Ecology",
+    "code": "BAS-104",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 1"
+  },
+  {
+    "id": "knc-102-ss",
+    "name": "Soft Skills & Communication",
+    "code": "KNC-102",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "semester": "Sem 2"
+  },
+  {
+    "id": "kas-302-maths4",
+    "name": "Engineering Mathematics-IV",
+    "code": "KAS-401",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-ece-kec-301",
+    "name": "Electronic Devices",
+    "code": "KEC-301",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-ee-kec-301",
+    "name": "Electronic Devices",
+    "code": "KEC-301",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-ece-kec-401",
+    "name": "Communication Engineering",
+    "code": "KEC-401",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-ee-kec-401",
+    "name": "Communication Engineering",
+    "code": "KEC-401",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-ece-kec-302",
+    "name": "Electromagnetic Field Theory",
+    "code": "KEC-302",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-ee-kec-302",
+    "name": "Electromagnetic Field Theory",
+    "code": "KEC-302",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-ece-kec-303",
+    "name": "Digital Electronics",
+    "code": "KEC-303",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-ee-kec-303",
+    "name": "Digital Electronics",
+    "code": "KEC-303",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-cse-kec-303",
+    "name": "Digital Electronics",
+    "code": "KEC-303",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-it-kec-303",
+    "name": "Digital Electronics",
+    "code": "KEC-303",
+    "branchId": "IT",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-ece-kec-402",
+    "name": "Electrical Measurements & Instrumentation",
+    "code": "KEC-402",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-ee-kec-402",
+    "name": "Electrical Measurements & Instrumentation",
+    "code": "KEC-402",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-ece-kec-403",
+    "name": "Basic Signal System",
+    "code": "KEC-403",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-ee-kec-403",
+    "name": "Basic Signal System",
+    "code": "KEC-403",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "kcs-301",
+    "name": "Data Structure",
+    "code": "KCS-301",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "kcs-302",
+    "name": "Computer Organization and Architecture",
+    "code": "KCS-302",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "kcs-303",
+    "name": "Discrete Structures & Theory of Logic",
+    "code": "KCS-303",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "koe-033",
+    "name": "Energy Science & Engineering",
+    "code": "KOE-033",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "kas-301-tc",
+    "name": "Technical Communication",
+    "code": "KAS-301",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "knc-301-cs",
+    "name": "Cyber Security",
+    "code": "KNC-301",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "kve-301-uhv",
+    "name": "Universal Human Values",
+    "code": "KVE-301",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "kcs-403",
+    "name": "Python Programming",
+    "code": "KCS-403",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "kcs-041-wd",
+    "name": "Web Designing",
+    "code": "KCS-041",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "kcs-401",
+    "name": "Operating Systems",
+    "code": "KCS-401",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "kcs-402-tafl",
+    "name": "Theory of Automata and Formal Languages (TAFL)",
+    "code": "KCS-402",
+    "branchId": "ALL",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-me-kme-301",
+    "name": "Thermodynamics",
+    "code": "KME-301",
+    "branchId": "ME",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-ce-kme-301",
+    "name": "Thermodynamics",
+    "code": "KME-301",
+    "branchId": "CE",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-me-kme-401",
+    "name": "Fluid Mechanics & Fluid Machines",
+    "code": "KME-401",
+    "branchId": "ME",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-ce-kme-401",
+    "name": "Fluid Mechanics & Fluid Machines",
+    "code": "KME-401",
+    "branchId": "CE",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-me-kme-302",
+    "name": "Materials Engineering",
+    "code": "KME-302",
+    "branchId": "ME",
+    "year": "Year 2",
+    "semester": "Sem 3"
+  },
+  {
+    "id": "sub-me-kme-402",
+    "name": "Applied Thermodynamics",
+    "code": "KME-402",
+    "branchId": "ME",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-me-kme-403",
+    "name": "Manufacturing Processes",
+    "code": "KME-403",
+    "branchId": "ME",
+    "year": "Year 2",
+    "semester": "Sem 4"
+  },
+  {
+    "id": "sub-ece-kec-501",
+    "name": "Integrated Circuits",
+    "code": "KEC-501",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ee-kec-501",
+    "name": "Integrated Circuits",
+    "code": "KEC-501",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ece-kec-502",
+    "name": "Control System",
+    "code": "KEC-502",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ee-kec-502",
+    "name": "Control System",
+    "code": "KEC-502",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ece-kec-503",
+    "name": "Microprocessors And Microcontrollers",
+    "code": "KEC-503",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ee-kec-503",
+    "name": "Microprocessors And Microcontrollers",
+    "code": "KEC-503",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ece-kec-051",
+    "name": "VLSI Technology",
+    "code": "KEC-051",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ee-kec-051",
+    "name": "VLSI Technology",
+    "code": "KEC-051",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "knc-501-itcs",
+    "name": "Indian Tradition Culture and Society",
+    "code": "KNC-501",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ece-kec-601",
+    "name": "Digital Signal Processing",
+    "code": "KEC-601",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "sub-ee-kec-601",
+    "name": "Digital Signal Processing",
+    "code": "KEC-601",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "sub-ece-kec-602",
+    "name": "Antenna and Wave Propagation",
+    "code": "KEC-602",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "sub-ee-kec-602",
+    "name": "Antenna and Wave Propagation",
+    "code": "KEC-602",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "sub-ece-kee-501",
+    "name": "Power System",
+    "code": "KEE-501",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ee-kee-501",
+    "name": "Power System",
+    "code": "KEE-501",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-ece-kec-061",
+    "name": "Electronic Instrumentation and Measurement",
+    "code": "KEC-061",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "sub-ee-kec-061",
+    "name": "Electronic Instrumentation and Measurement",
+    "code": "KEC-061",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "sub-ece-kec-062",
+    "name": "Optical Communication",
+    "code": "KEC-062",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "sub-ee-kec-062",
+    "name": "Optical Communication",
+    "code": "KEC-062",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "sub-ece-kee-061",
+    "name": "Power Electronics",
+    "code": "KEE-061",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "sub-ee-kee-061",
+    "name": "Power Electronics",
+    "code": "KEE-061",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "kcs-602-wt",
+    "name": "Web Technology",
+    "code": "KCS-602",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "kcs-502-cd",
+    "name": "Compiler Design",
+    "code": "KCS-502",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "kcs-601-se",
+    "name": "Software Engineering",
+    "code": "KCS-601",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "kcs-501-dbms",
+    "name": "Database Management System (DBMS)",
+    "code": "KCS-501",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "kcs-503-cn",
+    "name": "Computer Networks",
+    "code": "KCS-503",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "kcs-054-oosd",
+    "name": "Object Oriented System Design",
+    "code": "KCS-054",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "kcs-055-da",
+    "name": "Data Analytics",
+    "code": "KCS-055",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "kcs-056-daa",
+    "name": "Data Analysis Algorithms",
+    "code": "KCS-056",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "kcs-053-cg",
+    "name": "Computer Graphics",
+    "code": "KCS-053",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "kcs-061-wd3",
+    "name": "Web Designing",
+    "code": "KCS-061",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "kcs-062-cs3",
+    "name": "Cyber Security",
+    "code": "KCS-062",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "kcs-063-mlt",
+    "name": "Machine Learning Technology",
+    "code": "KCS-063",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 6"
+  },
+  {
+    "id": "kcs-071-ai",
+    "name": "Artificial Intelligence",
+    "code": "KCS-071",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 7"
+  },
+  {
+    "id": "kcs-072-nlp",
+    "name": "Natural Language Processing",
+    "code": "KCS-072",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 7"
+  },
+  {
+    "id": "kcs-073-hpc",
+    "name": "High Performance Computing",
+    "code": "KCS-073",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 7"
+  },
+  {
+    "id": "kcs-074-cns",
+    "name": "Cryptography & Network Security",
+    "code": "KCS-074",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 7"
+  },
+  {
+    "id": "kcs-075-dda",
+    "name": "Design & Development of Applications",
+    "code": "KCS-075",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 7"
+  },
+  {
+    "id": "kcs-076-st",
+    "name": "Software Testing",
+    "code": "KCS-076",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 7"
+  },
+  {
+    "id": "kcs-081-ds",
+    "name": "Distributed Systems",
+    "code": "KCS-081",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 8"
+  },
+  {
+    "id": "kcs-082-dl",
+    "name": "Deep Learning",
+    "code": "KCS-082",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 8"
+  },
+  {
+    "id": "kcs-083-soa",
+    "name": "Service Oriented Architecture",
+    "code": "KCS-083",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 8"
+  },
+  {
+    "id": "kcs-084-qc",
+    "name": "Quantum Computing",
+    "code": "KCS-084",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 8"
+  },
+  {
+    "id": "kcs-085-mc",
+    "name": "Mobile Computing",
+    "code": "KCS-085",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 8"
+  },
+  {
+    "id": "kcs-086-iot",
+    "name": "Internet of Things",
+    "code": "KCS-086",
+    "branchId": "ALL",
+    "year": "Year 4",
+    "semester": "Sem 8"
+  },
+  {
+    "id": "sub-pps",
+    "name": "Programming for Problem Solving",
+    "code": "KCS-101",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e796169190248b3c27f"
+  },
+  {
+    "id": "sub-maths1",
+    "name": "Engineering Mathematics-I",
+    "code": "KAS-103",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e796169190248b3c280"
+  },
+  {
+    "id": "sub-maths2",
+    "name": "Engineering Mathematics-II",
+    "code": "KAS-203",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e796169190248b3c281"
+  },
+  {
+    "id": "sub-physics",
+    "name": "Engineering Physics",
+    "code": "KAS-101",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e796169190248b3c282"
+  },
+  {
+    "id": "sub-chem",
+    "name": "Engineering Chemistry",
+    "code": "KAS-102",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e796169190248b3c283"
+  },
+  {
+    "id": "sub-ee",
+    "name": "Basic Electrical Engineering",
+    "code": "KEE-101",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e796169190248b3c284"
+  },
+  {
+    "id": "sub-electronics",
+    "name": "Fundamentals of Electronics Engineering",
+    "code": "KEC-101",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e7a6169190248b3c285"
+  },
+  {
+    "id": "sub-mechanical",
+    "name": "Fundamentals of Mechanical Engineering",
+    "code": "KME-101",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e7a6169190248b3c286"
+  },
+  {
+    "id": "sub-env",
+    "name": "Environment & Ecology",
+    "code": "BAS-104",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e7a6169190248b3c287"
+  },
+  {
+    "id": "sub-softskills",
+    "name": "Soft Skills & Communication",
+    "code": "KNC-102",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e7a6169190248b3c288"
+  },
+  {
+    "id": "sub-ethics",
+    "name": "Human Values & Professional Ethics",
+    "code": "AUC-001",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e7a6169190248b3c289"
+  },
+  {
+    "id": "sub-ai-eng",
+    "name": "Emerging Technology & AI",
+    "code": "KNC-101",
+    "branchId": "ALL",
+    "year": "Year 1",
+    "_id": "6aad8e7a6169190248b3c28a"
+  },
+  {
+    "id": "sub-ds-cse",
+    "name": "Data Structures",
+    "code": "KCS-301",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "_id": "6aad8e7a6169190248b3c28b"
+  },
+  {
+    "id": "sub-coa-cse",
+    "name": "Computer Organization & Architecture",
+    "code": "KCS-302",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "_id": "6aad8e7a6169190248b3c28c"
+  },
+  {
+    "id": "sub-discrete-cse",
+    "name": "Discrete Mathematics",
+    "code": "KCS-303",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "_id": "6aad8e7a6169190248b3c28d"
+  },
+  {
+    "id": "sub-os-cse",
+    "name": "Operating Systems",
+    "code": "KCS-401",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "_id": "6aad8e7a6169190248b3c28e"
+  },
+  {
+    "id": "sub-tafl-cse",
+    "name": "Theory of Automata & Formal Languages",
+    "code": "KCS-402",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "_id": "6aad8e7a6169190248b3c28f"
+  },
+  {
+    "id": "sub-oops-cse",
+    "name": "Object Oriented Programming",
+    "code": "KCS-403",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "_id": "6aad8e7a6169190248b3c290"
+  },
+  {
+    "id": "sub-dbms-cse",
+    "name": "Database Management Systems",
+    "code": "KCS-501",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "_id": "6aad8e7a6169190248b3c291"
+  },
+  {
+    "id": "sub-cd-cse",
+    "name": "Compiler Design",
+    "code": "KCS-502",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "_id": "6aad8e7a6169190248b3c292"
+  },
+  {
+    "id": "sub-daa-cse",
+    "name": "Design and Analysis of Algorithms",
+    "code": "KCS-503",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "_id": "6aad8e7a6169190248b3c293"
+  },
+  {
+    "id": "sub-se-cse",
+    "name": "Software Engineering",
+    "code": "KCS-601",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "_id": "6aad8e7a6169190248b3c294"
+  },
+  {
+    "id": "sub-wt-cse",
+    "name": "Web Technology",
+    "code": "KCS-602",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "_id": "6aad8e7a6169190248b3c295"
+  },
+  {
+    "id": "sub-cn-cse",
+    "name": "Computer Networks",
+    "code": "KCS-603",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "_id": "6aad8e7a6169190248b3c296"
+  },
+  {
+    "id": "sub-ai-cse",
+    "name": "Artificial Intelligence",
+    "code": "KCS-701",
+    "branchId": "CSE",
+    "year": "Year 4",
+    "_id": "6aad8e7b6169190248b3c297"
+  },
+  {
+    "id": "sub-cloud-cse",
+    "name": "Cloud Computing",
+    "code": "KCS-702",
+    "branchId": "CSE",
+    "year": "Year 4",
+    "_id": "6aad8e7b6169190248b3c298"
+  },
+  {
+    "id": "sub-sec-cse",
+    "name": "Information & Cyber Security",
+    "code": "KCS-071",
+    "branchId": "CSE",
+    "year": "Year 4",
+    "_id": "6aad8e7b6169190248b3c299"
+  },
+  {
+    "id": "sub-ml-cse",
+    "name": "Machine Learning",
+    "code": "KCS-072",
+    "branchId": "CSE",
+    "year": "Year 4",
+    "_id": "6aad8e7b6169190248b3c29a"
+  },
+  {
+    "id": "sub-bigdata-cse",
+    "name": "Big Data Analytics",
+    "code": "KCS-081",
+    "branchId": "CSE",
+    "year": "Year 4",
+    "_id": "6aad8e7b6169190248b3c29b"
+  },
+  {
+    "id": "sub-ds-it",
+    "name": "Data Structures",
+    "code": "KIT-301",
+    "branchId": "IT",
+    "year": "Year 2",
+    "_id": "6aad8e7b6169190248b3c29c"
+  },
+  {
+    "id": "sub-dbms-it",
+    "name": "Database Management Systems",
+    "code": "KIT-501",
+    "branchId": "IT",
+    "year": "Year 3",
+    "_id": "6aad8e7b6169190248b3c29d"
+  },
+  {
+    "id": "sub-cloud-it",
+    "name": "Cloud Computing & DevOps",
+    "code": "KIT-701",
+    "branchId": "IT",
+    "year": "Year 4",
+    "_id": "6aad8e7b6169190248b3c29e"
+  },
+  {
+    "id": "sub-edc-ece",
+    "name": "Electronic Devices",
+    "code": "KEC-301",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "_id": "6aad8e7b6169190248b3c29f"
+  },
+  {
+    "id": "sub-dsd-ece",
+    "name": "Digital System Design",
+    "code": "KEC-302",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "_id": "6aad8e7b6169190248b3c2a0"
+  },
+  {
+    "id": "sub-ic-ece",
+    "name": "Integrated Circuits",
+    "code": "KEC-501",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "_id": "6aad8e7b6169190248b3c2a1"
+  },
+  {
+    "id": "sub-vlsi-ece",
+    "name": "VLSI Design",
+    "code": "KEC-502",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "_id": "6aad8e7b6169190248b3c2a2"
+  },
+  {
+    "id": "sub-opt-ece",
+    "name": "Optical Communication",
+    "code": "KEC-701",
+    "branchId": "ECE",
+    "year": "Year 4",
+    "_id": "6aad8e7b6169190248b3c2a3"
+  },
+  {
+    "id": "sub-em-ee",
+    "name": "Electrical Machines-I",
+    "code": "KEE-301",
+    "branchId": "EE",
+    "year": "Year 2",
+    "_id": "6aad8e7b6169190248b3c2a4"
+  },
+  {
+    "id": "sub-cs-ee",
+    "name": "Control Systems",
+    "code": "KEE-501",
+    "branchId": "EE",
+    "year": "Year 3",
+    "_id": "6aad8e7b6169190248b3c2a5"
+  },
+  {
+    "id": "sub-pe-ee",
+    "name": "Power Electronics",
+    "code": "KEE-601",
+    "branchId": "EE",
+    "year": "Year 3",
+    "_id": "6aad8e7b6169190248b3c2a6"
+  },
+  {
+    "id": "sub-ren-ee",
+    "name": "Renewable Energy Resources",
+    "code": "KEE-071",
+    "branchId": "EE",
+    "year": "Year 4",
+    "_id": "6aad8e7b6169190248b3c2a7"
+  },
+  {
+    "id": "sub-thermo-me",
+    "name": "Thermodynamics",
+    "code": "KME-301",
+    "branchId": "ME",
+    "year": "Year 2",
+    "_id": "6aad8e7c6169190248b3c2a8"
+  },
+  {
+    "id": "sub-fm-me",
+    "name": "Fluid Mechanics",
+    "code": "KME-302",
+    "branchId": "ME",
+    "year": "Year 2",
+    "_id": "6aad8e7c6169190248b3c2a9"
+  },
+  {
+    "id": "sub-hmt-me",
+    "name": "Heat and Mass Transfer",
+    "code": "KME-501",
+    "branchId": "ME",
+    "year": "Year 3",
+    "_id": "6aad8e7c6169190248b3c2aa"
+  },
+  {
+    "id": "sub-md-me",
+    "name": "Machine Design",
+    "code": "KME-502",
+    "branchId": "ME",
+    "year": "Year 3",
+    "_id": "6aad8e7c6169190248b3c2ab"
+  },
+  {
+    "id": "sub-cad-me",
+    "name": "CAD/CAM",
+    "code": "KME-701",
+    "branchId": "ME",
+    "year": "Year 4",
+    "_id": "6aad8e7c6169190248b3c2ac"
+  },
+  {
+    "id": "sub-som-ce",
+    "name": "Strength of Materials",
+    "code": "KCE-301",
+    "branchId": "CE",
+    "year": "Year 2",
+    "_id": "6aad8e7c6169190248b3c2ad"
+  },
+  {
+    "id": "sub-surv-ce",
+    "name": "Surveying & Leveling",
+    "code": "KCE-302",
+    "branchId": "CE",
+    "year": "Year 2",
+    "_id": "6aad8e7c6169190248b3c2ae"
+  },
+  {
+    "id": "sub-sa-ce",
+    "name": "Structural Analysis",
+    "code": "KCE-501",
+    "branchId": "CE",
+    "year": "Year 3",
+    "_id": "6aad8e7c6169190248b3c2af"
+  },
+  {
+    "id": "sub-geo-ce",
+    "name": "Geotechnical Engineering",
+    "code": "KCE-601",
+    "branchId": "CE",
+    "year": "Year 3",
+    "_id": "6aad8e7c6169190248b3c2b0"
+  },
+  {
+    "id": "sub-cm-ce",
+    "name": "Construction Management",
+    "code": "KCE-701",
+    "branchId": "CE",
+    "year": "Year 4",
+    "_id": "6aad8e7c6169190248b3c2b1"
+  },
+  {
+    "id": "knc-502-cil",
+    "name": "Constitution of India. Law and Engineering",
+    "code": "KNC-502",
+    "branchId": "ALL",
+    "year": "Year 3",
+    "semester": "Sem 5"
+  },
+  {
+    "id": "sub-1789853472558-90",
+    "name": "Project Management & Entrepreneurship",
+    "code": "KHU-702",
+    "branchId": "CSE",
+    "year": "Year 4",
+    "createdAt": "2026-09-19T21:31:12.558Z",
+    "_id": "6aaeff20db7767baa605545d",
+    "updatedAt": "2026-09-19T21:31:12.558Z",
+    "__v": 0
+  },
+  {
+    "id": "sub-1789853582838-6",
+    "name": "Management & Entrepreneurship",
+    "code": "KHU-702",
+    "branchId": "CSE",
+    "year": "Year 4",
+    "createdAt": "2026-09-19T21:33:02.838Z",
+    "_id": "6aaeff8edb7767baa6055460",
+    "updatedAt": "2026-09-19T21:33:02.838Z",
+    "__v": 0
+  },
+  {
+    "id": "sub-1789860211822-255",
+    "name": "Engineering Mathematics-I",
+    "code": "KAS-103",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.822Z",
+    "_id": "6aaf197345f305f4ab524d67",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-280",
+    "name": "Engineering Mathematics-II",
+    "code": "KAS-203",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d68",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-336",
+    "name": "Fundamentals of Electronics Engineering",
+    "code": "KEC-101",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d69",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-269",
+    "name": "Programming for Problem Solving",
+    "code": "KCS-101",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d6a",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-627",
+    "name": "Soft Skills & Communication",
+    "code": "KNC-102",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d6b",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-381",
+    "name": "Engineering Physics",
+    "code": "KAS-101",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d6c",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-348",
+    "name": "Engineering Chemistry",
+    "code": "KAS-102",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d6d",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-949",
+    "name": "Fundamentals of Mechanical Engineering",
+    "code": "KME-101",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d6e",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-0",
+    "name": "Environment & Ecology",
+    "code": "BAS-104",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d6f",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-489",
+    "name": "Basic Electrical Engineering",
+    "code": "KEE-101",
+    "branchId": "ECE",
+    "year": "Year 1",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d70",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-552",
+    "name": "Network Analysis and Synthesis",
+    "code": "KEC-304",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d71",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-865",
+    "name": "Signals and Systems",
+    "code": "KEC-403",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d72",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-549",
+    "name": "Analog Circuits",
+    "code": "KEC-402",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d73",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-837",
+    "name": "Engineering Mathematics-IV",
+    "code": "KAS-401",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d74",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-952",
+    "name": "Python Programming",
+    "code": "KCS-403",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d75",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-743",
+    "name": "Cyber Security",
+    "code": "KNC-301",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d76",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-489",
+    "name": "Universal Human Values",
+    "code": "KVE-301",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z"
+  },
+  {
+    "id": "sub-1789860211823-132",
+    "name": "Electric and Hybrid Vehicles",
+    "code": "KOE-034",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d78",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-813",
+    "name": "Automation and Robotics",
+    "code": "KOE-035",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d79",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-257",
+    "name": "Material Science",
+    "code": "KOE-036",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d7a",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.827Z"
+  },
+  {
+    "id": "sub-1789860211823-24",
+    "name": "Energy Science & Engineering",
+    "code": "KOE-033",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d7b",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211823-445",
+    "name": "Technical Communication",
+    "code": "KAS-301",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d7c",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211823-216",
+    "name": "Constitution of India, Law and Engineering",
+    "code": "KNC-502",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d7d",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211823-846",
+    "name": "IoT Architecture, Communication & Applications",
+    "code": "KOE-051",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d7e",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211823-572",
+    "name": "Data Communication Networks",
+    "code": "KEC-603",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "createdAt": "2026-09-19T23:23:31.823Z",
+    "_id": "6aaf197345f305f4ab524d7f",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211824-812",
+    "name": "Project Management & Entrepreneurship",
+    "code": "KHU-701",
+    "branchId": "ECE",
+    "year": "Year 4",
+    "createdAt": "2026-09-19T23:23:31.824Z",
+    "_id": "6aaf197345f305f4ab524d80",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211824-755",
+    "name": "Cloud Computing",
+    "code": "KOE-071",
+    "branchId": "ECE",
+    "year": "Year 4",
+    "createdAt": "2026-09-19T23:23:31.824Z",
+    "_id": "6aaf197345f305f4ab524d81",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211824-827",
+    "name": "Artificial Intelligence",
+    "code": "KCS-071",
+    "branchId": "ECE",
+    "year": "Year 4",
+    "createdAt": "2026-09-19T23:23:31.824Z",
+    "_id": "6aaf197345f305f4ab524d82",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211824-139",
+    "name": "Renewable Energy Resources",
+    "code": "KOE-074",
+    "branchId": "ECE",
+    "year": "Year 4",
+    "createdAt": "2026-09-19T23:23:31.824Z",
+    "_id": "6aaf197345f305f4ab524d83",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211824-55",
+    "name": "Computer Organization and Architecture",
+    "code": "KCS-302",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.824Z",
+    "_id": "6aaf197345f305f4ab524d84",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211824-517",
+    "name": "Operating Systems",
+    "code": "KCS-401",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.824Z",
+    "_id": "6aaf197345f305f4ab524d85",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "id": "sub-1789860211824-514",
+    "name": "Object Oriented Programming",
+    "code": "KCS-305",
+    "branchId": "ECE",
+    "year": "Year 2",
+    "createdAt": "2026-09-19T23:23:31.824Z",
+    "_id": "6aaf197345f305f4ab524d86",
+    "__v": 0,
+    "updatedAt": "2026-09-19T23:23:31.828Z"
+  },
+  {
+    "_id": "sub-cse-koe-036",
+    "name": "Material Science",
+    "code": "KOE-036",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.394Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-knc-502",
+    "name": "Constitution of India, Law and Engineering",
+    "code": "KNC-502",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-knc-501",
+    "name": "Essence of Indian Traditional Knowledge",
+    "code": "KNC-501",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-koe-063",
+    "name": "Big Data",
+    "code": "KOE-063",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-kcs-305",
+    "name": "Object Oriented Programming",
+    "code": "KCS-305",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-koe-067",
+    "name": "Blockchain Architecture Design",
+    "code": "KOE-067",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-kcs-054",
+    "name": "Data Warehousing & Data Mining",
+    "code": "KCS-054",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-khu-701",
+    "name": "Project Management & Entrepreneurship",
+    "code": "KHU-701",
+    "branchId": "CSE",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-koe-051",
+    "name": "IoT Architecture, Communication & Applications",
+    "code": "KOE-051",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-koe-069",
+    "name": "Data Compression",
+    "code": "KOE-069",
+    "branchId": "CSE",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-koe-034",
+    "name": "Electric and Hybrid Vehicles",
+    "code": "KOE-034",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-cse-koe-035",
+    "name": "Automation and Robotics",
+    "code": "KOE-035",
+    "branchId": "CSE",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.395Z",
+    "updatedAt": "2026-09-20T00:51:12.395Z"
+  },
+  {
+    "_id": "sub-ece-knc-501",
+    "name": "Essence of Indian Traditional Knowledge",
+    "code": "KNC-501",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.396Z",
+    "updatedAt": "2026-09-20T00:51:12.396Z"
+  },
+  {
+    "_id": "sub-ece-kcs-702",
+    "name": "Cloud Computing",
+    "code": "KCS-702",
+    "branchId": "ECE",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.396Z",
+    "updatedAt": "2026-09-20T00:51:12.396Z"
+  },
+  {
+    "_id": "sub-ece-kcs-701",
+    "name": "Artificial Intelligence",
+    "code": "KCS-701",
+    "branchId": "ECE",
+    "year": "Year 4",
+    "semester": "Sem 7",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.396Z",
+    "updatedAt": "2026-09-20T00:51:12.396Z"
+  },
+  {
+    "_id": "sub-ece-kec-601",
+    "name": "Digital Communication",
+    "code": "KEC-601",
+    "branchId": "ECE",
+    "year": "Year 3",
+    "semester": "Sem 6",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.396Z",
+    "updatedAt": "2026-09-20T00:51:12.396Z"
+  },
+  {
+    "_id": "sub-me-koe-036",
+    "name": "Material Science",
+    "code": "KOE-036",
+    "branchId": "ME",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-knc-502",
+    "name": "Constitution of India, Law and Engineering",
+    "code": "KNC-502",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-knc-501",
+    "name": "Essence of Indian Traditional Knowledge",
+    "code": "KNC-501",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-khu-701",
+    "name": "Project Management & Entrepreneurship",
+    "code": "KHU-701",
+    "branchId": "ME",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-koe-051",
+    "name": "IoT Architecture, Communication & Applications",
+    "code": "KOE-051",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-kcs-702",
+    "name": "Cloud Computing",
+    "code": "KCS-702",
+    "branchId": "ME",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-kcs-701",
+    "name": "Artificial Intelligence",
+    "code": "KCS-701",
+    "branchId": "ME",
+    "year": "Year 4",
+    "semester": "Sem 7",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-bme-061",
+    "name": "Industrial Robotics",
+    "code": "BME-061",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-bme-602",
+    "name": "CAD/CAM",
+    "code": "BME-602",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-rme-602",
+    "name": "Refrigeration and Air Conditioning",
+    "code": "RME-602",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-bme-501",
+    "name": "Heat and Mass Transfer",
+    "code": "BME-501",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-bme-502",
+    "name": "Machine Design",
+    "code": "BME-502",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-bme-503",
+    "name": "Industrial Engineering",
+    "code": "BME-503",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-koe-034",
+    "name": "Electric and Hybrid Vehicles",
+    "code": "KOE-034",
+    "branchId": "ME",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-koe-035",
+    "name": "Automation and Robotics",
+    "code": "KOE-035",
+    "branchId": "ME",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-kme-503",
+    "name": "Industrial Engineering",
+    "code": "KME-503",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-me-bme-052",
+    "name": "IC Engine Fuel & Lubrication",
+    "code": "BME-052",
+    "branchId": "ME",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.397Z",
+    "updatedAt": "2026-09-20T00:51:12.397Z"
+  },
+  {
+    "_id": "sub-it-koe-036",
+    "name": "Material Science",
+    "code": "KOE-036",
+    "branchId": "IT",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-knc-502",
+    "name": "Constitution of India, Law and Engineering",
+    "code": "KNC-502",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-knc-501",
+    "name": "Essence of Indian Traditional Knowledge",
+    "code": "KNC-501",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-kcs-603",
+    "name": "Computer Networks",
+    "code": "KCS-603",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-koe-063",
+    "name": "Big Data",
+    "code": "KOE-063",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-kcs-305",
+    "name": "Object Oriented Programming",
+    "code": "KCS-305",
+    "branchId": "IT",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-koe-067",
+    "name": "Blockchain Architecture Design",
+    "code": "KOE-067",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-kcs-054",
+    "name": "Data Warehousing & Data Mining",
+    "code": "KCS-054",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-khu-701",
+    "name": "Project Management & Entrepreneurship",
+    "code": "KHU-701",
+    "branchId": "IT",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-koe-051",
+    "name": "IoT Architecture, Communication & Applications",
+    "code": "KOE-051",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-kcs-702",
+    "name": "Cloud Computing",
+    "code": "KCS-702",
+    "branchId": "IT",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-kcs-701",
+    "name": "Artificial Intelligence",
+    "code": "KCS-701",
+    "branchId": "IT",
+    "year": "Year 4",
+    "semester": "Sem 7",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-koe-069",
+    "name": "Data Compression",
+    "code": "KOE-069",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-kcs-501",
+    "name": "Database Management Systems",
+    "code": "KCS-501",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-kcs-503",
+    "name": "Design and Analysis of Algorithms",
+    "code": "KCS-503",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-koe-034",
+    "name": "Electric and Hybrid Vehicles",
+    "code": "KOE-034",
+    "branchId": "IT",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-koe-035",
+    "name": "Automation and Robotics",
+    "code": "KOE-035",
+    "branchId": "IT",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-bcs-056",
+    "name": "Application of Soft Computing",
+    "code": "BCS-056",
+    "branchId": "IT",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-kcs-301",
+    "name": "Data Structures",
+    "code": "KCS-301",
+    "branchId": "IT",
+    "year": "Year 2",
+    "semester": "Sem 3",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-it-kcs-402",
+    "name": "Theory of Automata & Formal Languages",
+    "code": "KCS-402",
+    "branchId": "IT",
+    "year": "Year 2",
+    "semester": "Sem 4",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.398Z",
+    "updatedAt": "2026-09-20T00:51:12.398Z"
+  },
+  {
+    "_id": "sub-ee-kec-304",
+    "name": "Network Analysis and Synthesis",
+    "code": "KEC-304",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-kec-402",
+    "name": "Analog Circuits",
+    "code": "KEC-402",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": "Sem 4",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-koe-036",
+    "name": "Material Science",
+    "code": "KOE-036",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-knc-502",
+    "name": "Constitution of India, Law and Engineering",
+    "code": "KNC-502",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-knc-501",
+    "name": "Essence of Indian Traditional Knowledge",
+    "code": "KNC-501",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-ben-062",
+    "name": "Embedded Systems",
+    "code": "BEN-062",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-khu-701",
+    "name": "Project Management & Entrepreneurship",
+    "code": "KHU-701",
+    "branchId": "EE",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-koe-051",
+    "name": "IoT Architecture, Communication & Applications",
+    "code": "KOE-051",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-kcs-702",
+    "name": "Cloud Computing",
+    "code": "KCS-702",
+    "branchId": "EE",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-kcs-701",
+    "name": "Artificial Intelligence",
+    "code": "KCS-701",
+    "branchId": "EE",
+    "year": "Year 4",
+    "semester": "Sem 7",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-kee-601",
+    "name": "Power System",
+    "code": "KEE-601",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-bee-063",
+    "name": "Digital Control System",
+    "code": "BEE-063",
+    "branchId": "EE",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-koe-034",
+    "name": "Electric and Hybrid Vehicles",
+    "code": "KOE-034",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-ee-koe-035",
+    "name": "Automation and Robotics",
+    "code": "KOE-035",
+    "branchId": "EE",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.399Z",
+    "updatedAt": "2026-09-20T00:51:12.399Z"
+  },
+  {
+    "_id": "sub-aiml-koe-036",
+    "name": "Material Science",
+    "code": "KOE-036",
+    "branchId": "AI & ML",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-knc-502",
+    "name": "Constitution of India, Law and Engineering",
+    "code": "KNC-502",
+    "branchId": "AI & ML",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-knc-501",
+    "name": "Essence of Indian Traditional Knowledge",
+    "code": "KNC-501",
+    "branchId": "AI & ML",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-kcs-603",
+    "name": "Computer Networks",
+    "code": "KCS-603",
+    "branchId": "AI & ML",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-koe-063",
+    "name": "Big Data",
+    "code": "KOE-063",
+    "branchId": "AI & ML",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-kcs-305",
+    "name": "Object Oriented Programming",
+    "code": "KCS-305",
+    "branchId": "AI & ML",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-kcs-054",
+    "name": "Data Warehousing & Data Mining",
+    "code": "KCS-054",
+    "branchId": "AI & ML",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-khu-701",
+    "name": "Project Management & Entrepreneurship",
+    "code": "KHU-701",
+    "branchId": "AI & ML",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-koe-051",
+    "name": "IoT Architecture, Communication & Applications",
+    "code": "KOE-051",
+    "branchId": "AI & ML",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-kcs-702",
+    "name": "Cloud Computing",
+    "code": "KCS-702",
+    "branchId": "AI & ML",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-kcs-701",
+    "name": "Artificial Intelligence",
+    "code": "KCS-701",
+    "branchId": "AI & ML",
+    "year": "Year 4",
+    "semester": "Sem 7",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-kcs-501",
+    "name": "Database Management Systems",
+    "code": "KCS-501",
+    "branchId": "AI & ML",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-kcs-503",
+    "name": "Design and Analysis of Algorithms",
+    "code": "KCS-503",
+    "branchId": "AI & ML",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-koe-034",
+    "name": "Electric and Hybrid Vehicles",
+    "code": "KOE-034",
+    "branchId": "AI & ML",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-koe-035",
+    "name": "Automation and Robotics",
+    "code": "KOE-035",
+    "branchId": "AI & ML",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-bcs-056",
+    "name": "Application of Soft Computing",
+    "code": "BCS-056",
+    "branchId": "AI & ML",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-kcs-301",
+    "name": "Data Structures",
+    "code": "KCS-301",
+    "branchId": "AI & ML",
+    "year": "Year 2",
+    "semester": "Sem 3",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-aiml-kcs-402",
+    "name": "Theory of Automata & Formal Languages",
+    "code": "KCS-402",
+    "branchId": "AI & ML",
+    "year": "Year 2",
+    "semester": "Sem 4",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.400Z",
+    "updatedAt": "2026-09-20T00:51:12.400Z"
+  },
+  {
+    "_id": "sub-ds-koe-036",
+    "name": "Material Science",
+    "code": "KOE-036",
+    "branchId": "DS",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-knc-502",
+    "name": "Constitution of India, Law and Engineering",
+    "code": "KNC-502",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-knc-501",
+    "name": "Essence of Indian Traditional Knowledge",
+    "code": "KNC-501",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-kcs-603",
+    "name": "Computer Networks",
+    "code": "KCS-603",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-koe-063",
+    "name": "Big Data",
+    "code": "KOE-063",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-kcs-305",
+    "name": "Object Oriented Programming",
+    "code": "KCS-305",
+    "branchId": "DS",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-kcs-054",
+    "name": "Data Warehousing & Data Mining",
+    "code": "KCS-054",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-khu-701",
+    "name": "Project Management & Entrepreneurship",
+    "code": "KHU-701",
+    "branchId": "DS",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-koe-051",
+    "name": "IoT Architecture, Communication & Applications",
+    "code": "KOE-051",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-kcs-702",
+    "name": "Cloud Computing",
+    "code": "KCS-702",
+    "branchId": "DS",
+    "year": "Year 4",
+    "semester": 7,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-kcs-701",
+    "name": "Artificial Intelligence",
+    "code": "KCS-701",
+    "branchId": "DS",
+    "year": "Year 4",
+    "semester": "Sem 7",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-koe-069",
+    "name": "Data Compression",
+    "code": "KOE-069",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-kcs-501",
+    "name": "Database Management Systems",
+    "code": "KCS-501",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-kcs-503",
+    "name": "Design and Analysis of Algorithms",
+    "code": "KCS-503",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": "Sem 5",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-koe-034",
+    "name": "Electric and Hybrid Vehicles",
+    "code": "KOE-034",
+    "branchId": "DS",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-koe-035",
+    "name": "Automation and Robotics",
+    "code": "KOE-035",
+    "branchId": "DS",
+    "year": "Year 2",
+    "semester": 3,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-bcs-056",
+    "name": "Application of Soft Computing",
+    "code": "BCS-056",
+    "branchId": "DS",
+    "year": "Year 3",
+    "semester": 5,
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-kcs-301",
+    "name": "Data Structures",
+    "code": "KCS-301",
+    "branchId": "DS",
+    "year": "Year 2",
+    "semester": "Sem 3",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "_id": "sub-ds-kcs-402",
+    "name": "Theory of Automata & Formal Languages",
+    "code": "KCS-402",
+    "branchId": "DS",
+    "year": "Year 2",
+    "semester": "Sem 4",
+    "credits": 4,
+    "createdAt": "2026-09-20T00:51:12.401Z",
+    "updatedAt": "2026-09-20T00:51:12.401Z"
+  },
+  {
+    "id": "sub-mba-bmb-101",
+    "course": "MBA",
+    "name": "Management Concepts &amp; Organisational Behaviour",
+    "code": "BMB 101",
+    "branchId": "MBA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mba-bmb-102",
+    "course": "MBA",
+    "name": "Managerial Economics",
+    "code": "BMB 102",
+    "branchId": "MBA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mba-bmb-103",
+    "course": "MBA",
+    "name": "Financial Accounting &amp; Analysis",
+    "code": "BMB 103",
+    "branchId": "MBA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mba-bmb-104",
+    "course": "MBA",
+    "name": "Business Statistics &amp; Analytics",
+    "code": "BMB 104",
+    "branchId": "MBA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mba-bmb-105",
+    "course": "MBA",
+    "name": "Marketing Management",
+    "code": "BMB 105",
+    "branchId": "MBA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mba-bmb-106",
+    "course": "MBA",
+    "name": "Creativity, Innovation and Entrepreneurship",
+    "code": "BMB 106",
+    "branchId": "MBA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mba-bmb-107",
+    "course": "MBA",
+    "name": "Business Communication",
+    "code": "BMB 107",
+    "branchId": "MBA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mba-bmb-151",
+    "course": "MBA",
+    "name": "IT Skills &#x2013; I",
+    "code": "BMB 151",
+    "branchId": "MBA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mba-strategic-management",
+    "course": "MBA",
+    "name": "Strategic Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mba-consumer-behaviour-and-neuro-marketing",
+    "course": "MBA",
+    "name": "Consumer Behaviour and Neuro Marketing",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Marketing"
+  },
+  {
+    "id": "sub-mba-marketing--amp--web-analytics",
+    "course": "MBA",
+    "name": "Marketing &amp; Web Analytics",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Marketing"
+  },
+  {
+    "id": "sub-mba-sales-and-distribution-management",
+    "course": "MBA",
+    "name": "Sales and Distribution Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Marketing"
+  },
+  {
+    "id": "sub-mba-talent-acquisition-management",
+    "course": "MBA",
+    "name": "Talent Acquisition Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Human Resources"
+  },
+  {
+    "id": "sub-mba-employee-relations-and-labour-laws",
+    "course": "MBA",
+    "name": "Employee Relations and Labour Laws",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Human Resources"
+  },
+  {
+    "id": "sub-mba-performance-and-reward-management",
+    "course": "MBA",
+    "name": "Performance and Reward Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Human Resources"
+  },
+  {
+    "id": "sub-mba-investment-and-portfolio-management",
+    "course": "MBA",
+    "name": "Investment and Portfolio Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Finance"
+  },
+  {
+    "id": "sub-mba-tax-planning-and-management",
+    "course": "MBA",
+    "name": "Tax Planning and Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Finance"
+  },
+  {
+    "id": "sub-mba-financial-and-credit-risk-analysis",
+    "course": "MBA",
+    "name": "Financial and Credit Risk Analysis",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Finance"
+  },
+  {
+    "id": "sub-mba-supply-chain-and-logistics-management",
+    "course": "MBA",
+    "name": "Supply Chain and Logistics Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Operations & Supply Chain"
+  },
+  {
+    "id": "sub-mba-business-process-reengineering",
+    "course": "MBA",
+    "name": "Business Process Reengineering",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Operations & Supply Chain"
+  },
+  {
+    "id": "sub-mba-quality-management",
+    "course": "MBA",
+    "name": "Quality Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Operations & Supply Chain"
+  },
+  {
+    "id": "sub-mba-international-business-management",
+    "course": "MBA",
+    "name": "International Business Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "International Business"
+  },
+  {
+    "id": "sub-mba-export-import-documentation",
+    "course": "MBA",
+    "name": "Export Import Documentation",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "International Business"
+  },
+  {
+    "id": "sub-mba-software-engineering-and-management",
+    "course": "MBA",
+    "name": "Software Engineering and Management",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Information Technology"
+  },
+  {
+    "id": "sub-mba-emerging-technologies-for-business",
+    "course": "MBA",
+    "name": "Emerging Technologies for Business",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Information Technology"
+  },
+  {
+    "id": "sub-mba-database-management-system",
+    "course": "MBA",
+    "name": "Database Management System",
+    "code": "",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Information Technology"
+  },
+  {
+    "id": "sub-mca-fundamental-of-computers--amp-emerging-technologies",
+    "course": "MCA",
+    "name": "Fundamental of Computers &amp;Emerging Technologies",
+    "code": "",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-problem-solving-using-c",
+    "course": "MCA",
+    "name": "Problem Solving using C",
+    "code": "",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-principles-of-management--amp-communication",
+    "course": "MCA",
+    "name": "Principles of Management &amp;Communication",
+    "code": "",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-computer-organization--amp-architecture",
+    "course": "MCA",
+    "name": "Computer Organization &amp;Architecture",
+    "code": "",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-cyber-security",
+    "course": "MCA",
+    "name": "Cyber Security",
+    "code": "",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-web-technology",
+    "course": "MCA",
+    "name": "Web Technology",
+    "code": "",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 2",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-object-oriented-programming",
+    "course": "MCA",
+    "name": "Object Oriented Programming",
+    "code": "",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 2",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-database-managementsystems",
+    "course": "MCA",
+    "name": "Database ManagementSystems",
+    "code": "",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 2",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp101t",
+    "course": "B.Pharm",
+    "name": "Human Anatomy and Physiology &#x2013;",
+    "code": "BP101T",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp102t",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Analysis I &#x2013;",
+    "code": "BP102T",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp103t",
+    "course": "B.Pharm",
+    "name": "Pharmaceutics I &#x2013;",
+    "code": "BP103T",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp104t",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Inorganic Chemistry &#x2013;",
+    "code": "BP104T",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp105t",
+    "course": "B.Pharm",
+    "name": "Communication Skills &#x2013;",
+    "code": "BP105T",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp106rbt",
+    "course": "B.Pharm",
+    "name": "Remedial Biology &#8211;",
+    "code": "BP106RBT",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp106rmt",
+    "course": "B.Pharm",
+    "name": "Remedial Mathematics &#8211;",
+    "code": "BP106RMT",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-human-anatomy-and-physiology-ii",
+    "course": "B.Pharm",
+    "name": "Human Anatomy and Physiology II",
+    "code": "",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 2",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-pharmaceutical-organic-chemistry-i",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Organic Chemistry I",
+    "code": "",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 2",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-biochemistry",
+    "course": "B.Pharm",
+    "name": "Biochemistry",
+    "code": "",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 2",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-pathophysiology",
+    "course": "B.Pharm",
+    "name": "Pathophysiology",
+    "code": "",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 2",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-computer-applications-in-pharmacy",
+    "course": "B.Pharm",
+    "name": "Computer Applications in Pharmacy",
+    "code": "",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 2",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-environmental-sciences",
+    "course": "B.Pharm",
+    "name": "Environmental Sciences",
+    "code": "",
+    "branchId": "B.Pharm",
+    "year": "1st Year",
+    "semester": "Semester 2",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp301t",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Organic Chemistry II &#x2013;",
+    "code": "BP301T",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp302t",
+    "course": "B.Pharm",
+    "name": "Physical Pharmaceutics I &#x2013;",
+    "code": "BP302T",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp303t",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Microbiology &#x2013;",
+    "code": "BP303T",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp304t",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Engineering &#x2013;",
+    "code": "BP304T",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-kve301",
+    "course": "B.Pharm",
+    "name": "Universal Human Values and Professional Ethics",
+    "code": "KVE301",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp401t",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Organic Chemistry III &#8211;",
+    "code": "BP401T",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 4",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp402t",
+    "course": "B.Pharm",
+    "name": "Medicinal Chemistry I &#8211;",
+    "code": "BP402T",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 4",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp403t",
+    "course": "B.Pharm",
+    "name": "Physical Pharmaceutics II &#8211;",
+    "code": "BP403T",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 4",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp404t",
+    "course": "B.Pharm",
+    "name": "Pharmacology I &#x2013;",
+    "code": "BP404T",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 4",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp405t",
+    "course": "B.Pharm",
+    "name": "Pharmacognosy I &#x2013;",
+    "code": "BP405T",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 4",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp501t",
+    "course": "B.Pharm",
+    "name": "Medicinal Chemistry II &#x2013;",
+    "code": "BP501T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 5",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp502t",
+    "course": "B.Pharm",
+    "name": "Industrial Pharmacy I &#x2013;",
+    "code": "BP502T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 5",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp503t",
+    "course": "B.Pharm",
+    "name": "Pharmacology II &#x2013;",
+    "code": "BP503T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 5",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp504t",
+    "course": "B.Pharm",
+    "name": "Pharmacognosy and Phytochemistry II &#x2013;",
+    "code": "BP504T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 5",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp505t",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Jurisprudence &#x2013;",
+    "code": "BP505T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 5",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp601t",
+    "course": "B.Pharm",
+    "name": "Medicinal Chemistry III &#x2013;",
+    "code": "BP601T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 6",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp602t",
+    "course": "B.Pharm",
+    "name": "Pharmacology III &#x2013;",
+    "code": "BP602T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 6",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp603t",
+    "course": "B.Pharm",
+    "name": "Herbal Drug Technology &#x2013;",
+    "code": "BP603T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 6",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp604t",
+    "course": "B.Pharm",
+    "name": "Biopharmaceutics and Pharmacokinetics &#x2013;",
+    "code": "BP604T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 6",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp605t",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Biotechnology &#x2013;",
+    "code": "BP605T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 6",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp606t",
+    "course": "B.Pharm",
+    "name": "Quality Assurance &#x2013;",
+    "code": "BP606T",
+    "branchId": "B.Pharm",
+    "year": "3rd Year",
+    "semester": "Semester 6",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp701t",
+    "course": "B.Pharm",
+    "name": "Instrumental Methods of Analysis &#x2013;",
+    "code": "BP701T",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 7",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp702t",
+    "course": "B.Pharm",
+    "name": "Industrial Pharmacy II &#x2013;",
+    "code": "BP702T",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 7",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp703t",
+    "course": "B.Pharm",
+    "name": "Pharmacy Practice &#x2013;",
+    "code": "BP703T",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 7",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp704t",
+    "course": "B.Pharm",
+    "name": "Novel Drug Delivery System &#x2013;",
+    "code": "BP704T",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 7",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp801t",
+    "course": "B.Pharm",
+    "name": "Biostatistics and Research Methodology",
+    "code": "BP801T",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp802t",
+    "course": "B.Pharm",
+    "name": "Social and Preventive Pharmacy",
+    "code": "BP802T",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp803et",
+    "course": "B.Pharm",
+    "name": "Pharma Marketing Management",
+    "code": "BP803ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp804et",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Regulatory Science",
+    "code": "BP804ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp805et",
+    "course": "B.Pharm",
+    "name": "Pharmacovigilance",
+    "code": "BP805ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp806et",
+    "course": "B.Pharm",
+    "name": "Quality Control and Standardization of Herbal Drugs",
+    "code": "BP806ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp807et",
+    "course": "B.Pharm",
+    "name": "Computer Aided Drug Design",
+    "code": "BP807ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp808et",
+    "course": "B.Pharm",
+    "name": "Cell and Molecular Biology",
+    "code": "BP808ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp809et",
+    "course": "B.Pharm",
+    "name": "Cosmetic Science",
+    "code": "BP809ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp810et",
+    "course": "B.Pharm",
+    "name": "Pharmacological Screening Methods",
+    "code": "BP810ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp811et",
+    "course": "B.Pharm",
+    "name": "Advanced Instrumentation Techniques",
+    "code": "BP811ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp812et",
+    "course": "B.Pharm",
+    "name": "Dietary Supplements and Nutraceuticals",
+    "code": "BP812ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-bp813et",
+    "course": "B.Pharm",
+    "name": "Pharmaceutical Product Development",
+    "code": "BP813ET",
+    "branchId": "B.Pharm",
+    "year": "4th Year",
+    "semester": "Semester 8",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mba-bmb301",
+    "course": "MBA",
+    "name": "Strategic Management",
+    "code": "BMB301",
+    "branchId": "MBA",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": "Core Management"
+  },
+  {
+    "id": "sub-mca-bmc105",
+    "course": "MCA",
+    "name": "Computer Organization & Architecture",
+    "code": "BMC105",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-kca-cs",
+    "course": "MCA",
+    "name": "Cyber Security",
+    "code": "KCA-CS",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-bmc102",
+    "course": "MCA",
+    "name": "Problem Solving using C",
+    "code": "BMC102",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-bmc104",
+    "course": "MCA",
+    "name": "Discrete Mathematics",
+    "code": "BMC104",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-bmc101",
+    "course": "MCA",
+    "name": "Fundamental of Computers & Emerging Technologies",
+    "code": "BMC101",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-mca-bmc103",
+    "course": "MCA",
+    "name": "Principles of Management & Communication",
+    "code": "BMC103",
+    "branchId": "MCA",
+    "year": "1st Year",
+    "semester": "Semester 1",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-kve401",
+    "course": "B.Pharm",
+    "name": "Universal Human Values and Professional Ethics",
+    "code": "KVE401",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 3",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-2019-20",
+    "course": "B.Pharm",
+    "name": "DOWNLOAD",
+    "code": "2019-20",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 4",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-2020-21",
+    "course": "B.Pharm",
+    "name": "NA",
+    "code": "2020-21",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 4",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-2021-22",
+    "course": "B.Pharm",
+    "name": "DOWNLOAD",
+    "code": "2021-22",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 4",
+    "specialization": ""
+  },
+  {
+    "id": "sub-bpharm-2022-23",
+    "course": "B.Pharm",
+    "name": "DOWNLOAD",
+    "code": "2022-23",
+    "branchId": "B.Pharm",
+    "year": "2nd Year",
+    "semester": "Semester 4",
+    "specialization": ""
+  }
+]

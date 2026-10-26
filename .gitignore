@@ -13,6 +13,7 @@ server/data/*.json
 !server/data/pyqQuestions.json
 !server/data/projects.json
 !server/data/opportunities.json
+!server/data/subjects.json
 
 # Logs
 logs
@@ -42,6 +43,7 @@ dist-ssr
 # Scratch/test files
 scratch/
 backups/
+reports/
 server/data_backup_recovery/
 server/opportunities.json
 server/scholarships.json

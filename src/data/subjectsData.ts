@@ -436,107 +436,7 @@ export const SUBJECTS_CATALOG: SubjectItem[] = [
     pyqsCount: 11
   },
 
-  // ================= MCA SUBJECTS =================
-  {
-    id: 'mca101',
-    code: 'KCA101',
-    name: 'Problem Solving Using Python',
-    course: 'MCA',
-    year: '1st Year',
-    semester: 'Sem 1',
-    iconBg: '#DCFCE7',
-    iconColor: '#16A34A',
-    unitsCount: 5,
-    pyqsCount: 10
-  },
-  {
-    id: 'mca102',
-    code: 'KCA102',
-    name: 'Computer Organization & Architecture',
-    course: 'MCA',
-    year: '1st Year',
-    semester: 'Sem 1',
-    iconBg: '#F3E8FF',
-    iconColor: '#7C3AED',
-    unitsCount: 5,
-    pyqsCount: 12
-  },
-  {
-    id: 'mca201',
-    code: 'KCA301',
-    name: 'Artificial Intelligence & Machine Learning',
-    course: 'MCA',
-    year: '2nd Year',
-    semester: 'Sem 3',
-    iconBg: '#DBEAFE',
-    iconColor: '#2563EB',
-    unitsCount: 5,
-    pyqsCount: 9
-  },
-
-  // ================= MBA SUBJECTS =================
-  {
-    id: 'mba101',
-    code: 'KMBN101',
-    name: 'Management Concepts & Organizational Behaviour',
-    course: 'MBA',
-    year: '1st Year',
-    semester: 'Sem 1',
-    iconBg: '#FFEDD5',
-    iconColor: '#C2410C',
-    unitsCount: 5,
-    pyqsCount: 10
-  },
-  {
-    id: 'mba102',
-    code: 'KMBN102',
-    name: 'Managerial Economics',
-    course: 'MBA',
-    year: '1st Year',
-    semester: 'Sem 1',
-    iconBg: '#FEF3C7',
-    iconColor: '#D97706',
-    unitsCount: 5,
-    pyqsCount: 11
-  },
-  {
-    id: 'mba201',
-    code: 'KMBN201',
-    name: 'Business Environment & Legal Aspects',
-    course: 'MBA',
-    year: '2nd Year',
-    semester: 'Sem 3',
-    iconBg: '#FEE2E2',
-    iconColor: '#DC2626',
-    unitsCount: 5,
-    pyqsCount: 9
-  },
-
-  // ================= B.PHARM SUBJECTS =================
-  {
-    id: 'bp101',
-    code: 'BP101T',
-    name: 'Human Anatomy & Physiology I',
-    course: 'B.Pharm',
-    year: '1st Year',
-    semester: 'Sem 1',
-    iconBg: '#FEE2E2',
-    iconColor: '#DC2626',
-    unitsCount: 5,
-    pyqsCount: 12
-  },
-  {
-    id: 'bp201',
-    code: 'BP201T',
-    name: 'Pharmaceutical Chemistry',
-    course: 'B.Pharm',
-    year: '2nd Year',
-    semester: 'Sem 3',
-    iconBg: '#DCFCE7',
-    iconColor: '#16A34A',
-    unitsCount: 5,
-    pyqsCount: 14
-  },
+  // MCA, MBA, and B.Pharm subjects are enriched dynamically from verified COURSE_CONFIG below
 
   // ================= BBA SUBJECTS =================
   {
@@ -715,50 +615,6 @@ export const allCourses: Record<string, CourseData> = {
       ]
     }
   },
-  MCA: {
-    General: {
-      "1st Year": [
-        { code: "MCA101", name: "Advanced Mathematics" },
-        { code: "MCA102", name: "Advanced C Programming" }
-      ],
-      "2nd Year": [
-        { code: "MCA201", name: "Advanced Java" },
-        { code: "MCA202", name: "Advanced DBMS" }
-      ]
-    }
-  },
-  MBA: {
-    General: {
-      "1st Year": [
-        { code: "MBA101", name: "Management Principles" },
-        { code: "MBA102", name: "Marketing Management" },
-        { code: "MBA103", name: "Financial Management" }
-      ],
-      "2nd Year": [
-        { code: "MBA201", name: "HR Management" },
-        { code: "MBA202", name: "Business Analytics" }
-      ]
-    }
-  },
-  BPharm: {
-    General: {
-      "1st Year": [
-        { code: "BPH101", name: "Pharmaceutics-I" },
-        { code: "BPH102", name: "Pharmaceutical Chemistry" },
-        { code: "BPH103", name: "Pharmacognosy" }
-      ],
-      "2nd Year": [
-        { code: "BPH201", name: "Pharmacology-I" },
-        { code: "BPH202", name: "Pharmaceutics-II" }
-      ],
-      "3rd Year": [
-        { code: "BPH301", name: "Medicinal Chemistry" }
-      ],
-      "4th Year": [
-        { code: "BPH401", name: "Industrial Pharmacy" }
-      ]
-    }
-  },
   BBA: {
     General: {
       "1st Year": [
@@ -778,14 +634,11 @@ export const allCourses: Record<string, CourseData> = {
 
 // Aliases for dot-notated and variation keys
 allCourses["B.Tech"] = allCourses["BTech"];
-allCourses["B.Pharm"] = allCourses["BPharm"];
-allCourses["B.Pharma"] = allCourses["BPharm"];
-allCourses["BPharma"] = allCourses["BPharm"];
 allCourses["M.Tech"] = allCourses["MTech"];
 
 // Enrich allCourses for all 24 AKTU programmes from COURSE_CONFIG
 Object.entries(COURSE_CONFIG).forEach(([cKey, conf]: [string, any]) => {
-  if (!allCourses[cKey] && conf.sems && conf.subjects) {
+  if (conf.sems && conf.subjects) {
     const branchName = (conf.branches && conf.branches[0]) || "General";
     const yearObj: Record<string, SubjectRef[]> = {};
     Object.entries(conf.sems).forEach(([yr, semArr]: [string, any]) => {
@@ -804,8 +657,56 @@ Object.entries(COURSE_CONFIG).forEach(([cKey, conf]: [string, any]) => {
       });
       yearObj[yr] = subList;
     });
-    allCourses[cKey] = { [branchName]: yearObj };
+    // For MCA, MBA, BPharma, always ensure verified COURSE_CONFIG is used
+    if (['MCA', 'MBA', 'BPharma', 'BPharm'].includes(cKey) || !allCourses[cKey]) {
+      allCourses[cKey] = { [branchName]: yearObj };
+    }
   }
 });
+
+// Sync aliases for BPharm
+allCourses["B.Pharm"] = allCourses["BPharma"] || allCourses["BPharm"];
+allCourses["BPharm"] = allCourses["BPharma"] || allCourses["BPharm"];
+allCourses["B.Pharma"] = allCourses["BPharma"] || allCourses["BPharm"];
+
+// Enrich SUBJECTS_CATALOG with verified subjects for MCA, MBA, and B.Pharm
+const catalogPalette = [
+  { bg: '#DBEAFE', color: '#2563EB' },
+  { bg: '#FEE2E2', color: '#DC2626' },
+  { bg: '#DCFCE7', color: '#16A34A' },
+  { bg: '#FEF3C7', color: '#D97706' },
+  { bg: '#F3E8FF', color: '#9333EA' },
+  { bg: '#FFEDD5', color: '#C2410C' }
+];
+
+['MCA', 'MBA', 'BPharma'].forEach((cKey) => {
+  const conf = (COURSE_CONFIG as any)[cKey];
+  if (!conf || !conf.sems || !conf.subjects) return;
+  const courseLabel = cKey === 'BPharma' ? 'B.Pharm' : cKey;
+
+  Object.entries(conf.sems).forEach(([yr, semArr]: [string, any]) => {
+    (semArr || []).forEach((sn: number) => {
+      const rawSubs = conf.subjects[sn] || [];
+      rawSubs.forEach((item: any, idx: number) => {
+        const name = typeof item === 'object' && item.name ? item.name : String(item);
+        const code = typeof item === 'object' && item.code ? item.code : `${cKey}-${sn}0${idx + 1}`;
+        const color = catalogPalette[(idx + sn) % catalogPalette.length];
+        SUBJECTS_CATALOG.push({
+          id: `${courseLabel.toLowerCase().replace(/[^a-z0-9]/g, '')}_${code.toLowerCase()}`,
+          code,
+          name,
+          course: courseLabel,
+          year: yr,
+          semester: `Sem ${sn}`,
+          iconBg: color.bg,
+          iconColor: color.color,
+          unitsCount: 5,
+          pyqsCount: 5
+        });
+      });
+    });
+  });
+});
+
 
 
