@@ -1431,7 +1431,7 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
 
   const renderCourseKpiCards = (onSelectCourse) => {
     const totalN = adminNotes.length || stats.totalNotes || 0;
-    const totalP = adminPyqs.length || stats.totalPYQs || 5508;
+    const totalP = adminPyqs.length || (stats.totalPYQs ?? 0);
 
     const keyCourses = [
       { name: 'B.Tech', fullName: 'Bachelor of Technology', color: '#0F766E', bg: '#F0FDFA', border: '#99F6E4' },

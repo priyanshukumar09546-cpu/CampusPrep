@@ -2785,11 +2785,9 @@ app.get('/api/admin/stats', verifyAdminToken, async (req, res) => {
           PyqModel.countDocuments({ published: { $ne: false }, status: { $ne: 'unpublished' } })
         ]);
 
-        if (mongoNotesCount > 0) totalNotes = mongoNotesCount;
-        if (mongoPyqsCount > 0) {
-          totalPYQs = mongoPyqsCount;
-          publishedPYQs = pubPyqsCount;
-        }
+        totalNotes = mongoNotesCount;
+        totalPYQs = mongoPyqsCount;
+        publishedPYQs = pubPyqsCount;
 
         notesByCourse.forEach(nc => {
           const c = nc._id || 'B.Tech';

@@ -195,9 +195,7 @@ export default function PYQsPage({ onNavigate, onOpenAuth, initialCourse = 'BTec
       })
       .then(data => {
         const pyqList = Array.isArray(data) ? data : (data?.pyqs || []);
-        if (pyqList.length > 0) {
-          setDbPyqs(deduplicatePyqs(pyqList));
-        }
+        setDbPyqs(deduplicatePyqs(pyqList));
       })
       .catch(err => console.log('Backend not available, keeping local fallback pyqs:', err));
   };

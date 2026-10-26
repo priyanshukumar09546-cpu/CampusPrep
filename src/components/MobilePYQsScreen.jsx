@@ -377,7 +377,6 @@ export default function MobilePYQsScreen({
     papers = deduplicatePyqs(papers);
 
     // Map into year lookup
-    const defaultYears = ['2024', '2023', '2022', '2021', '2020'];
     const yearMap = {};
 
     papers.forEach(p => {
@@ -388,15 +387,16 @@ export default function MobilePYQsScreen({
     });
 
     const foundYears = Object.keys(yearMap).sort().reverse();
-    const displayYears = foundYears.length > 0 ? foundYears : defaultYears;
+    const hasPapers = foundYears.length > 0;
+    const displayYears = hasPapers ? foundYears : [];
 
     return {
       papers,
       yearMap,
       displayYears,
-      yearsCount: displayYears.length,
-      startYear: displayYears[displayYears.length - 1] || '2020',
-      endYear: displayYears[0] || '2024'
+      yearsCount: foundYears.length,
+      startYear: hasPapers ? displayYears[displayYears.length - 1] : null,
+      endYear: hasPapers ? displayYears[0] : null
     };
   };
 
@@ -930,22 +930,22 @@ export default function MobilePYQsScreen({
                           marginTop: '2px'
                         }}>
                           <FileText size={10} color="#66758B" />
-                          <span>PYQ Available: {pyqMeta.startYear} - {pyqMeta.endYear} ({pyqMeta.yearsCount} Years)</span>
+                          <span>{pyqMeta.yearsCount > 0 ? `PYQ Available: ${pyqMeta.startYear} - ${pyqMeta.endYear} (${pyqMeta.yearsCount} Years)` : 'No PYQs available yet'}</span>
                         </div>
                       </div>
 
                       {/* Right: Badge + Download Action */}
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
                         <span style={{
-                          backgroundColor: '#861820',
-                          color: '#FFFFFF',
+                          backgroundColor: pyqMeta.yearsCount > 0 ? '#861820' : '#E2E8F0',
+                          color: pyqMeta.yearsCount > 0 ? '#FFFFFF' : '#64748B',
                           fontSize: '9.5px',
                           fontWeight: 800,
                           padding: '2px 8px',
                           borderRadius: '9999px',
                           whiteSpace: 'nowrap'
                         }}>
-                          {pyqMeta.yearsCount} Years
+                          {pyqMeta.yearsCount > 0 ? `${pyqMeta.yearsCount} Years` : '0 Papers'}
                         </span>
 
                         <button
@@ -972,36 +972,47 @@ export default function MobilePYQsScreen({
                     </div>
 
                     {/* Bottom Row: Horizontal Examination Year Chips (Image 2) */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      overflowX: 'auto',
-                      scrollbarWidth: 'none',
-                      msOverflowStyle: 'none',
-                      paddingTop: '2px'
-                    }}>
-                      {pyqMeta.displayYears.map(year => (
-                        <button
-                          key={year}
-                          onClick={() => handleYearChipClick(year, pyqMeta, subject)}
-                          style={{
-                            padding: '3px 8px',
-                            borderRadius: '6px',
-                            border: '1px solid #E9D9CC',
-                            backgroundColor: '#FFFCF7',
-                            color: '#14243D',
-                            fontSize: '9.5px',
-                            fontWeight: 700,
-                            cursor: 'pointer',
-                            whiteSpace: 'nowrap',
-                            transition: 'all 0.15s ease'
-                          }}
-                        >
-                          {year}
-                        </button>
-                      ))}
-                    </div>
+                    {pyqMeta.displayYears.length > 0 ? (
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        overflowX: 'auto',
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                        paddingTop: '2px'
+                      }}>
+                        {pyqMeta.displayYears.map(year => (
+                          <button
+                            key={year}
+                            onClick={() => handleYearChipClick(year, pyqMeta, subject)}
+                            style={{
+                              padding: '3px 8px',
+                              borderRadius: '6px',
+                              border: '1px solid #E9D9CC',
+                              backgroundColor: '#FFFCF7',
+                              color: '#14243D',
+                              fontSize: '9.5px',
+                              fontWeight: 700,
+                              cursor: 'pointer',
+                              whiteSpace: 'nowrap',
+                              transition: 'all 0.15s ease'
+                            }}
+                          >
+                            {year}
+                          </button>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{
+                        fontSize: '9.5px',
+                        color: '#94A3B8',
+                        paddingTop: '2px',
+                        fontStyle: 'italic'
+                      }}>
+                        No papers uploaded yet • Upload via Admin
+                      </div>
+                    )}
 
                   </div>
                 );
