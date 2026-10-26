@@ -84,6 +84,34 @@ const mergePyqLists = (primary, fallback) => {
   return deduplicatePyqs([...(primary || []), ...(fallback || [])]);
 };
 
+// Normalization & Canonical Code Helpers (declared at module level to prevent TDZ)
+const cleanAlpha = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+const normSubCanonical = normalizeSubjectTitle;
+
+const normalizeAcademicYear = (raw) => {
+  if (!raw) return '';
+  let s = String(raw).trim().replace(/^0+/, '');
+  const mCorrupt = s.match(/^(20\d{2})2013(\d{2})$/);
+  if (mCorrupt) {
+    const y1 = parseInt(mCorrupt[1], 10);
+    let y2 = parseInt(mCorrupt[2], 10) + 2000;
+    return `${y1}-${y2}`;
+  }
+  const m = s.match(/(\d{4})\s*[-–/]\s*(\d{2,4})/);
+  if (m) {
+    const y1 = parseInt(m[1], 10);
+    let y2 = parseInt(m[2], 10);
+    if (y2 < 100) y2 += 2000;
+    return `${y1}-${y2}`;
+  }
+  const mSingle = s.match(/\b(20\d{2})\b/);
+  if (mSingle) {
+    const yEnd = parseInt(mSingle[1], 10);
+    return `${yEnd - 1}-${yEnd}`;
+  }
+  return s;
+};
+
 export default function CoursePyqsView({ 
   courseKey = 'B.Tech', 
   dbPyqs = [], 
@@ -365,34 +393,6 @@ export default function CoursePyqsView({
     return courseMeta.semesters || ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4'];
   }, [isBTech, normKey, activeYear, courseMeta]);
 
-  // Normalization & Canonical Code Helpers
-  const cleanAlpha = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-
-  const normSubCanonical = normalizeSubjectTitle;
-
-  const normalizeAcademicYear = (raw) => {
-    if (!raw) return '';
-    let s = String(raw).trim().replace(/^0+/, '');
-    const mCorrupt = s.match(/^(20\d{2})2013(\d{2})$/);
-    if (mCorrupt) {
-      const y1 = parseInt(mCorrupt[1], 10);
-      let y2 = parseInt(mCorrupt[2], 10) + 2000;
-      return `${y1}-${y2}`;
-    }
-    const m = s.match(/(\d{4})\s*[-–/]\s*(\d{2,4})/);
-    if (m) {
-      const y1 = parseInt(m[1], 10);
-      let y2 = parseInt(m[2], 10);
-      if (y2 < 100) y2 += 2000;
-      return `${y1}-${y2}`;
-    }
-    const mSingle = s.match(/\b(20\d{2})\b/);
-    if (mSingle) {
-      const yEnd = parseInt(mSingle[1], 10);
-      return `${yEnd - 1}-${yEnd}`;
-    }
-    return s;
-  };
 
   // Dynamic Subjects from database (with canonical deduplication for all courses)
   const dynamicDbSubjects = useMemo(() => {

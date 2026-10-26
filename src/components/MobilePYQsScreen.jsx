@@ -87,6 +87,34 @@ function getSubjectIcon(name = '', code = '') {
   return { icon: FileText, bg: '#FDF2F2', color: '#861820' };
 }
 
+const cleanAlpha = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+const getSubjectSyllabus = (sub) => {
+  if (!sub) return null;
+  const codeClean = cleanAlpha(sub.code || '');
+  const nameClean = cleanAlpha(sub.name || '');
+  return AKTU_SYLLABUS_DATA.find(s => {
+    const sCode = cleanAlpha(s.code || '');
+    const sName = cleanAlpha(s.subject || '');
+    if (codeClean && sCode && (codeClean === sCode || codeClean.includes(sCode) || sCode.includes(codeClean))) return true;
+    if (nameClean && sName && (nameClean === sName || sName.includes(nameClean))) return true;
+    return false;
+  });
+};
+
+const getSubjectQuestions = (sub) => {
+  if (!sub) return [];
+  const codeClean = cleanAlpha(sub.code || '');
+  const nameClean = cleanAlpha(sub.name || '');
+  return (pyqQuestionsData || []).filter(q => {
+    const qCode = cleanAlpha(q.subjectCode || '');
+    const qName = cleanAlpha(q.subjectName || '');
+    if (codeClean && qCode && (codeClean === qCode || codeClean.includes(qCode) || qCode.includes(codeClean))) return true;
+    if (nameClean && qName && (nameClean === qName || qName.includes(nameClean))) return true;
+    return false;
+  });
+};
+
 // Crisp inline SVG matching the PYQs Hero Banner in Image 2
 function PyqsHeroArt() {
   return (
@@ -464,34 +492,6 @@ export default function MobilePYQsScreen({
     } else {
       alert(`Request received for ${sub.name} PYQ papers!`);
     }
-  };
-
-  const cleanAlpha = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-
-  const getSubjectSyllabus = (sub) => {
-    if (!sub) return null;
-    const codeClean = cleanAlpha(sub.code || '');
-    const nameClean = cleanAlpha(sub.name || '');
-    return AKTU_SYLLABUS_DATA.find(s => {
-      const sCode = cleanAlpha(s.code || '');
-      const sName = cleanAlpha(s.subject || '');
-      if (codeClean && sCode && (codeClean === sCode || codeClean.includes(sCode) || sCode.includes(codeClean))) return true;
-      if (nameClean && sName && (nameClean === sName || sName.includes(nameClean))) return true;
-      return false;
-    });
-  };
-
-  const getSubjectQuestions = (sub) => {
-    if (!sub) return [];
-    const codeClean = cleanAlpha(sub.code || '');
-    const nameClean = cleanAlpha(sub.name || '');
-    return (pyqQuestionsData || []).filter(q => {
-      const qCode = cleanAlpha(q.subjectCode || '');
-      const qName = cleanAlpha(q.subjectName || '');
-      if (codeClean && qCode && (codeClean === qCode || codeClean.includes(qCode) || qCode.includes(codeClean))) return true;
-      if (nameClean && qName && (nameClean === qName || qName.includes(nameClean))) return true;
-      return false;
-    });
   };
 
   const activeSubjectObj = useMemo(() => {
