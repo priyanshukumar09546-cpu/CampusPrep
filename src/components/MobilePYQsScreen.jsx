@@ -284,56 +284,78 @@ export default function MobilePYQsScreen({
 
   const isBTech = normalizeCourseKey(selectedCourse) === 'BTech';
 
+  // Filter papers strictly for selected course
+  const coursePyqs = useMemo(() => {
+    const all = Array.isArray(dbPyqs) && dbPyqs.length > 0
+      ? dbPyqs
+      : (Array.isArray(localPyqsData) ? localPyqsData : Object.values(localPyqsData).flat());
+    const targetCourseNorm = String(selectedCourse || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    return all.filter(p => {
+      const pCourseNorm = String(p.course || 'btech').toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (targetCourseNorm === 'btech') return pCourseNorm === 'btech';
+      return pCourseNorm === targetCourseNorm;
+    });
+  }, [dbPyqs, selectedCourse]);
+
+  const hasCoursePyqs = coursePyqs.length > 0;
+
+  // Derive dynamic branches backed by real uploaded documents
+  const dynamicBranches = useMemo(() => {
+    if (!hasCoursePyqs) return [];
+    const set = new Set();
+    coursePyqs.forEach(p => {
+      const b = (p.branch || '').toUpperCase().trim();
+      if (b && b !== 'ALL' && b !== 'COMMON') set.add(b);
+    });
+    return Array.from(set);
+  }, [coursePyqs, hasCoursePyqs]);
+
+  // Derive dynamic years backed by real uploaded documents
+  const dynamicYears = useMemo(() => {
+    if (!hasCoursePyqs) return [];
+    const set = new Set();
+    coursePyqs.forEach(p => {
+      const y = (p.year || '').trim();
+      if (y) set.add(y);
+    });
+    return Array.from(set);
+  }, [coursePyqs, hasCoursePyqs]);
+
   const semNum = useMemo(() => {
     const match = String(selectedSem).match(/\d+/);
     return match ? parseInt(match[0], 10) : 1;
   }, [selectedSem]);
 
-  // Subjects list
+  // Subjects list — strictly derived from real uploaded documents, zero phantom subjects
   const subjectsList = useMemo(() => {
+    if (!hasCoursePyqs) return [];
     const branchParam = isBTech ? (selectedBranch === 'CS' ? 'CSE' : selectedBranch) : null;
-    const rawSubs = getSubjectsForCourseMapping(selectedCourse, selectedYear, semNum, branchParam);
+    const subMap = new Map();
 
-    let list = (rawSubs || []).map(sub => {
-      const iconMeta = getSubjectIcon(sub.name, sub.code);
-      return {
-        id: sub.code || sub.name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
-        code: sub.code || '',
-        name: sub.name,
-        semester: sub.semester || semNum,
-        year: selectedYear,
-        branch: branchParam,
-        icon: iconMeta.icon,
-        iconBg: iconMeta.bg,
-        iconColor: iconMeta.color
-      };
+    coursePyqs.forEach(p => {
+      if (branchParam && p.branch && p.branch.toUpperCase() !== branchParam && p.branch.toUpperCase() !== 'ALL') return;
+      if (selectedYear && p.year && p.year !== selectedYear) return;
+      const rawName = p.subjectName || p.subject || '';
+      const rawCode = p.subjectCode || p.code || '';
+      if (!rawName && !rawCode) return;
+      const key = rawCode || rawName;
+      if (!subMap.has(key)) {
+        const iconMeta = getSubjectIcon(rawName, rawCode);
+        subMap.set(key, {
+          id: key,
+          code: rawCode,
+          name: rawName,
+          semester: p.semester || semNum,
+          year: p.year || selectedYear,
+          branch: p.branch || branchParam,
+          icon: iconMeta.icon,
+          iconBg: iconMeta.bg,
+          iconColor: iconMeta.color
+        });
+      }
     });
 
-    if (list.length === 0 && selectedYear === '1st Year') {
-      const fallbackList = [
-        { code: 'BCS101', name: 'Programming for Problem Solving' },
-        { code: 'BAS101', name: 'Mathematics-I' },
-        { code: 'BAS201', name: 'Physics' },
-        { code: 'BAS301', name: 'Chemistry' },
-        { code: 'BCS102', name: 'Digital Electronics' },
-        { code: 'BAS401', name: 'Technical Communication' }
-      ];
-      list = fallbackList.map(s => {
-        const meta = getSubjectIcon(s.name, s.code);
-        return {
-          id: s.code,
-          code: s.code,
-          name: s.name,
-          semester: 1,
-          year: '1st Year',
-          branch: 'CSE',
-          icon: meta.icon,
-          iconBg: meta.bg,
-          iconColor: meta.color
-        };
-      });
-    }
-
+    let list = Array.from(subMap.values());
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
       list = list.filter(s =>
@@ -343,7 +365,7 @@ export default function MobilePYQsScreen({
     }
 
     return list;
-  }, [selectedCourse, selectedBranch, selectedYear, semNum, searchQuery, isBTech]);
+  }, [hasCoursePyqs, coursePyqs, isBTech, selectedBranch, selectedYear, semNum, searchQuery]);
 
   // Helper to get real available PYQ papers for each subject
   const getSubjectPyqs = (sub) => {
@@ -673,69 +695,117 @@ export default function MobilePYQsScreen({
           </div>
         </div>
 
-        {/* 5. SELECT BRANCH (B.Tech) SECTION (Image 2) */}
-        {isBTech && (
-          <div style={{ marginBottom: '12px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-              <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
-                Select Branch (B.Tech)
-              </h2>
-              <button
-                onClick={() => setShowAllBranchesModal(true)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: '#861820',
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '2px'
-                }}
-              >
-                View All <ArrowRight size={11} />
-              </button>
-            </div>
-
-            {/* Horizontal Branch Chips Scroll */}
+        {/* CLEAN EMPTY STATE WHEN NO VALID PYQ DOCUMENTS EXIST */}
+        {!hasCoursePyqs ? (
+          <div style={{
+            backgroundColor: '#FFFFFF',
+            borderRadius: '20px',
+            border: '1.5px solid #E9D9CC',
+            padding: '36px 20px',
+            textAlign: 'center',
+            boxShadow: '0 2px 8px rgba(20, 36, 61, 0.04)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '12px',
+            margin: '16px 0 24px 0'
+          }}>
             <div style={{
-              display: 'flex',
+              width: '56px',
+              height: '56px',
+              borderRadius: '50%',
+              backgroundColor: '#FEF3C7',
+              border: '1.5px solid #FCD34D',
+              display: 'inline-flex',
               alignItems: 'center',
-              gap: '6px',
-              overflowX: 'auto',
-              WebkitOverflowScrolling: 'touch',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-              padding: '2px 0 4px'
+              justifyContent: 'center',
+              color: '#92400E'
             }}>
-              {BTECH_BRANCHES.map(branch => {
-                const isSelected = selectedBranch === branch;
-                return (
+              <FileText size={26} />
+            </div>
+            <h3 style={{
+              fontSize: '15px',
+              fontWeight: 900,
+              color: '#14243D',
+              margin: 0
+            }}>
+              PYQs will be available soon
+            </h3>
+            <p style={{
+              fontSize: '12px',
+              color: '#66758B',
+              margin: 0,
+              maxWidth: '280px',
+              lineHeight: 1.45
+            }}>
+              Subject listings will appear after verified question papers are uploaded.
+            </p>
+          </div>
+        ) : (
+          <>
+            {/* 5. SELECT BRANCH (B.Tech) SECTION */}
+            {isBTech && dynamicBranches.length > 0 && (
+              <div style={{ marginBottom: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                  <h2 style={{ fontSize: '13px', fontWeight: 900, color: '#14243D', margin: 0 }}>
+                    Select Branch (B.Tech)
+                  </h2>
                   <button
-                    key={branch}
-                    onClick={() => handleBranchChange(branch)}
+                    onClick={() => setShowAllBranchesModal(true)}
                     style={{
-                      padding: '5px 14px',
-                      borderRadius: '9999px',
-                      border: isSelected ? 'none' : '1.5px solid #E9D9CC',
-                      backgroundColor: isSelected ? '#861820' : '#FFFFFF',
-                      color: isSelected ? '#FFFFFF' : '#14243D',
+                      background: 'none',
+                      border: 'none',
+                      color: '#861820',
                       fontSize: '11px',
-                      fontWeight: isSelected ? 800 : 700,
-                      whiteSpace: 'nowrap',
-                      flexShrink: 0,
+                      fontWeight: 700,
                       cursor: 'pointer',
-                      boxShadow: isSelected ? '0 2px 6px rgba(134, 24, 32, 0.22)' : 'none'
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '2px'
                     }}
                   >
-                    {branch}
+                    View All <ArrowRight size={11} />
                   </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
+                </div>
+
+                {/* Horizontal Branch Chips Scroll */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  overflowX: 'auto',
+                  WebkitOverflowScrolling: 'touch',
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
+                  padding: '2px 0 4px'
+                }}>
+                  {dynamicBranches.map(branch => {
+                    const isSelected = selectedBranch === branch;
+                    return (
+                      <button
+                        key={branch}
+                        onClick={() => handleBranchChange(branch)}
+                        style={{
+                          padding: '5px 14px',
+                          borderRadius: '9999px',
+                          border: isSelected ? 'none' : '1.5px solid #E9D9CC',
+                          backgroundColor: isSelected ? '#861820' : '#FFFFFF',
+                          color: isSelected ? '#FFFFFF' : '#14243D',
+                          fontSize: '11px',
+                          fontWeight: isSelected ? 800 : 700,
+                          whiteSpace: 'nowrap',
+                          flexShrink: 0,
+                          cursor: 'pointer',
+                          boxShadow: isSelected ? '0 2px 6px rgba(134, 24, 32, 0.22)' : 'none'
+                        }}
+                      >
+                        {branch}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
         {/* 6. SELECT YEAR TABS (Image 2) */}
         <div style={{ marginBottom: '12px' }}>
@@ -1020,6 +1090,8 @@ export default function MobilePYQsScreen({
             </div>
           )}
         </div>
+          </>
+        )}
 
       </div>
 

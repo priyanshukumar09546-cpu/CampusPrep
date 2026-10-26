@@ -182,6 +182,43 @@ export default function CoursePyqsView({
       .catch(err => console.log('Backend not available, keeping local fallback pyqs:', err));
   }, [normKey, dbPyqs, allFallbackPyqs]);
 
+  // Filter all loaded local/db PYQs for current course
+  const currentCoursePyqs = useMemo(() => {
+    if (!Array.isArray(localPyqs)) return [];
+    return localPyqs.filter(p => {
+      const pCourse = cleanAlpha(getPyqCourse(p));
+      return isBTech ? pCourse === 'btech' : pCourse === cleanAlpha(normKey);
+    });
+  }, [localPyqs, isBTech, normKey]);
+
+  const hasCoursePyqs = currentCoursePyqs.length > 0;
+
+  // Dynamically derive branches backed by actual uploaded documents
+  const dynamicBranches = useMemo(() => {
+    if (!hasCoursePyqs) return [];
+    const set = new Set();
+    currentCoursePyqs.forEach(p => {
+      const b = String(p.branch || p.branchId || '').trim().toUpperCase();
+      if (b && b !== 'ALL' && b !== 'COMMON') set.add(b);
+    });
+    return Array.from(set).map(b => ({
+      id: b,
+      name: b,
+      fullName: b
+    }));
+  }, [currentCoursePyqs, hasCoursePyqs]);
+
+  // Dynamically derive years backed by actual uploaded documents
+  const dynamicYears = useMemo(() => {
+    if (!hasCoursePyqs) return [];
+    const set = new Set();
+    currentCoursePyqs.forEach(p => {
+      const y = String(p.year || p.btechYear || '').trim();
+      if (y) set.add(y);
+    });
+    return Array.from(set);
+  }, [currentCoursePyqs, hasCoursePyqs]);
+
   // URL Sync Helper
   const updateUrl = useCallback((newParams = {}) => {
     try {
@@ -418,44 +455,10 @@ export default function CoursePyqsView({
     return Array.from(subMap.values());
   }, [isBTech, normKey, localPyqs, activeYear, activeBranch, activeSemester, activeSpecialization]);
 
-  // Compute Available Subjects (Strict Deduplication against Catalog for all courses)
+  // Compute Available Subjects strictly from real uploaded PYQ documents (dynamicDbSubjects)
   const availableSubjects = useMemo(() => {
-    let catalogSubs = [];
-    if (isBTech) {
-      catalogSubs = getSubjectsForCourse('B.Tech', activeSemester, null, activeYear, activeBranch);
-    } else {
-      catalogSubs = getSubjectsForCourse(normKey, activeSemester, activeSpecialization, activeYear);
-    }
-    const result = [...catalogSubs];
-
-    // Track existing subjects by canonical code and normalized canonical name
-    const seenCodes = new Set();
-    const seenNames = new Set();
-
-    catalogSubs.forEach(s => {
-      const canonCode = getCanonicalCode(s.code);
-      if (canonCode) seenCodes.add(cleanAlpha(canonCode));
-      const normName = normSubCanonical(s.name);
-      if (normName) seenNames.add(normName);
-    });
-
-    dynamicDbSubjects.forEach(s => {
-      const canonCode = getCanonicalCode(s.code);
-      const canonCodeClean = canonCode ? cleanAlpha(canonCode) : '';
-      const normName = normSubCanonical(s.name);
-
-      const alreadyExists = (canonCodeClean && seenCodes.has(canonCodeClean)) ||
-                            (normName && seenNames.has(normName));
-
-      if (!alreadyExists) {
-        if (canonCodeClean) seenCodes.add(canonCodeClean);
-        if (normName) seenNames.add(normName);
-        result.push(s);
-      }
-    });
-
-    return result.sort((a, b) => (a.code || a.name).localeCompare(b.code || b.name));
-  }, [isBTech, normKey, activeSemester, activeSpecialization, activeYear, activeBranch, dynamicDbSubjects]);
+    return (dynamicDbSubjects || []).sort((a, b) => (a.code || a.name).localeCompare(b.code || b.name));
+  }, [dynamicDbSubjects]);
 
   // Cascading Auto-Select of Subject (Checks initial URL query parameter first)
   useEffect(() => {
@@ -680,93 +683,161 @@ export default function CoursePyqsView({
         </div>
       </div>
 
-      {/* 2. NAVIGATION FILTERS BAR */}
-      <div style={{
-        backgroundColor: '#ffffff',
-        border: '1.5px solid #E8E2D5',
-        borderRadius: '20px',
-        padding: '1.25rem',
-        boxShadow: '0 4px 16px rgba(35,30,25,0.03)',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1.25rem'
-      }}>
-        
-        {/* B.Tech: SELECT BRANCH */}
-        {isBTech && (
-          <div>
-            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-              Select Branch
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
-              {BTECH_BRANCHES.map(br => {
-                const isSel = activeBranch === br.id;
-                return (
-                  <button
-                    key={br.id}
-                    onClick={() => {
-                      setActiveBranch(br.id);
-                      updateUrl({ branch: br.id, subject: null });
-                    }}
-                    title={br.fullName}
-                    style={{
-                      padding: '0.42rem 1.15rem',
-                      borderRadius: '9999px',
-                      border: isSel ? `2px solid ${courseMeta.btnColor}` : '1.5px solid #E2E8F0',
-                      backgroundColor: isSel ? courseMeta.btnColor : '#FAF7F2',
-                      color: isSel ? '#ffffff' : '#334155',
-                      fontWeight: isSel ? 800 : 600,
-                      fontSize: '0.85rem',
-                      cursor: 'pointer',
-                      boxShadow: isSel ? `0 4px 12px ${courseMeta.badgeColor}35` : 'none',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    {br.name}
-                  </button>
-                );
-              })}
-            </div>
+      {/* CLEAN EMPTY STATE WHEN NO VALID PYQ DOCUMENTS EXIST */}
+      {!hasCoursePyqs ? (
+        <div style={{
+          backgroundColor: '#ffffff',
+          border: '1.5px solid #E8E2D5',
+          borderRadius: '24px',
+          padding: '4.5rem 2rem',
+          textAlign: 'center',
+          boxShadow: '0 6px 24px rgba(35,30,25,0.03)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '1.25rem',
+          margin: '0.5rem 0 2rem 0'
+        }}>
+          <div style={{
+            width: '68px',
+            height: '68px',
+            borderRadius: '50%',
+            backgroundColor: '#FEF3C7',
+            border: '2px solid #FCD34D',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#92400E'
+          }}>
+            <FileText size={34} />
           </div>
-        )}
 
-        {/* SELECT YEAR (B.Tech & BCA) */}
-        {(isBTech || (courseMeta.years && courseMeta.years.length > 0)) && (
-          <div style={{ borderTop: isBTech ? '1px solid #F1F5F9' : 'none', paddingTop: isBTech ? '1rem' : '0' }}>
-            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-              Select Year
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-              {(courseMeta.years || BTECH_YEARS).map(yr => {
-                const isSel = activeYear === yr;
-                return (
-                  <button
-                    key={yr}
-                    onClick={() => {
-                      setActiveYear(yr);
-                      setActiveSemester('All Semesters');
-                      updateUrl({ year: yr, semester: null, subject: null });
-                    }}
-                    style={{
-                      padding: '0.42rem 1.15rem',
-                      borderRadius: '9999px',
-                      border: isSel ? `2px solid ${courseMeta.btnColor}` : '1.5px solid #E2E8F0',
-                      backgroundColor: isSel ? courseMeta.btnColor : '#FAF7F2',
-                      color: isSel ? '#ffffff' : '#334155',
-                      fontWeight: isSel ? 800 : 600,
-                      fontSize: '0.85rem',
-                      cursor: 'pointer',
-                      boxShadow: isSel ? `0 4px 12px ${courseMeta.badgeColor}35` : 'none',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    {yr}
-                  </button>
-                );
-              })}
-            </div>
+          <div>
+            <h3 style={{
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: '1.65rem',
+              fontWeight: 900,
+              color: '#1F2421',
+              margin: '0 0 0.5rem 0'
+            }}>
+              PYQs will be available soon
+            </h3>
+            <p style={{
+              color: '#64748B',
+              fontSize: '1.02rem',
+              maxWidth: '520px',
+              lineHeight: 1.55,
+              margin: '0 auto',
+              fontWeight: 500
+            }}>
+              Subject listings will appear after verified question papers are uploaded.
+            </p>
           </div>
-        )}
+
+          <div style={{
+            backgroundColor: '#FAF7F2',
+            border: '1px solid #E8E2D5',
+            borderRadius: '9999px',
+            padding: '0.45rem 1.25rem',
+            fontSize: '0.82rem',
+            fontWeight: 700,
+            color: '#B37D28',
+            fontFamily: "'Kalam', cursive",
+            marginTop: '0.5rem'
+          }}>
+            “Verified AKTU question papers uploaded directly by faculty &amp; rankers”
+          </div>
+        </div>
+      ) : (
+        <>
+          {/* 2. NAVIGATION FILTERS BAR */}
+          <div style={{
+            backgroundColor: '#ffffff',
+            border: '1.5px solid #E8E2D5',
+            borderRadius: '20px',
+            padding: '1.25rem',
+            boxShadow: '0 4px 16px rgba(35,30,25,0.03)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.25rem'
+          }}>
+            
+            {/* B.Tech: SELECT BRANCH (DERIVED FROM UPLOADED PAPERS ONLY) */}
+            {isBTech && dynamicBranches.length > 0 && (
+              <div>
+                <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                  Select Branch
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+                  {dynamicBranches.map(br => {
+                    const isSel = activeBranch === br.id;
+                    return (
+                      <button
+                        key={br.id}
+                        onClick={() => {
+                          setActiveBranch(br.id);
+                          updateUrl({ branch: br.id, subject: null });
+                        }}
+                        title={br.fullName}
+                        style={{
+                          padding: '0.42rem 1.15rem',
+                          borderRadius: '9999px',
+                          border: isSel ? `2px solid ${courseMeta.btnColor}` : '1.5px solid #E2E8F0',
+                          backgroundColor: isSel ? courseMeta.btnColor : '#FAF7F2',
+                          color: isSel ? '#ffffff' : '#334155',
+                          fontWeight: isSel ? 800 : 600,
+                          fontSize: '0.85rem',
+                          cursor: 'pointer',
+                          boxShadow: isSel ? `0 4px 12px ${courseMeta.badgeColor}35` : 'none',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        {br.name}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* SELECT YEAR (DERIVED FROM UPLOADED PAPERS ONLY) */}
+            {dynamicYears.length > 0 && (
+              <div style={{ borderTop: isBTech && dynamicBranches.length > 0 ? '1px solid #F1F5F9' : 'none', paddingTop: isBTech && dynamicBranches.length > 0 ? '1rem' : '0' }}>
+                <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                  Select Year
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  {dynamicYears.map(yr => {
+                    const isSel = activeYear === yr;
+                    return (
+                      <button
+                        key={yr}
+                        onClick={() => {
+                          setActiveYear(yr);
+                          setActiveSemester('All Semesters');
+                          updateUrl({ year: yr, semester: null, subject: null });
+                        }}
+                        style={{
+                          padding: '0.42rem 1.15rem',
+                          borderRadius: '9999px',
+                          border: isSel ? `2px solid ${courseMeta.btnColor}` : '1.5px solid #E2E8F0',
+                          backgroundColor: isSel ? courseMeta.btnColor : '#FAF7F2',
+                          color: isSel ? '#ffffff' : '#334155',
+                          fontWeight: isSel ? 800 : 600,
+                          fontSize: '0.85rem',
+                          cursor: 'pointer',
+                          boxShadow: isSel ? `0 4px 12px ${courseMeta.badgeColor}35` : 'none',
+                          transition: 'all 0.2s ease'
+                        }}
+                      >
+                        {yr}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
         {/* SELECT SEMESTER (Dynamic based on selected year for B.Tech, or static for other courses) */}
         <div style={{ borderTop: '1px solid #F1F5F9', paddingTop: '1rem' }}>
@@ -1438,6 +1509,9 @@ export default function CoursePyqsView({
         </div>
 
       </div>
+
+        </>
+      )}
 
     </div>
   );
