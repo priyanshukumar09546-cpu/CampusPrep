@@ -1,62 +1,64 @@
 {
-  "timestamp": "2026-10-26T10:20:51.582Z",
-  "totalVerifiedPapers": 1084,
-  "duplicatesRemoved": 250,
+  "timestamp": "2026-10-26T10:38:58.241Z",
+  "totalVerifiedPapers": 868,
+  "duplicatesRemoved": 0,
   "papersByYear": {
     "1st Year": 84,
-    "2nd Year": 525,
-    "3rd Year": 475
+    "2nd Year": 377,
+    "3rd Year": 407
   },
   "papersByBranch": {
     "1st Year - ALL": 84,
-    "2nd Year - CSE": 110,
-    "2nd Year - ALL": 16,
-    "2nd Year - ECE": 105,
-    "2nd Year - EEE": 84,
-    "2nd Year - ME": 103,
-    "2nd Year - CE": 107,
-    "3rd Year - CSE": 80,
-    "3rd Year - ALL": 45,
-    "3rd Year - AIML": 59,
-    "3rd Year - Data Science": 59,
-    "3rd Year - ECE": 68,
-    "3rd Year - EEE": 44,
-    "3rd Year - ME": 52,
-    "3rd Year - CE": 68
+    "2nd Year - CSE": 79,
+    "2nd Year - ECE": 66,
+    "2nd Year - EEE": 61,
+    "2nd Year - ME": 64,
+    "2nd Year - CE": 68,
+    "2nd Year - ALL": 39,
+    "3rd Year - CSE": 81,
+    "3rd Year - AIML": 35,
+    "3rd Year - Data Science": 22,
+    "3rd Year - IT": 30,
+    "3rd Year - ECE": 60,
+    "3rd Year - EEE": 32,
+    "3rd Year - ME": 36,
+    "3rd Year - CE": 69,
+    "3rd Year - ALL": 42
   },
   "subjectCountsByYear": {
     "1st Year": 10,
-    "2nd Year": 35,
-    "3rd Year": 91
+    "2nd Year": 50,
+    "3rd Year": 73
   },
   "subjectCountsByBranch": {
     "1st Year - ALL": 10,
-    "2nd Year - CSE": 11,
-    "2nd Year - ALL": 3,
-    "2nd Year - ECE": 12,
-    "2nd Year - EEE": 8,
-    "2nd Year - ME": 12,
-    "2nd Year - CE": 12,
-    "3rd Year - CSE": 17,
-    "3rd Year - ALL": 11,
-    "3rd Year - AIML": 14,
-    "3rd Year - Data Science": 14,
-    "3rd Year - ECE": 19,
-    "3rd Year - EEE": 12,
-    "3rd Year - ME": 18,
-    "3rd Year - CE": 15
+    "2nd Year - CSE": 13,
+    "2nd Year - ECE": 11,
+    "2nd Year - EEE": 10,
+    "2nd Year - ME": 11,
+    "2nd Year - CE": 11,
+    "2nd Year - ALL": 14,
+    "3rd Year - CSE": 18,
+    "3rd Year - AIML": 8,
+    "3rd Year - Data Science": 6,
+    "3rd Year - IT": 5,
+    "3rd Year - ECE": 12,
+    "3rd Year - EEE": 8,
+    "3rd Year - ME": 10,
+    "3rd Year - CE": 15,
+    "3rd Year - ALL": 11
   },
   "firstYearSubjects": [
+    "Basic Electrical Engineering",
+    "Engineering Chemistry",
     "Engineering Mathematics - I",
     "Engineering Mathematics - II",
-    "Basic Electrical Engineering",
-    "Fundamentals of Electronics Engineering",
-    "Programming for Problem Solving",
-    "Soft Skills",
     "Engineering Physics",
-    "Engineering Chemistry",
+    "Environment and Ecology",
+    "Fundamentals of Electronics Engineering",
     "Fundamentals of Mechanical Engineering",
-    "Environment and Ecology"
+    "Programming for Problem Solving",
+    "Soft Skills"
   ],
   "academicYearsBySubject": {
     "[1st Year] [ALL] BAS103 - Engineering Mathematics - I": [
@@ -163,7 +165,9 @@
       "2024-2025",
       "2025-2026"
     ],
-    "[2nd Year] [CSE] OPEN ELECTIVE": [
+    "[2nd Year] [CSE] BCS301 - Data Structures": [
+      "2017-2018",
+      "2019-2020",
       "2020-2021",
       "2021-2022",
       "2022-2023",
@@ -173,15 +177,6 @@
     "[2nd Year] [CSE] BCS302 - Computer Organization and Architecture": [
       "2017-2018",
       "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[2nd Year] [CSE] BCS301 - Data Structures": [
-      "2017-2018",
       "2019-2020",
       "2020-2021",
       "2021-2022",
@@ -209,7 +204,7 @@
       "2024-2025",
       "2025-2026"
     ],
-    "[2nd Year] [ALL] BCS403 - Object Oriented Programming with Java": [
+    "[2nd Year] [CSE] BCS403 - Object Oriented Programming with Java": [
       "2023-2024"
     ],
     "[2nd Year] [CSE] BCC302 - Python Programming": [
@@ -264,12 +259,16 @@
       "2022-2023",
       "2023-2024"
     ],
-    "[2nd Year] [ECE] OPEN ELECTIVE": [
-      "2020-2021",
+    "[2nd Year] [CSE] BCS404 - Microprocessor": [
+      "2017-2018",
+      "2018-2019",
       "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
+      "2022-2023"
+    ],
+    "[2nd Year] [CSE] BCS405 - Web Designing": [
+      "2017-2018",
+      "2021-2022",
+      "2022-2023"
     ],
     "[2nd Year] [ECE] BEC301 - Electronic Devices": [
       "2017-2018",
@@ -306,6 +305,21 @@
       "2022-2023",
       "2023-2024"
     ],
+    "[2nd Year] [ECE] BEC403 - Signal and Systems": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ECE] BEC402 - Analog Circuits": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
     "[2nd Year] [ECE] BCC302 - Python Programming": [
       "2019-2020",
       "2020-2021",
@@ -333,15 +347,6 @@
       "2024-2025",
       "2025-2026"
     ],
-    "[2nd Year] [ECE] BEC403 - Signal and Systems": [
-      "2017-2018",
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
     "[2nd Year] [ECE] BVE301 - Universal Human Values": [
       "2017-2018",
       "2018-2019",
@@ -353,27 +358,36 @@
       "2024-2025",
       "2025-2026"
     ],
-    "[2nd Year] [ECE] BEC402 - Analog Circuits": [
+    "[2nd Year] [EEE] BEE401 - Electrical Machines - I": [
+      "2017-2018",
+      "2018-2019",
       "2021-2022",
       "2022-2023",
-      "2023-2024",
-      "2024-2025"
+      "2023-2024"
     ],
-    "[2nd Year] [EEE] Networks Analysis & Synthesis": [
+    "[2nd Year] [EEE] BEC303 - Network Analysis and Synthesis": [
       "2017-2018",
       "2018-2019",
       "2020-2024"
     ],
-    "[2nd Year] [EEE] BVE301 - Universal Human Values": [
-      "2017-2018",
+    "[2nd Year] [EEE] BEE302 - Electrical Measurements & Instrumentation": [
+      "2019-2020",
+      "2021-2022",
+      "2022-2023"
+    ],
+    "[2nd Year] [EEE] BEE303 - Basic System Signals": [
       "2018-2019",
       "2019-2020",
       "2020-2021",
       "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025",
-      "2025-2026"
+      "2022-2023"
+    ],
+    "[2nd Year] [EEE] BEE301 - Electromagnetic Field Theory": [
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023"
     ],
     "[2nd Year] [EEE] BAS303 - Mathematics - IV": [
       "2019-2020",
@@ -411,26 +425,16 @@
       "2024-2025",
       "2025-2026"
     ],
-    "[2nd Year] [EEE] BEE401 - Electrical Machines - I": [
+    "[2nd Year] [EEE] BVE301 - Universal Human Values": [
       "2017-2018",
       "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
-    "[2nd Year] [EEE] BAS103 - Engineering Mathematics - I": [
+      "2019-2020",
       "2020-2021",
       "2021-2022",
       "2022-2023",
       "2023-2024",
-      "2024-2025"
-    ],
-    "[2nd Year] [ME] OPEN ELECTIVE": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
+      "2024-2025",
+      "2025-2026"
     ],
     "[2nd Year] [ME] BME302 - Fluid Mechanics and Fluid Machines": [
       "2019-2020",
@@ -451,6 +455,26 @@
       "2022-2023",
       "2023-2024"
     ],
+    "[2nd Year] [ME] BME403 - Manufacturing Processes": [
+      "2017-2018",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ME] BME303 - Materials Engineering": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [ME] BME401 - Applied Thermodynamics": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
     "[2nd Year] [ME] BAS303 - Mathematics - IV": [
       "2019-2020",
       "2020-2021",
@@ -459,12 +483,6 @@
       "2023-2024",
       "2024-2025",
       "2025-2026"
-    ],
-    "[2nd Year] [ME] BME403 - Manufacturing Processes": [
-      "2017-2018",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
     ],
     "[2nd Year] [ME] BCC302 - Python Programming": [
       "2019-2020",
@@ -493,13 +511,6 @@
       "2024-2025",
       "2025-2026"
     ],
-    "[2nd Year] [ME] BME303 - Materials Engineering": [
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
     "[2nd Year] [ME] BVE301 - Universal Human Values": [
       "2017-2018",
       "2018-2019",
@@ -510,20 +521,6 @@
       "2023-2024",
       "2024-2025",
       "2025-2026"
-    ],
-    "[2nd Year] [ME] BME401 - Applied Thermodynamics": [
-      "2017-2018",
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
-    "[2nd Year] [CE] OPEN ELECTIVE": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
     ],
     "[2nd Year] [CE] BCE301 - Engineering Mechanics": [
       "2019-2020",
@@ -557,16 +554,25 @@
       "2022-2023",
       "2023-2024"
     ],
-    "[2nd Year] [CE] BVE301 - Universal Human Values": [
+    "[2nd Year] [CE] BCE403 - Hydraulic Engineering & Machines": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CE] BCE401 - Materials, Testing & Construction Practices": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[2nd Year] [CE] BCE402 - Introduction to Solid Mechanics": [
       "2017-2018",
       "2018-2019",
       "2019-2020",
-      "2020-2021",
       "2021-2022",
       "2022-2023",
-      "2023-2024",
-      "2024-2025",
-      "2025-2026"
+      "2023-2024"
     ],
     "[2nd Year] [CE] BCC302 - Python Programming": [
       "2019-2020",
@@ -595,28 +601,87 @@
       "2024-2025",
       "2025-2026"
     ],
-    "[2nd Year] [CE] BCE403 - Hydraulic Engineering & Machines": [
-      "2017-2018",
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
-    "[2nd Year] [CE] BCE401 - Materials, Testing & Construction Practices": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
-    "[2nd Year] [CE] BCE402 - Introduction to Solid Mechanics": [
+    "[2nd Year] [CE] BVE301 - Universal Human Values": [
       "2017-2018",
       "2018-2019",
       "2019-2020",
+      "2020-2021",
       "2021-2022",
       "2022-2023",
-      "2023-2024"
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
     ],
-    "[2nd Year] [ALL] BAS103 - Engineering Mathematics - I": [
+    "[2nd Year] [ALL] BOE301 - Electric and Hybrid Vehicles": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE302 - Automation and Robotics": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE303 - Material Science": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE304 - Energy Science & Engineering": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE305 - Sensor & Instrumentation": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE306 - Basics Data Structure & Algorithms": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE307 - Basics of Database Management Systems": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE308 - Analog Electronics Circuits": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE309 - Electronics Engineering": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE310 - Digital Electronics": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE311 - Polymer Science and Technology": [
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE312 - Laser System and Applications": [
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE313 - Food Science and Nutrition": [
+      "2024-2025"
+    ],
+    "[2nd Year] [ALL] BOE314 - Building Science and Engineering": [
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS501 - Database Management Systems": [
       "2017-2018",
+      "2018-2019",
       "2019-2020",
       "2020-2021",
       "2021-2022",
@@ -624,16 +689,8 @@
       "2023-2024",
       "2024-2025"
     ],
-    "[2nd Year] [ALL] AKTU 3RD YEAR PYQs": [
+    "[3rd Year] [CSE] BCS502 - Compiler Design": [
       "2018-2019",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CSE] BCS501 - Database Management Systems": [
-      "2017-2018",
-      "2018-2019",
-      "2019-2020",
       "2020-2021",
       "2021-2022",
       "2022-2023",
@@ -650,15 +707,30 @@
       "2023-2024",
       "2024-2025"
     ],
-    "[3rd Year] [CSE] BCS603 - Web Technology": [
+    "[3rd Year] [CSE] BCS601 - Software Engineering": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS602 - Computer Networks": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [CSE] KOE058 - Constitution of India": [
       "2020-2021",
       "2021-2022",
       "2022-2023",
-      "2024-2025",
-      "2025-2026"
+      "2023-2024",
+      "2024-2025"
     ],
-    "[3rd Year] [ALL] KOE058 - Constitution of India": [
-      "2020-2021",
+    "[3rd Year] [CSE] BCS063 - Statistical Computing": [
+      "2023-2024"
+    ],
+    "[3rd Year] [CSE] BCS061 - Computer Graphics": [
       "2021-2022",
       "2022-2023",
       "2023-2024",
@@ -678,7 +750,8 @@
       "2023-2024",
       "2024-2025"
     ],
-    "[3rd Year] [CSE] BCS061 - Computer Graphics": [
+    "[3rd Year] [CSE] BCS056 - Application of Soft Computing": [
+      "2020-2021",
       "2021-2022",
       "2022-2023",
       "2023-2024",
@@ -692,47 +765,19 @@
       "2024-2025",
       "2025-2026"
     ],
-    "[3rd Year] [CSE] BCS056 - Application of Soft Computing": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CSE] BCS063 - Statistical Computing": [
-      "2023-2024"
-    ],
-    "[3rd Year] [CSE] BCS601 - Software Engineering": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CSE] BCS502 - Compiler Design": [
-      "2018-2019",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CSE] BCS602 - Computer Networks": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
-    "[3rd Year] [CSE] KVE001 - Essence of Indian Traditional Knowledge": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
     "[3rd Year] [CSE] BCS051 - Big Data": [
       "2021-2022",
       "2022-2023",
       "2023-2024"
+    ],
+    "[3rd Year] [CSE] BCS052 - Cloud Computing": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CSE] BCS053 - Artificial Intelligence": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
     ],
     "[3rd Year] [CSE] BCS067 - Blockchain Architecture Design": [
       "2021-2022",
@@ -749,6 +794,418 @@
       "2024-2025"
     ],
     "[3rd Year] [CSE] BCS066 - Augmented & Virtual Reality": [
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS054 - Machine Learning Techniques": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [AIML] BCS057 - Mathematical Foundation for AI, ML and Data Science": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS053 - Artificial Intelligence": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] KOE058 - Constitution of India": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS503 - Design and Analysis of Algorithms": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BCS501 - Database Management Systems": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BDS052 - Cyber Forensic Analytics": [
+      "2024-2025"
+    ],
+    "[3rd Year] [AIML] BDS053 - Image Analytics": [
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BDS052 - Cyber Forensic Analytics": [
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BDS053 - Image Analytics": [
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] BCS055 - Data Analytics": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [Data Science] BCS054 - Machine Learning Techniques": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [Data Science] BCS057 - Mathematical Foundation for AI, ML and Data Science": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [Data Science] KOE058 - Constitution of India": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [IT] BCS603 - Web Technology": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "[3rd Year] [IT] BCS501 - Database Management Systems": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [IT] BCS503 - Design and Analysis of Algorithms": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [IT] BCS601 - Software Engineering": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [IT] BCS602 - Computer Networks": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [ECE] BEC603 - Integrated Circuits": [
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC602 - Digital Signal Processing": [
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC502 - Digital Communication": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC501 - Control System": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC503 - Antenna and Wave Propagation": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC061 - Satellite Communication": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC051 - Data Communication Networks": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC601 - Microwave Engineering": [
+      "2016-2017",
+      "2017-2018",
+      "2018-2019",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC062 - VLSI Design": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC063 - Optical Communication": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] BEC504 - Microprocessor & Microcontroller": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ECE] KOE058 - Constitution of India": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE601 - Power System - I": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE501 - Electrical Machines - II": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEC501 - Control System": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE602 - Power System - II": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE061 - Special Electrical Machines": [
+      "2016-2017",
+      "2017-2018",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE503 - Power Electronics": [
+      "2016-2017",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] BEE502 - Microprocessor": [
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [EEE] KOE058 - Constitution of India": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME601 - Refrigeration & Air Conditioning": [
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME602 - CAD/CAM": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME501 - Theory of Machines": [
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME502 - Heat & Mass Transfer": [
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME503 - Machine Design": [
+      "2020-2021",
+      "2021-2022",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME504 - Industrial Engineering": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME062 - Industrial Robotics": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME063 - Computational Fluid Dynamics": [
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] BME061 - Tribology": [
+      "2021-2022",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [ME] KOE058 - Constitution of India": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE501 - Design of Concrete Structures": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE502 - Geotechnical Engineering": [
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE503 - Transportation Engineering": [
+      "2016-2017",
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE601 - Environmental Engineering": [
+      "2016-2017",
+      "2017-2018",
+      "2018-2019",
+      "2021-2022",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE061 - Advanced Structural Analysis": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE062 - River Engineering": [
+      "2016-2017",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE063 - Repair and Rehabilitation of Structures": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE064 - Foundation Design": [
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [CE] BCE504 - Structural Analysis": [
+      "2017-2018",
+      "2019-2020",
+      "2020-2021",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE505 - Modern Construction Materials": [
+      "2018-2019",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE506 - Open Channel Flow": [
+      "2021-2022",
+      "2023-2024"
+    ],
+    "[3rd Year] [CE] BCE507 - Engineering Hydrology": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [CE] BCE508 - Concrete Technology": [
+      "2018-2019",
+      "2019-2020",
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025"
+    ],
+    "[3rd Year] [CE] BCE065 - Sensor & Instrumentation Technologies": [
+      "2020-2021",
+      "2022-2023",
+      "2023-2024"
+    ],
+    "[3rd Year] [CE] KOE058 - Constitution of India": [
+      "2020-2021",
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
       "2024-2025"
     ],
     "[3rd Year] [ALL] KOE068 - Software Project Management": [
@@ -809,539 +1266,2608 @@
       "2023-2024",
       "2024-2025"
     ],
-    "[3rd Year] [AIML] BCS501 - Database Management Systems": [
-      "2017-2018",
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
+    "[3rd Year] [ALL] KVE001 - Essence of Indian Traditional Knowledge": [
       "2021-2022",
       "2022-2023",
       "2023-2024",
       "2024-2025"
-    ],
-    "[3rd Year] [AIML] BCS503 - Design and Analysis of Algorithms": [
-      "2017-2018",
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [AIML] BCS053 - Artificial Intelligence": [
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [AIML] BCS055 - Data Analytics": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025",
-      "2025-2026"
-    ],
-    "[3rd Year] [AIML] BCS064 - Object Oriented Software Development with C++": [
-      "2020-2021",
-      "2021-2022",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [AIML] BCS052 - Cloud Computing": [
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [AIML] BCS056 - Application of Soft Computing": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [AIML] BCS601 - Software Engineering": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [AIML] BCS054 - Machine Learning Techniques": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025",
-      "2025-2026"
-    ],
-    "[3rd Year] [AIML] BCS602 - Computer Networks": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
-    "[3rd Year] [AIML] KVE001 - Essence of Indian Traditional Knowledge": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [AIML] BDS052 - Cyber Forensic Analytics": [
-      "2024-2025"
-    ],
-    "[3rd Year] [AIML] BDS053 - Image Analytics": [
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [AIML] BDS054 - Social Media Analytics and Data Analysis": [
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BCS501 - Database Management Systems": [
-      "2017-2018",
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BCS503 - Design and Analysis of Algorithms": [
-      "2017-2018",
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BCS055 - Data Analytics": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025",
-      "2025-2026"
-    ],
-    "[3rd Year] [Data Science] BCS064 - Object Oriented Software Development with C++": [
-      "2020-2021",
-      "2021-2022",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BCS052 - Cloud Computing": [
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BCS056 - Application of Soft Computing": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BCS601 - Software Engineering": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BCS054 - Machine Learning Techniques": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025",
-      "2025-2026"
-    ],
-    "[3rd Year] [Data Science] BCS602 - Computer Networks": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
-    "[3rd Year] [Data Science] KVE001 - Essence of Indian Traditional Knowledge": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BDS052 - Cyber Forensic Analytics": [
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BDS053 - Image Analytics": [
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BDS054 - Social Media Analytics and Data Analysis": [
-      "2024-2025"
-    ],
-    "[3rd Year] [Data Science] BCS051 - Big Data": [
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC603 - Integrated Circuits": [
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC504 - Microprocessor & Microcontroller": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC602 - Digital Signal Processing": [
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC064 - Internet of Things": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC065 - Bio-Medical Sensors & Instrumentation": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC066 - Intelligent Systems and Robotics": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC062 - VLSI Design": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC067 - Electronics Switching": [
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC068 - Bio-Medical Signal Processing": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC063 - Optical Communication": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC069 - CMOS Analog VLSI Design": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC502 - Digital Communication": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC501 - Control System": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC503 - Antenna and Wave Propagation": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] KVE001 - Essence of Indian Traditional Knowledge": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC061 - Satellite Communication": [
-      "2016-2017",
-      "2021-2022",
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC051 - Data Communication Networks": [
-      "2016-2017",
-      "2021-2022",
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC052 - CMOS Digital Design Techniques": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ECE] BEC601 - Microwave Engineering": [
-      "2016-2017",
-      "2017-2018",
-      "2018-2019",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEE601 - Power System - I": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEC501 - Control System": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEE501 - Electrical Machines - II": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEC602 - Digital Signal Processing": [
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEE602 - Power System - II": [
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BCS404 - Microprocessor": [
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEE061 - Special Electrical Machines": [
-      "2016-2017",
-      "2017-2018",
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] KVE001 - Essence of Indian Traditional Knowledge": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEE503 - Power Electronics": [
-      "2016-2017",
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEE063 - Digital Control System": [
-      "2016-2017",
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEE064 - Electrical and Hybrid Vehicles": [
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [EEE] BEE066 - Electrical Machine Design": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME502 - Heat & Mass Transfer": [
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME503 - Machine Design": [
-      "2020-2021",
-      "2021-2022",
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME504 - Industrial Engineering": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME051 - Advance Manufacturing Processes": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME052 - I C Engine Fuel & Lubrication": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME053 - Finite Element Methods": [
-      "2022-2023"
-    ],
-    "[3rd Year] [ME] BME054 - Automobile Engines & Combustion": [
-      "2023-2024"
-    ],
-    "[3rd Year] [ME] BME055 - Mechatronic Systems": [
-      "2020-2021",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME056 - Turbo Machines": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME057 - Mechanical Vibrations": [
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME058 - Automotive Chassis & Suspension": [
-      "2023-2024"
-    ],
-    "[3rd Year] [ME] BME601 - Refrigeration & Air Conditioning": [
-      "2017-2018",
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME602 - CAD/CAM": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME501 - Theory of Machines": [
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] KVE001 - Essence of Indian Traditional Knowledge": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME062 - Industrial Robotics": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME063 - Computational Fluid Dynamics": [
-      "2024-2025"
-    ],
-    "[3rd Year] [ME] BME061 - Tribology": [
-      "2021-2022",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE502 - Geotechnical Engineering": [
-      "2017-2018",
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE504 - Structural Analysis": [
-      "2017-2018",
-      "2019-2020",
-      "2020-2021",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE508 - Concrete Technology": [
-      "2018-2019",
-      "2019-2020",
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE505 - Modern Construction Materials": [
-      "2018-2019",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE506 - Open Channel Flow": [
-      "2021-2022",
-      "2023-2024"
-    ],
-    "[3rd Year] [CE] BCE509 - Engineering Geology": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
-    "[3rd Year] [CE] BCE507 - Engineering Hydrology": [
-      "2020-2021",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024"
-    ],
-    "[3rd Year] [CE] BCE501 - Design of Concrete Structures": [
-      "2016-2017",
-      "2021-2022",
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE503 - Transportation Engineering": [
-      "2016-2017",
-      "2017-2018",
-      "2018-2019",
-      "2021-2022",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE601 - Environmental Engineering": [
-      "2016-2017",
-      "2017-2018",
-      "2018-2019",
-      "2021-2022",
-      "2022-2023",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] KVE001 - Essence of Indian Traditional Knowledge": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE061 - Advanced Structural Analysis": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE062 - River Engineering": [
-      "2016-2017",
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE063 - Repair and Rehabilitation of Structures": [
-      "2021-2022",
-      "2022-2023",
-      "2023-2024",
-      "2024-2025"
-    ],
-    "[3rd Year] [CE] BCE064 - Foundation Design": [
-      "2022-2023",
-      "2023-2024"
     ]
-  }
+  },
+  "subjectCoverage": [
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Engineering Mathematics - I",
+      "code": "BAS103",
+      "sem": "Semester 1",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Engineering Mathematics - II",
+      "code": "BAS203",
+      "sem": "Semester 2",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 6
+    },
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Basic Electrical Engineering",
+      "code": "BEE101",
+      "sem": "Semester 1",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Fundamentals of Electronics Engineering",
+      "code": "BEC101",
+      "sem": "Semester 2",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Programming for Problem Solving",
+      "code": "BCS101",
+      "sem": "Semester 1",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Soft Skills",
+      "code": "BAS105",
+      "sem": "Semester 1",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 8
+    },
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Engineering Physics",
+      "code": "BAS101",
+      "sem": "Semester 1",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Engineering Chemistry",
+      "code": "BAS102",
+      "sem": "Semester 2",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Fundamentals of Mechanical Engineering",
+      "code": "BME101",
+      "sem": "Semester 2",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "1st Year",
+      "branch": "ALL",
+      "subject": "Environment and Ecology",
+      "code": "BAS104",
+      "sem": "Semester 2",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Data Structures",
+      "code": "BCS301",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Computer Organization and Architecture",
+      "code": "BCS302",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 8
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Discrete Structures & Theory of Logic",
+      "code": "BCS303",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Mathematics - IV",
+      "code": "BAS303",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Object Oriented Programming with Java",
+      "code": "BCS403",
+      "sem": "Semester 4",
+      "years": [
+        "2023-2024"
+      ],
+      "count": 1
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Python Programming",
+      "code": "BCC302",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Cyber Security",
+      "code": "BCC301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Technical Communication",
+      "code": "BCE301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Operating Systems",
+      "code": "BCS401",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Universal Human Values",
+      "code": "BVE301",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Theory of Automata and Formal Languages",
+      "code": "BCS402",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Microprocessor",
+      "code": "BCS404",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023"
+      ],
+      "count": 4
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CSE",
+      "subject": "Web Designing",
+      "code": "BCS405",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2021-2022",
+        "2022-2023"
+      ],
+      "count": 3
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Electronic Devices",
+      "code": "BEC301",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Digital System Design",
+      "code": "BEC302",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Network Analysis and Synthesis",
+      "code": "BEC303",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2020-2024"
+      ],
+      "count": 3
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Mathematics - IV",
+      "code": "BAS303",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Communication Engineering",
+      "code": "BEC401",
+      "sem": "Semester 4",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 3
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Signal and Systems",
+      "code": "BEC403",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Analog Circuits",
+      "code": "BEC402",
+      "sem": "Semester 4",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Python Programming",
+      "code": "BCC302",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Cyber Security",
+      "code": "BCC301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Technical Communication",
+      "code": "BCE301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ECE",
+      "subject": "Universal Human Values",
+      "code": "BVE301",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Electrical Machines - I",
+      "code": "BEE401",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Network Analysis and Synthesis",
+      "code": "BEC303",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2020-2024"
+      ],
+      "count": 3
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Electrical Measurements & Instrumentation",
+      "code": "BEE302",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2021-2022",
+        "2022-2023"
+      ],
+      "count": 3
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Basic System Signals",
+      "code": "BEE303",
+      "sem": "Semester 3",
+      "years": [
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023"
+      ],
+      "count": 8
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Electromagnetic Field Theory",
+      "code": "BEE301",
+      "sem": "Semester 3",
+      "years": [
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Mathematics - IV",
+      "code": "BAS303",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Python Programming",
+      "code": "BCC302",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Cyber Security",
+      "code": "BCC301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Technical Communication",
+      "code": "BCE301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "EEE",
+      "subject": "Universal Human Values",
+      "code": "BVE301",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Fluid Mechanics and Fluid Machines",
+      "code": "BME302",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Strength of Materials",
+      "code": "BME402",
+      "sem": "Semester 4",
+      "years": [
+        "2023-2024"
+      ],
+      "count": 1
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Thermodynamics",
+      "code": "BME301",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Manufacturing Processes",
+      "code": "BME403",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 4
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Materials Engineering",
+      "code": "BME303",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Applied Thermodynamics",
+      "code": "BME401",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Mathematics - IV",
+      "code": "BAS303",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Python Programming",
+      "code": "BCC302",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Cyber Security",
+      "code": "BCC301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Technical Communication",
+      "code": "BCE301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ME",
+      "subject": "Universal Human Values",
+      "code": "BVE301",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Engineering Mechanics",
+      "code": "BCE301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Fluid Mechanics",
+      "code": "BCE303",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Surveying & Geomatics",
+      "code": "BCE302",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Mathematics - III",
+      "code": "BAS303",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Hydraulic Engineering & Machines",
+      "code": "BCE403",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Materials, Testing & Construction Practices",
+      "code": "BCE401",
+      "sem": "Semester 4",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 3
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Introduction to Solid Mechanics",
+      "code": "BCE402",
+      "sem": "Semester 4",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 6
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Python Programming",
+      "code": "BCC302",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Cyber Security",
+      "code": "BCC301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Technical Communication",
+      "code": "BCE301",
+      "sem": "Semester 3",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 7
+    },
+    {
+      "year": "2nd Year",
+      "branch": "CE",
+      "subject": "Universal Human Values",
+      "code": "BVE301",
+      "sem": "Semester 3",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 9
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Electric and Hybrid Vehicles",
+      "code": "BOE301",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 2
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Automation and Robotics",
+      "code": "BOE302",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 2
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Material Science",
+      "code": "BOE303",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Energy Science & Engineering",
+      "code": "BOE304",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Sensor & Instrumentation",
+      "code": "BOE305",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Basics Data Structure & Algorithms",
+      "code": "BOE306",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Basics of Database Management Systems",
+      "code": "BOE307",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 2
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Analog Electronics Circuits",
+      "code": "BOE308",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Electronics Engineering",
+      "code": "BOE309",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Digital Electronics",
+      "code": "BOE310",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Polymer Science and Technology",
+      "code": "BOE311",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Laser System and Applications",
+      "code": "BOE312",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Food Science and Nutrition",
+      "code": "BOE313",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "2nd Year",
+      "branch": "ALL",
+      "subject": "Building Science and Engineering",
+      "code": "BOE314",
+      "sem": "Semester 3 / 4",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Database Management Systems",
+      "code": "BCS501",
+      "sem": "Semester 5",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 8
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Compiler Design",
+      "code": "BCS502",
+      "sem": "Semester 5",
+      "years": [
+        "2018-2019",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Design and Analysis of Algorithms",
+      "code": "BCS503",
+      "sem": "Semester 5",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 8
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Software Engineering",
+      "code": "BCS601",
+      "sem": "Semester 6",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Computer Networks",
+      "code": "BCS602",
+      "sem": "Semester 6",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Constitution of India",
+      "code": "KOE058",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Statistical Computing",
+      "code": "BCS063",
+      "sem": "Semester 6",
+      "years": [
+        "2023-2024"
+      ],
+      "count": 1
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Computer Graphics",
+      "code": "BCS061",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Data Analytics",
+      "code": "BCS055",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Object Oriented Software Development with C++",
+      "code": "BCS064",
+      "sem": "Semester 6",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Application of Soft Computing",
+      "code": "BCS056",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Machine Learning Techniques",
+      "code": "BCS054",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Big Data",
+      "code": "BCS051",
+      "sem": "Semester 5",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Cloud Computing",
+      "code": "BCS052",
+      "sem": "Semester 5",
+      "years": [
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 2
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Artificial Intelligence",
+      "code": "BCS053",
+      "sem": "Semester 5",
+      "years": [
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Blockchain Architecture Design",
+      "code": "BCS067",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2024-2025"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Data Compression",
+      "code": "BCS065",
+      "sem": "Semester 6",
+      "years": [
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 7
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CSE",
+      "subject": "Augmented & Virtual Reality",
+      "code": "BCS066",
+      "sem": "Semester 6",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "3rd Year",
+      "branch": "AIML",
+      "subject": "Machine Learning Techniques",
+      "code": "BCS054",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "AIML",
+      "subject": "Mathematical Foundation for AI, ML and Data Science",
+      "code": "BCS057",
+      "sem": "Semester 5",
+      "years": [
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 2
+    },
+    {
+      "year": "3rd Year",
+      "branch": "AIML",
+      "subject": "Artificial Intelligence",
+      "code": "BCS053",
+      "sem": "Semester 5",
+      "years": [
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "AIML",
+      "subject": "Constitution of India",
+      "code": "KOE058",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "AIML",
+      "subject": "Design and Analysis of Algorithms",
+      "code": "BCS503",
+      "sem": "Semester 5",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 8
+    },
+    {
+      "year": "3rd Year",
+      "branch": "AIML",
+      "subject": "Database Management Systems",
+      "code": "BCS501",
+      "sem": "Semester 5",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 8
+    },
+    {
+      "year": "3rd Year",
+      "branch": "AIML",
+      "subject": "Cyber Forensic Analytics",
+      "code": "BDS052",
+      "sem": "Semester 5",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "3rd Year",
+      "branch": "AIML",
+      "subject": "Image Analytics",
+      "code": "BDS053",
+      "sem": "Semester 5",
+      "years": [
+        "2022-2023",
+        "2024-2025"
+      ],
+      "count": 2
+    },
+    {
+      "year": "3rd Year",
+      "branch": "Data Science",
+      "subject": "Cyber Forensic Analytics",
+      "code": "BDS052",
+      "sem": "Semester 5",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "3rd Year",
+      "branch": "Data Science",
+      "subject": "Image Analytics",
+      "code": "BDS053",
+      "sem": "Semester 5",
+      "years": [
+        "2022-2023",
+        "2024-2025"
+      ],
+      "count": 2
+    },
+    {
+      "year": "3rd Year",
+      "branch": "Data Science",
+      "subject": "Data Analytics",
+      "code": "BCS055",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "Data Science",
+      "subject": "Machine Learning Techniques",
+      "code": "BCS054",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "Data Science",
+      "subject": "Mathematical Foundation for AI, ML and Data Science",
+      "code": "BCS057",
+      "sem": "Semester 5",
+      "years": [
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 2
+    },
+    {
+      "year": "3rd Year",
+      "branch": "Data Science",
+      "subject": "Constitution of India",
+      "code": "KOE058",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "IT",
+      "subject": "Web Technology",
+      "code": "BCS603",
+      "sem": "Semester 6",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2024-2025",
+        "2025-2026"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "IT",
+      "subject": "Database Management Systems",
+      "code": "BCS501",
+      "sem": "Semester 5",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 8
+    },
+    {
+      "year": "3rd Year",
+      "branch": "IT",
+      "subject": "Design and Analysis of Algorithms",
+      "code": "BCS503",
+      "sem": "Semester 5",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 8
+    },
+    {
+      "year": "3rd Year",
+      "branch": "IT",
+      "subject": "Software Engineering",
+      "code": "BCS601",
+      "sem": "Semester 6",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "IT",
+      "subject": "Computer Networks",
+      "code": "BCS602",
+      "sem": "Semester 6",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Integrated Circuits",
+      "code": "BEC603",
+      "sem": "Semester 6",
+      "years": [
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 7
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Digital Signal Processing",
+      "code": "BEC602",
+      "sem": "Semester 6",
+      "years": [
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 7
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Digital Communication",
+      "code": "BEC502",
+      "sem": "Semester 5",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Control System",
+      "code": "BEC501",
+      "sem": "Semester 5",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Antenna and Wave Propagation",
+      "code": "BEC503",
+      "sem": "Semester 5",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Satellite Communication",
+      "code": "BEC061",
+      "sem": "Semester 6",
+      "years": [
+        "2016-2017",
+        "2021-2022",
+        "2022-2023",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Data Communication Networks",
+      "code": "BEC051",
+      "sem": "Semester 5",
+      "years": [
+        "2016-2017",
+        "2021-2022",
+        "2022-2023",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Microwave Engineering",
+      "code": "BEC601",
+      "sem": "Semester 6",
+      "years": [
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "VLSI Design",
+      "code": "BEC062",
+      "sem": "Semester 6",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Optical Communication",
+      "code": "BEC063",
+      "sem": "Semester 6",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Microprocessor & Microcontroller",
+      "code": "BEC504",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ECE",
+      "subject": "Constitution of India",
+      "code": "KOE058",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "EEE",
+      "subject": "Power System - I",
+      "code": "BEE601",
+      "sem": "Semester 6",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "EEE",
+      "subject": "Electrical Machines - II",
+      "code": "BEE501",
+      "sem": "Semester 5",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "EEE",
+      "subject": "Control System",
+      "code": "BEC501",
+      "sem": "Semester 5",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "EEE",
+      "subject": "Power System - II",
+      "code": "BEE602",
+      "sem": "Semester 6",
+      "years": [
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "EEE",
+      "subject": "Special Electrical Machines",
+      "code": "BEE061",
+      "sem": "Semester 6",
+      "years": [
+        "2016-2017",
+        "2017-2018",
+        "2022-2023",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "EEE",
+      "subject": "Power Electronics",
+      "code": "BEE503",
+      "sem": "Semester 5",
+      "years": [
+        "2016-2017",
+        "2022-2023",
+        "2024-2025"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "EEE",
+      "subject": "Microprocessor",
+      "code": "BEE502",
+      "sem": "Semester 5",
+      "years": [
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 2
+    },
+    {
+      "year": "3rd Year",
+      "branch": "EEE",
+      "subject": "Constitution of India",
+      "code": "KOE058",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "Refrigeration & Air Conditioning",
+      "code": "BME601",
+      "sem": "Semester 6",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "CAD/CAM",
+      "code": "BME602",
+      "sem": "Semester 6",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "Theory of Machines",
+      "code": "BME501",
+      "sem": "Semester 5",
+      "years": [
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "Heat & Mass Transfer",
+      "code": "BME502",
+      "sem": "Semester 5",
+      "years": [
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "Machine Design",
+      "code": "BME503",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2024-2025"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "Industrial Engineering",
+      "code": "BME504",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "Industrial Robotics",
+      "code": "BME062",
+      "sem": "Semester 6",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "Computational Fluid Dynamics",
+      "code": "BME063",
+      "sem": "Semester 6",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "Tribology",
+      "code": "BME061",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ME",
+      "subject": "Constitution of India",
+      "code": "KOE058",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Design of Concrete Structures",
+      "code": "BCE501",
+      "sem": "Semester 5",
+      "years": [
+        "2016-2017",
+        "2021-2022",
+        "2022-2023",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Geotechnical Engineering",
+      "code": "BCE502",
+      "sem": "Semester 5",
+      "years": [
+        "2017-2018",
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 8
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Transportation Engineering",
+      "code": "BCE503",
+      "sem": "Semester 5",
+      "years": [
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Environmental Engineering",
+      "code": "BCE601",
+      "sem": "Semester 6",
+      "years": [
+        "2016-2017",
+        "2017-2018",
+        "2018-2019",
+        "2021-2022",
+        "2022-2023",
+        "2024-2025"
+      ],
+      "count": 6
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Advanced Structural Analysis",
+      "code": "BCE061",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "River Engineering",
+      "code": "BCE062",
+      "sem": "Semester 6",
+      "years": [
+        "2016-2017",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Repair and Rehabilitation of Structures",
+      "code": "BCE063",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Foundation Design",
+      "code": "BCE064",
+      "sem": "Semester 6",
+      "years": [
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 2
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Structural Analysis",
+      "code": "BCE504",
+      "sem": "Semester 5",
+      "years": [
+        "2017-2018",
+        "2019-2020",
+        "2020-2021",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Modern Construction Materials",
+      "code": "BCE505",
+      "sem": "Semester 5",
+      "years": [
+        "2018-2019",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Open Channel Flow",
+      "code": "BCE506",
+      "sem": "Semester 5",
+      "years": [
+        "2021-2022",
+        "2023-2024"
+      ],
+      "count": 2
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Engineering Hydrology",
+      "code": "BCE507",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Concrete Technology",
+      "code": "BCE508",
+      "sem": "Semester 5",
+      "years": [
+        "2018-2019",
+        "2019-2020",
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 7
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Sensor & Instrumentation Technologies",
+      "code": "BCE065",
+      "sem": "Semester 6",
+      "years": [
+        "2020-2021",
+        "2022-2023",
+        "2023-2024"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "CE",
+      "subject": "Constitution of India",
+      "code": "KOE058",
+      "sem": "Semester 5",
+      "years": [
+        "2020-2021",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Software Project Management",
+      "code": "KOE068",
+      "sem": "Semester 6",
+      "years": [
+        "2016-2017",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Understanding the Human Being Comprehensively",
+      "code": "KOE069",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Idea to Business Model",
+      "code": "KOE066",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 3
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Quality Control & Reliability",
+      "code": "KOE065",
+      "sem": "Semester 6",
+      "years": [
+        "2024-2025"
+      ],
+      "count": 1
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Embedded System",
+      "code": "KOE064",
+      "sem": "Semester 6",
+      "years": [
+        "2016-2017",
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 5
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Introduction to MEMS",
+      "code": "KOE062",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Object Oriented Programming",
+      "code": "KOE060",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Computer Based Numerical Techniques",
+      "code": "KOE061",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "GIS & Remote Sensing",
+      "code": "KOE063",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Basics of Database Management System",
+      "code": "KOE067",
+      "sem": "Semester 6",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    },
+    {
+      "year": "3rd Year",
+      "branch": "ALL",
+      "subject": "Essence of Indian Traditional Knowledge",
+      "code": "KVE001",
+      "sem": "Semester 5",
+      "years": [
+        "2021-2022",
+        "2022-2023",
+        "2023-2024",
+        "2024-2025"
+      ],
+      "count": 4
+    }
+  ]
 }

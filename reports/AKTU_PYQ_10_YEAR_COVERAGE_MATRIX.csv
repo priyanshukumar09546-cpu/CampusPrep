@@ -9,85 +9,161 @@ B.Tech Year,Branch,Subject Code,Subject Name,Semester,2016-2017,2017-2018,2018-2
 "1st Year","ALL","BAS102","Engineering Chemistry","Semester 2",0,1,1,1,1,1,1,1,1,1,9
 "1st Year","ALL","BME101","Fundamentals of Mechanical Engineering","Semester 2",0,1,1,1,1,1,1,1,1,1,9
 "1st Year","ALL","BAS104","Environment and Ecology","Semester 2",0,1,1,1,0,0,1,1,1,1,7
-"2nd Year","CSE","","OPEN ELECTIVE","Semester 3",0,0,0,0,1,7,7,10,14,0,39
-"2nd Year","CSE","BCS302","Computer Organization and Architecture","Semester 3",0,1,1,1,1,1,1,1,1,0,8
 "2nd Year","CSE","BCS301","Data Structures","Semester 3",0,1,0,1,1,1,1,1,1,0,7
+"2nd Year","CSE","BCS302","Computer Organization and Architecture","Semester 3",0,1,1,1,1,1,1,1,1,0,8
 "2nd Year","CSE","BCS303","Discrete Structures & Theory of Logic","Semester 3",0,1,1,1,1,1,1,1,1,1,9
 "2nd Year","CSE","BAS303","Mathematics - IV","Semester 3",0,0,0,1,1,1,1,1,1,1,7
-"2nd Year","ALL","BCS403","Object Oriented Programming with Java","Semester 4",0,0,0,0,0,0,0,1,0,0,1
+"2nd Year","CSE","BCS403","Object Oriented Programming with Java","Semester 4",0,0,0,0,0,0,0,1,0,0,1
 "2nd Year","CSE","BCC302","Python Programming","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","CSE","BCC301","Cyber Security","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","CSE","BCE301","Technical Communication","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","CSE","BCS401","Operating Systems","Semester 4",0,1,1,0,0,1,1,1,0,0,5
 "2nd Year","CSE","BVE301","Universal Human Values","Semester 3",0,1,1,1,1,1,1,1,1,1,9
 "2nd Year","CSE","BCS402","Theory of Automata and Formal Languages","Semester 4",0,1,1,0,0,1,1,1,0,0,5
-"2nd Year","ECE","","OPEN ELECTIVE","Semester 3",0,0,0,0,1,7,7,10,14,0,39
+"2nd Year","CSE","BCS404","Microprocessor","Semester 4",0,1,1,0,0,1,1,0,0,0,4
+"2nd Year","CSE","BCS405","Web Designing","Semester 4",0,1,0,0,0,1,1,0,0,0,3
 "2nd Year","ECE","BEC301","Electronic Devices","Semester 3",0,1,1,1,1,1,1,1,0,0,7
 "2nd Year","ECE","BEC302","Digital System Design","Semester 3",0,0,0,1,1,1,1,1,0,0,5
 "2nd Year","ECE","BEC303","Network Analysis and Synthesis","Semester 3",0,1,1,0,0,0,0,0,0,0,2
 "2nd Year","ECE","BAS303","Mathematics - IV","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","ECE","BEC401","Communication Engineering","Semester 4",0,0,0,0,0,1,1,1,0,0,3
+"2nd Year","ECE","BEC403","Signal and Systems","Semester 4",0,1,1,1,1,1,1,1,0,0,7
+"2nd Year","ECE","BEC402","Analog Circuits","Semester 4",0,0,0,0,0,1,1,1,1,0,4
 "2nd Year","ECE","BCC302","Python Programming","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","ECE","BCC301","Cyber Security","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","ECE","BCE301","Technical Communication","Semester 3",0,0,0,1,1,1,1,1,1,1,7
-"2nd Year","ECE","BEC403","Signal and Systems","Semester 4",0,1,1,1,1,1,1,1,0,0,7
 "2nd Year","ECE","BVE301","Universal Human Values","Semester 3",0,1,1,1,1,1,1,1,1,1,9
-"2nd Year","ECE","BEC402","Analog Circuits","Semester 4",0,0,0,0,0,1,1,1,1,0,4
-"2nd Year","EEE","","Networks Analysis & Synthesis","Semester 3",0,1,1,0,0,0,0,0,0,0,2
-"2nd Year","EEE","BVE301","Universal Human Values","Semester 3",0,1,1,1,1,1,1,1,1,1,9
+"2nd Year","EEE","BEE401","Electrical Machines - I","Semester 4",0,1,1,0,0,1,1,1,0,0,5
+"2nd Year","EEE","BEC303","Network Analysis and Synthesis","Semester 3",0,1,1,0,0,0,0,0,0,0,2
+"2nd Year","EEE","BEE302","Electrical Measurements & Instrumentation","Semester 3",0,0,0,1,0,1,1,0,0,0,3
+"2nd Year","EEE","BEE303","Basic System Signals","Semester 3",0,0,1,2,1,2,2,0,0,0,8
+"2nd Year","EEE","BEE301","Electromagnetic Field Theory","Semester 3",0,0,1,1,1,1,1,0,0,0,5
 "2nd Year","EEE","BAS303","Mathematics - IV","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","EEE","BCC302","Python Programming","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","EEE","BCC301","Cyber Security","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","EEE","BCE301","Technical Communication","Semester 3",0,0,0,1,1,1,1,1,1,1,7
-"2nd Year","EEE","BEE401","Electrical Machines - I","Semester 4",0,1,1,0,0,1,1,1,0,0,5
-"2nd Year","EEE","BAS103","Engineering Mathematics - I","Semester 1",0,0,0,0,1,7,7,10,14,0,39
-"2nd Year","ME","","OPEN ELECTIVE","Semester 3",0,0,0,0,1,7,7,10,14,0,39
+"2nd Year","EEE","BVE301","Universal Human Values","Semester 3",0,1,1,1,1,1,1,1,1,1,9
 "2nd Year","ME","BME302","Fluid Mechanics and Fluid Machines","Semester 3",0,0,0,1,1,1,1,1,0,0,5
 "2nd Year","ME","BME402","Strength of Materials","Semester 4",0,0,0,0,0,0,0,1,0,0,1
 "2nd Year","ME","BME301","Thermodynamics","Semester 3",0,1,1,1,1,1,1,1,0,0,7
-"2nd Year","ME","BAS303","Mathematics - IV","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","ME","BME403","Manufacturing Processes","Semester 4",0,1,0,0,0,1,1,1,0,0,4
+"2nd Year","ME","BME303","Materials Engineering","Semester 3",0,0,0,1,1,1,1,1,0,0,5
+"2nd Year","ME","BME401","Applied Thermodynamics","Semester 4",0,1,1,0,0,1,1,1,0,0,5
+"2nd Year","ME","BAS303","Mathematics - IV","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","ME","BCC302","Python Programming","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","ME","BCC301","Cyber Security","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","ME","BCE301","Technical Communication","Semester 3",0,0,0,1,1,1,1,1,1,1,7
-"2nd Year","ME","BME303","Materials Engineering","Semester 3",0,0,0,1,1,1,1,1,0,0,5
 "2nd Year","ME","BVE301","Universal Human Values","Semester 3",0,1,1,1,1,1,1,1,1,1,9
-"2nd Year","ME","BME401","Applied Thermodynamics","Semester 4",0,1,1,0,0,1,1,1,0,0,5
-"2nd Year","CE","","OPEN ELECTIVE","Semester 3",0,0,0,0,1,7,7,10,14,0,39
 "2nd Year","CE","BCE301","Engineering Mechanics","Semester 3",0,0,0,1,1,1,1,1,0,0,5
 "2nd Year","CE","BCE303","Fluid Mechanics","Semester 3",0,1,1,1,1,1,1,1,0,0,7
 "2nd Year","CE","BCE302","Surveying & Geomatics","Semester 3",0,0,0,1,1,1,1,1,0,0,5
 "2nd Year","CE","BAS303","Mathematics - III","Semester 3",0,1,1,1,1,1,1,1,0,0,7
-"2nd Year","CE","BVE301","Universal Human Values","Semester 3",0,1,1,1,1,1,1,1,1,1,9
-"2nd Year","CE","BCC302","Python Programming","Semester 3",0,0,0,1,1,1,1,1,1,1,7
-"2nd Year","CE","BCC301","Cyber Security","Semester 3",0,0,0,1,1,1,1,1,1,1,7
-"2nd Year","CE","BCE301","Technical Communication","Semester 3",0,0,0,1,1,1,1,1,1,1,7
 "2nd Year","CE","BCE403","Hydraulic Engineering & Machines","Semester 4",0,1,1,0,0,1,1,1,0,0,5
 "2nd Year","CE","BCE401","Materials, Testing & Construction Practices","Semester 4",0,0,0,0,0,1,1,1,0,0,3
 "2nd Year","CE","BCE402","Introduction to Solid Mechanics","Semester 4",0,1,1,1,0,1,1,1,0,0,6
-"2nd Year","ALL","BAS103","Engineering Mathematics - I","Semester 1",0,1,0,1,2,2,1,3,1,0,11
-"2nd Year","ALL","","AKTU 3RD YEAR PYQs","Semester 3",0,0,1,0,0,0,1,1,1,0,4
+"2nd Year","CE","BCC302","Python Programming","Semester 3",0,0,0,1,1,1,1,1,1,1,7
+"2nd Year","CE","BCC301","Cyber Security","Semester 3",0,0,0,1,1,1,1,1,1,1,7
+"2nd Year","CE","BCE301","Technical Communication","Semester 3",0,0,0,1,1,1,1,1,1,1,7
+"2nd Year","CE","BVE301","Universal Human Values","Semester 3",0,1,1,1,1,1,1,1,1,1,9
+"2nd Year","ALL","BOE301","Electric and Hybrid Vehicles","Semester 3 / 4",0,0,0,0,0,0,0,1,1,0,2
+"2nd Year","ALL","BOE302","Automation and Robotics","Semester 3 / 4",0,0,0,0,0,0,0,1,1,0,2
+"2nd Year","ALL","BOE303","Material Science","Semester 3 / 4",0,0,0,0,0,1,1,1,1,0,4
+"2nd Year","ALL","BOE304","Energy Science & Engineering","Semester 3 / 4",0,0,0,0,0,1,1,1,1,0,4
+"2nd Year","ALL","BOE305","Sensor & Instrumentation","Semester 3 / 4",0,0,0,0,1,1,1,1,1,0,5
+"2nd Year","ALL","BOE306","Basics Data Structure & Algorithms","Semester 3 / 4",0,0,0,0,0,1,1,1,1,0,4
+"2nd Year","ALL","BOE307","Basics of Database Management Systems","Semester 3 / 4",0,0,0,0,0,0,0,1,1,0,2
+"2nd Year","ALL","BOE308","Analog Electronics Circuits","Semester 3 / 4",0,0,0,0,0,1,1,1,1,0,4
+"2nd Year","ALL","BOE309","Electronics Engineering","Semester 3 / 4",0,0,0,0,0,1,1,1,1,0,4
+"2nd Year","ALL","BOE310","Digital Electronics","Semester 3 / 4",0,0,0,0,0,1,1,1,1,0,4
+"2nd Year","ALL","BOE311","Polymer Science and Technology","Semester 3 / 4",0,0,0,0,0,0,0,0,1,0,1
+"2nd Year","ALL","BOE312","Laser System and Applications","Semester 3 / 4",0,0,0,0,0,0,0,0,1,0,1
+"2nd Year","ALL","BOE313","Food Science and Nutrition","Semester 3 / 4",0,0,0,0,0,0,0,0,1,0,1
+"2nd Year","ALL","BOE314","Building Science and Engineering","Semester 3 / 4",0,0,0,0,0,0,0,0,1,0,1
 "3rd Year","CSE","BCS501","Database Management Systems","Semester 5",0,1,1,1,1,1,1,1,1,0,8
+"3rd Year","CSE","BCS502","Compiler Design","Semester 5",0,0,1,0,1,1,1,1,1,0,6
 "3rd Year","CSE","BCS503","Design and Analysis of Algorithms","Semester 5",0,1,1,1,1,1,1,1,1,0,8
-"3rd Year","CSE","BCS603","Web Technology","Semester 6",0,0,0,0,1,1,1,0,1,1,5
-"3rd Year","ALL","KOE058","Constitution of India","Semester 5",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","CSE","BCS601","Software Engineering","Semester 6",0,0,1,0,0,1,1,1,1,0,5
+"3rd Year","CSE","BCS602","Computer Networks","Semester 6",0,0,1,0,0,1,1,1,0,0,4
+"3rd Year","CSE","KOE058","Constitution of India","Semester 5",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","CSE","BCS063","Statistical Computing","Semester 6",0,0,0,0,0,0,0,1,0,0,1
+"3rd Year","CSE","BCS061","Computer Graphics","Semester 6",0,0,0,0,0,1,1,1,1,0,4
 "3rd Year","CSE","BCS055","Data Analytics","Semester 5",0,0,0,0,1,1,1,1,1,1,6
 "3rd Year","CSE","BCS064","Object Oriented Software Development with C++","Semester 6",0,0,0,0,1,1,0,1,1,0,4
-"3rd Year","CSE","BCS061","Computer Graphics","Semester 6",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","CSE","BCS054","Machine Learning Techniques","Semester 5",0,0,0,0,1,1,1,1,1,1,6
 "3rd Year","CSE","BCS056","Application of Soft Computing","Semester 5",0,0,0,0,1,1,1,1,1,0,5
-"3rd Year","CSE","BCS063","Statistical Computing","Semester 6",0,0,0,0,0,0,0,1,0,0,1
-"3rd Year","CSE","BCS601","Software Engineering","Semester 6",0,0,1,0,0,1,1,1,1,0,5
-"3rd Year","CSE","BCS502","Compiler Design","Semester 5",0,0,1,0,1,1,1,1,1,0,6
-"3rd Year","CSE","BCS602","Computer Networks","Semester 6",0,0,1,0,0,1,1,1,0,0,4
-"3rd Year","CSE","KVE001","Essence of Indian Traditional Knowledge","Semester 5",0,0,0,0,0,1,1,1,1,0,4
+"3rd Year","CSE","BCS054","Machine Learning Techniques","Semester 5",0,0,0,0,1,1,1,1,1,1,6
 "3rd Year","CSE","BCS051","Big Data","Semester 5",0,0,0,0,0,1,1,1,0,0,3
+"3rd Year","CSE","BCS052","Cloud Computing","Semester 5",0,0,0,0,0,0,0,1,1,0,2
+"3rd Year","CSE","BCS053","Artificial Intelligence","Semester 5",0,0,0,0,0,0,1,1,1,0,3
 "3rd Year","CSE","BCS067","Blockchain Architecture Design","Semester 6",0,0,0,0,0,1,1,0,1,0,3
 "3rd Year","CSE","BCS065","Data Compression","Semester 6",1,1,1,0,0,1,1,1,1,0,7
 "3rd Year","CSE","BCS066","Augmented & Virtual Reality","Semester 6",0,0,0,0,0,0,0,0,1,0,1
+"3rd Year","AIML","BCS054","Machine Learning Techniques","Semester 5",0,0,0,0,1,1,1,1,1,1,6
+"3rd Year","AIML","BCS057","Mathematical Foundation for AI, ML and Data Science","Semester 5",0,0,0,0,0,0,0,1,1,0,2
+"3rd Year","AIML","BCS053","Artificial Intelligence","Semester 5",0,0,0,0,0,0,1,1,1,0,3
+"3rd Year","AIML","KOE058","Constitution of India","Semester 5",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","AIML","BCS503","Design and Analysis of Algorithms","Semester 5",0,1,1,1,1,1,1,1,1,0,8
+"3rd Year","AIML","BCS501","Database Management Systems","Semester 5",0,1,1,1,1,1,1,1,1,0,8
+"3rd Year","AIML","BDS052","Cyber Forensic Analytics","Semester 5",0,0,0,0,0,0,0,0,1,0,1
+"3rd Year","AIML","BDS053","Image Analytics","Semester 5",0,0,0,0,0,0,1,0,1,0,2
+"3rd Year","Data Science","BDS052","Cyber Forensic Analytics","Semester 5",0,0,0,0,0,0,0,0,1,0,1
+"3rd Year","Data Science","BDS053","Image Analytics","Semester 5",0,0,0,0,0,0,1,0,1,0,2
+"3rd Year","Data Science","BCS055","Data Analytics","Semester 5",0,0,0,0,1,1,1,1,1,1,6
+"3rd Year","Data Science","BCS054","Machine Learning Techniques","Semester 5",0,0,0,0,1,1,1,1,1,1,6
+"3rd Year","Data Science","BCS057","Mathematical Foundation for AI, ML and Data Science","Semester 5",0,0,0,0,0,0,0,1,1,0,2
+"3rd Year","Data Science","KOE058","Constitution of India","Semester 5",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","IT","BCS603","Web Technology","Semester 6",0,0,0,0,1,1,1,0,1,1,5
+"3rd Year","IT","BCS501","Database Management Systems","Semester 5",0,1,1,1,1,1,1,1,1,0,8
+"3rd Year","IT","BCS503","Design and Analysis of Algorithms","Semester 5",0,1,1,1,1,1,1,1,1,0,8
+"3rd Year","IT","BCS601","Software Engineering","Semester 6",0,0,1,0,0,1,1,1,1,0,5
+"3rd Year","IT","BCS602","Computer Networks","Semester 6",0,0,1,0,0,1,1,1,0,0,4
+"3rd Year","ECE","BEC603","Integrated Circuits","Semester 6",0,0,1,1,1,1,1,1,1,0,7
+"3rd Year","ECE","BEC602","Digital Signal Processing","Semester 6",0,0,1,1,1,1,1,1,1,0,7
+"3rd Year","ECE","BEC502","Digital Communication","Semester 5",0,0,1,0,0,1,1,1,1,0,5
+"3rd Year","ECE","BEC501","Control System","Semester 5",0,0,1,0,0,1,1,1,1,0,5
+"3rd Year","ECE","BEC503","Antenna and Wave Propagation","Semester 5",0,0,0,0,0,1,1,1,1,0,4
+"3rd Year","ECE","BEC061","Satellite Communication","Semester 6",1,0,0,0,0,1,1,0,1,0,4
+"3rd Year","ECE","BEC051","Data Communication Networks","Semester 5",1,0,0,0,0,1,1,0,1,0,4
+"3rd Year","ECE","BEC601","Microwave Engineering","Semester 6",1,1,1,0,0,0,0,0,1,0,4
+"3rd Year","ECE","BEC062","VLSI Design","Semester 6",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","ECE","BEC063","Optical Communication","Semester 6",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","ECE","BEC504","Microprocessor & Microcontroller","Semester 5",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","ECE","KOE058","Constitution of India","Semester 5",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","EEE","BEE601","Power System - I","Semester 6",0,0,1,0,0,1,1,1,1,0,5
+"3rd Year","EEE","BEE501","Electrical Machines - II","Semester 5",0,0,1,0,0,1,1,1,1,0,5
+"3rd Year","EEE","BEC501","Control System","Semester 5",0,0,1,0,0,1,1,1,1,0,5
+"3rd Year","EEE","BEE602","Power System - II","Semester 6",0,0,0,0,0,0,1,1,1,0,3
+"3rd Year","EEE","BEE061","Special Electrical Machines","Semester 6",1,1,0,0,0,0,1,0,1,0,4
+"3rd Year","EEE","BEE503","Power Electronics","Semester 5",1,0,0,0,0,0,1,0,1,0,3
+"3rd Year","EEE","BEE502","Microprocessor","Semester 5",0,0,0,0,0,0,0,1,1,0,2
+"3rd Year","EEE","KOE058","Constitution of India","Semester 5",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","ME","BME601","Refrigeration & Air Conditioning","Semester 6",0,1,1,0,0,1,1,1,1,0,6
+"3rd Year","ME","BME602","CAD/CAM","Semester 6",0,0,0,0,0,0,0,0,1,0,1
+"3rd Year","ME","BME501","Theory of Machines","Semester 5",0,0,1,0,0,1,1,1,1,0,5
+"3rd Year","ME","BME502","Heat & Mass Transfer","Semester 5",0,0,0,1,1,1,1,1,1,0,6
+"3rd Year","ME","BME503","Machine Design","Semester 5",0,0,0,0,1,1,0,0,1,0,3
+"3rd Year","ME","BME504","Industrial Engineering","Semester 5",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","ME","BME062","Industrial Robotics","Semester 6",0,0,0,0,0,0,0,0,1,0,1
+"3rd Year","ME","BME063","Computational Fluid Dynamics","Semester 6",0,0,0,0,0,0,0,0,1,0,1
+"3rd Year","ME","BME061","Tribology","Semester 6",0,0,0,0,0,1,0,1,1,0,3
+"3rd Year","ME","KOE058","Constitution of India","Semester 5",0,0,0,0,1,1,1,1,1,0,5
+"3rd Year","CE","BCE501","Design of Concrete Structures","Semester 5",1,0,0,0,0,1,1,0,1,0,4
+"3rd Year","CE","BCE502","Geotechnical Engineering","Semester 5",0,1,1,1,1,1,1,1,1,0,8
+"3rd Year","CE","BCE503","Transportation Engineering","Semester 5",1,1,1,0,0,1,0,1,1,0,6
+"3rd Year","CE","BCE601","Environmental Engineering","Semester 6",1,1,1,0,0,1,1,0,1,0,6
+"3rd Year","CE","BCE061","Advanced Structural Analysis","Semester 6",0,0,0,0,0,1,1,1,1,0,4
+"3rd Year","CE","BCE062","River Engineering","Semester 6",1,0,0,0,0,1,1,1,1,0,5
+"3rd Year","CE","BCE063","Repair and Rehabilitation of Structures","Semester 6",0,0,0,0,0,1,1,1,1,0,4
+"3rd Year","CE","BCE064","Foundation Design","Semester 6",0,0,0,0,0,0,1,1,0,0,2
+"3rd Year","CE","BCE504","Structural Analysis","Semester 5",0,1,0,1,1,0,0,1,1,0,5
+"3rd Year","CE","BCE505","Modern Construction Materials","Semester 5",0,0,1,0,0,0,1,1,1,0,4
+"3rd Year","CE","BCE506","Open Channel Flow","Semester 5",0,0,0,0,0,1,0,1,0,0,2
+"3rd Year","CE","BCE507","Engineering Hydrology","Semester 5",0,0,0,0,1,1,1,1,0,0,4
+"3rd Year","CE","BCE508","Concrete Technology","Semester 5",0,0,1,1,1,1,1,1,1,0,7
+"3rd Year","CE","BCE065","Sensor & Instrumentation Technologies","Semester 6",0,0,0,0,1,0,1,1,0,0,3
+"3rd Year","CE","KOE058","Constitution of India","Semester 5",0,0,0,0,1,1,1,1,1,0,5
 "3rd Year","ALL","KOE068","Software Project Management","Semester 6",1,0,0,0,0,1,1,1,1,0,5
 "3rd Year","ALL","KOE069","Understanding the Human Being Comprehensively","Semester 6",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","ALL","KOE066","Idea to Business Model","Semester 6",0,0,0,0,0,2,0,2,1,0,5
+"3rd Year","ALL","KOE066","Idea to Business Model","Semester 6",0,0,0,0,0,1,0,1,1,0,3
 "3rd Year","ALL","KOE065","Quality Control & Reliability","Semester 6",0,0,0,0,0,0,0,0,1,0,1
 "3rd Year","ALL","KOE064","Embedded System","Semester 6",1,0,0,0,0,1,1,1,1,0,5
 "3rd Year","ALL","KOE062","Introduction to MEMS","Semester 6",0,0,0,0,0,1,1,1,1,0,4
@@ -95,95 +171,4 @@ B.Tech Year,Branch,Subject Code,Subject Name,Semester,2016-2017,2017-2018,2018-2
 "3rd Year","ALL","KOE061","Computer Based Numerical Techniques","Semester 6",0,0,0,0,0,1,1,1,1,0,4
 "3rd Year","ALL","KOE063","GIS & Remote Sensing","Semester 6",0,0,0,0,0,1,1,1,1,0,4
 "3rd Year","ALL","KOE067","Basics of Database Management System","Semester 6",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","AIML","BCS501","Database Management Systems","Semester 5",0,1,1,1,1,1,1,1,1,0,8
-"3rd Year","AIML","BCS503","Design and Analysis of Algorithms","Semester 5",0,1,1,1,1,1,1,1,1,0,8
-"3rd Year","AIML","BCS053","Artificial Intelligence","Semester 5",0,0,0,0,0,0,1,1,1,0,3
-"3rd Year","AIML","BCS055","Data Analytics","Semester 5",0,0,0,0,1,1,1,1,1,1,6
-"3rd Year","AIML","BCS064","Object Oriented Software Development with C++","Semester 6",0,0,0,0,1,1,0,1,1,0,4
-"3rd Year","AIML","BCS052","Cloud Computing","Semester 5",0,0,0,0,0,0,0,1,1,0,2
-"3rd Year","AIML","BCS056","Application of Soft Computing","Semester 5",0,0,0,0,1,1,1,1,1,0,5
-"3rd Year","AIML","BCS601","Software Engineering","Semester 6",0,0,1,0,0,1,1,1,1,0,5
-"3rd Year","AIML","BCS054","Machine Learning Techniques","Semester 5",0,0,0,0,1,1,1,1,1,1,6
-"3rd Year","AIML","BCS602","Computer Networks","Semester 6",0,0,1,0,0,1,1,1,0,0,4
-"3rd Year","AIML","KVE001","Essence of Indian Traditional Knowledge","Semester 5",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","AIML","BDS052","Cyber Forensic Analytics","Semester 5",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","AIML","BDS053","Image Analytics","Semester 5",0,0,0,0,0,0,1,0,1,0,2
-"3rd Year","AIML","BDS054","Social Media Analytics and Data Analysis","Semester 5",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","Data Science","BCS501","Database Management Systems","Semester 5",0,1,1,1,1,1,1,1,1,0,8
-"3rd Year","Data Science","BCS503","Design and Analysis of Algorithms","Semester 5",0,1,1,1,1,1,1,1,1,0,8
-"3rd Year","Data Science","BCS055","Data Analytics","Semester 5",0,0,0,0,1,1,1,1,1,1,6
-"3rd Year","Data Science","BCS064","Object Oriented Software Development with C++","Semester 6",0,0,0,0,1,1,0,1,1,0,4
-"3rd Year","Data Science","BCS052","Cloud Computing","Semester 5",0,0,0,0,0,0,0,1,1,0,2
-"3rd Year","Data Science","BCS056","Application of Soft Computing","Semester 5",0,0,0,0,1,1,1,1,1,0,5
-"3rd Year","Data Science","BCS601","Software Engineering","Semester 6",0,0,1,0,0,1,1,1,1,0,5
-"3rd Year","Data Science","BCS054","Machine Learning Techniques","Semester 5",0,0,0,0,1,1,1,1,1,1,6
-"3rd Year","Data Science","BCS602","Computer Networks","Semester 6",0,0,1,0,0,1,1,1,0,0,4
-"3rd Year","Data Science","KVE001","Essence of Indian Traditional Knowledge","Semester 5",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","Data Science","BDS052","Cyber Forensic Analytics","Semester 5",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","Data Science","BDS053","Image Analytics","Semester 5",0,0,0,0,0,0,1,0,1,0,2
-"3rd Year","Data Science","BDS054","Social Media Analytics and Data Analysis","Semester 5",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","Data Science","BCS051","Big Data","Semester 5",0,0,0,0,0,0,1,1,1,0,3
-"3rd Year","ECE","BEC603","Integrated Circuits","Semester 6",0,0,1,1,1,1,1,1,1,0,7
-"3rd Year","ECE","BEC504","Microprocessor & Microcontroller","Semester 5",0,0,0,0,1,1,1,1,1,0,5
-"3rd Year","ECE","BEC602","Digital Signal Processing","Semester 6",0,0,1,1,1,1,1,1,1,0,7
-"3rd Year","ECE","BEC064","Internet of Things","Semester 6",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ECE","BEC065","Bio-Medical Sensors & Instrumentation","Semester 6",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ECE","BEC066","Intelligent Systems and Robotics","Semester 6",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ECE","BEC062","VLSI Design","Semester 6",0,0,0,0,1,1,1,1,1,0,5
-"3rd Year","ECE","BEC067","Electronics Switching","Semester 6",0,0,0,0,0,0,1,1,1,0,3
-"3rd Year","ECE","BEC068","Bio-Medical Signal Processing","Semester 6",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ECE","BEC063","Optical Communication","Semester 6",0,0,0,0,1,1,1,1,1,0,5
-"3rd Year","ECE","BEC069","CMOS Analog VLSI Design","Semester 6",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ECE","BEC502","Digital Communication","Semester 5",0,0,1,0,0,1,1,1,1,0,5
-"3rd Year","ECE","BEC501","Control System","Semester 5",0,0,1,0,0,1,1,1,1,0,5
-"3rd Year","ECE","BEC503","Antenna and Wave Propagation","Semester 5",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","ECE","KVE001","Essence of Indian Traditional Knowledge","Semester 5",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","ECE","BEC061","Satellite Communication","Semester 6",1,0,0,0,0,1,1,0,1,0,4
-"3rd Year","ECE","BEC051","Data Communication Networks","Semester 5",1,0,0,0,0,1,1,0,1,0,4
-"3rd Year","ECE","BEC052","CMOS Digital Design Techniques","Semester 5",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ECE","BEC601","Microwave Engineering","Semester 6",1,1,1,0,0,0,0,0,1,0,4
-"3rd Year","EEE","BEE601","Power System - I","Semester 6",0,0,1,0,0,1,1,1,1,0,5
-"3rd Year","EEE","BEC501","Control System","Semester 5",0,0,1,0,0,1,1,1,1,0,5
-"3rd Year","EEE","BEE501","Electrical Machines - II","Semester 5",0,0,1,0,0,1,1,1,1,0,5
-"3rd Year","EEE","BEC602","Digital Signal Processing","Semester 6",0,0,1,1,1,1,1,1,1,0,7
-"3rd Year","EEE","BEE602","Power System - II","Semester 6",0,0,0,0,0,0,1,1,1,0,3
-"3rd Year","EEE","BCS404","Microprocessor","Semester 4",0,0,0,0,0,0,0,1,1,0,2
-"3rd Year","EEE","BEE061","Special Electrical Machines","Semester 6",1,1,0,0,0,0,1,0,1,0,4
-"3rd Year","EEE","KVE001","Essence of Indian Traditional Knowledge","Semester 5",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","EEE","BEE503","Power Electronics","Semester 5",1,0,0,0,0,0,1,0,1,0,3
-"3rd Year","EEE","BEE063","Digital Control System","Semester 6",1,0,0,0,0,0,1,0,1,0,3
-"3rd Year","EEE","BEE064","Electrical and Hybrid Vehicles","Semester 6",0,0,0,0,0,0,1,0,1,0,2
-"3rd Year","EEE","BEE066","Electrical Machine Design","Semester 6",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ME","BME502","Heat & Mass Transfer","Semester 5",0,0,0,1,1,1,1,1,1,0,6
-"3rd Year","ME","BME503","Machine Design","Semester 5",0,0,0,0,1,1,0,0,1,0,3
-"3rd Year","ME","BME504","Industrial Engineering","Semester 5",0,0,0,0,1,1,1,1,1,0,5
-"3rd Year","ME","BME051","Advance Manufacturing Processes","Semester 5",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ME","BME052","I C Engine Fuel & Lubrication","Semester 5",0,0,0,0,1,1,1,1,1,0,5
-"3rd Year","ME","BME053","Finite Element Methods","Semester 5",0,0,0,0,0,0,1,0,0,0,1
-"3rd Year","ME","BME054","Automobile Engines & Combustion","Semester 5",0,0,0,0,0,0,0,1,0,0,1
-"3rd Year","ME","BME055","Mechatronic Systems","Semester 5",0,0,0,0,1,0,1,1,1,0,4
-"3rd Year","ME","BME056","Turbo Machines","Semester 5",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ME","BME057","Mechanical Vibrations","Semester 5",0,0,0,0,0,0,1,1,1,0,3
-"3rd Year","ME","BME058","Automotive Chassis & Suspension","Semester 5",0,0,0,0,0,0,0,1,0,0,1
-"3rd Year","ME","BME601","Refrigeration & Air Conditioning","Semester 6",0,1,1,0,0,1,1,1,1,0,6
-"3rd Year","ME","BME602","CAD/CAM","Semester 6",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ME","BME501","Theory of Machines","Semester 5",0,0,1,0,0,1,1,1,1,0,5
-"3rd Year","ME","KVE001","Essence of Indian Traditional Knowledge","Semester 5",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","ME","BME062","Industrial Robotics","Semester 6",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ME","BME063","Computational Fluid Dynamics","Semester 6",0,0,0,0,0,0,0,0,1,0,1
-"3rd Year","ME","BME061","Tribology","Semester 6",0,0,0,0,0,1,0,1,1,0,3
-"3rd Year","CE","BCE502","Geotechnical Engineering","Semester 5",0,1,1,1,1,1,1,1,1,0,8
-"3rd Year","CE","BCE504","Structural Analysis","Semester 5",0,1,0,1,1,0,0,1,1,0,5
-"3rd Year","CE","BCE508","Concrete Technology","Semester 5",0,0,1,1,1,1,1,1,1,0,7
-"3rd Year","CE","BCE505","Modern Construction Materials","Semester 5",0,0,1,0,0,0,1,1,1,0,4
-"3rd Year","CE","BCE506","Open Channel Flow","Semester 5",0,0,0,0,0,1,0,1,0,0,2
-"3rd Year","CE","BCE509","Engineering Geology","Semester 5",0,0,0,0,0,1,1,1,0,0,3
-"3rd Year","CE","BCE507","Engineering Hydrology","Semester 5",0,0,0,0,1,1,1,1,0,0,4
-"3rd Year","CE","BCE501","Design of Concrete Structures","Semester 5",1,0,0,0,0,1,1,0,1,0,4
-"3rd Year","CE","BCE503","Transportation Engineering","Semester 5",1,1,1,0,0,1,0,1,1,0,6
-"3rd Year","CE","BCE601","Environmental Engineering","Semester 6",1,1,1,0,0,1,1,0,1,0,6
-"3rd Year","CE","KVE001","Essence of Indian Traditional Knowledge","Semester 5",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","CE","BCE061","Advanced Structural Analysis","Semester 6",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","CE","BCE062","River Engineering","Semester 6",1,0,0,0,0,1,1,1,1,0,5
-"3rd Year","CE","BCE063","Repair and Rehabilitation of Structures","Semester 6",0,0,0,0,0,1,1,1,1,0,4
-"3rd Year","CE","BCE064","Foundation Design","Semester 6",0,0,0,0,0,0,1,1,0,0,2
+"3rd Year","ALL","KVE001","Essence of Indian Traditional Knowledge","Semester 5",0,0,0,0,0,1,1,1,1,0,4

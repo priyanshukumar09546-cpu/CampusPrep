@@ -1,8 +1,8 @@
 {
-  "auditDate": "2026-10-26T10:19:48.843Z",
+  "auditDate": "2026-10-26T10:39:49.966Z",
   "action": "PROFESSORVIRUS — COMPLETE PYQ DATABASE CLEANUP & NOTESGALLERY-BASED REBUILD",
   "cleanedPriorPyqs": 653,
-  "rebuiltVerifiedPyqs": 1084,
+  "rebuiltVerifiedPyqs": 868,
   "duplicatesRemoved": 250,
   "hierarchy": "Academic Year -> Branch -> B.Tech Year -> Semester -> Subject -> Available Exam Papers",
   "yearBreakdown": {
@@ -12,14 +12,14 @@
       "note": "Strictly 10 common subjects from NotesGallery 1st Year page. All non-10 subjects purged."
     },
     "2nd Year": {
-      "subjectCount": 35,
-      "paperCount": 525,
+      "subjectCount": 50,
+      "paperCount": 377,
       "note": "Branch-wise subjects from NotesGallery 2nd Year hub (CSE, ECE, EEE, ME, CE, Open Electives)."
     },
     "3rd Year": {
-      "subjectCount": 91,
-      "paperCount": 475,
-      "note": "Branch-wise subjects from NotesGallery 3rd Year hub (CSE, AIML, Data Science, ECE, EEE, ME, CE, Open Electives)."
+      "subjectCount": 73,
+      "paperCount": 407,
+      "note": "Branch-wise subjects from NotesGallery 3rd Year hub (CSE, AIML, Data Science, IT, ECE, EEE, ME, CE, Open Electives)."
     },
     "4th Year": {
       "subjectCount": 0,
