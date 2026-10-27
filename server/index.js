@@ -3223,22 +3223,18 @@ function deduplicatePyqs(list) {
   return result;
 }
 
-// 9. REAL PYQs MANAGEMENT ENDPOINTS (PUBLIC & ADMIN)
-// GET PUBLIC PYQs (Supports Filtering by branch, year, academicYear, subject)
-app.get('/api/pyqs', async (req, res) => {
-  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-  res.set('Pragma', 'no-cache');
-  res.set('Expires', '0');
-
-  const { branch, year, academicYear, subject, subjectId, course, semester, specialization, subjectCode } = req.query;
-
+// Helper to fetch all valid, published PYQs from Mongo & disk/memory fallback
+const fetchAllVerifiedPyqs = async () => {
   let allPyqs = [];
-  if (isDbConnected) {
+  if (isDbConnected && mongoose.connection.readyState === 1) {
     try {
-      const mongoList = await PyqModel.find({
-        published: { $ne: false },
-        status: { $ne: 'unpublished', $nin: ['unpublished', 'draft'] }
-      }).lean();
+      const mongoList = await Promise.race([
+        PyqModel.find({
+          published: { $ne: false },
+          status: { $ne: 'unpublished', $nin: ['unpublished', 'draft'] }
+        }).maxTimeMS(2500).lean(),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Mongo timeout')), 2500))
+      ]);
 
       const idMap = new Map();
       (mongoList || []).forEach(p => idMap.set(p.id, p));
@@ -3265,46 +3261,241 @@ app.get('/api/pyqs', async (req, res) => {
   }
 
   // Strict check: exclude any record marked unpublished/draft or pointing to ABESIT
-  let result = allPyqs.filter(p => {
+  return allPyqs.filter(p => {
     if (p.published === false || p.published === 'false' || p.status === 'unpublished' || p.status === 'draft') return false;
     const url = (p.pdfUrl || p.fileUrl || '').trim();
     if (!url || url.toLowerCase().includes('abesit.in') || url.includes('aktu-quantum.tech')) return false;
     return true;
   });
+};
+
+const normalizeCourseParam = (c) => {
+  if (!c) return 'B.Tech';
+  const raw = String(c).trim();
+  const s = raw.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  if (s === 'btechbiotechnology' || s === 'btechbiotech' || s === 'biotech') return 'B.Tech Biotechnology';
+  if (s === 'btechagriculture' || s === 'btechagri' || s === 'agri') return 'B.Tech Agriculture';
+  if (s === 'btechlateral' || s === 'btechlateralentry') return 'B.Tech Lateral Entry';
+  if (s === 'bca') return 'BCA';
+  if (s === 'bbabms' || s === 'bms') return 'BBA / BMS';
+  if (s === 'bba') return 'BBA';
+  if (s === 'bpharmlateral' || s === 'bpharmlateralentry') return 'B.Pharm Lateral Entry';
+  if (s === 'pharmd' || s === 'doctorofpharmacy') return 'Pharm.D';
+  if (s === 'bpharm' || s === 'bpharma' || s === 'bpharmacy') return 'B.Pharm';
+  if (s === 'mpharm' || s === 'mpharma' || s === 'mpharmacy') return 'M.Pharm';
+  if (s === 'mtech' || s === 'mtechnology') return 'M.Tech';
+  if (s === 'mcaintegrated') return 'MCA Integrated';
+  if (s === 'mcalateral' || s === 'mcalateralentry') return 'MCA Lateral Entry';
+  if (s === 'mca') return 'MCA';
+  if (s === 'mbaintegrated' || s === 'mam') return 'MBA Integrated';
+  if (s === 'mbalateral' || s === 'mbalateralentry') return 'MBA Lateral Entry';
+  if (s === 'mba') return 'MBA';
+  if (s === 'barch' || s === 'architecture') return 'B.Arch';
+  if (s === 'bdes' || s === 'bdesign') return 'B.Des';
+  if (s === 'bhmct' || s.includes('hmct') || s.includes('hotel')) return 'BHMCT';
+  if (s === 'bfad') return 'BFAD';
+  if (s === 'bfa') return 'BFA';
+  if (s === 'bvoc' || s.includes('voc')) return 'B.Voc';
+  if (s === 'btech' || s === 'btechnology') return 'B.Tech';
+  return raw;
+};
+
+// 9. REAL PYQs MANAGEMENT ENDPOINTS (PUBLIC & ADMIN)
+// GET DYNAMIC FILTER OPTIONS FOR PYQS
+app.get('/api/pyqs/filters', async (req, res) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+
+  try {
+    const { course, branch, year, semester, subject, examYear } = req.query;
+    const allPyqs = await fetchAllVerifiedPyqs();
+
+    // Available courses with count of verified papers
+    const courseCounts = {};
+    allPyqs.forEach(p => {
+      const c = normalizeCourseParam(p.course || 'B.Tech');
+      courseCounts[c] = (courseCounts[c] || 0) + 1;
+    });
+
+    const targetCourse = normalizeCourseParam(course || 'BTech');
+    const coursePyqs = allPyqs.filter(p => normalizeCourseParam(p.course || 'B.Tech') === targetCourse);
+
+    // Available branches for selected course
+    let availableBranches = [];
+    if (targetCourse === 'B.Tech') {
+      const branchSet = new Set();
+      coursePyqs.forEach(p => {
+        const b = String(p.branchId || p.branch || '').toUpperCase().trim();
+        if (b && b !== 'ALL') branchSet.add(b);
+      });
+      const STANDARD_BTECH_BRANCHES = [
+        { id: 'ALL', name: 'All Branches' },
+        { id: 'CSE', name: 'CSE - Computer Science & Engineering' },
+        { id: 'ECE', name: 'ECE - Electronics & Communication' },
+        { id: 'ME', name: 'ME - Mechanical Engineering' },
+        { id: 'CE', name: 'CE - Civil Engineering' },
+        { id: 'IT', name: 'IT - Information Technology' },
+        { id: 'AIML', name: 'AIML - Artificial Intelligence & ML' },
+        { id: 'Data Science', name: 'Data Science' },
+        { id: 'EEE', name: 'EEE - Electrical & Electronics' }
+      ];
+      availableBranches = STANDARD_BTECH_BRANCHES.filter(sb => sb.id === 'ALL' || branchSet.has(sb.id));
+      branchSet.forEach(b => {
+        if (!availableBranches.some(ab => ab.id === b)) {
+          availableBranches.push({ id: b, name: b });
+        }
+      });
+    } else {
+      availableBranches = [{ id: 'ALL', name: 'General / Core' }];
+    }
+
+    // Filter by branch
+    const branchPyqs = coursePyqs.filter(p => {
+      if (!branch || branch === 'ALL' || branch === 'All Branches') return true;
+      if (targetCourse !== 'B.Tech' && targetCourse !== 'M.Tech') return true;
+      const pb = String(p.branchId || p.branch || '').toUpperCase().trim();
+      return !pb || pb === 'ALL' || pb === branch.toUpperCase().trim();
+    });
+
+    // Available academic years of study
+    const yearSet = new Set();
+    branchPyqs.forEach(p => {
+      const y = String(p.year || p.btechYear || '').trim();
+      if (y) yearSet.add(y);
+    });
+    const yearOrder = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th Year'];
+    const availableYears = yearOrder.filter(y => yearSet.has(y));
+    if (availableYears.length === 0 && yearSet.size > 0) {
+      availableYears.push(...Array.from(yearSet));
+    }
+
+    // Filter by academic year
+    const yearPyqs = branchPyqs.filter(p => {
+      if (!year || year === 'All' || year === 'All Years') return true;
+      const reqDigit = year.replace(/[^0-9]/g, '');
+      const pDigit = String(p.year || p.btechYear || '').replace(/[^0-9]/g, '');
+      return reqDigit ? pDigit === reqDigit : true;
+    });
+
+    // Available semesters
+    const semSet = new Set();
+    yearPyqs.forEach(p => {
+      const s = String(p.semester || '').trim();
+      if (s) semSet.add(s);
+    });
+    const semOrder = ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 3 / 4', 'Semester 5', 'Semester 6', 'Semester 7', 'Semester 8'];
+    const availableSemesters = semOrder.filter(s => semSet.has(s));
+    semSet.forEach(s => {
+      if (!availableSemesters.includes(s)) availableSemesters.push(s);
+    });
+
+    // Filter by semester
+    const semPyqs = yearPyqs.filter(p => {
+      if (!semester || semester === 'All' || semester === 'All Semesters') return true;
+      const semDigit = semester.replace(/[^0-9]/g, '');
+      const pSemDigit = String(p.semester || '').replace(/[^0-9]/g, '');
+      if (semDigit && pSemDigit) return semDigit === pSemDigit;
+      return String(p.semester || '').trim().toLowerCase() === semester.trim().toLowerCase();
+    });
+
+    // Available subjects
+    const subMap = new Map();
+    semPyqs.forEach(p => {
+      const code = String(p.subjectCode || '').trim();
+      const name = String(p.subjectName || p.subject || 'Subject').trim();
+      const key = (code ? code + '|' : '') + name;
+      if (!subMap.has(key)) {
+        subMap.set(key, { code, name, count: 0 });
+      }
+      subMap.get(key).count++;
+    });
+    const availableSubjects = Array.from(subMap.values()).sort((a, b) => a.name.localeCompare(b.name));
+
+    // Filter by subject
+    let subPyqs = semPyqs;
+    if (subject && subject !== 'All' && subject !== 'All Subjects') {
+      const sTerm = subject.toLowerCase().trim();
+      subPyqs = subPyqs.filter(p => {
+        const code = String(p.subjectCode || '').toLowerCase().trim();
+        const name = String(p.subjectName || p.subject || '').toLowerCase().trim();
+        return code === sTerm || name === sTerm || (code + ' - ' + name).toLowerCase() === sTerm || areSubjectsMatching({ code: subject, name: subject }, p);
+      });
+    }
+
+    // Available exam years
+    const examYearSet = new Set();
+    const examTypeSet = new Set();
+    subPyqs.forEach(p => {
+      const yr = String(p.academicYear || p.examYear || '').trim();
+      if (yr) examYearSet.add(yr);
+      const exType = String(p.examType || p.paperType || '').trim();
+      if (exType) examTypeSet.add(exType);
+    });
+
+    const availableExamYears = Array.from(examYearSet).sort().reverse();
+    const availableExamTypes = Array.from(examTypeSet);
+
+    // If an exam year is selected, narrow exam types to that exam year
+    if (examYear && examYear !== 'All' && examYear !== 'All Exam Years') {
+      const filteredByYear = subPyqs.filter(p => {
+        const yr = String(p.academicYear || p.examYear || '').trim();
+        return yr === examYear.trim();
+      });
+      const yearTypeSet = new Set();
+      filteredByYear.forEach(p => {
+        const exType = String(p.examType || p.paperType || '').trim();
+        if (exType) yearTypeSet.add(exType);
+      });
+      availableExamTypes.length = 0;
+      availableExamTypes.push(...Array.from(yearTypeSet));
+    }
+
+    res.json({
+      success: true,
+      filters: {
+        targetCourse,
+        courseCounts,
+        availableBranches,
+        availableYears,
+        availableSemesters,
+        availableSubjects,
+        availableExamYears,
+        availableExamTypes,
+        matchingPapersCount: subPyqs.length
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET PUBLIC PYQs (Supports Filtering by course, branch, year, semester, subject, examYear, examType, search)
+app.get('/api/pyqs', async (req, res) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+
+  const { 
+    branch, 
+    year, 
+    academicYear, 
+    examYear, 
+    examType, 
+    subject, 
+    subjectId, 
+    course, 
+    semester, 
+    specialization, 
+    subjectCode, 
+    search 
+  } = req.query;
+
+  const allPyqs = await fetchAllVerifiedPyqs();
+  let result = allPyqs;
 
   // 1. Canonical Course Isolation Filtering (All 24 AKTU Programmes)
-  const normalizeCourseParam = (c) => {
-    if (!c) return 'B.Tech';
-    const raw = String(c).trim();
-    const s = raw.toLowerCase().replace(/[^a-z0-9]/g, '');
-
-    if (s === 'btechbiotechnology' || s === 'btechbiotech' || s === 'biotech') return 'B.Tech Biotechnology';
-    if (s === 'btechagriculture' || s === 'btechagri' || s === 'agri') return 'B.Tech Agriculture';
-    if (s === 'btechlateral' || s === 'btechlateralentry') return 'B.Tech Lateral Entry';
-    if (s === 'bca') return 'BCA';
-    if (s === 'bbabms' || s === 'bms') return 'BBA / BMS';
-    if (s === 'bba') return 'BBA';
-    if (s === 'bpharmlateral' || s === 'bpharmlateralentry') return 'B.Pharm Lateral Entry';
-    if (s === 'pharmd' || s === 'doctorofpharmacy') return 'Pharm.D';
-    if (s === 'bpharm' || s === 'bpharma' || s === 'bpharmacy') return 'B.Pharm';
-    if (s === 'mpharm' || s === 'mpharma' || s === 'mpharmacy') return 'M.Pharm';
-    if (s === 'mtech' || s === 'mtechnology') return 'M.Tech';
-    if (s === 'mcaintegrated') return 'MCA Integrated';
-    if (s === 'mcalateral' || s === 'mcalateralentry') return 'MCA Lateral Entry';
-    if (s === 'mca') return 'MCA';
-    if (s === 'mbaintegrated' || s === 'mam') return 'MBA Integrated';
-    if (s === 'mbalateral' || s === 'mbalateralentry') return 'MBA Lateral Entry';
-    if (s === 'mba') return 'MBA';
-    if (s === 'barch' || s === 'architecture') return 'B.Arch';
-    if (s === 'bdes' || s === 'bdesign') return 'B.Des';
-    if (s === 'bhmct' || s.includes('hmct') || s.includes('hotel')) return 'BHMCT';
-    if (s === 'bfad') return 'BFAD';
-    if (s === 'bfa') return 'BFA';
-    if (s === 'bvoc' || s.includes('voc')) return 'B.Voc';
-    if (s === 'btech' || s === 'btechnology') return 'B.Tech';
-    return raw;
-  };
-
   const targetCourse = normalizeCourseParam(course);
   result = result.filter(p => {
     const pCourse = normalizeCourseParam(p.course || 'B.Tech');
@@ -3312,7 +3503,7 @@ app.get('/api/pyqs', async (req, res) => {
   });
 
   // 2. Canonical Year Normalization (Handles '1st Year', '1st+Year', 'Year 1', '1', etc.)
-  if (year) {
+  if (year && year !== 'All' && year !== 'All Years') {
     const decodedYear = decodeURIComponent(String(year)).replace(/\+/g, ' ');
     const reqDigit = decodedYear.replace(/[^0-9]/g, '');
     result = result.filter(p => {
@@ -3328,7 +3519,7 @@ app.get('/api/pyqs', async (req, res) => {
   }
 
   // 3. Branch Filtering (applied for B.Tech & M.Tech, preserves single-branch programs)
-  if (branch) {
+  if (branch && branch !== 'ALL' && branch !== 'All Branches') {
     const decodedBranch = decodeURIComponent(String(branch)).replace(/\+/g, ' ').toUpperCase().trim();
     result = result.filter(p => {
       if (targetCourse !== 'B.Tech' && targetCourse !== 'M.Tech') return true;
@@ -3362,9 +3553,10 @@ app.get('/api/pyqs', async (req, res) => {
     });
   }
 
-  // 6. Academic Year Filtering
-  if (academicYear && academicYear !== 'All') {
-    const decodedAcademicYear = decodeURIComponent(String(academicYear)).replace(/\+/g, ' ').trim();
+  // 6. Examination Year Filtering (supports examYear or academicYear)
+  const targetExamYear = examYear || academicYear;
+  if (targetExamYear && targetExamYear !== 'All' && targetExamYear !== 'All Years' && targetExamYear !== 'All Exam Years') {
+    const decodedAcademicYear = decodeURIComponent(String(targetExamYear)).replace(/\+/g, ' ').trim();
     result = result.filter(p => {
       const pYr = String(p.academicYear || p.examYear || '').trim();
       if (!pYr) return false;
@@ -3372,21 +3564,57 @@ app.get('/api/pyqs', async (req, res) => {
     });
   }
 
-  // 7. Subject ID Filtering
+  // 7. Exam Type Filtering (Regular, Carry Over, Odd Semester, Even Semester, etc.)
+  if (examType && examType !== 'All' && examType !== 'All Exam Types') {
+    const decodedExamType = decodeURIComponent(String(examType)).replace(/\+/g, ' ').toLowerCase().trim();
+    result = result.filter(p => {
+      const pType = String(p.examType || p.paperType || '').toLowerCase().trim();
+      if (!pType) return false;
+      return pType === decodedExamType || pType.includes(decodedExamType) || decodedExamType.includes(pType);
+    });
+  }
+
+  // 8. Subject ID Filtering
   if (subjectId) {
     result = result.filter(p => p.subjectId === subjectId || p.id === subjectId || p._id?.toString() === subjectId);
   }
 
-  // 8. Canonical Subject Code & Strict Name Filtering
-  if (subject || subjectCode) {
+  // 9. Canonical Subject Code & Strict Name Filtering
+  if ((subject && subject !== 'All' && subject !== 'All Subjects') || subjectCode) {
     const decodedSubject = subject ? decodeURIComponent(String(subject)).replace(/\+/g, ' ').trim() : '';
     const decodedSubjectCode = subjectCode ? decodeURIComponent(String(subjectCode)).replace(/\+/g, ' ').trim() : '';
+
+    let targetCode = decodedSubjectCode;
+    let targetName = decodedSubject;
+    if (decodedSubject.includes(' - ')) {
+      const parts = decodedSubject.split(' - ');
+      if (parts[0].trim().length <= 8 && !parts[0].includes(' ')) {
+        targetCode = targetCode || parts[0].trim();
+        targetName = parts.slice(1).join(' - ').trim();
+      }
+    } else if (!targetCode && decodedSubject.length <= 8 && !decodedSubject.includes(' ') && /^[A-Z0-9]+$/i.test(decodedSubject)) {
+      targetCode = decodedSubject;
+    }
+
     const querySubObj = {
-      code: decodedSubjectCode || decodedSubject,
-      name: decodedSubject
+      code: targetCode || '',
+      name: targetName || decodedSubject
     };
 
     result = result.filter(p => areSubjectsMatching(querySubObj, p));
+  }
+
+  // 10. Free Text Search Filter
+  if (search && search.trim()) {
+    const sTerm = decodeURIComponent(String(search)).replace(/\+/g, ' ').toLowerCase().trim();
+    result = result.filter(p => {
+      const title = String(p.title || '').toLowerCase();
+      const sName = String(p.subjectName || p.subject || '').toLowerCase();
+      const sCode = String(p.subjectCode || p.code || '').toLowerCase();
+      const yr = String(p.academicYear || p.examYear || '').toLowerCase();
+      const exType = String(p.examType || '').toLowerCase();
+      return title.includes(sTerm) || sName.includes(sTerm) || sCode.includes(sTerm) || yr.includes(sTerm) || exType.includes(sTerm);
+    });
   }
 
   const cleanPyqs = result.map(p => ({
@@ -3396,7 +3624,7 @@ app.get('/api/pyqs', async (req, res) => {
   }));
 
   const dedupedPyqs = deduplicatePyqs(cleanPyqs);
-  res.json({ success: true, pyqs: dedupedPyqs });
+  res.json({ success: true, count: dedupedPyqs.length, total: dedupedPyqs.length, pyqs: dedupedPyqs });
 });
 
 // GET ADMIN ALL PYQS

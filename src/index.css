@@ -1234,3 +1234,27 @@ pre, code {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* =========================================================================
+   PYQ DYNAMIC FILTER PORTAL RESPONSIVE STYLES
+   ========================================================================= */
+.pv-pyq-page-root {
+  display: block !important;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .pv-mobile-pyqs-header-wrapper {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .pv-mobile-pyqs-header-wrapper {
+    display: block !important;
+  }
+  .pv-pyq-page-root {
+    padding-bottom: 84px !important;
+  }
+}
+
