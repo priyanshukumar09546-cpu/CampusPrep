@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import { useCourse } from '../context/CourseContext';
 import { getSubjectsByHierarchy } from '../data/subjectsData';
+import ComingSoonBadge from '../components/ComingSoonBadge';
+import { hasNotesForSubject, hasPyqsForSubject } from '../utils/resourceAvailability';
 
 export default function SelectSubjectPage({ onNavigate, onSelectSubject }) {
   const { selectedCourse, selectedYear, selectedBranch } = useCourse();
@@ -131,6 +133,10 @@ export default function SelectSubjectPage({ onNavigate, onSelectSubject }) {
           ) : (
             filteredSubjects.map((sub) => {
               const IconComp = getSubjectIconComp(sub.name);
+              const hasNotes = hasNotesForSubject(sub.code, sub.name);
+              const hasPyqs = hasPyqsForSubject(sub.code, sub.name);
+              const isResourceUnavailable = !hasNotes && !hasPyqs;
+
               return (
                 <div
                   key={sub.id}
@@ -148,8 +154,13 @@ export default function SelectSubjectPage({ onNavigate, onSelectSubject }) {
                       <div className="font-['Outfit',sans-serif] font-extrabold text-sm text-stone-900 group-hover:text-[#7A2327] transition-colors truncate">
                         {sub.name}
                       </div>
-                      <div className="text-[11px] text-stone-400 font-medium mt-0.5">
-                        ({sub.code})
+                      <div className="flex items-center gap-2 flex-wrap mt-0.5">
+                        <span className="text-[11px] text-stone-400 font-medium">
+                          ({sub.code})
+                        </span>
+                        {isResourceUnavailable && (
+                          <ComingSoonBadge variant="chip" />
+                        )}
                       </div>
                     </div>
                   </div>

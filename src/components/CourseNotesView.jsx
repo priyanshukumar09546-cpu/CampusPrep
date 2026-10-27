@@ -24,6 +24,7 @@ import { BIOTECH_NOTES_CATALOG } from '../data/biotechNotesData';
 import { AGRI_NOTES_CATALOG } from '../data/agriNotesData';
 import { notesData as localNotesData } from '../data/notesData';
 import { API_URL } from '../config/api';
+import ComingSoonBadge from './ComingSoonBadge';
 
 export default function CourseNotesView({ 
   courseKey = 'B.Tech', 
@@ -1120,6 +1121,9 @@ export default function CourseNotesView({
             {filteredSubjects.length > 0 ? (
               filteredSubjects.map(sub => {
                 const isSel = activeSubject && activeSubject.code === sub.code;
+                const subNotes = getMergedSourceNotes(sub);
+                const hasSubNotes = subNotes && subNotes.length > 0;
+
                 return (
                   <div
                     key={sub.code}
@@ -1156,6 +1160,11 @@ export default function CourseNotesView({
                     }}>
                       {sub.name}
                     </div>
+                    {!hasSubNotes && (
+                      <div style={{ marginTop: '0.4rem' }}>
+                        <ComingSoonBadge variant="chip" />
+                      </div>
+                    )}
                   </div>
                 );
               })
@@ -1202,6 +1211,11 @@ export default function CourseNotesView({
                 }}>
                   {activeSubject.name}
                 </h3>
+                {activeSubject && getMergedSourceNotes(activeSubject).length === 0 && (
+                  <div style={{ marginBottom: '0.45rem' }}>
+                    <ComingSoonBadge variant="badge" />
+                  </div>
+                )}
                 {onNavigate && (
                   <button
                     onClick={() => onNavigate('subject', {
@@ -1393,35 +1407,35 @@ export default function CourseNotesView({
           ) : !isLoadingNotes && (
             <div style={{
               backgroundColor: '#ffffff',
-              border: '1.5px solid #E8E2D5',
+              border: '1.5px dashed #FCD34D',
               borderRadius: '20px',
               padding: '3rem 2rem',
               textAlign: 'center',
-              boxShadow: '0 4px 16px rgba(35,30,25,0.03)',
+              boxShadow: '0 4px 16px rgba(122,35,39,0.03)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '0.75rem'
+              gap: '0.85rem'
             }}>
               <BookOpen size={36} style={{ color: courseMeta.badgeColor, opacity: 0.8 }} />
-              <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
-                {(normKey === 'BBA' || normKey === 'BBA_BMS' || normKey === 'BTechBiotechnology' || normKey === 'BTechAgriculture')
-                  ? 'No verified notes available yet.'
-                  : 'No Notes available for this subject/unit yet.'}
+              
+              <ComingSoonBadge 
+                variant="badge" 
+                style={{ fontSize: '0.9rem', padding: '0.4rem 1rem' }} 
+              />
+
+              <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
+                {activeUnit !== 'All' 
+                  ? `Unit ${activeUnit} Notes for ${activeSubject?.name || 'this subject'}`
+                  : `Lecture Notes for ${activeSubject?.name || 'this subject'}`}
               </h4>
-              <p style={{ color: '#64748B', fontSize: '0.85rem', maxWidth: '380px', margin: 0 }}>
+              <p style={{ color: '#64748B', fontSize: '0.85rem', maxWidth: '440px', margin: 0, lineHeight: 1.5 }}>
                 {String(activeUnit).toLowerCase() === 'extra'
-                  ? `There are no standalone extra resources (formula sheets, complete sets) uploaded for ${activeSubject?.name} yet. You can view individual unit notes above.`
+                  ? `Standalone extra resources (formula sheets, complete sets) for ${activeSubject?.name || 'this subject'} are being prepared and will be uploaded before the university exam.`
                   : activeUnit !== 'All' 
-                    ? `There are no specific Unit ${activeUnit} notes verified yet for ${activeSubject?.name}. You can switch to "All Units" to view complete subject notes.`
-                    : (normKey === 'BBA' || normKey === 'BBA_BMS')
-                      ? 'No verified BBA study notes available yet for this subject.'
-                      : (normKey === 'BTechBiotechnology' || normKey === 'BTechAgriculture')
-                        ? `No verified notes available yet for ${activeSubject?.name}.`
-                        : normKey === 'BCA'
-                          ? 'No verified BCA resources available for this semester yet.'
-                          : `Our team is currently verifying and digitizing curriculum resources for ${activeSubject?.name}.`}
+                    ? `Specific Unit ${activeUnit} notes for ${activeSubject?.name || 'this subject'} are being prepared and verified. They will be available before the university exam.`
+                    : `Our academic team is currently verifying and digitizing study resources for ${activeSubject?.name || 'this subject'}. They will be available before the university exam.`}
               </p>
               {onRequestNotes && (
                 <button

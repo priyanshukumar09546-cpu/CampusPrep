@@ -50,6 +50,7 @@ import { getAktuSyllabusForSubject } from '../data/aktuSyllabusData';
 import { API_URL } from '../config/api';
 import { notesData as localNotesData } from '../data/notesData';
 import { pyqsData as localPyqsData } from '../data/pyqsData';
+import ComingSoonBadge from './ComingSoonBadge';
 
 // 10 Featured Courses matching Reference Screenshot Image 1
 const FEATURED_COURSES = [
@@ -548,13 +549,9 @@ export default function MobileNotesScreen({
       }
     }
 
-    // Realistic baseline counts matching reference image
-    const baselineNotes = [245, 210, 180, 160, 190, 175, 140, 155];
-    const baselinePyqs = [42, 38, 31, 28, 34, 27, 24, 26];
-
     return {
-      notes: noteCount > 0 ? noteCount : baselineNotes[idx % baselineNotes.length],
-      pyqs: pyqCount > 0 ? pyqCount : baselinePyqs[idx % baselinePyqs.length]
+      notes: noteCount,
+      pyqs: pyqCount
     };
   };
 
@@ -813,56 +810,19 @@ export default function MobileNotesScreen({
                     <p style={{ fontSize: '12px', fontWeight: 600 }}>Loading notes from library...</p>
                   </div>
                 ) : subjectLiveNotes.length === 0 ? (
-                  <div style={{
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: '14px',
-                    padding: '24px 14px',
-                    textAlign: 'center',
-                    border: '1.5px dashed #CBD5E1',
-                    color: '#64748B'
-                  }}>
-                    <BookOpen size={32} style={{ color: '#94A3B8', marginBottom: '8px' }} />
-                    <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', margin: '0 0 4px' }}>
-                      Unit Notes Being Uploaded
-                    </h4>
-                    <p style={{ fontSize: '11px', margin: '0 0 12px 0' }}>
-                      Handwritten notes for {activeSubjectDetail.name} are being verified.
-                    </p>
-                    {onRequestNotes && (
-                      <button
-                        onClick={() => onRequestNotes(activeSubjectDetail, 1)}
-                        style={{
-                          backgroundColor: '#861820',
-                          color: '#FFFFFF',
-                          border: 'none',
-                          borderRadius: '8px',
-                          padding: '7px 14px',
-                          fontSize: '11.5px',
-                          fontWeight: 700,
-                          cursor: 'pointer'
-                        }}
-                      >
-                        Request Notes Upload
-                      </button>
-                    )}
-                  </div>
+                  <ComingSoonBadge
+                    variant="banner"
+                    resourceType="Lecture Notes"
+                    subjectName={activeSubjectDetail.name}
+                  />
                 ) : filteredNotes.length === 0 ? (
-                  <div style={{
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: '14px',
-                    padding: '24px 14px',
-                    textAlign: 'center',
-                    border: '1.5px dashed #CBD5E1',
-                    color: '#64748B'
-                  }}>
-                    <BookOpen size={28} style={{ color: '#94A3B8', marginBottom: '8px' }} />
-                    <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', margin: '0 0 4px' }}>
-                      No Unit {selectedUnitFilter} Notes Available
-                    </h4>
-                    <p style={{ fontSize: '11px', margin: '0 0 14px 0', lineHeight: 1.4 }}>
-                      Handwritten notes for Unit {selectedUnitFilter} of {activeSubjectDetail.name} are currently being verified.
-                    </p>
-                    <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+                  <div>
+                    <ComingSoonBadge
+                      variant="banner"
+                      resourceType={`Unit ${selectedUnitFilter} Notes`}
+                      subjectName={activeSubjectDetail.name}
+                    />
+                    <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginTop: '10px' }}>
                       <button
                         onClick={() => setSelectedUnitFilter('ALL')}
                         style={{
@@ -998,37 +958,11 @@ export default function MobileNotesScreen({
             {activeDetailTab === 'pyqs' && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {subjectLivePyqs.length === 0 ? (
-                  <div style={{
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: '14px',
-                    padding: '24px 14px',
-                    textAlign: 'center',
-                    border: '1.5px dashed #CBD5E1',
-                    color: '#66758B'
-                  }}>
-                    <FileText size={32} style={{ color: '#94A3B8', marginBottom: '8px' }} />
-                    <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 4px' }}>
-                      Question Papers Available in PYQ Tab
-                    </h4>
-                    <p style={{ fontSize: '11px', margin: '0 0 12px' }}>
-                      Access comprehensive solved papers for {activeSubjectDetail.name} in the dedicated PYQ section.
-                    </p>
-                    <button
-                      onClick={() => onNavigate && onNavigate('pyqs')}
-                      style={{
-                        backgroundColor: '#861820',
-                        color: '#FFFFFF',
-                        border: 'none',
-                        borderRadius: '8px',
-                        padding: '7px 14px',
-                        fontSize: '11.5px',
-                        fontWeight: 700,
-                        cursor: 'pointer'
-                      }}
-                    >
-                      Open PYQ Section
-                    </button>
-                  </div>
+                  <ComingSoonBadge
+                    variant="banner"
+                    resourceType="Previous Year Question Papers (PYQs)"
+                    subjectName={activeSubjectDetail.name}
+                  />
                 ) : (
                   subjectLivePyqs.map((pyq, idx) => (
                     <div
@@ -1500,17 +1434,18 @@ export default function MobileNotesScreen({
             <div style={{
               backgroundColor: '#FFFFFF',
               borderRadius: '16px',
-              border: '1.5px dashed #E9D9CC',
-              padding: '28px 14px',
+              border: '1.5px dashed #FCD34D',
+              padding: '24px 14px',
               textAlign: 'center',
-              color: '#66758B'
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '8px'
             }}>
-              <BookOpen size={30} style={{ color: '#D6A13D', marginBottom: '6px' }} />
-              <h4 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 4px' }}>
-                No Subjects Mapped
-              </h4>
-              <p style={{ fontSize: '11px', margin: 0 }}>
-                No subjects found for {selectedCourse} {selectedYear} ({selectedSem}).
+              <BookOpen size={30} style={{ color: '#D6A13D' }} />
+              <ComingSoonBadge variant="badge" />
+              <p style={{ fontSize: '11px', margin: 0, color: '#66758B' }}>
+                Curriculum resources for {selectedCourse} {selectedYear} ({selectedSem}) are currently in preparation.
               </p>
             </div>
           ) : (
@@ -1605,18 +1540,31 @@ export default function MobileNotesScreen({
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '8px',
+                      gap: '6px',
                       fontSize: '9.5px',
                       color: '#66758B',
                       borderTop: '1px solid #FFFCF7',
-                      paddingTop: '6px'
+                      paddingTop: '6px',
+                      flexWrap: 'wrap'
                     }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                        <FileText size={10} color="#66758B" /> Notes {counts.notes}
-                      </span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                        <BookOpen size={10} color="#66758B" /> PYQ {counts.pyqs}
-                      </span>
+                      {counts.notes === 0 && counts.pyqs === 0 ? (
+                        <ComingSoonBadge variant="chip" />
+                      ) : (
+                        <>
+                          {counts.notes > 0 ? (
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                              <FileText size={10} color="#66758B" /> Notes {counts.notes}
+                            </span>
+                          ) : (
+                            <ComingSoonBadge variant="chip" />
+                          )}
+                          {counts.pyqs > 0 ? (
+                            <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                              <BookOpen size={10} color="#66758B" /> PYQ {counts.pyqs}
+                            </span>
+                          ) : null}
+                        </>
+                      )}
                     </div>
                   </div>
                 );

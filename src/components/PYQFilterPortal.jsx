@@ -29,6 +29,7 @@ import { trackPYQOpened } from '../utils/progressTracker';
 import NoteViewerModal from './NoteViewerModal';
 import AcademicResourceBanner from './AcademicResourceBanner';
 import { deduplicatePyqs } from '../utils/pyqUtils';
+import ComingSoonBadge from './ComingSoonBadge';
 
 // Standard fallback branches for engineering courses
 const BTECH_BRANCH_OPTIONS = [
@@ -987,16 +988,20 @@ export default function PYQFilterPortal({
             <span style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1F2421' }}>
               Available Question Papers
             </span>
-            <span style={{
-              backgroundColor: '#7A2327',
-              color: '#ffffff',
-              fontSize: '0.78rem',
-              fontWeight: 800,
-              padding: '0.15rem 0.6rem',
-              borderRadius: '9999px'
-            }}>
-              {papers.length} {papers.length === 1 ? 'paper' : 'papers'}
-            </span>
+            {papers.length === 0 ? (
+              <ComingSoonBadge variant="chip" />
+            ) : (
+              <span style={{
+                backgroundColor: '#7A2327',
+                color: '#ffffff',
+                fontSize: '0.78rem',
+                fontWeight: 800,
+                padding: '0.15rem 0.6rem',
+                borderRadius: '9999px'
+              }}>
+                {papers.length} {papers.length === 1 ? 'paper' : 'papers'}
+              </span>
+            )}
           </div>
 
           {/* Active Filter Tags */}
@@ -1066,31 +1071,38 @@ export default function PYQFilterPortal({
             </div>
           </div>
         ) : papers.length === 0 ? (
-          /* Empty State */
+          /* Empty State with Coming Soon Badge */
           <div style={{
             backgroundColor: '#ffffff',
             borderRadius: '20px',
-            border: '1.5px dashed #DDCFBC',
+            border: '1.5px dashed #FCD34D',
             padding: '3.5rem 2rem',
             textAlign: 'center',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '1rem'
+            gap: '1.15rem',
+            boxShadow: '0 4px 16px rgba(122, 35, 39, 0.03)'
           }}>
             <div style={{
-              width: '60px',
-              height: '60px',
+              width: '64px',
+              height: '64px',
               borderRadius: '50%',
               backgroundColor: '#FEF3C7',
               border: '2px solid #FCD34D',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#92400E'
+              color: '#7A2327'
             }}>
-              <AlertCircle size={28} />
+              <Calendar size={30} />
             </div>
+
+            <ComingSoonBadge 
+              variant="badge" 
+              style={{ fontSize: '0.9rem', padding: '0.4rem 1rem' }} 
+            />
+
             <div>
               <h3 style={{
                 fontFamily: "'Outfit', sans-serif",
@@ -1099,18 +1111,23 @@ export default function PYQFilterPortal({
                 color: '#1F2421',
                 margin: '0 0 0.35rem 0'
               }}>
-                No PYQs available for the selected filters.
+                {selectedSubject !== 'ALL'
+                  ? `Previous Year Papers for ${selectedSubject}`
+                  : selectedSemester !== 'ALL'
+                  ? `${selectedSemester} Previous Year Papers`
+                  : `Previous Year Papers for ${selectedCourse}`}
               </h3>
               <p style={{
                 color: '#64748B',
                 fontSize: '0.88rem',
                 margin: '0 auto',
-                maxWidth: '460px',
-                lineHeight: 1.5
+                maxWidth: '480px',
+                lineHeight: 1.55
               }}>
-                There are no verified examination papers matching this specific combination of branch, year, semester, or examination session. Try clearing or expanding your filter selections.
+                Verified university examination question papers for this specific selection are being synchronized and audited. They will be available in the portal before the semester examination.
               </p>
             </div>
+
             {isAnyFilterActive && (
               <button
                 onClick={handleClearFilters}
@@ -1126,7 +1143,7 @@ export default function PYQFilterPortal({
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.4rem',
-                  marginTop: '0.5rem'
+                  marginTop: '0.25rem'
                 }}
               >
                 <RotateCcw size={14} /> Clear All Filters

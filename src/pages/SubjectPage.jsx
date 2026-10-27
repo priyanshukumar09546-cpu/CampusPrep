@@ -19,6 +19,7 @@ import NoteViewerModal from '../components/NoteViewerModal';
 import { notesData as localNotesData } from '../data/notesData';
 import { pyqsData as localPyqsData } from '../data/pyqsData';
 import { areSubjectsMatching, deduplicatePyqs } from '../utils/pyqUtils';
+import ComingSoonBadge from '../components/ComingSoonBadge';
 
 export default function SubjectPage({ 
   subjectData, 
@@ -469,22 +470,11 @@ export default function SubjectPage({
                 <p style={{ fontWeight: 600 }}>Fetching verified notes from database...</p>
               </div>
             ) : notes.length === 0 ? (
-              <div style={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '16px',
-                border: '1.5px dashed #CBD5E1',
-                padding: '3rem 1.5rem',
-                textAlign: 'center',
-                color: '#64748B'
-              }}>
-                <BookOpen size={42} style={{ color: '#94A3B8', marginBottom: '0.75rem' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21', margin: '0 0 0.4rem' }}>
-                  No Notes Uploaded Yet
-                </h3>
-                <p style={{ fontSize: '0.85rem', maxWidth: '420px', margin: '0 auto 1.25rem', lineHeight: 1.45 }}>
-                  Notes for {subjectName} ({subjectCode}) have not been uploaded to the database yet. Check back soon or request them.
-                </p>
-              </div>
+              <ComingSoonBadge 
+                variant="banner" 
+                resourceType="Lecture Notes" 
+                subjectName={`${subjectName} (${subjectCode || ''})`} 
+              />
             ) : (
               <div style={{
                 display: 'grid',
@@ -659,22 +649,11 @@ export default function SubjectPage({
                 <p style={{ fontWeight: 600 }}>Fetching question papers from database...</p>
               </div>
             ) : pyqs.length === 0 ? (
-              <div style={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '16px',
-                border: '1.5px dashed #CBD5E1',
-                padding: '3rem 1.5rem',
-                textAlign: 'center',
-                color: '#64748B'
-              }}>
-                <FileText size={42} style={{ color: '#94A3B8', marginBottom: '0.75rem' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21', margin: '0 0 0.4rem' }}>
-                  No PYQs Uploaded Yet
-                </h3>
-                <p style={{ fontSize: '0.85rem', maxWidth: '420px', margin: '0 auto 1.25rem', lineHeight: 1.45 }}>
-                  Previous year question papers for {subjectName} ({subjectCode}) have not been uploaded to the database yet.
-                </p>
-              </div>
+              <ComingSoonBadge 
+                variant="banner" 
+                resourceType="Previous Year Question Papers (PYQs)" 
+                subjectName={`${subjectName} (${subjectCode || ''})`} 
+              />
             ) : (
               <div style={{
                 display: 'grid',

@@ -19,6 +19,7 @@ import { pyqsData as localPyqsData, pyqsData } from '../data/pyqsData';
 import { allCourses } from '../data/subjectsData';
 import { API_URL } from '../config/api';
 import NoteViewerModal from '../components/NoteViewerModal';
+import ComingSoonBadge from '../components/ComingSoonBadge';
 
 export default function SubjectDetailPage({ 
   subjectData, 
@@ -329,26 +330,33 @@ export default function SubjectDetailPage({
         {/* ===================== TAB 1: NOTES (SCREEN 5) ===================== */}
         {activeTab === 'notes' && (
           <div>
-            {/* Header: Unit-wise Notes + Download All */}
-            <div className="flex items-center justify-between mb-3">
-              <span className="font-['Outfit',sans-serif] font-bold text-sm md:text-base text-stone-900">
-                Unit-wise Notes ({notes.length} Units Available)
-              </span>
-              <button 
-                onClick={() => handleOpenResource(notes[0])}
-                className="text-xs font-bold text-[#7A2327] hover:underline cursor-pointer flex items-center gap-1"
-              >
-                Download Top Note
-              </button>
+            {/* Header: Unit-wise Notes */}
+            <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="font-['Outfit',sans-serif] font-bold text-sm md:text-base text-stone-900">
+                  Unit-wise Notes {notes.length > 0 ? `(${notes.length} Units Available)` : ''}
+                </span>
+                {notes.length === 0 && (
+                  <ComingSoonBadge variant="chip" />
+                )}
+              </div>
+              {notes.length > 0 && (
+                <button 
+                  onClick={() => handleOpenResource(notes[0])}
+                  className="text-xs font-bold text-[#7A2327] hover:underline cursor-pointer flex items-center gap-1"
+                >
+                  Download Top Note
+                </button>
+              )}
             </div>
 
             {/* List of Unit Cards */}
             {notes.length === 0 ? (
-              <div className="bg-white rounded-2xl p-8 border border-orange-100 text-center">
-                <FileText size={36} className="mx-auto text-stone-400 mb-2" />
-                <p className="font-bold text-stone-700">Loading notes for {code}...</p>
-                <p className="text-xs text-stone-500 mt-1">If empty, check back shortly or explore PYQs.</p>
-              </div>
+              <ComingSoonBadge 
+                variant="banner" 
+                resourceType="Lecture Notes" 
+                subjectName={subjectName} 
+              />
             ) : (
               <div className="space-y-3">
                 {notes.map((item, idx) => (
@@ -401,26 +409,30 @@ export default function SubjectDetailPage({
         {activeTab === 'pyqs' && (
           <div>
             {/* Header: Previous Year Questions + Filter */}
-            <div className="flex items-center justify-between mb-3">
-              <span className="font-['Outfit',sans-serif] font-bold text-sm md:text-base text-stone-900">
-                Previous Year Papers ({pyqs.length} Papers)
-              </span>
-              <button 
-                onClick={() => alert(`Showing all available papers for ${code}`)}
-                className="bg-white border border-stone-200/90 rounded-full px-3 py-1 flex items-center gap-1 text-xs font-semibold text-stone-700 shadow-xs hover:bg-stone-50 cursor-pointer"
-              >
-                <Filter size={12} />
-                <span>AKTU Papers</span>
-              </button>
+            <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="font-['Outfit',sans-serif] font-bold text-sm md:text-base text-stone-900">
+                  Previous Year Papers {pyqs.length > 0 ? `(${pyqs.length} Papers)` : ''}
+                </span>
+                {pyqs.length === 0 && (
+                  <ComingSoonBadge variant="chip" />
+                )}
+              </div>
+              {pyqs.length > 0 && (
+                <div className="bg-white border border-stone-200/90 rounded-full px-3 py-1 flex items-center gap-1 text-xs font-semibold text-stone-700 shadow-xs">
+                  <Filter size={12} />
+                  <span>AKTU Papers</span>
+                </div>
+              )}
             </div>
 
             {/* List of PYQ Cards */}
             {pyqs.length === 0 ? (
-              <div className="bg-white rounded-2xl p-8 border border-orange-100 text-center">
-                <File size={36} className="mx-auto text-stone-400 mb-2" />
-                <p className="font-bold text-stone-700">No PYQs recorded for {code}</p>
-                <p className="text-xs text-stone-500 mt-1">Check back shortly as new session papers are synchronized.</p>
-              </div>
+              <ComingSoonBadge 
+                variant="banner" 
+                resourceType="Previous Year Question Papers (PYQs)" 
+                subjectName={subjectName} 
+              />
             ) : (
               <div className="space-y-3">
                 {pyqs.map((item, idx) => (

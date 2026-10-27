@@ -47,6 +47,7 @@ import AllIzzWellBanner from '../components/AllIzzWellBanner';
 import AcademicResourceBanner from '../components/AcademicResourceBanner';
 import CourseNotesView from '../components/CourseNotesView';
 import MobileNotesScreen from '../components/MobileNotesScreen';
+import ComingSoonBadge from '../components/ComingSoonBadge';
 import { COURSES } from '../data/coursesCatalog';
 import { trackNoteViewed } from '../utils/progressTracker';
 import { API_URL } from '../config/api';
@@ -1035,6 +1036,9 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
     return (
       <div className="p-8 text-center min-h-[60vh] flex flex-col items-center justify-center font-['Plus_Jakarta_Sans',sans-serif] bg-[#FAF7F2]">
         <h2 className="text-2xl font-black text-[#1F2421] mb-2">Course "{courseParam}" not found</h2>
+        <div className="mb-4">
+          <ComingSoonBadge variant="badge" />
+        </div>
         <p className="text-stone-600 mb-6">Available: {validCourses.join(', ')}</p>
         <div className="flex gap-2 justify-center flex-wrap max-w-lg">
           {validCourses.map(c => (
