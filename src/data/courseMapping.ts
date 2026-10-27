@@ -152,17 +152,29 @@ export const COURSE_CONFIG = {
         { code: "KCA-DSA", name: "Data Structures & Analysis of Algorithms" }
       ],
       3: [
-        { code: "KCA301", name: "Artificial Intelligence & Machine Learning" },
-        { code: "KCA302", name: "Computer Networks" },
-        { code: "KCA303", name: "Cloud Computing" },
-        { code: "KCA304", name: "Design and Analysis of Algorithms" },
-        { code: "KCA305", name: "Data Analytics" }
+        { code: "BMC301", name: "Python Programming" },
+        { code: "BMC302", name: "Software Engineering" },
+        { code: "BMC303", name: "Computer Network" },
+        { code: "BMC011", name: "Cryptography & Network Security" },
+        { code: "BMC012", name: "Data Warehousing & Data Mining" },
+        { code: "BMC013", name: "Software Project Management" },
+        { code: "BMC014", name: "Cloud Computing" },
+        { code: "BMC015", name: "Compiler Design" },
+        { code: "BMC021", name: "Artificial Intelligence" },
+        { code: "BMC022", name: "Big Data" },
+        { code: "BMC023", name: "Simulation & Modeling" },
+        { code: "BMC024", name: "Software Testing & Quality Assurance" },
+        { code: "BMC025", name: "Digital Image Processing" },
+        { code: "KCA304", name: "Design and Analysis of Algorithms" }
       ],
       4: [
+        { code: "BMC031", name: "Privacy & Security in Online Social Media" },
+        { code: "BMC032", name: "Soft Computing" },
+        { code: "BMC034", name: "Data Analytics" },
+        { code: "BMC035", name: "Software Quality Engineering" },
         { code: "KCA401", name: "Major Project & Seminar" },
         { code: "KCA402", name: "DevOps & Agile Methodology" },
-        { code: "KCA403", name: "Advanced Web Development" },
-        { code: "KCA404", name: "Information & Cyber Security" }
+        { code: "KCA403", name: "Advanced Web Development" }
       ]
     }
   },

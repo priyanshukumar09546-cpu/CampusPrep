@@ -145318,3429 +145318,2883 @@ export const notesData: Record<string, NoteItem[]> = {
       ]
     }
   ],
-  "MTCS-101": [
-    {
-      "id": "MTCS-101-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+"BMC101": [
+      {
+          "id": "mca-bmc101-u1",
+          "unit": 1,
+          "title": "Unit 1: Fundamentals of Computers & Emerging Technologies Lecture Notes",
+          "desc": "Fundamental of Computers & Emerging Technologies AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Fundamental of Computers & Emerging Technologies",
+          "subjectCode": "BMC101",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "topics": [
+              "Computer Systems Architecture",
+              "Operating Principles",
+              "Emerging Computing Domains",
+              "Digital Logic & Memory"
+          ]
+      }
   ],
-  "mtcs-101": [
-    {
-      "id": "MTCS-101-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KCA101": [
+      {
+          "id": "mca-bmc101-u1",
+          "unit": 1,
+          "title": "Unit 1: Fundamentals of Computers & Emerging Technologies Lecture Notes",
+          "desc": "Fundamental of Computers & Emerging Technologies AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Fundamental of Computers & Emerging Technologies",
+          "subjectCode": "BMC101",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "topics": [
+              "Computer Systems Architecture",
+              "Operating Principles",
+              "Emerging Computing Domains",
+              "Digital Logic & Memory"
+          ]
+      }
   ],
-  "MTCS101": [
-    {
-      "id": "MTCS-101-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "bmc101": [
+      {
+          "id": "mca-bmc101-u1",
+          "unit": 1,
+          "title": "Unit 1: Fundamentals of Computers & Emerging Technologies Lecture Notes",
+          "desc": "Fundamental of Computers & Emerging Technologies AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Fundamental of Computers & Emerging Technologies",
+          "subjectCode": "BMC101",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "topics": [
+              "Computer Systems Architecture",
+              "Operating Principles",
+              "Emerging Computing Domains",
+              "Digital Logic & Memory"
+          ]
+      }
   ],
-  "mtcs101": [
-    {
-      "id": "MTCS-101-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-101-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Data Structures & Algorithms Advanced Research",
-      "desc": "Advanced Data Structures & Algorithms postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Data Structures & Algorithms",
-      "subjectCode": "MTCS-101",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "kca101": [
+      {
+          "id": "mca-bmc101-u1",
+          "unit": 1,
+          "title": "Unit 1: Fundamentals of Computers & Emerging Technologies Lecture Notes",
+          "desc": "Fundamental of Computers & Emerging Technologies AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Fundamental of Computers & Emerging Technologies",
+          "subjectCode": "BMC101",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1I1oUyVfCQU4p9KflC93oeccaQTDKRk6_/view?usp=sharing",
+          "topics": [
+              "Computer Systems Architecture",
+              "Operating Principles",
+              "Emerging Computing Domains",
+              "Digital Logic & Memory"
+          ]
+      }
   ],
-  "MTCS-102": [
-    {
-      "id": "MTCS-102-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "BMC102": [
+      {
+          "id": "mca-bmc102-u1",
+          "unit": 1,
+          "title": "Unit 1: Problem Solving using C Complete Study Notes",
+          "desc": "Problem Solving using C AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Problem Solving using C",
+          "subjectCode": "BMC102",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "topics": [
+              "Algorithm Formulation",
+              "C Data Types & Control Structures",
+              "Pointers & Dynamic Memory",
+              "File Handling"
+          ]
+      }
   ],
-  "mtcs-102": [
-    {
-      "id": "MTCS-102-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KCA102": [
+      {
+          "id": "mca-bmc102-u1",
+          "unit": 1,
+          "title": "Unit 1: Problem Solving using C Complete Study Notes",
+          "desc": "Problem Solving using C AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Problem Solving using C",
+          "subjectCode": "BMC102",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "topics": [
+              "Algorithm Formulation",
+              "C Data Types & Control Structures",
+              "Pointers & Dynamic Memory",
+              "File Handling"
+          ]
+      }
   ],
-  "MTCS102": [
-    {
-      "id": "MTCS-102-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "bmc102": [
+      {
+          "id": "mca-bmc102-u1",
+          "unit": 1,
+          "title": "Unit 1: Problem Solving using C Complete Study Notes",
+          "desc": "Problem Solving using C AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Problem Solving using C",
+          "subjectCode": "BMC102",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "topics": [
+              "Algorithm Formulation",
+              "C Data Types & Control Structures",
+              "Pointers & Dynamic Memory",
+              "File Handling"
+          ]
+      }
   ],
-  "mtcs102": [
-    {
-      "id": "MTCS-102-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-102-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Computer Architecture Advanced Research",
-      "desc": "Advanced Computer Architecture postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Computer Architecture",
-      "subjectCode": "MTCS-102",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "kca102": [
+      {
+          "id": "mca-bmc102-u1",
+          "unit": 1,
+          "title": "Unit 1: Problem Solving using C Complete Study Notes",
+          "desc": "Problem Solving using C AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Problem Solving using C",
+          "subjectCode": "BMC102",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1nuHilpqUUSi8BbVT2CT8gCtvt3bplr0r/view?usp=sharing",
+          "topics": [
+              "Algorithm Formulation",
+              "C Data Types & Control Structures",
+              "Pointers & Dynamic Memory",
+              "File Handling"
+          ]
+      }
   ],
-  "MTCS-103": [
-    {
-      "id": "MTCS-103-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "BMC103": [
+      {
+          "id": "mca-bmc103-u1",
+          "unit": 1,
+          "title": "Unit 1: Principles of Management & Professional Communication Notes",
+          "desc": "Principles of Management & Communication AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Principles of Management & Communication",
+          "subjectCode": "BMC103",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "topics": [
+              "Management Theories & Frameworks",
+              "Organizational Hierarchy",
+              "Business Communication",
+              "Technical Reporting"
+          ]
+      }
   ],
-  "mtcs-103": [
-    {
-      "id": "MTCS-103-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KCA103": [
+      {
+          "id": "mca-bmc103-u1",
+          "unit": 1,
+          "title": "Unit 1: Principles of Management & Professional Communication Notes",
+          "desc": "Principles of Management & Communication AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Principles of Management & Communication",
+          "subjectCode": "BMC103",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "topics": [
+              "Management Theories & Frameworks",
+              "Organizational Hierarchy",
+              "Business Communication",
+              "Technical Reporting"
+          ]
+      }
   ],
-  "MTCS103": [
-    {
-      "id": "MTCS-103-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "bmc103": [
+      {
+          "id": "mca-bmc103-u1",
+          "unit": 1,
+          "title": "Unit 1: Principles of Management & Professional Communication Notes",
+          "desc": "Principles of Management & Communication AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Principles of Management & Communication",
+          "subjectCode": "BMC103",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "topics": [
+              "Management Theories & Frameworks",
+              "Organizational Hierarchy",
+              "Business Communication",
+              "Technical Reporting"
+          ]
+      }
   ],
-  "mtcs103": [
-    {
-      "id": "MTCS-103-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-103-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Operating Systems Advanced Research",
-      "desc": "Advanced Operating Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Operating Systems",
-      "subjectCode": "MTCS-103",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "kca103": [
+      {
+          "id": "mca-bmc103-u1",
+          "unit": 1,
+          "title": "Unit 1: Principles of Management & Professional Communication Notes",
+          "desc": "Principles of Management & Communication AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Principles of Management & Communication",
+          "subjectCode": "BMC103",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/15Jb3SnSIJvWARIcwhzFWPjHXVCYq69Og/view?usp=sharing",
+          "topics": [
+              "Management Theories & Frameworks",
+              "Organizational Hierarchy",
+              "Business Communication",
+              "Technical Reporting"
+          ]
+      }
   ],
-  "MTCS-104": [
-    {
-      "id": "MTCS-104-u1",
-      "unit": 1,
-      "title": "Unit 1: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u2",
-      "unit": 2,
-      "title": "Unit 2: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u3",
-      "unit": 3,
-      "title": "Unit 3: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u4",
-      "unit": 4,
-      "title": "Unit 4: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u5",
-      "unit": 5,
-      "title": "Unit 5: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "BMC105": [
+      {
+          "id": "mca-bmc105-u1",
+          "unit": 1,
+          "title": "Unit 1: Data Representation & Register Transfer Micro-operations",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "topics": [
+              "Register Transfer Language",
+              "Bus & Memory Transfers",
+              "Arithmetic Micro-operations",
+              "Logic & Shift Micro-operations"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u2",
+          "unit": 2,
+          "title": "Unit 2: Basic Computer Organization & Design",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "topics": [
+              "Instruction Codes",
+              "Computer Registers & Instructions",
+              "Timing & Control",
+              "Instruction Cycle"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u3",
+          "unit": 3,
+          "title": "Unit 3: Central Processing Unit & Pipelining",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "topics": [
+              "General Register Organization",
+              "Stack Organization",
+              "Addressing Modes",
+              "Data Transfer & Manipulation"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u4",
+          "unit": 4,
+          "title": "Unit 4: Computer Arithmetic & Input-Output Organization",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "topics": [
+              "Addition & Subtraction Hardware",
+              "Multiplication Algorithms",
+              "Division Algorithms",
+              "Asynchronous Data Transfer"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u5",
+          "unit": 5,
+          "title": "Unit 5: Memory Organization & Multiprocessors",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "topics": [
+              "Memory Hierarchy",
+              "Main Memory & Auxiliary Memory",
+              "Associative Memory",
+              "Cache Memory & Virtual Memory"
+          ]
+      }
   ],
-  "mtcs-104": [
-    {
-      "id": "MTCS-104-u1",
-      "unit": 1,
-      "title": "Unit 1: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u2",
-      "unit": 2,
-      "title": "Unit 2: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u3",
-      "unit": 3,
-      "title": "Unit 3: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u4",
-      "unit": 4,
-      "title": "Unit 4: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u5",
-      "unit": 5,
-      "title": "Unit 5: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KCA105": [
+      {
+          "id": "mca-bmc105-u1",
+          "unit": 1,
+          "title": "Unit 1: Data Representation & Register Transfer Micro-operations",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "topics": [
+              "Register Transfer Language",
+              "Bus & Memory Transfers",
+              "Arithmetic Micro-operations",
+              "Logic & Shift Micro-operations"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u2",
+          "unit": 2,
+          "title": "Unit 2: Basic Computer Organization & Design",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "topics": [
+              "Instruction Codes",
+              "Computer Registers & Instructions",
+              "Timing & Control",
+              "Instruction Cycle"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u3",
+          "unit": 3,
+          "title": "Unit 3: Central Processing Unit & Pipelining",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "topics": [
+              "General Register Organization",
+              "Stack Organization",
+              "Addressing Modes",
+              "Data Transfer & Manipulation"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u4",
+          "unit": 4,
+          "title": "Unit 4: Computer Arithmetic & Input-Output Organization",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "topics": [
+              "Addition & Subtraction Hardware",
+              "Multiplication Algorithms",
+              "Division Algorithms",
+              "Asynchronous Data Transfer"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u5",
+          "unit": 5,
+          "title": "Unit 5: Memory Organization & Multiprocessors",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "topics": [
+              "Memory Hierarchy",
+              "Main Memory & Auxiliary Memory",
+              "Associative Memory",
+              "Cache Memory & Virtual Memory"
+          ]
+      }
   ],
-  "MTCS104": [
-    {
-      "id": "MTCS-104-u1",
-      "unit": 1,
-      "title": "Unit 1: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u2",
-      "unit": 2,
-      "title": "Unit 2: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u3",
-      "unit": 3,
-      "title": "Unit 3: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u4",
-      "unit": 4,
-      "title": "Unit 4: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u5",
-      "unit": 5,
-      "title": "Unit 5: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "bmc105": [
+      {
+          "id": "mca-bmc105-u1",
+          "unit": 1,
+          "title": "Unit 1: Data Representation & Register Transfer Micro-operations",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "topics": [
+              "Register Transfer Language",
+              "Bus & Memory Transfers",
+              "Arithmetic Micro-operations",
+              "Logic & Shift Micro-operations"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u2",
+          "unit": 2,
+          "title": "Unit 2: Basic Computer Organization & Design",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "topics": [
+              "Instruction Codes",
+              "Computer Registers & Instructions",
+              "Timing & Control",
+              "Instruction Cycle"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u3",
+          "unit": 3,
+          "title": "Unit 3: Central Processing Unit & Pipelining",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "topics": [
+              "General Register Organization",
+              "Stack Organization",
+              "Addressing Modes",
+              "Data Transfer & Manipulation"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u4",
+          "unit": 4,
+          "title": "Unit 4: Computer Arithmetic & Input-Output Organization",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "topics": [
+              "Addition & Subtraction Hardware",
+              "Multiplication Algorithms",
+              "Division Algorithms",
+              "Asynchronous Data Transfer"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u5",
+          "unit": 5,
+          "title": "Unit 5: Memory Organization & Multiprocessors",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "topics": [
+              "Memory Hierarchy",
+              "Main Memory & Auxiliary Memory",
+              "Associative Memory",
+              "Cache Memory & Virtual Memory"
+          ]
+      }
   ],
-  "mtcs104": [
-    {
-      "id": "MTCS-104-u1",
-      "unit": 1,
-      "title": "Unit 1: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u2",
-      "unit": 2,
-      "title": "Unit 2: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u3",
-      "unit": 3,
-      "title": "Unit 3: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u4",
-      "unit": 4,
-      "title": "Unit 4: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-104-u5",
-      "unit": 5,
-      "title": "Unit 5: Distributed Systems Advanced Research",
-      "desc": "Distributed Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Distributed Systems",
-      "subjectCode": "MTCS-104",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "1st Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "kca105": [
+      {
+          "id": "mca-bmc105-u1",
+          "unit": 1,
+          "title": "Unit 1: Data Representation & Register Transfer Micro-operations",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18lhGJH8R4d4mqpKE0AxW4zoAmb5MvTcd/view?usp=sharing",
+          "topics": [
+              "Register Transfer Language",
+              "Bus & Memory Transfers",
+              "Arithmetic Micro-operations",
+              "Logic & Shift Micro-operations"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u2",
+          "unit": 2,
+          "title": "Unit 2: Basic Computer Organization & Design",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1ew_kmPvxR4dmKv5m2xlaiKpHAXCXomo7/view?usp=sharing",
+          "topics": [
+              "Instruction Codes",
+              "Computer Registers & Instructions",
+              "Timing & Control",
+              "Instruction Cycle"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u3",
+          "unit": 3,
+          "title": "Unit 3: Central Processing Unit & Pipelining",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1UTrmgkMg34tgjbzmoYAfDtJPVB7kwZyG/view?usp=sharing",
+          "topics": [
+              "General Register Organization",
+              "Stack Organization",
+              "Addressing Modes",
+              "Data Transfer & Manipulation"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u4",
+          "unit": 4,
+          "title": "Unit 4: Computer Arithmetic & Input-Output Organization",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1tiWd0SUrZI4sUsY13wUnCW10dtjvCKwV/view?usp=sharing",
+          "topics": [
+              "Addition & Subtraction Hardware",
+              "Multiplication Algorithms",
+              "Division Algorithms",
+              "Asynchronous Data Transfer"
+          ]
+      },
+      {
+          "id": "mca-bmc105-u5",
+          "unit": 5,
+          "title": "Unit 5: Memory Organization & Multiprocessors",
+          "desc": "Computer Organization & Architecture AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Computer Organization & Architecture",
+          "subjectCode": "BMC105",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1POArSK3HxB_bD54qCWIQ8EqlfDHu2-0s/view?usp=sharing",
+          "topics": [
+              "Memory Hierarchy",
+              "Main Memory & Auxiliary Memory",
+              "Associative Memory",
+              "Cache Memory & Virtual Memory"
+          ]
+      }
   ],
-  "MTCS-201": [
-    {
-      "id": "MTCS-201-u1",
-      "unit": 1,
-      "title": "Unit 1: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u2",
-      "unit": 2,
-      "title": "Unit 2: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u3",
-      "unit": 3,
-      "title": "Unit 3: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u4",
-      "unit": 4,
-      "title": "Unit 4: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u5",
-      "unit": 5,
-      "title": "Unit 5: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KCA-CS": [
+      {
+          "id": "mca-kca-cs-u1",
+          "unit": 1,
+          "title": "Unit 1: Introduction to Cyber Security & Threat Landscape",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "topics": [
+              "Cyber Security Fundamentals",
+              "Vulnerabilities & Exploits",
+              "Malware Types",
+              "Security Governance"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u2",
+          "unit": 2,
+          "title": "Unit 2: Cyber Offenses, Social Engineering & Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "topics": [
+              "Cyber Offense Vectors",
+              "Social Engineering Attacks",
+              "Phishing & Identity Theft",
+              "Botnets & Ransomware"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u3",
+          "unit": 3,
+          "title": "Unit 3: Tools & Methods Used in Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "topics": [
+              "Proxy Servers & Anonymizers",
+              "Password Cracking Tools",
+              "Keyloggers & Spywares",
+              "SQL Injection & Buffer Overflow"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u4",
+          "unit": 4,
+          "title": "Unit 4: Cyber Law, IT Act & Intellectual Property Rights",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "topics": [
+              "Indian IT Act 2000 & Amendments",
+              "Electronic Signatures",
+              "Cyber Jurisdiction",
+              "Copyright & Software Patents"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u5",
+          "unit": 5,
+          "title": "Unit 5: Organization Security & Incident Response",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "topics": [
+              "Security Policies & Procedures",
+              "Incident Response Plans",
+              "Security Audit & Compliance",
+              "Digital Forensics Basics"
+          ]
+      }
   ],
-  "mtcs-201": [
-    {
-      "id": "MTCS-201-u1",
-      "unit": 1,
-      "title": "Unit 1: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u2",
-      "unit": 2,
-      "title": "Unit 2: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u3",
-      "unit": 3,
-      "title": "Unit 3: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u4",
-      "unit": 4,
-      "title": "Unit 4: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u5",
-      "unit": 5,
-      "title": "Unit 5: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KNC101": [
+      {
+          "id": "mca-kca-cs-u1",
+          "unit": 1,
+          "title": "Unit 1: Introduction to Cyber Security & Threat Landscape",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "topics": [
+              "Cyber Security Fundamentals",
+              "Vulnerabilities & Exploits",
+              "Malware Types",
+              "Security Governance"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u2",
+          "unit": 2,
+          "title": "Unit 2: Cyber Offenses, Social Engineering & Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "topics": [
+              "Cyber Offense Vectors",
+              "Social Engineering Attacks",
+              "Phishing & Identity Theft",
+              "Botnets & Ransomware"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u3",
+          "unit": 3,
+          "title": "Unit 3: Tools & Methods Used in Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "topics": [
+              "Proxy Servers & Anonymizers",
+              "Password Cracking Tools",
+              "Keyloggers & Spywares",
+              "SQL Injection & Buffer Overflow"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u4",
+          "unit": 4,
+          "title": "Unit 4: Cyber Law, IT Act & Intellectual Property Rights",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "topics": [
+              "Indian IT Act 2000 & Amendments",
+              "Electronic Signatures",
+              "Cyber Jurisdiction",
+              "Copyright & Software Patents"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u5",
+          "unit": 5,
+          "title": "Unit 5: Organization Security & Incident Response",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "topics": [
+              "Security Policies & Procedures",
+              "Incident Response Plans",
+              "Security Audit & Compliance",
+              "Digital Forensics Basics"
+          ]
+      }
   ],
-  "MTCS201": [
-    {
-      "id": "MTCS-201-u1",
-      "unit": 1,
-      "title": "Unit 1: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u2",
-      "unit": 2,
-      "title": "Unit 2: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u3",
-      "unit": 3,
-      "title": "Unit 3: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u4",
-      "unit": 4,
-      "title": "Unit 4: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u5",
-      "unit": 5,
-      "title": "Unit 5: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KNC201": [
+      {
+          "id": "mca-kca-cs-u1",
+          "unit": 1,
+          "title": "Unit 1: Introduction to Cyber Security & Threat Landscape",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "topics": [
+              "Cyber Security Fundamentals",
+              "Vulnerabilities & Exploits",
+              "Malware Types",
+              "Security Governance"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u2",
+          "unit": 2,
+          "title": "Unit 2: Cyber Offenses, Social Engineering & Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "topics": [
+              "Cyber Offense Vectors",
+              "Social Engineering Attacks",
+              "Phishing & Identity Theft",
+              "Botnets & Ransomware"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u3",
+          "unit": 3,
+          "title": "Unit 3: Tools & Methods Used in Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "topics": [
+              "Proxy Servers & Anonymizers",
+              "Password Cracking Tools",
+              "Keyloggers & Spywares",
+              "SQL Injection & Buffer Overflow"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u4",
+          "unit": 4,
+          "title": "Unit 4: Cyber Law, IT Act & Intellectual Property Rights",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "topics": [
+              "Indian IT Act 2000 & Amendments",
+              "Electronic Signatures",
+              "Cyber Jurisdiction",
+              "Copyright & Software Patents"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u5",
+          "unit": 5,
+          "title": "Unit 5: Organization Security & Incident Response",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "topics": [
+              "Security Policies & Procedures",
+              "Incident Response Plans",
+              "Security Audit & Compliance",
+              "Digital Forensics Basics"
+          ]
+      }
   ],
-  "mtcs201": [
-    {
-      "id": "MTCS-201-u1",
-      "unit": 1,
-      "title": "Unit 1: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 1 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u2",
-      "unit": 2,
-      "title": "Unit 2: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 2 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u3",
-      "unit": 3,
-      "title": "Unit 3: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 3 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u4",
-      "unit": 4,
-      "title": "Unit 4: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 4 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-201-u5",
-      "unit": 5,
-      "title": "Unit 5: Machine Learning & Deep Neural Systems Advanced Research",
-      "desc": "Machine Learning & Deep Neural Systems postgraduate curriculum unit 5 advanced notes",
-      "subject": "Machine Learning & Deep Neural Systems",
-      "subjectCode": "MTCS-201",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "kca-cs": [
+      {
+          "id": "mca-kca-cs-u1",
+          "unit": 1,
+          "title": "Unit 1: Introduction to Cyber Security & Threat Landscape",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "topics": [
+              "Cyber Security Fundamentals",
+              "Vulnerabilities & Exploits",
+              "Malware Types",
+              "Security Governance"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u2",
+          "unit": 2,
+          "title": "Unit 2: Cyber Offenses, Social Engineering & Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "topics": [
+              "Cyber Offense Vectors",
+              "Social Engineering Attacks",
+              "Phishing & Identity Theft",
+              "Botnets & Ransomware"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u3",
+          "unit": 3,
+          "title": "Unit 3: Tools & Methods Used in Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "topics": [
+              "Proxy Servers & Anonymizers",
+              "Password Cracking Tools",
+              "Keyloggers & Spywares",
+              "SQL Injection & Buffer Overflow"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u4",
+          "unit": 4,
+          "title": "Unit 4: Cyber Law, IT Act & Intellectual Property Rights",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "topics": [
+              "Indian IT Act 2000 & Amendments",
+              "Electronic Signatures",
+              "Cyber Jurisdiction",
+              "Copyright & Software Patents"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u5",
+          "unit": 5,
+          "title": "Unit 5: Organization Security & Incident Response",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "topics": [
+              "Security Policies & Procedures",
+              "Incident Response Plans",
+              "Security Audit & Compliance",
+              "Digital Forensics Basics"
+          ]
+      }
   ],
-  "MTCS-202": [
-    {
-      "id": "MTCS-202-u1",
-      "unit": 1,
-      "title": "Unit 1: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 1 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u2",
-      "unit": 2,
-      "title": "Unit 2: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 2 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u3",
-      "unit": 3,
-      "title": "Unit 3: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 3 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u4",
-      "unit": 4,
-      "title": "Unit 4: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 4 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u5",
-      "unit": 5,
-      "title": "Unit 5: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 5 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "knc101": [
+      {
+          "id": "mca-kca-cs-u1",
+          "unit": 1,
+          "title": "Unit 1: Introduction to Cyber Security & Threat Landscape",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "topics": [
+              "Cyber Security Fundamentals",
+              "Vulnerabilities & Exploits",
+              "Malware Types",
+              "Security Governance"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u2",
+          "unit": 2,
+          "title": "Unit 2: Cyber Offenses, Social Engineering & Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "topics": [
+              "Cyber Offense Vectors",
+              "Social Engineering Attacks",
+              "Phishing & Identity Theft",
+              "Botnets & Ransomware"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u3",
+          "unit": 3,
+          "title": "Unit 3: Tools & Methods Used in Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "topics": [
+              "Proxy Servers & Anonymizers",
+              "Password Cracking Tools",
+              "Keyloggers & Spywares",
+              "SQL Injection & Buffer Overflow"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u4",
+          "unit": 4,
+          "title": "Unit 4: Cyber Law, IT Act & Intellectual Property Rights",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "topics": [
+              "Indian IT Act 2000 & Amendments",
+              "Electronic Signatures",
+              "Cyber Jurisdiction",
+              "Copyright & Software Patents"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u5",
+          "unit": 5,
+          "title": "Unit 5: Organization Security & Incident Response",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "topics": [
+              "Security Policies & Procedures",
+              "Incident Response Plans",
+              "Security Audit & Compliance",
+              "Digital Forensics Basics"
+          ]
+      }
   ],
-  "mtcs-202": [
-    {
-      "id": "MTCS-202-u1",
-      "unit": 1,
-      "title": "Unit 1: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 1 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u2",
-      "unit": 2,
-      "title": "Unit 2: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 2 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u3",
-      "unit": 3,
-      "title": "Unit 3: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 3 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u4",
-      "unit": 4,
-      "title": "Unit 4: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 4 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u5",
-      "unit": 5,
-      "title": "Unit 5: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 5 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "knc201": [
+      {
+          "id": "mca-kca-cs-u1",
+          "unit": 1,
+          "title": "Unit 1: Introduction to Cyber Security & Threat Landscape",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 1 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1OFvJfN53bY4Jg1X0DSFqwPOTskMw0vUQ/view?usp=sharing",
+          "topics": [
+              "Cyber Security Fundamentals",
+              "Vulnerabilities & Exploits",
+              "Malware Types",
+              "Security Governance"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u2",
+          "unit": 2,
+          "title": "Unit 2: Cyber Offenses, Social Engineering & Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 2 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.5 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1yp0g7lNC4jAgd29L6OuLCfE53penwFCk/view?usp=sharing",
+          "topics": [
+              "Cyber Offense Vectors",
+              "Social Engineering Attacks",
+              "Phishing & Identity Theft",
+              "Botnets & Ransomware"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u3",
+          "unit": 3,
+          "title": "Unit 3: Tools & Methods Used in Cybercrime",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 3 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1mJsf94x_6LScg2G7mJ14GNBcGZGt11gB/view?usp=sharing",
+          "topics": [
+              "Proxy Servers & Anonymizers",
+              "Password Cracking Tools",
+              "Keyloggers & Spywares",
+              "SQL Injection & Buffer Overflow"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u4",
+          "unit": 4,
+          "title": "Unit 4: Cyber Law, IT Act & Intellectual Property Rights",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 4 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.6 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1YYDhIJ2aBCDmHhx_Nfg6VLZ5WOdPCeev/view?usp=sharing",
+          "topics": [
+              "Indian IT Act 2000 & Amendments",
+              "Electronic Signatures",
+              "Cyber Jurisdiction",
+              "Copyright & Software Patents"
+          ]
+      },
+      {
+          "id": "mca-kca-cs-u5",
+          "unit": 5,
+          "title": "Unit 5: Organization Security & Incident Response",
+          "desc": "Cyber Security AKTU MCA Semester 1 Unit 5 verified study notes",
+          "subject": "Cyber Security",
+          "subjectCode": "KCA-CS",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/139Lu2uq1-Q4_1DB0Q5RLpBGrxiOf7B5F/view?usp=sharing",
+          "topics": [
+              "Security Policies & Procedures",
+              "Incident Response Plans",
+              "Security Audit & Compliance",
+              "Digital Forensics Basics"
+          ]
+      }
   ],
-  "MTCS202": [
-    {
-      "id": "MTCS-202-u1",
-      "unit": 1,
-      "title": "Unit 1: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 1 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u2",
-      "unit": 2,
-      "title": "Unit 2: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 2 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u3",
-      "unit": 3,
-      "title": "Unit 3: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 3 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u4",
-      "unit": 4,
-      "title": "Unit 4: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 4 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u5",
-      "unit": 5,
-      "title": "Unit 5: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 5 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KCA201": [
+      {
+          "id": "mca-kca201-u1",
+          "unit": 1,
+          "title": "Unit 1: Object Oriented Programming (Java/C++) Comprehensive Notes",
+          "desc": "Object Oriented Programming AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Object Oriented Programming",
+          "subjectCode": "KCA201",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "topics": [
+              "OOP Paradigms",
+              "Classes & Object Lifecycle",
+              "Inheritance & Polymorphism",
+              "Exception Handling"
+          ]
+      }
   ],
-  "mtcs202": [
-    {
-      "id": "MTCS-202-u1",
-      "unit": 1,
-      "title": "Unit 1: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 1 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u2",
-      "unit": 2,
-      "title": "Unit 2: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 2 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u3",
-      "unit": 3,
-      "title": "Unit 3: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 3 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u4",
-      "unit": 4,
-      "title": "Unit 4: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 4 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-202-u5",
-      "unit": 5,
-      "title": "Unit 5: Cloud Infrastructure & High Scalability Advanced Research",
-      "desc": "Cloud Infrastructure & High Scalability postgraduate curriculum unit 5 advanced notes",
-      "subject": "Cloud Infrastructure & High Scalability",
-      "subjectCode": "MTCS-202",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "BMC201": [
+      {
+          "id": "mca-kca201-u1",
+          "unit": 1,
+          "title": "Unit 1: Object Oriented Programming (Java/C++) Comprehensive Notes",
+          "desc": "Object Oriented Programming AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Object Oriented Programming",
+          "subjectCode": "KCA201",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "topics": [
+              "OOP Paradigms",
+              "Classes & Object Lifecycle",
+              "Inheritance & Polymorphism",
+              "Exception Handling"
+          ]
+      }
   ],
-  "MTCS-203": [
-    {
-      "id": "MTCS-203-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "kca201": [
+      {
+          "id": "mca-kca201-u1",
+          "unit": 1,
+          "title": "Unit 1: Object Oriented Programming (Java/C++) Comprehensive Notes",
+          "desc": "Object Oriented Programming AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Object Oriented Programming",
+          "subjectCode": "KCA201",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "topics": [
+              "OOP Paradigms",
+              "Classes & Object Lifecycle",
+              "Inheritance & Polymorphism",
+              "Exception Handling"
+          ]
+      }
   ],
-  "mtcs-203": [
-    {
-      "id": "MTCS-203-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "bmc201": [
+      {
+          "id": "mca-kca201-u1",
+          "unit": 1,
+          "title": "Unit 1: Object Oriented Programming (Java/C++) Comprehensive Notes",
+          "desc": "Object Oriented Programming AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Object Oriented Programming",
+          "subjectCode": "KCA201",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1bzgLAIOwfrCBpG1stgonTfK79_Lebp7W/view?usp=sharing",
+          "topics": [
+              "OOP Paradigms",
+              "Classes & Object Lifecycle",
+              "Inheritance & Polymorphism",
+              "Exception Handling"
+          ]
+      }
   ],
-  "MTCS203": [
-    {
-      "id": "MTCS-203-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KCA203": [
+      {
+          "id": "mca-kca203-u1",
+          "unit": 1,
+          "title": "Unit 1: Database Management Systems Core Concepts & Schema Design",
+          "desc": "Database Management Systems AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Database Management Systems",
+          "subjectCode": "KCA203",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "topics": [
+              "ER Modeling & Relational Schema",
+              "SQL Queries & Joins",
+              "Normalization (1NF to BCNF)",
+              "ACID Transactions & Concurrency"
+          ]
+      }
   ],
-  "mtcs203": [
-    {
-      "id": "MTCS-203-u1",
-      "unit": 1,
-      "title": "Unit 1: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 1 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u2",
-      "unit": 2,
-      "title": "Unit 2: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 2 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u3",
-      "unit": 3,
-      "title": "Unit 3: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 3 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u4",
-      "unit": 4,
-      "title": "Unit 4: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 4 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-203-u5",
-      "unit": 5,
-      "title": "Unit 5: Advanced Cryptography & Network Security Advanced Research",
-      "desc": "Advanced Cryptography & Network Security postgraduate curriculum unit 5 advanced notes",
-      "subject": "Advanced Cryptography & Network Security",
-      "subjectCode": "MTCS-203",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "BMC203": [
+      {
+          "id": "mca-kca203-u1",
+          "unit": 1,
+          "title": "Unit 1: Database Management Systems Core Concepts & Schema Design",
+          "desc": "Database Management Systems AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Database Management Systems",
+          "subjectCode": "KCA203",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "topics": [
+              "ER Modeling & Relational Schema",
+              "SQL Queries & Joins",
+              "Normalization (1NF to BCNF)",
+              "ACID Transactions & Concurrency"
+          ]
+      }
   ],
-  "MTCS-204": [
-    {
-      "id": "MTCS-204-u1",
-      "unit": 1,
-      "title": "Unit 1: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 1 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u2",
-      "unit": 2,
-      "title": "Unit 2: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 2 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u3",
-      "unit": 3,
-      "title": "Unit 3: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 3 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u4",
-      "unit": 4,
-      "title": "Unit 4: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 4 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u5",
-      "unit": 5,
-      "title": "Unit 5: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 5 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "kca203": [
+      {
+          "id": "mca-kca203-u1",
+          "unit": 1,
+          "title": "Unit 1: Database Management Systems Core Concepts & Schema Design",
+          "desc": "Database Management Systems AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Database Management Systems",
+          "subjectCode": "KCA203",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "topics": [
+              "ER Modeling & Relational Schema",
+              "SQL Queries & Joins",
+              "Normalization (1NF to BCNF)",
+              "ACID Transactions & Concurrency"
+          ]
+      }
   ],
-  "mtcs-204": [
-    {
-      "id": "MTCS-204-u1",
-      "unit": 1,
-      "title": "Unit 1: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 1 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u2",
-      "unit": 2,
-      "title": "Unit 2: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 2 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u3",
-      "unit": 3,
-      "title": "Unit 3: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 3 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u4",
-      "unit": 4,
-      "title": "Unit 4: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 4 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u5",
-      "unit": 5,
-      "title": "Unit 5: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 5 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "bmc203": [
+      {
+          "id": "mca-kca203-u1",
+          "unit": 1,
+          "title": "Unit 1: Database Management Systems Core Concepts & Schema Design",
+          "desc": "Database Management Systems AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Database Management Systems",
+          "subjectCode": "KCA203",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "3.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/13_Qi2OkCRHZEx57wZ6ikomG71tMNAdkd/view?usp=sharing",
+          "topics": [
+              "ER Modeling & Relational Schema",
+              "SQL Queries & Joins",
+              "Normalization (1NF to BCNF)",
+              "ACID Transactions & Concurrency"
+          ]
+      }
   ],
-  "MTCS204": [
-    {
-      "id": "MTCS-204-u1",
-      "unit": 1,
-      "title": "Unit 1: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 1 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u2",
-      "unit": 2,
-      "title": "Unit 2: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 2 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u3",
-      "unit": 3,
-      "title": "Unit 3: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 3 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u4",
-      "unit": 4,
-      "title": "Unit 4: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 4 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u5",
-      "unit": 5,
-      "title": "Unit 5: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 5 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "KCA204": [
+      {
+          "id": "mca-kca204-u1",
+          "unit": 1,
+          "title": "Unit 1: Web Technologies Architecture, Protocols & Scripting",
+          "desc": "Web Technologies AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Web Technologies",
+          "subjectCode": "KCA204",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "topics": [
+              "Client-Server Web Architecture",
+              "HTML5 & CSS3 Responsive Layouts",
+              "JavaScript & DOM Manipulation",
+              "Server-Side Web Processing"
+          ]
+      }
   ],
-  "mtcs204": [
-    {
-      "id": "MTCS-204-u1",
-      "unit": 1,
-      "title": "Unit 1: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 1 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u2",
-      "unit": 2,
-      "title": "Unit 2: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 2 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u3",
-      "unit": 3,
-      "title": "Unit 3: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 3 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u4",
-      "unit": 4,
-      "title": "Unit 4: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 4 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    },
-    {
-      "id": "MTCS-204-u5",
-      "unit": 5,
-      "title": "Unit 5: High Performance Computing Advanced Research",
-      "desc": "High Performance Computing postgraduate curriculum unit 5 advanced notes",
-      "subject": "High Performance Computing",
-      "subjectCode": "MTCS-204",
-      "course": "M.Tech",
-      "branch": "CSE",
-      "year": "2nd Year",
-      "size": "3.2 MB",
-      "pdfUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "driveUrl": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "url": "https://drive.google.com/file/d/1NKXsQS9jCjSKIXqo5uMMxxED-_SNkM2V/view?usp=sharing",
-      "topics": [
-        "Formal Theoretical Formulations & Proofs",
-        "State-of-the-Art Algorithmic Complexities",
-        "Scalable Architecture & Empirical Benchmarks",
-        "Research Literature & System Implementations"
-      ]
-    }
+  "BMC204": [
+      {
+          "id": "mca-kca204-u1",
+          "unit": 1,
+          "title": "Unit 1: Web Technologies Architecture, Protocols & Scripting",
+          "desc": "Web Technologies AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Web Technologies",
+          "subjectCode": "KCA204",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "topics": [
+              "Client-Server Web Architecture",
+              "HTML5 & CSS3 Responsive Layouts",
+              "JavaScript & DOM Manipulation",
+              "Server-Side Web Processing"
+          ]
+      }
+  ],
+  "kca204": [
+      {
+          "id": "mca-kca204-u1",
+          "unit": 1,
+          "title": "Unit 1: Web Technologies Architecture, Protocols & Scripting",
+          "desc": "Web Technologies AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Web Technologies",
+          "subjectCode": "KCA204",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "topics": [
+              "Client-Server Web Architecture",
+              "HTML5 & CSS3 Responsive Layouts",
+              "JavaScript & DOM Manipulation",
+              "Server-Side Web Processing"
+          ]
+      }
+  ],
+  "bmc204": [
+      {
+          "id": "mca-kca204-u1",
+          "unit": 1,
+          "title": "Unit 1: Web Technologies Architecture, Protocols & Scripting",
+          "desc": "Web Technologies AKTU MCA Semester 2 Unit 1 verified study notes",
+          "subject": "Web Technologies",
+          "subjectCode": "KCA204",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "1st Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1lQBFBsqNaP7v-YvtRyJJL0HoPL6MN2qx/view?usp=sharing",
+          "topics": [
+              "Client-Server Web Architecture",
+              "HTML5 & CSS3 Responsive Layouts",
+              "JavaScript & DOM Manipulation",
+              "Server-Side Web Processing"
+          ]
+      }
+  ],
+  "BMC301": [
+      {
+          "id": "mca-bmc301-u1",
+          "unit": 1,
+          "title": "Unit 1: Python Programming Language Fundamentals & Libraries",
+          "desc": "Python Programming AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Python Programming",
+          "subjectCode": "BMC301",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "topics": [
+              "Python Data Structures & Functions",
+              "OOP in Python",
+              "NumPy & Pandas Foundations",
+              "File & Exception Handling"
+          ]
+      }
+  ],
+  "KCA301": [
+      {
+          "id": "mca-bmc301-u1",
+          "unit": 1,
+          "title": "Unit 1: Python Programming Language Fundamentals & Libraries",
+          "desc": "Python Programming AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Python Programming",
+          "subjectCode": "BMC301",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "topics": [
+              "Python Data Structures & Functions",
+              "OOP in Python",
+              "NumPy & Pandas Foundations",
+              "File & Exception Handling"
+          ]
+      }
+  ],
+  "bmc301": [
+      {
+          "id": "mca-bmc301-u1",
+          "unit": 1,
+          "title": "Unit 1: Python Programming Language Fundamentals & Libraries",
+          "desc": "Python Programming AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Python Programming",
+          "subjectCode": "BMC301",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "topics": [
+              "Python Data Structures & Functions",
+              "OOP in Python",
+              "NumPy & Pandas Foundations",
+              "File & Exception Handling"
+          ]
+      }
+  ],
+  "kca301": [
+      {
+          "id": "mca-bmc301-u1",
+          "unit": 1,
+          "title": "Unit 1: Python Programming Language Fundamentals & Libraries",
+          "desc": "Python Programming AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Python Programming",
+          "subjectCode": "BMC301",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18xV4pEYQdG74oRW97Ez9RG4gYdMlQ9vy/view?usp=sharing",
+          "topics": [
+              "Python Data Structures & Functions",
+              "OOP in Python",
+              "NumPy & Pandas Foundations",
+              "File & Exception Handling"
+          ]
+      }
+  ],
+  "BMC302": [
+      {
+          "id": "mca-bmc302-u1",
+          "unit": 1,
+          "title": "Unit 1: Software Engineering Process Models & Requirements Engineering",
+          "desc": "Software Engineering AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Software Engineering",
+          "subjectCode": "BMC302",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.2 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "topics": [
+              "SDLC Models (Waterfall, Agile, Scrum)",
+              "Requirement Elicitation & SRS",
+              "Software Architectural Design",
+              "UML Diagrams"
+          ]
+      },
+      {
+          "id": "mca-bmc302-u2",
+          "unit": 2,
+          "title": "Unit 2: Software Testing, Verification & Maintenance",
+          "desc": "Software Engineering AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Software Engineering",
+          "subjectCode": "BMC302",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "topics": [
+              "Black Box & White Box Testing",
+              "Test Case Generation",
+              "Software Metrics & Quality Assurance",
+              "Maintenance & Refactoring"
+          ]
+      }
+  ],
+  "KCA302": [
+      {
+          "id": "mca-bmc302-u1",
+          "unit": 1,
+          "title": "Unit 1: Software Engineering Process Models & Requirements Engineering",
+          "desc": "Software Engineering AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Software Engineering",
+          "subjectCode": "BMC302",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.2 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "topics": [
+              "SDLC Models (Waterfall, Agile, Scrum)",
+              "Requirement Elicitation & SRS",
+              "Software Architectural Design",
+              "UML Diagrams"
+          ]
+      },
+      {
+          "id": "mca-bmc302-u2",
+          "unit": 2,
+          "title": "Unit 2: Software Testing, Verification & Maintenance",
+          "desc": "Software Engineering AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Software Engineering",
+          "subjectCode": "BMC302",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "topics": [
+              "Black Box & White Box Testing",
+              "Test Case Generation",
+              "Software Metrics & Quality Assurance",
+              "Maintenance & Refactoring"
+          ]
+      }
+  ],
+  "bmc302": [
+      {
+          "id": "mca-bmc302-u1",
+          "unit": 1,
+          "title": "Unit 1: Software Engineering Process Models & Requirements Engineering",
+          "desc": "Software Engineering AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Software Engineering",
+          "subjectCode": "BMC302",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.2 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "topics": [
+              "SDLC Models (Waterfall, Agile, Scrum)",
+              "Requirement Elicitation & SRS",
+              "Software Architectural Design",
+              "UML Diagrams"
+          ]
+      },
+      {
+          "id": "mca-bmc302-u2",
+          "unit": 2,
+          "title": "Unit 2: Software Testing, Verification & Maintenance",
+          "desc": "Software Engineering AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Software Engineering",
+          "subjectCode": "BMC302",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "topics": [
+              "Black Box & White Box Testing",
+              "Test Case Generation",
+              "Software Metrics & Quality Assurance",
+              "Maintenance & Refactoring"
+          ]
+      }
+  ],
+  "kca302": [
+      {
+          "id": "mca-bmc302-u1",
+          "unit": 1,
+          "title": "Unit 1: Software Engineering Process Models & Requirements Engineering",
+          "desc": "Software Engineering AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Software Engineering",
+          "subjectCode": "BMC302",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.2 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1jcFpCVfkV0n51gT_AiBpDyUjJC28uZB6/view?usp=sharing",
+          "topics": [
+              "SDLC Models (Waterfall, Agile, Scrum)",
+              "Requirement Elicitation & SRS",
+              "Software Architectural Design",
+              "UML Diagrams"
+          ]
+      },
+      {
+          "id": "mca-bmc302-u2",
+          "unit": 2,
+          "title": "Unit 2: Software Testing, Verification & Maintenance",
+          "desc": "Software Engineering AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Software Engineering",
+          "subjectCode": "BMC302",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1Lw3e5qO53oY40UKTP1YHlUom2ZZQIobg/view?usp=sharing",
+          "topics": [
+              "Black Box & White Box Testing",
+              "Test Case Generation",
+              "Software Metrics & Quality Assurance",
+              "Maintenance & Refactoring"
+          ]
+      }
+  ],
+  "BMC303": [
+      {
+          "id": "mca-bmc303-u1",
+          "unit": 1,
+          "title": "Unit 1: Computer Network Architecture, OSI & TCP/IP Reference Models",
+          "desc": "Computer Network AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Computer Network",
+          "subjectCode": "BMC303",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "topics": [
+              "OSI Layer Protocols",
+              "Physical & Data Link Layers",
+              "Medium Access Control (MAC)",
+              "Error Detection & Correction"
+          ]
+      },
+      {
+          "id": "mca-bmc303-u2",
+          "unit": 2,
+          "title": "Unit 2: Network, Transport & Application Layer Routing & Security",
+          "desc": "Computer Network AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Computer Network",
+          "subjectCode": "BMC303",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "topics": [
+              "IP Addressing & Subnetting",
+              "Routing Algorithms (OSPF, BGP)",
+              "TCP/UDP Congestion Control",
+              "DNS, HTTP, SMTP Protocols"
+          ]
+      }
+  ],
+  "KCA303": [
+      {
+          "id": "mca-bmc303-u1",
+          "unit": 1,
+          "title": "Unit 1: Computer Network Architecture, OSI & TCP/IP Reference Models",
+          "desc": "Computer Network AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Computer Network",
+          "subjectCode": "BMC303",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "topics": [
+              "OSI Layer Protocols",
+              "Physical & Data Link Layers",
+              "Medium Access Control (MAC)",
+              "Error Detection & Correction"
+          ]
+      },
+      {
+          "id": "mca-bmc303-u2",
+          "unit": 2,
+          "title": "Unit 2: Network, Transport & Application Layer Routing & Security",
+          "desc": "Computer Network AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Computer Network",
+          "subjectCode": "BMC303",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "topics": [
+              "IP Addressing & Subnetting",
+              "Routing Algorithms (OSPF, BGP)",
+              "TCP/UDP Congestion Control",
+              "DNS, HTTP, SMTP Protocols"
+          ]
+      }
+  ],
+  "bmc303": [
+      {
+          "id": "mca-bmc303-u1",
+          "unit": 1,
+          "title": "Unit 1: Computer Network Architecture, OSI & TCP/IP Reference Models",
+          "desc": "Computer Network AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Computer Network",
+          "subjectCode": "BMC303",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "topics": [
+              "OSI Layer Protocols",
+              "Physical & Data Link Layers",
+              "Medium Access Control (MAC)",
+              "Error Detection & Correction"
+          ]
+      },
+      {
+          "id": "mca-bmc303-u2",
+          "unit": 2,
+          "title": "Unit 2: Network, Transport & Application Layer Routing & Security",
+          "desc": "Computer Network AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Computer Network",
+          "subjectCode": "BMC303",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "topics": [
+              "IP Addressing & Subnetting",
+              "Routing Algorithms (OSPF, BGP)",
+              "TCP/UDP Congestion Control",
+              "DNS, HTTP, SMTP Protocols"
+          ]
+      }
+  ],
+  "kca303": [
+      {
+          "id": "mca-bmc303-u1",
+          "unit": 1,
+          "title": "Unit 1: Computer Network Architecture, OSI & TCP/IP Reference Models",
+          "desc": "Computer Network AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Computer Network",
+          "subjectCode": "BMC303",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1GpuPN9J4qKuAFfbHEAwRoEB4snjsEDbI/view?usp=sharing",
+          "topics": [
+              "OSI Layer Protocols",
+              "Physical & Data Link Layers",
+              "Medium Access Control (MAC)",
+              "Error Detection & Correction"
+          ]
+      },
+      {
+          "id": "mca-bmc303-u2",
+          "unit": 2,
+          "title": "Unit 2: Network, Transport & Application Layer Routing & Security",
+          "desc": "Computer Network AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Computer Network",
+          "subjectCode": "BMC303",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/102DXLReULNPFu-l8lwhOIIskKi5okMkX/view?usp=sharing",
+          "topics": [
+              "IP Addressing & Subnetting",
+              "Routing Algorithms (OSPF, BGP)",
+              "TCP/UDP Congestion Control",
+              "DNS, HTTP, SMTP Protocols"
+          ]
+      }
+  ],
+  "BMC011": [
+      {
+          "id": "mca-bmc011-u1",
+          "unit": 1,
+          "title": "Unit 1: Classical Ciphers, Block Ciphers & Public Key Cryptography",
+          "desc": "Cryptography & Network Security AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Cryptography & Network Security",
+          "subjectCode": "BMC011",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1EfRr0yUh5Qawvk_3eEU9JdQAIEhqIR0V/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1EfRr0yUh5Qawvk_3eEU9JdQAIEhqIR0V/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1EfRr0yUh5Qawvk_3eEU9JdQAIEhqIR0V/view?usp=sharing",
+          "topics": [
+              "Symmetric Cryptography (DES, AES)",
+              "Asymmetric Key Cryptography (RSA, ECC)",
+              "Cryptographic Hash Functions",
+              "Digital Signatures & PKI"
+          ]
+      }
+  ],
+  "bmc011": [
+      {
+          "id": "mca-bmc011-u1",
+          "unit": 1,
+          "title": "Unit 1: Classical Ciphers, Block Ciphers & Public Key Cryptography",
+          "desc": "Cryptography & Network Security AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Cryptography & Network Security",
+          "subjectCode": "BMC011",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1EfRr0yUh5Qawvk_3eEU9JdQAIEhqIR0V/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1EfRr0yUh5Qawvk_3eEU9JdQAIEhqIR0V/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1EfRr0yUh5Qawvk_3eEU9JdQAIEhqIR0V/view?usp=sharing",
+          "topics": [
+              "Symmetric Cryptography (DES, AES)",
+              "Asymmetric Key Cryptography (RSA, ECC)",
+              "Cryptographic Hash Functions",
+              "Digital Signatures & PKI"
+          ]
+      }
+  ],
+  "BMC012": [
+      {
+          "id": "mca-bmc012-u1",
+          "unit": 1,
+          "title": "Unit 1: Data Warehouse Architecture, OLAP & Mining Algorithms",
+          "desc": "Data Warehousing & Data Mining AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Data Warehousing & Data Mining",
+          "subjectCode": "BMC012",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1k3KAWGRo0lo76pHszlNfOBB3GQ9QXYJU/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1k3KAWGRo0lo76pHszlNfOBB3GQ9QXYJU/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1k3KAWGRo0lo76pHszlNfOBB3GQ9QXYJU/view?usp=sharing",
+          "topics": [
+              "Data Warehouse Schemas (Star, Snowflake)",
+              "OLAP Operations",
+              "Association Rule Mining (Apriori)",
+              "Classification & Clustering"
+          ]
+      }
+  ],
+  "bmc012": [
+      {
+          "id": "mca-bmc012-u1",
+          "unit": 1,
+          "title": "Unit 1: Data Warehouse Architecture, OLAP & Mining Algorithms",
+          "desc": "Data Warehousing & Data Mining AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Data Warehousing & Data Mining",
+          "subjectCode": "BMC012",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1k3KAWGRo0lo76pHszlNfOBB3GQ9QXYJU/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1k3KAWGRo0lo76pHszlNfOBB3GQ9QXYJU/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1k3KAWGRo0lo76pHszlNfOBB3GQ9QXYJU/view?usp=sharing",
+          "topics": [
+              "Data Warehouse Schemas (Star, Snowflake)",
+              "OLAP Operations",
+              "Association Rule Mining (Apriori)",
+              "Classification & Clustering"
+          ]
+      }
+  ],
+  "BMC013": [
+      {
+          "id": "mca-bmc013-u1",
+          "unit": 1,
+          "title": "Unit 1: Project Evaluation, Planning & Effort Estimation",
+          "desc": "Software Project Management AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Software Project Management",
+          "subjectCode": "BMC013",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18g0aDFHh-kL8yTcU3t31DOMi65BZHGSF/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18g0aDFHh-kL8yTcU3t31DOMi65BZHGSF/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18g0aDFHh-kL8yTcU3t31DOMi65BZHGSF/view?usp=sharing",
+          "topics": [
+              "Project Inception & Scope Management",
+              "Effort Estimation (COCOMO, Function Points)",
+              "Activity Planning & CPM/PERT",
+              "Risk Management Framework"
+          ]
+      },
+      {
+          "id": "mca-bmc013-u2",
+          "unit": 2,
+          "title": "Unit 2: Resource Allocation, Monitoring & Contract Management",
+          "desc": "Software Project Management AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Software Project Management",
+          "subjectCode": "BMC013",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1hIv1Fb92mETsxg-qDmdvTIf_y1ZCz5EA/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1hIv1Fb92mETsxg-qDmdvTIf_y1ZCz5EA/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1hIv1Fb92mETsxg-qDmdvTIf_y1ZCz5EA/view?usp=sharing",
+          "topics": [
+              "Resource Scheduling & Levelling",
+              "Earned Value Analysis",
+              "Team Organization & Leadership",
+              "Software Quality Standards (CMMI, ISO)"
+          ]
+      }
+  ],
+  "bmc013": [
+      {
+          "id": "mca-bmc013-u1",
+          "unit": 1,
+          "title": "Unit 1: Project Evaluation, Planning & Effort Estimation",
+          "desc": "Software Project Management AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Software Project Management",
+          "subjectCode": "BMC013",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.7 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18g0aDFHh-kL8yTcU3t31DOMi65BZHGSF/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18g0aDFHh-kL8yTcU3t31DOMi65BZHGSF/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18g0aDFHh-kL8yTcU3t31DOMi65BZHGSF/view?usp=sharing",
+          "topics": [
+              "Project Inception & Scope Management",
+              "Effort Estimation (COCOMO, Function Points)",
+              "Activity Planning & CPM/PERT",
+              "Risk Management Framework"
+          ]
+      },
+      {
+          "id": "mca-bmc013-u2",
+          "unit": 2,
+          "title": "Unit 2: Resource Allocation, Monitoring & Contract Management",
+          "desc": "Software Project Management AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Software Project Management",
+          "subjectCode": "BMC013",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1hIv1Fb92mETsxg-qDmdvTIf_y1ZCz5EA/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1hIv1Fb92mETsxg-qDmdvTIf_y1ZCz5EA/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1hIv1Fb92mETsxg-qDmdvTIf_y1ZCz5EA/view?usp=sharing",
+          "topics": [
+              "Resource Scheduling & Levelling",
+              "Earned Value Analysis",
+              "Team Organization & Leadership",
+              "Software Quality Standards (CMMI, ISO)"
+          ]
+      }
+  ],
+  "BMC014": [
+      {
+          "id": "mca-bmc014-u1",
+          "unit": 1,
+          "title": "Unit 1: Cloud Service Models, Virtualization & Distributed Infrastructure",
+          "desc": "Cloud Computing AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Cloud Computing",
+          "subjectCode": "BMC014",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1oXQpMVh6zAV-t5WjxoPG9NsxHvZjtrqj/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1oXQpMVh6zAV-t5WjxoPG9NsxHvZjtrqj/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1oXQpMVh6zAV-t5WjxoPG9NsxHvZjtrqj/view?usp=sharing",
+          "topics": [
+              "IaaS, PaaS, SaaS Architectures",
+              "Hypervisors & Containerization (Docker, K8s)",
+              "Cloud Storage & Scalability",
+              "Multi-tenant Cloud Security"
+          ]
+      }
+  ],
+  "bmc014": [
+      {
+          "id": "mca-bmc014-u1",
+          "unit": 1,
+          "title": "Unit 1: Cloud Service Models, Virtualization & Distributed Infrastructure",
+          "desc": "Cloud Computing AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Cloud Computing",
+          "subjectCode": "BMC014",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1oXQpMVh6zAV-t5WjxoPG9NsxHvZjtrqj/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1oXQpMVh6zAV-t5WjxoPG9NsxHvZjtrqj/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1oXQpMVh6zAV-t5WjxoPG9NsxHvZjtrqj/view?usp=sharing",
+          "topics": [
+              "IaaS, PaaS, SaaS Architectures",
+              "Hypervisors & Containerization (Docker, K8s)",
+              "Cloud Storage & Scalability",
+              "Multi-tenant Cloud Security"
+          ]
+      }
+  ],
+  "BMC015": [
+      {
+          "id": "mca-bmc015-u1",
+          "unit": 1,
+          "title": "Unit 1: Lexical Analysis, Parsing Techniques & Code Generation",
+          "desc": "Compiler Design AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Compiler Design",
+          "subjectCode": "BMC015",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1HrjWLtIUhc-GiSTks2ASClYbl8cjh3zY/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1HrjWLtIUhc-GiSTks2ASClYbl8cjh3zY/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1HrjWLtIUhc-GiSTks2ASClYbl8cjh3zY/view?usp=sharing",
+          "topics": [
+              "Lexical Analysis & Regular Expressions",
+              "LL & LR Parsing Algorithms",
+              "Syntax Directed Translation",
+              "Code Optimization & Intermediate Representations"
+          ]
+      }
+  ],
+  "bmc015": [
+      {
+          "id": "mca-bmc015-u1",
+          "unit": 1,
+          "title": "Unit 1: Lexical Analysis, Parsing Techniques & Code Generation",
+          "desc": "Compiler Design AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Compiler Design",
+          "subjectCode": "BMC015",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.3 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1HrjWLtIUhc-GiSTks2ASClYbl8cjh3zY/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1HrjWLtIUhc-GiSTks2ASClYbl8cjh3zY/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1HrjWLtIUhc-GiSTks2ASClYbl8cjh3zY/view?usp=sharing",
+          "topics": [
+              "Lexical Analysis & Regular Expressions",
+              "LL & LR Parsing Algorithms",
+              "Syntax Directed Translation",
+              "Code Optimization & Intermediate Representations"
+          ]
+      }
+  ],
+  "BMC021": [
+      {
+          "id": "mca-bmc021-u1",
+          "unit": 1,
+          "title": "Unit 1: AI Problem Formulation, Search Strategies & Heuristics",
+          "desc": "Artificial Intelligence AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Artificial Intelligence",
+          "subjectCode": "BMC021",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1hyeGeXmEJRd19Tpqou68-AHhzICJt0cY/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1hyeGeXmEJRd19Tpqou68-AHhzICJt0cY/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1hyeGeXmEJRd19Tpqou68-AHhzICJt0cY/view?usp=sharing",
+          "topics": [
+              "State Space Search",
+              "Uninformed & Informed Search (A*, AO*)",
+              "Adversarial Search (Minimax, Alpha-Beta)",
+              "Constraint Satisfaction Problems"
+          ]
+      },
+      {
+          "id": "mca-bmc021-u2",
+          "unit": 2,
+          "title": "Unit 2: Knowledge Representation, Logic & Inference Systems",
+          "desc": "Artificial Intelligence AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Artificial Intelligence",
+          "subjectCode": "BMC021",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1ZPVTo2aiIhmaZ-7WLuRtJLTn40u0ge1f/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1ZPVTo2aiIhmaZ-7WLuRtJLTn40u0ge1f/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1ZPVTo2aiIhmaZ-7WLuRtJLTn40u0ge1f/view?usp=sharing",
+          "topics": [
+              "Propositional & Predicate Calculus",
+              "Resolution & Unification",
+              "Ontologies & Semantic Networks",
+              "Probabilistic Reasoning & Bayesian Networks"
+          ]
+      },
+      {
+          "id": "mca-bmc021-u3",
+          "unit": 3,
+          "title": "Unit 3: Expert Systems, Natural Language & Planning",
+          "desc": "Artificial Intelligence AKTU MCA Semester 3 Unit 3 verified study notes",
+          "subject": "Artificial Intelligence",
+          "subjectCode": "BMC021",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1GeZPR2rSCtZQRnG73aY6MRWoR9cZtJKO/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1GeZPR2rSCtZQRnG73aY6MRWoR9cZtJKO/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1GeZPR2rSCtZQRnG73aY6MRWoR9cZtJKO/view?usp=sharing",
+          "topics": [
+              "Rule-Based Expert Systems",
+              "Forward & Backward Chaining",
+              "Classical Planning Systems",
+              "Introduction to NLP & Dialogue Agents"
+          ]
+      }
+  ],
+  "bmc021": [
+      {
+          "id": "mca-bmc021-u1",
+          "unit": 1,
+          "title": "Unit 1: AI Problem Formulation, Search Strategies & Heuristics",
+          "desc": "Artificial Intelligence AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Artificial Intelligence",
+          "subjectCode": "BMC021",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1hyeGeXmEJRd19Tpqou68-AHhzICJt0cY/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1hyeGeXmEJRd19Tpqou68-AHhzICJt0cY/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1hyeGeXmEJRd19Tpqou68-AHhzICJt0cY/view?usp=sharing",
+          "topics": [
+              "State Space Search",
+              "Uninformed & Informed Search (A*, AO*)",
+              "Adversarial Search (Minimax, Alpha-Beta)",
+              "Constraint Satisfaction Problems"
+          ]
+      },
+      {
+          "id": "mca-bmc021-u2",
+          "unit": 2,
+          "title": "Unit 2: Knowledge Representation, Logic & Inference Systems",
+          "desc": "Artificial Intelligence AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Artificial Intelligence",
+          "subjectCode": "BMC021",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1ZPVTo2aiIhmaZ-7WLuRtJLTn40u0ge1f/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1ZPVTo2aiIhmaZ-7WLuRtJLTn40u0ge1f/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1ZPVTo2aiIhmaZ-7WLuRtJLTn40u0ge1f/view?usp=sharing",
+          "topics": [
+              "Propositional & Predicate Calculus",
+              "Resolution & Unification",
+              "Ontologies & Semantic Networks",
+              "Probabilistic Reasoning & Bayesian Networks"
+          ]
+      },
+      {
+          "id": "mca-bmc021-u3",
+          "unit": 3,
+          "title": "Unit 3: Expert Systems, Natural Language & Planning",
+          "desc": "Artificial Intelligence AKTU MCA Semester 3 Unit 3 verified study notes",
+          "subject": "Artificial Intelligence",
+          "subjectCode": "BMC021",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1GeZPR2rSCtZQRnG73aY6MRWoR9cZtJKO/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1GeZPR2rSCtZQRnG73aY6MRWoR9cZtJKO/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1GeZPR2rSCtZQRnG73aY6MRWoR9cZtJKO/view?usp=sharing",
+          "topics": [
+              "Rule-Based Expert Systems",
+              "Forward & Backward Chaining",
+              "Classical Planning Systems",
+              "Introduction to NLP & Dialogue Agents"
+          ]
+      }
+  ],
+  "BMC022": [
+      {
+          "id": "mca-bmc022-u1",
+          "unit": 1,
+          "title": "Unit 1: Big Data Ecosystem, HDFS Architecture & MapReduce",
+          "desc": "Big Data AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Big Data",
+          "subjectCode": "BMC022",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.2 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1uqlUKgCX9G3D-J1rtJgyf15F_6yT9u5P/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1uqlUKgCX9G3D-J1rtJgyf15F_6yT9u5P/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1uqlUKgCX9G3D-J1rtJgyf15F_6yT9u5P/view?usp=sharing",
+          "topics": [
+              "5 V’s of Big Data",
+              "Hadoop Distributed File System (HDFS)",
+              "MapReduce Programming Model",
+              "YARN Cluster Resource Management"
+          ]
+      },
+      {
+          "id": "mca-bmc022-u2",
+          "unit": 2,
+          "title": "Unit 2: Apache Spark, NoSQL Databases & Data Pipelines",
+          "desc": "Big Data AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Big Data",
+          "subjectCode": "BMC022",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1luvAzwolTMy1QPpeRxkXousZMkD_bXtD/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1luvAzwolTMy1QPpeRxkXousZMkD_bXtD/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1luvAzwolTMy1QPpeRxkXousZMkD_bXtD/view?usp=sharing",
+          "topics": [
+              "Resilient Distributed Datasets (RDDs)",
+              "Spark SQL & Streaming",
+              "NoSQL Column & Document Stores (HBase, Mongo)",
+              "Real-time Big Data Ingestion"
+          ]
+      }
+  ],
+  "bmc022": [
+      {
+          "id": "mca-bmc022-u1",
+          "unit": 1,
+          "title": "Unit 1: Big Data Ecosystem, HDFS Architecture & MapReduce",
+          "desc": "Big Data AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Big Data",
+          "subjectCode": "BMC022",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.2 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1uqlUKgCX9G3D-J1rtJgyf15F_6yT9u5P/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1uqlUKgCX9G3D-J1rtJgyf15F_6yT9u5P/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1uqlUKgCX9G3D-J1rtJgyf15F_6yT9u5P/view?usp=sharing",
+          "topics": [
+              "5 V’s of Big Data",
+              "Hadoop Distributed File System (HDFS)",
+              "MapReduce Programming Model",
+              "YARN Cluster Resource Management"
+          ]
+      },
+      {
+          "id": "mca-bmc022-u2",
+          "unit": 2,
+          "title": "Unit 2: Apache Spark, NoSQL Databases & Data Pipelines",
+          "desc": "Big Data AKTU MCA Semester 3 Unit 2 verified study notes",
+          "subject": "Big Data",
+          "subjectCode": "BMC022",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1luvAzwolTMy1QPpeRxkXousZMkD_bXtD/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1luvAzwolTMy1QPpeRxkXousZMkD_bXtD/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1luvAzwolTMy1QPpeRxkXousZMkD_bXtD/view?usp=sharing",
+          "topics": [
+              "Resilient Distributed Datasets (RDDs)",
+              "Spark SQL & Streaming",
+              "NoSQL Column & Document Stores (HBase, Mongo)",
+              "Real-time Big Data Ingestion"
+          ]
+      }
+  ],
+  "BMC023": [
+      {
+          "id": "mca-bmc023-u1",
+          "unit": 1,
+          "title": "Unit 1: System Simulation, Discrete Event Models & Verification",
+          "desc": "Simulation & Modeling AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Simulation & Modeling",
+          "subjectCode": "BMC023",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18nrftDV_9dDoG824Qe_Wio3ckhO8OEy2/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18nrftDV_9dDoG824Qe_Wio3ckhO8OEy2/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18nrftDV_9dDoG824Qe_Wio3ckhO8OEy2/view?usp=sharing",
+          "topics": [
+              "Continuous vs Discrete Simulation",
+              "Random Number Generation Techniques",
+              "Queuing Models (M/M/1)",
+              "Statistical Output Analysis"
+          ]
+      }
+  ],
+  "bmc023": [
+      {
+          "id": "mca-bmc023-u1",
+          "unit": 1,
+          "title": "Unit 1: System Simulation, Discrete Event Models & Verification",
+          "desc": "Simulation & Modeling AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Simulation & Modeling",
+          "subjectCode": "BMC023",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/18nrftDV_9dDoG824Qe_Wio3ckhO8OEy2/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/18nrftDV_9dDoG824Qe_Wio3ckhO8OEy2/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/18nrftDV_9dDoG824Qe_Wio3ckhO8OEy2/view?usp=sharing",
+          "topics": [
+              "Continuous vs Discrete Simulation",
+              "Random Number Generation Techniques",
+              "Queuing Models (M/M/1)",
+              "Statistical Output Analysis"
+          ]
+      }
+  ],
+  "BMC024": [
+      {
+          "id": "mca-bmc024-u1",
+          "unit": 1,
+          "title": "Unit 1: Test Automation, Quality Metrics & Standards",
+          "desc": "Software Testing & Quality Assurance AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Software Testing & Quality Assurance",
+          "subjectCode": "BMC024",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1Edev-k5l04uZudjbA-uKu0rP3vNXTkZj/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1Edev-k5l04uZudjbA-uKu0rP3vNXTkZj/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1Edev-k5l04uZudjbA-uKu0rP3vNXTkZj/view?usp=sharing",
+          "topics": [
+              "Static & Dynamic Testing",
+              "Automated Test Frameworks (Selenium, JUnit)",
+              "Code Coverage & Mutation Testing",
+              "ISO/IEC 25010 Quality Model"
+          ]
+      }
+  ],
+  "bmc024": [
+      {
+          "id": "mca-bmc024-u1",
+          "unit": 1,
+          "title": "Unit 1: Test Automation, Quality Metrics & Standards",
+          "desc": "Software Testing & Quality Assurance AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Software Testing & Quality Assurance",
+          "subjectCode": "BMC024",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1Edev-k5l04uZudjbA-uKu0rP3vNXTkZj/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1Edev-k5l04uZudjbA-uKu0rP3vNXTkZj/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1Edev-k5l04uZudjbA-uKu0rP3vNXTkZj/view?usp=sharing",
+          "topics": [
+              "Static & Dynamic Testing",
+              "Automated Test Frameworks (Selenium, JUnit)",
+              "Code Coverage & Mutation Testing",
+              "ISO/IEC 25010 Quality Model"
+          ]
+      }
+  ],
+  "BMC025": [
+      {
+          "id": "mca-bmc025-u1",
+          "unit": 1,
+          "title": "Unit 1: Image Enhancement, Spatial Filtering & Frequency Transforms",
+          "desc": "Digital Image Processing AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Digital Image Processing",
+          "subjectCode": "BMC025",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1ZnAvN78tkD_c1R-v9SjcYptaFPw1-Vbd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1ZnAvN78tkD_c1R-v9SjcYptaFPw1-Vbd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1ZnAvN78tkD_c1R-v9SjcYptaFPw1-Vbd/view?usp=sharing",
+          "topics": [
+              "Digital Image Fundamentals",
+              "Histogram Equalization",
+              "Spatial Domain Filters",
+              "Fourier Transform & Frequency Domain Filtering"
+          ]
+      }
+  ],
+  "bmc025": [
+      {
+          "id": "mca-bmc025-u1",
+          "unit": 1,
+          "title": "Unit 1: Image Enhancement, Spatial Filtering & Frequency Transforms",
+          "desc": "Digital Image Processing AKTU MCA Semester 3 Unit 1 verified study notes",
+          "subject": "Digital Image Processing",
+          "subjectCode": "BMC025",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.4 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1ZnAvN78tkD_c1R-v9SjcYptaFPw1-Vbd/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1ZnAvN78tkD_c1R-v9SjcYptaFPw1-Vbd/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1ZnAvN78tkD_c1R-v9SjcYptaFPw1-Vbd/view?usp=sharing",
+          "topics": [
+              "Digital Image Fundamentals",
+              "Histogram Equalization",
+              "Spatial Domain Filters",
+              "Fourier Transform & Frequency Domain Filtering"
+          ]
+      }
+  ],
+  "BMC031": [
+      {
+          "id": "mca-bmc031-u1",
+          "unit": 1,
+          "title": "Unit 1: Social Media Privacy Models, Graph Analytics & Threat Vectors",
+          "desc": "Privacy & Security in Online Social Media AKTU MCA Semester 4 Unit 1 verified study notes",
+          "subject": "Privacy & Security in Online Social Media",
+          "subjectCode": "BMC031",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1DOg_cPt4CjgaxQmZ--uHC-hTwzKv4oAF/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1DOg_cPt4CjgaxQmZ--uHC-hTwzKv4oAF/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1DOg_cPt4CjgaxQmZ--uHC-hTwzKv4oAF/view?usp=sharing",
+          "topics": [
+              "Social Network Analysis (SNA)",
+              "Privacy Preservation & De-anonymization",
+              "Sybil Attacks & Fake News Detection",
+              "Online Trust Models"
+          ]
+      }
+  ],
+  "bmc031": [
+      {
+          "id": "mca-bmc031-u1",
+          "unit": 1,
+          "title": "Unit 1: Social Media Privacy Models, Graph Analytics & Threat Vectors",
+          "desc": "Privacy & Security in Online Social Media AKTU MCA Semester 4 Unit 1 verified study notes",
+          "subject": "Privacy & Security in Online Social Media",
+          "subjectCode": "BMC031",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.8 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1DOg_cPt4CjgaxQmZ--uHC-hTwzKv4oAF/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1DOg_cPt4CjgaxQmZ--uHC-hTwzKv4oAF/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1DOg_cPt4CjgaxQmZ--uHC-hTwzKv4oAF/view?usp=sharing",
+          "topics": [
+              "Social Network Analysis (SNA)",
+              "Privacy Preservation & De-anonymization",
+              "Sybil Attacks & Fake News Detection",
+              "Online Trust Models"
+          ]
+      }
+  ],
+  "BMC032": [
+      {
+          "id": "mca-bmc032-u1",
+          "unit": 1,
+          "title": "Unit 1: Fuzzy Logic, Neural Networks & Genetic Algorithms",
+          "desc": "Soft Computing AKTU MCA Semester 4 Unit 1 verified study notes",
+          "subject": "Soft Computing",
+          "subjectCode": "BMC032",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1TpEmOv6v_sFsAd9Q--XD6kAySYTRu9df/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1TpEmOv6v_sFsAd9Q--XD6kAySYTRu9df/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1TpEmOv6v_sFsAd9Q--XD6kAySYTRu9df/view?usp=sharing",
+          "topics": [
+              "Fuzzy Sets & Membership Functions",
+              "Fuzzy Inference Systems (Mamdani, Sugeno)",
+              "Multilayer Perceptron & Backpropagation",
+              "Genetic Algorithm Operators (Crossover, Mutation)"
+          ]
+      }
+  ],
+  "bmc032": [
+      {
+          "id": "mca-bmc032-u1",
+          "unit": 1,
+          "title": "Unit 1: Fuzzy Logic, Neural Networks & Genetic Algorithms",
+          "desc": "Soft Computing AKTU MCA Semester 4 Unit 1 verified study notes",
+          "subject": "Soft Computing",
+          "subjectCode": "BMC032",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.1 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1TpEmOv6v_sFsAd9Q--XD6kAySYTRu9df/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1TpEmOv6v_sFsAd9Q--XD6kAySYTRu9df/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1TpEmOv6v_sFsAd9Q--XD6kAySYTRu9df/view?usp=sharing",
+          "topics": [
+              "Fuzzy Sets & Membership Functions",
+              "Fuzzy Inference Systems (Mamdani, Sugeno)",
+              "Multilayer Perceptron & Backpropagation",
+              "Genetic Algorithm Operators (Crossover, Mutation)"
+          ]
+      }
+  ],
+  "BMC034": [
+      {
+          "id": "mca-bmc034-u1",
+          "unit": 1,
+          "title": "Unit 1: Statistical Analysis, Predictive Modeling & Business Insights",
+          "desc": "Data Analytics AKTU MCA Semester 4 Unit 1 verified study notes",
+          "subject": "Data Analytics",
+          "subjectCode": "BMC034",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/12t8wlK__7IVKoea23T-61m9Wz9xRNRiK/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/12t8wlK__7IVKoea23T-61m9Wz9xRNRiK/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/12t8wlK__7IVKoea23T-61m9Wz9xRNRiK/view?usp=sharing",
+          "topics": [
+              "Descriptive vs Inferential Statistics",
+              "Linear & Logistic Regression",
+              "Hypothesis Testing (t-test, ANOVA)",
+              "Model Evaluation Metrics (ROC-AUC, RMSE)"
+          ]
+      }
+  ],
+  "bmc034": [
+      {
+          "id": "mca-bmc034-u1",
+          "unit": 1,
+          "title": "Unit 1: Statistical Analysis, Predictive Modeling & Business Insights",
+          "desc": "Data Analytics AKTU MCA Semester 4 Unit 1 verified study notes",
+          "subject": "Data Analytics",
+          "subjectCode": "BMC034",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "3.0 MB",
+          "pdfUrl": "https://drive.google.com/file/d/12t8wlK__7IVKoea23T-61m9Wz9xRNRiK/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/12t8wlK__7IVKoea23T-61m9Wz9xRNRiK/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/12t8wlK__7IVKoea23T-61m9Wz9xRNRiK/view?usp=sharing",
+          "topics": [
+              "Descriptive vs Inferential Statistics",
+              "Linear & Logistic Regression",
+              "Hypothesis Testing (t-test, ANOVA)",
+              "Model Evaluation Metrics (ROC-AUC, RMSE)"
+          ]
+      }
+  ],
+  "BMC035": [
+      {
+          "id": "mca-bmc035-u1",
+          "unit": 1,
+          "title": "Unit 1: Software Quality Assurance Architecture & Auditing",
+          "desc": "Software Quality Engineering AKTU MCA Semester 4 Unit 1 verified study notes",
+          "subject": "Software Quality Engineering",
+          "subjectCode": "BMC035",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1D1gyYwlWSsdWQjUjCUgyPQTeCHBmAtoT/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1D1gyYwlWSsdWQjUjCUgyPQTeCHBmAtoT/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1D1gyYwlWSsdWQjUjCUgyPQTeCHBmAtoT/view?usp=sharing",
+          "topics": [
+              "Software Quality Frameworks",
+              "Process vs Product Quality",
+              "Defect Prevention & Root Cause Analysis",
+              "Statistical Process Control for Software"
+          ]
+      }
+  ],
+  "bmc035": [
+      {
+          "id": "mca-bmc035-u1",
+          "unit": 1,
+          "title": "Unit 1: Software Quality Assurance Architecture & Auditing",
+          "desc": "Software Quality Engineering AKTU MCA Semester 4 Unit 1 verified study notes",
+          "subject": "Software Quality Engineering",
+          "subjectCode": "BMC035",
+          "course": "MCA",
+          "branch": "MCA",
+          "year": "2nd Year",
+          "size": "2.9 MB",
+          "pdfUrl": "https://drive.google.com/file/d/1D1gyYwlWSsdWQjUjCUgyPQTeCHBmAtoT/view?usp=sharing",
+          "driveUrl": "https://drive.google.com/file/d/1D1gyYwlWSsdWQjUjCUgyPQTeCHBmAtoT/view?usp=sharing",
+          "url": "https://drive.google.com/file/d/1D1gyYwlWSsdWQjUjCUgyPQTeCHBmAtoT/view?usp=sharing",
+          "topics": [
+              "Software Quality Frameworks",
+              "Process vs Product Quality",
+              "Defect Prevention & Root Cause Analysis",
+              "Statistical Process Control for Software"
+          ]
+      }
   ],
   "BCS301": [
     {
