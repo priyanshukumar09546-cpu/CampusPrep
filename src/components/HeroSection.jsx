@@ -8,7 +8,11 @@ import {
   Users,
   FileText,
   Briefcase,
-  Star
+  Star,
+  BookOpen,
+  ChevronRight,
+  Globe,
+  BarChart2
 } from 'lucide-react';
 
 export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
@@ -388,113 +392,186 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
           </div>
 
           {/* ===================================================================
-              RIGHT COLUMN: STUDENT SHOWCASE ARTWORK WITH INTERACTIVE BADGES
+              RIGHT COLUMN: COMPLETE UNCROPPED FEMALE STUDENT WITH REAL FLOATING CARDS
               =================================================================== */}
           <div style={{
             position: 'relative',
             width: '100%',
-            maxWidth: '560px',
+            maxWidth: '620px',
             margin: '0 auto',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            overflow: 'visible'
           }} className="hero-right-showcase-container">
             
-            {/* The Reference Student Artwork with Artistic Doodles & Cards */}
+            {/* Main Relative Canvas for Uncropped Student & Floating Badges */}
             <div style={{
               position: 'relative',
               width: '100%',
-              borderRadius: '24px',
-              overflow: 'hidden',
-              boxShadow: '0 16px 40px rgba(35, 30, 25, 0.08)'
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'visible'
             }}>
+              {/* Uncropped, High-Quality Photorealistic Female College Student */}
               <img
-                src="/assets/hero_right_student_showcase.png"
-                alt="Student exploring ProfessorVirus learning and career tools"
+                src="/assets/hero_student_girl_uncropped.png"
+                alt="Confident South Asian female engineering student holding textbooks at ProfessorVirus"
+                className="hero-student-girl-img"
                 style={{
                   width: '100%',
                   height: 'auto',
+                  maxHeight: '520px',
+                  objectFit: 'contain',
                   display: 'block',
-                  borderRadius: '24px'
+                  borderRadius: '24px',
+                  filter: 'drop-shadow(0 16px 36px rgba(120, 20, 22, 0.10))',
+                  userSelect: 'none'
                 }}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = '/assets/homepage_reference_design.jpg';
+                  e.target.src = '/assets/hero_student_girl_uncropped.jpg';
                 }}
               />
 
-              {/* Interactive Invisible / Hover Hotspots over the Cards */}
-              {/* Hotspot 1: AI Resume Maker (Top Left) */}
+              {/* =============================================================
+                  LEFT FLANKING CARDS
+                  ============================================================= */}
+              {/* CARD 1: Study Notes */}
               <div
-                title="Open AI Resume Maker"
-                onClick={() => onNavigate && onNavigate('resume-maker')}
-                style={{
-                  position: 'absolute',
-                  top: '20%',
-                  left: '4%',
-                  width: '26%',
-                  height: '22%',
-                  cursor: 'pointer',
-                  borderRadius: '14px',
-                  transition: 'background-color 0.2s ease'
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.12)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
-              />
+                onClick={() => onNavigate && onNavigate('notes')}
+                className="hero-floating-card hero-card-notes"
+                title="Explore Verified Study Notes"
+              >
+                <span className="hero-card-doodle doodle-left">
+                  Study Smarter ➔
+                </span>
+                <div className="hero-card-icon" style={{ backgroundColor: '#FCE7F3', color: '#BE185D' }}>
+                  <BookOpen size={16} strokeWidth={2.4} />
+                </div>
+                <div className="hero-card-text">
+                  <div className="hero-card-title">Study Notes</div>
+                  <div className="hero-card-sub">Unit-wise notes for all branches</div>
+                </div>
+                <ChevronRight size={14} className="hero-card-arrow" />
+              </div>
 
-              {/* Hotspot 2: Interview Pro (Mid Left) */}
+              {/* CARD 2: AKTU PYQs */}
               <div
-                title="Start Interview Pro Mock"
-                onClick={() => onNavigate && onNavigate('interview-pro')}
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '4%',
-                  width: '26%',
-                  height: '24%',
-                  cursor: 'pointer',
-                  borderRadius: '14px',
-                  transition: 'background-color 0.2s ease'
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.12)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
-              />
-
-              {/* Hotspot 3: PYQs (Top Right) */}
-              <div
-                title="Browse AKTU PYQs"
                 onClick={() => onNavigate && onNavigate('pyqs')}
-                style={{
-                  position: 'absolute',
-                  top: '12%',
-                  right: '4%',
-                  width: '26%',
-                  height: '22%',
-                  cursor: 'pointer',
-                  borderRadius: '14px',
-                  transition: 'background-color 0.2s ease'
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(245, 158, 11, 0.12)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
-              />
+                className="hero-floating-card hero-card-pyqs"
+                title="Browse Solved AKTU PYQs"
+              >
+                <div className="hero-card-icon" style={{ backgroundColor: '#FEF3C7', color: '#D97706' }}>
+                  <FileText size={16} strokeWidth={2.4} />
+                </div>
+                <div className="hero-card-text">
+                  <div className="hero-card-title">AKTU PYQs</div>
+                  <div className="hero-card-sub">Previous year question papers</div>
+                </div>
+                <ChevronRight size={14} className="hero-card-arrow" />
+              </div>
 
-              {/* Hotspot 4: Result & CGPA (Mid Right) */}
+              {/* CARD 3: Resume Maker */}
               <div
-                title="Check Result & CGPA"
+                onClick={() => onNavigate && onNavigate('resume-maker')}
+                className="hero-floating-card hero-card-resume"
+                title="Create ATS-Ready Resume"
+              >
+                <div className="hero-card-icon" style={{ backgroundColor: '#DBEAFE', color: '#2563EB' }}>
+                  <Briefcase size={16} strokeWidth={2.4} />
+                </div>
+                <div className="hero-card-text">
+                  <div className="hero-card-title">Resume Maker</div>
+                  <div className="hero-card-sub">Create ATS-ready resume in minutes</div>
+                </div>
+                <ChevronRight size={14} className="hero-card-arrow" />
+              </div>
+
+              {/* =============================================================
+                  RIGHT FLANKING CARDS
+                  ============================================================= */}
+              {/* CARD 4: Quizzes */}
+              <div
+                onClick={() => onNavigate && onNavigate('quizzes')}
+                className="hero-floating-card hero-card-quizzes"
+                title="Practice Topic-wise Quizzes"
+              >
+                <span className="hero-card-doodle doodle-right">
+                  Prepare Better ➔
+                </span>
+                <div className="hero-card-icon" style={{ backgroundColor: '#DCFCE7', color: '#16A34A' }}>
+                  <Sparkles size={16} strokeWidth={2.4} />
+                </div>
+                <div className="hero-card-text">
+                  <div className="hero-card-title">Quizzes</div>
+                  <div className="hero-card-sub">Practice &amp; improve your concepts</div>
+                </div>
+                <ChevronRight size={14} className="hero-card-arrow" />
+              </div>
+
+              {/* CARD 5: Interview Pro */}
+              <div
+                onClick={() => onNavigate && onNavigate('interview-pro')}
+                className="hero-floating-card hero-card-interview"
+                title="Start AI Mock Interview"
+              >
+                <div className="hero-card-icon" style={{ backgroundColor: '#F3E8FF', color: '#9333EA' }}>
+                  <Play size={14} fill="#9333EA" strokeWidth={2.4} />
+                </div>
+                <div className="hero-card-text">
+                  <div className="hero-card-title">
+                    <span>Interview Pro</span>
+                    <span className="hero-card-badge">AI</span>
+                  </div>
+                  <div className="hero-card-sub">AI mock interviews &amp; coding practice</div>
+                </div>
+                <ChevronRight size={14} className="hero-card-arrow" />
+              </div>
+
+              {/* CARD 6: Result & CGPA */}
+              <div
                 onClick={() => onNavigate && onNavigate('result-cgpa')}
-                style={{
-                  position: 'absolute',
-                  top: '46%',
-                  right: '4%',
-                  width: '26%',
-                  height: '22%',
-                  cursor: 'pointer',
-                  borderRadius: '14px',
-                  transition: 'background-color 0.2s ease'
+                className="hero-floating-card hero-card-result"
+                title="Analyze Result & SGPA/CGPA"
+              >
+                <div className="hero-card-icon" style={{ backgroundColor: '#CCFBF1', color: '#0D9488' }}>
+                  <BarChart2 size={16} strokeWidth={2.4} />
+                </div>
+                <div className="hero-card-text">
+                  <div className="hero-card-title">Result &amp; CGPA</div>
+                  <div className="hero-card-sub">Analyze your result and track progress</div>
+                </div>
+                <ChevronRight size={14} className="hero-card-arrow" />
+              </div>
+
+              {/* CARD 7: Language Skills (Explicitly Required by User) */}
+              <div
+                onClick={() => {
+                  const target = document.getElementById('explore-tools') || document.getElementById('quick-access-section');
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                  } else if (onNavigate) {
+                    onNavigate('more');
+                  }
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.12)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
-              />
+                className="hero-floating-card hero-card-language"
+                title="Improve Communication & Fluency"
+              >
+                <span className="hero-card-doodle doodle-future">
+                  Build Your Future ➔
+                </span>
+                <div className="hero-card-icon" style={{ backgroundColor: '#E0E7FF', color: '#4F46E5' }}>
+                  <Globe size={16} strokeWidth={2.4} />
+                </div>
+                <div className="hero-card-text">
+                  <div className="hero-card-title">Language Skills</div>
+                  <div className="hero-card-sub">Improve communication &amp; fluency</div>
+                </div>
+                <ChevronRight size={14} className="hero-card-arrow" />
+              </div>
+
             </div>
 
           </div>
@@ -503,15 +580,213 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
       </div>
 
-      {/* Responsive Stacking Overrides */}
+      {/* Hero Showcase Styling & Responsive Rules */}
       <style>{`
+        .hero-floating-card {
+          position: absolute;
+          z-index: 5;
+          background-color: #FFFFFF;
+          border-radius: 14px;
+          padding: 0.48rem 0.8rem;
+          border: 1.2px solid rgba(226, 217, 200, 0.9);
+          box-shadow: 0 8px 24px rgba(35, 30, 25, 0.08), 0 2px 6px rgba(120, 20, 22, 0.04);
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          cursor: pointer;
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+          backdrop-filter: blur(8px);
+          width: max-content;
+          max-width: 228px;
+          white-space: nowrap;
+        }
+
+        .hero-floating-card:hover {
+          transform: translateY(-2px) scale(1.02);
+          box-shadow: 0 14px 32px rgba(120, 20, 22, 0.14), 0 4px 10px rgba(200, 141, 45, 0.12);
+          border-color: #C88D2D;
+        }
+
+        .hero-card-icon {
+          width: 32px;
+          height: 32px;
+          border-radius: 9px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .hero-card-text {
+          display: flex;
+          flex-direction: column;
+          min-width: 0;
+          text-align: left;
+        }
+
+        .hero-card-title {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.82rem;
+          font-weight: 800;
+          color: #1C1917;
+          line-height: 1.15;
+        }
+
+        .hero-card-badge {
+          font-size: 0.58rem;
+          font-weight: 800;
+          padding: 0.08rem 0.35rem;
+          border-radius: 9999px;
+          background-color: #F3E8FF;
+          color: #9333EA;
+        }
+
+        .hero-card-sub {
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 0.66rem;
+          font-weight: 600;
+          color: #78716C;
+          line-height: 1.25;
+          margin-top: 0.1rem;
+        }
+
+        .hero-card-arrow {
+          color: #A8A29E;
+          margin-left: auto;
+          flex-shrink: 0;
+          transition: transform 0.18s ease;
+        }
+
+        .hero-floating-card:hover .hero-card-arrow {
+          transform: translateX(2px);
+          color: #781416;
+        }
+
+        .hero-card-doodle {
+          position: absolute;
+          font-family: 'Kalam', 'Patrick Hand', cursive;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: #781416;
+          pointer-events: none;
+          white-space: nowrap;
+        }
+
+        .doodle-left {
+          top: -1.35rem;
+          left: 0.4rem;
+        }
+
+        .doodle-right {
+          top: -1.35rem;
+          right: 0.4rem;
+        }
+
+        .doodle-future {
+          bottom: -1.35rem;
+          right: 0.4rem;
+        }
+
+        /* Desktop Card Coordinates */
+        .hero-card-notes {
+          top: 3%;
+          left: -4%;
+        }
+
+        .hero-card-pyqs {
+          top: 33%;
+          left: -8%;
+        }
+
+        .hero-card-resume {
+          top: 63%;
+          left: -4%;
+        }
+
+        .hero-card-quizzes {
+          top: 3%;
+          right: -4%;
+        }
+
+        .hero-card-interview {
+          top: 31%;
+          right: -8%;
+        }
+
+        .hero-card-result {
+          top: 57%;
+          right: -5%;
+        }
+
+        .hero-card-language {
+          top: 83%;
+          right: -2%;
+        }
+
+        /* Tablet & Compact Desktop Sizing */
+        @media (max-width: 1240px) {
+          .hero-floating-card {
+            padding: 0.4rem 0.68rem;
+            max-width: 205px;
+            gap: 0.45rem;
+          }
+          .hero-card-title {
+            font-size: 0.76rem;
+          }
+          .hero-card-sub {
+            font-size: 0.62rem;
+          }
+          .hero-card-icon {
+            width: 28px;
+            height: 28px;
+          }
+          .hero-card-notes { left: 0%; top: 2%; }
+          .hero-card-pyqs { left: -3%; top: 32%; }
+          .hero-card-resume { left: 0%; top: 62%; }
+          .hero-card-quizzes { right: 0%; top: 2%; }
+          .hero-card-interview { right: -3%; top: 30%; }
+          .hero-card-result { right: -2%; top: 56%; }
+          .hero-card-language { right: 0%; top: 82%; }
+        }
+
         @media (max-width: 960px) {
           .hero-2col-layout {
             grid-template-columns: 1fr !important;
             gap: 2.25rem !important;
           }
           .hero-right-showcase-container {
-            max-width: 480px !important;
+            max-width: 500px !important;
+          }
+          .hero-card-notes { left: 2%; top: 2%; }
+          .hero-card-pyqs { left: -1%; top: 32%; }
+          .hero-card-resume { left: 2%; top: 62%; }
+          .hero-card-quizzes { right: 2%; top: 2%; }
+          .hero-card-interview { right: -1%; top: 30%; }
+          .hero-card-result { right: 0%; top: 56%; }
+          .hero-card-language { right: 2%; top: 82%; }
+        }
+
+        @media (max-width: 600px) {
+          .hero-floating-card {
+            padding: 0.35rem 0.55rem;
+            max-width: 175px;
+            gap: 0.35rem;
+          }
+          .hero-card-title {
+            font-size: 0.72rem;
+          }
+          .hero-card-sub {
+            font-size: 0.58rem;
+          }
+          .hero-card-icon {
+            width: 24px;
+            height: 24px;
+          }
+          .hero-card-doodle {
+            display: none !important;
           }
         }
       `}</style>
