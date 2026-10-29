@@ -136,7 +136,10 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
     setShowEditModal(false);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    } catch (e) {}
     try {
       localStorage.removeItem('professorvirus_user');
       localStorage.removeItem('professorvirus_token');

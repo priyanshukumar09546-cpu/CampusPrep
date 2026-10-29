@@ -2642,7 +2642,10 @@
     "branchId": "MBA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44dcc",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-bmb-102",
@@ -2652,7 +2655,10 @@
     "branchId": "MBA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44dcd",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-bmb-103",
@@ -2662,7 +2668,10 @@
     "branchId": "MBA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44dce",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-bmb-104",
@@ -2672,7 +2681,10 @@
     "branchId": "MBA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44dcf",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-bmb-105",
@@ -2682,7 +2694,10 @@
     "branchId": "MBA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44dd0",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-bmb-106",
@@ -2692,7 +2707,10 @@
     "branchId": "MBA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44dd1",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-bmb-107",
@@ -2702,7 +2720,10 @@
     "branchId": "MBA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44dd2",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-bmb-151",
@@ -2712,7 +2733,10 @@
     "branchId": "MBA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44dd3",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-strategic-management",
@@ -2722,7 +2746,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44dd4",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-consumer-behaviour-and-neuro-marketing",
@@ -2732,7 +2759,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Marketing"
+    "specialization": "Marketing",
+    "_id": "6adf7939dac349f21be44dd5",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-marketing--amp--web-analytics",
@@ -2742,7 +2772,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Marketing"
+    "specialization": "Marketing",
+    "_id": "6adf7939dac349f21be44dd6",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-sales-and-distribution-management",
@@ -2752,7 +2785,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Marketing"
+    "specialization": "Marketing",
+    "_id": "6adf7939dac349f21be44dd7",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-talent-acquisition-management",
@@ -2762,7 +2798,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Human Resources"
+    "specialization": "Human Resources",
+    "_id": "6adf7939dac349f21be44dd8",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-employee-relations-and-labour-laws",
@@ -2772,7 +2811,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Human Resources"
+    "specialization": "Human Resources",
+    "_id": "6adf7939dac349f21be44dd9",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-performance-and-reward-management",
@@ -2782,7 +2824,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Human Resources"
+    "specialization": "Human Resources",
+    "_id": "6adf7939dac349f21be44dda",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-investment-and-portfolio-management",
@@ -2792,7 +2837,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Finance"
+    "specialization": "Finance",
+    "_id": "6adf7939dac349f21be44ddb",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-tax-planning-and-management",
@@ -2802,7 +2850,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Finance"
+    "specialization": "Finance",
+    "_id": "6adf7939dac349f21be44ddc",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-financial-and-credit-risk-analysis",
@@ -2812,7 +2863,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Finance"
+    "specialization": "Finance",
+    "_id": "6adf7939dac349f21be44ddd",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-supply-chain-and-logistics-management",
@@ -2822,7 +2876,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Operations & Supply Chain"
+    "specialization": "Operations & Supply Chain",
+    "_id": "6adf7939dac349f21be44dde",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-business-process-reengineering",
@@ -2832,7 +2889,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Operations & Supply Chain"
+    "specialization": "Operations & Supply Chain",
+    "_id": "6adf7939dac349f21be44ddf",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-quality-management",
@@ -2842,7 +2902,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Operations & Supply Chain"
+    "specialization": "Operations & Supply Chain",
+    "_id": "6adf7939dac349f21be44de0",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-international-business-management",
@@ -2852,7 +2915,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "International Business"
+    "specialization": "International Business",
+    "_id": "6adf7939dac349f21be44de1",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-export-import-documentation",
@@ -2862,7 +2928,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "International Business"
+    "specialization": "International Business",
+    "_id": "6adf7939dac349f21be44de2",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-software-engineering-and-management",
@@ -2872,7 +2941,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Information Technology"
+    "specialization": "Information Technology",
+    "_id": "6adf7939dac349f21be44de3",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-emerging-technologies-for-business",
@@ -2882,7 +2954,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Information Technology"
+    "specialization": "Information Technology",
+    "_id": "6adf7939dac349f21be44de4",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-database-management-system",
@@ -2892,7 +2967,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Information Technology"
+    "specialization": "Information Technology",
+    "_id": "6adf7939dac349f21be44de5",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-fundamental-of-computers--amp-emerging-technologies",
@@ -2902,7 +2980,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44de6",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-problem-solving-using-c",
@@ -2912,7 +2993,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44de7",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-principles-of-management--amp-communication",
@@ -2922,7 +3006,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44de8",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-computer-organization--amp-architecture",
@@ -2932,7 +3019,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44de9",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-cyber-security",
@@ -2942,7 +3032,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44dea",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-web-technology",
@@ -2952,7 +3045,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 2",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44deb",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-object-oriented-programming",
@@ -2962,7 +3058,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 2",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44dec",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-database-managementsystems",
@@ -2972,7 +3071,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 2",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44ded",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp101t",
@@ -2982,7 +3084,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44dee",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp102t",
@@ -2992,7 +3097,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44def",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp103t",
@@ -3002,7 +3110,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df0",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp104t",
@@ -3012,7 +3123,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df1",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp105t",
@@ -3022,7 +3136,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df2",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp106rbt",
@@ -3032,7 +3149,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df3",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp106rmt",
@@ -3042,7 +3162,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df4",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-human-anatomy-and-physiology-ii",
@@ -3052,7 +3175,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 2",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df5",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-pharmaceutical-organic-chemistry-i",
@@ -3062,7 +3188,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 2",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df6",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-biochemistry",
@@ -3072,7 +3201,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 2",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df7",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-pathophysiology",
@@ -3082,7 +3214,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 2",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df8",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-computer-applications-in-pharmacy",
@@ -3092,7 +3227,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 2",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44df9",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-environmental-sciences",
@@ -3102,7 +3240,10 @@
     "branchId": "B.Pharm",
     "year": "1st Year",
     "semester": "Semester 2",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44dfa",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp301t",
@@ -3112,7 +3253,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44dfb",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp302t",
@@ -3122,7 +3266,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44dfc",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp303t",
@@ -3132,7 +3279,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44dfd",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp304t",
@@ -3142,7 +3292,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44dfe",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-kve301",
@@ -3152,7 +3305,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44dff",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp401t",
@@ -3162,7 +3318,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 4",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e00",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp402t",
@@ -3172,7 +3331,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 4",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e01",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp403t",
@@ -3182,7 +3344,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 4",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e02",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp404t",
@@ -3192,7 +3357,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 4",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e03",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp405t",
@@ -3202,7 +3370,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 4",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e04",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp501t",
@@ -3212,7 +3383,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 5",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e05",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp502t",
@@ -3222,7 +3396,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 5",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e06",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp503t",
@@ -3232,7 +3409,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 5",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e07",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp504t",
@@ -3242,7 +3422,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 5",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e08",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp505t",
@@ -3252,7 +3435,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 5",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e09",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp601t",
@@ -3262,7 +3448,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 6",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e0a",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp602t",
@@ -3272,7 +3461,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 6",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e0b",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp603t",
@@ -3282,7 +3474,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 6",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e0c",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp604t",
@@ -3292,7 +3487,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 6",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e0d",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp605t",
@@ -3302,7 +3500,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 6",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e0e",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp606t",
@@ -3312,7 +3513,10 @@
     "branchId": "B.Pharm",
     "year": "3rd Year",
     "semester": "Semester 6",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e0f",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp701t",
@@ -3322,7 +3526,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 7",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e10",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp702t",
@@ -3332,7 +3539,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 7",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e11",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp703t",
@@ -3342,7 +3552,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 7",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e12",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp704t",
@@ -3352,7 +3565,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 7",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e13",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp801t",
@@ -3362,7 +3578,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e14",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp802t",
@@ -3372,7 +3591,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e15",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp803et",
@@ -3382,7 +3604,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e16",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp804et",
@@ -3392,7 +3617,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e17",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp805et",
@@ -3402,7 +3630,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e18",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp806et",
@@ -3412,7 +3643,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e19",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp807et",
@@ -3422,7 +3656,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e1a",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp808et",
@@ -3432,7 +3669,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e1b",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp809et",
@@ -3442,7 +3682,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e1c",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp810et",
@@ -3452,7 +3695,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e1d",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp811et",
@@ -3462,7 +3708,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e1e",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp812et",
@@ -3472,7 +3721,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e1f",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-bp813et",
@@ -3482,7 +3734,10 @@
     "branchId": "B.Pharm",
     "year": "4th Year",
     "semester": "Semester 8",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e20",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mba-bmb301",
@@ -3492,7 +3747,10 @@
     "branchId": "MBA",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": "Core Management"
+    "specialization": "Core Management",
+    "_id": "6adf7939dac349f21be44e21",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-bmc105",
@@ -3502,7 +3760,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e22",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-kca-cs",
@@ -3512,7 +3773,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e23",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-bmc102",
@@ -3522,7 +3786,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e24",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-bmc104",
@@ -3532,7 +3799,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e25",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-bmc101",
@@ -3542,7 +3812,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e26",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-mca-bmc103",
@@ -3552,7 +3825,10 @@
     "branchId": "MCA",
     "year": "1st Year",
     "semester": "Semester 1",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e27",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-kve401",
@@ -3562,7 +3838,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 3",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e28",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-2019-20",
@@ -3572,7 +3851,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 4",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e29",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-2020-21",
@@ -3582,7 +3864,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 4",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e2a",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-2021-22",
@@ -3592,7 +3877,10 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 4",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e2b",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   },
   {
     "id": "sub-bpharm-2022-23",
@@ -3602,6 +3890,9 @@
     "branchId": "B.Pharm",
     "year": "2nd Year",
     "semester": "Semester 4",
-    "specialization": ""
+    "specialization": "",
+    "_id": "6adf7939dac349f21be44e2c",
+    "createdAt": "2026-10-26T16:00:57.333Z",
+    "updatedAt": "2026-10-26T16:00:57.333Z"
   }
 ]

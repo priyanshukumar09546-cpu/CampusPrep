@@ -73,11 +73,15 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     };
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+    } catch (e) {}
     localStorage.removeItem('professorvirus_token');
     localStorage.removeItem('professorvirus_user');
     sessionStorage.removeItem('professorvirus_token');
     sessionStorage.removeItem('professorvirus_user');
+    localStorage.removeItem('campusprep_auth_user');
     setCurrentUser(null);
     setUserMenuOpen(false);
     window.dispatchEvent(new Event('auth_state_changed'));

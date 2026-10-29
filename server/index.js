@@ -8,6 +8,7 @@ import fs from 'fs';
 import path from 'path';
 import dns from 'dns';
 import { google } from 'googleapis';
+import { OAuth2Client } from 'google-auth-library';
 import { Readable } from 'stream';
 import { fileURLToPath } from 'url';
 import https from 'https';
@@ -22,6 +23,8 @@ import { createPlagiarismRouter } from './routes/plagiarismRoutes.js';
 import { createProgressRouter } from './routes/progressRoutes.js';
 import { createQuizRouter } from './routes/quizRoutes.js';
 import { createHoollowRouter } from './routes/hoollowRoutes.js';
+import { createSyllabusRouter } from './routes/syllabusRoutes.js';
+import SyllabusModel from './models/Syllabus.js';
 import OpenAI from 'openai';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -451,8 +454,10 @@ const UserSchema = new mongoose.Schema({
   bio: { type: String, default: '' },
   points: { type: Number, default: 0 },
   status: { type: String, default: 'Active' },
-  passwordHash: { type: String, required: true },
-  salt: { type: String, required: true }
+  passwordHash: { type: String, default: '' },
+  salt: { type: String, default: '' },
+  googleId: { type: String, default: '', index: true },
+  authProvider: { type: String, default: 'local' }
 }, { timestamps: true });
 
 // COMMUNITY SCHEMAS
@@ -1075,6 +1080,25 @@ async function syncMongoDbWithLocalStores() {
       }
     } catch (schSyncErr) {
       console.warn('[DATABASE] Scholarship sync notice:', schSyncErr.message);
+    }
+
+    // 9. Sync Syllabus
+    try {
+      const sylFile = path.join(__dirname, 'data', 'syllabus.json');
+      if (fs.existsSync(sylFile)) {
+        const diskSyllabus = JSON.parse(fs.readFileSync(sylFile, 'utf8'));
+        if (Array.isArray(diskSyllabus) && diskSyllabus.length > 0) {
+          const count = await SyllabusModel.countDocuments();
+          if (count === 0) {
+            for (const s of diskSyllabus) {
+              await SyllabusModel.updateOne({ id: s.id }, { $set: s }, { upsert: true });
+            }
+            console.log(`[DATABASE] Synced ${diskSyllabus.length} verified Syllabus records into MongoDB.`);
+          }
+        }
+      }
+    } catch (sylSyncErr) {
+      console.warn('[DATABASE] Syllabus sync notice:', sylSyncErr.message);
     }
   } catch (err) {
     console.error('Error syncing MongoDB with local stores:', err.message);
@@ -2425,14 +2449,27 @@ const verifyAdminToken = (req, res, next) => {
   next();
 };
 
+function parseRequestCookies(req) {
+  const header = req.headers.cookie;
+  if (!header) return {};
+  const cookies = {};
+  header.split(';').forEach(c => {
+    const [name, ...val] = c.trim().split('=');
+    if (name) cookies[name] = decodeURIComponent(val.join('='));
+  });
+  return cookies;
+}
+
 // STUDENT / USER AUTHORIZATION MIDDLEWARE
 const verifyUserToken = (req, res, next) => {
+  const cookies = parseRequestCookies(req);
   const authHeader = req.headers['authorization'] || req.headers['x-user-token'];
-  if (!authHeader) {
+  const rawToken = (authHeader ? authHeader.replace(/^Bearer\s+/i, '').trim() : '') || cookies['professorvirus_token'];
+
+  if (!rawToken) {
     return res.status(401).json({ success: false, message: 'Authentication required. Please log in to perform this action.' });
   }
 
-  const rawToken = authHeader.replace('Bearer ', '').trim();
   const payload = verifyJwtToken(rawToken);
 
   if (!payload || !payload.userId) {
@@ -2444,9 +2481,10 @@ const verifyUserToken = (req, res, next) => {
 };
 
 const optionalUserToken = (req, res, next) => {
+  const cookies = parseRequestCookies(req);
   const authHeader = req.headers['authorization'] || req.headers['x-user-token'];
-  if (authHeader) {
-    const rawToken = authHeader.replace('Bearer ', '').trim();
+  const rawToken = (authHeader ? authHeader.replace(/^Bearer\s+/i, '').trim() : '') || cookies['professorvirus_token'];
+  if (rawToken) {
     const payload = verifyJwtToken(rawToken);
     if (payload && payload.userId) {
       req.user = payload;
@@ -2454,6 +2492,7 @@ const optionalUserToken = (req, res, next) => {
   }
   next();
 };
+
 
 // RECORD REAL SYSTEM ACTIVITY LOG
 function logSystemActivity(action, detail, performer = 'System', color = '#059669') {
@@ -6339,6 +6378,250 @@ app.get('/api/auth/me', verifyUserToken, async (req, res) => {
     res.json({ success: true, user: userData });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Error fetching user profile.' });
+  }
+});
+
+// ============================================================================
+// OFFICIAL GOOGLE IDENTITY SERVICES AUTHENTICATION ENDPOINT
+// ============================================================================
+app.post('/api/auth/google', async (req, res) => {
+  try {
+    const { credential, idToken, token: clientToken } = req.body || {};
+    const rawToken = credential || idToken || clientToken;
+
+    if (!rawToken || typeof rawToken !== 'string') {
+      return res.status(400).json({
+        success: false,
+        message: 'Google authentication credential is required.'
+      });
+    }
+
+    const clientId = process.env.GOOGLE_OAUTH_CLIENT_ID ||
+      process.env.GOOGLE_CLIENT_ID ||
+      process.env.VITE_GOOGLE_CLIENT_ID ||
+      '542538347400-cdkgqs944mo35k627h6j7u7531hfre22.apps.googleusercontent.com';
+
+    // Verify token using official Google OAuth2Client
+    const googleAuthClient = new OAuth2Client(clientId);
+    let ticket;
+    try {
+      ticket = await googleAuthClient.verifyIdToken({
+        idToken: rawToken,
+        audience: [
+          clientId,
+          '542538347400-cdkgqs944mo35k627h6j7u7531hfre22.apps.googleusercontent.com'
+        ]
+      });
+    } catch (verifyError) {
+      console.error('[AUTH] Google ID token verification failed:', verifyError.message);
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid or expired Google authentication token. Please sign in again.'
+      });
+    }
+
+    const payload = ticket.getPayload();
+    if (!payload || !payload.sub) {
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid Google token payload.'
+      });
+    }
+
+    // Google Token Claims
+    const googleSub = payload.sub; // Stable unique Google user identifier
+    const googleEmail = (payload.email || '').trim().toLowerCase();
+    const isEmailVerified = Boolean(payload.email_verified);
+    const googleName = (payload.name || payload.given_name || googleEmail.split('@')[0] || 'Student').trim();
+    const googleAvatar = payload.picture || '';
+
+    if (!googleEmail) {
+      return res.status(400).json({
+        success: false,
+        message: 'Google token does not contain a valid email address.'
+      });
+    }
+
+    if (!isEmailVerified) {
+      return res.status(403).json({
+        success: false,
+        message: 'Your Google email is not verified by Google. Please verify it before signing in.'
+      });
+    }
+
+    // 1. Search existing user: match first by Google sub, then by verified email
+    let user = dbUsers.find(u => u.googleId === googleSub);
+
+    if (!user) {
+      user = dbUsers.find(u => u.email && u.email.toLowerCase() === googleEmail);
+    }
+
+    if (!user && isDbConnected) {
+      try {
+        user = await UserModel.findOne({
+          $or: [
+            { googleId: googleSub },
+            { email: new RegExp('^' + googleEmail + '$', 'i') }
+          ]
+        }).lean();
+        if (user && !dbUsers.some(u => u.id === user.id)) {
+          dbUsers.push(user);
+        }
+      } catch (dbFindErr) {
+        console.warn('[AUTH] Mongo user lookup warning:', dbFindErr.message);
+      }
+    }
+
+    let isNewUser = false;
+
+    if (user) {
+      // Returning user: link Google ID if not already linked
+      let updated = false;
+      if (!user.googleId) {
+        user.googleId = googleSub;
+        updated = true;
+      }
+      if (!user.avatarUrl && googleAvatar) {
+        user.avatarUrl = googleAvatar;
+        updated = true;
+      }
+      if (!user.authProvider) {
+        user.authProvider = user.passwordHash ? 'local+google' : 'google';
+        updated = true;
+      }
+
+      if (updated) {
+        saveUsersToDisk(dbUsers);
+        if (isDbConnected) {
+          try {
+            await UserModel.updateOne(
+              { id: user.id },
+              {
+                $set: {
+                  googleId: user.googleId,
+                  avatarUrl: user.avatarUrl,
+                  authProvider: user.authProvider
+                }
+              }
+            );
+          } catch (e) {
+            console.warn('[AUTH] Mongo update warning:', e.message);
+          }
+        }
+      }
+
+      logSystemActivity(
+        'Student Google Sign-In',
+        user.name + ' signed in with Google (' + user.email + ')',
+        user.name,
+        '#2563eb'
+      );
+    } else {
+      // New user registration via Google
+      isNewUser = true;
+      const { hash, salt } = hashPassword(crypto.randomBytes(32).toString('hex'));
+
+      const newUser = {
+        id: 'user-' + Date.now() + '-' + Math.floor(100 + Math.random() * 900),
+        name: googleName,
+        email: googleEmail,
+        mobile: '',
+        enrollment: 'AKTU-' + Math.floor(100000 + Math.random() * 900000),
+        branch: 'CSE',
+        course: 'B.Tech',
+        year: '1st Year',
+        role: 'student',
+        avatarUrl: googleAvatar,
+        bio: '',
+        points: 50,
+        status: 'Active',
+        passwordHash: hash,
+        salt,
+        googleId: googleSub,
+        authProvider: 'google',
+        createdAt: new Date().toISOString()
+      };
+
+      dbUsers.push(newUser);
+      saveUsersToDisk(dbUsers);
+
+      if (isDbConnected) {
+        try {
+          await UserModel.create(newUser);
+        } catch (createErr) {
+          console.warn('[AUTH] Mongo user creation error during Google auth:', createErr.message);
+        }
+      }
+
+      logSystemActivity(
+        'New Student Joined via Google',
+        googleName + ' joined ProfessorVirus using verified Google account (' + googleEmail + ')',
+        googleName,
+        '#10b981'
+      );
+
+      user = newUser;
+    }
+
+    // Issue JWT Session Token (7-day duration for smooth student persistence)
+    const token = signJwtToken(
+      {
+        userId: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role || 'student',
+        branch: user.branch || 'CSE',
+        course: user.course || 'B.Tech',
+        year: user.year || '1st Year'
+      },
+      JWT_SECRET,
+      7 * 24 * 60 * 60
+    );
+
+    // Set secure HTTP-only cookie
+    const isProd = process.env.NODE_ENV === 'production';
+    res.cookie('professorvirus_token', token, {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000
+    });
+
+    const { passwordHash: _, salt: __, ...userData } = user;
+
+    return res.json({
+      success: true,
+      message: isNewUser
+        ? 'Welcome to ProfessorVirus! Your account has been registered with Google.'
+        : 'Welcome back! You have successfully signed in with Google.',
+      isNewUser,
+      user: userData,
+      token
+    });
+  } catch (err) {
+    console.error('Error during Google authentication endpoint:', err);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error processing Google sign-in. Please try again.'
+    });
+  }
+});
+
+// LOGOUT ENDPOINT (Clears HTTP-only cookies)
+app.post('/api/auth/logout', (req, res) => {
+  try {
+    const isProd = process.env.NODE_ENV === 'production';
+    res.clearCookie('professorvirus_token', {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: 'lax'
+    });
+    return res.json({
+      success: true,
+      message: 'Logged out successfully.'
+    });
+  } catch (err) {
+    return res.status(500).json({ success: false, message: 'Logout failed.' });
   }
 });
 
@@ -10732,6 +11015,9 @@ app.use('/api/quizzes', createQuizRouter({ verifyAdminToken }));
 
 // HOOLLOW AI ROADMAP GENERATOR ROUTER
 app.use('/api/hoollow', createHoollowRouter({ isDbConnected, verifyJwtToken }));
+
+// OFFICIAL AKTU SYLLABUS & CURRICULUM ROUTER
+app.use('/api/syllabus', createSyllabusRouter());
 
 // STUDENT ACADEMIC UPDATES & EXAM ALERTS NEWSLETTER
 app.post('/api/updates/subscribe', (req, res) => {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Mail, Lock, User, GraduationCap, ArrowRight } from 'lucide-react';
+import GoogleSignInButton from './GoogleSignInButton';
 
 export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
   const [email, setEmail] = useState('');
@@ -176,6 +177,12 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
             </div>
           )}
 
+          {errorMsg && (
+            <div style={{ padding: '0.6rem 0.8rem', borderRadius: '8px', backgroundColor: '#FEF2F2', border: '1px solid #FCA5A5', color: '#991B1B', fontSize: '0.8rem', textAlign: 'center' }}>
+              {errorMsg}
+            </div>
+          )}
+
           <button
             type="submit"
             className="btn-primary"
@@ -190,6 +197,26 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
             {mode === 'login' ? 'Login to Account' : 'Create Free Account'} <ArrowRight size={18} />
           </button>
         </form>
+
+        {/* OR DIVIDER */}
+        <div style={{ display: 'flex', alignItems: 'center', margin: '1rem 0 0.8rem 0' }}>
+          <div style={{ flex: 1, height: '1px', backgroundColor: '#e2e8f0' }} />
+          <span style={{ padding: '0 0.6rem', fontSize: '0.75rem', color: '#94a3b8', fontWeight: 600 }}>OR</span>
+          <div style={{ flex: 1, height: '1px', backgroundColor: '#e2e8f0' }} />
+        </div>
+
+        {/* GOOGLE SIGN IN BUTTON */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <GoogleSignInButton
+            mode={mode === 'signup' ? 'signup' : 'signin'}
+            width={340}
+            onSuccess={() => {
+              onClose();
+              window.location.reload();
+            }}
+            onError={(err) => setErrorMsg(err)}
+          />
+        </div>
 
         {/* Switch Mode Footer */}
         <div style={{ textAlign: 'center', marginTop: '1.25rem', fontSize: '0.85rem', color: '#64748b' }}>

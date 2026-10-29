@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Search, 
   ChevronDown, 
@@ -7,225 +7,232 @@ import {
   Grid, 
   List, 
   ArrowRight,
-  BookOpen,
-  FileText,
-  Lightbulb,
-  Download,
-  Filter,
-  CheckCircle2,
-  Sparkles,
-  Layers,
-  Cpu,
-  Radio,
-  Wrench,
-  Building2,
-  Code,
-  Zap,
-  ExternalLink,
-  Calendar,
-  Award,
-  Globe,
-  HelpCircle,
-  X,
-  ChevronRight
+  BookOpen, 
+  FileText, 
+  Lightbulb, 
+  Download, 
+  Filter, 
+  CheckCircle2, 
+  Sparkles, 
+  Layers, 
+  Cpu, 
+  Radio, 
+  Wrench, 
+  Building2, 
+  Code, 
+  Zap, 
+  ExternalLink, 
+  Calendar, 
+  Award, 
+  Globe, 
+  HelpCircle, 
+  X, 
+  ChevronRight,
+  ShieldCheck,
+  Eye,
+  AlertCircle,
+  GraduationCap
 } from 'lucide-react';
 import AllIzzWellBanner from '../components/AllIzzWellBanner';
 import AcademicResourceBanner from '../components/AcademicResourceBanner';
-import { COURSES } from '../data/coursesCatalog';
+import SyllabusPdfViewerModal from '../components/SyllabusPdfViewerModal';
+import { SYLLABUS_CATALOG } from '../data/syllabusCatalog';
 
 export default function SyllabusPage({ onNavigate, onOpenAI }) {
-  // Course Selector State
-  const [selectedCourseKey, setSelectedCourseKey] = useState('B.Tech');
-  const [selectedCourseSemester, setSelectedCourseSemester] = useState('Semester 1');
+  // Master syllabus dataset (seeded from authoritative catalog and augmented from API)
+  const [syllabusList, setSyllabusList] = useState(SYLLABUS_CATALOG);
 
-  // Navigation & Filter States
-  const [selectedBranch, setSelectedBranch] = useState(null); // If selected, shows branch detail view
-  const [filterBranch, setFilterBranch] = useState([]);
-  const [filterYear, setFilterYear] = useState(null);
+  // Dynamic Hierarchical Filter States (in specified order: Course -> Branch -> Session/Year -> Semester -> Subject)
+  const [selectedCourse, setSelectedCourse] = useState('B.Tech');
+  const [selectedBranch, setSelectedBranch] = useState('CSE');
+  const [selectedSession, setSelectedSession] = useState('All');
+  const [selectedSemester, setSelectedSemester] = useState('Semester 3');
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState('grid');
-  const [selectedSubjectDetail, setSelectedSubjectDetail] = useState(null);
 
-  const activeCourseObj = useMemo(() => {
-    return COURSES.find(c => c.name === selectedCourseKey || c.key === selectedCourseKey) || null;
-  }, [selectedCourseKey]);
+  // Modals state
+  const [activePdfModal, setActivePdfModal] = useState(null); // stores syllabus record for PDF viewer
+  const [activeUnitModal, setActiveUnitModal] = useState(null); // stores syllabus record for Unit Topics viewer
 
-  const activeCourseSubjects = useMemo(() => {
-    if (!activeCourseObj || !activeCourseObj.subjectsBySemester) return [];
-    return activeCourseObj.subjectsBySemester[selectedCourseSemester] || [];
-  }, [activeCourseObj, selectedCourseSemester]);
+  // Fetch updated records from backend API in background
+  useEffect(() => {
+    let isMounted = true;
+    fetch('/api/syllabus')
+      .then(res => res.json())
+      .then(json => {
+        if (isMounted && json.success && Array.isArray(json.data) && json.data.length > 0) {
+          // Merge API data with bundled catalog
+          const existingMap = new Map();
+          SYLLABUS_CATALOG.forEach(item => existingMap.set(item.id || item.officialPdfUrl, item));
+          json.data.forEach(item => existingMap.set(item.id || item.officialPdfUrl, item));
+          setSyllabusList(Array.from(existingMap.values()));
+        }
+      })
+      .catch(err => {
+        // Fallback gracefully to bundled catalog without disruption
+        console.info('[SYLLABUS PAGE] Using bundled verified catalog:', err.message);
+      });
+    return () => { isMounted = false; };
+  }, []);
 
-  // 6 Primary Branches
-  const branches = [
-    {
-      id: 'cse',
-      code: 'CSE',
-      name: 'Computer Science Engineering (CSE)',
-      semestersCount: 8,
-      status: 'Latest Syllabus',
-      icon: Code,
-      bgColor: '#FDF6E8',
-      iconColor: '#C88D2D',
-      borderColor: '#E8D3B0'
-    },
-    {
-      id: 'ece',
-      code: 'ECE',
-      name: 'Electronics & Communication (ECE)',
-      semestersCount: 8,
-      status: 'Latest Syllabus',
-      icon: Cpu,
-      bgColor: '#fef3c7',
-      iconColor: '#d97706',
-      borderColor: '#fde68a'
-    },
-    {
-      id: 'me',
-      code: 'ME',
-      name: 'Mechanical Engineering (ME)',
-      semestersCount: 8,
-      status: 'Latest Syllabus',
-      icon: Wrench,
-      bgColor: '#fce7f3',
-      iconColor: '#db2777',
-      borderColor: '#fbcfe8'
-    },
-    {
-      id: 'ce',
-      code: 'CE',
-      name: 'Civil Engineering (CE)',
-      semestersCount: 8,
-      status: 'Latest Syllabus',
-      icon: Building2,
-      bgColor: '#e0f2fe',
-      iconColor: '#0284c7',
-      borderColor: '#bae6fd'
-    },
-    {
-      id: 'it',
-      code: 'IT',
-      name: 'Information Technology (IT)',
-      semestersCount: 8,
-      status: 'Latest Syllabus',
-      icon: Radio,
-      bgColor: '#f3e8ff',
-      iconColor: '#9333ea',
-      borderColor: '#e9d5ff'
-    },
-    {
-      id: 'ee',
-      code: 'EE',
-      name: 'Electrical Engineering (EE)',
-      semestersCount: 8,
-      status: 'Latest Syllabus',
-      icon: Zap,
-      bgColor: '#e0e7ff',
-      iconColor: '#4f46e5',
-      borderColor: '#c7d2fe'
+  // 1. Available Courses
+  const availableCourses = useMemo(() => {
+    const list = Array.from(new Set(syllabusList.map(s => s.course).filter(Boolean)));
+    const priority = ['B.Tech', 'BCA', 'MCA', 'MBA', 'B.Pharm', 'M.Tech'];
+    return [
+      ...priority.filter(c => list.includes(c)),
+      ...list.filter(c => !priority.includes(c))
+    ];
+  }, [syllabusList]);
+
+  // 2. Available Branches for Selected Course
+  const availableBranches = useMemo(() => {
+    const forCourse = syllabusList.filter(s => s.course === selectedCourse);
+    const set = new Set(forCourse.map(s => s.branch).filter(Boolean));
+    const arr = Array.from(set);
+
+    if (selectedCourse === 'B.Tech') {
+      const btechPriority = [
+        'Common (All Branches)',
+        'CSE',
+        'IT',
+        'AI & ML',
+        'Data Science',
+        'Cyber Security',
+        'Computer Science & Design',
+        'ECE',
+        'Electrical Engineering',
+        'Mechanical Engineering',
+        'Civil Engineering',
+        'Biotechnology',
+        'Chemical Engineering',
+        'Agriculture Engineering',
+        'Automobile Engineering'
+      ];
+      return [
+        ...btechPriority.filter(b => set.has(b)),
+        ...arr.filter(b => !btechPriority.includes(b))
+      ];
     }
-  ];
+    return arr;
+  }, [syllabusList, selectedCourse]);
 
-  // Official AKTU B.Tech Verified Syllabus Dataset (Structured according to AKTU Curriculum)
-  const aktuSyllabusData = {
-    cse: [
-      {
-        sem: 'Sem 3',
-        year: '2nd Year',
-        subjects: [
-          {
-            code: 'KCS-301 / BCS-301',
-            name: 'Data Structures',
-            credits: 4,
-            evalScheme: '30-70 Marks',
-            units: [
-              { title: 'Unit I: Introduction & Stacks', topics: 'Arrays, Sparse Matrices, Stacks, Recursion, Evaluation of Expressions' },
-              { title: 'Unit II: Queues & Linked Lists', topics: 'Singly, Doubly, Circular Linked Lists, Priority Queues, Deque' },
-              { title: 'Unit III: Trees & Binary Search Trees', topics: 'Trees Traversal, BST Operations, AVL Trees, Threaded Trees' },
-              { title: 'Unit IV: Graphs & Hashing', topics: 'Graph Representation, BFS, DFS, Shortest Paths, Hash Functions, Collision Resolution' },
-              { title: 'Unit V: Sorting & Searching', topics: 'Insertion, Selection, Bubble, Quick, Merge, Heap Sort, File Structures' }
-            ]
-          },
-          {
-            code: 'KCS-302 / BCS-302',
-            name: 'Computer Organization & Architecture',
-            credits: 4,
-            evalScheme: '30-70 Marks',
-            units: [
-              { title: 'Unit I: Functional Units', topics: 'Register Transfer, Bus Architecture, Arithmetic Logic Unit' },
-              { title: 'Unit II: Control Unit Architecture', topics: 'Hardwired vs Microprogrammed Control Unit, Instruction Formats' },
-              { title: 'Unit III: Memory Hierarchy', topics: 'RAM, ROM, Cache Memory Mapping, Virtual Memory' },
-              { title: 'Unit IV: Input-Output Organization', topics: 'Peripheral Devices, DMA Controller, Interrupts, I/O Processors' },
-              { title: 'Unit V: Pipeline & Multiprocessors', topics: 'Pipelining, Hazards, Vector Processing, RISC vs CISC' }
-            ]
-          },
-          {
-            code: 'KCS-303 / BCS-303',
-            name: 'Discrete Structures & Theory of Logic',
-            credits: 4,
-            evalScheme: '30-70 Marks',
-            units: [
-              { title: 'Unit I: Set Theory & Relations', topics: 'Sets, Relations, Equivalence, Partial Order, Lattice' },
-              { title: 'Unit II: Algebraic Structures', topics: 'Groups, Subgroups, Cyclic Groups, Rings, Fields' },
-              { title: 'Unit III: Propositional & Predicate Logic', topics: 'Tautology, Inference Rules, Proof Techniques' },
-              { title: 'Unit IV: Combinatorics & Recurrence', topics: 'Pigeonhole Principle, Permutations, Generating Functions' },
-              { title: 'Unit V: Graph Theory', topics: 'Isomorphism, Eulerian & Hamiltonian Graphs, Planar Graphs' }
-            ]
-          }
-        ]
-      },
-      {
-        sem: 'Sem 4',
-        year: '2nd Year',
-        subjects: [
-          {
-            code: 'KCS-401 / BCS-401',
-            name: 'Operating Systems',
-            credits: 4,
-            evalScheme: '30-70 Marks',
-            units: [
-              { title: 'Unit I: Introduction & OS Structure', topics: 'System Calls, OS Structure, Processes, Process Control Block' },
-              { title: 'Unit II: CPU Scheduling & Synchronization', topics: 'FCFS, SJF, Round Robin, Semaphores, Monitors, Classical Problems' },
-              { title: 'Unit III: Deadlocks', topics: 'Characterization, Banker\'s Algorithm, Prevention, Detection, Recovery' },
-              { title: 'Unit IV: Memory Management', topics: 'Paging, Segmentation, Virtual Memory, Page Replacement (FIFO, LRU, Optimal)' },
-              { title: 'Unit V: File & I/O Systems', topics: 'Disk Scheduling (SSTF, SCAN, C-SCAN), Directory Structure, Security' }
-            ]
-          },
-          {
-            code: 'KCS-402 / BCS-402',
-            name: 'Theory of Automata & Formal Languages (TAFL)',
-            credits: 4,
-            evalScheme: '30-70 Marks',
-            units: [
-              { title: 'Unit I: Finite Automata', topics: 'DFA, NFA, NFA to DFA conversion, Mealy & Moore Machines' },
-              { title: 'Unit II: Regular Expressions & Languages', topics: 'Pumping Lemma, Regular Grammars, Closure Properties' },
-              { title: 'Unit III: Context-Free Grammars', topics: 'Derivation Trees, Ambiguity, Chomsky & Greibach Normal Forms' },
-              { title: 'Unit IV: Pushdown Automata (PDA)', topics: 'Deterministic & Non-deterministic PDA, Equivalence with CFG' },
-              { title: 'Unit V: Turing Machines & Computability', topics: 'Halting Problem, Undecidability, Post Correspondence Problem' }
-            ]
-          }
-        ]
+  // Synchronize Branch when Course changes
+  useEffect(() => {
+    if (availableBranches.length > 0 && !availableBranches.includes(selectedBranch)) {
+      setSelectedBranch(availableBranches[0]);
+    }
+  }, [availableBranches, selectedBranch]);
+
+  // 3. Available Academic Sessions for Selected Course & Branch
+  const availableSessions = useMemo(() => {
+    const matched = syllabusList.filter(s => 
+      s.course === selectedCourse && 
+      (selectedBranch === 'All' || s.branch === selectedBranch || s.branch === 'Common (All Branches)')
+    );
+    const sessions = Array.from(new Set(matched.map(s => s.academicSession).filter(Boolean))).sort().reverse();
+    return ['All', ...sessions];
+  }, [syllabusList, selectedCourse, selectedBranch]);
+
+  // 4. Available Semesters for Selected Course, Branch, and Session
+  const availableSemesters = useMemo(() => {
+    if (selectedCourse === 'B.Tech') {
+      if (selectedBranch === 'Common (All Branches)') {
+        return ['Semester 1', 'Semester 2'];
       }
-    ]
-  };
+      return [
+        'Semester 1', 'Semester 2', 'Semester 3', 'Semester 4',
+        'Semester 5', 'Semester 6', 'Semester 7', 'Semester 8'
+      ];
+    }
+    if (selectedCourse === 'MCA' || selectedCourse === 'MBA' || selectedCourse === 'M.Tech') {
+      return ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4'];
+    }
+    if (selectedCourse === 'BCA') {
+      return ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4', 'Semester 5', 'Semester 6'];
+    }
+    if (selectedCourse === 'B.Pharm') {
+      return [
+        'Semester 1', 'Semester 2', 'Semester 3', 'Semester 4',
+        'Semester 5', 'Semester 6', 'Semester 7', 'Semester 8'
+      ];
+    }
+    return ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4'];
+  }, [selectedCourse, selectedBranch]);
 
-  const filteredBranches = useMemo(() => {
-    return branches.filter(b => {
-      if (filterBranch.length > 0 && !filterBranch.includes(b.code)) return false;
+  // Synchronize Semester when Course or Branch changes
+  useEffect(() => {
+    if (availableSemesters.length > 0 && !availableSemesters.includes(selectedSemester)) {
+      setSelectedSemester(availableSemesters[0]);
+    }
+  }, [availableSemesters, selectedSemester]);
+
+  // Filtered Syllabus Records
+  const filteredRecords = useMemo(() => {
+    return syllabusList.filter(item => {
+      // Course Match
+      if (item.course !== selectedCourse) return false;
+
+      // Branch Match (Common 1st year matches all B.Tech branches in Sem 1 & 2)
+      if (selectedBranch && selectedBranch !== 'All') {
+        const isFirstYearSem = selectedSemester === 'Semester 1' || selectedSemester === 'Semester 2';
+        const isCommonBranch = item.branch === 'Common (All Branches)';
+        const matchesBranch = item.branch === selectedBranch || (selectedCourse === 'B.Tech' && isFirstYearSem && isCommonBranch);
+        if (!matchesBranch) return false;
+      }
+
+      // Academic Session Match
+      if (selectedSession !== 'All' && item.academicSession !== selectedSession) {
+        return false;
+      }
+
+      // Semester Match
+      if (selectedSemester && selectedSemester !== 'All') {
+        const semNorm = selectedSemester.toLowerCase().replace('semester ', 'sem ');
+        const itemSem = (item.semester || '').toLowerCase().replace('semester ', 'sem ');
+        const inApplicable = Array.isArray(item.applicableSemesters) && 
+          item.applicableSemesters.some(s => s.toLowerCase().replace('semester ', 'sem ') === semNorm);
+        if (itemSem !== semNorm && !inApplicable && !item.isComprehensive) {
+          return false;
+        }
+      }
+
+      // Search Query Match
       if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        const matchCode = b.code.toLowerCase().includes(q);
-        const matchName = b.name.toLowerCase().includes(q);
-        if (!matchCode && !matchName) return false;
+        const q = searchQuery.toLowerCase().trim();
+        const matchName = item.subjectName && item.subjectName.toLowerCase().includes(q);
+        const matchCode = item.subjectCode && item.subjectCode.toLowerCase().includes(q);
+        const matchBranch = item.branch && item.branch.toLowerCase().includes(q);
+        const matchUnits = Array.isArray(item.units) && item.units.some(u => 
+          (u.title && u.title.toLowerCase().includes(q)) ||
+          (u.topics && u.topics.toLowerCase().includes(q))
+        );
+        if (!matchName && !matchCode && !matchBranch && !matchUnits) {
+          return false;
+        }
       }
+
       return true;
     });
-  }, [branches, filterBranch, searchQuery]);
+  }, [syllabusList, selectedCourse, selectedBranch, selectedSession, selectedSemester, searchQuery]);
 
+  // Separate Comprehensive Document vs Individual Subjects
+  const comprehensiveDoc = useMemo(() => {
+    return filteredRecords.find(r => r.isComprehensive && r.officialPdfUrl) || 
+      syllabusList.find(r => r.course === selectedCourse && (r.branch === selectedBranch || r.branch === 'Common (All Branches)') && r.isComprehensive);
+  }, [filteredRecords, syllabusList, selectedCourse, selectedBranch]);
+
+  const subjectRecords = useMemo(() => {
+    return filteredRecords.filter(r => !r.isComprehensive);
+  }, [filteredRecords]);
+
+  // Reset all filters
   const handleResetFilters = () => {
-    setFilterBranch([]);
-    setFilterYear(null);
+    setSelectedCourse('B.Tech');
+    setSelectedBranch('CSE');
+    setSelectedSession('All');
+    setSelectedSemester('Semester 3');
     setSearchQuery('');
-    setSelectedBranch(null);
   };
 
   return (
@@ -349,7 +356,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
               </div>
 
               <p style={{ color: '#64748b', fontSize: '0.95rem', fontWeight: 500, maxWidth: '520px' }}>
-                Get the latest and official AKTU B.Tech syllabus, <br />
+                Official and verified AKTU curriculum PDFs, evaluation schemes, <br />
                 branch-wise and semester-wise, all in one place.
               </p>
 
@@ -375,7 +382,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
                   <Search size={18} style={{ color: '#7A5835', marginRight: '0.6rem', flexShrink: 0 }} />
                   <input
                     type="text"
-                    placeholder="Search syllabus (e.g. CSE Sem 3, DBMS, Operating System...)"
+                    placeholder="Search subject or code (e.g. Data Structures, BCS-301, Compiler...)"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     style={{
@@ -429,12 +436,12 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
           </button>
           <span>&gt;</span>
           <span style={{ fontWeight: 700, color: '#1F2421' }}>Syllabus</span>
-          {selectedBranch && (
-            <>
-              <span>&gt;</span>
-              <span style={{ fontWeight: 700, color: '#C88D2D' }}>{selectedBranch.code}</span>
-            </>
-          )}
+          <span>&gt;</span>
+          <span style={{ fontWeight: 700, color: '#781416' }}>{selectedCourse}</span>
+          <span>&gt;</span>
+          <span style={{ fontWeight: 700, color: '#C88D2D' }}>{selectedBranch}</span>
+          <span>&gt;</span>
+          <span style={{ color: '#475569' }}>{selectedSemester}</span>
         </div>
       </div>
 
@@ -442,147 +449,211 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
       <div className="container" style={{ padding: '2rem 1.25rem 3rem 1.25rem' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '240px 1fr 280px',
+          gridTemplateColumns: '260px 1fr 280px',
           gap: '1.5rem',
           alignItems: 'start'
         }} className="syllabus-main-layout">
 
-          {/* LEFT COLUMN: FILTERS SIDEBAR */}
+          {/* LEFT COLUMN: 5-LEVEL DYNAMIC FILTERS SIDEBAR */}
           <aside style={{
             backgroundColor: '#ffffff',
             borderRadius: '20px',
             border: '1px solid #E8E2D5',
             padding: '1.25rem',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.03)',
-            position: 'sticky',
-            top: '85px'
+            boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
           }}>
             <div style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              paddingBottom: '0.75rem',
-              borderBottom: '1px solid #F6F2E9',
-              marginBottom: '1rem'
+              marginBottom: '1.1rem',
+              borderBottom: '2px solid #E8D3B0',
+              paddingBottom: '0.65rem'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '1rem', color: '#1F2421' }}>
-                <Filter size={16} style={{ color: '#C88D2D' }} /> Filters
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                <Filter size={18} style={{ color: '#781416' }} />
+                <h3 style={{ fontSize: '1rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
+                  Curriculum Filters
+                </h3>
               </div>
               <button
                 onClick={handleResetFilters}
-                style={{ background: 'none', border: 'none', color: '#C88D2D', fontSize: '0.8rem', fontWeight: 600, cursor: 'pointer' }}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#C88D2D',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
               >
-                Reset
+                Reset All
               </button>
             </div>
 
-            {/* SELECT BRANCH */}
+            {/* FILTER 1: COURSE SELECTION */}
             <div style={{ marginBottom: '1.25rem' }}>
-              <div style={filterTitleStyle}>SELECT BRANCH</div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
-                {['CSE', 'ECE', 'ME', 'CE', 'IT', 'EE'].map(b => (
-                  <label key={b} style={checkboxLabelStyle}>
-                    <input
-                      type="checkbox"
-                      checked={filterBranch.includes(b)}
-                      onChange={() => {
-                        setFilterBranch(prev => prev.includes(b) ? prev.filter(x => x !== b) : [...prev, b]);
+              <div style={filterTitleStyle}>1. SELECT COURSE / DEGREE</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                {availableCourses.map((cName) => {
+                  const isSel = selectedCourse === cName;
+                  return (
+                    <button
+                      key={cName}
+                      onClick={() => setSelectedCourse(cName)}
+                      style={{
+                        textAlign: 'left',
+                        padding: '0.5rem 0.75rem',
+                        borderRadius: '10px',
+                        border: isSel ? '1.5px solid #781416' : '1px solid #E8E2D5',
+                        backgroundColor: isSel ? '#FEF2F2' : '#FAF7F2',
+                        color: isSel ? '#781416' : '#1F2421',
+                        fontSize: '0.82rem',
+                        fontWeight: isSel ? 800 : 600,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        transition: 'all 0.15s ease'
                       }}
-                      style={checkboxInputStyle}
-                    />
-                    <span style={{ fontSize: '0.82rem', color: '#334155' }}>{b}</span>
-                  </label>
-                ))}
+                    >
+                      <span>{cName}</span>
+                      {isSel && <Check size={14} color="#781416" />}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* SELECT YEAR */}
+            {/* FILTER 2: BRANCH / SPECIALIZATION */}
             <div style={{ marginBottom: '1.25rem' }}>
-              <div style={filterTitleStyle}>SELECT YEAR</div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                {[
-                  { name: '1st Year', sem: 'Sem 1 & 2', color: '#FDF6E8', text: '#C88D2D' },
-                  { name: '2nd Year', sem: 'Sem 3 & 4', color: '#fffbeb', text: '#d97706' },
-                  { name: '3rd Year', sem: 'Sem 5 & 6', color: '#fef2f2', text: '#dc2626' },
-                  { name: '4th Year', sem: 'Sem 7 & 8', color: '#f5f3ff', text: '#7c3aed' }
-                ].map(y => (
-                  <div
-                    key={y.name}
-                    onClick={() => setFilterYear(filterYear === y.name ? null : y.name)}
-                    style={{
-                      backgroundColor: filterYear === y.name ? '#1F2421' : y.color,
-                      color: filterYear === y.name ? '#ffffff' : y.text,
-                      borderRadius: '10px',
-                      padding: '0.6rem 0.4rem',
-                      textAlign: 'center',
-                      cursor: 'pointer',
-                      border: '1px solid #E8E2D5',
-                      transition: 'all 0.2s ease'
-                    }}
-                  >
-                    <div style={{ fontSize: '0.82rem', fontWeight: 800 }}>{y.name}</div>
-                    <div style={{ fontSize: '0.68rem', fontWeight: 500, opacity: 0.8 }}>{y.sem}</div>
-                  </div>
+              <div style={filterTitleStyle}>2. BRANCH / SPECIALIZATION</div>
+              <select
+                value={selectedBranch}
+                onChange={(e) => setSelectedBranch(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.55rem 0.75rem',
+                  borderRadius: '10px',
+                  border: '1.5px solid #E8E2D5',
+                  backgroundColor: '#FAF7F2',
+                  fontSize: '0.82rem',
+                  fontWeight: 700,
+                  color: '#1F2421',
+                  outline: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                {availableBranches.map((br) => (
+                  <option key={br} value={br}>
+                    {br}
+                  </option>
                 ))}
-              </div>
+              </select>
             </div>
 
-            {/* QUICK LINKS */}
+            {/* FILTER 3: ACADEMIC YEAR / SESSION */}
             <div style={{ marginBottom: '1.25rem' }}>
-              <div style={filterTitleStyle}>QUICK LINKS</div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                {[
-                  { name: 'Official AKTU Syllabus', url: 'https://aktu.ac.in/syllabus.html' },
-                  { name: 'Exam Scheme', url: 'https://aktu.ac.in/circulars.html' },
-                  { name: 'Credit System', url: 'https://aktu.ac.in' },
-                  { name: 'Download All (Branch-wise)', url: '#' }
-                ].map((l, idx) => (
-                  <a
-                    key={idx}
-                    href={l.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      fontSize: '0.8rem',
-                      color: '#334155',
-                      fontWeight: 600,
-                      padding: '0.45rem 0.6rem',
-                      borderRadius: '8px',
-                      backgroundColor: '#FAF7F2',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    <span>{l.name}</span>
-                    <ArrowRight size={13} style={{ color: '#C88D2D' }} />
-                  </a>
-                ))}
+              <div style={filterTitleStyle}>3. ACADEMIC SESSION / YEAR</div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.35rem' }}>
+                {availableSessions.map((sess) => {
+                  const isSel = selectedSession === sess;
+                  return (
+                    <button
+                      key={sess}
+                      onClick={() => setSelectedSession(sess)}
+                      style={{
+                        textAlign: 'left',
+                        padding: '0.45rem 0.7rem',
+                        borderRadius: '8px',
+                        border: isSel ? '1.5px solid #C88D2D' : '1px solid #E8E2D5',
+                        backgroundColor: isSel ? '#FEF9EE' : '#FFFFFF',
+                        color: isSel ? '#8A5D00' : '#475569',
+                        fontSize: '0.78rem',
+                        fontWeight: isSel ? 800 : 600,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <span>{sess === 'All' ? 'All Sessions (Latest First)' : sess}</span>
+                      {isSel && <Check size={13} color="#8A5D00" />}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Quote Box at bottom of sidebar */}
+            {/* FILTER 4: SEMESTER SELECTION */}
+            <div style={{ marginBottom: '1.25rem' }}>
+              <div style={filterTitleStyle}>4. SEMESTER</div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
+                {availableSemesters.map((sem) => {
+                  const isSemActive = selectedSemester === sem;
+                  return (
+                    <button
+                      key={sem}
+                      onClick={() => setSelectedSemester(sem)}
+                      style={{
+                        padding: '0.45rem 0.4rem',
+                        borderRadius: '8px',
+                        border: isSemActive ? '1.5px solid #781416' : '1px solid #E8E2D5',
+                        backgroundColor: isSemActive ? '#781416' : '#FAF7F2',
+                        color: isSemActive ? '#FFFFFF' : '#1F2421',
+                        fontSize: '0.76rem',
+                        fontWeight: 700,
+                        textAlign: 'center',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      {sem.replace('Semester ', 'Sem ')}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* OFFICIAL PORTAL LINK */}
             <div style={{
-              backgroundColor: '#FDF6E8',
+              backgroundColor: '#FEF9EE',
               border: '1px solid #E8D3B0',
               borderRadius: '12px',
-              padding: '0.75rem',
-              fontFamily: "'Kalam', cursive",
-              fontSize: '0.82rem',
-              fontWeight: 700,
-              color: '#1F2421',
-              textAlign: 'center'
+              padding: '0.85rem',
+              marginTop: '1rem'
             }}>
-              “Syllabus is not just a list, <br />
-              it's your roadmap to success.” <br />
-              <span style={{ color: '#C88D2D' }}>— Virus :)</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#8A5D00', fontWeight: 800, fontSize: '0.8rem', marginBottom: '0.35rem' }}>
+                <ShieldCheck size={16} />
+                <span>AKTU Official Portal</span>
+              </div>
+              <p style={{ fontSize: '0.74rem', color: '#64748B', margin: '0 0 0.6rem 0', lineHeight: 1.4 }}>
+                Authoritative syllabi from Dr. A.P.J. Abdul Kalam Technical University (Lucknow).
+              </p>
+              <a
+                href="https://aktu.ac.in/syllabus.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: '0.74rem',
+                  fontWeight: 700,
+                  color: '#781416',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.3rem'
+                }}
+              >
+                <span>Visit aktu.ac.in/syllabus</span>
+                <ExternalLink size={12} />
+              </a>
             </div>
+
           </aside>
 
-          {/* CENTER COLUMN: BROWSE SYLLABUS BY BRANCH OR BRANCH DETAIL VIEW */}
+          {/* CENTER COLUMN: COMPREHENSIVE CURRICULUM + SUBJECTS CARDS */}
           <main>
-            {/* Degree Course Selector Bar */}
+            {/* Degree Course Top Pills */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -591,15 +662,13 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
               marginBottom: '1.25rem',
               paddingBottom: '0.2rem'
             }}>
-              {['B.Tech', 'BCA', 'MCA', 'MBA', 'B.Pharm'].map((cName) => {
-                const isSel = selectedCourseKey === cName;
+              {availableCourses.map((cName) => {
+                const isSel = selectedCourse === cName;
                 return (
                   <button
                     key={cName}
                     onClick={() => {
-                      setSelectedCourseKey(cName);
-                      setSelectedBranch(null);
-                      setSelectedCourseSemester('Semester 1');
+                      setSelectedCourse(cName);
                     }}
                     style={{
                       padding: '0.45rem 1.05rem',
@@ -621,629 +690,550 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
               })}
             </div>
 
-            {selectedCourseKey !== 'B.Tech' ? (
-              <div
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  borderRadius: '16px',
-                  border: '1.5px solid #E8E2D5',
-                  padding: '1.4rem',
-                  boxShadow: '0 2px 8px rgba(35,30,25,0.03)'
-                }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
+            {/* CURRICULUM HEADER BANNER */}
+            <div style={{
+              backgroundColor: '#FFFFFF',
+              borderRadius: '16px',
+              border: '1.5px solid #E8E2D5',
+              padding: '1.25rem 1.4rem',
+              marginBottom: '1.25rem',
+              boxShadow: '0 2px 8px rgba(35,30,25,0.03)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '0.75rem'
+            }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                  <span style={{
+                    fontSize: '0.74rem',
+                    fontWeight: 800,
+                    backgroundColor: '#781416',
+                    color: '#FFFFFF',
+                    padding: '0.15rem 0.6rem',
+                    borderRadius: '9999px'
+                  }}>
+                    {selectedCourse} • {selectedBranch}
+                  </span>
+                  <span style={{
+                    fontSize: '0.74rem',
+                    fontWeight: 700,
+                    backgroundColor: '#FEF9EE',
+                    color: '#8A5D00',
+                    border: '1px solid #E8D3B0',
+                    padding: '0.15rem 0.6rem',
+                    borderRadius: '9999px',
+                    display: 'inline-flex',
                     alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: '1.1rem',
-                    flexWrap: 'wrap',
-                    gap: '0.5rem'
-                  }}
-                >
-                  <div>
-                    <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
-                      {selectedCourseKey} Curriculum &amp; Syllabus
-                    </h2>
-                    <p style={{ fontSize: '0.82rem', color: '#64748b', margin: '0.2rem 0 0 0' }}>
-                      Semester-wise official curriculum, verified subject codes, units, and credit structure.
-                    </p>
-                  </div>
-                  <span
-                    style={{
-                      fontSize: '0.74rem',
-                      fontWeight: 800,
-                      padding: '0.22rem 0.7rem',
-                      borderRadius: '9999px',
-                      backgroundColor: '#FEF9EE',
-                      color: '#8A5D00',
-                      border: '1px solid #E8D3B0'
-                    }}
-                  >
-                    Official Curriculum
+                    gap: '0.25rem'
+                  }}>
+                    <ShieldCheck size={13} />
+                    Verified Official Curriculum
                   </span>
                 </div>
 
-                {/* Semester Selector Pills */}
-                <div
+                <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
+                  {selectedCourse} {selectedBranch} — {selectedSemester}
+                </h2>
+                <p style={{ fontSize: '0.82rem', color: '#64748B', margin: '0.2rem 0 0 0' }}>
+                  Open genuine AKTU syllabus PDFs directly using “View Syllabus” or explore unit breakdowns.
+                </p>
+              </div>
+
+              {/* View Toggle */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                backgroundColor: '#FAF7F2',
+                border: '1px solid #E8E2D5',
+                borderRadius: '8px',
+                padding: '0.2rem'
+              }}>
+                <button
+                  onClick={() => setViewMode('grid')}
                   style={{
+                    padding: '0.35rem 0.65rem',
+                    borderRadius: '6px',
+                    border: 'none',
+                    backgroundColor: viewMode === 'grid' ? '#1F2421' : 'transparent',
+                    color: viewMode === 'grid' ? '#FFFFFF' : '#64748B',
+                    fontSize: '0.76rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
                     display: 'flex',
-                    gap: '0.45rem',
-                    overflowX: 'auto',
-                    marginBottom: '1.35rem',
-                    paddingBottom: '0.25rem'
+                    alignItems: 'center',
+                    gap: '0.3rem'
                   }}
                 >
-                  {(activeCourseObj?.semesters || ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4']).map((sem) => {
-                    const isSemActive = selectedCourseSemester === sem;
-                    return (
-                      <button
-                        key={sem}
-                        onClick={() => setSelectedCourseSemester(sem)}
-                        style={{
-                          padding: '0.4rem 0.95rem',
-                          borderRadius: '9999px',
-                          border: isSemActive ? '1.5px solid #781416' : '1px solid #E8E2D5',
-                          backgroundColor: isSemActive ? '#781416' : '#FAF7F2',
-                          color: isSemActive ? '#FFFFFF' : '#1F2421',
-                          fontSize: '0.8rem',
-                          fontWeight: 700,
-                          cursor: 'pointer',
-                          whiteSpace: 'nowrap'
-                        }}
-                      >
-                        {sem}
-                      </button>
-                    );
-                  })}
+                  <Grid size={13} /> Grid
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  style={{
+                    padding: '0.35rem 0.65rem',
+                    borderRadius: '6px',
+                    border: 'none',
+                    backgroundColor: viewMode === 'list' ? '#1F2421' : 'transparent',
+                    color: viewMode === 'list' ? '#FFFFFF' : '#64748B',
+                    fontSize: '0.76rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.3rem'
+                  }}
+                >
+                  <List size={13} /> List
+                </button>
+              </div>
+            </div>
+
+            {/* COMPREHENSIVE SEMESTER/BRANCH OFFICIAL CURRICULUM DOCUMENT CARD */}
+            {comprehensiveDoc && (
+              <div style={{
+                backgroundColor: '#FEFBF6',
+                border: '2px solid #E8D3B0',
+                borderRadius: '16px',
+                padding: '1.25rem',
+                marginBottom: '1.5rem',
+                boxShadow: '0 4px 14px rgba(200, 141, 45, 0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '1rem'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', flex: '1 1 320px' }}>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    backgroundColor: '#FEF2F2',
+                    border: '1.5px solid #FECACA',
+                    color: '#781416',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <BookOpen size={24} />
+                  </div>
+
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', marginBottom: '0.2rem' }}>
+                      <span style={{
+                        fontSize: '0.7rem',
+                        fontWeight: 800,
+                        backgroundColor: '#8A5D00',
+                        color: '#FFFFFF',
+                        padding: '0.1rem 0.5rem',
+                        borderRadius: '6px'
+                      }}>
+                        COMPLETE CURRICULUM
+                      </span>
+                      <span style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 600 }}>
+                        Session: {comprehensiveDoc.academicSession}
+                      </span>
+                    </div>
+
+                    <h3 style={{ fontSize: '1.08rem', fontWeight: 800, color: '#1F2421', margin: 0, lineHeight: 1.3 }}>
+                      {comprehensiveDoc.subjectName}
+                    </h3>
+
+                    <p style={{ fontSize: '0.78rem', color: '#64748B', margin: '0.25rem 0 0 0' }}>
+                      Complete official AKTU syllabus document containing evaluation schemes, credit matrix, and all subjects.
+                    </p>
+                  </div>
                 </div>
 
-                {/* Subjects Grid */}
-                {activeCourseSubjects.length > 0 ? (
-                  <div
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  <button
+                    onClick={() => setActivePdfModal(comprehensiveDoc)}
                     style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                      gap: '0.9rem'
+                      backgroundColor: '#781416',
+                      color: '#FFFFFF',
+                      border: 'none',
+                      padding: '0.55rem 1.15rem',
+                      borderRadius: '8px',
+                      fontSize: '0.84rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.4rem',
+                      boxShadow: '0 2px 6px rgba(120,20,22,0.25)',
+                      transition: 'all 0.15s ease'
                     }}
                   >
-                    {activeCourseSubjects.map((sub) => (
-                      <div
-                        key={sub.code}
-                        style={{
-                          backgroundColor: '#FAF7F2',
-                          border: '1.5px solid #E8E2D5',
-                          borderRadius: '12px',
-                          padding: '1rem',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'space-between',
-                          gap: '0.6rem'
-                        }}
-                      >
-                        <div>
-                          <div
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'space-between',
-                              marginBottom: '0.35rem'
-                            }}
-                          >
-                            <span
-                              style={{
-                                fontSize: '0.72rem',
-                                fontWeight: 800,
-                                color: '#781416',
-                                backgroundColor: '#FEF2F2',
-                                padding: '0.1rem 0.45rem',
-                                borderRadius: '6px',
-                                border: '1px solid #FECACA'
-                              }}
-                            >
-                              {sub.code}
-                            </span>
-                            <span
-                              style={{
-                                fontSize: '0.7rem',
-                                fontWeight: 600,
-                                color: '#16A34A',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '3px'
-                              }}
-                            >
-                              <CheckCircle2 size={12} /> Syllabus Available
-                            </span>
-                          </div>
-                          <h4 style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1F2421', margin: 0, lineHeight: 1.3 }}>
-                            {sub.name}
-                          </h4>
+                    <FileText size={15} />
+                    <span>View Full Syllabus PDF</span>
+                  </button>
+
+                  <a
+                    href={comprehensiveDoc.officialPdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    style={{
+                      backgroundColor: '#FEF9EE',
+                      border: '1.5px solid #E8D3B0',
+                      color: '#8A5D00',
+                      padding: '0.55rem 0.95rem',
+                      borderRadius: '8px',
+                      fontSize: '0.84rem',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.35rem'
+                    }}
+                  >
+                    <Download size={15} />
+                    <span>Download</span>
+                  </a>
+
+                  <a
+                    href={comprehensiveDoc.officialSourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid #E8E2D5',
+                      color: '#475569',
+                      padding: '0.55rem 0.85rem',
+                      borderRadius: '8px',
+                      fontSize: '0.82rem',
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.35rem'
+                    }}
+                  >
+                    <span>AKTU Source</span>
+                    <ExternalLink size={13} />
+                  </a>
+                </div>
+              </div>
+            )}
+
+            {/* SUBJECTS SECTION HEADING */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '1rem'
+            }}>
+              <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
+                Subjects for {selectedSemester} ({subjectRecords.length} found)
+              </h3>
+              <span style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: 600 }}>
+                Source: Official AKTU (aktu.ac.in)
+              </span>
+            </div>
+
+            {/* SUBJECT-WISE CARDS GRID / LIST */}
+            {subjectRecords.length > 0 ? (
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: viewMode === 'grid' ? 'repeat(auto-fit, minmax(290px, 1fr))' : '1fr',
+                gap: '1rem'
+              }}>
+                {subjectRecords.map((sub, sIdx) => {
+                  const hasPdf = Boolean(sub.officialPdfUrl);
+                  const hasUnits = Array.isArray(sub.units) && sub.units.length > 0;
+
+                  return (
+                    <div
+                      key={sub.id || sIdx}
+                      style={{
+                        backgroundColor: '#FFFFFF',
+                        border: '1.5px solid #E8E2D5',
+                        borderRadius: '16px',
+                        padding: '1.25rem',
+                        boxShadow: '0 3px 12px rgba(35,30,25,0.03)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        gap: '0.85rem',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = '#C88D2D';
+                        e.currentTarget.style.boxShadow = '0 6px 18px rgba(200, 141, 45, 0.12)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = '#E8E2D5';
+                        e.currentTarget.style.boxShadow = '0 3px 12px rgba(35,30,25,0.03)';
+                      }}
+                    >
+                      {/* Top Badges */}
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.45rem', flexWrap: 'wrap', gap: '0.35rem' }}>
+                          <span style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 800,
+                            color: '#781416',
+                            backgroundColor: '#FEF2F2',
+                            padding: '0.12rem 0.5rem',
+                            borderRadius: '6px',
+                            border: '1px solid #FECACA'
+                          }}>
+                            {sub.subjectCode || `${sub.course} ${sub.semester}`}
+                          </span>
+
+                          <span style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 700,
+                            color: '#8A5D00',
+                            backgroundColor: '#FEF9EE',
+                            padding: '0.12rem 0.5rem',
+                            borderRadius: '6px',
+                            border: '1px solid #E8D3B0',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.25rem'
+                          }}>
+                            <ShieldCheck size={12} />
+                            Official AKTU
+                          </span>
                         </div>
 
-                        <div
-                          style={{
-                            borderTop: '1px solid #E8E2D5',
-                            paddingTop: '0.6rem',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between'
-                          }}
-                        >
-                          <span style={{ fontSize: '0.75rem', color: '#64748b' }}>5 Units • Exam Scheme</span>
+                        {/* Subject Title */}
+                        <h4 style={{
+                          fontSize: '1.02rem',
+                          fontWeight: 800,
+                          color: '#1F2421',
+                          margin: '0.2rem 0 0.4rem 0',
+                          lineHeight: 1.3
+                        }}>
+                          {sub.subjectName}
+                        </h4>
+
+                        {/* Credits & Scheme Metadata */}
+                        <div style={{ fontSize: '0.76rem', color: '#64748B', fontWeight: 600 }}>
+                          <span>{sub.credits || 4} Credits</span>
+                          <span style={{ margin: '0 0.35rem', color: '#CBD5E1' }}>•</span>
+                          <span>Scheme: {sub.evalScheme || '30-70 Marks'}</span>
+                          <span style={{ margin: '0 0.35rem', color: '#CBD5E1' }}>•</span>
+                          <span style={{ color: '#C88D2D', fontWeight: 700 }}>{sub.academicSession}</span>
+                        </div>
+                      </div>
+
+                      {/* Units Summary Chips (if available) */}
+                      {hasUnits && (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', margin: '0.2rem 0' }}>
+                          {sub.units.slice(0, 3).map((u, uIdx) => (
+                            <span
+                              key={uIdx}
+                              style={{
+                                fontSize: '0.7rem',
+                                color: '#475569',
+                                backgroundColor: '#FAF7F2',
+                                border: '1px solid #E8E2D5',
+                                borderRadius: '6px',
+                                padding: '0.15rem 0.45rem'
+                              }}
+                            >
+                              Unit {u.unitNo || uIdx + 1}: {u.title.replace(/^Unit\s*[I|V|X\d]+:\s*/i, '').slice(0, 18)}...
+                            </span>
+                          ))}
+                          {sub.units.length > 3 && (
+                            <span style={{ fontSize: '0.7rem', color: '#781416', fontWeight: 700, padding: '0.15rem 0.3rem' }}>
+                              +{sub.units.length - 3} more
+                            </span>
+                          )}
+                        </div>
+                      )}
+
+                      {/* ACTIONS ROW */}
+                      <div style={{
+                        borderTop: '1px solid #F1ECE1',
+                        paddingTop: '0.75rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        flexWrap: 'wrap',
+                        gap: '0.45rem'
+                      }}>
+                        {/* Primary View Syllabus Button */}
+                        {hasPdf ? (
                           <button
-                            onClick={() => {
-                              setSelectedSubjectDetail({
-                                code: sub.code,
-                                name: sub.name,
-                                evalScheme: '30-70 Marks',
-                                credits: 4,
-                                units: [
-                                  { title: 'Unit I: Core Principles', topics: `${sub.name} fundamental principles, definitions, and theory.` },
-                                  { title: 'Unit II: Analysis & Methods', topics: `Analytical frameworks, algorithms, and models.` },
-                                  { title: 'Unit III: Practical Applications', topics: `Engineering constructs, design patterns, and case studies.` },
-                                  { title: 'Unit IV: Implementation Workflows', topics: `System integration, practical implementations, and procedures.` },
-                                  { title: 'Unit V: Current Advances & Best Practices', topics: `Recent standards, evaluation, and future directions.` }
-                                ]
-                              });
-                            }}
+                            onClick={() => setActivePdfModal(sub)}
                             style={{
-                              background: 'none',
+                              backgroundColor: '#781416',
+                              color: '#FFFFFF',
                               border: 'none',
-                              color: '#781416',
-                              fontSize: '0.78rem',
+                              padding: '0.42rem 0.9rem',
+                              borderRadius: '8px',
+                              fontSize: '0.8rem',
                               fontWeight: 700,
                               cursor: 'pointer',
                               display: 'flex',
                               alignItems: 'center',
-                              gap: '0.25rem'
+                              gap: '0.35rem',
+                              boxShadow: '0 2px 6px rgba(120,20,22,0.22)',
+                              transition: 'all 0.15s ease'
                             }}
                           >
-                            <span>View Units</span>
-                            <ArrowRight size={13} />
+                            <FileText size={14} />
+                            <span>View Syllabus</span>
                           </button>
+                        ) : (
+                          <span style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 700,
+                            color: '#94A3B8',
+                            backgroundColor: '#F8FAFC',
+                            padding: '0.25rem 0.6rem',
+                            borderRadius: '6px',
+                            border: '1px solid #E2E8F0',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.25rem'
+                          }}>
+                            <AlertCircle size={12} />
+                            Official syllabus PDF not available yet
+                          </span>
+                        )}
+
+                        {/* Secondary Actions: Download, Unit Topics, Official Source */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                          {hasPdf && (
+                            <a
+                              href={sub.officialPdfUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              download
+                              title="Download PDF"
+                              style={{
+                                backgroundColor: '#FAF7F2',
+                                border: '1px solid #E8E2D5',
+                                color: '#1F2421',
+                                padding: '0.4rem 0.55rem',
+                                borderRadius: '7px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                textDecoration: 'none'
+                              }}
+                            >
+                              <Download size={14} />
+                            </a>
+                          )}
+
+                          {hasUnits && (
+                            <button
+                              onClick={() => setActiveUnitModal(sub)}
+                              title="View Unit Topics Breakdown"
+                              style={{
+                                backgroundColor: '#FAF7F2',
+                                border: '1px solid #E8E2D5',
+                                color: '#781416',
+                                padding: '0.4rem 0.65rem',
+                                borderRadius: '7px',
+                                fontSize: '0.76rem',
+                                fontWeight: 700,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.25rem'
+                              }}
+                            >
+                              <BookOpen size={13} />
+                              <span>Units</span>
+                            </button>
+                          )}
+
+                          <a
+                            href={sub.officialSourceUrl || sub.officialPdfUrl || 'https://aktu.ac.in/syllabus.html'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Open Official University Source"
+                            style={{
+                              backgroundColor: '#FAF7F2',
+                              border: '1px solid #E8E2D5',
+                              color: '#64748B',
+                              padding: '0.4rem 0.55rem',
+                              borderRadius: '7px',
+                              display: 'flex',
+                              alignItems: 'center',
+                              textDecoration: 'none'
+                            }}
+                          >
+                            <ExternalLink size={13} />
+                          </a>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              /* Empty State */
+              <div style={{
+                textAlign: 'center',
+                padding: '3rem 1.5rem',
+                backgroundColor: '#FFFFFF',
+                borderRadius: '16px',
+                border: '1.5px dashed #E8E2D5'
+              }}>
+                <BookOpen size={42} color="#94A3B8" style={{ marginBottom: '0.85rem' }} />
+                <h4 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1F2421', margin: '0 0 0.4rem 0' }}>
+                  No subject records found for this combination
+                </h4>
+                <p style={{ fontSize: '0.84rem', color: '#64748B', maxWidth: '440px', margin: '0 auto 1.25rem auto', lineHeight: 1.5 }}>
+                  {comprehensiveDoc 
+                    ? `You can view the complete official AKTU curriculum PDF for ${selectedCourse} ${selectedBranch} using the banner above.`
+                    : 'Official university curriculum updates are monitored and verified as soon as AKTU releases new syllabus revisions.'}
+                </p>
+                {comprehensiveDoc && (
+                  <button
+                    onClick={() => setActivePdfModal(comprehensiveDoc)}
                     style={{
-                      textAlign: 'center',
-                      padding: '3rem 1rem',
-                      backgroundColor: '#FAF7F2',
-                      borderRadius: '12px',
-                      border: '1.5px dashed #E8E2D5'
+                      backgroundColor: '#781416',
+                      color: '#FFFFFF',
+                      border: 'none',
+                      padding: '0.55rem 1.25rem',
+                      borderRadius: '9999px',
+                      fontSize: '0.84rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.4rem'
                     }}
                   >
-                    <BookOpen size={36} color="#94A3B8" style={{ marginBottom: '0.75rem' }} />
-                    <h4 style={{ fontSize: '1rem', fontWeight: 700, color: '#1F2421', margin: '0 0 0.35rem 0' }}>
-                      Syllabus not available for this semester yet
-                    </h4>
-                    <p style={{ fontSize: '0.82rem', color: '#64748b', maxWidth: '380px', margin: '0 auto' }}>
-                      Official curriculum updates are monitored and verified according to university guidelines.
-                    </p>
-                  </div>
+                    <FileText size={15} />
+                    <span>Open {comprehensiveDoc.subjectName}</span>
+                  </button>
                 )}
               </div>
-            ) : !selectedBranch ? (
-              <>
-                {/* Header Controls */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginBottom: '1.25rem'
-                }}>
-                  <div>
-                    <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#1F2421' }}>
-                      Browse Syllabus by Branch
-                    </h2>
-                    <p style={{ fontSize: '0.82rem', color: '#64748b', marginTop: '0.1rem' }}>
-                      Select your branch to explore semester-wise syllabus, subjects, and detailed topics.
-                    </p>
-                  </div>
-
-                  {/* Grid/List Toggle */}
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #E8E2D5',
-                    borderRadius: '8px',
-                    padding: '0.2rem'
-                  }}>
-                    <button
-                      onClick={() => setViewMode('grid')}
-                      style={{
-                        padding: '0.3rem 0.6rem',
-                        borderRadius: '6px',
-                        border: 'none',
-                        backgroundColor: viewMode === 'grid' ? '#1F2421' : 'transparent',
-                        color: viewMode === 'grid' ? '#ffffff' : '#64748b',
-                        fontSize: '0.78rem',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.3rem'
-                      }}
-                    >
-                      <Grid size={13} /> Grid View
-                    </button>
-
-                    <button
-                      onClick={() => setViewMode('list')}
-                      style={{
-                        padding: '0.3rem 0.6rem',
-                        borderRadius: '6px',
-                        border: 'none',
-                        backgroundColor: viewMode === 'list' ? '#1F2421' : 'transparent',
-                        color: viewMode === 'list' ? '#ffffff' : '#64748b',
-                        fontSize: '0.78rem',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.3rem'
-                      }}
-                    >
-                      <List size={13} /> List View
-                    </button>
-                  </div>
-                </div>
-
-                {/* 6 BRANCH CARDS GRID */}
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: viewMode === 'grid' ? '1fr 1fr' : '1fr',
-                  gap: '1rem'
-                }}>
-                  {filteredBranches.map(b => {
-                    const BIcon = b.icon;
-                    return (
-                      <div
-                        key={b.id}
-                        onClick={() => setSelectedBranch(b)}
-                        style={{
-                          backgroundColor: '#ffffff',
-                          border: '1.5px solid #E8E2D5',
-                          borderRadius: '18px',
-                          padding: '1.35rem 1.15rem',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'space-between',
-                          gap: '1rem',
-                          cursor: 'pointer',
-                          transition: 'all 0.25s ease',
-                          boxShadow: '0 4px 14px rgba(0,0,0,0.02)'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'translateY(-3px)';
-                          e.currentTarget.style.borderColor = '#C88D2D';
-                          e.currentTarget.style.boxShadow = '0 8px 22px rgba(200,141,45,0.15)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = 'translateY(0px)';
-                          e.currentTarget.style.borderColor = '#E8E2D5';
-                          e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.02)';
-                        }}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem' }}>
-                          <div style={{
-                            width: '46px',
-                            height: '46px',
-                            borderRadius: '14px',
-                            backgroundColor: b.bgColor,
-                            color: b.iconColor,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexShrink: 0
-                          }}>
-                            <BIcon size={24} />
-                          </div>
-
-                          <div>
-                            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1F2421', lineHeight: 1.25 }}>
-                              {b.name}
-                            </h3>
-                          </div>
-                        </div>
-
-                        <div style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          borderTop: '1px solid #F6F2E9',
-                          paddingTop: '0.75rem',
-                          fontSize: '0.78rem',
-                          color: '#64748b',
-                          fontWeight: 600
-                        }}>
-                          <div>
-                            <span>{b.semestersCount} Semesters</span>
-                            <span style={{ margin: '0 0.4rem', color: '#cbd5e1' }}>|</span>
-                            <span style={{ color: '#C88D2D', fontWeight: 700 }}>{b.status}</span>
-                          </div>
-
-                          <div style={{
-                            width: '32px',
-                            height: '32px',
-                            borderRadius: '50%',
-                            backgroundColor: '#F6F2E9',
-                            color: '#1F2421',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                          }}>
-                            <ArrowRight size={16} />
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </>
-            ) : (
-              /* DETAILED BRANCH SYLLABUS VIEW FOR SELECTED BRANCH */
-              <div>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginBottom: '1.25rem',
-                  backgroundColor: '#ffffff',
-                  padding: '1rem 1.25rem',
-                  borderRadius: '16px',
-                  border: '1px solid #E8E2D5'
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                    <div style={{
-                      width: '42px', height: '42px', borderRadius: '12px',
-                      backgroundColor: selectedBranch.bgColor, color: selectedBranch.iconColor,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center'
-                    }}>
-                      <selectedBranch.icon size={22} />
-                    </div>
-                    <div>
-                      <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1F2421' }}>
-                        {selectedBranch.name} Syllabus
-                      </h2>
-                      <div style={{ fontSize: '0.78rem', color: '#64748b' }}>
-                        AKTU B.Tech Curriculum • Verified Official Data Source
-                      </div>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={() => setSelectedBranch(null)}
-                    className="btn-outline"
-                    style={{ fontSize: '0.82rem', padding: '0.4rem 0.9rem' }}
-                  >
-                    ← Back to All Branches
-                  </button>
-                </div>
-
-                {/* Display Semesters & Verified AKTU Syllabus Subjects */}
-                {aktuSyllabusData.cse.map((semData, idx) => (
-                  <div key={idx} style={{
-                    backgroundColor: '#ffffff',
-                    borderRadius: '20px',
-                    border: '1.5px solid #E8E2D5',
-                    padding: '1.25rem',
-                    marginBottom: '1.25rem',
-                    boxShadow: '0 4px 14px rgba(0,0,0,0.02)'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      borderBottom: '2px solid #E8D3B0',
-                      paddingBottom: '0.65rem',
-                      marginBottom: '1rem'
-                    }}>
-                      <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1F2421' }}>
-                        {semData.sem} ({semData.year})
-                      </h3>
-                      <span style={{ fontSize: '0.78rem', backgroundColor: '#FDF6E8', color: '#C88D2D', padding: '0.2rem 0.6rem', borderRadius: '9999px', fontWeight: 700 }}>
-                        {semData.subjects.length} Subjects
-                      </span>
-                    </div>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                      {semData.subjects.map((sub, sIdx) => (
-                        <div key={sIdx} style={{
-                          backgroundColor: '#FAF7F2',
-                          border: '1px solid #E8E2D5',
-                          borderRadius: '14px',
-                          padding: '1rem 1.15rem'
-                        }}>
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-                            <div>
-                              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#C88D2D' }}>
-                                Code: {sub.code} • {sub.credits} Credits • Scheme: {sub.evalScheme}
-                              </div>
-                              <h4 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1F2421', marginTop: '0.1rem' }}>
-                                {sub.name}
-                              </h4>
-                            </div>
-
-                            <button
-                              onClick={() => setSelectedSubjectDetail(sub)}
-                              className="btn-primary"
-                              style={{ fontSize: '0.78rem', padding: '0.35rem 0.85rem', backgroundColor: '#1F2421' }}
-                            >
-                              View Unit Details
-                            </button>
-                          </div>
-
-                          {/* Unit Summary List */}
-                          <div style={{ marginTop: '0.75rem', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
-                            {sub.units.map((u, uIdx) => (
-                              <div key={uIdx} style={{ fontSize: '0.75rem', color: '#475569', backgroundColor: '#ffffff', padding: '0.35rem 0.6rem', borderRadius: '6px', border: '1px solid #E8E2D5' }}>
-                                <strong>{u.title.split(':')[0]}:</strong> {u.title.split(':')[1]}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
             )}
-
-            {/* 4. LARGE BOTTOM ILLUSTRATED BANNER */}
-            <div style={{
-              marginTop: '2.5rem',
-              borderRadius: '24px',
-              backgroundColor: '#F6F2E9',
-              backgroundImage: `linear-gradient(135deg, #FAF7F2 0%, #F0E9DA 100%)`,
-              border: '2px solid #E8E2D5',
-              boxShadow: '0 10px 28px rgba(0,0,0,0.05)',
-              padding: '1.25rem 1.5rem',
-              display: 'grid',
-              gridTemplateColumns: '260px 1fr 200px',
-              gap: '1.25rem',
-              alignItems: 'center',
-              position: 'relative',
-              overflow: 'hidden'
-            }} className="syllabus-bottom-banner">
-
-              {/* Left: Virus drinking tea */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                <div style={{
-                  width: '95px',
-                  height: '95px',
-                  position: 'relative',
-                  filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.15))',
-                  flexShrink: 0
-                }}>
-                  <img
-                    src="/assets/syllabus_bottom_full.png"
-                    alt="Virus Character"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/assets/hero_virus.png';
-                    }}
-                  />
-                </div>
-
-                <div style={{
-                  fontFamily: "'Kalam', cursive",
-                  fontSize: '1.1rem',
-                  fontWeight: 700,
-                  color: '#1F2421',
-                  lineHeight: 1.2
-                }}>
-                  Sahi Syllabus <br />
-                  Sahi Strategy <br />
-                  <span style={{ color: '#C88D2D', fontSize: '1.2rem' }}>Higher CGPA!</span>
-                </div>
-              </div>
-
-              {/* Center: Academic Feature Highlights (Replacing 3-boys image) */}
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.45rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.85)',
-                backdropFilter: 'blur(8px)',
-                border: '1px solid #E8E2D5',
-                borderRadius: '16px',
-                padding: '0.85rem 1.25rem',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <span style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
-                    padding: '0.2rem 0.6rem',
-                    borderRadius: '20px',
-                    backgroundColor: '#FEF3C7',
-                    border: '1px solid #FDE68A',
-                    fontSize: '0.72rem',
-                    fontWeight: 700,
-                    color: '#92400E'
-                  }}>
-                    ✨ AKTU 2024-25 Updated
-                  </span>
-                  <span style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
-                    padding: '0.2rem 0.6rem',
-                    borderRadius: '20px',
-                    backgroundColor: '#ECFDF5',
-                    border: '1px solid #A7F3D0',
-                    fontSize: '0.72rem',
-                    fontWeight: 700,
-                    color: '#065F46'
-                  }}>
-                    ✓ Unit-Wise Marking
-                  </span>
-                </div>
-                <div style={{
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  color: '#475569',
-                  textAlign: 'center'
-                }}>
-                  Official syllabus blueprints mapped with verified notes & PYQs
-                </div>
-              </div>
-
-              {/* Right: Sticky Note */}
-              <div className="sticky-note" style={{
-                padding: '0.65rem 0.85rem',
-                borderRadius: '10px',
-                fontSize: '0.78rem',
-                fontFamily: "'Kalam', cursive",
-                fontWeight: 700,
-                color: '#1F2421',
-                backgroundColor: '#FEF9C3',
-                border: '1px solid #FDE047',
-                textAlign: 'center',
-                boxShadow: '0 6px 14px rgba(0,0,0,0.08)',
-                transform: 'rotate(-2deg)'
-              }}>
-                Padho 📖<br />
-                Plan karo 🎯<br />
-                Grow karo 🚀<br />
-                <span style={{ color: '#C88D2D', fontSize: '0.82rem' }}>— ProfessorVirus :)</span>
-              </div>
-
-            </div>
           </main>
 
           {/* RIGHT COLUMN: AI STUDY BUDDY + USEFUL RESOURCES */}
           <aside style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             
-            {/* CARD 1: NEED HELP UNDERSTANDING? ASK VIRUS */}
+            {/* CARD 1: ASK VIRUS STUDY BUDDY */}
             <div style={{
               backgroundColor: '#ffffff',
               borderRadius: '20px',
-              border: '1px solid #E8E2D5',
+              border: '1.5px solid #E8D3B0',
               padding: '1.35rem',
               boxShadow: '0 4px 14px rgba(0,0,0,0.03)'
             }}>
-              <div style={{ fontSize: '0.76rem', color: '#64748b', fontWeight: 700, marginBottom: '0.4rem' }}>
-                Need Help Understanding?
-              </div>
-
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
                 <div style={{
-                  width: '42px', height: '42px', borderRadius: '50%',
-                  overflow: 'hidden', border: '2px solid #C88D2D', flexShrink: 0
+                  width: '38px', height: '38px', borderRadius: '50%',
+                  backgroundColor: '#FEF9EE', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  border: '1px solid #E8D3B0', overflow: 'hidden'
                 }}>
                   <img
-                    src="/assets/syllabus_ai_virus.png"
+                    src="/assets/virus_avatar.png"
                     alt="Virus AI"
+                    width={38}
+                    height={38}
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                     onError={(e) => {
                       e.target.onerror = null;
@@ -1260,7 +1250,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
               </div>
 
               <p style={{ fontSize: '0.8rem', color: '#64748b', lineHeight: 1.4, marginBottom: '1rem' }}>
-                Get unit-wise explanations, important topics, and exam-oriented guidance from AI.
+                Get unit-wise explanations, important syllabus topics, and exam-oriented guidance from AI.
               </p>
 
               <button
@@ -1271,7 +1261,11 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
                   padding: '0.65rem',
                   fontSize: '0.88rem',
                   backgroundColor: '#1F2421',
-                  gap: '0.4rem'
+                  gap: '0.4rem',
+                  borderRadius: '9999px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 Ask Now <ArrowRight size={16} />
@@ -1296,10 +1290,10 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 {[
                   { name: 'AKTU Official Website', url: 'https://aktu.ac.in', icon: Globe },
-                  { name: 'Previous Year Papers', action: () => onNavigate && onNavigate('pyqs'), icon: FileText },
-                  { name: 'Subject-wise Notes', action: () => onNavigate && onNavigate('notes'), icon: BookOpen },
-                  { name: 'Exam Preparation Tips', action: () => alert('Exam Preparation Tips coming soon!'), icon: Lightbulb },
-                  { name: 'PDF Maker & Tools', action: () => onNavigate && onNavigate('pdf-maker'), icon: FileText }
+                  { name: 'Official Syllabus Archive', url: 'https://aktu.ac.in/syllabus.html', icon: ShieldCheck },
+                  { name: 'Previous Year Papers (PYQs)', action: () => onNavigate && onNavigate('pyqs'), icon: FileText },
+                  { name: 'Verified Study Notes', action: () => onNavigate && onNavigate('notes'), icon: BookOpen },
+                  { name: 'ATS Resume Maker', action: () => onNavigate && onNavigate('resume-maker'), icon: FileText }
                 ].map((item, idx) => (
                   <button
                     key={idx}
@@ -1347,8 +1341,16 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
         </div>
       </div>
 
-      {/* UNIT DETAILS MODAL WHEN VIEWING SUBJECT UNITS */}
-      {selectedSubjectDetail && (
+      {/* MODAL 1: ACTUAL OFFICIAL AKTU PDF VIEWER MODAL */}
+      {activePdfModal && (
+        <SyllabusPdfViewerModal
+          syllabus={activePdfModal}
+          onClose={() => setActivePdfModal(null)}
+        />
+      )}
+
+      {/* MODAL 2: SUPPLEMENTARY UNIT TOPICS MODAL */}
+      {activeUnitModal && (
         <div style={{
           position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
           backgroundColor: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(4px)',
@@ -1358,33 +1360,76 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
             backgroundColor: '#ffffff', borderRadius: '24px', maxWidth: '640px', width: '100%',
             padding: '2rem', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', position: 'relative', maxHeight: '85vh', overflowY: 'auto'
           }}>
-            <button onClick={() => setSelectedSubjectDetail(null)} style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}>
+            <button onClick={() => setActiveUnitModal(null)} style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'none', border: 'none', cursor: 'pointer', color: '#64748b' }}>
               <X size={22} />
             </button>
 
             <div style={{ borderBottom: '2px solid #E8D3B0', paddingBottom: '0.85rem', marginBottom: '1.25rem' }}>
-              <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#C88D2D' }}>
-                AKTU Code: {selectedSubjectDetail.code} • {selectedSubjectDetail.credits} Credits
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#781416', backgroundColor: '#FEF2F2', padding: '0.15rem 0.5rem', borderRadius: '6px' }}>
+                  {activeUnitModal.subjectCode}
+                </span>
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#8A5D00' }}>
+                  • {activeUnitModal.credits || 4} Credits • Scheme: {activeUnitModal.evalScheme}
+                </span>
               </div>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#1F2421' }}>
-                {selectedSubjectDetail.name} Syllabus Units
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
+                {activeUnitModal.subjectName} — Unit Topics
               </h3>
+              <p style={{ fontSize: '0.78rem', color: '#64748B', margin: '0.2rem 0 0 0' }}>
+                Supplementary unit breakdown corresponding to verified AKTU syllabus.
+              </p>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-              {selectedSubjectDetail.units.map((u, idx) => (
-                <div key={idx} style={{
-                  backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '14px', padding: '1rem'
-                }}>
-                  <h4 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#1F2421' }}>
-                    {u.title}
-                  </h4>
-                  <p style={{ fontSize: '0.85rem', color: '#334155', marginTop: '0.35rem', lineHeight: 1.4 }}>
-                    <strong>Official Topics:</strong> {u.topics}
-                  </p>
+              {activeUnitModal.units && activeUnitModal.units.length > 0 ? (
+                activeUnitModal.units.map((u, idx) => (
+                  <div key={idx} style={{
+                    backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '14px', padding: '1rem'
+                  }}>
+                    <h4 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
+                      {u.title}
+                    </h4>
+                    <p style={{ fontSize: '0.85rem', color: '#334155', marginTop: '0.35rem', lineHeight: 1.4 }}>
+                      <strong>Topics:</strong> {u.topics}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <div style={{ textAlign: 'center', padding: '2rem', color: '#64748B' }}>
+                  Unit topics details not individually listed for this record. Please view the full official PDF.
                 </div>
-              ))}
+              )}
             </div>
+
+            {/* Modal Bottom Action: View Official PDF directly */}
+            {activeUnitModal.officialPdfUrl && (
+              <div style={{ borderTop: '1px solid #E8E2D5', marginTop: '1.25rem', paddingTop: '1rem', display: 'flex', justifyContent: 'flex-end', gap: '0.6rem' }}>
+                <button
+                  onClick={() => {
+                    const doc = activeUnitModal;
+                    setActiveUnitModal(null);
+                    setActivePdfModal(doc);
+                  }}
+                  style={{
+                    backgroundColor: '#781416',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    padding: '0.55rem 1.15rem',
+                    borderRadius: '8px',
+                    fontSize: '0.84rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.4rem'
+                  }}
+                >
+                  <FileText size={15} />
+                  <span>View Official PDF</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -1395,7 +1440,6 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
       <style>{`
         @media (max-width: 1024px) {
           .syllabus-main-layout { grid-template-columns: 1fr !important; }
-          .syllabus-bottom-banner { grid-template-columns: 1fr !important; text-align: center !important; }
         }
       `}</style>
 
@@ -1405,23 +1449,9 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
 
 // Helper Styles
 const filterTitleStyle = {
-  fontSize: '0.75rem',
+  fontSize: '0.72rem',
   fontWeight: 800,
   color: '#64748b',
-  letterSpacing: '0.05em',
-  marginBottom: '0.6rem'
-};
-
-const checkboxLabelStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.45rem',
-  cursor: 'pointer'
-};
-
-const checkboxInputStyle = {
-  accentColor: '#1F2421',
-  width: '15px',
-  height: '15px',
-  cursor: 'pointer'
+  letterSpacing: '0.04em',
+  marginBottom: '0.45rem'
 };
