@@ -1,6 +1,8 @@
-# https://www.robotstxt.org/robotstxt.html
+# ProfessorVirus Official Robots.txt
+# Canonical: https://professorvirus.site/
 User-agent: *
 Allow: /
+Allow: /hoollow
 Allow: /notes
 Allow: /pyqs
 Allow: /syllabus
@@ -11,17 +13,24 @@ Allow: /attendance-calculator
 Allow: /resume-maker
 Allow: /pdf-maker
 Allow: /timetable
+Allow: /progress
+Allow: /plagiarism
 Allow: /competitive-exams
 Allow: /important-links
 Allow: /project-ideas
 Allow: /internships-jobs
 Allow: /scholarships
+Allow: /select-course
+Allow: /courses
+Allow: /more
+Allow: /subject
 
-# Disallow private and administrative panels
+# Disallow private and administrative endpoints
 Disallow: /admin/
 Disallow: /admin
 Disallow: /api/
-Disallow: /login
+Disallow: /signin
 Disallow: /signup
+Disallow: /login
 
 Sitemap: https://professorvirus.site/sitemap.xml

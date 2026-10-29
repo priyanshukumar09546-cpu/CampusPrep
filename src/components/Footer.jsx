@@ -59,25 +59,25 @@ export default function Footer({ onNavigate }) {
 
   // 1. Study Resources column data
   const studyResourcesLinks = [
-    { label: 'AKTU Notes', icon: FileText, action: () => handleNav('notes') },
-    { label: 'Previous Year Question Papers', icon: FileText, action: () => handleNav('pyqs') },
-    { label: 'Syllabus', icon: BookOpen, action: () => handleNav('syllabus') },
-    { label: 'Quizzes', icon: HelpCircle, action: () => handleNav('quizzes') },
-    { label: 'Free Study Materials', icon: GraduationCap, action: () => handleNav('notes') },
-    { label: 'Quantum Series', icon: BarChart3, action: () => handleNav('notes') },
-    { label: 'Result & CGPA Analyzer', icon: TrendingUp, action: () => handleNav('result-cgpa') }
+    { label: 'AKTU Notes', icon: FileText, href: '/notes', action: () => handleNav('notes') },
+    { label: 'Previous Year Question Papers', icon: FileText, href: '/pyqs', action: () => handleNav('pyqs') },
+    { label: 'Syllabus', icon: BookOpen, href: '/syllabus', action: () => handleNav('syllabus') },
+    { label: 'Quizzes', icon: HelpCircle, href: '/quizzes', action: () => handleNav('quizzes') },
+    { label: 'Free Study Materials', icon: GraduationCap, href: '/notes', action: () => handleNav('notes') },
+    { label: 'Quantum Series', icon: BarChart3, href: '/notes', action: () => handleNav('notes') },
+    { label: 'Result & CGPA Analyzer', icon: TrendingUp, href: '/result-cgpa', action: () => handleNav('result-cgpa') }
   ];
 
   // 2. Career & Tools column data
   const careerToolsLinks = [
-    { label: 'Resume Maker', icon: FileText, action: () => handleNav('resume-maker') },
-    { label: 'Interview Pro', icon: Mic, action: () => handleNav('interview-pro') },
-    { label: 'Internships & Jobs', icon: Briefcase, action: () => handleNav('internships-jobs') },
-    { label: 'Project Ideas', icon: Lightbulb, action: () => handleNav('project-ideas') },
-    { label: 'AI Study Tools', icon: Sparkles, action: () => handleNav('ai-study') },
-    { label: 'PDF Maker & Splitter', icon: FileCode, action: () => handleNav('pdf-maker') },
-    { label: 'Scholarships & Grants', icon: Landmark, action: () => handleNav('scholarships') },
-    { label: 'All Tools', icon: LayoutGrid, action: () => handleNav('more') }
+    { label: 'Resume Maker', icon: FileText, href: '/resume-maker', action: () => handleNav('resume-maker') },
+    { label: 'Interview Pro', icon: Mic, href: '/interview-pro', action: () => handleNav('interview-pro') },
+    { label: 'Internships & Jobs', icon: Briefcase, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
+    { label: 'Project Ideas', icon: Lightbulb, href: '/project-ideas', action: () => handleNav('project-ideas') },
+    { label: 'AI Study Tools', icon: Sparkles, href: '/interview-pro', action: () => handleNav('interview-pro') },
+    { label: 'PDF Maker & Splitter', icon: FileCode, href: '/pdf-maker', action: () => handleNav('pdf-maker') },
+    { label: 'Scholarships & Grants', icon: Landmark, href: '/scholarships', action: () => handleNav('scholarships') },
+    { label: 'All Tools', icon: LayoutGrid, href: '/more', action: () => handleNav('more') }
   ];
 
   // 3. Help & Support column data
@@ -307,10 +307,14 @@ export default function Footer({ onNavigate }) {
                 const ItemIcon = item.icon;
                 return (
                   <li key={idx}>
-                    <button
-                      type="button"
-                      onClick={item.action}
+                    <a
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        item.action();
+                      }}
                       className="pv-footer-link-item"
+                      style={{ textDecoration: 'none' }}
                     >
                       <span className="pv-footer-link-content">
                         <span className="pv-footer-link-icon">
@@ -319,7 +323,7 @@ export default function Footer({ onNavigate }) {
                         <span className="pv-footer-link-label">{item.label}</span>
                       </span>
                       <ChevronRight size={14} className="pv-footer-link-chevron" strokeWidth={2} />
-                    </button>
+                    </a>
                   </li>
                 );
               })}
@@ -340,10 +344,14 @@ export default function Footer({ onNavigate }) {
                 const ItemIcon = item.icon;
                 return (
                   <li key={idx}>
-                    <button
-                      type="button"
-                      onClick={item.action}
+                    <a
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        item.action();
+                      }}
                       className="pv-footer-link-item"
+                      style={{ textDecoration: 'none' }}
                     >
                       <span className="pv-footer-link-content">
                         <span className="pv-footer-link-icon">
@@ -352,7 +360,7 @@ export default function Footer({ onNavigate }) {
                         <span className="pv-footer-link-label">{item.label}</span>
                       </span>
                       <ChevronRight size={14} className="pv-footer-link-chevron" strokeWidth={2} />
-                    </button>
+                    </a>
                   </li>
                 );
               })}

@@ -11055,9 +11055,141 @@ app.use('/api', (req, res) => {
 const distPath = path.join(PROJECT_ROOT, 'dist');
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
+
+  // Explicit handlers for Search Engines
+  app.get('/sitemap.xml', (req, res) => {
+    res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    const sitemapPath = path.join(distPath, 'sitemap.xml');
+    if (fs.existsSync(sitemapPath)) {
+      return res.sendFile(sitemapPath);
+    }
+    const publicSitemap = path.join(PROJECT_ROOT, 'public', 'sitemap.xml');
+    if (fs.existsSync(publicSitemap)) {
+      return res.sendFile(publicSitemap);
+    }
+    res.status(404).send('Sitemap not found');
+  });
+
+  app.get('/robots.txt', (req, res) => {
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    const robotsPath = path.join(distPath, 'robots.txt');
+    if (fs.existsSync(robotsPath)) {
+      return res.sendFile(robotsPath);
+    }
+    const publicRobots = path.join(PROJECT_ROOT, 'public', 'robots.txt');
+    if (fs.existsSync(publicRobots)) {
+      return res.sendFile(publicRobots);
+    }
+    res.status(404).send('User-agent: *\nAllow: /\nSitemap: https://professorvirus.site/sitemap.xml');
+  });
+
+  // Server-side Route Metadata Pre-Renderer for Crawlers & Browsers
   app.use((req, res, next) => {
     if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/uploads')) {
-      return res.sendFile(path.join(distPath, 'index.html'));
+      const indexPath = path.join(distPath, 'index.html');
+      if (!fs.existsSync(indexPath)) return next();
+
+      try {
+        let html = fs.readFileSync(indexPath, 'utf8');
+        const cleanPath = req.path.replace(/^\/|\/$/g, '').toLowerCase();
+        const courseParam = req.query.course ? req.query.course.toString().replace('BTech', 'B.Tech') : null;
+        const subjectParam = req.query.subject ? req.query.subject.toString() : null;
+        const codeParam = req.query.code ? req.query.code.toString() : null;
+
+        let pageTitle = null;
+        let pageDesc = null;
+        let canonicalUrl = `https://professorvirus.site${req.path}`;
+
+        if (cleanPath === 'notes') {
+          if (courseParam) {
+            pageTitle = `${courseParam} Notes, Question Banks & Quantum Series | ProfessorVirus`;
+            pageDesc = `Download verified ${courseParam} semester notes, unit-wise handwritten summaries, quantum series, and syllabus on ProfessorVirus.`;
+            canonicalUrl = `https://professorvirus.site/notes?course=${encodeURIComponent(courseParam)}`;
+          } else {
+            pageTitle = 'AKTU Notes, Lecture Notes & Quantum Series | ProfessorVirus';
+            pageDesc = 'Download verified handwritten notes, unit-wise PDFs, and quantum series for B.Tech, BCA, BBA, B.Pharm, MCA, MBA, and other university programmes.';
+          }
+        } else if (cleanPath === 'pyqs') {
+          if (courseParam) {
+            pageTitle = `${courseParam} Previous Year Question Papers (PYQs) | ProfessorVirus`;
+            pageDesc = `Download official ${courseParam} previous year question papers (PYQs) with solutions across all semesters on ProfessorVirus.`;
+            canonicalUrl = `https://professorvirus.site/pyqs?course=${encodeURIComponent(courseParam)}`;
+          } else {
+            pageTitle = 'AKTU Previous Year Question Papers (PYQs) | ProfessorVirus';
+            pageDesc = 'Download official AKTU previous year question papers (PYQs) with solutions and marking trends across all semesters and engineering branches.';
+          }
+        } else if (cleanPath === 'syllabus') {
+          pageTitle = 'Official AKTU Syllabus & Course Structure | ProfessorVirus';
+          pageDesc = 'Access the latest official university syllabus, subject credit scheme, and unit breakdown across B.Tech, MCA, MBA, and pharmacy branches.';
+        } else if (cleanPath === 'quizzes') {
+          pageTitle = 'Academic Quizzes & Semester Practice Tests | ProfessorVirus';
+          pageDesc = 'Test your academic knowledge with subject-wise interactive quizzes, MCQ practice drills, and instant answer evaluations.';
+        } else if (cleanPath === 'hoollow') {
+          pageTitle = 'HOOLLOW by ProfessorVirus | AI Study Companion & Academic Roadmap';
+          pageDesc = 'Turn your academic and engineering goals into personalized learning roadmaps with step-by-step guidance, curated resources, and progress tracking.';
+        } else if (cleanPath === 'resume-maker') {
+          pageTitle = 'ATS Resume Maker for Students & Tech Placements | ProfessorVirus';
+          pageDesc = 'Build single-page, ATS-compliant technical resumes formatted specifically for campus placements, internships, and off-campus drives.';
+        } else if (cleanPath === 'interview-pro') {
+          pageTitle = 'Interview Pro - AI Placement Simulator & Mock Interviews | ProfessorVirus';
+          pageDesc = 'Practice campus placement interviews with timed aptitude tests, technical coding challenges, AI technical voice rounds, and HR behavioral assessments.';
+        } else if (cleanPath === 'result-cgpa') {
+          pageTitle = 'AKTU Result & SGPA Marksheet Analyzer | ProfessorVirus';
+          pageDesc = 'Parse official AKTU marksheets, calculate exact semester SGPA and cumulative CGPA, and track backlog status accurately.';
+        } else if (cleanPath === 'attendance-calculator') {
+          pageTitle = '75% Attendance Calculator & Bunk Planner | ProfessorVirus';
+          pageDesc = 'Calculate how many lectures you can safely bunk or need to attend to maintain 75% college attendance rules without being debarred.';
+        } else if (cleanPath === 'pdf-maker') {
+          pageTitle = 'Student PDF Maker & Document Studio | ProfessorVirus';
+          pageDesc = 'Merge, split, convert, watermark, and organize assignment sheets and study notes securely directly in your browser.';
+        } else if (cleanPath === 'timetable') {
+          pageTitle = 'Student Timetable & Daily Study Planner | ProfessorVirus';
+          pageDesc = 'Interactive weekly routine planner with class reminders, schedule tracking, and semester calendar organization.';
+        } else if (cleanPath === 'progress') {
+          pageTitle = 'Student Progress Tracker & Learning Analytics | ProfessorVirus';
+          pageDesc = 'Track your study hours, subject syllabus completion, PYQs solved, and exam preparation milestones with real-time analytics.';
+        } else if (cleanPath === 'plagiarism') {
+          pageTitle = 'Academic Plagiarism Checker & Originality Scanner | ProfessorVirus';
+          pageDesc = 'Check assignments, project reports, and essays for originality, citation integrity, and academic honesty.';
+        } else if (cleanPath === 'project-ideas') {
+          pageTitle = 'Student Project Ideas with Source Code & GitHub Repos | ProfessorVirus';
+          pageDesc = 'Discover curated capstone, minor, and major engineering project ideas complete with verified source code, architecture, and documentation.';
+        } else if (cleanPath === 'internships-jobs') {
+          pageTitle = 'Verified Student Internships & Off-Campus Hiring | ProfessorVirus';
+          pageDesc = 'Find verified software engineering internships, graduate roles, and off-campus recruitment opportunities for students.';
+        } else if (cleanPath === 'scholarships') {
+          pageTitle = 'National & State Scholarships Directory for Students | ProfessorVirus';
+          pageDesc = 'Explore UP government scholarships, national scholarship portal (NSP) schemes, and private grants with eligibility criteria and deadlines.';
+        } else if (cleanPath === 'select-course' || cleanPath === 'courses') {
+          pageTitle = 'All 24 University Programmes & Academic Directory | ProfessorVirus';
+          pageDesc = 'Explore verified study resources, notes, PYQs, and syllabus across 24 university programmes including B.Tech, BCA, BBA, B.Pharm, MCA, MBA, and more.';
+        } else if (cleanPath === 'more') {
+          pageTitle = 'All Student Tools & Academic Resources | ProfessorVirus';
+          pageDesc = 'Explore the complete suite of student productivity tools, AI study assistants, calculators, and career preparation resources on ProfessorVirus.';
+        } else if ((cleanPath === 'subject' || cleanPath === 'subject-detail') && subjectParam) {
+          const codeTag = codeParam ? ` (${codeParam})` : '';
+          const courseTag = courseParam || 'B.Tech';
+          pageTitle = `${subjectParam}${codeTag} Notes & PYQs | ${courseTag} - ProfessorVirus`;
+          pageDesc = `Free verified lecture notes, unit-wise question banks, previous year question papers, and syllabus for ${subjectParam}${codeTag} on ProfessorVirus.`;
+          canonicalUrl = `https://professorvirus.site/subject?subject=${encodeURIComponent(subjectParam)}${codeParam ? `&code=${encodeURIComponent(codeParam)}` : ''}&course=${encodeURIComponent(courseTag)}`;
+        }
+
+        if (pageTitle) {
+          html = html.replace(/<title>.*?<\/title>/i, `<title>${pageTitle}</title>`);
+          html = html.replace(/<meta\s+name="description"\s+content=".*?"\s*\/?>/i, `<meta name="description" content="${pageDesc}" />`);
+          html = html.replace(/<link\s+rel="canonical"\s+href=".*?"\s*\/?>/i, `<link rel="canonical" href="${canonicalUrl}" />`);
+          html = html.replace(/<meta\s+property="og:title"\s+content=".*?"\s*\/?>/i, `<meta property="og:title" content="${pageTitle}" />`);
+          html = html.replace(/<meta\s+property="og:description"\s+content=".*?"\s*\/?>/i, `<meta property="og:description" content="${pageDesc}" />`);
+          html = html.replace(/<meta\s+property="og:url"\s+content=".*?"\s*\/?>/i, `<meta property="og:url" content="${canonicalUrl}" />`);
+        }
+
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        return res.send(html);
+      } catch (err) {
+        return res.sendFile(indexPath);
+      }
     }
     next();
   });

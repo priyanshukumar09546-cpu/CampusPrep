@@ -531,10 +531,13 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
             {filteredCourses.map((c) => {
               const Icon = c.icon;
               return (
-                <button
+                <a
                   key={c.id}
-                  type="button"
-                  onClick={() => handleCardClick(c)}
+                  href={`/notes?course=${encodeURIComponent(c.key)}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCardClick(c);
+                  }}
                   aria-label={`${c.title} - ${c.subtitle}`}
                   className="group"
                   style={{
@@ -548,6 +551,8 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                     alignItems: 'flex-start',
                     textAlign: 'left',
                     cursor: 'pointer',
+                    textDecoration: 'none',
+                    color: 'inherit',
                     transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
                     boxShadow: '0 4px 14px rgba(35,30,25,0.04)',
                     position: 'relative',
@@ -645,7 +650,7 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                       <ArrowRight size={14} strokeWidth={2.5} />
                     </div>
                   </div>
-                </button>
+                </a>
               );
             })}
           </div>

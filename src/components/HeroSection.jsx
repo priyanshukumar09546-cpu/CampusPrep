@@ -102,7 +102,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               <span>Professor</span><span style={{ color: '#D97706' }}>Virus</span>
             </h1>
 
-            {/* Sub-headline in Rich Dark Maroon (Matches Reference Image) */}
+            {/* Sub-headline in Rich Dark Maroon (Official Brand Tagline) */}
             <h2 style={{
               fontFamily: "'Outfit', sans-serif",
               fontSize: 'clamp(1.75rem, 2.7vw, 2.35rem)',
@@ -112,10 +112,10 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               margin: '0 0 1rem 0',
               letterSpacing: '-0.015em'
             }}>
-              Your Complete Learning &amp; Career Preparation Platform
+              Study Smart. Prepare Better.
             </h2>
 
-            {/* Body Description (Matches Reference Image) */}
+            {/* Body Description (Matches Official Brand Specification) */}
             <p style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: '0.96rem',
@@ -125,7 +125,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               margin: '0 0 1.5rem 0',
               maxWidth: '560px'
             }}>
-              Get notes, PYQs, syllabus, quizzes, resume maker, AI-powered interview practice, coding preparation, result &amp; CGPA tools — all in one place. Built for B.Tech and engineering students to study smart and prepare better.
+              An educational platform providing study resources, notes, previous-year question papers (PYQs), syllabus, quizzes, academic tools and career preparation for students.
             </p>
 
             {/* CTA Action Buttons (Matches Reference Image) */}

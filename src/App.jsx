@@ -19,6 +19,7 @@ import MobileHeader from './components/MobileHeader';
 import CookieConsent from './components/CookieConsent';
 import SplashScreen from './components/SplashScreen';
 import ErrorBoundary from './components/ErrorBoundary';
+import SeoHead from './components/SeoHead';
 import Home from './pages/Home';
 import { normalizeCourseKey } from './data/courseMapping.ts';
 
@@ -495,8 +496,8 @@ export default function App() {
 
   // Sync Technical SEO metadata on route change
   useEffect(() => {
-    updateSEOForRoute(activeTab, selectedCourse);
-  }, [activeTab, selectedCourse]);
+    updateSEOForRoute(activeTab, selectedCourse, selectedSubjectData);
+  }, [activeTab, selectedCourse, selectedSubjectData]);
 
   const handleSearch = (query, branch) => {
     if (branch && branch !== 'All' && branch !== 'All Branches') {
@@ -546,6 +547,16 @@ export default function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
+      {/* Dynamic SEO Head Manager */}
+      <SeoHead
+        activeTab={activeTab}
+        selectedCourse={selectedCourse}
+        selectedSubjectData={selectedSubjectData}
+        selectedProjectSlug={selectedProjectSlug}
+        selectedOpportunitySlug={selectedOpportunitySlug}
+        selectedScholarshipSlug={selectedScholarshipSlug}
+      />
+
       {/* Full-Screen Splash Screen (Both Mobile & Desktop on Initial Load) */}
       {showSplash && (
         <SplashScreen onFinish={() => setShowSplash(false)} />

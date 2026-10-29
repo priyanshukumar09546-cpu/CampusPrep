@@ -116,16 +116,16 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
   }, []);
 
   const navItems = [
-    { name: 'Home', id: 'home' },
-    { name: 'HOOLLOW', id: 'hoollow', hasSparkle: true },
-    { name: 'PYQs', id: 'pyqs' },
-    { name: 'Notes', id: 'notes' },
-    { name: 'Syllabus', id: 'syllabus' },
-    { name: 'Quizzes', id: 'quizzes' },
-    { name: 'Resume Maker', id: 'resume-maker' },
-    { name: 'Interview Pro', id: 'interview-pro', isBeta: true },
-    { name: 'Result & CGPA', id: 'result-cgpa' },
-    { name: 'More +', id: 'more' },
+    { name: 'Home', id: 'home', href: '/' },
+    { name: 'HOOLLOW', id: 'hoollow', href: '/hoollow', hasSparkle: true },
+    { name: 'PYQs', id: 'pyqs', href: '/pyqs' },
+    { name: 'Notes', id: 'notes', href: '/notes' },
+    { name: 'Syllabus', id: 'syllabus', href: '/syllabus' },
+    { name: 'Quizzes', id: 'quizzes', href: '/quizzes' },
+    { name: 'Resume Maker', id: 'resume-maker', href: '/resume-maker' },
+    { name: 'Interview Pro', id: 'interview-pro', href: '/interview-pro', isBeta: true },
+    { name: 'Result & CGPA', id: 'result-cgpa', href: '/result-cgpa' },
+    { name: 'More +', id: 'more', href: '/more' },
   ];
 
   const handleSearchSubmit = (e) => {
@@ -240,9 +240,11 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
       >
         {/* LEFT WRAPPER: Complete ProfessorVirus Brand and Desktop Nav */}
         <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0, minWidth: 0 }}>
-          <div
-            style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', flexShrink: 0 }}
-            onClick={() => handleNavigate('home')}
+          <a
+            href="/"
+            style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', flexShrink: 0, textDecoration: 'none' }}
+            onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}
+            aria-label="ProfessorVirus Homepage"
           >
             <div
               style={{
@@ -299,7 +301,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 Study Smart. Prepare Better.
               </div>
             </div>
-          </div>
+          </a>
 
           {/* CENTER: Navigation Links (Desktop — Strict Single-Line / No Wrap) */}
           <nav
@@ -327,9 +329,13 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             const isPillActive = isHoollow && isActive;
 
             return (
-              <button
+              <a
                 key={item.id}
-                onClick={() => handleNavigate(item.id)}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigate(item.id);
+                }}
                 className="nav-link-item"
                 style={{
                   position: 'relative',
@@ -341,6 +347,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   fontSize: '0.78rem',
                   border: 'none',
                   cursor: 'pointer',
+                  textDecoration: 'none',
                   transition: 'all 0.18s ease',
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -395,7 +402,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     }}
                   />
                 )}
-              </button>
+              </a>
             );
           })}
           </nav>
@@ -853,22 +860,27 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
           )}
 
           {/* Mobile Menu Toggle Button */}
-          <button
-            onClick={() => handleNavigate('more')}
+          <a
+            href="/more"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavigate('more');
+            }}
             style={{
               display: 'none',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
               color: '#1F2421',
-              padding: '0.4rem'
+              padding: '0.4rem',
+              textDecoration: 'none'
             }}
             className="mobile-menu-toggle"
             title="All Tools & Resources"
             aria-label="Open More Resources"
           >
             <Menu size={26} />
-          </button>
+          </a>
         </div>
       </div>
 
