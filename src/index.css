@@ -9,6 +9,16 @@ html, body {
   padding: 0;
 }
 
+/* Anti-Autofill Reset: Prevent browser from imposing blue background or forcing saved credentials */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: #1C1E21 !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
 :root {
   /* Centralized Theme Tokens — Warm Ivory / Cream & Charcoal & Gold */
   --color-background: #FAF7F2;

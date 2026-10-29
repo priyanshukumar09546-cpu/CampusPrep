@@ -46,17 +46,43 @@ export default function AuthScreen({ initialMode = 'signin', onNavigate }) {
   const [forgotEmail, setForgotEmail] = useState('');
   const [forgotSent, setForgotSent] = useState(false);
 
-  // Sync mode with prop changes if parent updates
+  // Sync mode with prop changes if parent updates & clear fields
   useEffect(() => {
     setMode(initialMode === 'signup' ? 'signup' : 'signin');
     setErrorMsg('');
     setSuccessMsg('');
+    setFullName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
   }, [initialMode]);
+
+  // Anti-autofill security guard: Never allow admin credentials saved in browser to populate into student auth
+  useEffect(() => {
+    if (email && (email.toLowerCase().includes('admin@professorvirus') || email.toLowerCase().includes('admin@'))) {
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+    }
+  }, [email]);
+
+  // Post-render clean-up: catches delayed browser autofill attempts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setEmail(prev => (prev && prev.toLowerCase().includes('admin@') ? '' : prev));
+      setPassword(prev => (email && email.toLowerCase().includes('admin@') ? '' : prev));
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [mode]);
 
   const switchMode = (newMode) => {
     setMode(newMode);
     setErrorMsg('');
     setSuccessMsg('');
+    setFullName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
     if (window.history && window.history.replaceState) {
       window.history.replaceState(null, '', newMode === 'signup' ? '/signup' : '/signin');
     }
@@ -486,7 +512,7 @@ export default function AuthScreen({ initialMode = 'signin', onNavigate }) {
           {/* ======================================================== */}
           {/* THE FORM                                                 */}
           {/* ======================================================== */}
-          <form onSubmit={mode === 'signin' ? handleLogin : handleSignup} className="space-y-4">
+          <form onSubmit={mode === 'signin' ? handleLogin : handleSignup} autoComplete="off" className="space-y-4">
             
             {/* SIGN UP ONLY: Full Name */}
             {mode === 'signup' && (
@@ -500,6 +526,9 @@ export default function AuthScreen({ initialMode = 'signin', onNavigate }) {
                   </div>
                   <input
                     type="text"
+                    name="student_full_name"
+                    id="student_full_name"
+                    autoComplete="name"
                     required
                     placeholder="e.g. Priyanshu Kumar"
                     value={fullName}
@@ -521,6 +550,9 @@ export default function AuthScreen({ initialMode = 'signin', onNavigate }) {
                 </div>
                 <input
                   type="email"
+                  name={mode === 'signup' ? 'student_register_email' : 'student_login_email'}
+                  id={mode === 'signup' ? 'student_register_email' : 'student_login_email'}
+                  autoComplete="new-password"
                   required
                   placeholder={mode === 'signin' ? 'student@college.edu or enrollment' : 'name@example.com'}
                   value={email}
@@ -552,6 +584,9 @@ export default function AuthScreen({ initialMode = 'signin', onNavigate }) {
                 </div>
                 <input
                   type={showPassword ? 'text' : 'password'}
+                  name={mode === 'signup' ? 'student_register_password' : 'student_login_password'}
+                  id={mode === 'signup' ? 'student_register_password' : 'student_login_password'}
+                  autoComplete="new-password"
                   required
                   placeholder="At least 6 characters"
                   value={password}
@@ -581,6 +616,9 @@ export default function AuthScreen({ initialMode = 'signin', onNavigate }) {
                   </div>
                   <input
                     type={showConfirmPassword ? 'text' : 'password'}
+                    name="student_register_confirm_password"
+                    id="student_register_confirm_password"
+                    autoComplete="new-password"
                     required
                     placeholder="Repeat your password"
                     value={confirmPassword}

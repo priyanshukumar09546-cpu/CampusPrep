@@ -59,17 +59,52 @@ export default function MobileAuthScreen({
   const [forgotInput, setForgotInput] = useState('');
   const [forgotSent, setForgotSent] = useState(false);
 
-  // Sync mode with prop changes
+  // Sync mode with prop changes & reset fields
   useEffect(() => {
     setMode(initialMode === 'signup' ? 'signup' : 'signin');
     setErrorMsg('');
     setSuccessMsg('');
+    setFullName('');
+    setEmailOrPhone('');
+    setEmail('');
+    setPhoneNumber('');
+    setPassword('');
+    setConfirmPassword('');
   }, [initialMode]);
+
+  // Anti-autofill security guard: Never allow admin credentials saved in browser to populate into student auth
+  useEffect(() => {
+    if (
+      (email && (email.toLowerCase().includes('admin@professorvirus') || email.toLowerCase().includes('admin@'))) ||
+      (emailOrPhone && (emailOrPhone.toLowerCase().includes('admin@professorvirus') || emailOrPhone.toLowerCase().includes('admin@')))
+    ) {
+      setEmail('');
+      setEmailOrPhone('');
+      setPassword('');
+      setConfirmPassword('');
+    }
+  }, [email, emailOrPhone]);
+
+  // Post-render clean-up: catches delayed browser autofill attempts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setEmail(prev => (prev && prev.toLowerCase().includes('admin@') ? '' : prev));
+      setEmailOrPhone(prev => (prev && prev.toLowerCase().includes('admin@') ? '' : prev));
+      setPassword(prev => ((email || emailOrPhone) && (email.toLowerCase().includes('admin@') || emailOrPhone.toLowerCase().includes('admin@')) ? '' : prev));
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [mode]);
 
   const switchMode = (newMode) => {
     setMode(newMode);
     setErrorMsg('');
     setSuccessMsg('');
+    setFullName('');
+    setEmailOrPhone('');
+    setEmail('');
+    setPhoneNumber('');
+    setPassword('');
+    setConfirmPassword('');
     if (window.history && window.history.replaceState) {
       window.history.replaceState(null, '', newMode === 'signup' ? '/signup' : '/signin');
     }
@@ -806,7 +841,7 @@ export default function MobileAuthScreen({
           {/* STUDENT SIGN IN FORM                                     */}
           {/* ======================================================== */}
           {mode === 'signin' ? (
-            <form onSubmit={handleSignIn} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <form onSubmit={handleSignIn} autoComplete="off" style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {/* Field 1: Email / Phone Number */}
               <div>
                 <label
@@ -835,6 +870,9 @@ export default function MobileAuthScreen({
                   <Mail size={18} color="#861820" strokeWidth={2.2} />
                   <input
                     type="text"
+                    name="mobile_student_login_id"
+                    id="mobile_student_login_id"
+                    autoComplete="new-password"
                     required
                     value={emailOrPhone}
                     onChange={(e) => setEmailOrPhone(e.target.value)}
@@ -896,6 +934,9 @@ export default function MobileAuthScreen({
                   <Lock size={18} color="#861820" strokeWidth={2.2} />
                   <input
                     type={showPassword ? 'text' : 'password'}
+                    name="mobile_student_login_password"
+                    id="mobile_student_login_password"
+                    autoComplete="new-password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -1061,7 +1102,7 @@ export default function MobileAuthScreen({
             /* ======================================================== */
             /* CREATE STUDENT ACCOUNT FORM                              */
             /* ======================================================== */
-            <form onSubmit={handleCreateAccount} style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
+            <form onSubmit={handleCreateAccount} autoComplete="off" style={{ display: 'flex', flexDirection: 'column', gap: '13px' }}>
               {/* Field 1: Full Name */}
               <div>
                 <label
@@ -1090,6 +1131,9 @@ export default function MobileAuthScreen({
                   <User size={18} color="#861820" strokeWidth={2.2} />
                   <input
                     type="text"
+                    name="mobile_student_name"
+                    id="mobile_student_name"
+                    autoComplete="name"
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
@@ -1135,6 +1179,9 @@ export default function MobileAuthScreen({
                   <Mail size={18} color="#861820" strokeWidth={2.2} />
                   <input
                     type="email"
+                    name="mobile_student_register_email"
+                    id="mobile_student_register_email"
+                    autoComplete="new-password"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -1180,6 +1227,9 @@ export default function MobileAuthScreen({
                   <Phone size={18} color="#861820" strokeWidth={2.2} />
                   <input
                     type="tel"
+                    name="mobile_student_phone"
+                    id="mobile_student_phone"
+                    autoComplete="tel"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="Enter your phone number"
@@ -1224,6 +1274,9 @@ export default function MobileAuthScreen({
                   <Lock size={18} color="#861820" strokeWidth={2.2} />
                   <input
                     type={showPassword ? 'text' : 'password'}
+                    name="mobile_student_register_password"
+                    id="mobile_student_register_password"
+                    autoComplete="new-password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -1285,6 +1338,9 @@ export default function MobileAuthScreen({
                   <Lock size={18} color="#861820" strokeWidth={2.2} />
                   <input
                     type={showConfirmPassword ? 'text' : 'password'}
+                    name="mobile_student_register_confirm_password"
+                    id="mobile_student_register_confirm_password"
+                    autoComplete="new-password"
                     required
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}

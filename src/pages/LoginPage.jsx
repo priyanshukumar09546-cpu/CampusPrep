@@ -53,10 +53,30 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
     setMode(newMode);
     setErrorMsg('');
     setSuccessMsg('');
+    setLoginEmailOrEnrollment('');
+    setLoginPassword('');
+    setSignupFullName('');
+    setSignupEmail('');
+    setSignupMobile('');
+    setSignupPassword('');
+    setSignupConfirmPassword('');
     if (onNavigate) {
       onNavigate(newMode === 'signup' ? 'signup' : 'login');
     }
   };
+
+  // Anti-autofill security guard: Never allow admin credentials to leak into student auth form
+  useEffect(() => {
+    if (loginEmailOrEnrollment && (loginEmailOrEnrollment.toLowerCase().includes('admin@professorvirus') || loginEmailOrEnrollment.toLowerCase().includes('admin@'))) {
+      setLoginEmailOrEnrollment('');
+      setLoginPassword('');
+    }
+    if (signupEmail && (signupEmail.toLowerCase().includes('admin@professorvirus') || signupEmail.toLowerCase().includes('admin@'))) {
+      setSignupEmail('');
+      setSignupPassword('');
+      setSignupConfirmPassword('');
+    }
+  }, [loginEmailOrEnrollment, signupEmail]);
 
   // Login Submission
   const handleLoginSubmit = async (e) => {
@@ -609,13 +629,16 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
           {/* FORM A: SIGN IN (Matches media_1790569692755.jpg)         */}
           {/* ========================================================= */}
           {mode === 'login' ? (
-            <form onSubmit={handleLoginSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+            <form onSubmit={handleLoginSubmit} autoComplete="off" style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
               
               {/* Email or Enrollment No. */}
               <div style={inputBoxStyle}>
                 <Mail size={18} color="#64748B" style={{ flexShrink: 0 }} />
                 <input
                   type="text"
+                  name="login_student_id"
+                  id="login_student_id"
+                  autoComplete="new-password"
                   placeholder="Email or Enrollment No."
                   value={loginEmailOrEnrollment}
                   onChange={(e) => setLoginEmailOrEnrollment(e.target.value)}
@@ -630,6 +653,9 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
                 <Lock size={18} color="#64748B" style={{ flexShrink: 0 }} />
                 <input
                   type={showLoginPassword ? 'text' : 'password'}
+                  name="login_student_password"
+                  id="login_student_password"
+                  autoComplete="new-password"
                   placeholder="Password"
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
@@ -741,13 +767,16 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
             /* ========================================================= */
             /* FORM B: SIGN UP (Matches media_1790569666618.jpg)         */
             /* ========================================================= */
-            <form onSubmit={handleSignupSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+            <form onSubmit={handleSignupSubmit} autoComplete="off" style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               
               {/* Full Name */}
               <div style={inputBoxStyle}>
                 <User size={18} color="#64748B" style={{ flexShrink: 0 }} />
                 <input
                   type="text"
+                  name="signup_student_name"
+                  id="signup_student_name"
+                  autoComplete="name"
                   placeholder="Full Name"
                   value={signupFullName}
                   onChange={(e) => setSignupFullName(e.target.value)}
@@ -762,6 +791,9 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
                 <Mail size={18} color="#64748B" style={{ flexShrink: 0 }} />
                 <input
                   type="email"
+                  name="signup_student_email"
+                  id="signup_student_email"
+                  autoComplete="new-password"
                   placeholder="Email Address"
                   value={signupEmail}
                   onChange={(e) => setSignupEmail(e.target.value)}
@@ -795,6 +827,9 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
                 <div style={{ ...inputBoxStyle, flex: 1 }}>
                   <input
                     type="tel"
+                    name="signup_student_mobile"
+                    id="signup_student_mobile"
+                    autoComplete="tel"
                     placeholder="Mobile Number"
                     value={signupMobile}
                     onChange={(e) => setSignupMobile(e.target.value.replace(/\D/g, '').slice(0, 10))}
@@ -810,6 +845,9 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
                 <Lock size={18} color="#64748B" style={{ flexShrink: 0 }} />
                 <input
                   type={showSignupPassword ? 'text' : 'password'}
+                  name="signup_student_password"
+                  id="signup_student_password"
+                  autoComplete="new-password"
                   placeholder="Password"
                   value={signupPassword}
                   onChange={(e) => setSignupPassword(e.target.value)}
@@ -831,6 +869,9 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
                 <Lock size={18} color="#64748B" style={{ flexShrink: 0 }} />
                 <input
                   type={showSignupConfirmPassword ? 'text' : 'password'}
+                  name="signup_student_confirm_password"
+                  id="signup_student_confirm_password"
+                  autoComplete="new-password"
                   placeholder="Confirm Password"
                   value={signupConfirmPassword}
                   onChange={(e) => setSignupConfirmPassword(e.target.value)}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Mail, Lock, User, GraduationCap, ArrowRight } from 'lucide-react';
 import GoogleSignInButton from './GoogleSignInButton';
 
@@ -11,6 +11,21 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+
+  // Anti-autofill security guard & cleanup on mode/open changes
+  useEffect(() => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setErrorMsg('');
+  }, [mode, isOpen]);
+
+  useEffect(() => {
+    if (email && (email.toLowerCase().includes('admin@professorvirus') || email.toLowerCase().includes('admin@'))) {
+      setEmail('');
+      setPassword('');
+    }
+  }, [email]);
 
   if (!isOpen) return null;
 
@@ -103,7 +118,7 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <form onSubmit={handleSubmit} autoComplete="off" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {mode === 'signup' && (
             <div>
               <label style={labelStyle}>Full Name</label>
@@ -111,6 +126,9 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
                 <User size={16} style={{ color: '#94a3b8' }} />
                 <input
                   type="text"
+                  name="modal_student_name"
+                  id="modal_student_name"
+                  autoComplete="name"
                   placeholder="e.g. Rahul Sharma"
                   required
                   value={name}
@@ -127,6 +145,9 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
               <Mail size={16} style={{ color: '#94a3b8' }} />
               <input
                 type="email"
+                name="modal_student_email"
+                id="modal_student_email"
+                autoComplete="new-password"
                 placeholder="student@aktu.ac.in"
                 required
                 value={email}
@@ -142,6 +163,9 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
               <Lock size={16} style={{ color: '#94a3b8' }} />
               <input
                 type="password"
+                name="modal_student_password"
+                id="modal_student_password"
+                autoComplete="new-password"
                 placeholder="••••••••"
                 required
                 value={password}
