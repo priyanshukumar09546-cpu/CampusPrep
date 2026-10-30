@@ -83,7 +83,8 @@ export function createResultRouter(deps = {}) {
       }
 
       // Optional DB persistence (Section 40)
-      if (deps.isDbConnected && deps.isDbConnected()) {
+      const isConnected = typeof deps.isDbConnected === 'function' ? deps.isDbConnected() : Boolean(deps.isDbConnected);
+      if (isConnected) {
         try {
           const { StudentResult } = await import('../models/StudentResult.js');
           if (result.student?.rollNumber) {

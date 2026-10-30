@@ -165,7 +165,10 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
 
       const contentType = response.headers.get('content-type') || '';
       if (!contentType.includes('application/json')) {
-        throw new Error('Result analysis service is temporarily unavailable. Please try again.');
+        if (response.status === 504 || response.status === 408) {
+          throw new Error('Analysis timed out. Please ensure you upload an official AKTU result PDF.');
+        }
+        throw new Error('Result analysis service is temporarily unavailable. Please try again in a few moments.');
       }
 
       const resJson = await response.json();

@@ -10993,7 +10993,7 @@ app.get('/api/stats', (req, res) => {
 app.use('/api/pdf', createPdfRouter({ getAuthenticatedDriveClient }));
 
 // RESULT & CGPA ANALYTICS ROUTER
-app.use('/api/result', createResultRouter({ isDbConnected }));
+app.use('/api/result', createResultRouter({ isDbConnected: () => isDbConnected }));
 
 // ATTENDANCE CALCULATOR & TRACKER ROUTER
 app.use('/api/attendance', createAttendanceRouter({ isDbConnected, verifyJwtToken }));

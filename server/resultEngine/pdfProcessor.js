@@ -1,6 +1,8 @@
 // PDF Processing Pipeline
 // Handles file validation, text extraction, OCR fallback, and page-aware processing
 
+import { PDFParse } from 'pdf-parse';
+
 /**
  * Validate uploaded file before processing
  * @param {object} file - Multer file object { buffer, mimetype, originalname, size }
@@ -55,7 +57,6 @@ export function validatePdfFile(file) {
  */
 export async function extractPdfText(pdfBuffer) {
   try {
-    const { PDFParse } = await import('pdf-parse');
     const uint8Data = new Uint8Array(pdfBuffer);
     const parser = new PDFParse(uint8Data);
     const textResult = await parser.getText();
