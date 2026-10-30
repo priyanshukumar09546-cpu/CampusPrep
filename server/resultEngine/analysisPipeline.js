@@ -474,7 +474,7 @@ export async function analyzeResultPdf(file, options = {}) {
     const geminiInit = initGemini();
     const geminiAvailable = geminiInit.available;
     if (geminiAvailable) {
-      addStage('Gemini Init', 'ok', 'AI engine ready (gemini-1.5-flash)');
+      addStage('Gemini Init', 'ok', 'AI engine ready (gemini-3.8-flash)');
     } else {
       addStage('Gemini Init', 'warn', geminiInit.error || 'Running in structural mode');
       warnings.push('AI extraction engine unconfigured. Using high-precision structural analysis.');

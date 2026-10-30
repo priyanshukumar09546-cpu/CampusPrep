@@ -7,8 +7,8 @@ import 'dotenv/config';
 import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
 
 // Active Gemini models: fast, reliable models with strict timeouts
-const PRIMARY_MODEL = 'gemini-1.5-flash';
-const FALLBACK_MODEL = 'gemini-2.0-flash';
+const PRIMARY_MODEL = 'gemini-3.8-flash';
+const FALLBACK_MODEL = 'gemini-3.5-flash';
 
 // Strict JSON schema for Gemini structured output
 const RESULT_EXTRACTION_SCHEMA = {

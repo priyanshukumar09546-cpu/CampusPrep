@@ -62,6 +62,12 @@ export async function extractPdfText(pdfBuffer) {
     if (typeof globalThis.ImageData === 'undefined') globalThis.ImageData = class ImageData {};
     if (typeof globalThis.Path2D === 'undefined') globalThis.Path2D = class Path2D {};
 
+    try {
+      if (!globalThis.pdfjsWorker) {
+        globalThis.pdfjsWorker = await import('pdfjs-dist/legacy/build/pdf.worker.mjs');
+      }
+    } catch (_) {}
+
     const { PDFParse } = await import('pdf-parse');
 
     let fontPath = undefined;
@@ -149,6 +155,12 @@ export async function runOcr(pdfBuffer, maxPages = 10) {
     if (typeof globalThis.DOMMatrix === 'undefined') globalThis.DOMMatrix = class DOMMatrix {};
     if (typeof globalThis.ImageData === 'undefined') globalThis.ImageData = class ImageData {};
     if (typeof globalThis.Path2D === 'undefined') globalThis.Path2D = class Path2D {};
+
+    try {
+      if (!globalThis.pdfjsWorker) {
+        globalThis.pdfjsWorker = await import('pdfjs-dist/legacy/build/pdf.worker.mjs');
+      }
+    } catch (_) {}
 
     // First try to extract images from the PDF
     const { PDFParse } = await import('pdf-parse');
