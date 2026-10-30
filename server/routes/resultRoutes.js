@@ -75,11 +75,7 @@ export function createResultRouter(deps = {}) {
             statusCode = 500;
         }
 
-        return res.status(statusCode).json({
-          success: false,
-          code: result.code,
-          error: result.error
-        });
+        return res.status(statusCode).json(result);
       }
 
       // Optional DB persistence (Section 40)
