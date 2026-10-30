@@ -474,7 +474,7 @@ export async function analyzeResultPdf(file, options = {}) {
     const geminiInit = initGemini();
     const geminiAvailable = geminiInit.available;
     if (geminiAvailable) {
-      addStage('Gemini Init', 'ok', 'AI engine ready (gemini-3.8-flash)');
+      addStage('Gemini Init', 'ok', 'AI engine ready (gemini-3.1-flash-lite)');
     } else {
       addStage('Gemini Init', 'warn', geminiInit.error || 'Running in structural mode');
       warnings.push('AI extraction engine unconfigured. Using high-precision structural analysis.');
@@ -514,56 +514,90 @@ export async function analyzeResultPdf(file, options = {}) {
       addStage('OCR Assessment', 'ok', 'Text extraction adequate');
     }
 
-    // ===== STAGE 5: EXTRACTION (CASCADE STRATEGY) =====
+    // ===== STAGE 5: EXTRACTION (HIGH-PRECISION CASCADE) =====
     let extraction = null;
     let extractionEngine = 'structural';
 
-    // Strategy 1: Gemini Direct PDF File Extraction (Multimodal)
-    if (geminiAvailable && file.buffer.length < 15 * 1024 * 1024) {
+    // Phase 1: High-Speed Deterministic Parsing
+    // If text was successfully extracted, attempt specialized local parsers first (< 100ms)
+    if (extractedText && extractedText.trim().length >= 40) {
       try {
-        const fileResult = await extractWithGeminiFile(file.buffer, geminiInit.model, {
-          fileName,
-          pageCount
-        });
-        if (fileResult.success && fileResult.data) {
-          // Verify that Gemini extracted actual student data
-          if (fileResult.data.document?.isStudentResult !== false && fileResult.data.student?.name) {
-            extraction = fileResult.data;
-            extractionEngine = 'gemini-file';
-            addStage('Gemini File Extraction', 'ok', 'Structured extraction via multimodal AI');
+        const universalOut = await universalResultEngine.parseDocument(extractedText, {
+          pageCount,
+          fileSize: file.buffer.length,
+          fileName
+        }, file.buffer);
+
+        const uRes = universalOut.result;
+        const uStudent = uRes?.student || {};
+        const uName = typeof uStudent.name === 'object' ? uStudent.name?.value : uStudent.name;
+        const uRoll = typeof uStudent.rollNumber === 'object' ? uStudent.rollNumber?.value : uStudent.rollNumber;
+        const hasSemesters = Array.isArray(uRes?.semesters) && uRes.semesters.length > 0;
+        const hasSubjects = hasSemesters && uRes.semesters.some(s => Array.isArray(s.subjects) && s.subjects.length > 0);
+        const hasSessions = Array.isArray(uRes?.rawSessions) && uRes.rawSessions.length > 0;
+
+        // If local parser successfully identified student and academic records
+        if ((uName || uRoll) && (hasSubjects || hasSessions) && universalOut.classification.documentType !== 'invalid_document') {
+          extraction = uRes;
+          extractionEngine = universalOut.parserUsed;
+          addStage('Deterministic Engine Extraction', 'ok', `Routed via ${universalOut.parserUsed} (${universalOut.classification.documentType}) in <100ms`);
+        } else {
+          addStage('Deterministic Engine Check', 'info', `Partial structure found; evaluating AI assist`);
+        }
+      } catch (parserErr) {
+        addStage('Deterministic Engine Check', 'warn', `Deterministic parsing error: ${parserErr.message}`);
+      }
+    }
+
+    // Phase 2: AI-Assisted Extraction with strict timeout
+    // Only invoke if local parser did not produce complete student results
+    if (!extraction && geminiAvailable) {
+      // Strategy 2A: Gemini Text Extraction
+      if (extractedText && extractedText.length >= 50) {
+        try {
+          const textResult = await extractWithGemini(extractedText, geminiInit.model, {
+            fileName,
+            pageCount
+          });
+          if (textResult.success && textResult.data) {
+            if (textResult.data.document?.isStudentResult !== false && (textResult.data.student?.name || textResult.data.student?.rollNumber)) {
+              extraction = textResult.data;
+              extractionEngine = 'gemini-text';
+              addStage('Gemini Text Extraction', 'ok', 'Structured extraction via text AI');
+            }
           } else {
-            addStage('Gemini File Extraction', 'info', 'AI requested fallback or returned sparse output');
+            addStage('Gemini Text Extraction', 'warn', textResult.error || 'Fallback to multimodal or structural');
           }
-        } else {
-          addStage('Gemini File Extraction', 'warn', fileResult.error || 'Fallback to text extraction');
+        } catch (err) {
+          addStage('Gemini Text Extraction', 'warn', `Text AI error: ${err.message}`);
         }
-      } catch (err) {
-        addStage('Gemini File Extraction', 'warn', `Multimodal error: ${err.message}`);
+      }
+
+      // Strategy 2B: Gemini Multimodal File Extraction (for complex tables or scanned layouts)
+      if (!extraction && file.buffer.length < 15 * 1024 * 1024) {
+        try {
+          const fileResult = await extractWithGeminiFile(file.buffer, geminiInit.model, {
+            fileName,
+            pageCount
+          });
+          if (fileResult.success && fileResult.data) {
+            if (fileResult.data.document?.isStudentResult !== false && (fileResult.data.student?.name || fileResult.data.student?.rollNumber)) {
+              extraction = fileResult.data;
+              extractionEngine = 'gemini-file';
+              addStage('Gemini File Extraction', 'ok', 'Structured extraction via multimodal AI');
+            } else {
+              addStage('Gemini File Extraction', 'info', 'AI requested fallback or returned sparse output');
+            }
+          } else {
+            addStage('Gemini File Extraction', 'warn', fileResult.error || 'Fallback to structural');
+          }
+        } catch (err) {
+          addStage('Gemini File Extraction', 'warn', `Multimodal error: ${err.message}`);
+        }
       }
     }
 
-    // Strategy 2: Gemini Text Extraction
-    if (!extraction && geminiAvailable && extractedText && extractedText.length >= 50) {
-      try {
-        const textResult = await extractWithGemini(extractedText, geminiInit.model, {
-          fileName,
-          pageCount
-        });
-        if (textResult.success && textResult.data) {
-          if (textResult.data.document?.isStudentResult !== false && textResult.data.student?.name) {
-            extraction = textResult.data;
-            extractionEngine = 'gemini-text';
-            addStage('Gemini Text Extraction', 'ok', 'Structured extraction via text AI');
-          }
-        } else {
-          addStage('Gemini Text Extraction', 'warn', textResult.error || 'Fallback to structural');
-        }
-      } catch (err) {
-        addStage('Gemini Text Extraction', 'warn', `Text AI error: ${err.message}`);
-      }
-    }
-
-    // Strategy 3: Universal Modular Result Engine (Rule-based & Specialized Parsers)
+    // Phase 3: Universal Modular Result Engine Fallback
     if (!extraction) {
       try {
         const universalOut = await universalResultEngine.parseDocument(extractedText, {

@@ -52,7 +52,8 @@ export function validateResultDocument(extracted) {
 
   // 1. Student Identity
   const student = extracted.student || {};
-  if (student.name && student.name.length >= 2 && !/^(test|sample|demo|example|null|undefined|n\/a)$/i.test(student.name)) {
+  const nameVal = sanitizeString(student.name);
+  if (nameVal && nameVal.length >= 2 && !/^(test|sample|demo|example|null|undefined|n\/a)$/i.test(nameVal)) {
     validation.studentIdentityFound = true;
     validation.evidenceScore++;
   } else {
@@ -60,10 +61,12 @@ export function validateResultDocument(extracted) {
   }
 
   // 2. Roll/Enrollment Number
-  if (student.rollNumber && student.rollNumber.length >= 4 && /\d/.test(student.rollNumber)) {
+  const rollVal = sanitizeString(student.rollNumber);
+  const enrollVal = sanitizeString(student.enrollmentNumber);
+  if (rollVal && rollVal.length >= 4 && /\d/.test(rollVal)) {
     validation.rollNumberFound = true;
     validation.evidenceScore++;
-  } else if (student.enrollmentNumber && student.enrollmentNumber.length >= 4 && /\d/.test(student.enrollmentNumber)) {
+  } else if (enrollVal && enrollVal.length >= 4 && /\d/.test(enrollVal)) {
     validation.rollNumberFound = true;
     validation.evidenceScore++;
   } else {
@@ -71,9 +74,12 @@ export function validateResultDocument(extracted) {
   }
 
   // 3. Course/Institution
-  if ((student.course && student.course.length >= 3) || 
-      (student.branch && student.branch.length >= 3) || 
-      (student.college && student.college.length >= 5)) {
+  const courseVal = sanitizeString(student.course);
+  const branchVal = sanitizeString(student.branch);
+  const collegeVal = sanitizeString(student.college);
+  if ((courseVal && courseVal.length >= 3) || 
+      (branchVal && branchVal.length >= 3) || 
+      (collegeVal && collegeVal.length >= 5)) {
     validation.courseOrInstitutionFound = true;
     validation.evidenceScore++;
   }
@@ -199,12 +205,22 @@ export function validateResultDocument(extracted) {
     validation.evidenceScore++;
   }
 
-  // Minimum evidence threshold
-  const isValid = validation.evidenceScore >= validation.minimumRequired;
+  // Minimum evidence threshold and hard requirements for genuine student results
+  const hasStudentIdentifier = validation.studentIdentityFound || validation.rollNumberFound;
+  const hasAcademicRecords = totalSubjectsWithData >= 1 || totalSessionMarks >= 1 || totalCarryOverPapers >= 1;
+  const meetsScore = validation.evidenceScore >= validation.minimumRequired;
+
+  const isValid = hasStudentIdentifier && hasAcademicRecords && meetsScore;
 
   if (!isValid) {
-    errors.push(`Insufficient evidence: score ${validation.evidenceScore}/${validation.minimumRequired}. ` +
-      'This PDF does not appear to contain a valid student result with enough identifiable data.');
+    if (!hasStudentIdentifier) {
+      errors.push('No student name or roll number found. This document does not appear to contain a personal academic result.');
+    } else if (!hasAcademicRecords) {
+      errors.push('No subject marks, grades, or semester results detected in this document.');
+    } else {
+      errors.push(`Insufficient evidence: score ${validation.evidenceScore}/${validation.minimumRequired}. ` +
+        'This PDF does not appear to contain a valid student result with enough identifiable data.');
+    }
     return { isValid: false, validatedResult: null, validation, errors };
   }
 

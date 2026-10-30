@@ -27,12 +27,15 @@ export function classifyDocument(rawText = '', meta = {}) {
     hasOneViewSignature: /One\s*View\s*Result|AKTU-One-View|Print\s*One\s*View/i.test(clean),
     hasSessionLines: /(?:Session\s*:\s*\d{4}-\d{2}|Semesters?\s*:\s*[\d,]+)/i.test(clean),
     hasCopMarker: /\bCOP\s*:/i.test(clean),
-    hasSubjectTableHeaders: /(?:Subject\s*Code|Sub\s*Code|Course\s*Code).*(?:Grade|Marks|Credits|GP)/i.test(clean),
+    hasSubjectTableHeaders: /(?:Subject\s*Code|Sub\s*Code|Course\s*Code)[\s\S]{0,120}?(?:Grade|Marks|Credits|GP|Point)/i.test(clean),
     hasDetailedColumns: /(?:Internal|External|End\s*Sem|Sessional|Max\s*Marks)/i.test(clean),
+    hasSubjectRows: /\b[A-Z]{2,4}[- ]?[0-9]{3,4}[A-Z]?\b[\s\S]{0,120}?(?:PASS|FAIL|PCP|PWG|[A-D][+]?|O\b|F\b)/i.test(clean),
     hasConsolidatedHeader: /(?:Consolidated\s*(?:Grade|Marksheet|Transcript)|Academic\s*History)/i.test(clean),
-    hasRollNumber: /(?:Roll\s*No\.?|RollNo|Roll\s*Number)[\s\t:]*[0-9]{6,15}/i.test(clean),
-    hasEnrollmentNumber: /(?:Enrollment\s*No\.?|EnrollmentNo)[\s\t:]*[A-Za-z0-9]{6,20}/i.test(clean),
-    hasStudentName: /(?:Student\s*Name|Candidate\s*Name|(?:^|\n)\s*Name\s*[\t:])\s*[A-Za-z\s.]{3,40}/i.test(clean),
+    hasRollNumber: /(?:Roll\s*No\.?|RollNo|Roll\s*Number)[\s\t:]*[0-9]{6,16}/i.test(clean) || /\b2[0-9]{9,13}\b/.test(clean),
+    hasEnrollmentNumber: /(?:Enrollment\s*No\.?|EnrollmentNo|Enrolment\s*No\.?)[\s\t:]*[A-Za-z0-9]{6,20}/i.test(clean),
+    hasStudentName: /(?:(?:Student|Candidate)\s*Name|(?:^|\n)\s*Name)\s*[:\s-]\s*[A-Za-z\s.]{2,50}/i.test(clean) ||
+      /Student\s*Name\s*[:\s]/i.test(clean) ||
+      /Candidate(?:'s)?\s*Name\s*[:\s]/i.test(clean),
     textLength: clean.length,
     pageCount
   };
@@ -49,7 +52,7 @@ export function classifyDocument(rawText = '', meta = {}) {
   }
 
   // 2. Reject obvious non-results
-  if (!features.hasRollNumber && !features.hasEnrollmentNumber && !features.hasStudentName && !features.hasOneViewSignature && !features.hasSubjectTableHeaders) {
+  if (!features.hasRollNumber && !features.hasEnrollmentNumber && !features.hasStudentName && !features.hasOneViewSignature && !features.hasSubjectTableHeaders && !features.hasSubjectRows) {
     return {
       documentType: DOCUMENT_TYPES.INVALID_DOCUMENT,
       confidence: 0.85,
@@ -79,7 +82,7 @@ export function classifyDocument(rawText = '', meta = {}) {
   }
 
   // 5. Detailed Semester Marksheet
-  if (features.hasSubjectTableHeaders || features.hasDetailedColumns || /STATEMENT\s*OF\s*MARKS|GRADE\s*CARD/i.test(clean)) {
+  if (features.hasSubjectTableHeaders || features.hasDetailedColumns || features.hasSubjectRows || /STATEMENT\s*OF\s*MARKS|GRADE\s*CARD/i.test(clean)) {
     return {
       documentType: DOCUMENT_TYPES.AKTU_SEMESTER_MARKSHEET,
       confidence: 0.95,
@@ -89,10 +92,10 @@ export function classifyDocument(rawText = '', meta = {}) {
   }
 
   // 6. Generic marksheet fallback
-  if (features.hasRollNumber && features.hasStudentName) {
+  if ((features.hasRollNumber || features.hasEnrollmentNumber) && (features.hasStudentName || features.hasSessionLines || features.hasSubjectRows)) {
     return {
       documentType: DOCUMENT_TYPES.GENERIC_MARKSHEET,
-      confidence: 0.75,
+      confidence: 0.85,
       features,
       isScanned: false
     };

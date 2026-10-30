@@ -6,9 +6,9 @@
 import 'dotenv/config';
 import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
 
-// Active Gemini models: primary with fallback
-const PRIMARY_MODEL = 'gemini-3.8-flash';
-const FALLBACK_MODEL = 'gemini-3.1-flash-lite';
+// Active Gemini models: fast, reliable models with strict timeouts
+const PRIMARY_MODEL = 'gemini-3.1-flash-lite';
+const FALLBACK_MODEL = 'gemini-3.5-flash-lite';
 
 // Strict JSON schema for Gemini structured output
 const RESULT_EXTRACTION_SCHEMA = {
@@ -172,15 +172,22 @@ export function initGemini() {
 }
 
 /**
- * Helper to call Gemini with automatic model fallback
+ * Helper to call Gemini with automatic model fallback and strict timeout
  */
-async function callGeminiWithFallback(fn) {
+async function callGeminiWithFallback(fn, timeoutMs = 7000) {
   const models = [PRIMARY_MODEL, FALLBACK_MODEL];
   let lastError = null;
 
   for (const modelName of models) {
     try {
-      const result = await fn(modelName);
+      const timeoutPromise = new Promise((_, reject) => {
+        const timer = setTimeout(() => {
+          reject(new Error(`Gemini ${modelName} timed out after ${timeoutMs}ms`));
+        }, timeoutMs);
+        if (timer.unref) timer.unref();
+      });
+
+      const result = await Promise.race([fn(modelName), timeoutPromise]);
       return { success: true, data: result, error: null };
     } catch (err) {
       console.warn(`[GEMINI] Model ${modelName} call failed:`, err.message);

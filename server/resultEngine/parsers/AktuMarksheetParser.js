@@ -245,6 +245,14 @@ export class AktuMarksheetParser extends BaseResultParser {
       });
     }
 
+    // Check if an overall official CGPA is printed anywhere in cleanText
+    let docOfficialCgpa = null;
+    const docCgpaMatch = cleanText.match(/(?:Overall\s*CGPA|Final\s*CGPA|Cumulative\s*Grade\s*Point\s*Average|CGPA)[\s\t:]*([0-9]+(?:\.[0-9]+)?)/i);
+    if (docCgpaMatch) {
+      const val = parseFloat(docCgpaMatch[1]);
+      if (!isNaN(val) && val >= 0 && val <= 10) docOfficialCgpa = val;
+    }
+
     // Cumulative CGPA calculation across all validated semesters
     const cgpaResult = calculateCGPA(semesters);
     const calculatedCGPA = cgpaResult.cgpa;
@@ -267,10 +275,15 @@ export class AktuMarksheetParser extends BaseResultParser {
       student,
       rawSessions: [],
       semesters,
+      officialSummary: {
+        officialCGPA: docOfficialCgpa,
+        calculatedCGPA,
+        totalCreditsEarned
+      },
       overall: {
-        officialCGPA: createField(null, SOURCE_TYPES.UNAVAILABLE, 'not_explicitly_printed', 0.0),
+        officialCGPA: createField(docOfficialCgpa, docOfficialCgpa !== null ? SOURCE_TYPES.OFFICIAL : SOURCE_TYPES.UNAVAILABLE, 'printed_overall_cgpa', 0.98),
         calculatedCGPA: createField(calculatedCGPA, SOURCE_TYPES.CALCULATED, 'credit_weighted_cumulative', 0.96),
-        displayCGPA: calculatedCGPA,
+        displayCGPA: docOfficialCgpa ?? calculatedCGPA,
         totalCreditsAttempted,
         totalCreditsEarned,
         totalMarksObtained: totalMarksSum > 0 ? totalMarksSum : null,
@@ -305,18 +318,22 @@ export class AktuMarksheetParser extends BaseResultParser {
     const rollMatch = cleanText.match(/(?:Roll\s*No\.?|RollNo)[\s\t:]*([0-9]{7,15})/i);
     const enrollMatch = cleanText.match(/(?:Enrollment\s*No\.?|EnrollmentNo)[\s\t:]*([A-Za-z0-9]{8,20})/i);
     const genderMatch = cleanText.match(/Gender[\s\t:]+([MF]|Male|Female)/i);
-    const courseMatch = cleanText.match(/(?:Course|Programme)[\s\t:]*([^\n\t,]+)/i);
+    const courseMatch = cleanText.match(/(?:Course|Programme)[\s\t:]*([^\n\t]+)/i);
     const branchMatch = cleanText.match(/(?:Branch|Discipline)[\s\t:]*([^\n\t]+)/i);
     const instMatch = cleanText.match(/(?:Institute|College)[\s\t:]*([^\n\t]+)/i);
+
+    let cleanCourse = courseMatch ? courseMatch[1].replace(/Gender.*$/i, '').replace(/Branch.*$/i, '').replace(/^\([^)]*\)\s*/, '').trim() : null;
+    let cleanBranch = branchMatch ? branchMatch[1].replace(/^\([^)]*\)\s*/, '').replace(/\s+/g, ' ').trim() : null;
+    let cleanCollege = instMatch ? instMatch[1].replace(/^(?:CODE\s*&?\s*NAME\s*[:\s-]*)/i, '').replace(/^\([^)]*\)\s*/, '').trim() : null;
 
     student.name = createField(nameMatch ? nameMatch[1].trim() : null, SOURCE_TYPES.OFFICIAL, 'labeled_name', 0.98);
     student.fatherName = createField(fatherMatch ? fatherMatch[1].trim() : null, SOURCE_TYPES.OFFICIAL, 'labeled_father_name', 0.98);
     student.rollNumber = createField(rollMatch ? rollMatch[1].trim() : null, SOURCE_TYPES.OFFICIAL, 'labeled_roll_no', 0.99);
     student.enrollmentNumber = createField(enrollMatch ? enrollMatch[1].trim() : null, SOURCE_TYPES.OFFICIAL, 'labeled_enrollment_no', 0.99);
     student.gender = createField(genderMatch ? (genderMatch[1].toUpperCase().startsWith('M') ? 'M' : 'F') : null, SOURCE_TYPES.OFFICIAL, 'labeled_gender', 0.95);
-    student.course = createField(courseMatch ? courseMatch[1].replace(/^\([^)]*\)\s*/, '').trim() : 'B.TECH', SOURCE_TYPES.OFFICIAL, 'labeled_course', 0.95);
-    student.branch = createField(branchMatch ? branchMatch[1].replace(/^\([^)]*\)\s*/, '').replace(/\s+/g, ' ').trim() : 'COMPUTER SCIENCE AND ENGINEERING', SOURCE_TYPES.OFFICIAL, 'labeled_branch', 0.95);
-    student.college = createField(instMatch ? instMatch[1].replace(/^\([^)]*\)\s*/, '').trim() : null, SOURCE_TYPES.OFFICIAL, 'labeled_institute', 0.95);
+    student.course = createField(cleanCourse, cleanCourse ? SOURCE_TYPES.OFFICIAL : SOURCE_TYPES.UNAVAILABLE, 'labeled_course', 0.95);
+    student.branch = createField(cleanBranch, cleanBranch ? SOURCE_TYPES.OFFICIAL : SOURCE_TYPES.UNAVAILABLE, 'labeled_branch', 0.95);
+    student.college = createField(cleanCollege, cleanCollege ? SOURCE_TYPES.OFFICIAL : SOURCE_TYPES.UNAVAILABLE, 'labeled_institute', 0.95);
 
     return student;
   }

@@ -307,8 +307,8 @@ export class AktuOneViewParser extends BaseResultParser {
     student.rollNumber = createField(rollMatch ? rollMatch[1].trim() : null, SOURCE_TYPES.OFFICIAL, 'labeled_roll_no', 0.99);
     student.enrollmentNumber = createField(enrollMatch ? enrollMatch[1].trim() : null, SOURCE_TYPES.OFFICIAL, 'labeled_enrollment_no', 0.99);
     student.gender = createField(genderMatch ? (genderMatch[1].toUpperCase().startsWith('M') ? 'M' : 'F') : null, SOURCE_TYPES.OFFICIAL, 'labeled_gender', 0.95);
-    student.course = createField(courseMatch ? courseMatch[1].replace(/^\([^)]*\)\s*/, '').trim() : 'B.TECH', SOURCE_TYPES.OFFICIAL, 'labeled_course', 0.95);
-    student.branch = createField(branchMatch ? branchMatch[1].replace(/^\([^)]*\)\s*/, '').replace(/\s+/g, ' ').trim() : 'COMPUTER SCIENCE AND ENGINEERING', SOURCE_TYPES.OFFICIAL, 'labeled_branch', 0.95);
+    student.course = createField(courseMatch ? courseMatch[1].replace(/^\([^)]*\)\s*/, '').trim() : null, courseMatch ? SOURCE_TYPES.OFFICIAL : SOURCE_TYPES.UNAVAILABLE, 'labeled_course', 0.95);
+    student.branch = createField(branchMatch ? branchMatch[1].replace(/^\([^)]*\)\s*/, '').replace(/\s+/g, ' ').trim() : null, branchMatch ? SOURCE_TYPES.OFFICIAL : SOURCE_TYPES.UNAVAILABLE, 'labeled_branch', 0.95);
     student.college = createField(instMatch ? instMatch[1].replace(/^\([^)]*\)\s*/, '').trim() : null, SOURCE_TYPES.OFFICIAL, 'labeled_institute', 0.95);
 
     return student;
