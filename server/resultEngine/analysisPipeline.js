@@ -637,7 +637,13 @@ export async function analyzeResultPdf(file, options = {}) {
       return {
         success: false,
         code: ERROR_CODES.INVALID_RESULT_DOCUMENT,
-        error: 'Unable to reliably identify a student result from this PDF. This document does not appear to contain a personal academic result or marksheet.'
+        error: 'Unable to reliably identify a student result from this PDF. This document does not appear to contain a personal academic result or marksheet.',
+        stages,
+        debug: {
+          textLength: extractedText?.length || 0,
+          textError: textExtraction.error,
+          textSnippet: extractedText ? extractedText.slice(0, 300) : null
+        }
       };
     }
 
@@ -648,7 +654,9 @@ export async function analyzeResultPdf(file, options = {}) {
         success: false,
         code: ERROR_CODES.INVALID_RESULT_STRUCTURE,
         error: validationResult.errors[validationResult.errors.length - 1] ||
-          'Unable to reliably identify a student result from this PDF. Please upload your official AKTU result PDF.'
+          'Unable to reliably identify a student result from this PDF. Please upload your official AKTU result PDF.',
+        stages,
+        validation: validationResult.validation
       };
     }
     addStage('Academic Validation', 'ok', `Evidence score: ${validationResult.validation.evidenceScore}/${validationResult.validation.minimumRequired}`);
