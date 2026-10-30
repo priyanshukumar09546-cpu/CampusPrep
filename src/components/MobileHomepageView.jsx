@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import MobileHeader from './MobileHeader';
 import { searchLocalIndex } from '../data/searchIndex';
+import { GiftPromotion } from './MentorNearby';
 
 export default function MobileHomepageView({
   onSearch,
@@ -514,6 +515,23 @@ export default function MobileHomepageView({
               );
             })}
           </div>
+        </div>
+
+        {/* =========================================================================
+            SECTION B.5 — MOBILE GIFT PROMOTION (Matches Reference Image 1 & 2)
+            ========================================================================= */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: '4px 0 10px 0',
+          padding: '6px 4px',
+          backgroundColor: '#FFFFFF',
+          borderRadius: '16px',
+          border: '1.2px solid #E9D9CC',
+          boxShadow: '0 2px 10px rgba(134, 24, 32, 0.04)'
+        }}>
+          <GiftPromotion isMobile={true} />
         </div>
 
         {/* =========================================================================

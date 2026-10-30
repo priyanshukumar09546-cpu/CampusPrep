@@ -15,6 +15,7 @@ import {
   BarChart2
 } from 'lucide-react';
 import DemoVideoModal from './DemoVideoModal';
+import { GiftPromotion } from './MentorNearby';
 
 export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -125,7 +126,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               lineHeight: 1.6,
               color: '#57534E',
               margin: '0 0 1.5rem 0',
-              maxWidth: '560px'
+              maxWidth: '470px'
             }}>
               An educational platform providing study resources, notes, previous-year question papers (PYQs), syllabus, quizzes, academic tools and career preparation for students.
             </p>
@@ -276,112 +277,6 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                     Student Rating
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Functional Search Bar with Branch Filters */}
-            <div style={{ width: '100%', maxWidth: '560px' }}>
-              <form onSubmit={handleSearchSubmit} style={{ position: 'relative', width: '100%', marginBottom: '0.65rem' }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  backgroundColor: '#FFFFFF',
-                  borderRadius: '9999px',
-                  border: '1.5px solid #E2D9C8',
-                  padding: '0.35rem 0.4rem 0.35rem 1.15rem',
-                  boxShadow: '0 4px 16px rgba(35, 30, 25, 0.05), 0 0 0 3px rgba(200, 141, 45, 0.1)',
-                  transition: 'all 0.2s ease'
-                }}>
-                  <Search size={17} style={{ color: '#78716C', marginRight: '0.65rem', flexShrink: 0 }} />
-                  <input
-                    type="text"
-                    placeholder="Search subjects, topics, PYQs, notes..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    style={{
-                      width: '100%',
-                      border: 'none',
-                      outline: 'none',
-                      fontSize: '0.88rem',
-                      fontWeight: 600,
-                      color: '#1C1917',
-                      backgroundColor: 'transparent',
-                      fontFamily: "'Plus Jakarta Sans', sans-serif"
-                    }}
-                  />
-                  <button
-                    type="submit"
-                    style={{
-                      padding: '0.55rem 1.25rem',
-                      fontSize: '0.84rem',
-                      fontWeight: 800,
-                      borderRadius: '9999px',
-                      backgroundColor: '#781416',
-                      color: '#FFFFFF',
-                      border: 'none',
-                      cursor: 'pointer',
-                      flexShrink: 0,
-                      boxShadow: '0 2px 8px rgba(120, 20, 22, 0.25)',
-                      transition: 'all 0.15s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#631012';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#781416';
-                    }}
-                  >
-                    Search
-                  </button>
-                </div>
-              </form>
-
-              {/* Branch Quick Filter Chips */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                flexWrap: 'wrap'
-              }}>
-                <span style={{ fontSize: '0.74rem', fontWeight: 700, color: '#78716C', marginRight: '0.2rem' }}>
-                  Branch:
-                </span>
-                {branches.map(b => {
-                  const isSel = selectedBranch === b;
-                  return (
-                    <button
-                      key={b}
-                      type="button"
-                      onClick={() => handleBranchClick(b)}
-                      style={{
-                        padding: '0.24rem 0.72rem',
-                        borderRadius: '9999px',
-                        border: isSel ? '1.5px solid #781416' : '1px solid #E2D9C8',
-                        backgroundColor: isSel ? '#781416' : '#FFFFFF',
-                        color: isSel ? '#FFFFFF' : '#44403C',
-                        fontWeight: isSel ? 800 : 600,
-                        fontSize: '0.74rem',
-                        cursor: 'pointer',
-                        boxShadow: isSel ? '0 2px 8px rgba(120,20,22,0.2)' : '0 1px 3px rgba(35,30,25,0.03)',
-                        transition: 'all 0.15s ease'
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!isSel) {
-                          e.currentTarget.style.borderColor = '#C88D2D';
-                          e.currentTarget.style.backgroundColor = '#FAF7F2';
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!isSel) {
-                          e.currentTarget.style.borderColor = '#E2D9C8';
-                          e.currentTarget.style.backgroundColor = '#FFFFFF';
-                        }
-                      }}
-                    >
-                      {b}
-                    </button>
-                  );
-                })}
               </div>
             </div>
 
@@ -574,10 +469,161 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
         </div>
 
+        {/* ===================================================================
+            PREMIUM 3D GIFT PROMOTION (Matches Reference Image 1)
+            Positioned in the visual focal zone between left text & right student
+            =================================================================== */}
+        <div className="hero-gift-placement">
+          <GiftPromotion />
+        </div>
+
+        {/* ===================================================================
+            CENTERED SEARCH BAR & BRANCH FILTERS (Matches Reference Image 1)
+            =================================================================== */}
+        <div style={{
+          width: '100%',
+          maxWidth: '820px',
+          margin: '2.5rem auto 0 auto',
+          position: 'relative',
+          zIndex: 5
+        }} className="hero-search-centered-section">
+          <form onSubmit={handleSearchSubmit} style={{ position: 'relative', width: '100%', marginBottom: '0.85rem' }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '9999px',
+              border: '1.5px solid #E2D9C8',
+              padding: '0.42rem 0.45rem 0.42rem 1.35rem',
+              boxShadow: '0 4px 20px rgba(35, 30, 25, 0.06), 0 0 0 3px rgba(200, 141, 45, 0.08)',
+              transition: 'all 0.2s ease'
+            }}>
+              <Search size={18} style={{ color: '#78716C', marginRight: '0.75rem', flexShrink: 0 }} />
+              <input
+                type="text"
+                placeholder="Search subjects, topics, PYQs, notes..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{
+                  width: '100%',
+                  border: 'none',
+                  outline: 'none',
+                  fontSize: '0.92rem',
+                  fontWeight: 600,
+                  color: '#1C1917',
+                  backgroundColor: 'transparent',
+                  fontFamily: "'Plus Jakarta Sans', sans-serif"
+                }}
+              />
+              <button
+                type="submit"
+                style={{
+                  padding: '0.62rem 1.65rem',
+                  fontSize: '0.88rem',
+                  fontWeight: 800,
+                  borderRadius: '9999px',
+                  backgroundColor: '#781416',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  cursor: 'pointer',
+                  flexShrink: 0,
+                  boxShadow: '0 2px 8px rgba(120, 20, 22, 0.25)',
+                  transition: 'all 0.15s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#631012';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#781416';
+                }}
+              >
+                Search
+              </button>
+            </div>
+          </form>
+
+          {/* Branch Quick Filter Chips */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.45rem',
+            flexWrap: 'wrap'
+          }}>
+            <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#78716C', marginRight: '0.25rem' }}>
+              Branch:
+            </span>
+            {branches.map(b => {
+              const isSel = selectedBranch === b;
+              return (
+                <button
+                  key={b}
+                  type="button"
+                  onClick={() => handleBranchClick(b)}
+                  style={{
+                    padding: '0.28rem 0.85rem',
+                    borderRadius: '9999px',
+                    border: isSel ? '1.5px solid #781416' : '1px solid #E2D9C8',
+                    backgroundColor: isSel ? '#781416' : '#FFFFFF',
+                    color: isSel ? '#FFFFFF' : '#44403C',
+                    fontWeight: isSel ? 800 : 600,
+                    fontSize: '0.78rem',
+                    cursor: 'pointer',
+                    boxShadow: isSel ? '0 2px 8px rgba(120,20,22,0.2)' : '0 1px 3px rgba(35,30,25,0.03)',
+                    transition: 'all 0.15s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isSel) {
+                      e.currentTarget.style.borderColor = '#C88D2D';
+                      e.currentTarget.style.backgroundColor = '#FAF7F2';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isSel) {
+                      e.currentTarget.style.borderColor = '#E2D9C8';
+                      e.currentTarget.style.backgroundColor = '#FFFFFF';
+                    }
+                  }}
+                >
+                  {b}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
 
       {/* Hero Showcase Styling & Responsive Rules */}
       <style>{`
+        .hero-gift-placement {
+          position: absolute;
+          top: 65px;
+          left: 49%;
+          transform: translateX(-50%);
+          z-index: 15;
+        }
+
+        @media (max-width: 1240px) {
+          .hero-gift-placement {
+            left: 49%;
+            top: 55px;
+            transform: translateX(-50%) scale(0.92);
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .hero-gift-placement {
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: none;
+            margin: 1.5rem auto 1rem;
+            display: flex;
+            justify-content: center;
+          }
+        }
+
         .hero-floating-card {
           position: absolute;
           z-index: 5;
