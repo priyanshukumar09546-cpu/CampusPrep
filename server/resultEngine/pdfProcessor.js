@@ -1,6 +1,8 @@
 // PDF Processing Pipeline
 // Handles file validation, text extraction, OCR fallback, and page-aware processing
 
+import fs from 'fs';
+import path from 'path';
 import { PDFParse } from 'pdf-parse';
 
 /**
@@ -57,8 +59,18 @@ export function validatePdfFile(file) {
  */
 export async function extractPdfText(pdfBuffer) {
   try {
-    const uint8Data = new Uint8Array(pdfBuffer);
-    const parser = new PDFParse(uint8Data);
+    let fontPath = undefined;
+    try {
+      const candidate = path.resolve(process.cwd(), 'node_modules', 'pdfjs-dist', 'standard_fonts');
+      if (fs.existsSync(candidate)) {
+        fontPath = candidate.replace(/\\/g, '/') + '/';
+      }
+    } catch (_) {}
+
+    const parser = new PDFParse({
+      data: pdfBuffer,
+      ...(fontPath ? { standardFontDataUrl: fontPath } : {})
+    });
     const textResult = await parser.getText();
 
     const text = textResult?.text || '';
@@ -126,9 +138,7 @@ export function assessOcrNeed(text, pageCount) {
 export async function runOcr(pdfBuffer, maxPages = 10) {
   try {
     // First try to extract images from the PDF
-    const { PDFParse } = await import('pdf-parse');
-    const uint8Data = new Uint8Array(pdfBuffer);
-    const parser = new PDFParse(uint8Data);
+    const parser = new PDFParse({ data: pdfBuffer });
 
     let images = [];
     try {
