@@ -3,7 +3,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import { PDFParse } from 'pdf-parse';
 
 /**
  * Validate uploaded file before processing
@@ -59,6 +58,12 @@ export function validatePdfFile(file) {
  */
 export async function extractPdfText(pdfBuffer) {
   try {
+    if (typeof globalThis.DOMMatrix === 'undefined') globalThis.DOMMatrix = class DOMMatrix {};
+    if (typeof globalThis.ImageData === 'undefined') globalThis.ImageData = class ImageData {};
+    if (typeof globalThis.Path2D === 'undefined') globalThis.Path2D = class Path2D {};
+
+    const { PDFParse } = await import('pdf-parse');
+
     let fontPath = undefined;
     try {
       const candidate = path.resolve(process.cwd(), 'node_modules', 'pdfjs-dist', 'standard_fonts');
@@ -137,7 +142,12 @@ export function assessOcrNeed(text, pageCount) {
  */
 export async function runOcr(pdfBuffer, maxPages = 10) {
   try {
+    if (typeof globalThis.DOMMatrix === 'undefined') globalThis.DOMMatrix = class DOMMatrix {};
+    if (typeof globalThis.ImageData === 'undefined') globalThis.ImageData = class ImageData {};
+    if (typeof globalThis.Path2D === 'undefined') globalThis.Path2D = class Path2D {};
+
     // First try to extract images from the PDF
+    const { PDFParse } = await import('pdf-parse');
     const parser = new PDFParse({ data: pdfBuffer });
 
     let images = [];

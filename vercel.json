@@ -6,7 +6,7 @@
     "api/index.js": {
       "memory": 1024,
       "maxDuration": 30,
-      "includeFiles": "{server/fonts/**,public/fonts/**,server/data/**,public/assets/syllabus_cache/**,server/resultEngine/**,eng.traineddata}"
+      "includeFiles": "{server/fonts/**,public/fonts/**,server/data/**,public/assets/syllabus_cache/**}"
     }
   },
   "headers": [
