@@ -485,8 +485,8 @@ export async function analyzeResultPdf(file, options = {}) {
     let extractedText = textExtraction.text;
     const pageCount = textExtraction.pageCount;
 
-    if (!textExtraction.success || !extractedText || extractedText.trim().length < 20) {
-      addStage('Text Extraction', 'warn', 'Sparse text layer, evaluating OCR need');
+    if (textExtraction.error || !extractedText || extractedText.trim().length < 20) {
+      addStage('Text Extraction', 'warn', textExtraction.error || 'Sparse text layer, evaluating OCR need');
     } else {
       addStage('Text Extraction', 'ok', `${extractedText.length} chars, ~${pageCount} pages`);
     }
@@ -498,13 +498,13 @@ export async function analyzeResultPdf(file, options = {}) {
     if (ocrAssessment.needsOcr || options.forceOcr) {
       addStage('OCR Assessment', 'info', `OCR required: ${ocrAssessment.reason}`);
       try {
-        const ocrResult = await runOcr(file.buffer, { maxPages: 5 });
-        if (ocrResult.success && ocrResult.text.length > extractedText.length) {
+        const ocrResult = await runOcr(file.buffer, 5);
+        if (!ocrResult.error && ocrResult.text && ocrResult.text.length > extractedText.length) {
           extractedText = ocrResult.text;
           usedOcr = true;
           addStage('OCR Execution', 'ok', `OCR completed: ${ocrResult.text.length} chars`);
         } else {
-          addStage('OCR Execution', 'warn', 'OCR produced minimal text, continuing with extracted layer');
+          addStage('OCR Execution', 'warn', ocrResult.error || 'OCR produced minimal text, continuing with extracted layer');
         }
       } catch (ocrErr) {
         addStage('OCR Execution', 'fail', ocrErr.message);

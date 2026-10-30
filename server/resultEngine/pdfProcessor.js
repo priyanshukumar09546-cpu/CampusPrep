@@ -72,8 +72,12 @@ export async function extractPdfText(pdfBuffer) {
       }
     } catch (_) {}
 
+    const uint8Data = (pdfBuffer instanceof Uint8Array && !Buffer.isBuffer(pdfBuffer))
+      ? pdfBuffer
+      : new Uint8Array(pdfBuffer.buffer, pdfBuffer.byteOffset, pdfBuffer.byteLength);
+
     const parser = new PDFParse({
-      data: pdfBuffer,
+      data: uint8Data,
       ...(fontPath ? { standardFontDataUrl: fontPath } : {})
     });
     const textResult = await parser.getText();
@@ -148,7 +152,10 @@ export async function runOcr(pdfBuffer, maxPages = 10) {
 
     // First try to extract images from the PDF
     const { PDFParse } = await import('pdf-parse');
-    const parser = new PDFParse({ data: pdfBuffer });
+    const uint8Data = (pdfBuffer instanceof Uint8Array && !Buffer.isBuffer(pdfBuffer))
+      ? pdfBuffer
+      : new Uint8Array(pdfBuffer.buffer, pdfBuffer.byteOffset, pdfBuffer.byteLength);
+    const parser = new PDFParse({ data: uint8Data });
 
     let images = [];
     try {
