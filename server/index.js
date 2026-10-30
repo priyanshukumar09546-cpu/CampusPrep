@@ -154,6 +154,12 @@ if (IS_VERCEL) {
   }
 }
 
+// SERVE DEMO & PRODUCT VIDEOS STATICALLY
+app.use('/videos', express.static(path.join(PROJECT_ROOT, 'public', 'videos')));
+if (fs.existsSync(path.join(PROJECT_ROOT, 'dist', 'videos'))) {
+  app.use('/videos', express.static(path.join(PROJECT_ROOT, 'dist', 'videos')));
+}
+
 // DEDICATED ROUTE: Serve generated resume PDFs with in-memory + filesystem + MongoDB + on-demand compilation
 const serveResumePdf = async (req, res) => {
   const filename = path.basename(req.params.filename);

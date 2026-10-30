@@ -14,10 +14,12 @@ import {
   Globe,
   BarChart2
 } from 'lucide-react';
+import DemoVideoModal from './DemoVideoModal';
 
 export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('All Branches');
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   const branches = ['CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'All Branches'];
 
@@ -172,14 +174,8 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
               <button
                 type="button"
-                onClick={() => {
-                  const target = document.getElementById('quick-access-section') || document.querySelector('.quick-access-grid');
-                  if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                  } else if (onNavigate) {
-                    onNavigate('interview-pro');
-                  }
-                }}
+                onClick={() => setIsDemoModalOpen(true)}
+                aria-label="Watch Platform Demo Video"
                 style={{
                   backgroundColor: '#FFFFFF',
                   color: '#1C1917',
@@ -790,6 +786,14 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
           }
         }
       `}</style>
+
+      {/* 60-Second Walkthrough Demo Video Modal */}
+      <DemoVideoModal
+        isOpen={isDemoModalOpen}
+        onClose={() => setIsDemoModalOpen(false)}
+        videoSrc="/videos/professorvirus-demo.mp4"
+        videoTitle="Discover ProfessorVirus — Complete Platform Tour"
+      />
     </section>
   );
 }
