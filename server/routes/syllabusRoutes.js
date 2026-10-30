@@ -82,28 +82,76 @@ function isAllowedHost(hostname) {
 // Find local cached file path for a given URL
 function getCachedFilePath(targetUrl) {
   loadCacheMap();
-  const candidateDirs = [PUBLIC_CACHE_DIR, DIST_CACHE_DIR, REL_PUBLIC_CACHE_DIR];
+  const candidateDirs = [
+    PUBLIC_CACHE_DIR,
+    DIST_CACHE_DIR,
+    REL_PUBLIC_CACHE_DIR,
+    path.join(process.cwd(), 'dist', 'assets', 'syllabus_cache'),
+    path.join(process.cwd(), 'public', 'assets', 'syllabus_cache'),
+    path.join(__dirname, '..', '..', 'public', 'assets', 'syllabus_cache')
+  ];
 
-  // 1. Exact match in manifest
-  if (syllabusCacheMap[targetUrl]?.filename) {
-    const fn = syllabusCacheMap[targetUrl].filename;
-    for (const dir of candidateDirs) {
-      const p = path.join(dir, fn);
-      if (fs.existsSync(p) && fs.statSync(p).size > 1000) return p;
+  if (!targetUrl || typeof targetUrl !== 'string') return null;
+
+  const cleanUrl = targetUrl.trim();
+  const urlVariants = [
+    cleanUrl,
+    decodeURI(cleanUrl),
+    encodeURI(cleanUrl),
+    cleanUrl.replace(/ /g, '%20'),
+    cleanUrl.replace(/%20/g, ' ')
+  ];
+
+  // 1. Direct match in manifest
+  for (const v of urlVariants) {
+    if (syllabusCacheMap[v]?.filename) {
+      const fn = syllabusCacheMap[v].filename;
+      for (const dir of candidateDirs) {
+        const p = path.join(dir, fn);
+        if (fs.existsSync(p) && fs.statSync(p).size > 1000) return p;
+      }
     }
   }
 
-  // 2. MD5 hash prefix search in cache directories
-  try {
-    const hash = crypto.createHash('md5').update(targetUrl).digest('hex').slice(0, 12);
-    for (const dir of candidateDirs) {
-      if (fs.existsSync(dir)) {
+  // 2. Hash prefix search in candidate cache directories
+  const hashes = urlVariants.map(v => {
+    try {
+      return crypto.createHash('md5').update(v).digest('hex').slice(0, 12);
+    } catch (_) {
+      return null;
+    }
+  }).filter(Boolean);
+
+  for (const dir of candidateDirs) {
+    if (fs.existsSync(dir)) {
+      try {
         const files = fs.readdirSync(dir);
-        const match = files.find(f => f.startsWith(hash));
-        if (match) {
-          const fullPath = path.join(dir, match);
-          if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 1000) {
-            return fullPath;
+        for (const h of hashes) {
+          const match = files.find(f => f.startsWith(h));
+          if (match) {
+            const fullPath = path.join(dir, match);
+            if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 1000) {
+              return fullPath;
+            }
+          }
+        }
+      } catch (_) {}
+    }
+  }
+
+  // 3. Basename filename search in candidate directories
+  try {
+    const rawBase = path.basename(decodeURI(cleanUrl)).replace(/[^a-zA-Z0-9._-]/g, '_');
+    if (rawBase && rawBase.length > 5) {
+      for (const dir of candidateDirs) {
+        if (fs.existsSync(dir)) {
+          const files = fs.readdirSync(dir);
+          const match = files.find(f => f.endsWith(rawBase) || f.includes(rawBase));
+          if (match) {
+            const fullPath = path.join(dir, match);
+            if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 1000) {
+              return fullPath;
+            }
           }
         }
       }
@@ -121,14 +169,19 @@ function streamLocalPdf(filePath, req, res) {
     const range = req.headers.range;
 
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'inline');
+    res.setHeader('Content-Disposition', 'inline; filename="syllabus.pdf"');
     res.setHeader('Accept-Ranges', 'bytes');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Range, Content-Type');
-    res.setHeader('Access-Control-Expose-Headers', 'Content-Range, Content-Length, Accept-Ranges, X-PDF-Source');
+    res.setHeader('Access-Control-Allow-Headers', 'Range, Content-Type, Accept');
+    res.setHeader('Access-Control-Expose-Headers', 'Content-Range, Content-Length, Accept-Ranges, X-PDF-Source, X-PDF-Proxy-Error');
     res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
     res.setHeader('X-PDF-Source', 'local-cache');
+
+    if (req.method === 'HEAD') {
+      res.setHeader('Content-Length', totalSize);
+      return res.status(200).end();
+    }
 
     if (range) {
       const parts = range.replace(/bytes=/, '').split('-');
@@ -156,6 +209,7 @@ function streamLocalPdf(filePath, req, res) {
   } catch (err) {
     console.error('[STREAM LOCAL PDF ERROR]', err.message);
     if (!res.headersSent) {
+      res.setHeader('X-PDF-Proxy-Error', 'true');
       res.status(500).json({ success: false, error: 'Failed to read cached PDF file' });
     }
   }
@@ -168,7 +222,10 @@ export function createSyllabusRouter() {
   const getRecords = async (query = {}) => {
     try {
       if (SyllabusModel && SyllabusModel.db && SyllabusModel.db.readyState === 1) {
-        return await SyllabusModel.find(query).lean();
+        const dbDocs = await SyllabusModel.find(query).lean();
+        if (dbDocs && dbDocs.length > 0) {
+          return dbDocs;
+        }
       }
     } catch (e) {
       console.warn('[SYLLABUS DB QUERY FAILED - FALLBACK TO JSON]', e.message);
@@ -283,10 +340,26 @@ export function createSyllabusRouter() {
   // High reliability: Serves from local pre-cache first, with SSRF protection,
   // byte-range streaming, magic-byte verification, and graceful error handling.
   // -------------------------------------------------------------------------
-  router.get('/pdf-proxy', (req, res) => {
+  router.all('/pdf-proxy', (req, res) => {
+    // Handle CORS preflight options immediately
+    if (req.method === 'OPTIONS') {
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+      res.setHeader('Access-Control-Allow-Headers', 'Range, Content-Type, Accept');
+      res.setHeader('Access-Control-Max-Age', '86400');
+      return res.status(204).end();
+    }
+
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      res.setHeader('X-PDF-Proxy-Error', 'true');
+      res.setHeader('Content-Type', 'application/json');
+      return res.status(405).json({ success: false, error: 'Method not allowed' });
+    }
+
     const targetUrl = req.query.url;
     if (!targetUrl || typeof targetUrl !== 'string' || !targetUrl.startsWith('http')) {
       res.setHeader('X-PDF-Proxy-Error', 'true');
+      res.setHeader('Content-Type', 'application/json');
       return res.status(400).json({ success: false, error: 'Valid URL parameter is required' });
     }
 
@@ -296,6 +369,7 @@ export function createSyllabusRouter() {
       // SSRF Validation: Check hostname against allowlist
       if (!isAllowedHost(parsed.hostname)) {
         res.setHeader('X-PDF-Proxy-Error', 'true');
+        res.setHeader('Content-Type', 'application/json');
         return res.status(403).json({
           success: false,
           error: `Access to hostname "${parsed.hostname}" is not permitted for proxying`,
@@ -313,24 +387,32 @@ export function createSyllabusRouter() {
       const fetchWithRetry = (currentUrl, redirectCount = 0) => {
         if (redirectCount > 3) {
           res.setHeader('X-PDF-Proxy-Error', 'true');
+          res.setHeader('Content-Type', 'application/json');
           return res.status(502).json({ success: false, error: 'Too many redirects', code: 'TOO_MANY_REDIRECTS' });
         }
 
         const currentParsed = new URL(currentUrl);
         if (!isAllowedHost(currentParsed.hostname)) {
           res.setHeader('X-PDF-Proxy-Error', 'true');
+          res.setHeader('Content-Type', 'application/json');
           return res.status(403).json({ success: false, error: 'Redirected host is not permitted', code: 'SSRF_BLOCKED' });
         }
 
         const client = currentParsed.protocol === 'https:' ? https : http;
 
+        const requestHeaders = {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'application/pdf,*/*'
+        };
+
+        if (req.headers.range) {
+          requestHeaders['Range'] = req.headers.range;
+        }
+
         const proxyReq = client.get(encodeURI(currentUrl), {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            'Accept': 'application/pdf,*/*'
-          },
+          headers: requestHeaders,
           rejectUnauthorized: false,
-          timeout: 6000
+          timeout: 15000
         }, (proxyRes) => {
           // Handle redirects safely
           if (proxyRes.statusCode >= 300 && proxyRes.statusCode < 400 && proxyRes.headers.location) {
@@ -341,6 +423,7 @@ export function createSyllabusRouter() {
 
           if (proxyRes.statusCode === 404) {
             res.setHeader('X-PDF-Proxy-Error', 'true');
+            res.setHeader('Content-Type', 'application/json');
             return res.status(404).json({
               success: false,
               error: 'The syllabus PDF was not found on the university portal (HTTP 404)',
@@ -348,8 +431,9 @@ export function createSyllabusRouter() {
             });
           }
 
-          if (proxyRes.statusCode !== 200) {
+          if (proxyRes.statusCode !== 200 && proxyRes.statusCode !== 206) {
             res.setHeader('X-PDF-Proxy-Error', 'true');
+            res.setHeader('Content-Type', 'application/json');
             return res.status(502).json({
               success: false,
               error: `University server returned status ${proxyRes.statusCode}`,
@@ -357,11 +441,22 @@ export function createSyllabusRouter() {
             });
           }
 
+          // If HEAD request, respond with upstream headers immediately
+          if (req.method === 'HEAD') {
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', 'inline; filename="syllabus.pdf"');
+            res.setHeader('Accept-Ranges', 'bytes');
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Expose-Headers', 'Content-Range, Content-Length, Accept-Ranges, X-PDF-Source, X-PDF-Proxy-Error');
+            if (proxyRes.headers['content-length']) res.setHeader('Content-Length', proxyRes.headers['content-length']);
+            if (proxyRes.headers['content-range']) res.setHeader('Content-Range', proxyRes.headers['content-range']);
+            return res.status(proxyRes.statusCode).end();
+          }
+
           // Buffer first chunk to verify magic bytes (%PDF-)
           let firstChunkReceived = false;
           let tempChunks = [];
           let tempLength = 0;
-          const maxBuffer = 100 * 1024 * 1024; // 100MB limit
 
           proxyRes.on('data', (chunk) => {
             if (!firstChunkReceived) {
@@ -373,9 +468,12 @@ export function createSyllabusRouter() {
                 const headerBuffer = Buffer.concat(tempChunks);
                 const magic = headerBuffer.slice(0, 5).toString('ascii');
 
-                if (!magic.startsWith('%PDF-')) {
+                // If range request starting > 0, magic bytes might not be at offset 0
+                const isNonZeroRange = req.headers.range && !req.headers.range.includes('bytes=0-');
+                if (!isNonZeroRange && !magic.startsWith('%PDF-')) {
                   proxyRes.destroy();
                   res.setHeader('X-PDF-Proxy-Error', 'true');
+                  res.setHeader('Content-Type', 'application/json');
                   return res.status(502).json({
                     success: false,
                     error: 'University server returned an invalid or HTML document instead of a PDF',
@@ -385,16 +483,23 @@ export function createSyllabusRouter() {
 
                 // Valid PDF! Set headers and stream
                 res.setHeader('Content-Type', 'application/pdf');
-                res.setHeader('Content-Disposition', 'inline');
+                res.setHeader('Content-Disposition', 'inline; filename="syllabus.pdf"');
                 res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+                res.setHeader('Access-Control-Allow-Headers', 'Range, Content-Type, Accept');
+                res.setHeader('Access-Control-Expose-Headers', 'Content-Range, Content-Length, Accept-Ranges, X-PDF-Source, X-PDF-Proxy-Error');
                 res.setHeader('Accept-Ranges', 'bytes');
                 res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
                 res.setHeader('X-PDF-Source', 'upstream-stream');
+
                 if (proxyRes.headers['content-length']) {
                   res.setHeader('Content-Length', proxyRes.headers['content-length']);
                 }
+                if (proxyRes.headers['content-range']) {
+                  res.setHeader('Content-Range', proxyRes.headers['content-range']);
+                }
 
-                res.status(200);
+                res.status(proxyRes.statusCode || 200);
                 res.write(headerBuffer);
               }
             } else {
@@ -405,6 +510,7 @@ export function createSyllabusRouter() {
           proxyRes.on('end', () => {
             if (!firstChunkReceived && !res.headersSent) {
               res.setHeader('X-PDF-Proxy-Error', 'true');
+              res.setHeader('Content-Type', 'application/json');
               return res.status(502).json({ success: false, error: 'Empty response from university server', code: 'EMPTY_UPSTREAM' });
             }
             res.end();
@@ -415,6 +521,7 @@ export function createSyllabusRouter() {
           proxyReq.destroy();
           if (!res.headersSent) {
             res.setHeader('X-PDF-Proxy-Error', 'true');
+            res.setHeader('Content-Type', 'application/json');
             res.status(504).json({
               success: false,
               error: 'Official university server (aktu.ac.in) connection timed out',
@@ -427,6 +534,7 @@ export function createSyllabusRouter() {
           console.error('[SYLLABUS PDF PROXY ERROR]', err.message);
           if (!res.headersSent) {
             res.setHeader('X-PDF-Proxy-Error', 'true');
+            res.setHeader('Content-Type', 'application/json');
             res.status(502).json({
               success: false,
               error: `Official university portal connection error: ${err.message}`,

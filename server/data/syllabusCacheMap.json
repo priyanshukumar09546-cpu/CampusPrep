@@ -1,248 +1,938 @@
 {
-  "https://aktu.ac.in/pdf/syllabus/syllabus2223/Syllabus_BTech_First_Yr_Common_other_than_AG_&_BT_effective_from_2022_23_R.pdf": {
-    "filename": "fb1881f16f0a_Syllabus_BTech_First_Yr_Common_other_than_AG__.pdf",
-    "publicPath": "/assets/syllabus_cache/fb1881f16f0a_Syllabus_BTech_First_Yr_Common_other_than_AG__.pdf",
-    "size": 582288,
-    "cachedAt": "2026-10-30T05:58:44.813Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.TECH. CSE(IoT) Syllabus  3rd year 2024-25.pdf": {
+    "filename": "055e6e754a99_B.TECH._20CSE_IoT__20Syllabus_20_203rd_20year.pdf",
+    "publicPath": "/assets/syllabus_cache/055e6e754a99_B.TECH._20CSE_IoT__20Syllabus_20_203rd_20year.pdf",
+    "size": 550309,
+    "cachedAt": "2026-10-30T08:44:04.244Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/B.Tech_2nd_Yr_CSE_v3.pdf": {
-    "filename": "70526e00f02c_B.Tech_2nd_Yr_CSE_v3.pdf",
-    "publicPath": "/assets/syllabus_cache/70526e00f02c_B.Tech_2nd_Yr_CSE_v3.pdf",
-    "size": 1363014,
-    "cachedAt": "2026-10-30T05:58:44.815Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.TECH.%20CSE(IoT)%20Syllabus%20%203rd%20year%202024-25.pdf": {
+    "filename": "055e6e754a99_B.TECH._20CSE_IoT__20Syllabus_20_203rd_20year.pdf",
+    "publicPath": "/assets/syllabus_cache/055e6e754a99_B.TECH._20CSE_IoT__20Syllabus_20_203rd_20year.pdf",
+    "size": 550309,
+    "cachedAt": "2026-10-30T08:44:04.244Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CST_CS_CE and CSE Syllabus 3rd Year 2024-25_15072026.pdf": {
-    "filename": "3f1c218d08c2_B.Tech._20CST_CS_CE_20and_20CSE_20Syllabus_203.pdf",
-    "publicPath": "/assets/syllabus_cache/3f1c218d08c2_B.Tech._20CST_CS_CE_20and_20CSE_20Syllabus_203.pdf",
-    "size": 775600,
-    "cachedAt": "2026-10-30T05:58:44.816Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.TECH CE&IT , CSIT, IT 3rd YR 2024-25.pdf": {
-    "filename": "08c18709b235_B.TECH_20CE_IT_20__20CSIT__20IT_203rd_20YR_202.pdf",
-    "publicPath": "/assets/syllabus_cache/08c18709b235_B.TECH_20CE_IT_20__20CSIT__20IT_203rd_20YR_202.pdf",
-    "size": 751727,
-    "cachedAt": "2026-10-30T05:58:44.816Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Arttificial Intelligence & Machine Learning Syllabus 3rd year 2024-25.pdf": {
-    "filename": "c2a911cd34ad_B.Tech._20Arttificial_20Intelligence_20__20Mac.pdf",
-    "publicPath": "/assets/syllabus_cache/c2a911cd34ad_B.Tech._20Arttificial_20Intelligence_20__20Mac.pdf",
-    "size": 665036,
-    "cachedAt": "2026-10-30T05:58:44.816Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CSE (Data Science) Syllabus 3rd year.pdf": {
-    "filename": "41f18286886c_B.Tech._20CSE_20_Data_20Science__20Syllabus_20.pdf",
-    "publicPath": "/assets/syllabus_cache/41f18286886c_B.Tech._20CSE_20_Data_20Science__20Syllabus_20.pdf",
-    "size": 808659,
-    "cachedAt": "2026-10-30T05:58:44.816Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech_2nd_Yr_ECE_Advanced Communication Technology_VLSI.pdf": {
-    "filename": "1a1583e4934e_B.Tech_2nd_Yr_ECE_Advanced_20Communication_20T.pdf",
-    "publicPath": "/assets/syllabus_cache/1a1583e4934e_B.Tech_2nd_Yr_ECE_Advanced_20Communication_20T.pdf",
-    "size": 392121,
-    "cachedAt": "2026-10-30T05:58:44.816Z"
+  "055e6e754a99_B.TECH._20CSE_IoT__20Syllabus_20_203rd_20year.pdf": {
+    "filename": "055e6e754a99_B.TECH._20CSE_IoT__20Syllabus_20_203rd_20year.pdf",
+    "publicPath": "/assets/syllabus_cache/055e6e754a99_B.TECH._20CSE_IoT__20Syllabus_20_203rd_20year.pdf",
+    "size": 550309,
+    "cachedAt": "2026-10-30T08:44:04.247Z"
   },
   "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech ECE 3rd Year Syllabus_2024-25 2026.pdf": {
     "filename": "0569fbe10cf5_B.Tech_20ECE_203rd_20Year_20Syllabus_2024-25_2.pdf",
     "publicPath": "/assets/syllabus_cache/0569fbe10cf5_B.Tech_20ECE_203rd_20Year_20Syllabus_2024-25_2.pdf",
     "size": 920384,
-    "cachedAt": "2026-10-30T05:58:44.817Z"
+    "cachedAt": "2026-10-30T08:44:04.249Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/B.Tech_2nd_Yr_CE.pdf": {
-    "filename": "7aa6f7b29566_B.Tech_2nd_Yr_CE.pdf",
-    "publicPath": "/assets/syllabus_cache/7aa6f7b29566_B.Tech_2nd_Yr_CE.pdf",
-    "size": 757674,
-    "cachedAt": "2026-10-30T05:58:44.817Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech%20ECE%203rd%20Year%20Syllabus_2024-25%202026.pdf": {
+    "filename": "0569fbe10cf5_B.Tech_20ECE_203rd_20Year_20Syllabus_2024-25_2.pdf",
+    "publicPath": "/assets/syllabus_cache/0569fbe10cf5_B.Tech_20ECE_203rd_20Year_20Syllabus_2024-25_2.pdf",
+    "size": 920384,
+    "cachedAt": "2026-10-30T08:44:04.249Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MCA _First_Year_Detailed_Syllabus_2024-25.pdf": {
-    "filename": "bc69a601175d_MCA_20_First_Year_Detailed_Syllabus_2024-25.pdf",
-    "publicPath": "/assets/syllabus_cache/bc69a601175d_MCA_20_First_Year_Detailed_Syllabus_2024-25.pdf",
-    "size": 510037,
-    "cachedAt": "2026-10-30T05:58:44.817Z"
+  "0569fbe10cf5_B.Tech_20ECE_203rd_20Year_20Syllabus_2024-25_2.pdf": {
+    "filename": "0569fbe10cf5_B.Tech_20ECE_203rd_20Year_20Syllabus_2024-25_2.pdf",
+    "publicPath": "/assets/syllabus_cache/0569fbe10cf5_B.Tech_20ECE_203rd_20Year_20Syllabus_2024-25_2.pdf",
+    "size": 920384,
+    "cachedAt": "2026-10-30T08:44:04.251Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BCA_First_Year_Detailed_Syllabus_2024-25.pdf": {
-    "filename": "c7a8af308e72_BCA_First_Year_Detailed_Syllabus_2024-25.pdf",
-    "publicPath": "/assets/syllabus_cache/c7a8af308e72_BCA_First_Year_Detailed_Syllabus_2024-25.pdf",
-    "size": 434580,
-    "cachedAt": "2026-10-30T05:58:44.821Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.TECH CE&IT , CSIT, IT 3rd YR 2024-25.pdf": {
+    "filename": "08c18709b235_B.TECH_20CE_IT_20__20CSIT__20IT_203rd_20YR_202.pdf",
+    "publicPath": "/assets/syllabus_cache/08c18709b235_B.TECH_20CE_IT_20__20CSIT__20IT_203rd_20YR_202.pdf",
+    "size": 751727,
+    "cachedAt": "2026-10-30T08:44:04.253Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MBA Common First Year Syllabus _2024-25.pdf": {
-    "filename": "143e50708d12_MBA_20Common_20First_20Year_20Syllabus_20_2024.pdf",
-    "publicPath": "/assets/syllabus_cache/143e50708d12_MBA_20Common_20First_20Year_20Syllabus_20_2024.pdf",
-    "size": 570615,
-    "cachedAt": "2026-10-30T05:58:44.821Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.TECH%20CE&IT%20,%20CSIT,%20IT%203rd%20YR%202024-25.pdf": {
+    "filename": "08c18709b235_B.TECH_20CE_IT_20__20CSIT__20IT_203rd_20YR_202.pdf",
+    "publicPath": "/assets/syllabus_cache/08c18709b235_B.TECH_20CE_IT_20__20CSIT__20IT_203rd_20YR_202.pdf",
+    "size": 751727,
+    "cachedAt": "2026-10-30T08:44:04.253Z"
   },
-  "https://aktu.ac.in/pdf/syllabus/syllabus2021/Bachelor of Pharmacy I, II, III & IV Year syllabus 2019-2020 23 March 2021.pdf": {
-    "filename": "d8138b80c940_Bachelor_20of_20Pharmacy_20I__20II__20III_20__.pdf",
-    "publicPath": "/assets/syllabus_cache/d8138b80c940_Bachelor_20of_20Pharmacy_20I__20II__20III_20__.pdf",
-    "size": 1244478,
-    "cachedAt": "2026-10-30T05:58:44.821Z"
+  "08c18709b235_B.TECH_20CE_IT_20__20CSIT__20IT_203rd_20YR_202.pdf": {
+    "filename": "08c18709b235_B.TECH_20CE_IT_20__20CSIT__20IT_203rd_20YR_202.pdf",
+    "publicPath": "/assets/syllabus_cache/08c18709b235_B.TECH_20CE_IT_20__20CSIT__20IT_203rd_20YR_202.pdf",
+    "size": 751727,
+    "cachedAt": "2026-10-30T08:44:04.254Z"
   },
-  "https://aktu.ac.in/pdf/syllabus/syllabus2122/M.Tech_AI_and_DS_2021_22.pdf": {
-    "filename": "4ff929396a09_M.Tech_AI_and_DS_2021_22.pdf.pdf",
-    "publicPath": "/assets/syllabus_cache/4ff929396a09_M.Tech_AI_and_DS_2021_22.pdf.pdf",
-    "size": 330058,
-    "cachedAt": "2026-10-30T05:59:18.375Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BTech_Syallbus_Food Technology_V and VI FINAL_AKTU.pdf": {
+    "filename": "0aac43b8f6eb_BTech_Syallbus_Food_20Technology_V_20and_20VI.pdf",
+    "publicPath": "/assets/syllabus_cache/0aac43b8f6eb_BTech_Syallbus_Food_20Technology_V_20and_20VI.pdf",
+    "size": 1208138,
+    "cachedAt": "2026-10-30T08:44:04.256Z"
   },
-  "https://aktu.ac.in/pdf/syllabus/syllabus2122/MCA_Second_Year_Detailed_Syllabus_2021_22 final copy.pdf": {
-    "filename": "baba5b49ccee_MCA_Second_Year_Detailed_Syllabus_2021_22_20f.pdf",
-    "publicPath": "/assets/syllabus_cache/baba5b49ccee_MCA_Second_Year_Detailed_Syllabus_2021_22_20f.pdf",
-    "size": 443893,
-    "cachedAt": "2026-10-30T05:59:18.716Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BTech_Syallbus_Food%20Technology_V%20and%20VI%20FINAL_AKTU.pdf": {
+    "filename": "0aac43b8f6eb_BTech_Syallbus_Food_20Technology_V_20and_20VI.pdf",
+    "publicPath": "/assets/syllabus_cache/0aac43b8f6eb_BTech_Syallbus_Food_20Technology_V_20and_20VI.pdf",
+    "size": 1208138,
+    "cachedAt": "2026-10-30T08:44:04.256Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BTECH Third Year Agricultural Engineering [Effective from 2024-25].pdf": {
-    "filename": "52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
-    "publicPath": "/assets/syllabus_cache/52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
-    "size": 608463,
-    "cachedAt": "2026-10-30T05:59:24.957Z"
+  "0aac43b8f6eb_BTech_Syallbus_Food_20Technology_V_20and_20VI.pdf": {
+    "filename": "0aac43b8f6eb_BTech_Syallbus_Food_20Technology_V_20and_20VI.pdf",
+    "publicPath": "/assets/syllabus_cache/0aac43b8f6eb_BTech_Syallbus_Food_20Technology_V_20and_20VI.pdf",
+    "size": 1208138,
+    "cachedAt": "2026-10-30T08:44:04.258Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CSE(Cyber Security) Syllabus 3rd year 2024-25.pdf": {
-    "filename": "957c4b1c13f6_B.Tech._20CSE_Cyber_20Security__20Syllabus_20.pdf",
-    "publicPath": "/assets/syllabus_cache/957c4b1c13f6_B.Tech._20CSE_Cyber_20Security__20Syllabus_20.pdf",
-    "size": 536475,
-    "cachedAt": "2026-10-30T05:59:25.382Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BFA Syllabus 2024-2025.pdf": {
+    "filename": "0e024f99ad63_BFA_20Syllabus_202024-2025.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/0e024f99ad63_BFA_20Syllabus_202024-2025.pdf.pdf",
+    "size": 565717,
+    "cachedAt": "2026-10-30T08:44:04.259Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Carpet & Textile Technology_3rd_year 2024-25.pdf": {
-    "filename": "fd9483e35fb1_Carpet_20__20Textile_20Technology_3rd_year_20.pdf",
-    "publicPath": "/assets/syllabus_cache/fd9483e35fb1_Carpet_20__20Textile_20Technology_3rd_year_20.pdf",
-    "size": 400434,
-    "cachedAt": "2026-10-30T05:59:26.947Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BFA%20Syllabus%202024-2025.pdf": {
+    "filename": "0e024f99ad63_BFA_20Syllabus_202024-2025.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/0e024f99ad63_BFA_20Syllabus_202024-2025.pdf.pdf",
+    "size": 565717,
+    "cachedAt": "2026-10-30T08:44:04.259Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MBA ( BUSINESS ANALYTICS) First Year SYLLABUS -2024-25.pdf": {
-    "filename": "b5fd01174a3f_MBA_20__20BUSINESS_20ANALYTICS__20First_20Yea.pdf",
-    "publicPath": "/assets/syllabus_cache/b5fd01174a3f_MBA_20__20BUSINESS_20ANALYTICS__20First_20Yea.pdf",
-    "size": 590312,
-    "cachedAt": "2026-10-30T05:59:28.755Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CSE (Artificial Intelligence) Syllabus 3rd year 2024-25.pdf": {
-    "filename": "50d4fe01ebda_B.Tech._20CSE_20_Artificial_20Intelligence__2.pdf",
-    "publicPath": "/assets/syllabus_cache/50d4fe01ebda_B.Tech._20CSE_20_Artificial_20Intelligence__2.pdf",
-    "size": 680609,
-    "cachedAt": "2026-10-30T05:59:34.061Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CSE (Arttificial Intelligence & Machine Learning ) Syllabus 3rd year 2024-25.pdf": {
-    "filename": "1116fb0269e3_B.Tech._20CSE_20_Arttificial_20Intelligence_2.pdf",
-    "publicPath": "/assets/syllabus_cache/1116fb0269e3_B.Tech._20CSE_20_Arttificial_20Intelligence_2.pdf",
-    "size": 667985,
-    "cachedAt": "2026-10-30T05:59:34.353Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Electrical and Computer Engineering Syllabus 3rd year 2024-25 010325.pdf": {
-    "filename": "8259e9fb9982_B.Tech._20Electrical_20and_20Computer_20Engin.pdf",
-    "publicPath": "/assets/syllabus_cache/8259e9fb9982_B.Tech._20Electrical_20and_20Computer_20Engin.pdf",
-    "size": 608364,
-    "cachedAt": "2026-10-30T05:59:34.751Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.TECH. CSE(IoT) Syllabus  3rd year 2024-25.pdf": {
-    "filename": "055e6e754a99_B.TECH._20CSE_IoT__20Syllabus_20_203rd_20year.pdf",
-    "publicPath": "/assets/syllabus_cache/055e6e754a99_B.TECH._20CSE_IoT__20Syllabus_20_203rd_20year.pdf",
-    "size": 550309,
-    "cachedAt": "2026-10-30T05:59:37.114Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech_2nd_Year_Mining_Engg_Evaluation_scheme_2024-25.pdf": {
-    "filename": "5e9b70f90493_B.Tech_2nd_Year_Mining_Engg_Evaluation_scheme.pdf",
-    "publicPath": "/assets/syllabus_cache/5e9b70f90493_B.Tech_2nd_Year_Mining_Engg_Evaluation_scheme.pdf",
-    "size": 912787,
-    "cachedAt": "2026-10-30T05:59:39.985Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Electronics and Computer Engineering Syllabus 3rd year 2024-25 2026.pdf": {
-    "filename": "8bd72f3b1aad_B.Tech._20Electronics_20and_20Computer_20Engi.pdf",
-    "publicPath": "/assets/syllabus_cache/8bd72f3b1aad_B.Tech._20Electronics_20and_20Computer_20Engi.pdf",
-    "size": 609829,
-    "cachedAt": "2026-10-30T05:59:40.495Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Btech_Syll_Chemical_V and VI FINAL AKTU 2024-25.pdf": {
-    "filename": "4c6db12da22e_Btech_Syll_Chemical_V_20and_20VI_20FINAL_20AK.pdf",
-    "publicPath": "/assets/syllabus_cache/4c6db12da22e_Btech_Syll_Chemical_V_20and_20VI_20FINAL_20AK.pdf",
-    "size": 902800,
-    "cachedAt": "2026-10-30T05:59:41.653Z"
+  "0e024f99ad63_BFA_20Syllabus_202024-2025.pdf.pdf": {
+    "filename": "0e024f99ad63_BFA_20Syllabus_202024-2025.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/0e024f99ad63_BFA_20Syllabus_202024-2025.pdf.pdf",
+    "size": 565717,
+    "cachedAt": "2026-10-30T08:44:04.261Z"
   },
   "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Bachelor of Business Administration (BBA) First Yr 2024-25.pdf": {
     "filename": "108b51f975ce_Bachelor_20of_20Business_20Administration_20_.pdf",
     "publicPath": "/assets/syllabus_cache/108b51f975ce_Bachelor_20of_20Business_20Administration_20_.pdf",
     "size": 401330,
-    "cachedAt": "2026-10-30T05:59:43.395Z"
+    "cachedAt": "2026-10-30T08:44:04.262Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Bachelor%20of%20Business%20Administration%20(BBA)%20First%20Yr%202024-25.pdf": {
+    "filename": "108b51f975ce_Bachelor_20of_20Business_20Administration_20_.pdf",
+    "publicPath": "/assets/syllabus_cache/108b51f975ce_Bachelor_20of_20Business_20Administration_20_.pdf",
+    "size": 401330,
+    "cachedAt": "2026-10-30T08:44:04.262Z"
+  },
+  "108b51f975ce_Bachelor_20of_20Business_20Administration_20_.pdf": {
+    "filename": "108b51f975ce_Bachelor_20of_20Business_20Administration_20_.pdf",
+    "publicPath": "/assets/syllabus_cache/108b51f975ce_Bachelor_20of_20Business_20Administration_20_.pdf",
+    "size": 401330,
+    "cachedAt": "2026-10-30T08:44:04.265Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CSE (Arttificial Intelligence & Machine Learning ) Syllabus 3rd year 2024-25.pdf": {
+    "filename": "1116fb0269e3_B.Tech._20CSE_20_Arttificial_20Intelligence_2.pdf",
+    "publicPath": "/assets/syllabus_cache/1116fb0269e3_B.Tech._20CSE_20_Arttificial_20Intelligence_2.pdf",
+    "size": 667985,
+    "cachedAt": "2026-10-30T08:44:04.266Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20CSE%20(Arttificial%20Intelligence%20&%20Machine%20Learning%20)%20Syllabus%203rd%20year%202024-25.pdf": {
+    "filename": "1116fb0269e3_B.Tech._20CSE_20_Arttificial_20Intelligence_2.pdf",
+    "publicPath": "/assets/syllabus_cache/1116fb0269e3_B.Tech._20CSE_20_Arttificial_20Intelligence_2.pdf",
+    "size": 667985,
+    "cachedAt": "2026-10-30T08:44:04.266Z"
+  },
+  "1116fb0269e3_B.Tech._20CSE_20_Arttificial_20Intelligence_2.pdf": {
+    "filename": "1116fb0269e3_B.Tech._20CSE_20_Arttificial_20Intelligence_2.pdf",
+    "publicPath": "/assets/syllabus_cache/1116fb0269e3_B.Tech._20CSE_20_Arttificial_20Intelligence_2.pdf",
+    "size": 667985,
+    "cachedAt": "2026-10-30T08:44:04.268Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MBA Common First Year Syllabus _2024-25.pdf": {
+    "filename": "143e50708d12_MBA_20Common_20First_20Year_20Syllabus_20_2024.pdf",
+    "publicPath": "/assets/syllabus_cache/143e50708d12_MBA_20Common_20First_20Year_20Syllabus_20_2024.pdf",
+    "size": 570615,
+    "cachedAt": "2026-10-30T08:44:04.269Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MBA%20Common%20First%20Year%20Syllabus%20_2024-25.pdf": {
+    "filename": "143e50708d12_MBA_20Common_20First_20Year_20Syllabus_20_2024.pdf",
+    "publicPath": "/assets/syllabus_cache/143e50708d12_MBA_20Common_20First_20Year_20Syllabus_20_2024.pdf",
+    "size": 570615,
+    "cachedAt": "2026-10-30T08:44:04.269Z"
+  },
+  "143e50708d12_MBA_20Common_20First_20Year_20Syllabus_20_2024.pdf": {
+    "filename": "143e50708d12_MBA_20Common_20First_20Year_20Syllabus_20_2024.pdf",
+    "publicPath": "/assets/syllabus_cache/143e50708d12_MBA_20Common_20First_20Year_20Syllabus_20_2024.pdf",
+    "size": 570615,
+    "cachedAt": "2026-10-30T08:44:04.271Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech_2nd_Yr_ECE_Advanced Communication Technology_VLSI.pdf": {
+    "filename": "1a1583e4934e_B.Tech_2nd_Yr_ECE_Advanced_20Communication_20T.pdf",
+    "publicPath": "/assets/syllabus_cache/1a1583e4934e_B.Tech_2nd_Yr_ECE_Advanced_20Communication_20T.pdf",
+    "size": 392121,
+    "cachedAt": "2026-10-30T08:44:04.272Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech_2nd_Yr_ECE_Advanced%20Communication%20Technology_VLSI.pdf": {
+    "filename": "1a1583e4934e_B.Tech_2nd_Yr_ECE_Advanced_20Communication_20T.pdf",
+    "publicPath": "/assets/syllabus_cache/1a1583e4934e_B.Tech_2nd_Yr_ECE_Advanced_20Communication_20T.pdf",
+    "size": 392121,
+    "cachedAt": "2026-10-30T08:44:04.272Z"
+  },
+  "1a1583e4934e_B.Tech_2nd_Yr_ECE_Advanced_20Communication_20T.pdf": {
+    "filename": "1a1583e4934e_B.Tech_2nd_Yr_ECE_Advanced_20Communication_20T.pdf",
+    "publicPath": "/assets/syllabus_cache/1a1583e4934e_B.Tech_2nd_Yr_ECE_Advanced_20Communication_20T.pdf",
+    "size": 392121,
+    "cachedAt": "2026-10-30T08:44:04.274Z"
   },
   "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/1 B.Tech. 3rd Year Electrical Engineering 2024-25.pdf": {
     "filename": "1bc51cee2fae_1_20B.Tech._203rd_20Year_20Electrical_20Engin.pdf",
     "publicPath": "/assets/syllabus_cache/1bc51cee2fae_1_20B.Tech._203rd_20Year_20Electrical_20Engin.pdf",
     "size": 673906,
-    "cachedAt": "2026-10-30T05:59:44.488Z"
+    "cachedAt": "2026-10-30T08:44:04.275Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/1 B.Tech. 3rd Year Electrical & Electronics Engineering 2024-25.pdf": {
-    "filename": "e136ac990674_1_20B.Tech._203rd_20Year_20Electrical_20__20E.pdf",
-    "publicPath": "/assets/syllabus_cache/e136ac990674_1_20B.Tech._203rd_20Year_20Electrical_20__20E.pdf",
-    "size": 721033,
-    "cachedAt": "2026-10-30T05:59:45.408Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/1%20B.Tech.%203rd%20Year%20Electrical%20Engineering%202024-25.pdf": {
+    "filename": "1bc51cee2fae_1_20B.Tech._203rd_20Year_20Electrical_20Engin.pdf",
+    "publicPath": "/assets/syllabus_cache/1bc51cee2fae_1_20B.Tech._203rd_20Year_20Electrical_20Engin.pdf",
+    "size": 673906,
+    "cachedAt": "2026-10-30T08:44:04.275Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Textile Technology_3rd_year 2024-25.pdf": {
-    "filename": "91b83594652a_Textile_20Technology_3rd_year_202024-25.pdf.pdf",
-    "publicPath": "/assets/syllabus_cache/91b83594652a_Textile_20Technology_3rd_year_202024-25.pdf.pdf",
-    "size": 410971,
-    "cachedAt": "2026-10-30T05:59:45.467Z"
+  "1bc51cee2fae_1_20B.Tech._203rd_20Year_20Electrical_20Engin.pdf": {
+    "filename": "1bc51cee2fae_1_20B.Tech._203rd_20Year_20Electrical_20Engin.pdf",
+    "publicPath": "/assets/syllabus_cache/1bc51cee2fae_1_20B.Tech._203rd_20Year_20Electrical_20Engin.pdf",
+    "size": 673906,
+    "cachedAt": "2026-10-30T08:44:04.277Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Open Elective 1 _3rd Year VI Semester 2024-25 (1).pdf": {
-    "filename": "442f5a04b9e2_B.Tech._20Open_20Elective_201_20_3rd_20Year_2.pdf",
-    "publicPath": "/assets/syllabus_cache/442f5a04b9e2_B.Tech._20Open_20Elective_201_20_3rd_20Year_2.pdf",
-    "size": 591489,
-    "cachedAt": "2026-10-30T05:59:46.306Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/B.Tech_2nd_Yr_AG.pdf": {
+    "filename": "20bb3a356f0e_B.Tech_2nd_Yr_AG.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/20bb3a356f0e_B.Tech_2nd_Yr_AG.pdf.pdf",
+    "size": 697521,
+    "cachedAt": "2026-10-30T08:44:04.280Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B. Tech 3rd Year_ AE_Syllabus_final.pdf": {
-    "filename": "5782cc851074_B._20Tech_203rd_20Year__20AE_Syllabus_final.p.pdf",
-    "publicPath": "/assets/syllabus_cache/5782cc851074_B._20Tech_203rd_20Year__20AE_Syllabus_final.p.pdf",
-    "size": 781189,
-    "cachedAt": "2026-10-30T05:59:47.834Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/1 B.Tech. 3rd Year Biotechnology 2024-25.pdf": {
-    "filename": "8c1e93de0bb7_1_20B.Tech._203rd_20Year_20Biotechnology_2020.pdf",
-    "publicPath": "/assets/syllabus_cache/8c1e93de0bb7_1_20B.Tech._203rd_20Year_20Biotechnology_2020.pdf",
-    "size": 996623,
-    "cachedAt": "2026-10-30T05:59:48.689Z"
-  },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/M.Tech. Integrated_CSE_5th Year 2023-24_v3.pdf": {
-    "filename": "94f06d9d68b3_M.Tech._20Integrated_CSE_5th_20Year_202023-24.pdf",
-    "publicPath": "/assets/syllabus_cache/94f06d9d68b3_M.Tech._20Integrated_CSE_5th_20Year_202023-24.pdf",
-    "size": 1421776,
-    "cachedAt": "2026-10-30T05:59:50.706Z"
+  "20bb3a356f0e_B.Tech_2nd_Yr_AG.pdf.pdf": {
+    "filename": "20bb3a356f0e_B.Tech_2nd_Yr_AG.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/20bb3a356f0e_B.Tech_2nd_Yr_AG.pdf.pdf",
+    "size": 697521,
+    "cachedAt": "2026-10-30T08:44:04.281Z"
   },
   "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech_3rd_year_MT_Evaluation_Scheme_2024-25.pdf": {
     "filename": "260f2db89459_B.Tech_3rd_year_MT_Evaluation_Scheme_2024-25..pdf",
     "publicPath": "/assets/syllabus_cache/260f2db89459_B.Tech_3rd_year_MT_Evaluation_Scheme_2024-25..pdf",
     "size": 1200876,
-    "cachedAt": "2026-10-30T05:59:51.306Z"
+    "cachedAt": "2026-10-30T08:44:04.283Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/HANDLOOM & TEXTILE TECHNOLOGY_3rd_year 2024-25.pdf": {
-    "filename": "54cec57807f4_HANDLOOM_20__20TEXTILE_20TECHNOLOGY_3rd_year_.pdf",
-    "publicPath": "/assets/syllabus_cache/54cec57807f4_HANDLOOM_20__20TEXTILE_20TECHNOLOGY_3rd_year_.pdf",
-    "size": 563693,
-    "cachedAt": "2026-10-30T05:59:51.738Z"
+  "260f2db89459_B.Tech_3rd_year_MT_Evaluation_Scheme_2024-25..pdf": {
+    "filename": "260f2db89459_B.Tech_3rd_year_MT_Evaluation_Scheme_2024-25..pdf",
+    "publicPath": "/assets/syllabus_cache/260f2db89459_B.Tech_3rd_year_MT_Evaluation_Scheme_2024-25..pdf",
+    "size": 1200876,
+    "cachedAt": "2026-10-30T08:44:04.284Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/K_SERIES B.Tech. Arttificial Intelligence & Machine Learning Syllabus 4th year 2024-25.pdf": {
-    "filename": "dff14dc5393f_K_SERIES_20B.Tech._20Arttificial_20Intelligen.pdf",
-    "publicPath": "/assets/syllabus_cache/dff14dc5393f_K_SERIES_20B.Tech._20Arttificial_20Intelligen.pdf",
-    "size": 421083,
-    "cachedAt": "2026-10-30T05:59:52.175Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CST_CS_CE and CSE Syllabus 3rd Year 2024-25_15072026.pdf": {
+    "filename": "3f1c218d08c2_B.Tech._20CST_CS_CE_20and_20CSE_20Syllabus_203.pdf",
+    "publicPath": "/assets/syllabus_cache/3f1c218d08c2_B.Tech._20CST_CS_CE_20and_20CSE_20Syllabus_203.pdf",
+    "size": 775600,
+    "cachedAt": "2026-10-30T08:44:04.286Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20CST_CS_CE%20and%20CSE%20Syllabus%203rd%20Year%202024-25_15072026.pdf": {
+    "filename": "3f1c218d08c2_B.Tech._20CST_CS_CE_20and_20CSE_20Syllabus_203.pdf",
+    "publicPath": "/assets/syllabus_cache/3f1c218d08c2_B.Tech._20CST_CS_CE_20and_20CSE_20Syllabus_203.pdf",
+    "size": 775600,
+    "cachedAt": "2026-10-30T08:44:04.286Z"
+  },
+  "3f1c218d08c2_B.Tech._20CST_CS_CE_20and_20CSE_20Syllabus_203.pdf": {
+    "filename": "3f1c218d08c2_B.Tech._20CST_CS_CE_20and_20CSE_20Syllabus_203.pdf",
+    "publicPath": "/assets/syllabus_cache/3f1c218d08c2_B.Tech._20CST_CS_CE_20and_20CSE_20Syllabus_203.pdf",
+    "size": 775600,
+    "cachedAt": "2026-10-30T08:44:04.287Z"
   },
   "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/AKTU MBA (AGRIBUSINESS MANAGEMENT)  FIRST YEAR SYLLABUS -2024-25.pdf": {
     "filename": "3ffbaded344a_AKTU_20MBA_20_AGRIBUSINESS_20MANAGEMENT__20_2.pdf",
     "publicPath": "/assets/syllabus_cache/3ffbaded344a_AKTU_20MBA_20_AGRIBUSINESS_20MANAGEMENT__20_2.pdf",
     "size": 546774,
-    "cachedAt": "2026-10-30T05:59:52.395Z"
+    "cachedAt": "2026-10-30T08:44:04.289Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Plastic Engineering Third Year Syllabus.pdf": {
-    "filename": "6bb92896229f_B.Tech._20Plastic_20Engineering_20Third_20Yea.pdf",
-    "publicPath": "/assets/syllabus_cache/6bb92896229f_B.Tech._20Plastic_20Engineering_20Third_20Yea.pdf",
-    "size": 857667,
-    "cachedAt": "2026-10-30T05:59:54.566Z"
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/AKTU%20MBA%20(AGRIBUSINESS%20MANAGEMENT)%20%20FIRST%20YEAR%20SYLLABUS%20-2024-25.pdf": {
+    "filename": "3ffbaded344a_AKTU_20MBA_20_AGRIBUSINESS_20MANAGEMENT__20_2.pdf",
+    "publicPath": "/assets/syllabus_cache/3ffbaded344a_AKTU_20MBA_20_AGRIBUSINESS_20MANAGEMENT__20_2.pdf",
+    "size": 546774,
+    "cachedAt": "2026-10-30T08:44:04.289Z"
   },
-  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/K_SERIES B.Tech. Artificial Intelligence & Data Science Syllabus 4th year 2024-25.pdf": {
-    "filename": "704fd4b76ee0_K_SERIES_20B.Tech._20Artificial_20Intelligenc.pdf",
-    "publicPath": "/assets/syllabus_cache/704fd4b76ee0_K_SERIES_20B.Tech._20Artificial_20Intelligenc.pdf",
-    "size": 428317,
-    "cachedAt": "2026-10-30T05:59:55.703Z"
+  "3ffbaded344a_AKTU_20MBA_20_AGRIBUSINESS_20MANAGEMENT__20_2.pdf": {
+    "filename": "3ffbaded344a_AKTU_20MBA_20_AGRIBUSINESS_20MANAGEMENT__20_2.pdf",
+    "publicPath": "/assets/syllabus_cache/3ffbaded344a_AKTU_20MBA_20_AGRIBUSINESS_20MANAGEMENT__20_2.pdf",
+    "size": 546774,
+    "cachedAt": "2026-10-30T08:44:04.291Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CSE (Data Science) Syllabus 3rd year.pdf": {
+    "filename": "41f18286886c_B.Tech._20CSE_20_Data_20Science__20Syllabus_20.pdf",
+    "publicPath": "/assets/syllabus_cache/41f18286886c_B.Tech._20CSE_20_Data_20Science__20Syllabus_20.pdf",
+    "size": 808659,
+    "cachedAt": "2026-10-30T08:44:04.292Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20CSE%20(Data%20Science)%20Syllabus%203rd%20year.pdf": {
+    "filename": "41f18286886c_B.Tech._20CSE_20_Data_20Science__20Syllabus_20.pdf",
+    "publicPath": "/assets/syllabus_cache/41f18286886c_B.Tech._20CSE_20_Data_20Science__20Syllabus_20.pdf",
+    "size": 808659,
+    "cachedAt": "2026-10-30T08:44:04.292Z"
+  },
+  "41f18286886c_B.Tech._20CSE_20_Data_20Science__20Syllabus_20.pdf": {
+    "filename": "41f18286886c_B.Tech._20CSE_20_Data_20Science__20Syllabus_20.pdf",
+    "publicPath": "/assets/syllabus_cache/41f18286886c_B.Tech._20CSE_20_Data_20Science__20Syllabus_20.pdf",
+    "size": 808659,
+    "cachedAt": "2026-10-30T08:44:04.294Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Open Elective 1 _3rd Year VI Semester 2024-25 (1).pdf": {
+    "filename": "442f5a04b9e2_B.Tech._20Open_20Elective_201_20_3rd_20Year_2.pdf",
+    "publicPath": "/assets/syllabus_cache/442f5a04b9e2_B.Tech._20Open_20Elective_201_20_3rd_20Year_2.pdf",
+    "size": 591489,
+    "cachedAt": "2026-10-30T08:44:04.295Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20Open%20Elective%201%20_3rd%20Year%20VI%20Semester%202024-25%20(1).pdf": {
+    "filename": "442f5a04b9e2_B.Tech._20Open_20Elective_201_20_3rd_20Year_2.pdf",
+    "publicPath": "/assets/syllabus_cache/442f5a04b9e2_B.Tech._20Open_20Elective_201_20_3rd_20Year_2.pdf",
+    "size": 591489,
+    "cachedAt": "2026-10-30T08:44:04.295Z"
+  },
+  "442f5a04b9e2_B.Tech._20Open_20Elective_201_20_3rd_20Year_2.pdf": {
+    "filename": "442f5a04b9e2_B.Tech._20Open_20Elective_201_20_3rd_20Year_2.pdf",
+    "publicPath": "/assets/syllabus_cache/442f5a04b9e2_B.Tech._20Open_20Elective_201_20_3rd_20Year_2.pdf",
+    "size": 591489,
+    "cachedAt": "2026-10-30T08:44:04.298Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Btech_Syll_Chemical_V and VI FINAL AKTU 2024-25.pdf": {
+    "filename": "4c6db12da22e_Btech_Syll_Chemical_V_20and_20VI_20FINAL_20AK.pdf",
+    "publicPath": "/assets/syllabus_cache/4c6db12da22e_Btech_Syll_Chemical_V_20and_20VI_20FINAL_20AK.pdf",
+    "size": 902800,
+    "cachedAt": "2026-10-30T08:44:04.299Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Btech_Syll_Chemical_V%20and%20VI%20FINAL%20AKTU%202024-25.pdf": {
+    "filename": "4c6db12da22e_Btech_Syll_Chemical_V_20and_20VI_20FINAL_20AK.pdf",
+    "publicPath": "/assets/syllabus_cache/4c6db12da22e_Btech_Syll_Chemical_V_20and_20VI_20FINAL_20AK.pdf",
+    "size": 902800,
+    "cachedAt": "2026-10-30T08:44:04.299Z"
+  },
+  "4c6db12da22e_Btech_Syll_Chemical_V_20and_20VI_20FINAL_20AK.pdf": {
+    "filename": "4c6db12da22e_Btech_Syll_Chemical_V_20and_20VI_20FINAL_20AK.pdf",
+    "publicPath": "/assets/syllabus_cache/4c6db12da22e_Btech_Syll_Chemical_V_20and_20VI_20FINAL_20AK.pdf",
+    "size": 902800,
+    "cachedAt": "2026-10-30T08:44:04.300Z"
+  },
+  "https://aktu.ac.in/pdf/syllabus/syllabus2122/M.Tech_AI_and_DS_2021_22.pdf": {
+    "filename": "4ff929396a09_M.Tech_AI_and_DS_2021_22.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/4ff929396a09_M.Tech_AI_and_DS_2021_22.pdf.pdf",
+    "size": 330058,
+    "cachedAt": "2026-10-30T08:44:04.302Z"
+  },
+  "4ff929396a09_M.Tech_AI_and_DS_2021_22.pdf.pdf": {
+    "filename": "4ff929396a09_M.Tech_AI_and_DS_2021_22.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/4ff929396a09_M.Tech_AI_and_DS_2021_22.pdf.pdf",
+    "size": 330058,
+    "cachedAt": "2026-10-30T08:44:04.303Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CSE (Artificial Intelligence) Syllabus 3rd year 2024-25.pdf": {
+    "filename": "50d4fe01ebda_B.Tech._20CSE_20_Artificial_20Intelligence__2.pdf",
+    "publicPath": "/assets/syllabus_cache/50d4fe01ebda_B.Tech._20CSE_20_Artificial_20Intelligence__2.pdf",
+    "size": 680609,
+    "cachedAt": "2026-10-30T08:44:04.304Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20CSE%20(Artificial%20Intelligence)%20Syllabus%203rd%20year%202024-25.pdf": {
+    "filename": "50d4fe01ebda_B.Tech._20CSE_20_Artificial_20Intelligence__2.pdf",
+    "publicPath": "/assets/syllabus_cache/50d4fe01ebda_B.Tech._20CSE_20_Artificial_20Intelligence__2.pdf",
+    "size": 680609,
+    "cachedAt": "2026-10-30T08:44:04.304Z"
+  },
+  "50d4fe01ebda_B.Tech._20CSE_20_Artificial_20Intelligence__2.pdf": {
+    "filename": "50d4fe01ebda_B.Tech._20CSE_20_Artificial_20Intelligence__2.pdf",
+    "publicPath": "/assets/syllabus_cache/50d4fe01ebda_B.Tech._20CSE_20_Artificial_20Intelligence__2.pdf",
+    "size": 680609,
+    "cachedAt": "2026-10-30T08:44:04.305Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BTECH Third Year Agricultural Engineering [Effective from 2024-25].pdf": {
+    "filename": "52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
+    "publicPath": "/assets/syllabus_cache/52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
+    "size": 608463,
+    "cachedAt": "2026-10-30T08:44:04.307Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BTECH%20Third%20Year%20Agricultural%20Engineering%20%5BEffective%20from%202024-25%5D.pdf": {
+    "filename": "52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
+    "publicPath": "/assets/syllabus_cache/52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
+    "size": 608463,
+    "cachedAt": "2026-10-30T08:44:04.307Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BTECH%20Third%20Year%20Agricultural%20Engineering%20[Effective%20from%202024-25].pdf": {
+    "filename": "52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
+    "publicPath": "/assets/syllabus_cache/52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
+    "size": 608463,
+    "cachedAt": "2026-10-30T08:44:04.307Z"
+  },
+  "52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf": {
+    "filename": "52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
+    "publicPath": "/assets/syllabus_cache/52c9c5906858_BTECH_20Third_20Year_20Agricultural_20Enginee.pdf",
+    "size": 608463,
+    "cachedAt": "2026-10-30T08:44:04.308Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/HANDLOOM & TEXTILE TECHNOLOGY_3rd_year 2024-25.pdf": {
+    "filename": "54cec57807f4_HANDLOOM_20__20TEXTILE_20TECHNOLOGY_3rd_year_.pdf",
+    "publicPath": "/assets/syllabus_cache/54cec57807f4_HANDLOOM_20__20TEXTILE_20TECHNOLOGY_3rd_year_.pdf",
+    "size": 563693,
+    "cachedAt": "2026-10-30T08:44:04.310Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/HANDLOOM%20&%20TEXTILE%20TECHNOLOGY_3rd_year%202024-25.pdf": {
+    "filename": "54cec57807f4_HANDLOOM_20__20TEXTILE_20TECHNOLOGY_3rd_year_.pdf",
+    "publicPath": "/assets/syllabus_cache/54cec57807f4_HANDLOOM_20__20TEXTILE_20TECHNOLOGY_3rd_year_.pdf",
+    "size": 563693,
+    "cachedAt": "2026-10-30T08:44:04.310Z"
+  },
+  "54cec57807f4_HANDLOOM_20__20TEXTILE_20TECHNOLOGY_3rd_year_.pdf": {
+    "filename": "54cec57807f4_HANDLOOM_20__20TEXTILE_20TECHNOLOGY_3rd_year_.pdf",
+    "publicPath": "/assets/syllabus_cache/54cec57807f4_HANDLOOM_20__20TEXTILE_20TECHNOLOGY_3rd_year_.pdf",
+    "size": 563693,
+    "cachedAt": "2026-10-30T08:44:04.311Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B. Tech 3rd Year_ AE_Syllabus_final.pdf": {
+    "filename": "5782cc851074_B._20Tech_203rd_20Year__20AE_Syllabus_final.p.pdf",
+    "publicPath": "/assets/syllabus_cache/5782cc851074_B._20Tech_203rd_20Year__20AE_Syllabus_final.p.pdf",
+    "size": 781189,
+    "cachedAt": "2026-10-30T08:44:04.312Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.%20Tech%203rd%20Year_%20AE_Syllabus_final.pdf": {
+    "filename": "5782cc851074_B._20Tech_203rd_20Year__20AE_Syllabus_final.p.pdf",
+    "publicPath": "/assets/syllabus_cache/5782cc851074_B._20Tech_203rd_20Year__20AE_Syllabus_final.p.pdf",
+    "size": 781189,
+    "cachedAt": "2026-10-30T08:44:04.312Z"
+  },
+  "5782cc851074_B._20Tech_203rd_20Year__20AE_Syllabus_final.p.pdf": {
+    "filename": "5782cc851074_B._20Tech_203rd_20Year__20AE_Syllabus_final.p.pdf",
+    "publicPath": "/assets/syllabus_cache/5782cc851074_B._20Tech_203rd_20Year__20AE_Syllabus_final.p.pdf",
+    "size": 781189,
+    "cachedAt": "2026-10-30T08:44:04.313Z"
   },
   "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MBA INTEGRATED First Year SYLLABUS 2024-25.pdf": {
     "filename": "5e8ad999e4a9_MBA_20INTEGRATED_20First_20Year_20SYLLABUS_20.pdf",
     "publicPath": "/assets/syllabus_cache/5e8ad999e4a9_MBA_20INTEGRATED_20First_20Year_20SYLLABUS_20.pdf",
     "size": 384067,
-    "cachedAt": "2026-10-30T05:59:57.725Z"
+    "cachedAt": "2026-10-30T08:44:04.315Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MBA%20INTEGRATED%20First%20Year%20SYLLABUS%202024-25.pdf": {
+    "filename": "5e8ad999e4a9_MBA_20INTEGRATED_20First_20Year_20SYLLABUS_20.pdf",
+    "publicPath": "/assets/syllabus_cache/5e8ad999e4a9_MBA_20INTEGRATED_20First_20Year_20SYLLABUS_20.pdf",
+    "size": 384067,
+    "cachedAt": "2026-10-30T08:44:04.315Z"
+  },
+  "5e8ad999e4a9_MBA_20INTEGRATED_20First_20Year_20SYLLABUS_20.pdf": {
+    "filename": "5e8ad999e4a9_MBA_20INTEGRATED_20First_20Year_20SYLLABUS_20.pdf",
+    "publicPath": "/assets/syllabus_cache/5e8ad999e4a9_MBA_20INTEGRATED_20First_20Year_20SYLLABUS_20.pdf",
+    "size": 384067,
+    "cachedAt": "2026-10-30T08:44:04.317Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech_2nd_Year_Mining_Engg_Evaluation_scheme_2024-25.pdf": {
+    "filename": "5e9b70f90493_B.Tech_2nd_Year_Mining_Engg_Evaluation_scheme.pdf",
+    "publicPath": "/assets/syllabus_cache/5e9b70f90493_B.Tech_2nd_Year_Mining_Engg_Evaluation_scheme.pdf",
+    "size": 912787,
+    "cachedAt": "2026-10-30T08:44:04.319Z"
+  },
+  "5e9b70f90493_B.Tech_2nd_Year_Mining_Engg_Evaluation_scheme.pdf": {
+    "filename": "5e9b70f90493_B.Tech_2nd_Year_Mining_Engg_Evaluation_scheme.pdf",
+    "publicPath": "/assets/syllabus_cache/5e9b70f90493_B.Tech_2nd_Year_Mining_Engg_Evaluation_scheme.pdf",
+    "size": 912787,
+    "cachedAt": "2026-10-30T08:44:04.320Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/B.Tech_2nd_Yr_FT.pdf": {
+    "filename": "64a9db6a8df9_B.Tech_2nd_Yr_FT.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/64a9db6a8df9_B.Tech_2nd_Yr_FT.pdf.pdf",
+    "size": 810434,
+    "cachedAt": "2026-10-30T08:44:04.322Z"
+  },
+  "64a9db6a8df9_B.Tech_2nd_Yr_FT.pdf.pdf": {
+    "filename": "64a9db6a8df9_B.Tech_2nd_Yr_FT.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/64a9db6a8df9_B.Tech_2nd_Yr_FT.pdf.pdf",
+    "size": 810434,
+    "cachedAt": "2026-10-30T08:44:04.323Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Plastic Engineering Third Year Syllabus.pdf": {
+    "filename": "6bb92896229f_B.Tech._20Plastic_20Engineering_20Third_20Yea.pdf",
+    "publicPath": "/assets/syllabus_cache/6bb92896229f_B.Tech._20Plastic_20Engineering_20Third_20Yea.pdf",
+    "size": 857667,
+    "cachedAt": "2026-10-30T08:44:04.325Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20Plastic%20Engineering%20Third%20Year%20Syllabus.pdf": {
+    "filename": "6bb92896229f_B.Tech._20Plastic_20Engineering_20Third_20Yea.pdf",
+    "publicPath": "/assets/syllabus_cache/6bb92896229f_B.Tech._20Plastic_20Engineering_20Third_20Yea.pdf",
+    "size": 857667,
+    "cachedAt": "2026-10-30T08:44:04.325Z"
+  },
+  "6bb92896229f_B.Tech._20Plastic_20Engineering_20Third_20Yea.pdf": {
+    "filename": "6bb92896229f_B.Tech._20Plastic_20Engineering_20Third_20Yea.pdf",
+    "publicPath": "/assets/syllabus_cache/6bb92896229f_B.Tech._20Plastic_20Engineering_20Third_20Yea.pdf",
+    "size": 857667,
+    "cachedAt": "2026-10-30T08:44:04.326Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/K_SERIES B.Tech. Artificial Intelligence & Data Science Syllabus 4th year 2024-25.pdf": {
+    "filename": "704fd4b76ee0_K_SERIES_20B.Tech._20Artificial_20Intelligenc.pdf",
+    "publicPath": "/assets/syllabus_cache/704fd4b76ee0_K_SERIES_20B.Tech._20Artificial_20Intelligenc.pdf",
+    "size": 428317,
+    "cachedAt": "2026-10-30T08:44:04.327Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/K_SERIES%20B.Tech.%20Artificial%20Intelligence%20&%20Data%20Science%20Syllabus%204th%20year%202024-25.pdf": {
+    "filename": "704fd4b76ee0_K_SERIES_20B.Tech._20Artificial_20Intelligenc.pdf",
+    "publicPath": "/assets/syllabus_cache/704fd4b76ee0_K_SERIES_20B.Tech._20Artificial_20Intelligenc.pdf",
+    "size": 428317,
+    "cachedAt": "2026-10-30T08:44:04.327Z"
+  },
+  "704fd4b76ee0_K_SERIES_20B.Tech._20Artificial_20Intelligenc.pdf": {
+    "filename": "704fd4b76ee0_K_SERIES_20B.Tech._20Artificial_20Intelligenc.pdf",
+    "publicPath": "/assets/syllabus_cache/704fd4b76ee0_K_SERIES_20B.Tech._20Artificial_20Intelligenc.pdf",
+    "size": 428317,
+    "cachedAt": "2026-10-30T08:44:04.328Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/B.Tech_2nd_Yr_CSE_v3.pdf": {
+    "filename": "70526e00f02c_B.Tech_2nd_Yr_CSE_v3.pdf",
+    "publicPath": "/assets/syllabus_cache/70526e00f02c_B.Tech_2nd_Yr_CSE_v3.pdf",
+    "size": 1363014,
+    "cachedAt": "2026-10-30T08:44:04.330Z"
+  },
+  "70526e00f02c_B.Tech_2nd_Yr_CSE_v3.pdf": {
+    "filename": "70526e00f02c_B.Tech_2nd_Yr_CSE_v3.pdf",
+    "publicPath": "/assets/syllabus_cache/70526e00f02c_B.Tech_2nd_Yr_CSE_v3.pdf",
+    "size": 1363014,
+    "cachedAt": "2026-10-30T08:44:04.331Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/B.Tech_2nd_Yr_CE.pdf": {
+    "filename": "7aa6f7b29566_B.Tech_2nd_Yr_CE.pdf",
+    "publicPath": "/assets/syllabus_cache/7aa6f7b29566_B.Tech_2nd_Yr_CE.pdf",
+    "size": 757674,
+    "cachedAt": "2026-10-30T08:44:04.332Z"
+  },
+  "7aa6f7b29566_B.Tech_2nd_Yr_CE.pdf": {
+    "filename": "7aa6f7b29566_B.Tech_2nd_Yr_CE.pdf",
+    "publicPath": "/assets/syllabus_cache/7aa6f7b29566_B.Tech_2nd_Yr_CE.pdf",
+    "size": 757674,
+    "cachedAt": "2026-10-30T08:44:04.333Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Electrical and Computer Engineering Syllabus 3rd year 2024-25 010325.pdf": {
+    "filename": "8259e9fb9982_B.Tech._20Electrical_20and_20Computer_20Engin.pdf",
+    "publicPath": "/assets/syllabus_cache/8259e9fb9982_B.Tech._20Electrical_20and_20Computer_20Engin.pdf",
+    "size": 608364,
+    "cachedAt": "2026-10-30T08:44:04.335Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20Electrical%20and%20Computer%20Engineering%20Syllabus%203rd%20year%202024-25%20010325.pdf": {
+    "filename": "8259e9fb9982_B.Tech._20Electrical_20and_20Computer_20Engin.pdf",
+    "publicPath": "/assets/syllabus_cache/8259e9fb9982_B.Tech._20Electrical_20and_20Computer_20Engin.pdf",
+    "size": 608364,
+    "cachedAt": "2026-10-30T08:44:04.335Z"
+  },
+  "8259e9fb9982_B.Tech._20Electrical_20and_20Computer_20Engin.pdf": {
+    "filename": "8259e9fb9982_B.Tech._20Electrical_20and_20Computer_20Engin.pdf",
+    "publicPath": "/assets/syllabus_cache/8259e9fb9982_B.Tech._20Electrical_20and_20Computer_20Engin.pdf",
+    "size": 608364,
+    "cachedAt": "2026-10-30T08:44:04.336Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Electronics and Computer Engineering Syllabus 3rd year 2024-25 2026.pdf": {
+    "filename": "8bd72f3b1aad_B.Tech._20Electronics_20and_20Computer_20Engi.pdf",
+    "publicPath": "/assets/syllabus_cache/8bd72f3b1aad_B.Tech._20Electronics_20and_20Computer_20Engi.pdf",
+    "size": 609829,
+    "cachedAt": "2026-10-30T08:44:04.339Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20Electronics%20and%20Computer%20Engineering%20Syllabus%203rd%20year%202024-25%202026.pdf": {
+    "filename": "8bd72f3b1aad_B.Tech._20Electronics_20and_20Computer_20Engi.pdf",
+    "publicPath": "/assets/syllabus_cache/8bd72f3b1aad_B.Tech._20Electronics_20and_20Computer_20Engi.pdf",
+    "size": 609829,
+    "cachedAt": "2026-10-30T08:44:04.339Z"
+  },
+  "8bd72f3b1aad_B.Tech._20Electronics_20and_20Computer_20Engi.pdf": {
+    "filename": "8bd72f3b1aad_B.Tech._20Electronics_20and_20Computer_20Engi.pdf",
+    "publicPath": "/assets/syllabus_cache/8bd72f3b1aad_B.Tech._20Electronics_20and_20Computer_20Engi.pdf",
+    "size": 609829,
+    "cachedAt": "2026-10-30T08:44:04.340Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/1 B.Tech. 3rd Year Biotechnology 2024-25.pdf": {
+    "filename": "8c1e93de0bb7_1_20B.Tech._203rd_20Year_20Biotechnology_2020.pdf",
+    "publicPath": "/assets/syllabus_cache/8c1e93de0bb7_1_20B.Tech._203rd_20Year_20Biotechnology_2020.pdf",
+    "size": 996623,
+    "cachedAt": "2026-10-30T08:44:04.342Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/1%20B.Tech.%203rd%20Year%20Biotechnology%202024-25.pdf": {
+    "filename": "8c1e93de0bb7_1_20B.Tech._203rd_20Year_20Biotechnology_2020.pdf",
+    "publicPath": "/assets/syllabus_cache/8c1e93de0bb7_1_20B.Tech._203rd_20Year_20Biotechnology_2020.pdf",
+    "size": 996623,
+    "cachedAt": "2026-10-30T08:44:04.342Z"
+  },
+  "8c1e93de0bb7_1_20B.Tech._203rd_20Year_20Biotechnology_2020.pdf": {
+    "filename": "8c1e93de0bb7_1_20B.Tech._203rd_20Year_20Biotechnology_2020.pdf",
+    "publicPath": "/assets/syllabus_cache/8c1e93de0bb7_1_20B.Tech._203rd_20Year_20Biotechnology_2020.pdf",
+    "size": 996623,
+    "cachedAt": "2026-10-30T08:44:04.343Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Textile Technology_3rd_year 2024-25.pdf": {
+    "filename": "91b83594652a_Textile_20Technology_3rd_year_202024-25.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/91b83594652a_Textile_20Technology_3rd_year_202024-25.pdf.pdf",
+    "size": 410971,
+    "cachedAt": "2026-10-30T08:44:04.344Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Textile%20Technology_3rd_year%202024-25.pdf": {
+    "filename": "91b83594652a_Textile_20Technology_3rd_year_202024-25.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/91b83594652a_Textile_20Technology_3rd_year_202024-25.pdf.pdf",
+    "size": 410971,
+    "cachedAt": "2026-10-30T08:44:04.344Z"
+  },
+  "91b83594652a_Textile_20Technology_3rd_year_202024-25.pdf.pdf": {
+    "filename": "91b83594652a_Textile_20Technology_3rd_year_202024-25.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/91b83594652a_Textile_20Technology_3rd_year_202024-25.pdf.pdf",
+    "size": 410971,
+    "cachedAt": "2026-10-30T08:44:04.345Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/M.Tech. Integrated_CSE_5th Year 2023-24_v3.pdf": {
+    "filename": "94f06d9d68b3_M.Tech._20Integrated_CSE_5th_20Year_202023-24.pdf",
+    "publicPath": "/assets/syllabus_cache/94f06d9d68b3_M.Tech._20Integrated_CSE_5th_20Year_202023-24.pdf",
+    "size": 1421776,
+    "cachedAt": "2026-10-30T08:44:04.347Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/M.Tech.%20Integrated_CSE_5th%20Year%202023-24_v3.pdf": {
+    "filename": "94f06d9d68b3_M.Tech._20Integrated_CSE_5th_20Year_202023-24.pdf",
+    "publicPath": "/assets/syllabus_cache/94f06d9d68b3_M.Tech._20Integrated_CSE_5th_20Year_202023-24.pdf",
+    "size": 1421776,
+    "cachedAt": "2026-10-30T08:44:04.347Z"
+  },
+  "94f06d9d68b3_M.Tech._20Integrated_CSE_5th_20Year_202023-24.pdf": {
+    "filename": "94f06d9d68b3_M.Tech._20Integrated_CSE_5th_20Year_202023-24.pdf",
+    "publicPath": "/assets/syllabus_cache/94f06d9d68b3_M.Tech._20Integrated_CSE_5th_20Year_202023-24.pdf",
+    "size": 1421776,
+    "cachedAt": "2026-10-30T08:44:04.348Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CSE(Cyber Security) Syllabus 3rd year 2024-25.pdf": {
+    "filename": "957c4b1c13f6_B.Tech._20CSE_Cyber_20Security__20Syllabus_20.pdf",
+    "publicPath": "/assets/syllabus_cache/957c4b1c13f6_B.Tech._20CSE_Cyber_20Security__20Syllabus_20.pdf",
+    "size": 536475,
+    "cachedAt": "2026-10-30T08:44:04.350Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20CSE(Cyber%20Security)%20Syllabus%203rd%20year%202024-25.pdf": {
+    "filename": "957c4b1c13f6_B.Tech._20CSE_Cyber_20Security__20Syllabus_20.pdf",
+    "publicPath": "/assets/syllabus_cache/957c4b1c13f6_B.Tech._20CSE_Cyber_20Security__20Syllabus_20.pdf",
+    "size": 536475,
+    "cachedAt": "2026-10-30T08:44:04.350Z"
+  },
+  "957c4b1c13f6_B.Tech._20CSE_Cyber_20Security__20Syllabus_20.pdf": {
+    "filename": "957c4b1c13f6_B.Tech._20CSE_Cyber_20Security__20Syllabus_20.pdf",
+    "publicPath": "/assets/syllabus_cache/957c4b1c13f6_B.Tech._20CSE_Cyber_20Security__20Syllabus_20.pdf",
+    "size": 536475,
+    "cachedAt": "2026-10-30T08:44:04.351Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Artificial Intelligence & Data Science Syllabus 3rd year 2024-25.pdf": {
+    "filename": "9742132ee517_B.Tech._20Artificial_20Intelligence_20__20Dat.pdf",
+    "publicPath": "/assets/syllabus_cache/9742132ee517_B.Tech._20Artificial_20Intelligence_20__20Dat.pdf",
+    "size": 665997,
+    "cachedAt": "2026-10-30T08:44:04.352Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20Artificial%20Intelligence%20&%20Data%20Science%20Syllabus%203rd%20year%202024-25.pdf": {
+    "filename": "9742132ee517_B.Tech._20Artificial_20Intelligence_20__20Dat.pdf",
+    "publicPath": "/assets/syllabus_cache/9742132ee517_B.Tech._20Artificial_20Intelligence_20__20Dat.pdf",
+    "size": 665997,
+    "cachedAt": "2026-10-30T08:44:04.352Z"
+  },
+  "9742132ee517_B.Tech._20Artificial_20Intelligence_20__20Dat.pdf": {
+    "filename": "9742132ee517_B.Tech._20Artificial_20Intelligence_20__20Dat.pdf",
+    "publicPath": "/assets/syllabus_cache/9742132ee517_B.Tech._20Artificial_20Intelligence_20__20Dat.pdf",
+    "size": 665997,
+    "cachedAt": "2026-10-30T08:44:04.353Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. 3rd Year Civil Engineering.pdf": {
+    "filename": "978cfda94a32_B.Tech._3rd_Year_Civil_Engineering.pdf",
+    "publicPath": "/assets/syllabus_cache/978cfda94a32_B.Tech._3rd_Year_Civil_Engineering.pdf",
+    "size": 6005203,
+    "cachedAt": "2026-10-30T08:44:04.361Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%203rd%20Year%20Civil%20Engineering.pdf": {
+    "filename": "978cfda94a32_B.Tech._3rd_Year_Civil_Engineering.pdf",
+    "publicPath": "/assets/syllabus_cache/978cfda94a32_B.Tech._3rd_Year_Civil_Engineering.pdf",
+    "size": 6005203,
+    "cachedAt": "2026-10-30T08:44:04.361Z"
+  },
+  "978cfda94a32_B.Tech._3rd_Year_Civil_Engineering.pdf": {
+    "filename": "978cfda94a32_B.Tech._3rd_Year_Civil_Engineering.pdf",
+    "publicPath": "/assets/syllabus_cache/978cfda94a32_B.Tech._3rd_Year_Civil_Engineering.pdf",
+    "size": 6005203,
+    "cachedAt": "2026-10-30T08:44:04.364Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/AKTU_UHVPE.pdf": {
+    "filename": "a6296160f360_AKTU_UHVPE.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/a6296160f360_AKTU_UHVPE.pdf.pdf",
+    "size": 364103,
+    "cachedAt": "2026-10-30T08:44:04.366Z"
+  },
+  "a6296160f360_AKTU_UHVPE.pdf.pdf": {
+    "filename": "a6296160f360_AKTU_UHVPE.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/a6296160f360_AKTU_UHVPE.pdf.pdf",
+    "size": 364103,
+    "cachedAt": "2026-10-30T08:44:04.366Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MBA ( BUSINESS ANALYTICS) First Year SYLLABUS -2024-25.pdf": {
+    "filename": "b5fd01174a3f_MBA_20__20BUSINESS_20ANALYTICS__20First_20Yea.pdf",
+    "publicPath": "/assets/syllabus_cache/b5fd01174a3f_MBA_20__20BUSINESS_20ANALYTICS__20First_20Yea.pdf",
+    "size": 590312,
+    "cachedAt": "2026-10-30T08:44:04.368Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MBA%20(%20BUSINESS%20ANALYTICS)%20First%20Year%20SYLLABUS%20-2024-25.pdf": {
+    "filename": "b5fd01174a3f_MBA_20__20BUSINESS_20ANALYTICS__20First_20Yea.pdf",
+    "publicPath": "/assets/syllabus_cache/b5fd01174a3f_MBA_20__20BUSINESS_20ANALYTICS__20First_20Yea.pdf",
+    "size": 590312,
+    "cachedAt": "2026-10-30T08:44:04.368Z"
+  },
+  "b5fd01174a3f_MBA_20__20BUSINESS_20ANALYTICS__20First_20Yea.pdf": {
+    "filename": "b5fd01174a3f_MBA_20__20BUSINESS_20ANALYTICS__20First_20Yea.pdf",
+    "publicPath": "/assets/syllabus_cache/b5fd01174a3f_MBA_20__20BUSINESS_20ANALYTICS__20First_20Yea.pdf",
+    "size": 590312,
+    "cachedAt": "2026-10-30T08:44:04.369Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/ME Third Year Syllabus & SCHEME (1).pdf": {
+    "filename": "b819f7cc8192_ME_Third_Year_Syllabus___SCHEME__1_.pdf",
+    "publicPath": "/assets/syllabus_cache/b819f7cc8192_ME_Third_Year_Syllabus___SCHEME__1_.pdf",
+    "size": 843821,
+    "cachedAt": "2026-10-30T08:44:04.372Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/ME%20Third%20Year%20Syllabus%20&%20SCHEME%20(1).pdf": {
+    "filename": "b819f7cc8192_ME_Third_Year_Syllabus___SCHEME__1_.pdf",
+    "publicPath": "/assets/syllabus_cache/b819f7cc8192_ME_Third_Year_Syllabus___SCHEME__1_.pdf",
+    "size": 843821,
+    "cachedAt": "2026-10-30T08:44:04.372Z"
+  },
+  "b819f7cc8192_ME_Third_Year_Syllabus___SCHEME__1_.pdf": {
+    "filename": "b819f7cc8192_ME_Third_Year_Syllabus___SCHEME__1_.pdf",
+    "publicPath": "/assets/syllabus_cache/b819f7cc8192_ME_Third_Year_Syllabus___SCHEME__1_.pdf",
+    "size": 843821,
+    "cachedAt": "2026-10-30T08:44:04.372Z"
+  },
+  "https://aktu.ac.in/pdf/syllabus/syllabus2122/MCA_Second_Year_Detailed_Syllabus_2021_22 final copy.pdf": {
+    "filename": "baba5b49ccee_MCA_Second_Year_Detailed_Syllabus_2021_22_20f.pdf",
+    "publicPath": "/assets/syllabus_cache/baba5b49ccee_MCA_Second_Year_Detailed_Syllabus_2021_22_20f.pdf",
+    "size": 443893,
+    "cachedAt": "2026-10-30T08:44:04.374Z"
+  },
+  "https://aktu.ac.in/pdf/syllabus/syllabus2122/MCA_Second_Year_Detailed_Syllabus_2021_22%20final%20copy.pdf": {
+    "filename": "baba5b49ccee_MCA_Second_Year_Detailed_Syllabus_2021_22_20f.pdf",
+    "publicPath": "/assets/syllabus_cache/baba5b49ccee_MCA_Second_Year_Detailed_Syllabus_2021_22_20f.pdf",
+    "size": 443893,
+    "cachedAt": "2026-10-30T08:44:04.374Z"
+  },
+  "baba5b49ccee_MCA_Second_Year_Detailed_Syllabus_2021_22_20f.pdf": {
+    "filename": "baba5b49ccee_MCA_Second_Year_Detailed_Syllabus_2021_22_20f.pdf",
+    "publicPath": "/assets/syllabus_cache/baba5b49ccee_MCA_Second_Year_Detailed_Syllabus_2021_22_20f.pdf",
+    "size": 443893,
+    "cachedAt": "2026-10-30T08:44:04.375Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MCA _First_Year_Detailed_Syllabus_2024-25.pdf": {
+    "filename": "bc69a601175d_MCA_20_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "publicPath": "/assets/syllabus_cache/bc69a601175d_MCA_20_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "size": 510037,
+    "cachedAt": "2026-10-30T08:44:04.376Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MCA%20_First_Year_Detailed_Syllabus_2024-25.pdf": {
+    "filename": "bc69a601175d_MCA_20_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "publicPath": "/assets/syllabus_cache/bc69a601175d_MCA_20_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "size": 510037,
+    "cachedAt": "2026-10-30T08:44:04.376Z"
+  },
+  "bc69a601175d_MCA_20_First_Year_Detailed_Syllabus_2024-25.pdf": {
+    "filename": "bc69a601175d_MCA_20_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "publicPath": "/assets/syllabus_cache/bc69a601175d_MCA_20_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "size": 510037,
+    "cachedAt": "2026-10-30T08:44:04.377Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. CS_Hindi Syllabus  3rd Year.pdf": {
+    "filename": "bdd2501d4e84_B.Tech._20CS_Hindi_20Syllabus_20_203rd_20Year.pdf",
+    "publicPath": "/assets/syllabus_cache/bdd2501d4e84_B.Tech._20CS_Hindi_20Syllabus_20_203rd_20Year.pdf",
+    "size": 711664,
+    "cachedAt": "2026-10-30T08:44:04.379Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20CS_Hindi%20Syllabus%20%203rd%20Year.pdf": {
+    "filename": "bdd2501d4e84_B.Tech._20CS_Hindi_20Syllabus_20_203rd_20Year.pdf",
+    "publicPath": "/assets/syllabus_cache/bdd2501d4e84_B.Tech._20CS_Hindi_20Syllabus_20_203rd_20Year.pdf",
+    "size": 711664,
+    "cachedAt": "2026-10-30T08:44:04.379Z"
+  },
+  "bdd2501d4e84_B.Tech._20CS_Hindi_20Syllabus_20_203rd_20Year.pdf": {
+    "filename": "bdd2501d4e84_B.Tech._20CS_Hindi_20Syllabus_20_203rd_20Year.pdf",
+    "publicPath": "/assets/syllabus_cache/bdd2501d4e84_B.Tech._20CS_Hindi_20Syllabus_20_203rd_20Year.pdf",
+    "size": 711664,
+    "cachedAt": "2026-10-30T08:44:04.380Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/Open_Elective_BTech_2nd_Yr_2023_24_v2.pdf": {
+    "filename": "c2829635595d_Open_Elective_BTech_2nd_Yr_2023_24_v2.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/c2829635595d_Open_Elective_BTech_2nd_Yr_2023_24_v2.pdf.pdf",
+    "size": 184190,
+    "cachedAt": "2026-10-30T08:44:04.382Z"
+  },
+  "c2829635595d_Open_Elective_BTech_2nd_Yr_2023_24_v2.pdf.pdf": {
+    "filename": "c2829635595d_Open_Elective_BTech_2nd_Yr_2023_24_v2.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/c2829635595d_Open_Elective_BTech_2nd_Yr_2023_24_v2.pdf.pdf",
+    "size": 184190,
+    "cachedAt": "2026-10-30T08:44:04.384Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech. Arttificial Intelligence & Machine Learning Syllabus 3rd year 2024-25.pdf": {
+    "filename": "c2a911cd34ad_B.Tech._20Arttificial_20Intelligence_20__20Mac.pdf",
+    "publicPath": "/assets/syllabus_cache/c2a911cd34ad_B.Tech._20Arttificial_20Intelligence_20__20Mac.pdf",
+    "size": 665036,
+    "cachedAt": "2026-10-30T08:44:04.386Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech.%20Arttificial%20Intelligence%20&%20Machine%20Learning%20Syllabus%203rd%20year%202024-25.pdf": {
+    "filename": "c2a911cd34ad_B.Tech._20Arttificial_20Intelligence_20__20Mac.pdf",
+    "publicPath": "/assets/syllabus_cache/c2a911cd34ad_B.Tech._20Arttificial_20Intelligence_20__20Mac.pdf",
+    "size": 665036,
+    "cachedAt": "2026-10-30T08:44:04.386Z"
+  },
+  "c2a911cd34ad_B.Tech._20Arttificial_20Intelligence_20__20Mac.pdf": {
+    "filename": "c2a911cd34ad_B.Tech._20Arttificial_20Intelligence_20__20Mac.pdf",
+    "publicPath": "/assets/syllabus_cache/c2a911cd34ad_B.Tech._20Arttificial_20Intelligence_20__20Mac.pdf",
+    "size": 665036,
+    "cachedAt": "2026-10-30T08:44:04.387Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/BCA_First_Year_Detailed_Syllabus_2024-25.pdf": {
+    "filename": "c7a8af308e72_BCA_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "publicPath": "/assets/syllabus_cache/c7a8af308e72_BCA_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "size": 434580,
+    "cachedAt": "2026-10-30T08:44:04.389Z"
+  },
+  "c7a8af308e72_BCA_First_Year_Detailed_Syllabus_2024-25.pdf": {
+    "filename": "c7a8af308e72_BCA_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "publicPath": "/assets/syllabus_cache/c7a8af308e72_BCA_First_Year_Detailed_Syllabus_2024-25.pdf",
+    "size": 434580,
+    "cachedAt": "2026-10-30T08:44:04.390Z"
+  },
+  "https://aktu.ac.in/pdf/syllabus/syllabus2021/Bachelor of Pharmacy I, II, III & IV Year syllabus 2019-2020 23 March 2021.pdf": {
+    "filename": "d8138b80c940_Bachelor_20of_20Pharmacy_20I__20II__20III_20__.pdf",
+    "publicPath": "/assets/syllabus_cache/d8138b80c940_Bachelor_20of_20Pharmacy_20I__20II__20III_20__.pdf",
+    "size": 1244478,
+    "cachedAt": "2026-10-30T08:44:04.392Z"
+  },
+  "https://aktu.ac.in/pdf/syllabus/syllabus2021/Bachelor%20of%20Pharmacy%20I,%20II,%20III%20&%20IV%20Year%20syllabus%202019-2020%2023%20March%202021.pdf": {
+    "filename": "d8138b80c940_Bachelor_20of_20Pharmacy_20I__20II__20III_20__.pdf",
+    "publicPath": "/assets/syllabus_cache/d8138b80c940_Bachelor_20of_20Pharmacy_20I__20II__20III_20__.pdf",
+    "size": 1244478,
+    "cachedAt": "2026-10-30T08:44:04.392Z"
+  },
+  "d8138b80c940_Bachelor_20of_20Pharmacy_20I__20II__20III_20__.pdf": {
+    "filename": "d8138b80c940_Bachelor_20of_20Pharmacy_20I__20II__20III_20__.pdf",
+    "publicPath": "/assets/syllabus_cache/d8138b80c940_Bachelor_20of_20Pharmacy_20I__20II__20III_20__.pdf",
+    "size": 1244478,
+    "cachedAt": "2026-10-30T08:44:04.393Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/MCA_Integrated_First_Year_Detailed_Syllabus_2024_25.pdf": {
+    "filename": "df8e4b53aa66_MCA_Integrated_First_Year_Detailed_Syllabus_2.pdf",
+    "publicPath": "/assets/syllabus_cache/df8e4b53aa66_MCA_Integrated_First_Year_Detailed_Syllabus_2.pdf",
+    "size": 441587,
+    "cachedAt": "2026-10-30T08:44:04.394Z"
+  },
+  "df8e4b53aa66_MCA_Integrated_First_Year_Detailed_Syllabus_2.pdf": {
+    "filename": "df8e4b53aa66_MCA_Integrated_First_Year_Detailed_Syllabus_2.pdf",
+    "publicPath": "/assets/syllabus_cache/df8e4b53aa66_MCA_Integrated_First_Year_Detailed_Syllabus_2.pdf",
+    "size": 441587,
+    "cachedAt": "2026-10-30T08:44:04.396Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/K_SERIES B.Tech. Arttificial Intelligence & Machine Learning Syllabus 4th year 2024-25.pdf": {
+    "filename": "dff14dc5393f_K_SERIES_20B.Tech._20Arttificial_20Intelligen.pdf",
+    "publicPath": "/assets/syllabus_cache/dff14dc5393f_K_SERIES_20B.Tech._20Arttificial_20Intelligen.pdf",
+    "size": 421083,
+    "cachedAt": "2026-10-30T08:44:04.397Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/K_SERIES%20B.Tech.%20Arttificial%20Intelligence%20&%20Machine%20Learning%20Syllabus%204th%20year%202024-25.pdf": {
+    "filename": "dff14dc5393f_K_SERIES_20B.Tech._20Arttificial_20Intelligen.pdf",
+    "publicPath": "/assets/syllabus_cache/dff14dc5393f_K_SERIES_20B.Tech._20Arttificial_20Intelligen.pdf",
+    "size": 421083,
+    "cachedAt": "2026-10-30T08:44:04.397Z"
+  },
+  "dff14dc5393f_K_SERIES_20B.Tech._20Arttificial_20Intelligen.pdf": {
+    "filename": "dff14dc5393f_K_SERIES_20B.Tech._20Arttificial_20Intelligen.pdf",
+    "publicPath": "/assets/syllabus_cache/dff14dc5393f_K_SERIES_20B.Tech._20Arttificial_20Intelligen.pdf",
+    "size": 421083,
+    "cachedAt": "2026-10-30T08:44:04.398Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/1 B.Tech. 3rd Year Electrical & Electronics Engineering 2024-25.pdf": {
+    "filename": "e136ac990674_1_20B.Tech._203rd_20Year_20Electrical_20__20E.pdf",
+    "publicPath": "/assets/syllabus_cache/e136ac990674_1_20B.Tech._203rd_20Year_20Electrical_20__20E.pdf",
+    "size": 721033,
+    "cachedAt": "2026-10-30T08:44:04.400Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/1%20B.Tech.%203rd%20Year%20Electrical%20&%20Electronics%20Engineering%202024-25.pdf": {
+    "filename": "e136ac990674_1_20B.Tech._203rd_20Year_20Electrical_20__20E.pdf",
+    "publicPath": "/assets/syllabus_cache/e136ac990674_1_20B.Tech._203rd_20Year_20Electrical_20__20E.pdf",
+    "size": 721033,
+    "cachedAt": "2026-10-30T08:44:04.400Z"
+  },
+  "e136ac990674_1_20B.Tech._203rd_20Year_20Electrical_20__20E.pdf": {
+    "filename": "e136ac990674_1_20B.Tech._203rd_20Year_20Electrical_20__20E.pdf",
+    "publicPath": "/assets/syllabus_cache/e136ac990674_1_20B.Tech._203rd_20Year_20Electrical_20__20E.pdf",
+    "size": 721033,
+    "cachedAt": "2026-10-30T08:44:04.401Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/B.Tech_2nd_Yr_PL.pdf": {
+    "filename": "e1705bb3300f_B.Tech_2nd_Yr_PL.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/e1705bb3300f_B.Tech_2nd_Yr_PL.pdf.pdf",
+    "size": 771517,
+    "cachedAt": "2026-10-30T08:44:04.403Z"
+  },
+  "e1705bb3300f_B.Tech_2nd_Yr_PL.pdf.pdf": {
+    "filename": "e1705bb3300f_B.Tech_2nd_Yr_PL.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/e1705bb3300f_B.Tech_2nd_Yr_PL.pdf.pdf",
+    "size": 771517,
+    "cachedAt": "2026-10-30T08:44:04.406Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/B.Tech_2nd_Yr_AE.pdf": {
+    "filename": "e34c00d148c5_B.Tech_2nd_Yr_AE.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/e34c00d148c5_B.Tech_2nd_Yr_AE.pdf.pdf",
+    "size": 831087,
+    "cachedAt": "2026-10-30T08:44:04.408Z"
+  },
+  "e34c00d148c5_B.Tech_2nd_Yr_AE.pdf.pdf": {
+    "filename": "e34c00d148c5_B.Tech_2nd_Yr_AE.pdf.pdf",
+    "publicPath": "/assets/syllabus_cache/e34c00d148c5_B.Tech_2nd_Yr_AE.pdf.pdf",
+    "size": 831087,
+    "cachedAt": "2026-10-30T08:44:04.409Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/B.Tech_3rd_year_PE_and_IPE_Evaluation_Scheme_2024-25.pdf": {
+    "filename": "e7b9500a414b_B.Tech_3rd_year_PE_and_IPE_Evaluation_Scheme_.pdf",
+    "publicPath": "/assets/syllabus_cache/e7b9500a414b_B.Tech_3rd_year_PE_and_IPE_Evaluation_Scheme_.pdf",
+    "size": 1055443,
+    "cachedAt": "2026-10-30T08:44:04.411Z"
+  },
+  "e7b9500a414b_B.Tech_3rd_year_PE_and_IPE_Evaluation_Scheme_.pdf": {
+    "filename": "e7b9500a414b_B.Tech_3rd_year_PE_and_IPE_Evaluation_Scheme_.pdf",
+    "publicPath": "/assets/syllabus_cache/e7b9500a414b_B.Tech_3rd_year_PE_and_IPE_Evaluation_Scheme_.pdf",
+    "size": 1055443,
+    "cachedAt": "2026-10-30T08:44:04.412Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2324/B.Tech_2nd_Yr_ME.pdf": {
+    "filename": "eaf3fc68a7c0_B.Tech_2nd_Yr_ME.pdf",
+    "publicPath": "/assets/syllabus_cache/eaf3fc68a7c0_B.Tech_2nd_Yr_ME.pdf",
+    "size": 847241,
+    "cachedAt": "2026-10-30T08:44:04.413Z"
+  },
+  "eaf3fc68a7c0_B.Tech_2nd_Yr_ME.pdf": {
+    "filename": "eaf3fc68a7c0_B.Tech_2nd_Yr_ME.pdf",
+    "publicPath": "/assets/syllabus_cache/eaf3fc68a7c0_B.Tech_2nd_Yr_ME.pdf",
+    "size": 847241,
+    "cachedAt": "2026-10-30T08:44:04.414Z"
+  },
+  "https://aktu.ac.in/pdf/syllabus/syllabus2223/Syllabus_BTech_First_Yr_Common_other_than_AG_&_BT_effective_from_2022_23_R.pdf": {
+    "filename": "fb1881f16f0a_Syllabus_BTech_First_Yr_Common_other_than_AG__.pdf",
+    "publicPath": "/assets/syllabus_cache/fb1881f16f0a_Syllabus_BTech_First_Yr_Common_other_than_AG__.pdf",
+    "size": 582288,
+    "cachedAt": "2026-10-30T08:44:04.416Z"
+  },
+  "fb1881f16f0a_Syllabus_BTech_First_Yr_Common_other_than_AG__.pdf": {
+    "filename": "fb1881f16f0a_Syllabus_BTech_First_Yr_Common_other_than_AG__.pdf",
+    "publicPath": "/assets/syllabus_cache/fb1881f16f0a_Syllabus_BTech_First_Yr_Common_other_than_AG__.pdf",
+    "size": 582288,
+    "cachedAt": "2026-10-30T08:44:04.417Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Carpet & Textile Technology_3rd_year 2024-25.pdf": {
+    "filename": "fd9483e35fb1_Carpet_20__20Textile_20Technology_3rd_year_20.pdf",
+    "publicPath": "/assets/syllabus_cache/fd9483e35fb1_Carpet_20__20Textile_20Technology_3rd_year_20.pdf",
+    "size": 400434,
+    "cachedAt": "2026-10-30T08:44:04.419Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Carpet%20&%20Textile%20Technology_3rd_year%202024-25.pdf": {
+    "filename": "fd9483e35fb1_Carpet_20__20Textile_20Technology_3rd_year_20.pdf",
+    "publicPath": "/assets/syllabus_cache/fd9483e35fb1_Carpet_20__20Textile_20Technology_3rd_year_20.pdf",
+    "size": 400434,
+    "cachedAt": "2026-10-30T08:44:04.419Z"
+  },
+  "fd9483e35fb1_Carpet_20__20Textile_20Technology_3rd_year_20.pdf": {
+    "filename": "fd9483e35fb1_Carpet_20__20Textile_20Technology_3rd_year_20.pdf",
+    "publicPath": "/assets/syllabus_cache/fd9483e35fb1_Carpet_20__20Textile_20Technology_3rd_year_20.pdf",
+    "size": 400434,
+    "cachedAt": "2026-10-30T08:44:04.421Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Common Non-Credit  Courses V & VI semester 2024-25.pdf": {
+    "filename": "ffe0e46b2852_Common_20Non-Credit_20_20Courses_20V_20__20VI.pdf",
+    "publicPath": "/assets/syllabus_cache/ffe0e46b2852_Common_20Non-Credit_20_20Courses_20V_20__20VI.pdf",
+    "size": 323886,
+    "cachedAt": "2026-10-30T08:44:04.422Z"
+  },
+  "https://fms.aktu.ac.in/Resources/aktu/pdf/syllabus/Syllabus2425/Common%20Non-Credit%20%20Courses%20V%20&%20VI%20semester%202024-25.pdf": {
+    "filename": "ffe0e46b2852_Common_20Non-Credit_20_20Courses_20V_20__20VI.pdf",
+    "publicPath": "/assets/syllabus_cache/ffe0e46b2852_Common_20Non-Credit_20_20Courses_20V_20__20VI.pdf",
+    "size": 323886,
+    "cachedAt": "2026-10-30T08:44:04.422Z"
+  },
+  "ffe0e46b2852_Common_20Non-Credit_20_20Courses_20V_20__20VI.pdf": {
+    "filename": "ffe0e46b2852_Common_20Non-Credit_20_20Courses_20V_20__20VI.pdf",
+    "publicPath": "/assets/syllabus_cache/ffe0e46b2852_Common_20Non-Credit_20_20Courses_20V_20__20VI.pdf",
+    "size": 323886,
+    "cachedAt": "2026-10-30T08:44:04.423Z"
   }
 }

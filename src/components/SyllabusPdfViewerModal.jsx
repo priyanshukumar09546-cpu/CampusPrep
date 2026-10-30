@@ -18,7 +18,9 @@ import {
   CheckCircle2,
   HelpCircle,
   Sparkles,
-  Info
+  Info,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import SYLLABUS_CACHE_MAP from '../data/syllabusCacheMap.json';
 
@@ -29,6 +31,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [resolvedPdfUrl, setResolvedPdfUrl] = useState(null);
   const [zoomLevel, setZoomLevel] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
   const containerRef = useRef(null);
@@ -53,7 +56,38 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
   // Check if this syllabus URL is pre-cached statically
   const cachedEntry = useMemo(() => {
     if (!rawPdfUrl) return null;
-    return SYLLABUS_CACHE_MAP[rawPdfUrl] || null;
+    const cleanUrl = rawPdfUrl.trim();
+    // 1. Direct match
+    if (SYLLABUS_CACHE_MAP[cleanUrl]) return SYLLABUS_CACHE_MAP[cleanUrl];
+    // 2. Decode/Encode
+    try {
+      const decoded = decodeURI(cleanUrl);
+      if (SYLLABUS_CACHE_MAP[decoded]) return SYLLABUS_CACHE_MAP[decoded];
+    } catch (_) {}
+    try {
+      const encoded = encodeURI(cleanUrl);
+      if (SYLLABUS_CACHE_MAP[encoded]) return SYLLABUS_CACHE_MAP[encoded];
+    } catch (_) {}
+    // 3. Normalized spaces
+    const noSpaces = cleanUrl.replace(/ /g, '%20');
+    if (SYLLABUS_CACHE_MAP[noSpaces]) return SYLLABUS_CACHE_MAP[noSpaces];
+    const withSpaces = cleanUrl.replace(/%20/g, ' ');
+    if (SYLLABUS_CACHE_MAP[withSpaces]) return SYLLABUS_CACHE_MAP[withSpaces];
+
+    // 4. Filename basename match
+    try {
+      const base = cleanUrl.split('/').pop().replace(/%20/g, '_').replace(/ /g, '_');
+      for (const key of Object.keys(SYLLABUS_CACHE_MAP)) {
+        if (SYLLABUS_CACHE_MAP[key].filename && (
+          SYLLABUS_CACHE_MAP[key].filename.endsWith(base) ||
+          SYLLABUS_CACHE_MAP[key].filename.includes(base)
+        )) {
+          return SYLLABUS_CACHE_MAP[key];
+        }
+      }
+    } catch (_) {}
+
+    return null;
   }, [rawPdfUrl]);
 
   // Determine if this is a subject-level entry or a comprehensive curriculum document
@@ -92,7 +126,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
       
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 7000);
+        const timeoutId = setTimeout(() => controller.abort(), 12000);
 
         const resp = await fetch(proxyUrl, {
           method: 'GET',
@@ -118,12 +152,14 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
             if (data.error) errMsg = data.error;
           } catch (_) {}
 
+          setResolvedPdfUrl(null);
           setLoadError(true);
           setErrorMessage(errMsg);
           setIsLoading(false);
         }
       } catch (err) {
         if (isCancelled) return;
+        setResolvedPdfUrl(null);
         setLoadError(true);
         setErrorMessage('AKTU official server timed out or is temporarily unreachable.');
         setIsLoading(false);
@@ -374,6 +410,63 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
                 <span>Unit Topics {units.length > 0 ? `(${units.length})` : ''}</span>
               </button>
             </div>
+
+            {/* Page Navigation & Stepper */}
+            {activeTab === 'pdf' && (
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #E8E2D5',
+                borderRadius: '8px',
+                padding: '0.15rem'
+              }}>
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  title="Previous Page"
+                  disabled={currentPage <= 1}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: '0.35rem 0.5rem',
+                    cursor: currentPage <= 1 ? 'not-allowed' : 'pointer',
+                    color: currentPage <= 1 ? '#CBD5E1' : '#475569',
+                    borderRadius: '6px',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <ChevronLeft size={15} />
+                </button>
+                <span style={{
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  color: '#1F2421',
+                  padding: '0 0.35rem',
+                  userSelect: 'none',
+                  minWidth: '40px',
+                  textAlign: 'center'
+                }}>
+                  Pg {currentPage}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(p => p + 1)}
+                  title="Next Page"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: '0.35rem 0.5rem',
+                    cursor: 'pointer',
+                    color: '#475569',
+                    borderRadius: '6px',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <ChevronRight size={15} />
+                </button>
+              </div>
+            )}
 
             {/* Zoom Controls (Active in PDF mode) */}
             {activeTab === 'pdf' && (
@@ -813,7 +906,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
                   }}
                 >
                   <iframe
-                    src={`${resolvedPdfUrl}#toolbar=1&navpanes=1&scrollbar=1&page=1`}
+                    src={`${resolvedPdfUrl}#toolbar=1&navpanes=1&scrollbar=1&page=${currentPage}&zoom=${Math.round(zoomLevel * 100)}`}
                     title={`${syllabus.subjectName} Official Syllabus`}
                     width="100%"
                     height="100%"

@@ -186,13 +186,29 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
         return false;
       }
 
-      // Semester Match
+      // Semester & Year Match
       if (selectedSemester && selectedSemester !== 'All') {
         const semNorm = selectedSemester.toLowerCase().replace('semester ', 'sem ');
         const itemSem = (item.semester || '').toLowerCase().replace('semester ', 'sem ');
         const inApplicable = Array.isArray(item.applicableSemesters) && 
           item.applicableSemesters.some(s => s.toLowerCase().replace('semester ', 'sem ') === semNorm);
-        if (itemSem !== semNorm && !inApplicable && !item.isComprehensive) {
+        
+        let matches = (itemSem === semNorm || inApplicable);
+
+        if (!matches && item.isComprehensive && item.year) {
+          const semNum = parseInt(selectedSemester.replace(/\D/g, ''), 10);
+          const expectedYear = semNum ? (
+            semNum <= 2 ? '1st' :
+            semNum <= 4 ? '2nd' :
+            semNum <= 6 ? '3rd' :
+            '4th'
+          ) : '';
+          if (expectedYear && item.year.toLowerCase().includes(expectedYear)) {
+            matches = true;
+          }
+        }
+
+        if (!matches) {
           return false;
         }
       }
