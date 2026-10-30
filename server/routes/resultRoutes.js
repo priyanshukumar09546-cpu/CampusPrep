@@ -5,6 +5,9 @@ import express from 'express';
 import multer from 'multer';
 import { analyzeResultPdf, ERROR_CODES } from '../resultEngine/analysisPipeline.js';
 import { generateAnalysisReport } from '../resultEngine/reportGenerator.js';
+import { combineResultDocuments } from '../resultEngine/multiDocumentCombiner.js';
+import { queryAcademicAdvisor } from '../resultEngine/aiAcademicAdvisor.js';
+import { calculateTargetSGPA, simulateSemesterPerformance, simulateBacklogClearance } from '../resultEngine/scenarioSimulator.js';
 
 // Multer memory storage with file size limit
 const upload = multer({
@@ -30,23 +33,59 @@ export function createResultRouter(deps = {}) {
 
   // ===== POST /api/result/analyze =====
   // ===== POST /api/result/analyze-pdf =====
-  // Main PDF analysis endpoint
+  // Main PDF analysis endpoint (supports single & multi-document upload)
   async function handleAnalyze(req, res) {
     try {
-      // Extract uploaded file from multer
-      const uploadedFile = req.file || (req.files && (
-        req.files.find(f => f.fieldname === 'file') ||
-        req.files.find(f => f.fieldname === 'resultPdf') ||
-        req.files[0]
-      ));
+      const allFiles = (req.files && req.files.length > 0)
+        ? req.files
+        : (req.file ? [req.file] : []);
 
-      if (!uploadedFile || !uploadedFile.buffer) {
+      if (allFiles.length === 0 || !allFiles[0]?.buffer) {
         return res.status(400).json({
           success: false,
           code: ERROR_CODES.INVALID_FILE,
           error: 'Please select a valid PDF file to analyze.'
         });
       }
+
+      // MULTI-DOCUMENT CONSOLIDATION FLOW
+      if (allFiles.length > 1) {
+        const docResults = [];
+        const fileNames = [];
+
+        for (const f of allFiles) {
+          const docRes = await analyzeResultPdf(f);
+          if (!docRes.success) {
+            return res.status(422).json({
+              success: false,
+              code: docRes.code,
+              error: `Analysis failed for file "${f.originalname}": ${docRes.error}`,
+              failedFileName: f.originalname,
+              stages: docRes.stages
+            });
+          }
+          docResults.push(docRes);
+          fileNames.push(f.originalname);
+        }
+
+        try {
+          const consolidated = combineResultDocuments(docResults, fileNames);
+          return res.json(consolidated);
+        } catch (mergeErr) {
+          if (mergeErr.code === 'STUDENT_IDENTITY_MISMATCH') {
+            return res.status(422).json({
+              success: false,
+              code: 'STUDENT_IDENTITY_MISMATCH',
+              error: mergeErr.message,
+              details: mergeErr.details
+            });
+          }
+          throw mergeErr;
+        }
+      }
+
+      // SINGLE DOCUMENT FLOW
+      const uploadedFile = allFiles[0];
 
       // Run the complete analysis pipeline
       const result = await analyzeResultPdf(uploadedFile);
@@ -155,9 +194,72 @@ export function createResultRouter(deps = {}) {
     }
   }
 
+  // ===== POST /api/result/advisor-query =====
+  async function handleAdvisorQuery(req, res) {
+    try {
+      const { studentData, query } = req.body || {};
+      if (!studentData || (!studentData.student && !studentData.semesters)) {
+        return res.status(400).json({
+          success: false,
+          error: 'Please provide verified student academic data to consult the Academic Advisor.'
+        });
+      }
+
+      const advisorResponse = await queryAcademicAdvisor(studentData, query);
+      return res.json(advisorResponse);
+    } catch (err) {
+      console.error('[ADVISOR QUERY ERROR]', err);
+      return res.status(500).json({
+        success: false,
+        error: 'Academic Advisor service encountered an issue. Please try again.'
+      });
+    }
+  }
+
+  // ===== POST /api/result/simulate-scenario =====
+  async function handleSimulateScenario(req, res) {
+    try {
+      const {
+        scenarioType,
+        currentCGPA,
+        currentCredits,
+        targetCGPA,
+        remainingCredits,
+        hypotheticalSGPA,
+        nextSemesterCredits,
+        subjectCredits,
+        projectedGrade
+      } = req.body || {};
+
+      if (scenarioType === 'TARGET_CGPA') {
+        const result = calculateTargetSGPA(currentCGPA, currentCredits, targetCGPA, remainingCredits);
+        return res.json(result);
+      } else if (scenarioType === 'NEXT_SEMESTER') {
+        const result = simulateSemesterPerformance(currentCGPA, currentCredits, hypotheticalSGPA, nextSemesterCredits);
+        return res.json(result);
+      } else if (scenarioType === 'BACKLOG_CLEARANCE') {
+        const result = simulateBacklogClearance(currentCGPA, currentCredits, subjectCredits, projectedGrade);
+        return res.json(result);
+      } else {
+        return res.status(400).json({
+          success: false,
+          error: 'Invalid scenario type. Supported types: TARGET_CGPA, NEXT_SEMESTER, BACKLOG_CLEARANCE'
+        });
+      }
+    } catch (err) {
+      console.error('[SIMULATE SCENARIO ERROR]', err);
+      return res.status(500).json({
+        success: false,
+        error: 'Simulation failed. Please verify input parameters.'
+      });
+    }
+  }
+
   // Register routes
   router.post('/analyze', upload.any(), handleAnalyze);
   router.post('/analyze-pdf', upload.any(), handleAnalyze);
+  router.post('/advisor-query', express.json(), handleAdvisorQuery);
+  router.post('/simulate-scenario', express.json(), handleSimulateScenario);
   router.post('/download-report', express.json(), handleDownloadReport);
 
   // Catch multer errors

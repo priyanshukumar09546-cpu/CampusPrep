@@ -15,9 +15,9 @@ export class AktuMarksheetParser extends BaseResultParser {
   }
 
   canParse(text = '') {
-    return /(?:Statement\s*of\s*Marks|Grade\s*Card)/i.test(text) ||
-      (/(?:Subject\s*Code|Sub\s*Code).*(?:Grade|Marks|Credits)/i.test(text) &&
-       !/One\s*View\s*Result/i.test(text));
+    return /(?:Statement\s*of\s*Marks|Grade\s*Card|Academic\s*Transcript)/i.test(text) ||
+      (/(?:Subject\s*Code|Sub\s*Code|Course\s*Code|Code\s+Name\s+Type).*(?:Grade|Marks|Credits|GP)/i.test(text)) ||
+      (/\b(?:BAS|BCS|BEC|BEE|BME|KCS|KIT|KOE|KAS|REC|RCS|RME)[0-9]{3}\b/i.test(text) && /(?:Theory|Practical|PASS|FAIL|SGPA)/i.test(text));
   }
 
   async parse(rawText = '', metadata = {}) {
@@ -313,10 +313,10 @@ export class AktuMarksheetParser extends BaseResultParser {
   extractStudentMetadata(cleanText) {
     const student = {};
 
-    const nameMatch = cleanText.match(/(?:Student\s*Name|Candidate\s*Name|(?:^|\n)\s*Name\s*[\t:])[\s\t:]*([A-Z][A-Z\s.]{2,40})(?:\t|\n|Father|Roll|Enroll)/i);
-    const fatherMatch = cleanText.match(/Father(?:'s)?\s*Name[\s\t:]+([A-Z][A-Z\s.]{2,40})(?:\t|\n|Gender|Mother)/i);
-    const rollMatch = cleanText.match(/(?:Roll\s*No\.?|RollNo)[\s\t:]*([0-9]{7,15})/i);
-    const enrollMatch = cleanText.match(/(?:Enrollment\s*No\.?|EnrollmentNo)[\s\t:]*([A-Za-z0-9]{8,20})/i);
+    const nameMatch = cleanText.match(/(?:Student\s*Name|Candidate\s*Name|(?:^|\n|\t)\s*Name)[\s\t:]+([A-Za-z][A-Za-z .]{2,40}?)(?=\s*(?:\t|\n|Hindi|Father|Roll|Enroll|Gender|Category|$))/i);
+    const fatherMatch = cleanText.match(/Father(?:'s)?\s*Name[\s\t:]+([A-Za-z][A-Za-z .]{2,40}?)(?=\s*(?:\t|\n|Gender|Mother|Roll|Enroll|$))/i);
+    const rollMatch = cleanText.match(/(?:Roll\s*No\.?|RollNo|Roll\s*Number)[\s\t:]*([0-9]{7,16})/i);
+    const enrollMatch = cleanText.match(/(?:Enrollment\s*No\.?|EnrollmentNo|Enrolment\s*No\.?)[\s\t:]*([A-Za-z0-9]{7,20})/i);
     const genderMatch = cleanText.match(/Gender[\s\t:]+([MF]|Male|Female)/i);
     const courseMatch = cleanText.match(/(?:Course|Programme)[\s\t:]*([^\n\t]+)/i);
     const branchMatch = cleanText.match(/(?:Branch|Discipline)[\s\t:]*([^\n\t]+)/i);

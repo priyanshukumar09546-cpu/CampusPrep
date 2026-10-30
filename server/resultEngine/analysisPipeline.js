@@ -32,7 +32,7 @@ export const ERROR_CODES = {
  * Generate real-data chart series from validated result data (Section 21)
  * NEVER uses hardcoded or demo values
  */
-function buildRealCharts(validated, cgpaResult, stats) {
+export function buildRealCharts(validated, cgpaResult, stats) {
   const semesters = validated.semesters || [];
   const rawSessions = validated.rawSessions || [];
 
