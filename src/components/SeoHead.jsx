@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { AVAILABLE_COURSES, normalizeCourseKey } from '../data/courseMapping.ts';
+import { courseKeyToSlug, yearToSlug, semToSlug } from '../utils/academicUrls';
 
 /**
  * SeoHead: Dynamic Client-Side SEO & Structured Data Manager
@@ -11,7 +13,9 @@ export default function SeoHead({
   selectedSubjectData = null,
   selectedProjectSlug = null,
   selectedOpportunitySlug = null,
-  selectedScholarshipSlug = null
+  selectedScholarshipSlug = null,
+  selectedYear = null,
+  selectedSemester = null
 }) {
   useEffect(() => {
     const BASE_URL = 'https://professorvirus.site';
@@ -215,8 +219,58 @@ export default function SeoHead({
       case 'courses':
         title = `All 24 University Programmes & Degrees | ${BRAND_NAME} Directory`;
         description = `Explore verified academic resources across all 24 university programmes including B.Tech, BCA, BBA, B.Pharm, MCA, MBA and more.`;
-        canonical = `${BASE_URL}/select-course`;
+        canonical = `${BASE_URL}/courses/`;
+        pageSchema = {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          'name': title,
+          'url': canonical,
+          'description': description
+        };
         break;
+
+      case 'course-detail': {
+        const cNorm = normalizeCourseKey(selectedCourse) || 'BTech';
+        const cMeta = AVAILABLE_COURSES.find(c => c.key === cNorm) || { name: cNorm, fullName: cNorm };
+        const cSlug = courseKeyToSlug(cNorm);
+        title = `AKTU ${cMeta.fullName} (${cMeta.name}) Syllabus, Notes & PYQs | ${BRAND_NAME}`;
+        description = `Official AKTU ${cMeta.fullName} (${cMeta.name}) curriculum, semester subjects, unit-wise notes, and solved question papers across all years on ${BRAND_NAME}.`;
+        canonical = `${BASE_URL}/courses/${cSlug}/`;
+        pageSchema = {
+          '@context': 'https://schema.org',
+          '@type': 'Course',
+          'name': `AKTU ${cMeta.fullName} (${cMeta.name})`,
+          'description': description,
+          'provider': { '@type': 'Organization', 'name': BRAND_NAME, 'url': BASE_URL }
+        };
+        break;
+      }
+
+      case 'year-detail': {
+        const cNorm = normalizeCourseKey(selectedCourse) || 'BTech';
+        const cMeta = AVAILABLE_COURSES.find(c => c.key === cNorm) || { name: cNorm, fullName: cNorm };
+        const cSlug = courseKeyToSlug(cNorm);
+        const ySlug = yearToSlug(selectedYear || '1st Year');
+        const yr = selectedYear || '1st Year';
+        title = `AKTU ${cMeta.name} ${yr} — Subjects, Notes & PYQs | ${BRAND_NAME}`;
+        description = `Explore AKTU ${cMeta.name} ${yr} semester subjects, verified handwritten notes, quantum series, and previous year examination papers.`;
+        canonical = `${BASE_URL}/courses/${cSlug}/${ySlug}/`;
+        break;
+      }
+
+      case 'semester-detail': {
+        const cNorm = normalizeCourseKey(selectedCourse) || 'BTech';
+        const cMeta = AVAILABLE_COURSES.find(c => c.key === cNorm) || { name: cNorm, fullName: cNorm };
+        const cSlug = courseKeyToSlug(cNorm);
+        const ySlug = yearToSlug(selectedYear || '1st Year');
+        const sSlug = semToSlug(selectedSemester || 'Sem 1');
+        const yr = selectedYear || '1st Year';
+        const sem = selectedSemester || 'Sem 1';
+        title = `AKTU ${cMeta.name} ${yr} ${sem} Subjects & Study Material | ${BRAND_NAME}`;
+        description = `Complete AKTU ${cMeta.name} ${sem} syllabus, subject lists, unit-wise PDF notes, and solved question papers.`;
+        canonical = `${BASE_URL}/courses/${cSlug}/${ySlug}/${sSlug}/`;
+        break;
+      }
 
       case 'more':
         title = `All Student Tools & Academic Utilities | ${BRAND_NAME}`;

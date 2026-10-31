@@ -801,15 +801,15 @@ export default function CourseNotesView({
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-              <h2 style={{
+              <h1 style={{
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: '1.65rem',
                 fontWeight: 900,
                 color: '#1F2421',
                 margin: 0
               }}>
-                {courseMeta.fullName} Notes &amp; Quantum
-              </h2>
+                AKTU {courseMeta.fullName} ({courseMeta.name}) Study Notes &amp; Quantum Series
+              </h1>
               <span style={{
                 backgroundColor: courseMeta.badgeColor + '15',
                 color: courseMeta.badgeColor,

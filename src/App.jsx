@@ -66,6 +66,15 @@ import HoollowPage from './pages/HoollowPage';
 import SignIn from './pages/Auth/SignIn';
 import SignUp from './pages/Auth/SignUp';
 import SelectCoursePage from './pages/SelectCoursePage';
+import CourseLandingPage from './pages/CourseLandingPage';
+import { 
+  courseKeyToSlug, 
+  slugToCourseKey, 
+  yearToSlug, 
+  slugToYear, 
+  semToSlug, 
+  slugToSem 
+} from './utils/academicUrls';
 import SelectYearPage from './pages/SelectYearPage';
 import SelectSubjectPage from './pages/SelectSubjectPage';
 import SubjectDetailPage from './pages/SubjectDetailPage';
@@ -115,6 +124,13 @@ export default function App() {
 
   const parseCourseFromUrl = () => {
     try {
+      const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+      if (path.startsWith('courses/')) {
+        const parts = path.split('/').filter(Boolean);
+        if (parts[1]) {
+          return slugToCourseKey(parts[1]) || 'BTech';
+        }
+      }
       const params = new URLSearchParams(window.location.search);
       const c = params.get('course');
       if (c) {
@@ -182,7 +198,23 @@ export default function App() {
     if (!path || path === 'home') return 'home';
     if (path === 'signin' || path === 'sign-in' || path === 'login') return 'signin';
     if (path === 'signup' || path === 'sign-up') return 'signup';
-    if (path === 'select-course' || path === 'courses') return 'select-course';
+    if (path === 'select-course' || path === 'courses') return 'courses';
+    if (path.startsWith('courses/')) {
+      const parts = path.split('/').filter(Boolean);
+      if (parts.length === 2 && parts[1]) {
+        return 'course-detail';
+      }
+      if (parts.length === 3 && parts[1] && parts[2]) {
+        return 'year-detail';
+      }
+      if (parts.length === 4 && parts[1] && parts[2] && parts[3]) {
+        return 'semester-detail';
+      }
+      if (parts.length >= 5 || (parts[2] === 'subject' && parts[3])) {
+        return 'subject';
+      }
+      return 'course-detail';
+    }
     if (path === 'select-year' || path === 'years') return 'select-year';
     if (path === 'select-subject' || path === 'subjects') return 'select-subject';
     if (path.startsWith('subject/') || path === 'subject' || path === 'subject-detail') return 'subject-detail';
@@ -244,6 +276,7 @@ export default function App() {
   const [authModal, setAuthModal] = useState({ isOpen: false, mode: 'login' });
   const [selectedBranch, setSelectedBranch] = useState('All');
   const [selectedYear, setSelectedYear] = useState(null);
+  const [selectedSemester, setSelectedSemester] = useState(null);
   const [globalSearchQuery, setGlobalSearchQuery] = useState('');
   const [showSplash, setShowSplash] = useState(true);
 
@@ -314,8 +347,30 @@ export default function App() {
         targetPath = '/signin';
       } else if (tab === 'signup') {
         targetPath = '/signup';
-      } else if (tab === 'select-course') {
-        targetPath = '/select-course';
+      } else if (tab === 'courses' || tab === 'select-course') {
+        setActiveTabState('courses');
+        targetPath = '/courses/';
+      } else if (tab === 'course-detail') {
+        setActiveTabState('course-detail');
+        const cKey = (courseOverride && typeof courseOverride === 'object' && courseOverride.courseKey) ? courseOverride.courseKey : courseToUse;
+        const cSlug = courseKeyToSlug(cKey);
+        targetPath = `/courses/${cSlug}/`;
+      } else if (tab === 'year-detail') {
+        setActiveTabState('year-detail');
+        const cKey = (courseOverride && typeof courseOverride === 'object' && courseOverride.courseKey) ? courseOverride.courseKey : courseToUse;
+        const cSlug = courseKeyToSlug(cKey);
+        const yVal = (courseOverride && typeof courseOverride === 'object' && courseOverride.year) ? courseOverride.year : (selectedYear || '1st Year');
+        setSelectedYear(yVal);
+        targetPath = `/courses/${cSlug}/${yearToSlug(yVal)}/`;
+      } else if (tab === 'semester-detail') {
+        setActiveTabState('semester-detail');
+        const cKey = (courseOverride && typeof courseOverride === 'object' && courseOverride.courseKey) ? courseOverride.courseKey : courseToUse;
+        const cSlug = courseKeyToSlug(cKey);
+        const yVal = (courseOverride && typeof courseOverride === 'object' && courseOverride.year) ? courseOverride.year : (selectedYear || '1st Year');
+        const sVal = (courseOverride && typeof courseOverride === 'object' && courseOverride.semester) ? courseOverride.semester : (selectedSemester || 'Sem 1');
+        setSelectedYear(yVal);
+        setSelectedSemester(sVal);
+        targetPath = `/courses/${cSlug}/${yearToSlug(yVal)}/${semToSlug(sVal)}/`;
       } else if (tab === 'select-year') {
         targetPath = '/select-year';
       } else if (tab === 'select-subject') {
@@ -407,7 +462,27 @@ export default function App() {
       } else if (path === 'signup' || path === 'sign-up') {
         setActiveTabState('signup');
       } else if (path === 'select-course' || path === 'courses') {
-        setActiveTabState('select-course');
+        setActiveTabState('courses');
+      } else if (path.startsWith('courses/')) {
+        const parts = path.split('/').filter(Boolean);
+        if (parts[1]) {
+          const c = slugToCourseKey(parts[1]);
+          setSelectedCourse(c);
+        }
+        if (parts.length === 2) {
+          setActiveTabState('course-detail');
+        } else if (parts.length === 3 && parts[2]) {
+          setSelectedYear(slugToYear(parts[2]));
+          setActiveTabState('year-detail');
+        } else if (parts.length === 4 && parts[2] && parts[3]) {
+          setSelectedYear(slugToYear(parts[2]));
+          setSelectedSemester(slugToSem(parts[3]));
+          setActiveTabState('semester-detail');
+        } else if (parts.length >= 5 || (parts[2] === 'subject' && parts[3])) {
+          const subCode = parts[2] === 'subject' ? parts[3] : parts[4];
+          setSelectedSubjectData(prev => ({ ...(prev || {}), code: subCode, course: selectedCourse }));
+          setActiveTabState('subject');
+        }
       } else if (path === 'select-year' || path === 'years') {
         setActiveTabState('select-year');
       } else if (path === 'select-subject' || path === 'subjects') {
@@ -555,6 +630,8 @@ export default function App() {
         selectedProjectSlug={selectedProjectSlug}
         selectedOpportunitySlug={selectedOpportunitySlug}
         selectedScholarshipSlug={selectedScholarshipSlug}
+        selectedYear={selectedYear}
+        selectedSemester={selectedSemester}
       />
 
       {/* Full-Screen Splash Screen (Both Mobile & Desktop on Initial Load) */}
@@ -599,8 +676,16 @@ export default function App() {
           <SignIn onNavigate={(tab) => navigateToTab(tab)} />
         ) : activeTab === 'signup' ? (
           <SignUp onNavigate={(tab) => navigateToTab(tab)} />
-        ) : activeTab === 'select-course' ? (
-          <SelectCoursePage onNavigate={(tab) => navigateToTab(tab)} />
+        ) : (activeTab === 'select-course' || activeTab === 'courses') ? (
+          <SelectCoursePage onNavigate={(tab, data) => navigateToTab(tab, data)} />
+        ) : (activeTab === 'course-detail' || activeTab === 'year-detail' || activeTab === 'semester-detail') ? (
+          <CourseLandingPage 
+            courseKey={selectedCourse}
+            yearParam={selectedYear}
+            semParam={selectedSemester}
+            onNavigate={(tab, data) => navigateToTab(tab, data)}
+            onSelectSubject={handleOpenSubject}
+          />
         ) : activeTab === 'select-year' ? (
           <SelectYearPage onNavigate={(tab) => navigateToTab(tab)} />
         ) : activeTab === 'select-subject' ? (

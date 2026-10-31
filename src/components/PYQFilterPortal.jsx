@@ -573,7 +573,7 @@ export default function PYQFilterPortal({
               margin: '0 0 0.35rem 0',
               lineHeight: 1.2
             }}>
-              AKTU Previous Year Question Papers (PYQs)
+              {dynamicPyqHeading}
             </h1>
             <p style={{
               color: '#64748B',

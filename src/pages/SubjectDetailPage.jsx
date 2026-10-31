@@ -240,7 +240,13 @@ export default function SubjectDetailPage({
             </h1>
             <div className="flex items-center gap-1.5 text-xs text-stone-500 font-medium mt-1">
               <GraduationCap size={15} className="text-[#7A2327]" />
-              <span>{courseName} &gt; {branchName} &gt; {yearName}</span>
+              <nav aria-label="Breadcrumb" className="inline-flex items-center gap-1">
+                <span className="hover:text-stone-800 cursor-pointer" onClick={() => onNavigate && onNavigate('courses')}>Courses</span>
+                <span>&gt;</span>
+                <span className="hover:text-stone-800 cursor-pointer" onClick={() => onNavigate && onNavigate('notes', courseName)}>{courseName}</span>
+                <span>&gt;</span>
+                <span>{yearName}</span>
+              </nav>
             </div>
           </div>
 
@@ -248,7 +254,7 @@ export default function SubjectDetailPage({
           <div className="w-full h-36 md:h-44 rounded-2xl overflow-hidden bg-gradient-to-r from-amber-50 to-orange-50 border border-orange-100/60 shadow-sm flex items-center justify-center p-3 mb-2">
             <img 
               src="/assets/os_header_illustration.png" 
-              alt={`${subjectName} visual hero`}
+              alt={`AKTU ${subjectName} (${code}) Lecture Notes, Solved PYQs and Official Syllabus - ProfessorVirus`}
               className="h-full w-auto object-contain drop-shadow-sm"
               onError={(e) => {
                 e.currentTarget.src = '/assets/home_hero_banner.png';
@@ -269,9 +275,9 @@ export default function SubjectDetailPage({
             </button>
             
             <div className="text-center flex-1 mx-2">
-              <h1 className="font-['Outfit',sans-serif] font-bold text-xl md:text-2xl text-stone-900 leading-tight">
+              <h2 className="font-['Outfit',sans-serif] font-bold text-xl md:text-2xl text-stone-900 leading-tight">
                 {subjectName}
-              </h1>
+              </h2>
               <span className="text-xs text-stone-500 font-medium">
                 {code} • {courseName} {branchName} • {yearName}
               </span>
@@ -557,6 +563,28 @@ export default function SubjectDetailPage({
           </div>
         )}
       </div>
+
+      
+        {/* EDUCATIONAL SUBJECT FAQS */}
+        <div className="mt-8 bg-white rounded-2xl p-5 sm:p-6 border border-orange-100/80 shadow-xs">
+          <h2 className="font-['Outfit',sans-serif] font-bold text-base sm:text-lg text-stone-900 mb-3 flex items-center gap-2">
+            <span>Academic FAQs — {subjectName} ({code})</span>
+          </h2>
+          <div className="space-y-3 text-xs text-stone-600">
+            <div>
+              <h3 className="font-bold text-stone-800">How many units are included in the official AKTU {subjectName} syllabus?</h3>
+              <p className="mt-0.5 leading-relaxed">The curriculum is structured into 5 comprehensive units as prescribed in the official university curriculum regulations for {courseName}.</p>
+            </div>
+            <div className="border-t border-stone-100 pt-2">
+              <h3 className="font-bold text-stone-800">Where can I download verified unit notes and previous year questions?</h3>
+              <p className="mt-0.5 leading-relaxed">All unit lecture summaries, handwritten revision notes, and past examination papers for {code} are available directly above in the Notes and PYQs tabs.</p>
+            </div>
+            <div className="border-t border-stone-100 pt-2">
+              <h3 className="font-bold text-stone-800">What are the minimum passing marks for this course?</h3>
+              <p className="mt-0.5 leading-relaxed">Students must obtain at least 30% marks in the university external theory examination and 40% in total aggregate (internal sessionals + end semester exam) to clear {code}.</p>
+            </div>
+          </div>
+        </div>
 
       {/* Notification Toast for Downloads */}
       {downloadSuccess && (

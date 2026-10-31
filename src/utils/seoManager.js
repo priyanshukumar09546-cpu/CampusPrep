@@ -167,7 +167,7 @@ export const SEO_PAGE_CONFIG = {
   courses: {
     title: `All 24 University Programmes & Academic Directory | ${BRAND_NAME}`,
     description: 'Explore verified study resources, notes, PYQs, and syllabus across 24 university programmes including B.Tech, BCA, BBA, B.Pharm, MCA, MBA, and more.',
-    path: '/select-course',
+    path: '/courses/',
     schemaType: 'CollectionPage'
   },
   more: {
@@ -270,10 +270,10 @@ export function updateSEOForRoute(tabName, course = null, extraData = null) {
   });
 
   // 6. Inject Schema.org JSON-LD Structured Data
-  let schemaScript = document.getElementById('pv-structured-data');
+  let schemaScript = document.getElementById('pv-dynamic-page-schema');
   if (!schemaScript) {
     schemaScript = document.createElement('script');
-    schemaScript.id = 'pv-structured-data';
+    schemaScript.id = 'pv-dynamic-page-schema';
     schemaScript.type = 'application/ld+json';
     document.head.appendChild(schemaScript);
   }

@@ -1,6 +1,6 @@
 // Centralized Subject Data Catalog for CampusPrep / ProfessorVirus
 // Covers B.Tech, BCA, M.Tech, MCA, MBA, and B.Pharm across all years and semesters
-import { COURSE_CONFIG } from './courseMapping.ts';
+import { COURSE_CONFIG, AVAILABLE_COURSES, normalizeCourseKey } from './courseMapping.ts';
 
 export interface SubjectItem {
   id: string;
@@ -17,98 +17,20 @@ export interface SubjectItem {
   pyqsCount?: number;
 }
 
-export const ALL_COURSES = [
-  {
-    id: 'btech',
-    key: 'B.Tech',
-    name: 'B.Tech',
-    fullName: 'Bachelor of Technology',
-    iconBg: '#FEE2E2',
-    iconColor: '#DC2626',
-    years: ['1st Year', '2nd Year', '3rd Year', '4th Year'],
-    branches: ['CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & ML']
-  },
-  {
-    id: 'bca',
-    key: 'BCA',
-    name: 'BCA',
-    fullName: 'Bachelor of Computer Applications',
-    iconBg: '#DBEAFE',
-    iconColor: '#2563EB',
-    years: ['1st Year', '2nd Year', '3rd Year'],
-    branches: ['General']
-  },
-  {
-    id: 'mtech',
-    key: 'M.Tech',
-    name: 'M.Tech',
-    fullName: 'Master of Technology',
-    iconBg: '#F3E8FF',
-    iconColor: '#9333EA',
-    years: ['1st Year', '2nd Year'],
-    branches: ['CSE', 'VLSI', 'Mechanical']
-  },
-  {
-    id: 'mca',
-    key: 'MCA',
-    name: 'MCA',
-    fullName: 'Master of Computer Applications',
-    iconBg: '#FEF3C7',
-    iconColor: '#D97706',
-    years: ['1st Year', '2nd Year'],
-    branches: ['General']
-  },
-  {
-    id: 'mba',
-    key: 'MBA',
-    name: 'MBA',
-    fullName: 'Master of Business Administration',
-    iconBg: '#FFEDD5',
-    iconColor: '#C2410C',
-    years: ['1st Year', '2nd Year'],
-    branches: ['Marketing', 'Finance', 'HR', 'Operations']
-  },
-  {
-    id: 'bpharm',
-    key: 'B.Pharm',
-    name: 'B.Pharm',
-    fullName: 'Bachelor of Pharmacy',
-    iconBg: '#DCFCE7',
-    iconColor: '#16A34A',
-    years: ['1st Year', '2nd Year', '3rd Year', '4th Year'],
-    branches: ['Pharmacy']
-  },
-  {
-    id: 'bba',
-    key: 'BBA',
-    name: 'BBA',
-    fullName: 'Bachelor of Business Administration',
-    iconBg: '#FEF3C7',
-    iconColor: '#B45309',
-    years: ['1st Year', '2nd Year', '3rd Year'],
-    branches: ['General']
-  },
-  {
-    id: 'bhmct',
-    key: 'BHMCT',
-    name: 'BHMCT',
-    fullName: 'Bachelor of Hotel Management & Catering Technology',
-    iconBg: '#FEF3C7',
-    iconColor: '#D97706',
-    years: ['1st Year', '2nd Year', '3rd Year', '4th Year'],
-    branches: ['Hospitality']
-  },
-  {
-    id: 'mpharm',
-    key: 'M.Pharm',
-    name: 'M.Pharm',
-    fullName: 'Master of Pharmacy',
-    iconBg: '#DCFCE7',
-    iconColor: '#16A34A',
-    years: ['1st Year', '2nd Year'],
-    branches: ['Pharmaceutics', 'Pharmacology']
-  }
-];
+export const ALL_COURSES = AVAILABLE_COURSES.map(ac => {
+  const conf = (COURSE_CONFIG as any)[ac.key] || {};
+  return {
+    id: ac.key.toLowerCase(),
+    key: ac.name,
+    rawKey: ac.key,
+    name: ac.name,
+    fullName: ac.fullName,
+    iconBg: ac.badgeColor + '20',
+    iconColor: ac.badgeColor,
+    years: conf.years || ['1st Year', '2nd Year', '3rd Year', '4th Year'],
+    branches: conf.branches || (ac.key === 'BTech' ? ['CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'AI & ML'] : ['General'])
+  };
+});
 
 export const YEARS_CONFIG: Record<string, { year: string; title: string; subtitle: string; iconBg: string; iconColor: string }[]> = {
   'default': [
@@ -679,10 +601,11 @@ const catalogPalette = [
   { bg: '#FFEDD5', color: '#C2410C' }
 ];
 
-['MCA', 'MBA', 'BPharma'].forEach((cKey) => {
+AVAILABLE_COURSES.forEach((ac) => {
+  const cKey = ac.key;
   const conf = (COURSE_CONFIG as any)[cKey];
   if (!conf || !conf.sems || !conf.subjects) return;
-  const courseLabel = cKey === 'BPharma' ? 'B.Pharm' : cKey;
+  const courseLabel = ac.name;
 
   Object.entries(conf.sems).forEach(([yr, semArr]: [string, any]) => {
     (semArr || []).forEach((sn: number) => {
@@ -691,22 +614,22 @@ const catalogPalette = [
         const name = typeof item === 'object' && item.name ? item.name : String(item);
         const code = typeof item === 'object' && item.code ? item.code : `${cKey}-${sn}0${idx + 1}`;
         const color = catalogPalette[(idx + sn) % catalogPalette.length];
-        SUBJECTS_CATALOG.push({
-          id: `${courseLabel.toLowerCase().replace(/[^a-z0-9]/g, '')}_${code.toLowerCase()}`,
-          code,
-          name,
-          course: courseLabel,
-          year: yr,
-          semester: `Sem ${sn}`,
-          iconBg: color.bg,
-          iconColor: color.color,
-          unitsCount: 5,
-          pyqsCount: 5
-        });
+        const subId = `${courseLabel.toLowerCase().replace(/[^a-z0-9]/g, '')}_${code.toLowerCase()}`;
+        if (!SUBJECTS_CATALOG.some(s => s.id === subId)) {
+          SUBJECTS_CATALOG.push({
+            id: subId,
+            code,
+            name,
+            course: courseLabel,
+            year: yr,
+            semester: `Sem ${sn}`,
+            iconBg: color.bg,
+            iconColor: color.color,
+            unitsCount: 5,
+            pyqsCount: 5
+          });
+        }
       });
     });
   });
 });
-
-
-

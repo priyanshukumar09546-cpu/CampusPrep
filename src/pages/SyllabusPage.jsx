@@ -350,13 +350,13 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem' }}>
                 <h1 style={{
                   fontFamily: "'Outfit', sans-serif",
-                  fontSize: '3.4rem',
+                  fontSize: 'clamp(2rem, 4vw, 3.2rem)',
                   fontWeight: 900,
                   color: '#1F2421',
                   lineHeight: 1.1,
                   letterSpacing: '-0.02em'
                 }}>
-                  Syllabus
+                  AKTU Official Syllabus &amp; Curriculum {selectedCourse ? `— ${selectedCourse}` : ''}
                 </h1>
                 <BookOpen size={40} style={{ color: '#C88D2D' }} />
               </div>

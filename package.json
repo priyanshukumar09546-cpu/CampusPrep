@@ -7,7 +7,7 @@
     "dev": "concurrently --names \"SERVER,CLIENT\" --prefix-colors \"blue,green\" \"node server/index.js\" \"vite\"",
     "client": "vite",
     "server": "node server/index.js",
-    "build": "node server/generate_sitemap.cjs && vite build",
+    "build": "node server/generate_sitemap.cjs && vite build && node server/prerender.cjs",
     "preview": "vite preview"
   },
   "dependencies": {
