@@ -22,6 +22,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import SeoHead from './components/SeoHead';
 import StarfieldBackground from './components/StarfieldBackground';
 import useScrollReveal from './utils/useScrollReveal';
+import { useTheme } from './context/ThemeContext';
 import Home from './pages/Home';
 import { normalizeCourseKey } from './data/courseMapping.ts';
 
@@ -83,6 +84,7 @@ import SubjectDetailPage from './pages/SubjectDetailPage';
 
 export default function App() {
   useScrollReveal();
+  const { theme, isDark } = useTheme();
 
   const [adminAuthToken, setAdminAuthToken] = useState(() => {
     return localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token') || null;
@@ -625,7 +627,7 @@ export default function App() {
   const showStandaloneMobileHeader = !hideTopNav && !pagesWithOwnMobileHeader.includes(activeTab);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden', backgroundColor: 'transparent', color: '#FFFFFF' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden', backgroundColor: 'transparent', color: isDark ? '#FFFFFF' : '#1F2421', position: 'relative', zIndex: 1 }}>
       {/* Animated Deep Space Starfield Background */}
       <StarfieldBackground />
 

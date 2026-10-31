@@ -1,7 +1,9 @@
 import React from 'react';
-import { ArrowLeft, Bell, Search, GraduationCap, Sparkles, SlidersHorizontal, Menu } from 'lucide-react';
+import { ArrowLeft, Bell, Search, GraduationCap, Sparkles, SlidersHorizontal, Menu, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onOpenSearch, selectedCourse = 'B.Tech' }) {
+  const { isDark, toggleTheme } = useTheme();
   const isHome = activeTab === 'home' || activeTab === 'more' || activeTab === 'notes' || activeTab === 'pyqs' || activeTab === 'progress' || activeTab === 'profile' || activeTab === 'result-cgpa' || activeTab === 'pdf-maker' || activeTab === 'scholarships' || activeTab === 'internships-jobs' || activeTab === 'opportunity-detail' || activeTab === 'jobs' || activeTab === 'project-ideas' || activeTab === 'projects' || !activeTab;
 
   const getPageTitle = () => {
@@ -58,10 +60,10 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
         width: '100%',
         maxWidth: '100vw',
         zIndex: 9997,
-        backgroundColor: 'rgba(5, 5, 5, 0.94)',
+        backgroundColor: isDark ? 'rgba(5, 5, 5, 0.94)' : 'rgba(250, 247, 242, 0.96)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
         padding: '0.6rem 1rem',
         display: 'flex',
         alignItems: 'center',
@@ -116,13 +118,13 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                   whiteSpace: 'nowrap'
                 }}
               >
-                <span style={{ color: '#FFFFFF' }}>PROFESSOR</span>
+                <span style={{ color: isDark ? '#FFFFFF' : '#1F2421' }}>PROFESSOR</span>
                 <span style={{ color: '#FFB800' }}>VIRUS</span>
               </div>
               <div 
                 style={{
                   fontSize: '0.58rem',
-                  color: '#A1A1AA',
+                  color: isDark ? '#A1A1AA' : '#64748B',
                   fontWeight: 800,
                   letterSpacing: '0.02em',
                   textTransform: 'uppercase',
@@ -139,6 +141,27 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
 
           {/* HOME RIGHT CONTROLS: Notification Bell with Red Badge Dot */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
+            {/* Mobile Theme Toggle Button */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${isDark ? 'Light' : 'Dark'} Mode`}
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #D5CEBF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#FFB800',
+                cursor: 'pointer',
+                boxShadow: isDark ? '0 2px 6px rgba(0, 0, 0, 0.4)' : '0 2px 6px rgba(0, 0, 0, 0.06)'
+              }}
+            >
+              {isDark ? <Sun size={17} /> : <Moon size={17} />}
+            </button>
             <button
               type="button"
               onClick={onOpenUpdates || (() => onNavigate('interview-pro'))}
@@ -185,7 +208,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FFFFFF',
+                color: isDark ? '#FFFFFF' : '#1F2421',
                 cursor: 'pointer',
                 padding: 0
               }}

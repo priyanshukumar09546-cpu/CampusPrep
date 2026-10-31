@@ -20,6 +20,7 @@ if (API_URL && typeof window !== 'undefined' && window.fetch) {
   };
 }
 
+import { ThemeProvider } from './context/ThemeContext.jsx';
 import { CourseProvider } from './context/CourseContext.jsx';
 import { registerServiceWorker } from './utils/pwaManager.js';
 
@@ -29,9 +30,11 @@ registerServiceWorker();
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <CourseProvider>
-        <App />
-      </CourseProvider>
+      <ThemeProvider>
+        <CourseProvider>
+          <App />
+        </CourseProvider>
+      </ThemeProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );

@@ -23,6 +23,25 @@
     <meta name="theme-color" content="#030303" media="(max-width: 1023px)" />
     <meta name="theme-color" content="#030303" media="(min-width: 1024px)" />
 
+    <!-- Anti-flicker Theme Synchronizer -->
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('pv_theme') || 'dark';
+          var doc = document.documentElement;
+          if (t === 'light') {
+            doc.classList.add('light');
+            doc.classList.remove('dark');
+            doc.setAttribute('data-theme', 'light');
+          } else {
+            doc.classList.add('dark');
+            doc.classList.remove('light');
+            doc.setAttribute('data-theme', 'dark');
+          }
+        } catch(e) {}
+      })();
+    </script>
+
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3005484732109718"
          crossorigin="anonymous"></script>

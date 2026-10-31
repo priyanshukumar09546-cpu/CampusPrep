@@ -913,3 +913,149 @@
     justify-content: center;
   }
 }
+
+
+/* ==========================================================================
+   FOOTER DUAL-THEME ADAPTATION (LIGHT MODE + DARK MODE)
+   ========================================================================== */
+
+/* LIGHT MODE FOOTER */
+html.light .pv-footer-root {
+  background-color: #FAF7F2 !important;
+  border-top: 1px solid #E8E2D5 !important;
+  color: #1F2421 !important;
+}
+
+html.light .pv-footer-brand-title {
+  color: #1F2421 !important;
+}
+
+html.light .pv-footer-brand-desc {
+  color: #5A5248 !important;
+}
+
+html.light .pv-footer-link {
+  color: #4A4036 !important;
+}
+
+html.light .pv-footer-link:hover {
+  color: #861820 !important;
+}
+
+html.light .pv-footer-col-title {
+  color: #1F2421 !important;
+}
+
+html.light .pv-footer-col-badge {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E8E2D5 !important;
+  color: #D6A13D !important;
+}
+
+html.light .pv-footer-trust-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E8E2D5 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .pv-footer-trust-card-title {
+  color: #1F2421 !important;
+}
+
+html.light .pv-footer-trust-card-sub {
+  color: #5A5248 !important;
+}
+
+html.light .pv-footer-trust-icon-box {
+  background-color: #FAF5ED !important;
+  border: 1px solid #E8E2D5 !important;
+  color: #D6A13D !important;
+}
+
+html.light .pv-footer-bottom-bar {
+  background-color: #F0ECE1 !important;
+  border-top: 1px solid #E8E2D5 !important;
+  color: #5A5248 !important;
+}
+
+html.light .pv-footer-social-btn {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E8E2D5 !important;
+  color: #1F2421 !important;
+}
+
+html.light .pv-footer-social-btn:hover {
+  background-color: #FAF5ED !important;
+  border-color: #D6A13D !important;
+  color: #861820 !important;
+}
+
+html.light .pv-footer-bottom-link {
+  color: #5A5248 !important;
+}
+
+html.light .pv-footer-bottom-link:hover {
+  color: #861820 !important;
+}
+
+html.light .pv-footer-copyright {
+  color: #5A5248 !important;
+}
+
+/* DARK MODE FOOTER */
+html.dark .pv-footer-root {
+  background-color: #030303 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+}
+
+html.dark .pv-footer-brand-title {
+  color: #FFFFFF !important;
+}
+
+html.dark .pv-footer-brand-desc {
+  color: #A1A1AA !important;
+}
+
+html.dark .pv-footer-link {
+  color: #A1A1AA !important;
+}
+
+html.dark .pv-footer-link:hover {
+  color: #FFB800 !important;
+}
+
+html.dark .pv-footer-col-title {
+  color: #FFFFFF !important;
+}
+
+html.dark .pv-footer-col-badge {
+  background-color: #161616 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #FFB800 !important;
+}
+
+html.dark .pv-footer-trust-card {
+  background-color: #0B0B0B !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .pv-footer-trust-card-title {
+  color: #FFFFFF !important;
+}
+
+html.dark .pv-footer-trust-card-sub {
+  color: #A1A1AA !important;
+}
+
+html.dark .pv-footer-bottom-bar {
+  background-color: #050505 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #A1A1AA !important;
+}
+
+html.dark .pv-footer-social-btn {
+  background-color: #161616 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #A1A1AA !important;
+}

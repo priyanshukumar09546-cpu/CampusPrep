@@ -32,9 +32,10 @@ import {
 } from 'lucide-react';
 import { searchLocalIndex } from '../data/searchIndex';
 import { openInstallModal } from '../utils/pwaManager';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }) {
-  const [theme, setTheme] = useState('light');
+  const { theme, isDark, toggleTheme } = useTheme();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -88,10 +89,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     if (setActiveTab) setActiveTab('home');
   };
 
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
-    document.body.classList.toggle('dark-mode');
-  };
+
 
   // Click outside & Escape key listeners
   useEffect(() => {
@@ -217,11 +215,11 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        backgroundColor: 'rgba(5, 5, 5, 0.92)',
+        backgroundColor: isDark ? 'rgba(5, 5, 5, 0.94)' : 'rgba(250, 247, 242, 0.96)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.7), inset 0 -1px 0 rgba(255, 184, 0, 0.08)'
+        borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
+        boxShadow: isDark ? '0 4px 20px rgba(0, 0, 0, 0.7)' : '0 2px 12px rgba(0, 0, 0, 0.06)'
       }}
     >
       <div
@@ -278,7 +276,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   fontFamily: "'Outfit', sans-serif",
                   fontWeight: 900,
                   fontSize: '1.25rem',
-                  color: '#FFFFFF',
+                  color: isDark ? '#FFFFFF' : '#1F2421',
                   lineHeight: 1.1,
                   letterSpacing: '0.01em',
                   display: 'flex',
@@ -361,7 +359,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   if (!isPillActive && !isActive) e.currentTarget.style.color = '#FFB800';
                 }}
                 onMouseLeave={(e) => {
-                  if (!isPillActive && !isActive) e.currentTarget.style.color = '#A1A1AA';
+                  if (!isPillActive && !isActive) e.currentTarget.style.color = isDark ? '#D4D4D8' : '#334155';
                 }}
               >
                 {item.hasSparkle && (
@@ -436,11 +434,11 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                   padding: '0.34rem 1.4rem 0.34rem 1.65rem',
                   borderRadius: '9999px',
-                  border: searchFocused ? '1.5px solid #FFB800' : '1.5px solid rgba(255, 255, 255, 0.12)',
-                  backgroundColor: '#0B0B0B',
+                  border: searchFocused ? '1.5px solid #FFB800' : isDark ? '1.5px solid rgba(255, 255, 255, 0.12)' : '1.5px solid #D5CEBF',
+                  backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
                   fontSize: '0.78rem',
                   fontWeight: 600,
-                  color: '#FFFFFF',
+                  color: isDark ? '#FFFFFF' : '#1F2421',
                   width: searchFocused ? '155px' : '105px',
                   maxWidth: '160px',
                   outline: 'none',
@@ -595,24 +593,25 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+            title={`Switch to ${isDark ? 'Light' : 'Dark'} Mode`}
+            aria-label={`Switch to ${isDark ? 'Light' : 'Dark'} Mode`}
             style={{
               width: '34px',
               height: '34px',
               borderRadius: '50%',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              backgroundColor: '#0B0B0B',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #D5CEBF',
+              backgroundColor: isDark ? '#161616' : '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
               color: '#FFB800',
-              boxShadow: '0 2px 6px rgba(0,0,0,0.4)',
+              boxShadow: isDark ? '0 2px 6px rgba(0,0,0,0.4)' : '0 2px 6px rgba(0,0,0,0.06)',
               transition: 'all 0.2s ease',
               flexShrink: 0
             }}
           >
-            {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+            {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
           {/* Notification Bell with Badge 1 */}

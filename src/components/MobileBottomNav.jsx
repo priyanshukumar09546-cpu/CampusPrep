@@ -1,7 +1,9 @@
 import React from 'react';
 import { Home, BookOpen, FileText, Wrench, User, LayoutGrid, FileCheck } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
+  const { isDark } = useTheme();
   const tabs = [
     {
       id: 'home',
@@ -75,12 +77,12 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
         right: 0,
         width: '100%',
         maxWidth: '100vw',
-        backgroundColor: 'rgba(5, 5, 5, 0.94)',
+        backgroundColor: isDark ? 'rgba(5, 5, 5, 0.94)' : 'rgba(250, 247, 242, 0.96)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+        borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
         zIndex: 9998,
-        boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.7)',
+        boxShadow: isDark ? '0 -4px 20px rgba(0, 0, 0, 0.7)' : '0 -2px 12px rgba(0, 0, 0, 0.06)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -95,7 +97,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
         const isActive = currentNav === tab.id;
         const IconComponent = tab.icon;
         const activeColor = '#FFB800';
-        const inactiveColor = '#A1A1AA';
+        const inactiveColor = isDark ? '#A1A1AA' : '#64748B';
 
         const isToolsActive = isActive && tab.id === 'tools';
 
