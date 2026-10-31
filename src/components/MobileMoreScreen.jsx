@@ -173,7 +173,7 @@ export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
+    <div className="min-h-screen bg-[transparent] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
       
       {/* Corner Leaves Decoration */}
       <div 
@@ -187,7 +187,7 @@ export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
 
       {/* 1. USER PROFILE CARD (SCREEN 10) */}
       <div className="px-5 pt-3 pb-2 z-10">
-        <div className="bg-white rounded-2xl p-3.5 border border-orange-100/70 shadow-xs flex items-center justify-between">
+        <div className="bg-[#0B0B0B] rounded-2xl p-3.5 border border-orange-100/70 shadow-xs flex items-center justify-between">
           <div className="flex items-center gap-3">
             {/* Avatar */}
             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-rose-100 bg-stone-100 flex-shrink-0">
@@ -223,7 +223,7 @@ export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
       {/* 2. STATS ROW (12 Notes Saved, 8 Quizzes Taken, 4 Interviews) */}
       <div className="px-5 mb-3 z-10">
         <div className="grid grid-cols-3 gap-2">
-          <div className="bg-white rounded-2xl py-3 px-2 border border-orange-100/70 shadow-xs flex flex-col items-center text-center">
+          <div className="bg-[#0B0B0B] rounded-2xl py-3 px-2 border border-orange-100/70 shadow-xs flex flex-col items-center text-center">
             <span className="font-['Outfit',sans-serif] font-black text-xl text-[#7A2327]">
               12
             </span>
@@ -232,7 +232,7 @@ export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
             </span>
           </div>
 
-          <div className="bg-white rounded-2xl py-3 px-2 border border-orange-100/70 shadow-xs flex flex-col items-center text-center">
+          <div className="bg-[#0B0B0B] rounded-2xl py-3 px-2 border border-orange-100/70 shadow-xs flex flex-col items-center text-center">
             <span className="font-['Outfit',sans-serif] font-black text-xl text-[#7A2327]">
               8
             </span>
@@ -241,7 +241,7 @@ export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
             </span>
           </div>
 
-          <div className="bg-white rounded-2xl py-3 px-2 border border-orange-100/70 shadow-xs flex flex-col items-center text-center">
+          <div className="bg-[#0B0B0B] rounded-2xl py-3 px-2 border border-orange-100/70 shadow-xs flex flex-col items-center text-center">
             <span className="font-['Outfit',sans-serif] font-black text-xl text-[#7A2327]">
               4
             </span>
@@ -288,7 +288,7 @@ export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
               <button
                 key={tool.id}
                 onClick={tool.action}
-                className="bg-white rounded-xl p-2.5 border border-orange-100/70 shadow-2xs flex items-center gap-2.5 hover:border-orange-200 transition-all text-left cursor-pointer group"
+                className="bg-[#0B0B0B] rounded-xl p-2.5 border border-orange-100/70 shadow-2xs flex items-center gap-2.5 hover:border-orange-200 transition-all text-left cursor-pointer group"
               >
                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${tool.color}`}>
                   <Icon size={16} strokeWidth={2.2} />
@@ -309,7 +309,7 @@ export default function MobileMoreScreen({ onNavigate, onOpenAuth }) {
 
       {/* 5. MENU LIST (SCREEN 10) */}
       <div className="px-5 z-10">
-        <div className="bg-white rounded-2xl border border-orange-100/70 shadow-xs divide-y divide-stone-100 overflow-hidden">
+        <div className="bg-[#0B0B0B] rounded-2xl border border-orange-100/70 shadow-xs divide-y divide-stone-100 overflow-hidden">
           {menuItems.map((item) => {
             const Icon = item.icon;
             return (

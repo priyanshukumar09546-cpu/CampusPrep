@@ -58,8 +58,10 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
         width: '100%',
         maxWidth: '100vw',
         zIndex: 9997,
-        backgroundColor: '#FFFCF7',
-        borderBottom: '1px solid #E9D9CC',
+        backgroundColor: 'rgba(5, 5, 5, 0.94)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
         padding: '0.6rem 1rem',
         display: 'flex',
         alignItems: 'center',
@@ -70,7 +72,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
     >
       {isHome ? (
         <>
-          {/* HOME BRANDING — Real ProfessorVirus Logo & Typography from reference */}
+          {/* HOME BRANDING — Real ProfessorVirus Logo & Typography */}
           <div 
             onClick={() => onNavigate ? onNavigate('home') : (window.location.href = '/')}
             style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', minWidth: 0, flex: '1 1 auto', overflow: 'hidden' }}
@@ -81,12 +83,12 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 height: '36px',
                 borderRadius: '50%',
                 overflow: 'hidden',
-                border: '2px solid #D6A13D',
-                backgroundColor: '#FFFFFF',
+                border: '2px solid #FFB800',
+                backgroundColor: '#0B0B0B',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 2px 8px rgba(214, 161, 61, 0.2)',
+                boxShadow: '0 0 10px rgba(255, 184, 0, 0.35)',
                 flexShrink: 0
               }}
             >
@@ -114,13 +116,13 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                   whiteSpace: 'nowrap'
                 }}
               >
-                <span style={{ color: '#14243D' }}>PROFESSOR</span>
-                <span style={{ color: '#861820' }}>VIRUS</span>
+                <span style={{ color: '#FFFFFF' }}>PROFESSOR</span>
+                <span style={{ color: '#FFB800' }}>VIRUS</span>
               </div>
               <div 
                 style={{
                   fontSize: '0.58rem',
-                  color: '#66758B',
+                  color: '#A1A1AA',
                   fontWeight: 800,
                   letterSpacing: '0.02em',
                   textTransform: 'uppercase',
@@ -145,15 +147,15 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 width: '36px',
                 height: '36px',
                 borderRadius: '50%',
-                backgroundColor: '#FFFFFF',
-                border: '1.5px solid #E9D9CC',
+                backgroundColor: '#0B0B0B',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#14243D',
+                color: '#FFB800',
                 cursor: 'pointer',
                 position: 'relative',
-                boxShadow: '0 2px 6px rgba(134, 24, 32, 0.04)'
+                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.4)'
               }}
             >
               <Bell size={18} strokeWidth={2.2} />
@@ -165,8 +167,8 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                   width: '8px',
                   height: '8px',
                   borderRadius: '50%',
-                  backgroundColor: '#861820',
-                  border: '1.5px solid #FFFFFF'
+                  backgroundColor: '#DC2626',
+                  border: '1.5px solid #0B0B0B'
                 }} 
               />
             </button>
@@ -183,7 +185,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#14243D',
+                color: '#FFFFFF',
                 cursor: 'pointer',
                 padding: 0
               }}
@@ -204,14 +206,14 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 width: '34px',
                 height: '34px',
                 borderRadius: '10px',
-                backgroundColor: '#FFFFFF',
-                border: '1.5px solid #E9D9CC',
+                backgroundColor: '#0B0B0B',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#14243D',
+                color: '#FFFFFF',
                 cursor: 'pointer',
-                boxShadow: '0 1px 4px rgba(134, 24, 32, 0.04)'
+                boxShadow: '0 1px 4px rgba(0, 0, 0, 0.4)'
               }}
             >
               <ArrowLeft size={18} strokeWidth={2.3} />
@@ -221,7 +223,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 margin: 0,
                 fontSize: '1.02rem',
                 fontWeight: 800,
-                color: '#14243D',
+                color: '#FFFFFF',
                 letterSpacing: '-0.015em',
                 lineHeight: 1.2
               }}
@@ -240,12 +242,12 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 width: '34px',
                 height: '34px',
                 borderRadius: '10px',
-                backgroundColor: '#FFFFFF',
-                border: '1.5px solid #E9D9CC',
+                backgroundColor: '#0B0B0B',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#14243D',
+                color: '#FFB800',
                 cursor: 'pointer'
               }}
             >

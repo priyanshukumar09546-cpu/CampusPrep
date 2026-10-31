@@ -44,9 +44,9 @@ export default function StayConnectedPopup() {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(20, 16, 12, 0.6)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        backgroundColor: 'rgba(0, 0, 0, 0.82)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         zIndex: 10000,
         display: 'flex',
         alignItems: 'center',
@@ -60,14 +60,14 @@ export default function StayConnectedPopup() {
     >
       <div
         style={{
-          backgroundColor: '#FCFAF6',
+          backgroundColor: '#0B0B0B',
           borderRadius: '24px',
-          border: '2px solid #E8E0D0',
+          border: '1px solid rgba(255, 184, 0, 0.35)',
           width: '100%',
           maxWidth: '440px',
           padding: '2.25rem 2rem 2rem 2rem',
           position: 'relative',
-          boxShadow: '0 32px 80px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(200, 141, 45, 0.15)',
+          boxShadow: '0 32px 80px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 184, 0, 0.15)',
           animation: isClosing ? 'scCardSlideOut 0.3s ease forwards' : 'scCardSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards'
         }}
       >
@@ -82,23 +82,23 @@ export default function StayConnectedPopup() {
             width: '34px',
             height: '34px',
             borderRadius: '50%',
-            backgroundColor: '#EDE5D6',
-            border: 'none',
+            backgroundColor: 'rgba(255, 255, 255, 0.08)',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            color: '#554C42',
+            color: '#A1A1AA',
             transition: 'all 0.2s ease',
             zIndex: 2
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#DDD4C4';
-            e.currentTarget.style.color = '#1C1814';
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+            e.currentTarget.style.color = '#FFFFFF';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#EDE5D6';
-            e.currentTarget.style.color = '#554C42';
+            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+            e.currentTarget.style.color = '#A1A1AA';
           }}
         >
           <X size={18} />
@@ -111,10 +111,10 @@ export default function StayConnectedPopup() {
             height: '48px',
             borderRadius: '14px',
             overflow: 'hidden',
-            border: '2px solid #C88D2D',
-            backgroundColor: '#FFFFFF',
+            border: '2px solid #FFB800',
+            backgroundColor: '#0B0B0B',
             flexShrink: 0,
-            boxShadow: '0 4px 12px rgba(200, 141, 45, 0.2)'
+            boxShadow: '0 0 15px rgba(255, 184, 0, 0.25)'
           }}>
             <img
               src="/assets/navbar_logo.png"
@@ -129,9 +129,9 @@ export default function StayConnectedPopup() {
           <div>
             <div style={{
               fontFamily: "'Outfit', sans-serif",
-              fontSize: '0.72rem',
+              fontSize: '0.76rem',
               fontWeight: 800,
-              color: '#C88D2D',
+              color: '#FFB800',
               textTransform: 'uppercase',
               letterSpacing: '0.08em'
             }}>
@@ -141,7 +141,7 @@ export default function StayConnectedPopup() {
               fontFamily: "'Outfit', sans-serif",
               fontSize: '0.68rem',
               fontWeight: 600,
-              color: '#70675D'
+              color: '#A1A1AA'
             }}>
               Your Academic Companion
             </div>
@@ -153,20 +153,20 @@ export default function StayConnectedPopup() {
           fontFamily: "'Outfit', sans-serif",
           fontSize: '1.55rem',
           fontWeight: 900,
-          color: '#1C1814',
+          color: '#FFFFFF',
           lineHeight: 1.2,
           margin: '0 0 0.5rem 0',
           letterSpacing: '-0.02em'
         }}>
           Stay Connected with{' '}
-          <span style={{ color: '#C88D2D' }}>ProfessorVirus</span>
+          <span style={{ color: '#FFB800', textShadow: '0 0 15px rgba(255, 184, 0, 0.35)' }}>ProfessorVirus</span>
         </h2>
 
         {/* Description */}
         <p style={{
           fontSize: '0.88rem',
-          fontWeight: 500,
-          color: '#665C50',
+          fontWeight: 400,
+          color: '#A1A1AA',
           lineHeight: 1.55,
           margin: '0 0 1.5rem 0'
         }}>
@@ -194,18 +194,18 @@ export default function StayConnectedPopup() {
               textDecoration: 'none',
               border: 'none',
               cursor: 'pointer',
-              boxShadow: '0 6px 20px rgba(37, 211, 102, 0.3)',
+              boxShadow: '0 0 20px rgba(37, 211, 102, 0.35)',
               transition: 'all 0.2s ease'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = '#1EBE5A';
               e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(37, 211, 102, 0.4)';
+              e.currentTarget.style.boxShadow = '0 0 25px rgba(37, 211, 102, 0.5)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = '#25D366';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 211, 102, 0.3)';
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(37, 211, 102, 0.35)';
             }}
           >
             {/* WhatsApp SVG Icon */}
@@ -234,18 +234,18 @@ export default function StayConnectedPopup() {
               textDecoration: 'none',
               border: 'none',
               cursor: 'pointer',
-              boxShadow: '0 6px 20px rgba(0, 136, 204, 0.3)',
+              boxShadow: '0 0 20px rgba(0, 136, 204, 0.35)',
               transition: 'all 0.2s ease'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = '#0077B5';
               e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 136, 204, 0.4)';
+              e.currentTarget.style.boxShadow = '0 0 25px rgba(0, 136, 204, 0.5)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = '#0088CC';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 136, 204, 0.3)';
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(0, 136, 204, 0.35)';
             }}
           >
             {/* Telegram SVG Icon */}
@@ -261,8 +261,8 @@ export default function StayConnectedPopup() {
           marginTop: '1.15rem',
           textAlign: 'center',
           fontSize: '0.72rem',
-          color: '#9E9486',
-          fontWeight: 500
+          color: '#71717A',
+          fontWeight: 400
         }}>
           Never miss an update • Free to join • No spam
         </div>

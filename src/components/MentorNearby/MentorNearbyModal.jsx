@@ -58,9 +58,9 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
         position: 'fixed',
         inset: 0,
         zIndex: 999999,
-        backgroundColor: 'rgba(250, 245, 237, 0.74)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        backgroundColor: 'rgba(0, 0, 0, 0.82)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -77,10 +77,10 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
           position: 'relative',
           width: '100%',
           maxWidth: '510px',
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#0B0B0B',
           borderRadius: '24px',
-          border: '1.5px solid rgba(226, 232, 240, 0.95)',
-          boxShadow: '0 25px 60px -10px rgba(120, 20, 22, 0.18), 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(245, 158, 11, 0.12)',
+          border: '1.5px solid rgba(255, 184, 0, 0.4)',
+          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 184, 0, 0.2)',
           padding: '28px 24px 22px',
           textAlign: 'center',
           animation: 'pvModalScaleUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards',
@@ -137,9 +137,7 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
           </svg>
         </div>
 
-        {/* =====================================================================
-            TOP RIGHT CIRCULAR CLOSE BUTTON (X)
-            ===================================================================== */}
+        {/* TOP RIGHT CIRCULAR CLOSE BUTTON (X) */}
         <button
           type="button"
           onClick={onClose}
@@ -152,12 +150,12 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
             width: '32px',
             height: '32px',
             borderRadius: '50%',
-            backgroundColor: '#F1F5F9',
-            border: 'none',
+            backgroundColor: '#161616',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#64748B',
+            color: '#A1A1AA',
             cursor: 'pointer',
             transition: 'all 0.18s ease',
             zIndex: 20
@@ -166,29 +164,21 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
           <X size={17} strokeWidth={2.4} />
         </button>
 
-        {/* =====================================================================
-            BRAND HEADER: MENTORNEARBY LOGO & TAGLINE
-            ===================================================================== */}
+        {/* BRAND HEADER: MENTORNEARBY LOGO & TAGLINE */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '12px' }}>
           {/* Logo + Brand Name */}
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            {/* Vector Graduation Cap + Books Icon */}
             <svg width="36" height="32" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Stylized Open Book Pages at bottom */}
               <path d="M 4 28 C 11 26, 17 28, 19 31 C 21 28, 27 26, 34 28 L 34 22 C 27 20, 21 22, 19 25 C 17 22, 11 20, 4 22 Z" fill="#0284C7" />
               <path d="M 19 25 L 19 31" stroke="#FFFFFF" strokeWidth="1.5" />
               <path d="M 7 24 C 12 22, 17 23, 19 26 C 21 23, 26 22, 31 24 L 31 19 C 26 17, 21 18, 19 21 C 17 18, 12 17, 7 19 Z" fill="#E11D48" opacity="0.95" />
-              {/* Graduation Cap */}
-              <polygon points="19,5 37,12 19,19 1,12" fill="#1E293B" />
-              {/* Cap Base */}
-              <path d="M 9 15.5 L 9 20 C 9 23, 19 25, 29 20 L 29 15.5" fill="#0F172A" />
-              {/* Cap Tassel */}
+              <polygon points="19,5 37,12 19,19 1,12" fill="#E2E8F0" />
+              <path d="M 9 15.5 L 9 20 C 9 23, 19 25, 29 20 L 29 15.5" fill="#CBD5E1" />
               <path d="M 28 15.5 L 33 21 C 34 22, 34 24, 33 25" stroke="#F59E0B" strokeWidth="2" strokeLinecap="round" />
               <circle cx="33" cy="25" r="1.5" fill="#F59E0B" />
               <circle cx="19" cy="12" r="1.6" fill="#FBBF24" />
             </svg>
 
-            {/* Brand Title: MentorNearby */}
             <div style={{
               fontFamily: "'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: '1.45rem',
@@ -196,17 +186,16 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
               letterSpacing: '-0.02em',
               lineHeight: 1
             }}>
-              <span style={{ color: '#0F172A' }}>Mentor</span>
+              <span style={{ color: '#FFFFFF' }}>Mentor</span>
               <span style={{ color: '#E11D48' }}>Nearby</span>
             </div>
           </div>
 
-          {/* Sub-tagline */}
           <div style={{
             fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
             fontSize: '0.74rem',
             fontWeight: 700,
-            color: '#64748B',
+            color: '#A1A1AA',
             letterSpacing: '0.04em',
             marginTop: '3px'
           }}>
@@ -214,18 +203,15 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* =====================================================================
-            HEADLINE (Matches Reference Image 2)
-            ===================================================================== */}
+        {/* HEADLINE */}
         <div style={{ marginBottom: '8px' }}>
-          {/* Line 1 */}
           <h2
             id="pv-mentor-modal-title"
             style={{
               fontFamily: "'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: 'clamp(1.15rem, 3.2vw, 1.35rem)',
               fontWeight: 900,
-              color: '#0F172A',
+              color: '#FFFFFF',
               margin: '0 0 2px 0',
               lineHeight: 1.25,
               letterSpacing: '-0.015em'
@@ -234,17 +220,16 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
             Want to Become a
           </h2>
 
-          {/* Line 2 with Gradient Highlights */}
           <div style={{
             fontFamily: "'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif",
             fontSize: 'clamp(1.18rem, 3.4vw, 1.42rem)',
             fontWeight: 900,
             lineHeight: 1.25,
             letterSpacing: '-0.015em',
-            color: '#0F172A'
+            color: '#FFFFFF'
           }}>
             <span style={{
-              background: 'linear-gradient(90deg, #A21CAF 0%, #C026D3 50%, #E11D48 100%)',
+              background: 'linear-gradient(90deg, #FFB800 0%, #FF8C00 50%, #E11D48 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               display: 'inline-block'
@@ -253,7 +238,7 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
             </span>
             <span> and Make </span>
             <span style={{
-              background: 'linear-gradient(90deg, #A21CAF 0%, #C026D3 50%, #E11D48 100%)',
+              background: 'linear-gradient(90deg, #FFB800 0%, #FF8C00 50%, #E11D48 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               display: 'inline-block'
@@ -268,7 +253,7 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
           fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
           fontSize: '0.82rem',
           fontWeight: 600,
-          color: '#475569',
+          color: '#A1A1AA',
           lineHeight: 1.45,
           margin: '0 auto 16px',
           maxWidth: '430px'
@@ -398,16 +383,16 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
               width: '100%',
               maxWidth: '380px',
               padding: '0.85rem 1.85rem',
-              background: 'linear-gradient(135deg, #781416 0%, #631012 50%, #4C0B0D 100%)',
-              color: '#FFFFFF',
+              background: 'linear-gradient(135deg, #18181B 0%, #0B0B0B 100%)',
+              color: '#FFB800',
               fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: '1.02rem',
               fontWeight: 800,
               letterSpacing: '0.02em',
               textDecoration: 'none',
               borderRadius: '9999px',
-              border: '1.2px solid rgba(254, 240, 138, 0.4)',
-              boxShadow: '0 8px 24px rgba(120, 20, 22, 0.4), 0 0 16px rgba(245, 158, 11, 0.25)',
+              border: '1.5px solid rgba(255, 184, 0, 0.5)',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 184, 0, 0.35)',
               transition: 'all 0.2s ease',
               cursor: 'pointer'
             }}
@@ -418,25 +403,23 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
           </a>
         </div>
 
-        {/* =====================================================================
-            BOTTOM PROMOTIONAL PILL BADGE (Matches Reference Image 2)
-            ===================================================================== */}
+        {/* BOTTOM PROMOTIONAL PILL BADGE */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.45rem',
-              backgroundColor: '#FFE4E6',
-              border: '1px solid rgba(244, 63, 94, 0.25)',
+              backgroundColor: 'rgba(255, 184, 0, 0.12)',
+              border: '1px solid rgba(255, 184, 0, 0.35)',
               borderRadius: '9999px',
               padding: '0.36rem 1.15rem',
               fontFamily: "'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif",
               fontSize: '0.74rem',
               fontWeight: 800,
-              color: '#BE123C',
+              color: '#FFB800',
               letterSpacing: '0.03em',
-              boxShadow: '0 2px 8px rgba(244, 63, 94, 0.1)'
+              boxShadow: '0 0 12px rgba(255, 184, 0, 0.15)'
             }}
           >
             <span style={{ fontSize: '0.92rem' }}>🎉</span>
@@ -467,14 +450,14 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
           }
 
           .pv-mentor-modal-close:hover {
-            background-color: #E2E8F0 !important;
-            color: #0F172A !important;
+            background-color: #27272A !important;
+            color: #FFFFFF !important;
             transform: rotate(90deg);
           }
 
           .pv-mentor-card-item {
-            background: linear-gradient(180deg, #FAFAFA 0%, #F8FAFC 100%);
-            border: 1px solid #E2E8F0;
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 14px;
             padding: 10px 4px 9px;
             display: flex;
@@ -486,15 +469,15 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
 
           .pv-mentor-card-item:hover {
             transform: translateY(-2px);
-            border-color: #CBD5E1;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-color: rgba(255, 184, 0, 0.4);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 12px rgba(255, 184, 0, 0.15);
           }
 
           .pv-mentor-card-title {
             font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             font-size: 0.72rem;
             font-weight: 800;
-            color: #0F172A;
+            color: #FFFFFF;
             line-height: 1.2;
             margin-bottom: 2px;
           }
@@ -503,14 +486,15 @@ export default function MentorNearbyModal({ isOpen, onClose }) {
             font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             font-size: 0.64rem;
             font-weight: 600;
-            color: #64748B;
+            color: #A1A1AA;
             line-height: 1.15;
           }
 
           .pv-mentor-register-btn:hover {
             transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(120, 20, 22, 0.52), 0 0 22px rgba(245, 158, 11, 0.4) !important;
-            border-color: #FDE047 !important;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 28px rgba(255, 184, 0, 0.5) !important;
+            border-color: #FFB800 !important;
+            color: #FFA000 !important;
           }
 
           @media (max-width: 540px) {

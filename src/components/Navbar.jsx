@@ -217,11 +217,11 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        backgroundColor: 'rgba(251, 249, 243, 0.94)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1.5px solid rgba(234, 229, 217, 0.9)',
-        boxShadow: '0 6px 20px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8)'
+        backgroundColor: 'rgba(5, 5, 5, 0.92)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.7), inset 0 -1px 0 rgba(255, 184, 0, 0.08)'
       }}
     >
       <div
@@ -252,12 +252,12 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 height: '38px',
                 borderRadius: '50%',
                 overflow: 'hidden',
-                border: '2px solid #C88D2D',
-                backgroundColor: '#fff',
+                border: '2px solid #FFB800',
+                backgroundColor: '#0B0B0B',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 4px 10px rgba(200, 141, 45, 0.18)',
+                boxShadow: '0 0 12px rgba(255, 184, 0, 0.35)',
                 transition: 'transform 0.2s ease',
                 flexShrink: 0
               }}
@@ -278,7 +278,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   fontFamily: "'Outfit', sans-serif",
                   fontWeight: 900,
                   fontSize: '1.25rem',
-                  color: '#1F2421',
+                  color: '#FFFFFF',
                   lineHeight: 1.1,
                   letterSpacing: '0.01em',
                   display: 'flex',
@@ -286,14 +286,14 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   whiteSpace: 'nowrap'
                 }}
               >
-                <span>Professor</span><span style={{ color: '#C88D2D' }}>Virus</span>
+                <span>Professor</span><span style={{ color: '#FFB800' }}>Virus</span>
               </div>
               <div
                 className="pv-logo-subtitle"
                 style={{
                   fontSize: '0.62rem',
                   fontWeight: 700,
-                  color: '#7A6F62',
+                  color: '#A1A1AA',
                   letterSpacing: '0.01em',
                   whiteSpace: 'nowrap'
                 }}
@@ -339,13 +339,13 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 className="nav-link-item"
                 style={{
                   position: 'relative',
-                  backgroundColor: isPillActive ? '#8B101D' : 'transparent',
-                  color: isPillActive ? '#FFFFFF' : isActive ? '#781416' : '#2D3238',
+                  backgroundColor: isPillActive ? '#161616' : 'transparent',
+                  color: isPillActive ? '#FFB800' : isActive ? '#FFB800' : '#A1A1AA',
                   padding: isPillActive ? '0.24rem 0.65rem' : '0.3rem 0.38rem',
                   borderRadius: isPillActive ? '9999px' : '6px',
                   fontWeight: isActive ? 800 : 600,
                   fontSize: '0.78rem',
-                  border: 'none',
+                  border: isPillActive ? '1px solid rgba(255, 184, 0, 0.45)' : 'none',
                   cursor: 'pointer',
                   textDecoration: 'none',
                   transition: 'all 0.18s ease',
@@ -354,25 +354,26 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   gap: '0.25rem',
                   whiteSpace: 'nowrap',
                   flexShrink: 0,
-                  boxShadow: isPillActive ? '0 2px 8px rgba(139, 16, 29, 0.28)' : 'none',
+                  boxShadow: isPillActive ? '0 0 12px rgba(255, 184, 0, 0.25)' : 'none',
                   fontFamily: "'Plus Jakarta Sans', sans-serif"
                 }}
                 onMouseEnter={(e) => {
-                  if (!isPillActive && !isActive) e.currentTarget.style.color = '#781416';
+                  if (!isPillActive && !isActive) e.currentTarget.style.color = '#FFB800';
                 }}
                 onMouseLeave={(e) => {
-                  if (!isPillActive && !isActive) e.currentTarget.style.color = '#2D3238';
+                  if (!isPillActive && !isActive) e.currentTarget.style.color = '#A1A1AA';
                 }}
               >
                 {item.hasSparkle && (
-                  <Sparkles size={12} color={isPillActive ? '#FFD700' : '#8B101D'} />
+                  <Sparkles size={12} color="#FFB800" />
                 )}
                 <span>{item.name}</span>
                 {item.isBeta && (
                   <span
                     style={{
-                      backgroundColor: '#D48816',
-                      color: '#FFFFFF',
+                      backgroundColor: 'rgba(255, 184, 0, 0.15)',
+                      color: '#FFB800',
+                      border: '1px solid rgba(255, 184, 0, 0.4)',
                       fontSize: '0.52rem',
                       fontWeight: 800,
                       padding: '0.05rem 0.28rem',
@@ -398,7 +399,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                       width: '18px',
                       height: '2.5px',
                       borderRadius: '9999px',
-                      backgroundColor: '#781416'
+                      backgroundColor: '#FFB800',
+                      boxShadow: '0 0 8px rgba(255, 184, 0, 0.6)'
                     }}
                   />
                 )}
@@ -419,7 +421,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             <form onSubmit={handleSearchSubmit} style={{ position: 'relative', display: 'flex', alignItems: 'center', width: '100%' }}>
               <Search
                 size={13}
-                style={{ position: 'absolute', left: '9px', color: searchFocused ? '#C88D2D' : '#909AA4', transition: 'color 0.2s ease', zIndex: 2, pointerEvents: 'none' }}
+                style={{ position: 'absolute', left: '9px', color: searchFocused ? '#FFB800' : '#71717A', transition: 'color 0.2s ease', zIndex: 2, pointerEvents: 'none' }}
                 className="search-icon"
               />
               <input
@@ -434,15 +436,15 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                   padding: '0.34rem 1.4rem 0.34rem 1.65rem',
                   borderRadius: '9999px',
-                  border: searchFocused ? '1.5px solid #C88D2D' : '1.5px solid #E8E2D5',
-                  backgroundColor: '#ffffff',
+                  border: searchFocused ? '1.5px solid #FFB800' : '1.5px solid rgba(255, 255, 255, 0.12)',
+                  backgroundColor: '#0B0B0B',
                   fontSize: '0.78rem',
                   fontWeight: 600,
-                  color: '#1C1E21',
+                  color: '#FFFFFF',
                   width: searchFocused ? '155px' : '105px',
                   maxWidth: '160px',
                   outline: 'none',
-                  boxShadow: searchFocused ? '0 4px 16px rgba(200,141,45,0.12)' : '0 2px 6px rgba(35,30,25,0.03), inset 0 1px 0 rgba(255,255,255,0.8)',
+                  boxShadow: searchFocused ? '0 0 16px rgba(255,184,0,0.25)' : 'none',
                   transition: 'all 0.2s ease'
                 }}
               />
@@ -458,8 +460,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     height: '16px',
                     borderRadius: '50%',
                     border: 'none',
-                    backgroundColor: '#F1F5F9',
-                    color: '#64748B',
+                    backgroundColor: '#1C1C1E',
+                    color: '#A1A1AA',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -467,8 +469,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     zIndex: 2,
                     transition: 'all 0.15s ease'
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#E2E8F0'; e.currentTarget.style.color = '#1F2421'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#F1F5F9'; e.currentTarget.style.color = '#64748B'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272A'; e.currentTarget.style.color = '#FFFFFF'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#1C1C1E'; e.currentTarget.style.color = '#A1A1AA'; }}
                 >
                   <X size={10} />
                 </button>
@@ -482,22 +484,22 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 top: 'calc(100% + 8px)',
                 right: 0,
                 width: '340px',
-                backgroundColor: '#FFFFFF',
-                border: '1.5px solid #E8E2D5',
+                backgroundColor: '#0B0B0B',
+                border: '1.5px solid rgba(255, 255, 255, 0.12)',
                 borderRadius: '16px',
-                boxShadow: '0 20px 48px rgba(35, 30, 25, 0.16)',
+                boxShadow: '0 20px 48px rgba(0, 0, 0, 0.85)',
                 zIndex: 1000,
                 overflow: 'hidden',
                 maxHeight: '420px',
                 overflowY: 'auto'
               }}>
-                <div style={{ padding: '0.5rem 0.75rem', fontSize: '0.7rem', fontWeight: 800, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.04em', borderBottom: '1px solid #F1F5F9' }}>
+                <div style={{ padding: '0.5rem 0.75rem', fontSize: '0.7rem', fontWeight: 800, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.04em', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
                   {searchResults.length} result{searchResults.length !== 1 ? 's' : ''} found
                 </div>
                 {searchResults.map((item, idx) => {
                   const isSelected = idx === selectedSearchIdx;
-                  const typeColorMap = { Page: '#781416', Tool: '#C88D2D', Subject: '#047857', Career: '#2563EB', Branch: '#7C3AED', Interview: '#EA580C' };
-                  const typeColor = typeColorMap[item.type] || '#64748B';
+                  const typeColorMap = { Page: '#FFB800', Tool: '#FFA000', Subject: '#10B981', Career: '#3B82F6', Branch: '#A855F7', Interview: '#F97316' };
+                  const typeColor = typeColorMap[item.type] || '#A1A1AA';
                   return (
                     <div
                       key={`${item.route}-${idx}`}
@@ -508,20 +510,20 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                         alignItems: 'center',
                         justifyContent: 'space-between',
                         cursor: 'pointer',
-                        backgroundColor: isSelected ? '#FEF9EE' : 'transparent',
-                        borderLeft: isSelected ? '3px solid #C88D2D' : '3px solid transparent',
+                        backgroundColor: isSelected ? '#161616' : 'transparent',
+                        borderLeft: isSelected ? '3px solid #FFB800' : '3px solid transparent',
                         transition: 'all 0.12s ease'
                       }}
                       onMouseEnter={(e) => {
                         setSelectedSearchIdx(idx);
-                        e.currentTarget.style.backgroundColor = '#FEF9EE';
+                        e.currentTarget.style.backgroundColor = '#161616';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = isSelected ? '#FEF9EE' : 'transparent';
+                        e.currentTarget.style.backgroundColor = isSelected ? '#161616' : 'transparent';
                       }}
                     >
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem', minWidth: 0 }}>
-                        <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#1F2421', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#FFFFFF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {item.title}
                         </div>
                       </div>
@@ -529,7 +531,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                         fontSize: '0.65rem',
                         fontWeight: 800,
                         color: typeColor,
-                        backgroundColor: `${typeColor}12`,
+                        backgroundColor: `${typeColor}22`,
                         padding: '0.15rem 0.5rem',
                         borderRadius: '9999px',
                         textTransform: 'uppercase',
@@ -547,15 +549,15 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     onClick={() => { if (onSearch) onSearch(searchQuery); setSearchFocused(false); setSearchResults([]); }}
                     style={{
                       padding: '0.6rem 0.85rem',
-                      borderTop: '1px solid #F1F5F9',
+                      borderTop: '1px solid rgba(255, 255, 255, 0.08)',
                       fontSize: '0.82rem',
                       fontWeight: 700,
-                      color: '#C88D2D',
+                      color: '#FFB800',
                       cursor: 'pointer',
                       textAlign: 'center',
                       transition: 'background 0.15s'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FEF9EE'}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#161616'}
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
                     Search all notes for "{searchQuery}" →
@@ -571,18 +573,18 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 top: 'calc(100% + 8px)',
                 right: 0,
                 width: '300px',
-                backgroundColor: '#FFFFFF',
-                border: '1.5px solid #E8E2D5',
+                backgroundColor: '#0B0B0B',
+                border: '1.5px solid rgba(255, 255, 255, 0.12)',
                 borderRadius: '16px',
-                boxShadow: '0 20px 48px rgba(35, 30, 25, 0.16)',
+                boxShadow: '0 20px 48px rgba(0, 0, 0, 0.85)',
                 zIndex: 1000,
                 padding: '1.25rem',
                 textAlign: 'center'
               }}>
-                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#64748B', marginBottom: '0.3rem' }}>No matches found</div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#A1A1AA', marginBottom: '0.3rem' }}>No matches found</div>
                 <div
                   onClick={() => { if (onSearch) onSearch(searchQuery); setSearchFocused(false); }}
-                  style={{ fontSize: '0.82rem', fontWeight: 700, color: '#C88D2D', cursor: 'pointer' }}
+                  style={{ fontSize: '0.82rem', fontWeight: 700, color: '#FFB800', cursor: 'pointer' }}
                 >
                   Search in Notes database →
                 </div>
@@ -598,14 +600,14 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               width: '34px',
               height: '34px',
               borderRadius: '50%',
-              border: '1.5px solid #E8E2D5',
-              backgroundColor: '#ffffff',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              backgroundColor: '#0B0B0B',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: '#1C1E21',
-              boxShadow: '0 2px 6px rgba(35,30,25,0.04)',
+              color: '#FFB800',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.4)',
               transition: 'all 0.2s ease',
               flexShrink: 0
             }}
@@ -621,14 +623,14 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               width: '34px',
               height: '34px',
               borderRadius: '50%',
-              border: '1.5px solid #E8E2D5',
-              backgroundColor: '#ffffff',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              backgroundColor: '#0B0B0B',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: '#1C1E21',
-              boxShadow: '0 2px 6px rgba(35,30,25,0.04)',
+              color: '#FFB800',
+              boxShadow: '0 2px 6px rgba(0,0,0,0.4)',
               position: 'relative',
               transition: 'all 0.2s ease',
               flexShrink: 0
@@ -650,8 +652,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                border: '2px solid #FFFFFF',
-                boxShadow: '0 2px 5px rgba(220, 38, 38, 0.4)'
+                border: '2px solid #0B0B0B',
+                boxShadow: '0 0 8px rgba(220, 38, 38, 0.6)'
               }}
             >
               1
@@ -667,26 +669,28 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               height: '34px',
               padding: '0 0.65rem',
               borderRadius: '9999px',
-              border: '1.5px solid #E8E2D5',
-              backgroundColor: '#ffffff',
+              border: '1px solid rgba(255, 184, 0, 0.4)',
+              backgroundColor: '#0B0B0B',
               display: 'flex',
               alignItems: 'center',
               gap: '0.35rem',
               cursor: 'pointer',
-              color: '#861820',
+              color: '#FFB800',
               fontWeight: 700,
               fontSize: '0.74rem',
-              boxShadow: '0 2px 6px rgba(35,30,25,0.04)',
+              boxShadow: '0 0 10px rgba(255,184,0,0.15)',
               transition: 'all 0.2s ease',
               flexShrink: 0
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = '#861820';
-              e.currentTarget.style.backgroundColor = '#FFFBF7';
+              e.currentTarget.style.borderColor = '#FFB800';
+              e.currentTarget.style.backgroundColor = '#161616';
+              e.currentTarget.style.boxShadow = '0 0 18px rgba(255,184,0,0.35)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = '#E8E2D5';
-              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)';
+              e.currentTarget.style.backgroundColor = '#0B0B0B';
+              e.currentTarget.style.boxShadow = '0 0 10px rgba(255,184,0,0.15)';
             }}
           >
             <Download size={14} strokeWidth={2.4} />
@@ -704,17 +708,17 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   gap: '0.55rem',
                   padding: '0.24rem 0.65rem 0.24rem 0.25rem',
                   borderRadius: '9999px',
-                  border: '1.5px solid #E8E2D5',
-                  backgroundColor: '#FFFFFF',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  backgroundColor: '#0B0B0B',
                   cursor: 'pointer',
-                  boxShadow: '0 2px 8px rgba(35,30,25,0.04)',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.4)',
                   transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#C88D2D';
+                  e.currentTarget.style.borderColor = '#FFB800';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#E8E2D5';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
                 }}
               >
                 <div
@@ -723,9 +727,9 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     height: '34px',
                     borderRadius: '50%',
                     overflow: 'hidden',
-                    backgroundColor: '#781416',
+                    backgroundColor: '#161616',
                     color: '#FFFFFF',
-                    border: '1.5px solid #C88D2D',
+                    border: '1.5px solid #FFB800',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -749,14 +753,14 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   )}
                 </div>
                 <div style={{ textAlign: 'left', lineHeight: 1.15 }}>
-                  <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1C1814', whiteSpace: 'nowrap' }}>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', whiteSpace: 'nowrap' }}>
                     {currentUser.name ? currentUser.name.split(' ')[0] : 'Student'}
                   </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#7A6F62', whiteSpace: 'nowrap' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', whiteSpace: 'nowrap' }}>
                     {currentUser.course || 'B.Tech'} {currentUser.branch || 'CSE'}
                   </div>
                 </div>
-                <ChevronDown size={14} color="#7A6F62" />
+                <ChevronDown size={14} color="#A1A1AA" />
               </div>
 
               {userMenuOpen && (
@@ -765,19 +769,19 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     position: 'absolute',
                     top: '115%',
                     right: 0,
-                    backgroundColor: '#ffffff',
-                    border: '1.5px solid #E8E2D5',
+                    backgroundColor: '#0B0B0B',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
                     borderRadius: '14px',
-                    boxShadow: '0 16px 36px rgba(35,30,25,0.12)',
+                    boxShadow: '0 16px 36px rgba(0,0,0,0.85)',
                     minWidth: '230px',
                     padding: '0.55rem',
                     zIndex: 120,
                     fontFamily: "'Plus Jakarta Sans', sans-serif"
                   }}
                 >
-                  <div style={{ padding: '0.45rem 0.75rem', borderBottom: '1px solid #F0E8D9', marginBottom: '0.35rem' }}>
-                    <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#1C1814' }}>{currentUser.name}</div>
-                    <div style={{ fontSize: '0.72rem', color: '#7A6F62' }}>{currentUser.email || `${currentUser.course || 'B.Tech'} Student`}</div>
+                  <div style={{ padding: '0.45rem 0.75rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', marginBottom: '0.35rem' }}>
+                    <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#FFFFFF' }}>{currentUser.name}</div>
+                    <div style={{ fontSize: '0.72rem', color: '#A1A1AA' }}>{currentUser.email || `${currentUser.course || 'B.Tech'} Student`}</div>
                   </div>
                   <button
                     style={dropdownBtnStyle}
@@ -785,7 +789,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                       handleNavigate('interview-pro');
                     }}
                   >
-                    <Briefcase size={14} style={{ color: '#0284C7' }} /> Interview Pro Dashboard
+                    <Briefcase size={14} style={{ color: '#38BDF8' }} /> Interview Pro Dashboard
                   </button>
                   <button
                     style={dropdownBtnStyle}
@@ -793,7 +797,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                       handleNavigate('notes');
                     }}
                   >
-                    <BookOpen size={14} style={{ color: '#C88D2D' }} /> My Notes &amp; Saved PYQs
+                    <BookOpen size={14} style={{ color: '#FFB800' }} /> My Notes &amp; Saved PYQs
                   </button>
                   <button
                     style={dropdownBtnStyle}
@@ -802,7 +806,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                       setUserMenuOpen(false);
                     }}
                   >
-                    <Download size={14} style={{ color: '#861820' }} /> Install App (PWA)
+                    <Download size={14} style={{ color: '#FFB800' }} /> Install App (PWA)
                   </button>
                   <button
                     style={dropdownBtnStyle}
@@ -811,11 +815,11 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                       setUserMenuOpen(false);
                     }}
                   >
-                    <User size={14} style={{ color: '#7C3AED' }} /> Switch Account
+                    <User size={14} style={{ color: '#A855F7' }} /> Switch Account
                   </button>
-                  <div style={{ borderTop: '1px solid #F0E8D9', marginTop: '0.3rem', paddingTop: '0.3rem' }}>
+                  <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', marginTop: '0.3rem', paddingTop: '0.3rem' }}>
                     <button
-                      style={{ ...dropdownBtnStyle, color: '#DC2626' }}
+                      style={{ ...dropdownBtnStyle, color: '#EF4444' }}
                       onClick={handleLogout}
                     >
                       <LogOut size={14} /> Logout
@@ -825,33 +829,54 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               )}
             </div>
           ) : (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
               <button
                 type="button"
                 onClick={() => onOpenAuth && onOpenAuth('login')}
-                className="btn-outline"
                 style={{
                   fontSize: '0.8rem',
-                  padding: '0.36rem 0.75rem',
+                  padding: '0.38rem 0.85rem',
                   borderRadius: '9999px',
                   fontWeight: 700,
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  color: '#FFFFFF',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
                 }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'; e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)'; e.currentTarget.style.color = '#FFB800'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)'; e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)'; e.currentTarget.style.color = '#FFFFFF'; }}
               >
                 Sign In
               </button>
               <button
                 type="button"
                 onClick={() => onOpenAuth && onOpenAuth('signup')}
-                className="btn-primary"
                 style={{
                   fontSize: '0.8rem',
-                  padding: '0.36rem 0.85rem',
+                  padding: '0.38rem 0.95rem',
                   borderRadius: '9999px',
-                  backgroundColor: '#781416',
-                  color: '#FFFFFF',
-                  fontWeight: 700,
-                  whiteSpace: 'nowrap'
+                  backgroundColor: '#0B0B0B',
+                  border: '1px solid rgba(255, 184, 0, 0.45)',
+                  color: '#FFB800',
+                  fontWeight: 800,
+                  whiteSpace: 'nowrap',
+                  cursor: 'pointer',
+                  boxShadow: '0 0 14px rgba(255, 184, 0, 0.2)',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#161616';
+                  e.currentTarget.style.borderColor = '#FFB800';
+                  e.currentTarget.style.boxShadow = '0 0 22px rgba(255, 184, 0, 0.45)';
+                  e.currentTarget.style.color = '#FFA000';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#0B0B0B';
+                  e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.45)';
+                  e.currentTarget.style.boxShadow = '0 0 14px rgba(255, 184, 0, 0.2)';
+                  e.currentTarget.style.color = '#FFB800';
                 }}
               >
                 Create Account
@@ -944,14 +969,14 @@ const dropdownBtnStyle = {
   borderRadius: '8px',
   border: 'none',
   backgroundColor: 'transparent',
-  color: '#334155',
+  color: '#E4E4E7',
   fontSize: '0.82rem',
   fontWeight: 600,
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
   gap: '0.5rem',
-  transition: 'backgroundColor 0.15s ease'
+  transition: 'all 0.15s ease'
 };
 
 const compactDropdownItemStyle = {
@@ -961,6 +986,7 @@ const compactDropdownItemStyle = {
   borderRadius: '10px',
   border: 'none',
   backgroundColor: 'transparent',
+  color: '#E4E4E7',
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',

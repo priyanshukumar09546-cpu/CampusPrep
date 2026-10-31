@@ -132,33 +132,33 @@ export default function Footer({ onNavigate }) {
       <div className="pv-footer-watermark" aria-hidden="true">
         <svg viewBox="0 0 420 320" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Bottom Hardcover Book */}
-          <path d="M 80 270 L 370 230 L 410 248 L 120 288 Z" fill="#EAE0CE" stroke="#BAA288" strokeWidth="2" strokeLinejoin="round" />
-          <path d="M 80 270 L 80 286 L 120 304 L 120 288 Z" fill="#D8C7B0" stroke="#BAA288" strokeWidth="2" strokeLinejoin="round" />
-          <path d="M 120 304 L 410 264 L 410 248 L 120 288 Z" fill="#FFFDF8" stroke="#BAA288" strokeWidth="1.8" strokeLinejoin="round" />
+          <path d="M 80 270 L 370 230 L 410 248 L 120 288 Z" fill="#141414" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M 80 270 L 80 286 L 120 304 L 120 288 Z" fill="#1A1A1A" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M 120 304 L 410 264 L 410 248 L 120 288 Z" fill="#0B0B0B" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
           {/* Spine Ribs */}
-          <line x1="90" y1="274" x2="90" y2="290" stroke="#BAA288" strokeWidth="1.8" />
-          <line x1="104" y1="280" x2="104" y2="296" stroke="#BAA288" strokeWidth="1.8" />
+          <line x1="90" y1="274" x2="90" y2="290" stroke="#FFB800" strokeWidth="1.5" />
+          <line x1="104" y1="280" x2="104" y2="296" stroke="#FFB800" strokeWidth="1.5" />
 
           {/* Middle Hardcover Book */}
-          <path d="M 100 236 L 380 198 L 416 216 L 136 254 Z" fill="#F0E6D4" stroke="#BAA288" strokeWidth="2" strokeLinejoin="round" />
-          <path d="M 100 236 L 100 252 L 136 270 L 136 254 Z" fill="#DECBB5" stroke="#BAA288" strokeWidth="2" strokeLinejoin="round" />
-          <path d="M 136 270 L 416 232 L 416 216 L 136 254 Z" fill="#FFFDF8" stroke="#BAA288" strokeWidth="1.8" strokeLinejoin="round" />
+          <path d="M 100 236 L 380 198 L 416 216 L 136 254 Z" fill="#141414" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M 100 236 L 100 252 L 136 270 L 136 254 Z" fill="#1A1A1A" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M 136 270 L 416 232 L 416 216 L 136 254 Z" fill="#0B0B0B" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
 
           {/* Top Hardcover Book */}
-          <path d="M 120 202 L 390 166 L 420 184 L 150 220 Z" fill="#E7DCBE" stroke="#BAA288" strokeWidth="2" strokeLinejoin="round" />
-          <path d="M 120 202 L 120 218 L 150 236 L 150 220 Z" fill="#CEB997" stroke="#BAA288" strokeWidth="2" strokeLinejoin="round" />
-          <path d="M 150 236 L 420 200 L 420 184 L 150 220 Z" fill="#FFFDF8" stroke="#BAA288" strokeWidth="1.8" strokeLinejoin="round" />
+          <path d="M 120 202 L 390 166 L 420 184 L 150 220 Z" fill="#141414" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M 120 202 L 120 218 L 150 236 L 150 220 Z" fill="#1A1A1A" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M 150 236 L 420 200 L 420 184 L 150 220 Z" fill="#0B0B0B" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
 
           {/* Graduation Cap (Mortarboard) sitting horizontally on top */}
           {/* Cap Skull Base */}
-          <path d="M 180 156 Q 260 190 340 152 L 340 176 Q 260 214 180 176 Z" fill="#781416" fillOpacity="0.8" stroke="#BAA288" strokeWidth="2" />
+          <path d="M 180 156 Q 260 190 340 152 L 340 176 Q 260 214 180 176 Z" fill="#FFB800" fillOpacity="0.2" stroke="#FFB800" strokeWidth="1.8" />
           {/* Cap Diamond Top */}
-          <polygon points="260,90 395,134 260,168 125,124" fill="#FAF4EB" stroke="#BAA288" strokeWidth="2.5" strokeLinejoin="round" />
+          <polygon points="260,90 395,134 260,168 125,124" fill="#0B0B0B" stroke="#FFB800" strokeWidth="2" strokeLinejoin="round" />
           {/* Cap Center Button */}
-          <circle cx="260" cy="129" r="5" fill="#C5933A" stroke="#BAA288" strokeWidth="2" />
+          <circle cx="260" cy="129" r="5" fill="#FFB800" stroke="#FFB800" strokeWidth="1.5" />
           {/* Hanging Golden Tassel */}
-          <path d="M 260 129 Q 200 138 170 170 L 165 215" fill="none" stroke="#C5933A" strokeWidth="3" strokeLinecap="round" />
-          <polygon points="160,212 170,212 173,230 157,230" fill="#C5933A" stroke="#BAA288" strokeWidth="1.5" />
+          <path d="M 260 129 Q 200 138 170 170 L 165 215" fill="none" stroke="#FFB800" strokeWidth="2.5" strokeLinecap="round" />
+          <polygon points="160,212 170,212 173,230 157,230" fill="#FFB800" stroke="#FFB800" strokeWidth="1.2" />
         </svg>
       </div>
 
@@ -286,10 +286,10 @@ export default function Footer({ onNavigate }) {
               className="pv-footer-cta-btn"
             >
               <span className="heart-icon">
-                <Heart size={15} fill="#781416" stroke="#781416" />
+                <Heart size={15} fill="#FFB800" stroke="#FFB800" />
               </span>
               <span>Join Students Across India</span>
-              <ArrowRight size={15} color="#781416" strokeWidth={2.2} />
+              <ArrowRight size={15} color="#FFB800" strokeWidth={2.2} />
             </button>
           </div>
 
@@ -453,24 +453,24 @@ export default function Footer({ onNavigate }) {
         </div>
       </div>
 
-      {/* DECORATIVE BURGUNDY WAVES */}
+      {/* DECORATIVE OBSIDIAN SPACE WAVES */}
       <div className="pv-footer-wave-wrap" aria-hidden="true">
         <svg viewBox="0 0 1440 95" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           {/* Secondary background deep shadow wave */}
           <path
             d="M 0,32 C 180,8 390,62 660,32 C 920,5 1160,52 1440,20 L 1440,95 L 0,95 Z"
-            fill="#38050B"
-            opacity="0.45"
+            fill="#090909"
+            opacity="0.8"
           />
-          {/* Primary sweeping burgundy wave */}
+          {/* Primary sweeping obsidian wave */}
           <path
             d="M 0,52 C 220,78 480,18 740,42 C 1000,66 1240,24 1440,38 L 1440,95 L 0,95 Z"
-            fill="#530D16"
+            fill="#050505"
           />
         </svg>
       </div>
 
-      {/* BURGUNDY BOTTOM COPYRIGHT BAR */}
+      {/* OBSIDIAN BOTTOM COPYRIGHT BAR */}
       <div className="pv-footer-bottom-bar">
         <div className="pv-footer-bottom-inner">
           {/* Left: Copyright & Tagline */}

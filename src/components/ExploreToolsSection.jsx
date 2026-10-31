@@ -20,12 +20,13 @@ export default function ExploreToolsSection({ onNavigate }) {
       desc: 'AI-generated personalized learning roadmaps with curated resources & tasks.',
       buttonText: 'Generate Roadmap →',
       icon: Sparkles,
-      iconBg: '#FFF0E8',
-      iconBorder: '#FAD6C5',
-      iconColor: '#8B101D',
-      btnBg: '#FFF0E8',
-      btnColor: '#8B101D',
-      hoverBorder: '#F28A16'
+      iconBg: 'rgba(255, 184, 0, 0.1)',
+      iconBorder: 'rgba(255, 184, 0, 0.3)',
+      iconColor: '#FFB800',
+      btnBg: 'rgba(255, 184, 0, 0.08)',
+      btnBorder: 'rgba(255, 184, 0, 0.3)',
+      btnColor: '#FFB800',
+      hoverBorder: '#FFB800'
     },
     {
       id: 'notes',
@@ -33,12 +34,13 @@ export default function ExploreToolsSection({ onNavigate }) {
       desc: 'High-quality unit-wise study material for engineering students.',
       buttonText: 'Explore Notes →',
       icon: BookOpen,
-      iconBg: '#FDF2F8',
-      iconBorder: '#FCE7F3',
-      iconColor: '#DB2777',
-      btnBg: '#FDF2F8',
-      btnColor: '#BE185D',
-      hoverBorder: '#F472B6'
+      iconBg: 'rgba(236, 72, 153, 0.1)',
+      iconBorder: 'rgba(236, 72, 153, 0.3)',
+      iconColor: '#EC4899',
+      btnBg: 'rgba(236, 72, 153, 0.08)',
+      btnBorder: 'rgba(236, 72, 153, 0.3)',
+      btnColor: '#F472B6',
+      hoverBorder: '#EC4899'
     },
     {
       id: 'pyqs',
@@ -46,12 +48,13 @@ export default function ExploreToolsSection({ onNavigate }) {
       desc: 'Previous year question papers for AKTU and engineering subjects.',
       buttonText: 'Explore PYQs →',
       icon: FileText,
-      iconBg: '#FEF3C7',
-      iconBorder: '#FDE68A',
-      iconColor: '#D97706',
-      btnBg: '#FEF3C7',
-      btnColor: '#B45309',
-      hoverBorder: '#FBBF24'
+      iconBg: 'rgba(245, 158, 11, 0.1)',
+      iconBorder: 'rgba(245, 158, 11, 0.3)',
+      iconColor: '#F59E0B',
+      btnBg: 'rgba(245, 158, 11, 0.08)',
+      btnBorder: 'rgba(245, 158, 11, 0.3)',
+      btnColor: '#FBBF24',
+      hoverBorder: '#F59E0B'
     },
     {
       id: 'syllabus',
@@ -59,12 +62,13 @@ export default function ExploreToolsSection({ onNavigate }) {
       desc: 'Official and updated syllabus for engineering branches.',
       buttonText: 'Explore Syllabus →',
       icon: GraduationCap,
-      iconBg: '#F3E8FF',
-      iconBorder: '#E9D5FF',
-      iconColor: '#9333EA',
-      btnBg: '#F3E8FF',
-      btnColor: '#7E22CE',
-      hoverBorder: '#C084FC'
+      iconBg: 'rgba(168, 85, 247, 0.1)',
+      iconBorder: 'rgba(168, 85, 247, 0.3)',
+      iconColor: '#A855F7',
+      btnBg: 'rgba(168, 85, 247, 0.08)',
+      btnBorder: 'rgba(168, 85, 247, 0.3)',
+      btnColor: '#C084FC',
+      hoverBorder: '#A855F7'
     },
     {
       id: 'internships-jobs',
@@ -72,12 +76,13 @@ export default function ExploreToolsSection({ onNavigate }) {
       desc: 'Find internships, jobs, and career opportunities.',
       buttonText: 'Explore Opportunities →',
       icon: Briefcase,
-      iconBg: '#EFF6FF',
-      iconBorder: '#DBEAFE',
-      iconColor: '#2563EB',
-      btnBg: '#EFF6FF',
-      btnColor: '#1D4ED8',
-      hoverBorder: '#60A5FA'
+      iconBg: 'rgba(59, 130, 246, 0.1)',
+      iconBorder: 'rgba(59, 130, 246, 0.3)',
+      iconColor: '#3B82F6',
+      btnBg: 'rgba(59, 130, 246, 0.08)',
+      btnBorder: 'rgba(59, 130, 246, 0.3)',
+      btnColor: '#60A5FA',
+      hoverBorder: '#3B82F6'
     },
     {
       id: 'interview-pro',
@@ -86,12 +91,13 @@ export default function ExploreToolsSection({ onNavigate }) {
       desc: 'AI-powered mock interviews and coding practice.',
       buttonText: 'Start Practice →',
       icon: Mic,
-      iconBg: '#FEF2F2',
-      iconBorder: '#FEE2E2',
-      iconColor: '#DC2626',
-      btnBg: '#FEF2F2',
-      btnColor: '#B91C1C',
-      hoverBorder: '#F87171'
+      iconBg: 'rgba(239, 68, 68, 0.1)',
+      iconBorder: 'rgba(239, 68, 68, 0.3)',
+      iconColor: '#EF4444',
+      btnBg: 'rgba(239, 68, 68, 0.08)',
+      btnBorder: 'rgba(239, 68, 68, 0.3)',
+      btnColor: '#F87171',
+      hoverBorder: '#EF4444'
     },
     {
       id: 'pdf-maker',
@@ -99,12 +105,13 @@ export default function ExploreToolsSection({ onNavigate }) {
       desc: 'Merge, split, convert, and manage PDF files.',
       buttonText: 'Open PDF Tools →',
       icon: FileCode2,
-      iconBg: '#ECFDF5',
-      iconBorder: '#D1FAE5',
-      iconColor: '#059669',
-      btnBg: '#ECFDF5',
-      btnColor: '#047857',
-      hoverBorder: '#34D399'
+      iconBg: 'rgba(16, 185, 129, 0.1)',
+      iconBorder: 'rgba(16, 185, 129, 0.3)',
+      iconColor: '#10B981',
+      btnBg: 'rgba(16, 185, 129, 0.08)',
+      btnBorder: 'rgba(16, 185, 129, 0.3)',
+      btnColor: '#34D399',
+      hoverBorder: '#10B981'
     },
     {
       id: 'result-cgpa',
@@ -112,12 +119,13 @@ export default function ExploreToolsSection({ onNavigate }) {
       desc: 'Analyze your academic performance and track your results.',
       buttonText: 'Check Result →',
       icon: BarChart2,
-      iconBg: '#FFF7ED',
-      iconBorder: '#FFEDD5',
-      iconColor: '#EA580C',
-      btnBg: '#FFF7ED',
-      btnColor: '#C2410C',
-      hoverBorder: '#FB923C'
+      iconBg: 'rgba(255, 140, 0, 0.1)',
+      iconBorder: 'rgba(255, 140, 0, 0.3)',
+      iconColor: '#FF8C00',
+      btnBg: 'rgba(255, 140, 0, 0.08)',
+      btnBorder: 'rgba(255, 140, 0, 0.3)',
+      btnColor: '#FFA500',
+      hoverBorder: '#FF8C00'
     },
     {
       id: 'scholarships',
@@ -125,19 +133,20 @@ export default function ExploreToolsSection({ onNavigate }) {
       desc: 'Explore government and private scholarship opportunities.',
       buttonText: 'Explore Scholarships →',
       icon: Award,
-      iconBg: '#FAF5FF',
-      iconBorder: '#F3E8FF',
-      iconColor: '#7C3AED',
-      btnBg: '#FAF5FF',
-      btnColor: '#6D28D9',
-      hoverBorder: '#A855F7'
+      iconBg: 'rgba(139, 92, 246, 0.1)',
+      iconBorder: 'rgba(139, 92, 246, 0.3)',
+      iconColor: '#8B5CF6',
+      btnBg: 'rgba(139, 92, 246, 0.08)',
+      btnBorder: 'rgba(139, 92, 246, 0.3)',
+      btnColor: '#A78BFA',
+      hoverBorder: '#8B5CF6'
     }
   ];
 
   return (
-    <section style={{
-      backgroundColor: '#FAF5ED',
-      padding: '1rem 0 3.5rem 0',
+    <section className="pv-scroll-reveal" style={{
+      backgroundColor: 'transparent',
+      padding: '2.5rem 0 3.5rem 0',
       position: 'relative'
     }}>
       <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
@@ -156,18 +165,18 @@ export default function ExploreToolsSection({ onNavigate }) {
               fontFamily: "'Outfit', sans-serif",
               fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
               fontWeight: 900,
-              color: '#1C1917',
+              color: '#FFFFFF',
               margin: '0 0 0.35rem 0',
               lineHeight: 1.2
             }}>
-              Explore Our <span style={{ color: '#D97706' }}>Tools</span>
+              Explore Our <span style={{ color: '#FFB800', textShadow: '0 0 15px rgba(255, 184, 0, 0.35)' }}>Tools</span>
             </h2>
             <p style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: '0.92rem',
-              color: '#78716C',
+              color: '#A1A1AA',
               margin: 0,
-              fontWeight: 600
+              fontWeight: 500
             }}>
               Everything you need for your academic and career preparation in one place.
             </p>
@@ -177,30 +186,30 @@ export default function ExploreToolsSection({ onNavigate }) {
             type="button"
             onClick={() => onNavigate && onNavigate('more')}
             style={{
-              padding: '0.5rem 1.25rem',
+              padding: '0.55rem 1.35rem',
               borderRadius: '9999px',
-              border: '1.5px solid #E5DFD3',
-              backgroundColor: '#FFFFFF',
-              color: '#1C1917',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              backgroundColor: '#0B0B0B',
+              color: '#E4E4E7',
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: '0.82rem',
               fontWeight: 700,
               cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.35rem',
-              boxShadow: '0 2px 6px rgba(35,30,25,0.03)',
+              gap: '0.45rem',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
               transition: 'all 0.2s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = '#C88D2D';
-              e.currentTarget.style.backgroundColor = '#FAF7F2';
-              e.currentTarget.style.color = '#781416';
+              e.currentTarget.style.borderColor = '#FFB800';
+              e.currentTarget.style.color = '#FFB800';
+              e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 184, 0, 0.25)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = '#E5DFD3';
-              e.currentTarget.style.backgroundColor = '#FFFFFF';
-              e.currentTarget.style.color = '#1C1917';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+              e.currentTarget.style.color = '#E4E4E7';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
             }}
           >
             <span>View All Tools</span>
@@ -208,7 +217,7 @@ export default function ExploreToolsSection({ onNavigate }) {
           </button>
         </div>
 
-        {/* 8 Tools Grid (4 columns desktop, 2 tablet, 1 mobile) */}
+        {/* Tools Grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
@@ -221,14 +230,14 @@ export default function ExploreToolsSection({ onNavigate }) {
                 key={tool.id}
                 onClick={() => onNavigate && onNavigate(tool.id)}
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1.5px solid #EBE4D5',
+                  backgroundColor: '#0B0B0B',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   borderRadius: '18px',
                   padding: '1.4rem 1.3rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  boxShadow: '0 4px 16px rgba(35, 30, 25, 0.04)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
                   cursor: 'pointer',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   position: 'relative'
@@ -236,12 +245,12 @@ export default function ExploreToolsSection({ onNavigate }) {
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)';
                   e.currentTarget.style.borderColor = tool.hoverBorder;
-                  e.currentTarget.style.boxShadow = '0 14px 32px rgba(35, 30, 25, 0.09)';
+                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 184, 0, 0.15)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = '#EBE4D5';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(35, 30, 25, 0.04)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.5)';
                 }}
               >
                 <div>
@@ -257,7 +266,7 @@ export default function ExploreToolsSection({ onNavigate }) {
                     justifyContent: 'center',
                     color: tool.iconColor,
                     marginBottom: '1rem',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+                    boxShadow: '0 0 10px rgba(0,0,0,0.5)'
                   }}>
                     <Icon size={20} strokeWidth={2.2} />
                   </div>
@@ -273,7 +282,7 @@ export default function ExploreToolsSection({ onNavigate }) {
                       fontFamily: "'Outfit', sans-serif",
                       fontSize: '1.08rem',
                       fontWeight: 900,
-                      color: '#1C1917',
+                      color: '#FFFFFF',
                       margin: 0,
                       lineHeight: 1.2
                     }}>
@@ -281,11 +290,11 @@ export default function ExploreToolsSection({ onNavigate }) {
                     </h3>
                     {tool.isBeta && (
                       <span style={{
-                        backgroundColor: '#D97706',
-                        color: '#FFFFFF',
-                        fontSize: '0.58rem',
+                        backgroundColor: '#FFB800',
+                        color: '#000000',
+                        fontSize: '0.62rem',
                         fontWeight: 800,
-                        padding: '0.08rem 0.38rem',
+                        padding: '0.1rem 0.45rem',
                         borderRadius: '9999px',
                         lineHeight: 1.15
                       }}>
@@ -298,10 +307,10 @@ export default function ExploreToolsSection({ onNavigate }) {
                   <p style={{
                     fontFamily: "'Plus Jakarta Sans', sans-serif",
                     fontSize: '0.84rem',
-                    color: '#64748B',
+                    color: '#A1A1AA',
                     lineHeight: 1.5,
                     margin: '0 0 1.25rem 0',
-                    fontWeight: 500
+                    fontWeight: 400
                   }}>
                     {tool.desc}
                   </p>
@@ -315,26 +324,30 @@ export default function ExploreToolsSection({ onNavigate }) {
                       width: '100%',
                       padding: '0.55rem 0.85rem',
                       borderRadius: '10px',
-                      border: 'none',
+                      border: `1px solid ${tool.btnBorder}`,
                       backgroundColor: tool.btnBg,
                       color: tool.btnColor,
                       fontFamily: "'Plus Jakarta Sans', sans-serif",
                       fontSize: '0.8rem',
-                      fontWeight: 800,
+                      fontWeight: 700,
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       gap: '0.35rem',
-                      transition: 'all 0.15s ease'
+                      transition: 'all 0.2s ease'
                     }}
                     onMouseEnter={(e) => {
                       e.stopPropagation();
-                      e.currentTarget.style.filter = 'brightness(0.95)';
+                      e.currentTarget.style.backgroundColor = tool.iconColor;
+                      e.currentTarget.style.color = '#000000';
+                      e.currentTarget.style.boxShadow = `0 0 15px ${tool.iconColor}66`;
                     }}
                     onMouseLeave={(e) => {
                       e.stopPropagation();
-                      e.currentTarget.style.filter = 'none';
+                      e.currentTarget.style.backgroundColor = tool.btnBg;
+                      e.currentTarget.style.color = tool.btnColor;
+                      e.currentTarget.style.boxShadow = 'none';
                     }}
                   >
                     <span>{tool.buttonText}</span>

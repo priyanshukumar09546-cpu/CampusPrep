@@ -259,10 +259,9 @@ export default function DemoVideoModal({
         style={{
           width: '100%',
           maxWidth: '1040px',
-          backgroundColor: '#1C1917',
+          backgroundColor: '#0B0B0B', border: '1px solid rgba(255, 184, 0, 0.35)', boxShadow: '0 0 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 184, 0, 0.15)',
           borderRadius: isFullscreen ? '0px' : '22px',
           overflow: 'hidden',
-          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.65), 0 0 0 1.5px rgba(200, 141, 45, 0.35)',
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
@@ -279,8 +278,8 @@ export default function DemoVideoModal({
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '0.85rem 1.4rem',
-            backgroundColor: '#781416',
-            borderBottom: '2px solid #C88D2D',
+            backgroundColor: '#070707',
+            borderBottom: '1px solid rgba(255, 184, 0, 0.3)',
             color: '#FFFFFF',
             zIndex: 10,
             flexShrink: 0
@@ -439,18 +438,18 @@ export default function DemoVideoModal({
                     width: '74px',
                     height: '74px',
                     borderRadius: '50%',
-                    backgroundColor: '#781416',
-                    border: '3px solid #C88D2D',
-                    color: '#FFFFFF',
+                    backgroundColor: '#FFB800',
+                    border: '3px solid #FFA000',
+                    color: '#000000',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 8px 30px rgba(120, 20, 22, 0.65), 0 0 20px rgba(200, 141, 45, 0.4)',
+                    boxShadow: '0 0 35px rgba(255, 184, 0, 0.75)',
                     transform: 'scale(1)',
                     transition: 'transform 0.18s ease'
                   }}
                 >
-                  <Play size={32} fill="#FFFFFF" style={{ marginLeft: '4px' }} />
+                  <Play size={32} fill="#000000" color="#000000" style={{ marginLeft: '4px' }} />
                 </div>
               )}
             </div>

@@ -155,9 +155,9 @@ export default function PromotionSection({ onNavigate }) {
   return (
     <section 
       style={{
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         padding: '3.5rem 0 3.5rem 0',
-        borderBottom: '1.5px solid #E8E2D5'
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
       }}
     >
       <div className="container">
@@ -476,7 +476,7 @@ export default function PromotionSection({ onNavigate }) {
               <h2 style={{
                 fontSize: 'clamp(1.75rem, 2.5vw, 2.35rem)',
                 fontWeight: 800,
-                color: '#1C1E21',
+                color: '#FFFFFF',
                 fontFamily: "'Outfit', sans-serif",
                 letterSpacing: '-0.02em',
                 margin: '0 0 0.45rem 0'
@@ -485,7 +485,7 @@ export default function PromotionSection({ onNavigate }) {
               </h2>
               <p style={{
                 fontSize: '0.92rem',
-                color: '#64748B',
+                color: '#A1A1AA',
                 fontWeight: 500,
                 margin: 0,
                 maxWidth: '620px'
@@ -529,7 +529,7 @@ export default function PromotionSection({ onNavigate }) {
                   gap: '0.45rem',
                   padding: '0.65rem 1.25rem',
                   borderRadius: '9999px',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   color: '#1E140F',
                   border: '1.5px solid #25D366',
                   fontSize: '0.88rem',
@@ -561,7 +561,7 @@ export default function PromotionSection({ onNavigate }) {
               <div
                 key={p.id}
                 style={{
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   border: p.popular ? '2px solid #C88D2D' : '1.5px solid #E8E2D5',
                   borderRadius: '24px',
                   padding: '2rem 1.45rem 1.75rem 1.45rem',
@@ -605,7 +605,7 @@ export default function PromotionSection({ onNavigate }) {
                 <h3 style={{
                   fontSize: '1.2rem',
                   fontWeight: 800,
-                  color: '#1C1E21',
+                  color: '#FFFFFF',
                   margin: '0 0 0.5rem 0'
                 }}>
                   {p.name}
@@ -629,7 +629,7 @@ export default function PromotionSection({ onNavigate }) {
                   {p.period && (
                     <span style={{
                       fontSize: '0.85rem',
-                      color: '#64748B',
+                      color: '#A1A1AA',
                       fontWeight: 600
                     }}>
                       {p.period}
@@ -723,8 +723,8 @@ export default function PromotionSection({ onNavigate }) {
 
         {/* 3. WHY ADVERTISE WITH PROFESSORVIRUS */}
         <div style={{
-          backgroundColor: '#FFFFFF',
-          border: '1.5px solid #E8E2D5',
+          backgroundColor: '#0B0B0B',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
           borderRadius: '24px',
           padding: '2.5rem clamp(1.5rem, 3vw, 2.5rem)',
           boxShadow: '0 4px 18px rgba(35,30,25,0.04)'
@@ -744,7 +744,7 @@ export default function PromotionSection({ onNavigate }) {
               gap: '0.45rem',
               fontSize: 'clamp(1.4rem, 2vw, 1.85rem)',
               fontWeight: 800,
-              color: '#1C1E21',
+              color: '#FFFFFF',
               fontFamily: "'Outfit', sans-serif"
             }}>
               <span role="img" aria-label="bulb">💡</span>
@@ -782,7 +782,7 @@ export default function PromotionSection({ onNavigate }) {
                 <div
                   key={widx}
                   style={{
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     border: '1px solid #E8E2D5',
                     borderRadius: '16px',
                     padding: '1.25rem 1.15rem',
@@ -808,14 +808,14 @@ export default function PromotionSection({ onNavigate }) {
                     <h4 style={{
                       fontSize: '0.92rem',
                       fontWeight: 700,
-                      color: '#1C1E21',
+                      color: '#FFFFFF',
                       margin: '0 0 0.2rem 0'
                     }}>
                       {w.title}
                     </h4>
                     <p style={{
                       fontSize: '0.78rem',
-                      color: '#64748B',
+                      color: '#A1A1AA',
                       margin: 0,
                       lineHeight: 1.4
                     }}>

@@ -163,7 +163,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
     <div 
       className="pv-mobile-profile-container"
       style={{
-        backgroundColor: '#F8FAFC',
+        backgroundColor: '#111111',
         minHeight: '100%',
         paddingBottom: '32px',
         width: '100%',
@@ -275,7 +275,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   style={{
                     flex: 1,
                     maxWidth: '150px',
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#0B0B0B',
                     color: '#7A2327',
                     border: '1.5px solid #7A2327',
                     borderRadius: '12px',
@@ -297,7 +297,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
             <section
               aria-label="Features with Account"
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 borderRadius: '18px',
                 border: '1px solid #F1F5F9',
                 boxShadow: '0 1px 3px rgba(15, 23, 42, 0.03)',
@@ -310,7 +310,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                 Included with Your Account
               </h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '8px' }}>
-                <div style={{ padding: '9px', borderRadius: '12px', backgroundColor: '#F8FAFC', border: '1px solid #F1F5F9' }}>
+                <div style={{ padding: '9px', borderRadius: '12px', backgroundColor: '#111111', border: '1px solid #F1F5F9' }}>
                   <div style={{ fontSize: '11px', fontWeight: 800, color: '#0F172A', marginBottom: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <BarChart2 size={13} color="#861820" /> Real Analytics
                   </div>
@@ -319,7 +319,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   </div>
                 </div>
 
-                <div style={{ padding: '9px', borderRadius: '12px', backgroundColor: '#F8FAFC', border: '1px solid #F1F5F9' }}>
+                <div style={{ padding: '9px', borderRadius: '12px', backgroundColor: '#111111', border: '1px solid #F1F5F9' }}>
                   <div style={{ fontSize: '11px', fontWeight: 800, color: '#0F172A', marginBottom: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <BookOpen size={13} color="#059669" /> Notes History
                   </div>
@@ -328,7 +328,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   </div>
                 </div>
 
-                <div style={{ padding: '9px', borderRadius: '12px', backgroundColor: '#F8FAFC', border: '1px solid #F1F5F9' }}>
+                <div style={{ padding: '9px', borderRadius: '12px', backgroundColor: '#111111', border: '1px solid #F1F5F9' }}>
                   <div style={{ fontSize: '11px', fontWeight: 800, color: '#0F172A', marginBottom: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <FileText size={13} color="#DC2626" /> PYQ Tracker
                   </div>
@@ -337,7 +337,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   </div>
                 </div>
 
-                <div style={{ padding: '9px', borderRadius: '12px', backgroundColor: '#F8FAFC', border: '1px solid #F1F5F9' }}>
+                <div style={{ padding: '9px', borderRadius: '12px', backgroundColor: '#111111', border: '1px solid #F1F5F9' }}>
                   <div style={{ fontSize: '11px', fontWeight: 800, color: '#0F172A', marginBottom: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <Sparkles size={13} color="#D97706" /> AI Interviews
                   </div>
@@ -352,7 +352,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
             <section
               aria-label="Academic Navigation"
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 borderRadius: '18px',
                 border: '1px solid #F1F5F9',
                 boxShadow: '0 1px 3px rgba(15, 23, 42, 0.03)',
@@ -371,7 +371,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '11px 13px',
-                  borderBottom: '1px solid #F8FAFC',
+                  borderBottom: '1px solid #111111',
                   cursor: 'pointer'
                 }}
               >
@@ -404,7 +404,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '11px 13px',
-                  borderBottom: '1px solid #F8FAFC',
+                  borderBottom: '1px solid #111111',
                   cursor: 'pointer'
                 }}
               >
@@ -598,7 +598,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '4px',
-                      backgroundColor: '#FFFFFF',
+                      backgroundColor: '#0B0B0B',
                       border: '1px solid #E9D9CC',
                       borderRadius: '9999px',
                       padding: '4px 9px',
@@ -621,7 +621,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
             <section
               aria-label="Student Usage Statistics"
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 borderRadius: '16px',
                 border: '1px solid #F1F5F9',
                 boxShadow: '0 1px 3px rgba(15, 23, 42, 0.03)',
@@ -724,7 +724,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   <div style={{ fontSize: '7.5px', color: '#64748B', marginTop: '1px' }}>Saved items</div>
                 </div>
                 <div style={{
-                  width: '18px', height: '18px', borderRadius: '50%', backgroundColor: '#FFFFFF',
+                  width: '18px', height: '18px', borderRadius: '50%', backgroundColor: '#0B0B0B',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 1px 3px rgba(225, 29, 72, 0.12)'
                 }}>
                   <ArrowRight size={9} color="#E11D48" strokeWidth={2.4} />
@@ -757,7 +757,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   <div style={{ fontSize: '7.5px', color: '#64748B', marginTop: '1px' }}>Recent activity</div>
                 </div>
                 <div style={{
-                  width: '18px', height: '18px', borderRadius: '50%', backgroundColor: '#FFFFFF',
+                  width: '18px', height: '18px', borderRadius: '50%', backgroundColor: '#0B0B0B',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 1px 3px rgba(2, 132, 199, 0.12)'
                 }}>
                   <ArrowRight size={9} color="#0284C7" strokeWidth={2.4} />
@@ -790,7 +790,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   <div style={{ fontSize: '7.5px', color: '#64748B', marginTop: '1px' }}>Offline PDFs</div>
                 </div>
                 <div style={{
-                  width: '18px', height: '18px', borderRadius: '50%', backgroundColor: '#FFFFFF',
+                  width: '18px', height: '18px', borderRadius: '50%', backgroundColor: '#0B0B0B',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 1px 3px rgba(22, 163, 74, 0.12)'
                 }}>
                   <ArrowRight size={9} color="#16A34A" strokeWidth={2.4} />
@@ -823,7 +823,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   <div style={{ fontSize: '7.5px', color: '#64748B', marginTop: '1px' }}>Streaks & goals</div>
                 </div>
                 <div style={{
-                  width: '18px', height: '18px', borderRadius: '50%', backgroundColor: '#FFFFFF',
+                  width: '18px', height: '18px', borderRadius: '50%', backgroundColor: '#0B0B0B',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 1px 3px rgba(217, 119, 6, 0.12)'
                 }}>
                   <ArrowRight size={9} color="#D97706" strokeWidth={2.4} />
@@ -892,7 +892,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
             <section
               aria-label="Account & Settings Options"
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 borderRadius: '18px',
                 border: '1px solid #F1F5F9',
                 boxShadow: '0 1px 3px rgba(15, 23, 42, 0.03)',
@@ -911,7 +911,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '11px 13px',
-                  borderBottom: '1px solid #F8FAFC',
+                  borderBottom: '1px solid #111111',
                   backgroundColor: '#FFFDF9',
                   cursor: 'pointer'
                 }}
@@ -950,7 +950,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '11px 13px',
-                  borderBottom: '1px solid #F8FAFC',
+                  borderBottom: '1px solid #111111',
                   cursor: 'pointer'
                 }}
               >
@@ -983,7 +983,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '11px 13px',
-                  borderBottom: '1px solid #F8FAFC',
+                  borderBottom: '1px solid #111111',
                   cursor: 'pointer'
                 }}
               >
@@ -1016,7 +1016,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '11px 13px',
-                  borderBottom: '1px solid #F8FAFC',
+                  borderBottom: '1px solid #111111',
                   cursor: 'pointer'
                 }}
               >
@@ -1049,7 +1049,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '11px 13px',
-                  borderBottom: '1px solid #F8FAFC',
+                  borderBottom: '1px solid #111111',
                   cursor: 'pointer'
                 }}
               >
@@ -1157,7 +1157,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
           padding: '16px'
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '20px',
             width: '100%',
             maxWidth: '380px',
@@ -1288,7 +1288,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                     padding: '9px',
                     borderRadius: '10px',
                     border: '1px solid #CBD5E1',
-                    backgroundColor: '#F8FAFC',
+                    backgroundColor: '#111111',
                     color: '#64748B',
                     fontSize: '12px',
                     fontWeight: 700,
@@ -1336,7 +1336,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
           padding: '16px'
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '20px',
             width: '100%',
             maxWidth: '340px',
@@ -1372,7 +1372,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   padding: '9px',
                   borderRadius: '10px',
                   border: '1px solid #CBD5E1',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   color: '#64748B',
                   fontSize: '12px',
                   fontWeight: 700,
@@ -1420,7 +1420,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
           padding: '16px'
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '20px',
             width: '100%',
             maxWidth: '360px',
@@ -1495,7 +1495,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
           padding: '16px'
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '20px',
             width: '100%',
             maxWidth: '360px',
@@ -1514,7 +1514,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                 <X size={18} />
               </button>
             </div>
-            <div style={{ padding: '16px 8px', textAlign: 'center', backgroundColor: '#F8FAFC', borderRadius: '12px', border: '1px dashed #CBD5E1' }}>
+            <div style={{ padding: '16px 8px', textAlign: 'center', backgroundColor: '#111111', borderRadius: '12px', border: '1px dashed #CBD5E1' }}>
               <p style={{ fontSize: '11.5px', color: '#64748B', margin: '0 0 10px 0', lineHeight: 1.4 }}>
                 {showQuickActionModal === 'bookmarks' && 'Saved notes, question papers and subjects appear here for instant offline access.'}
                 {showQuickActionModal === 'history' && 'Track your recently viewed subjects, mock interview practice rounds and test attempts.'}
@@ -1562,7 +1562,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
           padding: '16px'
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '20px',
             width: '100%',
             maxWidth: '360px',
@@ -1612,7 +1612,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
                   padding: '9px',
                   borderRadius: '10px',
                   border: '1px solid #CBD5E1',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   color: '#475569',
                   fontSize: '11.5px',
                   fontWeight: 700,
@@ -1643,7 +1643,7 @@ export default function MobileProfileScreen({ onNavigate, onOpenAuth }) {
           padding: '16px'
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '20px',
             width: '100%',
             maxWidth: '360px',

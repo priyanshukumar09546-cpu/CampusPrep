@@ -27,7 +27,7 @@ export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
   }, [activeCourse]);
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
+    <div className="min-h-screen bg-[transparent] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
       
       {/* Corner Leaves Decoration */}
       <div 
@@ -83,13 +83,13 @@ export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
 
           {/* 3 Pills Row with Real Honest Numbers */}
           <div className="flex items-center gap-1.5 flex-wrap justify-center">
-            <span className="bg-white/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-amber-900 shadow-2xs flex items-center gap-1">
+            <span className="bg-[#0B0B0B]/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-amber-900 shadow-2xs flex items-center gap-1">
               🏆 Verified Syllabus
             </span>
-            <span className="bg-white/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-800 shadow-2xs flex items-center gap-1">
+            <span className="bg-[#0B0B0B]/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-800 shadow-2xs flex items-center gap-1">
               📝 Real University PYQs
             </span>
-            <span className="bg-white/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-800 shadow-2xs flex items-center gap-1">
+            <span className="bg-[#0B0B0B]/95 border border-amber-200/80 rounded-full px-2.5 py-1 text-[11px] font-bold text-stone-800 shadow-2xs flex items-center gap-1">
               ⚡ Instant Review
             </span>
           </div>
@@ -105,7 +105,7 @@ export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
             className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
               activeCourse === course
                 ? 'bg-[#7A2327] text-white shadow-xs'
-                : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-50'
+                : 'bg-[#0B0B0B] text-stone-600 border border-stone-200 hover:bg-stone-50'
             }`}
           >
             {course}
@@ -118,7 +118,7 @@ export default function MobileQuizzesScreen({ onNavigate, onStartQuiz }) {
         {displayedQuizzes.map((quiz) => (
           <div 
             key={quiz.id}
-            className="bg-white rounded-2xl p-3.5 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-200 transition-all"
+            className="bg-[#0B0B0B] rounded-2xl p-3.5 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-200 transition-all"
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 border border-amber-200/60 flex items-center justify-center font-bold text-xs">

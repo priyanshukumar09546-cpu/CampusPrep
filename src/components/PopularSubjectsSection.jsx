@@ -15,11 +15,11 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
       desc: 'Calculus, Linear Algebra & Differential Equations',
       badge: 'AKTU B.Tech • 1st & 2nd Year',
       icon: Calculator,
-      iconColor: '#2563EB',
-      iconBg: '#EFF6FF',
-      border: '#BFDBFE',
-      arrowBg: '#DBEAFE',
-      arrowColor: '#2563EB',
+      iconColor: '#3B82F6',
+      iconBg: 'rgba(59, 130, 246, 0.1)',
+      border: 'rgba(59, 130, 246, 0.3)',
+      arrowBg: 'rgba(59, 130, 246, 0.15)',
+      arrowColor: '#60A5FA',
       subjectData: {
         name: 'Engineering Mathematics',
         course: 'B.Tech',
@@ -33,11 +33,11 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
       desc: 'C Language, Algorithms, Pointers & Recursion',
       badge: 'C Programming • 1st Year',
       icon: Code2,
-      iconColor: '#DC2626',
-      iconBg: '#FEF2F2',
-      border: '#FECACA',
-      arrowBg: '#FEE2E2',
-      arrowColor: '#DC2626',
+      iconColor: '#EF4444',
+      iconBg: 'rgba(239, 68, 68, 0.1)',
+      border: 'rgba(239, 68, 68, 0.3)',
+      arrowBg: 'rgba(239, 68, 68, 0.15)',
+      arrowColor: '#F87171',
       subjectData: {
         name: 'Programming for Problem Solving',
         course: 'B.Tech',
@@ -51,11 +51,11 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
       desc: 'Linked Lists, Stacks, Queues, Trees & Graphs',
       badge: 'KCS-301 • 2nd Year • Sem 3',
       icon: Layers,
-      iconColor: '#D97706',
-      iconBg: '#FFFBEB',
-      border: '#FDE68A',
-      arrowBg: '#FEF3C7',
-      arrowColor: '#D97706',
+      iconColor: '#FFB800',
+      iconBg: 'rgba(255, 184, 0, 0.1)',
+      border: 'rgba(255, 184, 0, 0.3)',
+      arrowBg: 'rgba(255, 184, 0, 0.15)',
+      arrowColor: '#FFB800',
       subjectData: {
         name: 'Data Structures',
         code: 'KCS-301',
@@ -71,11 +71,11 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
       desc: 'Processes, CPU Scheduling, Memory & File Systems',
       badge: 'KCS-401 • 2nd Year • Sem 4',
       icon: Terminal,
-      iconColor: '#0284C7',
-      iconBg: '#F0F9FF',
-      border: '#BAE6FD',
-      arrowBg: '#E0F2FE',
-      arrowColor: '#0284C7',
+      iconColor: '#10B981',
+      iconBg: 'rgba(16, 185, 129, 0.1)',
+      border: 'rgba(16, 185, 129, 0.3)',
+      arrowBg: 'rgba(16, 185, 129, 0.15)',
+      arrowColor: '#34D399',
       subjectData: {
         name: 'Operating System',
         code: 'KCS-401',
@@ -97,13 +97,14 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
 
   return (
     <section 
+      className="pv-scroll-reveal"
       style={{
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         padding: '3rem 0 3.5rem 0',
-        borderBottom: '1.5px solid #E8E2D5'
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
       }}
     >
-      <div className="container">
+      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
         {/* Header with Title and "View All Subjects" button */}
         <div style={{
           display: 'flex',
@@ -120,17 +121,17 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
               gap: '0.45rem',
               fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
               fontWeight: 800,
-              color: '#1C1E21',
+              color: '#FFFFFF',
               fontFamily: "'Outfit', sans-serif",
               letterSpacing: '-0.02em',
               margin: '0 0 0.4rem 0'
             }}>
-              <span role="img" aria-label="book">📖</span>
-              <h2>Popular Subjects</h2>
+              <span>📖</span>
+              <h2>Popular <span style={{ color: '#FFB800' }}>Subjects</span></h2>
             </div>
             <p style={{
               fontSize: '0.92rem',
-              color: '#64748B',
+              color: '#A1A1AA',
               fontWeight: 500,
               margin: 0
             }}>
@@ -145,26 +146,26 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.45rem',
-              padding: '0.65rem 1.25rem',
+              padding: '0.55rem 1.35rem',
               borderRadius: '9999px',
-              backgroundColor: '#FFFFFF',
-              border: '1.5px solid #E2D9C8',
-              color: '#1C1E21',
+              backgroundColor: '#0B0B0B',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              color: '#E4E4E7',
               fontSize: '0.88rem',
               fontWeight: 700,
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              boxShadow: '0 2px 8px rgba(35,30,25,0.04)'
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#781416';
-              e.currentTarget.style.color = '#FFFFFF';
-              e.currentTarget.style.borderColor = '#781416';
+              e.currentTarget.style.borderColor = '#FFB800';
+              e.currentTarget.style.color = '#FFB800';
+              e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 184, 0, 0.25)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#FFFFFF';
-              e.currentTarget.style.color = '#1C1E21';
-              e.currentTarget.style.borderColor = '#E2D9C8';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+              e.currentTarget.style.color = '#E4E4E7';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
             }}
           >
             <span>View All Subjects</span>
@@ -186,8 +187,8 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
                 onClick={() => handleSubjectClick(s)}
                 aria-label={s.name}
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: `1.5px solid ${s.border}`,
+                  backgroundColor: '#0B0B0B',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   borderRadius: '20px',
                   padding: '1.5rem 1.25rem',
                   display: 'flex',
@@ -196,20 +197,20 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
                   textAlign: 'left',
                   cursor: 'pointer',
                   transition: 'all 0.25s ease',
-                  boxShadow: '0 4px 14px rgba(35,30,25,0.04)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
                   position: 'relative',
                   outline: 'none',
                   userSelect: 'none'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(35,30,25,0.08)';
+                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 184, 0, 0.15)';
                   e.currentTarget.style.borderColor = s.iconColor;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(35,30,25,0.04)';
-                  e.currentTarget.style.borderColor = s.border;
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.5)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
                 }}
               >
                 {/* Icon */}
@@ -232,7 +233,7 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
                 <h3 style={{
                   fontSize: '1.05rem',
                   fontWeight: 800,
-                  color: '#1C1E21',
+                  color: '#FFFFFF',
                   margin: '0 0 0.35rem 0',
                   lineHeight: 1.3
                 }}>
@@ -241,8 +242,8 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
 
                 {/* Description */}
                 <p style={{
-                  fontSize: '0.8rem',
-                  color: '#64748B',
+                  fontSize: '0.82rem',
+                  color: '#A1A1AA',
                   lineHeight: 1.45,
                   margin: '0 0 0.85rem 0',
                   flexGrow: 1
@@ -266,8 +267,8 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
 
                 {/* Bottom Arrow */}
                 <div style={{
-                  width: '26px',
-                  height: '26px',
+                  width: '28px',
+                  height: '28px',
                   borderRadius: '50%',
                   backgroundColor: s.arrowBg,
                   color: s.arrowColor,

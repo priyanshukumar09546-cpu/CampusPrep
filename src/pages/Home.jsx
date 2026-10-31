@@ -36,8 +36,8 @@ export default function Home({
         />
       </div>
 
-      {/* 2. DESKTOP-ONLY HOMEPAGE VIEW (>= 1024px) — 100% Preserved Baseline */}
-      <div className="pv-desktop-home-view w-full relative overflow-x-hidden" style={{ backgroundColor: '#FAF5ED' }}>
+      {/* 2. DESKTOP-ONLY HOMEPAGE VIEW (>= 1024px) — Deep Space Cinematic Experience */}
+      <div className="pv-desktop-home-view w-full relative overflow-x-hidden" style={{ backgroundColor: 'transparent' }}>
         {/* 1. Hero Section matching Reference Design (Brand, Tagline, CTAs, Real Stats, Search, Branch Chips & Student Showcase) */}
         <HeroSection
           onSearch={onSearch}

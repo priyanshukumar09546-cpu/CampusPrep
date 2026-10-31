@@ -225,7 +225,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
       <div 
         ref={containerRef}
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#0B0B0B',
           borderRadius: isFullscreen ? '0' : '20px',
           width: isFullscreen ? '100vw' : '96%',
           maxWidth: isFullscreen ? '100vw' : '1120px',
@@ -240,7 +240,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
       >
         {/* HEADER BAR */}
         <div style={{
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'transparent',
           borderBottom: '2px solid #E8D3B0',
           padding: '0.85rem 1.25rem',
           display: 'flex',
@@ -416,7 +416,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
               <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 border: '1px solid #E8E2D5',
                 borderRadius: '8px',
                 padding: '0.15rem'
@@ -473,7 +473,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
               <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 border: '1px solid #E8E2D5',
                 borderRadius: '8px',
                 padding: '0.15rem'
@@ -534,7 +534,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
               onClick={toggleFullscreen}
               title={isFullscreen ? 'Exit Fullscreen (Esc)' : 'Fullscreen'}
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 border: '1px solid #E8E2D5',
                 padding: '0.45rem 0.65rem',
                 borderRadius: '8px',
@@ -605,7 +605,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
               onClick={onClose}
               title="Close Viewer (Esc)"
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 border: '1px solid #E8E2D5',
                 color: '#64748B',
                 width: '36px',
@@ -664,7 +664,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
         {/* VIEWER CONTENT AREA */}
         <div style={{
           flex: 1,
-          backgroundColor: activeTab === 'pdf' ? '#525659' : '#FAF7F2',
+          backgroundColor: activeTab === 'pdf' ? '#525659' : 'transparent',
           position: 'relative',
           overflow: 'auto',
           display: 'flex',
@@ -683,7 +683,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
                   zIndex: 10,
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   padding: '1.5rem 2.25rem',
                   borderRadius: '16px',
                   border: '1.5px solid #E8D3B0',
@@ -708,7 +708,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
               {/* State A: No PDF URL Configured */}
               {!rawPdfUrl && !isLoading && (
                 <div style={{
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   borderRadius: '16px',
                   padding: '2.5rem',
                   textAlign: 'center',
@@ -768,7 +768,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
               {/* State B: Load Error / Server Timeout Fallback (NEVER renders raw JSON in iframe) */}
               {loadError && !isLoading && (
                 <div style={{
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   borderRadius: '16px',
                   padding: '2rem',
                   textAlign: 'center',
@@ -878,7 +878,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
                         gap: '0.35rem',
                         padding: '0.55rem 0.85rem',
                         borderRadius: '9999px',
-                        backgroundColor: '#FFFFFF',
+                        backgroundColor: '#0B0B0B',
                         border: '1px solid #E2E8F0',
                         color: '#64748B',
                         fontSize: '0.82rem',
@@ -1006,7 +1006,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
             }}>
               {/* Syllabus Info Card */}
               <div style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 borderRadius: '16px',
                 border: '1.5px solid #E8D3B0',
                 padding: '1.25rem 1.5rem',
@@ -1045,7 +1045,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
 
                   {syllabus.evalScheme && (
                     <div style={{
-                      backgroundColor: '#F8FAFC',
+                      backgroundColor: '#111111',
                       border: '1px solid #E2E8F0',
                       padding: '0.5rem 0.85rem',
                       borderRadius: '10px',
@@ -1088,7 +1088,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
                     <div 
                       key={unit.unitNo || idx}
                       style={{
-                        backgroundColor: '#FFFFFF',
+                        backgroundColor: '#0B0B0B',
                         borderRadius: '14px',
                         border: '1px solid #E8E2D5',
                         padding: '1.15rem 1.35rem',
@@ -1131,7 +1131,7 @@ export default function SyllabusPdfViewerModal({ syllabus, onClose }) {
                 </div>
               ) : (
                 <div style={{
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   borderRadius: '14px',
                   border: '1px solid #E8E2D5',
                   padding: '2.5rem',

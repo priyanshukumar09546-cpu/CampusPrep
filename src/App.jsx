@@ -20,6 +20,8 @@ import CookieConsent from './components/CookieConsent';
 import SplashScreen from './components/SplashScreen';
 import ErrorBoundary from './components/ErrorBoundary';
 import SeoHead from './components/SeoHead';
+import StarfieldBackground from './components/StarfieldBackground';
+import useScrollReveal from './utils/useScrollReveal';
 import Home from './pages/Home';
 import { normalizeCourseKey } from './data/courseMapping.ts';
 
@@ -80,6 +82,8 @@ import SelectSubjectPage from './pages/SelectSubjectPage';
 import SubjectDetailPage from './pages/SubjectDetailPage';
 
 export default function App() {
+  useScrollReveal();
+
   const [adminAuthToken, setAdminAuthToken] = useState(() => {
     return localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token') || null;
   });
@@ -621,7 +625,10 @@ export default function App() {
   const showStandaloneMobileHeader = !hideTopNav && !pagesWithOwnMobileHeader.includes(activeTab);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden', backgroundColor: 'transparent', color: '#FFFFFF' }}>
+      {/* Animated Deep Space Starfield Background */}
+      <StarfieldBackground />
+
       {/* Dynamic SEO Head Manager */}
       <SeoHead
         activeTab={activeTab}

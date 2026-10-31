@@ -1883,7 +1883,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
   ];
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1F2421', paddingBottom: '4rem' }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1F2421', paddingBottom: '4rem' }}>
       
       {/* Universal Hidden File Inputs (Accessible to both Desktop and Mobile Safari) */}
       <input
@@ -2301,7 +2301,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
           width: '100%',
           maxWidth: '100vw',
           boxSizing: 'border-box',
-          backgroundColor: '#FAF7F2'
+          backgroundColor: 'transparent'
         }}
       >
         {/* B. PDF MAKER HERO */}
@@ -2929,7 +2929,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
               <button
                 onClick={closeTool}
                 style={{
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   border: 'none',
                   borderRadius: '50%',
                   width: '36px',
@@ -3144,7 +3144,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                         <div
                           key={idx}
                           style={{
-                            backgroundColor: '#FAF7F2',
+                            backgroundColor: 'transparent',
                             border: '1.5px solid #E8E2D5',
                             borderRadius: '12px',
                             padding: '0.65rem 1rem',
@@ -3246,7 +3246,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'split' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to split:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3257,7 +3257,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>Selected File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -3367,7 +3367,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'organize' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to organize:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3378,7 +3378,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <div>
                             <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                           </div>
@@ -3391,7 +3391,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                           Reorder pages using the arrow buttons, delete unwanted pages, or rotate individual pages:
                         </p>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))', gap: '0.75rem', maxHeight: '280px', overflowY: 'auto', padding: '0.5rem', backgroundColor: '#FAF7F2', borderRadius: '14px', marginBottom: '1.25rem' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))', gap: '0.75rem', maxHeight: '280px', overflowY: 'auto', padding: '0.5rem', backgroundColor: 'transparent', borderRadius: '14px', marginBottom: '1.25rem' }}>
                           {organizePages.map((pageNum, idx) => {
                             const isDeleted = deletedPages.includes(pageNum);
                             const rot = rotatedPagesMap[pageNum] || 0;
@@ -3483,7 +3483,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'pdf-to-word' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to convert into Word (.docx):</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3494,7 +3494,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -3532,7 +3532,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'pdf-to-excel' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file containing tables to extract to Excel:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3543,7 +3543,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -3581,7 +3581,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'pdf-to-markdown' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to convert into Markdown:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3592,7 +3592,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -3630,7 +3630,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'summarize' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose an academic PDF file to summarize with AI:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3641,7 +3641,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -3679,7 +3679,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'crop' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to crop:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3690,7 +3690,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -3746,7 +3746,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'rotate' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to rotate:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3757,7 +3757,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>Selected File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -3817,7 +3817,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'page-numbers' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to add page numbers:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3828,7 +3828,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>Selected File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -3893,7 +3893,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'watermark' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to watermark:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3904,7 +3904,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>Selected File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -3982,7 +3982,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'compress' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to compress:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -3993,7 +3993,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -4076,7 +4076,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'pdf-to-text' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to extract text from:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -4087,7 +4087,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -4186,7 +4186,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'sign' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a PDF file to sign:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -4197,7 +4197,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -4227,7 +4227,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                             style={{
                               width: '100%',
                               height: '140px',
-                              backgroundColor: '#FAF7F2',
+                              backgroundColor: 'transparent',
                               border: '1.5px dashed #C88D2D',
                               borderRadius: '12px',
                               cursor: 'crosshair',
@@ -4307,7 +4307,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                 {activeTool === 'repair' && (
                   <div>
                     {selectedFiles.length === 0 ? (
-                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: '#FAF7F2', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
+                      <div style={{ textAlign: 'center', padding: '1.5rem', backgroundColor: 'transparent', borderRadius: '16px', border: '1.5px dashed #D6CEC3' }}>
                         <p style={{ margin: '0 0 1rem', fontSize: '0.9rem', color: '#57534E' }}>Choose a damaged PDF file to repair:</p>
                         <button
                           onClick={() => fileInputRef.current && fileInputRef.current.click()}
@@ -4318,7 +4318,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       </div>
                     ) : (
                       <div>
-                        <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+                        <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', borderRadius: '10px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
                           <strong>File:</strong> {selectedFiles[0].name} ({formatSize(selectedFiles[0].size)})
                         </div>
 
@@ -4494,7 +4494,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                   <p style={{ fontSize: '0.85rem', color: '#78716C', marginTop: '0.5rem' }}>Loading files from your Google Drive...</p>
                 </div>
               ) : cloudFiles.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '2rem', backgroundColor: '#FAF7F2', borderRadius: '16px' }}>
+                <div style={{ textAlign: 'center', padding: '2rem', backgroundColor: 'transparent', borderRadius: '16px' }}>
                   <FileText size={32} color="#C88D2D" style={{ margin: '0 auto 0.5rem' }} />
                   <p style={{ fontSize: '0.9rem', fontWeight: 700, margin: '0 0 0.4rem' }}>No PDF files found in root Drive</p>
                   <p style={{ fontSize: '0.78rem', color: '#78716C', margin: '0 0 1rem' }}>
@@ -4514,7 +4514,7 @@ export default function PdfMakerPage({ onNavigate, onOpenAuth }) {
                       key={file.id}
                       onClick={() => handleImportDriveFile(file)}
                       style={{
-                        backgroundColor: '#FAF7F2',
+                        backgroundColor: 'transparent',
                         border: '1px solid #E8E2D5',
                         borderRadius: '10px',
                         padding: '0.65rem 0.85rem',

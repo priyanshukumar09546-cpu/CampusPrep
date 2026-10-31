@@ -75,12 +75,12 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
         right: 0,
         width: '100%',
         maxWidth: '100vw',
-        backgroundColor: 'rgba(255, 252, 247, 0.98)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        borderTop: '1px solid #E9D9CC',
+        backgroundColor: 'rgba(5, 5, 5, 0.94)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
         zIndex: 9998,
-        boxShadow: '0 -4px 20px rgba(134, 24, 32, 0.05)',
+        boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.7)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
@@ -94,8 +94,8 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
       {tabs.map((tab) => {
         const isActive = currentNav === tab.id;
         const IconComponent = tab.icon;
-        const activeColor = '#861820';
-        const inactiveColor = '#66758B';
+        const activeColor = '#FFB800';
+        const inactiveColor = '#A1A1AA';
 
         const isToolsActive = isActive && tab.id === 'tools';
 
@@ -131,7 +131,8 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                 justifyContent: 'center',
                 padding: isToolsActive ? '3px 14px' : (isActive ? '3px 10px' : '3px 6px'),
                 borderRadius: '10px',
-                backgroundColor: isToolsActive ? '#F8EAC9' : (isActive ? 'rgba(134, 24, 32, 0.08)' : 'transparent'),
+                backgroundColor: isToolsActive ? 'rgba(255, 184, 0, 0.15)' : (isActive ? 'rgba(255, 184, 0, 0.08)' : 'transparent'),
+                border: isToolsActive ? '1px solid rgba(255, 184, 0, 0.35)' : '1px solid transparent',
                 transition: 'all 0.15s ease'
               }}
             >
@@ -175,7 +176,8 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                   width: '20px',
                   height: '2.5px',
                   borderRadius: '9999px',
-                  backgroundColor: '#D6A13D'
+                  backgroundColor: '#FFB800',
+                  boxShadow: '0 0 8px rgba(255, 184, 0, 0.6)'
                 }} 
               />
             )}

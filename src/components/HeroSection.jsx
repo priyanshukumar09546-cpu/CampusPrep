@@ -40,21 +40,19 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
   return (
     <section style={{
-      backgroundColor: '#FAF5ED',
+      backgroundColor: 'transparent',
       padding: '2.5rem 0 2rem 0',
       position: 'relative',
       overflow: 'hidden'
-    }}>
-      {/* Background Decorative Doodles and Subtle Dot Pattern */}
+    }} className="pv-scroll-reveal">
+      {/* Background Subtle Space Nebula Ambient Glow */}
       <div style={{
         position: 'absolute',
         inset: 0,
         backgroundImage: `
-          radial-gradient(rgba(180, 140, 80, 0.08) 1.5px, transparent 1.5px),
-          radial-gradient(rgba(120, 20, 22, 0.03) 1.5px, transparent 1.5px)
+          radial-gradient(circle at 20% 30%, rgba(255, 184, 0, 0.035) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(255, 140, 0, 0.025) 0%, transparent 50%)
         `,
-        backgroundSize: '28px 28px, 14px 14px',
-        opacity: 0.85,
         pointerEvents: 'none'
       }} />
 
@@ -73,26 +71,26 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               =================================================================== */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
 
-            {/* Top Pill Badge (Matches Reference Image) */}
+            {/* Top Pill Badge */}
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.45rem',
-              backgroundColor: '#FDF2E9',
-              border: '1.2px solid #F5D0B5',
+              backgroundColor: '#111111',
+              border: '1px solid rgba(255, 184, 0, 0.4)',
               borderRadius: '9999px',
               padding: '0.35rem 0.95rem',
               fontSize: '0.78rem',
               fontWeight: 800,
-              color: '#881337',
+              color: '#FFB800',
               marginBottom: '1.15rem',
-              boxShadow: '0 2px 8px rgba(120, 20, 22, 0.04)'
+              boxShadow: '0 0 14px rgba(255, 184, 0, 0.15)'
             }}>
               <span>🎓</span>
               <span>Trusted by 50,000+ Engineering Students</span>
             </div>
 
-            {/* Brand Title: ProfessorVirus (Matches Reference Image) */}
+            {/* Brand Title: ProfessorVirus */}
             <h1 style={{
               fontFamily: "'Outfit', sans-serif",
               fontSize: 'clamp(2.75rem, 4.4vw, 3.85rem)',
@@ -100,38 +98,39 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               lineHeight: 1.05,
               margin: '0 0 0.45rem 0',
               letterSpacing: '-0.02em',
-              color: '#1C1917'
+              color: '#FFFFFF'
             }}>
-              <span>Professor</span><span style={{ color: '#D97706' }}>Virus</span>
+              <span>Professor</span><span style={{ color: '#FFB800' }}>Virus</span>
             </h1>
 
-            {/* Sub-headline in Rich Dark Maroon (Official Brand Tagline) */}
+            {/* Sub-headline in Warm Electric Gold */}
             <h2 style={{
               fontFamily: "'Outfit', sans-serif",
               fontSize: 'clamp(1.75rem, 2.7vw, 2.35rem)',
               fontWeight: 900,
               lineHeight: 1.18,
-              color: '#781416',
+              color: '#FFB800',
               margin: '0 0 1rem 0',
-              letterSpacing: '-0.015em'
+              letterSpacing: '-0.015em',
+              textShadow: '0 0 20px rgba(255, 184, 0, 0.25)'
             }}>
               Study Smart. Prepare Better.
             </h2>
 
-            {/* Body Description (Matches Official Brand Specification) */}
+            {/* Body Description */}
             <p style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: '0.96rem',
               fontWeight: 600,
               lineHeight: 1.6,
-              color: '#57534E',
+              color: '#A1A1AA',
               margin: '0 0 1.5rem 0',
               maxWidth: '470px'
             }}>
               An educational platform providing study resources, notes, previous-year question papers (PYQs), syllabus, quizzes, academic tools and career preparation for students.
             </p>
 
-            {/* CTA Action Buttons (Matches Reference Image) */}
+            {/* CTA Action Buttons with Glowing Bulb Interaction */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -144,31 +143,20 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                 onClick={() => {
                   if (onNavigate) onNavigate('notes');
                 }}
+                className="pv-glow-btn"
                 style={{
-                  backgroundColor: '#781416',
-                  color: '#FFFFFF',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontSize: '0.94rem',
                   fontWeight: 800,
-                  padding: '0.78rem 1.65rem',
+                  padding: '0.78rem 1.75rem',
                   borderRadius: '9999px',
-                  border: 'none',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.45rem',
-                  boxShadow: '0 6px 18px rgba(120, 20, 22, 0.32)',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#631012';
-                  e.currentTarget.style.transform = 'translateY(-1px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#781416';
-                  e.currentTarget.style.transform = 'translateY(0)';
+                  gap: '0.55rem',
+                  transition: 'all 0.25s ease'
                 }}
               >
+                <span className="pv-bulb" style={{ fontSize: '1rem' }}>💡</span>
                 <span>Get Started Free</span>
                 <ArrowRight size={16} />
               </button>
@@ -177,58 +165,46 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                 type="button"
                 onClick={() => setIsDemoModalOpen(true)}
                 aria-label="Watch Platform Demo Video"
+                className="pv-secondary-btn"
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  color: '#1C1917',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontSize: '0.94rem',
                   fontWeight: 700,
-                  padding: '0.76rem 1.55rem',
+                  padding: '0.76rem 1.6rem',
                   borderRadius: '9999px',
-                  border: '1.5px solid #E5DFD3',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  boxShadow: '0 2px 8px rgba(35, 30, 25, 0.04)',
                   transition: 'all 0.2s ease'
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#C88D2D';
-                  e.currentTarget.style.backgroundColor = '#FAF7F2';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#E5DFD3';
-                  e.currentTarget.style.backgroundColor = '#FFFFFF';
-                }}
               >
-                <Play size={14} fill="#781416" color="#781416" />
+                <Play size={14} fill="#FFB800" color="#FFB800" />
                 <span>Watch Demo</span>
               </button>
             </div>
 
-            {/* Real Stats Strip (Matches Reference Image) */}
+            {/* Real Stats Strip */}
             <div style={{
               display: 'flex',
               alignItems: 'center',
               gap: 'clamp(1rem, 2.2vw, 1.85rem)',
               flexWrap: 'wrap',
               paddingBottom: '1.35rem',
-              borderBottom: '1px solid #EAE2D2',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
               width: '100%',
               maxWidth: '560px',
               marginBottom: '1.25rem'
             }}>
               {/* Stat 1: Students */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <div style={{ color: '#781416' }}>
+                <div style={{ color: '#FFB800' }}>
                   <Users size={18} strokeWidth={2.4} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#1C1917', lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>
                     50K+
                   </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#78716C', marginTop: '0.15rem' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', marginTop: '0.15rem' }}>
                     Students
                   </div>
                 </div>
@@ -236,14 +212,14 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
               {/* Stat 2: Notes Views */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <div style={{ color: '#781416' }}>
+                <div style={{ color: '#FFB800' }}>
                   <FileText size={18} strokeWidth={2.4} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#1C1917', lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>
                     1M+
                   </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#78716C', marginTop: '0.15rem' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', marginTop: '0.15rem' }}>
                     Notes Views
                   </div>
                 </div>
@@ -251,14 +227,14 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
               {/* Stat 3: Interviews Taken */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <div style={{ color: '#781416' }}>
+                <div style={{ color: '#FFB800' }}>
                   <Briefcase size={18} strokeWidth={2.4} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#1C1917', lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>
                     10K+
                   </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#78716C', marginTop: '0.15rem' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', marginTop: '0.15rem' }}>
                     Interviews Taken
                   </div>
                 </div>
@@ -266,14 +242,14 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
               {/* Stat 4: Rating */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <div style={{ color: '#D97706' }}>
-                  <Star size={18} fill="#D97706" color="#D97706" />
+                <div style={{ color: '#FFB800' }}>
+                  <Star size={18} fill="#FFB800" color="#FFB800" />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#1C1917', lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>
                     4.9/5
                   </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#78716C', marginTop: '0.15rem' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', marginTop: '0.15rem' }}>
                     Student Rating
                   </div>
                 </div>
@@ -491,14 +467,14 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: '#0B0B0B',
               borderRadius: '9999px',
-              border: '1.5px solid #E2D9C8',
+              border: '1.5px solid rgba(255, 255, 255, 0.12)',
               padding: '0.42rem 0.45rem 0.42rem 1.35rem',
-              boxShadow: '0 4px 20px rgba(35, 30, 25, 0.06), 0 0 0 3px rgba(200, 141, 45, 0.08)',
+              boxShadow: '0 4px 25px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 184, 0, 0.1)',
               transition: 'all 0.2s ease'
             }}>
-              <Search size={18} style={{ color: '#78716C', marginRight: '0.75rem', flexShrink: 0 }} />
+              <Search size={18} style={{ color: '#FFB800', marginRight: '0.75rem', flexShrink: 0 }} />
               <input
                 type="text"
                 placeholder="Search subjects, topics, PYQs, notes..."
@@ -510,7 +486,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                   outline: 'none',
                   fontSize: '0.92rem',
                   fontWeight: 600,
-                  color: '#1C1917',
+                  color: '#FFFFFF',
                   backgroundColor: 'transparent',
                   fontFamily: "'Plus Jakarta Sans', sans-serif"
                 }}
@@ -522,19 +498,25 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                   fontSize: '0.88rem',
                   fontWeight: 800,
                   borderRadius: '9999px',
-                  backgroundColor: '#781416',
-                  color: '#FFFFFF',
-                  border: 'none',
+                  backgroundColor: '#0B0B0B',
+                  border: '1.5px solid rgba(255, 184, 0, 0.5)',
+                  color: '#FFB800',
                   cursor: 'pointer',
                   flexShrink: 0,
-                  boxShadow: '0 2px 8px rgba(120, 20, 22, 0.25)',
+                  boxShadow: '0 0 16px rgba(255, 184, 0, 0.25)',
                   transition: 'all 0.15s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#631012';
+                  e.currentTarget.style.backgroundColor = '#161616';
+                  e.currentTarget.style.borderColor = '#FFB800';
+                  e.currentTarget.style.boxShadow = '0 0 24px rgba(255, 184, 0, 0.45)';
+                  e.currentTarget.style.color = '#FFA000';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#781416';
+                  e.currentTarget.style.backgroundColor = '#0B0B0B';
+                  e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 0 16px rgba(255, 184, 0, 0.25)';
+                  e.currentTarget.style.color = '#FFB800';
                 }}
               >
                 Search
@@ -550,7 +532,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
             gap: '0.45rem',
             flexWrap: 'wrap'
           }}>
-            <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#78716C', marginRight: '0.25rem' }}>
+            <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#A1A1AA', marginRight: '0.25rem' }}>
               Branch:
             </span>
             {branches.map(b => {
@@ -563,25 +545,27 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                   style={{
                     padding: '0.28rem 0.85rem',
                     borderRadius: '9999px',
-                    border: isSel ? '1.5px solid #781416' : '1px solid #E2D9C8',
-                    backgroundColor: isSel ? '#781416' : '#FFFFFF',
-                    color: isSel ? '#FFFFFF' : '#44403C',
+                    border: isSel ? '1.5px solid #FFB800' : '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: isSel ? '#FFB800' : '#0B0B0B',
+                    color: isSel ? '#030303' : '#A1A1AA',
                     fontWeight: isSel ? 800 : 600,
                     fontSize: '0.78rem',
                     cursor: 'pointer',
-                    boxShadow: isSel ? '0 2px 8px rgba(120,20,22,0.2)' : '0 1px 3px rgba(35,30,25,0.03)',
+                    boxShadow: isSel ? '0 0 12px rgba(255, 184, 0, 0.4)' : 'none',
                     transition: 'all 0.15s ease'
                   }}
                   onMouseEnter={(e) => {
                     if (!isSel) {
-                      e.currentTarget.style.borderColor = '#C88D2D';
-                      e.currentTarget.style.backgroundColor = '#FAF7F2';
+                      e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)';
+                      e.currentTarget.style.backgroundColor = '#161616';
+                      e.currentTarget.style.color = '#FFB800';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isSel) {
-                      e.currentTarget.style.borderColor = '#E2D9C8';
-                      e.currentTarget.style.backgroundColor = '#FFFFFF';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                      e.currentTarget.style.backgroundColor = '#0B0B0B';
+                      e.currentTarget.style.color = '#A1A1AA';
                     }
                   }}
                 >
@@ -627,17 +611,17 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
         .hero-floating-card {
           position: absolute;
           z-index: 5;
-          background-color: #FFFFFF;
+          background-color: #0B0B0B;
           border-radius: 14px;
           padding: 0.48rem 0.8rem;
-          border: 1.2px solid rgba(226, 217, 200, 0.9);
-          box-shadow: 0 8px 24px rgba(35, 30, 25, 0.08), 0 2px 6px rgba(120, 20, 22, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
           display: flex;
           align-items: center;
           gap: 0.6rem;
           cursor: pointer;
           transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-          backdrop-filter: blur(8px);
+          backdrop-filter: blur(12px);
           width: max-content;
           max-width: 228px;
           white-space: nowrap;
@@ -645,8 +629,8 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
         .hero-floating-card:hover {
           transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 14px 32px rgba(120, 20, 22, 0.14), 0 4px 10px rgba(200, 141, 45, 0.12);
-          border-color: #C88D2D;
+          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 184, 0, 0.25);
+          border-color: #FFB800;
         }
 
         .hero-card-icon {
@@ -673,7 +657,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
           font-family: 'Outfit', sans-serif;
           font-size: 0.82rem;
           font-weight: 800;
-          color: #1C1917;
+          color: #FFFFFF;
           line-height: 1.15;
         }
 
@@ -682,21 +666,22 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
           font-weight: 800;
           padding: 0.08rem 0.35rem;
           border-radius: 9999px;
-          background-color: #F3E8FF;
-          color: #9333EA;
+          background-color: rgba(255, 184, 0, 0.15);
+          color: #FFB800;
+          border: 1px solid rgba(255, 184, 0, 0.35);
         }
 
         .hero-card-sub {
           font-family: 'Plus Jakarta Sans', sans-serif;
           font-size: 0.66rem;
           font-weight: 600;
-          color: #78716C;
+          color: #A1A1AA;
           line-height: 1.25;
           margin-top: 0.1rem;
         }
 
         .hero-card-arrow {
-          color: #A8A29E;
+          color: #71717A;
           margin-left: auto;
           flex-shrink: 0;
           transition: transform 0.18s ease;
@@ -704,7 +689,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
         .hero-floating-card:hover .hero-card-arrow {
           transform: translateX(2px);
-          color: #781416;
+          color: #FFB800;
         }
 
         .hero-card-doodle {
@@ -712,9 +697,10 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
           font-family: 'Kalam', 'Patrick Hand', cursive;
           font-size: 0.8rem;
           font-weight: 700;
-          color: #781416;
+          color: #FFB800;
           pointer-events: none;
           white-space: nowrap;
+          text-shadow: 0 0 10px rgba(255, 184, 0, 0.3);
         }
 
         .doodle-left {

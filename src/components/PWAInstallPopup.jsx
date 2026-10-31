@@ -185,7 +185,7 @@ export default function PWAInstallPopup() {
         {/* TOP ACCENT HEADER BANNER */}
         <div className="relative bg-gradient-to-r from-[#7A2327] via-[#861820] to-[#591418] px-5 pt-4 pb-4 text-white overflow-hidden">
           {/* Subtle decorative glow circles */}
-          <div className="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-white/10 blur-xl pointer-events-none" />
+          <div className="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-[#0B0B0B]/10 blur-xl pointer-events-none" />
           <div className="absolute -left-8 -bottom-8 w-28 h-28 rounded-full bg-[#D6A13D]/20 blur-xl pointer-events-none" />
 
           {/* Close Button */}
@@ -193,14 +193,14 @@ export default function PWAInstallPopup() {
             type="button"
             onClick={handleClose}
             aria-label="Close installation popup"
-            className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 text-white/90 flex items-center justify-center transition-all cursor-pointer z-10"
+            className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-[#0B0B0B]/15 hover:bg-[#0B0B0B]/25 active:scale-95 text-white/90 flex items-center justify-center transition-all cursor-pointer z-10"
           >
             <X size={18} strokeWidth={2.4} />
           </button>
 
           {/* Logo & Platform Badge */}
           <div className="flex items-center gap-3.5 pr-8">
-            <div className="relative w-13 h-13 rounded-2xl bg-white p-1 shadow-md border-2 border-[#D6A13D] flex-shrink-0 flex items-center justify-center overflow-hidden">
+            <div className="relative w-13 h-13 rounded-2xl bg-[#0B0B0B] p-1 shadow-md border-2 border-[#D6A13D] flex-shrink-0 flex items-center justify-center overflow-hidden">
               <img
                 src="/assets/pwa-icon-192.png"
                 alt="Professor Virus App Icon"
@@ -215,7 +215,7 @@ export default function PWAInstallPopup() {
             </div>
 
             <div className="min-w-0">
-              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/15 text-[#FDE68A] text-[10px] font-extrabold uppercase tracking-wider mb-1">
+              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0B0B0B]/15 text-[#FDE68A] text-[10px] font-extrabold uppercase tracking-wider mb-1">
                 <Sparkles size={11} className="text-[#FDE68A]" />
                 <span>{platform.isIOS ? 'iOS Safari PWA' : platform.isAndroid ? 'Android Fast App' : 'Progressive Web App'}</span>
               </div>
@@ -254,7 +254,7 @@ export default function PWAInstallPopup() {
               {/* Feature Highlights Grid */}
               <div className="grid grid-cols-2 gap-2.5 py-1">
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-orange-50/70 border border-orange-100">
-                  <div className="w-7 h-7 rounded-lg bg-white text-[#861820] flex items-center justify-center shadow-xs flex-shrink-0">
+                  <div className="w-7 h-7 rounded-lg bg-[#0B0B0B] text-[#861820] flex items-center justify-center shadow-xs flex-shrink-0">
                     <Smartphone size={15} strokeWidth={2.2} />
                   </div>
                   <div className="min-w-0">
@@ -264,7 +264,7 @@ export default function PWAInstallPopup() {
                 </div>
 
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-100">
-                  <div className="w-7 h-7 rounded-lg bg-white text-emerald-600 flex items-center justify-center shadow-xs flex-shrink-0">
+                  <div className="w-7 h-7 rounded-lg bg-[#0B0B0B] text-emerald-600 flex items-center justify-center shadow-xs flex-shrink-0">
                     <Layers size={15} strokeWidth={2.2} />
                   </div>
                   <div className="min-w-0">
@@ -274,7 +274,7 @@ export default function PWAInstallPopup() {
                 </div>
 
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/70 border border-amber-100">
-                  <div className="w-7 h-7 rounded-lg bg-white text-amber-600 flex items-center justify-center shadow-xs flex-shrink-0">
+                  <div className="w-7 h-7 rounded-lg bg-[#0B0B0B] text-amber-600 flex items-center justify-center shadow-xs flex-shrink-0">
                     <Sparkles size={15} strokeWidth={2.2} />
                   </div>
                   <div className="min-w-0">
@@ -284,7 +284,7 @@ export default function PWAInstallPopup() {
                 </div>
 
                 <div className="flex items-center gap-2 p-2.5 rounded-xl bg-blue-50/70 border border-blue-100">
-                  <div className="w-7 h-7 rounded-lg bg-white text-blue-600 flex items-center justify-center shadow-xs flex-shrink-0">
+                  <div className="w-7 h-7 rounded-lg bg-[#0B0B0B] text-blue-600 flex items-center justify-center shadow-xs flex-shrink-0">
                     <ShieldCheck size={15} strokeWidth={2.2} />
                   </div>
                   <div className="min-w-0">
@@ -375,7 +375,7 @@ export default function PWAInstallPopup() {
                     onClick={() => setSelectedBrowserTab('safari')}
                     className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       selectedBrowserTab === 'safari'
-                        ? 'bg-white text-[#861820] shadow-xs'
+                        ? 'bg-[#0B0B0B] text-[#861820] shadow-xs'
                         : 'text-stone-600 hover:text-stone-900'
                     }`}
                   >
@@ -386,7 +386,7 @@ export default function PWAInstallPopup() {
                     onClick={() => setSelectedBrowserTab('chrome')}
                     className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       selectedBrowserTab === 'chrome'
-                        ? 'bg-white text-[#861820] shadow-xs'
+                        ? 'bg-[#0B0B0B] text-[#861820] shadow-xs'
                         : 'text-stone-600 hover:text-stone-900'
                     }`}
                   >
@@ -397,7 +397,7 @@ export default function PWAInstallPopup() {
                     onClick={() => setSelectedBrowserTab('samsung')}
                     className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       selectedBrowserTab === 'samsung'
-                        ? 'bg-white text-[#861820] shadow-xs'
+                        ? 'bg-[#0B0B0B] text-[#861820] shadow-xs'
                         : 'text-stone-600 hover:text-stone-900'
                     }`}
                   >
@@ -409,7 +409,7 @@ export default function PWAInstallPopup() {
               {/* TUTORIAL STEPS */}
               {selectedBrowserTab === 'safari' ? (
                 /* iPHONE SAFARI STEPS */
-                <div className="space-y-3 bg-white p-3.5 rounded-2xl border border-stone-200/80 shadow-xs">
+                <div className="space-y-3 bg-[#0B0B0B] p-3.5 rounded-2xl border border-stone-200/80 shadow-xs">
                   <div className="flex items-start gap-3">
                     <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       1
@@ -451,7 +451,7 @@ export default function PWAInstallPopup() {
                 </div>
               ) : selectedBrowserTab === 'samsung' ? (
                 /* SAMSUNG INTERNET & OTHERS */
-                <div className="space-y-3 bg-white p-3.5 rounded-2xl border border-stone-200/80 shadow-xs">
+                <div className="space-y-3 bg-[#0B0B0B] p-3.5 rounded-2xl border border-stone-200/80 shadow-xs">
                   <div className="flex items-start gap-3">
                     <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       1
@@ -489,7 +489,7 @@ export default function PWAInstallPopup() {
                 </div>
               ) : (
                 /* ANDROID CHROME / BRAVE / EDGE */
-                <div className="space-y-3 bg-white p-3.5 rounded-2xl border border-stone-200/80 shadow-xs">
+                <div className="space-y-3 bg-[#0B0B0B] p-3.5 rounded-2xl border border-stone-200/80 shadow-xs">
                   <div className="flex items-start gap-3">
                     <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       1

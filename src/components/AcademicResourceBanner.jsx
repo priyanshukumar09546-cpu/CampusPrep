@@ -87,10 +87,10 @@ export default function AcademicResourceBanner({ onNavigate }) {
       className="academic-resource-banner-wrapper"
       style={{
         position: 'relative',
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         backgroundImage: `
           radial-gradient(rgba(200, 141, 45, 0.08) 1.5px, transparent 1.5px),
-          linear-gradient(180deg, #FAF7F2 0%, #F4EFE6 100%)
+          linear-gradient(180deg, transparent 0%, #F4EFE6 100%)
         `,
         backgroundSize: '24px 24px, 100% 100%',
         padding: '3.75rem 0 4.25rem 0',
@@ -128,7 +128,7 @@ export default function AcademicResourceBanner({ onNavigate }) {
         <div 
           className="academic-banner-card"
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '24px',
             border: '1.5px solid #E8E2D5',
             boxShadow: '0 20px 48px rgba(35, 30, 25, 0.07)',
@@ -317,7 +317,7 @@ export default function AcademicResourceBanner({ onNavigate }) {
                       fontSize: '0.74rem',
                       fontWeight: 700,
                       color: '#475569',
-                      backgroundColor: '#FFFFFF',
+                      backgroundColor: '#0B0B0B',
                       padding: '0.35rem 0.65rem',
                       borderRadius: '8px',
                       border: '1px solid #E2E8F0',
@@ -352,7 +352,7 @@ export default function AcademicResourceBanner({ onNavigate }) {
           <div 
             className="academic-banner-trust-bar"
             style={{
-              backgroundColor: '#FAF7F2',
+              backgroundColor: 'transparent',
               borderRadius: '16px',
               border: '1.5px solid #E8E2D5',
               padding: '1.25rem 1.5rem',
@@ -441,7 +441,7 @@ export default function AcademicResourceBanner({ onNavigate }) {
                 style={{
                   padding: '0.55rem 1.05rem',
                   borderRadius: '10px',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   color: '#1F2421',
                   border: '1.5px solid #E8E2D5',
                   fontSize: '0.82rem',
@@ -469,7 +469,7 @@ export default function AcademicResourceBanner({ onNavigate }) {
                 style={{
                   padding: '0.55rem 1.05rem',
                   borderRadius: '10px',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   color: '#1F2421',
                   border: '1.5px solid #E8E2D5',
                   fontSize: '0.82rem',

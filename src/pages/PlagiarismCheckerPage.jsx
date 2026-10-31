@@ -248,7 +248,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1C1E21', paddingBottom: '4rem' }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', color: '#1C1E21', paddingBottom: '4rem' }}>
       
       {/* 1. TOP BREADCRUMB & HEADER SECTION */}
       <div className="container" style={{ padding: '1.5rem 1rem 1rem 1rem', maxWidth: '1280px', margin: '0 auto' }}>
@@ -316,7 +316,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
           {/* 3 Reference Badges */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             <div style={{
-              display: 'flex', alignItems: 'center', gap: '0.6rem', backgroundColor: '#FAF7F2',
+              display: 'flex', alignItems: 'center', gap: '0.6rem', backgroundColor: 'transparent',
               border: '1px solid #E8E2D5', padding: '0.65rem 0.95rem', borderRadius: '16px'
             }}>
               <Sparkles size={20} style={{ color: '#DC2626' }} />
@@ -327,7 +327,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
             </div>
 
             <div style={{
-              display: 'flex', alignItems: 'center', gap: '0.6rem', backgroundColor: '#FAF7F2',
+              display: 'flex', alignItems: 'center', gap: '0.6rem', backgroundColor: 'transparent',
               border: '1px solid #E8E2D5', padding: '0.65rem 0.95rem', borderRadius: '16px'
             }}>
               <FileText size={20} style={{ color: '#2563EB' }} />
@@ -338,7 +338,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
             </div>
 
             <div style={{
-              display: 'flex', alignItems: 'center', gap: '0.6rem', backgroundColor: '#FAF7F2',
+              display: 'flex', alignItems: 'center', gap: '0.6rem', backgroundColor: 'transparent',
               border: '1px solid #E8E2D5', padding: '0.65rem 0.95rem', borderRadius: '16px'
             }}>
               <CheckCircle2 size={20} style={{ color: '#10B981' }} />
@@ -376,7 +376,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
               {/* Tab Selector */}
               <div style={{
                 display: 'flex',
-                backgroundColor: '#FAF7F2',
+                backgroundColor: 'transparent',
                 borderRadius: '14px',
                 padding: '0.3rem',
                 border: '1px solid #E8E2D5',
@@ -476,7 +476,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                       padding: '0.9rem',
                       borderRadius: '16px',
                       border: '1.5px solid #E8E2D5',
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       fontSize: '0.88rem',
                       lineHeight: 1.6,
                       color: '#1F2421',
@@ -596,7 +596,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       border: '1.5px solid #E8E2D5',
                       borderRadius: '14px',
                       padding: '0.75rem 1rem'
@@ -641,7 +641,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                         padding: '0.75rem 1rem 0.75rem 2.4rem',
                         borderRadius: '14px',
                         border: '1.5px solid #E8E2D5',
-                        backgroundColor: '#FAF7F2',
+                        backgroundColor: 'transparent',
                         fontSize: '0.85rem',
                         color: '#1F2421',
                         outline: 'none'
@@ -690,7 +690,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                         padding: '0.65rem',
                         borderRadius: '12px',
                         border: '1.5px solid #E8E2D5',
-                        backgroundColor: '#FAF7F2',
+                        backgroundColor: 'transparent',
                         fontSize: '0.82rem',
                         color: '#1F2421',
                         outline: 'none',
@@ -834,7 +834,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                   width: '64px',
                   height: '64px',
                   borderRadius: '20px',
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   border: '1.5px solid #E8E2D5',
                   display: 'flex',
                   alignItems: 'center',
@@ -859,7 +859,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                   alignItems: 'center',
                   gap: '1.5rem',
                   padding: '1rem',
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   borderRadius: '20px',
                   border: '1.5px solid #E8E2D5',
                   marginBottom: '1.25rem'
@@ -1109,7 +1109,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                     padding: '0.75rem 1rem',
                     borderRadius: '14px',
                     border: '1.5px solid #E8E2D5',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     color: '#44403C',
                     fontSize: '0.85rem',
                     fontWeight: 700,
@@ -1132,7 +1132,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
-              backgroundColor: '#FAF7F2',
+              backgroundColor: 'transparent',
               padding: '0.75rem',
               borderRadius: '14px',
               border: '1px solid #E8E2D5',
@@ -1197,7 +1197,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                       <div
                         key={src.id || idx}
                         style={{
-                          backgroundColor: '#FAF7F2',
+                          backgroundColor: 'transparent',
                           borderRadius: '16px',
                           border: '1px solid #E8E2D5',
                           padding: '0.85rem 1rem'
@@ -1297,7 +1297,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                 <div style={{
                   maxHeight: '420px',
                   overflowY: 'auto',
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   border: '1.5px solid #E8E2D5',
                   borderRadius: '16px',
                   padding: '1.15rem',
@@ -1427,7 +1427,7 @@ export default function PlagiarismCheckerPage({ onNavigate, onOpenAuth }) {
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', maxHeight: '150px', overflowY: 'auto' }}>
                       {analysisResult.pageBreakdown.map((pb) => (
-                        <div key={pb.pageNumber} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', backgroundColor: '#FAF7F2', padding: '0.35rem 0.6rem', borderRadius: '8px' }}>
+                        <div key={pb.pageNumber} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', backgroundColor: 'transparent', padding: '0.35rem 0.6rem', borderRadius: '8px' }}>
                           <span style={{ fontWeight: 700 }}>Page {pb.pageNumber}</span>
                           <span style={{ color: '#78716C' }}>{pb.wordCount} words</span>
                           <span style={{ fontWeight: 800, color: pb.similarityNum > 20 ? '#DC2626' : '#10B981' }}>{pb.similarity}</span>

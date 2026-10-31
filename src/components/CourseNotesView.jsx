@@ -832,7 +832,7 @@ export default function CourseNotesView({
 
         {/* Course Tagline Badge */}
         <div style={{
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'transparent',
           border: '1px solid #E8E2D5',
           borderRadius: '14px',
           padding: '0.6rem 1.15rem',
@@ -1108,7 +1108,7 @@ export default function CourseNotesView({
                   fontSize: '0.8rem',
                   borderRadius: '10px',
                   border: '1px solid #E2E8F0',
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   outline: 'none',
                   boxSizing: 'border-box'
                 }}

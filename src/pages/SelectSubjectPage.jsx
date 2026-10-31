@@ -47,7 +47,7 @@ export default function SelectSubjectPage({ onNavigate, onSelectSubject }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
+    <div className="min-h-screen bg-transparent w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
       
       {/* Corner Leaves Decoration */}
       <div 
@@ -86,7 +86,7 @@ export default function SelectSubjectPage({ onNavigate, onSelectSubject }) {
         
         {/* BREADCRUMB */}
         <div className="text-center mb-3">
-          <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-500 bg-white/70 px-3 py-1 rounded-full border border-stone-200/60 shadow-2xs">
+          <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-stone-500 bg-[#0B0B0B]/70 px-3 py-1 rounded-full border border-stone-200/60 shadow-2xs">
             <span>{selectedCourse}</span>
             <span>›</span>
             {selectedCourse.includes('Tech') && (
@@ -100,7 +100,7 @@ export default function SelectSubjectPage({ onNavigate, onSelectSubject }) {
         </div>
 
         {/* SEARCH BAR */}
-        <div className="relative flex items-center bg-white rounded-xl border border-stone-200 shadow-xs mb-4">
+        <div className="relative flex items-center bg-[#0B0B0B] rounded-xl border border-stone-200 shadow-xs mb-4">
           <div className="pl-3 text-stone-400">
             <Search size={16} />
           </div>
@@ -125,7 +125,7 @@ export default function SelectSubjectPage({ onNavigate, onSelectSubject }) {
         {/* SUBJECTS LIST */}
         <div className="space-y-3">
           {filteredSubjects.length === 0 ? (
-            <div className="bg-white rounded-2xl p-8 text-center border border-dashed border-stone-300 text-stone-500">
+            <div className="bg-[#0B0B0B] rounded-2xl p-8 text-center border border-dashed border-stone-300 text-stone-500">
               <BookOpen size={32} className="mx-auto text-stone-400 mb-2" />
               <div className="font-bold text-sm text-stone-800">No subjects found</div>
               <div className="text-xs text-stone-400 mt-1">Try a different search keyword</div>
@@ -141,7 +141,7 @@ export default function SelectSubjectPage({ onNavigate, onSelectSubject }) {
                 <div
                   key={sub.id}
                   onClick={() => handleOpenSubject(sub)}
-                  className="bg-white rounded-2xl p-3.5 border border-stone-200/80 shadow-xs hover:border-[#7A2327] hover:shadow-md transition-all flex items-center justify-between cursor-pointer group active:scale-[0.98]"
+                  className="bg-[#0B0B0B] rounded-2xl p-3.5 border border-stone-200/80 shadow-xs hover:border-[#7A2327] hover:shadow-md transition-all flex items-center justify-between cursor-pointer group active:scale-[0.98]"
                 >
                   <div className="flex items-center gap-3.5 min-w-0 flex-1">
                     <div 

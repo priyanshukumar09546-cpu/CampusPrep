@@ -259,7 +259,7 @@ export default function MobileHomepageView({
     <div 
       className="pv-mobile-homepage-root"
       style={{
-        backgroundColor: '#FFFCF7',
+        backgroundColor: 'transparent',
         minHeight: '100%',
         paddingBottom: '24px',
         width: '100%',
@@ -295,9 +295,9 @@ export default function MobileHomepageView({
           style={{
             position: 'relative',
             borderRadius: '20px',
-            background: 'linear-gradient(180deg, #FFFCF7 0%, #F8EAC9 35%, #FFFFFF 100%)',
-            border: '1.5px solid #E9D9CC',
-            boxShadow: '0 4px 18px rgba(134, 24, 32, 0.05)',
+            background: 'linear-gradient(180deg, #111111 0%, #0B0B0B 100%)',
+            border: '1px solid rgba(255, 184, 0, 0.35)',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 184, 0, 0.1)',
             padding: '11px 9px 12px',
             marginBottom: '10px',
             overflow: 'hidden'
@@ -331,7 +331,7 @@ export default function MobileHomepageView({
                 borderRadius: '9999px',
                 fontSize: '8.5px',
                 fontWeight: 800,
-                color: '#681016',
+                color: '#FFB800',
                 letterSpacing: '0.02em',
                 marginBottom: '3px'
               }}>
@@ -343,7 +343,7 @@ export default function MobileHomepageView({
               <h1 style={{
                 fontSize: '16.5px',
                 fontWeight: 900,
-                color: '#14243D',
+                color: '#FFFFFF',
                 lineHeight: 1.15,
                 margin: '0 0 5px 0',
                 letterSpacing: '-0.02em'
@@ -450,7 +450,7 @@ export default function MobileHomepageView({
                   tabIndex={0}
                   onKeyDown={(e) => { if (e.key === 'Enter') handleCourseClick(c); }}
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#0B0B0B',
                     border: '1px solid #F1F5F9',
                     borderRadius: '9px',
                     padding: '4px 1px 5px',
@@ -499,7 +499,7 @@ export default function MobileHomepageView({
                   {c.subLabel && (
                     <span style={{
                       fontSize: '6px',
-                      color: '#64748B',
+                      color: '#A1A1AA',
                       lineHeight: 1,
                       marginTop: '1px',
                       whiteSpace: 'nowrap',
@@ -526,7 +526,7 @@ export default function MobileHomepageView({
           alignItems: 'center',
           margin: '4px 0 10px 0',
           padding: '6px 4px',
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#0B0B0B',
           borderRadius: '16px',
           border: '1.2px solid #E9D9CC',
           boxShadow: '0 2px 10px rgba(134, 24, 32, 0.04)'
@@ -599,7 +599,7 @@ export default function MobileHomepageView({
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: '#0B0B0B',
               borderRadius: '12px',
               border: isSearchFocused ? '1.5px solid #861820' : '1.5px solid #E9D9CC',
               boxShadow: isSearchFocused ? '0 0 0 3px rgba(134, 24, 32, 0.12)' : '0 1px 3px rgba(20, 36, 61, 0.03)',
@@ -622,7 +622,7 @@ export default function MobileHomepageView({
                   outline: 'none',
                   fontSize: '11.5px',
                   fontWeight: 600,
-                  color: '#14243D',
+                  color: '#FFFFFF',
                   backgroundColor: 'transparent',
                   padding: '7px 0',
                   minWidth: 0,
@@ -681,7 +681,7 @@ export default function MobileHomepageView({
               top: 'calc(100% + 4px)',
               left: 0,
               right: 0,
-              backgroundColor: '#FFFFFF',
+              backgroundColor: '#0B0B0B',
               borderRadius: '12px',
               border: '1.5px solid #E2E8F0',
               boxShadow: '0 8px 24px rgba(15, 23, 42, 0.12)',
@@ -710,7 +710,7 @@ export default function MobileHomepageView({
                     padding: '8px 11px',
                     border: 'none',
                     borderBottom: idx !== searchResults.length - 1 ? '1px solid #F1F5F9' : 'none',
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#0B0B0B',
                     cursor: 'pointer',
                     textAlign: 'left'
                   }}
@@ -719,7 +719,7 @@ export default function MobileHomepageView({
                     <div style={{ fontSize: '11px', fontWeight: 700, color: '#0F172A' }}>
                       {item.title}
                     </div>
-                    <div style={{ fontSize: '9px', color: '#64748B' }}>
+                    <div style={{ fontSize: '9px', color: '#A1A1AA' }}>
                       {item.code ? `${item.code} • ` : ''}{item.category || item.type}
                     </div>
                   </div>
@@ -789,7 +789,7 @@ export default function MobileHomepageView({
                 </div>
 
                 {/* Subtitle */}
-                <div style={{ fontSize: '8.5px', color: '#64748B', lineHeight: 1.25, fontWeight: 500, paddingRight: '14px' }}>
+                <div style={{ fontSize: '8.5px', color: '#A1A1AA', lineHeight: 1.25, fontWeight: 500, paddingRight: '14px' }}>
                   {pillar.desc}
                 </div>
 
@@ -825,7 +825,7 @@ export default function MobileHomepageView({
             marginBottom: '7px',
             padding: '0 2px'
           }}>
-            <h2 style={{ fontSize: '14.5px', fontWeight: 900, color: '#14243D', margin: 0, letterSpacing: '-0.01em' }}>
+            <h2 style={{ fontSize: '14.5px', fontWeight: 900, color: '#FFFFFF', margin: 0, letterSpacing: '-0.01em' }}>
               Popular Subjects
             </h2>
             <button
@@ -867,7 +867,7 @@ export default function MobileHomepageView({
                   tabIndex={0}
                   onKeyDown={(e) => { if (e.key === 'Enter') handleSubjectClick(sub); }}
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#0B0B0B',
                     border: '1px solid #F1F5F9',
                     borderRadius: '12px',
                     padding: '8px 7px 7px',
@@ -913,7 +913,7 @@ export default function MobileHomepageView({
                     </div>
 
                     {/* Branch */}
-                    <div style={{ fontSize: '8px', color: '#64748B', fontWeight: 600, marginBottom: '4px' }}>
+                    <div style={{ fontSize: '8px', color: '#A1A1AA', fontWeight: 600, marginBottom: '4px' }}>
                       {sub.branch}
                     </div>
                   </div>
@@ -927,7 +927,7 @@ export default function MobileHomepageView({
                     borderTop: '1px solid #F8FAFC',
                     fontSize: '7.5px',
                     fontWeight: 700,
-                    color: '#64748B'
+                    color: '#A1A1AA'
                   }}>
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '2px' }}>
                       <FileText size={8} color="#94A3B8" /> {sub.notesCount}
@@ -954,7 +954,7 @@ export default function MobileHomepageView({
             marginBottom: '7px',
             padding: '0 2px'
           }}>
-            <h2 style={{ fontSize: '14.5px', fontWeight: 900, color: '#14243D', margin: 0, letterSpacing: '-0.01em' }}>
+            <h2 style={{ fontSize: '14.5px', fontWeight: 900, color: '#FFFFFF', margin: 0, letterSpacing: '-0.01em' }}>
               Most Used Tools
             </h2>
             <button
@@ -1038,7 +1038,7 @@ export default function MobileHomepageView({
                     <div style={{
                       fontSize: '9.5px',
                       fontWeight: 800,
-                      color: '#14243D',
+                      color: '#FFFFFF',
                       lineHeight: 1.15,
                       marginBottom: '2px'
                     }}>
@@ -1069,7 +1069,7 @@ export default function MobileHomepageView({
                       padding: '4px 0',
                       borderRadius: '7px',
                       border: '1px solid rgba(134, 24, 32, 0.25)',
-                      backgroundColor: '#FFFFFF',
+                      backgroundColor: '#0B0B0B',
                       color: '#861820',
                       fontSize: '8.5px',
                       fontWeight: 800,
@@ -1098,11 +1098,11 @@ const heroPillStyle = {
   display: 'inline-flex',
   alignItems: 'center',
   gap: '3px',
-  backgroundColor: '#FFFFFF',
-  border: '1px solid #E9D9CC',
+  backgroundColor: '#0B0B0B',
+  border: '1px solid rgba(255, 255, 255, 0.08)',
   borderRadius: '9999px',
   padding: '2px 6px',
   fontSize: '8px',
   fontWeight: 700,
-  color: '#14243D'
+  color: '#FFFFFF'
 };

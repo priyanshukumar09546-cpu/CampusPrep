@@ -56,7 +56,7 @@ export default function ApplicationTrackModal({ opportunity, currentTracking, on
       fontFamily: "'Plus Jakarta Sans', sans-serif"
     }}>
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#0B0B0B',
         borderRadius: '24px',
         width: '100%',
         maxWidth: '520px',
@@ -169,7 +169,7 @@ export default function ApplicationTrackModal({ opportunity, currentTracking, on
           <div style={{
             fontSize: '0.75rem',
             color: '#6B7280',
-            backgroundColor: '#F9FAFB',
+            backgroundColor: '#111111',
             padding: '0.6rem 0.85rem',
             borderRadius: '8px'
           }}>
@@ -193,7 +193,7 @@ export default function ApplicationTrackModal({ opportunity, currentTracking, on
               padding: '0.55rem 1.15rem',
               borderRadius: '10px',
               border: '1px solid #D1D5DB',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: '#0B0B0B',
               color: '#374151',
               fontSize: '0.85rem',
               fontWeight: 600,

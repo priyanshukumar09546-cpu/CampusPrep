@@ -637,7 +637,7 @@ export default function MobileNotesScreen({
               display: 'flex',
               alignItems: 'center',
               gap: '12px',
-              backgroundColor: '#F8FAFC',
+              backgroundColor: '#111111',
               padding: '14px',
               borderRadius: '16px',
               border: '1px solid #E2E8F0',
@@ -866,7 +866,7 @@ export default function MobileNotesScreen({
                       <div
                         key={note.id || idx}
                         style={{
-                          backgroundColor: '#FFFFFF',
+                          backgroundColor: '#0B0B0B',
                           borderRadius: '12px',
                           padding: '12px',
                           border: '1px solid #E9D9CC',
@@ -968,7 +968,7 @@ export default function MobileNotesScreen({
                     <div
                       key={pyq.id || idx}
                       style={{
-                        backgroundColor: '#FFFFFF',
+                        backgroundColor: '#0B0B0B',
                         borderRadius: '12px',
                         padding: '12px',
                         border: '1px solid #E9D9CC',
@@ -1014,7 +1014,7 @@ export default function MobileNotesScreen({
 
             {/* TAB CONTENT 3: Syllabus */}
             {activeDetailTab === 'syllabus' && (
-              <div style={{ backgroundColor: '#FFFFFF', borderRadius: '14px', border: '1px solid #E9D9CC', padding: '14px' }}>
+              <div style={{ backgroundColor: '#0B0B0B', borderRadius: '14px', border: '1px solid #E9D9CC', padding: '14px' }}>
                 <h3 style={{ fontSize: '13px', fontWeight: 800, color: '#14243D', margin: '0 0 6px' }}>
                   {activeSubjectDetail.name} Curriculum Structure
                 </h3>
@@ -1116,7 +1116,7 @@ export default function MobileNotesScreen({
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#0B0B0B',
           borderRadius: '9999px',
           border: '1.5px solid #E9D9CC',
           padding: '6px 12px',
@@ -1334,7 +1334,7 @@ export default function MobileNotesScreen({
           <div style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${yearOptions.length}, minmax(0, 1fr))`,
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             border: '1.5px solid #E9D9CC',
             borderRadius: '9999px',
             padding: '3px',
@@ -1371,7 +1371,7 @@ export default function MobileNotesScreen({
           <div style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${semesterTabs.length}, minmax(0, 1fr))`,
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             border: '1.5px solid #E9D9CC',
             borderRadius: '9999px',
             padding: '3px',
@@ -1432,7 +1432,7 @@ export default function MobileNotesScreen({
           {/* 2-Column Subject Cards Grid */}
           {subjectsList.length === 0 ? (
             <div style={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: '#0B0B0B',
               borderRadius: '16px',
               border: '1.5px dashed #FCD34D',
               padding: '24px 14px',
@@ -1466,7 +1466,7 @@ export default function MobileNotesScreen({
                       setActiveDetailTab('notes');
                     }}
                     style={{
-                      backgroundColor: '#FFFFFF',
+                      backgroundColor: '#0B0B0B',
                       borderRadius: '14px',
                       padding: '10px 10px',
                       border: '1.5px solid #E9D9CC',
@@ -1594,7 +1594,7 @@ export default function MobileNotesScreen({
           zIndex: 1100
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             width: '100%',
             maxWidth: '520px',
             borderTopLeftRadius: '20px',
@@ -1659,7 +1659,7 @@ export default function MobileNotesScreen({
           zIndex: 1100
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             width: '100%',
             maxWidth: '520px',
             borderTopLeftRadius: '20px',
@@ -1723,7 +1723,7 @@ export default function MobileNotesScreen({
           padding: '16px'
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             width: '100%',
             maxWidth: '460px',
             borderRadius: '18px',
@@ -1802,7 +1802,7 @@ export default function MobileNotesScreen({
           zIndex: 1100
         }}>
           <div style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             width: '100%',
             maxWidth: '520px',
             borderTopLeftRadius: '20px',

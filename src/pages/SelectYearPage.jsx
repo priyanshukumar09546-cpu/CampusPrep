@@ -29,7 +29,7 @@ export default function SelectYearPage({ onNavigate }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
+    <div className="min-h-screen bg-transparent w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
       
       {/* Corner Leaves Decoration */}
       <div 
@@ -78,7 +78,7 @@ export default function SelectYearPage({ onNavigate }) {
               <div
                 key={y.year}
                 onClick={() => handleSelectYear(y.year)}
-                className="bg-white rounded-2xl p-4 border border-stone-200/80 shadow-xs hover:border-[#7A2327] hover:shadow-md transition-all flex items-center justify-between cursor-pointer group active:scale-[0.98]"
+                className="bg-[#0B0B0B] rounded-2xl p-4 border border-stone-200/80 shadow-xs hover:border-[#7A2327] hover:shadow-md transition-all flex items-center justify-between cursor-pointer group active:scale-[0.98]"
               >
                 <div className="flex items-center gap-3.5">
                   <div 

@@ -169,7 +169,7 @@ export default function SubjectDetailPage({
   if (notes.length === 0 && pyqs.length === 0) {
     const available = Object.keys(notesData).filter(k => /^[A-Z]{3}\d{3}$/.test(k)).slice(0, 10);
     return (
-      <div className="p-8 text-center min-h-[60vh] flex flex-col items-center justify-center font-['Plus_Jakarta_Sans',sans-serif] bg-[#FFF7ED]">
+      <div className="p-8 text-center min-h-[60vh] flex flex-col items-center justify-center font-['Plus_Jakarta_Sans',sans-serif] bg-transparent">
         <h2 className="text-2xl font-black text-[#1F2421] mb-2">No notes found for {code}</h2>
         <p className="text-stone-600 mb-6">Available: {available.join(', ')}</p>
         <div className="flex gap-2 justify-center flex-wrap max-w-lg">
@@ -184,7 +184,7 @@ export default function SubjectDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-4xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] flex flex-col pb-24">
+    <div className="min-h-screen bg-transparent w-full max-w-4xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] flex flex-col pb-24">
       
       {/* Corner Leaves Decoration */}
       <div 
@@ -368,7 +368,7 @@ export default function SubjectDetailPage({
                 {notes.map((item, idx) => (
                   <div 
                     key={item.id || item.unit || idx}
-                    className="bg-white rounded-2xl p-4 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-300 hover:shadow-md transition-all group"
+                    className="bg-[#0B0B0B] rounded-2xl p-4 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-300 hover:shadow-md transition-all group"
                   >
                     <div className="flex items-start sm:items-center gap-3">
                       {/* PDF Icon Badge */}
@@ -425,7 +425,7 @@ export default function SubjectDetailPage({
                 )}
               </div>
               {pyqs.length > 0 && (
-                <div className="bg-white border border-stone-200/90 rounded-full px-3 py-1 flex items-center gap-1 text-xs font-semibold text-stone-700 shadow-xs">
+                <div className="bg-[#0B0B0B] border border-stone-200/90 rounded-full px-3 py-1 flex items-center gap-1 text-xs font-semibold text-stone-700 shadow-xs">
                   <Filter size={12} />
                   <span>AKTU Papers</span>
                 </div>
@@ -444,7 +444,7 @@ export default function SubjectDetailPage({
                 {pyqs.map((item, idx) => (
                   <div 
                     key={item.id || idx}
-                    className="bg-white rounded-2xl p-4 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-300 hover:shadow-md transition-all group"
+                    className="bg-[#0B0B0B] rounded-2xl p-4 border border-orange-100/70 shadow-xs flex items-center justify-between hover:border-orange-300 hover:shadow-md transition-all group"
                   >
                     <div className="flex items-center gap-3">
                       <div className={`w-11 h-11 rounded-xl flex items-center justify-center font-bold text-xs ${item.color || 'bg-blue-100 text-blue-600'} flex-shrink-0`}>
@@ -483,7 +483,7 @@ export default function SubjectDetailPage({
               <div className="font-['Outfit',sans-serif] font-bold text-sm md:text-base text-stone-900 mb-2">
                 Official Syllabus
               </div>
-              <div className="bg-white rounded-2xl p-4 border border-orange-100/70 shadow-xs flex items-center justify-between">
+              <div className="bg-[#0B0B0B] rounded-2xl p-4 border border-orange-100/70 shadow-xs flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center font-bold text-xs bg-rose-100 text-rose-600 flex-shrink-0">
                     <FileText size={22} />
@@ -526,7 +526,7 @@ export default function SubjectDetailPage({
                   return (
                     <div 
                       key={unitNum}
-                      className="bg-white rounded-2xl border border-orange-100/70 shadow-xs overflow-hidden transition-all"
+                      className="bg-[#0B0B0B] rounded-2xl border border-orange-100/70 shadow-xs overflow-hidden transition-all"
                     >
                       <button
                         onClick={() => toggleUnit(unitNum)}
@@ -566,7 +566,7 @@ export default function SubjectDetailPage({
 
       
         {/* EDUCATIONAL SUBJECT FAQS */}
-        <div className="mt-8 bg-white rounded-2xl p-5 sm:p-6 border border-orange-100/80 shadow-xs">
+        <div className="mt-8 bg-[#0B0B0B] rounded-2xl p-5 sm:p-6 border border-orange-100/80 shadow-xs">
           <h2 className="font-['Outfit',sans-serif] font-bold text-base sm:text-lg text-stone-900 mb-3 flex items-center gap-2">
             <span>Academic FAQs — {subjectName} ({code})</span>
           </h2>

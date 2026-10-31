@@ -66,10 +66,10 @@ export default function SocialJoinModal() {
       {/* MODAL CARD */}
       <div
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#0B0B0B',
           borderRadius: '24px',
-          border: '1.5px solid #E8E2D5',
-          boxShadow: '0 32px 64px rgba(35, 30, 25, 0.18), 0 0 0 1px rgba(255,255,255,0.6) inset',
+          border: '1px solid rgba(255, 184, 0, 0.35)',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 184, 0, 0.15)',
           width: '100%',
           maxWidth: '480px',
           padding: '2.5rem 2rem 2rem 2rem',
@@ -100,13 +100,13 @@ export default function SocialJoinModal() {
             width: '36px',
             height: '36px',
             borderRadius: '50%',
-            border: '1.5px solid #E8E2D5',
-            backgroundColor: '#FAF7F2',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+            backgroundColor: 'transparent',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            color: '#64748B',
+            color: '#A1A1AA',
             transition: 'all 0.2s ease',
             zIndex: 2
           }}
@@ -130,7 +130,7 @@ export default function SocialJoinModal() {
             height: '72px',
             borderRadius: '50%',
             border: '3px solid #C88D2D',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             boxShadow: '0 8px 20px rgba(200, 141, 45, 0.25)',
             display: 'flex',
             alignItems: 'center',

@@ -423,24 +423,25 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
     <section 
       id="choose-your-course"
       style={{
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         padding: '3.5rem 0 3rem 0',
-        borderBottom: '1.5px solid #E8E2D5'
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
       }}
+      className="pv-scroll-reveal"
     >
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Heading */}
         <div className="text-center mb-6 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#7A2327]/10 text-[#7A2327] mb-2.5">
-            <BookOpen size={13} className="text-[#7A2327]" />
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FFB800]/15 text-[#FFB800] border border-[#FFB800]/30 mb-2.5">
+            <BookOpen size={13} className="text-[#FFB800]" />
             <span>AKTU Academic Directory</span>
           </div>
           
           <h2 style={{
             fontSize: 'clamp(1.75rem, 2.5vw, 2.4rem)',
             fontWeight: 800,
-            color: '#1C1E21',
+            color: '#FFFFFF',
             fontFamily: "'Outfit', sans-serif",
             letterSpacing: '-0.02em',
             margin: '0 0 0.5rem 0'
@@ -449,11 +450,11 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
           </h2>
           <p style={{
             fontSize: '0.95rem',
-            color: '#64748B',
+            color: '#A1A1AA',
             fontWeight: 500,
             margin: 0
           }}>
-            Select your degree programme to explore branch-specific notes, syllabus & PYQs
+            Select your degree programme to explore branch-specific notes, syllabus &amp; PYQs
           </p>
         </div>
 
@@ -471,13 +472,13 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                   onClick={() => setActiveCategory(cat.label)}
                   className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                     isActive 
-                      ? 'bg-[#7A2327] text-white shadow-xs' 
-                      : 'bg-white/90 text-stone-600 border border-stone-200/90 hover:bg-stone-50 hover:text-stone-900'
+                      ? 'bg-[#FFB800] text-black shadow-[0_0_12px_rgba(255,184,0,0.4)]' 
+                      : 'bg-[#0B0B0B] text-zinc-300 border border-white/10 hover:border-[#FFB800]/40 hover:text-white'
                   }`}
                 >
                   <span>{cat.label}</span>
                   <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500'
+                    isActive ? 'bg-black/30 text-black font-extrabold' : 'bg-white/10 text-zinc-400'
                   }`}>
                     {cat.count}
                   </span>
@@ -488,19 +489,19 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
 
           {/* Quick Search */}
           <div className="relative min-w-[220px] max-w-xs w-full self-end md:self-auto">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" />
+            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" />
             <input 
               type="text"
               placeholder="Search courses..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-8 pr-8 py-1.5 text-xs bg-white rounded-full border border-stone-200/90 text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-[#7A2327] focus:ring-1 focus:ring-[#7A2327]/20 transition-all font-medium"
+              className="w-full pl-8 pr-8 py-1.5 text-xs bg-[#0B0B0B] rounded-full border border-white/10 text-white placeholder:text-zinc-500 focus:outline-none focus:border-[#FFB800] focus:ring-1 focus:ring-[#FFB800]/30 transition-all font-medium"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 cursor-pointer"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white cursor-pointer"
                 aria-label="Clear search"
               >
                 <X size={14} />
@@ -511,14 +512,14 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
 
         {/* 24 Course Cards Responsive Grid */}
         {filteredCourses.length === 0 ? (
-          <div className="bg-white rounded-2xl p-10 text-center border border-dashed border-stone-300 text-stone-500 my-4 max-w-md mx-auto">
-            <BookOpen size={36} className="mx-auto text-stone-400 mb-2" />
-            <div className="font-bold text-base text-stone-800">No courses match "{searchQuery}"</div>
-            <div className="text-xs text-stone-400 mt-1">Try another keyword or select "All" categories</div>
+          <div className="bg-[#0B0B0B] rounded-2xl p-10 text-center border border-dashed border-white/20 text-zinc-400 my-4 max-w-md mx-auto">
+            <BookOpen size={36} className="mx-auto text-zinc-500 mb-2" />
+            <div className="font-bold text-base text-white">No courses match "{searchQuery}"</div>
+            <div className="text-xs text-zinc-400 mt-1">Try another keyword or select "All" categories</div>
             <button
               type="button"
               onClick={() => { setSearchQuery(''); setActiveCategory('All'); }}
-              className="mt-3.5 px-4 py-1.5 rounded-full text-xs font-bold text-white bg-[#7A2327] hover:bg-[#631c20] transition-colors cursor-pointer"
+              className="mt-3.5 px-4 py-1.5 rounded-full text-xs font-bold text-black bg-[#FFB800] hover:bg-[#FFA000] transition-colors cursor-pointer shadow-[0_0_12px_rgba(255,184,0,0.35)]"
             >
               Reset Filters
             </button>
@@ -541,8 +542,8 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                   aria-label={`${c.title} - ${c.subtitle}`}
                   className="group"
                   style={{
-                    backgroundColor: '#FFFFFF',
-                    border: `1.5px solid ${c.borderColor}`,
+                    backgroundColor: '#0B0B0B',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
                     borderRadius: '20px',
                     padding: '1.25rem 1rem 1.1rem 1rem',
                     display: 'flex',
@@ -554,7 +555,7 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                     textDecoration: 'none',
                     color: 'inherit',
                     transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                    boxShadow: '0 4px 14px rgba(35,30,25,0.04)',
+                    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)',
                     position: 'relative',
                     overflow: 'hidden',
                     outline: 'none',
@@ -563,13 +564,13 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-5px)';
-                    e.currentTarget.style.boxShadow = '0 12px 24px rgba(35,30,25,0.08)';
-                    e.currentTarget.style.borderColor = c.iconBg;
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 0, 0, 0.9), 0 0 16px rgba(255, 184, 0, 0.2)';
+                    e.currentTarget.style.borderColor = '#FFB800';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'none';
-                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(35,30,25,0.04)';
-                    e.currentTarget.style.borderColor = c.borderColor;
+                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(0, 0, 0, 0.6)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
                   }}
                 >
                   {/* Top Row: Icon Badge & Duration Tag */}
@@ -578,12 +579,12 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                       width: '42px',
                       height: '42px',
                       borderRadius: '13px',
-                      backgroundColor: c.bgColor,
-                      color: c.iconBg,
+                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                      color: '#FFB800',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      border: `1px solid ${c.borderColor}`,
+                      border: '1px solid rgba(255, 184, 0, 0.25)',
                       flexShrink: 0
                     }}>
                       <Icon size={22} strokeWidth={2.2} aria-hidden="true" focusable="false" />
@@ -592,9 +593,9 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                     <span 
                       className="text-[10px] font-bold px-2 py-0.5 rounded-md tracking-tight uppercase"
                       style={{ 
-                        backgroundColor: c.bgColor, 
-                        color: c.iconBg,
-                        border: `1px solid ${c.borderColor}` 
+                        backgroundColor: 'rgba(255, 184, 0, 0.12)', 
+                        color: '#FFB800',
+                        border: '1px solid rgba(255, 184, 0, 0.3)' 
                       }}
                     >
                       {c.duration}
@@ -604,11 +605,11 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                   {/* Middle Row: Title & Subtitle */}
                   <div className="w-full mb-3 flex-1 flex flex-col justify-start">
                     <div 
-                      className="group-hover:text-[#7A2327] transition-colors"
+                      className="group-hover:text-[#FFB800] transition-colors"
                       style={{
                         fontSize: '1rem',
                         fontWeight: 800,
-                        color: '#1C1E21',
+                        color: '#FFFFFF',
                         lineHeight: 1.25,
                         marginBottom: '0.25rem',
                         fontFamily: "'Outfit', sans-serif"
@@ -620,7 +621,7 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                     <div style={{
                       fontSize: '0.72rem',
                       fontWeight: 500,
-                      color: '#64748B',
+                      color: '#A1A1AA',
                       lineHeight: 1.3
                     }}>
                       {c.subtitle}
@@ -628,9 +629,9 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                   </div>
 
                   {/* Bottom Row: Academic Tag & Action Arrow Indicator */}
-                  <div className="w-full pt-2 border-t border-stone-100 flex items-center justify-between mt-auto">
-                    <span className="text-[10px] font-semibold text-stone-600">
-                      View Syllabus & Notes
+                  <div className="w-full pt-2 border-t border-white/10 flex items-center justify-between mt-auto">
+                    <span className="text-[10px] font-semibold text-zinc-400">
+                      View Syllabus &amp; Notes
                     </span>
 
                     <div 
@@ -639,8 +640,9 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                         width: '26px',
                         height: '26px',
                         borderRadius: '50%',
-                        backgroundColor: c.arrowBg,
-                        color: c.arrowColor,
+                        backgroundColor: 'rgba(255, 184, 0, 0.12)',
+                        color: '#FFB800',
+                        border: '1px solid rgba(255, 184, 0, 0.3)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -657,8 +659,8 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
         )}
 
         {/* Bottom Helper Note */}
-        <div className="mt-6 text-center text-xs text-stone-500 font-medium">
-          Need another course? All 24 official AKTU undergraduate, postgraduate & lateral entry programmes supported.
+        <div className="mt-6 text-center text-xs text-zinc-400 font-medium">
+          Need another course? All 24 official AKTU undergraduate, postgraduate &amp; lateral entry programmes supported.
         </div>
       </div>
     </section>

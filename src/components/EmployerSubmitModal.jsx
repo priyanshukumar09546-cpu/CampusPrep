@@ -131,7 +131,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
         }}
       >
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#0B0B0B',
         borderRadius: '24px',
         width: '100%',
         maxWidth: '740px',
@@ -216,7 +216,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                 {successData.message}
               </p>
               <div style={{
-                backgroundColor: '#F9FAFB',
+                backgroundColor: '#111111',
                 border: '1px solid #E5E7EB',
                 borderRadius: '14px',
                 padding: '1rem',
@@ -374,7 +374,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                       fontSize: '0.88rem',
                       outline: 'none',
                       boxSizing: 'border-box',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   >
                     {typesList.map(t => <option key={t} value={t}>{t}</option>)}
@@ -395,7 +395,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                       fontSize: '0.88rem',
                       outline: 'none',
                       boxSizing: 'border-box',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   >
                     {workModesList.map(w => <option key={w} value={w}>{w}</option>)}
@@ -420,7 +420,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                       fontSize: '0.88rem',
                       outline: 'none',
                       boxSizing: 'border-box',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   >
                     {domainsList.map(d => <option key={d} value={d}>{d}</option>)}
@@ -593,7 +593,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
 
               {/* Submitter Details */}
               <div style={{
-                backgroundColor: '#F9FAFB',
+                backgroundColor: '#111111',
                 border: '1px solid #E5E7EB',
                 borderRadius: '12px',
                 padding: '0.85rem 1rem'
@@ -617,7 +617,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.85rem',
                         outline: 'none',
                         boxSizing: 'border-box',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     />
                   </div>
@@ -636,7 +636,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.85rem',
                         outline: 'none',
                         boxSizing: 'border-box',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     />
                   </div>
@@ -653,7 +653,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                     padding: '0.6rem 1.25rem',
                     borderRadius: '10px',
                     border: '1px solid #D1D5DB',
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#0B0B0B',
                     color: '#374151',
                     fontSize: '0.88rem',
                     fontWeight: 600,
@@ -708,7 +708,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
         <div
           onClick={e => e.stopPropagation()}
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderTopLeftRadius: '24px',
             borderTopRightRadius: '24px',
             width: '100%',
@@ -861,7 +861,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     />
                   </div>
@@ -884,7 +884,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     />
                   </div>
@@ -911,7 +911,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     />
                   </div>
@@ -931,7 +931,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     >
                       {workModesList.map(w => <option key={w} value={w}>{w}</option>)}
@@ -957,7 +957,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     >
                       {typesList.map(t => <option key={t} value={t}>{t}</option>)}
@@ -979,7 +979,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     >
                       {domainsList.map(d => <option key={d} value={d}>{d}</option>)}
@@ -1007,7 +1007,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     />
                   </div>
@@ -1062,7 +1062,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     />
                   </div>
@@ -1083,7 +1083,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     />
                   </div>
@@ -1097,7 +1097,7 @@ export default function EmployerSubmitModal({ isOpen, onClose, onSubmitted }) {
             <div style={{
               padding: '0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 8px))',
               borderTop: '1px solid #F1F5F9',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: '#0B0B0B',
               display: 'flex',
               alignItems: 'center',
               gap: '0.65rem',

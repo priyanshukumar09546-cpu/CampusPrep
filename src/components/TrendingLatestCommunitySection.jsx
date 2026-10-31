@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Flame, FileText, Briefcase, ArrowRight, Eye, Sparkles, FileDown, CheckCircle, ChevronRight, Calendar } from 'lucide-react';
+import { Flame, FileText, Briefcase, ArrowRight, Sparkles, FileDown, ChevronRight, Calendar } from 'lucide-react';
 
 export default function TrendingLatestCommunitySection({ 
   onSubjectClick, 
   onNoteClick, 
-  onDiscussionClick,
   onViewAll 
 }) {
   // Authoritative Trending AKTU B.Tech Core Subjects
@@ -101,7 +100,6 @@ export default function TrendingLatestCommunitySection({
     { id: 5, title: 'Comprehensive Placement Report', sub: 'Mathematical Score & Question Breakdown', badge: 'Report' },
   ];
 
-  // Helper to format date without fake "2 hours ago"
   const formatNoteDate = (note) => {
     if (note.createdAt) {
       try {
@@ -115,12 +113,15 @@ export default function TrendingLatestCommunitySection({
   };
 
   return (
-    <section style={{
-      backgroundColor: '#FAF7F2',
-      padding: '2.5rem 0',
-      borderBottom: '1.5px solid #E8E2D5'
-    }}>
-      <div className="container">
+    <section 
+      className="pv-scroll-reveal"
+      style={{
+        backgroundColor: 'transparent',
+        padding: '2.5rem 0',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+      }}
+    >
+      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -129,11 +130,11 @@ export default function TrendingLatestCommunitySection({
 
           {/* COLUMN 1: Trending Subjects */}
           <div style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: '#0B0B0B',
             borderRadius: '20px',
             padding: '1.4rem',
-            border: '1.5px solid #E8E2D5',
-            boxShadow: '0 8px 24px rgba(35,30,25,0.04)'
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)'
           }}>
             <div style={{
               display: 'flex',
@@ -142,8 +143,8 @@ export default function TrendingLatestCommunitySection({
               marginBottom: '0.4rem'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Flame size={20} style={{ color: '#EA580C' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21', margin: 0 }}>
+                <Flame size={20} style={{ color: '#FF8C00' }} />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>
                   Trending Subjects
                 </h3>
               </div>
@@ -153,7 +154,7 @@ export default function TrendingLatestCommunitySection({
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#C88D2D',
+                  color: '#FFB800',
                   fontSize: '0.8rem',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -166,7 +167,7 @@ export default function TrendingLatestCommunitySection({
               </button>
             </div>
             
-            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem', marginTop: '0.2rem' }}>
+            <p style={{ fontSize: '0.78rem', color: '#A1A1AA', marginBottom: '1rem', marginTop: '0.2rem' }}>
               Core curriculum subjects for AKTU B.Tech
             </p>
 
@@ -176,8 +177,8 @@ export default function TrendingLatestCommunitySection({
                   key={sub.id}
                   onClick={() => onSubjectClick && onSubjectClick(sub)}
                   style={{
-                    backgroundColor: '#FAF7F2',
-                    border: '1.5px solid #E8E2D5',
+                    backgroundColor: '#111111',
+                    border: '1px solid rgba(255, 255, 255, 0.06)',
                     borderRadius: '12px',
                     padding: '0.75rem 0.9rem',
                     display: 'flex',
@@ -187,34 +188,36 @@ export default function TrendingLatestCommunitySection({
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#C88D2D';
-                    e.currentTarget.style.backgroundColor = '#FDF6E8';
+                    e.currentTarget.style.borderColor = '#FFB800';
+                    e.currentTarget.style.backgroundColor = '#161616';
+                    e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 184, 0, 0.15)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#E8E2D5';
-                    e.currentTarget.style.backgroundColor = '#FAF7F2';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+                    e.currentTarget.style.backgroundColor = '#111111';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
                   <div>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#1C1E21' }}>
+                    <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#FFFFFF' }}>
                       {sub.name}
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#646E78', fontWeight: 500, marginTop: '0.1rem' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#A1A1AA', fontWeight: 500, marginTop: '0.1rem' }}>
                       {sub.branch} • {sub.year} • {sub.sem}
                     </div>
                   </div>
 
                   <div style={{
                     fontSize: '0.7rem',
-                    color: '#7A1C28',
+                    color: '#FFB800',
                     fontWeight: 800,
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.3rem',
-                    backgroundColor: '#ffffff',
+                    backgroundColor: 'rgba(255, 184, 0, 0.1)',
                     padding: '0.2rem 0.55rem',
                     borderRadius: '6px',
-                    border: '1px solid #E8D3B0'
+                    border: '1px solid rgba(255, 184, 0, 0.3)'
                   }}>
                     {sub.code} <ChevronRight size={12} />
                   </div>
@@ -225,11 +228,11 @@ export default function TrendingLatestCommunitySection({
 
           {/* COLUMN 2: Latest Notes */}
           <div style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: '#0B0B0B',
             borderRadius: '20px',
             padding: '1.4rem',
-            border: '1.5px solid #E8E2D5',
-            boxShadow: '0 8px 24px rgba(35,30,25,0.04)'
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)'
           }}>
             <div style={{
               display: 'flex',
@@ -238,8 +241,8 @@ export default function TrendingLatestCommunitySection({
               marginBottom: '0.4rem'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <FileText size={20} style={{ color: '#C88D2D' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21', margin: 0 }}>
+                <FileText size={20} style={{ color: '#FFB800' }} />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>
                   Latest Notes
                 </h3>
               </div>
@@ -249,7 +252,7 @@ export default function TrendingLatestCommunitySection({
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#C88D2D',
+                  color: '#FFB800',
                   fontSize: '0.8rem',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -262,18 +265,18 @@ export default function TrendingLatestCommunitySection({
               </button>
             </div>
             
-            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem', marginTop: '0.2rem' }}>
+            <p style={{ fontSize: '0.78rem', color: '#A1A1AA', marginBottom: '1rem', marginTop: '0.2rem' }}>
               Real study materials from verified database
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {isLoadingNotes ? (
-                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#64748B', fontSize: '0.85rem' }}>
-                  <Sparkles size={20} style={{ animation: 'spin 2s linear infinite', color: '#C88D2D', marginBottom: '0.4rem' }} />
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#A1A1AA', fontSize: '0.85rem' }}>
+                  <Sparkles size={20} style={{ animation: 'spin 2s linear infinite', color: '#FFB800', marginBottom: '0.4rem' }} />
                   <div>Loading latest notes...</div>
                 </div>
               ) : realLatestNotes.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#64748B', fontSize: '0.85rem' }}>
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#71717A', fontSize: '0.85rem' }}>
                   No recent notes available.
                 </div>
               ) : (
@@ -287,8 +290,8 @@ export default function TrendingLatestCommunitySection({
                       key={note.id || idx}
                       onClick={() => onNoteClick && onNoteClick(note)}
                       style={{
-                        backgroundColor: '#FAF7F2',
-                        border: '1.5px solid #E8E2D5',
+                        backgroundColor: '#111111',
+                        border: '1px solid rgba(255, 255, 255, 0.06)',
                         borderRadius: '12px',
                         padding: '0.75rem 0.9rem',
                         display: 'flex',
@@ -298,12 +301,14 @@ export default function TrendingLatestCommunitySection({
                         transition: 'all 0.2s ease'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#C88D2D';
-                        e.currentTarget.style.backgroundColor = '#FDF6E8';
+                        e.currentTarget.style.borderColor = '#FFB800';
+                        e.currentTarget.style.backgroundColor = '#161616';
+                        e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 184, 0, 0.15)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = '#E8E2D5';
-                        e.currentTarget.style.backgroundColor = '#FAF7F2';
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+                        e.currentTarget.style.backgroundColor = '#111111';
+                        e.currentTarget.style.boxShadow = 'none';
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flex: 1, minWidth: 0, paddingRight: '0.5rem' }}>
@@ -311,8 +316,9 @@ export default function TrendingLatestCommunitySection({
                           width: '32px',
                           height: '32px',
                           borderRadius: '8px',
-                          backgroundColor: '#FDF6E8',
-                          color: '#C88D2D',
+                          backgroundColor: 'rgba(255, 184, 0, 0.1)',
+                          color: '#FFB800',
+                          border: '1px solid rgba(255, 184, 0, 0.25)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -325,7 +331,7 @@ export default function TrendingLatestCommunitySection({
                           <div style={{
                             fontSize: '0.86rem',
                             fontWeight: 700,
-                            color: '#1C1E21',
+                            color: '#FFFFFF',
                             lineHeight: 1.3,
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
@@ -333,7 +339,7 @@ export default function TrendingLatestCommunitySection({
                           }}>
                             {title}
                           </div>
-                          <div style={{ fontSize: '0.72rem', color: '#646E78', marginTop: '0.15rem' }}>
+                          <div style={{ fontSize: '0.72rem', color: '#A1A1AA', marginTop: '0.15rem' }}>
                             {subtext}
                           </div>
                         </div>
@@ -341,7 +347,7 @@ export default function TrendingLatestCommunitySection({
 
                       <div style={{
                         fontSize: '0.7rem',
-                        color: '#64748B',
+                        color: '#71717A',
                         fontWeight: 600,
                         whiteSpace: 'nowrap',
                         display: 'flex',
@@ -360,11 +366,11 @@ export default function TrendingLatestCommunitySection({
 
           {/* COLUMN 3: Placement & Interview Pro */}
           <div style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: '#0B0B0B',
             borderRadius: '20px',
             padding: '1.4rem',
-            border: '1.5px solid #E8E2D5',
-            boxShadow: '0 8px 24px rgba(35,30,25,0.04)'
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)'
           }}>
             <div style={{
               display: 'flex',
@@ -373,8 +379,8 @@ export default function TrendingLatestCommunitySection({
               marginBottom: '0.4rem'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Briefcase size={20} style={{ color: '#0284c7' }} />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1C1E21', margin: 0 }}>
+                <Briefcase size={20} style={{ color: '#38BDF8' }} />
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>
                   Interview Pro
                 </h3>
               </div>
@@ -384,7 +390,7 @@ export default function TrendingLatestCommunitySection({
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#0284c7',
+                  color: '#38BDF8',
                   fontSize: '0.8rem',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -397,7 +403,7 @@ export default function TrendingLatestCommunitySection({
               </button>
             </div>
             
-            <p style={{ fontSize: '0.76rem', color: '#646E78', marginBottom: '1rem', marginTop: '0.2rem' }}>
+            <p style={{ fontSize: '0.78rem', color: '#A1A1AA', marginBottom: '1rem', marginTop: '0.2rem' }}>
               4-Stage AI Placement Training &amp; Assessment
             </p>
 
@@ -407,8 +413,8 @@ export default function TrendingLatestCommunitySection({
                   key={mod.id}
                   onClick={() => onViewAll && onViewAll('interview-pro')}
                   style={{
-                    backgroundColor: '#FAF7F2',
-                    border: '1.5px solid #E8E2D5',
+                    backgroundColor: '#111111',
+                    border: '1px solid rgba(255, 255, 255, 0.06)',
                     borderRadius: '12px',
                     padding: '0.75rem 0.9rem',
                     display: 'flex',
@@ -418,31 +424,33 @@ export default function TrendingLatestCommunitySection({
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = '#0284c7';
-                    e.currentTarget.style.backgroundColor = '#F0F9FF';
+                    e.currentTarget.style.borderColor = '#38BDF8';
+                    e.currentTarget.style.backgroundColor = '#161616';
+                    e.currentTarget.style.boxShadow = '0 0 15px rgba(56, 189, 248, 0.15)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = '#E8E2D5';
-                    e.currentTarget.style.backgroundColor = '#FAF7F2';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+                    e.currentTarget.style.backgroundColor = '#111111';
+                    e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
                   <div style={{ minWidth: 0, flex: 1, paddingRight: '0.5rem' }}>
-                    <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#1C1E21', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#FFFFFF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {mod.title}
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#646E78', marginTop: '0.15rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#A1A1AA', marginTop: '0.15rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {mod.sub}
                     </div>
                   </div>
 
                   <div style={{
                     fontSize: '0.7rem',
-                    color: '#0284c7',
+                    color: '#38BDF8',
                     fontWeight: 700,
-                    backgroundColor: '#ffffff',
+                    backgroundColor: 'rgba(56, 189, 248, 0.1)',
                     padding: '0.2rem 0.5rem',
                     borderRadius: '6px',
-                    border: '1px solid #BAE6FD',
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
                     whiteSpace: 'nowrap',
                     flexShrink: 0
                   }}>

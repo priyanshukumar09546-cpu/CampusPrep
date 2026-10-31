@@ -1081,7 +1081,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         />
       </div>
 
-      <div className="pv-desktop-notes-view" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1C1E21' }}>
+      <div className="pv-desktop-notes-view" style={{ backgroundColor: 'transparent', minHeight: '100vh', color: '#FFFFFF' }}>
         
         {/* 0. COURSE SELECTOR TABS (B.Tech | MCA | MBA | B.Pharm) */}
         <div style={{

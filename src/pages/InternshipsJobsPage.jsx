@@ -360,7 +360,7 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
 
   return (
     <div style={{
-      backgroundColor: '#FAF7F2',
+      backgroundColor: 'transparent',
       minHeight: '100vh',
       fontFamily: "'Plus Jakarta Sans', sans-serif",
       color: '#1C1E21',
@@ -1596,7 +1596,7 @@ export default function InternshipsJobsPage({ onNavigate, onOpenAuth }) {
           MOBILE VIEW (< 1024px) — EXACT 1:1 MATCH WITH REFERENCE IMAGE
           ========================================================================= */}
       <div className="pv-internships-mobile-only" style={{
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         minHeight: '100vh',
         padding: '0.75rem 1rem 5.5rem',
         boxSizing: 'border-box',

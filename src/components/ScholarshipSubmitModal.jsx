@@ -121,7 +121,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
         }}
       >
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#0B0B0B',
         borderRadius: '24px',
         width: '100%',
         maxWidth: '720px',
@@ -209,7 +209,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                 Thank you! Our automated system checked the portal link and sent the scholarship to our moderation team. Once approved, it will appear on the live Scholarships board.
               </p>
               <div style={{
-                backgroundColor: '#F8FAFC',
+                backgroundColor: '#111111',
                 border: '1px solid #E2E8F0',
                 borderRadius: '12px',
                 padding: '1rem',
@@ -354,7 +354,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       borderRadius: '10px',
                       border: '1.5px solid #D1D5DB',
                       fontSize: '0.88rem',
-                      backgroundColor: '#FFFFFF',
+                      backgroundColor: '#0B0B0B',
                       outline: 'none'
                     }}
                   >
@@ -375,7 +375,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       borderRadius: '10px',
                       border: '1.5px solid #D1D5DB',
                       fontSize: '0.88rem',
-                      backgroundColor: '#FFFFFF',
+                      backgroundColor: '#0B0B0B',
                       outline: 'none'
                     }}
                   >
@@ -507,7 +507,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
 
               {/* Submitter Info */}
               <div style={{
-                backgroundColor: '#F8FAFC',
+                backgroundColor: '#111111',
                 border: '1px solid #E2E8F0',
                 borderRadius: '12px',
                 padding: '1rem',
@@ -568,7 +568,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                     padding: '0.6rem 1.25rem',
                     borderRadius: '9999px',
                     border: '1px solid #D1D5DB',
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#0B0B0B',
                     color: '#374151',
                     fontWeight: 700,
                     fontSize: '0.88rem',
@@ -621,7 +621,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
       <div
         onClick={e => e.stopPropagation()}
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#0B0B0B',
           borderTopLeftRadius: '24px',
           borderTopRightRadius: '24px',
           width: '100%',
@@ -652,7 +652,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
               width: '36px',
               height: '36px',
               borderRadius: '10px',
-              backgroundColor: '#FFF7ED',
+              backgroundColor: 'transparent',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -777,7 +777,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       fontSize: '0.78rem',
                       color: '#1E293B',
                       outline: 'none',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   />
                 </div>
@@ -802,7 +802,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       fontSize: '0.78rem',
                       color: '#1E293B',
                       outline: 'none',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   />
                 </div>
@@ -829,7 +829,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       fontSize: '0.78rem',
                       color: '#1E293B',
                       outline: 'none',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   />
                 </div>
@@ -851,7 +851,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       fontSize: '0.78rem',
                       color: '#1E293B',
                       outline: 'none',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   >
                     {categoriesList.map(c => <option key={c} value={c}>{c}</option>)}
@@ -877,7 +877,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       fontSize: '0.78rem',
                       color: '#1E293B',
                       outline: 'none',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   >
                     {typesList.map(t => <option key={t} value={t}>{t}</option>)}
@@ -905,7 +905,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                         fontSize: '0.78rem',
                         color: '#1E293B',
                         outline: 'none',
-                        backgroundColor: '#FFFFFF'
+                        backgroundColor: '#0B0B0B'
                       }}
                     />
                   </div>
@@ -932,7 +932,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       fontSize: '0.78rem',
                       color: '#1E293B',
                       outline: 'none',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   />
                 </div>
@@ -956,7 +956,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       fontSize: '0.78rem',
                       color: '#1E293B',
                       outline: 'none',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   />
                 </div>
@@ -983,7 +983,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       fontSize: '0.78rem',
                       color: '#1E293B',
                       outline: 'none',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   />
                 </div>
@@ -1008,7 +1008,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
                       fontSize: '0.78rem',
                       color: '#1E293B',
                       outline: 'none',
-                      backgroundColor: '#FFFFFF'
+                      backgroundColor: '#0B0B0B'
                     }}
                   />
                 </div>
@@ -1022,7 +1022,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
           <div style={{
             padding: '0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 8px))',
             borderTop: '1px solid #F1F5F9',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             display: 'flex',
             alignItems: 'center',
             gap: '0.65rem',
@@ -1033,7 +1033,7 @@ export default function ScholarshipSubmitModal({ isOpen, onClose, onSubmitted })
               onClick={onClose}
               style={{
                 padding: '0.65rem 1.4rem',
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#0B0B0B',
                 border: '1.5px solid #E2E8F0',
                 color: '#475569',
                 borderRadius: '10px',

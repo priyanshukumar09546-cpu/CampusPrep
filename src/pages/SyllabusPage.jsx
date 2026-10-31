@@ -257,7 +257,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
       {/* 1. LARGE ILLUSTRATED SYLLABUS HERO BANNER */}
       <section style={{
         position: 'relative',
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         backgroundImage: `
           radial-gradient(rgba(200, 141, 45, 0.08) 1.5px, transparent 1.5px),
           linear-gradient(180deg, #FAF7F2 0%, #EFE8DA 100%)
@@ -552,7 +552,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
                   padding: '0.55rem 0.75rem',
                   borderRadius: '10px',
                   border: '1.5px solid #E8E2D5',
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   fontSize: '0.82rem',
                   fontWeight: 700,
                   color: '#1F2421',
@@ -761,7 +761,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: '#FAF7F2',
+                backgroundColor: 'transparent',
                 border: '1px solid #E8E2D5',
                 borderRadius: '8px',
                 padding: '0.2rem'
@@ -1046,7 +1046,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
                               style={{
                                 fontSize: '0.7rem',
                                 color: '#475569',
-                                backgroundColor: '#FAF7F2',
+                                backgroundColor: 'transparent',
                                 border: '1px solid #E8E2D5',
                                 borderRadius: '6px',
                                 padding: '0.15rem 0.45rem'
@@ -1124,7 +1124,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
                               download
                               title="Download PDF"
                               style={{
-                                backgroundColor: '#FAF7F2',
+                                backgroundColor: 'transparent',
                                 border: '1px solid #E8E2D5',
                                 color: '#1F2421',
                                 padding: '0.4rem 0.55rem',
@@ -1143,7 +1143,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
                               onClick={() => setActiveUnitModal(sub)}
                               title="View Unit Topics Breakdown"
                               style={{
-                                backgroundColor: '#FAF7F2',
+                                backgroundColor: 'transparent',
                                 border: '1px solid #E8E2D5',
                                 color: '#781416',
                                 padding: '0.4rem 0.65rem',
@@ -1167,7 +1167,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
                             rel="noopener noreferrer"
                             title="Open Official University Source"
                             style={{
-                              backgroundColor: '#FAF7F2',
+                              backgroundColor: 'transparent',
                               border: '1px solid #E8E2D5',
                               color: '#64748B',
                               padding: '0.4rem 0.55rem',
@@ -1323,7 +1323,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
                       padding: '0.55rem 0.75rem',
                       borderRadius: '10px',
                       border: '1px solid #E8E2D5',
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       color: '#334155',
                       fontSize: '0.82rem',
                       fontWeight: 600,
@@ -1401,7 +1401,7 @@ export default function SyllabusPage({ onNavigate, onOpenAI }) {
               {activeUnitModal.units && activeUnitModal.units.length > 0 ? (
                 activeUnitModal.units.map((u, idx) => (
                   <div key={idx} style={{
-                    backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '14px', padding: '1rem'
+                    backgroundColor: 'transparent', border: '1px solid #E8E2D5', borderRadius: '14px', padding: '1rem'
                   }}>
                     <h4 style={{ fontSize: '0.98rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
                       {u.title}

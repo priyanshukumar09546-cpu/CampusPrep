@@ -170,7 +170,7 @@ export default function MobileHomeScreen({
       desc: 'AI interview, aptitude, technical & HR rounds',
       icon: Users,
       iconColor: '#EA580C',
-      iconBg: '#FFF7ED',
+      iconBg: 'transparent',
       borderColor: '#FFEDD5',
       category: 'Career',
       route: 'interview-pro',
@@ -443,7 +443,7 @@ export default function MobileHomeScreen({
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '12px',
             border: isSearchFocused ? '1.5px solid #861820' : '1.5px solid #E9D9CC',
             boxShadow: isSearchFocused ? '0 0 0 3px rgba(134, 24, 32, 0.12)' : '0 1px 3px rgba(20, 36, 61, 0.03)',
@@ -529,7 +529,7 @@ export default function MobileHomeScreen({
             left: 0,
             right: 0,
             marginTop: '5px',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '12px',
             border: '1px solid #E9D9CC',
             boxShadow: '0 10px 25px rgba(20, 36, 61, 0.12)',
@@ -558,7 +558,7 @@ export default function MobileHomeScreen({
                   padding: '8px 11px',
                   border: 'none',
                   borderBottom: idx !== searchResults.length - 1 ? '1px solid #F8EAC9' : 'none',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   cursor: 'pointer',
                   textAlign: 'left'
                 }}
@@ -669,7 +669,7 @@ export default function MobileHomeScreen({
                 className="pv-tool-card"
                 style={{
                   gridColumn: card.isFullWidth ? '1 / -1' : 'auto',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   borderRadius: '12px',
                   border: '1px solid #E9D9CC',
                   boxShadow: '0 1px 3px rgba(20, 36, 61, 0.03)',
@@ -774,7 +774,7 @@ export default function MobileHomeScreen({
           <div style={{
             textAlign: 'center',
             padding: '24px 16px',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             borderRadius: '14px',
             border: '1px dashed #E9D9CC',
             marginTop: '8px'

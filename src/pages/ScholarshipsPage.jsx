@@ -235,7 +235,7 @@ export default function ScholarshipsPage({ onNavigate, onOpenAuth }) {
   ];
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1C1E21', paddingBottom: '4rem' }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1C1E21', paddingBottom: '4rem' }}>
       
       {/* =========================================================================
           DESKTOP VIEW (>= 1024px) — 100% UNTOUCHED ORIGINAL
@@ -1822,7 +1822,7 @@ export default function ScholarshipsPage({ onNavigate, onOpenAuth }) {
           width: '100%',
           maxWidth: '100vw',
           boxSizing: 'border-box',
-          backgroundColor: '#FAF7F2'
+          backgroundColor: 'transparent'
         }}
       >
         {/* B. BREADCRUMBS & HERO */}
@@ -2492,7 +2492,7 @@ export default function ScholarshipsPage({ onNavigate, onOpenAuth }) {
         <div
           onClick={() => setSubmitModalOpen(true)}
           style={{
-            backgroundColor: '#FFF7ED',
+            backgroundColor: 'transparent',
             border: '1.5px dashed #FDBA74',
             borderRadius: '16px',
             padding: '0.85rem 1rem',

@@ -111,7 +111,7 @@ export default function StudentUpdatesModal({ onNavigate }) {
     >
       <div
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#0B0B0B',
           borderRadius: '24px',
           border: '1.5px solid #E8E2D5',
           boxShadow: '0 24px 60px rgba(35, 30, 25, 0.22)',
@@ -124,7 +124,7 @@ export default function StudentUpdatesModal({ onNavigate }) {
       >
         {/* TOP DECORATIVE HEADER */}
         <div style={{
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'transparent',
           borderBottom: '1px solid #E8E2D5',
           padding: '1.25rem 1.5rem',
           display: 'flex',
@@ -276,7 +276,7 @@ export default function StudentUpdatesModal({ onNavigate }) {
                       padding: '0.85rem 1.1rem',
                       borderRadius: '12px',
                       border: errorMsg ? '1.5px solid #EF4444' : '1.5px solid #D8D2C5',
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       fontSize: '0.92rem',
                       color: '#1F2421',
                       outline: 'none',

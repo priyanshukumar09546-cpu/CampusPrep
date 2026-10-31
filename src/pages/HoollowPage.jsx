@@ -930,7 +930,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
                               width: '36px',
                               height: '36px',
                               borderRadius: '50%',
-                              backgroundColor: '#FFF7ED',
+                              backgroundColor: 'transparent',
                               color: '#EA580C',
                               display: 'flex',
                               alignItems: 'center',
@@ -1807,7 +1807,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
                   {/* Daily Streak */}
                   <div
                     style={{
-                      backgroundColor: '#FFF7ED',
+                      backgroundColor: 'transparent',
                       borderRadius: '12px',
                       padding: '0.85rem',
                       display: 'flex',

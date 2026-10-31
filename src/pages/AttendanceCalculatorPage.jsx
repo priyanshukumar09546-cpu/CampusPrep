@@ -688,7 +688,7 @@ export default function AttendanceCalculatorPage({ onNavigate, onOpenAuth }) {
   // RENDER COMPONENT
   // --------------------------------------------------------------------------
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', paddingBottom: '5rem', color: '#1F2421' }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', paddingBottom: '5rem', color: '#1F2421' }}>
       {/* 1. TOP HEADER & BREADCRUMB */}
       <section style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E8E2D5', padding: '2rem 1.5rem 1.5rem' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -936,7 +936,7 @@ export default function AttendanceCalculatorPage({ onNavigate, onOpenAuth }) {
 
               {/* If no subjects exist yet */}
               {subjects.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '2rem 1rem', backgroundColor: '#FAF7F2', borderRadius: '12px', border: '1px dashed #D1D5DB' }}>
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', backgroundColor: 'transparent', borderRadius: '12px', border: '1px dashed #D1D5DB' }}>
                   <Award size={32} color="#C88D2D" style={{ margin: '0 auto 0.75rem' }} />
                   <p style={{ fontSize: '0.9rem', fontWeight: 600, color: '#374151', margin: '0 0 0.5rem' }}>
                     No subjects registered yet
@@ -1735,7 +1735,7 @@ export default function AttendanceCalculatorPage({ onNavigate, onOpenAuth }) {
 
           {/* Table Content */}
           {subjects.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '3.5rem 1rem', backgroundColor: '#FAF7F2', borderRadius: '12px', border: '1px dashed #D1D5DB' }}>
+            <div style={{ textAlign: 'center', padding: '3.5rem 1rem', backgroundColor: 'transparent', borderRadius: '12px', border: '1px dashed #D1D5DB' }}>
               <Award size={40} color="#C88D2D" style={{ margin: '0 auto 1rem' }} />
               <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.15rem', fontWeight: 700, color: '#1F2421', margin: '0 0 0.5rem' }}>
                 No attendance recorded yet

@@ -47,7 +47,7 @@ export default function MobileInterviewProScreen({ onNavigate, onStartInterview 
   ];
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
+    <div className="min-h-screen bg-[transparent] w-full max-w-[430px] mx-auto md:max-w-md lg:max-w-lg relative overflow-x-hidden font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814] shadow-2xl flex flex-col pb-24">
       
       {/* Corner Leaves Decoration */}
       <div 
@@ -140,7 +140,7 @@ export default function MobileInterviewProScreen({ onNavigate, onStartInterview 
               <button
                 key={type.id}
                 onClick={type.action}
-                className="bg-white rounded-2xl p-3 border border-orange-100/70 shadow-xs flex flex-col items-start hover:border-orange-200 transition-all text-left cursor-pointer group"
+                className="bg-[#0B0B0B] rounded-2xl p-3 border border-orange-100/70 shadow-xs flex flex-col items-start hover:border-orange-200 transition-all text-left cursor-pointer group"
               >
                 <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-2.5 ${type.color}`}>
                   <Icon size={19} />

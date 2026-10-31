@@ -102,7 +102,7 @@ export default function ProjectSubmitModal({ isOpen, onClose, onSuccess }) {
       fontFamily: "'Plus Jakarta Sans', sans-serif"
     }}>
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#0B0B0B',
         borderRadius: '20px',
         width: '100%',
         maxWidth: '680px',
@@ -119,7 +119,7 @@ export default function ProjectSubmitModal({ isOpen, onClose, onSuccess }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'transparent',
           borderTopLeftRadius: '20px',
           borderTopRightRadius: '20px'
         }}>
@@ -370,7 +370,7 @@ export default function ProjectSubmitModal({ isOpen, onClose, onSuccess }) {
             {/* Row 6: Submitter Info */}
             <div style={{
               padding: '1rem',
-              backgroundColor: '#FAF7F2',
+              backgroundColor: 'transparent',
               borderRadius: '12px',
               border: '1px solid #E8E2D5',
               marginBottom: '1.25rem'
@@ -484,7 +484,7 @@ const inputStyle = {
   border: '1.5px solid #E8E2D5',
   fontSize: '0.86rem',
   color: '#1F2421',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: '#0B0B0B',
   outline: 'none',
   boxSizing: 'border-box'
 };

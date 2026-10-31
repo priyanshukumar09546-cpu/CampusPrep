@@ -103,7 +103,7 @@ export default function SelectCoursePage({ onNavigate }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
+    <div className="min-h-screen bg-transparent w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
       
       {/* Corner Leaves Decoration */}
       <div 
@@ -144,7 +144,7 @@ export default function SelectCoursePage({ onNavigate }) {
       {/* SEARCH AND CATEGORY FILTER TABS */}
       <div className="z-10 mb-6">
         {/* Search Input */}
-        <div className="relative flex items-center bg-white rounded-2xl border border-stone-200/90 shadow-xs mb-4 max-w-xl mx-auto focus-within:border-[#7A2327] transition-all">
+        <div className="relative flex items-center bg-[#0B0B0B] rounded-2xl border border-stone-200/90 shadow-xs mb-4 max-w-xl mx-auto focus-within:border-[#7A2327] transition-all">
           <div className="pl-4 text-stone-400">
             <Search size={18} />
           </div>
@@ -182,7 +182,7 @@ export default function SelectCoursePage({ onNavigate }) {
                 className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   isSelected 
                     ? 'bg-[#7A2327] text-white shadow-sm' 
-                    : 'bg-white text-stone-700 border border-stone-200/80 hover:bg-stone-50'
+                    : 'bg-[#0B0B0B] text-stone-700 border border-stone-200/80 hover:bg-stone-50'
                 }`}
               >
                 {cat} ({count})
@@ -195,7 +195,7 @@ export default function SelectCoursePage({ onNavigate }) {
       {/* 24 COURSE CARDS GRID */}
       <div className="z-10 flex-1 pb-12">
         {filteredCourses.length === 0 ? (
-          <div className="bg-white rounded-2xl p-8 text-center border border-stone-200/80 shadow-xs max-w-md mx-auto">
+          <div className="bg-[#0B0B0B] rounded-2xl p-8 text-center border border-stone-200/80 shadow-xs max-w-md mx-auto">
             <BookOpen size={36} className="text-stone-300 mx-auto mb-2" />
             <h2 className="font-['Outfit',sans-serif] font-bold text-lg text-stone-800">No matching programmes found</h2>
             <p className="text-xs text-stone-500 mt-1">Try searching by degree name (e.g. BTech, Pharmacy, Design) or reset category filter.</p>
@@ -214,7 +214,7 @@ export default function SelectCoursePage({ onNavigate }) {
                 <div
                   key={c.id}
                   onClick={() => handleSelect(c)}
-                  className="bg-white rounded-2xl p-4 border border-stone-200/90 shadow-xs hover:border-[#7A2327] hover:shadow-md transition-all flex items-center justify-between cursor-pointer group active:scale-[0.99]"
+                  className="bg-[#0B0B0B] rounded-2xl p-4 border border-stone-200/90 shadow-xs hover:border-[#7A2327] hover:shadow-md transition-all flex items-center justify-between cursor-pointer group active:scale-[0.99]"
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
                     <div 
@@ -260,7 +260,7 @@ export default function SelectCoursePage({ onNavigate }) {
         )}
 
         {/* EDUCATIONAL DIRECTORY FAQS */}
-        <div className="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-xs">
+        <div className="mt-12 bg-[#0B0B0B] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-xs">
           <div className="flex items-center gap-2 mb-4">
             <HelpCircle size={20} className="text-[#7A2327]" />
             <h2 className="font-['Outfit',sans-serif] font-bold text-xl text-stone-900">

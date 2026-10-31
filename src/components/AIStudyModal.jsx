@@ -302,7 +302,7 @@ export default function AIStudyModal({ isOpen, onClose }) {
                     border: '1px solid rgba(255, 255, 255, 0.12)',
                     borderRadius: '14px',
                     padding: '0.65rem 0.95rem',
-                    color: '#FAF7F2',
+                    color: 'transparent',
                     fontSize: '0.82rem',
                     fontWeight: 500,
                     textAlign: 'left',

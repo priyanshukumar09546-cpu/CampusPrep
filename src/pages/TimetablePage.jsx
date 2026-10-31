@@ -484,7 +484,7 @@ export default function TimetablePage({ onNavigate }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', paddingBottom: '4rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', paddingBottom: '4rem', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       
       {/* ============================================================ */}
       {/* 1. TOP HEADER BANNER (Title + Mascot / Quote) */}

@@ -26,7 +26,7 @@ export default function CourseSelectModal({ isOpen, onClose, targetTab = 'notes'
     >
       <div 
         style={{
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'transparent',
           border: '1.5px solid #E8E2D5',
           borderRadius: '24px',
           boxShadow: '0 25px 60px rgba(31, 36, 33, 0.25)',
@@ -50,7 +50,7 @@ export default function CourseSelectModal({ isOpen, onClose, targetTab = 'notes'
             width: '38px',
             height: '38px',
             borderRadius: '50%',
-            backgroundColor: '#ffffff',
+            backgroundColor: '#0B0B0B',
             border: '1.5px solid #E8E2D5',
             color: '#1F2421',
             display: 'flex',
@@ -126,7 +126,7 @@ export default function CourseSelectModal({ isOpen, onClose, targetTab = 'notes'
                   onClose();
                 }}
                 style={{
-                  backgroundColor: '#ffffff',
+                  backgroundColor: '#0B0B0B',
                   border: `1.5px solid ${course.borderColor}`,
                   borderRadius: '20px',
                   padding: '1.25rem 1rem',
@@ -154,7 +154,7 @@ export default function CourseSelectModal({ isOpen, onClose, targetTab = 'notes'
                 <div style={{
                   height: '86px',
                   borderRadius: '14px',
-                  backgroundColor: course.bgGradient.includes('linear') ? '#FAF7F2' : '#ffffff',
+                  backgroundColor: course.bgGradient.includes('linear') ? 'transparent' : '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -252,7 +252,7 @@ export default function CourseSelectModal({ isOpen, onClose, targetTab = 'notes'
                       fontWeight: 800,
                       padding: '0.15rem 0.5rem',
                       borderRadius: '9999px',
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       color: course.btnColor,
                       border: `1px solid ${course.borderColor}`
                     }}>

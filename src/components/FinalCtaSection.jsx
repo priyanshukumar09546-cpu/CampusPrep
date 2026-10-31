@@ -2,7 +2,6 @@ import React from 'react';
 import { 
   ArrowRight, 
   MessageCircle, 
-  Sparkles, 
   Target, 
   Users, 
   ShieldCheck, 
@@ -33,60 +32,61 @@ export default function FinalCtaSection({ onNavigate }) {
       title: 'Our Mission',
       desc: 'Make quality academic resources accessible to every student.',
       icon: Target,
-      iconColor: '#BE123C',
-      iconBg: '#FFE4E6',
-      border: '#FECDD3'
+      iconColor: '#FFB800',
+      iconBg: 'rgba(255, 184, 0, 0.1)',
+      border: 'rgba(255, 184, 0, 0.3)'
     },
     {
       id: 'student-first',
       title: 'Student First',
       desc: 'Built by students, for students. Always free, always growing.',
       icon: Users,
-      iconColor: '#EA580C',
-      iconBg: '#FFEDD5',
-      border: '#FED7AA'
+      iconColor: '#FF8C00',
+      iconBg: 'rgba(255, 140, 0, 0.1)',
+      border: 'rgba(255, 140, 0, 0.3)'
     },
     {
       id: 'trusted',
       title: 'Trusted Content',
       desc: 'Verified, updated & curated academic materials.',
       icon: ShieldCheck,
-      iconColor: '#781416',
-      iconBg: '#FEE2E2',
-      border: '#FECACA'
+      iconColor: '#10B981',
+      iconBg: 'rgba(16, 185, 129, 0.1)',
+      border: 'rgba(16, 185, 129, 0.3)'
     },
     {
       id: 'growth',
       title: 'Continuous Growth',
       desc: 'New tools, subjects and features regularly added.',
       icon: Zap,
-      iconColor: '#7C3AED',
-      iconBg: '#EDE9FE',
-      border: '#DDD6FE'
+      iconColor: '#A855F7',
+      iconBg: 'rgba(168, 85, 247, 0.1)',
+      border: 'rgba(168, 85, 247, 0.3)'
     }
   ];
 
   return (
     <section 
+      className="pv-scroll-reveal"
       style={{
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         padding: '3.5rem 0 3.5rem 0',
-        borderBottom: '1.5px solid #E8E2D5'
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
       }}
     >
-      <div className="container">
+      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
         
         {/* 1. FINAL CTA BANNER */}
         <div style={{
-          backgroundColor: '#FFFBEB',
+          backgroundColor: '#0B0B0B',
           backgroundImage: `
-            radial-gradient(circle at 10% 20%, rgba(200, 141, 45, 0.12) 0%, transparent 40%),
-            linear-gradient(135deg, #FFFDF7 0%, #FEF9EE 100%)
+            radial-gradient(circle at 10% 20%, rgba(255, 184, 0, 0.08) 0%, transparent 40%),
+            linear-gradient(135deg, #0F0F0F 0%, #080808 100%)
           `,
-          border: '1.5px solid #FDE68A',
+          border: '1px solid rgba(255, 184, 0, 0.35)',
           borderRadius: '28px',
           padding: 'clamp(2rem, 3.5vw, 3rem)',
-          boxShadow: '0 12px 36px rgba(200, 141, 45, 0.09)',
+          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 184, 0, 0.08)',
           position: 'relative',
           overflow: 'hidden',
           marginBottom: '2.5rem'
@@ -106,20 +106,20 @@ export default function FinalCtaSection({ onNavigate }) {
                 gap: '0.5rem',
                 fontSize: 'clamp(1.75rem, 2.6vw, 2.45rem)',
                 fontWeight: 900,
-                color: '#1C1E21',
+                color: '#FFFFFF',
                 fontFamily: "'Outfit', sans-serif",
                 letterSpacing: '-0.02em',
                 marginBottom: '0.75rem',
                 lineHeight: 1.2
               }}>
-                <span role="img" aria-label="mortarboard">🎓</span>
-                <h2>Ready to Boost Your Academic Success?</h2>
+                <span>🎓</span>
+                <h2>Ready to Boost Your <span style={{ color: '#FFB800', textShadow: '0 0 15px rgba(255, 184, 0, 0.35)' }}>Academic Success?</span></h2>
               </div>
 
               {/* Subtitle */}
               <p style={{
                 fontSize: '0.96rem',
-                color: '#64748B',
+                color: '#A1A1AA',
                 lineHeight: 1.6,
                 margin: '0 0 1.5rem 0',
                 maxWidth: '560px'
@@ -136,10 +136,11 @@ export default function FinalCtaSection({ onNavigate }) {
                 <button
                   type="button"
                   onClick={handleExploreMore}
+                  className="pv-glow-btn"
                   style={{
-                    backgroundColor: '#781416',
-                    color: '#FFFFFF',
-                    border: 'none',
+                    backgroundColor: '#0B0B0B',
+                    color: '#FFB800',
+                    border: '1.5px solid rgba(255, 184, 0, 0.5)',
                     borderRadius: '9999px',
                     padding: '0.8rem 1.6rem',
                     fontSize: '0.92rem',
@@ -147,19 +148,22 @@ export default function FinalCtaSection({ onNavigate }) {
                     cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.45rem',
-                    boxShadow: '0 8px 20px rgba(120, 20, 22, 0.25)',
+                    gap: '0.55rem',
+                    boxShadow: '0 0 20px rgba(255, 184, 0, 0.2)',
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#9F1239';
+                    e.currentTarget.style.borderColor = '#FFB800';
+                    e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 184, 0, 0.45)';
                     e.currentTarget.style.transform = 'translateY(-2px)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#781416';
+                    e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.5)';
+                    e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 184, 0, 0.2)';
                     e.currentTarget.style.transform = 'none';
                   }}
                 >
+                  <span className="pv-bulb"></span>
                   <span>Explore All Tools</span>
                   <ArrowRight size={16} />
                 </button>
@@ -168,9 +172,9 @@ export default function FinalCtaSection({ onNavigate }) {
                   type="button"
                   onClick={openWhatsApp}
                   style={{
-                    backgroundColor: '#FFFFFF',
-                    color: '#1E140F',
-                    border: '1.5px solid #25D366',
+                    backgroundColor: '#0B0B0B',
+                    color: '#22C55E',
+                    border: '1.5px solid rgba(34, 197, 94, 0.4)',
                     borderRadius: '9999px',
                     padding: '0.8rem 1.5rem',
                     fontSize: '0.9rem',
@@ -179,19 +183,21 @@ export default function FinalCtaSection({ onNavigate }) {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    boxShadow: '0 4px 12px rgba(37, 211, 102, 0.15)',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#25D366';
-                    e.currentTarget.style.color = '#FFFFFF';
+                    e.currentTarget.style.backgroundColor = 'rgba(34, 197, 94, 0.1)';
+                    e.currentTarget.style.borderColor = '#22C55E';
+                    e.currentTarget.style.boxShadow = '0 0 20px rgba(34, 197, 94, 0.3)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#FFFFFF';
-                    e.currentTarget.style.color = '#1E140F';
+                    e.currentTarget.style.backgroundColor = '#0B0B0B';
+                    e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.4)';
                   }}
                 >
-                  <MessageCircle size={17} style={{ color: '#25D366' }} />
+                  <MessageCircle size={17} style={{ color: '#22C55E' }} />
                   <span>Contact on WhatsApp 7668016628</span>
                   <ArrowRight size={14} />
                 </button>
@@ -207,9 +213,9 @@ export default function FinalCtaSection({ onNavigate }) {
               justifyContent: 'center'
             }}>
               {[
-                { label: 'Trusted by Students Across India', icon: GraduationCap, color: '#D97706', bg: '#FEF3C7' },
-                { label: '20+ Academic & Career Tools', icon: Wrench, color: '#2563EB', bg: '#EFF6FF' },
-                { label: 'Verified & Updated Curriculum Resources', icon: BookOpen, color: '#059669', bg: '#ECFDF5' }
+                { label: 'Trusted by Students Across India', icon: GraduationCap, color: '#FFB800', bg: 'rgba(255, 184, 0, 0.1)' },
+                { label: '20+ Academic & Career Tools', icon: Wrench, color: '#38BDF8', bg: 'rgba(56, 189, 248, 0.1)' },
+                { label: 'Verified & Updated Curriculum Resources', icon: BookOpen, color: '#10B981', bg: 'rgba(16, 185, 129, 0.1)' }
               ].map((badge, bidx) => {
                 const Icon = badge.icon;
                 return (
@@ -219,12 +225,12 @@ export default function FinalCtaSection({ onNavigate }) {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.85rem',
-                      backgroundColor: '#FFFFFF',
-                      border: '1px solid #E8E2D5',
+                      backgroundColor: '#111111',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
                       borderRadius: '16px',
                       padding: '0.85rem 1.25rem',
                       width: '100%',
-                      boxShadow: '0 2px 8px rgba(35,30,25,0.03)'
+                      boxShadow: '0 4px 14px rgba(0, 0, 0, 0.4)'
                     }}
                   >
                     <div style={{
@@ -240,7 +246,7 @@ export default function FinalCtaSection({ onNavigate }) {
                     }}>
                       <Icon size={18} strokeWidth={2.2} />
                     </div>
-                    <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#1C1E21' }}>
+                    <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#FFFFFF' }}>
                       {badge.label}
                     </span>
                   </div>
@@ -261,23 +267,25 @@ export default function FinalCtaSection({ onNavigate }) {
               <div
                 key={v.id}
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: `1.5px solid ${v.border}`,
+                  backgroundColor: '#0B0B0B',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   borderRadius: '20px',
                   padding: '1.5rem 1.25rem',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  boxShadow: '0 4px 14px rgba(35,30,25,0.04)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
                   transition: 'all 0.25s ease'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-3px)';
-                  e.currentTarget.style.boxShadow = '0 10px 22px rgba(35,30,25,0.07)';
+                  e.currentTarget.style.borderColor = v.iconColor;
+                  e.currentTarget.style.boxShadow = `0 10px 24px rgba(0, 0, 0, 0.7), 0 0 15px ${v.iconColor}33`;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(35,30,25,0.04)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.5)';
                 }}
               >
                 {/* Icon */}
@@ -300,7 +308,7 @@ export default function FinalCtaSection({ onNavigate }) {
                 <h3 style={{
                   fontSize: '1rem',
                   fontWeight: 800,
-                  color: '#1C1E21',
+                  color: '#FFFFFF',
                   margin: '0 0 0.35rem 0'
                 }}>
                   {v.title}
@@ -309,7 +317,7 @@ export default function FinalCtaSection({ onNavigate }) {
                 {/* Description */}
                 <p style={{
                   fontSize: '0.82rem',
-                  color: '#64748B',
+                  color: '#A1A1AA',
                   lineHeight: 1.5,
                   margin: 0
                 }}>

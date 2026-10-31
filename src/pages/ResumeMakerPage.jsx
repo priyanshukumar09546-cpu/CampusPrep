@@ -985,7 +985,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   const handleMobilePrevStep = handlePrevMobileStep;
 
   return (
-    <div className="pv-resume-maker-page" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div className="pv-resume-maker-page" style={{ backgroundColor: 'transparent', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
       {/* =========================================================================
           DESKTOP ATS RESUME MAKER (>= 1024px)
@@ -1037,7 +1037,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.35rem',
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   border: '1px solid #E8DFCF',
                   color: '#4A4036',
                   padding: '0.35rem 0.65rem',
@@ -1180,7 +1180,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 value={template}
                 onChange={(e) => handleTemplateChange(e.target.value)}
                 style={{
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   border: '1px solid #E2DAD0',
                   borderRadius: '6px',
                   padding: '0.3rem 0.55rem',
@@ -1597,7 +1597,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {resumeData.education.map((edu, idx) => (
-                  <div key={idx} style={{ backgroundColor: '#FAF7F2', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div key={idx} style={{ backgroundColor: 'transparent', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.75rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                       <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#781416' }}>Education #{idx + 1}</span>
                       {resumeData.education.length > 1 && (
@@ -1768,7 +1768,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {resumeData.experience.map((exp, expIdx) => (
-                  <div key={expIdx} style={{ backgroundColor: '#FAF7F2', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.85rem' }}>
+                  <div key={expIdx} style={{ backgroundColor: 'transparent', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.85rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.55rem' }}>
                       <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#781416' }}>Experience #{expIdx + 1}</span>
                       {resumeData.experience.length > 1 && (
@@ -1982,7 +1982,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {resumeData.projects.map((proj, pIdx) => (
-                  <div key={pIdx} style={{ backgroundColor: '#FAF7F2', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.85rem' }}>
+                  <div key={pIdx} style={{ backgroundColor: 'transparent', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.85rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.55rem' }}>
                       <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#781416' }}>Project #{pIdx + 1}</span>
                       {resumeData.projects.length > 1 && (
@@ -2196,7 +2196,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {resumeData.achievements.map((ach, aIdx) => (
-                  <div key={aIdx} style={{ backgroundColor: '#FAF7F2', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div key={aIdx} style={{ backgroundColor: 'transparent', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.75rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.55rem' }}>
                       <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#781416' }}>Achievement #{aIdx + 1}</span>
                       {resumeData.achievements.length > 1 && (
@@ -2317,7 +2317,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {resumeData.certifications.map((cert, cIdx) => (
-                  <div key={cIdx} style={{ backgroundColor: '#FAF7F2', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div key={cIdx} style={{ backgroundColor: 'transparent', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.75rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.55rem' }}>
                       <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#781416' }}>Certification #{cIdx + 1}</span>
                       {resumeData.certifications.length > 1 && (
@@ -2440,7 +2440,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {resumeData.extracurricular.map((extra, eIdx) => (
-                  <div key={eIdx} style={{ backgroundColor: '#FAF7F2', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.75rem' }}>
+                  <div key={eIdx} style={{ backgroundColor: 'transparent', border: '1px solid #E5DCCF', borderRadius: '8px', padding: '0.75rem', marginBottom: '0.75rem' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.55rem' }}>
                       <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#781416' }}>Activity #{eIdx + 1}</span>
                       {resumeData.extracurricular.length > 1 && (
@@ -2533,7 +2533,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.35rem',
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   border: '1px solid #DDD3C3',
                   borderRadius: '6px',
                   padding: '0.45rem 0.85rem',
@@ -2956,7 +2956,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.35rem',
-              backgroundColor: '#FAF7F2',
+              backgroundColor: 'transparent',
               border: '1px solid #E8DFCF',
               color: '#4A4036',
               padding: '0.4rem 0.65rem',
@@ -3374,7 +3374,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.3rem',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     border: '1px solid #D5C7B2',
                     borderRadius: '8px',
                     padding: '0.45rem 0.75rem',
@@ -4936,7 +4936,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.35rem',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     border: '1px solid #DDD3C3',
                     borderRadius: '8px',
                     padding: '0.55rem 0.95rem',
@@ -5243,7 +5243,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             <div style={{ flex: 1, overflowY: 'auto', padding: '1.25rem' }}>
               <div style={{ marginBottom: '1rem' }}>
                 <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#1C1814' }}>Personal Details:</span>
-                <div style={{ fontSize: '0.76rem', color: '#4A4036', marginTop: '0.25rem', backgroundColor: '#FAF7F2', padding: '0.6rem', borderRadius: '6px' }}>
+                <div style={{ fontSize: '0.76rem', color: '#4A4036', marginTop: '0.25rem', backgroundColor: 'transparent', padding: '0.6rem', borderRadius: '6px' }}>
                   <div>Name: <strong>{importReviewData.personal?.fullName || 'Not detected'}</strong></div>
                   <div>Email: <strong>{importReviewData.personal?.email || 'Not detected'}</strong></div>
                   <div>Phone: <strong>{importReviewData.personal?.phone || 'Not detected'}</strong></div>
@@ -5253,7 +5253,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               {importReviewData.skills && (
                 <div style={{ marginBottom: '1rem' }}>
                   <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#1C1814' }}>Extracted Skills:</span>
-                  <div style={{ fontSize: '0.76rem', color: '#4A4036', marginTop: '0.25rem', backgroundColor: '#FAF7F2', padding: '0.6rem', borderRadius: '6px' }}>
+                  <div style={{ fontSize: '0.76rem', color: '#4A4036', marginTop: '0.25rem', backgroundColor: 'transparent', padding: '0.6rem', borderRadius: '6px' }}>
                     {importReviewData.skills.languages && <div>Languages: {importReviewData.skills.languages}</div>}
                     {importReviewData.skills.frameworks && <div>Frameworks: {importReviewData.skills.frameworks}</div>}
                     {importReviewData.skills.tools && <div>Tools: {importReviewData.skills.tools}</div>}
@@ -5264,7 +5264,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               {importReviewData.education && importReviewData.education.length > 0 && (
                 <div>
                   <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#1C1814' }}>Education Items:</span>
-                  <div style={{ fontSize: '0.76rem', color: '#4A4036', marginTop: '0.25rem', backgroundColor: '#FAF7F2', padding: '0.6rem', borderRadius: '6px' }}>
+                  <div style={{ fontSize: '0.76rem', color: '#4A4036', marginTop: '0.25rem', backgroundColor: 'transparent', padding: '0.6rem', borderRadius: '6px' }}>
                     {importReviewData.education.map((e, i) => (
                       <div key={i}>{e.degree} — {e.institution} ({e.duration})</div>
                     ))}
@@ -5284,7 +5284,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                 type="button"
                 onClick={() => setImportReviewData(null)}
                 style={{
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   border: '1px solid #DDD3C3',
                   borderRadius: '6px',
                   padding: '0.4rem 0.85rem',
@@ -5390,7 +5390,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
                     type="button"
                     onClick={() => setAiModal({ isOpen: false, action: '', inputPayload: {}, result: null, loading: false })}
                     style={{
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       border: '1px solid #DDD3C3',
                       borderRadius: '6px',
                       padding: '0.4rem 0.85rem',

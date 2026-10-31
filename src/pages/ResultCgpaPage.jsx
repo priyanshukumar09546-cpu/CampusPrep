@@ -620,7 +620,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#1F2421', paddingBottom: '5rem' }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#FFFFFF', paddingBottom: '5rem' }}>
       
       {/* =========================================================================
           DESKTOP RESULT & CGPA WORKSPACE (>= 1024px)
@@ -865,7 +865,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
               <button
                 onClick={handleOpenOfficialPortal}
                 style={{
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   border: '1.5px solid #E8E2D5',
                   color: '#1C1E21',
                   borderRadius: '12px',
@@ -969,7 +969,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
               <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.55rem', maxWidth: '640px', margin: '0 auto 1.35rem auto' }}>
                 {selectedFiles.map((f, fIdx) => (
                   <div key={fIdx} style={{
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     border: '1.5px solid #E8E2D5',
                     borderRadius: '8px',
                     padding: '0.35rem 0.75rem',
@@ -1171,7 +1171,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                           <span style={{
                             fontSize: '0.7rem',
                             fontWeight: 700,
-                            backgroundColor: '#FAF7F2',
+                            backgroundColor: 'transparent',
                             color: '#78716C',
                             border: '1px solid #E8E2D5',
                             padding: '0.15rem 0.45rem',
@@ -1217,7 +1217,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                 <button
                   onClick={handleResetAnalysis}
                   style={{
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     border: '1.5px solid #E8E2D5',
                     color: '#57534E',
                     borderRadius: '10px',
@@ -1398,7 +1398,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                 gap: '1.1rem'
               }}>
                 {/* Overall Score / CGPA */}
-                <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
+                <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
                     <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase' }}>
                       {analysisData.summary?.displayCGPA ? 'Overall CGPA' : 'Overall Score'}
@@ -1444,7 +1444,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {/* Latest SGPA / Latest Term Score */}
-                <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
+                <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
                     <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase' }}>
                       {analysisData.summary?.latestSGPA ? 'Latest SGPA' : 'Latest Term Score'}
@@ -1471,7 +1471,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {/* Credits / Terms Completed */}
-                <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
+                <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
                     <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase' }}>
                       {analysisData.summary?.totalCreditsEarned ? 'Credits Earned' : 'Semesters Analyzed'}
@@ -1481,7 +1481,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                     </div>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.3rem' }}>
-                    <span style={{ fontSize: '2.2rem', fontWeight: 800, color: '#1F2421', letterSpacing: '-0.02em' }}>
+                    <span style={{ fontSize: '2.2rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '-0.02em' }}>
                       {analysisData.summary?.totalCreditsEarned || analysisData.summary?.semestersCount || 'N/A'}
                     </span>
                     <span style={{ fontSize: '0.85rem', color: '#78716C', fontWeight: 600 }}>
@@ -1494,7 +1494,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {/* Backlogs */}
-                <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
+                <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
                     <span style={{ fontSize: '0.76rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase' }}>
                       Active Backlogs
@@ -1684,7 +1684,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                     onClick={() => handleAskAdvisor(prompt.q)}
                     disabled={isAdvisorLoading}
                     style={{
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       border: '1.5px solid #E8E2D5',
                       borderRadius: '10px',
                       padding: '0.45rem 0.85rem',
@@ -1787,7 +1787,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                     borderRadius: '12px',
                     border: '1.5px solid #E8E2D5',
                     fontSize: '0.88rem',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     color: '#1C1E21',
                     outline: 'none'
                   }}
@@ -2243,7 +2243,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                   <button
                     onClick={handleExpandAll}
                     style={{
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       border: '1.5px solid #E8E2D5',
                       borderRadius: '10px',
                       padding: '0.45rem 0.9rem',
@@ -2265,7 +2265,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                   <button
                     onClick={handleCollapseAll}
                     style={{
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       border: '1.5px solid #E8E2D5',
                       borderRadius: '10px',
                       padding: '0.45rem 0.85rem',
@@ -2446,7 +2446,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                         <div style={{
                           padding: '1rem 1.4rem 1.4rem',
                           borderTop: '1px solid #F1EFEA',
-                          backgroundColor: '#FAF7F2'
+                          backgroundColor: 'transparent'
                         }}>
                           {/* Search and Filters Bar */}
                           <div style={{
@@ -2680,7 +2680,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                                                 </td>
                                               </tr>
                                               {isExpanded && (
-                                                <tr style={{ backgroundColor: '#FAF7F2' }}>
+                                                <tr style={{ backgroundColor: 'transparent' }}>
                                                   <td colSpan={hasInternalExternal ? 12 : 9} style={{ padding: '0.75rem 1.25rem', borderBottom: '1.5px solid #E8E2D5' }}>
                                                     <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', fontSize: '0.76rem', color: '#44403C' }}>
                                                       <div><strong>Course Code:</strong> {sub.code}</div>
@@ -2836,7 +2836,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                             </div>
                           </div>
 
-                          <div style={{ position: 'relative', width: '100%', height: '230px', backgroundColor: '#FAF7F2', borderRadius: '12px', padding: '10px' }}>
+                          <div style={{ position: 'relative', width: '100%', height: '230px', backgroundColor: 'transparent', borderRadius: '12px', padding: '10px' }}>
                             <svg viewBox="0 0 540 220" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                               {gridVals.map((val) => {
                                 const y = 180 - (val / yMax) * 150;
@@ -2942,7 +2942,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                       Total marks obtained versus total maximum marks possible per academic semester
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', height: '220px', backgroundColor: '#FAF7F2', borderRadius: '12px', padding: '15px 15px 30px 15px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', height: '220px', backgroundColor: 'transparent', borderRadius: '12px', padding: '15px 15px 30px 15px' }}>
                       {(analysisData.semesters || []).map((s, idx) => {
                         const semNum = s.sem ?? s.semesterNumber ?? (idx + 1);
                         const obt = s.totalMarks || (s.percentage ? Math.round(s.percentage * 9) : null);
@@ -2999,7 +2999,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
 
                       if (allSubsWithMarks.length === 0) {
                         return (
-                          <div style={{ backgroundColor: '#FAF7F2', borderRadius: '12px', padding: '2rem', textAlign: 'center', color: '#78716C' }}>
+                          <div style={{ backgroundColor: 'transparent', borderRadius: '12px', padding: '2rem', textAlign: 'center', color: '#78716C' }}>
                             <p style={{ margin: '0 0 0.4rem', fontWeight: 700, color: '#44403C' }}>
                               Individual Internal & External mark breakdown is not printed on this document.
                             </p>
@@ -3017,7 +3017,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                             const extPct = sub.externalMarks !== null ? Math.min(100, Math.round((sub.externalMarks / 70) * 100)) : null;
 
                             return (
-                              <div key={sIdx} style={{ backgroundColor: '#FAF7F2', borderRadius: '10px', padding: '0.75rem 1rem', border: '1px solid #E8E2D5' }}>
+                              <div key={sIdx} style={{ backgroundColor: 'transparent', borderRadius: '10px', padding: '0.75rem 1rem', border: '1px solid #E8E2D5' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem' }}>
                                   <strong style={{ color: '#781416', fontSize: '0.82rem' }}>{sub.code}</strong>
                                   <span style={{ fontSize: '0.74rem', color: '#1C1E21', fontWeight: 600 }}>{sub.name}</span>
@@ -3148,7 +3148,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                           })}
                       </div>
                     ) : (
-                      <div style={{ backgroundColor: '#FAF7F2', borderRadius: '12px', padding: '1.5rem', textAlign: 'center', color: '#78716C' }}>
+                      <div style={{ backgroundColor: 'transparent', borderRadius: '12px', padding: '1.5rem', textAlign: 'center', color: '#78716C' }}>
                         Individual letter grades not present on this summary. Upload a semester marksheet to view letter grade distributions.
                       </div>
                     )}
@@ -3165,7 +3165,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                       Monitoring carry-over paper load and successful supplementary clearance per term
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', height: '200px', backgroundColor: '#FAF7F2', borderRadius: '12px', padding: '15px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', height: '200px', backgroundColor: 'transparent', borderRadius: '12px', padding: '15px' }}>
                       {(analysisData.semesters || []).map((s, idx) => {
                         const semNum = s.sem ?? s.semesterNumber ?? (idx + 1);
                         const active = s.activeBacklogs ?? (s.carryOverPapers?.length || 0);
@@ -3227,7 +3227,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                           const isCleared = isObj ? b.isCleared : false;
 
                           return (
-                            <div key={bIdx} style={{ backgroundColor: '#FAF7F2', borderRadius: '12px', border: '1.5px solid #E8E2D5', padding: '1rem' }}>
+                            <div key={bIdx} style={{ backgroundColor: 'transparent', borderRadius: '12px', border: '1.5px solid #E8E2D5', padding: '1rem' }}>
                               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                                 <div>
                                   <strong style={{ color: '#781416', fontSize: '0.9rem', marginRight: '0.5rem' }}>{code}</strong>
@@ -3282,7 +3282,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                       const completionPct = Math.min(100, Math.round((earned / target) * 10000) / 100);
 
                       return (
-                        <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.5rem' }}>
+                        <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.5rem' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem' }}>
                             <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#1C1E21' }}>
                               Overall Degree Credit Progress
@@ -3339,7 +3339,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
 
                       return (
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
-                          <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.25rem' }}>
+                          <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.25rem' }}>
                             <div style={{ fontSize: '0.74rem', fontWeight: 800, color: '#781416', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                               Theory Courses ({theorySubs.length})
                             </div>
@@ -3351,7 +3351,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                             </div>
                           </div>
 
-                          <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.25rem' }}>
+                          <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.25rem' }}>
                             <div style={{ fontSize: '0.74rem', fontWeight: 800, color: '#047857', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                               Practical Labs ({pracSubs.length})
                             </div>
@@ -3394,7 +3394,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                 gap: '1.25rem'
               }}>
                 {/* Performance Trend */}
-                <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
+                <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
                   <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                     Performance Trend
                   </div>
@@ -3407,7 +3407,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {/* Highest & Lowest SGPA */}
-                <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
+                <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
                   <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                     Peak Performance
                   </div>
@@ -3424,7 +3424,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                 </div>
 
                 {/* Backlog Status */}
-                <div style={{ backgroundColor: '#FAF7F2', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
+                <div style={{ backgroundColor: 'transparent', borderRadius: '14px', border: '1.5px solid #E8E2D5', padding: '1.1rem 1.25rem' }}>
                   <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#78716C', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
                     Backlog / Improvement
                   </div>
@@ -3511,7 +3511,7 @@ export default function ResultCgpaPage({ onNavigate, onOpenAuth }) {
                 <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   {analysisData.semesters?.map(s => (
                     <div key={s.sem} style={{ border: '1px solid #E8E2D5', borderRadius: '12px', overflow: 'hidden' }}>
-                      <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                      <div style={{ backgroundColor: 'transparent', padding: '0.75rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
                         <span style={{ fontWeight: 800, color: '#781416', fontSize: '0.9rem' }}>
                           Semester {s.sem}
                         </span>

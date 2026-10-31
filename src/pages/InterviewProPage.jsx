@@ -194,7 +194,7 @@ export default function InterviewProPage({ onNavigate, onOpenAuth }) {
   ];
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
       {/* =========================================================================
           HERO SECTION
@@ -1327,22 +1327,22 @@ export default function InterviewProPage({ onNavigate, onOpenAuth }) {
                     Simulation Assessment Structure (140 Mins Total):
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem', textAlign: 'center' }}>
-                    <div style={{ padding: '0.4rem', backgroundColor: '#FAF7F2', borderRadius: '8px' }}>
+                    <div style={{ padding: '0.4rem', backgroundColor: 'transparent', borderRadius: '8px' }}>
                       <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#781416' }}>ROUND 1</div>
                       <div style={{ fontSize: '0.78rem', fontWeight: 700 }}>Aptitude</div>
                       <div style={{ fontSize: '0.7rem', color: '#7A6F62' }}>35 Mins</div>
                     </div>
-                    <div style={{ padding: '0.4rem', backgroundColor: '#FAF7F2', borderRadius: '8px' }}>
+                    <div style={{ padding: '0.4rem', backgroundColor: 'transparent', borderRadius: '8px' }}>
                       <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#1E60D0' }}>ROUND 2</div>
                       <div style={{ fontSize: '0.78rem', fontWeight: 700 }}>Coding</div>
                       <div style={{ fontSize: '0.7rem', color: '#7A6F62' }}>60 Mins</div>
                     </div>
-                    <div style={{ padding: '0.4rem', backgroundColor: '#FAF7F2', borderRadius: '8px' }}>
+                    <div style={{ padding: '0.4rem', backgroundColor: 'transparent', borderRadius: '8px' }}>
                       <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#6C2EBD' }}>ROUND 3</div>
                       <div style={{ fontSize: '0.78rem', fontWeight: 700 }}>AI Tech Viva</div>
                       <div style={{ fontSize: '0.7rem', color: '#7A6F62' }}>30 Mins</div>
                     </div>
-                    <div style={{ padding: '0.4rem', backgroundColor: '#FAF7F2', borderRadius: '8px' }}>
+                    <div style={{ padding: '0.4rem', backgroundColor: 'transparent', borderRadius: '8px' }}>
                       <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#E05625' }}>ROUND 4</div>
                       <div style={{ fontSize: '0.78rem', fontWeight: 700 }}>AI HR Round</div>
                       <div style={{ fontSize: '0.7rem', color: '#7A6F62' }}>15 Mins</div>
@@ -1436,7 +1436,7 @@ export default function InterviewProPage({ onNavigate, onOpenAuth }) {
                         <strong>Question 1 of 30:</strong> Two trains running in opposite directions cross a man standing on the platform in 27 seconds and 17 seconds respectively and they cross each other in 23 seconds. The ratio of their speeds is:
                         <div style={{ marginTop: '0.85rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
                           {['A) 1 : 3', 'B) 3 : 2', 'C) 3 : 4', 'D) None of these'].map((opt, oIdx) => (
-                            <label key={oIdx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', cursor: 'pointer', padding: '0.35rem', borderRadius: '6px', backgroundColor: '#FAF7F2' }}>
+                            <label key={oIdx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', cursor: 'pointer', padding: '0.35rem', borderRadius: '6px', backgroundColor: 'transparent' }}>
                               <input type="radio" name="apt_q1" />
                               <span>{opt}</span>
                             </label>
@@ -1477,7 +1477,7 @@ export default function InterviewProPage({ onNavigate, onOpenAuth }) {
                           <Users size={18} />
                           <span>AI HR & Behavioral Evaluation:</span>
                         </div>
-                        <p style={{ fontSize: '0.88rem', color: '#1C1814', fontStyle: 'italic', backgroundColor: '#FFF7ED', padding: '0.85rem', borderRadius: '8px' }}>
+                        <p style={{ fontSize: '0.88rem', color: '#1C1814', fontStyle: 'italic', backgroundColor: 'transparent', padding: '0.85rem', borderRadius: '8px' }}>
                           "Tell me about a challenging academic or team project where you had a disagreement with a team member. How did you resolve it?"
                         </p>
                         <textarea
@@ -1667,7 +1667,7 @@ export default function InterviewProPage({ onNavigate, onOpenAuth }) {
                   <p style={{ fontSize: '0.88rem', color: '#241D17', lineHeight: 1.5 }}>
                     <strong>Q:</strong> A car travels from City A to City B at a speed of 60 km/h and returns at a speed of 90 km/h. What is the average speed of the car for the entire journey?
                   </p>
-                  <div style={{ backgroundColor: '#FAF7F2', padding: '0.75rem', borderRadius: '8px', fontSize: '0.82rem', margin: '0.75rem 0' }}>
+                  <div style={{ backgroundColor: 'transparent', padding: '0.75rem', borderRadius: '8px', fontSize: '0.82rem', margin: '0.75rem 0' }}>
                     <strong>Options:</strong> A) 75 km/h &nbsp;|&nbsp; <strong>B) 72 km/h (Correct)</strong> &nbsp;|&nbsp; C) 70 km/h &nbsp;|&nbsp; D) 80 km/h
                   </div>
                   <div style={{ fontSize: '0.8rem', color: '#059669', fontWeight: 600 }}>
@@ -1712,7 +1712,7 @@ export default function InterviewProPage({ onNavigate, onOpenAuth }) {
                   <p style={{ fontSize: '0.86rem', color: '#241D17', lineHeight: 1.5 }}>
                     <strong>HR Question:</strong> "Where do you see yourself in 3 years, and why do you want to start your career with our engineering team?"
                   </p>
-                  <div style={{ backgroundColor: '#FFF7ED', borderLeft: '4px solid #E05625', padding: '0.75rem', borderRadius: '0 8px 8px 0', fontSize: '0.82rem', marginTop: '0.5rem' }}>
+                  <div style={{ backgroundColor: 'transparent', borderLeft: '4px solid #E05625', padding: '0.75rem', borderRadius: '0 8px 8px 0', fontSize: '0.82rem', marginTop: '0.5rem' }}>
                     <strong>Virus STAR Tip:</strong> Focus on skill acquisition, delivering impact on real client products, mentorship, and alignment with the company's core technology stack!
                   </div>
                 </div>

@@ -625,7 +625,7 @@ export default function MorePage({ onNavigate }) {
       <div
         className="pv-desktop-more-view"
         style={{
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'transparent',
           minHeight: '100vh',
           color: '#1C1E21',
           fontFamily: "'Plus Jakarta Sans', sans-serif"
@@ -753,7 +753,7 @@ export default function MorePage({ onNavigate }) {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   border: '2px solid #E8E2D5',
                   borderRadius: '16px',
                   padding: '0.4rem 0.6rem 0.4rem 1.1rem',
@@ -935,7 +935,7 @@ export default function MorePage({ onNavigate }) {
                       style={{
                         padding: '0.35rem 0.75rem',
                         borderRadius: '9999px',
-                        backgroundColor: '#FAF7F2',
+                        backgroundColor: 'transparent',
                         border: '1px solid #E8E2D5',
                         fontSize: '0.78rem',
                         fontWeight: 700,
@@ -1204,7 +1204,7 @@ export default function MorePage({ onNavigate }) {
                         padding: '1.15rem 1.1rem',
                         borderRadius: '16px',
                         border: '1.5px solid #EBE4D5',
-                        backgroundColor: '#FAF7F2',
+                        backgroundColor: 'transparent',
                         textAlign: 'left',
                         cursor: 'pointer',
                         transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -1501,7 +1501,7 @@ function HorizontalToolCard({ tool, onClick }) {
           fontSize: '0.8rem',
           fontWeight: 800,
           color: '#781416',
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'transparent',
           border: '1.5px solid #E8E2D5',
           padding: '0.45rem 0.9rem',
           borderRadius: '9999px',

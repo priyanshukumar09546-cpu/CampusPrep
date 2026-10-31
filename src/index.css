@@ -1,144 +1,146 @@
-/* ProfessorVirus Core Stylesheet — Premium Warm Cream & Charcoal & Gold Theme */
+/* ProfessorVirus Core Stylesheet — Deep Space Cinematic Theme (#030303 & #FFB800) */
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 html, body {
   overflow-x: hidden !important;
   max-width: 100vw;
-  background-color: #FFF7ED;
+  background-color: #030303 !important;
+  color: #FFFFFF;
   margin: 0;
   padding: 0;
 }
 
-/* Anti-Autofill Reset: Prevent browser from imposing blue background or forcing saved credentials */
+/* Anti-Autofill Reset: Prevent browser from imposing blue or light background */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px white inset !important;
-  -webkit-text-fill-color: #1C1E21 !important;
+  -webkit-box-shadow: 0 0 0 1000px #0B0B0B inset !important;
+  -webkit-text-fill-color: #FFFFFF !important;
   transition: background-color 5000s ease-in-out 0s !important;
 }
 
 :root {
-  /* Centralized Theme Tokens — Warm Ivory / Cream & Charcoal & Gold */
-  --color-background: #FAF7F2;
-  --color-surface: #FFFFFF;
-  --color-surface-soft: #F6F2E9;
-  --color-surface-warm: #FCFAF6;
-  --color-surface-subtle: #F0ECE1;
+  /* Centralized Deep-Space Tokens — Pure Black, Dark Glass, Warm Electric Gold (#FFB800) & Amber (#FF8C00) */
+  --color-background: #030303;
+  --color-surface: #0B0B0B;
+  --color-surface-soft: #111111;
+  --color-surface-warm: #161616;
+  --color-surface-subtle: #1C1C1E;
 
-  --color-text: #1C1E21;
-  --color-text-dark: #1C1E21;
-  --color-text-muted: #646E78;
-  --color-text-light: #909AA4;
-  --color-text-inverted: #FFFFFF;
+  --color-text: #FFFFFF;
+  --color-text-dark: #FFFFFF;
+  --color-text-muted: #A1A1AA;
+  --color-text-light: #71717A;
+  --color-text-inverted: #030303;
 
-  /* Primary Brand (Deep Charcoal / Near Black) */
-  --color-primary: #1F2421;
-  --color-primary-hover: #121513;
-  --color-primary-soft: #EDE8DE;
+  /* Primary Brand (Electric Gold) */
+  --color-primary: #FFB800;
+  --color-primary-hover: #FFA000;
+  --color-primary-soft: rgba(255, 184, 0, 0.12);
 
-  /* Warm Gold / Mustard Yellow (Highlights, Active States, CTAs) */
-  --color-gold: #C88D2D;
-  --color-gold-hover: #B37D28;
-  --color-gold-light: #FDF6E8;
-  --color-gold-border: #E8D3B0;
-  --color-accent: #C88D2D;
+  /* Warm Gold / Amber (Highlights, Active States, CTAs) */
+  --color-gold: #FFB800;
+  --color-gold-hover: #FFA000;
+  --color-gold-light: rgba(255, 184, 0, 0.12);
+  --color-gold-border: rgba(255, 184, 0, 0.35);
+  --color-accent: #FFB800;
+  --color-amber: #FF8C00;
 
-  /* Muted Bronze */
-  --color-bronze: #7A5835;
-  --color-bronze-light: #F5EFE8;
-  --color-bronze-border: #DDC8B4;
+  /* Muted Bronze / Space Accents */
+  --color-bronze: #FF8C00;
+  --color-bronze-light: rgba(255, 140, 0, 0.12);
+  --color-bronze-border: rgba(255, 140, 0, 0.3);
 
-  /* Pastel Card Accents for Courses & Badges */
-  --color-btech-accent: #1D5C42;
-  --color-btech-soft: #F0F7F4;
-  --color-btech-border: #C8E3D7;
+  /* Pastel / Neon Card Accents for Courses & Badges */
+  --color-btech-accent: #10B981;
+  --color-btech-soft: rgba(16, 185, 129, 0.12);
+  --color-btech-border: rgba(16, 185, 129, 0.3);
 
-  --color-mca-accent: #2563EB;
-  --color-mca-soft: #F0F5FF;
-  --color-mca-border: #BFDBFE;
+  --color-mca-accent: #3B82F6;
+  --color-mca-soft: rgba(59, 130, 246, 0.12);
+  --color-mca-border: rgba(59, 130, 246, 0.3);
 
-  --color-mba-accent: #B45309;
-  --color-mba-soft: #FFFBEB;
-  --color-mba-border: #FDE68A;
+  --color-mba-accent: #F59E0B;
+  --color-mba-soft: rgba(245, 158, 11, 0.12);
+  --color-mba-border: rgba(245, 158, 11, 0.3);
 
-  --color-bpharm-accent: #BE185D;
-  --color-bpharm-soft: #FDF2F8;
-  --color-bpharm-border: #FBCFE8;
+  --color-bpharm-accent: #EC4899;
+  --color-bpharm-soft: rgba(236, 72, 153, 0.12);
+  --color-bpharm-border: rgba(236, 72, 153, 0.3);
 
   /* Borders & Dividers */
-  --color-border: #E8E2D5;
-  --color-border-light: #F0ECE3;
-  --color-border-strong: #D5CCBE;
-  --color-border-focus: #C88D2D;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.05);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-border-focus: #FFB800;
 
   /* Sticky Yellow */
-  --yellow-sticky: #FFF9A6;
-  --yellow-sticky-border: #F3EA7A;
+  --yellow-sticky: #18181B;
+  --yellow-sticky-border: rgba(255, 184, 0, 0.3);
 
   /* Typography */
   --font-main: 'Outfit', 'Plus Jakarta Sans', sans-serif;
   --font-hand: 'Kalam', 'Patrick Hand', cursive;
 
-  /* Layered Shadows */
-  --color-shadow-sm: 0 2px 6px rgba(35, 30, 25, 0.04);
-  --color-shadow-md: 0 6px 18px rgba(35, 30, 25, 0.07);
-  --color-shadow-lg: 0 14px 34px rgba(35, 30, 25, 0.10);
-  --color-shadow-gold: 0 6px 20px rgba(200, 141, 45, 0.28);
-  --color-shadow-primary: 0 6px 18px rgba(31, 36, 33, 0.22);
+  /* Layered Shadows & Glows */
+  --color-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+  --color-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.75);
+  --color-shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.9);
+  --color-shadow-gold: 0 0 25px rgba(255, 184, 0, 0.35);
+  --color-shadow-primary: 0 0 20px rgba(255, 184, 0, 0.25);
 
   /* Backward Compatibility Aliases */
-  --bg-cream: var(--color-background);
-  --bg-cream-card: var(--color-surface);
-  --bg-cream-dark: var(--color-surface-soft);
-  --brand-green-dark: #1F2421;
-  --brand-green-main: #C88D2D;
-  --brand-green-light: #D49B3E;
-  --brand-green-accent: #B37D28;
-  --brand-green-bg: #FDF6E8;
-  --chalkboard-bg: #FAF7F2;
-  --chalkboard-border: #E8E2D5;
-  --text-dark: var(--color-text);
-  --text-muted: var(--color-text-muted);
-  --text-light: var(--color-text-light);
-  --border-light: var(--color-border);
+  --bg-cream: #030303;
+  --bg-cream-card: #0B0B0B;
+  --bg-cream-dark: #111111;
+  --brand-green-dark: #0B0B0B;
+  --brand-green-main: #FFB800;
+  --brand-green-light: #FFA000;
+  --brand-green-accent: #FF8C00;
+  --brand-green-bg: #111111;
+  --chalkboard-bg: #0B0B0B;
+  --chalkboard-border: rgba(255, 255, 255, 0.08);
+  --text-dark: #FFFFFF;
+  --text-muted: #A1A1AA;
+  --text-light: #71717A;
+  --border-light: rgba(255, 255, 255, 0.08);
   --shadow-sm: var(--color-shadow-sm);
   --shadow-md: var(--color-shadow-md);
   --shadow-lg: var(--color-shadow-lg);
   --shadow-chalk: var(--color-shadow-md);
 }
 
-/* Dark Mode Overrides (Refined Warm Charcoal) */
+/* Dark Mode Overrides (Inherits Deep Space Theme) */
 body.dark-mode {
-  --color-background: #151816;
-  --color-surface: #1E2320;
-  --color-surface-soft: #252B27;
-  --color-surface-warm: #1A1F1C;
-  --color-surface-subtle: #2A312C;
+  --color-background: #030303;
+  --color-surface: #0B0B0B;
+  --color-surface-soft: #111111;
+  --color-surface-warm: #161616;
+  --color-surface-subtle: #1C1C1E;
 
-  --color-text: #F3F4F6;
+  --color-text: #FFFFFF;
   --color-text-dark: #FFFFFF;
-  --color-text-muted: #9CA3AF;
-  --color-text-light: #6B7280;
+  --color-text-muted: #A1A1AA;
+  --color-text-light: #71717A;
 
-  --color-primary: #FAF7F2;
-  --color-primary-hover: #E8E2D5;
-  --color-primary-soft: #2E3630;
+  --color-primary: #FFB800;
+  --color-primary-hover: #FFA000;
+  --color-primary-soft: rgba(255, 184, 0, 0.12);
 
-  --color-gold: #E5A83B;
-  --color-gold-hover: #D49B3E;
-  --color-gold-light: #2A2518;
-  --color-gold-border: #6B5128;
+  --color-gold: #FFB800;
+  --color-gold-hover: #FFA000;
+  --color-gold-light: rgba(255, 184, 0, 0.12);
+  --color-gold-border: rgba(255, 184, 0, 0.35);
 
-  --color-border: #333C36;
-  --color-border-light: #28302A;
-  --color-border-strong: #455048;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.05);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
 
   --bg-cream: var(--color-background);
   --bg-cream-card: var(--color-surface);
   --bg-cream-dark: var(--color-surface-soft);
-  --brand-green-bg: #2A2518;
+  --brand-green-bg: #111111;
   --border-light: var(--color-border);
 }
 
@@ -168,14 +170,132 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-background);
+  background: #030303;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D5CCBE;
+  background: #27272A;
   border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B3A895;
+  background: #3F3F46;
+}
+
+/* =========================================================================
+   DEEP SPACE CINEMATIC UTILITIES & GLOWING BULB INTERACTIONS
+   ========================================================================= */
+
+/* Golden Light Bulb Interaction Utility */
+.pv-bulb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.pv-bulb::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 184, 0, 0.55) 0%, rgba(255, 184, 0, 0) 70%);
+  opacity: 0.85;
+  animation: bulbGlow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes bulbGlow {
+  0%, 100% { opacity: 0.6; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(255, 184, 0, 0.85)); }
+}
+
+/* Premium Space Obsidian Glow Button */
+.pv-glow-btn {
+  position: relative;
+  background-color: #0B0B0B;
+  border: 1px solid rgba(255, 184, 0, 0.45);
+  color: #FFB800;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  border-radius: 9999px;
+  padding: 0.7rem 1.6rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 16px rgba(255, 184, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+}
+.pv-glow-btn:hover {
+  background-color: #121212;
+  border-color: #FFB800;
+  color: #FFA000;
+  box-shadow: 0 0 28px rgba(255, 184, 0, 0.45), inset 0 0 10px rgba(255, 184, 0, 0.2);
+  transform: translateY(-2px);
+}
+.pv-glow-btn:active {
+  transform: translateY(0);
+}
+
+/* Secondary Space Button */
+.pv-secondary-btn {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+.pv-secondary-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 184, 0, 0.4);
+  color: #FFB800;
+  box-shadow: 0 0 18px rgba(255, 184, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+/* Deep Space Glass Card */
+.pv-space-card {
+  background-color: #0B0B0B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.pv-space-card:hover {
+  border-color: rgba(255, 184, 0, 0.35);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), 0 0 24px rgba(255, 184, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+/* Scroll-based Reveal Animation Classes */
+.pv-scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.pv-scroll-reveal.pv-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pv-scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* Animations */
@@ -802,20 +922,20 @@ pre, code {
    ========================================================================= */
 @media (max-width: 1023px) {
   :root {
-    --pv-mobile-primary: #861820;
-    --pv-mobile-burgundy-deep: #681016;
-    --pv-mobile-gold: #D6A13D;
-    --pv-mobile-gold-light: #F8EAC9;
-    --pv-mobile-bg: #FFFCF7;
-    --pv-mobile-card: #FFFFFF;
-    --pv-mobile-text: #14243D;
-    --pv-mobile-text-muted: #66758B;
-    --pv-mobile-border: #E9D9CC;
+    --pv-mobile-primary: #FFB800;
+    --pv-mobile-burgundy-deep: #161616;
+    --pv-mobile-gold: #FFB800;
+    --pv-mobile-gold-light: rgba(255, 184, 0, 0.15);
+    --pv-mobile-bg: #030303;
+    --pv-mobile-card: #0B0B0B;
+    --pv-mobile-text: #FFFFFF;
+    --pv-mobile-text-muted: #A1A1AA;
+    --pv-mobile-border: rgba(255, 255, 255, 0.08);
   }
 
   html, body {
-    background-color: #FFFCF7 !important;
-    color: #14243D;
+    background-color: #030303 !important;
+    color: #FFFFFF !important;
   }
 
   /* Desktop Navbar wrapper is suppressed on mobile */
@@ -1054,17 +1174,17 @@ pre, code {
     width: 100%;
     padding: 0.55rem 0.75rem 0.55rem 2.25rem;
     border-radius: 8px;
-    border: 1px solid #E9D9CC;
-    background-color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background-color: #0B0B0B;
     font-size: 0.8rem;
-    color: #14243D;
+    color: #FFFFFF;
     outline: none;
     box-sizing: border-box;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
   .pv-mobile-form-input:focus {
-    border-color: #861820 !important;
-    box-shadow: 0 0 0 2px rgba(134, 24, 32, 0.12) !important;
+    border-color: #FFB800 !important;
+    box-shadow: 0 0 0 2px rgba(255, 184, 0, 0.25) !important;
   }
 
   /* Switch Notes & PYQs Views */
@@ -1277,21 +1397,21 @@ pre, code {
   gap: 0.35rem;
   padding: 0.22rem 0.65rem;
   border-radius: 9999px;
-  background-color: #FFFBEB;
-  border: 1px solid #FCD34D;
-  color: #7A2327;
+  background-color: rgba(255, 184, 0, 0.12);
+  border: 1px solid rgba(255, 184, 0, 0.4);
+  color: #FFB800;
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
   font-size: 0.76rem;
   letter-spacing: -0.01em;
   line-height: 1.25;
-  box-shadow: 0 1px 3px rgba(122, 35, 39, 0.04);
+  box-shadow: 0 0 10px rgba(255, 184, 0, 0.15);
   transition: all 0.2s ease;
 }
 
 .pv-coming-soon-badge:hover {
-  border-color: #7A2327;
-  background-color: #FEF3C7;
+  border-color: #FFB800;
+  background-color: rgba(255, 184, 0, 0.2);
   transform: translateY(-1px);
 }
 
@@ -1301,9 +1421,9 @@ pre, code {
   gap: 0.25rem;
   padding: 0.15rem 0.45rem;
   border-radius: 9999px;
-  background-color: #FFFBEB;
-  border: 1px solid #FCD34D;
-  color: #7A2327;
+  background-color: rgba(255, 184, 0, 0.12);
+  border: 1px solid rgba(255, 184, 0, 0.4);
+  color: #FFB800;
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
   font-size: 0.68rem;
@@ -1312,9 +1432,9 @@ pre, code {
 }
 
 .pv-coming-soon-banner {
-  background-color: #FFFFFF;
+  background-color: #0B0B0B;
   border-radius: 16px;
-  border: 1.5px dashed #FCD34D;
+  border: 1.5px dashed rgba(255, 184, 0, 0.35);
   padding: 2rem 1.5rem;
   text-align: center;
   display: flex;
@@ -1322,7 +1442,174 @@ pre, code {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  box-shadow: 0 2px 10px rgba(122, 35, 39, 0.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
   margin: 0.75rem 0;
 }
 
+
+
+/* =========================================================================
+   UNIVERSAL DEEP SPACE CINEMATIC THEME ENGINE
+   Eliminates all accidental white/cream surfaces across all tools and routes
+   ========================================================================= */
+
+/* Top-level pages, views and wrappers */
+.pv-desktop-notes-view,
+.pv-mobile-notes-view,
+.pv-pyq-page-root,
+.pv-result-desktop-only,
+.bg-cream,
+.bg-\[\#FAF7F2\],
+.bg-\[\#FAF5ED\],
+.bg-\[\#FCFAF6\],
+.bg-\[\#FFF7ED\],
+.bg-\[\#F8FAFC\],
+.bg-\[\#F9FAFB\],
+[style*="#FAF7F2"],
+[style*="#faf7f2"],
+[style*="#FAF5ED"],
+[style*="#faf5ed"],
+[style*="#FCFAF6"],
+[style*="#fcfaf6"],
+[style*="#FFF7ED"],
+[style*="#fff7ed"],
+[style*="rgb(250, 247, 242)"],
+[style*="rgb(250, 245, 237)"],
+[style*="rgb(252, 250, 246)"] {
+  background-color: transparent !important;
+}
+
+/* Card, modal, panel surfaces */
+.bg-white,
+.bg-slate-50,
+.bg-gray-50,
+.bg-zinc-50,
+.bg-stone-50,
+[style*="background-color: #ffffff"],
+[style*="background-color: #FFFFFF"],
+[style*="background-color: #fff"],
+[style*="background-color: rgb(255, 255, 255)"],
+[style*="background-color: rgb(248, 250, 252)"],
+[style*="background-color: rgb(249, 250, 251)"] {
+  background-color: #0B0B0B !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Inner nested cards / tertiary surfaces */
+[style*="background-color: #F8FAFC"],
+[style*="background-color: #f8fafc"],
+[style*="background-color: #F1F5F9"],
+[style*="background-color: #f1f5f9"],
+[style*="background-color: #E2E8F0"] {
+  background-color: #111111 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Text Colors */
+.text-gray-900,
+.text-slate-900,
+.text-stone-900,
+.text-zinc-900,
+.text-gray-800,
+.text-slate-800,
+.text-stone-800,
+.text-zinc-800,
+[style*="color: #1C1E21"],
+[style*="color: #1c1e21"],
+[style*="color: #1F2421"],
+[style*="color: #1f2421"],
+[style*="color: #0F172A"],
+[style*="color: #0f172a"],
+[style*="color: #1E293B"],
+[style*="color: #1e293b"],
+[style*="color: rgb(28, 30, 33)"],
+[style*="color: rgb(31, 36, 33)"],
+[style*="color: rgb(15, 23, 42)"],
+[style*="color: rgb(30, 41, 59)"] {
+  color: #FFFFFF !important;
+}
+
+.text-gray-700,
+.text-slate-700,
+.text-stone-700,
+.text-zinc-700,
+.text-gray-600,
+.text-slate-600,
+.text-stone-600,
+.text-zinc-600,
+.text-gray-500,
+.text-slate-500,
+.text-stone-500,
+[style*="color: #64748B"],
+[style*="color: #64748b"],
+[style*="color: #475569"],
+[style*="color: #475569"],
+[style*="color: #646E78"],
+[style*="color: #646e78"],
+[style*="color: #78716C"],
+[style*="color: #78716c"],
+[style*="color: rgb(100, 116, 139)"],
+[style*="color: rgb(71, 85, 105)"],
+[style*="color: rgb(100, 110, 120)"],
+[style*="color: rgb(120, 113, 108)"] {
+  color: #A1A1AA !important;
+}
+
+/* Primary burgundy button colors upgraded to warm electric gold */
+.bg-\[\#781416\],
+.bg-\[\#7A2327\],
+.bg-\[\#8B101D\],
+.bg-\[\#5C1A1D\],
+[style*="background-color: #781416"],
+[style*="background-color: #7A2327"],
+[style*="background-color: #8B101D"],
+[style*="background-color: #5C1A1D"],
+[style*="backgroundColor: '#781416'"],
+[style*="backgroundColor: '#7A2327'"],
+[style*="backgroundColor: '#8B101D'"],
+[style*="backgroundColor: '#5C1A1D'"],
+[style*="background-color: rgb(120, 20, 22)"],
+[style*="background-color: rgb(122, 35, 39)"] {
+  background-color: #FFB800 !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  border-color: #FFB800 !important;
+  box-shadow: 0 0 16px rgba(255, 184, 0, 0.3) !important;
+}
+
+/* Form Inputs, Selects & Textareas */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  background-color: #0B0B0B !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #FFB800 !important;
+  box-shadow: 0 0 12px rgba(255, 184, 0, 0.3) !important;
+  outline: none !important;
+}
+
+/* Table Dark Theme */
+table {
+  background-color: #0B0B0B !important;
+  color: #FFFFFF !important;
+}
+th {
+  background-color: #111111 !important;
+  color: #FFB800 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+td {
+  background-color: #0B0B0B !important;
+  color: #E4E4E7 !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+tr:hover td {
+  background-color: #141414 !important;
+}

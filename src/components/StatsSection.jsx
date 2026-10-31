@@ -45,11 +45,11 @@ export default function StatsSection({ statsData }) {
 
   return (
     <section style={{
-      backgroundColor: '#FAF7F2',
+      backgroundColor: 'transparent',
       padding: '2rem 0',
-      borderBottom: '1.5px solid #E8E2D5',
-      boxShadow: '0 2px 10px rgba(35,30,25,0.02)'
-    }}>
+      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.4)'
+    }} className="pv-scroll-reveal">
       <div className="container">
         
         {/* Real DB Status Header */}
@@ -61,16 +61,16 @@ export default function StatsSection({ statsData }) {
         }}>
           <span style={{
             fontSize: '0.68rem',
-            color: '#646E78',
+            color: '#A1A1AA',
             display: 'flex',
             alignItems: 'center',
             gap: '0.3rem',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#0B0B0B',
             padding: '0.2rem 0.6rem',
             borderRadius: '9999px',
-            border: '1.5px solid #E8E2D5'
+            border: '1px solid rgba(255, 255, 255, 0.1)'
           }}>
-            <Database size={12} style={{ color: isLive ? '#C88D2D' : '#646E78' }} />
+            <Database size={12} style={{ color: isLive ? '#FFB800' : '#A1A1AA' }} />
             {isLive ? 'Real Database Metrics' : 'Live DB Syncing...'}
           </span>
         </div>
@@ -86,31 +86,34 @@ export default function StatsSection({ statsData }) {
               <div
                 key={s.id}
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1.5px solid #E8E2D5',
+                  backgroundColor: '#0B0B0B',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   borderRadius: '16px',
                   padding: '1.25rem 1rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.9rem',
-                  boxShadow: '0 4px 14px rgba(35,30,25,0.03)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(35,30,25,0.06)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.9), 0 0 16px rgba(255, 184, 0, 0.2)';
+                  e.currentTarget.style.borderColor = '#FFB800';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0px)';
-                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(35,30,25,0.03)';
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(0, 0, 0, 0.6)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
                 }}
               >
                 <div style={{
                   width: '44px',
                   height: '44px',
                   borderRadius: '12px',
-                  backgroundColor: s.bgColor,
-                  color: s.color,
+                  backgroundColor: 'rgba(255, 184, 0, 0.12)',
+                  color: '#FFB800',
+                  border: '1px solid rgba(255, 184, 0, 0.25)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -122,7 +125,7 @@ export default function StatsSection({ statsData }) {
                   <div style={{
                     fontSize: '1.45rem',
                     fontWeight: 900,
-                    color: '#1C1E21',
+                    color: '#FFFFFF',
                     lineHeight: 1.1
                   }}>
                     {s.value}
@@ -130,7 +133,7 @@ export default function StatsSection({ statsData }) {
                   <div style={{
                     fontSize: '0.78rem',
                     fontWeight: 600,
-                    color: '#646E78',
+                    color: '#A1A1AA',
                     marginTop: '0.15rem'
                   }}>
                     {s.label}

@@ -105,7 +105,7 @@ export default function ImportantLinksPage({ onNavigate, onOpenAuth }) {
   };
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', paddingBottom: '5rem', color: '#1F2421' }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', paddingBottom: '5rem', color: '#1F2421' }}>
       {/* 1. TOP HEADER & BREADCRUMBS */}
       <section style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #E8E2D5', padding: '1.75rem 1.5rem 1.25rem' }}>
         <div style={{ maxWidth: '1360px', margin: '0 auto' }}>

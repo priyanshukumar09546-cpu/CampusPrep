@@ -274,7 +274,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
               {displayUnit && (
                 <>
                   <span>•</span>
-                  <span style={{ color: '#F8FAFC' }}>{displayUnit}</span>
+                  <span style={{ color: '#111111' }}>{displayUnit}</span>
                 </>
               )}
             </div>
@@ -700,7 +700,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                     height: '100%',
                     minHeight: isFullscreen || isMobile ? '100vh' : 'calc(94vh - 120px)',
                     border: 'none',
-                    backgroundColor: '#FFFFFF'
+                    backgroundColor: '#0B0B0B'
                   }}
                   allow="autoplay; encrypted-media; fullscreen"
                   onLoad={() => setIsLoading(false)}
@@ -738,7 +738,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                 <AlertTriangle size={28} />
               </div>
 
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#F8FAFC', margin: '0 0 0.5rem 0' }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#111111', margin: '0 0 0.5rem 0' }}>
                 Preview Restricted by Host
               </h3>
 
@@ -855,7 +855,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
               <h3 style={{
                 fontSize: isMobile ? '1.15rem' : '1.35rem',
                 fontWeight: 900,
-                color: '#F8FAFC',
+                color: '#111111',
                 margin: '0 0 0.65rem 0',
                 lineHeight: 1.25
               }}>
@@ -908,7 +908,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                     textAlign: 'left'
                   }}
                 >
-                  <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#F8FAFC' }}>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#111111' }}>
                     Request Notes for this Subject
                   </div>
 
@@ -923,7 +923,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                       border: '1px solid #475569',
                       borderRadius: '8px',
                       padding: '0.55rem 0.85rem',
-                      color: '#F8FAFC',
+                      color: '#111111',
                       fontSize: '0.82rem',
                       outline: 'none'
                     }}
@@ -939,7 +939,7 @@ export default function NoteViewerModal({ note, subject, unit, onClose }) {
                       border: '1px solid #475569',
                       borderRadius: '8px',
                       padding: '0.55rem 0.85rem',
-                      color: '#F8FAFC',
+                      color: '#111111',
                       fontSize: '0.82rem',
                       outline: 'none'
                     }}

@@ -187,7 +187,7 @@ export default function GoogleSignInButton({
     <div className={`google-auth-wrapper w-full flex flex-col items-center justify-center ${className}`}>
       {loading ? (
         <div
-          className="w-full flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl border border-[#C88D2D]/40 bg-[#FAF7F2] text-[#1F2421] text-xs sm:text-sm font-semibold shadow-xs"
+          className="w-full flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl border border-[#C88D2D]/40 bg-[transparent] text-[#1F2421] text-xs sm:text-sm font-semibold shadow-xs"
           style={{ minHeight: '44px' }}
         >
           <div className="w-4 h-4 border-2 border-[#781416]/30 border-t-[#781416] rounded-full animate-spin" />

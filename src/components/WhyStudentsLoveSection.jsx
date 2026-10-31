@@ -8,48 +8,49 @@ export default function WhyStudentsLoveSection() {
       title: 'Verified & Updated Content',
       desc: 'Unit-wise notes, PYQs and syllabus as per latest university curriculum.',
       icon: BookOpen,
-      iconColor: '#BE123C',
-      iconBg: '#FFE4E6',
-      border: '#FECDD3'
+      iconColor: '#FFB800',
+      iconBg: 'rgba(255, 184, 0, 0.1)',
+      border: 'rgba(255, 184, 0, 0.3)'
     },
     {
       id: 'practice',
       title: 'Practice & Improve',
       desc: 'Quizzes, mock tests and topic-wise practice for better preparation.',
       icon: Target,
-      iconColor: '#EA580C',
-      iconBg: '#FFEDD5',
-      border: '#FED7AA'
+      iconColor: '#FF8C00',
+      iconBg: 'rgba(255, 140, 0, 0.1)',
+      border: 'rgba(255, 140, 0, 0.3)'
     },
     {
       id: 'career',
       title: 'Career Ready',
       desc: 'Interview prep, internships, jobs and engineering project resources.',
       icon: TrendingUp,
-      iconColor: '#7C3AED',
-      iconBg: '#EDE9FE',
-      border: '#DDD6FE'
+      iconColor: '#A855F7',
+      iconBg: 'rgba(168, 85, 247, 0.1)',
+      border: 'rgba(168, 85, 247, 0.3)'
     },
     {
       id: 'progress',
       title: 'Track Your Progress',
       desc: 'Plan your study, track your learning, streaks and stay consistent.',
       icon: UserCheck,
-      iconColor: '#059669',
-      iconBg: '#D1FAE5',
-      border: '#A7F3D0'
+      iconColor: '#10B981',
+      iconBg: 'rgba(16, 185, 129, 0.1)',
+      border: 'rgba(16, 185, 129, 0.3)'
     }
   ];
 
   return (
     <section 
+      className="pv-scroll-reveal"
       style={{
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         padding: '3.5rem 0 2.5rem 0',
-        borderBottom: '1.5px solid #E8E2D5'
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
       }}
     >
-      <div className="container">
+      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <div style={{
@@ -58,17 +59,17 @@ export default function WhyStudentsLoveSection() {
             gap: '0.45rem',
             fontSize: 'clamp(1.75rem, 2.5vw, 2.35rem)',
             fontWeight: 800,
-            color: '#1C1E21',
+            color: '#FFFFFF',
             fontFamily: "'Outfit', sans-serif",
             letterSpacing: '-0.02em',
             marginBottom: '0.45rem'
           }}>
-            <span role="img" aria-label="lightbulb">💡</span>
-            <h2>Why Students Love ProfessorVirus?</h2>
+            <span>💡</span>
+            <h2>Why Students Love <span style={{ color: '#FFB800' }}>ProfessorVirus</span>?</h2>
           </div>
           <p style={{
             fontSize: '0.95rem',
-            color: '#64748B',
+            color: '#A1A1AA',
             fontWeight: 500,
             margin: 0
           }}>
@@ -87,23 +88,25 @@ export default function WhyStudentsLoveSection() {
               <div
                 key={f.id}
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: `1.5px solid ${f.border}`,
+                  backgroundColor: '#0B0B0B',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   borderRadius: '20px',
                   padding: '1.75rem 1.35rem',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  boxShadow: '0 4px 16px rgba(35,30,25,0.04)',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
                   transition: 'all 0.25s ease'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(35,30,25,0.08)';
+                  e.currentTarget.style.borderColor = f.iconColor;
+                  e.currentTarget.style.boxShadow = `0 12px 28px rgba(0, 0, 0, 0.7), 0 0 20px ${f.iconColor}33`;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(35,30,25,0.04)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.5)';
                 }}
               >
                 {/* Icon */}
@@ -126,7 +129,7 @@ export default function WhyStudentsLoveSection() {
                 <h3 style={{
                   fontSize: '1.05rem',
                   fontWeight: 800,
-                  color: '#1C1E21',
+                  color: '#FFFFFF',
                   margin: '0 0 0.5rem 0',
                   lineHeight: 1.3
                 }}>
@@ -136,7 +139,7 @@ export default function WhyStudentsLoveSection() {
                 {/* Description */}
                 <p style={{
                   fontSize: '0.84rem',
-                  color: '#64748B',
+                  color: '#A1A1AA',
                   lineHeight: 1.55,
                   margin: 0
                 }}>

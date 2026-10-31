@@ -78,7 +78,7 @@ export default function HoollowDemoModal({ isOpen, onClose, onTryGenerator }) {
     >
       <div
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#0B0B0B',
           borderRadius: '24px',
           width: '100%',
           maxWidth: '850px',
@@ -274,7 +274,7 @@ export default function HoollowDemoModal({ isOpen, onClose, onTryGenerator }) {
         </div>
 
         {/* Dynamic Demo Body based on Current Step */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: '1.5rem', backgroundColor: '#FAF7F2' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '1.5rem', backgroundColor: 'transparent' }}>
           {currentStep === 1 && (
             <div style={{ animation: 'fadeIn 0.3s ease' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1rem' }}>
@@ -315,7 +315,7 @@ export default function HoollowDemoModal({ isOpen, onClose, onTryGenerator }) {
 
                 <div
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#0B0B0B',
                     border: '1px solid #E8E2D5',
                     borderRadius: '16px',
                     padding: '1rem',
@@ -331,7 +331,7 @@ export default function HoollowDemoModal({ isOpen, onClose, onTryGenerator }) {
 
                 <div
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#0B0B0B',
                     border: '1px solid #E8E2D5',
                     borderRadius: '16px',
                     padding: '1rem',
@@ -369,7 +369,7 @@ export default function HoollowDemoModal({ isOpen, onClose, onTryGenerator }) {
                 </div>
               </div>
 
-              <div style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1.2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem' }}>
+              <div style={{ backgroundColor: '#0B0B0B', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1.2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem' }}>
                 <div style={{ padding: '0.8rem', background: '#FFF9F1', borderRadius: '12px', border: '1px solid #F1E5D8' }}>
                   <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#68131B', textTransform: 'uppercase' }}>Current Level</div>
                   <div style={{ fontWeight: 800, fontSize: '1rem', color: '#1F2421', marginTop: '0.2rem' }}>Beginner 👶</div>
@@ -465,7 +465,7 @@ export default function HoollowDemoModal({ isOpen, onClose, onTryGenerator }) {
               {/* Sample Task Card */}
               <div
                 style={{
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#0B0B0B',
                   borderRadius: '16px',
                   border: '1.5px solid #8B101D',
                   padding: '1.2rem',

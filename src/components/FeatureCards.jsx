@@ -18,106 +18,107 @@ export default function FeatureCards({ onCardClick }) {
       title: 'PYQs',
       subtitle: 'Year-wise Question Papers',
       icon: FileText,
-      bgColor: '#FEF2F2',
+      bgColor: 'rgba(239, 68, 68, 0.12)',
       iconBg: '#EF4444',
       iconColor: '#FFFFFF',
-      borderColor: '#FECACA',
-      arrowBg: '#FEE2E2',
-      arrowColor: '#DC2626'
+      borderColor: 'rgba(239, 68, 68, 0.3)',
+      arrowBg: 'rgba(255, 184, 0, 0.1)',
+      arrowColor: '#FFB800'
     },
     {
       id: 'notes',
       title: 'Notes',
       subtitle: 'Unit-wise Study Materials',
       icon: BookOpen,
-      bgColor: '#FFFBEB',
+      bgColor: 'rgba(245, 158, 11, 0.12)',
       iconBg: '#F59E0B',
       iconColor: '#FFFFFF',
-      borderColor: '#FDE68A',
-      arrowBg: '#FEF3C7',
-      arrowColor: '#D97706'
+      borderColor: 'rgba(245, 158, 11, 0.3)',
+      arrowBg: 'rgba(255, 184, 0, 0.1)',
+      arrowColor: '#FFB800'
     },
     {
       id: 'syllabus',
       title: 'Syllabus',
       subtitle: 'Official & Updated Syllabus',
       icon: GraduationCap,
-      bgColor: '#F5F3FF',
+      bgColor: 'rgba(139, 92, 246, 0.12)',
       iconBg: '#8B5CF6',
       iconColor: '#FFFFFF',
-      borderColor: '#DDD6FE',
-      arrowBg: '#EDE9FE',
-      arrowColor: '#7C3AED'
+      borderColor: 'rgba(139, 92, 246, 0.3)',
+      arrowBg: 'rgba(255, 184, 0, 0.1)',
+      arrowColor: '#FFB800'
     },
     {
       id: 'internships-jobs',
       title: 'Internships & Jobs',
       subtitle: 'Latest Opportunities',
       icon: Briefcase,
-      bgColor: '#F0F9FF',
+      bgColor: 'rgba(2, 132, 199, 0.12)',
       iconBg: '#0284C7',
       iconColor: '#FFFFFF',
-      borderColor: '#BAE6FD',
-      arrowBg: '#E0F2FE',
-      arrowColor: '#0369A1'
+      borderColor: 'rgba(2, 132, 199, 0.3)',
+      arrowBg: 'rgba(255, 184, 0, 0.1)',
+      arrowColor: '#FFB800'
     },
     {
       id: 'interview-pro',
       title: 'Interview Pro',
       subtitle: 'Placement Preparation & Mock',
       icon: Code2,
-      bgColor: '#FFF1F2',
-      iconBg: '#BE123C',
+      bgColor: 'rgba(255, 184, 0, 0.12)',
+      iconBg: '#FFB800',
       iconColor: '#FFFFFF',
-      borderColor: '#FECDD3',
-      arrowBg: '#FFE4E6',
-      arrowColor: '#9F1239'
+      borderColor: 'rgba(255, 184, 0, 0.35)',
+      arrowBg: 'rgba(255, 184, 0, 0.1)',
+      arrowColor: '#FFB800'
     },
     {
       id: 'pdf-maker',
       title: 'PDF Maker & Splitter',
       subtitle: 'Merge, Split & Convert',
       icon: FileStack,
-      bgColor: '#ECFDF5',
+      bgColor: 'rgba(16, 185, 129, 0.12)',
       iconBg: '#10B981',
       iconColor: '#FFFFFF',
-      borderColor: '#A7F3D0',
-      arrowBg: '#D1FAE5',
-      arrowColor: '#059669'
+      borderColor: 'rgba(16, 185, 129, 0.3)',
+      arrowBg: 'rgba(255, 184, 0, 0.1)',
+      arrowColor: '#FFB800'
     },
     {
       id: 'result-cgpa',
       title: 'Result & CGPA',
       subtitle: 'Marksheet Parser & Tools',
       icon: Calculator,
-      bgColor: '#EEF2FF',
+      bgColor: 'rgba(99, 102, 241, 0.12)',
       iconBg: '#6366F1',
       iconColor: '#FFFFFF',
-      borderColor: '#C7D2FE',
-      arrowBg: '#E0E7FF',
-      arrowColor: '#4F46E5'
+      borderColor: 'rgba(99, 102, 241, 0.3)',
+      arrowBg: 'rgba(255, 184, 0, 0.1)',
+      arrowColor: '#FFB800'
     },
     {
       id: 'scholarships',
       title: 'Scholarships & Grants',
       subtitle: 'Government & Private',
       icon: Award,
-      bgColor: '#FFF7ED',
+      bgColor: 'rgba(234, 88, 12, 0.12)',
       iconBg: '#EA580C',
       iconColor: '#FFFFFF',
-      borderColor: '#FFEDD5',
-      arrowBg: '#FFEDD5',
-      arrowColor: '#C2410C'
+      borderColor: 'rgba(234, 88, 12, 0.3)',
+      arrowBg: 'rgba(255, 184, 0, 0.1)',
+      arrowColor: '#FFB800'
     }
   ];
 
   return (
     <section 
       style={{
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         padding: '2.25rem 0 1.75rem 0',
-        borderBottom: '1.5px solid #E8E2D5'
+        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
       }}
+      className="pv-scroll-reveal"
     >
       <div className="container">
         <div 
@@ -133,8 +134,8 @@ export default function FeatureCards({ onCardClick }) {
                 onClick={() => onCardClick && onCardClick(c.id)}
                 aria-label={`${c.title} - ${c.subtitle}`}
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: `1.5px solid ${c.borderColor}`,
+                  backgroundColor: '#0B0B0B',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                   borderRadius: '20px',
                   padding: '1.25rem 0.85rem 1rem 0.85rem',
                   display: 'flex',
@@ -143,7 +144,7 @@ export default function FeatureCards({ onCardClick }) {
                   textAlign: 'left',
                   cursor: 'pointer',
                   transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  boxShadow: '0 4px 14px rgba(35,30,25,0.04)',
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)',
                   position: 'relative',
                   overflow: 'hidden',
                   outline: 'none',
@@ -151,13 +152,13 @@ export default function FeatureCards({ onCardClick }) {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(35,30,25,0.08)';
-                  e.currentTarget.style.borderColor = c.iconBg;
+                  e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 0, 0, 0.9), 0 0 16px rgba(255, 184, 0, 0.18)';
+                  e.currentTarget.style.borderColor = '#FFB800';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(35,30,25,0.04)';
-                  e.currentTarget.style.borderColor = c.borderColor;
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(0, 0, 0, 0.6)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
                 }}
               >
                 {/* Top Icon Badge */}
@@ -180,7 +181,7 @@ export default function FeatureCards({ onCardClick }) {
                 <div style={{
                   fontSize: '0.94rem',
                   fontWeight: 800,
-                  color: '#1C1E21',
+                  color: '#FFFFFF',
                   lineHeight: 1.25,
                   marginBottom: '0.25rem'
                 }}>
@@ -191,7 +192,7 @@ export default function FeatureCards({ onCardClick }) {
                 <div style={{
                   fontSize: '0.72rem',
                   fontWeight: 500,
-                  color: '#64748B',
+                  color: '#A1A1AA',
                   lineHeight: 1.3,
                   marginBottom: '1rem',
                   flexGrow: 1
@@ -206,6 +207,7 @@ export default function FeatureCards({ onCardClick }) {
                   borderRadius: '50%',
                   backgroundColor: c.arrowBg,
                   color: c.arrowColor,
+                  border: '1px solid rgba(255, 184, 0, 0.25)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',

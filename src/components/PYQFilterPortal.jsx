@@ -522,7 +522,7 @@ export default function PYQFilterPortal({
     searchQuery.trim() !== '';
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', padding: '1.25rem 0 3.5rem 0' }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', padding: '1.25rem 0 3.5rem 0' }}>
       <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 1rem' }}>
 
         {/* 1. HERO BRANDING & PORTAL HEADER */}
@@ -588,7 +588,7 @@ export default function PYQFilterPortal({
 
           {/* Quick Stats Pill */}
           <div style={{
-            backgroundColor: '#FAF7F2',
+            backgroundColor: 'transparent',
             border: '1.5px solid #E8E2D5',
             borderRadius: '16px',
             padding: '0.75rem 1.25rem',
@@ -644,7 +644,7 @@ export default function PYQFilterPortal({
                 width: '32px',
                 height: '32px',
                 borderRadius: '8px',
-                backgroundColor: '#FAF7F2',
+                backgroundColor: 'transparent',
                 border: '1px solid #E8E2D5',
                 display: 'flex',
                 alignItems: 'center',
@@ -711,7 +711,7 @@ export default function PYQFilterPortal({
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
                     border: '1.5px solid #CBD5E1',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
                     color: '#1F2421',
@@ -742,7 +742,7 @@ export default function PYQFilterPortal({
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
                     border: '1.5px solid #CBD5E1',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
                     color: '#1F2421',
@@ -773,7 +773,7 @@ export default function PYQFilterPortal({
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
                     border: '1.5px solid #CBD5E1',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
                     color: '#1F2421',
@@ -804,7 +804,7 @@ export default function PYQFilterPortal({
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
                     border: '1.5px solid #CBD5E1',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
                     color: '#1F2421',
@@ -835,7 +835,7 @@ export default function PYQFilterPortal({
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
                     border: '1.5px solid #CBD5E1',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
                     color: '#1F2421',
@@ -867,7 +867,7 @@ export default function PYQFilterPortal({
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
                     border: '1.5px solid #CBD5E1',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
                     color: '#1F2421',
@@ -900,7 +900,7 @@ export default function PYQFilterPortal({
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
                     border: '1.5px solid #CBD5E1',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
                     color: '#1F2421',
@@ -942,7 +942,7 @@ export default function PYQFilterPortal({
                 padding: '0.55rem 2.2rem 0.55rem 2.2rem',
                 borderRadius: '12px',
                 border: '1.5px solid #E2E8F0',
-                backgroundColor: '#FAF7F2',
+                backgroundColor: 'transparent',
                 fontSize: '0.86rem',
                 color: '#1F2421',
                 outline: 'none',
@@ -1007,27 +1007,27 @@ export default function PYQFilterPortal({
           {/* Active Filter Tags */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
             {selectedCourse && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
                 Course: {selectedCourse}
               </span>
             )}
             {selectedBranch !== 'ALL' && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
                 Branch: {selectedBranch}
               </span>
             )}
             {selectedYear !== 'ALL' && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
                 Year: {selectedYear}
               </span>
             )}
             {selectedSemester !== 'ALL' && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
                 {selectedSemester}
               </span>
             )}
             {selectedSubject !== 'ALL' && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
                 Subject: {selectedSubject}
               </span>
             )}
@@ -1037,7 +1037,7 @@ export default function PYQFilterPortal({
               </span>
             )}
             {selectedExamType !== 'ALL' && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
                 Type: {selectedExamType}
               </span>
             )}
@@ -1225,7 +1225,7 @@ export default function PYQFilterPortal({
                         fontSize: '0.7rem',
                         fontWeight: 700,
                         color: '#64748B',
-                        backgroundColor: '#FAF7F2',
+                        backgroundColor: 'transparent',
                         border: '1px solid #E2E8F0',
                         padding: '0.15rem 0.45rem',
                         borderRadius: '6px'
@@ -1307,7 +1307,7 @@ export default function PYQFilterPortal({
                           padding: '0.55rem 0.75rem',
                           borderRadius: '10px',
                           border: '1.5px solid #CBD5E1',
-                          backgroundColor: '#FAF7F2',
+                          backgroundColor: 'transparent',
                           color: '#334155',
                           display: 'flex',
                           alignItems: 'center',

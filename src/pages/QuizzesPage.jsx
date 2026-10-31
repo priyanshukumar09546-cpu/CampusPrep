@@ -321,7 +321,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
   // --------------------------------------------------------------------------
   if (quizMode === 'start-brief' && activeQuiz) {
     return (
-      <div style={{ backgroundColor: '#FAF7F2', minHeight: '90vh', padding: '3rem 1rem' }}>
+      <div style={{ backgroundColor: 'transparent', minHeight: '90vh', padding: '3rem 1rem' }}>
         <div style={{ maxWidth: '780px', margin: '0 auto' }}>
           
           <button
@@ -433,25 +433,25 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
 
             {/* Key Quiz Parameters Cards */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3" style={{ marginBottom: '2rem' }}>
-              <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1rem', textAlign: 'center' }}>
+              <div style={{ backgroundColor: 'transparent', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1rem', textAlign: 'center' }}>
                 <div style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 600 }}>Questions</div>
                 <div style={{ fontSize: '1.45rem', fontWeight: 900, color: '#1C1E21', marginTop: '0.2rem' }}>
                   {activeQuiz.questions?.length || 0}
                 </div>
               </div>
-              <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1rem', textAlign: 'center' }}>
+              <div style={{ backgroundColor: 'transparent', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1rem', textAlign: 'center' }}>
                 <div style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 600 }}>Duration</div>
                 <div style={{ fontSize: '1.45rem', fontWeight: 900, color: '#1C1E21', marginTop: '0.2rem' }}>
                   {activeQuiz.durationMinutes}m
                 </div>
               </div>
-              <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1rem', textAlign: 'center' }}>
+              <div style={{ backgroundColor: 'transparent', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1rem', textAlign: 'center' }}>
                 <div style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 600 }}>Total Marks</div>
                 <div style={{ fontSize: '1.45rem', fontWeight: 900, color: '#1C1E21', marginTop: '0.2rem' }}>
                   {(activeQuiz.questions?.length || 0) * (activeQuiz.marksPerQuestion || 1)}
                 </div>
               </div>
-              <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1rem', textAlign: 'center' }}>
+              <div style={{ backgroundColor: 'transparent', border: '1px solid #E8E2D5', borderRadius: '16px', padding: '1rem', textAlign: 'center' }}>
                 <div style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 600 }}>Negative Marking</div>
                 <div style={{ fontSize: '1.45rem', fontWeight: 900, color: '#1C1E21', marginTop: '0.2rem' }}>
                   {activeQuiz.negativeMarks ? `-${activeQuiz.negativeMarks}` : 'None'}
@@ -504,7 +504,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                 type="button"
                 onClick={() => setQuizMode('catalog')}
                 style={{
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   color: '#475569',
                   border: '1.5px solid #E2D9C8',
                   borderRadius: '9999px',
@@ -540,7 +540,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
     const isUrgentTimer = timeRemainingSeconds < 120; // less than 2 minutes
 
     return (
-      <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ backgroundColor: 'transparent', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         
         {/* EXAM TOP BAR */}
         <header style={{
@@ -601,7 +601,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
               className="md:hidden"
               onClick={() => setMobilePaletteOpen(prev => !prev)}
               style={{
-                backgroundColor: '#FAF7F2',
+                backgroundColor: 'transparent',
                 border: '1.5px solid #E2D9C8',
                 borderRadius: '9999px',
                 padding: '0.45rem 0.85rem',
@@ -696,7 +696,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                     </span>
                   )}
                   <span style={{
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     border: '1px solid #E2D9C8',
                     color: '#475569',
                     fontSize: '0.72rem',
@@ -1092,7 +1092,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
               </p>
 
               <div style={{
-                backgroundColor: '#FAF7F2',
+                backgroundColor: 'transparent',
                 borderRadius: '16px',
                 padding: '1rem',
                 border: '1px solid #E8E2D5',
@@ -1124,7 +1124,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                     flex: 1,
                     padding: '0.75rem',
                     borderRadius: '12px',
-                    backgroundColor: '#FAF7F2',
+                    backgroundColor: 'transparent',
                     border: '1.5px solid #E2D9C8',
                     color: '#475569',
                     fontSize: '0.88rem',
@@ -1175,7 +1175,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
     });
 
     return (
-      <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', padding: '2.5rem 1rem 5rem 1rem' }}>
+      <div style={{ backgroundColor: 'transparent', minHeight: '100vh', padding: '2.5rem 1rem 5rem 1rem' }}>
         <div style={{ maxWidth: '920px', margin: '0 auto' }}>
           
           {/* Top Actions */}
@@ -1279,7 +1279,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
               width: '140px',
               height: '140px',
               borderRadius: '50%',
-              backgroundColor: '#FAF7F2',
+              backgroundColor: 'transparent',
               border: `4px solid ${isPassing ? '#10B981' : '#F59E0B'}`,
               margin: '0 auto 2rem auto',
               boxShadow: '0 6px 20px rgba(35,30,25,0.06)'
@@ -1300,25 +1300,25 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
 
             {/* Core Metrics Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4" style={{ marginBottom: '2rem' }}>
-              <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '18px', padding: '1rem' }}>
+              <div style={{ backgroundColor: 'transparent', border: '1px solid #E8E2D5', borderRadius: '18px', padding: '1rem' }}>
                 <div style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 600 }}>Percentage</div>
                 <div style={{ fontSize: '1.45rem', fontWeight: 900, color: '#1C1E21', marginTop: '0.15rem' }}>
                   {quizResult.percentage}%
                 </div>
               </div>
-              <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '18px', padding: '1rem' }}>
+              <div style={{ backgroundColor: 'transparent', border: '1px solid #E8E2D5', borderRadius: '18px', padding: '1rem' }}>
                 <div style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 600 }}>Accuracy</div>
                 <div style={{ fontSize: '1.45rem', fontWeight: 900, color: '#059669', marginTop: '0.15rem' }}>
                   {quizResult.accuracy}%
                 </div>
               </div>
-              <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '18px', padding: '1rem' }}>
+              <div style={{ backgroundColor: 'transparent', border: '1px solid #E8E2D5', borderRadius: '18px', padding: '1rem' }}>
                 <div style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 600 }}>Time Taken</div>
                 <div style={{ fontSize: '1.45rem', fontWeight: 900, color: '#2563EB', marginTop: '0.15rem' }}>
                   {formatTime(quizResult.timeTakenSeconds)}
                 </div>
               </div>
-              <div style={{ backgroundColor: '#FAF7F2', border: '1px solid #E8E2D5', borderRadius: '18px', padding: '1rem' }}>
+              <div style={{ backgroundColor: 'transparent', border: '1px solid #E8E2D5', borderRadius: '18px', padding: '1rem' }}>
                 <div style={{ fontSize: '0.74rem', color: '#64748B', fontWeight: 600 }}>Avg / Question</div>
                 <div style={{ fontSize: '1.45rem', fontWeight: 900, color: '#7C3AED', marginTop: '0.15rem' }}>
                   {quizResult.totalQuestions > 0 ? Math.round(quizResult.timeTakenSeconds / quizResult.totalQuestions) : 0}s
@@ -1328,7 +1328,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
 
             {/* Answer Breakdown Strip */}
             <div style={{
-              backgroundColor: '#FAF7F2',
+              backgroundColor: 'transparent',
               border: '1px solid #E8E2D5',
               borderRadius: '16px',
               padding: '0.85rem 1.25rem',
@@ -1557,7 +1557,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
 
                     {/* Explanation Box */}
                     <div style={{
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       border: '1px solid #E8E2D5',
                       borderRadius: '12px',
                       padding: '0.85rem 1rem',
@@ -1611,7 +1611,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
   ];
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', padding: '2.5rem 0 5rem 0', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', padding: '2.5rem 0 5rem 0', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       <div className="container" style={{ maxWidth: '1240px' }}>
         
         {/* HEADER SECTION */}
@@ -1795,7 +1795,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                         style={{
-                          backgroundColor: '#FAF7F2',
+                          backgroundColor: 'transparent',
                           border: '1.5px solid #E2D9C8',
                           color: '#1C1E21',
                           borderRadius: '9999px',
@@ -1929,7 +1929,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: '#FAF7F2',
+                backgroundColor: 'transparent',
                 border: '1.5px solid #E2D9C8',
                 borderRadius: '9999px',
                 padding: '0.35rem 0.85rem',
@@ -2088,7 +2088,7 @@ export default function QuizzesPage({ onNavigate, onOpenAI }) {
 
                     {/* Meta stats row */}
                     <div style={{
-                      backgroundColor: '#FAF7F2',
+                      backgroundColor: 'transparent',
                       borderRadius: '12px',
                       padding: '0.65rem 0.85rem',
                       display: 'flex',

@@ -75,7 +75,7 @@ export default function AuthModal({ isOpen, mode, onClose, onSwitchMode }) {
       padding: '1rem'
     }}>
       <div style={{
-        backgroundColor: '#ffffff',
+        backgroundColor: '#0B0B0B',
         borderRadius: '24px',
         width: '100%',
         maxWidth: '440px',

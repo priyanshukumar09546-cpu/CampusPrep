@@ -306,7 +306,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
   }, [projects, searchQuery, selectedDomain]);
 
   return (
-    <div style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', color: '#1F2421', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ backgroundColor: 'transparent', minHeight: '100vh', color: '#1F2421', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* DESKTOP VIEW (>= 1024px) — 100% UNTOUCHED ORIGINAL */}
       <div className="pv-projects-desktop-only">
         {/* 1. BREADCRUMB */}
@@ -339,7 +339,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
       {/* 2. HERO SECTION (Follows exactly media_1790315573713.jpg) */}
       <section style={{
         position: 'relative',
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         backgroundImage: `
           radial-gradient(circle at 15% 20%, rgba(200, 141, 45, 0.08), transparent 45%),
           radial-gradient(circle at 85% 80%, rgba(120, 20, 22, 0.05), transparent 50%),
@@ -529,7 +529,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
                   borderRadius: '12px',
                   border: '1.5px solid #E8E2D5',
                   fontSize: '0.88rem',
-                  backgroundColor: '#FAF7F2',
+                  backgroundColor: 'transparent',
                   color: '#1F2421',
                   outline: 'none',
                   boxSizing: 'border-box'
@@ -1205,7 +1205,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
                         padding: '0.65rem 0.75rem',
                         borderRadius: '10px',
                         border: '1px solid #F5F5F4',
-                        backgroundColor: '#FAF7F2',
+                        backgroundColor: 'transparent',
                         cursor: 'pointer',
                         transition: 'all 0.15s ease'
                       }}
@@ -1295,7 +1295,7 @@ export default function ProjectIdeasPage({ onNavigate, onOpenAuth }) {
           MOBILE VIEW (< 1024px) — EXACT 1:1 MATCH WITH REFERENCE IMAGE
           ========================================================================= */}
       <div className="pv-projects-mobile-only" style={{
-        backgroundColor: '#FAF7F2',
+        backgroundColor: 'transparent',
         minHeight: '100vh',
         padding: '0.75rem 1rem 5.5rem',
         boxSizing: 'border-box',
@@ -2127,7 +2127,7 @@ const filterSelectStyle = {
   border: '1.5px solid #E8E2D5',
   fontSize: '0.82rem',
   fontWeight: 600,
-  backgroundColor: '#FAF7F2',
+  backgroundColor: 'transparent',
   color: '#1F2421',
   outline: 'none',
   cursor: 'pointer'

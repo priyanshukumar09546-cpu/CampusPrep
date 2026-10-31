@@ -55,10 +55,10 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
   };
 
   const years = [
-    { id: '1st', name: '1st Year', sem: 'Sem 1 & 2', color: '#C88D2D', bg: '#FFFBEB', border: '#FDE68A' },
-    { id: '2nd', name: '2nd Year', sem: 'Sem 3 & 4', color: '#D97706', bg: '#FEF3C7', border: '#FCD34D' },
-    { id: '3rd', name: '3rd Year', sem: 'Sem 5 & 6', color: '#B45309', bg: '#FDF2F8', border: '#FBCFE8' },
-    { id: '4th', name: '4th Year', sem: 'Sem 7 & 8', color: '#7C3AED', bg: '#F5F3FF', border: '#DDD6FE' },
+    { id: '1st', name: '1st Year', sem: 'Sem 1 & 2', color: '#FFB800', bg: 'rgba(255, 184, 0, 0.08)', border: 'rgba(255, 184, 0, 0.3)' },
+    { id: '2nd', name: '2nd Year', sem: 'Sem 3 & 4', color: '#FFA000', bg: 'rgba(255, 160, 0, 0.08)', border: 'rgba(255, 160, 0, 0.3)' },
+    { id: '3rd', name: '3rd Year', sem: 'Sem 5 & 6', color: '#FF8C00', bg: 'rgba(255, 140, 0, 0.08)', border: 'rgba(255, 140, 0, 0.3)' },
+    { id: '4th', name: '4th Year', sem: 'Sem 7 & 8', color: '#A855F7', bg: 'rgba(168, 85, 247, 0.08)', border: 'rgba(168, 85, 247, 0.3)' },
   ];
 
   const popularBranches = [
@@ -72,10 +72,10 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
 
   return (
     <section style={{
-      backgroundColor: '#FAF7F2',
+      backgroundColor: 'transparent',
       padding: '2.5rem 0',
-      borderBottom: '1.5px solid #E8E2D5'
-    }}>
+      borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+    }} className="pv-scroll-reveal">
       <div className="container">
         <div style={{
           display: 'grid',
@@ -86,11 +86,11 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
 
           {/* LEFT CARD: Choose Your Year (3D Tile System) */}
           <div style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: '#0B0B0B',
             borderRadius: '24px',
             padding: '1.5rem',
-            border: '1.5px solid #E8E2D5',
-            boxShadow: '0 8px 24px rgba(35,30,25,0.04), inset 0 1px 0 rgba(255,255,255,0.8)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.7)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -102,21 +102,21 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
                   width: '34px',
                   height: '34px',
                   borderRadius: '10px',
-                  backgroundColor: '#FDF6E8',
-                  color: '#C88D2D',
+                  backgroundColor: 'rgba(255, 184, 0, 0.12)',
+                  color: '#FFB800',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0 3px 8px rgba(200,141,45,0.18)'
+                  boxShadow: '0 0 10px rgba(255, 184, 0, 0.25)'
                 }}>
                   <GraduationCap size={18} />
                 </div>
-                <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1C1E21' }}>
+                <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFFFFF' }}>
                   Choose Your Year
                 </h2>
               </div>
               
-              <p style={{ fontSize: '0.8rem', color: '#646E78', marginBottom: '1.2rem', fontWeight: 500 }}>
+              <p style={{ fontSize: '0.8rem', color: '#A1A1AA', marginBottom: '1.2rem', fontWeight: 500 }}>
                 Your journey, our support — pick your year.
               </p>
 
@@ -144,17 +144,19 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
                       flexDirection: 'column',
                       alignItems: 'center',
                       transformStyle: 'preserve-3d',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
                       outline: 'none',
                       WebkitTapHighlightColor: 'transparent'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-4px) translateZ(8px) rotateX(2deg)';
-                      e.currentTarget.style.boxShadow = '0 10px 22px rgba(0,0,0,0.08)';
+                      e.currentTarget.style.transform = 'translateY(-4px) translateZ(8px)';
+                      e.currentTarget.style.boxShadow = '0 10px 22px rgba(0,0,0,0.8), 0 0 14px rgba(255,184,0,0.2)';
+                      e.currentTarget.style.borderColor = '#FFB800';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0) translateZ(0) rotateX(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.03)';
+                      e.currentTarget.style.transform = 'translateY(0) translateZ(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.5)';
+                      e.currentTarget.style.borderColor = y.border;
                     }}
                     onMouseDown={(e) => {
                       e.currentTarget.style.transform = 'translateY(1px) scale(0.97)';
@@ -165,22 +167,22 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
                       height: '32px',
                       borderRadius: '50%',
                       backgroundColor: y.color,
-                      color: '#fff',
+                      color: '#030303',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       marginBottom: '0.45rem',
-                      boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+                      boxShadow: '0 0 10px rgba(255,184,0,0.4)',
                       transform: 'translateZ(10px)'
                     }}>
                       <GraduationCap size={16} />
                     </div>
                     
-                    <div style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1e293b' }}>
+                    <div style={{ fontSize: '0.92rem', fontWeight: 800, color: '#FFFFFF' }}>
                       {y.name}
                     </div>
                     
-                    <div style={{ fontSize: '0.72rem', color: '#64748b', fontWeight: 600, marginTop: '0.1rem' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#A1A1AA', fontWeight: 600, marginTop: '0.1rem' }}>
                       {y.sem}
                     </div>
                   </button>
@@ -191,11 +193,11 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
 
           {/* CENTER CARD: Popular Branches (3D Tile System) */}
           <div style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: '#0B0B0B',
             borderRadius: '24px',
             padding: '1.5rem',
-            border: '1.5px solid #E8E2D5',
-            boxShadow: '0 8px 24px rgba(35,30,25,0.04), inset 0 1px 0 rgba(255,255,255,0.8)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.7)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -213,16 +215,16 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
                     width: '34px',
                     height: '34px',
                     borderRadius: '10px',
-                    backgroundColor: '#FDF6E8',
-                    color: '#C88D2D',
+                    backgroundColor: 'rgba(255, 184, 0, 0.12)',
+                    color: '#FFB800',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 3px 8px rgba(200,141,45,0.18)'
+                    boxShadow: '0 0 10px rgba(255, 184, 0, 0.25)'
                   }}>
                     <MapPin size={18} />
                   </div>
-                  <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1C1E21' }}>
+                  <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFFFFF' }}>
                     Popular Branches
                   </h2>
                 </div>
@@ -232,7 +234,7 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#C88D2D',
+                    color: '#FFB800',
                     fontSize: '0.82rem',
                     fontWeight: 700,
                     cursor: 'pointer',
@@ -261,8 +263,8 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
                       onClick={() => onSelectBranch && onSelectBranch(b.code)}
                       aria-label={`Select branch ${b.code}`}
                       style={{
-                        backgroundColor: '#FAF7F2',
-                        border: '1.5px solid #E8E2D5',
+                        backgroundColor: '#141414',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
                         borderRadius: '16px',
                         padding: '1.1rem 0.5rem',
                         textAlign: 'center',
@@ -273,28 +275,28 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
                         alignItems: 'center',
                         justifyContent: 'center',
                         transformStyle: 'preserve-3d',
-                        boxShadow: '0 4px 12px rgba(35,30,25,0.02)',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
                         outline: 'none',
                         WebkitTapHighlightColor: 'transparent'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#C88D2D';
-                        e.currentTarget.style.backgroundColor = '#FDF6E8';
+                        e.currentTarget.style.borderColor = '#FFB800';
+                        e.currentTarget.style.backgroundColor = '#1C1C1E';
                         e.currentTarget.style.transform = 'translateY(-4px) translateZ(8px)';
-                        e.currentTarget.style.boxShadow = '0 10px 22px rgba(200,141,45,0.18)';
+                        e.currentTarget.style.boxShadow = '0 10px 22px rgba(0, 0, 0, 0.8), 0 0 14px rgba(255, 184, 0, 0.2)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = '#E8E2D5';
-                        e.currentTarget.style.backgroundColor = '#FAF7F2';
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                        e.currentTarget.style.backgroundColor = '#141414';
                         e.currentTarget.style.transform = 'translateY(0) translateZ(0)';
-                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(35,30,25,0.02)';
+                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.5)';
                       }}
                       onMouseDown={(e) => {
                         e.currentTarget.style.transform = 'translateY(1px) scale(0.97)';
                       }}
                     >
-                      <BIcon size={22} style={{ color: '#C88D2D', marginBottom: '0.45rem', transform: 'translateZ(10px)' }} />
-                      <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#1C1E21' }}>
+                      <BIcon size={22} style={{ color: '#FFB800', marginBottom: '0.45rem', transform: 'translateZ(10px)' }} />
+                      <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FFFFFF' }}>
                         {b.code}
                       </div>
                     </button>
@@ -477,31 +479,34 @@ export default function YearBranchAISection({ onSelectYear, onSelectBranch, onOp
                     aria-label="Ask Virus AI Assistant"
                     style={{
                       marginTop: '0.3rem',
-                      backgroundColor: '#C88D2D',
-                      backgroundImage: 'linear-gradient(135deg, #C88D2D 0%, #B37D28 100%)',
-                      color: '#ffffff',
-                      border: '1px solid #E8D3B0',
+                      backgroundColor: '#0B0B0B',
+                      color: '#FFB800',
+                      border: '1.5px solid #FFB800',
                       borderRadius: '12px',
-                      padding: '0.5rem 1rem',
+                      padding: '0.55rem 1.1rem',
                       fontSize: '0.84rem',
                       fontWeight: 900,
                       cursor: 'pointer',
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      gap: '0.4rem',
-                      boxShadow: '0 6px 18px rgba(200, 141, 45, 0.4)',
+                      gap: '0.45rem',
+                      boxShadow: '0 0 16px rgba(255, 184, 0, 0.35)',
                       transform: 'translateZ(35px)',
                       transition: 'all 0.25s ease',
                       width: 'fit-content'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateZ(45px) translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 10px 24px rgba(200, 141, 45, 0.6)';
+                      e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 184, 0, 0.6)';
+                      e.currentTarget.style.color = '#FFA000';
+                      e.currentTarget.style.backgroundColor = '#161616';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateZ(35px)';
-                      e.currentTarget.style.boxShadow = '0 6px 18px rgba(200, 141, 45, 0.4)';
+                      e.currentTarget.style.boxShadow = '0 0 16px rgba(255, 184, 0, 0.35)';
+                      e.currentTarget.style.color = '#FFB800';
+                      e.currentTarget.style.backgroundColor = '#0B0B0B';
                     }}
                     onMouseDown={(e) => {
                       e.currentTarget.style.transform = 'translateZ(20px) scale(0.96)';

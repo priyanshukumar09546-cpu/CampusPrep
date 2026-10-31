@@ -22,7 +22,7 @@ export default function ProjectGuideModal({ guide, isOpen, onClose }) {
       fontFamily: "'Plus Jakarta Sans', sans-serif"
     }}>
       <div style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#0B0B0B',
         borderRadius: '20px',
         width: '100%',
         maxWidth: '740px',
@@ -36,7 +36,7 @@ export default function ProjectGuideModal({ guide, isOpen, onClose }) {
         <div style={{
           padding: '1.5rem 2rem 1.25rem',
           borderBottom: '1px solid #E8E2D5',
-          backgroundColor: '#FAF7F2',
+          backgroundColor: 'transparent',
           borderTopLeftRadius: '20px',
           borderTopRightRadius: '20px',
           position: 'relative'

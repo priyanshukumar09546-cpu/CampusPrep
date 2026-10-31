@@ -107,7 +107,7 @@ export default function CourseLandingPage({
   const courseSlug = courseKeyToSlug(normKey);
 
   return (
-    <div className="min-h-screen bg-[#FFF7ED] w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
+    <div className="min-h-screen bg-transparent w-full max-w-5xl mx-auto px-4 sm:px-6 py-4 relative overflow-x-hidden flex flex-col justify-between font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
       
       {/* Corner Leaves Decoration */}
       <div 
@@ -161,7 +161,7 @@ export default function CourseLandingPage({
         </div>
 
         {/* HERO TITLE & OVERVIEW */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-xs mb-6">
+        <div className="bg-[#0B0B0B] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-xs mb-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-start gap-4">
               <div 
@@ -213,7 +213,7 @@ export default function CourseLandingPage({
               </button>
               <button
                 onClick={() => onNavigate && onNavigate('syllabus')}
-                className="px-4 py-2 bg-white text-stone-700 border border-stone-200/90 rounded-xl text-xs font-bold hover:bg-stone-50 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                className="px-4 py-2 bg-[#0B0B0B] text-stone-700 border border-stone-200/90 rounded-xl text-xs font-bold hover:bg-stone-50 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <ExternalLink size={15} />
                 <span>Official Syllabus</span>
@@ -235,7 +235,7 @@ export default function CourseLandingPage({
               <select 
                 value={selectedBranch}
                 onChange={(e) => setSelectedBranch(e.target.value)}
-                className="bg-white border border-stone-200/90 rounded-lg px-2 py-1 text-xs font-bold text-stone-800 outline-none"
+                className="bg-[#0B0B0B] border border-stone-200/90 rounded-lg px-2 py-1 text-xs font-bold text-stone-800 outline-none"
               >
                 {branches.map(b => (
                   <option key={b} value={b}>{b}</option>
@@ -258,7 +258,7 @@ export default function CourseLandingPage({
                 className={`p-3 rounded-2xl border text-center transition-all cursor-pointer ${
                   isSelected 
                     ? 'bg-[#7A2327] text-white border-[#7A2327] shadow-sm' 
-                    : 'bg-white text-stone-800 border-stone-200/90 hover:border-stone-300'
+                    : 'bg-[#0B0B0B] text-stone-800 border-stone-200/90 hover:border-stone-300'
                 }`}
               >
                 <div className="font-['Outfit',sans-serif] font-bold text-sm sm:text-base">
@@ -282,7 +282,7 @@ export default function CourseLandingPage({
             className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
               activeSem === null 
                 ? 'bg-stone-900 text-white' 
-                : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-50'
+                : 'bg-[#0B0B0B] text-stone-600 border border-stone-200 hover:bg-stone-50'
             }`}
           >
             All {activeYear} Semesters
@@ -296,7 +296,7 @@ export default function CourseLandingPage({
                 className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
                   isSelected 
                     ? 'bg-[#7A2327] text-white shadow-xs' 
-                    : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-50'
+                    : 'bg-[#0B0B0B] text-stone-600 border border-stone-200 hover:bg-stone-50'
                 }`}
               >
                 {s}
@@ -319,7 +319,7 @@ export default function CourseLandingPage({
           </div>
 
           {/* Subject search input */}
-          <div className="relative flex items-center bg-white rounded-xl border border-stone-200/90 shadow-xs focus-within:border-[#7A2327]">
+          <div className="relative flex items-center bg-[#0B0B0B] rounded-xl border border-stone-200/90 shadow-xs focus-within:border-[#7A2327]">
             <Search size={15} className="ml-3 text-stone-400" />
             <input 
               type="text"
@@ -371,7 +371,7 @@ export default function CourseLandingPage({
                     <div
                       key={code + idx}
                       onClick={() => handleOpenSubjectDetail(subObj)}
-                      className="bg-white rounded-2xl p-4 border border-stone-200/90 shadow-xs hover:border-[#7A2327] hover:shadow-md transition-all flex flex-col justify-between cursor-pointer group"
+                      className="bg-[#0B0B0B] rounded-2xl p-4 border border-stone-200/90 shadow-xs hover:border-[#7A2327] hover:shadow-md transition-all flex flex-col justify-between cursor-pointer group"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-1.5">
@@ -400,7 +400,7 @@ export default function CourseLandingPage({
         })}
 
         {/* COURSE SPECIFIC FAQS */}
-        <div className="mt-12 bg-white rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-xs">
+        <div className="mt-12 bg-[#0B0B0B] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-xs">
           <div className="flex items-center gap-2 mb-4">
             <HelpCircle size={20} className="text-[#7A2327]" />
             <h2 className="font-['Outfit',sans-serif] font-bold text-xl text-stone-900">
