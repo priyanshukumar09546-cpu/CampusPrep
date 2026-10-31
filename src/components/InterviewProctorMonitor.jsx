@@ -581,13 +581,13 @@ export default function InterviewProctorMonitor({
         <div
           style={{
             padding: '0.4rem 0.65rem',
-            backgroundColor: '#FAF7F2',
-            borderTop: '1px solid #EFEAE3',
+            backgroundColor: '#0B0B0B',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             fontSize: '0.68rem',
-            color: '#4A4036',
+            color: '#A1A1AA',
             fontWeight: 700
           }}
         >

@@ -115,7 +115,7 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
         <div
           style={{
             padding: '1.2rem 1.5rem',
-            borderBottom: '1px solid #F0ECE3',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
             background: 'linear-gradient(135deg, #FFF9F1 0%, #FFFFFF 100%)',
             display: 'flex',
             alignItems: 'center',
@@ -138,7 +138,7 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
               <Bot size={20} />
             </div>
             <div>
-              <div style={{ fontWeight: 800, fontSize: '1.05rem', color: '#1F2421', fontFamily: "'Outfit', sans-serif" }}>
+              <div style={{ fontWeight: 800, fontSize: '1.05rem', color: '#FFFFFF', fontFamily: "'Outfit', sans-serif" }}>
                 HOOLLOW AI Mentor
               </div>
               <div style={{ fontSize: '0.72rem', color: '#7A6F62', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
@@ -171,8 +171,8 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
         <div
           style={{
             padding: '0.6rem 1rem',
-            backgroundColor: '#FAF7F2',
-            borderBottom: '1px solid #F0ECE3',
+            backgroundColor: '#0B0B0B',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
             display: 'flex',
             gap: '0.4rem',
             overflowX: 'auto',
@@ -182,12 +182,12 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
           <button
             onClick={() => setInput('Explain this concept in simple terms')}
             style={{
-              background: '#FFF',
-              border: '1px solid #E8E2D5',
+              background: '#161616',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: '9999px',
               padding: '0.25rem 0.65rem',
               fontSize: '0.72rem',
-              color: '#4A5568',
+              color: '#A1A1AA',
               cursor: 'pointer',
               fontWeight: 600
             }}
@@ -197,12 +197,12 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
           <button
             onClick={() => setInput('Provide a working code example with comments')}
             style={{
-              background: '#FFF',
-              border: '1px solid #E8E2D5',
+              background: '#161616',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: '9999px',
               padding: '0.25rem 0.65rem',
               fontSize: '0.72rem',
-              color: '#4A5568',
+              color: '#A1A1AA',
               cursor: 'pointer',
               fontWeight: 600
             }}
@@ -212,12 +212,12 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
           <button
             onClick={() => setInput('What are the top 3 interview questions on this?')}
             style={{
-              background: '#FFF',
-              border: '1px solid #E8E2D5',
+              background: '#161616',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               borderRadius: '9999px',
               padding: '0.25rem 0.65rem',
               fontSize: '0.72rem',
-              color: '#4A5568',
+              color: '#A1A1AA',
               cursor: 'pointer',
               fontWeight: 600
             }}
@@ -227,7 +227,7 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
         </div>
 
         {/* Message Thread */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: '1.2rem', backgroundColor: '#FAF7F2', display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '1.2rem', backgroundColor: '#0B0B0B', display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
           {messages.map((m, idx) => (
             <div
               key={idx}
@@ -244,7 +244,7 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
                     width: '28px',
                     height: '28px',
                     borderRadius: '50%',
-                    background: '#8B101D',
+                    background: '#FFB800',
                     color: '#FFF',
                     display: 'flex',
                     alignItems: 'center',
@@ -287,7 +287,7 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
                   width: '28px',
                   height: '28px',
                   borderRadius: '50%',
-                  background: '#8B101D',
+                  background: '#FFB800',
                   color: '#FFF',
                   display: 'flex',
                   alignItems: 'center',
@@ -301,7 +301,7 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
                   padding: '0.6rem 0.9rem',
                   borderRadius: '16px',
                   backgroundColor: '#FFFFFF',
-                  border: '1px solid #E8E2D5',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
@@ -323,7 +323,7 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
           onSubmit={handleSend}
           style={{
             padding: '1rem',
-            borderTop: '1px solid #F0ECE3',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
             background: '#FFFFFF',
             display: 'flex',
             gap: '0.5rem'
@@ -341,7 +341,7 @@ export default function HoollowMentorDrawer({ isOpen, onClose, currentGoal, init
               border: '1.5px solid #E8E2D5',
               fontSize: '0.85rem',
               outline: 'none',
-              backgroundColor: '#FAF7F2'
+              backgroundColor: '#0B0B0B'
             }}
           />
           <button

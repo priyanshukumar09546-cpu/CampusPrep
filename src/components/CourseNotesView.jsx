@@ -805,7 +805,7 @@ export default function CourseNotesView({
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: '1.65rem',
                 fontWeight: 900,
-                color: '#1F2421',
+                color: '#FFFFFF',
                 margin: 0
               }}>
                 AKTU {courseMeta.fullName} ({courseMeta.name}) Study Notes &amp; Quantum Series
@@ -1080,7 +1080,7 @@ export default function CourseNotesView({
           <div style={{
             fontSize: '0.82rem',
             fontWeight: 800,
-            color: '#1F2421',
+            color: '#FFFFFF',
             letterSpacing: '0.03em',
             textTransform: 'uppercase',
             marginBottom: '0.85rem',
@@ -1206,7 +1206,7 @@ export default function CourseNotesView({
                 <h3 style={{
                   fontSize: '1.35rem',
                   fontWeight: 900,
-                  color: '#1F2421',
+                  color: '#FFFFFF',
                   margin: '0.15rem 0 0.35rem 0'
                 }}>
                   {activeSubject.name}
@@ -1337,7 +1337,7 @@ export default function CourseNotesView({
                           {providerName}
                         </span>
                       </div>
-                      <div style={{ fontSize: '0.94rem', fontWeight: 800, color: '#1F2421', lineHeight: 1.3 }}>
+                      <div style={{ fontSize: '0.94rem', fontWeight: 800, color: '#FFFFFF', lineHeight: 1.3 }}>
                         {note.title || `${activeSubject?.name} Notes`}
                       </div>
                     </div>
@@ -1425,7 +1425,7 @@ export default function CourseNotesView({
                 style={{ fontSize: '0.9rem', padding: '0.4rem 1rem' }} 
               />
 
-              <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#1F2421', margin: 0 }}>
+              <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>
                 {activeUnit !== 'All' 
                   ? `Unit ${activeUnit} Notes for ${activeSubject?.name || 'this subject'}`
                   : `Lecture Notes for ${activeSubject?.name || 'this subject'}`}

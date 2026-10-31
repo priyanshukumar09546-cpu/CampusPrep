@@ -41,7 +41,7 @@ export default function HoollowTaskModal({
     >
       <div
         style={{
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#111111',
           borderRadius: '24px',
           width: '100%',
           maxWidth: '780px',
@@ -70,7 +70,7 @@ export default function HoollowTaskModal({
               <span
                 style={{
                   backgroundColor: '#FFF0E8',
-                  color: '#8B101D',
+                  color: '#FFB800',
                   fontSize: '0.72rem',
                   fontWeight: 800,
                   padding: '0.2rem 0.6rem',
@@ -86,7 +86,7 @@ export default function HoollowTaskModal({
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.3rem',
-                  color: '#646E78',
+                  color: '#71717A',
                   fontSize: '0.75rem',
                   fontWeight: 600
                 }}
@@ -99,7 +99,7 @@ export default function HoollowTaskModal({
                 margin: 0,
                 fontSize: '1.35rem',
                 fontWeight: 800,
-                color: '#1F2421',
+                color: '#FFFFFF',
                 fontFamily: "'Outfit', sans-serif"
               }}
             >
@@ -119,7 +119,7 @@ export default function HoollowTaskModal({
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: '#646E78'
+              color: '#71717A'
             }}
           >
             <X size={18} />
@@ -127,21 +127,21 @@ export default function HoollowTaskModal({
         </div>
 
         {/* Content Body */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: '1.75rem', backgroundColor: '#FAF7F2' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '1.75rem', backgroundColor: '#0B0B0B' }}>
           {/* Overview */}
           <div
             style={{
-              backgroundColor: '#FFFFFF',
+              backgroundColor: '#111111',
               borderRadius: '16px',
-              border: '1px solid #E8E2D5',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
               padding: '1.25rem',
               marginBottom: '1.25rem'
             }}
           >
-            <h3 style={{ margin: '0 0 0.5rem', fontSize: '0.95rem', fontWeight: 800, color: '#1F2421' }}>
+            <h3 style={{ margin: '0 0 0.5rem', fontSize: '0.95rem', fontWeight: 800, color: '#FFFFFF' }}>
               Learning Objectives & Concepts
             </h3>
-            <p style={{ margin: 0, fontSize: '0.88rem', color: '#4A5568', lineHeight: 1.6 }}>
+            <p style={{ margin: 0, fontSize: '0.88rem', color: '#A1A1AA', lineHeight: 1.6 }}>
               {task.description}
             </p>
 
@@ -151,13 +151,13 @@ export default function HoollowTaskModal({
                   <span
                     key={sIdx}
                     style={{
-                      backgroundColor: '#F6F2E9',
-                      color: '#1F2421',
+                      backgroundColor: '#161616',
+                      color: '#FFFFFF',
                       fontSize: '0.75rem',
                       fontWeight: 700,
                       padding: '0.2rem 0.6rem',
                       borderRadius: '6px',
-                      border: '1px solid #E8E2D5'
+                      border: '1px solid rgba(255, 255, 255, 0.08)'
                     }}
                   >
                     #{skill}
@@ -181,7 +181,7 @@ export default function HoollowTaskModal({
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#111111',
                     borderRadius: '14px',
                     border: '1px solid #FEE2E2',
                     padding: '1rem',
@@ -208,7 +208,7 @@ export default function HoollowTaskModal({
                       </span>
                       <ExternalLink size={14} color="#A0AEC0" />
                     </div>
-                    <div style={{ fontWeight: 800, fontSize: '0.88rem', color: '#1F2421' }}>Video Tutorial</div>
+                    <div style={{ fontWeight: 800, fontSize: '0.88rem', color: '#FFFFFF' }}>Video Tutorial</div>
                     <p style={{ margin: '0.2rem 0 0', fontSize: '0.75rem', color: '#718096' }}>
                       Watch step-by-step masterclass walkthrough
                     </p>
@@ -226,7 +226,7 @@ export default function HoollowTaskModal({
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#111111',
                     borderRadius: '14px',
                     border: '1px solid #DBEAFE',
                     padding: '1rem',
@@ -253,7 +253,7 @@ export default function HoollowTaskModal({
                       </span>
                       <ExternalLink size={14} color="#A0AEC0" />
                     </div>
-                    <div style={{ fontWeight: 800, fontSize: '0.88rem', color: '#1F2421' }}>Documentation & Notes</div>
+                    <div style={{ fontWeight: 800, fontSize: '0.88rem', color: '#FFFFFF' }}>Documentation & Notes</div>
                     <p style={{ margin: '0.2rem 0 0', fontSize: '0.75rem', color: '#718096' }}>
                       Official guides, cheat-sheets & syntax
                     </p>
@@ -271,7 +271,7 @@ export default function HoollowTaskModal({
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: '#111111',
                     borderRadius: '14px',
                     border: '1px solid #DCFCE7',
                     padding: '1rem',
@@ -298,7 +298,7 @@ export default function HoollowTaskModal({
                       </span>
                       <ExternalLink size={14} color="#A0AEC0" />
                     </div>
-                    <div style={{ fontWeight: 800, fontSize: '0.88rem', color: '#1F2421' }}>Hands-on Challenge</div>
+                    <div style={{ fontWeight: 800, fontSize: '0.88rem', color: '#FFFFFF' }}>Hands-on Challenge</div>
                     <p style={{ margin: '0.2rem 0 0', fontSize: '0.75rem', color: '#718096' }}>
                       Solve interactive practice challenges & drills
                     </p>
@@ -329,7 +329,7 @@ export default function HoollowTaskModal({
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  backgroundColor: '#8B101D',
+                  backgroundColor: '#FFB800',
                   color: '#FFFFFF',
                   display: 'flex',
                   alignItems: 'center',
@@ -340,7 +340,7 @@ export default function HoollowTaskModal({
                 <Sparkles size={20} />
               </div>
               <div>
-                <div style={{ fontWeight: 800, fontSize: '0.92rem', color: '#1F2421' }}>
+                <div style={{ fontWeight: 800, fontSize: '0.92rem', color: '#FFFFFF' }}>
                   Stuck or need an explanation?
                 </div>
                 <div style={{ fontSize: '0.78rem', color: '#7A6F62' }}>
@@ -355,9 +355,9 @@ export default function HoollowTaskModal({
                 if (onAskMentor) onAskMentor(task.title);
               }}
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#111111',
                 border: '1.5px solid #8B101D',
-                color: '#8B101D',
+                color: '#FFB800',
                 borderRadius: '8px',
                 padding: '0.45rem 0.9rem',
                 fontSize: '0.8rem',
@@ -397,7 +397,7 @@ export default function HoollowTaskModal({
                 padding: '0.55rem 1rem',
                 fontSize: '0.85rem',
                 fontWeight: 600,
-                color: '#4A5568',
+                color: '#A1A1AA',
                 cursor: 'pointer'
               }}
             >

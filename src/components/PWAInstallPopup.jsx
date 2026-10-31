@@ -177,30 +177,30 @@ export default function PWAInstallPopup() {
       }}
     >
       <div
-        className="w-full max-w-[440px] sm:rounded-3xl rounded-t-3xl bg-[#FFFCF7] border border-[#E9D9CC] shadow-2xl overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[85vh] animate-slideUp"
+        className="w-full max-w-[440px] sm:rounded-3xl rounded-t-3xl bg-[#0B0B0B] border border-[rgba(255,184,0,0.35)] shadow-2xl overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[85vh] animate-slideUp"
         style={{
-          boxShadow: '0 25px 60px -15px rgba(134, 24, 32, 0.3), 0 0 1px 1px rgba(134, 24, 32, 0.08)'
+          boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 184, 0, 0.15)'
         }}
       >
         {/* TOP ACCENT HEADER BANNER */}
-        <div className="relative bg-gradient-to-r from-[#7A2327] via-[#861820] to-[#591418] px-5 pt-4 pb-4 text-white overflow-hidden">
-          {/* Subtle decorative glow circles */}
-          <div className="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-[#0B0B0B]/10 blur-xl pointer-events-none" />
-          <div className="absolute -left-8 -bottom-8 w-28 h-28 rounded-full bg-[#D6A13D]/20 blur-xl pointer-events-none" />
+        <div className="relative bg-gradient-to-r from-[#161616] via-[#111111] to-[#0B0B0B] border-b border-[rgba(255,184,0,0.25)] px-5 pt-4 pb-4 text-white overflow-hidden">
+          {/* Subtle gold glow */}
+          <div className="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-[#FFB800]/10 blur-xl pointer-events-none" />
+          <div className="absolute -left-8 -bottom-8 w-28 h-28 rounded-full bg-[#FFB800]/10 blur-xl pointer-events-none" />
 
           {/* Close Button */}
           <button
             type="button"
             onClick={handleClose}
             aria-label="Close installation popup"
-            className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-[#0B0B0B]/15 hover:bg-[#0B0B0B]/25 active:scale-95 text-white/90 flex items-center justify-center transition-all cursor-pointer z-10"
+            className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-[#161616] hover:bg-[#222222] border border-white/10 active:scale-95 text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer z-10"
           >
             <X size={18} strokeWidth={2.4} />
           </button>
 
           {/* Logo & Platform Badge */}
           <div className="flex items-center gap-3.5 pr-8">
-            <div className="relative w-13 h-13 rounded-2xl bg-[#0B0B0B] p-1 shadow-md border-2 border-[#D6A13D] flex-shrink-0 flex items-center justify-center overflow-hidden">
+            <div className="relative w-13 h-13 rounded-2xl bg-[#050505] p-1 shadow-md border-2 border-[#FFB800] flex-shrink-0 flex items-center justify-center overflow-hidden">
               <img
                 src="/assets/pwa-icon-192.png"
                 alt="Professor Virus App Icon"
@@ -209,14 +209,14 @@ export default function PWAInstallPopup() {
                   e.currentTarget.src = '/assets/pwa-icon-512.png';
                 }}
               />
-              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center">
+              <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#050505] flex items-center justify-center">
                 <Check size={8} strokeWidth={3.5} className="text-white" />
               </span>
             </div>
 
             <div className="min-w-0">
-              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#0B0B0B]/15 text-[#FDE68A] text-[10px] font-extrabold uppercase tracking-wider mb-1">
-                <Sparkles size={11} className="text-[#FDE68A]" />
+              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#161616] border border-[#FFB800]/30 text-[#FFB800] text-[10px] font-extrabold uppercase tracking-wider mb-1">
+                <Sparkles size={11} className="text-[#FFB800]" />
                 <span>{platform.isIOS ? 'iOS Safari PWA' : platform.isAndroid ? 'Android Fast App' : 'Progressive Web App'}</span>
               </div>
               <h2
@@ -230,14 +230,14 @@ export default function PWAInstallPopup() {
         </div>
 
         {/* BODY CONTAINER */}
-        <div className="p-5 overflow-y-auto flex-1 font-['Plus_Jakarta_Sans',sans-serif] text-[#1C1814]">
+        <div className="p-5 overflow-y-auto flex-1 font-['Plus_Jakarta_Sans',sans-serif] text-zinc-200 bg-[#0B0B0B]">
           {installedSuccess ? (
             /* SUCCESS STATE */
             <div className="py-8 flex flex-col items-center text-center animate-scaleIn">
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4 shadow-inner">
                 <CheckCircle2 size={36} strokeWidth={2.5} />
               </div>
-              <h3 className="font-['Outfit',sans-serif] text-xl font-black text-stone-900 mb-1">
+              <h3 className="font-['Outfit',sans-serif] text-xl font-black text-white font-bold mb-1">
                 App Installed Successfully!
               </h3>
               <p className="text-xs text-stone-600 max-w-xs leading-relaxed">
@@ -247,49 +247,49 @@ export default function PWAInstallPopup() {
           ) : activeTab === 'prompt' ? (
             /* DEFAULT PROMPT VIEW (ANDROID / DIRECT PROMPT) */
             <div className="space-y-4">
-              <p className="text-sm text-stone-700 leading-relaxed font-medium">
+              <p className="text-sm text-zinc-300 leading-relaxed font-medium">
                 Notes, PYQs, Tools &amp; All Courses — right on your home screen.
               </p>
 
               {/* Feature Highlights Grid */}
               <div className="grid grid-cols-2 gap-2.5 py-1">
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-orange-50/70 border border-orange-100">
-                  <div className="w-7 h-7 rounded-lg bg-[#0B0B0B] text-[#861820] flex items-center justify-center shadow-xs flex-shrink-0">
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#161616] border border-white/10 hover:border-[#FFB800]/40 transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-[#222222] text-[#FFB800] flex items-center justify-center shadow-xs flex-shrink-0">
                     <Smartphone size={15} strokeWidth={2.2} />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[11px] font-bold text-stone-900 leading-tight">Instant 1-Tap</div>
-                    <div className="text-[9.5px] text-stone-500">Home screen icon</div>
+                    <div className="text-[11px] font-bold text-white leading-tight">Instant 1-Tap</div>
+                    <div className="text-[9.5px] text-zinc-400">Home screen icon</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-100">
-                  <div className="w-7 h-7 rounded-lg bg-[#0B0B0B] text-emerald-600 flex items-center justify-center shadow-xs flex-shrink-0">
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#161616] border border-white/10 hover:border-[#FFB800]/40 transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-[#222222] text-emerald-400 flex items-center justify-center shadow-xs flex-shrink-0">
                     <Layers size={15} strokeWidth={2.2} />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[11px] font-bold text-stone-900 leading-tight">Zero Storage</div>
-                    <div className="text-[9.5px] text-stone-500">&lt; 1 MB cached app</div>
+                    <div className="text-[11px] font-bold text-white leading-tight">Zero Storage</div>
+                    <div className="text-[9.5px] text-zinc-400">&lt; 1 MB cached app</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/70 border border-amber-100">
-                  <div className="w-7 h-7 rounded-lg bg-[#0B0B0B] text-amber-600 flex items-center justify-center shadow-xs flex-shrink-0">
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#161616] border border-white/10 hover:border-[#FFB800]/40 transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-[#222222] text-[#FFB800] flex items-center justify-center shadow-xs flex-shrink-0">
                     <Sparkles size={15} strokeWidth={2.2} />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[11px] font-bold text-stone-900 leading-tight">Fast Offline</div>
-                    <div className="text-[9.5px] text-stone-500">Smooth caching</div>
+                    <div className="text-[11px] font-bold text-white leading-tight">Fast Offline</div>
+                    <div className="text-[9.5px] text-zinc-400">Smooth caching</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-blue-50/70 border border-blue-100">
-                  <div className="w-7 h-7 rounded-lg bg-[#0B0B0B] text-blue-600 flex items-center justify-center shadow-xs flex-shrink-0">
+                <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#161616] border border-white/10 hover:border-[#FFB800]/40 transition-colors">
+                  <div className="w-7 h-7 rounded-lg bg-[#222222] text-amber-400 flex items-center justify-center shadow-xs flex-shrink-0">
                     <ShieldCheck size={15} strokeWidth={2.2} />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-[11px] font-bold text-stone-900 leading-tight">Full Screen</div>
-                    <div className="text-[9.5px] text-stone-500">No browser address bar</div>
+                    <div className="text-[11px] font-bold text-white leading-tight">Full Screen</div>
+                    <div className="text-[9.5px] text-zinc-400">No browser address bar</div>
                   </div>
                 </div>
               </div>
@@ -301,7 +301,7 @@ export default function PWAInstallPopup() {
                   type="button"
                   onClick={handlePrimaryClick}
                   disabled={isPrompting}
-                  className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#7A2327] to-[#861820] hover:from-[#6B1E22] hover:to-[#73151B] active:scale-[0.99] text-white font-['Outfit',sans-serif] font-bold text-sm tracking-wide shadow-md shadow-[#861820]/25 flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-60"
+                  className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[#FFB800] via-[#FFA000] to-[#FF8C00] hover:brightness-110 active:scale-[0.99] text-black font-['Outfit',sans-serif] font-extrabold text-sm tracking-wide shadow-lg shadow-[#FFB800]/25 flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-60"
                 >
                   <Download size={18} strokeWidth={2.5} />
                   <span>{isPrompting ? 'Opening Install Prompt...' : 'Add to Home Screen'}</span>
@@ -312,7 +312,7 @@ export default function PWAInstallPopup() {
                     id="pwa-maybe-later-btn"
                     type="button"
                     onClick={handleDismiss}
-                    className="flex-1 py-2.5 px-3 rounded-xl bg-stone-100 hover:bg-stone-200 active:scale-[0.99] text-stone-700 font-semibold text-xs transition-colors cursor-pointer text-center"
+                    className="flex-1 py-2.5 px-3 rounded-xl bg-[#161616] hover:bg-[#222222] border border-white/10 active:scale-[0.99] text-zinc-300 font-semibold text-xs transition-colors cursor-pointer text-center"
                   >
                     Maybe Later
                   </button>
@@ -321,7 +321,7 @@ export default function PWAInstallPopup() {
                     id="pwa-how-to-install-btn"
                     type="button"
                     onClick={() => setActiveTab('tutorial')}
-                    className="py-2.5 px-3 rounded-xl border border-stone-200 hover:bg-stone-50 active:scale-[0.99] text-[#7A2327] font-bold text-xs transition-colors cursor-pointer flex items-center gap-1"
+                    className="py-2.5 px-3 rounded-xl border border-[#FFB800]/40 hover:bg-[#FFB800]/10 active:scale-[0.99] text-[#FFB800] font-bold text-xs transition-colors cursor-pointer flex items-center gap-1"
                   >
                     <span>How to Install</span>
                     <ArrowRight size={13} strokeWidth={2.5} />
@@ -337,7 +337,7 @@ export default function PWAInstallPopup() {
                 <button
                   type="button"
                   onClick={() => setActiveTab('prompt')}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#861820] hover:underline cursor-pointer"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-[#FFB800] hover:underline cursor-pointer"
                 >
                   ← Back to Quick Install
                 </button>
@@ -369,14 +369,14 @@ export default function PWAInstallPopup() {
                 <div className="text-[11px] font-bold text-stone-500 uppercase tracking-wider mb-2">
                   Select Your Mobile Browser
                 </div>
-                <div className="grid grid-cols-3 gap-1.5 p-1 bg-stone-100 rounded-xl">
+                <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#161616] border border-white/10 rounded-xl">
                   <button
                     type="button"
                     onClick={() => setSelectedBrowserTab('safari')}
                     className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       selectedBrowserTab === 'safari'
-                        ? 'bg-[#0B0B0B] text-[#861820] shadow-xs'
-                        : 'text-stone-600 hover:text-stone-900'
+                        ? 'bg-[#222222] text-[#FFB800] border border-[#FFB800]/40 shadow-xs'
+                        : 'text-zinc-400 hover:text-white'
                     }`}
                   >
                     iPhone (Safari)
@@ -386,8 +386,8 @@ export default function PWAInstallPopup() {
                     onClick={() => setSelectedBrowserTab('chrome')}
                     className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       selectedBrowserTab === 'chrome'
-                        ? 'bg-[#0B0B0B] text-[#861820] shadow-xs'
-                        : 'text-stone-600 hover:text-stone-900'
+                        ? 'bg-[#222222] text-[#FFB800] border border-[#FFB800]/40 shadow-xs'
+                        : 'text-zinc-400 hover:text-white'
                     }`}
                   >
                     Android Chrome
@@ -397,8 +397,8 @@ export default function PWAInstallPopup() {
                     onClick={() => setSelectedBrowserTab('samsung')}
                     className={`py-1.5 px-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                       selectedBrowserTab === 'samsung'
-                        ? 'bg-[#0B0B0B] text-[#861820] shadow-xs'
-                        : 'text-stone-600 hover:text-stone-900'
+                        ? 'bg-[#222222] text-[#FFB800] border border-[#FFB800]/40 shadow-xs'
+                        : 'text-zinc-400 hover:text-white'
                     }`}
                   >
                     Samsung / Other
@@ -409,123 +409,123 @@ export default function PWAInstallPopup() {
               {/* TUTORIAL STEPS */}
               {selectedBrowserTab === 'safari' ? (
                 /* iPHONE SAFARI STEPS */
-                <div className="space-y-3 bg-[#0B0B0B] p-3.5 rounded-2xl border border-stone-200/80 shadow-xs">
+                <div className="space-y-3 bg-[#161616] p-3.5 rounded-2xl border border-white/10 shadow-xs">
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-[#FFB800] text-black font-black flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       1
                     </div>
-                    <div className="text-xs leading-relaxed text-stone-700">
-                      Tap the <strong className="text-stone-900">Share</strong> button in Safari's bottom toolbar.
-                      <div className="inline-flex items-center gap-1 ml-1 px-1.5 py-0.5 rounded-md bg-stone-100 border border-stone-200 text-stone-800 font-semibold align-middle">
+                    <div className="text-xs leading-relaxed text-zinc-300">
+                      Tap the <strong className="text-white font-bold">Share</strong> button in Safari's bottom toolbar.
+                      <div className="inline-flex items-center gap-1 ml-1 px-1.5 py-0.5 rounded-md bg-[#222222] border border-white/10 text-zinc-200 font-semibold align-middle">
                         <Share2 size={12} className="text-blue-600" />
                         <span>Share</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="h-px bg-stone-100" />
+                  <div className="h-px bg-white/10" />
 
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-[#FFB800] text-black font-black flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       2
                     </div>
-                    <div className="text-xs leading-relaxed text-stone-700">
-                      Scroll down in the action list and select <strong className="text-stone-900">"Add to Home Screen"</strong>.
-                      <div className="inline-flex items-center gap-1 ml-1 px-1.5 py-0.5 rounded-md bg-stone-100 border border-stone-200 text-stone-800 font-semibold align-middle">
+                    <div className="text-xs leading-relaxed text-zinc-300">
+                      Scroll down in the action list and select <strong className="text-white font-bold">"Add to Home Screen"</strong>.
+                      <div className="inline-flex items-center gap-1 ml-1 px-1.5 py-0.5 rounded-md bg-[#222222] border border-white/10 text-zinc-200 font-semibold align-middle">
                         <PlusSquare size={12} className="text-stone-700" />
                         <span>Add to Home Screen</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="h-px bg-stone-100" />
+                  <div className="h-px bg-white/10" />
 
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-[#FFB800] text-black font-black flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       3
                     </div>
-                    <div className="text-xs leading-relaxed text-stone-700">
+                    <div className="text-xs leading-relaxed text-zinc-300">
                       Tap <strong className="text-blue-600 font-bold">"Add"</strong> in the top-right corner. The Professor Virus app will appear immediately on your iPhone home screen!
                     </div>
                   </div>
                 </div>
               ) : selectedBrowserTab === 'samsung' ? (
                 /* SAMSUNG INTERNET & OTHERS */
-                <div className="space-y-3 bg-[#0B0B0B] p-3.5 rounded-2xl border border-stone-200/80 shadow-xs">
+                <div className="space-y-3 bg-[#161616] p-3.5 rounded-2xl border border-white/10 shadow-xs">
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-[#FFB800] text-black font-black flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       1
                     </div>
-                    <div className="text-xs leading-relaxed text-stone-700">
-                      Tap the <strong className="text-stone-900">Menu</strong> button (three lines) in the bottom-right corner or the install icon in the URL bar.
-                      <div className="inline-flex items-center gap-1 ml-1 px-1.5 py-0.5 rounded-md bg-stone-100 border border-stone-200 text-stone-800 font-semibold align-middle">
+                    <div className="text-xs leading-relaxed text-zinc-300">
+                      Tap the <strong className="text-white font-bold">Menu</strong> button (three lines) in the bottom-right corner or the install icon in the URL bar.
+                      <div className="inline-flex items-center gap-1 ml-1 px-1.5 py-0.5 rounded-md bg-[#222222] border border-white/10 text-zinc-200 font-semibold align-middle">
                         <MenuIcon size={12} />
                         <span>Menu</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="h-px bg-stone-100" />
+                  <div className="h-px bg-white/10" />
 
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-[#FFB800] text-black font-black flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       2
                     </div>
-                    <div className="text-xs leading-relaxed text-stone-700">
-                      Tap <strong className="text-stone-900">"Add page to"</strong>.
+                    <div className="text-xs leading-relaxed text-zinc-300">
+                      Tap <strong className="text-white font-bold">"Add page to"</strong>.
                     </div>
                   </div>
 
-                  <div className="h-px bg-stone-100" />
+                  <div className="h-px bg-white/10" />
 
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-[#FFB800] text-black font-black flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       3
                     </div>
-                    <div className="text-xs leading-relaxed text-stone-700">
-                      Select <strong className="text-[#861820] font-bold">"App screen"</strong> or <strong className="text-[#861820] font-bold">"Home screen"</strong> and tap <strong className="text-stone-900 font-bold">Install</strong>.
+                    <div className="text-xs leading-relaxed text-zinc-300">
+                      Select <strong className="text-[#861820] font-bold">"App screen"</strong> or <strong className="text-[#861820] font-bold">"Home screen"</strong> and tap <strong className="text-white font-bold font-bold">Install</strong>.
                     </div>
                   </div>
                 </div>
               ) : (
                 /* ANDROID CHROME / BRAVE / EDGE */
-                <div className="space-y-3 bg-[#0B0B0B] p-3.5 rounded-2xl border border-stone-200/80 shadow-xs">
+                <div className="space-y-3 bg-[#161616] p-3.5 rounded-2xl border border-white/10 shadow-xs">
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-[#FFB800] text-black font-black flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       1
                     </div>
-                    <div className="text-xs leading-relaxed text-stone-700">
-                      Tap the <strong className="text-stone-900">Three Dots</strong> menu in the top-right corner of your browser.
-                      <div className="inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 rounded-md bg-stone-100 border border-stone-200 text-stone-800 font-semibold align-middle">
+                    <div className="text-xs leading-relaxed text-zinc-300">
+                      Tap the <strong className="text-white font-bold">Three Dots</strong> menu in the top-right corner of your browser.
+                      <div className="inline-flex items-center gap-0.5 ml-1 px-1.5 py-0.5 rounded-md bg-[#222222] border border-white/10 text-zinc-200 font-semibold align-middle">
                         <MoreVertical size={12} />
                         <span>Menu</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="h-px bg-stone-100" />
+                  <div className="h-px bg-white/10" />
 
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-[#FFB800] text-black font-black flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       2
                     </div>
-                    <div className="text-xs leading-relaxed text-stone-700">
-                      Look for <strong className="text-[#861820] font-bold">"Install app"</strong> or <strong className="text-stone-900">"Add to Home screen"</strong>.
-                      <div className="inline-flex items-center gap-1 ml-1 px-1.5 py-0.5 rounded-md bg-stone-100 border border-stone-200 text-stone-800 font-semibold align-middle">
+                    <div className="text-xs leading-relaxed text-zinc-300">
+                      Look for <strong className="text-[#861820] font-bold">"Install app"</strong> or <strong className="text-white font-bold">"Add to Home screen"</strong>.
+                      <div className="inline-flex items-center gap-1 ml-1 px-1.5 py-0.5 rounded-md bg-[#222222] border border-white/10 text-zinc-200 font-semibold align-middle">
                         <Download size={12} className="text-[#861820]" />
                         <span>Install app</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="h-px bg-stone-100" />
+                  <div className="h-px bg-white/10" />
 
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[#861820] text-white flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
+                    <div className="w-7 h-7 rounded-full bg-[#FFB800] text-black font-black flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">
                       3
                     </div>
-                    <div className="text-xs leading-relaxed text-stone-700">
-                      Confirm by tapping <strong className="text-stone-900 font-bold">"Install"</strong>. The app installs directly into your Android app drawer and home screen.
+                    <div className="text-xs leading-relaxed text-zinc-300">
+                      Confirm by tapping <strong className="text-white font-bold font-bold">"Install"</strong>. The app installs directly into your Android app drawer and home screen.
                     </div>
                   </div>
                 </div>
@@ -537,7 +537,7 @@ export default function PWAInstallPopup() {
                   <button
                     type="button"
                     onClick={handlePrimaryClick}
-                    className="flex-1 py-3 px-4 rounded-xl bg-[#861820] text-white font-['Outfit',sans-serif] font-bold text-xs tracking-wide shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+                    className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-[#FFB800] to-[#FF8C00] text-black font-extrabold font-['Outfit',sans-serif] font-bold text-xs tracking-wide shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <Download size={16} />
                     <span>Try Automatic Install</span>
@@ -547,7 +547,7 @@ export default function PWAInstallPopup() {
                     id="pwa-tutorial-got-it-btn"
                     type="button"
                     onClick={handleClose}
-                    className="flex-1 py-3 px-4 rounded-xl bg-[#861820] text-white font-['Outfit',sans-serif] font-bold text-xs tracking-wide shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
+                    className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-[#FFB800] to-[#FF8C00] text-black font-extrabold font-['Outfit',sans-serif] font-bold text-xs tracking-wide shadow-md flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <span>Got It</span>
                   </button>
@@ -557,7 +557,7 @@ export default function PWAInstallPopup() {
                   id="pwa-tutorial-maybe-later-btn"
                   type="button"
                   onClick={handleDismiss}
-                  className="py-3 px-4 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold text-xs cursor-pointer"
+                  className="py-3 px-4 rounded-xl bg-[#161616] hover:bg-[#222222] border border-white/10 text-zinc-300 font-semibold text-xs cursor-pointer"
                 >
                   Maybe Later
                 </button>
@@ -567,9 +567,9 @@ export default function PWAInstallPopup() {
         </div>
 
         {/* BOTTOM SAFE AREA ACCENT */}
-        <div className="px-5 py-2.5 bg-stone-50 border-t border-stone-200/70 flex items-center justify-between text-[10px] text-stone-500">
+        <div className="px-5 py-2.5 bg-[#050505] border-t border-white/10 flex items-center justify-between text-[10px] text-zinc-400">
           <div className="flex items-center gap-1.5">
-            <ShieldCheck size={13} className="text-emerald-600" />
+            <ShieldCheck size={13} className="text-emerald-400" />
             <span>Verified PWA by Professor Virus</span>
           </div>
           <span>v1.0 • No App Store required</span>
