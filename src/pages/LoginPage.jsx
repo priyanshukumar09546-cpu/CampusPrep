@@ -736,7 +736,7 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
                   text="signin_with"
                   width={340}
                   onSuccess={handleGoogleSuccess}
-                  onError={(err) => setLoginError(err)}
+                  onError={(err) => setErrorMsg(err)}
                 />
               </div>
 
@@ -976,7 +976,7 @@ export default function LoginPage({ initialMode = 'login', onLoginSuccess, onNav
                   text="signup_with"
                   width={340}
                   onSuccess={handleGoogleSuccess}
-                  onError={(err) => setRegisterError(err)}
+                  onError={(err) => setErrorMsg(err)}
                 />
               </div>
 

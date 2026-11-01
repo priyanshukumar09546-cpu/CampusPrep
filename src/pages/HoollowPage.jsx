@@ -252,9 +252,9 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
   };
 
   // Calculate Progress Stats
-  const allTasks = activeRoadmap?.phases?.flatMap((p) => p.tasks) || [];
+  const allTasks = (activeRoadmap?.phases || []).flatMap((p) => Array.isArray(p?.tasks) ? p.tasks : []).filter(Boolean);
   const totalTasksCount = allTasks.length;
-  const completedCount = allTasks.filter((t) => completedTaskIds.includes(t.id)).length;
+  const completedCount = allTasks.filter((t) => t && t.id && Array.isArray(completedTaskIds) && completedTaskIds.includes(t.id)).length;
   const overallProgressPercent = totalTasksCount > 0 ? Math.round((completedCount / totalTasksCount) * 100) : 0;
 
   // Active Phase Data
@@ -1532,7 +1532,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
                   {(activeRoadmap.phases || []).map((phase, pIdx) => {
                     const isSelected = activePhaseIndex === pIdx;
                     const phaseTasks = phase.tasks || [];
-                    const pCompleted = phaseTasks.filter((t) => completedTaskIds.includes(t.id)).length;
+                    const pCompleted = (phaseTasks || []).filter((t) => t && t.id && Array.isArray(completedTaskIds) && completedTaskIds.includes(t.id)).length;
                     const isFullyDone = phaseTasks.length > 0 && pCompleted === phaseTasks.length;
 
                     return (
@@ -1615,7 +1615,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
 
                 {/* Tasks List */}
                 {(currentPhase?.tasks || []).map((task, tIdx) => {
-                  const isCompleted = completedTaskIds.includes(task.id);
+                  const isCompleted = Boolean(task?.id && Array.isArray(completedTaskIds) && completedTaskIds.includes(task.id));
 
                   return (
                     <div
@@ -1958,7 +1958,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
         onClose={() => setSelectedTaskForModal(null)}
         task={selectedTaskForModal}
         phaseName={selectedPhaseForModal}
-        isCompleted={completedTaskIds.includes(selectedTaskForModal?.id)}
+        isCompleted={Boolean(selectedTaskForModal?.id && Array.isArray(completedTaskIds) && completedTaskIds.includes(selectedTaskForModal.id))}
         onToggleComplete={handleToggleTaskComplete}
         onAskMentor={(taskTitle) => {
           setIsMentorOpen(true);

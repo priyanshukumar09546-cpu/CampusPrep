@@ -27,43 +27,75 @@ import Home from './pages/Home';
 import { normalizeCourseKey } from './data/courseMapping.ts';
 
 import { Clock } from 'lucide-react';
-// Pages
+// High-Traffic Primary Pages (Eagerly Loaded for Instant First Paint)
 import PYQsPage from './pages/PYQsPage';
 import NotesPage from './pages/NotesPage';
 import SyllabusPage from './pages/SyllabusPage';
 import QuizzesPage from './pages/QuizzesPage';
 import AIStudyPage from './pages/AIStudyPage';
 import InterviewProPage from './pages/InterviewProPage';
-import InterviewConfirmPage from './pages/InterviewConfirmPage';
-import InterviewInstructionsPage from './pages/InterviewInstructionsPage';
-import InterviewAptitudePage from './pages/InterviewAptitudePage';
-import InterviewCodingPage from './pages/InterviewCodingPage';
-import InterviewTechnicalPage from './pages/InterviewTechnicalPage';
-import InterviewHrPage from './pages/InterviewHrPage';
-import InterviewReportPage from './pages/InterviewReportPage';
 import MorePage from './pages/MorePage';
 import { updateSEOForRoute } from './utils/seoManager';
-import ResumeMakerPage from './pages/ResumeMakerPage';
-import PdfMakerPage from './pages/PdfMakerPage';
-import ResultCgpaPage from './pages/ResultCgpaPage';
-import AttendanceCalculatorPage from './pages/AttendanceCalculatorPage';
-import CompetitiveExamsPage from './pages/CompetitiveExamsPage';
-import ImportantLinksPage from './pages/ImportantLinksPage';
-import ProjectIdeasPage from './pages/ProjectIdeasPage';
-import ProjectDetailPage from './pages/ProjectDetailPage';
-import InternshipsJobsPage from './pages/InternshipsJobsPage';
-import OpportunityDetailPage from './pages/OpportunityDetailPage';
-import ScholarshipsPage from './pages/ScholarshipsPage';
-import ScholarshipDetailPage from './pages/ScholarshipDetailPage';
-import TimetablePage from './pages/TimetablePage';
 import LoginPage from './pages/LoginPage';
-import AdminDashboard from './pages/AdminDashboard';
 import AdminLoginPage from './pages/AdminLoginPage';
 import SubjectPage from './pages/SubjectPage';
-import PlagiarismCheckerPage from './pages/PlagiarismCheckerPage';
-import ProgressPage from './pages/ProgressPage';
-import PromotionPage from './pages/PromotionPage';
 import HoollowPage from './pages/HoollowPage';
+
+// Heavy & Specialized Tools (Route-Based Lazy Loaded for 1,000 Concurrent Users Optimization)
+const ResumeMakerPage = React.lazy(() => import('./pages/ResumeMakerPage'));
+const PdfMakerPage = React.lazy(() => import('./pages/PdfMakerPage'));
+const ResultCgpaPage = React.lazy(() => import('./pages/ResultCgpaPage'));
+const AttendanceCalculatorPage = React.lazy(() => import('./pages/AttendanceCalculatorPage'));
+const CompetitiveExamsPage = React.lazy(() => import('./pages/CompetitiveExamsPage'));
+const ImportantLinksPage = React.lazy(() => import('./pages/ImportantLinksPage'));
+const ProjectIdeasPage = React.lazy(() => import('./pages/ProjectIdeasPage'));
+const ProjectDetailPage = React.lazy(() => import('./pages/ProjectDetailPage'));
+const InternshipsJobsPage = React.lazy(() => import('./pages/InternshipsJobsPage'));
+const OpportunityDetailPage = React.lazy(() => import('./pages/OpportunityDetailPage'));
+const ScholarshipsPage = React.lazy(() => import('./pages/ScholarshipsPage'));
+const ScholarshipDetailPage = React.lazy(() => import('./pages/ScholarshipDetailPage'));
+const TimetablePage = React.lazy(() => import('./pages/TimetablePage'));
+const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
+const PlagiarismCheckerPage = React.lazy(() => import('./pages/PlagiarismCheckerPage'));
+const ProgressPage = React.lazy(() => import('./pages/ProgressPage'));
+const PromotionPage = React.lazy(() => import('./pages/PromotionPage'));
+
+// Interview Pro Rounds (Lazy Loaded)
+const InterviewConfirmPage = React.lazy(() => import('./pages/InterviewConfirmPage'));
+const InterviewInstructionsPage = React.lazy(() => import('./pages/InterviewInstructionsPage'));
+const InterviewAptitudePage = React.lazy(() => import('./pages/InterviewAptitudePage'));
+const InterviewCodingPage = React.lazy(() => import('./pages/InterviewCodingPage'));
+const InterviewTechnicalPage = React.lazy(() => import('./pages/InterviewTechnicalPage'));
+const InterviewHrPage = React.lazy(() => import('./pages/InterviewHrPage'));
+const InterviewReportPage = React.lazy(() => import('./pages/InterviewReportPage'));
+
+function ViewLoadingFallback() {
+  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+  return (
+    <div style={{
+      minHeight: '60vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '0.85rem',
+      fontFamily: "'Plus Jakarta Sans', sans-serif"
+    }}>
+      <div style={{
+        width: '38px',
+        height: '38px',
+        border: `3px solid ${isDark ? 'rgba(255, 184, 0, 0.15)' : 'rgba(139, 16, 29, 0.15)'}`,
+        borderTopColor: isDark ? '#FFB800' : '#8B101D',
+        borderRadius: '50%',
+        animation: 'pv-spin 0.8s linear infinite'
+      }} />
+      <span style={{ fontSize: '0.82rem', fontWeight: 600, color: isDark ? '#A1A1AA' : '#64748B' }}>
+        Loading experience...
+      </span>
+      <style>{`@keyframes pv-spin { to { transform: rotate(360deg); } }`}</style>
+    </div>
+  );
+}
 
 // Exact Reference Image 1 & 2 Screens
 import SignIn from './pages/Auth/SignIn';
@@ -680,8 +712,14 @@ export default function App() {
 
       {/* Main Content View Switcher */}
       <main style={{ flex: 1 }}>
-        <ErrorBoundary title="Page failed to load">
-        {activeTab === 'signin' ? (
+        <ErrorBoundary 
+          key={activeTab} 
+          resetKey={activeTab} 
+          title="This page encountered an issue"
+          onNavigate={navigateToTab}
+        >
+          <React.Suspense fallback={<ViewLoadingFallback />}>
+          {activeTab === 'signin' ? (
           <SignIn onNavigate={(tab) => navigateToTab(tab)} />
         ) : activeTab === 'signup' ? (
           <SignUp onNavigate={(tab) => navigateToTab(tab)} />
@@ -1041,6 +1079,7 @@ export default function App() {
             onOpenSubject={handleOpenSubject}
           />
         )}
+          </React.Suspense>
         </ErrorBoundary>
       </main>
 

@@ -33,6 +33,7 @@ import {
   Volume2,
   VolumeX,
   RotateCcw,
+  Briefcase,
   Check,
   Award,
   HelpCircle,

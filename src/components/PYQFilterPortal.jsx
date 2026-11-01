@@ -77,6 +77,28 @@ export default function PYQFilterPortal({
   const [selectedExamType, setSelectedExamType] = useState(() => getParam('examType', 'ALL'));
   const [searchQuery, setSearchQuery] = useState(() => getParam('search', ''));
 
+  // Dynamic SEO & Academic Heading based on active filter selections
+  const dynamicPyqHeading = useMemo(() => {
+    const parts = [];
+    if (selectedCourse && selectedCourse !== 'ALL') {
+      const courseName = COURSE_CONFIG[selectedCourse]?.name || selectedCourse;
+      parts.push(courseName);
+    }
+    if (selectedBranch && selectedBranch !== 'ALL') {
+      parts.push(selectedBranch);
+    }
+    if (selectedYear && selectedYear !== 'ALL') {
+      parts.push(selectedYear);
+    }
+    if (selectedSemester && selectedSemester !== 'ALL') {
+      parts.push(selectedSemester);
+    }
+    if (parts.length > 0) {
+      return `${parts.join(' ')} Previous Year Question Papers (PYQs)`;
+    }
+    return 'AKTU Previous Year Question Papers (PYQs)';
+  }, [selectedCourse, selectedBranch, selectedYear, selectedSemester]);
+
   // Viewer Modal State
   const [activePyqPaper, setActivePyqPaper] = useState(null);
 

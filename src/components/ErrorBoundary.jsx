@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
+import { AlertTriangle, RefreshCw, Home, RotateCcw } from 'lucide-react';
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -13,120 +13,242 @@ export default class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     this.setState({ errorInfo });
-    console.error("Uncaught error caught by ErrorBoundary:", error, errorInfo);
+    console.error('[ProfessorVirus ErrorBoundary] Caught render exception:', error, errorInfo);
   }
 
-  handleReset = () => {
+  componentDidUpdate(prevProps) {
+    // Automatically reset error boundary state when route / resetKey changes
+    if (this.state.hasError) {
+      if (
+        (this.props.resetKey !== undefined && prevProps.resetKey !== this.props.resetKey) ||
+        (this.props.title !== undefined && prevProps.title !== this.props.title)
+      ) {
+        this.setState({ hasError: false, error: null, errorInfo: null });
+      }
+    }
+  }
+
+  handleRetry = () => {
+    this.setState({ hasError: false, error: null, errorInfo: null });
+    if (typeof this.props.onRetry === 'function') {
+      try {
+        this.props.onRetry();
+      } catch (e) {
+        console.warn('Retry callback error:', e);
+      }
+    }
+  };
+
+  handleReload = () => {
     this.setState({ hasError: false, error: null, errorInfo: null });
     window.location.reload();
   };
 
+  handleGoHome = () => {
+    this.setState({ hasError: false, error: null, errorInfo: null });
+    if (typeof this.props.onNavigate === 'function') {
+      this.props.onNavigate('home');
+    } else {
+      window.location.href = '/';
+    }
+  };
+
   render() {
     if (this.state.hasError) {
-      const isDev = Boolean(import.meta.env?.DEV);
+      const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+      const isDev = Boolean(typeof import.meta !== 'undefined' && import.meta.env?.DEV);
+
+      const themeStyles = isDark ? {
+        bgColor: '#050505',
+        cardBg: '#0D0D0D',
+        borderColor: '#27272a',
+        titleColor: '#FFFFFF',
+        textColor: '#A1A1AA',
+        iconBg: '#1f1315',
+        iconColor: '#f87171',
+        detailsBg: '#111111',
+        detailsBorder: '#27272a',
+        primaryBtnBg: '#FFB800',
+        primaryBtnColor: '#050505',
+        secBtnBg: '#18181b',
+        secBtnColor: '#E4E4E7',
+        secBtnBorder: '#27272a'
+      } : {
+        bgColor: '#FAF7F2',
+        cardBg: '#FFFFFF',
+        borderColor: '#FEE2E2',
+        titleColor: '#1F2421',
+        textColor: '#64748B',
+        iconBg: '#FEF2F2',
+        iconColor: '#DC2626',
+        detailsBg: '#F8FAFC',
+        detailsBorder: '#E2E8F0',
+        primaryBtnBg: '#1F2421',
+        primaryBtnColor: '#FFFFFF',
+        secBtnBg: '#FFFFFF',
+        secBtnColor: '#334155',
+        secBtnBorder: '#CBD5E1'
+      };
+
       return (
         <div style={{
-          minHeight: '100vh',
-          backgroundColor: '#f8fafc',
+          minHeight: '70vh',
+          backgroundColor: themeStyles.bgColor,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '2rem',
-          fontFamily: "'Inter', sans-serif"
+          padding: '2rem 1.5rem',
+          fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+          boxSizing: 'border-box',
+          width: '100%'
         }}>
           <div style={{
-            maxWidth: '550px',
+            maxWidth: '560px',
             width: '100%',
-            backgroundColor: '#ffffff',
+            backgroundColor: themeStyles.cardBg,
             borderRadius: '24px',
-            border: '1.5px solid #fecaca',
-            padding: '2.5rem',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.08)',
-            textAlign: 'center'
+            border: `1.5px solid ${themeStyles.borderColor}`,
+            padding: '2.5rem 2rem',
+            boxShadow: isDark ? '0 25px 50px -12px rgba(0, 0, 0, 0.7)' : '0 20px 40px rgba(0,0,0,0.06)',
+            textAlign: 'center',
+            boxSizing: 'border-box'
           }}>
+            {/* Warning Icon Badge */}
             <div style={{
-              width: '60px',
-              height: '60px',
-              borderRadius: '16px',
-              backgroundColor: '#fef2f2',
-              color: '#dc2626',
+              width: '64px',
+              height: '64px',
+              borderRadius: '18px',
+              backgroundColor: themeStyles.iconBg,
+              color: themeStyles.iconColor,
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: '1.25rem'
+              marginBottom: '1.25rem',
+              boxShadow: '0 4px 12px rgba(220, 38, 38, 0.15)'
             }}>
-              <AlertTriangle size={32} />
+              <AlertTriangle size={32} strokeWidth={2.2} />
             </div>
 
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem' }}>
-              {this.props.title || "Page failed to load"}
+            <h2 style={{
+              fontSize: '1.45rem',
+              fontWeight: 800,
+              color: themeStyles.titleColor,
+              margin: '0 0 0.5rem 0',
+              fontFamily: "'Outfit', sans-serif",
+              letterSpacing: '-0.01em'
+            }}>
+              {this.props.title || 'Page failed to load'}
             </h2>
 
-            <p style={{ fontSize: '0.9rem', color: '#64748b', lineHeight: 1.5, marginBottom: '1.5rem' }}>
-              An unexpected error occurred while rendering this page. Our application caught the crash to prevent a blank screen.
+            <p style={{
+              fontSize: '0.92rem',
+              color: themeStyles.textColor,
+              lineHeight: 1.55,
+              margin: '0 0 1.5rem 0'
+            }}>
+              An unexpected error occurred while rendering this view. Our application caught the issue to keep the rest of your session active.
             </p>
 
             {this.state.error && (
               <details style={{
-                backgroundColor: '#f1f5f9',
-                border: '1px solid #cbd5e1',
+                backgroundColor: themeStyles.detailsBg,
+                border: `1px solid ${themeStyles.detailsBorder}`,
                 borderRadius: '12px',
                 padding: '0.75rem 1rem',
                 textAlign: 'left',
-                fontSize: '0.8rem',
-                color: '#dc2626',
+                fontSize: '0.78rem',
+                color: isDark ? '#f87171' : '#b91c1c',
                 fontFamily: 'monospace',
                 overflowX: 'auto',
                 marginBottom: '1.5rem',
-                maxHeight: '220px'
+                maxHeight: '180px'
               }}>
-                <summary style={{ cursor: 'pointer', fontWeight: 'bold', color: '#b91c1c' }}>View error details</summary>
-                <div style={{ marginTop: '0.5rem' }}>{this.state.error.toString()}</div>
+                <summary style={{ cursor: 'pointer', fontWeight: 700, outline: 'none' }}>
+                  Technical diagnostics (Click to expand)
+                </summary>
+                <div style={{ marginTop: '0.5rem', wordBreak: 'break-all' }}>
+                  {this.state.error.toString()}
+                </div>
                 {this.state.errorInfo?.componentStack && (
-                  <pre style={{ fontSize: '0.72rem', whiteSpace: 'pre-wrap', marginTop: '0.5rem', color: '#64748b' }}>
-                    {this.state.errorInfo.componentStack}
+                  <pre style={{
+                    fontSize: '0.7rem',
+                    whiteSpace: 'pre-wrap',
+                    marginTop: '0.5rem',
+                    color: isDark ? '#71717a' : '#64748b',
+                    margin: '0.5rem 0 0 0'
+                  }}>
+                    {this.state.errorInfo.componentStack.slice(0, 500)}
                   </pre>
                 )}
               </details>
             )}
 
-            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
+            {/* Action Buttons: Retry, Home, Reload */}
+            <div style={{
+              display: 'flex',
+              gap: '0.75rem',
+              justifyContent: 'center',
+              flexWrap: 'wrap'
+            }}>
               <button
-                onClick={this.handleReset}
+                onClick={this.handleRetry}
                 style={{
-                  padding: '0.65rem 1.25rem',
+                  padding: '0.7rem 1.35rem',
                   borderRadius: '12px',
-                  backgroundColor: '#1F2421',
-                  color: '#ffffff',
+                  backgroundColor: themeStyles.primaryBtnBg,
+                  color: themeStyles.primaryBtnColor,
                   border: 'none',
                   fontWeight: 700,
                   fontSize: '0.88rem',
                   cursor: 'pointer',
-                  display: 'flex',
+                  display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.4rem'
+                  gap: '0.45rem',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  transition: 'all 0.15s ease'
                 }}
               >
-                <RefreshCw size={16} /> Reload Page
+                <RotateCcw size={16} /> Try Again
               </button>
 
               <button
-                onClick={() => window.location.href = '/'}
+                onClick={this.handleGoHome}
                 style={{
-                  padding: '0.65rem 1.25rem',
+                  padding: '0.7rem 1.35rem',
                   borderRadius: '12px',
-                  backgroundColor: '#f1f5f9',
-                  color: '#334155',
-                  border: '1px solid #cbd5e1',
+                  backgroundColor: themeStyles.secBtnBg,
+                  color: themeStyles.secBtnColor,
+                  border: `1px solid ${themeStyles.secBtnBorder}`,
                   fontWeight: 700,
                   fontSize: '0.88rem',
                   cursor: 'pointer',
-                  display: 'flex',
+                  display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.4rem'
+                  gap: '0.45rem',
+                  transition: 'all 0.15s ease'
                 }}
               >
-                <Home size={16} /> Go to Home
+                <Home size={16} /> Go to Homepage
+              </button>
+
+              <button
+                onClick={this.handleReload}
+                style={{
+                  padding: '0.7rem 1.1rem',
+                  borderRadius: '12px',
+                  backgroundColor: 'transparent',
+                  color: themeStyles.textColor,
+                  border: 'none',
+                  fontWeight: 600,
+                  fontSize: '0.85rem',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  textDecoration: 'underline'
+                }}
+              >
+                <RefreshCw size={14} /> Refresh Page
               </button>
             </div>
           </div>

@@ -109,6 +109,80 @@ app.get('/api/health', (req, res) => res.status(200).json({ status: 'ok', uptime
 
 app.use(express.json());
 
+// --- HIGH CONCURRENCY & ABUSE PROTECTION (1,000 CONCURRENT USERS) ---
+// 1. Request Timeout Guard: Terminate hung sockets after 15s to free event loop
+app.use((req, res, next) => {
+  req.setTimeout(15000, () => {
+    if (!res.headersSent) {
+      res.status(504).json({ error: 'Gateway Timeout: Request took longer than 15s' });
+    }
+  });
+  next();
+});
+
+// 2. High-Concurrency Public Academic Endpoint In-Memory Cache (TTL: 60s)
+const publicCache = new Map();
+const CACHE_TTL_MS = 60 * 1000;
+
+const publicAcademicCache = (req, res, next) => {
+  if (req.method !== 'GET' || req.headers.authorization) {
+    return next();
+  }
+  const cacheKey = req.originalUrl || req.url;
+  const cached = publicCache.get(cacheKey);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    res.setHeader('X-Cache', 'HIT');
+    res.setHeader('Cache-Control', 'public, max-age=60, stale-while-revalidate=120');
+    return res.status(cached.status).json(cached.body);
+  }
+
+  const originalJson = res.json.bind(res);
+  res.json = (body) => {
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      if (publicCache.size > 500) {
+        const firstKey = publicCache.keys().next().value;
+        publicCache.delete(firstKey);
+      }
+      publicCache.set(cacheKey, { timestamp: Date.now(), status: res.statusCode, body });
+      res.setHeader('X-Cache', 'MISS');
+      res.setHeader('Cache-Control', 'public, max-age=60, stale-while-revalidate=120');
+    }
+    return originalJson(body);
+  };
+  next();
+};
+
+app.use(['/api/pyqs', '/api/notes', '/api/courses', '/api/syllabus'], publicAcademicCache);
+
+// 3. Sliding-Window In-Memory Rate Limiter for Sensitive Write Endpoints
+const rateLimitStore = new Map();
+const createRateLimiter = (maxHits, windowMs, errorMsg) => {
+  return (req, res, next) => {
+    const ip = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+    const now = Date.now();
+    const timestamps = (rateLimitStore.get(ip) || []).filter(t => now - t < windowMs);
+
+    if (timestamps.length >= maxHits) {
+      res.setHeader('Retry-After', Math.ceil(windowMs / 1000));
+      return res.status(429).json({ error: errorMsg });
+    }
+
+    timestamps.push(now);
+    rateLimitStore.set(ip, timestamps);
+    if (rateLimitStore.size > 2000) {
+      for (const [key, list] of rateLimitStore.entries()) {
+        if (list.every(t => now - t >= windowMs)) rateLimitStore.delete(key);
+      }
+    }
+    next();
+  };
+};
+
+app.use('/api/auth/login', createRateLimiter(40, 15 * 60 * 1000, 'Too many login attempts. Please wait 15 minutes.'));
+app.use('/api/auth/register', createRateLimiter(25, 15 * 60 * 1000, 'Too many registrations from this IP. Please wait 15 minutes.'));
+app.use('/api/hoollow/generate', createRateLimiter(30, 10 * 60 * 1000, 'AI roadmap rate limit reached. Please wait before generating another roadmap.'));
+// --- END HIGH CONCURRENCY MIDDLEWARE ---
+
 // DETECT VERCEL SERVERLESS ENVIRONMENT (read-only filesystem except /tmp)
 const IS_VERCEL = !!(process.env.VERCEL || process.env.VERCEL_ENV || process.env.VERCEL_URL);
 
@@ -875,7 +949,12 @@ async function connectToDatabase() {
 
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      serverSelectionTimeoutMS: 5000
+      maxPoolSize: 50,
+      minPoolSize: 5,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+      connectTimeoutMS: 10000,
+      family: 4
     });
     isDbConnected = true;
     console.log('MongoDB connected successfully');
