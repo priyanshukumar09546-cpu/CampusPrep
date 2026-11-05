@@ -11170,6 +11170,20 @@ if (fs.existsSync(distPath)) {
     res.status(404).send('User-agent: *\nAllow: /\nSitemap: https://professorvirus.site/sitemap.xml');
   });
 
+  app.get('/ads.txt', (req, res) => {
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    const adsPath = path.join(distPath, 'ads.txt');
+    if (fs.existsSync(adsPath)) {
+      return res.sendFile(adsPath);
+    }
+    const publicAds = path.join(PROJECT_ROOT, 'public', 'ads.txt');
+    if (fs.existsSync(publicAds)) {
+      return res.sendFile(publicAds);
+    }
+    res.status(200).send('google.com, pub-3005484732109718, DIRECT, f08c47fec0942fa0\n');
+  });
+
   // Server-side Route Metadata Pre-Renderer for Crawlers & Browsers
   app.use((req, res, next) => {
     if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/uploads')) {
