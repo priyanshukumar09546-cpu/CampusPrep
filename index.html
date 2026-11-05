@@ -20,23 +20,28 @@
     <meta name="keywords" content="ProfessorVirus, AKTU Notes, AKTU PYQs, AKTU Syllabus, AKTU Previous Year Question Papers, HOOLLOW, Resume Maker, Interview Pro, Result CGPA Calculator, B.Tech, BCA, BBA, B.Pharm, MBA, MCA" />
     <meta name="author" content="ProfessorVirus" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="theme-color" content="#030303" media="(max-width: 1023px)" />
-    <meta name="theme-color" content="#030303" media="(min-width: 1024px)" />
+    <meta name="theme-color" content="#FAF7F2" media="(max-width: 1023px)" />
+    <meta name="theme-color" content="#FAF7F2" media="(min-width: 1024px)" />
 
-    <!-- Anti-flicker Theme Synchronizer -->
+    <!-- Anti-flicker Theme Synchronizer (Light Mode Default) -->
     <script>
       (function() {
         try {
-          var t = localStorage.getItem('pv_theme') || 'dark';
+          var saved = localStorage.getItem('pv_theme');
+          var t = (saved === 'dark') ? 'dark' : 'light';
           var doc = document.documentElement;
-          if (t === 'light') {
-            doc.classList.add('light');
-            doc.classList.remove('dark');
-            doc.setAttribute('data-theme', 'light');
-          } else {
+          if (t === 'dark') {
             doc.classList.add('dark');
             doc.classList.remove('light');
             doc.setAttribute('data-theme', 'dark');
+            var metaColors = document.querySelectorAll('meta[name="theme-color"]');
+            for (var i = 0; i < metaColors.length; i++) {
+              metaColors[i].setAttribute('content', '#030303');
+            }
+          } else {
+            doc.classList.add('light');
+            doc.classList.remove('dark');
+            doc.setAttribute('data-theme', 'light');
           }
         } catch(e) {}
       })();

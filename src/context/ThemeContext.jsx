@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const ThemeContext = createContext({
-  theme: 'dark',
-  isDark: true,
+  theme: 'light',
+  isDark: false,
   toggleTheme: () => {},
   setTheme: () => {}
 });
@@ -10,12 +10,13 @@ const ThemeContext = createContext({
 export const THEME_STORAGE_KEY = 'pv_theme';
 
 export function getInitialTheme() {
-  if (typeof window === 'undefined') return 'dark';
+  if (typeof window === 'undefined') return 'light';
   try {
     const saved = localStorage.getItem(THEME_STORAGE_KEY);
-    if (saved === 'light' || saved === 'dark') return saved;
+    if (saved === 'dark') return 'dark';
+    if (saved === 'light') return 'light';
   } catch (e) {}
-  return 'dark'; // ProfessorVirus brand default
+  return 'light'; // Light Mode is the default for every new visitor
 }
 
 function applyThemeToDOM(theme) {
@@ -34,8 +35,8 @@ function applyThemeToDOM(theme) {
       body.style.backgroundColor = '#030303';
       body.style.color = '#FFFFFF';
     }
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', '#030303');
+    const metas = document.querySelectorAll('meta[name="theme-color"]');
+    metas.forEach(m => m.setAttribute('content', '#030303'));
   } else {
     root.classList.add('light');
     root.classList.remove('dark');
@@ -46,8 +47,8 @@ function applyThemeToDOM(theme) {
       body.style.backgroundColor = '#FAF7F2';
       body.style.color = '#1F2421';
     }
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', '#FAF7F2');
+    const metas = document.querySelectorAll('meta[name="theme-color"]');
+    metas.forEach(m => m.setAttribute('content', '#FAF7F2'));
   }
 }
 
