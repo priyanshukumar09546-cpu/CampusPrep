@@ -146,6 +146,48 @@ export const SEO_PAGE_CONFIG = {
     path: '/internships-jobs',
     schemaType: 'JobPosting'
   },
+  'prma-home': {
+    title: 'PRMA Tech™ — Build. Learn. Intern. | Modern Tech Solutions & Industry Internships',
+    description: 'A technology company that helps students gain real-world experience through industry-ready internships, live projects, custom software development, and expert mentorship.',
+    path: '/prma-tech',
+    schemaType: 'Organization'
+  },
+  'prma-services': {
+    title: 'Our Technology Services — PRMA Tech™ | Web, App, AI & Custom Software',
+    description: 'End-to-end technology solutions: modern websites, iOS/Android apps, AI/ML integrations, cloud architecture, and custom enterprise software.',
+    path: '/prma-tech/services',
+    schemaType: 'Service'
+  },
+  'prma-about': {
+    title: 'About Us — PRMA Tech™ | Building Real-World Tech Opportunities',
+    description: 'Learn about PRMA Tech mission, leadership, core values, and our journey empowering students with practical engineering skills and career mentorship.',
+    path: '/prma-tech/about',
+    schemaType: 'AboutPage'
+  },
+  'prma-careers': {
+    title: 'Careers & Hiring — PRMA Tech™ | Work on Impactful Technology',
+    description: 'Join the PRMA Tech engineering, design, and product team. Flexible remote work culture, live mentoring, and career growth.',
+    path: '/prma-tech/careers',
+    schemaType: 'JobPosting'
+  },
+  'prma-projects': {
+    title: 'Featured Projects & Case Studies — PRMA Tech™',
+    description: 'Explore live software products, student intelligence platforms, and scalable digital solutions engineered by PRMA Tech.',
+    path: '/prma-tech/projects',
+    schemaType: 'CollectionPage'
+  },
+  'prma-contact': {
+    title: 'Contact Us & Project Consultation — PRMA Tech™',
+    description: 'Get in touch with PRMA Tech for software development inquiries, corporate partnerships, or internship admissions support.',
+    path: '/prma-tech/contact',
+    schemaType: 'ContactPage'
+  },
+  'prma-admin': {
+    title: 'Admin & Operations Console — PRMA Tech™',
+    description: 'Operations management portal for PRMA Tech student admissions, applications, and support.',
+    path: '/prma-tech/admin',
+    schemaType: 'AdminPage'
+  },
   'prma-internships-home': {
     title: `PRMA Tech Remote Internships — Real-World Projects & Mentorship | ${BRAND_NAME}`,
     description: 'Join industry-ready remote internships by PRMA Tech. 27 domains, 1:1 mentorship, live code reviews, verified certificates, and customized physical welcome kit.',

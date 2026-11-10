@@ -91,6 +91,29 @@ export const PRMA_GOODIES = [
     inStock: true
   },
   {
+    id: 'hoodie',
+    name: 'PRMA Tech Fleece Hoodie',
+    subtitle: 'Heavyweight Cotton, Embroidered',
+    price: 699,
+    originalPrice: 1199,
+    image: '/assets/prma_gen/prma_hoodie.jpg',
+    hasSize: true,
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    description: 'Heavyweight matte black fleece hoodie with kangaroo pocket, metal-tipped drawstrings, and embroidered PRMA Tech crest.',
+    inStock: true
+  },
+  {
+    id: 'pen',
+    name: 'PRMA Executive Metal Pen',
+    subtitle: 'Engraved Ballpoint Pen',
+    price: 79,
+    originalPrice: 149,
+    image: '/assets/prma_gen/prma_pen.jpg',
+    hasSize: false,
+    description: 'Matte black brass barrel pen with chrome accents and laser-engraved PRMA Tech logo. Smooth German ink refill.',
+    inStock: true
+  },
+  {
     id: 'welcome-box',
     name: 'Premium Welcome Box',
     subtitle: 'Special Gift Packaging',

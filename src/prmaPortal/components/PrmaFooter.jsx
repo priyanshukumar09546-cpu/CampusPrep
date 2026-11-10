@@ -7,46 +7,50 @@ import {
   Phone,
   MessageCircle,
   ExternalLink,
-  Heart
+  Heart,
+  MapPin,
+  CheckCircle2,
+  Sparkles
 } from 'lucide-react';
 
-export default function PrmaFooter({ onNavigate }) {
+export default function PrmaFooter({ navigateToTab, onNavigate }) {
+  const navFn = navigateToTab || onNavigate;
+
   const handleNav = (route) => {
-    if (onNavigate) {
-      onNavigate(route);
+    if (navFn) {
+      navFn(route);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/917668016628?text=Hi%20PRMA%20Tech%20Support%2C%20I%20have%20an%20inquiry%20regarding%20the%20Internship%20Program.', '_blank', 'noopener,noreferrer');
+    window.open(
+      'https://wa.me/919120743534?text=Hi%20PRMA%20Tech%20Support%2C%20I%20have%20an%20inquiry%20regarding%20PRMA%20Tech.',
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
   return (
     <footer
       style={{
-        backgroundColor: '#0A0F24',
+        backgroundColor: '#0F172A',
         color: '#FFFFFF',
-        padding: '3.5rem 1rem 1.5rem',
-        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-        fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif"
+        padding: '4rem 1.5rem 2rem',
+        borderTop: '1px solid #1E293B',
+        fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
       }}
     >
-      <div
-        style={{
-          maxWidth: '1360px',
-          margin: '0 auto'
-        }}
-      >
+      <div style={{ maxWidth: '1360px', margin: '0 auto' }}>
         {/* Top Trust Features Strip */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
             gap: '1.5rem',
             paddingBottom: '2.5rem',
-            marginBottom: '2.5rem',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+            marginBottom: '3rem',
+            borderBottom: '1px solid #1E293B'
           }}
         >
           {[
@@ -54,36 +58,37 @@ export default function PrmaFooter({ onNavigate }) {
               icon: Award,
               color: '#0866F5',
               title: 'Verified Certification',
-              desc: 'Globally verifiable credentials with authentic serial numbers.'
+              desc: 'Tamper-proof verifiable credentials with unique QR validation.'
             },
             {
               icon: Clock,
-              color: '#079B45',
-              title: '100% Remote & Self-Paced',
-              desc: 'Learn and build on flexible schedules around your college exams.'
+              color: '#10B981',
+              title: 'Flexible Remote Batches',
+              desc: 'Bi-weekly starting cohorts tailored for college engineering schedules.'
             },
             {
               icon: ShieldCheck,
-              color: '#FFBD12',
-              title: 'Physical Welcome Kit',
-              desc: 'Premium merchandise delivered straight to your home address.'
+              color: '#F59E0B',
+              title: 'Industry Standard Mentors',
+              desc: '1:1 code reviews from senior engineers working in modern tech.'
             },
             {
-              icon: MessageCircle,
+              icon: Sparkles,
               color: '#7025E8',
-              title: '1-on-1 Mentorship',
-              desc: 'Direct code reviews and project guidance from active engineers.'
+              title: 'Physical Welcome Swag',
+              desc: 'Premium branded developer merchandise delivered to your home.'
             }
-          ].map((item, idx) => {
+          ].map((item, i) => {
             const Icon = item.icon;
             return (
-              <div key={idx} style={{ display: 'flex', gap: '0.85rem', alignItems: 'flex-start' }}>
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                 <div
                   style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '10px',
-                    backgroundColor: `${item.color}20`,
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '12px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -91,13 +96,13 @@ export default function PrmaFooter({ onNavigate }) {
                     flexShrink: 0
                   }}
                 >
-                  <Icon size={20} strokeWidth={2.2} />
+                  <Icon size={22} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.2rem' }}>
+                  <div style={{ fontSize: '0.98rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.2rem' }}>
                     {item.title}
                   </div>
-                  <div style={{ fontSize: '0.8rem', color: '#94A3B8', lineHeight: 1.5 }}>
+                  <div style={{ fontSize: '0.82rem', color: '#94A3B8', lineHeight: 1.5 }}>
                     {item.desc}
                   </div>
                 </div>
@@ -106,59 +111,69 @@ export default function PrmaFooter({ onNavigate }) {
           })}
         </div>
 
-        {/* 4 Footer Columns */}
+        {/* Main Footer Links Columns */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '2rem',
-            marginBottom: '2.5rem'
+            gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1.2fr',
+            gap: '2.5rem',
+            paddingBottom: '3rem',
+            borderBottom: '1px solid #1E293B'
           }}
+          className="prma-footer-grid"
         >
-          {/* Column 1: PRMA Tech Brand */}
+          {/* Brand Bio */}
           <div>
             <img
-              src="/assets/prma_tech_logo.png"
+              src="/assets/prma_portal_ref/prma_tech_logo.jpg"
               alt="PRMA Tech"
-              style={{ height: '32px', objectFit: 'contain', marginBottom: '1rem' }}
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              style={{
+                height: '42px',
+                objectFit: 'contain',
+                marginBottom: '1rem',
+                filter: 'brightness(1.1)'
+              }}
+              onError={(e) => {
+                e.target.src = '/assets/prma_tech_logo.png';
+              }}
             />
-            <p style={{ fontSize: '0.86rem', color: '#94A3B8', lineHeight: 1.6, margin: '0 0 1rem 0' }}>
-              PRMA Tech™ is an industry-focused technology and workforce incubator providing hands-on
-              virtual internships, live production projects, and modern software engineering solutions.
+            <p style={{ fontSize: '0.88rem', color: '#94A3B8', lineHeight: 1.6, maxWidth: '300px', marginBottom: '1.25rem' }}>
+              PRMA Tech™ is a modern technology company and student-centric software incubator building scalable digital products, enterprise services, and industry-ready remote internship experiences.
             </p>
-            <div style={{ fontSize: '0.8rem', color: '#64748B' }}>
-              In Academic Partnership with <span style={{ color: '#FFB800', fontWeight: 700 }}>ProfessorVirus</span>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#10B981', fontWeight: 700 }}>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10B981' }} />
+              Accepting Applications for Nov & Dec 2026
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
+          {/* Navigation Links */}
           <div>
-            <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              Internship Portal
+            <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+              Company
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {[
-                { label: 'Internship Overview', route: 'prma-internships-home' },
-                { label: 'Explore 27 Domains', route: 'prma-internships-domains' },
-                { label: 'Apply for Batch', route: 'prma-internships-apply' },
-                { label: 'Customize Goodies Kit', route: 'prma-internships-goodies' },
-                { label: 'Student Dashboard', route: 'prma-internships-dashboard' }
+                { label: 'Home', tab: 'prma-home' },
+                { label: 'About Us', tab: 'prma-about' },
+                { label: 'Our Services', tab: 'prma-services' },
+                { label: 'Case Studies & Projects', tab: 'prma-projects' },
+                { label: 'Careers & Hiring', tab: 'prma-careers' },
+                { label: 'Contact Us', tab: 'prma-contact' }
               ].map((link, idx) => (
                 <li key={idx}>
                   <button
                     type="button"
-                    onClick={() => handleNav(link.route)}
+                    onClick={() => handleNav(link.tab)}
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#94A3B8',
-                      fontSize: '0.86rem',
-                      cursor: 'pointer',
                       padding: 0,
-                      textAlign: 'left'
+                      color: '#94A3B8',
+                      fontSize: '0.875rem',
+                      cursor: 'pointer',
+                      transition: 'color 0.15s ease'
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#0866F5'; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8'; }}
                   >
                     {link.label}
@@ -168,117 +183,185 @@ export default function PrmaFooter({ onNavigate }) {
             </ul>
           </div>
 
-          {/* Column 3: Top Tracks */}
+          {/* Internship Links */}
           <div>
-            <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              Popular Tracks
+            <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+              Internship Ecosystem
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {[
-                'Artificial Intelligence & ML',
-                'Data Science & Analytics',
-                'Full Stack Web Development',
-                'Cloud Computing & DevOps',
-                'Cybersecurity & Ethical Hacking',
-                'Mobile App Development'
-              ].map((domainName, idx) => (
+                { label: 'Internship Program', tab: 'prma-internships-home' },
+                { label: '27 Industry Domains', tab: 'prma-internships-domains' },
+                { label: 'Apply for Internship', tab: 'prma-internships-apply' },
+                { label: 'Welcome Kit & Goodies', tab: 'prma-internships-goodies' },
+                { label: 'Student Login', tab: 'prma-internships-login' },
+                { label: 'Intern Dashboard', tab: 'prma-internships-dashboard' }
+              ].map((link, idx) => (
                 <li key={idx}>
                   <button
                     type="button"
-                    onClick={() => handleNav('prma-internships-domains')}
+                    onClick={() => handleNav(link.tab)}
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#94A3B8',
-                      fontSize: '0.86rem',
-                      cursor: 'pointer',
                       padding: 0,
-                      textAlign: 'left'
+                      color: '#94A3B8',
+                      fontSize: '0.875rem',
+                      cursor: 'pointer',
+                      transition: 'color 0.15s ease'
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#0866F5'; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8'; }}
                   >
-                    {domainName}
+                    {link.label}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 4: Support & WhatsApp */}
+          {/* Core Services */}
           <div>
-            <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              Student Support
+            <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+              Technology Services
             </div>
-            <p style={{ fontSize: '0.84rem', color: '#94A3B8', lineHeight: 1.5, margin: '0 0 1rem 0' }}>
-              Have questions regarding batch selection, goodie delivery, or verified certificates? Chat directly with the internship coordinator.
-            </p>
-            <button
-              type="button"
-              onClick={openWhatsApp}
-              style={{
-                width: '100%',
-                padding: '0.65rem 1rem',
-                borderRadius: '8px',
-                backgroundColor: 'rgba(7, 155, 69, 0.15)',
-                color: '#22C55E',
-                border: '1px solid rgba(7, 155, 69, 0.4)',
-                fontSize: '0.86rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.5rem',
-                marginBottom: '0.75rem'
-              }}
-            >
-              <MessageCircle size={16} />
-              <span>WhatsApp Coordinator</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleNav('prma-internships-home')}
-              style={{
-                width: '100%',
-                padding: '0.65rem 1rem',
-                borderRadius: '8px',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                color: '#E2E8F0',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                fontSize: '0.84rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                textAlign: 'center'
-              }}
-            >
-              Verify Certificate
-            </button>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              {[
+                'Website Development',
+                'Mobile App Development',
+                'AI/ML Custom Models',
+                'Cloud & DevOps',
+                'Cybersecurity Solutions',
+                'Data Science & Analytics',
+                'Custom SaaS Development'
+              ].map((srv, idx) => (
+                <li key={idx}>
+                  <button
+                    type="button"
+                    onClick={() => handleNav('prma-services')}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      padding: 0,
+                      color: '#94A3B8',
+                      fontSize: '0.875rem',
+                      cursor: 'pointer',
+                      transition: 'color 0.15s ease'
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8'; }}
+                  >
+                    {srv}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact & Support */}
+          <div>
+            <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+              Contact & Support
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.85rem', color: '#94A3B8' }}>
+                <MapPin size={17} color="#0866F5" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <span>Noida & Greater Noida Tech Corridor, Uttar Pradesh, India</span>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: '#94A3B8' }}>
+                <Mail size={16} color="#0866F5" style={{ flexShrink: 0 }} />
+                <a href="mailto:support@prmatech.in" style={{ color: '#94A3B8', textDecoration: 'none' }}>
+                  support@prmatech.in
+                </a>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: '#94A3B8' }}>
+                <Phone size={16} color="#0866F5" style={{ flexShrink: 0 }} />
+                <span>+91 91207 43534</span>
+              </div>
+
+              <button
+                type="button"
+                onClick={openWhatsApp}
+                style={{
+                  marginTop: '0.5rem',
+                  padding: '0.65rem 1.15rem',
+                  borderRadius: '10px',
+                  backgroundColor: '#16A34A',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  boxShadow: '0 4px 12px rgba(22, 163, 74, 0.3)'
+                }}
+              >
+                <MessageCircle size={16} />
+                WhatsApp Mentor Support
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Copyright & Disclaimer */}
+        {/* Bottom Copyright & Ecosystem Ribbon */}
         <div
           style={{
-            paddingTop: '1.5rem',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            paddingTop: '2rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             gap: '1rem',
-            fontSize: '0.78rem',
+            fontSize: '0.82rem',
             color: '#64748B'
           }}
         >
           <div>
-            © {new Date().getFullYear()} PRMA Tech™. All rights reserved. Technology Partner of ProfessorVirus.
+            © {new Date().getFullYear()} PRMA Tech™ (A unit of PRMA Technologies India Pvt Ltd). All rights reserved.
           </div>
-          <div>
-            Build. Learn. Intern. Grow. Made with <Heart size={12} color="#EF4444" style={{ display: 'inline', verticalAlign: 'middle' }} /> for engineering students across India.
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+            <button
+              type="button"
+              onClick={() => handleNav('home')}
+              style={{ background: 'none', border: 'none', color: '#FBBF24', cursor: 'pointer', fontWeight: 600 }}
+            >
+              ProfessorVirus Ecosystem
+            </button>
+            <button
+              type="button"
+              onClick={() => handleNav('internships-jobs')}
+              style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer' }}
+            >
+              ProfessorVirus Job Board
+            </button>
+            <button
+              type="button"
+              onClick={() => handleNav('prma-admin')}
+              style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer', fontSize: '0.75rem' }}
+            >
+              Admin
+            </button>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .prma-footer-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .prma-footer-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }

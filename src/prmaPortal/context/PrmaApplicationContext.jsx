@@ -267,7 +267,31 @@ export function PrmaApplicationProvider({ children }) {
 export function usePrmaApplication() {
   const context = useContext(PrmaApplicationContext);
   if (!context) {
-    throw new Error('usePrmaApplication must be used within a PrmaApplicationProvider');
+    return {
+      currentUser: null,
+      authToken: null,
+      logoutUser: () => {},
+      loginUser: () => {},
+      selectedDomainId: 'ai-ml',
+      selectedDomain: PRMA_DOMAINS[0] || null,
+      setSelectedDomainId: () => {},
+      selectedBatchId: 'nov-14',
+      selectedBatch: PRMA_BATCHES[0] || null,
+      setSelectedBatchId: () => {},
+      selectedDurationId: '6-weeks',
+      selectedDuration: PRMA_DURATIONS[1] || null,
+      setSelectedDurationId: () => {},
+      selectedGoodies: {},
+      toggleGoodie: () => {},
+      updateGoodieSize: () => {},
+      studentDetails: {},
+      updateStudentDetails: () => {},
+      calculateTotals: () => ({ basePrice: 0, goodiesPrice: 0, total: 0, itemsCount: 0 }),
+      applicationId: '',
+      generateApplicationId: () => '',
+      paymentStatus: 'idle',
+      setPaymentStatus: () => {}
+    };
   }
   return context;
 }
