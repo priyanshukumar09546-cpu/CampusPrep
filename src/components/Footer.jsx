@@ -28,7 +28,12 @@ import {
   ShieldCheck,
   Lock,
   BarChart3,
-  X
+  X,
+  Cpu,
+  Globe,
+  Cloud,
+  Package,
+  Award
 } from 'lucide-react';
 import './Footer.css';
 
@@ -80,7 +85,18 @@ export default function Footer({ onNavigate }) {
     { label: 'All Tools', icon: LayoutGrid, href: '/more', action: () => handleNav('more') }
   ];
 
-  // 3. Help & Support column data
+  // 3. PRMA Tech (Technology Partner) column data
+  const prmaTechLinks = [
+    { label: 'Remote Internships', icon: Briefcase, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
+    { label: 'AI & ML Internship Track', icon: Cpu, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
+    { label: 'Full-Stack Web Dev Track', icon: Globe, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
+    { label: 'Cloud & DevOps Track', icon: Cloud, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
+    { label: 'PRMA Tech Services', icon: Sparkles, href: '#prma-services-section', action: () => openWhatsApp("Hi PRMA Tech Team, I am interested in your software & technology services.") },
+    { label: 'Physical Welcome Kit', icon: Package, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
+    { label: 'Verify Certificate', icon: Award, href: '/internships-jobs', action: () => handleNav('internships-jobs') }
+  ];
+
+  // 4. Help & Support column data
   const helpSupportLinks = [
     { label: 'Contact Us', icon: Mail, action: () => openWhatsApp("Hi ProfessorVirus Support, I need assistance with the platform.") },
     { label: 'FAQs', icon: HelpCircle, action: () => setActiveModal('faqs') },
@@ -89,7 +105,7 @@ export default function Footer({ onNavigate }) {
     { label: 'Help & Support', icon: MessageSquare, action: () => openWhatsApp("Hi ProfessorVirus Team, I have a support request.") }
   ];
 
-  // 4. Legal column data
+  // 5. Legal column data
   const legalLinks = [
     { label: 'Privacy Policy', icon: FileText, action: () => setActiveModal('privacy') },
     { label: 'Terms & Conditions', icon: FileText, action: () => setActiveModal('terms') },
@@ -291,6 +307,52 @@ export default function Footer({ onNavigate }) {
               <span>Join Students Across India</span>
               <ArrowRight size={15} color="#FFB800" strokeWidth={2.2} />
             </button>
+
+            {/* PRMA Tech Partner Card */}
+            <div
+              style={{
+                marginTop: '1.25rem',
+                padding: '0.75rem 0.95rem',
+                borderRadius: '14px',
+                backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem'
+              }}
+            >
+              <img
+                src="/assets/prma_tech_logo.png"
+                alt="PRMA Tech Official Logo"
+                style={{ height: '22px', objectFit: 'contain' }}
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+              <div>
+                <div
+                  style={{
+                    fontSize: '0.68rem',
+                    fontWeight: 800,
+                    color: '#FFB800',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.04em'
+                  }}
+                >
+                  Official Tech Partner
+                </div>
+                <div
+                  style={{
+                    fontSize: '0.76rem',
+                    fontWeight: 700,
+                    color: '#E4E4E7',
+                    lineHeight: 1.2
+                  }}
+                >
+                  PRMA Tech™ — Remote Internships & Solutions
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* COLUMN 2: Study Resources */}
@@ -367,7 +429,44 @@ export default function Footer({ onNavigate }) {
             </ul>
           </div>
 
-          {/* COLUMN 4: Help & Support */}
+          {/* COLUMN 4: PRMA Tech (Technology Partner) */}
+          <div className="pv-footer-col">
+            <div className="pv-footer-col-header">
+              <div className="pv-footer-col-icon-box" style={{ borderColor: 'rgba(112, 37, 232, 0.4)', color: '#C084FC' }}>
+                <Sparkles size={18} strokeWidth={2.2} />
+              </div>
+              <h3 className="pv-footer-col-title">PRMA Tech</h3>
+            </div>
+
+            <ul className="pv-footer-links-list">
+              {prmaTechLinks.map((item, idx) => {
+                const ItemIcon = item.icon;
+                return (
+                  <li key={idx}>
+                    <a
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        item.action();
+                      }}
+                      className="pv-footer-link-item"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <span className="pv-footer-link-content">
+                        <span className="pv-footer-link-icon" style={{ color: '#0866F5' }}>
+                          <ItemIcon size={16} strokeWidth={2} />
+                        </span>
+                        <span className="pv-footer-link-label">{item.label}</span>
+                      </span>
+                      <ChevronRight size={14} className="pv-footer-link-chevron" strokeWidth={2} />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* COLUMN 5: Help & Support */}
           <div className="pv-footer-col">
             <div className="pv-footer-col-header">
               <div className="pv-footer-col-icon-box">

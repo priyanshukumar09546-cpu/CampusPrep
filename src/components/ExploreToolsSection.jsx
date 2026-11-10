@@ -11,8 +11,10 @@ import {
   ArrowRight,
   Sparkles
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function ExploreToolsSection({ onNavigate }) {
+  const { isDark } = useTheme();
   const tools = [
     {
       id: 'hoollow',
@@ -149,7 +151,7 @@ export default function ExploreToolsSection({ onNavigate }) {
       padding: '2.5rem 0 3.5rem 0',
       position: 'relative'
     }}>
-      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
+      <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', padding: '0 clamp(1rem, 2.5vw, 2.5rem)' }}>
         
         {/* Section Header with Title & View All Tools Button */}
         <div style={{
@@ -165,56 +167,118 @@ export default function ExploreToolsSection({ onNavigate }) {
               fontFamily: "'Outfit', sans-serif",
               fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
               fontWeight: 900,
-              color: '#FFFFFF',
+              color: isDark ? '#FFFFFF' : '#1F2421',
               margin: '0 0 0.35rem 0',
               lineHeight: 1.2
             }}>
-              Explore Our <span style={{ color: '#FFB800', textShadow: '0 0 15px rgba(255, 184, 0, 0.35)' }}>Tools</span>
+              Explore Our <span style={{ color: isDark ? '#FFB800' : '#E59500', textShadow: isDark ? '0 0 15px rgba(255, 184, 0, 0.35)' : 'none' }}>Tools</span>
             </h2>
             <p style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: '0.92rem',
-              color: '#A1A1AA',
+              color: isDark ? '#A1A1AA' : '#64748B',
               margin: 0,
               fontWeight: 500
             }}>
-              Everything you need for your academic and career preparation in one place.
+              Everything you need for your academic, interview and career preparation in one place.
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={() => onNavigate && onNavigate('more')}
-            style={{
-              padding: '0.55rem 1.35rem',
-              borderRadius: '9999px',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              backgroundColor: '#0B0B0B',
-              color: '#E4E4E7',
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
-              fontSize: '0.82rem',
-              fontWeight: 700,
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.45rem',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = '#FFB800';
-              e.currentTarget.style.color = '#FFB800';
-              e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 184, 0, 0.25)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
-              e.currentTarget.style.color = '#E4E4E7';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
-            }}
-          >
-            <span>View All Tools</span>
-            <ArrowRight size={14} />
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate('internships-jobs')}
+              style={{
+                padding: '0.55rem 1.15rem',
+                borderRadius: '9999px',
+                border: isDark ? '1px solid rgba(112, 37, 232, 0.4)' : '1.5px solid #E0DBF5',
+                backgroundColor: isDark ? 'rgba(112, 37, 232, 0.12)' : '#F5F2FF',
+                color: isDark ? '#FFFFFF' : '#101C50',
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.55rem',
+                boxShadow: isDark ? '0 4px 16px rgba(112, 37, 232, 0.25)' : '0 2px 8px rgba(112, 37, 232, 0.08)',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(112, 37, 232, 0.35)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = isDark ? '0 4px 16px rgba(112, 37, 232, 0.25)' : '0 2px 8px rgba(112, 37, 232, 0.08)';
+              }}
+            >
+              <img
+                src="/assets/prma_tech_logo.png"
+                alt="PRMA Tech"
+                style={{ height: '16px', objectFit: 'contain' }}
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              />
+              <span>PRMA Tech Internships</span>
+              <span style={{
+                fontSize: '0.65rem',
+                fontWeight: 800,
+                padding: '0.12rem 0.45rem',
+                borderRadius: '9999px',
+                backgroundColor: '#7025E8',
+                color: '#FFFFFF',
+                letterSpacing: '0.02em',
+                lineHeight: 1.2
+              }}>
+                New
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate('more')}
+              style={{
+                padding: '0.55rem 1.35rem',
+                borderRadius: '9999px',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1.5px solid #D5CEBF',
+                backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                color: isDark ? '#E4E4E7' : '#1F2421',
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                boxShadow: isDark ? '0 4px 12px rgba(0, 0, 0, 0.4)' : '0 2px 8px rgba(0, 0, 0, 0.04)',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (isDark) {
+                  e.currentTarget.style.borderColor = '#FFB800';
+                  e.currentTarget.style.color = '#FFB800';
+                  e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 184, 0, 0.25)';
+                } else {
+                  e.currentTarget.style.borderColor = '#861820';
+                  e.currentTarget.style.color = '#861820';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (isDark) {
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                  e.currentTarget.style.color = '#E4E4E7';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+                } else {
+                  e.currentTarget.style.borderColor = '#D5CEBF';
+                  e.currentTarget.style.color = '#1F2421';
+                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.04)';
+                }
+              }}
+            >
+              <span>View All Tools</span>
+              <ArrowRight size={14} />
+            </button>
+          </div>
         </div>
 
         {/* Tools Grid */}
@@ -230,14 +294,14 @@ export default function ExploreToolsSection({ onNavigate }) {
                 key={tool.id}
                 onClick={() => onNavigate && onNavigate(tool.id)}
                 style={{
-                  backgroundColor: '#0B0B0B',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                  border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
                   borderRadius: '18px',
                   padding: '1.4rem 1.3rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+                  boxShadow: isDark ? '0 8px 24px rgba(0, 0, 0, 0.5)' : '0 4px 16px rgba(0, 0, 0, 0.04)',
                   cursor: 'pointer',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   position: 'relative'
@@ -245,12 +309,14 @@ export default function ExploreToolsSection({ onNavigate }) {
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)';
                   e.currentTarget.style.borderColor = tool.hoverBorder;
-                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 184, 0, 0.15)';
+                  e.currentTarget.style.boxShadow = isDark 
+                    ? '0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 184, 0, 0.15)'
+                    : '0 8px 24px rgba(0, 0, 0, 0.08)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.5)';
+                  e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.08)' : '#E8E2D5';
+                  e.currentTarget.style.boxShadow = isDark ? '0 8px 24px rgba(0, 0, 0, 0.5)' : '0 4px 16px rgba(0, 0, 0, 0.04)';
                 }}
               >
                 <div>
@@ -266,7 +332,7 @@ export default function ExploreToolsSection({ onNavigate }) {
                     justifyContent: 'center',
                     color: tool.iconColor,
                     marginBottom: '1rem',
-                    boxShadow: '0 0 10px rgba(0,0,0,0.5)'
+                    boxShadow: isDark ? '0 0 10px rgba(0,0,0,0.5)' : '0 1px 4px rgba(0,0,0,0.06)'
                   }}>
                     <Icon size={20} strokeWidth={2.2} />
                   </div>
@@ -282,7 +348,7 @@ export default function ExploreToolsSection({ onNavigate }) {
                       fontFamily: "'Outfit', sans-serif",
                       fontSize: '1.08rem',
                       fontWeight: 900,
-                      color: '#FFFFFF',
+                      color: isDark ? '#FFFFFF' : '#1F2421',
                       margin: 0,
                       lineHeight: 1.2
                     }}>
@@ -307,7 +373,7 @@ export default function ExploreToolsSection({ onNavigate }) {
                   <p style={{
                     fontFamily: "'Plus Jakarta Sans', sans-serif",
                     fontSize: '0.84rem',
-                    color: '#A1A1AA',
+                    color: isDark ? '#A1A1AA' : '#64748B',
                     lineHeight: 1.5,
                     margin: '0 0 1.25rem 0',
                     fontWeight: 400

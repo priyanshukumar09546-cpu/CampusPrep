@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '../context/ThemeContext';
 import { 
   Megaphone, 
   ExternalLink, 
@@ -20,6 +21,9 @@ import {
 } from 'lucide-react';
 
 export default function PromotionSection({ onNavigate }) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const WHATSAPP_URL = "https://wa.me/917668016628?text=Hi%20ProfessorVirus%20Team%2C%20I%20am%20interested%20in%20Advertising%20and%20Promotion%20plans%20on%20ProfessorVirus.";
 
   const openWhatsApp = () => {
@@ -157,10 +161,10 @@ export default function PromotionSection({ onNavigate }) {
       style={{
         backgroundColor: 'transparent',
         padding: '3.5rem 0 3.5rem 0',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+        borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5'
       }}
     >
-      <div className="container">
+      <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', paddingInline: 'clamp(1rem, 2.5vw, 2.5rem)' }}>
         
         {/* 1. TOP PROMOTION HERO BANNER */}
         <div style={{
@@ -476,7 +480,7 @@ export default function PromotionSection({ onNavigate }) {
               <h2 style={{
                 fontSize: 'clamp(1.75rem, 2.5vw, 2.35rem)',
                 fontWeight: 800,
-                color: '#FFFFFF',
+                color: isDark ? '#FFFFFF' : '#1F2421',
                 fontFamily: "'Outfit', sans-serif",
                 letterSpacing: '-0.02em',
                 margin: '0 0 0.45rem 0'
@@ -485,7 +489,7 @@ export default function PromotionSection({ onNavigate }) {
               </h2>
               <p style={{
                 fontSize: '0.92rem',
-                color: '#A1A1AA',
+                color: isDark ? '#A1A1AA' : '#64748B',
                 fontWeight: 500,
                 margin: 0,
                 maxWidth: '620px'
@@ -504,17 +508,21 @@ export default function PromotionSection({ onNavigate }) {
                   gap: '0.45rem',
                   padding: '0.65rem 1.25rem',
                   borderRadius: '9999px',
-                  backgroundColor: '#781416',
-                  color: '#FFFFFF',
+                  backgroundColor: isDark ? '#FFB800' : '#861820',
+                  color: isDark ? '#000000' : '#FFFFFF',
                   border: 'none',
                   fontSize: '0.88rem',
                   fontWeight: 700,
                   cursor: 'pointer',
-                  boxShadow: '0 4px 12px rgba(120, 20, 22, 0.25)',
+                  boxShadow: isDark ? '0 0 12px rgba(255,184,0,0.3)' : '0 4px 12px rgba(134, 24, 32, 0.25)',
                   transition: 'all 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#9F1239'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#781416'}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = isDark ? '#FFA000' : '#6E131A';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = isDark ? '#FFB800' : '#861820';
+                }}
               >
                 <span>View All Plans</span>
                 <ArrowRight size={14} />
@@ -529,24 +537,24 @@ export default function PromotionSection({ onNavigate }) {
                   gap: '0.45rem',
                   padding: '0.65rem 1.25rem',
                   borderRadius: '9999px',
-                  backgroundColor: '#0B0B0B',
-                  color: '#1E140F',
-                  border: '1.5px solid #25D366',
+                  backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                  color: isDark ? '#22C55E' : '#15803D',
+                  border: '1.5px solid #22C55E',
                   fontSize: '0.88rem',
                   fontWeight: 700,
                   cursor: 'pointer',
                   transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#25D366';
+                  e.currentTarget.style.backgroundColor = '#22C55E';
                   e.currentTarget.style.color = '#FFFFFF';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FFFFFF';
-                  e.currentTarget.style.color = '#1E140F';
+                  e.currentTarget.style.backgroundColor = isDark ? '#0B0B0B' : '#FFFFFF';
+                  e.currentTarget.style.color = isDark ? '#22C55E' : '#15803D';
                 }}
               >
-                <MessageCircle size={15} style={{ color: '#25D366' }} />
+                <MessageCircle size={15} style={{ color: '#22C55E' }} />
                 <span>Contact on WhatsApp 7668016628</span>
               </button>
             </div>
@@ -561,23 +569,31 @@ export default function PromotionSection({ onNavigate }) {
               <div
                 key={p.id}
                 style={{
-                  backgroundColor: '#0B0B0B',
-                  border: p.popular ? '2px solid #C88D2D' : '1.5px solid #E8E2D5',
+                  backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                  border: p.popular 
+                    ? (isDark ? '2px solid #FFB800' : '2px solid #861820') 
+                    : (isDark ? '1.5px solid rgba(255, 255, 255, 0.1)' : '1.5px solid #E8E2D5'),
                   borderRadius: '24px',
                   padding: '2rem 1.45rem 1.75rem 1.45rem',
                   display: 'flex',
                   flexDirection: 'column',
                   position: 'relative',
-                  boxShadow: p.popular ? '0 12px 32px rgba(200, 141, 45, 0.15)' : '0 4px 16px rgba(35,30,25,0.04)',
+                  boxShadow: p.popular 
+                    ? (isDark ? '0 12px 32px rgba(255, 184, 0, 0.2)' : '0 12px 32px rgba(134, 24, 32, 0.12)') 
+                    : (isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.04)'),
                   transition: 'all 0.25s ease'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.boxShadow = p.popular ? '0 16px 36px rgba(200, 141, 45, 0.2)' : '0 12px 28px rgba(35,30,25,0.08)';
+                  e.currentTarget.style.boxShadow = p.popular 
+                    ? (isDark ? '0 16px 36px rgba(255, 184, 0, 0.3)' : '0 16px 36px rgba(134, 24, 32, 0.18)') 
+                    : (isDark ? '0 12px 28px rgba(0,0,0,0.6)' : '0 12px 28px rgba(0,0,0,0.08)');
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = p.popular ? '0 12px 32px rgba(200, 141, 45, 0.15)' : '0 4px 16px rgba(35,30,25,0.04)';
+                  e.currentTarget.style.boxShadow = p.popular 
+                    ? (isDark ? '0 12px 32px rgba(255, 184, 0, 0.2)' : '0 12px 32px rgba(134, 24, 32, 0.12)') 
+                    : (isDark ? '0 4px 16px rgba(0,0,0,0.4)' : '0 4px 16px rgba(0,0,0,0.04)');
                 }}
               >
                 {/* Popular Pill */}
@@ -587,13 +603,13 @@ export default function PromotionSection({ onNavigate }) {
                     top: '-12px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    backgroundColor: '#C88D2D',
-                    color: '#FFFFFF',
+                    backgroundColor: isDark ? '#FFB800' : '#861820',
+                    color: isDark ? '#000000' : '#FFFFFF',
                     fontSize: '0.72rem',
                     fontWeight: 800,
                     padding: '0.25rem 0.85rem',
                     borderRadius: '9999px',
-                    boxShadow: '0 4px 10px rgba(200, 141, 45, 0.3)',
+                    boxShadow: isDark ? '0 4px 10px rgba(255, 184, 0, 0.4)' : '0 4px 10px rgba(134, 24, 32, 0.3)',
                     letterSpacing: '0.04em',
                     textTransform: 'uppercase'
                   }}>
@@ -605,7 +621,7 @@ export default function PromotionSection({ onNavigate }) {
                 <h3 style={{
                   fontSize: '1.2rem',
                   fontWeight: 800,
-                  color: '#FFFFFF',
+                  color: isDark ? '#FFFFFF' : '#1F2421',
                   margin: '0 0 0.5rem 0'
                 }}>
                   {p.name}
@@ -621,7 +637,9 @@ export default function PromotionSection({ onNavigate }) {
                   <span style={{
                     fontSize: '2rem',
                     fontWeight: 900,
-                    color: p.popular ? '#C88D2D' : '#1C1E21',
+                    color: p.popular 
+                      ? (isDark ? '#FFB800' : '#861820') 
+                      : (isDark ? '#FFFFFF' : '#1F2421'),
                     fontFamily: "'Outfit', sans-serif"
                   }}>
                     {p.price}
@@ -629,7 +647,7 @@ export default function PromotionSection({ onNavigate }) {
                   {p.period && (
                     <span style={{
                       fontSize: '0.85rem',
-                      color: '#A1A1AA',
+                      color: isDark ? '#A1A1AA' : '#64748B',
                       fontWeight: 600
                     }}>
                       {p.period}
@@ -651,7 +669,7 @@ export default function PromotionSection({ onNavigate }) {
                       alignItems: 'center',
                       gap: '0.5rem',
                       fontSize: '0.86rem',
-                      color: '#475569',
+                      color: isDark ? '#D4D4D8' : '#475569',
                       fontWeight: 500
                     }}>
                       <div style={{
@@ -681,9 +699,15 @@ export default function PromotionSection({ onNavigate }) {
                     width: '100%',
                     padding: '0.75rem 1rem',
                     borderRadius: '12px',
-                    backgroundColor: p.popular ? '#C88D2D' : '#FAF7F2',
-                    color: p.popular ? '#FFFFFF' : '#1C1E21',
-                    border: p.popular ? 'none' : '1.5px solid #E2D9C8',
+                    backgroundColor: p.popular 
+                      ? (isDark ? '#FFB800' : '#861820') 
+                      : (isDark ? 'rgba(255, 255, 255, 0.05)' : '#FAF7F2'),
+                    color: p.popular 
+                      ? (isDark ? '#000000' : '#FFFFFF') 
+                      : (isDark ? '#FFFFFF' : '#1F2421'),
+                    border: p.popular 
+                      ? 'none' 
+                      : (isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #E2D9C8'),
                     fontSize: '0.88rem',
                     fontWeight: 700,
                     cursor: 'pointer',
@@ -692,24 +716,24 @@ export default function PromotionSection({ onNavigate }) {
                     justifyContent: 'center',
                     gap: '0.45rem',
                     transition: 'all 0.2s ease',
-                    boxShadow: p.popular ? '0 4px 14px rgba(200, 141, 45, 0.25)' : 'none'
+                    boxShadow: p.popular ? (isDark ? '0 4px 14px rgba(255, 184, 0, 0.3)' : '0 4px 14px rgba(134, 24, 32, 0.25)') : 'none'
                   }}
                   onMouseEnter={(e) => {
                     if (p.popular) {
-                      e.currentTarget.style.backgroundColor = '#B37D28';
+                      e.currentTarget.style.backgroundColor = isDark ? '#FFA000' : '#6E131A';
                     } else {
-                      e.currentTarget.style.backgroundColor = '#781416';
-                      e.currentTarget.style.borderColor = '#781416';
+                      e.currentTarget.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.1)' : '#861820';
+                      e.currentTarget.style.borderColor = isDark ? '#FFB800' : '#861820';
                       e.currentTarget.style.color = '#FFFFFF';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (p.popular) {
-                      e.currentTarget.style.backgroundColor = '#C88D2D';
+                      e.currentTarget.style.backgroundColor = isDark ? '#FFB800' : '#861820';
                     } else {
-                      e.currentTarget.style.backgroundColor = '#FAF7F2';
-                      e.currentTarget.style.borderColor = '#E2D9C8';
-                      e.currentTarget.style.color = '#1C1E21';
+                      e.currentTarget.style.backgroundColor = isDark ? 'rgba(255, 255, 255, 0.05)' : '#FAF7F2';
+                      e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : '#E2D9C8';
+                      e.currentTarget.style.color = isDark ? '#FFFFFF' : '#1F2421';
                     }
                   }}
                 >
@@ -723,11 +747,11 @@ export default function PromotionSection({ onNavigate }) {
 
         {/* 3. WHY ADVERTISE WITH PROFESSORVIRUS */}
         <div style={{
-          backgroundColor: '#0B0B0B',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+          border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
           borderRadius: '24px',
           padding: '2.5rem clamp(1.5rem, 3vw, 2.5rem)',
-          boxShadow: '0 4px 18px rgba(35,30,25,0.04)'
+          boxShadow: isDark ? '0 4px 18px rgba(0,0,0,0.5)' : '0 4px 18px rgba(35,30,25,0.04)'
         }}>
           {/* Header */}
           <div style={{
@@ -744,7 +768,7 @@ export default function PromotionSection({ onNavigate }) {
               gap: '0.45rem',
               fontSize: 'clamp(1.4rem, 2vw, 1.85rem)',
               fontWeight: 800,
-              color: '#FFFFFF',
+              color: isDark ? '#FFFFFF' : '#1F2421',
               fontFamily: "'Outfit', sans-serif"
             }}>
               <span role="img" aria-label="bulb">💡</span>
@@ -760,7 +784,7 @@ export default function PromotionSection({ onNavigate }) {
                 gap: '0.35rem',
                 backgroundColor: 'transparent',
                 border: 'none',
-                color: '#781416',
+                color: isDark ? '#FFB800' : '#861820',
                 fontWeight: 700,
                 fontSize: '0.88rem',
                 cursor: 'pointer'
@@ -783,7 +807,7 @@ export default function PromotionSection({ onNavigate }) {
                   key={widx}
                   style={{
                     backgroundColor: 'transparent',
-                    border: '1px solid #E8E2D5',
+                    border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
                     borderRadius: '16px',
                     padding: '1.25rem 1.15rem',
                     display: 'flex',
@@ -808,14 +832,14 @@ export default function PromotionSection({ onNavigate }) {
                     <h4 style={{
                       fontSize: '0.92rem',
                       fontWeight: 700,
-                      color: '#FFFFFF',
+                      color: isDark ? '#FFFFFF' : '#1F2421',
                       margin: '0 0 0.2rem 0'
                     }}>
                       {w.title}
                     </h4>
                     <p style={{
                       fontSize: '0.78rem',
-                      color: '#A1A1AA',
+                      color: isDark ? '#A1A1AA' : '#64748B',
                       margin: 0,
                       lineHeight: 1.4
                     }}>

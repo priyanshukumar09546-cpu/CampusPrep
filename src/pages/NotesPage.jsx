@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import { 
   Search, 
   ChevronDown, 
@@ -178,6 +179,8 @@ export const isSubjectMatch = (codeA, nameA, codeB, nameB) => {
 };
 
 export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClearSearch, initialCourse = 'BTech', onSelectCourse }) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const getCourseParam = () => {
     try {
       const params = new URLSearchParams(window.location.search);
@@ -1081,16 +1084,16 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
         />
       </div>
 
-      <div className="pv-desktop-notes-view" style={{ backgroundColor: 'transparent', minHeight: '100vh', color: '#FFFFFF' }}>
+      <div className="pv-desktop-notes-view" style={{ backgroundColor: 'transparent', minHeight: '100vh', color: isDark ? '#FFFFFF' : '#1F2421' }}>
         
         {/* 0. COURSE SELECTOR TABS (B.Tech | MCA | MBA | B.Pharm) */}
         <div style={{
-          backgroundColor: '#FCFAF6',
-        borderBottom: '1.5px solid #E8E2D5',
+          backgroundColor: isDark ? '#0B0B0B' : '#FCFAF6',
+        borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
         padding: '0.75rem 0',
-        boxShadow: '0 2px 8px rgba(35,30,25,0.02)'
+        boxShadow: isDark ? '0 2px 8px rgba(0,0,0,0.4)' : '0 2px 8px rgba(35,30,25,0.02)'
       }}>
-        <div className="container" style={{
+        <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', paddingInline: 'clamp(1rem, 2.5vw, 2.5rem)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -1098,7 +1101,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
           gap: '0.75rem'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', color: '#7A6F62', letterSpacing: '0.04em' }}>
+            <span style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', color: isDark ? '#FFB800' : '#861820', letterSpacing: '0.04em' }}>
               Curriculum:
             </span>
           </div>
@@ -1112,9 +1115,9 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
                   style={{
                     padding: '0.4rem 0.9rem',
                     borderRadius: '9999px',
-                    border: isSelected ? '2px solid #7A2327' : '1.5px solid #E8E2D5',
-                    backgroundColor: isSelected ? '#7A2327' : '#ffffff',
-                    color: isSelected ? '#ffffff' : '#3A3530',
+                    border: isSelected ? (isDark ? '2px solid #FFB800' : '2px solid #861820') : (isDark ? '1.5px solid rgba(255, 255, 255, 0.12)' : '1.5px solid #E8E2D5'),
+                    backgroundColor: isSelected ? (isDark ? '#FFB800' : '#861820') : (isDark ? '#141414' : '#ffffff'),
+                    color: isSelected ? (isDark ? '#000000' : '#ffffff') : (isDark ? '#D4D4D8' : '#3A3530'),
                     fontWeight: isSelected ? 800 : 600,
                     fontSize: '0.78rem',
                     cursor: 'pointer',
@@ -1136,7 +1139,7 @@ export default function NotesPage({ onNavigate, onOpenAuth, searchQuery, onClear
       </div>
 
       {/* 2. MAIN CONTENT: UNIFIED COURSE NOTES VIEW (Notes & Quantum) */}
-      <div className="container" style={{ padding: '1.25rem 1.25rem 3rem 1.25rem' }}>
+      <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', padding: '1.25rem clamp(1rem, 2.5vw, 2.5rem) 3rem clamp(1rem, 2.5vw, 2.5rem)' }}>
 
         {/* Unified Course Notes View for detailed quantum/gateway series browsing */}
         <CourseNotesView

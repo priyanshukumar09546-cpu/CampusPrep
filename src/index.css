@@ -478,9 +478,9 @@ body {
 
 .pv-main-container {
   width: 100% !important;
-  max-width: 1280px !important;
+  max-width: min(1560px, 94vw) !important;
   margin-inline: auto !important;
-  padding-inline: 1rem !important;
+  padding-inline: clamp(1rem, 2.5vw, 2.5rem) !important;
   box-sizing: border-box !important;
 }
 
@@ -996,7 +996,8 @@ pre, code {
    MOBILE & TABLET VIEWPORT (< 1024px, 320px - 1023px) — App-Style Redesign
    ========================================================================= */
 @media (max-width: 1023px) {
-  :root {
+  html.dark,
+  [data-theme="dark"] {
     --pv-mobile-primary: #FFB800;
     --pv-mobile-burgundy-deep: #161616;
     --pv-mobile-gold: #FFB800;
@@ -1008,9 +1009,27 @@ pre, code {
     --pv-mobile-border: rgba(255, 255, 255, 0.08);
   }
 
-  html, body {
+  html.light,
+  [data-theme="light"] {
+    --pv-mobile-primary: #861820;
+    --pv-mobile-burgundy-deep: #861820;
+    --pv-mobile-gold: #D6A13D;
+    --pv-mobile-gold-light: rgba(214, 161, 61, 0.15);
+    --pv-mobile-bg: #FAF7F2;
+    --pv-mobile-card: #FFFFFF;
+    --pv-mobile-text: #1F2421;
+    --pv-mobile-text-muted: #5A5248;
+    --pv-mobile-border: #E8E2D5;
+  }
+
+  html.dark, html.dark body, body.dark-mode {
     background-color: #030303 !important;
     color: #FFFFFF !important;
+  }
+
+  html.light, html.light body, body.light-mode {
+    background-color: #FAF7F2 !important;
+    color: #1F2421 !important;
   }
 
   /* Desktop Navbar wrapper is suppressed on mobile */
@@ -1249,10 +1268,10 @@ pre, code {
     width: 100%;
     padding: 0.55rem 0.75rem 0.55rem 2.25rem;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background-color: #0B0B0B;
+    border: 1px solid var(--pv-mobile-border, rgba(255, 255, 255, 0.12));
+    background-color: var(--pv-mobile-card, #0B0B0B);
     font-size: 0.8rem;
-    color: #FFFFFF;
+    color: var(--pv-mobile-text, #FFFFFF);
     outline: none;
     box-sizing: border-box;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -1852,4 +1871,48 @@ html.light .hero-card-title {
 }
 html.light .hero-card-sub {
   color: #5A5248 !important;
+}
+html.light .hero-card-arrow {
+  color: #8B101D !important;
+}
+
+/* Light Mode Explore Tools Section */
+html.light .explore-tools-grid > div {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E8E2D5 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05) !important;
+}
+html.light .explore-tools-grid > div:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08) !important;
+  border-color: #861820 !important;
+}
+html.light .explore-tools-grid h3 {
+  color: #1F2421 !important;
+}
+html.light .explore-tools-grid p {
+  color: #5A5248 !important;
+}
+
+/* Light Mode Universal Cards & Surfaces */
+html.light .pv-card-themed {
+  background-color: #FFFFFF !important;
+  border-color: #E8E2D5 !important;
+  color: #1F2421 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04) !important;
+}
+html.dark .pv-card-themed {
+  background-color: #0B0B0B !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Ultra-Wide and 17-Inch Laptop Layout Perfection */
+@media (min-width: 1536px) {
+  .hero-2col-layout {
+    gap: 3.5rem !important;
+  }
+  .hero-right-showcase-container {
+    max-width: 680px !important;
+  }
 }

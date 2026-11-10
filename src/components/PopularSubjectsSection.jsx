@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '../context/ThemeContext';
 import { 
   Calculator, 
   Code2, 
@@ -8,6 +9,9 @@ import {
 } from 'lucide-react';
 
 export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const subjects = [
     {
       id: 'eng-maths',
@@ -101,10 +105,10 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
       style={{
         backgroundColor: 'transparent',
         padding: '3rem 0 3.5rem 0',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+        borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5'
       }}
     >
-      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
+      <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', paddingInline: 'clamp(1rem, 2.5vw, 2.5rem)' }}>
         {/* Header with Title and "View All Subjects" button */}
         <div style={{
           display: 'flex',
@@ -121,17 +125,17 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
               gap: '0.45rem',
               fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
               fontWeight: 800,
-              color: '#FFFFFF',
+              color: isDark ? '#FFFFFF' : '#1F2421',
               fontFamily: "'Outfit', sans-serif",
               letterSpacing: '-0.02em',
               margin: '0 0 0.4rem 0'
             }}>
               <span>📖</span>
-              <h2>Popular <span style={{ color: '#FFB800' }}>Subjects</span></h2>
+              <h2>Popular <span style={{ color: isDark ? '#FFB800' : '#861820' }}>Subjects</span></h2>
             </div>
             <p style={{
               fontSize: '0.92rem',
-              color: '#A1A1AA',
+              color: isDark ? '#A1A1AA' : '#64748B',
               fontWeight: 500,
               margin: 0
             }}>
@@ -148,24 +152,24 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
               gap: '0.45rem',
               padding: '0.55rem 1.35rem',
               borderRadius: '9999px',
-              backgroundColor: '#0B0B0B',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              color: '#E4E4E7',
+              backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #E8E2D5',
+              color: isDark ? '#E4E4E7' : '#1F2421',
               fontSize: '0.88rem',
               fontWeight: 700,
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)'
+              boxShadow: isDark ? '0 4px 12px rgba(0, 0, 0, 0.4)' : '0 2px 8px rgba(0, 0, 0, 0.04)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = '#FFB800';
-              e.currentTarget.style.color = '#FFB800';
-              e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 184, 0, 0.25)';
+              e.currentTarget.style.borderColor = isDark ? '#FFB800' : '#861820';
+              e.currentTarget.style.color = isDark ? '#FFB800' : '#861820';
+              e.currentTarget.style.boxShadow = isDark ? '0 0 15px rgba(255, 184, 0, 0.25)' : '0 4px 14px rgba(134, 24, 32, 0.15)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
-              e.currentTarget.style.color = '#E4E4E7';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
+              e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.12)' : '#E8E2D5';
+              e.currentTarget.style.color = isDark ? '#E4E4E7' : '#1F2421';
+              e.currentTarget.style.boxShadow = isDark ? '0 4px 12px rgba(0, 0, 0, 0.4)' : '0 2px 8px rgba(0, 0, 0, 0.04)';
             }}
           >
             <span>View All Subjects</span>
@@ -187,8 +191,8 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
                 onClick={() => handleSubjectClick(s)}
                 aria-label={s.name}
                 style={{
-                  backgroundColor: '#0B0B0B',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                  border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
                   borderRadius: '20px',
                   padding: '1.5rem 1.25rem',
                   display: 'flex',
@@ -197,20 +201,22 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
                   textAlign: 'left',
                   cursor: 'pointer',
                   transition: 'all 0.25s ease',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+                  boxShadow: isDark ? '0 8px 24px rgba(0, 0, 0, 0.5)' : '0 8px 24px rgba(0, 0, 0, 0.04)',
                   position: 'relative',
                   outline: 'none',
                   userSelect: 'none'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 184, 0, 0.15)';
+                  e.currentTarget.style.boxShadow = isDark 
+                    ? '0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 184, 0, 0.15)' 
+                    : '0 12px 30px rgba(134, 24, 32, 0.1), 0 0 20px rgba(134, 24, 32, 0.06)';
                   e.currentTarget.style.borderColor = s.iconColor;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.5)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.boxShadow = isDark ? '0 8px 24px rgba(0, 0, 0, 0.5)' : '0 8px 24px rgba(0, 0, 0, 0.04)';
+                  e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.08)' : '#E8E2D5';
                 }}
               >
                 {/* Icon */}
@@ -233,7 +239,7 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
                 <h3 style={{
                   fontSize: '1.05rem',
                   fontWeight: 800,
-                  color: '#FFFFFF',
+                  color: isDark ? '#FFFFFF' : '#1F2421',
                   margin: '0 0 0.35rem 0',
                   lineHeight: 1.3
                 }}>
@@ -243,7 +249,7 @@ export default function PopularSubjectsSection({ onOpenSubject, onNavigate }) {
                 {/* Description */}
                 <p style={{
                   fontSize: '0.82rem',
-                  color: '#A1A1AA',
+                  color: isDark ? '#A1A1AA' : '#64748B',
                   lineHeight: 1.45,
                   margin: '0 0 0.85rem 0',
                   flexGrow: 1

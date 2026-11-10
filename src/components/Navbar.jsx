@@ -229,9 +229,9 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
           alignItems: 'center',
           justifyContent: 'space-between',
           height: '66px',
-          maxWidth: '1280px',
+          maxWidth: 'min(1560px, 94vw)',
           margin: '0 auto',
-          padding: '0 1rem',
+          padding: '0 clamp(1rem, 2vw, 2.5rem)',
           width: '100%',
           boxSizing: 'border-box'
         }}
@@ -325,6 +325,11 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   activeTab === 'interview-start'));
 
             const isPillActive = isHoollow && isActive;
+            const linkColor = isPillActive 
+              ? (isDark ? '#FFB800' : '#861820')
+              : isActive 
+                ? (isDark ? '#FFB800' : '#861820')
+                : (isDark ? '#A1A1AA' : '#5A5248');
 
             return (
               <a
@@ -337,13 +342,13 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 className="nav-link-item"
                 style={{
                   position: 'relative',
-                  backgroundColor: isPillActive ? '#161616' : 'transparent',
-                  color: isPillActive ? '#FFB800' : isActive ? '#FFB800' : '#A1A1AA',
+                  backgroundColor: isPillActive ? (isDark ? '#161616' : '#FFF1F2') : 'transparent',
+                  color: linkColor,
                   padding: isPillActive ? '0.24rem 0.65rem' : '0.3rem 0.38rem',
                   borderRadius: isPillActive ? '9999px' : '6px',
                   fontWeight: isActive ? 800 : 600,
                   fontSize: '0.78rem',
-                  border: isPillActive ? '1px solid rgba(255, 184, 0, 0.45)' : 'none',
+                  border: isPillActive ? (isDark ? '1px solid rgba(255, 184, 0, 0.45)' : '1px solid rgba(134, 24, 32, 0.25)') : 'none',
                   cursor: 'pointer',
                   textDecoration: 'none',
                   transition: 'all 0.18s ease',
@@ -352,26 +357,26 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   gap: '0.25rem',
                   whiteSpace: 'nowrap',
                   flexShrink: 0,
-                  boxShadow: isPillActive ? '0 0 12px rgba(255, 184, 0, 0.25)' : 'none',
+                  boxShadow: isPillActive ? (isDark ? '0 0 12px rgba(255, 184, 0, 0.25)' : '0 2px 6px rgba(134, 24, 32, 0.12)') : 'none',
                   fontFamily: "'Plus Jakarta Sans', sans-serif"
                 }}
                 onMouseEnter={(e) => {
-                  if (!isPillActive && !isActive) e.currentTarget.style.color = '#FFB800';
+                  if (!isPillActive && !isActive) e.currentTarget.style.color = isDark ? '#FFB800' : '#861820';
                 }}
                 onMouseLeave={(e) => {
-                  if (!isPillActive && !isActive) e.currentTarget.style.color = isDark ? '#D4D4D8' : '#334155';
+                  if (!isPillActive && !isActive) e.currentTarget.style.color = isDark ? '#A1A1AA' : '#5A5248';
                 }}
               >
                 {item.hasSparkle && (
-                  <Sparkles size={12} color="#FFB800" />
+                  <Sparkles size={12} color={isDark ? '#FFB800' : '#861820'} />
                 )}
                 <span>{item.name}</span>
                 {item.isBeta && (
                   <span
                     style={{
-                      backgroundColor: 'rgba(255, 184, 0, 0.15)',
-                      color: '#FFB800',
-                      border: '1px solid rgba(255, 184, 0, 0.4)',
+                      backgroundColor: isDark ? 'rgba(255, 184, 0, 0.15)' : '#FFF1F2',
+                      color: isDark ? '#FFB800' : '#861820',
+                      border: isDark ? '1px solid rgba(255, 184, 0, 0.4)' : '1px solid rgba(134, 24, 32, 0.25)',
                       fontSize: '0.52rem',
                       fontWeight: 800,
                       padding: '0.05rem 0.28rem',
@@ -397,8 +402,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                       width: '18px',
                       height: '2.5px',
                       borderRadius: '9999px',
-                      backgroundColor: '#FFB800',
-                      boxShadow: '0 0 8px rgba(255, 184, 0, 0.6)'
+                      backgroundColor: isDark ? '#FFB800' : '#861820',
+                      boxShadow: isDark ? '0 0 8px rgba(255, 184, 0, 0.6)' : 'none'
                     }}
                   />
                 )}
@@ -622,14 +627,14 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               width: '34px',
               height: '34px',
               borderRadius: '50%',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              backgroundColor: '#0B0B0B',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #D5CEBF',
+              backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              color: '#FFB800',
-              boxShadow: '0 2px 6px rgba(0,0,0,0.4)',
+              color: isDark ? '#FFB800' : '#861820',
+              boxShadow: isDark ? '0 2px 6px rgba(0,0,0,0.4)' : '0 2px 6px rgba(0,0,0,0.06)',
               position: 'relative',
               transition: 'all 0.2s ease',
               flexShrink: 0
@@ -651,7 +656,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                border: '2px solid #0B0B0B',
+                border: isDark ? '2px solid #0B0B0B' : '2px solid #FFFFFF',
                 boxShadow: '0 0 8px rgba(220, 38, 38, 0.6)'
               }}
             >
@@ -668,28 +673,39 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               height: '34px',
               padding: '0 0.65rem',
               borderRadius: '9999px',
-              border: '1px solid rgba(255, 184, 0, 0.4)',
-              backgroundColor: '#0B0B0B',
+              border: isDark ? '1px solid rgba(255, 184, 0, 0.4)' : '1px solid #D5CEBF',
+              backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               gap: '0.35rem',
               cursor: 'pointer',
-              color: '#FFB800',
+              color: isDark ? '#FFB800' : '#861820',
               fontWeight: 700,
               fontSize: '0.74rem',
-              boxShadow: '0 0 10px rgba(255,184,0,0.15)',
+              boxShadow: isDark ? '0 0 10px rgba(255,184,0,0.15)' : '0 2px 6px rgba(0,0,0,0.04)',
               transition: 'all 0.2s ease',
               flexShrink: 0
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = '#FFB800';
-              e.currentTarget.style.backgroundColor = '#161616';
-              e.currentTarget.style.boxShadow = '0 0 18px rgba(255,184,0,0.35)';
+              if (isDark) {
+                e.currentTarget.style.borderColor = '#FFB800';
+                e.currentTarget.style.backgroundColor = '#161616';
+                e.currentTarget.style.boxShadow = '0 0 18px rgba(255,184,0,0.35)';
+              } else {
+                e.currentTarget.style.borderColor = '#861820';
+                e.currentTarget.style.backgroundColor = '#FAF5ED';
+              }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)';
-              e.currentTarget.style.backgroundColor = '#0B0B0B';
-              e.currentTarget.style.boxShadow = '0 0 10px rgba(255,184,0,0.15)';
+              if (isDark) {
+                e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)';
+                e.currentTarget.style.backgroundColor = '#0B0B0B';
+                e.currentTarget.style.boxShadow = '0 0 10px rgba(255,184,0,0.15)';
+              } else {
+                e.currentTarget.style.borderColor = '#D5CEBF';
+                e.currentTarget.style.backgroundColor = '#FFFFFF';
+                e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,0,0,0.04)';
+              }
             }}
           >
             <Download size={14} strokeWidth={2.4} />
@@ -838,14 +854,34 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   borderRadius: '9999px',
                   fontWeight: 700,
                   whiteSpace: 'nowrap',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  color: '#FFFFFF',
+                  backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : '#FFFFFF',
+                  border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #D5CEBF',
+                  color: isDark ? '#FFFFFF' : '#1F2421',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease'
+                  transition: 'all 0.2s ease',
+                  boxShadow: isDark ? 'none' : '0 2px 6px rgba(0,0,0,0.04)'
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'; e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)'; e.currentTarget.style.color = '#FFB800'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)'; e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)'; e.currentTarget.style.color = '#FFFFFF'; }}
+                onMouseEnter={(e) => {
+                  if (isDark) {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)';
+                    e.currentTarget.style.color = '#FFB800';
+                  } else {
+                    e.currentTarget.style.borderColor = '#861820';
+                    e.currentTarget.style.color = '#861820';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (isDark) {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                    e.currentTarget.style.color = '#FFFFFF';
+                  } else {
+                    e.currentTarget.style.backgroundColor = '#FFFFFF';
+                    e.currentTarget.style.borderColor = '#D5CEBF';
+                    e.currentTarget.style.color = '#1F2421';
+                  }
+                }}
               >
                 Sign In
               </button>
@@ -856,26 +892,28 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   fontSize: '0.8rem',
                   padding: '0.38rem 0.95rem',
                   borderRadius: '9999px',
-                  backgroundColor: '#0B0B0B',
-                  border: '1px solid rgba(255, 184, 0, 0.45)',
-                  color: '#FFB800',
+                  backgroundColor: isDark ? '#FFB800' : '#861820',
+                  border: isDark ? '1px solid #FFB800' : 'none',
+                  color: isDark ? '#030303' : '#FFFFFF',
                   fontWeight: 800,
                   whiteSpace: 'nowrap',
                   cursor: 'pointer',
-                  boxShadow: '0 0 14px rgba(255, 184, 0, 0.2)',
+                  boxShadow: isDark ? '0 0 14px rgba(255, 184, 0, 0.3)' : '0 2px 10px rgba(134, 24, 32, 0.3)',
                   transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#161616';
-                  e.currentTarget.style.borderColor = '#FFB800';
-                  e.currentTarget.style.boxShadow = '0 0 22px rgba(255, 184, 0, 0.45)';
-                  e.currentTarget.style.color = '#FFA000';
+                  if (isDark) {
+                    e.currentTarget.style.backgroundColor = '#FFA000';
+                  } else {
+                    e.currentTarget.style.backgroundColor = '#6E1218';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#0B0B0B';
-                  e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.45)';
-                  e.currentTarget.style.boxShadow = '0 0 14px rgba(255, 184, 0, 0.2)';
-                  e.currentTarget.style.color = '#FFB800';
+                  if (isDark) {
+                    e.currentTarget.style.backgroundColor = '#FFB800';
+                  } else {
+                    e.currentTarget.style.backgroundColor = '#861820';
+                  }
                 }}
               >
                 Create Account

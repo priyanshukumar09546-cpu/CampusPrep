@@ -8,8 +8,10 @@ import {
   Mic,
   BarChart2
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 export default function QuickAccessStrip({ onNavigate }) {
+  const { isDark } = useTheme();
   const items = [
     {
       id: 'notes',
@@ -83,12 +85,12 @@ export default function QuickAccessStrip({ onNavigate }) {
       position: 'relative',
       zIndex: 10
     }}>
-      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
+      <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', padding: '0 clamp(1rem, 2.5vw, 2.5rem)' }}>
         <div style={{
-          backgroundColor: '#0B0B0B',
+          backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
           borderRadius: '20px',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 184, 0, 0.04)',
+          border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
+          boxShadow: isDark ? '0 8px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 184, 0, 0.04)' : '0 4px 20px rgba(0, 0, 0, 0.04)',
           display: 'grid',
           gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
           alignItems: 'stretch',
@@ -112,7 +114,7 @@ export default function QuickAccessStrip({ onNavigate }) {
                   padding: '0.85rem 0.55rem',
                   backgroundColor: 'transparent',
                   border: 'none',
-                  borderRight: isLast ? 'none' : '1px solid rgba(255, 255, 255, 0.06)',
+                  borderRight: isLast ? 'none' : (isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #F0ECE1'),
                   textAlign: 'left',
                   cursor: 'pointer',
                   transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -123,7 +125,7 @@ export default function QuickAccessStrip({ onNavigate }) {
                   boxSizing: 'border-box'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#141414';
+                  e.currentTarget.style.backgroundColor = isDark ? '#141414' : '#FAF5ED';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
@@ -143,7 +145,7 @@ export default function QuickAccessStrip({ onNavigate }) {
                   justifyContent: 'center',
                   flexShrink: 0,
                   color: item.iconColor,
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.4)'
+                  boxShadow: isDark ? '0 2px 8px rgba(0,0,0,0.4)' : '0 1px 4px rgba(0,0,0,0.06)'
                 }}>
                   <Icon size={17} strokeWidth={2.2} />
                 </div>
@@ -154,7 +156,7 @@ export default function QuickAccessStrip({ onNavigate }) {
                     fontFamily: "'Outfit', sans-serif",
                     fontSize: '0.78rem',
                     fontWeight: 800,
-                    color: '#FFFFFF',
+                    color: isDark ? '#FFFFFF' : '#1F2421',
                     lineHeight: 1.2,
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
@@ -166,7 +168,7 @@ export default function QuickAccessStrip({ onNavigate }) {
                     fontFamily: "'Plus Jakarta Sans', sans-serif",
                     fontSize: '0.65rem',
                     fontWeight: 500,
-                    color: '#A1A1AA',
+                    color: isDark ? '#A1A1AA' : '#64748B',
                     marginTop: '0.14rem',
                     lineHeight: 1.22,
                     whiteSpace: 'normal',

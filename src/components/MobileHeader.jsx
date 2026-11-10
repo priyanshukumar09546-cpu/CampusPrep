@@ -170,15 +170,15 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 width: '36px',
                 height: '36px',
                 borderRadius: '50%',
-                backgroundColor: '#0B0B0B',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
+                backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #D5CEBF',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FFB800',
+                color: isDark ? '#FFB800' : '#861820',
                 cursor: 'pointer',
                 position: 'relative',
-                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.4)'
+                boxShadow: isDark ? '0 2px 6px rgba(0, 0, 0, 0.4)' : '0 2px 6px rgba(0, 0, 0, 0.06)'
               }}
             >
               <Bell size={18} strokeWidth={2.2} />
@@ -191,7 +191,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                   height: '8px',
                   borderRadius: '50%',
                   backgroundColor: '#DC2626',
-                  border: '1.5px solid #0B0B0B'
+                  border: isDark ? '1.5px solid #0B0B0B' : '1.5px solid #FFFFFF'
                 }} 
               />
             </button>
@@ -229,14 +229,14 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 width: '34px',
                 height: '34px',
                 borderRadius: '10px',
-                backgroundColor: '#0B0B0B',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
+                backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #D5CEBF',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FFFFFF',
+                color: isDark ? '#FFFFFF' : '#1F2421',
                 cursor: 'pointer',
-                boxShadow: '0 1px 4px rgba(0, 0, 0, 0.4)'
+                boxShadow: isDark ? '0 1px 4px rgba(0, 0, 0, 0.4)' : '0 1px 4px rgba(0, 0, 0, 0.06)'
               }}
             >
               <ArrowLeft size={18} strokeWidth={2.3} />
@@ -246,7 +246,7 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
                 margin: 0,
                 fontSize: '1.02rem',
                 fontWeight: 800,
-                color: '#FFFFFF',
+                color: isDark ? '#FFFFFF' : '#1F2421',
                 letterSpacing: '-0.015em',
                 lineHeight: 1.2
               }}
@@ -259,18 +259,37 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
             <button
               type="button"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${isDark ? 'Light' : 'Dark'} Mode`}
+              style={{
+                width: '34px',
+                height: '34px',
+                borderRadius: '10px',
+                backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #D5CEBF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#FFB800',
+                cursor: 'pointer'
+              }}
+            >
+              {isDark ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <button
+              type="button"
               onClick={() => onNavigate ? onNavigate('notes') : (window.location.href = '/notes')}
               aria-label="Search study material"
               style={{
                 width: '34px',
                 height: '34px',
                 borderRadius: '10px',
-                backgroundColor: '#0B0B0B',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
+                backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #D5CEBF',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FFB800',
+                color: isDark ? '#FFB800' : '#861820',
                 cursor: 'pointer'
               }}
             >

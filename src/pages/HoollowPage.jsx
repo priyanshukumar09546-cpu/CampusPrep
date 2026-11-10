@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import {
   Sparkles,
   Target,
@@ -43,6 +44,8 @@ import HoollowMentorDrawer from '../components/HoollowMentorDrawer';
 import { updateSEOForRoute } from '../utils/seoManager';
 
 export default function HoollowPage({ onNavigate, onOpenAuth }) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   // Navigation / SEO
   useEffect(() => {
     updateSEOForRoute('hoollow');
@@ -263,7 +266,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
   return (
     <div
       style={{
-        backgroundColor: '#FFF9F1',
+        backgroundColor: isDark ? '#030303' : '#FAF7F2',
         minHeight: '100vh',
         fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
         color: '#1F2421',
@@ -382,7 +385,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
       )}
 
       {/* Main Container */}
-      <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '1.5rem 1rem' }}>
+      <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', padding: '1.5rem clamp(1rem, 2.5vw, 2.5rem)' }}>
         {/* ==================================================================== */}
         {/* VIEW 1: HOOLLOW LANDING & GENERATOR (EXACT VISUAL RECREATION)        */}
         {/* ==================================================================== */}
@@ -1120,7 +1123,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
               {selectedGoal === 'Custom Goal' && (
                 <div
                   style={{
-                    backgroundColor: '#FFF9F1',
+                    backgroundColor: isDark ? '#030303' : '#FAF7F2',
                     border: '1.5px solid #8B101D',
                     borderRadius: '16px',
                     padding: '1.2rem',
@@ -1446,7 +1449,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
               {/* Progress Summary Card */}
               <div
                 style={{
-                  backgroundColor: '#FFF9F1',
+                  backgroundColor: isDark ? '#030303' : '#FAF7F2',
                   borderRadius: '16px',
                   border: '1px solid #F1E5D8',
                   padding: '1rem 1.4rem',
@@ -1878,7 +1881,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
                 {/* AI Mentor Trigger Card */}
                 <div
                   style={{
-                    backgroundColor: '#FFF9F1',
+                    backgroundColor: isDark ? '#030303' : '#FAF7F2',
                     borderRadius: '20px',
                     border: '1px solid #F1E5D8',
                     padding: '1.25rem',

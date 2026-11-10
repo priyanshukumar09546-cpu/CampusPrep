@@ -1,7 +1,11 @@
 import React from 'react';
+import { useTheme } from '../context/ThemeContext';
 import { BookOpen, Target, TrendingUp, UserCheck } from 'lucide-react';
 
 export default function WhyStudentsLoveSection() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const features = [
     {
       id: 'verified',
@@ -47,10 +51,10 @@ export default function WhyStudentsLoveSection() {
       style={{
         backgroundColor: 'transparent',
         padding: '3.5rem 0 2.5rem 0',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+        borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5'
       }}
     >
-      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem' }}>
+      <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', paddingInline: 'clamp(1rem, 2.5vw, 2.5rem)' }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
           <div style={{
@@ -59,17 +63,17 @@ export default function WhyStudentsLoveSection() {
             gap: '0.45rem',
             fontSize: 'clamp(1.75rem, 2.5vw, 2.35rem)',
             fontWeight: 800,
-            color: '#FFFFFF',
+            color: isDark ? '#FFFFFF' : '#1F2421',
             fontFamily: "'Outfit', sans-serif",
             letterSpacing: '-0.02em',
             marginBottom: '0.45rem'
           }}>
             <span>💡</span>
-            <h2>Why Students Love <span style={{ color: '#FFB800' }}>ProfessorVirus</span>?</h2>
+            <h2>Why Students Love <span style={{ color: isDark ? '#FFB800' : '#861820' }}>ProfessorVirus</span>?</h2>
           </div>
           <p style={{
             fontSize: '0.95rem',
-            color: '#A1A1AA',
+            color: isDark ? '#A1A1AA' : '#64748B',
             fontWeight: 500,
             margin: 0
           }}>
@@ -88,25 +92,27 @@ export default function WhyStudentsLoveSection() {
               <div
                 key={f.id}
                 style={{
-                  backgroundColor: '#0B0B0B',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                  border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
                   borderRadius: '20px',
                   padding: '1.75rem 1.35rem',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+                  boxShadow: isDark ? '0 8px 24px rgba(0, 0, 0, 0.5)' : '0 8px 24px rgba(0, 0, 0, 0.04)',
                   transition: 'all 0.25s ease'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)';
                   e.currentTarget.style.borderColor = f.iconColor;
-                  e.currentTarget.style.boxShadow = `0 12px 28px rgba(0, 0, 0, 0.7), 0 0 20px ${f.iconColor}33`;
+                  e.currentTarget.style.boxShadow = isDark 
+                    ? `0 12px 28px rgba(0, 0, 0, 0.7), 0 0 20px ${f.iconColor}33`
+                    : `0 12px 28px rgba(0, 0, 0, 0.08), 0 0 20px ${f.iconColor}22`;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.5)';
+                  e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.08)' : '#E8E2D5';
+                  e.currentTarget.style.boxShadow = isDark ? '0 8px 24px rgba(0, 0, 0, 0.5)' : '0 8px 24px rgba(0, 0, 0, 0.04)';
                 }}
               >
                 {/* Icon */}
@@ -129,7 +135,7 @@ export default function WhyStudentsLoveSection() {
                 <h3 style={{
                   fontSize: '1.05rem',
                   fontWeight: 800,
-                  color: '#FFFFFF',
+                  color: isDark ? '#FFFFFF' : '#1F2421',
                   margin: '0 0 0.5rem 0',
                   lineHeight: 1.3
                 }}>
@@ -139,7 +145,7 @@ export default function WhyStudentsLoveSection() {
                 {/* Description */}
                 <p style={{
                   fontSize: '0.84rem',
-                  color: '#A1A1AA',
+                  color: isDark ? '#A1A1AA' : '#64748B',
                   lineHeight: 1.55,
                   margin: 0
                 }}>

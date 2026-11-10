@@ -18,7 +18,7 @@
 /* Inner Container */
 .pv-footer-container {
   width: 100%;
-  max-width: 1380px;
+  max-width: min(1560px, 94vw);
   margin: 0 auto;
   padding: 3.75rem 2rem 1.75rem 2rem;
   box-sizing: border-box;
@@ -26,13 +26,34 @@
   z-index: 2;
 }
 
-/* Five-Column Main Grid */
+/* Six-Column Main Grid (with PRMA Tech Technology Partner) */
 .pv-footer-grid {
   display: grid;
-  grid-template-columns: 1.28fr 1.12fr 1.12fr 0.94fr 0.94fr;
-  gap: 2.25rem;
+  grid-template-columns: 1.35fr 1fr 1fr 1fr 0.9fr 0.85fr;
+  gap: 1.75rem;
   align-items: start;
   margin-bottom: 2.75rem;
+}
+
+@media (max-width: 1280px) {
+  .pv-footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pv-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pv-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 /* Brand Section */
@@ -416,7 +437,7 @@
 }
 
 .pv-footer-bottom-inner {
-  max-width: 1380px;
+  max-width: min(1560px, 94vw);
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;

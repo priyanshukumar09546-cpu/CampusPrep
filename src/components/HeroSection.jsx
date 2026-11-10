@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Search,
-  ChevronDown,
   Sparkles,
   ArrowRight,
   Play,
@@ -9,15 +8,19 @@ import {
   FileText,
   Briefcase,
   Star,
-  BookOpen,
-  ChevronRight,
-  Globe,
-  BarChart2
+  Code2,
+  Award,
+  Trophy,
+  Rocket,
+  CheckCircle2,
+  Layers,
+  ChevronRight
 } from 'lucide-react';
 import DemoVideoModal from './DemoVideoModal';
-import { GiftPromotion } from './MentorNearby';
+import { useTheme } from '../context/ThemeContext';
 
 export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
+  const { theme, isDark } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBranch, setSelectedBranch] = useState('All Branches');
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -38,534 +41,683 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
     }
   };
 
+  const handlePrmaInternshipClick = () => {
+    const el = document.getElementById('prma-internships');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else if (onNavigate) {
+      onNavigate('internships-jobs');
+    }
+  };
+
   return (
-    <section style={{
-      backgroundColor: 'transparent',
-      padding: '2.5rem 0 2rem 0',
-      position: 'relative',
-      overflow: 'hidden'
-    }} className="pv-scroll-reveal">
-      {/* Background Subtle Space Nebula Ambient Glow */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: `
-          radial-gradient(circle at 20% 30%, rgba(255, 184, 0, 0.035) 0%, transparent 50%),
-          radial-gradient(circle at 80% 70%, rgba(255, 140, 0, 0.025) 0%, transparent 50%)
-        `,
-        pointerEvents: 'none'
-      }} />
+    <section
+      style={{
+        backgroundColor: 'transparent',
+        padding: '1.75rem 0 2rem 0',
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+      className="pv-scroll-reveal"
+    >
+      {/* Background Subtle Space & Cream Ambient Glows */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: isDark
+            ? `
+              radial-gradient(circle at 15% 25%, rgba(255, 185, 0, 0.06) 0%, transparent 45%),
+              radial-gradient(circle at 85% 30%, rgba(8, 102, 245, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 50% 85%, rgba(112, 37, 232, 0.05) 0%, transparent 50%)
+            `
+            : `
+              radial-gradient(circle at 10% 20%, rgba(255, 185, 0, 0.12) 0%, transparent 40%),
+              radial-gradient(circle at 90% 25%, rgba(8, 102, 245, 0.08) 0%, transparent 45%),
+              radial-gradient(circle at 95% 85%, rgba(255, 189, 18, 0.1) 0%, transparent 40%)
+            `,
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
+      />
 
-      <div className="container pv-main-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 1rem', position: 'relative', zIndex: 2 }}>
-        
-        {/* Main 2-Column Hero Container */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 0.85fr)',
-          gap: 'clamp(2rem, 4vw, 3.5rem)',
-          alignItems: 'center'
-        }} className="hero-2col-layout">
-
-          {/* ===================================================================
-              LEFT COLUMN: BADGE, HEADINGS, DESCRIPTION, CTA, STATS, SEARCH
-              =================================================================== */}
+      <div
+        className="container pv-main-container"
+        style={{
+          maxWidth: 'min(1560px, 94vw)',
+          margin: '0 auto',
+          padding: '0 clamp(1rem, 2vw, 2.25rem)',
+          position: 'relative',
+          zIndex: 2
+        }}
+      >
+        {/* ===================================================================
+            1. TWO-BRAND HERO SECTION: PROFESSORVIRUS (LEFT) × PRMA TECH (RIGHT)
+            =================================================================== */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(0, 1.05fr) minmax(0, 1.15fr)',
+            gap: 'clamp(1.5rem, 3vw, 2.75rem)',
+            alignItems: 'center',
+            marginBottom: '2rem'
+          }}
+          className="hero-2col-layout"
+        >
+          {/* ===============================================================
+              LEFT COLUMN: PROFESSORVIRUS BRAND & VALUE PROPOSITION
+              =============================================================== */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-
             {/* Top Pill Badge */}
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.45rem',
-              backgroundColor: '#111111',
-              border: '1px solid rgba(255, 184, 0, 0.4)',
-              borderRadius: '9999px',
-              padding: '0.35rem 0.95rem',
-              fontSize: '0.78rem',
-              fontWeight: 800,
-              color: '#FFB800',
-              marginBottom: '1.15rem',
-              boxShadow: '0 0 14px rgba(255, 184, 0, 0.15)'
-            }}>
-              <span>🎓</span>
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                backgroundColor: isDark ? 'rgba(255, 185, 0, 0.1)' : '#FFFFFF',
+                border: isDark ? '1px solid rgba(255, 185, 0, 0.35)' : '1px solid #F1E2CE',
+                borderRadius: '9999px',
+                padding: '0.35rem 0.95rem',
+                fontSize: '0.78rem',
+                fontWeight: 800,
+                color: isDark ? '#FFB800' : '#8A5D00',
+                marginBottom: '1.1rem',
+                boxShadow: isDark ? '0 0 16px rgba(255, 184, 0, 0.15)' : '0 2px 8px rgba(138, 93, 0, 0.06)'
+              }}
+            >
+              <span style={{ fontSize: '0.9rem' }}>🎓</span>
               <span>Trusted by 50,000+ Engineering Students</span>
             </div>
 
-            {/* Brand Title: ProfessorVirus */}
-            <h1 style={{
-              fontFamily: "'Outfit', sans-serif",
-              fontSize: 'clamp(2.75rem, 4.4vw, 3.85rem)',
-              fontWeight: 900,
-              lineHeight: 1.05,
-              margin: '0 0 0.45rem 0',
-              letterSpacing: '-0.02em',
-              color: '#FFFFFF'
-            }}>
-              <span>Professor</span><span style={{ color: '#FFB800' }}>Virus</span>
+            {/* Main Brand Title */}
+            <h1
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: 'clamp(2.75rem, 4.3vw, 4rem)',
+                fontWeight: 900,
+                lineHeight: 1.05,
+                margin: '0 0 0.35rem 0',
+                letterSpacing: '-0.025em',
+                color: isDark ? '#FFFFFF' : '#1A1D1F'
+              }}
+            >
+              <span>Professor</span>
+              <span style={{ color: '#FFB900' }}>Virus</span>
             </h1>
 
-            {/* Sub-headline in Warm Electric Gold */}
-            <h2 style={{
-              fontFamily: "'Outfit', sans-serif",
-              fontSize: 'clamp(1.75rem, 2.7vw, 2.35rem)',
-              fontWeight: 900,
-              lineHeight: 1.18,
-              color: '#FFB800',
-              margin: '0 0 1rem 0',
-              letterSpacing: '-0.015em',
-              textShadow: '0 0 20px rgba(255, 184, 0, 0.25)'
-            }}>
+            {/* Slogan */}
+            <h2
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: 'clamp(1.65rem, 2.6vw, 2.35rem)',
+                fontWeight: 900,
+                lineHeight: 1.15,
+                color: '#F59E0B',
+                margin: '0 0 0.95rem 0',
+                letterSpacing: '-0.015em'
+              }}
+            >
               Study Smart. Prepare Better.
             </h2>
 
             {/* Body Description */}
-            <p style={{
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
-              fontSize: '0.96rem',
-              fontWeight: 600,
-              lineHeight: 1.6,
-              color: '#A1A1AA',
-              margin: '0 0 1.5rem 0',
-              maxWidth: '470px'
-            }}>
+            <p
+              style={{
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontSize: '0.96rem',
+                fontWeight: 500,
+                lineHeight: 1.6,
+                color: isDark ? '#A1A1AA' : '#57534E',
+                margin: '0 0 1.5rem 0',
+                maxWidth: '520px'
+              }}
+            >
               An educational platform providing study resources, notes, previous-year question papers (PYQs), syllabus, quizzes, academic tools and career preparation for students.
             </p>
 
-            {/* CTA Action Buttons with Glowing Bulb Interaction */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.85rem',
-              flexWrap: 'wrap',
-              marginBottom: '1.65rem'
-            }}>
+            {/* Action Buttons */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.85rem',
+                flexWrap: 'wrap',
+                marginBottom: '1.75rem'
+              }}
+            >
               <button
                 type="button"
                 onClick={() => {
                   if (onNavigate) onNavigate('notes');
                 }}
-                className="pv-glow-btn"
                 style={{
                   fontSize: '0.94rem',
                   fontWeight: 800,
-                  padding: '0.78rem 1.75rem',
+                  padding: '0.78rem 1.65rem',
                   borderRadius: '9999px',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.55rem',
-                  transition: 'all 0.25s ease'
+                  transition: 'all 0.2s ease',
+                  backgroundColor: '#161616',
+                  color: '#FFFFFF',
+                  border: '1.5px solid #2B2B2B',
+                  boxShadow: '0 4px 18px rgba(0, 0, 0, 0.25)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.backgroundColor = '#000000';
+                  e.currentTarget.style.borderColor = '#FFB900';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.backgroundColor = '#161616';
+                  e.currentTarget.style.borderColor = '#2B2B2B';
                 }}
               >
-                <span className="pv-bulb" style={{ fontSize: '1rem' }}>💡</span>
+                <span style={{ fontSize: '1rem', color: '#FFB900' }}>💡</span>
                 <span>Get Started Free</span>
-                <ArrowRight size={16} />
+                <ArrowRight size={16} color="#FFB900" />
               </button>
 
               <button
                 type="button"
                 onClick={() => setIsDemoModalOpen(true)}
-                aria-label="Watch Platform Demo Video"
-                className="pv-secondary-btn"
                 style={{
-                  fontSize: '0.94rem',
+                  fontSize: '0.92rem',
                   fontWeight: 700,
-                  padding: '0.76rem 1.6rem',
+                  padding: '0.78rem 1.45rem',
                   borderRadius: '9999px',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  transition: 'all 0.2s ease'
+                  transition: 'all 0.2s ease',
+                  backgroundColor: isDark ? 'rgba(255, 255, 255, 0.06)' : '#FFFFFF',
+                  color: isDark ? '#FFFFFF' : '#1F2421',
+                  border: isDark ? '1.5px solid rgba(255, 255, 255, 0.14)' : '1.5px solid #E8E2D5',
+                  boxShadow: isDark ? 'none' : '0 2px 10px rgba(0, 0, 0, 0.04)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.borderColor = '#F59E0B';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.14)' : '#E8E2D5';
                 }}
               >
-                <Play size={14} fill="#FFB800" color="#FFB800" />
+                <div
+                  style={{
+                    width: '22px',
+                    height: '22px',
+                    borderRadius: '50%',
+                    backgroundColor: '#FEF3C7',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#D97706'
+                  }}
+                >
+                  <Play size={12} fill="#D97706" />
+                </div>
                 <span>Watch Demo</span>
               </button>
             </div>
 
-            {/* Real Stats Strip */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 'clamp(1rem, 2.2vw, 1.85rem)',
-              flexWrap: 'wrap',
-              paddingBottom: '1.35rem',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-              width: '100%',
-              maxWidth: '560px',
-              marginBottom: '1.25rem'
-            }}>
+            {/* Verified Statistics Bar */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'clamp(0.85rem, 1.8vw, 1.6rem)',
+                flexWrap: 'wrap',
+                width: '100%',
+                maxWidth: '560px'
+              }}
+            >
               {/* Stat 1: Students */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <div style={{ color: '#FFB800' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ color: '#D97706' }}>
                   <Users size={18} strokeWidth={2.4} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.98rem', fontWeight: 900, color: isDark ? '#FFFFFF' : '#1F2421', lineHeight: 1.1 }}>
                     50K+
                   </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', marginTop: '0.15rem' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: isDark ? '#A1A1AA' : '#78716C', marginTop: '0.1rem' }}>
                     Students
                   </div>
                 </div>
               </div>
 
               {/* Stat 2: Notes Views */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <div style={{ color: '#FFB800' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ color: '#D97706' }}>
                   <FileText size={18} strokeWidth={2.4} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.98rem', fontWeight: 900, color: isDark ? '#FFFFFF' : '#1F2421', lineHeight: 1.1 }}>
                     1M+
                   </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', marginTop: '0.15rem' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: isDark ? '#A1A1AA' : '#78716C', marginTop: '0.1rem' }}>
                     Notes Views
                   </div>
                 </div>
               </div>
 
               {/* Stat 3: Interviews Taken */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <div style={{ color: '#FFB800' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ color: '#D97706' }}>
                   <Briefcase size={18} strokeWidth={2.4} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.98rem', fontWeight: 900, color: isDark ? '#FFFFFF' : '#1F2421', lineHeight: 1.1 }}>
                     10K+
                   </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', marginTop: '0.15rem' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: isDark ? '#A1A1AA' : '#78716C', marginTop: '0.1rem' }}>
                     Interviews Taken
                   </div>
                 </div>
               </div>
 
-              {/* Stat 4: Rating */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
-                <div style={{ color: '#FFB800' }}>
-                  <Star size={18} fill="#FFB800" color="#FFB800" />
+              {/* Stat 4: Student Rating */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ color: '#F59E0B' }}>
+                  <Star size={18} fill="#F59E0B" color="#F59E0B" />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.98rem', fontWeight: 900, color: isDark ? '#FFFFFF' : '#1F2421', lineHeight: 1.1 }}>
                     4.9/5
                   </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', marginTop: '0.15rem' }}>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: isDark ? '#A1A1AA' : '#78716C', marginTop: '0.1rem' }}>
                     Student Rating
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
 
-          {/* ===================================================================
-              RIGHT COLUMN: COMPLETE UNCROPPED FEMALE STUDENT WITH REAL FLOATING CARDS
-              =================================================================== */}
-          <div style={{
-            position: 'relative',
-            width: '100%',
-            maxWidth: '620px',
-            margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'visible'
-          }} className="hero-right-showcase-container">
-            
-            {/* Main Relative Canvas for Uncropped Student & Floating Badges */}
-            <div style={{
+          {/* ===============================================================
+              RIGHT COLUMN: PRMA TECH PARTNERSHIP PANEL & 3D SHOWCASE
+              =============================================================== */}
+          <div
+            style={{
               position: 'relative',
-              width: '100%',
+              backgroundColor: isDark ? '#10141D' : '#FFFFFF',
+              borderRadius: '28px',
+              border: isDark ? '1.5px solid rgba(8, 102, 245, 0.35)' : '1.5px solid #E8EAF2',
+              boxShadow: isDark
+                ? '0 16px 48px rgba(0, 0, 0, 0.7), 0 0 32px rgba(8, 102, 245, 0.15)'
+                : '0 12px 40px rgba(16, 28, 80, 0.08), 0 2px 10px rgba(8, 102, 245, 0.04)',
+              overflow: 'hidden',
+              padding: 'clamp(1.25rem, 2.2vw, 2rem)'
+            }}
+            className="prma-partnership-hero-card"
+          >
+            {/* Top Tag: In Partnership with */}
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.45rem',
+                backgroundColor: isDark ? 'rgba(112, 37, 232, 0.2)' : '#F3E8FF',
+                color: isDark ? '#C084FC' : '#7025E8',
+                borderRadius: '9999px',
+                padding: '0.3rem 0.85rem',
+                fontSize: '0.74rem',
+                fontWeight: 800,
+                letterSpacing: '0.02em',
+                marginBottom: '0.9rem'
+              }}
+            >
+              <Rocket size={13} color={isDark ? '#C084FC' : '#7025E8'} />
+              <span>In Partnership with</span>
+            </div>
+
+            {/* Grid Split: Info Left + Visual Scene Right */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'minmax(0, 1.15fr) minmax(0, 0.85fr)',
+                gap: '1.25rem',
+                alignItems: 'center'
+              }}
+              className="prma-card-grid"
+            >
+              {/* Left Details inside Card */}
+              <div>
+                {/* Official PRMA Tech Logo */}
+                <div style={{ marginBottom: '0.75rem' }}>
+                  <img
+                    src="/assets/prma_tech_logo.png"
+                    alt="PRMA Tech Official Logo"
+                    style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/assets/prma_tech_logo.png';
+                    }}
+                  />
+                </div>
+
+                {/* Main Heading */}
+                <h3
+                  style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontSize: 'clamp(1.35rem, 2vw, 1.7rem)',
+                    fontWeight: 900,
+                    lineHeight: 1.2,
+                    color: isDark ? '#FFFFFF' : '#101C50',
+                    margin: '0 0 0.5rem 0',
+                    letterSpacing: '-0.015em'
+                  }}
+                >
+                  Industry-Ready Remote Internship Programs
+                </h3>
+
+                {/* Subtitle */}
+                <p
+                  style={{
+                    fontSize: '0.86rem',
+                    color: isDark ? '#94A3B8' : '#475569',
+                    lineHeight: 1.5,
+                    margin: '0 0 1rem 0',
+                    fontWeight: 500
+                  }}
+                >
+                  Work on real-world projects, get expert mentorship and build a job-ready tech career with PRMA Tech.
+                </p>
+
+                {/* 4 Feature Pills in 2x2 Grid */}
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+                    gap: '0.55rem',
+                    marginBottom: '1.25rem'
+                  }}
+                >
+                  {[
+                    { icon: Code2, label: 'Real Projects', color: '#0866F5', bg: 'rgba(8, 102, 245, 0.08)' },
+                    { icon: Users, label: 'Expert Mentorship', color: '#079B45', bg: 'rgba(7, 155, 69, 0.08)' },
+                    { icon: Award, label: 'Verified Certificate', color: '#7025E8', bg: 'rgba(112, 37, 232, 0.08)' },
+                    { icon: Trophy, label: 'Performance Stipend', color: '#EA3323', bg: 'rgba(234, 51, 35, 0.08)' }
+                  ].map((feat, idx) => {
+                    const FIcon = feat.icon;
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : feat.bg,
+                          borderRadius: '10px',
+                          padding: '0.45rem 0.65rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.45rem',
+                          border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(0, 0, 0, 0.03)'
+                        }}
+                      >
+                        <FIcon size={14} color={feat.color} strokeWidth={2.5} />
+                        <span style={{ fontSize: '0.74rem', fontWeight: 800, color: isDark ? '#E2E8F0' : '#1E293B', whiteSpace: 'nowrap' }}>
+                          {feat.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Action Buttons */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
+                  <button
+                    type="button"
+                    onClick={handlePrmaInternshipClick}
+                    style={{
+                      background: 'linear-gradient(135deg, #0866F5 0%, #0052CC 100%)',
+                      color: '#FFFFFF',
+                      border: 'none',
+                      borderRadius: '9999px',
+                      padding: '0.7rem 1.35rem',
+                      fontSize: '0.84rem',
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.45rem',
+                      boxShadow: '0 6px 18px rgba(8, 102, 245, 0.35)',
+                      transition: 'all 0.2s ease',
+                      whiteSpace: 'nowrap'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(8, 102, 245, 0.45)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 6px 18px rgba(8, 102, 245, 0.35)';
+                    }}
+                  >
+                    <span>Get Internship at PRMA Tech</span>
+                    <ArrowRight size={14} strokeWidth={2.5} />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handlePrmaInternshipClick}
+                    style={{
+                      backgroundColor: 'transparent',
+                      color: isDark ? '#E2E8F0' : '#334155',
+                      border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                      borderRadius: '9999px',
+                      padding: '0.68rem 1.15rem',
+                      fontSize: '0.82rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = '#0866F5';
+                      e.currentTarget.style.color = '#0866F5';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : '#CBD5E1';
+                      e.currentTarget.style.color = isDark ? '#E2E8F0' : '#334155';
+                    }}
+                  >
+                    <span>Know More</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Right 3D Office Building & Merchandise Kit Scene */}
+              <div
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    borderRadius: '20px',
+                    overflow: 'hidden',
+                    boxShadow: '0 8px 28px rgba(0, 0, 0, 0.12)',
+                    transition: 'transform 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.02)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+                >
+                  <img
+                    src="/assets/prma_building_merch_scene.png"
+                    alt="PRMA Tech Modern Office Building & Official Welcome Kit"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      maxHeight: '275px',
+                      objectFit: 'cover',
+                      display: 'block'
+                    }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/assets/prma_hero_showcase_ref.jpg';
+                    }}
+                  />
+                  {/* Subtle Badge Overlay */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '8px',
+                      right: '8px',
+                      backgroundColor: 'rgba(16, 28, 80, 0.88)',
+                      backdropFilter: 'blur(6px)',
+                      color: '#FFBD12',
+                      padding: '0.2rem 0.55rem',
+                      borderRadius: '6px',
+                      fontSize: '0.64rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.02em',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.25rem'
+                    }}
+                  >
+                    <span>✨ Official Kit & Certificate</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ===================================================================
+            2. ACADEMIC SEARCH SECTION (FLOATING BELOW HERO WITH BRANCH CHIPS)
+            =================================================================== */}
+        <div
+          style={{
+            maxWidth: '820px',
+            margin: '0 auto',
+            position: 'relative',
+            zIndex: 10
+          }}
+        >
+          {/* Main Floating Search Bar Card */}
+          <form
+            onSubmit={handleSearchSubmit}
+            style={{
+              backgroundColor: isDark ? '#14171F' : '#FFFFFF',
+              borderRadius: '9999px',
+              border: isDark ? '1.5px solid rgba(255, 185, 0, 0.3)' : '1.5px solid #F1E2CE',
+              boxShadow: isDark
+                ? '0 12px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 185, 0, 0.08)'
+                : '0 8px 30px rgba(138, 93, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03)',
+              padding: '0.45rem 0.55rem 0.45rem 1.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.65rem',
+              transition: 'all 0.2s ease',
+              marginBottom: '0.95rem'
+            }}
+          >
+            <Search size={20} color="#F59E0B" strokeWidth={2.4} style={{ flexShrink: 0 }} />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search subjects, topics, PYQs, notes, internships..."
+              style={{
+                flex: 1,
+                border: 'none',
+                outline: 'none',
+                backgroundColor: 'transparent',
+                fontSize: '0.94rem',
+                fontWeight: 600,
+                color: isDark ? '#FFFFFF' : '#1F2421',
+                fontFamily: "'Plus Jakarta Sans', sans-serif"
+              }}
+            />
+            <button
+              type="submit"
+              style={{
+                backgroundColor: '#161616',
+                color: '#FFFFFF',
+                border: 'none',
+                borderRadius: '9999px',
+                padding: '0.65rem 1.45rem',
+                fontSize: '0.88rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                transition: 'all 0.18s ease',
+                flexShrink: 0
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#161616'; }}
+            >
+              Search
+            </button>
+          </form>
+
+          {/* Branch Filter Chips */}
+          <div
+            style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              overflow: 'visible'
-            }}>
-              {/* Uncropped, High-Quality Photorealistic Female College Student */}
-              <img
-                src="/assets/hero_student_girl_uncropped.png"
-                alt="Confident South Asian female engineering student holding textbooks at ProfessorVirus"
-                className="hero-student-girl-img"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  maxHeight: '520px',
-                  objectFit: 'contain',
-                  display: 'block',
-                  borderRadius: '24px',
-                  filter: 'drop-shadow(0 16px 36px rgba(120, 20, 22, 0.10))',
-                  userSelect: 'none'
-                }}
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = '/assets/hero_student_girl_uncropped.jpg';
-                }}
-              />
-
-              {/* =============================================================
-                  LEFT FLANKING CARDS
-                  ============================================================= */}
-              {/* CARD 1: Study Notes */}
-              <div
-                onClick={() => onNavigate && onNavigate('notes')}
-                className="hero-floating-card hero-card-notes"
-                title="Explore Verified Study Notes"
-              >
-                <span className="hero-card-doodle doodle-left">
-                  Study Smarter ➔
-                </span>
-                <div className="hero-card-icon" style={{ backgroundColor: '#FCE7F3', color: '#BE185D' }}>
-                  <BookOpen size={16} strokeWidth={2.4} />
-                </div>
-                <div className="hero-card-text">
-                  <div className="hero-card-title">Study Notes</div>
-                  <div className="hero-card-sub">Unit-wise notes for all branches</div>
-                </div>
-                <ChevronRight size={14} className="hero-card-arrow" />
-              </div>
-
-              {/* CARD 2: AKTU PYQs */}
-              <div
-                onClick={() => onNavigate && onNavigate('pyqs')}
-                className="hero-floating-card hero-card-pyqs"
-                title="Browse Solved AKTU PYQs"
-              >
-                <div className="hero-card-icon" style={{ backgroundColor: '#FEF3C7', color: '#D97706' }}>
-                  <FileText size={16} strokeWidth={2.4} />
-                </div>
-                <div className="hero-card-text">
-                  <div className="hero-card-title">AKTU PYQs</div>
-                  <div className="hero-card-sub">Previous year question papers</div>
-                </div>
-                <ChevronRight size={14} className="hero-card-arrow" />
-              </div>
-
-              {/* CARD 3: Resume Maker */}
-              <div
-                onClick={() => onNavigate && onNavigate('resume-maker')}
-                className="hero-floating-card hero-card-resume"
-                title="Create ATS-Ready Resume"
-              >
-                <div className="hero-card-icon" style={{ backgroundColor: '#DBEAFE', color: '#2563EB' }}>
-                  <Briefcase size={16} strokeWidth={2.4} />
-                </div>
-                <div className="hero-card-text">
-                  <div className="hero-card-title">Resume Maker</div>
-                  <div className="hero-card-sub">Create ATS-ready resume in minutes</div>
-                </div>
-                <ChevronRight size={14} className="hero-card-arrow" />
-              </div>
-
-              {/* =============================================================
-                  RIGHT FLANKING CARDS
-                  ============================================================= */}
-              {/* CARD 4: Quizzes */}
-              <div
-                onClick={() => onNavigate && onNavigate('quizzes')}
-                className="hero-floating-card hero-card-quizzes"
-                title="Practice Topic-wise Quizzes"
-              >
-                <span className="hero-card-doodle doodle-right">
-                  Prepare Better ➔
-                </span>
-                <div className="hero-card-icon" style={{ backgroundColor: '#DCFCE7', color: '#16A34A' }}>
-                  <Sparkles size={16} strokeWidth={2.4} />
-                </div>
-                <div className="hero-card-text">
-                  <div className="hero-card-title">Quizzes</div>
-                  <div className="hero-card-sub">Practice &amp; improve your concepts</div>
-                </div>
-                <ChevronRight size={14} className="hero-card-arrow" />
-              </div>
-
-              {/* CARD 5: Interview Pro */}
-              <div
-                onClick={() => onNavigate && onNavigate('interview-pro')}
-                className="hero-floating-card hero-card-interview"
-                title="Start AI Mock Interview"
-              >
-                <div className="hero-card-icon" style={{ backgroundColor: '#F3E8FF', color: '#9333EA' }}>
-                  <Play size={14} fill="#9333EA" strokeWidth={2.4} />
-                </div>
-                <div className="hero-card-text">
-                  <div className="hero-card-title">
-                    <span>Interview Pro</span>
-                    <span className="hero-card-badge">AI</span>
-                  </div>
-                  <div className="hero-card-sub">AI mock interviews &amp; coding practice</div>
-                </div>
-                <ChevronRight size={14} className="hero-card-arrow" />
-              </div>
-
-              {/* CARD 6: Result & CGPA */}
-              <div
-                onClick={() => onNavigate && onNavigate('result-cgpa')}
-                className="hero-floating-card hero-card-result"
-                title="Analyze Result & SGPA/CGPA"
-              >
-                <div className="hero-card-icon" style={{ backgroundColor: '#CCFBF1', color: '#0D9488' }}>
-                  <BarChart2 size={16} strokeWidth={2.4} />
-                </div>
-                <div className="hero-card-text">
-                  <div className="hero-card-title">Result &amp; CGPA</div>
-                  <div className="hero-card-sub">Analyze your result and track progress</div>
-                </div>
-                <ChevronRight size={14} className="hero-card-arrow" />
-              </div>
-
-              {/* CARD 7: Language Skills (Explicitly Required by User) */}
-              <div
-                onClick={() => {
-                  const target = document.getElementById('explore-tools') || document.getElementById('quick-access-section');
-                  if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                  } else if (onNavigate) {
-                    onNavigate('more');
-                  }
-                }}
-                className="hero-floating-card hero-card-language"
-                title="Improve Communication & Fluency"
-              >
-                <span className="hero-card-doodle doodle-future">
-                  Build Your Future ➔
-                </span>
-                <div className="hero-card-icon" style={{ backgroundColor: '#E0E7FF', color: '#4F46E5' }}>
-                  <Globe size={16} strokeWidth={2.4} />
-                </div>
-                <div className="hero-card-text">
-                  <div className="hero-card-title">Language Skills</div>
-                  <div className="hero-card-sub">Improve communication &amp; fluency</div>
-                </div>
-                <ChevronRight size={14} className="hero-card-arrow" />
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* ===================================================================
-            PREMIUM 3D GIFT PROMOTION (Matches Reference Image 1)
-            Positioned in the visual focal zone between left text & right student
-            =================================================================== */}
-        <div className="hero-gift-placement">
-          <GiftPromotion />
-        </div>
-
-        {/* ===================================================================
-            CENTERED SEARCH BAR & BRANCH FILTERS (Matches Reference Image 1)
-            =================================================================== */}
-        <div style={{
-          width: '100%',
-          maxWidth: '820px',
-          margin: '2.5rem auto 0 auto',
-          position: 'relative',
-          zIndex: 5
-        }} className="hero-search-centered-section">
-          <form onSubmit={handleSearchSubmit} style={{ position: 'relative', width: '100%', marginBottom: '0.85rem' }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: '#0B0B0B',
-              borderRadius: '9999px',
-              border: '1.5px solid rgba(255, 255, 255, 0.12)',
-              padding: '0.42rem 0.45rem 0.42rem 1.35rem',
-              boxShadow: '0 4px 25px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 184, 0, 0.1)',
-              transition: 'all 0.2s ease'
-            }}>
-              <Search size={18} style={{ color: '#FFB800', marginRight: '0.75rem', flexShrink: 0 }} />
-              <input
-                type="text"
-                placeholder="Search subjects, topics, PYQs, notes..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: '100%',
-                  border: 'none',
-                  outline: 'none',
-                  fontSize: '0.92rem',
-                  fontWeight: 600,
-                  color: '#FFFFFF',
-                  backgroundColor: 'transparent',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}
-              />
-              <button
-                type="submit"
-                style={{
-                  padding: '0.62rem 1.65rem',
-                  fontSize: '0.88rem',
-                  fontWeight: 800,
-                  borderRadius: '9999px',
-                  backgroundColor: '#0B0B0B',
-                  border: '1.5px solid rgba(255, 184, 0, 0.5)',
-                  color: '#FFB800',
-                  cursor: 'pointer',
-                  flexShrink: 0,
-                  boxShadow: '0 0 16px rgba(255, 184, 0, 0.25)',
-                  transition: 'all 0.15s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#161616';
-                  e.currentTarget.style.borderColor = '#FFB800';
-                  e.currentTarget.style.boxShadow = '0 0 24px rgba(255, 184, 0, 0.45)';
-                  e.currentTarget.style.color = '#FFA000';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#0B0B0B';
-                  e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.5)';
-                  e.currentTarget.style.boxShadow = '0 0 16px rgba(255, 184, 0, 0.25)';
-                  e.currentTarget.style.color = '#FFB800';
-                }}
-              >
-                Search
-              </button>
-            </div>
-          </form>
-
-          {/* Branch Quick Filter Chips */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.45rem',
-            flexWrap: 'wrap'
-          }}>
-            <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#A1A1AA', marginRight: '0.25rem' }}>
+              gap: '0.45rem',
+              flexWrap: 'wrap'
+            }}
+          >
+            <span
+              style={{
+                fontSize: '0.78rem',
+                fontWeight: 800,
+                color: isDark ? '#A1A1AA' : '#78716C',
+                marginRight: '0.2rem'
+              }}
+            >
               Branch:
             </span>
-            {branches.map(b => {
-              const isSel = selectedBranch === b;
+            {branches.map((b) => {
+              const isSelected = selectedBranch === b;
               return (
                 <button
                   key={b}
                   type="button"
                   onClick={() => handleBranchClick(b)}
                   style={{
-                    padding: '0.28rem 0.85rem',
+                    backgroundColor: isSelected
+                      ? '#FFB900'
+                      : isDark
+                        ? 'rgba(255, 255, 255, 0.05)'
+                        : '#FFFFFF',
+                    color: isSelected ? '#161616' : isDark ? '#CBD5E1' : '#44403C',
+                    border: isSelected
+                      ? '1px solid #FFB900'
+                      : isDark
+                        ? '1px solid rgba(255, 255, 255, 0.1)'
+                        : '1px solid #E8E2D5',
                     borderRadius: '9999px',
-                    border: isSel ? '1.5px solid #FFB800' : '1px solid rgba(255, 255, 255, 0.1)',
-                    backgroundColor: isSel ? '#FFB800' : '#0B0B0B',
-                    color: isSel ? '#030303' : '#A1A1AA',
-                    fontWeight: isSel ? 800 : 600,
-                    fontSize: '0.78rem',
+                    padding: '0.28rem 0.8rem',
+                    fontSize: '0.76rem',
+                    fontWeight: isSelected ? 800 : 700,
                     cursor: 'pointer',
-                    boxShadow: isSel ? '0 0 12px rgba(255, 184, 0, 0.4)' : 'none',
-                    transition: 'all 0.15s ease'
+                    transition: 'all 0.15s ease',
+                    boxShadow: isSelected
+                      ? '0 2px 10px rgba(255, 185, 0, 0.3)'
+                      : '0 1px 4px rgba(0, 0, 0, 0.02)'
                   }}
                   onMouseEnter={(e) => {
-                    if (!isSel) {
-                      e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)';
-                      e.currentTarget.style.backgroundColor = '#161616';
-                      e.currentTarget.style.color = '#FFB800';
+                    if (!isSelected) {
+                      e.currentTarget.style.borderColor = '#FFB900';
+                      e.currentTarget.style.color = '#FFB900';
                     }
                   }}
                   onMouseLeave={(e) => {
-                    if (!isSel) {
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                      e.currentTarget.style.backgroundColor = '#0B0B0B';
-                      e.currentTarget.style.color = '#A1A1AA';
+                    if (!isSelected) {
+                      e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.1)' : '#E8E2D5';
+                      e.currentTarget.style.color = isDark ? '#CBD5E1' : '#44403C';
                     }
                   }}
                 >
@@ -575,257 +727,25 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
             })}
           </div>
         </div>
-
       </div>
 
-      {/* Hero Showcase Styling & Responsive Rules */}
-      <style>{`
-        .hero-gift-placement {
-          position: absolute;
-          top: 65px;
-          left: 49%;
-          transform: translateX(-50%);
-          z-index: 15;
-        }
-
-        @media (max-width: 1240px) {
-          .hero-gift-placement {
-            left: 49%;
-            top: 55px;
-            transform: translateX(-50%) scale(0.92);
-          }
-        }
-
-        @media (max-width: 1024px) {
-          .hero-gift-placement {
-            position: relative;
-            top: 0;
-            left: 0;
-            transform: none;
-            margin: 1.5rem auto 1rem;
-            display: flex;
-            justify-content: center;
-          }
-        }
-
-        .hero-floating-card {
-          position: absolute;
-          z-index: 5;
-          background-color: #0B0B0B;
-          border-radius: 14px;
-          padding: 0.48rem 0.8rem;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          cursor: pointer;
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-          backdrop-filter: blur(12px);
-          width: max-content;
-          max-width: 228px;
-          white-space: nowrap;
-        }
-
-        .hero-floating-card:hover {
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 184, 0, 0.25);
-          border-color: #FFB800;
-        }
-
-        .hero-card-icon {
-          width: 32px;
-          height: 32px;
-          border-radius: 9px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-
-        .hero-card-text {
-          display: flex;
-          flex-direction: column;
-          min-width: 0;
-          text-align: left;
-        }
-
-        .hero-card-title {
-          display: flex;
-          align-items: center;
-          gap: 0.35rem;
-          font-family: 'Outfit', sans-serif;
-          font-size: 0.82rem;
-          font-weight: 800;
-          color: #FFFFFF;
-          line-height: 1.15;
-        }
-
-        .hero-card-badge {
-          font-size: 0.58rem;
-          font-weight: 800;
-          padding: 0.08rem 0.35rem;
-          border-radius: 9999px;
-          background-color: rgba(255, 184, 0, 0.15);
-          color: #FFB800;
-          border: 1px solid rgba(255, 184, 0, 0.35);
-        }
-
-        .hero-card-sub {
-          font-family: 'Plus Jakarta Sans', sans-serif;
-          font-size: 0.66rem;
-          font-weight: 600;
-          color: #A1A1AA;
-          line-height: 1.25;
-          margin-top: 0.1rem;
-        }
-
-        .hero-card-arrow {
-          color: #71717A;
-          margin-left: auto;
-          flex-shrink: 0;
-          transition: transform 0.18s ease;
-        }
-
-        .hero-floating-card:hover .hero-card-arrow {
-          transform: translateX(2px);
-          color: #FFB800;
-        }
-
-        .hero-card-doodle {
-          position: absolute;
-          font-family: 'Kalam', 'Patrick Hand', cursive;
-          font-size: 0.8rem;
-          font-weight: 700;
-          color: #FFB800;
-          pointer-events: none;
-          white-space: nowrap;
-          text-shadow: 0 0 10px rgba(255, 184, 0, 0.3);
-        }
-
-        .doodle-left {
-          top: -1.35rem;
-          left: 0.4rem;
-        }
-
-        .doodle-right {
-          top: -1.35rem;
-          right: 0.4rem;
-        }
-
-        .doodle-future {
-          bottom: -1.35rem;
-          right: 0.4rem;
-        }
-
-        /* Desktop Card Coordinates */
-        .hero-card-notes {
-          top: 3%;
-          left: -4%;
-        }
-
-        .hero-card-pyqs {
-          top: 33%;
-          left: -8%;
-        }
-
-        .hero-card-resume {
-          top: 63%;
-          left: -4%;
-        }
-
-        .hero-card-quizzes {
-          top: 3%;
-          right: -4%;
-        }
-
-        .hero-card-interview {
-          top: 31%;
-          right: -8%;
-        }
-
-        .hero-card-result {
-          top: 57%;
-          right: -5%;
-        }
-
-        .hero-card-language {
-          top: 83%;
-          right: -2%;
-        }
-
-        /* Tablet & Compact Desktop Sizing */
-        @media (max-width: 1240px) {
-          .hero-floating-card {
-            padding: 0.4rem 0.68rem;
-            max-width: 205px;
-            gap: 0.45rem;
-          }
-          .hero-card-title {
-            font-size: 0.76rem;
-          }
-          .hero-card-sub {
-            font-size: 0.62rem;
-          }
-          .hero-card-icon {
-            width: 28px;
-            height: 28px;
-          }
-          .hero-card-notes { left: 0%; top: 2%; }
-          .hero-card-pyqs { left: -3%; top: 32%; }
-          .hero-card-resume { left: 0%; top: 62%; }
-          .hero-card-quizzes { right: 0%; top: 2%; }
-          .hero-card-interview { right: -3%; top: 30%; }
-          .hero-card-result { right: -2%; top: 56%; }
-          .hero-card-language { right: 0%; top: 82%; }
-        }
-
-        @media (max-width: 960px) {
-          .hero-2col-layout {
-            grid-template-columns: 1fr !important;
-            gap: 2.25rem !important;
-          }
-          .hero-right-showcase-container {
-            max-width: 500px !important;
-          }
-          .hero-card-notes { left: 2%; top: 2%; }
-          .hero-card-pyqs { left: -1%; top: 32%; }
-          .hero-card-resume { left: 2%; top: 62%; }
-          .hero-card-quizzes { right: 2%; top: 2%; }
-          .hero-card-interview { right: -1%; top: 30%; }
-          .hero-card-result { right: 0%; top: 56%; }
-          .hero-card-language { right: 2%; top: 82%; }
-        }
-
-        @media (max-width: 600px) {
-          .hero-floating-card {
-            padding: 0.35rem 0.55rem;
-            max-width: 175px;
-            gap: 0.35rem;
-          }
-          .hero-card-title {
-            font-size: 0.72rem;
-          }
-          .hero-card-sub {
-            font-size: 0.58rem;
-          }
-          .hero-card-icon {
-            width: 24px;
-            height: 24px;
-          }
-          .hero-card-doodle {
-            display: none !important;
-          }
-        }
-      `}</style>
-
-      {/* 60-Second Walkthrough Demo Video Modal */}
+      {/* Demo Video Modal */}
       <DemoVideoModal
         isOpen={isDemoModalOpen}
         onClose={() => setIsDemoModalOpen(false)}
-        videoSrc="/videos/professorvirus-demo.mp4"
-        videoTitle="Discover ProfessorVirus — Complete Platform Tour"
       />
+
+      <style>{`
+        @media (max-width: 1023px) {
+          .hero-2col-layout {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+          .prma-card-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

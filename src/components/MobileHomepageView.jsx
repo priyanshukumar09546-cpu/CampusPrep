@@ -26,8 +26,18 @@ import {
   Briefcase, 
   ArrowRight,
   ChevronRight,
-  X
+  X,
+  Sparkles,
+  CheckCircle2,
+  Package,
+  Award,
+  MessageCircle,
+  Smartphone,
+  Globe,
+  Cloud,
+  Shield
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 import MobileHeader from './MobileHeader';
 import { searchLocalIndex } from '../data/searchIndex';
 import { GiftPromotion } from './MentorNearby';
@@ -40,6 +50,7 @@ export default function MobileHomepageView({
   onOpenSubject,
   onOpenAI
 }) {
+  const { isDark } = useTheme();
   const [selectedCourseTab, setSelectedCourseTab] = useState('B.Tech');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -731,6 +742,113 @@ export default function MobileHomepageView({
         </div>
 
         {/* =========================================================================
+            PRMA TECH PARTNERSHIP HERO CARD (MOBILE)
+            ========================================================================= */}
+        <div
+          style={{
+            backgroundColor: isDark ? '#080C1A' : '#FFFFFF',
+            borderRadius: '16px',
+            border: isDark ? '1px solid rgba(112, 37, 232, 0.4)' : '1.5px solid #DDD6FE',
+            padding: '12px 14px',
+            marginBottom: '14px',
+            boxShadow: isDark ? '0 4px 20px rgba(0, 0, 0, 0.5)' : '0 2px 12px rgba(112, 37, 232, 0.08)',
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <img
+                src="/assets/prma_tech_logo.png"
+                alt="PRMA Tech"
+                style={{ height: '22px', objectFit: 'contain' }}
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              />
+              <span style={{ fontSize: '9px', fontWeight: 800, color: '#7025E8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                Official Tech Partner
+              </span>
+            </div>
+            <span style={{
+              fontSize: '8px',
+              fontWeight: 800,
+              padding: '2px 7px',
+              borderRadius: '9999px',
+              backgroundColor: '#079B45',
+              color: '#FFFFFF'
+            }}>
+              100% Remote
+            </span>
+          </div>
+
+          <div style={{ fontSize: '13.5px', fontWeight: 900, color: isDark ? '#FFFFFF' : '#101C50', lineHeight: 1.25, marginBottom: '4px' }}>
+            Industry-Ready Remote Internship Programs
+          </div>
+
+          <p style={{ fontSize: '10.5px', color: isDark ? '#A1A1AA' : '#64748B', lineHeight: 1.45, margin: '0 0 10px 0' }}>
+            Work on production code, receive 1-on-1 engineering mentorship, get physical welcome kit & verified certificate.
+          </p>
+
+          <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', marginBottom: '10px' }}>
+            {['Real Projects', '1-on-1 Mentors', 'Welcome Swag Kit', 'Verified Certificate'].map((tag, idx) => (
+              <span key={idx} style={{
+                fontSize: '8.5px',
+                fontWeight: 700,
+                padding: '2px 6px',
+                borderRadius: '6px',
+                backgroundColor: isDark ? 'rgba(8, 102, 245, 0.12)' : '#EFF6FF',
+                color: isDark ? '#60A5FA' : '#1D4ED8',
+                border: isDark ? '1px solid rgba(8, 102, 245, 0.25)' : '1px solid #BFDBFE'
+              }}>
+                ✓ {tag}
+              </span>
+            ))}
+          </div>
+
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate('internships-jobs')}
+              style={{
+                flex: 1,
+                padding: '8px 0',
+                borderRadius: '9999px',
+                background: 'linear-gradient(135deg, #0866F5 0%, #7025E8 100%)',
+                color: '#FFFFFF',
+                border: 'none',
+                fontSize: '11px',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '5px'
+              }}
+            >
+              <span>Get Internship</span>
+              <ArrowRight size={12} />
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                window.open('https://wa.me/917668016628?text=Hi%20PRMA%20Tech%20Team%2C%20I%20want%20to%20know%20more%20about%20the%20Internship.', '_blank', 'noopener,noreferrer');
+              }}
+              style={{
+                padding: '8px 12px',
+                borderRadius: '9999px',
+                backgroundColor: 'transparent',
+                color: isDark ? '#E4E4E7' : '#101C50',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                fontSize: '10.5px',
+                fontWeight: 700,
+                cursor: 'pointer'
+              }}
+            >
+              Know More
+            </button>
+          </div>
+        </div>
+
+        {/* =========================================================================
             SECTION F — THREE FEATURE CARDS (NOTES | PYQ | TOOLS)
             ========================================================================= */}
         <div style={{
@@ -1087,6 +1205,219 @@ export default function MobileHomepageView({
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* =========================================================================
+            SECTION I — PRMA TECH INTERNSHIP DOMAINS (MOBILE)
+            ========================================================================= */}
+        <div style={{ marginTop: '16px' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: '7px',
+            padding: '0 2px'
+          }}>
+            <div>
+              <div style={{ fontSize: '8px', fontWeight: 800, color: '#7025E8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                PRMA Tech Programs
+              </div>
+              <h2 style={{ fontSize: '14px', fontWeight: 900, color: isDark ? '#FFFFFF' : '#1F2421', margin: 0 }}>
+                12 In-Demand Internship Tracks
+              </h2>
+            </div>
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate('internships-jobs')}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '10px',
+                fontWeight: 700,
+                color: '#0866F5',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '2px',
+                cursor: 'pointer',
+                padding: 0
+              }}
+            >
+              <span>View All</span>
+              <ArrowRight size={11} />
+            </button>
+          </div>
+
+          {/* 6 Popular Tracks Preview Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: '6px',
+            marginBottom: '10px'
+          }}>
+            {[
+              { title: 'AI & ML', tech: 'Python, PyTorch', color: '#0866F5', icon: Cpu },
+              { title: 'Data Science', tech: 'Pandas, Scikit', color: '#EA3323', icon: Database },
+              { title: 'Web Development', tech: 'React, Next.js', color: '#7025E8', icon: Globe },
+              { title: 'App Development', tech: 'Flutter, Android', color: '#EA3323', icon: Smartphone },
+              { title: 'Cloud & DevOps', tech: 'AWS, Docker', color: '#FFBD12', icon: Cloud },
+              { title: 'Cybersecurity', tech: 'OWASP, Pentest', color: '#079B45', icon: Shield }
+            ].map((track, tidx) => {
+              const TrackIcon = track.icon;
+              return (
+                <div
+                  key={tidx}
+                  onClick={() => onNavigate && onNavigate('internships-jobs')}
+                  style={{
+                    backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
+                    border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
+                    borderRadius: '12px',
+                    padding: '8px 10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <div style={{
+                    width: '30px',
+                    height: '30px',
+                    borderRadius: '8px',
+                    backgroundColor: `${track.color}15`,
+                    border: `1px solid ${track.color}35`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: track.color,
+                    flexShrink: 0
+                  }}>
+                    <TrackIcon size={15} strokeWidth={2.2} />
+                  </div>
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontSize: '10.5px', fontWeight: 800, color: isDark ? '#FFFFFF' : '#1F2421', lineHeight: 1.2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {track.title}
+                    </div>
+                    <div style={{ fontSize: '8px', color: isDark ? '#A1A1AA' : '#64748B', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {track.tech}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Welcome Kit Highlight Bar */}
+          <div
+            onClick={() => onNavigate && onNavigate('internships-jobs')}
+            style={{
+              backgroundColor: isDark ? '#080E1C' : '#F5F3FF',
+              borderRadius: '12px',
+              border: isDark ? '1px solid rgba(112, 37, 232, 0.3)' : '1px solid #DDD6FE',
+              padding: '8px 12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              cursor: 'pointer',
+              marginBottom: '16px'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Package size={16} color="#7025E8" />
+              <div>
+                <div style={{ fontSize: '10.5px', fontWeight: 800, color: isDark ? '#FFFFFF' : '#101C50' }}>
+                  Physical Welcome & Swag Kit Delivered
+                </div>
+                <div style={{ fontSize: '8px', color: isDark ? '#A1A1AA' : '#64748B' }}>
+                  Custom T-Shirt, Notebook, Water Bottle, ID Card & Certificate
+                </div>
+              </div>
+            </div>
+            <ArrowRight size={13} color="#7025E8" />
+          </div>
+        </div>
+
+        {/* =========================================================================
+            SECTION J — DUAL SPLIT FINAL CTA (MOBILE)
+            ========================================================================= */}
+        <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {/* PV CTA Card */}
+          <div style={{
+            backgroundColor: isDark ? '#0F0D07' : '#FFFFFF',
+            borderRadius: '16px',
+            border: isDark ? '1px solid rgba(255, 184, 0, 0.35)' : '1.5px solid #FDE68A',
+            padding: '14px 14px 12px'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+              <GraduationCap size={15} color="#FFB800" />
+              <span style={{ fontSize: '12px', fontWeight: 900, color: isDark ? '#FFFFFF' : '#1F2421' }}>
+                Study Smarter with Professor<span style={{ color: '#FFB800' }}>Virus</span>
+              </span>
+            </div>
+            <p style={{ fontSize: '10px', color: isDark ? '#A1A1AA' : '#64748B', lineHeight: 1.45, margin: '0 0 10px 0' }}>
+              50,000+ notes, solved previous year questions, branch syllabi, and CGPA analyzer.
+            </p>
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate('more')}
+              style={{
+                width: '100%',
+                padding: '7px 0',
+                borderRadius: '8px',
+                backgroundColor: isDark ? '#FFB800' : '#861820',
+                color: isDark ? '#0B0B0B' : '#FFFFFF',
+                border: 'none',
+                fontSize: '11px',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '5px'
+              }}
+            >
+              <span>Explore All Study Tools</span>
+              <ArrowRight size={11} />
+            </button>
+          </div>
+
+          {/* PRMA Tech CTA Card */}
+          <div style={{
+            backgroundColor: isDark ? '#080C1A' : '#FFFFFF',
+            borderRadius: '16px',
+            border: isDark ? '1px solid rgba(112, 37, 232, 0.4)' : '1.5px solid #DDD6FE',
+            padding: '14px 14px 12px'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+              <Briefcase size={15} color="#0866F5" />
+              <span style={{ fontSize: '12px', fontWeight: 900, color: isDark ? '#FFFFFF' : '#101C50' }}>
+                Build Your Tech Career with <span style={{ color: '#0866F5' }}>PRMA Tech</span>
+              </span>
+            </div>
+            <p style={{ fontSize: '10px', color: isDark ? '#A1A1AA' : '#64748B', lineHeight: 1.45, margin: '0 0 10px 0' }}>
+              Remote internships, live engineering projects, 1-on-1 mentorship, and physical welcome kits.
+            </p>
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate('internships-jobs')}
+              style={{
+                width: '100%',
+                padding: '7px 0',
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, #0866F5 0%, #7025E8 100%)',
+                color: '#FFFFFF',
+                border: 'none',
+                fontSize: '11px',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '5px'
+              }}
+            >
+              <span>Apply for Remote Internship</span>
+              <ArrowRight size={11} />
+            </button>
           </div>
         </div>
       </div>

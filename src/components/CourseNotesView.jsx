@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import { 
   BookOpen, 
   ChevronRight, 
@@ -12,10 +13,10 @@ import {
   Calendar, 
   AlertCircle, 
   HelpCircle, 
-  ArrowRight,
-  ExternalLink,
-  PlusCircle,
-  Search
+  ArrowRight, 
+  ExternalLink, 
+  PlusCircle, 
+  Search 
 } from 'lucide-react';
 import { COURSES, getSubjectsForCourse, getCourseMeta, normalizeCourseKey } from '../data/coursesCatalog';
 import { BCA_NOTES_CATALOG } from '../data/bcaNotesData';
@@ -41,6 +42,8 @@ export default function CourseNotesView({
   const normKey = normalizeCourseKey(courseKey);
   const isBTech = normKey === 'B.Tech' || normKey === 'BTech';
   const courseMeta = getCourseMeta(normKey) || COURSES[0];
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   // Read URL query params on initial load
   const getInitialParam = (key, fallback) => {
@@ -772,11 +775,11 @@ export default function CourseNotesView({
       
       {/* 1. TOP CURRICULUM HEADER CARD */}
       <div style={{
-        backgroundColor: '#ffffff',
-        border: `1.5px solid ${courseMeta.borderColor}`,
+        backgroundColor: isDark ? '#0B0B0B' : '#ffffff',
+        border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : `1.5px solid ${courseMeta.borderColor}`,
         borderRadius: '24px',
         padding: '1.75rem',
-        boxShadow: '0 6px 24px rgba(35,30,25,0.04)',
+        boxShadow: isDark ? '0 8px 30px rgba(0, 0, 0, 0.6)' : '0 6px 24px rgba(35,30,25,0.04)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -805,7 +808,7 @@ export default function CourseNotesView({
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: '1.65rem',
                 fontWeight: 900,
-                color: '#FFFFFF',
+                color: isDark ? '#FFFFFF' : '#1F2421',
                 margin: 0
               }}>
                 AKTU {courseMeta.fullName} ({courseMeta.name}) Study Notes &amp; Quantum Series
@@ -822,7 +825,7 @@ export default function CourseNotesView({
                 AKTU Curriculum
               </span>
             </div>
-            <p style={{ color: '#64748B', fontSize: '0.88rem', fontWeight: 500, margin: '0.25rem 0 0 0' }}>
+            <p style={{ color: isDark ? '#A1A1AA' : '#64748B', fontSize: '0.88rem', fontWeight: 500, margin: '0.25rem 0 0 0' }}>
               {isBTech 
                 ? 'AKTU verified unit notes, Quantum series, and handwritten materials for all engineering branches.'
                 : courseMeta.description}
@@ -832,14 +835,14 @@ export default function CourseNotesView({
 
         {/* Course Tagline Badge */}
         <div style={{
-          backgroundColor: 'transparent',
-          border: '1px solid #E8E2D5',
+          backgroundColor: isDark ? 'rgba(255, 184, 0, 0.08)' : 'transparent',
+          border: isDark ? '1px solid rgba(255, 184, 0, 0.25)' : '1px solid #E8E2D5',
           borderRadius: '14px',
           padding: '0.6rem 1.15rem',
           fontFamily: "'Kalam', cursive",
           fontSize: '0.98rem',
           fontWeight: 700,
-          color: '#B37D28',
+          color: isDark ? '#FFB800' : '#B37D28',
           display: 'flex',
           alignItems: 'center',
           gap: '0.4rem'
@@ -851,11 +854,11 @@ export default function CourseNotesView({
 
       {/* 2. NAVIGATION FILTERS BAR */}
       <div style={{
-        backgroundColor: '#ffffff',
-        border: '1.5px solid #E8E2D5',
+        backgroundColor: isDark ? '#0B0B0B' : '#ffffff',
+        border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
         borderRadius: '20px',
         padding: '1.25rem',
-        boxShadow: '0 4px 16px rgba(35,30,25,0.03)',
+        boxShadow: isDark ? '0 8px 30px rgba(0, 0, 0, 0.6)' : '0 4px 16px rgba(35,30,25,0.03)',
         display: 'flex',
         flexDirection: 'column',
         gap: '1.25rem'
@@ -863,7 +866,7 @@ export default function CourseNotesView({
         {/* SELECT YEAR (B.Tech & BCA) */}
         {(isBTech || (courseMeta.years && courseMeta.years.length > 0)) && (
           <div>
-            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: isDark ? '#A1A1AA' : '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
               Select Year
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -887,9 +890,9 @@ export default function CourseNotesView({
                     style={{
                       padding: '0.45rem 1.15rem',
                       borderRadius: '9999px',
-                      border: isSel ? `2px solid ${courseMeta.btnColor}` : '1.5px solid #E2E8F0',
-                      backgroundColor: isSel ? courseMeta.btnColor : '#FAF7F2',
-                      color: isSel ? '#ffffff' : '#334155',
+                      border: isSel ? `2px solid ${courseMeta.btnColor}` : (isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #E2E8F0'),
+                      backgroundColor: isSel ? courseMeta.btnColor : (isDark ? '#141414' : '#FAF7F2'),
+                      color: isSel ? '#ffffff' : (isDark ? '#D4D4D8' : '#334155'),
                       fontWeight: isSel ? 800 : 600,
                       fontSize: '0.85rem',
                       cursor: 'pointer',
@@ -907,8 +910,8 @@ export default function CourseNotesView({
 
         {/* B.Tech: SELECT BRANCH */}
         {isBTech && (
-          <div style={{ borderTop: '1px solid #F1F5F9', paddingTop: '1rem' }}>
-            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+          <div style={{ borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #F1F5F9', paddingTop: '1rem' }}>
+            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: isDark ? '#A1A1AA' : '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
               Select Branch
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
@@ -927,9 +930,9 @@ export default function CourseNotesView({
                     style={{
                       padding: '0.38rem 1rem',
                       borderRadius: '9999px',
-                      border: isSel ? `1.5px solid ${courseMeta.badgeColor}` : '1px solid #E2E8F0',
-                      backgroundColor: isSel ? courseMeta.badgeColor + '15' : '#ffffff',
-                      color: isSel ? courseMeta.badgeColor : '#475569',
+                      border: isSel ? `1.5px solid ${courseMeta.badgeColor}` : (isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #E2E8F0'),
+                      backgroundColor: isSel ? courseMeta.badgeColor + '15' : (isDark ? '#141414' : '#ffffff'),
+                      color: isSel ? courseMeta.badgeColor : (isDark ? '#D4D4D8' : '#475569'),
                       fontWeight: isSel ? 800 : 600,
                       fontSize: '0.82rem',
                       cursor: 'pointer',
@@ -945,8 +948,8 @@ export default function CourseNotesView({
         )}
 
         {/* SEMESTER SELECTION (Common to B.Tech, BCA, MCA, MBA, B.Pharm) */}
-        <div style={isBTech ? { borderTop: '1px solid #F1F5F9', paddingTop: '1rem' } : {}}>
-          <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+        <div style={isBTech ? { borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #F1F5F9', paddingTop: '1rem' } : {}}>
+          <div style={{ fontSize: '0.76rem', fontWeight: 800, color: isDark ? '#A1A1AA' : '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
             Select Semester
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
@@ -970,9 +973,9 @@ export default function CourseNotesView({
                   style={{
                     padding: '0.45rem 1.15rem',
                     borderRadius: '9999px',
-                    border: isSel ? `2px solid ${courseMeta.btnColor}` : '1.5px solid #E2E8F0',
-                    backgroundColor: isSel ? courseMeta.btnColor : '#FAF7F2',
-                    color: isSel ? '#ffffff' : '#334155',
+                    border: isSel ? `2px solid ${courseMeta.btnColor}` : (isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #E2E8F0'),
+                    backgroundColor: isSel ? courseMeta.btnColor : (isDark ? '#141414' : '#FAF7F2'),
+                    color: isSel ? '#ffffff' : (isDark ? '#D4D4D8' : '#334155'),
                     fontWeight: isSel ? 800 : 600,
                     fontSize: '0.85rem',
                     cursor: 'pointer',
@@ -989,8 +992,8 @@ export default function CourseNotesView({
 
         {/* MBA: Specialization Track */}
         {courseMeta.specializations && !isBTech && (
-          <div style={{ borderTop: '1px solid #F1F5F9', paddingTop: '1rem' }}>
-            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+          <div style={{ borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #F1F5F9', paddingTop: '1rem' }}>
+            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: isDark ? '#A1A1AA' : '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
               Specialization Track
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
@@ -1007,9 +1010,9 @@ export default function CourseNotesView({
                     style={{
                       padding: '0.35rem 0.95rem',
                       borderRadius: '9999px',
-                      border: isSel ? `1.5px solid ${courseMeta.badgeColor}` : '1px solid #E2E8F0',
-                      backgroundColor: isSel ? courseMeta.badgeColor + '15' : '#ffffff',
-                      color: isSel ? courseMeta.badgeColor : '#475569',
+                      border: isSel ? `1.5px solid ${courseMeta.badgeColor}` : (isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #E2E8F0'),
+                      backgroundColor: isSel ? courseMeta.badgeColor + '15' : (isDark ? '#141414' : '#ffffff'),
+                      color: isSel ? courseMeta.badgeColor : (isDark ? '#D4D4D8' : '#475569'),
                       fontWeight: isSel ? 800 : 600,
                       fontSize: '0.82rem',
                       cursor: 'pointer',
@@ -1026,8 +1029,8 @@ export default function CourseNotesView({
 
         {/* B.Pharm: Resource Category */}
         {courseMeta.resourceTypes && !isBTech && (
-          <div style={{ borderTop: '1px solid #F1F5F9', paddingTop: '1rem' }}>
-            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+          <div style={{ borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #F1F5F9', paddingTop: '1rem' }}>
+            <div style={{ fontSize: '0.76rem', fontWeight: 800, color: isDark ? '#A1A1AA' : '#64748B', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
               Resource Category
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
@@ -1043,9 +1046,9 @@ export default function CourseNotesView({
                     style={{
                       padding: '0.38rem 1rem',
                       borderRadius: '9999px',
-                      border: isSel ? `1.5px solid ${courseMeta.btnColor}` : '1px solid #E2E8F0',
-                      backgroundColor: isSel ? courseMeta.btnColor : '#ffffff',
-                      color: isSel ? '#ffffff' : '#475569',
+                      border: isSel ? `1.5px solid ${courseMeta.btnColor}` : (isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #E2E8F0'),
+                      backgroundColor: isSel ? courseMeta.btnColor : (isDark ? '#141414' : '#ffffff'),
+                      color: isSel ? '#ffffff' : (isDark ? '#D4D4D8' : '#475569'),
                       fontWeight: isSel ? 800 : 600,
                       fontSize: '0.82rem',
                       cursor: 'pointer',
@@ -1071,16 +1074,16 @@ export default function CourseNotesView({
 
         {/* LEFT COLUMN: Subjects List */}
         <div style={{
-          backgroundColor: '#ffffff',
-          border: '1.5px solid #E8E2D5',
+          backgroundColor: isDark ? '#0B0B0B' : '#ffffff',
+          border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
           borderRadius: '20px',
           padding: '1.25rem',
-          boxShadow: '0 4px 16px rgba(35,30,25,0.03)'
+          boxShadow: isDark ? '0 8px 30px rgba(0, 0, 0, 0.6)' : '0 4px 16px rgba(35,30,25,0.03)'
         }}>
           <div style={{
             fontSize: '0.82rem',
             fontWeight: 800,
-            color: '#FFFFFF',
+            color: isDark ? '#FFFFFF' : '#1F2421',
             letterSpacing: '0.03em',
             textTransform: 'uppercase',
             marginBottom: '0.85rem',
@@ -1089,7 +1092,7 @@ export default function CourseNotesView({
             justifyContent: 'space-between'
           }}>
             <span>Subjects ({filteredSubjects.length})</span>
-            <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.72rem', color: isDark ? '#A1A1AA' : '#64748B', fontWeight: 600 }}>
               {isBTech ? `${activeBranch} • ${activeYear}` : activeSemester}
             </span>
           </div>
@@ -1107,13 +1110,14 @@ export default function CourseNotesView({
                   padding: '0.45rem 0.75rem 0.45rem 2rem',
                   fontSize: '0.8rem',
                   borderRadius: '10px',
-                  border: '1px solid #E2E8F0',
-                  backgroundColor: 'transparent',
+                  border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid #E2E8F0',
+                  backgroundColor: isDark ? '#141414' : 'transparent',
+                  color: isDark ? '#FFFFFF' : '#1F2421',
                   outline: 'none',
                   boxSizing: 'border-box'
                 }}
               />
-              <Search size={14} style={{ position: 'absolute', left: '0.65rem', top: '50%', transform: 'translateY(-50%)', color: '#94A3B8' }} />
+              <Search size={14} style={{ position: 'absolute', left: '0.65rem', top: '50%', transform: 'translateY(-50%)', color: isDark ? '#A1A1AA' : '#94A3B8' }} />
             </div>
           )}
 
@@ -1135,8 +1139,8 @@ export default function CourseNotesView({
                     style={{
                       padding: '0.85rem 1rem',
                       borderRadius: '14px',
-                      border: isSel ? `1.5px solid ${courseMeta.btnColor}` : '1px solid #E2E8F0',
-                      backgroundColor: isSel ? (courseMeta.btnColor + '0D') : '#FAF7F2',
+                      border: isSel ? `1.5px solid ${courseMeta.btnColor}` : (isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E2E8F0'),
+                      backgroundColor: isSel ? (courseMeta.btnColor + (isDark ? '25' : '0D')) : (isDark ? '#141414' : '#FAF7F2'),
                       cursor: 'pointer',
                       transition: 'all 0.2s ease'
                     }}
@@ -1145,7 +1149,7 @@ export default function CourseNotesView({
                       <span style={{
                         fontSize: '0.72rem',
                         fontWeight: 800,
-                        color: isSel ? courseMeta.btnColor : '#64748B',
+                        color: isSel ? courseMeta.btnColor : (isDark ? '#A1A1AA' : '#64748B'),
                         fontFamily: 'monospace'
                       }}>
                         {sub.code}
@@ -1155,7 +1159,7 @@ export default function CourseNotesView({
                     <div style={{
                       fontSize: '0.88rem',
                       fontWeight: isSel ? 800 : 600,
-                      color: isSel ? '#1F2421' : '#334155',
+                      color: isSel ? (isDark ? '#FFFFFF' : '#1F2421') : (isDark ? '#D4D4D8' : '#334155'),
                       lineHeight: 1.3
                     }}>
                       {sub.name}
@@ -1182,11 +1186,11 @@ export default function CourseNotesView({
           {/* Active Subject Banner */}
           {activeSubject && (
             <div style={{
-              backgroundColor: '#ffffff',
-              border: '1.5px solid #E8E2D5',
+              backgroundColor: isDark ? '#0B0B0B' : '#ffffff',
+              border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
               borderRadius: '20px',
               padding: '1.25rem 1.5rem',
-              boxShadow: '0 4px 16px rgba(35,30,25,0.03)',
+              boxShadow: isDark ? '0 8px 30px rgba(0, 0, 0, 0.6)' : '0 4px 16px rgba(35,30,25,0.03)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -1206,7 +1210,7 @@ export default function CourseNotesView({
                 <h3 style={{
                   fontSize: '1.35rem',
                   fontWeight: 900,
-                  color: '#FFFFFF',
+                  color: isDark ? '#FFFFFF' : '#1F2421',
                   margin: '0.15rem 0 0.35rem 0'
                 }}>
                   {activeSubject.name}
@@ -1232,20 +1236,20 @@ export default function CourseNotesView({
                       gap: '0.4rem',
                       padding: '0.35rem 0.85rem',
                       borderRadius: '999px',
-                      backgroundColor: '#FDF6E8',
-                      border: '1.5px solid #C88D2D',
-                      color: '#1C1E21',
+                      backgroundColor: isDark ? 'rgba(255, 184, 0, 0.12)' : '#FDF6E8',
+                      border: isDark ? '1.5px solid rgba(255, 184, 0, 0.4)' : '1.5px solid #C88D2D',
+                      color: isDark ? '#FFB800' : '#1C1E21',
                       fontSize: '0.78rem',
                       fontWeight: 700,
                       cursor: 'pointer',
                       transition: 'all 0.15s ease'
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FAF0D7'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FDF6E8'; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = isDark ? 'rgba(255, 184, 0, 0.2)' : '#FAF0D7'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = isDark ? 'rgba(255, 184, 0, 0.12)' : '#FDF6E8'; }}
                   >
-                    <Sparkles size={13} style={{ color: '#C88D2D' }} />
+                    <Sparkles size={13} style={{ color: isDark ? '#FFB800' : '#C88D2D' }} />
                     <span>Open Subject Hub (Notes, PYQs & Syllabus)</span>
-                    <ArrowRight size={13} style={{ color: '#C88D2D' }} />
+                    <ArrowRight size={13} style={{ color: isDark ? '#FFB800' : '#C88D2D' }} />
                   </button>
                 )}
               </div>
@@ -1266,9 +1270,9 @@ export default function CourseNotesView({
                         width: (u === 'All' || u === 'Extra') ? 'auto' : '38px',
                         height: '38px',
                         borderRadius: (u === 'All' || u === 'Extra') ? '9999px' : '50%',
-                        border: isUnitSel ? `2px solid ${courseMeta.btnColor}` : '1.5px solid #E2E8F0',
-                        backgroundColor: isUnitSel ? courseMeta.btnColor : '#FAF7F2',
-                        color: isUnitSel ? '#ffffff' : '#334155',
+                        border: isUnitSel ? `2px solid ${courseMeta.btnColor}` : (isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #E2E8F0'),
+                        backgroundColor: isUnitSel ? courseMeta.btnColor : (isDark ? '#141414' : '#FAF7F2'),
+                        color: isUnitSel ? '#ffffff' : (isDark ? '#D4D4D8' : '#334155'),
                         fontWeight: 800,
                         fontSize: '0.82rem',
                         cursor: 'pointer',
@@ -1287,7 +1291,7 @@ export default function CourseNotesView({
 
           {/* Loading Indicator */}
           {isLoadingNotes && (
-            <div style={{ padding: '2rem', textAlign: 'center', color: '#64748B', fontSize: '0.88rem', fontWeight: 600 }}>
+            <div style={{ padding: '2rem', textAlign: 'center', color: isDark ? '#A1A1AA' : '#64748B', fontSize: '0.88rem', fontWeight: 600 }}>
               Loading study resources...
             </div>
           )}
@@ -1310,11 +1314,11 @@ export default function CourseNotesView({
                   <div
                     key={note.id || idx}
                     style={{
-                      backgroundColor: '#ffffff',
-                      border: '1.5px solid #E8E2D5',
+                      backgroundColor: isDark ? '#0B0B0B' : '#ffffff',
+                      border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
                       borderRadius: '18px',
                       padding: '1.25rem',
-                      boxShadow: '0 4px 14px rgba(35,30,25,0.03)',
+                      boxShadow: isDark ? '0 4px 14px rgba(0,0,0,0.5)' : '0 4px 14px rgba(35,30,25,0.03)',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'space-between',
@@ -1333,11 +1337,11 @@ export default function CourseNotesView({
                         }}>
                           {unitLabel}
                         </span>
-                        <span style={{ fontSize: '0.72rem', color: '#64748B', fontWeight: 600 }}>
+                        <span style={{ fontSize: '0.72rem', color: isDark ? '#A1A1AA' : '#64748B', fontWeight: 600 }}>
                           {providerName}
                         </span>
                       </div>
-                      <div style={{ fontSize: '0.94rem', fontWeight: 800, color: '#FFFFFF', lineHeight: 1.3 }}>
+                      <div style={{ fontSize: '0.94rem', fontWeight: 800, color: isDark ? '#FFFFFF' : '#1F2421', lineHeight: 1.3 }}>
                         {note.title || `${activeSubject?.name} Notes`}
                       </div>
                     </div>
@@ -1361,8 +1365,8 @@ export default function CourseNotesView({
                             padding: '0.5rem',
                             borderRadius: '8px',
                             border: 'none',
-                            backgroundColor: '#1F2421',
-                            color: '#ffffff',
+                            backgroundColor: isDark ? '#FFB800' : '#861820',
+                            color: isDark ? '#000000' : '#ffffff',
                             fontWeight: 700,
                             fontSize: '0.8rem',
                             cursor: 'pointer',
@@ -1385,9 +1389,9 @@ export default function CourseNotesView({
                           style={{
                             padding: '0.5rem 0.75rem',
                             borderRadius: '8px',
-                            border: '1.5px solid #E2E8F0',
-                            backgroundColor: '#ffffff',
-                            color: '#475569',
+                            border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #E2E8F0',
+                            backgroundColor: isDark ? '#141414' : '#ffffff',
+                            color: isDark ? '#D4D4D8' : '#475569',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -1406,12 +1410,12 @@ export default function CourseNotesView({
             </div>
           ) : !isLoadingNotes && (
             <div style={{
-              backgroundColor: '#ffffff',
-              border: '1.5px dashed #FCD34D',
+              backgroundColor: isDark ? '#0B0B0B' : '#ffffff',
+              border: isDark ? '1.5px dashed rgba(255, 184, 0, 0.35)' : '1.5px dashed #FCD34D',
               borderRadius: '20px',
               padding: '3rem 2rem',
               textAlign: 'center',
-              boxShadow: '0 4px 16px rgba(122,35,39,0.03)',
+              boxShadow: isDark ? '0 8px 30px rgba(0, 0, 0, 0.6)' : '0 4px 16px rgba(122,35,39,0.03)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -1425,12 +1429,12 @@ export default function CourseNotesView({
                 style={{ fontSize: '0.9rem', padding: '0.4rem 1rem' }} 
               />
 
-              <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>
+              <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: isDark ? '#FFFFFF' : '#1F2421', margin: 0 }}>
                 {activeUnit !== 'All' 
                   ? `Unit ${activeUnit} Notes for ${activeSubject?.name || 'this subject'}`
                   : `Lecture Notes for ${activeSubject?.name || 'this subject'}`}
               </h4>
-              <p style={{ color: '#64748B', fontSize: '0.85rem', maxWidth: '440px', margin: 0, lineHeight: 1.5 }}>
+              <p style={{ color: isDark ? '#A1A1AA' : '#64748B', fontSize: '0.85rem', maxWidth: '440px', margin: 0, lineHeight: 1.5 }}>
                 {String(activeUnit).toLowerCase() === 'extra'
                   ? `Standalone extra resources (formula sheets, complete sets) for ${activeSubject?.name || 'this subject'} are being prepared and will be uploaded before the university exam.`
                   : activeUnit !== 'All' 
@@ -1445,15 +1449,15 @@ export default function CourseNotesView({
                     padding: '0.5rem 1.25rem',
                     borderRadius: '10px',
                     border: 'none',
-                    backgroundColor: courseMeta.btnColor,
-                    color: '#ffffff',
+                    backgroundColor: isDark ? '#FFB800' : courseMeta.btnColor,
+                    color: isDark ? '#000000' : '#ffffff',
                     fontWeight: 700,
                     fontSize: '0.85rem',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.4rem',
-                    boxShadow: `0 4px 12px ${courseMeta.badgeColor}35`
+                    boxShadow: isDark ? '0 4px 12px rgba(255, 184, 0, 0.3)' : `0 4px 12px ${courseMeta.badgeColor}35`
                   }}
                 >
                   <PlusCircle size={15} /> Request Notes for this Subject

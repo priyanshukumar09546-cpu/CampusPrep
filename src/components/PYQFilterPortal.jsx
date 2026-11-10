@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useTheme } from '../context/ThemeContext';
 import { 
   Filter, 
   RotateCcw, 
@@ -50,6 +51,9 @@ export default function PYQFilterPortal({
   onNavigate,
   onOpenAuth
 }) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   // Read initial query params from URL
   const getParam = (key, fallback = 'ALL') => {
     try {
@@ -545,15 +549,15 @@ export default function PYQFilterPortal({
 
   return (
     <div style={{ backgroundColor: 'transparent', minHeight: '100vh', padding: '1.25rem 0 3.5rem 0' }}>
-      <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 1rem' }}>
+      <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', paddingInline: 'clamp(1rem, 2.5vw, 2.5rem)' }}>
 
         {/* 1. HERO BRANDING & PORTAL HEADER */}
         <div style={{
-          backgroundColor: '#ffffff',
+          backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
           borderRadius: '24px',
-          border: '1.5px solid #E8E2D5',
+          border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
           padding: '1.75rem 2rem',
-          boxShadow: '0 4px 20px rgba(35, 30, 25, 0.03)',
+          boxShadow: isDark ? '0 8px 30px rgba(0, 0, 0, 0.6)' : '0 4px 20px rgba(35, 30, 25, 0.03)',
           marginBottom: '1.5rem',
           display: 'flex',
           alignItems: 'center',
@@ -564,8 +568,8 @@ export default function PYQFilterPortal({
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
               <span style={{
-                backgroundColor: '#7A2327',
-                color: '#ffffff',
+                backgroundColor: isDark ? '#FFB800' : '#861820',
+                color: isDark ? '#000000' : '#ffffff',
                 fontSize: '0.74rem',
                 fontWeight: 800,
                 padding: '0.2rem 0.65rem',
@@ -576,9 +580,9 @@ export default function PYQFilterPortal({
                 ProfessorVirus Academic Archive
               </span>
               <span style={{
-                backgroundColor: '#FEF3C7',
-                color: '#92400E',
-                border: '1px solid #FCD34D',
+                backgroundColor: isDark ? 'rgba(255, 184, 0, 0.12)' : '#FEF3C7',
+                color: isDark ? '#FFB800' : '#92400E',
+                border: isDark ? '1px solid rgba(255, 184, 0, 0.3)' : '1px solid #FCD34D',
                 fontSize: '0.74rem',
                 fontWeight: 700,
                 padding: '0.2rem 0.65rem',
@@ -591,14 +595,14 @@ export default function PYQFilterPortal({
               fontFamily: "'Outfit', sans-serif",
               fontSize: 'clamp(1.5rem, 3vw, 2.1rem)',
               fontWeight: 900,
-              color: '#1F2421',
+              color: isDark ? '#FFFFFF' : '#1F2421',
               margin: '0 0 0.35rem 0',
               lineHeight: 1.2
             }}>
               {dynamicPyqHeading}
             </h1>
             <p style={{
-              color: '#64748B',
+              color: isDark ? '#A1A1AA' : '#64748B',
               fontSize: '0.92rem',
               margin: 0,
               maxWidth: '680px',
@@ -610,8 +614,8 @@ export default function PYQFilterPortal({
 
           {/* Quick Stats Pill */}
           <div style={{
-            backgroundColor: 'transparent',
-            border: '1.5px solid #E8E2D5',
+            backgroundColor: isDark ? 'rgba(255, 255, 255, 0.03)' : 'transparent',
+            border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1.5px solid #E8E2D5',
             borderRadius: '16px',
             padding: '0.75rem 1.25rem',
             display: 'flex',
@@ -622,8 +626,8 @@ export default function PYQFilterPortal({
               width: '42px',
               height: '42px',
               borderRadius: '12px',
-              backgroundColor: '#7A2327',
-              color: '#ffffff',
+              backgroundColor: isDark ? '#FFB800' : '#861820',
+              color: isDark ? '#000000' : '#ffffff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
@@ -631,10 +635,10 @@ export default function PYQFilterPortal({
               <FileText size={20} />
             </div>
             <div>
-              <div style={{ fontSize: '1.15rem', fontWeight: 900, color: '#1F2421', lineHeight: 1.1 }}>
+              <div style={{ fontSize: '1.15rem', fontWeight: 900, color: isDark ? '#FFFFFF' : '#1F2421', lineHeight: 1.1 }}>
                 {papers.length}
               </div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.03em' }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: isDark ? '#A1A1AA' : '#64748B', textTransform: 'uppercase', letterSpacing: '0.03em' }}>
                 Matching Papers
               </div>
             </div>
@@ -643,11 +647,11 @@ export default function PYQFilterPortal({
 
         {/* 2. DYNAMIC FILTERS PANEL (RESPONSIVE DROPDOWNS) */}
         <div style={{
-          backgroundColor: '#ffffff',
+          backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
           borderRadius: '24px',
-          border: '1.5px solid #E8E2D5',
+          border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
           padding: '1.5rem',
-          boxShadow: '0 4px 18px rgba(35, 30, 25, 0.03)',
+          boxShadow: isDark ? '0 8px 30px rgba(0, 0, 0, 0.6)' : '0 4px 18px rgba(35, 30, 25, 0.03)',
           marginBottom: '1.75rem'
         }}>
           {/* Filter Header & Actions */}
@@ -667,11 +671,11 @@ export default function PYQFilterPortal({
                 height: '32px',
                 borderRadius: '8px',
                 backgroundColor: 'transparent',
-                border: '1px solid #E8E2D5',
+                border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid #E8E2D5',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#7A2327'
+                color: isDark ? '#FFB800' : '#861820'
               }}>
                 <Filter size={16} />
               </div>
@@ -679,7 +683,7 @@ export default function PYQFilterPortal({
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: '1.15rem',
                 fontWeight: 800,
-                color: '#1F2421',
+                color: isDark ? '#FFFFFF' : '#1F2421',
                 margin: 0
               }}>
                 Filter Question Papers
@@ -696,8 +700,8 @@ export default function PYQFilterPortal({
                   gap: '0.4rem',
                   padding: '0.4rem 0.9rem',
                   borderRadius: '9999px',
-                  border: '1.5px solid #FECACA',
-                  backgroundColor: '#FEF2F2',
+                  border: isDark ? '1.5px solid rgba(239, 68, 68, 0.4)' : '1.5px solid #FECACA',
+                  backgroundColor: isDark ? 'rgba(239, 68, 68, 0.15)' : '#FEF2F2',
                   color: '#EF4444',
                   fontSize: '0.82rem',
                   fontWeight: 700,
@@ -721,7 +725,7 @@ export default function PYQFilterPortal({
 
             {/* 1. COURSE FILTER */}
             <div>
-              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#475569', marginBottom: '0.35rem', display: 'block' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: isDark ? '#A1A1AA' : '#475569', marginBottom: '0.35rem', display: 'block' }}>
                 1. Course
               </label>
               <div style={{ position: 'relative' }}>
@@ -732,27 +736,27 @@ export default function PYQFilterPortal({
                     width: '100%',
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
-                    border: '1.5px solid #CBD5E1',
-                    backgroundColor: 'transparent',
+                    border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                    backgroundColor: isDark ? '#141414' : 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
-                    color: '#1F2421',
+                    color: isDark ? '#FFFFFF' : '#1F2421',
                     outline: 'none',
                     appearance: 'none',
                     cursor: 'pointer'
                   }}
                 >
                   {availableCourses.map(c => (
-                    <option key={c.key} value={c.key}>{c.name}</option>
+                    <option key={c.key} value={c.key} style={{ backgroundColor: isDark ? '#141414' : '#FFFFFF', color: isDark ? '#FFFFFF' : '#1F2421' }}>{c.name}</option>
                   ))}
                 </select>
-                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#64748B' }} />
+                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: isDark ? '#A1A1AA' : '#64748B' }} />
               </div>
             </div>
 
             {/* 2. BRANCH FILTER */}
             <div>
-              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#475569', marginBottom: '0.35rem', display: 'block' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: isDark ? '#A1A1AA' : '#475569', marginBottom: '0.35rem', display: 'block' }}>
                 2. Branch
               </label>
               <div style={{ position: 'relative' }}>
@@ -763,27 +767,27 @@ export default function PYQFilterPortal({
                     width: '100%',
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
-                    border: '1.5px solid #CBD5E1',
-                    backgroundColor: 'transparent',
+                    border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                    backgroundColor: isDark ? '#141414' : 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
-                    color: '#1F2421',
+                    color: isDark ? '#FFFFFF' : '#1F2421',
                     outline: 'none',
                     appearance: 'none',
                     cursor: 'pointer'
                   }}
                 >
                   {availableBranches.map(b => (
-                    <option key={b.id} value={b.id}>{b.name}</option>
+                    <option key={b.id} value={b.id} style={{ backgroundColor: isDark ? '#141414' : '#FFFFFF', color: isDark ? '#FFFFFF' : '#1F2421' }}>{b.name}</option>
                   ))}
                 </select>
-                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#64748B' }} />
+                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: isDark ? '#A1A1AA' : '#64748B' }} />
               </div>
             </div>
 
             {/* 3. ACADEMIC YEAR OF STUDY FILTER */}
             <div>
-              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#475569', marginBottom: '0.35rem', display: 'block' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: isDark ? '#A1A1AA' : '#475569', marginBottom: '0.35rem', display: 'block' }}>
                 3. Year of Study
               </label>
               <div style={{ position: 'relative' }}>
@@ -794,27 +798,27 @@ export default function PYQFilterPortal({
                     width: '100%',
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
-                    border: '1.5px solid #CBD5E1',
-                    backgroundColor: 'transparent',
+                    border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                    backgroundColor: isDark ? '#141414' : 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
-                    color: '#1F2421',
+                    color: isDark ? '#FFFFFF' : '#1F2421',
                     outline: 'none',
                     appearance: 'none',
                     cursor: 'pointer'
                   }}
                 >
                   {availableYears.map(y => (
-                    <option key={y.id} value={y.id}>{y.name}</option>
+                    <option key={y.id} value={y.id} style={{ backgroundColor: isDark ? '#141414' : '#FFFFFF', color: isDark ? '#FFFFFF' : '#1F2421' }}>{y.name}</option>
                   ))}
                 </select>
-                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#64748B' }} />
+                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: isDark ? '#A1A1AA' : '#64748B' }} />
               </div>
             </div>
 
             {/* 4. SEMESTER FILTER */}
             <div>
-              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#475569', marginBottom: '0.35rem', display: 'block' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: isDark ? '#A1A1AA' : '#475569', marginBottom: '0.35rem', display: 'block' }}>
                 4. Semester
               </label>
               <div style={{ position: 'relative' }}>
@@ -825,27 +829,27 @@ export default function PYQFilterPortal({
                     width: '100%',
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
-                    border: '1.5px solid #CBD5E1',
-                    backgroundColor: 'transparent',
+                    border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                    backgroundColor: isDark ? '#141414' : 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
-                    color: '#1F2421',
+                    color: isDark ? '#FFFFFF' : '#1F2421',
                     outline: 'none',
                     appearance: 'none',
                     cursor: 'pointer'
                   }}
                 >
                   {availableSemesters.map(s => (
-                    <option key={s.id} value={s.id}>{s.name}</option>
+                    <option key={s.id} value={s.id} style={{ backgroundColor: isDark ? '#141414' : '#FFFFFF', color: isDark ? '#FFFFFF' : '#1F2421' }}>{s.name}</option>
                   ))}
                 </select>
-                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#64748B' }} />
+                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: isDark ? '#A1A1AA' : '#64748B' }} />
               </div>
             </div>
 
             {/* 5. SUBJECT FILTER */}
             <div>
-              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#475569', marginBottom: '0.35rem', display: 'block' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: isDark ? '#A1A1AA' : '#475569', marginBottom: '0.35rem', display: 'block' }}>
                 5. Subject
               </label>
               <div style={{ position: 'relative' }}>
@@ -856,11 +860,11 @@ export default function PYQFilterPortal({
                     width: '100%',
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
-                    border: '1.5px solid #CBD5E1',
-                    backgroundColor: 'transparent',
+                    border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                    backgroundColor: isDark ? '#141414' : 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
-                    color: '#1F2421',
+                    color: isDark ? '#FFFFFF' : '#1F2421',
                     outline: 'none',
                     appearance: 'none',
                     cursor: 'pointer',
@@ -868,16 +872,16 @@ export default function PYQFilterPortal({
                   }}
                 >
                   {availableSubjects.map(sub => (
-                    <option key={sub.id} value={sub.id}>{sub.label || sub.name}</option>
+                    <option key={sub.id} value={sub.id} style={{ backgroundColor: isDark ? '#141414' : '#FFFFFF', color: isDark ? '#FFFFFF' : '#1F2421' }}>{sub.label || sub.name}</option>
                   ))}
                 </select>
-                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#64748B' }} />
+                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: isDark ? '#A1A1AA' : '#64748B' }} />
               </div>
             </div>
 
             {/* 6. EXAM YEAR FILTER */}
             <div>
-              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#475569', marginBottom: '0.35rem', display: 'block' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: isDark ? '#A1A1AA' : '#475569', marginBottom: '0.35rem', display: 'block' }}>
                 6. Examination Year
               </label>
               <div style={{ position: 'relative' }}>
@@ -888,29 +892,29 @@ export default function PYQFilterPortal({
                     width: '100%',
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
-                    border: '1.5px solid #CBD5E1',
-                    backgroundColor: 'transparent',
+                    border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                    backgroundColor: isDark ? '#141414' : 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
-                    color: '#1F2421',
+                    color: isDark ? '#FFFFFF' : '#1F2421',
                     outline: 'none',
                     appearance: 'none',
                     cursor: 'pointer'
                   }}
                 >
                   {availableExamYears.map(yr => (
-                    <option key={yr} value={yr}>
+                    <option key={yr} value={yr} style={{ backgroundColor: isDark ? '#141414' : '#FFFFFF', color: isDark ? '#FFFFFF' : '#1F2421' }}>
                       {yr === 'ALL' ? 'All Exam Years' : yr}
                     </option>
                   ))}
                 </select>
-                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#64748B' }} />
+                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: isDark ? '#A1A1AA' : '#64748B' }} />
               </div>
             </div>
 
             {/* 7. EXAM TYPE FILTER */}
             <div>
-              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#475569', marginBottom: '0.35rem', display: 'block' }}>
+              <label style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: isDark ? '#A1A1AA' : '#475569', marginBottom: '0.35rem', display: 'block' }}>
                 7. Exam Type
               </label>
               <div style={{ position: 'relative' }}>
@@ -921,23 +925,23 @@ export default function PYQFilterPortal({
                     width: '100%',
                     padding: '0.55rem 2rem 0.55rem 0.85rem',
                     borderRadius: '12px',
-                    border: '1.5px solid #CBD5E1',
-                    backgroundColor: 'transparent',
+                    border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                    backgroundColor: isDark ? '#141414' : 'transparent',
                     fontSize: '0.86rem',
                     fontWeight: 700,
-                    color: '#1F2421',
+                    color: isDark ? '#FFFFFF' : '#1F2421',
                     outline: 'none',
                     appearance: 'none',
                     cursor: 'pointer'
                   }}
                 >
                   {availableExamTypes.map(type => (
-                    <option key={type} value={type}>
+                    <option key={type} value={type} style={{ backgroundColor: isDark ? '#141414' : '#FFFFFF', color: isDark ? '#FFFFFF' : '#1F2421' }}>
                       {type === 'ALL' ? 'All Exam Types' : type}
                     </option>
                   ))}
                 </select>
-                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#64748B' }} />
+                <ChevronDown size={14} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: isDark ? '#A1A1AA' : '#64748B' }} />
               </div>
             </div>
 
@@ -948,9 +952,9 @@ export default function PYQFilterPortal({
             position: 'relative',
             marginTop: '0.5rem',
             paddingTop: '0.85rem',
-            borderTop: '1px solid #F1F5F9'
+            borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #F1F5F9'
           }}>
-            <Search size={16} style={{ position: 'absolute', left: '12px', top: 'calc(50% + 4px)', transform: 'translateY(-50%)', color: '#64748B' }} />
+            <Search size={16} style={{ position: 'absolute', left: '12px', top: 'calc(50% + 4px)', transform: 'translateY(-50%)', color: isDark ? '#A1A1AA' : '#64748B' }} />
             <input
               type="text"
               placeholder="Instant search by paper name, code (e.g. BCS301), session, or exam type..."
@@ -963,15 +967,15 @@ export default function PYQFilterPortal({
                 width: '100%',
                 padding: '0.55rem 2.2rem 0.55rem 2.2rem',
                 borderRadius: '12px',
-                border: '1.5px solid #E2E8F0',
-                backgroundColor: 'transparent',
+                border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #E2E8F0',
+                backgroundColor: isDark ? '#141414' : 'transparent',
                 fontSize: '0.86rem',
-                color: '#1F2421',
+                color: isDark ? '#FFFFFF' : '#1F2421',
                 outline: 'none',
                 transition: 'border-color 0.2s ease'
               }}
-              onFocus={(e) => e.target.style.borderColor = '#7A2327'}
-              onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
+              onFocus={(e) => e.target.style.borderColor = isDark ? '#FFB800' : '#861820'}
+              onBlur={(e) => e.target.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : '#E2E8F0'}
             />
             {searchQuery && (
               <button
@@ -986,7 +990,7 @@ export default function PYQFilterPortal({
                   transform: 'translateY(-50%)',
                   background: 'none',
                   border: 'none',
-                  color: '#94A3B8',
+                  color: isDark ? '#A1A1AA' : '#94A3B8',
                   cursor: 'pointer',
                   padding: '2px'
                 }}
@@ -1007,15 +1011,15 @@ export default function PYQFilterPortal({
           gap: '0.75rem'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '0.92rem', fontWeight: 800, color: '#1F2421' }}>
+            <span style={{ fontSize: '0.92rem', fontWeight: 800, color: isDark ? '#FFFFFF' : '#1F2421' }}>
               Available Question Papers
             </span>
             {papers.length === 0 ? (
               <ComingSoonBadge variant="chip" />
             ) : (
               <span style={{
-                backgroundColor: '#7A2327',
-                color: '#ffffff',
+                backgroundColor: isDark ? '#FFB800' : '#861820',
+                color: isDark ? '#000000' : '#ffffff',
                 fontSize: '0.78rem',
                 fontWeight: 800,
                 padding: '0.15rem 0.6rem',
@@ -1029,27 +1033,27 @@ export default function PYQFilterPortal({
           {/* Active Filter Tags */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
             {selectedCourse && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: isDark ? '#141414' : 'transparent', border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: isDark ? '#D4D4D8' : '#475569' }}>
                 Course: {selectedCourse}
               </span>
             )}
             {selectedBranch !== 'ALL' && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: isDark ? '#141414' : 'transparent', border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: isDark ? '#D4D4D8' : '#475569' }}>
                 Branch: {selectedBranch}
               </span>
             )}
             {selectedYear !== 'ALL' && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: isDark ? '#141414' : 'transparent', border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: isDark ? '#D4D4D8' : '#475569' }}>
                 Year: {selectedYear}
               </span>
             )}
             {selectedSemester !== 'ALL' && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: isDark ? '#141414' : 'transparent', border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: isDark ? '#D4D4D8' : '#475569' }}>
                 {selectedSemester}
               </span>
             )}
             {selectedSubject !== 'ALL' && (
-              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: 'transparent', border: '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: '#475569' }}>
+              <span style={{ fontSize: '0.72rem', fontWeight: 700, backgroundColor: isDark ? '#141414' : 'transparent', border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #E8E2D5', padding: '0.15rem 0.5rem', borderRadius: '6px', color: isDark ? '#D4D4D8' : '#475569' }}>
                 Subject: {selectedSubject}
               </span>
             )}
@@ -1070,9 +1074,9 @@ export default function PYQFilterPortal({
         {isLoading ? (
           /* Loading State */
           <div style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: isDark ? '#0B0B0B' : '#ffffff',
             borderRadius: '20px',
-            border: '1.5px solid #E8E2D5',
+            border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
             padding: '3rem 2rem',
             textAlign: 'center',
             display: 'flex',
@@ -1084,38 +1088,38 @@ export default function PYQFilterPortal({
               width: '40px',
               height: '40px',
               borderRadius: '50%',
-              border: '3px solid #E2E8F0',
-              borderTopColor: '#7A2327',
+              border: isDark ? '3px solid rgba(255, 255, 255, 0.1)' : '3px solid #E2E8F0',
+              borderTopColor: isDark ? '#FFB800' : '#861820',
               animation: 'spin 0.8s linear infinite'
             }} />
-            <div style={{ color: '#64748B', fontSize: '0.9rem', fontWeight: 600 }}>
+            <div style={{ color: isDark ? '#A1A1AA' : '#64748B', fontSize: '0.9rem', fontWeight: 600 }}>
               Fetching verified question papers from database...
             </div>
           </div>
         ) : papers.length === 0 ? (
           /* Empty State with Coming Soon Badge */
           <div style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: isDark ? '#0B0B0B' : '#ffffff',
             borderRadius: '20px',
-            border: '1.5px dashed #FCD34D',
+            border: isDark ? '1.5px dashed rgba(255, 184, 0, 0.35)' : '1.5px dashed #FCD34D',
             padding: '3.5rem 2rem',
             textAlign: 'center',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             gap: '1.15rem',
-            boxShadow: '0 4px 16px rgba(122, 35, 39, 0.03)'
+            boxShadow: isDark ? '0 8px 30px rgba(0, 0, 0, 0.6)' : '0 4px 16px rgba(122, 35, 39, 0.03)'
           }}>
             <div style={{
               width: '64px',
               height: '64px',
               borderRadius: '50%',
-              backgroundColor: '#FEF3C7',
-              border: '2px solid #FCD34D',
+              backgroundColor: isDark ? 'rgba(255, 184, 0, 0.12)' : '#FEF3C7',
+              border: isDark ? '2px solid rgba(255, 184, 0, 0.35)' : '2px solid #FCD34D',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#7A2327'
+              color: isDark ? '#FFB800' : '#861820'
             }}>
               <Calendar size={30} />
             </div>
@@ -1130,7 +1134,7 @@ export default function PYQFilterPortal({
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: '1.35rem',
                 fontWeight: 800,
-                color: '#1F2421',
+                color: isDark ? '#FFFFFF' : '#1F2421',
                 margin: '0 0 0.35rem 0'
               }}>
                 {selectedSubject !== 'ALL'
@@ -1140,7 +1144,7 @@ export default function PYQFilterPortal({
                   : `Previous Year Papers for ${selectedCourse}`}
               </h3>
               <p style={{
-                color: '#64748B',
+                color: isDark ? '#A1A1AA' : '#64748B',
                 fontSize: '0.88rem',
                 margin: '0 auto',
                 maxWidth: '480px',
@@ -1157,8 +1161,8 @@ export default function PYQFilterPortal({
                   padding: '0.55rem 1.25rem',
                   borderRadius: '12px',
                   border: 'none',
-                  backgroundColor: '#1F2421',
-                  color: '#ffffff',
+                  backgroundColor: isDark ? '#FFB800' : '#1F2421',
+                  color: isDark ? '#000000' : '#ffffff',
                   fontWeight: 700,
                   fontSize: '0.84rem',
                   cursor: 'pointer',
@@ -1192,11 +1196,11 @@ export default function PYQFilterPortal({
                 <div
                   key={paper.id || paper._id || idx}
                   style={{
-                    backgroundColor: '#ffffff',
-                    border: '1.5px solid #E8E2D5',
+                    backgroundColor: isDark ? '#0B0B0B' : '#ffffff',
+                    border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
                     borderRadius: '18px',
                     padding: '1.25rem',
-                    boxShadow: '0 3px 12px rgba(35, 30, 25, 0.03)',
+                    boxShadow: isDark ? '0 4px 16px rgba(0, 0, 0, 0.5)' : '0 3px 12px rgba(35, 30, 25, 0.03)',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
@@ -1219,9 +1223,9 @@ export default function PYQFilterPortal({
                           <span style={{
                             fontSize: '0.72rem',
                             fontWeight: 800,
-                            color: '#92400E',
-                            backgroundColor: '#FEF3C7',
-                            border: '1px solid #FCD34D',
+                            color: isDark ? '#FFB800' : '#92400E',
+                            backgroundColor: isDark ? 'rgba(255, 184, 0, 0.12)' : '#FEF3C7',
+                            border: isDark ? '1px solid rgba(255, 184, 0, 0.3)' : '1px solid #FCD34D',
                             padding: '0.15rem 0.5rem',
                             borderRadius: '6px'
                           }}>
@@ -1232,8 +1236,9 @@ export default function PYQFilterPortal({
                           <span style={{
                             fontSize: '0.7rem',
                             fontWeight: 700,
-                            color: '#0369A1',
-                            backgroundColor: '#E0F2FE',
+                            color: isDark ? '#38BDF8' : '#0369A1',
+                            backgroundColor: isDark ? 'rgba(56, 189, 248, 0.12)' : '#E0F2FE',
+                            border: isDark ? '1px solid rgba(56, 189, 248, 0.3)' : 'none',
                             padding: '0.15rem 0.45rem',
                             borderRadius: '6px'
                           }}>
@@ -1246,9 +1251,9 @@ export default function PYQFilterPortal({
                       <span style={{
                         fontSize: '0.7rem',
                         fontWeight: 700,
-                        color: '#64748B',
-                        backgroundColor: 'transparent',
-                        border: '1px solid #E2E8F0',
+                        color: isDark ? '#A1A1AA' : '#64748B',
+                        backgroundColor: isDark ? 'rgba(255, 255, 255, 0.04)' : 'transparent',
+                        border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #E2E8F0',
                         padding: '0.15rem 0.45rem',
                         borderRadius: '6px'
                       }}>
@@ -1262,7 +1267,7 @@ export default function PYQFilterPortal({
                         fontSize: '0.74rem',
                         fontWeight: 800,
                         fontFamily: 'monospace',
-                        color: '#7A2327',
+                        color: isDark ? '#FFB800' : '#861820',
                         textTransform: 'uppercase',
                         marginBottom: '0.2rem'
                       }}>
@@ -1272,7 +1277,7 @@ export default function PYQFilterPortal({
                     <h3 style={{
                       fontSize: '0.98rem',
                       fontWeight: 800,
-                      color: '#1F2421',
+                      color: isDark ? '#FFFFFF' : '#1F2421',
                       margin: '0 0 0.35rem 0',
                       lineHeight: 1.35
                     }}>
@@ -1280,7 +1285,7 @@ export default function PYQFilterPortal({
                     </h3>
 
                     {/* Paper Title or Session */}
-                    <div style={{ fontSize: '0.78rem', color: '#64748B', fontWeight: 500 }}>
+                    <div style={{ fontSize: '0.78rem', color: isDark ? '#A1A1AA' : '#64748B', fontWeight: 500 }}>
                       {paper.title || `${subName} ${examYr ? `(${examYr})` : ''}`}
                     </div>
                   </div>
@@ -1291,7 +1296,7 @@ export default function PYQFilterPortal({
                     alignItems: 'center',
                     gap: '0.5rem',
                     paddingTop: '0.65rem',
-                    borderTop: '1px solid #F1F5F9'
+                    borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #F1F5F9'
                   }}>
                     <button
                       onClick={() => handleViewPaper(paper)}
@@ -1300,8 +1305,8 @@ export default function PYQFilterPortal({
                         padding: '0.55rem 0.85rem',
                         borderRadius: '10px',
                         border: 'none',
-                        backgroundColor: '#1F2421',
-                        color: '#ffffff',
+                        backgroundColor: isDark ? '#FFB800' : '#861820',
+                        color: isDark ? '#000000' : '#ffffff',
                         fontWeight: 700,
                         fontSize: '0.82rem',
                         display: 'flex',
@@ -1309,10 +1314,10 @@ export default function PYQFilterPortal({
                         justifyContent: 'center',
                         gap: '0.4rem',
                         cursor: 'pointer',
-                        transition: 'background-color 0.15s ease'
+                        transition: 'all 0.15s ease'
                       }}
-                      onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#7A2327'}
-                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#1F2421'}
+                      onMouseOver={(e) => e.currentTarget.style.backgroundColor = isDark ? '#FFA000' : '#6E131A'}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = isDark ? '#FFB800' : '#861820'}
                     >
                       <Eye size={15} />
                       <span>View Paper</span>
@@ -1328,9 +1333,9 @@ export default function PYQFilterPortal({
                         style={{
                           padding: '0.55rem 0.75rem',
                           borderRadius: '10px',
-                          border: '1.5px solid #CBD5E1',
-                          backgroundColor: 'transparent',
-                          color: '#334155',
+                          border: isDark ? '1.5px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #CBD5E1',
+                          backgroundColor: isDark ? '#141414' : 'transparent',
+                          color: isDark ? '#FFFFFF' : '#334155',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -1339,18 +1344,18 @@ export default function PYQFilterPortal({
                           transition: 'all 0.15s ease'
                         }}
                         onMouseOver={(e) => {
-                          e.currentTarget.style.borderColor = '#7A2327';
-                          e.currentTarget.style.color = '#7A2327';
+                          e.currentTarget.style.borderColor = isDark ? '#FFB800' : '#861820';
+                          e.currentTarget.style.color = isDark ? '#FFB800' : '#861820';
                         }}
                         onMouseOut={(e) => {
-                          e.currentTarget.style.borderColor = '#CBD5E1';
-                          e.currentTarget.style.color = '#334155';
+                          e.currentTarget.style.borderColor = isDark ? 'rgba(255, 255, 255, 0.15)' : '#CBD5E1';
+                          e.currentTarget.style.color = isDark ? '#FFFFFF' : '#334155';
                         }}
                       >
                         <Download size={15} />
                       </a>
                     ) : (
-                      <span style={{ fontSize: '0.74rem', color: '#94A3B8', fontStyle: 'italic' }}>
+                      <span style={{ fontSize: '0.74rem', color: isDark ? '#71717A' : '#94A3B8', fontStyle: 'italic' }}>
                         Processing
                       </span>
                     )}

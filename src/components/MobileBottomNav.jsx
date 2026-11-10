@@ -96,7 +96,7 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
       {tabs.map((tab) => {
         const isActive = currentNav === tab.id;
         const IconComponent = tab.icon;
-        const activeColor = '#FFB800';
+        const activeColor = isDark ? '#FFB800' : '#861820';
         const inactiveColor = isDark ? '#A1A1AA' : '#64748B';
 
         const isToolsActive = isActive && tab.id === 'tools';
@@ -133,8 +133,12 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                 justifyContent: 'center',
                 padding: isToolsActive ? '3px 14px' : (isActive ? '3px 10px' : '3px 6px'),
                 borderRadius: '10px',
-                backgroundColor: isToolsActive ? 'rgba(255, 184, 0, 0.15)' : (isActive ? 'rgba(255, 184, 0, 0.08)' : 'transparent'),
-                border: isToolsActive ? '1px solid rgba(255, 184, 0, 0.35)' : '1px solid transparent',
+                backgroundColor: isToolsActive 
+                  ? (isDark ? 'rgba(255, 184, 0, 0.15)' : '#FFF1F2') 
+                  : (isActive ? (isDark ? 'rgba(255, 184, 0, 0.08)' : 'rgba(134, 24, 32, 0.08)') : 'transparent'),
+                border: isToolsActive 
+                  ? (isDark ? '1px solid rgba(255, 184, 0, 0.35)' : '1px solid rgba(134, 24, 32, 0.25)') 
+                  : '1px solid transparent',
                 transition: 'all 0.15s ease'
               }}
             >
@@ -178,8 +182,8 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
                   width: '20px',
                   height: '2.5px',
                   borderRadius: '9999px',
-                  backgroundColor: '#FFB800',
-                  boxShadow: '0 0 8px rgba(255, 184, 0, 0.6)'
+                  backgroundColor: isDark ? '#FFB800' : '#861820',
+                  boxShadow: isDark ? '0 0 8px rgba(255, 184, 0, 0.6)' : '0 2px 6px rgba(134, 24, 32, 0.4)'
                 }} 
               />
             )}
