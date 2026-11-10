@@ -1113,35 +1113,35 @@ export default function App() {
           />
         ) : activeTab === 'prma-home' ? (
           <PrmaApplicationProvider>
-            <PrmaCompanyHomePage onNavigate={navigateToTab} />
+            <PrmaCompanyHomePage navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'prma-services' ? (
           <PrmaApplicationProvider>
-            <PrmaServicesPage onNavigate={navigateToTab} />
+            <PrmaServicesPage navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'prma-about' ? (
           <PrmaApplicationProvider>
-            <PrmaAboutPage onNavigate={navigateToTab} />
+            <PrmaAboutPage navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'prma-careers' ? (
           <PrmaApplicationProvider>
-            <PrmaCareersPage onNavigate={navigateToTab} />
+            <PrmaCareersPage navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'prma-projects' ? (
           <PrmaApplicationProvider>
-            <PrmaProjectsPage onNavigate={navigateToTab} />
+            <PrmaProjectsPage navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'prma-contact' ? (
           <PrmaApplicationProvider>
-            <PrmaContactPage onNavigate={navigateToTab} />
+            <PrmaContactPage navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'prma-admin' ? (
           <PrmaApplicationProvider>
-            <PrmaAdminPanel onNavigate={navigateToTab} />
+            <PrmaAdminPanel navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'prma-internships-home' ? (
           <PrmaApplicationProvider>
-            <PrmaLandingPage navigateToTab={navigateToTab} />
+            <PrmaLandingPage navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'prma-internships-domains' ? (
           <PrmaApplicationProvider>

@@ -18,13 +18,13 @@ import {
   Zap,
   Globe,
   Monitor,
+  Laptop,
   ShieldCheck,
   Package,
   BookOpen
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
-import PrmaStepProgress from '../components/PrmaStepProgress';
 
 export default function PrmaLandingPage({ navigateToTab }) {
   const handleNav = (route) => {
@@ -45,7 +45,6 @@ export default function PrmaLandingPage({ navigateToTab }) {
       }}
     >
       <PrmaNavbar activePage="internships" navigateToTab={navigateToTab} />
-      <PrmaStepProgress currentStep={1} onNavigate={navigateToTab} />
 
       {/* =========================================================================
           HERO SECTION (Match Image 2)
