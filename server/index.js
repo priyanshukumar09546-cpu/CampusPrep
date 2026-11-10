@@ -131,9 +131,10 @@ const publicAcademicCache = (req, res, next) => {
   const cacheKey = req.originalUrl || req.url;
   const cached = publicCache.get(cacheKey);
   if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
     res.setHeader('X-Cache', 'HIT');
     res.setHeader('Cache-Control', 'public, max-age=60, stale-while-revalidate=120');
-    return res.status(cached.status).json(cached.body);
+    return res.status(cached.status).send(cached.raw);
   }
 
   const originalJson = res.json.bind(res);
@@ -143,9 +144,16 @@ const publicAcademicCache = (req, res, next) => {
         const firstKey = publicCache.keys().next().value;
         publicCache.delete(firstKey);
       }
-      publicCache.set(cacheKey, { timestamp: Date.now(), status: res.statusCode, body });
-      res.setHeader('X-Cache', 'MISS');
-      res.setHeader('Cache-Control', 'public, max-age=60, stale-while-revalidate=120');
+      try {
+        const raw = JSON.stringify(body);
+        publicCache.set(cacheKey, { timestamp: Date.now(), status: res.statusCode, raw });
+        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        res.setHeader('X-Cache', 'MISS');
+        res.setHeader('Cache-Control', 'public, max-age=60, stale-while-revalidate=120');
+        return res.send(raw);
+      } catch (serErr) {
+        return originalJson(body);
+      }
     }
     return originalJson(body);
   };
@@ -153,6 +161,42 @@ const publicAcademicCache = (req, res, next) => {
 };
 
 app.use(['/api/pyqs', '/api/notes', '/api/courses', '/api/syllabus'], publicAcademicCache);
+
+// PUBLIC AKTU COURSES API (Cached, Fast, 24 Programmes)
+app.get('/api/courses', (req, res) => {
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  res.json({
+    success: true,
+    count: 24,
+    courses: [
+      { id: 'btech', name: 'B.Tech', fullName: 'Bachelor of Technology', branches: ['CSE', 'IT', 'ECE', 'EE', 'ME', 'CE', 'AIML', 'DS'] },
+      { id: 'btech-biotech', name: 'B.Tech Biotechnology', fullName: 'B.Tech in Biotechnology' },
+      { id: 'btech-agri', name: 'B.Tech Agriculture', fullName: 'B.Tech in Agriculture Engineering' },
+      { id: 'btech-lateral', name: 'B.Tech Lateral Entry', fullName: 'B.Tech Lateral Entry (2nd Year Direct)' },
+      { id: 'bca', name: 'BCA', fullName: 'Bachelor of Computer Applications' },
+      { id: 'bba', name: 'BBA', fullName: 'Bachelor of Business Administration' },
+      { id: 'bms', name: 'BMS', fullName: 'Bachelor of Management Studies' },
+      { id: 'bpharm', name: 'B.Pharm', fullName: 'Bachelor of Pharmacy' },
+      { id: 'bpharm-lateral', name: 'B.Pharm Lateral Entry', fullName: 'B.Pharm Lateral Entry' },
+      { id: 'pharmd', name: 'Pharm.D', fullName: 'Doctor of Pharmacy' },
+      { id: 'mtech', name: 'M.Tech', fullName: 'Master of Technology' },
+      { id: 'mpharm', name: 'M.Pharm', fullName: 'Master of Pharmacy' },
+      { id: 'mca', name: 'MCA', fullName: 'Master of Computer Applications' },
+      { id: 'mca-int', name: 'MCA Integrated', fullName: 'Integrated Master of Computer Applications' },
+      { id: 'mca-lateral', name: 'MCA Lateral Entry', fullName: 'MCA Lateral Entry' },
+      { id: 'mba', name: 'MBA', fullName: 'Master of Business Administration' },
+      { id: 'mba-int', name: 'MBA Integrated', fullName: 'Integrated Master of Business Administration' },
+      { id: 'mba-lateral', name: 'MBA Lateral Entry', fullName: 'MBA Lateral Entry' },
+      { id: 'barch', name: 'B.Arch', fullName: 'Bachelor of Architecture' },
+      { id: 'bdes', name: 'B.Des', fullName: 'Bachelor of Design' },
+      { id: 'bhmct', name: 'BHMCT', fullName: 'Bachelor of Hotel Management & Catering Technology' },
+      { id: 'bfad', name: 'BFAD', fullName: 'Bachelor of Fashion & Apparel Design' },
+      { id: 'bfa', name: 'BFA', fullName: 'Bachelor of Fine Arts' },
+      { id: 'bvoc', name: 'B.Voc', fullName: 'Bachelor of Vocation' }
+    ]
+  });
+});
+
 
 // 3. Sliding-Window In-Memory Rate Limiter for Sensitive Write Endpoints
 const rateLimitStore = new Map();
@@ -3748,7 +3792,12 @@ app.get('/api/pyqs', async (req, res) => {
   }));
 
   const dedupedPyqs = deduplicatePyqs(cleanPyqs);
-  res.json({ success: true, count: dedupedPyqs.length, total: dedupedPyqs.length, pyqs: dedupedPyqs });
+  const limitNum = parseInt(req.query.limit, 10);
+  const pageNum = Math.max(1, parseInt(req.query.page, 10) || 1);
+  const paginatedPyqs = (!isNaN(limitNum) && limitNum > 0)
+    ? dedupedPyqs.slice((pageNum - 1) * limitNum, pageNum * limitNum)
+    : dedupedPyqs;
+  res.json({ success: true, count: paginatedPyqs.length, total: dedupedPyqs.length, pyqs: paginatedPyqs });
 });
 
 // GET ADMIN ALL PYQS
@@ -4508,9 +4557,7 @@ function isSubjectStrictMatchBackend(reqSub, reqCode, note) {
 
 app.get('/api/notes', async (req, res) => {
   try {
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
+    res.setHeader('Cache-Control', 'public, max-age=60, stale-while-revalidate=120');
 
     const { branch, year, subject, subjectId, subjectCode, unit, source, search, q, course, semester, specialization, resourceType } = req.query;
 
@@ -4805,7 +4852,12 @@ app.get('/api/notes', async (req, res) => {
       };
     });
 
-    res.json({ success: true, count: publicNotesList.length, notes: publicNotesList });
+    const limitNum = parseInt(req.query.limit, 10);
+    const pageNum = Math.max(1, parseInt(req.query.page, 10) || 1);
+    const paginatedNotes = (!isNaN(limitNum) && limitNum > 0)
+      ? publicNotesList.slice((pageNum - 1) * limitNum, pageNum * limitNum)
+      : publicNotesList;
+    res.json({ success: true, count: paginatedNotes.length, total: publicNotesList.length, notes: paginatedNotes });
   } catch (err) {
     console.error('ERROR in /api/notes:', err);
     const fallbackList = dbNotes.map(normalizeNoteObject).map(n => {
