@@ -24,6 +24,7 @@ import { createProgressRouter } from './routes/progressRoutes.js';
 import { createQuizRouter } from './routes/quizRoutes.js';
 import { createHoollowRouter } from './routes/hoollowRoutes.js';
 import { createSyllabusRouter } from './routes/syllabusRoutes.js';
+import { createPrmaRouter } from './routes/prmaRoutes.js';
 import SyllabusModel from './models/Syllabus.js';
 import OpenAI from 'openai';
 
@@ -11155,6 +11156,9 @@ app.use('/api/hoollow', createHoollowRouter({ isDbConnected, verifyJwtToken }));
 
 // OFFICIAL AKTU SYLLABUS & CURRICULUM ROUTER
 app.use('/api/syllabus', createSyllabusRouter());
+
+// PRMA TECH INTERNSHIP PORTAL ROUTER
+app.use('/api/prma', createPrmaRouter({ isDbConnected: () => isDbConnected }));
 
 // STUDENT ACADEMIC UPDATES & EXAM ALERTS NEWSLETTER
 app.post('/api/updates/subscribe', (req, res) => {

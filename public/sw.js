@@ -1,5 +1,5 @@
 // Professor Virus - PWA Service Worker (Safe Caching & Offline Support)
-const CACHE_NAME = 'pv-cache-v2.0-prma';
+const CACHE_NAME = 'pv-cache-v2.1-prma-portal';
 
 const PRECACHE_ASSETS = [
   '/',

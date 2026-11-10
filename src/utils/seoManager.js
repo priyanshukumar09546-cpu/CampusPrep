@@ -146,6 +146,48 @@ export const SEO_PAGE_CONFIG = {
     path: '/internships-jobs',
     schemaType: 'JobPosting'
   },
+  'prma-internships-home': {
+    title: `PRMA Tech Remote Internships — Real-World Projects & Mentorship | ${BRAND_NAME}`,
+    description: 'Join industry-ready remote internships by PRMA Tech. 27 domains, 1:1 mentorship, live code reviews, verified certificates, and customized physical welcome kit.',
+    path: '/prma-tech/internships',
+    schemaType: 'EducationalOccupationalProgram'
+  },
+  'prma-internships-domains': {
+    title: `PRMA Tech 27 Internship Tracks & Domains | ${BRAND_NAME}`,
+    description: 'Explore 27 industry-recognized PRMA Tech internship tracks in AI/ML, Full Stack, Cloud, DevOps, Data Science, and Cybersecurity.',
+    path: '/prma-tech/internships/domains',
+    schemaType: 'CollectionPage'
+  },
+  'prma-internships-apply': {
+    title: `Select Batch & Duration — PRMA Tech Internship Portal | ${BRAND_NAME}`,
+    description: 'Choose your upcoming internship batch date and program duration tier (2 to 36 weeks) with verified certification.',
+    path: '/prma-tech/internships/apply',
+    schemaType: 'ItemPage'
+  },
+  'prma-internships-goodies': {
+    title: `PRMA Tech Welcome Swag & Goodies Kit | ${BRAND_NAME}`,
+    description: 'Customize your official PRMA Tech physical welcome kit: branded t-shirt, matte insulated bottle, notebook, and smart NFC intern ID card.',
+    path: '/prma-tech/internships/goodies',
+    schemaType: 'OfferCatalog'
+  },
+  'prma-internships-review': {
+    title: `Review & Student Application — PRMA Tech | ${BRAND_NAME}`,
+    description: 'Submit your authentic academic details for official certificate generation and welcome kit delivery.',
+    path: '/prma-tech/internships/review',
+    schemaType: 'ItemPage'
+  },
+  'prma-internships-payment': {
+    title: `Enrollment Payment & Confirmation — PRMA Tech | ${BRAND_NAME}`,
+    description: 'Complete your registration payment via Razorpay or UPI QR code for instant confirmation.',
+    path: '/prma-tech/internships/payment',
+    schemaType: 'CheckoutPage'
+  },
+  'prma-internships-dashboard': {
+    title: `Student Intern Dashboard — PRMA Tech | ${BRAND_NAME}`,
+    description: 'Access your live milestones, project submissions, weekly mentor calls, goodies tracking, and verified certificates.',
+    path: '/prma-tech/internships/dashboard',
+    schemaType: 'ProfilePage'
+  },
   scholarships: {
     title: `National & State Scholarships Directory for Students | ${BRAND_NAME}`,
     description: 'Explore UP government scholarships, national scholarship portal (NSP) schemes, and private grants with eligibility criteria and deadlines.',

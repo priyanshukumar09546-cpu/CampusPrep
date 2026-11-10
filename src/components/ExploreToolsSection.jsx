@@ -187,7 +187,7 @@ export default function ExploreToolsSection({ onNavigate }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             <button
               type="button"
-              onClick={() => onNavigate && onNavigate('internships-jobs')}
+              onClick={() => onNavigate && onNavigate('prma-internships-home')}
               style={{
                 padding: '0.55rem 1.15rem',
                 borderRadius: '9999px',

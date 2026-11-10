@@ -42,11 +42,8 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
   };
 
   const handlePrmaInternshipClick = () => {
-    const el = document.getElementById('prma-internships');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else if (onNavigate) {
-      onNavigate('internships-jobs');
+    if (onNavigate) {
+      onNavigate('prma-internships-home');
     }
   };
 

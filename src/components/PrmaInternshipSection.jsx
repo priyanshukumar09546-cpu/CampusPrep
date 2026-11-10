@@ -159,9 +159,9 @@ export default function PrmaInternshipSection({ onNavigate }) {
 
   const handleApplyClick = () => {
     if (onNavigate) {
-      onNavigate('internships-jobs');
+      onNavigate('prma-internships-home');
     } else {
-      window.location.href = '/internships-jobs';
+      window.location.href = '/prma-tech/internships';
     }
   };
 

@@ -819,7 +819,7 @@ export default function MobileHomepageView({
           <div style={{ display: 'flex', gap: '6px' }}>
             <button
               type="button"
-              onClick={() => onNavigate && onNavigate('internships-jobs')}
+              onClick={() => onNavigate && onNavigate('prma-internships-home')}
               style={{
                 flex: 1,
                 padding: '8px 0',
@@ -1241,7 +1241,7 @@ export default function MobileHomepageView({
             </div>
             <button
               type="button"
-              onClick={() => onNavigate && onNavigate('internships-jobs')}
+              onClick={() => onNavigate && onNavigate('prma-internships-home')}
               style={{
                 background: 'none',
                 border: 'none',
@@ -1279,7 +1279,7 @@ export default function MobileHomepageView({
               return (
                 <div
                   key={tidx}
-                  onClick={() => onNavigate && onNavigate('internships-jobs')}
+                  onClick={() => onNavigate && onNavigate('prma-internships-home')}
                   style={{
                     backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
                     border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
@@ -1320,7 +1320,7 @@ export default function MobileHomepageView({
 
           {/* Welcome Kit Highlight Bar */}
           <div
-            onClick={() => onNavigate && onNavigate('internships-jobs')}
+            onClick={() => onNavigate && onNavigate('prma-internships-home')}
             style={{
               backgroundColor: isDark ? '#080E1C' : '#F5F3FF',
               borderRadius: '12px',
@@ -1410,7 +1410,7 @@ export default function MobileHomepageView({
             </p>
             <button
               type="button"
-              onClick={() => onNavigate && onNavigate('internships-jobs')}
+              onClick={() => onNavigate && onNavigate('prma-internships-home')}
               style={{
                 width: '100%',
                 padding: '7px 0',

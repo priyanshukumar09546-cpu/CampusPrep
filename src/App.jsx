@@ -69,6 +69,17 @@ const InterviewTechnicalPage = React.lazy(() => import('./pages/InterviewTechnic
 const InterviewHrPage = React.lazy(() => import('./pages/InterviewHrPage'));
 const InterviewReportPage = React.lazy(() => import('./pages/InterviewReportPage'));
 
+// Dedicated PRMA Tech Internship Portal (Lazy Loaded)
+const PrmaLandingPage = React.lazy(() => import('./prmaPortal/pages/PrmaLandingPage'));
+const PrmaDomainsPage = React.lazy(() => import('./prmaPortal/pages/PrmaDomainsPage'));
+const PrmaApplyWizardPage = React.lazy(() => import('./prmaPortal/pages/PrmaApplyWizardPage'));
+const PrmaGoodiesPage = React.lazy(() => import('./prmaPortal/pages/PrmaGoodiesPage'));
+const PrmaReviewPage = React.lazy(() => import('./prmaPortal/pages/PrmaReviewPage'));
+const PrmaPaymentPage = React.lazy(() => import('./prmaPortal/pages/PrmaPaymentPage'));
+const PrmaAuthPage = React.lazy(() => import('./prmaPortal/pages/PrmaAuthPage'));
+const PrmaDashboardPage = React.lazy(() => import('./prmaPortal/pages/PrmaDashboardPage'));
+import { PrmaApplicationProvider } from './prmaPortal/context/PrmaApplicationContext';
+
 function ViewLoadingFallback() {
   const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
   return (
@@ -294,6 +305,15 @@ export default function App() {
       if (parts[1]) return 'scholarship-detail';
     }
     if (path === 'community') return 'home';
+    if (path === 'prma-tech' || path === 'prma-tech/internships' || path === 'prma' || path === 'prma/internships') return 'prma-internships-home';
+    if (path === 'prma-tech/internships/domains' || path === 'prma/domains') return 'prma-internships-domains';
+    if (path === 'prma-tech/internships/apply' || path === 'prma/apply') return 'prma-internships-apply';
+    if (path === 'prma-tech/internships/goodies' || path === 'prma/goodies') return 'prma-internships-goodies';
+    if (path === 'prma-tech/internships/review' || path === 'prma/review') return 'prma-internships-review';
+    if (path === 'prma-tech/internships/payment' || path === 'prma/payment') return 'prma-internships-payment';
+    if (path === 'prma-tech/internships/register' || path === 'prma/register') return 'prma-internships-register';
+    if (path === 'prma-tech/internships/login' || path === 'prma/login') return 'prma-internships-login';
+    if (path === 'prma-tech/internships/dashboard' || path === 'prma/dashboard') return 'prma-internships-dashboard';
     if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'promotion', 'hoollow', 'hoolow', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
       if (path === 'aistudy') return 'interview-pro';
       if (path === 'hoolow') return 'hoollow';
@@ -457,6 +477,24 @@ export default function App() {
         targetPath = '/timetable';
       } else if (tab === 'hoollow' || tab === 'hoolow') {
         targetPath = '/hoollow';
+      } else if (tab === 'prma-internships-home') {
+        targetPath = '/prma-tech/internships';
+      } else if (tab === 'prma-internships-domains') {
+        targetPath = '/prma-tech/internships/domains';
+      } else if (tab === 'prma-internships-apply') {
+        targetPath = '/prma-tech/internships/apply';
+      } else if (tab === 'prma-internships-goodies') {
+        targetPath = '/prma-tech/internships/goodies';
+      } else if (tab === 'prma-internships-review') {
+        targetPath = '/prma-tech/internships/review';
+      } else if (tab === 'prma-internships-payment') {
+        targetPath = '/prma-tech/internships/payment';
+      } else if (tab === 'prma-internships-register') {
+        targetPath = '/prma-tech/internships/register';
+      } else if (tab === 'prma-internships-login') {
+        targetPath = '/prma-tech/internships/login';
+      } else if (tab === 'prma-internships-dashboard') {
+        targetPath = '/prma-tech/internships/dashboard';
       } else if (tab === 'admin-login') {
         targetPath = '/admin/login';
       } else if (tab === 'subject') {
@@ -593,6 +631,24 @@ export default function App() {
         }
       } else if (path === 'community') {
         setActiveTabState('home');
+      } else if (path === 'prma-tech' || path === 'prma-tech/internships' || path === 'prma' || path === 'prma/internships') {
+        setActiveTabState('prma-internships-home');
+      } else if (path === 'prma-tech/internships/domains' || path === 'prma/domains') {
+        setActiveTabState('prma-internships-domains');
+      } else if (path === 'prma-tech/internships/apply' || path === 'prma/apply') {
+        setActiveTabState('prma-internships-apply');
+      } else if (path === 'prma-tech/internships/goodies' || path === 'prma/goodies') {
+        setActiveTabState('prma-internships-goodies');
+      } else if (path === 'prma-tech/internships/review' || path === 'prma/review') {
+        setActiveTabState('prma-internships-review');
+      } else if (path === 'prma-tech/internships/payment' || path === 'prma/payment') {
+        setActiveTabState('prma-internships-payment');
+      } else if (path === 'prma-tech/internships/register' || path === 'prma/register') {
+        setActiveTabState('prma-internships-register');
+      } else if (path === 'prma-tech/internships/login' || path === 'prma/login') {
+        setActiveTabState('prma-internships-login');
+      } else if (path === 'prma-tech/internships/dashboard' || path === 'prma/dashboard') {
+        setActiveTabState('prma-internships-dashboard');
       } else if (path === 'subject') {
         const sub = parseSubjectFromUrl();
         if (sub) setSelectedSubjectData(sub);
@@ -649,12 +705,16 @@ export default function App() {
     navigateToTab('notes');
   };
 
+  const isPrmaPortal = typeof activeTab === 'string' && activeTab.startsWith('prma-internships');
   const isStandaloneAuth = activeTab === 'signin' || activeTab === 'signup' || activeTab === 'login' || activeTab === 'admin' || activeTab === 'admin-login';
-  const hideTopNav = isStandaloneAuth;
+  const hideTopNav = isStandaloneAuth || isPrmaPortal;
 
   const pagesWithOwnMobileHeader = [
     'home', 'notes', 'pyqs', 'more', 'progress', 'profile',
-    'signin', 'signup', 'login', 'admin', 'admin-login', 'resume-maker'
+    'signin', 'signup', 'login', 'admin', 'admin-login', 'resume-maker',
+    'prma-internships-home', 'prma-internships-domains', 'prma-internships-apply',
+    'prma-internships-goodies', 'prma-internships-review', 'prma-internships-payment',
+    'prma-internships-register', 'prma-internships-login', 'prma-internships-dashboard'
   ];
   const showStandaloneMobileHeader = !hideTopNav && !pagesWithOwnMobileHeader.includes(activeTab);
 
@@ -1008,6 +1068,42 @@ export default function App() {
             }}
             onOpenAuth={handleOpenAuth}
           />
+        ) : activeTab === 'prma-internships-home' ? (
+          <PrmaApplicationProvider>
+            <PrmaLandingPage navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-internships-domains' ? (
+          <PrmaApplicationProvider>
+            <PrmaDomainsPage navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-internships-apply' ? (
+          <PrmaApplicationProvider>
+            <PrmaApplyWizardPage navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-internships-goodies' ? (
+          <PrmaApplicationProvider>
+            <PrmaGoodiesPage navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-internships-review' ? (
+          <PrmaApplicationProvider>
+            <PrmaReviewPage navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-internships-payment' ? (
+          <PrmaApplicationProvider>
+            <PrmaPaymentPage navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-internships-register' ? (
+          <PrmaApplicationProvider>
+            <PrmaAuthPage initialMode="register" navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-internships-login' ? (
+          <PrmaApplicationProvider>
+            <PrmaAuthPage initialMode="login" navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-internships-dashboard' ? (
+          <PrmaApplicationProvider>
+            <PrmaDashboardPage navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
         ) : activeTab === 'scholarship-detail' ? (
           <ScholarshipDetailPage
             slug={selectedScholarshipSlug}
