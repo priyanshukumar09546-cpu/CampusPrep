@@ -1,127 +1,104 @@
-// 9 Official PRMA Tech Internship Goodies from reference screenshots
+// 9 Official PRMA Tech Internship Goodies (Showcase Mode • Coming Soon)
+// Strictly matches the official PRMA Tech merchandise reference screenshot
 
 export const PRMA_GOODIES = [
   {
     id: 'tshirt',
     name: 'PRMA Tech T-Shirt',
-    subtitle: 'Premium Cotton, Branded',
-    price: 299,
-    originalPrice: 499,
+    subtitle: 'Official Branded Apparel',
+    description: 'Premium cotton T-shirt with official PRMA Tech branding.',
     image: '/assets/prma_goodies/prma_tshirt.png',
-    hasSize: true,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    description: 'High-quality 100% combed cotton black t-shirt with official multi-coloured PRMA Tech embroidered logo.',
-    inStock: true
+    largeImage: '/assets/prma_goodies/prma_tshirt.png',
+    status: 'COMING SOON',
+    badge: 'COMING SOON',
+    features: ['100% Combed Bio-Washed Cotton', 'Official Multi-Color PRMA Tech Crest', 'Double-Stitched Seams', 'Breathable Matte Black Finish']
   },
   {
     id: 'bottle',
     name: 'PRMA Tech Water Bottle',
-    subtitle: '750 ml Stainless Steel',
-    price: 199,
-    originalPrice: 349,
+    subtitle: 'Thermal Insulated Flask',
+    description: 'Durable and stylish bottle to keep you hydrated.',
     image: '/assets/prma_goodies/prma_bottle.png',
-    hasSize: false,
-    description: 'Matte-black, insulated 750ml stainless-steel flask with laser-engraved PRMA Tech logo and leak-proof cap.',
-    inStock: true
+    largeImage: '/assets/prma_goodies/prma_bottle.png',
+    status: 'COMING SOON',
+    badge: 'COMING SOON',
+    features: ['750 ml Stainless Steel', 'Double-Wall Vacuum Insulation', 'Laser-Engraved PRMA Tech Emblem', 'Leak-Proof Carabiner Cap']
   },
   {
     id: 'notebook',
     name: 'Executive Notebook',
-    subtitle: 'A5 Premium Hardcover',
-    price: 99,
-    originalPrice: 199,
+    subtitle: 'Premium Work Journal',
+    description: 'Premium notebook for your ideas, notes and learning journey.',
     image: '/assets/prma_goodies/prma_notebook.png',
-    hasSize: false,
-    description: '192-page ruled executive journal with gold foil PRMA Tech insignia, ribbon bookmark, and pen holder loop.',
-    inStock: true
+    largeImage: '/assets/prma_goodies/prma_notebook.png',
+    status: 'COMING SOON',
+    badge: 'COMING SOON',
+    features: ['A5 Ruled 192 Acid-Free Pages', 'Satin Bookmark Ribbon', 'Gold Foil PRMA Tech Seal', 'Elastic Closure Band']
   },
   {
     id: 'id-card',
     name: 'Intern ID Card + Lanyard',
-    subtitle: 'Smart NFC Card + Satin Lanyard',
-    price: 299,
-    originalPrice: 449,
+    subtitle: 'Smart Verified Access Card',
+    description: 'Official PRMA Tech intern ID card with branded lanyard.',
     image: '/assets/prma_goodies/prma_id_card.png',
-    hasSize: false,
-    description: 'Official verified physical intern ID card personalized with your Name, Photo, Roll No., and silk-finish lanyard.',
-    inStock: true
+    largeImage: '/assets/prma_goodies/prma_id_card.png',
+    status: 'COMING SOON',
+    badge: 'COMING SOON',
+    features: ['Personalized Name & Intern ID', 'Embedded Quick-Verify QR Code', 'Heavy-Duty Acrylic Card Case', 'Silk-Finish Satin Lanyard']
+  },
+  {
+    id: 'pen',
+    name: 'PRMA Tech Pen',
+    subtitle: 'Executive Metal Rollerball',
+    description: 'Smooth and professional pen with PRMA Tech branding.',
+    image: '/assets/prma_gen/prma_pen.jpg',
+    largeImage: '/assets/prma_gen/prma_pen.jpg',
+    status: 'COMING SOON',
+    badge: 'COMING SOON',
+    features: ['Matte Black Metallic Body', 'High-Precision 0.7mm Rollerball', 'Chrome Accents', 'Laser-Etched PRMA Tech Logo']
+  },
+  {
+    id: 'mug',
+    name: 'PRMA Tech Mug',
+    subtitle: 'Classic Ceramic Mug',
+    description: 'A classic ceramic mug for your daily inspiration.',
+    image: '/assets/prma_goodies/prma_mug_real.jpg',
+    largeImage: '/assets/prma_goodies/prma_mug_real.jpg',
+    status: 'COMING SOON',
+    badge: 'COMING SOON',
+    features: ['350 ml High-Grade Ceramic', 'Official PRMA Tech Logo & Slogan', 'Microwave & Dishwasher Safe', 'Ergonomic Comfort Grip']
   },
   {
     id: 'stickers',
     name: 'Tech Sticker Pack',
-    subtitle: '5-8 Die-Cut Waterproof Stickers',
-    price: 49,
-    originalPrice: 99,
+    subtitle: 'Die-Cut Vinyl Workstation Decals',
+    description: 'High-quality stickers to customize your laptop, notebook and more.',
     image: '/assets/prma_goodies/prma_stickers.png',
-    hasSize: false,
-    description: 'Waterproof, scratch-resistant vinyl stickers for your laptop, notebook, and workstation.',
-    inStock: true
+    largeImage: '/assets/prma_goodies/prma_stickers.png',
+    status: 'COMING SOON',
+    badge: 'COMING SOON',
+    features: ['6-Piece High Gloss Vinyl', 'Waterproof & UV Resistant', 'Residue-Free Removal', 'Vibrant PRMA Tech & Tech Slogans']
   },
   {
     id: 'cap',
     name: 'PRMA Tech Cap',
-    subtitle: 'Cotton, Embroidered Logo',
-    price: 199,
-    originalPrice: 299,
+    subtitle: 'Embroidered Structured Cap',
+    description: 'Stylish and comfortable cap with embroidered PRMA Tech logo.',
     image: '/assets/prma_goodies/prma_cap.png',
-    hasSize: false,
-    description: 'Classic baseball-style breathable cotton cap with adjustable brass buckle and 3D stitched PRMA Tech logo.',
-    inStock: true
-  },
-  {
-    id: 'tote-bag',
-    name: 'PRMA Tech Tote Bag',
-    subtitle: 'Heavy-Duty Canvas, Branded',
-    price: 149,
-    originalPrice: 249,
-    image: '/assets/prma_goodies/prma_tote_bag.png',
-    hasSize: false,
-    description: 'Eco-friendly, durable natural canvas tote bag suitable for carrying laptops, notebooks, and day-to-day gear.',
-    inStock: true
-  },
-  {
-    id: 'ceramic-mug',
-    name: 'Ceramic Coffee Mug',
-    subtitle: '350 ml Dishwasher Safe',
-    price: 149,
-    originalPrice: 249,
-    image: '/assets/prma_goodies/prma_mug.png',
-    hasSize: false,
-    description: 'Premium ceramic mug with vibrant full-colour PRMA Tech emblem. Microwave & dishwasher safe.',
-    inStock: true
-  },
-  {
-    id: 'hoodie',
-    name: 'PRMA Tech Fleece Hoodie',
-    subtitle: 'Heavyweight Cotton, Embroidered',
-    price: 699,
-    originalPrice: 1199,
-    image: '/assets/prma_gen/prma_hoodie.jpg',
-    hasSize: true,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    description: 'Heavyweight matte black fleece hoodie with kangaroo pocket, metal-tipped drawstrings, and embroidered PRMA Tech crest.',
-    inStock: true
-  },
-  {
-    id: 'pen',
-    name: 'PRMA Executive Metal Pen',
-    subtitle: 'Engraved Ballpoint Pen',
-    price: 79,
-    originalPrice: 149,
-    image: '/assets/prma_gen/prma_pen.jpg',
-    hasSize: false,
-    description: 'Matte black brass barrel pen with chrome accents and laser-engraved PRMA Tech logo. Smooth German ink refill.',
-    inStock: true
+    largeImage: '/assets/prma_goodies/prma_cap.png',
+    status: 'COMING SOON',
+    badge: 'COMING SOON',
+    features: ['100% Breathable Cotton Twill', '3D Embroidered Multi-Color Crest', 'Adjustable Brass Buckle', 'Contoured Pre-Curved Visor']
   },
   {
     id: 'welcome-box',
-    name: 'Premium Welcome Box',
-    subtitle: 'Special Gift Packaging',
-    price: 149,
-    originalPrice: 299,
+    name: 'Welcome Box',
+    subtitle: 'Official Internship Kit Hamper',
+    description: 'A special welcome kit for selected interns (includes premium PRMA Tech goodies).',
     image: '/assets/prma_goodies/prma_welcome_box.png',
-    hasSize: false,
-    description: 'Rigid luxury gift box packaging with custom foam inserts, ribbon, and personalized welcome letter.',
-    inStock: true
+    largeImage: '/assets/prma_goodies/prma_welcome_box.png',
+    status: 'COMING SOON',
+    badge: 'COMING SOON',
+    features: ['Custom Luxury Rigid Gift Box', 'Complete Internship Onboarding Bundle', 'Personalized Welcome Note', 'Delivered to Home Address']
   }
 ];

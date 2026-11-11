@@ -75,18 +75,18 @@ export default function PrmaLandingPage({ navigateToTab }) {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                backgroundColor: '#EFF6FF',
-                border: '1px solid #BFDBFE',
-                color: '#0866F5',
+                backgroundColor: '#DCFCE7',
+                border: '1px solid #BBF7D0',
+                color: '#15803D',
                 borderRadius: '999px',
                 padding: '0.4rem 1.15rem',
                 fontSize: '0.85rem',
-                fontWeight: 700,
+                fontWeight: 800,
                 marginBottom: '1.25rem'
               }}
             >
-              <GraduationCap size={16} />
-              PRMA Tech Internship Program
+              <CheckCircle2 size={16} />
+              100% FREE INTERNSHIP PROGRAM &bull; 1 MONTH
             </div>
 
             <h1
@@ -505,10 +505,10 @@ export default function PrmaLandingPage({ navigateToTab }) {
           >
             {[
               { label: 'Mode', val: 'Remote Only (100% Online Flexibility)', icon: Laptop },
-              { label: 'Duration', val: '6 – 8 Weeks (Modular Tiers Available)', icon: Clock },
+              { label: 'Duration', val: 'Exactly 1 Month (100% Free Program)', icon: Clock },
               { label: 'Eligibility', val: 'Engineering & Tech Students (Class 9 - UG / PG)', icon: GraduationCap },
-              { label: 'Domains', val: 'Web, App, AI/ML, Data Science, Cyber, Cloud, DevOps...', icon: Code2 },
-              { label: 'Evaluation', val: 'Project Work + Weekly Assignments + Mentor Review', icon: TrendingUp },
+              { label: 'Domains', val: '18 Specialized Domains (AI/ML, Web, App, Cloud, Data...)', icon: Code2 },
+              { label: 'Evaluation', val: 'Project Work + Weekly Code Review + Mentor Guidance', icon: TrendingUp },
               { label: 'Stipend', val: 'Top 20% Performers (₹1,000 – ₹10,000 per published policy)', icon: Trophy }
             ].map((op, idx) => {
               const Icon = op.icon;
@@ -633,8 +633,8 @@ export default function PrmaLandingPage({ navigateToTab }) {
             </div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.25rem', fontSize: '0.85rem', color: '#E2E8F0' }}>
-              <span>✓ Physical Welcome Kit for Everyone</span>
-              <span>✓ Stipend for Top 20% Performers</span>
+              <span>✓ 100% Free Program (Zero Registration Fee)</span>
+              <span>✓ 1 Month Duration & Practical Projects</span>
               <span>✓ Remote Only (100% Online)</span>
             </div>
           </div>

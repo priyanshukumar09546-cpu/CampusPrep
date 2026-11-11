@@ -694,10 +694,10 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
               }}
             >
               {[
-                { icon: Gift, text: 'Physical Welcome Kit (for every intern)' },
+                { icon: CheckCircle2, text: '100% Free Internship (Zero Fee)' },
                 { icon: Laptop, text: 'Remote Only (100% Online)' },
-                { icon: Zap, text: 'Performance Stipend (Top 20% Interns)' },
-                { icon: Award, text: 'Verified Certificate (On Completion)' }
+                { icon: Clock, text: 'Duration: Exactly 1 Month' },
+                { icon: Award, text: 'Verified Certificate & LOR' }
               ].map((feat, i) => {
                 const Icon = feat.icon;
                 return (

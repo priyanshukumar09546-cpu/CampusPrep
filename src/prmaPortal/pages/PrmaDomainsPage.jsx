@@ -10,226 +10,232 @@ import {
   Globe,
   Database,
   Smartphone,
-  Shield,
+  ShieldCheck,
   Cloud,
   Layers,
   Award,
-  Zap
+  Zap,
+  Layout,
+  Server,
+  Terminal,
+  Coffee,
+  Palette,
+  TrendingUp,
+  Megaphone,
+  Laptop,
+  Check,
+  X,
+  ExternalLink,
+  BookOpen
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
-import PrmaStepProgress from '../components/PrmaStepProgress';
-import { PRMA_DOMAINS } from '../data/prmaDomains';
+import { PRMA_DOMAINS, PRMA_CATEGORIES } from '../data/prmaDomains';
 import { usePrmaApplication } from '../context/PrmaApplicationContext';
 
-// Map icon string names to Lucide icons
 const ICON_MAP = {
   Cpu: Cpu,
-  BarChart3: Database,
-  Cloud: Cloud,
-  Code2: Code2,
+  BarChart3: TrendingUp,
   Globe: Globe,
-  Terminal: Code2,
-  Smartphone: Smartphone,
   Layers: Layers,
-  Shield: Shield,
+  Layout: Layout,
+  Server: Server,
+  Terminal: Terminal,
+  Coffee: Coffee,
+  Code2: Code2,
+  Smartphone: Smartphone,
+  Palette: Palette,
+  ShieldCheck: ShieldCheck,
+  Cloud: Cloud,
+  TrendingUp: TrendingUp,
   Database: Database,
-  Bot: Cpu,
-  Search: Search,
-  Zap: Zap
+  Laptop: Laptop,
+  Megaphone: Megaphone
 };
 
-export default function PrmaDomainsPage({ navigateToTab }) {
-  const { selectedDomainId, setSelectedDomainId } = usePrmaApplication();
+export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
+  const { setSelectedDomainId } = usePrmaApplication();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('All Domains');
+  const [detailModalDomain, setDetailModalDomain] = useState(null);
 
-  // Categories list
-  const categories = [
-    'All',
-    'AI & Data',
-    'Software & Web',
-    'Cloud & Systems',
-    'Mobile',
-    'Cybersecurity',
-    'Core Engineering'
-  ];
+  const navFn = navigateToTab || onNavigate;
+
+  const handleNav = (route) => {
+    if (navFn) {
+      navFn(route);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleApplyForDomain = (domainId) => {
+    setSelectedDomainId(domainId);
+    handleNav('prma-internships-apply');
+  };
 
   // Filtered domains
   const filteredDomains = useMemo(() => {
-    return PRMA_DOMAINS.filter(domain => {
-      const matchesCategory =
-        selectedCategory === 'All' ||
-        domain.category.toLowerCase().includes(selectedCategory.toLowerCase()) ||
-        (selectedCategory === 'Core Engineering' && (domain.category === 'Core Engineering' || domain.category === 'Hardware'));
-
-      const q = searchQuery.trim().toLowerCase();
+    return PRMA_DOMAINS.filter((domain) => {
       const matchesSearch =
-        !q ||
-        domain.title.toLowerCase().includes(q) ||
-        domain.description.toLowerCase().includes(q) ||
-        domain.skills.some(s => s.toLowerCase().includes(q)) ||
-        domain.technologies.some(t => t.toLowerCase().includes(q));
+        domain.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        domain.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        domain.skills.some((s) => s.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        domain.technologies.some((t) => t.toLowerCase().includes(searchQuery.toLowerCase()));
 
-      return matchesCategory && matchesSearch;
+      const matchesCat =
+        selectedCategory === 'All Domains' || domain.category === selectedCategory;
+
+      return matchesSearch && matchesCat;
     });
   }, [searchQuery, selectedCategory]);
-
-  const handleSelectDomain = (domainId) => {
-    setSelectedDomainId(domainId);
-    if (navigateToTab) {
-      navigateToTab('prma-internships-apply');
-    }
-  };
 
   return (
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: '#FAFAFC',
+        backgroundColor: '#F8FAFC',
         fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
-        color: '#0F172A'
+        color: '#0F172A',
+        overflowX: 'hidden'
       }}
     >
-      <PrmaNavbar navigateToTab={navigateToTab} />
-      <PrmaStepProgress currentStep={1} onNavigate={navigateToTab} />
+      <PrmaNavbar activePage="domains" navigateToTab={navFn} onNavigate={navFn} />
 
-      {/* Hero Header */}
+      {/* =========================================================================
+          HERO BANNER (Promoting 100% Free 1-Month Program)
+          ========================================================================= */}
       <section
         style={{
-          background: 'linear-gradient(180deg, #F0F6FF 0%, #FAFAFC 100%)',
-          padding: '3rem 1.5rem 2rem',
+          background: 'linear-gradient(180deg, #F0F6FF 0%, #F8FAFC 100%)',
+          padding: '3.5rem 1.5rem 2.5rem',
           textAlign: 'center',
-          borderBottom: '1px solid #E2E8F0'
+          position: 'relative'
         }}
       >
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '960px', margin: '0 auto' }}>
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
-              backgroundColor: '#EFF6FF',
-              border: '1px solid #BFDBFE',
-              borderRadius: '999px',
-              padding: '0.35rem 1rem',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              color: '#0866F5',
-              marginBottom: '1rem'
+              backgroundColor: '#DCFCE7',
+              border: '1.5px solid #BBF7D0',
+              color: '#15803D',
+              borderRadius: '9999px',
+              padding: '0.45rem 1.35rem',
+              fontSize: '0.88rem',
+              fontWeight: 800,
+              marginBottom: '1.25rem',
+              boxShadow: '0 2px 8px rgba(22, 163, 74, 0.1)'
             }}
           >
-            <Sparkles size={16} />
-            27 Industry-Recognized Internship Tracks
+            <CheckCircle2 size={18} strokeWidth={2.5} />
+            <span>100% FREE INTERNSHIP PROGRAM &bull; ZERO APPLICATION FEE</span>
           </div>
 
           <h1
             style={{
-              fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
-              fontWeight: 800,
-              color: '#0F172A',
-              letterSpacing: '-0.025em',
-              lineHeight: 1.2,
+              fontSize: 'clamp(2.1rem, 4.5vw, 3.25rem)',
+              fontWeight: 900,
+              color: '#0B2356',
+              letterSpacing: '-0.03em',
+              lineHeight: 1.15,
               marginBottom: '1rem'
             }}
           >
-            Select Your PRMA Tech Internship Domain
+            Explore 18 Industry-Ready Internship Domains
           </h1>
 
           <p
             style={{
               fontSize: 'clamp(1rem, 2vw, 1.15rem)',
               color: '#475569',
-              lineHeight: 1.6,
+              lineHeight: 1.65,
               maxWidth: '720px',
-              margin: '0 auto 2rem'
+              margin: '0 auto 2.5rem'
             }}
           >
-            Work on production architectures, gain 1:1 mentorship from senior software engineers, build high-impact portfolio projects, and receive an authentic verifiable certificate.
+            Every track lasts exactly <strong>One Month</strong> in remote mode. Work on real-world projects, receive expert mentorship, and earn an official verifiable certificate with Letter of Recommendation.
           </p>
 
-          {/* Search bar */}
+          {/* Search Bar */}
           <div
             style={{
-              maxWidth: '560px',
+              maxWidth: '640px',
               margin: '0 auto',
               position: 'relative'
             }}
           >
             <Search
-              size={18}
+              size={20}
               color="#64748B"
               style={{
                 position: 'absolute',
-                left: '1.1rem',
+                left: '18px',
                 top: '50%',
                 transform: 'translateY(-50%)'
               }}
             />
             <input
               type="text"
-              placeholder="Search by domain, tech stack (e.g. MERN, Python, AWS)..."
+              placeholder="Search by domain, skill (Python, React, AI), or project..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
-                padding: '0.9rem 1.25rem 0.9rem 3rem',
-                fontSize: '0.95rem',
-                borderRadius: '14px',
+                padding: '1rem 1rem 1rem 3.25rem',
+                borderRadius: '16px',
                 border: '1.5px solid #CBD5E1',
                 backgroundColor: '#FFFFFF',
-                boxShadow: '0 2px 10px rgba(0,0,0,0.04)',
+                fontSize: '1rem',
                 outline: 'none',
-                color: '#0F172A'
+                boxShadow: '0 8px 24px rgba(15, 23, 42, 0.04)',
+                boxSizing: 'border-box'
               }}
             />
           </div>
         </div>
       </section>
 
-      {/* Category Pills Bar */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '1.5rem 1.5rem 0.5rem' }}>
+      {/* =========================================================================
+          CATEGORY TABS & DOMAIN CARDS GRID
+          ========================================================================= */}
+      <section
+        style={{
+          maxWidth: '1360px',
+          margin: '0 auto',
+          padding: '0 1.5rem 5rem'
+        }}
+      >
+        {/* Category Filter Pills */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.6rem',
-            overflowX: 'auto',
-            paddingBottom: '0.75rem',
-            scrollbarWidth: 'none'
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: '0.65rem',
+            marginBottom: '2.5rem'
           }}
         >
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.35rem',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              color: '#64748B',
-              marginRight: '0.5rem'
-            }}
-          >
-            <Filter size={15} /> Tracks:
-          </span>
-          {categories.map((cat) => {
+          {PRMA_CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat;
             return (
               <button
                 key={cat}
+                type="button"
                 onClick={() => setSelectedCategory(cat)}
                 style={{
-                  padding: '0.55rem 1.15rem',
-                  borderRadius: '999px',
-                  fontSize: '0.875rem',
-                  fontWeight: 600,
-                  whiteSpace: 'nowrap',
-                  cursor: 'pointer',
-                  border: isActive ? '1.5px solid #0866F5' : '1.5px solid #E2E8F0',
+                  padding: '0.6rem 1.25rem',
+                  borderRadius: '9999px',
+                  border: isActive ? 'none' : '1.5px solid #CBD5E1',
                   backgroundColor: isActive ? '#0866F5' : '#FFFFFF',
                   color: isActive ? '#FFFFFF' : '#475569',
-                  boxShadow: isActive ? '0 2px 8px rgba(8, 102, 245, 0.25)' : 'none',
-                  transition: 'all 0.15s ease'
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  boxShadow: isActive ? '0 4px 14px rgba(8, 102, 245, 0.25)' : 'none'
                 }}
               >
                 {cat}
@@ -237,260 +243,368 @@ export default function PrmaDomainsPage({ navigateToTab }) {
             );
           })}
         </div>
-        <div style={{ fontSize: '0.875rem', color: '#64748B', marginTop: '0.5rem' }}>
-          Showing <strong>{filteredDomains.length}</strong> of {PRMA_DOMAINS.length} available domains
-        </div>
-      </section>
 
-      {/* Domains Grid */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '1.5rem 1.5rem 4rem' }}>
+        {/* 18 Individual Professional Domain Cards */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
-            gap: '1.5rem'
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '1.75rem'
           }}
+          className="prma-domains-3col-grid"
         >
-          {filteredDomains.map((domain) => {
-            const isSelected = selectedDomainId === domain.id;
-            const IconComponent = ICON_MAP[domain.icon] || Code2;
+          {filteredDomains.map((dom) => {
+            const IconComponent = ICON_MAP[dom.icon] || Code2;
 
             return (
               <div
-                key={domain.id}
-                onClick={() => handleSelectDomain(domain.id)}
+                key={dom.id}
                 style={{
                   backgroundColor: '#FFFFFF',
-                  borderRadius: '18px',
-                  border: isSelected ? '2px solid #0866F5' : '1.5px solid #E2E8F0',
-                  padding: '1.5rem',
+                  borderRadius: '24px',
+                  border: '1.5px solid #E2E8F0',
+                  padding: '2rem',
+                  boxShadow: '0 4px 20px rgba(15, 23, 42, 0.04)',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                  boxShadow: isSelected
-                    ? '0 8px 24px rgba(8, 102, 245, 0.12)'
-                    : '0 2px 10px rgba(0, 0, 0, 0.03)',
-                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transition: 'all 0.25s ease',
                   position: 'relative'
                 }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(15, 23, 42, 0.08)';
+                  e.currentTarget.style.borderColor = '#93C5FD';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(15, 23, 42, 0.04)';
+                  e.currentTarget.style.borderColor = '#E2E8F0';
+                }}
               >
-                {/* Top Badge & Category */}
-                <div>
+                {/* Top Badge: 100% Free & Category */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
                   <div
                     style={{
+                      width: '52px',
+                      height: '52px',
+                      borderRadius: '16px',
+                      backgroundColor: '#EFF6FF',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'space-between',
-                      marginBottom: '1rem'
+                      justifyContent: 'center',
+                      color: '#0866F5'
                     }}
                   >
-                    <div
-                      style={{
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '12px',
-                        backgroundColor: '#EFF6FF',
-                        border: '1px solid #DBEAFE',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: '#0866F5'
-                      }}
-                    >
-                      <IconComponent size={24} />
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <span
-                        style={{
-                          fontSize: '0.75rem',
-                          fontWeight: 700,
-                          backgroundColor: '#F1F5F9',
-                          color: '#475569',
-                          padding: '0.25rem 0.65rem',
-                          borderRadius: '6px'
-                        }}
-                      >
-                        {domain.category}
-                      </span>
-                      {domain.badge && (
-                        <span
-                          style={{
-                            fontSize: '0.75rem',
-                            fontWeight: 700,
-                            backgroundColor: domain.badge === 'Trending' ? '#FEF3C7' : '#DCFCE7',
-                            color: domain.badge === 'Trending' ? '#B45309' : '#15803D',
-                            padding: '0.25rem 0.65rem',
-                            borderRadius: '6px'
-                          }}
-                        >
-                          {domain.badge}
-                        </span>
-                      )}
-                    </div>
+                    <IconComponent size={26} strokeWidth={2.2} />
                   </div>
 
-                  {/* Title & Code */}
-                  <h3
+                  <span
                     style={{
-                      fontSize: '1.2rem',
-                      fontWeight: 700,
-                      color: '#0F172A',
-                      marginBottom: '0.4rem',
-                      lineHeight: 1.3
-                    }}
-                  >
-                    {domain.title}
-                  </h3>
-
-                  <div
-                    style={{
+                      backgroundColor: '#DCFCE7',
+                      color: '#15803D',
+                      padding: '0.35rem 0.85rem',
+                      borderRadius: '9999px',
                       fontSize: '0.75rem',
-                      color: '#64748B',
-                      fontWeight: 600,
-                      marginBottom: '0.85rem'
+                      fontWeight: 800,
+                      letterSpacing: '0.04em'
                     }}
                   >
-                    CODE: {domain.code} • Popularity: {domain.popularity}
+                    100% FREE &bull; 1 MONTH
+                  </span>
+                </div>
+
+                {/* Domain Title */}
+                <h3
+                  style={{
+                    fontSize: '1.35rem',
+                    fontWeight: 900,
+                    color: '#0F172A',
+                    marginBottom: '0.55rem',
+                    lineHeight: 1.3
+                  }}
+                >
+                  {dom.title}
+                </h3>
+
+                {/* Description */}
+                <p
+                  style={{
+                    fontSize: '0.88rem',
+                    color: '#64748B',
+                    lineHeight: 1.6,
+                    marginBottom: '1.25rem',
+                    flex: 1
+                  }}
+                >
+                  {dom.description}
+                </p>
+
+                {/* Practical Project Badge */}
+                <div
+                  style={{
+                    backgroundColor: '#F8FAFC',
+                    border: '1px solid #E2E8F0',
+                    borderRadius: '12px',
+                    padding: '0.75rem 1rem',
+                    marginBottom: '1.25rem'
+                  }}
+                >
+                  <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#0866F5', textTransform: 'uppercase', marginBottom: '4px' }}>
+                    Practical Capstone Project
                   </div>
-
-                  <p
-                    style={{
-                      fontSize: '0.9rem',
-                      color: '#475569',
-                      lineHeight: 1.55,
-                      marginBottom: '1.25rem'
-                    }}
-                  >
-                    {domain.description}
-                  </p>
-
-                  {/* Tech stack chips */}
-                  <div style={{ marginBottom: '1.25rem' }}>
-                    <div
-                      style={{
-                        fontSize: '0.75rem',
-                        fontWeight: 700,
-                        color: '#64748B',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                        marginBottom: '0.5rem'
-                      }}
-                    >
-                      Technologies Covered
-                    </div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
-                      {domain.technologies.map((tech, i) => (
-                        <span
-                          key={i}
-                          style={{
-                            fontSize: '0.78rem',
-                            fontWeight: 600,
-                            backgroundColor: '#F8FAFC',
-                            color: '#334155',
-                            border: '1px solid #E2E8F0',
-                            padding: '0.25rem 0.6rem',
-                            borderRadius: '6px'
-                          }}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                  <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#1E293B', lineHeight: 1.4 }}>
+                    {dom.project}
                   </div>
                 </div>
 
-                {/* Bottom Action */}
-                <div
-                  style={{
-                    paddingTop: '1rem',
-                    borderTop: '1px solid #F1F5F9',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                  }}
-                >
-                  <div style={{ fontSize: '0.82rem', color: '#16A34A', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                    <CheckCircle2 size={15} /> All 8 Durations Available
+                {/* Skills Chips */}
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '0.45rem' }}>
+                    Skills Covered
                   </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                    {dom.skills.slice(0, 4).map((sk, idx) => (
+                      <span
+                        key={idx}
+                        style={{
+                          backgroundColor: '#F1F5F9',
+                          color: '#334155',
+                          padding: '3px 9px',
+                          borderRadius: '6px',
+                          fontSize: '0.75rem',
+                          fontWeight: 600
+                        }}
+                      >
+                        {sk}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
+                {/* Action Buttons: View Details & Apply Now */}
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleSelectDomain(domain.id);
-                    }}
+                    type="button"
+                    onClick={() => setDetailModalDomain(dom)}
                     style={{
-                      padding: '0.6rem 1.15rem',
-                      borderRadius: '10px',
-                      fontSize: '0.875rem',
+                      flex: 1,
+                      padding: '0.75rem',
+                      borderRadius: '12px',
+                      backgroundColor: '#FFFFFF',
+                      color: '#0F172A',
+                      border: '1.5px solid #CBD5E1',
+                      fontSize: '0.86rem',
                       fontWeight: 700,
                       cursor: 'pointer',
-                      border: 'none',
-                      backgroundColor: isSelected ? '#0866F5' : '#0F172A',
-                      color: '#FFFFFF',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.4rem',
-                      boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+                      transition: 'all 0.2s'
                     }}
                   >
-                    {isSelected ? 'Selected' : 'Apply Now'}
-                    <ArrowRight size={15} />
+                    View Details
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleApplyForDomain(dom.id)}
+                    style={{
+                      flex: 1,
+                      padding: '0.75rem',
+                      borderRadius: '12px',
+                      backgroundColor: '#0866F5',
+                      color: '#FFFFFF',
+                      border: 'none',
+                      fontSize: '0.86rem',
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.35rem',
+                      boxShadow: '0 4px 14px rgba(8, 102, 245, 0.25)'
+                    }}
+                  >
+                    <span>Apply Free</span>
+                    <ArrowRight size={14} />
                   </button>
                 </div>
               </div>
             );
           })}
         </div>
-
-        {/* Not finding domain banner */}
-        <div
-          style={{
-            marginTop: '3.5rem',
-            backgroundColor: '#0F172A',
-            borderRadius: '20px',
-            padding: '2.5rem',
-            color: '#FFFFFF',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
-          <Award size={36} color="#FBBF24" style={{ marginBottom: '1rem' }} />
-          <h2 style={{ fontSize: '1.6rem', fontWeight: 800, marginBottom: '0.6rem' }}>
-            All Domains Include the Official PRMA Tech Internship Package
-          </h2>
-          <p style={{ maxWidth: '680px', color: '#94A3B8', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.75rem' }}>
-            Every domain features 1:1 mentor code reviews, production-ready portfolio repositories, verified tamper-proof certificates with QR validation, and optional customized physical welcome kits delivered right to your home.
-          </p>
-          <button
-            onClick={() => handleSelectDomain(PRMA_DOMAINS[0].id)}
-            style={{
-              padding: '0.85rem 1.75rem',
-              borderRadius: '12px',
-              fontSize: '0.95rem',
-              fontWeight: 700,
-              backgroundColor: '#0866F5',
-              color: '#FFFFFF',
-              border: 'none',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              boxShadow: '0 4px 14px rgba(8, 102, 245, 0.4)'
-            }}
-          >
-            Start with Most Popular Track (AI / ML)
-            <ArrowRight size={17} />
-          </button>
-        </div>
       </section>
 
-      <PrmaFooter navigateToTab={navigateToTab} />
+      {/* =========================================================================
+          DOMAIN DETAIL MODAL
+          ========================================================================= */}
+      {detailModalDomain && (
+        <div
+          onClick={() => setDetailModalDomain(null)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            backgroundColor: 'rgba(15, 23, 42, 0.75)',
+            backdropFilter: 'blur(6px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.5rem'
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: '#FFFFFF',
+              borderRadius: '24px',
+              maxWidth: '680px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              padding: '2.5rem',
+              boxShadow: '0 25px 60px rgba(0,0,0,0.3)',
+              position: 'relative'
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setDetailModalDomain(null)}
+              style={{
+                position: 'absolute',
+                top: '1.5rem',
+                right: '1.5rem',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                backgroundColor: '#F1F5F9',
+                border: 'none',
+                color: '#64748B',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <X size={18} />
+            </button>
+
+            <span
+              style={{
+                backgroundColor: '#DCFCE7',
+                color: '#15803D',
+                padding: '0.35rem 0.85rem',
+                borderRadius: '9999px',
+                fontSize: '0.78rem',
+                fontWeight: 800,
+                textTransform: 'uppercase'
+              }}
+            >
+              100% FREE &bull; 1 MONTH DURATION
+            </span>
+
+            <h2 style={{ fontSize: '1.85rem', fontWeight: 900, color: '#0B2356', marginTop: '0.75rem', marginBottom: '0.75rem' }}>
+              {detailModalDomain.title}
+            </h2>
+
+            <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+              {detailModalDomain.description}
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '2rem' }}>
+              <div style={{ backgroundColor: '#F8FAFC', padding: '1rem 1.25rem', borderRadius: '14px', border: '1px solid #E2E8F0' }}>
+                <strong style={{ display: 'block', fontSize: '0.85rem', color: '#0866F5', textTransform: 'uppercase', marginBottom: '4px' }}>
+                  Real-World Practical Project
+                </strong>
+                <span style={{ fontSize: '0.92rem', color: '#1E293B', fontWeight: 700 }}>
+                  {detailModalDomain.project}
+                </span>
+              </div>
+
+              <div>
+                <strong style={{ display: 'block', fontSize: '0.85rem', color: '#64748B', textTransform: 'uppercase', marginBottom: '6px' }}>
+                  Core Technologies & Tools
+                </strong>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  {detailModalDomain.technologies.map((t, i) => (
+                    <span key={i} style={{ backgroundColor: '#EFF6FF', color: '#1D4ED8', padding: '4px 10px', borderRadius: '6px', fontSize: '0.82rem', fontWeight: 700 }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <strong style={{ display: 'block', fontSize: '0.85rem', color: '#64748B', textTransform: 'uppercase', marginBottom: '6px' }}>
+                  Key Learning Outcomes
+                </strong>
+                <ul style={{ margin: 0, paddingLeft: '1.25rem', color: '#334155', fontSize: '0.88rem', lineHeight: 1.6 }}>
+                  {detailModalDomain.outcomes.map((out, idx) => (
+                    <li key={idx} style={{ marginBottom: '4px' }}>{out}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
+              <button
+                type="button"
+                onClick={() => setDetailModalDomain(null)}
+                style={{
+                  padding: '0.85rem 1.5rem',
+                  borderRadius: '12px',
+                  backgroundColor: '#F1F5F9',
+                  color: '#475569',
+                  border: 'none',
+                  fontSize: '0.9rem',
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                Close
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setDetailModalDomain(null);
+                  handleApplyForDomain(detailModalDomain.id);
+                }}
+                style={{
+                  padding: '0.85rem 1.85rem',
+                  borderRadius: '12px',
+                  backgroundColor: '#0866F5',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  fontSize: '0.92rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  boxShadow: '0 4px 14px rgba(8, 102, 245, 0.3)'
+                }}
+              >
+                <span>Apply for this Track (Free)</span>
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <PrmaFooter navigateToTab={navFn} onNavigate={navFn} />
+
+      {/* Responsive Styles */}
+      <style>{`
+        @media (max-width: 1024px) {
+          .prma-domains-3col-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .prma-domains-3col-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

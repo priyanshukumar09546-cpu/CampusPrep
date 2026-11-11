@@ -85,6 +85,7 @@ const PrmaReviewPage = React.lazy(() => import('./prmaPortal/pages/PrmaReviewPag
 const PrmaPaymentPage = React.lazy(() => import('./prmaPortal/pages/PrmaPaymentPage'));
 const PrmaAuthPage = React.lazy(() => import('./prmaPortal/pages/PrmaAuthPage'));
 const PrmaDashboardPage = React.lazy(() => import('./prmaPortal/pages/PrmaDashboardPage'));
+const PrmaVerifyOfferPage = React.lazy(() => import('./prmaPortal/pages/PrmaVerifyOfferPage'));
 import { PrmaApplicationProvider } from './prmaPortal/context/PrmaApplicationContext';
 
 function ViewLoadingFallback() {
@@ -328,6 +329,7 @@ export default function App() {
     if (path === 'prma-tech/internships/register' || path === 'prma/register' || path === 'prma-tech/register') return 'prma-internships-register';
     if (path === 'prma-tech/internships/login' || path === 'prma/login' || path === 'prma-tech/login') return 'prma-internships-login';
     if (path === 'prma-tech/internships/dashboard' || path === 'prma/dashboard' || path === 'prma-tech/dashboard') return 'prma-internships-dashboard';
+    if (path.startsWith('prma-tech/verify-offer') || path.startsWith('prma/verify-offer') || path.startsWith('prma-verify-offer')) return 'prma-verify-offer';
     if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'promotion', 'hoollow', 'hoolow', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
       if (path === 'aistudy') return 'interview-pro';
       if (path === 'hoolow') return 'hoollow';
@@ -523,6 +525,8 @@ export default function App() {
         targetPath = '/prma-tech/internships/login';
       } else if (tab === 'prma-internships-dashboard') {
         targetPath = '/prma-tech/internships/dashboard';
+      } else if (tab === 'prma-verify-offer') {
+        targetPath = '/prma-tech/verify-offer';
       } else if (tab === 'admin-login') {
         targetPath = '/admin/login';
       } else if (tab === 'subject') {
@@ -757,7 +761,7 @@ export default function App() {
     'prma-home', 'prma-services', 'prma-about', 'prma-careers', 'prma-projects', 'prma-contact', 'prma-admin',
     'prma-internships-home', 'prma-internships-domains', 'prma-internships-apply',
     'prma-internships-goodies', 'prma-internships-review', 'prma-internships-payment',
-    'prma-internships-register', 'prma-internships-login', 'prma-internships-dashboard'
+    'prma-internships-register', 'prma-internships-login', 'prma-internships-dashboard', 'prma-verify-offer'
   ];
   const showStandaloneMobileHeader = !hideTopNav && !pagesWithOwnMobileHeader.includes(activeTab);
 
@@ -1174,6 +1178,10 @@ export default function App() {
         ) : activeTab === 'prma-internships-dashboard' ? (
           <PrmaApplicationProvider>
             <PrmaDashboardPage navigateToTab={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-verify-offer' ? (
+          <PrmaApplicationProvider>
+            <PrmaVerifyOfferPage navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'scholarship-detail' ? (
           <ScholarshipDetailPage

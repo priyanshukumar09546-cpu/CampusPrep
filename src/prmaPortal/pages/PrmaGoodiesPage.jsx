@@ -1,437 +1,662 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Package,
   Sparkles,
-  Check,
-  Plus,
-  Minus,
-  CheckCircle2,
-  Trash2,
-  Truck,
+  Clock,
+  ArrowRight,
+  ZoomIn,
+  ZoomOut,
+  Maximize2,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Gift,
   ShieldCheck,
-  Gift
+  CheckCircle2,
+  Info
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
-import PrmaStepProgress from '../components/PrmaStepProgress';
-import PrmaKitSummary from '../components/PrmaKitSummary';
 import { PRMA_GOODIES } from '../data/prmaGoodies';
-import { usePrmaApplication } from '../context/PrmaApplicationContext';
 
-export default function PrmaGoodiesPage({ navigateToTab }) {
-  const {
-    selectedDomain,
-    selectedDuration,
-    selectedBatch,
-    selectedGoodies,
-    toggleGoodie,
-    updateGoodieQuantity,
-    updateGoodieSize
-  } = usePrmaApplication();
+export default function PrmaGoodiesPage({ navigateToTab, onNavigate }) {
+  const [selectedProductIndex, setSelectedProductIndex] = useState(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
 
-  const handleProceed = () => {
-    if (navigateToTab) {
-      navigateToTab('prma-internships-review');
+  const navFn = navigateToTab || onNavigate;
+
+  const handleNav = (route) => {
+    if (navFn) {
+      navFn(route);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  // Keyboard navigation for Lightbox
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedProductIndex === null) return;
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'ArrowRight') {
+        nextProduct();
+      } else if (e.key === 'ArrowLeft') {
+        prevProduct();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedProductIndex]);
+
+  const openLightbox = (index) => {
+    setSelectedProductIndex(index);
+    setZoomLevel(1);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    setSelectedProductIndex(null);
+    setZoomLevel(1);
+    document.body.style.overflow = 'auto';
+  };
+
+  const nextProduct = () => {
+    setSelectedProductIndex((prev) => (prev + 1) % PRMA_GOODIES.length);
+    setZoomLevel(1);
+  };
+
+  const prevProduct = () => {
+    setSelectedProductIndex((prev) => (prev - 1 + PRMA_GOODIES.length) % PRMA_GOODIES.length);
+    setZoomLevel(1);
+  };
+
+  const currentProduct = selectedProductIndex !== null ? PRMA_GOODIES[selectedProductIndex] : null;
 
   return (
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: '#F8FAFC',
+        backgroundColor: '#FFFFFF',
         fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
-        color: '#0F172A'
+        color: '#0F172A',
+        overflowX: 'hidden'
       }}
     >
-      <PrmaNavbar navigateToTab={navigateToTab} />
-      <PrmaStepProgress currentStep={3} onNavigate={navigateToTab} />
+      <PrmaNavbar activePage="goodies" navigateToTab={navFn} onNavigate={navFn} />
 
-      {/* Main Container */}
-      <div
+      {/* =========================================================================
+          HERO & LAUREL WREATH TITLE (Matches Reference Image 3)
+          ========================================================================= */}
+      <section
         style={{
-          maxWidth: '1360px',
-          margin: '0 auto',
-          padding: '2rem 1.5rem 5rem'
+          background: 'linear-gradient(180deg, #F0F6FF 0%, #FFFFFF 100%)',
+          padding: '3.5rem 1.5rem 2rem',
+          textAlign: 'center',
+          position: 'relative'
         }}
       >
-        {/* Selected Program Mini Header */}
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          {/* PRMA Tech Logo with Slogan */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '1.25rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.65rem' }}>
+              <div
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '10px',
+                  background: 'linear-gradient(135deg, #0866F5 0%, #EA4335 50%, #34A853 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#FFFFFF',
+                  fontWeight: 900,
+                  fontSize: '1.35rem'
+                }}
+              >
+                P
+              </div>
+              <span
+                style={{
+                  fontSize: '2rem',
+                  fontWeight: 900,
+                  letterSpacing: '-0.03em',
+                  color: '#0F172A'
+                }}
+              >
+                PRMA <span style={{ color: '#0866F5' }}>Tech</span>
+                <span style={{ fontSize: '0.9rem', verticalAlign: 'super', marginLeft: '2px', color: '#64748B' }}>™</span>
+              </span>
+            </div>
+            <span
+              style={{
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                color: '#64748B',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                marginTop: '0.2rem'
+              }}
+            >
+              Build • Learn • Innovate • Grow
+            </span>
+          </div>
+
+          {/* Laurel Wreath Title */}
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '1rem',
+              marginBottom: '0.6rem'
+            }}
+          >
+            <span style={{ fontSize: '2rem', color: '#D97706', userSelect: 'none' }}>🌿</span>
+            <h1
+              style={{
+                fontSize: 'clamp(2rem, 4vw, 2.85rem)',
+                fontWeight: 900,
+                color: '#0B2356',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.2
+              }}
+            >
+              Official Internship Goodies
+            </h1>
+            <span style={{ fontSize: '2rem', color: '#D97706', userSelect: 'none', transform: 'scaleX(-1)' }}>🌿</span>
+          </div>
+
+          {/* Subtitle Pill */}
+          <div style={{ display: 'inline-block', marginBottom: '1.5rem' }}>
+            <span
+              style={{
+                backgroundColor: '#EFF6FF',
+                color: '#1D4ED8',
+                border: '1px solid #BFDBFE',
+                padding: '0.45rem 1.35rem',
+                borderRadius: '9999px',
+                fontSize: '0.92rem',
+                fontWeight: 700
+              }}
+            >
+              Exclusive PRMA Tech Merchandise for Our Interns
+            </span>
+          </div>
+
+          {/* 100% Free Internship Callout Box */}
+          <div
+            style={{
+              backgroundColor: '#F0FDF4',
+              border: '1.5px solid #BBF7D0',
+              borderRadius: '16px',
+              padding: '1rem 1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.75rem',
+              maxWidth: '720px',
+              margin: '0 auto',
+              textAlign: 'left'
+            }}
+          >
+            <CheckCircle2 size={22} color="#16A34A" style={{ flexShrink: 0 }} />
+            <div style={{ fontSize: '0.88rem', color: '#166534', lineHeight: 1.5 }}>
+              <strong>100% Free Internship:</strong> Enrollment and joining require zero fees. Goodies are optional merchandise currently in preview mode.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          3x3 MERCHANDISE GRID (Strictly Matches Reference Image 3)
+          ========================================================================= */}
+      <section
+        style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '2.5rem 1.5rem 5rem'
+        }}
+      >
         <div
           style={{
-            backgroundColor: '#EFF6FF',
-            border: '1.5px solid #BFDBFE',
-            borderRadius: '16px',
-            padding: '1rem 1.5rem',
-            marginBottom: '2rem',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '1.75rem'
+          }}
+          className="prma-goodies-3x3-grid"
+        >
+          {PRMA_GOODIES.map((prod, index) => (
+            <div
+              key={prod.id}
+              onClick={() => openLightbox(index)}
+              style={{
+                backgroundColor: '#FFFFFF',
+                borderRadius: '24px',
+                border: '1.5px solid #E2E8F0',
+                padding: '1.65rem',
+                boxShadow: '0 4px 20px rgba(15, 23, 42, 0.04)',
+                display: 'flex',
+                flexDirection: 'column',
+                cursor: 'pointer',
+                transition: 'all 0.25s ease',
+                position: 'relative'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(15, 23, 42, 0.08)';
+                e.currentTarget.style.borderColor = '#93C5FD';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(15, 23, 42, 0.04)';
+                e.currentTarget.style.borderColor = '#E2E8F0';
+              }}
+            >
+              {/* Image Container with contain fit and white background */}
+              <div
+                style={{
+                  width: '100%',
+                  height: '240px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '16px',
+                  marginBottom: '1.25rem',
+                  overflow: 'hidden',
+                  position: 'relative'
+                }}
+              >
+                <img
+                  src={prod.image}
+                  alt={prod.name}
+                  style={{
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    objectFit: 'contain',
+                    transition: 'transform 0.3s ease'
+                  }}
+                  onError={(e) => {
+                    e.target.src = '/assets/prma_portal_ref/prma_goodies_showcase_banner.jpg';
+                  }}
+                />
+
+                {/* Hover inspect hint */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '8px',
+                    right: '8px',
+                    backgroundColor: 'rgba(15, 23, 42, 0.75)',
+                    color: '#FFFFFF',
+                    borderRadius: '8px',
+                    padding: '4px 8px',
+                    fontSize: '0.72rem',
+                    fontWeight: 600,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    backdropFilter: 'blur(4px)'
+                  }}
+                >
+                  <Maximize2 size={12} />
+                  <span>Inspect</span>
+                </div>
+              </div>
+
+              {/* Product Info */}
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <h3
+                  style={{
+                    fontSize: '1.2rem',
+                    fontWeight: 800,
+                    color: '#0F172A',
+                    marginBottom: '0.45rem',
+                    letterSpacing: '-0.01em'
+                  }}
+                >
+                  {prod.name}
+                </h3>
+
+                <p
+                  style={{
+                    fontSize: '0.88rem',
+                    color: '#64748B',
+                    lineHeight: 1.55,
+                    marginBottom: '1.25rem',
+                    flex: 1
+                  }}
+                >
+                  {prod.description}
+                </p>
+
+                {/* Purple COMING SOON Badge (Strictly Matches Image 3) */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.45rem',
+                      padding: '0.45rem 1.15rem',
+                      borderRadius: '9999px',
+                      backgroundColor: '#7025E8',
+                      color: '#FFFFFF',
+                      fontSize: '0.82rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.04em',
+                      boxShadow: '0 4px 12px rgba(112, 37, 232, 0.25)'
+                    }}
+                  >
+                    <Clock size={14} strokeWidth={2.5} />
+                    <span>COMING SOON</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA Strip */}
+        <div
+          style={{
+            marginTop: '4rem',
+            background: 'linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%)',
+            borderRadius: '24px',
+            padding: '2.5rem 3rem',
+            color: '#FFFFFF',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '1rem'
+            gap: '1.5rem',
+            boxShadow: '0 20px 40px rgba(15, 23, 42, 0.15)'
           }}
         >
           <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0866F5', textTransform: 'uppercase' }}>
-              Selected Program Track
+            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#93C5FD', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+              Internship Program
             </div>
-            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0F172A' }}>
-              {selectedDomain.title} • {selectedDuration.name} ({selectedBatch.date})
-            </div>
+            <h2 style={{ fontSize: '1.65rem', fontWeight: 900, marginBottom: '0.35rem' }}>
+              Ready to Kickstart Your Tech Journey?
+            </h2>
+            <p style={{ fontSize: '0.95rem', color: '#CBD5E1', maxWidth: '560px' }}>
+              100% Free • One Month Duration • Real-World Projects • Verified Certificate & Letter of Recommendation.
+            </p>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: '0.75rem', color: '#64748B', fontWeight: 600 }}>Base Program Fee</div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0866F5' }}>
-                ₹{selectedDuration.price}
-              </div>
-            </div>
-            <button
-              onClick={() => navigateToTab && navigateToTab('prma-internships-apply')}
-              style={{
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                color: '#0866F5',
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #BFDBFE',
-                borderRadius: '8px',
-                padding: '0.4rem 0.8rem',
-                cursor: 'pointer'
-              }}
-            >
-              Change Track
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => handleNav('prma-internships-apply')}
+            style={{
+              padding: '0.95rem 2.2rem',
+              borderRadius: '14px',
+              backgroundColor: '#0866F5',
+              color: '#FFFFFF',
+              border: 'none',
+              fontSize: '1rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.55rem',
+              boxShadow: '0 8px 24px rgba(8, 102, 245, 0.4)',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#0052CC';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#0866F5';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            <span>Apply for Free Internship</span>
+            <ArrowRight size={18} strokeWidth={2.5} />
+          </button>
         </div>
+      </section>
 
-        {/* Content Layout: Goodies Grid (Left) + Kit Summary (Right) */}
+      {/* =========================================================================
+          LIGHTBOX / LARGE IMAGE PREVIEW WITH ZOOM & NAVIGATION
+          ========================================================================= */}
+      {currentProduct && (
         <div
+          onClick={closeLightbox}
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 380px',
-            gap: '2.5rem',
-            alignItems: 'start'
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            backgroundColor: 'rgba(15, 23, 42, 0.88)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1.5rem'
           }}
-          className="prma-goodies-layout"
         >
-          {/* Left Column: Goodies */}
-          <div>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  color: '#EA4335',
-                  backgroundColor: '#FEF2F2',
-                  padding: '0.3rem 0.75rem',
-                  borderRadius: '999px',
-                  marginBottom: '0.5rem'
-                }}
-              >
-                <Gift size={15} /> Physical Goodies & Welcome Kit (Optional)
+          {/* Top Control Bar */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'absolute',
+              top: '1.5rem',
+              left: '1.5rem',
+              right: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              color: '#FFFFFF',
+              zIndex: 2
+            }}
+          >
+            <div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{currentProduct.name}</div>
+              <div style={{ fontSize: '0.85rem', color: '#94A3B8' }}>
+                Product {selectedProductIndex + 1} of {PRMA_GOODIES.length} • Coming Soon
               </div>
-              <h1 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.2rem)', fontWeight: 800, color: '#0F172A', marginBottom: '0.5rem' }}>
-                Customize Your PRMA Tech Welcome Swag
-              </h1>
-              <p style={{ fontSize: '0.95rem', color: '#475569', lineHeight: 1.6 }}>
-                Add official PRMA Tech developer merch to celebrate your internship. Items are shipped directly to your residential address with live express tracking.
-              </p>
             </div>
 
-            {/* Free Shipping Alert */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                backgroundColor: '#F0FDF4',
-                border: '1px solid #BBF7D0',
-                borderRadius: '12px',
-                padding: '0.85rem 1.25rem',
-                marginBottom: '1.5rem',
-                fontSize: '0.875rem',
-                color: '#15803D',
-                fontWeight: 600
-              }}
-            >
-              <Truck size={20} color="#16A34A" />
-              <span>
-                <strong>All-India Free Express Shipping</strong> on all PRMA Tech official goodies. Tracking ID delivered via SMS & WhatsApp.
-              </span>
-            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <button
+                type="button"
+                onClick={() => setZoomLevel((z) => Math.min(z + 0.3, 2.5))}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '10px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  color: '#FFFFFF',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                title="Zoom In"
+              >
+                <ZoomIn size={18} />
+              </button>
 
-            {/* Products Grid */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: '1.25rem'
-              }}
-            >
-              {PRMA_GOODIES.map((goodie) => {
-                const isSelected = !!selectedGoodies[goodie.id]?.selected;
-                const config = selectedGoodies[goodie.id] || { quantity: 1, size: 'L' };
+              <button
+                type="button"
+                onClick={() => setZoomLevel((z) => Math.max(z - 0.3, 0.7))}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '10px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  color: '#FFFFFF',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                title="Zoom Out"
+              >
+                <ZoomOut size={18} />
+              </button>
 
-                return (
-                  <div
-                    key={goodie.id}
-                    style={{
-                      backgroundColor: '#FFFFFF',
-                      borderRadius: '18px',
-                      border: isSelected ? '2px solid #0866F5' : '1.5px solid #E2E8F0',
-                      padding: '1.25rem',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      boxShadow: isSelected
-                        ? '0 6px 20px rgba(8, 102, 245, 0.12)'
-                        : '0 2px 10px rgba(0, 0, 0, 0.03)',
-                      transition: 'all 0.15s ease',
-                      position: 'relative'
-                    }}
-                  >
-                    {/* Badge */}
-                    {isSelected && (
-                      <div
-                        style={{
-                          position: 'absolute',
-                          top: '12px',
-                          right: '12px',
-                          backgroundColor: '#0866F5',
-                          color: '#FFFFFF',
-                          borderRadius: '999px',
-                          padding: '0.2rem 0.6rem',
-                          fontSize: '0.7rem',
-                          fontWeight: 700,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.25rem'
-                        }}
-                      >
-                        <Check size={12} /> ADDED
-                      </div>
-                    )}
-
-                    {/* Product Image */}
-                    <div>
-                      <div
-                        style={{
-                          backgroundColor: '#F8FAFC',
-                          borderRadius: '14px',
-                          padding: '1rem',
-                          height: '180px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          marginBottom: '1rem',
-                          border: '1px solid #F1F5F9'
-                        }}
-                      >
-                        <img
-                          src={goodie.image}
-                          alt={goodie.name}
-                          style={{
-                            maxWidth: '100%',
-                            maxHeight: '100%',
-                            objectFit: 'contain'
-                          }}
-                        />
-                      </div>
-
-                      {/* Title & Subtitle */}
-                      <h3
-                        style={{
-                          fontSize: '1.05rem',
-                          fontWeight: 700,
-                          color: '#0F172A',
-                          marginBottom: '0.2rem'
-                        }}
-                      >
-                        {goodie.name}
-                      </h3>
-
-                      <div
-                        style={{
-                          fontSize: '0.78rem',
-                          color: '#64748B',
-                          fontWeight: 600,
-                          marginBottom: '0.5rem'
-                        }}
-                      >
-                        {goodie.subtitle}
-                      </div>
-
-                      <p
-                        style={{
-                          fontSize: '0.82rem',
-                          color: '#475569',
-                          lineHeight: 1.5,
-                          marginBottom: '1rem'
-                        }}
-                      >
-                        {goodie.description}
-                      </p>
-
-                      {/* Size selector if T-shirt */}
-                      {goodie.hasSize && isSelected && (
-                        <div style={{ marginBottom: '1rem' }}>
-                          <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#334155', marginBottom: '0.4rem' }}>
-                            Select T-Shirt Size:
-                          </div>
-                          <div style={{ display: 'flex', gap: '0.4rem' }}>
-                            {goodie.sizes.map((sz) => {
-                              const isSizeActive = config.size === sz;
-                              return (
-                                <button
-                                  key={sz}
-                                  onClick={() => updateGoodieSize(goodie.id, sz)}
-                                  style={{
-                                    width: '34px',
-                                    height: '34px',
-                                    borderRadius: '8px',
-                                    fontSize: '0.75rem',
-                                    fontWeight: 700,
-                                    cursor: 'pointer',
-                                    border: isSizeActive ? '2px solid #0866F5' : '1px solid #CBD5E1',
-                                    backgroundColor: isSizeActive ? '#EFF6FF' : '#FFFFFF',
-                                    color: isSizeActive ? '#0866F5' : '#475569'
-                                  }}
-                                >
-                                  {sz}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Price & Action Button */}
-                    <div
-                      style={{
-                        paddingTop: '0.85rem',
-                        borderTop: '1px solid #F1F5F9',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between'
-                      }}
-                    >
-                      <div>
-                        <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0F172A' }}>
-                          ₹{goodie.price}
-                        </div>
-                        <div style={{ fontSize: '0.75rem', color: '#94A3B8', textDecoration: 'line-through' }}>
-                          ₹{goodie.originalPrice}
-                        </div>
-                      </div>
-
-                      {isSelected ? (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                          {/* Quantity control */}
-                          <div
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              backgroundColor: '#F1F5F9',
-                              borderRadius: '8px',
-                              padding: '0.2rem'
-                            }}
-                          >
-                            <button
-                              onClick={() => updateGoodieQuantity(goodie.id, -1)}
-                              style={{
-                                width: '26px',
-                                height: '26px',
-                                border: 'none',
-                                background: 'transparent',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: '#334155'
-                              }}
-                            >
-                              <Minus size={14} />
-                            </button>
-                            <span style={{ fontSize: '0.82rem', fontWeight: 700, padding: '0 0.5rem' }}>
-                              {config.quantity || 1}
-                            </span>
-                            <button
-                              onClick={() => updateGoodieQuantity(goodie.id, 1)}
-                              style={{
-                                width: '26px',
-                                height: '26px',
-                                border: 'none',
-                                background: 'transparent',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: '#334155'
-                              }}
-                            >
-                              <Plus size={14} />
-                            </button>
-                          </div>
-
-                          {/* Remove button */}
-                          <button
-                            onClick={() => toggleGoodie(goodie.id)}
-                            title="Remove goodie"
-                            style={{
-                              padding: '0.45rem',
-                              borderRadius: '8px',
-                              border: '1px solid #FEE2E2',
-                              backgroundColor: '#FEF2F2',
-                              color: '#EF4444',
-                              cursor: 'pointer'
-                            }}
-                          >
-                            <Trash2 size={15} />
-                          </button>
-                        </div>
-                      ) : (
-                        <button
-                          onClick={() => toggleGoodie(goodie.id)}
-                          style={{
-                            padding: '0.55rem 1.15rem',
-                            borderRadius: '10px',
-                            fontSize: '0.85rem',
-                            fontWeight: 700,
-                            cursor: 'pointer',
-                            border: '1.5px solid #0866F5',
-                            backgroundColor: '#FFFFFF',
-                            color: '#0866F5',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '0.35rem',
-                            transition: 'all 0.15s ease'
-                          }}
-                        >
-                          <Plus size={15} /> Add to Kit
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+              <button
+                type="button"
+                onClick={closeLightbox}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '10px',
+                  backgroundColor: '#EA4335',
+                  border: 'none',
+                  color: '#FFFFFF',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                title="Close (Esc)"
+              >
+                <X size={20} />
+              </button>
             </div>
           </div>
 
-          {/* Right Column: Kit Summary */}
-          <div>
-            <PrmaKitSummary
-              actionButtonText="Proceed to Review & Apply (Step 4)"
-              onAction={handleProceed}
+          {/* Previous Button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              prevProduct();
+            }}
+            style={{
+              position: 'absolute',
+              left: '1.5rem',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              color: '#FFFFFF',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 2,
+              transition: 'background-color 0.2s'
+            }}
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          {/* Next Button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              nextProduct();
+            }}
+            style={{
+              position: 'absolute',
+              right: '1.5rem',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              color: '#FFFFFF',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 2,
+              transition: 'background-color 0.2s'
+            }}
+          >
+            <ChevronRight size={24} />
+          </button>
+
+          {/* Main Zoomable Image Container */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxWidth: '85vw',
+              maxHeight: '75vh',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '24px',
+              padding: '2rem',
+              boxShadow: '0 25px 60px rgba(0,0,0,0.4)',
+              transition: 'transform 0.2s ease'
+            }}
+          >
+            <img
+              src={currentProduct.largeImage || currentProduct.image}
+              alt={currentProduct.name}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '65vh',
+                objectFit: 'contain',
+                transform: `scale(${zoomLevel})`,
+                transition: 'transform 0.2s ease'
+              }}
             />
           </div>
-        </div>
-      </div>
 
-      <PrmaFooter navigateToTab={navigateToTab} />
+          {/* Bottom Caption Pill */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              marginTop: '1.25rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.12)',
+              borderRadius: '9999px',
+              padding: '0.45rem 1.25rem',
+              color: '#F8FAFC',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.65rem'
+            }}
+          >
+            <span style={{ color: '#FCD34D' }}>★</span>
+            <span>{currentProduct.description}</span>
+            <span
+              style={{
+                backgroundColor: '#7025E8',
+                color: '#FFFFFF',
+                padding: '2px 8px',
+                borderRadius: '6px',
+                fontSize: '0.72rem',
+                fontWeight: 800
+              }}
+            >
+              COMING SOON
+            </span>
+          </div>
+        </div>
+      )}
+
+      <PrmaFooter navigateToTab={navFn} onNavigate={navFn} />
+
+      {/* Responsive Styles */}
+      <style>{`
+        @media (max-width: 1024px) {
+          .prma-goodies-3x3-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .prma-goodies-3x3-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

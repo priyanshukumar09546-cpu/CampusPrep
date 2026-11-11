@@ -230,6 +230,12 @@ export const SEO_PAGE_CONFIG = {
     path: '/prma-tech/internships/dashboard',
     schemaType: 'ProfilePage'
   },
+  'prma-verify-offer': {
+    title: `Official Offer Letter Verification — PRMA Tech Credential Registry | ${BRAND_NAME}`,
+    description: 'Verify the authenticity of an official PRMA Tech internship offer letter using the unique Offer ID or QR code.',
+    path: '/prma-tech/verify-offer',
+    schemaType: 'ItemPage'
+  },
   scholarships: {
     title: `National & State Scholarships Directory for Students | ${BRAND_NAME}`,
     description: 'Explore UP government scholarships, national scholarship portal (NSP) schemes, and private grants with eligibility criteria and deadlines.',
