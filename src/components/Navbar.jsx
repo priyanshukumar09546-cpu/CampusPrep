@@ -27,15 +27,12 @@ import {
   Download,
   Home as HomeIcon,
   HelpCircle,
-  ShieldCheck,
-  Moon
+  ShieldCheck
 } from 'lucide-react';
 import { searchLocalIndex } from '../data/searchIndex';
 import { openInstallModal } from '../utils/pwaManager';
-import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }) {
-  const { isDark, toggleTheme } = useTheme();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
@@ -738,31 +735,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 </div>
               )}
             </div>
-
-            {/* Theme Toggle Icon (Crescent Moon, Match Reference Image) */}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              title={isDark ? "Switch to Light Mode" : "Dark Mode"}
-              style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '50%',
-                backgroundColor: '#FFFFFF',
-                border: '1.5px solid #E2E8F0',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#334155',
-                cursor: 'pointer',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
-                transition: 'all 0.15s ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = '#881337'}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = '#E2E8F0'}
-            >
-              <Moon size={16} />
-            </button>
 
             {/* Notification Bell Icon with Badge "2" */}
             <button
