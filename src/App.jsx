@@ -789,8 +789,25 @@ export default function App() {
 
       {/* Responsive Navbar: On desktop always shown. On mobile, suppressed to let mobile headers manage navigation */}
       {!hideTopNav && (
-        <div className="pv-desktop-navbar-wrap">
+        <div
+          className="pv-desktop-navbar-wrap"
+          style={activeTab === 'home' ? {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            width: '100%',
+            zIndex: 100,
+            pointerEvents: 'auto'
+          } : {
+            position: 'sticky',
+            top: 0,
+            zIndex: 100,
+            width: '100%'
+          }}
+        >
           <Navbar
+            isHome={activeTab === 'home'}
             onSearch={(query) => handleSearch(query, selectedBranch)}
             onOpenAuth={handleOpenAuth}
             activeTab={activeTab === 'profile' ? 'progress' : activeTab}

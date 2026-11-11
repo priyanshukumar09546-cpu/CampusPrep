@@ -32,7 +32,7 @@ import {
 import { searchLocalIndex } from '../data/searchIndex';
 import { openInstallModal } from '../utils/pwaManager';
 
-export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }) {
+export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, isHome = false }) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
@@ -206,15 +206,19 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     <>
       <header
         style={{
-          position: 'sticky',
+          position: isHome ? 'absolute' : 'sticky',
           top: 0,
-          zIndex: 999,
-          backgroundColor: 'rgba(255, 255, 255, 0.55)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.45)',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
-          fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
+          left: 0,
+          right: 0,
+          width: '100%',
+          zIndex: 100,
+          backgroundColor: isHome ? 'rgba(255, 255, 255, 0.42)' : 'rgba(255, 255, 255, 0.85)',
+          backdropFilter: 'blur(20px) saturate(190%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(190%)',
+          borderBottom: isHome ? '1px solid rgba(255, 255, 255, 0.45)' : '1px solid #E2E8F0',
+          boxShadow: isHome ? '0 4px 24px rgba(0, 0, 0, 0.03)' : '0 2px 10px rgba(0, 0, 0, 0.04)',
+          fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
+          animation: 'none'
         }}
       >
         <div
@@ -249,8 +253,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 src="/assets/pv_official_logo.png"
                 alt="ProfessorVirus Logo"
                 style={{
-                  width: '36px',
-                  height: '36px',
+                  width: '34px',
+                  height: '34px',
                   objectFit: 'contain',
                   flexShrink: 0
                 }}
@@ -258,31 +262,19 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                   e.target.src = '/assets/logo.png';
                 }}
               />
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <div
-                  style={{
-                    fontFamily: "'Outfit', sans-serif",
-                    fontSize: '1.3rem',
-                    fontWeight: 900,
-                    lineHeight: 1.08,
-                    letterSpacing: '-0.02em',
-                    color: '#0F172A'
-                  }}
-                >
-                  <span>Professor</span>
-                  <span style={{ color: '#881337' }}>Virus</span>
-                </div>
-                <div
-                  className="pv-navbar-subtitle"
-                  style={{
-                    fontSize: '0.6rem',
-                    fontWeight: 700,
-                    color: '#64748B',
-                    letterSpacing: '0.02em'
-                  }}
-                >
-                  Study Smart. Prepare Better.
-                </div>
+              <div
+                style={{
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: '1.35rem',
+                  fontWeight: 900,
+                  lineHeight: 1,
+                  letterSpacing: '-0.02em',
+                  color: '#0F172A',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                <span>Professor</span>
+                <span style={{ color: '#881337' }}>Virus</span>
               </div>
             </a>
           </div>

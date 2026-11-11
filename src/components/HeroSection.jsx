@@ -41,7 +41,6 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
         position: 'relative',
         width: '100%',
         overflow: 'hidden',
-        marginTop: '-62px', // Pulls hero directly under the floating liquid-glass navbar
         backgroundColor: '#FAF5F2'
       }}
     >
@@ -140,7 +139,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
             maxWidth: '1440px',
             width: '100%',
             margin: '0 auto',
-            padding: '2.5rem 1.5rem 1rem',
+            padding: '1.25rem 1.5rem 1rem',
             boxSizing: 'border-box'
           }}
         >
