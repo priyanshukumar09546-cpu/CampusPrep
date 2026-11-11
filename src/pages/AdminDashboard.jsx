@@ -67,6 +67,7 @@ import { pyqQuestionsData } from '../data/pyqQuestionsData';
 import { AKTU_SYLLABUS_DATA } from '../data/aktuSyllabusData';
 import { COURSES } from '../data/coursesCatalog';
 import AdminQuizManager from '../components/AdminQuizManager';
+import PrmaAdminPanel from '../prmaPortal/pages/PrmaAdminPanel';
 
 
 export const ALL_COURSES_METADATA = [
@@ -1465,6 +1466,7 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
     { id: 'resume-maker', name: 'Resume Maker Admin', icon: FileCheck, highlight: true },
     { id: 'project-ideas', name: 'Project Ideas & Verification', icon: Code2, highlight: true },
     { id: 'internships-jobs', name: 'Internships & Jobs Management', icon: Briefcase, highlight: true },
+    { id: 'prma-control', name: 'PRMA Tech Control', icon: ShieldCheck, highlight: true },
     { id: 'scholarships', name: 'Scholarships Management', icon: GraduationCap, highlight: true },
     { id: 'gdrive', name: 'Google Drive OAuth', icon: HardDrive },
     { id: 'users', name: 'Users Management', icon: Users },
@@ -3121,6 +3123,13 @@ export default function AdminDashboard({ onNavigate, onLogout }) {
               </div>
             );
           })()}
+
+          {/* PRMA TECH INTERNSHIP CONTROLLER (REQUIREMENT 6) */}
+          {activeTab === 'prma-control' && (
+            <div style={{ marginTop: '0.5rem' }}>
+              <PrmaAdminPanel onNavigate={onNavigate} />
+            </div>
+          )}
 
           {/* TAB 2: DASHBOARD OVERVIEW */}
           {activeTab === 'dashboard' && (

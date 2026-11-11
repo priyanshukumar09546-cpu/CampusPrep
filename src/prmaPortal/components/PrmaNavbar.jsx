@@ -150,11 +150,11 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
             }}
           >
             <img
-              src="/assets/prma_portal_ref/prma_tech_logo.jpg"
+              src="/assets/prma_tech_logo.png"
               alt="PRMA Tech"
               style={{ height: '38px', objectFit: 'contain' }}
               onError={(e) => {
-                e.target.src = '/assets/prma_tech_logo.png';
+                e.target.src = '/assets/prma_portal_ref/prma_tech_logo.jpg';
               }}
             />
           </div>
@@ -302,24 +302,39 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
                   type="button"
                   onClick={() => handleNav(item.route)}
                   style={{
+                    position: 'relative',
                     padding: '0.55rem 0.95rem',
                     borderRadius: '10px',
-                    fontSize: '0.9rem',
+                    fontSize: '0.92rem',
                     fontWeight: isActive ? 800 : 600,
                     color: isActive ? '#0866F5' : '#334155',
-                    backgroundColor: isActive ? '#EFF6FF' : 'transparent',
+                    backgroundColor: 'transparent',
                     border: 'none',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease'
                   }}
                   onMouseEnter={(e) => {
-                    if (!isActive) e.currentTarget.style.backgroundColor = '#F8FAFC';
+                    if (!isActive) e.currentTarget.style.color = '#0866F5';
                   }}
                   onMouseLeave={(e) => {
-                    if (!isActive) e.currentTarget.style.backgroundColor = 'transparent';
+                    if (!isActive) e.currentTarget.style.color = '#334155';
                   }}
                 >
                   {item.label}
+                  {isActive && (
+                    <span
+                      style={{
+                        position: 'absolute',
+                        bottom: '0px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '24px',
+                        height: '2.5px',
+                        borderRadius: '999px',
+                        backgroundColor: '#0866F5'
+                      }}
+                    />
+                  )}
                 </button>
               );
             })}
@@ -356,12 +371,10 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
               <Search size={18} />
             </button>
 
-            {/* Login / Dashboard */}
+            {/* User Chip / Sign Out (No Student Dashboard) */}
             {currentUser ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <button
-                  type="button"
-                  onClick={() => handleNav('prma-internships-dashboard')}
+                <div
                   style={{
                     padding: '0.55rem 1rem',
                     borderRadius: '10px',
@@ -370,15 +383,14 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
                     backgroundColor: '#F1F5F9',
                     color: '#0F172A',
                     border: '1px solid #CBD5E1',
-                    cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.4rem'
                   }}
                 >
                   <User size={15} color="#0866F5" />
-                  {currentUser.name || 'Dashboard'}
-                </button>
+                  {currentUser.name || 'Student'}
+                </div>
 
                 <button
                   type="button"
@@ -396,13 +408,16 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
                   <LogOut size={15} />
                 </button>
               </div>
-            ) : (
+            ) : null}
+
+            {/* Login Button (matches Image 1) */}
+            {!currentUser && (
               <button
                 type="button"
                 onClick={() => handleNav('prma-internships-login')}
                 style={{
-                  padding: '0.55rem 1.15rem',
-                  borderRadius: '10px',
+                  padding: '0.52rem 1.25rem',
+                  borderRadius: '999px',
                   fontSize: '0.88rem',
                   fontWeight: 700,
                   backgroundColor: '#FFFFFF',
@@ -411,19 +426,27 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
                   cursor: 'pointer',
                   transition: 'all 0.15s ease'
                 }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#0866F5';
+                  e.currentTarget.style.color = '#0866F5';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#CBD5E1';
+                  e.currentTarget.style.color = '#0F172A';
+                }}
               >
                 Login
               </button>
             )}
 
-            {/* Apply for Internship Primary Button */}
+            {/* Apply for Internship Primary Button (pill shape matching Image 1) */}
             <button
               type="button"
-              onClick={() => handleNav('prma-internships-apply')}
+              onClick={() => handleNav('prma-internships-domains')}
               style={{
-                padding: '0.62rem 1.35rem',
-                borderRadius: '12px',
-                fontSize: '0.9rem',
+                padding: '0.58rem 1.35rem',
+                borderRadius: '999px',
+                fontSize: '0.88rem',
                 fontWeight: 800,
                 backgroundColor: '#0866F5',
                 color: '#FFFFFF',
@@ -435,9 +458,17 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
                 boxShadow: '0 4px 14px rgba(8, 102, 245, 0.35)',
                 transition: 'all 0.15s ease'
               }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#0052CC';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#0866F5';
+                e.currentTarget.style.transform = 'none';
+              }}
             >
               <span>Apply for Internship</span>
-              <ArrowRight size={16} strokeWidth={2.5} />
+              <ArrowRight size={15} strokeWidth={2.5} />
             </button>
 
             {/* Hamburger button for mobile */}

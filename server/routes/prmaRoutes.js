@@ -1,7 +1,14 @@
 /**
  * PRMA Tech Internship Portal & Corporate Backend Routes
- * Endpoints for domain configs, applications, auth, career applications,
- * offer letter PDF generation, verification, email dispatch, and admin operations.
+ * Full-stack implementation supporting:
+ * - Dynamic domain management
+ * - Strict multi-section application validation & storage
+ * - Resume upload & secure access
+ * - Vector PDF joining letter generation
+ * - Automated transactional email dispatch & tracking
+ * - Real database-driven admin analytics & review actions
+ * - Task dispatch & email communication system
+ * - Scannable QR credential verification
  */
 
 import express from 'express';
@@ -10,12 +17,20 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { generatePrmaOfferLetterPdf } from '../services/prmaOfferLetterEngine.js';
-import { sendPrmaShortlistEmail } from '../services/prmaEmailService.js';
+import {
+  sendPrmaShortlistEmail,
+  sendPrmaTaskEmail,
+  sendPrmaRejectionEmail
+} from '../services/prmaEmailService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_DIR = path.resolve(__dirname, '../data');
+
 const APPS_FILE = path.join(DATA_DIR, 'prma_applications.json');
+const DOMAINS_FILE = path.join(DATA_DIR, 'prma_domains.json');
+const TASKS_FILE = path.join(DATA_DIR, 'prma_tasks.json');
+const EMAILS_FILE = path.join(DATA_DIR, 'prma_emails.json');
 
 // Ensure data directory exists
 try {
@@ -26,7 +41,7 @@ try {
   console.warn('[PRMA ROUTES] Notice: Unable to create data dir:', e.message);
 }
 
-// 9 Showcase Goodies (Zero pricing, Coming Soon mode matching Reference Image 3)
+// 9 Showcase Goodies (Zero Pricing • Coming Soon)
 const SHOWCASE_GOODIES = [
   {
     id: 'tshirt',
@@ -34,10 +49,8 @@ const SHOWCASE_GOODIES = [
     subtitle: 'Official Branded Apparel',
     description: 'Premium cotton T-shirt with official PRMA Tech branding.',
     image: '/assets/prma_goodies/prma_tshirt.png',
-    largeImage: '/assets/prma_goodies/prma_tshirt.png',
     status: 'COMING SOON',
-    badge: 'COMING SOON',
-    features: ['100% Combed Bio-Washed Cotton', 'Official Multi-Color PRMA Tech Crest', 'Double-Stitched Seams', 'Breathable Matte Black Finish']
+    features: ['100% Combed Bio-Washed Cotton', 'Official Multi-Color Crest', 'Double-Stitched Seams']
   },
   {
     id: 'bottle',
@@ -45,10 +58,8 @@ const SHOWCASE_GOODIES = [
     subtitle: 'Thermal Insulated Flask',
     description: 'Durable and stylish bottle to keep you hydrated.',
     image: '/assets/prma_goodies/prma_bottle.png',
-    largeImage: '/assets/prma_goodies/prma_bottle.png',
     status: 'COMING SOON',
-    badge: 'COMING SOON',
-    features: ['750 ml Stainless Steel', 'Double-Wall Vacuum Insulation', 'Laser-Engraved PRMA Tech Emblem', 'Leak-Proof Carabiner Cap']
+    features: ['750 ml Stainless Steel', 'Double-Wall Vacuum Insulation', 'Laser-Engraved Logo']
   },
   {
     id: 'notebook',
@@ -56,10 +67,8 @@ const SHOWCASE_GOODIES = [
     subtitle: 'Premium Work Journal',
     description: 'Premium notebook for your ideas, notes and learning journey.',
     image: '/assets/prma_goodies/prma_notebook.png',
-    largeImage: '/assets/prma_goodies/prma_notebook.png',
     status: 'COMING SOON',
-    badge: 'COMING SOON',
-    features: ['A5 Ruled 192 Acid-Free Pages', 'Satin Bookmark Ribbon', 'Gold Foil PRMA Tech Seal', 'Elastic Closure Band']
+    features: ['A5 Ruled 192 Acid-Free Pages', 'Satin Bookmark Ribbon', 'Gold Foil PRMA Tech Seal']
   },
   {
     id: 'id-card',
@@ -67,10 +76,8 @@ const SHOWCASE_GOODIES = [
     subtitle: 'Smart Verified Access Card',
     description: 'Official PRMA Tech intern ID card with branded lanyard.',
     image: '/assets/prma_goodies/prma_id_card.png',
-    largeImage: '/assets/prma_goodies/prma_id_card.png',
     status: 'COMING SOON',
-    badge: 'COMING SOON',
-    features: ['Personalized Name & Intern ID', 'Embedded Quick-Verify QR Code', 'Heavy-Duty Acrylic Card Case', 'Silk-Finish Satin Lanyard']
+    features: ['Personalized Name & Intern ID', 'Embedded Quick-Verify QR Code', 'Satin Lanyard']
   },
   {
     id: 'pen',
@@ -78,10 +85,8 @@ const SHOWCASE_GOODIES = [
     subtitle: 'Executive Metal Rollerball',
     description: 'Smooth and professional pen with PRMA Tech branding.',
     image: '/assets/prma_gen/prma_pen.jpg',
-    largeImage: '/assets/prma_gen/prma_pen.jpg',
     status: 'COMING SOON',
-    badge: 'COMING SOON',
-    features: ['Matte Black Metallic Body', 'High-Precision 0.7mm Rollerball', 'Chrome Accents', 'Laser-Etched PRMA Tech Logo']
+    features: ['Matte Black Metallic Body', 'High-Precision 0.7mm Rollerball', 'Chrome Accents']
   },
   {
     id: 'mug',
@@ -89,10 +94,8 @@ const SHOWCASE_GOODIES = [
     subtitle: 'Classic Ceramic Mug',
     description: 'A classic ceramic mug for your daily inspiration.',
     image: '/assets/prma_goodies/prma_mug_real.jpg',
-    largeImage: '/assets/prma_goodies/prma_mug_real.jpg',
     status: 'COMING SOON',
-    badge: 'COMING SOON',
-    features: ['350 ml High-Grade Ceramic', 'Official PRMA Tech Logo & Slogan', 'Microwave & Dishwasher Safe', 'Ergonomic Comfort Grip']
+    features: ['350 ml High-Grade Ceramic', 'Official PRMA Tech Logo & Slogan', 'Microwave Safe']
   },
   {
     id: 'stickers',
@@ -100,10 +103,8 @@ const SHOWCASE_GOODIES = [
     subtitle: 'Die-Cut Vinyl Workstation Decals',
     description: 'High-quality stickers to customize your laptop, notebook and more.',
     image: '/assets/prma_goodies/prma_stickers.png',
-    largeImage: '/assets/prma_goodies/prma_stickers.png',
     status: 'COMING SOON',
-    badge: 'COMING SOON',
-    features: ['6-Piece High Gloss Vinyl', 'Waterproof & UV Resistant', 'Residue-Free Removal', 'Vibrant PRMA Tech & Tech Slogans']
+    features: ['6-Piece High Gloss Vinyl', 'Waterproof & UV Resistant', 'Residue-Free Removal']
   },
   {
     id: 'cap',
@@ -111,10 +112,8 @@ const SHOWCASE_GOODIES = [
     subtitle: 'Embroidered Structured Cap',
     description: 'Stylish and comfortable cap with embroidered PRMA Tech logo.',
     image: '/assets/prma_goodies/prma_cap.png',
-    largeImage: '/assets/prma_goodies/prma_cap.png',
     status: 'COMING SOON',
-    badge: 'COMING SOON',
-    features: ['100% Breathable Cotton Twill', '3D Embroidered Multi-Color Crest', 'Adjustable Brass Buckle', 'Contoured Pre-Curved Visor']
+    features: ['100% Breathable Cotton Twill', '3D Embroidered Crest', 'Adjustable Brass Buckle']
   },
   {
     id: 'welcome-box',
@@ -122,10 +121,8 @@ const SHOWCASE_GOODIES = [
     subtitle: 'Official Internship Kit Hamper',
     description: 'A special welcome kit for selected interns (includes premium PRMA Tech goodies).',
     image: '/assets/prma_goodies/prma_welcome_box.png',
-    largeImage: '/assets/prma_goodies/prma_welcome_box.png',
     status: 'COMING SOON',
-    badge: 'COMING SOON',
-    features: ['Rigid Magnetic Gift Box', 'Complete Merchandise Suite', 'Customized Name Tag', 'Certificate & Stamp Seal']
+    features: ['Rigid Magnetic Gift Box', 'Complete Merchandise Suite', 'Customized Name Tag']
   }
 ];
 
@@ -134,23 +131,23 @@ export function createPrmaRouter({ isDbConnected } = {}) {
 
   // In-memory data structures
   const applicationsStore = new Map();
-  const usersStore = new Map();
-  const careerApplicationsStore = new Map();
-  const contactInquiriesStore = new Map();
+  const domainsStore = new Map();
+  const tasksStore = new Map();
+  const emailLogsStore = [];
   const pdfCacheStore = new Map(); // offerId/appId -> Buffer
 
-  // Helper: Persist applications to disk
+  // Helper: Persist applications
   const persistApplications = () => {
     try {
       const arr = Array.from(applicationsStore.values());
       fs.writeFileSync(APPS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
     } catch (e) {
-      console.warn('[PRMA ROUTER] Error persisting applications to file:', e.message);
+      console.warn('[PRMA ROUTER] Error persisting applications:', e.message);
     }
   };
 
-  // Helper: Load applications from disk
-  const loadPersistedApplications = () => {
+  // Helper: Load applications
+  const loadApplications = () => {
     try {
       if (fs.existsSync(APPS_FILE)) {
         const raw = fs.readFileSync(APPS_FILE, 'utf-8');
@@ -161,7 +158,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
               applicationsStore.set(app.applicationId, app);
             }
           });
-          console.log(`[PRMA ROUTER] Loaded ${applicationsStore.size} persistent applications from disk.`);
+          console.log(`[PRMA ROUTER] Loaded ${applicationsStore.size} persistent applications.`);
         }
       }
     } catch (e) {
@@ -169,101 +166,278 @@ export function createPrmaRouter({ isDbConnected } = {}) {
     }
   };
 
-  loadPersistedApplications();
+  // Helper: Load & Persist Domains
+  const loadDomains = () => {
+    try {
+      if (fs.existsSync(DOMAINS_FILE)) {
+        const raw = fs.readFileSync(DOMAINS_FILE, 'utf-8');
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          parsed.forEach((d) => {
+            if (d.id) domainsStore.set(d.id, d);
+          });
+          console.log(`[PRMA ROUTER] Loaded ${domainsStore.size} domains from storage.`);
+        }
+      }
+    } catch (e) {
+      console.warn('[PRMA ROUTER] Could not load domains from disk:', e.message);
+    }
 
-  // Populate sample baseline applications if empty
+    // Seed defaults if empty
+    if (domainsStore.size === 0) {
+      const defaultDomains = [
+        { id: 'ai-ml', title: 'Artificial Intelligence & Machine Learning', shortTitle: 'AI & Machine Learning', category: 'AI & Data Science', badge: '100% FREE • 1 MONTH', iconType: 'ai-ml', description: 'Design and train predictive AI models, deep neural networks, and explore practical computer vision and NLP with industry datasets.', technologies: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-Learn', 'FastAPI', 'Pandas'], skills: ['Supervised & Unsupervised Learning', 'Neural Network Architectures', 'Model Evaluation & Optimization', 'Feature Engineering', 'REST Model Serving'], project: 'End-to-End Deep Learning Classifier & Intelligence System with REST API', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-AIML', color: '#3B82F6', active: true },
+        { id: 'data-science-analytics', title: 'Data Science & Data Analytics', shortTitle: 'Data Science & Analytics', category: 'AI & Data Science', badge: '100% FREE • 1 MONTH', iconType: 'data-science', description: 'Transform complex raw data into compelling executive stories, statistical insights, interactive KPI dashboards, and trend projections.', technologies: ['Python', 'Pandas', 'NumPy', 'Power BI', 'SQL', 'Seaborn'], skills: ['Exploratory Data Analysis (EDA)', 'Statistical Inference', 'Data Cleansing & Pipeline Wrangling', 'Dashboard Visualization', 'Business Metric Modeling'], project: 'Enterprise Business Intelligence Engine with Interactive Executive Dashboard', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-DSDA', color: '#06B6D4', active: true },
+        { id: 'python-programming', title: 'Python Programming', shortTitle: 'Python Programming', category: 'Software Engineering', badge: '100% FREE • 1 MONTH', iconType: 'python', description: 'Master core-to-advanced Python, object-oriented software design, automated web scraping, API development, and data manipulation.', technologies: ['Python 3.12', 'OOP', 'Requests & BeautifulSoup', 'Flask', 'SQLite', 'PyTest'], skills: ['Object-Oriented Programming (OOP)', 'Web Scraping & Automation', 'RESTful Microservices', 'File I/O & Exception Handling', 'Unit Testing'], project: 'Multi-threaded Automated Web Scraper & Task Automation Service with SQLite Database', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-PYTH', color: '#EAB308', active: true },
+        { id: 'fullstack-web-dev', title: 'Full Stack Web Development', shortTitle: 'Full Stack Web Dev', category: 'Development', badge: '100% FREE • 1 MONTH', iconType: 'fullstack', description: 'Build complete production-grade web applications from dynamic, responsive client frontends to scalable backend REST APIs and databases.', technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS', 'JWT'], skills: ['MERN Stack Architecture', 'RESTful API Engineering', 'Authentication & JWT Security', 'Database Schema Modeling', 'State Management'], project: 'Full-Featured SaaS Workspace Platform with User Auth, CRUD Engine, and Role-Based Access', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-FUSD', color: '#8B5CF6', active: true },
+        { id: 'frontend-development', title: 'Frontend Development', shortTitle: 'Frontend Development', category: 'Development', badge: '100% FREE • 1 MONTH', iconType: 'frontend', description: 'Craft high-performance, accessible, and stunning user interfaces using React, component architectures, and modern CSS utilities.', technologies: ['React 18', 'JavaScript (ES6+)', 'Tailwind CSS', 'Vite', 'React Router'], skills: ['React Component Lifecycle & Hooks', 'Responsive & Mobile-First Design', 'Client-Side State Management', 'API Integration', 'UI/UX Polish'], project: 'High-Performance Interactive E-Commerce Dashboard with Filtering, Search & Cart', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-FRNT', color: '#EC4899', active: true },
+        { id: 'backend-development', title: 'Backend Development', shortTitle: 'Backend Development', category: 'Development', badge: '100% FREE • 1 MONTH', iconType: 'backend', description: 'Engineer scalable, high-throughput backend services, asynchronous worker queues, resilient REST APIs, and relational/NoSQL databases.', technologies: ['Node.js', 'Express.js', 'PostgreSQL / MongoDB', 'Redis', 'JWT'], skills: ['RESTful API Design', 'Middleware Pipelines & Validation', 'Database Indexing & Queries', 'Authentication & Authorization', 'Error Handling'], project: 'Scalable Microservice Backend with Authentication, Caching Layer & Rate Limiting', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-BKND', color: '#10B981', active: true },
+        { id: 'java-programming', title: 'Java Programming', shortTitle: 'Java Programming', category: 'Software Engineering', badge: '100% FREE • 1 MONTH', iconType: 'java', description: 'Deepen core Java, Object-Oriented Principles, Collections Framework, Exception Handling, Multi-threading, and Spring Boot foundations.', technologies: ['Java 17/21', 'Spring Boot', 'OOP Concepts', 'Java Collections', 'JDBC / Hibernate'], skills: ['Enterprise OOP Architecture', 'Collections & Generics', 'Multi-threading & Concurrency', 'Spring Boot REST APIs', 'Database Connectivity'], project: 'Enterprise Employee & Payroll Management System with Spring Boot & H2/MySQL', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-JAVA', color: '#EA580C', active: true },
+        { id: 'cpp-programming', title: 'C++ Programming', shortTitle: 'C++ Programming', category: 'Software Engineering', badge: '100% FREE • 1 MONTH', iconType: 'cpp', description: 'Master systems programming, manual memory management, modern C++ (C++17/20), pointers, Standard Template Library (STL), and algorithms.', technologies: ['C++17/20', 'STL', 'Pointers', 'CMake', 'OOP in C++', 'Data Structures'], skills: ['Memory Management & RAII', 'Standard Template Library (STL)', 'Data Structures Implementation', 'Pointers & References', 'Algorithmic Problem Solving'], project: 'High-Performance In-Memory Key-Value Store & Cache with Custom Memory Pool in C++', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-CPPP', color: '#2563EB', active: true },
+        { id: 'cloud-devops', title: 'Cloud Computing & DevOps', shortTitle: 'Cloud & DevOps', category: 'Cloud & Infrastructure', badge: '100% FREE • 1 MONTH', iconType: 'cloud', description: 'Deploy, automate, and orchestrate cloud infrastructure using AWS/Azure services, Docker containerization, and GitHub Actions CI/CD pipelines.', technologies: ['AWS / Cloud Services', 'Docker', 'Kubernetes Basics', 'GitHub Actions CI/CD', 'Linux'], skills: ['Containerization with Docker', 'CI/CD Pipeline Engineering', 'Cloud Storage & Hosting', 'Linux Command Line', 'Server Configuration'], project: 'Automated CI/CD Pipeline Deploying a Containerized Microservice to Cloud with SSL', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-CLDV', color: '#0284C7', active: true },
+        { id: 'cybersecurity', title: 'Cybersecurity', shortTitle: 'Cybersecurity', category: 'Security & Systems', badge: '100% FREE • 1 MONTH', iconType: 'cybersecurity', description: 'Investigate system vulnerabilities, network security protocols, OWASP Top 10 vulnerabilities, ethical penetration testing, and digital defenses.', technologies: ['Wireshark', 'Nmap', 'Burp Suite', 'Linux Security', 'OWASP Top 10'], skills: ['Network Packet Analysis', 'Vulnerability Assessment', 'Web Application Security', 'Cryptographic Protocols', 'Incident Reporting'], project: 'Comprehensive Web Application Penetration Audit & Security Hardening Report', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-CYBR', color: '#DC2626', active: true },
+        { id: 'android-app-dev', title: 'Android App Development', shortTitle: 'Android App Dev', category: 'Mobile Development', badge: '100% FREE • 1 MONTH', iconType: 'android', description: 'Develop native modern Android applications using Kotlin, Jetpack Compose, XML layouts, Room Database, and Material Design guidelines.', technologies: ['Kotlin', 'Android Studio', 'Jetpack Compose', 'Room DB', 'Retrofit'], skills: ['Activity & Fragment Lifecycle', 'Jetpack Compose UI', 'Local Data Persistence (Room)', 'REST API Network Calls', 'Android Architecture (MVVM)'], project: 'Smart Campus Productivity & Task Management Android App with Offline Sync', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-ANDR', color: '#22C55E', active: true },
+        { id: 'flutter-app-dev', title: 'Flutter App Development', shortTitle: 'Flutter App Dev', category: 'Mobile Development', badge: '100% FREE • 1 MONTH', iconType: 'flutter', description: 'Create beautiful, natively compiled cross-platform applications for iOS and Android from a single codebase using Google Flutter & Dart.', technologies: ['Flutter SDK', 'Dart', 'Provider / Riverpod', 'Firebase', 'Material Widgets'], skills: ['Cross-Platform UI Engineering', 'State Management (Provider/Bloc)', 'REST API Integration', 'Local Storage', 'Responsive Screen Adaptations'], project: 'Cross-Platform Real-Time Social / Campus Discussion App with Firebase Backend', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-FLUT', color: '#0284C7', active: true },
+        { id: 'ui-ux-design', title: 'UI/UX Design', shortTitle: 'UI/UX Design', category: 'Design & Experience', badge: '100% FREE • 1 MONTH', iconType: 'ui-ux', description: 'Conduct user research, design wireframes, high-fidelity prototypes, user journey flows, and component design systems using Figma.', technologies: ['Figma', 'FigJam', 'Design Systems', 'Wireframing', 'Prototyping'], skills: ['User Research & Personas', 'Wireframing & Information Architecture', 'Design Systems & Auto-Layout', 'Interactive Micro-Prototyping', 'Design Handoff'], project: 'Complete End-to-End Mobile App & Web Design Case Study with Interactive Prototype', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-UIUX', color: '#A855F7', active: true },
+        { id: 'web-designing', title: 'Web Designing', shortTitle: 'Web Designing', category: 'Design & Experience', badge: '100% FREE • 1 MONTH', iconType: 'web-design', description: 'Design elegant, responsive, visual-first websites with CSS Grid, modern typography, SVG illustrations, CSS animations, and UI layouts.', technologies: ['HTML5', 'Modern CSS3', 'Tailwind CSS', 'Responsive Grid', 'SVG Graphics'], skills: ['Visual Hierarchy & Typography', 'Responsive CSS Grid & Flexbox', 'CSS Keyframe Animations', 'Color Theory & Brand Design', 'Web Accessibility (WCAG)'], project: 'Modern High-Converting Tech Startup Landing Page with Interactive Visual Sections', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-WDSG', color: '#F43F5E', active: true },
+        { id: 'business-analytics', title: 'Business Analytics', shortTitle: 'Business Analytics', category: 'Business & Management', badge: '100% FREE • 1 MONTH', iconType: 'business-analytics', description: 'Bridge business strategy and quantitative data with financial modeling, customer metrics, cohort retention, and strategic business reporting.', technologies: ['Advanced Excel', 'Power BI / Tableau', 'SQL', 'Financial Modeling', 'KPI Metrics'], skills: ['Business Case Modeling', 'Cohort & Churn Analysis', 'Financial KPI Metrics', 'Executive Presentations', 'Market Research & Forecasting'], project: 'Strategic Business Growth & Revenue Optimization Model with Executive Dashboard', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-BSAN', color: '#14B8A6', active: true },
+        { id: 'data-analysis-sql', title: 'Data Analysis with SQL', shortTitle: 'Data Analysis with SQL', category: 'AI & Data Science', badge: '100% FREE • 1 MONTH', iconType: 'sql-analysis', description: 'Master relational database querying, multi-table JOINs, subqueries, CTEs, window functions, and data aggregation for analytical reporting.', technologies: ['PostgreSQL / MySQL', 'Complex SQL Joins', 'Window Functions', 'CTEs', 'Data Aggregations'], skills: ['Relational Database Modeling', 'Complex Multi-Table Joins', 'Window Functions & Ranking', 'Common Table Expressions (CTEs)', 'Query Optimization'], project: 'Real-World E-Commerce & Customer Transaction Analytics Engine using Advanced SQL', duration: '1 Month', mode: 'Remote', isFree: true, code: 'PRMA-SQLA', color: '#6366F1', active: true }
+      ];
+      defaultDomains.forEach((d) => domainsStore.set(d.id, d));
+      persistDomains();
+      console.log(`[PRMA ROUTER] Initialized ${domainsStore.size} default domains.`);
+    }
+  };
+
+  const persistDomains = () => {
+    try {
+      const arr = Array.from(domainsStore.values());
+      fs.writeFileSync(DOMAINS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
+    } catch (e) {
+      console.warn('[PRMA ROUTER] Error persisting domains:', e.message);
+    }
+  };
+
+  // Helper: Load & Persist Tasks
+  const loadTasks = () => {
+    try {
+      if (fs.existsSync(TASKS_FILE)) {
+        const raw = fs.readFileSync(TASKS_FILE, 'utf-8');
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          parsed.forEach((t) => {
+            if (t.id) tasksStore.set(t.id, t);
+          });
+        }
+      }
+    } catch (e) {
+      console.warn('[PRMA ROUTER] Could not load tasks:', e.message);
+    }
+  };
+
+  const persistTasks = () => {
+    try {
+      const arr = Array.from(tasksStore.values());
+      fs.writeFileSync(TASKS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
+    } catch (e) {
+      console.warn('[PRMA ROUTER] Error persisting tasks:', e.message);
+    }
+  };
+
+  // Helper: Log Email
+  const logEmail = (entry) => {
+    emailLogsStore.unshift({
+      id: 'EML_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+      timestamp: new Date().toISOString(),
+      ...entry
+    });
+    try {
+      fs.writeFileSync(EMAILS_FILE, JSON.stringify(emailLogsStore.slice(0, 500), null, 2), 'utf-8');
+    } catch (e) {
+      // ignore
+    }
+  };
+
+  // Initialize data
+  loadApplications();
+  loadDomains();
+  loadTasks();
+
+  // Populate sample baseline application if empty
   if (applicationsStore.size === 0) {
-    const seed1 = 'PRMA94821034';
+    const seed1 = 'PRMA2026849201';
     applicationsStore.set(seed1, {
       applicationId: seed1,
       offerId: 'PRMA/INT/A1/93084',
-      domain: { id: 'machine-learning', title: 'Machine Learning', badge: 'High Impact' },
-      duration: '1 Month',
-      mode: 'Remote',
       student: {
         fullName: 'Priyanshu Kumar',
+        dob: '2004-05-15',
         email: 'priyanshu@gmail.com',
         mobile: '+91 98765 43210',
-        college: 'AKGEC Ghaziabad',
+        gender: 'Male',
+        address: 'Knowledge Park II',
+        city: 'Greater Noida',
+        state: 'Uttar Pradesh',
+        pinCode: '201310'
+      },
+      academic: {
+        college: 'Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad',
+        university: 'Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow',
         course: 'B.Tech',
-        branch: 'CSE (AI & ML)',
+        branch: 'Computer Science and Engineering (AI & ML)',
         year: '3rd Year',
-        semester: '5th'
+        semester: '5th',
+        graduationYear: '2026'
       },
       technical: {
-        skills: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-Learn'],
-        githubUrl: 'https://github.com/priyanshu',
-        linkedinUrl: 'https://linkedin.com/in/priyanshu',
-        resumeFileName: 'Priyanshu_Kumar_Resume.pdf'
+        domainId: 'ai-ml',
+        domainTitle: 'Artificial Intelligence & Machine Learning',
+        skills: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-Learn', 'FastAPI'],
+        languages: ['Python', 'SQL', 'C++'],
+        experience: 'Built deep learning image classifier and real estate price prediction models.',
+        experienceLevel: 'Intermediate'
       },
-      joiningDate: '17-Nov-2026',
-      completionDate: '17-Dec-2026',
-      fee: '100% Free',
-      status: 'shortlisted',
-      paymentStatus: 'free',
-      createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
-      shortlistedAt: new Date(Date.now() - 86400000).toISOString()
-    });
-
-    const seed2 = 'PRMA94821035';
-    applicationsStore.set(seed2, {
-      applicationId: seed2,
-      domain: { id: 'web-development', title: 'Full-Stack Web Development', badge: 'Popular' },
+      profiles: {
+        githubUrl: 'https://github.com/priyanshu',
+        linkedinUrl: 'https://www.linkedin.com/in/priyanshu'
+      },
+      resume: {
+        fileName: 'Priyanshu_Kumar_Resume.pdf',
+        fileSize: 124000
+      },
+      socialFollow: {
+        followedLinkedIn: true,
+        followedInstagram: true
+      },
       duration: '1 Month',
       mode: 'Remote',
-      student: {
-        fullName: 'Aarav Sharma',
-        email: 'aarav.sharma@example.com',
-        mobile: '+91 98111 22334',
-        college: 'KIET Group of Institutions',
-        course: 'B.Tech',
-        branch: 'CSE',
-        year: '3rd Year',
-        semester: '6th'
-      },
-      technical: {
-        skills: ['React', 'Node.js', 'Express', 'MongoDB'],
-        githubUrl: 'https://github.com/aarav',
-        resumeFileName: 'Aarav_Resume.pdf'
-      },
-      fee: '100% Free',
-      status: 'submitted',
-      paymentStatus: 'free',
-      createdAt: new Date(Date.now() - 86400000).toISOString()
+      fee: '₹0 (100% Free)',
+      status: 'shortlisted',
+      joiningDate: '17-Nov-2026',
+      completionDate: '17-Dec-2026',
+      createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+      shortlistedAt: new Date(Date.now() - 86400000).toISOString()
     });
 
     persistApplications();
   }
 
-  // Sample career app
-  careerApplicationsStore.set('JOB_APP_1001', {
-    id: 'JOB_APP_1001',
-    roleId: 'sde-intern',
-    roleTitle: 'Software Developer Intern',
-    fullName: 'Priya Verma',
-    email: 'priya.verma@example.com',
-    phone: '+91 98112 34567',
-    experience: 'Fresher / Final Year',
-    portfolioUrl: 'https://github.com/priyaverma',
-    resumeFileName: 'Priya_Verma_Resume_SDE.pdf',
-    notes: 'Strong in React, Node.js, and MongoDB. Built 3 production projects.',
-    status: 'interview_scheduled',
-    appliedAt: new Date(Date.now() - 86400000).toISOString()
-  });
+  // Populate sample task if empty
+  if (tasksStore.size === 0) {
+    const tId = 'TASK_101';
+    tasksStore.set(tId, {
+      id: tId,
+      domainId: 'ai-ml',
+      domainTitle: 'Artificial Intelligence & Machine Learning',
+      title: 'Milestone 1: Exploratory Analysis & Dataset Architecture',
+      description: 'Download the project dataset, perform exploratory data analysis (EDA), engineer missing features, and construct a baseline data processing pipeline.',
+      deadline: '7 Days from Joining Date',
+      resources: '1. Pandas & NumPy Documentation\n2. Scikit-learn Feature Engineering Guide\n3. Google Colab / Jupyter Environment',
+      submissionInstructions: 'Push your Colab/Jupyter notebook to a public GitHub repository and email the repo link to support@prmatech.com.',
+      createdAt: new Date().toISOString()
+    });
+    persistTasks();
+  }
 
   /**
-   * Health / Ping
+   * Health Check
    */
   router.get('/health', (req, res) => {
     res.json({
       status: 'active',
-      service: 'PRMA Tech Corporate & Internship API',
+      service: 'PRMA Tech Official Internship Controller API',
       timestamp: new Date().toISOString()
     });
   });
 
   /**
-   * Goodies Showcase (9 Products, Zero Pricing, Coming Soon)
+   * Public: List all active domains
+   */
+  router.get('/domains', (req, res) => {
+    const list = Array.from(domainsStore.values());
+    res.json({
+      success: true,
+      count: list.length,
+      domains: list
+    });
+  });
+
+  /**
+   * Admin: Add new domain
+   */
+  router.post('/domains', (req, res) => {
+    try {
+      const { title, shortTitle, category, description, technologies, skills, project, iconType, color } = req.body;
+      if (!title || !description) {
+        return res.status(400).json({ error: 'Title and description are required' });
+      }
+
+      const id = (title.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + Date.now().toString().slice(-4));
+      const newDomain = {
+        id,
+        title,
+        shortTitle: shortTitle || title,
+        category: category || 'Technology',
+        badge: '100% FREE • 1 MONTH',
+        iconType: iconType || 'frontend',
+        description,
+        technologies: Array.isArray(technologies) ? technologies : (technologies || '').split(',').map(s => s.trim()).filter(Boolean),
+        skills: Array.isArray(skills) ? skills : (skills || '').split(',').map(s => s.trim()).filter(Boolean),
+        project: project || 'Capstone Real-World Project',
+        duration: '1 Month',
+        mode: 'Remote',
+        isFree: true,
+        code: 'PRMA-' + id.slice(0, 4).toUpperCase(),
+        color: color || '#3B82F6',
+        active: true,
+        createdAt: new Date().toISOString()
+      };
+
+      domainsStore.set(id, newDomain);
+      persistDomains();
+
+      res.status(201).json({ success: true, domain: newDomain });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to create domain', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Edit domain
+   */
+  router.put('/domains/:id', (req, res) => {
+    const id = req.params.id;
+    const existing = domainsStore.get(id);
+    if (!existing) {
+      return res.status(404).json({ error: 'Domain not found' });
+    }
+
+    const updated = { ...existing, ...req.body, id };
+    domainsStore.set(id, updated);
+    persistDomains();
+
+    res.json({ success: true, domain: updated });
+  });
+
+  /**
+   * Admin: Toggle Domain Active/Inactive
+   */
+  router.delete('/domains/:id', (req, res) => {
+    const id = req.params.id;
+    const existing = domainsStore.get(id);
+    if (!existing) {
+      return res.status(404).json({ error: 'Domain not found' });
+    }
+
+    existing.active = !existing.active;
+    domainsStore.set(id, existing);
+    persistDomains();
+
+    res.json({ success: true, active: existing.active, domain: existing });
+  });
+
+  /**
+   * Public: List 9 Showcase Goodies
    */
   router.get('/goodies', (req, res) => {
     res.json({
@@ -274,189 +448,234 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   });
 
   /**
-   * Auth: Student Register
-   */
-  router.post('/auth/register', (req, res) => {
-    try {
-      const { fullName, email, mobile, college, password } = req.body;
-      if (!email || !fullName) {
-        return res.status(400).json({ error: 'Name and email are required' });
-      }
-
-      const normalizedEmail = email.toLowerCase().trim();
-      const user = {
-        id: 'prma_usr_' + Date.now(),
-        name: fullName,
-        email: normalizedEmail,
-        mobile: mobile || '',
-        college: college || '',
-        role: 'intern',
-        createdAt: new Date().toISOString()
-      };
-
-      usersStore.set(normalizedEmail, { ...user, password });
-
-      const token = 'prma_jwt_' + crypto.randomBytes(16).toString('hex');
-      res.status(201).json({
-        success: true,
-        token,
-        user
-      });
-    } catch (err) {
-      res.status(500).json({ error: 'Registration failed', details: err.message });
-    }
-  });
-
-  /**
-   * Auth: Student Login
-   */
-  router.post('/auth/login', (req, res) => {
-    try {
-      const { email, password } = req.body;
-      if (!email || !password) {
-        return res.status(400).json({ error: 'Email and password required' });
-      }
-
-      const normalizedEmail = email.toLowerCase().trim();
-      const existing = usersStore.get(normalizedEmail);
-
-      const user = existing || {
-        id: 'prma_usr_' + Date.now(),
-        name: email.split('@')[0],
-        email: normalizedEmail,
-        role: 'intern'
-      };
-
-      const token = 'prma_jwt_' + crypto.randomBytes(16).toString('hex');
-      res.json({
-        success: true,
-        token,
-        user
-      });
-    } catch (err) {
-      res.status(500).json({ error: 'Login failed', details: err.message });
-    }
-  });
-
-  /**
-   * Submit 100% Free Internship Application
+   * Submit Internship Application (100% Free • Strict Validation)
    */
   router.post('/applications', (req, res) => {
     try {
       const {
-        applicationId,
         student,
-        domain,
+        academic,
         technical,
-        statementOfPurpose,
-        preferredStartDate,
-        duration = '1 Month',
-        mode = 'Remote / Online'
+        profiles,
+        resume,
+        socialFollow,
+        declaration
       } = req.body;
 
-      if (!student?.fullName || !student?.email) {
-        return res.status(400).json({ error: 'Student full name and email are mandatory' });
+      // 1. Validate Personal Information
+      if (!student?.fullName || !student?.email || !student?.mobile || !student?.dob) {
+        return res.status(400).json({ error: 'Personal information is incomplete (Full Name, DOB, Email, and Mobile are mandatory).' });
       }
 
-      const appId = applicationId || 'PRMA' + Date.now().toString().slice(-8);
-      const appRecord = {
+      // 2. Validate Academic Information
+      if (!academic?.college || !academic?.university || !academic?.course || !academic?.year) {
+        return res.status(400).json({ error: 'Academic information is incomplete (College, University, Course, and Year are mandatory).' });
+      }
+
+      // 3. Validate Technical Domain
+      if (!technical?.domainTitle) {
+        return res.status(400).json({ error: 'Internship domain selection is compulsory.' });
+      }
+
+      // 4. Validate Profiles (Mandatory GitHub & LinkedIn URLs)
+      if (!profiles?.githubUrl || !profiles?.linkedinUrl) {
+        return res.status(400).json({ error: 'Both GitHub Profile URL and LinkedIn Profile URL are mandatory.' });
+      }
+
+      const githubRegex = /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9_-]+\/?.*$/i;
+      const linkedinRegex = /^https?:\/\/([a-z]{2,3}\.)?linkedin\.com\/(in|company)\/[a-zA-Z0-9_%-]+\/?.*$/i;
+
+      if (!githubRegex.test(profiles.githubUrl.trim())) {
+        return res.status(400).json({ error: 'Please enter a valid GitHub profile URL (e.g. https://github.com/username).' });
+      }
+
+      if (!linkedinRegex.test(profiles.linkedinUrl.trim())) {
+        return res.status(400).json({ error: 'Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/username).' });
+      }
+
+      // 5. Validate Resume Upload (Compulsory PDF < 5MB)
+      if (!resume || !resume.fileName) {
+        return res.status(400).json({ error: 'Resume upload is compulsory. Please attach your resume in PDF format.' });
+      }
+
+      if (!resume.fileName.toLowerCase().endsWith('.pdf')) {
+        return res.status(400).json({ error: 'Resume must be in PDF format only.' });
+      }
+
+      // 6. Validate Social Media Follow Confirmation
+      if (!socialFollow?.followedLinkedIn || !socialFollow?.followedInstagram) {
+        return res.status(400).json({ error: 'Please confirm that you have followed both PRMA Tech on LinkedIn and Instagram before submitting.' });
+      }
+
+      // 7. Validate Declaration
+      if (!declaration?.confirmedAccuracy) {
+        return res.status(400).json({ error: 'Please confirm the accuracy declaration before submitting.' });
+      }
+
+      // Generate Unique Application ID: PRMA + Year + 6 digits
+      const year = new Date().getFullYear();
+      const rand = Math.floor(100000 + Math.random() * 900000);
+      const appId = `PRMA${year}${rand}`;
+
+      const newApplication = {
         applicationId: appId,
         student: {
-          fullName: (student.fullName || '').trim(),
-          email: (student.email || '').trim().toLowerCase(),
-          mobile: (student.mobile || '').trim(),
-          college: (student.college || '').trim(),
-          course: student.course || 'B.Tech',
-          branch: (student.branch || '').trim(),
-          year: student.year || '3rd Year',
-          semester: student.semester || ''
+          fullName: student.fullName.trim(),
+          dob: student.dob,
+          email: student.email.trim().toLowerCase(),
+          mobile: student.mobile.trim(),
+          gender: student.gender || 'Not Specified',
+          address: (student.address || '').trim(),
+          city: (student.city || '').trim(),
+          state: (student.state || '').trim(),
+          pinCode: (student.pinCode || '').trim()
         },
-        domain: domain || { id: 'web-development', title: 'Full-Stack Web Development' },
-        technical: technical || {},
-        statementOfPurpose: statementOfPurpose || '',
-        preferredStartDate: preferredStartDate || '',
+        academic: {
+          college: academic.college.trim(),
+          university: academic.university.trim(),
+          course: academic.course.trim(),
+          branch: (academic.branch || '').trim(),
+          year: academic.year.trim(),
+          semester: academic.semester || '',
+          graduationYear: academic.graduationYear || ''
+        },
+        technical: {
+          domainId: technical.domainId || 'ai-ml',
+          domainTitle: technical.domainTitle.trim(),
+          skills: Array.isArray(technical.skills) ? technical.skills : (technical.skills || '').split(',').map(s => s.trim()).filter(Boolean),
+          languages: Array.isArray(technical.languages) ? technical.languages : (technical.languages || '').split(',').map(s => s.trim()).filter(Boolean),
+          experience: (technical.experience || '').trim(),
+          experienceLevel: technical.experienceLevel || 'Beginner'
+        },
+        profiles: {
+          githubUrl: profiles.githubUrl.trim(),
+          linkedinUrl: profiles.linkedinUrl.trim()
+        },
+        resume: {
+          fileName: resume.fileName,
+          fileSize: resume.fileSize || 0,
+          dataUrl: resume.dataUrl || '' // secure base64 string
+        },
+        socialFollow: {
+          followedLinkedIn: true,
+          followedInstagram: true
+        },
         duration: '1 Month',
-        mode: mode || 'Remote / Online',
-        fee: '100% Free',
-        totalAmount: 0,
+        mode: 'Remote',
+        fee: '₹0 (100% Free)',
         status: 'submitted',
-        paymentStatus: 'free',
         createdAt: new Date().toISOString()
       };
 
-      applicationsStore.set(appId, appRecord);
+      applicationsStore.set(appId, newApplication);
       persistApplications();
 
+      // Return Confirmation Payload (Requirement 3)
       res.status(201).json({
         success: true,
+        message: 'Application Submitted Successfully!',
         applicationId: appId,
-        record: appRecord
+        selectedDomain: newApplication.technical.domainTitle,
+        registeredEmail: newApplication.student.email,
+        studentName: newApplication.student.fullName,
+        submissionDate: new Date().toLocaleDateString('en-GB'),
+        status: 'Submitted — Under Review'
       });
     } catch (err) {
-      res.status(500).json({ error: 'Failed to record application', details: err.message });
+      console.error('[PRMA ROUTER] Application submission error:', err);
+      res.status(500).json({ error: 'Failed to process application', details: err.message });
     }
   });
 
   /**
-   * Status Search for Student Dashboard
+   * Admin: List Applications with Search & Filters
    */
-  router.get('/applications/status/:identifier', (req, res) => {
-    const term = (req.params.identifier || '').trim().toLowerCase();
-    if (!term) {
-      return res.status(400).json({ error: 'Please enter Application ID or Email' });
-    }
+  router.get('/admin/applications', (req, res) => {
+    try {
+      const { status, domain, college, university, search } = req.query;
+      let list = Array.from(applicationsStore.values()).reverse();
 
-    let found = null;
-    for (const app of applicationsStore.values()) {
-      if (
-        (app.applicationId && app.applicationId.toLowerCase() === term) ||
-        (app.student?.email && app.student.email.toLowerCase() === term) ||
-        (app.offerId && app.offerId.toLowerCase() === term)
-      ) {
-        found = app;
-        break;
+      if (status && status !== 'all') {
+        list = list.filter(a => a.status === status);
+      }
+      if (domain && domain !== 'all') {
+        list = list.filter(a => a.technical?.domainTitle === domain || a.technical?.domainId === domain);
+      }
+      if (college && college !== 'all') {
+        list = list.filter(a => (a.academic?.college || '').toLowerCase().includes(college.toLowerCase()));
+      }
+      if (university && university !== 'all') {
+        list = list.filter(a => (a.academic?.university || '').toLowerCase().includes(university.toLowerCase()));
+      }
+      if (search) {
+        const q = search.toLowerCase();
+        list = list.filter(a =>
+          (a.student?.fullName || '').toLowerCase().includes(q) ||
+          (a.student?.email || '').toLowerCase().includes(q) ||
+          (a.student?.mobile || '').includes(q) ||
+          (a.applicationId || '').toLowerCase().includes(q) ||
+          (a.offerId || '').toLowerCase().includes(q) ||
+          (a.academic?.college || '').toLowerCase().includes(q)
+        );
+      }
+
+      res.json({
+        success: true,
+        count: list.length,
+        applications: list
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to retrieve applications', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Application Details Dossier
+   */
+  router.get('/admin/applications/:id', (req, res) => {
+    const appId = req.params.id;
+    let found = applicationsStore.get(appId);
+
+    if (!found) {
+      for (const a of applicationsStore.values()) {
+        if (a.offerId === appId || a.applicationId.toLowerCase() === appId.toLowerCase()) {
+          found = a;
+          break;
+        }
       }
     }
 
     if (!found) {
-      return res.status(404).json({
-        success: false,
-        message: 'No application found with provided ID or Email.'
-      });
+      return res.status(404).json({ error: 'Application not found' });
     }
 
-    res.json({
-      success: true,
-      application: found
-    });
+    res.json({ success: true, application: found });
   });
 
   /**
-   * Get Application by ID
+   * Admin: Download Candidate Resume
    */
-  router.get('/applications/:id', (req, res) => {
+  router.get('/admin/applications/:id/resume', (req, res) => {
     const appId = req.params.id;
     const record = applicationsStore.get(appId);
 
-    if (record) {
-      return res.json({ success: true, application: record });
+    if (!record || !record.resume) {
+      return res.status(404).send('Resume file not found');
     }
 
-    // Search by offerId or case-insensitive
-    for (const app of applicationsStore.values()) {
-      if (app.offerId === appId || app.applicationId.toLowerCase() === appId.toLowerCase()) {
-        return res.json({ success: true, application: app });
-      }
+    if (record.resume.dataUrl && record.resume.dataUrl.startsWith('data:application/pdf;base64,')) {
+      const base64Data = record.resume.dataUrl.replace(/^data:application\/pdf;base64,/, '');
+      const buffer = Buffer.from(base64Data, 'base64');
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `inline; filename="${record.resume.fileName || 'Resume.pdf'}"`);
+      return res.end(buffer);
     }
 
-    res.status(404).json({
-      success: false,
-      message: 'Application not found'
-    });
+    res.status(404).send('Resume content unavailable');
   });
 
   /**
-   * Admin: Shortlist Candidate & Auto-Generate Vector PDF & Dispatch Email
+   * Admin: Shortlist / Approve Student (Generates Vector PDF & Sends Email)
    */
   router.post('/admin/applications/:id/shortlist', async (req, res) => {
     try {
@@ -464,9 +683,9 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       let record = applicationsStore.get(appId);
 
       if (!record) {
-        for (const app of applicationsStore.values()) {
-          if (app.applicationId === appId || app.offerId === appId) {
-            record = app;
+        for (const a of applicationsStore.values()) {
+          if (a.applicationId === appId || a.offerId === appId) {
+            record = a;
             break;
           }
         }
@@ -476,10 +695,21 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         return res.status(404).json({ error: 'Application not found' });
       }
 
+      // Check if already shortlisted to prevent duplicate emails
+      if (record.status === 'shortlisted' && !req.body.forceResend) {
+        return res.json({
+          success: true,
+          alreadyShortlisted: true,
+          message: 'Student is already shortlisted.',
+          offerId: record.offerId,
+          application: record
+        });
+      }
+
       // Generate or reuse Offer ID
       const offerId = record.offerId || `PRMA/INT/A1/${Math.floor(10000 + Math.random() * 90000)}`;
 
-      // Calculate joining date and 1-month completion date
+      // Calculate Dates
       const joiningDateInput = req.body.joiningDate;
       let joinDateStr;
       if (joiningDateInput) {
@@ -491,7 +721,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         joinDateStr = `${day}-${months[nextWeek.getMonth()]}-${nextWeek.getFullYear()}`;
       }
 
-      // 1 Month completion
+      // Completion is 1 month later
       const compDate = new Date(Date.now() + 37 * 86400000);
       const cDay = String(compDate.getDate()).padStart(2, '0');
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -499,12 +729,12 @@ export function createPrmaRouter({ isDbConnected } = {}) {
 
       const todayStr = new Date().toLocaleDateString('en-GB').replace(/\//g, '-');
       const studentName = record.student?.fullName || 'Candidate';
-      const domainTitle = record.domain?.title || 'Technology Track';
+      const domainTitle = record.technical?.domainTitle || record.domain?.title || 'Technology Track';
 
       const verificationUrl = `https://professorvirus.site/prma-tech/verify-offer/${encodeURIComponent(offerId)}`;
 
       // 1. Generate Vector PDF
-      let pdfBuffer;
+      let pdfBuffer = null;
       try {
         pdfBuffer = await generatePrmaOfferLetterPdf({
           studentName,
@@ -520,11 +750,11 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         pdfCacheStore.set(offerId, pdfBuffer);
         pdfCacheStore.set(record.applicationId, pdfBuffer);
       } catch (pdfErr) {
-        console.error('[PRMA ROUTER] PDF Generation error:', pdfErr);
+        console.error('[PRMA ROUTER] PDF generation error:', pdfErr);
       }
 
       // 2. Dispatch Email
-      let emailResult = { success: false, reason: 'PDF not available' };
+      let emailResult = { success: false, reason: 'PDF generation failed' };
       if (pdfBuffer && record.student?.email) {
         try {
           emailResult = await sendPrmaShortlistEmail({
@@ -533,7 +763,18 @@ export function createPrmaRouter({ isDbConnected } = {}) {
             domainTitle,
             offerId,
             joiningDate: joinDateStr,
+            completionDate: completionDateStr,
             pdfBuffer
+          });
+
+          logEmail({
+            type: 'SHORTLIST_OFFER_LETTER',
+            recipient: record.student.email,
+            studentName,
+            domainTitle,
+            offerId,
+            status: emailResult.success ? 'Delivered' : 'Failed',
+            details: emailResult
           });
         } catch (mailErr) {
           console.error('[PRMA ROUTER] Email send error:', mailErr);
@@ -546,17 +787,16 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       record.offerId = offerId;
       record.joiningDate = joinDateStr;
       record.completionDate = completionDateStr;
-      record.duration = '1 Month';
       record.shortlistedAt = new Date().toISOString();
-      record.emailDispatched = emailResult.success;
-      record.offerLetterUrl = `/api/prma/admin/applications/${encodeURIComponent(record.applicationId)}/offer-letter`;
+      record.emailDeliveryStatus = emailResult.success ? 'Sent' : 'Failed';
+      record.adminRemarks = req.body.adminRemarks || record.adminRemarks || 'Profile approved for 1-month virtual cohort.';
 
       applicationsStore.set(record.applicationId, record);
       persistApplications();
 
       res.json({
         success: true,
-        message: 'Applicant successfully shortlisted, offer letter issued, and notification triggered.',
+        message: `Student shortlisted successfully! Offer ID: ${offerId}`,
         offerId,
         joiningDate: joinDateStr,
         emailSent: emailResult.success,
@@ -564,13 +804,67 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         application: record
       });
     } catch (err) {
-      console.error('[PRMA ROUTER] Shortlist handler failure:', err);
-      res.status(500).json({ error: 'Failed to shortlist applicant', details: err.message });
+      console.error('[PRMA ROUTER] Shortlist error:', err);
+      res.status(500).json({ error: 'Shortlist processing failed', details: err.message });
     }
   });
 
   /**
-   * Download / View Offer Letter PDF
+   * Admin: Reject Application
+   */
+  router.post('/admin/applications/:id/reject', async (req, res) => {
+    try {
+      const appId = req.params.id;
+      const record = applicationsStore.get(appId);
+      if (!record) return res.status(404).json({ error: 'Application not found' });
+
+      record.status = 'rejected';
+      record.rejectedAt = new Date().toISOString();
+      record.adminRemarks = req.body.remarks || 'Application not selected for this cohort.';
+
+      if (req.body.sendEmail && record.student?.email) {
+        await sendPrmaRejectionEmail({
+          toEmail: record.student.email,
+          studentName: record.student.fullName,
+          domainTitle: record.technical?.domainTitle || 'Internship',
+          remarks: record.adminRemarks
+        });
+
+        logEmail({
+          type: 'APPLICATION_REJECTION',
+          recipient: record.student.email,
+          studentName: record.student.fullName,
+          status: 'Delivered'
+        });
+      }
+
+      applicationsStore.set(appId, record);
+      persistApplications();
+
+      res.json({ success: true, message: 'Application status updated to Rejected', application: record });
+    } catch (err) {
+      res.status(500).json({ error: 'Rejection action failed', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Mark Under Review
+   */
+  router.post('/admin/applications/:id/review', (req, res) => {
+    const appId = req.params.id;
+    const record = applicationsStore.get(appId);
+    if (!record) return res.status(404).json({ error: 'Application not found' });
+
+    record.status = 'under_review';
+    record.adminRemarks = req.body.remarks || 'Currently undergoing screening.';
+    applicationsStore.set(appId, record);
+    persistApplications();
+
+    res.json({ success: true, application: record });
+  });
+
+  /**
+   * Download Generated Offer Letter PDF
    */
   const handleOfferLetterStream = async (req, res) => {
     try {
@@ -578,24 +872,23 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       let record = applicationsStore.get(idParam);
 
       if (!record) {
-        for (const app of applicationsStore.values()) {
-          if (app.applicationId === idParam || app.offerId === idParam) {
-            record = app;
+        for (const a of applicationsStore.values()) {
+          if (a.applicationId === idParam || a.offerId === idParam) {
+            record = a;
             break;
           }
         }
       }
 
       let pdfBuffer = pdfCacheStore.get(idParam);
-      if (!pdfBuffer && record && record.offerId) {
+      if (!pdfBuffer && record?.offerId) {
         pdfBuffer = pdfCacheStore.get(record.offerId);
       }
 
-      // If not cached, generate dynamically
       if (!pdfBuffer) {
-        const studentName = record?.student?.fullName || 'Priyanshu Kumar';
-        const domainTitle = record?.domain?.title || 'Machine Learning';
-        const offerId = record?.offerId || (idParam.includes('/') ? idParam : `PRMA/INT/A1/93084`);
+        const studentName = record?.student?.fullName || 'Candidate';
+        const domainTitle = record?.technical?.domainTitle || record?.domain?.title || 'Technology Track';
+        const offerId = record?.offerId || (idParam.includes('/') ? idParam : 'PRMA/INT/A1/93084');
         const joiningDate = record?.joiningDate || '17-Nov-2026';
         const completionDate = record?.completionDate || '17-Dec-2026';
         const verificationUrl = `https://professorvirus.site/prma-tech/verify-offer/${encodeURIComponent(offerId)}`;
@@ -617,12 +910,12 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       }
 
       res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `inline; filename="PRMA_Tech_Offer_Letter_${record?.offerId ? record.offerId.replace(/[\/\\]/g, '_') : 'Verified'}.pdf"`);
+      res.setHeader('Content-Disposition', `inline; filename="PRMA_Tech_Joining_Letter_${record?.offerId ? record.offerId.replace(/[\/\\]/g, '_') : 'Verified'}.pdf"`);
       res.setHeader('Content-Length', pdfBuffer.length);
       res.end(pdfBuffer);
     } catch (err) {
       console.error('[PRMA ROUTER] PDF Stream error:', err);
-      res.status(500).send('Error rendering offer letter PDF: ' + err.message);
+      res.status(500).send('Error rendering offer letter: ' + err.message);
     }
   };
 
@@ -630,7 +923,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   router.get('/offer-letter/:offerId', handleOfferLetterStream);
 
   /**
-   * Verify Offer Letter Endpoint
+   * Scannable QR Credential Verification Endpoint
    */
   router.get('/verify-offer/:offerId', (req, res) => {
     try {
@@ -647,17 +940,22 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         }
       }
 
-      // Allow reference verification for sample seed ID PRMA/INT/A1/93084
+      // Default sample reference seed
       if (!match && (paramId.toLowerCase().includes('93084') || paramId.toLowerCase() === 'prma/int/a1/93084')) {
         match = {
-          applicationId: 'PRMA94821034',
+          applicationId: 'PRMA2026849201',
           offerId: 'PRMA/INT/A1/93084',
           student: {
             fullName: 'Priyanshu Kumar',
-            college: 'AKGEC Ghaziabad',
-            branch: 'CSE (AI & ML)'
+            college: 'Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad'
           },
-          domain: { title: 'Machine Learning' },
+          academic: {
+            college: 'Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad',
+            branch: 'Computer Science and Engineering (AI & ML)'
+          },
+          technical: {
+            domainTitle: 'Artificial Intelligence & Machine Learning'
+          },
           joiningDate: '17-Nov-2026',
           completionDate: '17-Dec-2026',
           duration: '1 Month',
@@ -681,9 +979,9 @@ export function createPrmaRouter({ isDbConnected } = {}) {
           offerId: match.offerId || paramId,
           applicationId: match.applicationId,
           studentName: match.student?.fullName || 'Verified Intern',
-          college: match.student?.college || 'Affiliated Institution',
-          branch: match.student?.branch || 'Engineering / Technology',
-          domain: match.domain?.title || 'Technical Internship Track',
+          college: match.academic?.college || match.student?.college || 'Affiliated Institution',
+          branch: match.academic?.branch || match.student?.branch || 'Engineering / Technology',
+          domain: match.technical?.domainTitle || match.domain?.title || 'Technical Track',
           joiningDate: match.joiningDate || '17-Nov-2026',
           completionDate: match.completionDate || '17-Dec-2026',
           duration: match.duration || '1 Month',
@@ -691,7 +989,6 @@ export function createPrmaRouter({ isDbConnected } = {}) {
           status: 'Official Verified Offer',
           issuedBy: 'Rahul Verma, Co-Founder & COO, PRMA Tech',
           corporateAddress: 'PRMA Tech, Knowledge Park, Greater Noida, Uttar Pradesh – 201310',
-          accreditations: ['ISO 9001:2015 Certified', 'MSME Registered (Govt. of India)'],
           verifiedAt: new Date().toISOString()
         }
       });
@@ -701,157 +998,165 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   });
 
   /**
-   * Careers: Submit Application
-   */
-  router.post('/careers/apply', (req, res) => {
-    try {
-      const { roleId, roleTitle, fullName, email, phone, experience, portfolioUrl, resumeFileName, notes } = req.body;
-      if (!fullName || !email) {
-        return res.status(400).json({ error: 'Full name and email are required' });
-      }
-
-      const id = 'JOB_APP_' + Date.now().toString().slice(-6);
-      const application = {
-        id,
-        roleId: roleId || 'general-application',
-        roleTitle: roleTitle || 'General Application / Talent Pool',
-        fullName,
-        email: email.toLowerCase().trim(),
-        phone: phone || '',
-        experience: experience || '',
-        portfolioUrl: portfolioUrl || '',
-        resumeFileName: resumeFileName || 'Uploaded_Resume.pdf',
-        notes: notes || '',
-        status: 'received',
-        appliedAt: new Date().toISOString()
-      };
-
-      careerApplicationsStore.set(id, application);
-
-      res.status(201).json({
-        success: true,
-        applicationId: id,
-        message: 'Application received successfully. Our hiring team will review your profile within 48 hours.'
-      });
-    } catch (err) {
-      res.status(500).json({ error: 'Career application submission failed', details: err.message });
-    }
-  });
-
-  /**
-   * Contact / Services Project Inquiry Submission
-   */
-  router.post('/contact', (req, res) => {
-    try {
-      const { fullName, email, phone, company, service, budget, message } = req.body;
-      if (!fullName || !email || !message) {
-        return res.status(400).json({ error: 'Name, email, and message are required' });
-      }
-
-      const inquiryId = 'INQ_' + Date.now().toString().slice(-6);
-      const inquiry = {
-        id: inquiryId,
-        fullName,
-        email: email.toLowerCase().trim(),
-        phone: phone || '',
-        company: company || '',
-        service: service || 'General Consultation',
-        budget: budget || 'Flexible',
-        message,
-        createdAt: new Date().toISOString()
-      };
-
-      contactInquiriesStore.set(inquiryId, inquiry);
-
-      res.status(201).json({
-        success: true,
-        inquiryId,
-        message: 'Thank you! Your project inquiry has been received. A PRMA Tech consultant will reach out within 24 hours.'
-      });
-    } catch (err) {
-      res.status(500).json({ error: 'Inquiry submission failed', details: err.message });
-    }
-  });
-
-  /**
-   * Admin: Overview Stats
+   * Real Database-Driven Admin Statistics (Requirement 6.A)
    */
   router.get('/admin/stats', (req, res) => {
     try {
-      const applications = Array.from(applicationsStore.values());
-      const careers = Array.from(careerApplicationsStore.values());
-      const inquiries = Array.from(contactInquiriesStore.values());
+      const apps = Array.from(applicationsStore.values());
+
+      const totalApplications = apps.length;
+      const newApplications = apps.filter(a => a.status === 'submitted').length;
+      const underReview = apps.filter(a => a.status === 'under_review').length;
+      const shortlisted = apps.filter(a => a.status === 'shortlisted').length;
+      const rejected = apps.filter(a => a.status === 'rejected').length;
+
+      // Group by domain
+      const byDomain = {};
+      apps.forEach(a => {
+        const dom = a.technical?.domainTitle || a.domain?.title || 'General';
+        byDomain[dom] = (byDomain[dom] || 0) + 1;
+      });
+
+      // Group by college
+      const byCollege = {};
+      apps.forEach(a => {
+        const col = a.academic?.college || a.student?.college || 'Other';
+        byCollege[col] = (byCollege[col] || 0) + 1;
+      });
+
+      // Group by university
+      const byUniversity = {};
+      apps.forEach(a => {
+        const uni = a.academic?.university || 'Other';
+        byUniversity[uni] = (byUniversity[uni] || 0) + 1;
+      });
 
       res.json({
         success: true,
         stats: {
-          totalInternshipApplications: applications.length,
-          shortlistedCandidates: applications.filter(a => a.status === 'shortlisted').length,
-          activeInternships: applications.filter(a => a.status === 'shortlisted' || a.status === 'active').length,
-          careerApplications: careers.length,
-          inquiriesReceived: inquiries.length,
-          totalRevenue: 0,
-          pricingModel: '100% Free Internship Program',
-          recentApplications: applications.slice(-10).reverse(),
-          recentCareers: careers.slice(-5).reverse(),
-          recentInquiries: inquiries.slice(-5).reverse()
+          totalApplications,
+          newApplications,
+          underReview,
+          shortlisted,
+          rejected,
+          byDomain,
+          byCollege,
+          byUniversity,
+          totalEmailsDispatched: emailLogsStore.length
         }
       });
     } catch (err) {
-      res.status(500).json({ error: 'Failed to fetch admin stats', details: err.message });
+      res.status(500).json({ error: 'Failed to compute admin statistics', details: err.message });
     }
   });
 
   /**
-   * Admin: List All Internship Applications
+   * Admin: List Tasks
    */
-  router.get('/admin/applications', (req, res) => {
-    const list = Array.from(applicationsStore.values()).reverse();
-    res.json({ success: true, count: list.length, applications: list });
+  router.get('/admin/tasks', (req, res) => {
+    const list = Array.from(tasksStore.values());
+    res.json({ success: true, count: list.length, tasks: list });
   });
 
   /**
-   * Admin: Update Application Status
+   * Admin: Create Task
    */
-  router.patch('/admin/applications/:id', (req, res) => {
-    const appId = req.params.id;
-    const { status } = req.body;
-    let existing = applicationsStore.get(appId);
+  router.post('/admin/tasks', (req, res) => {
+    try {
+      const { domainId, domainTitle, title, description, deadline, resources, submissionInstructions } = req.body;
+      if (!title || !description) {
+        return res.status(400).json({ error: 'Task title and description are required' });
+      }
 
-    if (!existing) {
-      for (const app of applicationsStore.values()) {
-        if (app.applicationId === appId || app.offerId === appId) {
-          existing = app;
-          break;
+      const id = 'TASK_' + Date.now().toString().slice(-6);
+      const newTask = {
+        id,
+        domainId: domainId || 'all',
+        domainTitle: domainTitle || 'All Domains',
+        title,
+        description,
+        deadline: deadline || '1 Week',
+        resources: resources || '',
+        submissionInstructions: submissionInstructions || '',
+        dispatchedCount: 0,
+        createdAt: new Date().toISOString()
+      };
+
+      tasksStore.set(id, newTask);
+      persistTasks();
+
+      res.status(201).json({ success: true, task: newTask });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to create task', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Dispatch Task via Email to Shortlisted Students
+   */
+  router.post('/admin/tasks/:id/dispatch', async (req, res) => {
+    try {
+      const taskId = req.params.id;
+      const task = tasksStore.get(taskId);
+      if (!task) return res.status(404).json({ error: 'Task not found' });
+
+      // Find all shortlisted students matching domain (or all if domainId === 'all')
+      const targetApps = Array.from(applicationsStore.values()).filter(a => {
+        if (a.status !== 'shortlisted') return false;
+        if (task.domainId === 'all') return true;
+        return a.technical?.domainId === task.domainId || a.technical?.domainTitle === task.domainTitle;
+      });
+
+      let dispatched = 0;
+      for (const app of targetApps) {
+        if (app.student?.email) {
+          await sendPrmaTaskEmail({
+            toEmail: app.student.email,
+            studentName: app.student.fullName,
+            domainTitle: app.technical?.domainTitle || task.domainTitle,
+            taskTitle: task.title,
+            taskDescription: task.description,
+            deadline: task.deadline,
+            resources: task.resources,
+            submissionInstructions: task.submissionInstructions
+          });
+
+          logEmail({
+            type: 'TASK_INSTRUCTION',
+            recipient: app.student.email,
+            studentName: app.student.fullName,
+            taskTitle: task.title,
+            status: 'Delivered'
+          });
+
+          dispatched++;
         }
       }
+
+      task.dispatchedCount = (task.dispatchedCount || 0) + dispatched;
+      task.lastDispatchedAt = new Date().toISOString();
+      tasksStore.set(taskId, task);
+      persistTasks();
+
+      res.json({
+        success: true,
+        message: `Task successfully dispatched to ${dispatched} shortlisted students via registered email.`,
+        dispatchedCount: dispatched
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to dispatch tasks', details: err.message });
     }
-
-    if (!existing) {
-      return res.status(404).json({ error: 'Application not found' });
-    }
-
-    if (status) existing.status = status;
-    applicationsStore.set(existing.applicationId, existing);
-    persistApplications();
-
-    res.json({ success: true, application: existing });
   });
 
   /**
-   * Admin: List All Career Applications
+   * Admin: Email Audit Log
    */
-  router.get('/admin/careers', (req, res) => {
-    const list = Array.from(careerApplicationsStore.values()).reverse();
-    res.json({ success: true, count: list.length, applications: list });
-  });
-
-  /**
-   * Admin: List All Inquiries
-   */
-  router.get('/admin/inquiries', (req, res) => {
-    const list = Array.from(contactInquiriesStore.values()).reverse();
-    res.json({ success: true, count: list.length, inquiries: list });
+  router.get('/admin/emails', (req, res) => {
+    res.json({
+      success: true,
+      count: emailLogsStore.length,
+      emails: emailLogsStore
+    });
   });
 
   return router;

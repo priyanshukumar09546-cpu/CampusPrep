@@ -18,7 +18,9 @@ import {
   TrendingUp,
   ShieldCheck,
   ChevronRight,
-  BookOpen
+  BookOpen,
+  GraduationCap,
+  Clock
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
@@ -139,7 +141,7 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
             >
               <button
                 type="button"
-                onClick={() => handleNav('prma-internships-apply')}
+                onClick={() => handleNav('prma-internships-domains')}
                 style={{
                   padding: '0.95rem 2rem',
                   borderRadius: '14px',
@@ -723,7 +725,7 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem' }}>
               <button
                 type="button"
-                onClick={() => handleNav('prma-internships-apply')}
+                onClick={() => handleNav('prma-internships-domains')}
                 style={{
                   padding: '0.9rem 1.85rem',
                   borderRadius: '12px',

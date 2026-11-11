@@ -1,4 +1,5 @@
-// 18 Official PRMA Tech Internship Domains (100% Free • 1 Month Duration)
+// 16 Official PRMA Tech Internship Domains (100% Free • 1 Month Duration • Remote Mode)
+// Each domain possesses an authentic, individual visual illustration and technological specialization.
 
 export const PRMA_DOMAINS = [
   {
@@ -7,20 +8,21 @@ export const PRMA_DOMAINS = [
     shortTitle: 'AI & Machine Learning',
     category: 'AI & Data Science',
     badge: '100% FREE • 1 MONTH',
-    icon: 'Cpu',
-    description: 'Build predictive AI systems, train neural networks, and explore machine learning algorithms using industry datasets.',
-    skills: ['Supervised & Unsupervised Learning', 'Neural Networks', 'Model Evaluation', 'PyTorch & TensorFlow', 'Model Deployment'],
-    technologies: ['Python', 'PyTorch', 'TensorFlow', 'Scikit-Learn', 'Pandas', 'FastAPI'],
-    project: 'End-to-End Predictive Intelligence & Deep Learning Classifier with REST API deployment',
+    iconType: 'ai-ml',
+    description: 'Design and train predictive AI models, deep neural networks, and explore practical computer vision and NLP with industry datasets.',
+    technologies: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-Learn', 'FastAPI', 'Pandas'],
+    skills: ['Supervised & Unsupervised Learning', 'Neural Network Architectures', 'Model Evaluation & Optimization', 'Feature Engineering', 'REST Model Serving'],
+    project: 'End-to-End Deep Learning Classifier & Intelligence System with REST API',
     outcomes: [
-      'Build and train real-world machine learning models',
-      'Understand neural network architectures and model evaluation',
-      'Receive official PRMA Tech verified internship completion certificate'
+      'Master fundamental machine learning algorithms and deep neural architectures',
+      'Train, fine-tune, and evaluate models on real-world datasets',
+      'Deploy inference APIs and build interactive model demonstration apps'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-AIML'
+    code: 'PRMA-AIML',
+    color: '#3B82F6'
   },
   {
     id: 'data-science-analytics',
@@ -28,62 +30,65 @@ export const PRMA_DOMAINS = [
     shortTitle: 'Data Science & Analytics',
     category: 'AI & Data Science',
     badge: '100% FREE • 1 MONTH',
-    icon: 'BarChart3',
-    description: 'Transform complex business datasets into strategic visual dashboards, exploratory models, and predictive metrics.',
-    skills: ['Data Wrangling', 'Exploratory Data Analysis', 'Statistical Inference', 'SQL Querying', 'Interactive Dashboards'],
-    technologies: ['Python', 'Pandas', 'NumPy', 'Power BI', 'SQL', 'Seaborn'],
-    project: 'Comprehensive Enterprise Analytics Engine with Interactive KPI Executive Dashboard',
+    iconType: 'data-science',
+    description: 'Transform complex raw data into compelling executive stories, statistical insights, interactive KPI dashboards, and trend projections.',
+    technologies: ['Python', 'Pandas', 'NumPy', 'Power BI', 'SQL', 'Seaborn', 'Matplotlib'],
+    skills: ['Exploratory Data Analysis (EDA)', 'Statistical Inference', 'Data Cleansing & Pipeline Wrangling', 'Dashboard Visualization', 'Business Metric Modeling'],
+    project: 'Enterprise Business Intelligence Engine with Interactive Executive Dashboard',
     outcomes: [
-      'Perform advanced data cleaning and statistical transformations',
-      'Engineer actionable business dashboards and insight reports',
-      'Work with live business analytics use cases'
+      'Cleanse, restructure, and analyze large multi-table datasets',
+      'Engineer KPI dashboards that drive data-informed decision-making',
+      'Conduct hypothesis testing and predictive trend projections'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-DSDA'
+    code: 'PRMA-DSDA',
+    color: '#06B6D4'
   },
   {
-    id: 'web-development',
-    title: 'Web Development',
-    shortTitle: 'Web Development',
-    category: 'Development',
+    id: 'python-programming',
+    title: 'Python Programming',
+    shortTitle: 'Python Programming',
+    category: 'Software Engineering',
     badge: '100% FREE • 1 MONTH',
-    icon: 'Globe',
-    description: 'Design and develop modern, responsive, mobile-first websites with clean semantic HTML5, modern CSS3, and dynamic JavaScript.',
-    skills: ['Responsive Web Design', 'Modern CSS & Flexbox/Grid', 'DOM Manipulation', 'Async JavaScript & APIs', 'Web Performance'],
-    technologies: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'Tailwind CSS', 'Git & GitHub'],
-    project: 'Modern Responsive Enterprise Portal with Dynamic API Integrations and Dark Mode',
+    iconType: 'python',
+    description: 'Master core-to-advanced Python, object-oriented software design, automated web scraping, API development, and data manipulation.',
+    technologies: ['Python 3.12', 'OOP', 'Requests & BeautifulSoup', 'Flask', 'SQLite', 'PyTest'],
+    skills: ['Object-Oriented Programming (OOP)', 'Web Scraping & Automation', 'RESTful Microservices', 'File I/O & Exception Handling', 'Unit Testing & Modularity'],
+    project: 'Multi-threaded Automated Web Scraper & Task Automation Service with SQLite Database',
     outcomes: [
-      'Master responsive layouts across mobile, tablet, and desktop',
-      'Build performant, accessible web applications',
-      'Deploy live projects to production hosting'
+      'Write clean, modular, and PEP8-compliant Python application code',
+      'Automate repetitive workflows, parse web pages, and consume REST APIs',
+      'Build robust command-line utilities and lightweight microservices'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-WEBD'
+    code: 'PRMA-PYTH',
+    color: '#EAB308'
   },
   {
-    id: 'fullstack-development',
-    title: 'Full Stack Development',
-    shortTitle: 'Full Stack Development',
+    id: 'fullstack-web-dev',
+    title: 'Full Stack Web Development',
+    shortTitle: 'Full Stack Web Dev',
     category: 'Development',
     badge: '100% FREE • 1 MONTH',
-    icon: 'Layers',
-    description: 'Architect complete end-to-end web applications combining robust backend APIs, secure databases, and interactive frontend interfaces.',
-    skills: ['MERN Stack Architecture', 'RESTful API Engineering', 'State Management', 'Database Modeling', 'Authentication & JWT'],
-    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'REST APIs', 'JWT'],
-    project: 'Production-Ready SaaS Platform with User Auth, CRUD Operations, and Role-Based Access',
+    iconType: 'fullstack',
+    description: 'Build complete production-grade web applications from dynamic, responsive client frontends to scalable backend REST APIs and databases.',
+    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS', 'JWT'],
+    skills: ['MERN Stack Architecture', 'RESTful API Engineering', 'Authentication & JWT Security', 'Database Schema Modeling', 'State Management'],
+    project: 'Full-Featured SaaS Workspace Platform with User Auth, CRUD Engine, and Role-Based Access',
     outcomes: [
-      'Build fully functional full-stack web applications',
-      'Integrate frontend React components with Node/Express backends',
-      'Deploy and manage MongoDB cloud databases'
+      'Architect full-stack applications with separated client and server tiers',
+      'Implement robust authentication, protected routes, and data validation',
+      'Deploy full-stack web applications to modern cloud hosting platforms'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-FUSD'
+    code: 'PRMA-FUSD',
+    color: '#8B5CF6'
   },
   {
     id: 'frontend-development',
@@ -91,20 +96,21 @@ export const PRMA_DOMAINS = [
     shortTitle: 'Frontend Development',
     category: 'Development',
     badge: '100% FREE • 1 MONTH',
-    icon: 'Layout',
-    description: 'Craft high-performance, accessible, and visually stunning client-side applications using React, modern state management, and component architecture.',
-    skills: ['React Hooks & Architecture', 'State Management', 'Responsive UI Engineering', 'REST API Consumption', 'Client Routing'],
-    technologies: ['React 18', 'JavaScript ES6+', 'Tailwind CSS', 'Vite', 'React Router'],
-    project: 'Interactive E-Commerce / Student Portal Interface with Cart, Filters, and Micro-Interactions',
+    iconType: 'frontend',
+    description: 'Craft high-performance, accessible, and stunning user interfaces using React, component architectures, and modern CSS utilities.',
+    technologies: ['React 18', 'JavaScript (ES6+)', 'Tailwind CSS', 'Vite', 'React Router', 'Lucide Icons'],
+    skills: ['React Component Lifecycle & Hooks', 'Responsive & Mobile-First Design', 'Client-Side State Management', 'API Integration', 'UI/UX Polish'],
+    project: 'High-Performance Interactive E-Commerce Dashboard with Filtering, Search & Cart',
     outcomes: [
-      'Develop modular, reusable component libraries',
-      'Master client-side routing, caching, and state synchronization',
-      'Optimize web performance and core web vitals'
+      'Construct modular, maintainable, and reusable React component systems',
+      'Deliver fluid animations, responsive layouts, and zero-layout-shift UI',
+      'Consume external REST APIs and handle loading and error states gracefully'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-FNTD'
+    code: 'PRMA-FRNT',
+    color: '#EC4899'
   },
   {
     id: 'backend-development',
@@ -112,281 +118,240 @@ export const PRMA_DOMAINS = [
     shortTitle: 'Backend Development',
     category: 'Development',
     badge: '100% FREE • 1 MONTH',
-    icon: 'Server',
-    description: 'Engineer high-throughput server backends, microservice architectures, secure authentication protocols, and database query layers.',
-    skills: ['RESTful API Design', 'Middleware Architecture', 'Database Optimization', 'JWT Security', 'Error Handling & Logging'],
-    technologies: ['Node.js', 'Express.js', 'PostgreSQL / MongoDB', 'Redis', 'Postman'],
-    project: 'High-Concurrency REST API Microservice with Rate Limiting, Caching, and Audit Logging',
+    iconType: 'backend',
+    description: 'Engineer scalable, high-throughput backend services, asynchronous worker queues, resilient REST APIs, and relational/NoSQL databases.',
+    technologies: ['Node.js', 'Express.js', 'PostgreSQL / MongoDB', 'Redis', 'JWT', 'Postman'],
+    skills: ['RESTful API Design', 'Middleware Pipelines & Validation', 'Database Indexing & Queries', 'Authentication & Authorization', 'Error Handling Architecture'],
+    project: 'Scalable Microservice Backend with Authentication, Caching Layer & Rate Limiting',
     outcomes: [
-      'Design scalable REST APIs following OpenAPI standards',
-      'Implement secure user authentication and permission tiers',
-      'Manage database transactions and relational schema models'
+      'Design RESTful API contracts following enterprise best practices',
+      'Secure backend endpoints with token-based authentication and validation',
+      'Optimize database queries and implement memory caching layers'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-BKND'
-  },
-  {
-    id: 'python-programming',
-    title: 'Python Programming',
-    shortTitle: 'Python Programming',
-    category: 'Programming',
-    badge: '100% FREE • 1 MONTH',
-    icon: 'Terminal',
-    description: 'Deep dive into Python core fundamentals, object-oriented architecture, automated scripting, algorithms, and system utilities.',
-    skills: ['Object-Oriented Programming', 'Data Structures & Algorithms', 'File I/O & Exception Handling', 'Automation Scripting', 'API Requests'],
-    technologies: ['Python 3', 'OOP Modules', 'Requests', 'Pytest', 'Virtual Environments'],
-    project: 'Multi-threaded Automation & Web Data Extraction Suite with Structured JSON Export',
-    outcomes: [
-      'Write clean, idiomatic, PEP 8-compliant Python code',
-      'Automate repetitive workflows and external data fetching',
-      'Implement foundational algorithmic problem solving'
-    ],
-    duration: '1 Month',
-    mode: 'Remote / Online',
-    isFree: true,
-    code: 'PRMA-PYPR'
+    code: 'PRMA-BKND',
+    color: '#10B981'
   },
   {
     id: 'java-programming',
     title: 'Java Programming',
     shortTitle: 'Java Programming',
-    category: 'Programming',
+    category: 'Software Engineering',
     badge: '100% FREE • 1 MONTH',
-    icon: 'Coffee',
-    description: 'Master enterprise object-oriented programming with Java, Collections framework, multithreading, and design patterns.',
-    skills: ['Core Java & OOP', 'Collections Framework', 'Exception Handling', 'Multithreading & Concurrency', 'JDBC & Database Connectivity'],
-    technologies: ['Java 17/21', 'IntelliJ / Eclipse', 'Maven', 'JDBC', 'JUnit'],
-    project: 'Console-Based & GUI Enterprise Inventory / Banking Management System with JDBC Persistence',
+    iconType: 'java',
+    description: 'Deepen core Java, Object-Oriented Principles, Collections Framework, Exception Handling, Multi-threading, and Spring Boot foundations.',
+    technologies: ['Java 17/21', 'Spring Boot', 'OOP Concepts', 'Java Collections', 'JDBC / Hibernate', 'Maven'],
+    skills: ['Enterprise OOP Architecture', 'Collections & Generics', 'Multi-threading & Concurrency', 'Spring Boot REST APIs', 'Database Connectivity (JDBC)'],
+    project: 'Enterprise Employee & Payroll Management System with Spring Boot & H2/MySQL',
     outcomes: [
-      'Implement robust object-oriented software architectures',
-      'Master collections, generics, and concurrent programming',
-      'Prepare for software engineering technical interviews'
+      'Master strong object-oriented principles (Polymorphism, Inheritance, Encapsulation)',
+      'Leverage Java Collections and Streams for high-efficiency data processing',
+      'Build and test RESTful web services with Spring Boot'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-JAVP'
+    code: 'PRMA-JAVA',
+    color: '#EA580C'
   },
   {
     id: 'cpp-programming',
     title: 'C++ Programming',
     shortTitle: 'C++ Programming',
-    category: 'Programming',
+    category: 'Software Engineering',
     badge: '100% FREE • 1 MONTH',
-    icon: 'Code2',
-    description: 'Learn high-performance computing, memory management, pointers, STL containers, and complex data structures in modern C++.',
-    skills: ['Pointers & Dynamic Memory', 'Object-Oriented C++', 'Standard Template Library (STL)', 'Data Structures (Trees, Graphs)', 'Algorithm Analysis'],
-    technologies: ['C++ 17/20', 'GCC / Clang', 'GDB Debugger', 'STL', 'CMake'],
-    project: 'High-Performance Custom Memory Allocator & Data Structure Visualization Toolkit',
+    iconType: 'cpp',
+    description: 'Master systems programming, manual memory management, modern C++ (C++17/20), pointers, Standard Template Library (STL), and algorithms.',
+    technologies: ['C++17/20', 'STL (Vectors, Maps, Sets)', 'Pointers & Smart Pointers', 'CMake', 'OOP in C++', 'Data Structures'],
+    skills: ['Memory Management & RAII', 'Standard Template Library (STL)', 'Data Structures Implementation', 'Pointers & References', 'Algorithmic Problem Solving'],
+    project: 'High-Performance In-Memory Key-Value Store & Cache with Custom Memory Pool in C++',
     outcomes: [
-      'Master explicit memory management and resource safety (RAII)',
-      'Leverage STL algorithms and templates for algorithmic efficiency',
-      'Build strong fundamentals for low-level systems programming'
+      'Write optimized, memory-efficient C++ code using RAII and smart pointers',
+      'Implement fundamental and advanced data structures from scratch',
+      'Analyze algorithmic time and space complexity with empirical profiling'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-CPPR'
-  },
-  {
-    id: 'android-development',
-    title: 'Android App Development',
-    shortTitle: 'Android Development',
-    category: 'Mobile Apps',
-    badge: '100% FREE • 1 MONTH',
-    icon: 'Smartphone',
-    description: 'Build native Android mobile applications with modern Jetpack components, Kotlin, Material Design 3, and REST API integration.',
-    skills: ['Kotlin Programming', 'Jetpack Compose / XML Layouts', 'Activity & Fragment Lifecycle', 'Retrofit API Calls', 'Room Local Database'],
-    technologies: ['Kotlin', 'Android Studio', 'Jetpack Compose', 'Retrofit', 'Room DB'],
-    project: 'Full-Featured Native Android Task & Student Productivity App with Offline Sync',
-    outcomes: [
-      'Develop modern Android apps using Jetpack architecture',
-      'Implement background workers, local databases, and network caching',
-      'Generate signed APKs ready for Google Play distribution'
-    ],
-    duration: '1 Month',
-    mode: 'Remote / Online',
-    isFree: true,
-    code: 'PRMA-ANDR'
-  },
-  {
-    id: 'flutter-development',
-    title: 'Flutter App Development',
-    shortTitle: 'Flutter Development',
-    category: 'Mobile Apps',
-    badge: '100% FREE • 1 MONTH',
-    icon: 'Smartphone',
-    description: 'Create cross-platform native iOS and Android apps with a single codebase using Flutter framework, Dart language, and state management.',
-    skills: ['Dart Programming', 'Flutter Widget Tree', 'State Management (Provider/Bloc)', 'REST API Integration', 'Responsive Mobile UI'],
-    technologies: ['Flutter', 'Dart', 'Provider / Riverpod', 'Firebase', 'VS Code'],
-    project: 'Cross-Platform Mobile Application with Real-Time Cloud Sync and Custom Animations',
-    outcomes: [
-      'Build smooth, 60fps cross-platform mobile user interfaces',
-      'Handle async network calls and persistent mobile storage',
-      'Deploy cross-platform applications across mobile devices'
-    ],
-    duration: '1 Month',
-    mode: 'Remote / Online',
-    isFree: true,
-    code: 'PRMA-FLUT'
-  },
-  {
-    id: 'ui-ux-design',
-    title: 'UI/UX Design',
-    shortTitle: 'UI/UX Design',
-    category: 'Design & Product',
-    badge: '100% FREE • 1 MONTH',
-    icon: 'Palette',
-    description: 'Master user research, wireframing, high-fidelity UI prototyping, design systems, usability testing, and handoff in Figma.',
-    skills: ['User Empathy & Personas', 'Wireframing & Information Architecture', 'Figma Prototyping', 'Design Systems & Auto-Layout', 'Usability Testing'],
-    technologies: ['Figma', 'FigJam', 'Design Systems', 'Micro-Interactions', 'Component Kits'],
-    project: 'Complete Product Design Case Study & Interactive Prototype for a Fintech / EdTech Platform',
-    outcomes: [
-      'Conduct end-to-end UX research and customer journey mapping',
-      'Create production-grade Figma design systems with interactive components',
-      'Present a comprehensive design portfolio case study'
-    ],
-    duration: '1 Month',
-    mode: 'Remote / Online',
-    isFree: true,
-    code: 'PRMA-UIUX'
-  },
-  {
-    id: 'cybersecurity-ethical-hacking',
-    title: 'Cybersecurity & Ethical Hacking',
-    shortTitle: 'Cybersecurity',
-    category: 'Security & Cloud',
-    badge: '100% FREE • 1 MONTH',
-    icon: 'ShieldCheck',
-    description: 'Learn vulnerability assessment, penetration testing fundamentals, network analysis, cryptography, and application security.',
-    skills: ['Network Security & Scanning', 'OWASP Top 10 Vulnerabilities', 'Vulnerability Assessment', 'Cryptography Basics', 'Security Auditing'],
-    technologies: ['Wireshark', 'Nmap', 'Burp Suite', 'Kali Linux', 'Linux CLI'],
-    project: 'Comprehensive Web Application Security Audit & Penetration Testing Vulnerability Report',
-    outcomes: [
-      'Identify and remediate common application vulnerabilities',
-      'Analyze network traffic and capture security threats',
-      'Understand ethical hacking methodologies and defensive frameworks'
-    ],
-    duration: '1 Month',
-    mode: 'Remote / Online',
-    isFree: true,
-    code: 'PRMA-CYBR'
+    code: 'PRMA-CPPP',
+    color: '#2563EB'
   },
   {
     id: 'cloud-devops',
     title: 'Cloud Computing & DevOps',
     shortTitle: 'Cloud & DevOps',
-    category: 'Security & Cloud',
+    category: 'Cloud & Infrastructure',
     badge: '100% FREE • 1 MONTH',
-    icon: 'Cloud',
-    description: 'Master containerization with Docker, continuous integration/deployment (CI/CD) pipelines, and cloud infrastructure deployment.',
-    skills: ['Docker Containerization', 'CI/CD Automation', 'Linux Administration', 'Cloud Infrastructure (AWS)', 'Monitoring & Logs'],
-    technologies: ['Docker', 'AWS (EC2, S3)', 'GitHub Actions', 'Nginx', 'Linux'],
-    project: 'Automated CI/CD Pipeline Deploying Containerized Web Applications to Cloud Servers',
+    iconType: 'cloud',
+    description: 'Deploy, automate, and orchestrate cloud infrastructure using AWS/Azure services, Docker containerization, and GitHub Actions CI/CD pipelines.',
+    technologies: ['AWS / Cloud Services', 'Docker', 'Kubernetes Basics', 'GitHub Actions CI/CD', 'Linux Administration', 'Nginx'],
+    skills: ['Containerization with Docker', 'CI/CD Pipeline Engineering', 'Cloud Storage & Hosting', 'Linux Command Line', 'Server Configuration & Nginx'],
+    project: 'Automated CI/CD Pipeline Deploying a Containerized Microservice to Cloud with SSL',
     outcomes: [
-      'Containerize multi-container applications using Docker & Docker Compose',
-      'Build automated testing and deployment workflows with GitHub Actions',
-      'Configure cloud servers, reverse proxies, and SSL certificates'
+      'Containerize multi-tier web applications using Docker and Docker Compose',
+      'Configure automated build, test, and deployment workflows with GitHub Actions',
+      'Provision cloud compute and storage services with security best practices'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-CLDV'
+    code: 'PRMA-CLDV',
+    color: '#0284C7'
+  },
+  {
+    id: 'cybersecurity',
+    title: 'Cybersecurity',
+    shortTitle: 'Cybersecurity',
+    category: 'Security & Systems',
+    badge: '100% FREE • 1 MONTH',
+    iconType: 'cybersecurity',
+    description: 'Investigate system vulnerabilities, network security protocols, OWASP Top 10 vulnerabilities, ethical penetration testing, and digital defenses.',
+    technologies: ['Wireshark', 'Nmap', 'Burp Suite', 'Linux Security', 'OWASP Top 10', 'Cryptography Basics'],
+    skills: ['Network Packet Analysis', 'Vulnerability Assessment', 'Web Application Security', 'Cryptographic Protocols', 'Incident Reporting & Mitigation'],
+    project: 'Comprehensive Web Application Penetration Audit & Security Hardening Report',
+    outcomes: [
+      'Identify and remediate critical OWASP Top 10 web vulnerabilities',
+      'Analyze network traffic and identify unauthorized port scans and anomalies',
+      'Draft professional vulnerability disclosure and remediation documentation'
+    ],
+    duration: '1 Month',
+    mode: 'Remote',
+    isFree: true,
+    code: 'PRMA-CYBR',
+    color: '#DC2626'
+  },
+  {
+    id: 'android-app-dev',
+    title: 'Android App Development',
+    shortTitle: 'Android App Dev',
+    category: 'Mobile Development',
+    badge: '100% FREE • 1 MONTH',
+    iconType: 'android',
+    description: 'Develop native modern Android applications using Kotlin, Jetpack Compose, XML layouts, Room Database, and Material Design guidelines.',
+    technologies: ['Kotlin', 'Android Studio', 'Jetpack Compose', 'Room DB', 'Retrofit', 'Material Design 3'],
+    skills: ['Activity & Fragment Lifecycle', 'Jetpack Compose UI', 'Local Data Persistence (Room)', 'REST API Network Calls', 'Android Architecture (MVVM)'],
+    project: 'Smart Campus Productivity & Task Management Android App with Offline Sync',
+    outcomes: [
+      'Build native responsive Android user interfaces with Jetpack Compose',
+      'Implement clean MVVM architecture with Room database and LiveData/Flow',
+      'Package, sign, and prepare Android APKs for distribution'
+    ],
+    duration: '1 Month',
+    mode: 'Remote',
+    isFree: true,
+    code: 'PRMA-ANDR',
+    color: '#22C55E'
+  },
+  {
+    id: 'flutter-app-dev',
+    title: 'Flutter App Development',
+    shortTitle: 'Flutter App Dev',
+    category: 'Mobile Development',
+    badge: '100% FREE • 1 MONTH',
+    iconType: 'flutter',
+    description: 'Create beautiful, natively compiled cross-platform applications for iOS and Android from a single codebase using Google Flutter & Dart.',
+    technologies: ['Flutter SDK', 'Dart', 'Provider / Riverpod', 'Firebase / REST APIs', 'Material / Cupertino Widgets'],
+    skills: ['Cross-Platform UI Engineering', 'State Management (Provider/Bloc)', 'REST API Integration', 'Local Storage & Preferences', 'Responsive Screen Adaptations'],
+    project: 'Cross-Platform Real-Time Social / Campus Discussion App with Firebase Backend',
+    outcomes: [
+      'Develop pixel-perfect mobile applications running on both Android and iOS',
+      'Master the widget tree, state lifecycles, and asynchronous Dart programming',
+      'Integrate backend authentication, cloud databases, and push notifications'
+    ],
+    duration: '1 Month',
+    mode: 'Remote',
+    isFree: true,
+    code: 'PRMA-FLUT',
+    color: '#0284C7'
+  },
+  {
+    id: 'ui-ux-design',
+    title: 'UI/UX Design',
+    shortTitle: 'UI/UX Design',
+    category: 'Design & Experience',
+    badge: '100% FREE • 1 MONTH',
+    iconType: 'ui-ux',
+    description: 'Conduct user research, design wireframes, high-fidelity prototypes, user journey flows, and component design systems using Figma.',
+    technologies: ['Figma', 'FigJam', 'Design Systems', 'Wireframing', 'Prototyping', 'Usability Testing'],
+    skills: ['User Research & Personas', 'Wireframing & Information Architecture', 'Design Systems & Auto-Layout', 'Interactive Micro-Prototyping', 'Design Handoff'],
+    project: 'Complete End-to-End Mobile App & Web Design Case Study with Interactive Prototype',
+    outcomes: [
+      'Conduct user interviews, map personas, and define user problem statements',
+      'Create comprehensive design systems with auto-layout, components, and variants',
+      'Produce clickable high-fidelity interactive prototypes ready for user testing'
+    ],
+    duration: '1 Month',
+    mode: 'Remote',
+    isFree: true,
+    code: 'PRMA-UIUX',
+    color: '#A855F7'
+  },
+  {
+    id: 'web-designing',
+    title: 'Web Designing',
+    shortTitle: 'Web Designing',
+    category: 'Design & Experience',
+    badge: '100% FREE • 1 MONTH',
+    iconType: 'web-design',
+    description: 'Design elegant, responsive, visual-first websites with CSS Grid, modern typography, SVG illustrations, CSS animations, and UI layouts.',
+    technologies: ['HTML5', 'Modern CSS3', 'Tailwind CSS', 'Responsive Grid', 'SVG Graphics', 'Figma to Code'],
+    skills: ['Visual Hierarchy & Typography', 'Responsive CSS Grid & Flexbox', 'CSS Keyframe Animations', 'Color Theory & Brand Design', 'Web Accessibility (WCAG)'],
+    project: 'Modern High-Converting Tech Startup Landing Page with Interactive Visual Sections',
+    outcomes: [
+      'Translate design mockups into flawless, responsive, production-ready web pages',
+      'Create fluid CSS micro-animations that elevate user delight',
+      'Ensure cross-browser compatibility and web accessibility standards'
+    ],
+    duration: '1 Month',
+    mode: 'Remote',
+    isFree: true,
+    code: 'PRMA-WDSG',
+    color: '#F43F5E'
   },
   {
     id: 'business-analytics',
     title: 'Business Analytics',
     shortTitle: 'Business Analytics',
+    category: 'Business & Management',
+    badge: '100% FREE • 1 MONTH',
+    iconType: 'business-analytics',
+    description: 'Bridge business strategy and quantitative data with financial modeling, customer metrics, cohort retention, and strategic business reporting.',
+    technologies: ['Advanced Excel', 'Power BI / Tableau', 'SQL', 'Financial Modeling', 'KPI Metrics'],
+    skills: ['Business Case Modeling', 'Cohort & Churn Analysis', 'Financial KPI Metrics', 'Executive Presentations', 'Market Research & Forecasting'],
+    project: 'Strategic Business Growth & Revenue Optimization Model with Executive Dashboard',
+    outcomes: [
+      'Build dynamic financial and customer forecasting models in Excel and Power BI',
+      'Define, measure, and analyze customer acquisition cost (CAC) and LTV metrics',
+      'Prepare actionable business presentations for C-suite decision-makers'
+    ],
+    duration: '1 Month',
+    mode: 'Remote',
+    isFree: true,
+    code: 'PRMA-BSAN',
+    color: '#14B8A6'
+  },
+  {
+    id: 'data-analysis-sql',
+    title: 'Data Analysis with SQL',
+    shortTitle: 'Data Analysis with SQL',
     category: 'AI & Data Science',
     badge: '100% FREE • 1 MONTH',
-    icon: 'TrendingUp',
-    description: 'Bridge business strategy and quantitative data using Excel modeling, Power BI reports, market forecasting, and KPI measurement.',
-    skills: ['Business Case Modeling', 'Advanced Excel & Formulas', 'Power BI Dashboarding', 'Trend & Cohort Analysis', 'Stakeholder Reporting'],
-    technologies: ['Power BI', 'Advanced Excel', 'SQL', 'Tableau Public', 'Data Visualization'],
-    project: 'Commercial Market Sizing & Financial KPI Intelligence Dashboard with Executive Brief',
+    iconType: 'sql-analysis',
+    description: 'Master relational database querying, multi-table JOINs, subqueries, CTEs, window functions, and data aggregation for analytical reporting.',
+    technologies: ['PostgreSQL / MySQL', 'Complex SQL Joins', 'Window Functions', 'CTEs', 'Data Aggregations', 'Database Indexing'],
+    skills: ['Relational Database Modeling', 'Complex Multi-Table Joins', 'Window Functions & Ranking', 'Common Table Expressions (CTEs)', 'Query Optimization & Indexing'],
+    project: 'Real-World E-Commerce & Customer Transaction Analytics Engine using Advanced SQL',
     outcomes: [
-      'Translate raw company metrics into executive-ready business insights',
-      'Build automated reporting sheets and interactive dashboard models',
-      'Develop commercial data-driven decision frameworks'
+      'Write complex, highly optimized SQL queries across normalized relational schemas',
+      'Utilize window functions (ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD) for analytics',
+      'Aggregate and report key business metrics like retention, revenue, and customer cohorts'
     ],
     duration: '1 Month',
-    mode: 'Remote / Online',
+    mode: 'Remote',
     isFree: true,
-    code: 'PRMA-BSAN'
-  },
-  {
-    id: 'database-management',
-    title: 'Database Management',
-    shortTitle: 'Database Management',
-    category: 'Development',
-    badge: '100% FREE • 1 MONTH',
-    icon: 'Database',
-    description: 'Design normalized relational schemas, write high-performance SQL queries, index optimization, and manage NoSQL collections.',
-    skills: ['Relational Schema Design & Normalization', 'Complex SQL Joins & Subqueries', 'Indexing & Query Optimization', 'NoSQL Document Storage', 'Database Transactions (ACID)'],
-    technologies: ['MySQL', 'PostgreSQL', 'MongoDB', 'DBeaver', 'SQL CLI'],
-    project: 'High-Volume Enterprise Database Schema with Automated Stored Procedures, Views, and Index Optimization',
-    outcomes: [
-      'Architect robust 3NF relational databases for scalable applications',
-      'Analyze query execution plans and optimize slow SQL queries',
-      'Implement transactions, constraints, and backup procedures'
-    ],
-    duration: '1 Month',
-    mode: 'Remote / Online',
-    isFree: true,
-    code: 'PRMA-DBMS'
-  },
-  {
-    id: 'software-engineering',
-    title: 'Software Engineering',
-    shortTitle: 'Software Engineering',
-    category: 'Programming',
-    badge: '100% FREE • 1 MONTH',
-    icon: 'Laptop',
-    description: 'Learn industry software development lifecycle (SDLC), Git workflows, clean code principles, automated testing, and software design patterns.',
-    skills: ['Software Design Patterns (SOLID)', 'Agile / Scrum Methodologies', 'Git Version Control & Branching', 'Unit & Integration Testing', 'Code Review Practices'],
-    technologies: ['Git & GitHub', 'Clean Code', 'Jest / Pytest', 'UML Modeling', 'CI/CD Basics'],
-    project: 'Modular Software Library with Full Unit Test Coverage, Documentation, and CI Automation',
-    outcomes: [
-      'Write scalable, maintainable code following SOLID principles',
-      'Master professional Git branching, pull requests, and code reviews',
-      'Develop automated test suites for continuous verification'
-    ],
-    duration: '1 Month',
-    mode: 'Remote / Online',
-    isFree: true,
-    code: 'PRMA-SFTE'
-  },
-  {
-    id: 'digital-marketing',
-    title: 'Digital Marketing',
-    shortTitle: 'Digital Marketing',
-    category: 'Design & Product',
-    badge: '100% FREE • 1 MONTH',
-    icon: 'Megaphone',
-    description: 'Plan and execute search engine optimization (SEO), performance ad campaigns, social media growth, and content marketing funnels.',
-    skills: ['Search Engine Optimization (SEO)', 'Content Strategy & Copywriting', 'Social Media Marketing', 'Google Analytics & Tracking', 'Email Marketing Funnels'],
-    technologies: ['Google Analytics 4', 'Google Search Console', 'Canva Pro', 'Meta Ads Manager', 'SEO Tools'],
-    project: 'End-to-End Digital Marketing Campaign Strategy with Content Calendar, SEO Audit, and Analytics Dashboard',
-    outcomes: [
-      'Conduct keyword research and on-page technical SEO audits',
-      'Design conversion-oriented content marketing funnels',
-      'Analyze digital traffic metrics and campaign ROI'
-    ],
-    duration: '1 Month',
-    mode: 'Remote / Online',
-    isFree: true,
-    code: 'PRMA-MKTG'
+    code: 'PRMA-SQLA',
+    color: '#6366F1'
   }
-];
-
-export const PRMA_CATEGORIES = [
-  'All Domains',
-  'AI & Data Science',
-  'Development',
-  'Programming',
-  'Mobile Apps',
-  'Security & Cloud',
-  'Design & Product'
 ];

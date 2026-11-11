@@ -191,12 +191,10 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {[
                 { label: 'Internship Program', tab: 'prma-internships-home' },
-                { label: '18 Industry Domains', tab: 'prma-internships-domains' },
-                { label: 'Apply for Internship (Free)', tab: 'prma-internships-apply' },
+                { label: '16 Industry Domains', tab: 'prma-internships-domains' },
+                { label: 'Apply for Internship (Free)', tab: 'prma-internships-domains' },
                 { label: 'Goodies Suite (Coming Soon)', tab: 'prma-internships-goodies' },
-                { label: 'Verify Offer Letter', tab: 'prma-verify-offer' },
-                { label: 'Student Login', tab: 'prma-internships-login' },
-                { label: 'Intern Dashboard', tab: 'prma-internships-dashboard' }
+                { label: 'Verify Offer Letter', tab: 'prma-verify-offer' }
               ].map((link, idx) => (
                 <li key={idx}>
                   <button

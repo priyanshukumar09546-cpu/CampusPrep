@@ -129,7 +129,7 @@ export default function PrmaLandingPage({ navigateToTab }) {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
               <button
                 type="button"
-                onClick={() => handleNav('prma-internships-apply')}
+                onClick={() => handleNav('prma-internships-domains')}
                 style={{
                   padding: '0.95rem 2.2rem',
                   borderRadius: '14px',
@@ -641,7 +641,7 @@ export default function PrmaLandingPage({ navigateToTab }) {
 
           <button
             type="button"
-            onClick={() => handleNav('prma-internships-apply')}
+            onClick={() => handleNav('prma-internships-domains')}
             style={{
               padding: '0.95rem 2.2rem',
               borderRadius: '14px',
