@@ -408,6 +408,64 @@ function prerender() {
     });
   });
 
+  // ==========================================
+  // E. PRMA TECH & INTERNSHIP PAGES
+  // ==========================================
+  const prmaPages = [
+    {
+      path: '/prma-tech/',
+      title: 'PRMA Tech™ — Technology Solutions, Software Development & Internships',
+      desc: 'PRMA Tech is an emerging technology company providing website development, mobile apps, custom software, and industry-ready remote internship programs for engineering students.',
+      h1: 'PRMA Tech™ — Technology Solutions & Career Growth'
+    },
+    {
+      path: '/prma-tech/internships/',
+      title: 'PRMA Tech™ Official Internship Program — 100% Free Remote Internships',
+      desc: 'Apply for 100% Free, project-based 1-month remote internships across 27+ specialized domains at PRMA Tech. Work on real-world projects, get expert mentorship and verified certificates.',
+      h1: 'Choose Your Internship Domain — PRMA Tech'
+    },
+    {
+      path: '/prma-tech/services/',
+      title: 'Technology Services & Digital Solutions | PRMA Tech™',
+      desc: 'End-to-end web development, mobile app development, custom software solutions, and product development services by PRMA Tech.',
+      h1: 'PRMA Tech Technology Services'
+    },
+    {
+      path: '/prma-tech/about/',
+      title: 'About PRMA Tech™ — Mission, Vision & Engineering Leadership',
+      desc: 'Learn about PRMA Tech, our engineering mission, university partnerships, and commitment to practical student education and technical innovation.',
+      h1: 'About PRMA Tech™'
+    },
+    {
+      path: '/prma-tech/careers/',
+      title: 'Careers & Opportunities | PRMA Tech™',
+      desc: 'Join the PRMA Tech engineering and mentoring team. Explore open roles in software development, technical mentorship, and product management.',
+      h1: 'Careers at PRMA Tech™'
+    }
+  ];
+
+  prmaPages.forEach(p => {
+    renderPage({
+      routePath: p.path,
+      title: p.title,
+      description: p.desc,
+      canonical: `${BASE_URL}${p.path}`,
+      schema: {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'name': p.h1,
+        'url': `${BASE_URL}${p.path}`,
+        'description': p.desc
+      },
+      bodyHtml: `
+        <div style="font-family: sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem;">
+          <nav aria-label="Breadcrumb"><a href="/">Home</a> &gt; <a href="/prma-tech/">PRMA Tech</a> &gt; <span>${p.h1}</span></nav>
+          <h1>${p.h1}</h1>
+          <p>${p.desc}</p>
+        </div>`
+    });
+  });
+
   console.log(`[SSG PRE-RENDER] Successfully generated ${generatedCount} crawler-accessible HTML pages in dist/!`);
 }
 

@@ -103,7 +103,7 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
               }}
             />
             <span>
-              <strong>PRMA Tech™</strong> in Official Partnership with <strong>ProfessorVirus</strong> — Empowering 50,000+ Engineering Students
+              <strong>PRMA Tech™</strong> in Official Partnership with <strong>ProfessorVirus</strong> — Practical Technology & Engineering Career Platform
             </span>
           </div>
 

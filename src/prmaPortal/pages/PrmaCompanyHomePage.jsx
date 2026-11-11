@@ -250,32 +250,57 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
               }}
             />
 
-            {/* Hero Student Portrait */}
+            {/* Hero Office Building Visual (Match Image 1) */}
             <div
               style={{
                 position: 'relative',
                 zIndex: 1,
                 width: '100%',
-                maxWidth: '480px',
+                maxWidth: '520px',
                 borderRadius: '28px',
                 overflow: 'hidden',
-                boxShadow: '0 20px 50px rgba(15, 23, 42, 0.15)',
+                boxShadow: '0 24px 60px rgba(15, 23, 42, 0.18)',
                 border: '4px solid #FFFFFF'
               }}
             >
               <img
-                src="/assets/prma_gen/prma_hero_student.jpg"
-                alt="Student Tech Intern at PRMA Tech"
+                src="/assets/prma_gen/prma_office_building.jpg"
+                alt="PRMA Tech Global Technology Center • Noida, India"
                 style={{
                   width: '100%',
-                  height: '520px',
+                  height: '480px',
                   objectFit: 'cover',
                   display: 'block'
                 }}
                 onError={(e) => {
-                  e.target.src = '/assets/prma_portal_ref/WhatsApp Image 2026-11-10 at 10.37.44 AM.jpeg';
+                  e.target.src = '/assets/prma_gen/prma_hero_student.jpg';
                 }}
               />
+              {/* Bottom Office Center Location Pill Badge (Match Image 1) */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '16px',
+                  right: '16px',
+                  backgroundColor: 'rgba(15, 23, 42, 0.88)',
+                  backdropFilter: 'blur(10px)',
+                  color: '#FFFFFF',
+                  padding: '0.45rem 1rem',
+                  borderRadius: '12px',
+                  fontSize: '0.78rem',
+                  fontWeight: 600,
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                  boxShadow: '0 6px 18px rgba(0,0,0,0.3)',
+                  zIndex: 3
+                }}
+              >
+                <span style={{ fontWeight: 800, color: '#60A5FA' }}>PRMA Tech™</span>
+                <span style={{ opacity: 0.5 }}>|</span>
+                <span>Global Technology Center • Noida, India</span>
+              </div>
             </div>
 
             {/* Floating Glassmorphism Cards (Exact 4 Cards from Image 1) */}
@@ -456,10 +481,10 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
           className="prma-stats-grid"
         >
           {[
-            { icon: Users, color: '#0866F5', number: '5,000+', label: 'Students Trained' },
-            { icon: Code2, color: '#7025E8', number: '150+', label: 'Real Projects' },
-            { icon: Layers, color: '#0866F5', number: '27+', label: 'Internship Domains' },
-            { icon: Star, color: '#F59E0B', number: '4.9/5', label: 'Student Satisfaction' }
+            { icon: Users, color: '#0866F5', number: 'Practical Learning', label: 'Real-World Tech Problem Solving' },
+            { icon: Code2, color: '#7025E8', number: 'Real Projects', label: 'Production-Grade Architectures' },
+            { icon: Layers, color: '#0866F5', number: '27+ Domains', label: 'Specialized Engineering Tracks' },
+            { icon: Award, color: '#10B981', number: '100% Free', label: 'Zero-Cost Remote Internship' }
           ].map((stat, idx) => {
             const Icon = stat.icon;
             return (

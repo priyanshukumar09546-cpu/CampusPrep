@@ -123,7 +123,7 @@ export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
               Step 1 of 2 &bull; Select Your Internship Track
             </span>
             <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-              Explore 16 Industry Internship Domains
+              Explore 27 Industry Internship Domains
             </h2>
             <p className="text-sm text-slate-500 mt-1 max-w-2xl">
               Choose your specialized engineering track. Selecting a domain will open your 100% Free application form with that domain pre-selected.
