@@ -83,6 +83,15 @@
           "value": "*"
         }
       ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ],
   "rewrites": [
@@ -103,7 +112,7 @@
       "destination": "/api/index.js"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/|assets/|uploads/|.*\\.).*)",
       "destination": "/index.html"
     }
   ]

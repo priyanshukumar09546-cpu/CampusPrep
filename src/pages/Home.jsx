@@ -32,61 +32,79 @@ export default function Home({
       />
 
       {/* 2. Quick Access Tool Strip (7 Horizontal Academic & Career Tools) */}
-      <div id="quick-access-section">
+      <div id="quick-access-section" className="pv-scroll-reveal">
         <QuickAccessStrip
           onNavigate={onNavigate}
         />
       </div>
 
       {/* 3. Explore Our Tools (Left Info Card + 4x2 Tools Grid + Watermark) */}
-      <div id="explore-tools">
+      <div id="explore-tools" className="pv-scroll-reveal">
         <ExploreToolsSection
           onNavigate={onNavigate}
         />
       </div>
 
       {/* 4. PRMA Tech Remote Internship Programs & 12 Domains Preview */}
-      <PrmaInternshipSection
-        onNavigate={onNavigate}
-      />
+      <div className="pv-scroll-reveal">
+        <PrmaInternshipSection
+          onNavigate={onNavigate}
+        />
+      </div>
 
       {/* 5. Choose Your Course Section (BTech, BCA, BBA, BPharm, MBA, MCA, MTech, More) */}
-      <CourseCardsSection
-        onSelectCourse={onSelectCourse}
-        onNavigate={onNavigate}
-      />
+      <div className="pv-scroll-reveal">
+        <CourseCardsSection
+          onSelectCourse={onSelectCourse}
+          onNavigate={onNavigate}
+        />
+      </div>
 
       {/* 6. The Two-Brand Journey (Learn → Practice → Build → Intern → Grow Roadmap + Dual Synergy Cards) */}
-      <TwoBrandsJourneySection
-        onNavigate={onNavigate}
-      />
+      <div className="pv-scroll-reveal">
+        <TwoBrandsJourneySection
+          onNavigate={onNavigate}
+        />
+      </div>
 
       {/* 7. PRMA Tech Technology Services Showcase (8 Enterprise Engineering Services) */}
-      <PrmaServicesSection
-        onNavigate={onNavigate}
-      />
+      <div className="pv-scroll-reveal">
+        <PrmaServicesSection
+          onNavigate={onNavigate}
+        />
+      </div>
 
       {/* 8. Why Students Love ProfessorVirus? (Verified Student Features) */}
-      <WhyStudentsLoveSection />
+      <div className="pv-scroll-reveal">
+        <WhyStudentsLoveSection />
+      </div>
 
       {/* 9. Real Verified Academic Statistics */}
-      <RealStatsSection />
+      <div className="pv-scroll-reveal">
+        <RealStatsSection />
+      </div>
 
       {/* 10. Popular Subjects with Direct Course/Branch/Semester Navigation */}
-      <PopularSubjectsSection
-        onOpenSubject={onOpenSubject}
-        onNavigate={onNavigate}
-      />
+      <div className="pv-scroll-reveal">
+        <PopularSubjectsSection
+          onOpenSubject={onOpenSubject}
+          onNavigate={onNavigate}
+        />
+      </div>
 
       {/* 11. Promote Your Brand & App, Plans & Value Highlights */}
-      <PromotionSection
-        onNavigate={onNavigate}
-      />
+      <div className="pv-scroll-reveal">
+        <PromotionSection
+          onNavigate={onNavigate}
+        />
+      </div>
 
       {/* 12. Dual Split Final CTA (ProfessorVirus Study Smarter × PRMA Tech Build Tech Career) */}
-      <FinalCtaSection
-        onNavigate={onNavigate}
-      />
+      <div className="pv-scroll-reveal">
+        <FinalCtaSection
+          onNavigate={onNavigate}
+        />
+      </div>
     </div>
   );
 }

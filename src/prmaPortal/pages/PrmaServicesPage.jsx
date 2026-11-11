@@ -94,11 +94,11 @@ export default function PrmaServicesPage({ navigateToTab }) {
       >
         <div style={{ maxWidth: '850px', margin: '0 auto' }}>
           <img
-            src="/assets/prma_portal_ref/prma_tech_logo.jpg"
+            src="/assets/prma_tech_logo.png"
             alt="PRMA Tech"
             style={{ height: '42px', objectFit: 'contain', margin: '0 auto 1.25rem', display: 'block' }}
             onError={(e) => {
-              e.target.src = '/assets/prma_tech_logo.png';
+              e.target.src = '/assets/prma_tech_logo.jpg';
             }}
           />
 
@@ -255,11 +255,11 @@ export default function PrmaServicesPage({ navigateToTab }) {
           {/* Logo on Ribbon */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <img
-              src="/assets/prma_portal_ref/prma_tech_logo.jpg"
+              src="/assets/prma_tech_logo.png"
               alt="PRMA Tech"
               style={{ height: '36px', objectFit: 'contain', filter: 'brightness(1.15)' }}
               onError={(e) => {
-                e.target.src = '/assets/prma_tech_logo.png';
+                e.target.src = '/assets/prma_tech_logo.jpg';
               }}
             />
           </div>

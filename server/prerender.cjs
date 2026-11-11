@@ -425,6 +425,18 @@ function prerender() {
       h1: 'Choose Your Internship Domain — PRMA Tech'
     },
     {
+      path: '/prma-tech/internships/domains/',
+      title: 'PRMA Tech 27 Internship Tracks & Domains | ProfessorVirus',
+      desc: 'Explore 27 in-demand tech domains for PRMA Tech remote internships: AI/ML, Full Stack Web, Cloud, Cybersecurity, Data Science, Flutter, and more.',
+      h1: 'PRMA Tech Internship Tracks & Domains'
+    },
+    {
+      path: '/prma-tech/internships/apply/',
+      title: 'Apply for PRMA Tech Remote Internship Program',
+      desc: 'Apply online for the PRMA Tech remote internship program. 100% free, real projects, mentorship, and verified certificates.',
+      h1: 'Apply for PRMA Tech Internship'
+    },
+    {
       path: '/prma-tech/services/',
       title: 'Technology Services & Digital Solutions | PRMA Tech™',
       desc: 'End-to-end web development, mobile app development, custom software solutions, and product development services by PRMA Tech.',

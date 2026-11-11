@@ -571,10 +571,10 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
           </div>
         ) : (
           <div 
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 pv-reveal-group"
             style={{ alignItems: 'stretch' }}
           >
-            {filteredCourses.map((c) => {
+            {filteredCourses.map((c, idx) => {
               const Icon = c.icon;
               return (
                 <a
@@ -585,7 +585,7 @@ export default function CourseCardsSection({ onSelectCourse, onNavigate }) {
                     handleCardClick(c);
                   }}
                   aria-label={`${c.title} - ${c.subtitle}`}
-                  className="group"
+                  className={`group pv-reveal-card pv-stagger-${(idx % 6) + 1}`}
                   style={{
                     backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
                     border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',

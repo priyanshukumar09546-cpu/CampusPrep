@@ -1,5 +1,5 @@
 // Professor Virus - PWA Service Worker (Safe Caching & Offline Support)
-const CACHE_NAME = 'pv-cache-v2.2-prma-portal-clean';
+const CACHE_NAME = 'pv-cache-v2.4-prma-domains-fix';
 
 const PRECACHE_ASSETS = [
   '/',
@@ -105,17 +105,33 @@ self.addEventListener('fetch', (event) => {
   if (isStaticAsset) {
     event.respondWith(
       caches.match(request).then((cachedResponse) => {
+        const isJsOrCss = url.pathname.endsWith('.js') || url.pathname.endsWith('.css');
+        let validCached = cachedResponse;
+
+        // Discard any corrupted cache entry where an HTML page was mistakenly saved for a JS/CSS file
+        if (validCached && isJsOrCss) {
+          const cachedCt = validCached.headers.get('content-type') || '';
+          if (cachedCt.includes('text/html')) {
+            caches.open(CACHE_NAME).then((cache) => cache.delete(request));
+            validCached = null;
+          }
+        }
+
         const fetchPromise = fetch(request)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
-              const copy = networkResponse.clone();
-              caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+              const ct = networkResponse.headers.get('content-type') || '';
+              // Never cache HTML responses for JS or CSS modules
+              if (!isJsOrCss || (!ct.includes('text/html') && (ct.includes('javascript') || ct.includes('css')))) {
+                const copy = networkResponse.clone();
+                caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+              }
             }
             return networkResponse;
           })
-          .catch(() => cachedResponse);
+          .catch(() => validCached);
 
-        return cachedResponse || fetchPromise;
+        return validCached || fetchPromise;
       })
     );
     return;

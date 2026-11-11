@@ -106,7 +106,7 @@ export default function QuickAccessStrip({ onNavigate }) {
             width: '100%',
             boxSizing: 'border-box'
           }}
-          className="pv-quick-access-grid"
+          className="pv-quick-access-grid pv-reveal-group"
         >
           {items.map((item, idx) => {
             const Icon = item.icon;
@@ -116,6 +116,7 @@ export default function QuickAccessStrip({ onNavigate }) {
                 key={item.id}
                 type="button"
                 onClick={() => onNavigate && onNavigate(item.id)}
+                className={`pv-reveal-card pv-stagger-${idx + 1}`}
                 style={{
                   display: 'flex',
                   alignItems: 'center',

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Search,
   ArrowRight,
   Play,
   Users,
@@ -8,31 +7,16 @@ import {
   Briefcase,
   Star,
   Rocket,
-  ChevronDown,
-  GraduationCap
+  GraduationCap,
+  Award,
+  Laptop,
+  Linkedin,
+  ExternalLink
 } from 'lucide-react';
 import DemoVideoModal from './DemoVideoModal';
 
-export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedBranch, setSelectedBranch] = useState('CSE');
+export default function HeroSection({ onNavigate }) {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
-
-  const branches = ['CSE', 'ECE', 'ME', 'CE', 'IT', 'EE', 'All Branches'];
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (onSearch && searchQuery.trim()) {
-      onSearch(searchQuery.trim(), selectedBranch === 'All Branches' ? 'All' : selectedBranch);
-    }
-  };
-
-  const handleBranchClick = (branch) => {
-    setSelectedBranch(branch);
-    if (onSelectBranch) {
-      onSelectBranch(branch === 'All Branches' ? 'All' : branch);
-    }
-  };
 
   return (
     <section
@@ -122,11 +106,11 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
           width: '100%',
           maxWidth: '1920px',
           margin: '0 auto',
-          paddingTop: '62px',
-          minHeight: 'clamp(540px, 50vw, 740px)',
+          paddingTop: '68px',
+          minHeight: 'auto',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between'
+          justifyContent: 'flex-start'
         }}
       >
         {/* ===================================================================
@@ -139,13 +123,13 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
             maxWidth: '1440px',
             width: '100%',
             margin: '0 auto',
-            padding: '1.25rem 1.5rem 1rem',
+            padding: '1.25rem 1.5rem 1.85rem',
             boxSizing: 'border-box'
           }}
         >
           <div
             style={{
-              maxWidth: '560px',
+              maxWidth: '720px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start'
@@ -493,129 +477,261 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* ===================================================================
-            HERO LOWER: SEARCH BAR & BRANCH SELECTOR (Matching IMAGE 2)
-            =================================================================== */}
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 3,
-            maxWidth: '1440px',
-            width: '100%',
-            margin: '0 auto',
-            padding: '1.5rem 1.5rem 1.75rem',
-            boxSizing: 'border-box'
-          }}
-        >
-          {/* Centered Floating Search Bar */}
-          <div style={{ maxWidth: '780px', margin: '0 auto 1.15rem' }}>
-            <form
-              onSubmit={handleSearchSubmit}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.96)',
-                border: '2px solid #E2E8F0',
-                borderRadius: '999px',
-                padding: '0.4rem 0.5rem 0.4rem 1.4rem',
-                boxShadow: '0 8px 30px rgba(15, 23, 42, 0.1)',
-                backdropFilter: 'blur(8px)',
-                transition: 'border-color 0.2s ease, box-shadow 0.2s ease'
-              }}
-              onFocus={(e) => {
-                e.currentTarget.style.borderColor = '#881337';
-                e.currentTarget.style.boxShadow = '0 8px 30px rgba(136, 19, 55, 0.2)';
-              }}
-              onBlur={(e) => {
-                e.currentTarget.style.borderColor = '#E2E8F0';
-                e.currentTarget.style.boxShadow = '0 8px 30px rgba(15, 23, 42, 0.1)';
-              }}
-            >
-              <Search size={19} color="#94A3B8" style={{ flexShrink: 0, marginRight: '0.85rem' }} />
-              <input
-                type="text"
-                placeholder="Search subjects, topics, PYQs, notes, internships..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  flex: 1,
-                  border: 'none',
-                  outline: 'none',
-                  fontSize: '0.98rem',
-                  fontWeight: 500,
-                  color: '#0F172A',
-                  backgroundColor: 'transparent',
-                  fontFamily: 'inherit'
-                }}
-              />
-              <button
-                type="submit"
-                style={{
-                  backgroundColor: '#881337',
-                  color: '#FFFFFF',
-                  border: 'none',
-                  borderRadius: '999px',
-                  padding: '0.78rem 2.1rem',
-                  fontSize: '0.95rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  boxShadow: '0 4px 14px rgba(136, 19, 55, 0.3)'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#70102B'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#881337'}
-              >
-                Search
-              </button>
-            </form>
-          </div>
-
-          {/* Quick Access Branch Pills */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.55rem',
-              flexWrap: 'wrap'
-            }}
-          >
-            <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0F172A', marginRight: '0.45rem', textShadow: '0 1px 2px rgba(255, 255, 255, 0.6)' }}>
-              Quick Access:
-            </span>
-
-            {branches.map((b) => {
-              const isSelected = selectedBranch === b;
-              return (
-                <button
-                  key={b}
-                  type="button"
-                  onClick={() => handleBranchClick(b)}
+            {/* ===============================================================
+                3. MSME APPROVAL PROMOTION SECTION & INTERNSHIP CTA (Matching Reference Design)
+                =============================================================== */}
+            <div style={{ marginTop: '1.25rem', width: '100%', maxWidth: '690px' }} className="pv-scroll-reveal">
+              {/* Top CTA Pill */}
+              <div style={{ marginBottom: '0.65rem' }}>
+                <a
+                  href="/prma-tech/internships/domains"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigate) onNavigate('prma-internships-domains');
+                  }}
                   style={{
-                    padding: '0.45rem 1.15rem',
-                    borderRadius: '999px',
-                    fontSize: '0.84rem',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    border: isSelected ? 'none' : '1.5px solid #E2E8F0',
-                    backgroundColor: isSelected ? '#881337' : 'rgba(255, 255, 255, 0.95)',
-                    color: isSelected ? '#FFFFFF' : '#334155',
-                    boxShadow: isSelected ? '0 4px 14px rgba(136, 19, 55, 0.25)' : '0 2px 6px rgba(0,0,0,0.04)',
-                    backdropFilter: 'blur(6px)',
-                    transition: 'all 0.15s ease',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.25rem'
+                    gap: '0.65rem',
+                    padding: '0.55rem 1.35rem',
+                    borderRadius: '999px',
+                    backgroundColor: '#881337',
+                    color: '#FFFFFF',
+                    fontFamily: "'Outfit', system-ui, sans-serif",
+                    fontSize: '0.92rem',
+                    fontWeight: 800,
+                    textDecoration: 'none',
+                    boxShadow: '0 6px 20px rgba(136, 19, 55, 0.35)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                  className="pv-hero-msme-cta-pill"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(136, 19, 55, 0.45)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(136, 19, 55, 0.35)';
                   }}
                 >
-                  <span>{b}</span>
-                  {b === 'All Branches' && <ChevronDown size={14} />}
-                </button>
-              );
-            })}
+                  <Rocket size={16} color="#FFFFFF" />
+                  <span>Apply Now for Internship at PRMA Tech</span>
+                  <ArrowRight size={16} strokeWidth={2.5} />
+                </a>
+              </div>
+
+              {/* MSME Registered Card */}
+              <div
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  borderRadius: '24px',
+                  border: '1.5px solid rgba(136, 19, 55, 0.16)',
+                  boxShadow: '0 16px 36px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(136, 19, 55, 0.04)',
+                  padding: '1.15rem 1.45rem',
+                  boxSizing: 'border-box'
+                }}
+                className="pv-msme-card"
+              >
+                {/* Upper: Emblem & Heading & Description */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.15rem', flexWrap: 'wrap' }}>
+                  {/* Emblem & Titles */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexShrink: 0 }}>
+                    <img
+                      src="/assets/emblem_of_india.svg"
+                      alt="Official MSME Government of India Emblem"
+                      style={{
+                        width: '38px',
+                        height: '46px',
+                        objectFit: 'contain'
+                      }}
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                    <div>
+                      <div
+                        style={{
+                          fontFamily: "'Outfit', sans-serif",
+                          fontSize: '1.12rem',
+                          fontWeight: 900,
+                          color: '#0F172A',
+                          lineHeight: 1.15,
+                          letterSpacing: '-0.01em'
+                        }}
+                      >
+                        MSME Registered
+                      </div>
+                      <div
+                        style={{
+                          fontSize: '0.78rem',
+                          fontWeight: 700,
+                          color: '#475569',
+                          marginTop: '0.15rem'
+                        }}
+                      >
+                        Udyam Approved Enterprise
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Vertical Divider */}
+                  <div
+                    style={{
+                      width: '1px',
+                      height: '42px',
+                      backgroundColor: '#E2E8F0'
+                    }}
+                    className="hidden sm:block"
+                  />
+
+                  {/* Description */}
+                  <div style={{ flex: 1, minWidth: '220px' }}>
+                    <p style={{ margin: 0, fontSize: '0.8rem', lineHeight: 1.45, color: '#334155', fontWeight: 600 }}>
+                      Kickstart your career with a <strong style={{ color: '#0F172A', fontWeight: 800 }}>real industry internship</strong> at{' '}
+                      <strong style={{ color: '#881337', fontWeight: 800 }}>PRMA Tech, an MSME Udyam Approved Enterprise</strong>.
+                    </p>
+                    <p style={{ margin: '0.2rem 0 0', fontSize: '0.72rem', color: '#64748B', fontWeight: 500 }}>
+                      Gain hands-on experience, work on live projects and build industry-ready skills.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Lower: Supporting Highlights & Action Buttons */}
+                <div
+                  style={{
+                    marginTop: '0.9rem',
+                    paddingTop: '0.8rem',
+                    borderTop: '1px solid #F1F5F9',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.65rem',
+                    flexWrap: 'wrap'
+                  }}
+                >
+                  {/* Highlights */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        padding: '0.25rem 0.65rem',
+                        borderRadius: '999px',
+                        backgroundColor: '#F8FAFC',
+                        border: '1px solid #E2E8F0',
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        color: '#334155'
+                      }}
+                    >
+                      <Briefcase size={12} color="#881337" />
+                      <span>Industry Internship</span>
+                    </span>
+
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        padding: '0.25rem 0.65rem',
+                        borderRadius: '999px',
+                        backgroundColor: '#FFF1F2',
+                        border: '1px solid #FECDD3',
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        color: '#881337'
+                      }}
+                    >
+                      <Award size={12} color="#881337" />
+                      <span>Govt. Recognized (MSME)</span>
+                    </span>
+
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.3rem',
+                        padding: '0.25rem 0.65rem',
+                        borderRadius: '999px',
+                        backgroundColor: '#F8FAFC',
+                        border: '1px solid #E2E8F0',
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        color: '#334155'
+                      }}
+                    >
+                      <Laptop size={12} color="#881337" />
+                      <span>Live Projects</span>
+                    </span>
+                  </div>
+
+                  {/* Actions */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (onNavigate) onNavigate('prma-internships-domains');
+                        else window.location.href = '/prma-tech/internships/domains';
+                      }}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.35rem',
+                        padding: '0.4rem 1rem',
+                        borderRadius: '999px',
+                        backgroundColor: '#881337',
+                        color: '#FFFFFF',
+                        fontSize: '0.76rem',
+                        fontWeight: 800,
+                        border: 'none',
+                        cursor: 'pointer',
+                        boxShadow: '0 3px 10px rgba(136, 19, 55, 0.3)',
+                        transition: 'all 0.15s ease'
+                      }}
+                      className="pv-msme-btn-apply"
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#70102B'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#881337'}
+                    >
+                      <span>Apply Now</span>
+                      <ArrowRight size={13} strokeWidth={2.5} />
+                    </button>
+
+                    <a
+                      href="https://www.linkedin.com/company/prmatech/about/?viewAsMember=true"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.35rem',
+                        padding: '0.38rem 0.9rem',
+                        borderRadius: '999px',
+                        backgroundColor: '#FFFFFF',
+                        border: '1.5px solid #0A66C2',
+                        color: '#0A66C2',
+                        fontSize: '0.76rem',
+                        fontWeight: 800,
+                        textDecoration: 'none',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease'
+                      }}
+                      className="pv-msme-btn-linkedin"
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#EFF6FF'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}
+                    >
+                      <Linkedin size={13} />
+                      <span>Follow on LinkedIn</span>
+                      <ExternalLink size={11} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

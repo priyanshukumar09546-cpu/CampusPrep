@@ -139,11 +139,11 @@ export default function PrmaAuthPage({ initialMode = 'login', navigateToTab }) {
           {/* Logo & Header */}
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <img
-              src="/assets/prma_portal_ref/prma_tech_logo.jpg"
+              src="/assets/prma_tech_logo.png"
               alt="PRMA Tech"
               style={{ height: '44px', objectFit: 'contain', margin: '0 auto 1rem', display: 'block' }}
               onError={(e) => {
-                e.target.style.display = 'none';
+                e.target.src = '/assets/prma_tech_logo.jpg';
               }}
             />
 

@@ -14,6 +14,25 @@ export default class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
     this.setState({ errorInfo });
     console.error('[ProfessorVirus ErrorBoundary] Caught render exception:', error, errorInfo);
+
+    // Auto-recover from stale chunk references when a new deployment is published
+    const msg = error?.message || String(error || '');
+    const isChunkLoadError = 
+      msg.includes('Failed to fetch dynamically imported module') ||
+      msg.includes('Loading chunk') ||
+      msg.includes('ChunkLoadError') ||
+      msg.includes('Importing a module script failed');
+
+    if (isChunkLoadError && typeof window !== 'undefined') {
+      const reloadKey = 'pv_eb_chunk_reload_' + window.location.pathname;
+      const last = window.sessionStorage.getItem(reloadKey);
+      const now = Date.now();
+      if (!last || now - parseInt(last, 10) > 12000) {
+        window.sessionStorage.setItem(reloadKey, String(now));
+        console.warn('[ErrorBoundary] Auto-reloading page to fetch latest deployment bundle...');
+        window.location.reload();
+      }
+    }
   }
 
   componentDidUpdate(prevProps) {

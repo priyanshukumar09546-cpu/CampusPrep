@@ -310,7 +310,7 @@ export default function HoollowPage({ onNavigate, onOpenAuth }) {
             alignItems: 'center',
             justifyContent: 'space-between',
             position: 'sticky',
-            top: 0,
+            top: '74px',
             zIndex: 50,
             backdropFilter: 'blur(10px)'
           }}

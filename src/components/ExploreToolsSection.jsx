@@ -225,14 +225,15 @@ export default function ExploreToolsSection({ onNavigate }) {
               position: 'relative',
               zIndex: 1
             }}
-            className="pv-tools-8card-grid"
+            className="pv-tools-8card-grid pv-reveal-group"
           >
-            {tools.map((tool) => {
+            {tools.map((tool, idx) => {
               const Icon = tool.icon;
               return (
                 <div
                   key={tool.id}
                   onClick={() => onNavigate && onNavigate(tool.id)}
+                  className={`pv-reveal-card pv-stagger-${(idx % 8) + 1}`}
                   style={{
                     backgroundColor: '#FFFFFF',
                     borderRadius: '16px',

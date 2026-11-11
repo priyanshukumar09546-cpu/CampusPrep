@@ -27,7 +27,8 @@ import {
   Download,
   Home as HomeIcon,
   HelpCircle,
-  ShieldCheck
+  ShieldCheck,
+  Rocket
 } from 'lucide-react';
 import { searchLocalIndex } from '../data/searchIndex';
 import { openInstallModal } from '../utils/pwaManager';
@@ -47,6 +48,16 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
   const notesMenuRef = useRef(null);
   const searchRef = useRef(null);
   const searchTimerRef = useRef(null);
+
+  // Scroll state for sticky Liquid Glass blur & elevation
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 15);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Authenticated Student State
   const [currentUser, setCurrentUser] = useState(() => {
@@ -206,30 +217,31 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
     <>
       <header
         style={{
-          position: isHome ? 'absolute' : 'sticky',
-          top: 0,
-          left: 0,
-          right: 0,
-          width: '100%',
-          zIndex: 100,
-          backgroundColor: isHome ? 'rgba(255, 255, 255, 0.42)' : 'rgba(255, 255, 255, 0.85)',
-          backdropFilter: 'blur(20px) saturate(190%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(190%)',
-          borderBottom: isHome ? '1px solid rgba(255, 255, 255, 0.45)' : '1px solid #E2E8F0',
-          boxShadow: isHome ? '0 4px 24px rgba(0, 0, 0, 0.03)' : '0 2px 10px rgba(0, 0, 0, 0.04)',
+          width: 'calc(100% - 2.5rem)',
+          maxWidth: '1360px',
+          margin: scrolled ? '8px auto 0 auto' : '14px auto 0 auto',
+          borderRadius: '9999px',
+          backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.86)' : 'rgba(255, 255, 255, 0.68)',
+          backdropFilter: 'blur(20px) saturate(185%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(185%)',
+          border: '1.5px solid rgba(255, 255, 255, 0.72)',
+          boxShadow: scrolled
+            ? '0 12px 36px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04)'
+            : '0 8px 30px rgba(15, 23, 42, 0.08)',
           fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
-          animation: 'none'
+          transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+          pointerEvents: 'auto',
+          boxSizing: 'border-box'
         }}
+        className="pv-liquid-glass-navbar"
       >
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            height: '62px',
-            maxWidth: '1440px',
-            margin: '0 auto',
-            padding: '0 1.5rem',
+            height: '56px',
+            padding: '0 1.25rem',
             boxSizing: 'border-box'
           }}
         >
@@ -297,6 +309,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
             <button
               type="button"
               onClick={() => handleNavigate('home')}
+              className="pv-nav-pill-btn"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -308,8 +321,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 color: activeTab === 'home' ? '#FFFFFF' : '#334155',
                 fontSize: '0.84rem',
                 fontWeight: activeTab === 'home' ? 800 : 600,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== 'home') e.currentTarget.style.color = '#881337';
@@ -326,6 +338,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
             <button
               type="button"
               onClick={() => handleNavigate('hoollow')}
+              className="pv-nav-pill-btn"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -337,8 +350,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 color: activeTab === 'hoollow' ? '#FFFFFF' : '#334155',
                 fontSize: '0.84rem',
                 fontWeight: activeTab === 'hoollow' ? 800 : 600,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== 'hoollow') e.currentTarget.style.color = '#881337';
@@ -355,6 +367,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
             <button
               type="button"
               onClick={() => handleNavigate('pyqs')}
+              className="pv-nav-pill-btn"
               style={{
                 padding: activeTab === 'pyqs' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
                 borderRadius: '999px',
@@ -363,8 +376,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 color: activeTab === 'pyqs' ? '#FFFFFF' : '#334155',
                 fontSize: '0.84rem',
                 fontWeight: activeTab === 'pyqs' ? 800 : 600,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== 'pyqs') e.currentTarget.style.color = '#881337';
@@ -381,6 +393,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
               <button
                 type="button"
                 onClick={() => handleNavigate('notes')}
+                className="pv-nav-pill-btn"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -392,8 +405,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                   color: activeTab === 'notes' ? '#FFFFFF' : '#334155',
                   fontSize: '0.84rem',
                   fontWeight: activeTab === 'notes' ? 800 : 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease'
+                  cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
                   if (activeTab !== 'notes') e.currentTarget.style.color = '#881337';
@@ -411,6 +423,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
             <button
               type="button"
               onClick={() => handleNavigate('syllabus')}
+              className="pv-nav-pill-btn"
               style={{
                 padding: activeTab === 'syllabus' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
                 borderRadius: '999px',
@@ -419,8 +432,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 color: activeTab === 'syllabus' ? '#FFFFFF' : '#334155',
                 fontSize: '0.84rem',
                 fontWeight: activeTab === 'syllabus' ? 800 : 600,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== 'syllabus') e.currentTarget.style.color = '#881337';
@@ -436,6 +448,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
             <button
               type="button"
               onClick={() => handleNavigate('quizzes')}
+              className="pv-nav-pill-btn"
               style={{
                 padding: activeTab === 'quizzes' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
                 borderRadius: '999px',
@@ -444,8 +457,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 color: activeTab === 'quizzes' ? '#FFFFFF' : '#334155',
                 fontSize: '0.84rem',
                 fontWeight: activeTab === 'quizzes' ? 800 : 600,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== 'quizzes') e.currentTarget.style.color = '#881337';
@@ -461,6 +473,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
             <button
               type="button"
               onClick={() => handleNavigate('resume-maker')}
+              className="pv-nav-pill-btn"
               style={{
                 padding: activeTab === 'resume-maker' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
                 borderRadius: '999px',
@@ -469,8 +482,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 color: activeTab === 'resume-maker' ? '#FFFFFF' : '#334155',
                 fontSize: '0.84rem',
                 fontWeight: activeTab === 'resume-maker' ? 800 : 600,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== 'resume-maker') e.currentTarget.style.color = '#881337';
@@ -486,6 +498,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
             <button
               type="button"
               onClick={() => handleNavigate('interview-pro')}
+              className="pv-nav-pill-btn"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -497,8 +510,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 color: activeTab === 'interview-pro' ? '#FFFFFF' : '#334155',
                 fontSize: '0.84rem',
                 fontWeight: activeTab === 'interview-pro' ? 800 : 600,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== 'interview-pro') e.currentTarget.style.color = '#881337';
@@ -526,6 +538,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
             <button
               type="button"
               onClick={() => handleNavigate('result-cgpa')}
+              className="pv-nav-pill-btn"
               style={{
                 padding: activeTab === 'result-cgpa' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
                 borderRadius: '999px',
@@ -534,8 +547,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 color: activeTab === 'result-cgpa' ? '#FFFFFF' : '#334155',
                 fontSize: '0.84rem',
                 fontWeight: activeTab === 'result-cgpa' ? 800 : 600,
-                cursor: 'pointer',
-                transition: 'all 0.15s ease'
+                cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
                 if (activeTab !== 'result-cgpa') e.currentTarget.style.color = '#881337';
@@ -552,6 +564,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
               <button
                 type="button"
                 onClick={() => setMoreDropdownOpen(prev => !prev)}
+                className="pv-nav-pill-btn"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -563,8 +576,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                   color: '#334155',
                   fontSize: '0.84rem',
                   fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease'
+                  cursor: 'pointer'
                 }}
               >
                 <span>More</span>
@@ -646,93 +658,15 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
           </nav>
 
           {/* ===================================================================
-              3. RIGHT: SEARCH, NOTIFICATIONS, INSTALL APP & LOGIN/PROFILE
+              3. RIGHT: NOTIFICATIONS & LOGIN/PROFILE (Matching Reference Design)
               =================================================================== */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
-            {/* Search Pill Input with Live Dropdown */}
-            <div ref={searchRef} style={{ position: 'relative' }} className="pv-navbar-search-wrap">
-              <form onSubmit={handleSearchSubmit} style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                <Search
-                  size={14}
-                  color="#94A3B8"
-                  style={{ position: 'absolute', left: '12px', pointerEvents: 'none' }}
-                />
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                  onFocus={() => {
-                    setSearchFocused(true);
-                    if (searchQuery.trim().length >= 2) {
-                      setSearchResults(searchLocalIndex(searchQuery, 8));
-                    }
-                  }}
-                  onKeyDown={handleSearchKeyDown}
-                  style={{
-                    padding: '0.45rem 1rem 0.45rem 2.1rem',
-                    borderRadius: '999px',
-                    border: '1.5px solid #E2E8F0',
-                    backgroundColor: '#F8FAFC',
-                    fontSize: '0.82rem',
-                    fontWeight: 600,
-                    color: '#0F172A',
-                    width: searchFocused ? '180px' : '120px',
-                    outline: 'none',
-                    transition: 'all 0.2s ease',
-                    boxShadow: searchFocused ? '0 0 0 3px rgba(136, 19, 55, 0.12)' : 'none'
-                  }}
-                />
-              </form>
-
-              {/* Live Search Dropdown */}
-              {searchFocused && searchResults.length > 0 && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: 'calc(100% + 8px)',
-                    right: 0,
-                    width: '320px',
-                    backgroundColor: '#FFFFFF',
-                    border: '1.5px solid #E2E8F0',
-                    borderRadius: '16px',
-                    boxShadow: '0 20px 48px rgba(0,0,0,0.12)',
-                    zIndex: 1000,
-                    overflow: 'hidden'
-                  }}
-                >
-                  <div style={{ padding: '0.5rem 0.85rem', fontSize: '0.72rem', fontWeight: 800, color: '#64748B', borderBottom: '1px solid #F1F5F9' }}>
-                    {searchResults.length} results found
-                  </div>
-                  {searchResults.map((item, idx) => (
-                    <div
-                      key={idx}
-                      onClick={() => handleSearchResultClick(item)}
-                      style={{
-                        padding: '0.65rem 0.85rem',
-                        cursor: 'pointer',
-                        borderBottom: '1px solid #F8FAFC',
-                        backgroundColor: idx === selectedSearchIdx ? '#F8FAFC' : '#FFFFFF'
-                      }}
-                      onMouseEnter={() => setSelectedSearchIdx(idx)}
-                    >
-                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#0F172A' }}>
-                        {item.title}
-                      </div>
-                      <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
-                        {item.type} &bull; {item.category || 'Tool'}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexShrink: 0 }}>
             {/* Notification Bell Icon with Badge "2" */}
             <button
               type="button"
               onClick={() => handleNavigate('interview-pro')}
               title="2 New Updates"
+              className="pv-nav-action-btn"
               style={{
                 width: '36px',
                 height: '36px',
@@ -777,6 +711,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 <button
                   type="button"
                   onClick={() => setUserMenuOpen(prev => !prev)}
+                  className="pv-nav-action-btn"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -891,6 +826,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
               <button
                 type="button"
                 onClick={() => onOpenAuth ? onOpenAuth() : handleNavigate('signin')}
+                className="pv-nav-action-btn"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -903,8 +839,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                   fontSize: '0.82rem',
                   fontWeight: 800,
                   cursor: 'pointer',
-                  boxShadow: '0 4px 14px rgba(136, 19, 55, 0.25)',
-                  transition: 'all 0.15s ease'
+                  boxShadow: '0 4px 14px rgba(136, 19, 55, 0.25)'
                 }}
               >
                 <User size={14} />
@@ -928,7 +863,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                 color: '#0F172A',
                 cursor: 'pointer'
               }}
-              className="pv-mobile-nav-toggle"
+              className="pv-mobile-nav-toggle pv-nav-action-btn"
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -990,8 +925,28 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
         )}
       </header>
 
-      {/* Responsive Breakpoints CSS */}
+      {/* Navigation Micro-Interactions & Responsive Breakpoints CSS */}
       <style>{`
+        .pv-nav-pill-btn {
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          user-select: none;
+        }
+        .pv-nav-pill-btn:hover {
+          transform: translateY(-1px);
+        }
+        .pv-nav-pill-btn:active {
+          transform: scale(0.95) !important;
+        }
+        .pv-nav-action-btn {
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          user-select: none;
+        }
+        .pv-nav-action-btn:hover {
+          transform: translateY(-1px);
+        }
+        .pv-nav-action-btn:active {
+          transform: scale(0.93) !important;
+        }
         @media (max-width: 1180px) {
           .pv-desktop-nav-items {
             display: none !important;
@@ -999,15 +954,18 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
           .pv-mobile-nav-toggle {
             display: flex !important;
           }
-          .pv-navbar-search-wrap input {
-            width: 100px !important;
+          .pv-liquid-glass-navbar {
+            width: calc(100% - 1.5rem) !important;
+            margin: 8px auto 0 !important;
           }
         }
         @media (max-width: 640px) {
-          .pv-install-btn {
-            display: none !important;
+          .pv-liquid-glass-navbar {
+            width: calc(100% - 1rem) !important;
+            margin: 6px auto 0 !important;
+            border-radius: 999px !important;
           }
-          .pv-navbar-search-wrap {
+          .pv-install-btn {
             display: none !important;
           }
           .pv-navbar-subtitle {

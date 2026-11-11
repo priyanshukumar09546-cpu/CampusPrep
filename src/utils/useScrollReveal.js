@@ -11,7 +11,7 @@ export function useScrollReveal() {
 
     // Respect user's motion preference
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.pv-scroll-reveal, [data-scroll-reveal]').forEach((el) => {
+      document.querySelectorAll('.pv-scroll-reveal, .pv-scroll-reveal-scale, [data-scroll-reveal], .pv-reveal-group, .pv-reveal-card').forEach((el) => {
         el.classList.add('pv-revealed');
       });
       return;
@@ -29,12 +29,13 @@ export function useScrollReveal() {
       {
         root: null,
         rootMargin: '0px 0px -40px 0px',
-        threshold: 0.12
+        threshold: 0.1
       }
     );
 
     const observeElements = () => {
-      const elements = document.querySelectorAll('.pv-scroll-reveal:not(.pv-revealed), [data-scroll-reveal]:not(.pv-revealed)');
+      const selector = '.pv-scroll-reveal:not(.pv-revealed), .pv-scroll-reveal-scale:not(.pv-revealed), [data-scroll-reveal]:not(.pv-revealed), .pv-reveal-group:not(.pv-revealed), .pv-reveal-card:not(.pv-revealed)';
+      const elements = document.querySelectorAll(selector);
       elements.forEach((el) => observer.observe(el));
     };
 

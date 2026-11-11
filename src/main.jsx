@@ -20,6 +20,20 @@ if (API_URL && typeof window !== 'undefined' && window.fetch) {
   };
 }
 
+// Handle Vite dynamic import chunk preload failures after production redeployments
+if (typeof window !== 'undefined') {
+  window.addEventListener('vite:preloadError', (event) => {
+    console.warn('[ProfessorVirus] Vite preload error: fresh deployment chunk detected. Auto-reloading...', event);
+    const reloadKey = 'pv_preload_reload';
+    const lastReload = window.sessionStorage.getItem(reloadKey);
+    const now = Date.now();
+    if (!lastReload || now - parseInt(lastReload, 10) > 10000) {
+      window.sessionStorage.setItem(reloadKey, String(now));
+      window.location.reload();
+    }
+  });
+}
+
 import { ThemeProvider } from './context/ThemeContext.jsx';
 import { CourseProvider } from './context/CourseContext.jsx';
 import { registerServiceWorker } from './utils/pwaManager.js';

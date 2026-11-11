@@ -41,51 +41,70 @@ import AdminLoginPage from './pages/AdminLoginPage';
 import SubjectPage from './pages/SubjectPage';
 import HoollowPage from './pages/HoollowPage';
 
+// Safe lazy-load wrapper that auto-reloads if a new deployment invalidated chunk hashes
+const safeLazy = (factory) =>
+  React.lazy(() =>
+    factory().catch((err) => {
+      console.warn('[ProfessorVirus] Dynamic chunk import failed:', err);
+      if (typeof window !== 'undefined') {
+        const key = 'pv_chunk_reload_' + window.location.pathname;
+        const last = window.sessionStorage.getItem(key);
+        const now = Date.now();
+        if (!last || now - parseInt(last, 10) > 12000) {
+          window.sessionStorage.setItem(key, String(now));
+          window.location.reload();
+          return new Promise(() => {});
+        }
+      }
+      throw err;
+    })
+  );
+
 // Heavy & Specialized Tools (Route-Based Lazy Loaded for 1,000 Concurrent Users Optimization)
-const ResumeMakerPage = React.lazy(() => import('./pages/ResumeMakerPage'));
-const PdfMakerPage = React.lazy(() => import('./pages/PdfMakerPage'));
-const ResultCgpaPage = React.lazy(() => import('./pages/ResultCgpaPage'));
-const AttendanceCalculatorPage = React.lazy(() => import('./pages/AttendanceCalculatorPage'));
-const CompetitiveExamsPage = React.lazy(() => import('./pages/CompetitiveExamsPage'));
-const ImportantLinksPage = React.lazy(() => import('./pages/ImportantLinksPage'));
-const ProjectIdeasPage = React.lazy(() => import('./pages/ProjectIdeasPage'));
-const ProjectDetailPage = React.lazy(() => import('./pages/ProjectDetailPage'));
-const InternshipsJobsPage = React.lazy(() => import('./pages/InternshipsJobsPage'));
-const OpportunityDetailPage = React.lazy(() => import('./pages/OpportunityDetailPage'));
-const ScholarshipsPage = React.lazy(() => import('./pages/ScholarshipsPage'));
-const ScholarshipDetailPage = React.lazy(() => import('./pages/ScholarshipDetailPage'));
-const TimetablePage = React.lazy(() => import('./pages/TimetablePage'));
-const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
-const PlagiarismCheckerPage = React.lazy(() => import('./pages/PlagiarismCheckerPage'));
-const ProgressPage = React.lazy(() => import('./pages/ProgressPage'));
-const PromotionPage = React.lazy(() => import('./pages/PromotionPage'));
+const ResumeMakerPage = safeLazy(() => import('./pages/ResumeMakerPage'));
+const PdfMakerPage = safeLazy(() => import('./pages/PdfMakerPage'));
+const ResultCgpaPage = safeLazy(() => import('./pages/ResultCgpaPage'));
+const AttendanceCalculatorPage = safeLazy(() => import('./pages/AttendanceCalculatorPage'));
+const CompetitiveExamsPage = safeLazy(() => import('./pages/CompetitiveExamsPage'));
+const ImportantLinksPage = safeLazy(() => import('./pages/ImportantLinksPage'));
+const ProjectIdeasPage = safeLazy(() => import('./pages/ProjectIdeasPage'));
+const ProjectDetailPage = safeLazy(() => import('./pages/ProjectDetailPage'));
+const InternshipsJobsPage = safeLazy(() => import('./pages/InternshipsJobsPage'));
+const OpportunityDetailPage = safeLazy(() => import('./pages/OpportunityDetailPage'));
+const ScholarshipsPage = safeLazy(() => import('./pages/ScholarshipsPage'));
+const ScholarshipDetailPage = safeLazy(() => import('./pages/ScholarshipDetailPage'));
+const TimetablePage = safeLazy(() => import('./pages/TimetablePage'));
+const AdminDashboard = safeLazy(() => import('./pages/AdminDashboard'));
+const PlagiarismCheckerPage = safeLazy(() => import('./pages/PlagiarismCheckerPage'));
+const ProgressPage = safeLazy(() => import('./pages/ProgressPage'));
+const PromotionPage = safeLazy(() => import('./pages/PromotionPage'));
 
 // Interview Pro Rounds (Lazy Loaded)
-const InterviewConfirmPage = React.lazy(() => import('./pages/InterviewConfirmPage'));
-const InterviewInstructionsPage = React.lazy(() => import('./pages/InterviewInstructionsPage'));
-const InterviewAptitudePage = React.lazy(() => import('./pages/InterviewAptitudePage'));
-const InterviewCodingPage = React.lazy(() => import('./pages/InterviewCodingPage'));
-const InterviewTechnicalPage = React.lazy(() => import('./pages/InterviewTechnicalPage'));
-const InterviewHrPage = React.lazy(() => import('./pages/InterviewHrPage'));
-const InterviewReportPage = React.lazy(() => import('./pages/InterviewReportPage'));
+const InterviewConfirmPage = safeLazy(() => import('./pages/InterviewConfirmPage'));
+const InterviewInstructionsPage = safeLazy(() => import('./pages/InterviewInstructionsPage'));
+const InterviewAptitudePage = safeLazy(() => import('./pages/InterviewAptitudePage'));
+const InterviewCodingPage = safeLazy(() => import('./pages/InterviewCodingPage'));
+const InterviewTechnicalPage = safeLazy(() => import('./pages/InterviewTechnicalPage'));
+const InterviewHrPage = safeLazy(() => import('./pages/InterviewHrPage'));
+const InterviewReportPage = safeLazy(() => import('./pages/InterviewReportPage'));
 
 // Dedicated PRMA Tech Internship Portal & Corporate Website (Lazy Loaded)
-const PrmaCompanyHomePage = React.lazy(() => import('./prmaPortal/pages/PrmaCompanyHomePage'));
-const PrmaServicesPage = React.lazy(() => import('./prmaPortal/pages/PrmaServicesPage'));
-const PrmaAboutPage = React.lazy(() => import('./prmaPortal/pages/PrmaAboutPage'));
-const PrmaCareersPage = React.lazy(() => import('./prmaPortal/pages/PrmaCareersPage'));
-const PrmaProjectsPage = React.lazy(() => import('./prmaPortal/pages/PrmaProjectsPage'));
-const PrmaContactPage = React.lazy(() => import('./prmaPortal/pages/PrmaContactPage'));
-const PrmaAdminPanel = React.lazy(() => import('./prmaPortal/pages/PrmaAdminPanel'));
-const PrmaLandingPage = React.lazy(() => import('./prmaPortal/pages/PrmaLandingPage'));
-const PrmaDomainsPage = React.lazy(() => import('./prmaPortal/pages/PrmaDomainsPage'));
-const PrmaApplyWizardPage = React.lazy(() => import('./prmaPortal/pages/PrmaApplyWizardPage'));
-const PrmaGoodiesPage = React.lazy(() => import('./prmaPortal/pages/PrmaGoodiesPage'));
-const PrmaReviewPage = React.lazy(() => import('./prmaPortal/pages/PrmaReviewPage'));
-const PrmaPaymentPage = React.lazy(() => import('./prmaPortal/pages/PrmaPaymentPage'));
-const PrmaAuthPage = React.lazy(() => import('./prmaPortal/pages/PrmaAuthPage'));
-const PrmaDashboardPage = React.lazy(() => import('./prmaPortal/pages/PrmaDashboardPage'));
-const PrmaVerifyOfferPage = React.lazy(() => import('./prmaPortal/pages/PrmaVerifyOfferPage'));
+const PrmaCompanyHomePage = safeLazy(() => import('./prmaPortal/pages/PrmaCompanyHomePage'));
+const PrmaServicesPage = safeLazy(() => import('./prmaPortal/pages/PrmaServicesPage'));
+const PrmaAboutPage = safeLazy(() => import('./prmaPortal/pages/PrmaAboutPage'));
+const PrmaCareersPage = safeLazy(() => import('./prmaPortal/pages/PrmaCareersPage'));
+const PrmaProjectsPage = safeLazy(() => import('./prmaPortal/pages/PrmaProjectsPage'));
+const PrmaContactPage = safeLazy(() => import('./prmaPortal/pages/PrmaContactPage'));
+const PrmaAdminPanel = safeLazy(() => import('./prmaPortal/pages/PrmaAdminPanel'));
+const PrmaLandingPage = safeLazy(() => import('./prmaPortal/pages/PrmaLandingPage'));
+const PrmaDomainsPage = safeLazy(() => import('./prmaPortal/pages/PrmaDomainsPage'));
+const PrmaApplyWizardPage = safeLazy(() => import('./prmaPortal/pages/PrmaApplyWizardPage'));
+const PrmaGoodiesPage = safeLazy(() => import('./prmaPortal/pages/PrmaGoodiesPage'));
+const PrmaReviewPage = safeLazy(() => import('./prmaPortal/pages/PrmaReviewPage'));
+const PrmaPaymentPage = safeLazy(() => import('./prmaPortal/pages/PrmaPaymentPage'));
+const PrmaAuthPage = safeLazy(() => import('./prmaPortal/pages/PrmaAuthPage'));
+const PrmaDashboardPage = safeLazy(() => import('./prmaPortal/pages/PrmaDashboardPage'));
+const PrmaVerifyOfferPage = safeLazy(() => import('./prmaPortal/pages/PrmaVerifyOfferPage'));
 import { PrmaApplicationProvider } from './prmaPortal/context/PrmaApplicationContext';
 
 function ViewLoadingFallback() {
@@ -787,23 +806,18 @@ export default function App() {
         <SplashScreen onFinish={() => setShowSplash(false)} />
       )}
 
-      {/* Responsive Navbar: On desktop always shown. On mobile, suppressed to let mobile headers manage navigation */}
+      {/* Responsive Navbar: Fixed and sticky across all routes with floating rounded Liquid Glass container */}
       {!hideTopNav && (
         <div
           className="pv-desktop-navbar-wrap"
-          style={activeTab === 'home' ? {
-            position: 'absolute',
+          style={{
+            position: 'fixed',
             top: 0,
             left: 0,
             right: 0,
             width: '100%',
-            zIndex: 100,
-            pointerEvents: 'auto'
-          } : {
-            position: 'sticky',
-            top: 0,
-            zIndex: 100,
-            width: '100%'
+            zIndex: 1000,
+            pointerEvents: 'none'
           }}
         >
           <Navbar
@@ -834,8 +848,8 @@ export default function App() {
         </div>
       )}
 
-      {/* Main Content View Switcher */}
-      <main style={{ flex: 1 }}>
+      {/* Main Content View Switcher: Top padding applied on non-home sub-routes so content starts cleanly below the sticky floating navbar */}
+      <main style={{ flex: 1, paddingTop: (activeTab === 'home' || isPrmaPortal || isStandaloneAuth) ? 0 : '76px' }}>
         <ErrorBoundary 
           key={activeTab} 
           resetKey={activeTab} 

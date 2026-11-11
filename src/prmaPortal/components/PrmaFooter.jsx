@@ -125,7 +125,7 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
           {/* Brand Bio */}
           <div>
             <img
-              src="/assets/prma_portal_ref/prma_tech_logo.jpg"
+              src="/assets/prma_tech_logo.png"
               alt="PRMA Tech"
               style={{
                 height: '42px',
@@ -134,7 +134,7 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                 filter: 'brightness(1.1)'
               }}
               onError={(e) => {
-                e.target.src = '/assets/prma_tech_logo.png';
+                e.target.src = '/assets/prma_tech_logo.jpg';
               }}
             />
             <p style={{ fontSize: '0.88rem', color: '#E2E8F0', lineHeight: 1.65, maxWidth: '300px', marginBottom: '1.25rem' }}>

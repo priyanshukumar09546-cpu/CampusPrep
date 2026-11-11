@@ -693,11 +693,11 @@ export default function PrmaCareersPage({ navigateToTab }) {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <img
-              src="/assets/prma_portal_ref/prma_tech_logo.jpg"
+              src="/assets/prma_tech_logo.png"
               alt="PRMA Tech"
               style={{ height: '36px', objectFit: 'contain', filter: 'brightness(1.2)' }}
               onError={(e) => {
-                e.target.src = '/assets/prma_tech_logo.png';
+                e.target.src = '/assets/prma_tech_logo.jpg';
               }}
             />
             <div>

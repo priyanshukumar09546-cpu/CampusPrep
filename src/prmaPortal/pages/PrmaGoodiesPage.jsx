@@ -276,7 +276,7 @@ export default function PrmaGoodiesPage({ navigateToTab, onNavigate }) {
                     transition: 'transform 0.3s ease'
                   }}
                   onError={(e) => {
-                    e.target.src = '/assets/prma_portal_ref/prma_goodies_showcase_banner.jpg';
+                    e.target.src = '/assets/prma_goodies/prma_goodies_showcase_banner.jpg';
                   }}
                 />
 
