@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Search,
-  Sparkles,
   ArrowRight,
   Play,
   Users,
@@ -38,41 +37,27 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
   return (
     <section
       style={{
-        backgroundColor: '#FFFFFF',
+        background: 'linear-gradient(135deg, #FFF8F3 0%, #FFF3F5 25%, #FAF5F0 50%, #FFF4F6 75%, #FAF5EE 100%)',
         position: 'relative',
         overflow: 'hidden',
-        padding: '2.5rem 0 1rem 0'
+        padding: '1.75rem 0 0 0'
       }}
+      className="pv-hero-continuous-section"
     >
-      {/* Decorative Tree Branches on Left (Match Reference Image) */}
+      {/* Top-Left Authentic Green Tree Foliage (Direct from Reference Image) */}
       <img
-        src="/assets/leaves-top.png"
+        src="/assets/prma_hero_leaves_top_2x.png"
         alt=""
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '-15px',
-          left: '-15px',
-          width: '160px',
+          top: 0,
+          left: 0,
+          width: 'clamp(140px, 16vw, 240px)',
+          height: 'auto',
           pointerEvents: 'none',
           zIndex: 1,
-          opacity: 0.85
-        }}
-        onError={(e) => { e.target.style.display = 'none'; }}
-      />
-
-      <img
-        src="/assets/leaves-bottom.png"
-        alt=""
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          bottom: '120px',
-          left: '-20px',
-          width: '150px',
-          pointerEvents: 'none',
-          zIndex: 1,
-          opacity: 0.85
+          userSelect: 'none'
         }}
         onError={(e) => { e.target.style.display = 'none'; }}
       />
@@ -87,22 +72,31 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
         }}
       >
         {/* ===================================================================
-            1. HERO SPLIT: PROFESSORVIRUS (LEFT) × BUILDING & CAT (RIGHT)
+            1. HERO SPLIT: PROFESSORVIRUS (LEFT) + BUILDING & CAT MASCOT (RIGHT)
+            (Continuous composition, NO card border, NO card shadow)
             =================================================================== */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0, 1.05fr) minmax(0, 1.2fr)',
-            gap: '2.5rem',
+            gridTemplateColumns: 'minmax(0, 1.05fr) minmax(0, 1.35fr)',
+            gap: '1.5rem',
             alignItems: 'center',
-            marginBottom: '2.5rem'
+            marginBottom: '1.75rem'
           }}
           className="pv-hero-split-grid"
         >
           {/* ===============================================================
               LEFT COLUMN: BRAND TYPOGRAPHY, BUTTONS & STATS
               =============================================================== */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              paddingTop: '0.5rem',
+              zIndex: 3
+            }}
+          >
             {/* Pill Badge with Graduation Cap & Star */}
             <div
               style={{
@@ -116,7 +110,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                 fontSize: '0.8rem',
                 fontWeight: 800,
                 color: '#0F172A',
-                marginBottom: '1.25rem',
+                marginBottom: '1.15rem',
                 boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
               }}
             >
@@ -129,7 +123,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
             <h1
               style={{
                 fontFamily: "'Outfit', system-ui, -apple-system, sans-serif",
-                fontSize: 'clamp(2.1rem, 4.4vw, 4.1rem)',
+                fontSize: 'clamp(2.2rem, 4.2vw, 3.8rem)',
                 fontWeight: 900,
                 lineHeight: 1.05,
                 margin: '0 0 0.35rem 0',
@@ -146,7 +140,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               <h2
                 style={{
                   fontFamily: "'Outfit', system-ui, -apple-system, sans-serif",
-                  fontSize: 'clamp(1.4rem, 2.7vw, 2.5rem)',
+                  fontSize: 'clamp(1.4rem, 2.6vw, 2.4rem)',
                   fontWeight: 900,
                   lineHeight: 1.15,
                   color: '#0F172A',
@@ -180,11 +174,11 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
             {/* Body Description */}
             <p
               style={{
-                fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)',
+                fontSize: 'clamp(0.92rem, 1.4vw, 1.02rem)',
                 fontWeight: 500,
                 lineHeight: 1.6,
                 color: '#475569',
-                margin: '0 0 1.75rem 0',
+                margin: '0 0 1.65rem 0',
                 maxWidth: '520px'
               }}
             >
@@ -198,7 +192,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                 alignItems: 'center',
                 gap: '1rem',
                 flexWrap: 'wrap',
-                marginBottom: '2rem'
+                marginBottom: '1.75rem'
               }}
             >
               <button
@@ -207,9 +201,9 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                   if (onNavigate) onNavigate('notes');
                 }}
                 style={{
-                  fontSize: '0.96rem',
+                  fontSize: '0.94rem',
                   fontWeight: 800,
-                  padding: '0.85rem 1.85rem',
+                  padding: '0.82rem 1.85rem',
                   borderRadius: '999px',
                   cursor: 'pointer',
                   display: 'inline-flex',
@@ -239,9 +233,9 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                 type="button"
                 onClick={() => setIsDemoModalOpen(true)}
                 style={{
-                  fontSize: '0.94rem',
+                  fontSize: '0.92rem',
                   fontWeight: 700,
-                  padding: '0.85rem 1.65rem',
+                  padding: '0.82rem 1.65rem',
                   borderRadius: '999px',
                   cursor: 'pointer',
                   display: 'inline-flex',
@@ -285,12 +279,12 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 'clamp(1rem, 2vw, 2rem)',
+                gap: 'clamp(0.85rem, 1.8vw, 1.85rem)',
                 flexWrap: 'wrap'
               }}
             >
               {/* Stat 1: Students */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                 <div
                   style={{
                     width: '32px',
@@ -303,20 +297,20 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                     color: '#881337'
                   }}
                 >
-                  <Users size={17} strokeWidth={2.5} />
+                  <Users size={16} strokeWidth={2.5} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.96rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
                     50K+
                   </div>
-                  <div style={{ fontSize: '0.72rem', fontWeight: 600, color: '#64748B' }}>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#64748B' }}>
                     Students
                   </div>
                 </div>
               </div>
 
               {/* Stat 2: Notes Views */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                 <div
                   style={{
                     width: '32px',
@@ -329,20 +323,20 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                     color: '#D97706'
                   }}
                 >
-                  <FileText size={17} strokeWidth={2.5} />
+                  <FileText size={16} strokeWidth={2.5} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.96rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
                     1M+
                   </div>
-                  <div style={{ fontSize: '0.72rem', fontWeight: 600, color: '#64748B' }}>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#64748B' }}>
                     Notes Views
                   </div>
                 </div>
               </div>
 
               {/* Stat 3: Interviews Taken */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                 <div
                   style={{
                     width: '32px',
@@ -355,20 +349,20 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                     color: '#EA580C'
                   }}
                 >
-                  <Briefcase size={17} strokeWidth={2.5} />
+                  <Briefcase size={16} strokeWidth={2.5} />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.96rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
                     10K+
                   </div>
-                  <div style={{ fontSize: '0.72rem', fontWeight: 600, color: '#64748B' }}>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#64748B' }}>
                     Interviews Taken
                   </div>
                 </div>
               </div>
 
               {/* Stat 4: Student Rating */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                 <div
                   style={{
                     width: '32px',
@@ -381,13 +375,13 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                     color: '#F59E0B'
                   }}
                 >
-                  <Star size={17} fill="#F59E0B" color="#F59E0B" />
+                  <Star size={16} fill="#F59E0B" color="#F59E0B" />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
+                  <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: '0.96rem', fontWeight: 900, color: '#0F172A', lineHeight: 1.1 }}>
                     4.9/5
                   </div>
-                  <div style={{ fontSize: '0.72rem', fontWeight: 600, color: '#64748B' }}>
+                  <div style={{ fontSize: '0.7rem', fontWeight: 600, color: '#64748B' }}>
                     Student Rating
                   </div>
                 </div>
@@ -397,50 +391,41 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
 
           {/* ===============================================================
               RIGHT COLUMN: FULL BUILDING, TREES, GARDEN & CAT MASCOT
-              (Never cropped, unscaled, exactly as in Reference Image 2)
+              (Integrated Continuous Composition — NO Card Border, NO Box)
               =============================================================== */}
           <div
             style={{
               position: 'relative',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%'
+              justifyContent: 'flex-end',
+              width: '100%',
+              overflow: 'visible'
             }}
           >
-            {/* The Full Building Visual with Surrounding Environment & Cat */}
-            <div
+            <img
+              src="/assets/prma_hero_right_seamless_2x.png"
+              alt="PRMA Tech Global Campus, Greenery, Trees, and Cat Mascot"
               style={{
-                position: 'relative',
                 width: '100%',
-                borderRadius: '24px',
-                overflow: 'hidden',
-                boxShadow: '0 20px 50px rgba(15, 23, 42, 0.12)',
-                border: '3px solid #FFFFFF'
+                maxWidth: '840px',
+                height: 'auto',
+                display: 'block',
+                objectFit: 'contain',
+                pointerEvents: 'none',
+                userSelect: 'none'
               }}
-            >
-              <img
-                src="/assets/prma_building_cat_scene_2x.jpg"
-                alt="PRMA Tech Global Technology Center with surrounding trees, flowers and Cat Mascot holding internship sign"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  aspectRatio: '654 / 296',
-                  objectFit: 'contain',
-                  display: 'block'
-                }}
-                onError={(e) => {
-                  e.target.src = '/assets/prma_gen/prma_office_building.jpg';
-                }}
-              />
-            </div>
+              onError={(e) => {
+                e.target.src = '/assets/prma_continuous_hero_bg_2x.jpg';
+              }}
+            />
           </div>
         </div>
 
         {/* ===================================================================
             2. CENTERED SEARCH BAR (Translucent Glass + Burgundy Button)
             =================================================================== */}
-        <div style={{ maxWidth: '820px', margin: '0 auto 1.25rem' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto 1.15rem' }}>
           <form
             onSubmit={handleSearchSubmit}
             style={{
@@ -449,7 +434,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               backgroundColor: '#FFFFFF',
               border: '2px solid #E2E8F0',
               borderRadius: '999px',
-              padding: '0.45rem 0.55rem 0.45rem 1.5rem',
+              padding: '0.4rem 0.5rem 0.4rem 1.4rem',
               boxShadow: '0 8px 30px rgba(15, 23, 42, 0.06)',
               transition: 'border-color 0.2s ease, box-shadow 0.2s ease'
             }}
@@ -462,7 +447,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               e.currentTarget.style.boxShadow = '0 8px 30px rgba(15, 23, 42, 0.06)';
             }}
           >
-            <Search size={20} color="#94A3B8" style={{ flexShrink: 0, marginRight: '0.85rem' }} />
+            <Search size={19} color="#94A3B8" style={{ flexShrink: 0, marginRight: '0.85rem' }} />
             <input
               type="text"
               placeholder="Search subjects, topics, PYQs, notes, internships..."
@@ -472,7 +457,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                 flex: 1,
                 border: 'none',
                 outline: 'none',
-                fontSize: '1rem',
+                fontSize: '0.98rem',
                 fontWeight: 500,
                 color: '#0F172A',
                 backgroundColor: 'transparent',
@@ -486,8 +471,8 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                 color: '#FFFFFF',
                 border: 'none',
                 borderRadius: '999px',
-                padding: '0.85rem 2.2rem',
-                fontSize: '0.98rem',
+                padding: '0.78rem 2.1rem',
+                fontSize: '0.95rem',
                 fontWeight: 800,
                 cursor: 'pointer',
                 transition: 'all 0.15s ease',
@@ -511,7 +496,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
             justifyContent: 'center',
             gap: '0.55rem',
             flexWrap: 'wrap',
-            marginBottom: '2.5rem'
+            marginBottom: '2rem'
           }}
         >
           <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#475569', marginRight: '0.45rem' }}>
@@ -548,19 +533,30 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
           })}
         </div>
 
-        {/* Flowing Velvet Wavy Ribbon Transition (Match Reference Image 2) */}
+        {/* Golden-Maroon Ribbon Wave Divider (Match Reference Image Exactly) */}
         <div
           style={{
-            height: '14px',
+            position: 'relative',
             width: '100%',
-            maxWidth: '1360px',
-            margin: '0 auto -6px',
-            background: 'linear-gradient(90deg, #881337 0%, #B91C1C 40%, #E5B842 75%, #F59E0B 100%)',
-            borderRadius: '999px',
-            opacity: 0.92,
-            boxShadow: '0 4px 12px rgba(136, 19, 55, 0.15)'
+            maxWidth: '1400px',
+            margin: '0 auto -4px',
+            height: '24px',
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}
-        />
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '8px',
+              borderRadius: '999px',
+              background: 'linear-gradient(90deg, #7A1326 0%, #A81B34 30%, #E89A3C 60%, #F59E0B 85%, #E5B842 100%)',
+              boxShadow: '0 4px 12px rgba(122, 19, 38, 0.18)'
+            }}
+          />
+        </div>
       </div>
 
       <DemoVideoModal

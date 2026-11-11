@@ -27,12 +27,15 @@ import {
   Download,
   Home as HomeIcon,
   HelpCircle,
-  ShieldCheck
+  ShieldCheck,
+  Moon
 } from 'lucide-react';
 import { searchLocalIndex } from '../data/searchIndex';
 import { openInstallModal } from '../utils/pwaManager';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }) {
+  const { isDark, toggleTheme } = useTheme();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
@@ -209,11 +212,11 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
           position: 'sticky',
           top: 0,
           zIndex: 999,
-          backgroundColor: 'rgba(255, 255, 255, 0.88)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          borderBottom: '1px solid rgba(226, 232, 240, 0.85)',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02)',
+          backgroundColor: 'rgba(255, 255, 255, 0.82)',
+          backdropFilter: 'blur(16px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+          borderBottom: '1px solid rgba(226, 232, 240, 0.7)',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
           fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
         }}
       >
@@ -222,7 +225,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            height: '68px',
+            height: '62px',
             maxWidth: '1440px',
             margin: '0 auto',
             padding: '0 1.5rem',
@@ -232,7 +235,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
           {/* ===================================================================
               1. LEFT: OFFICIAL PROFESSORVIRUS BRAND LOGO & TYPOGRAPHY
               =================================================================== */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', flexShrink: 0 }}>
             <a
               href="/"
               onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}
@@ -249,8 +252,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 src="/assets/pv_official_logo.png"
                 alt="ProfessorVirus Logo"
                 style={{
-                  width: '38px',
-                  height: '38px',
+                  width: '36px',
+                  height: '36px',
                   objectFit: 'contain',
                   flexShrink: 0
                 }}
@@ -262,7 +265,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 <div
                   style={{
                     fontFamily: "'Outfit', sans-serif",
-                    fontSize: '1.35rem',
+                    fontSize: '1.3rem',
                     fontWeight: 900,
                     lineHeight: 1.08,
                     letterSpacing: '-0.02em',
@@ -275,7 +278,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                 <div
                   className="pv-navbar-subtitle"
                   style={{
-                    fontSize: '0.62rem',
+                    fontSize: '0.6rem',
                     fontWeight: 700,
                     color: '#64748B',
                     letterSpacing: '0.02em'
@@ -294,8 +297,10 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.35rem',
-              margin: '0 0.5rem'
+              gap: '0.2rem',
+              margin: '0 0.4rem',
+              flexWrap: 'nowrap',
+              whiteSpace: 'nowrap'
             }}
             className="pv-desktop-nav-items"
           >
@@ -599,14 +604,22 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
                     { label: 'Timetable Planner', id: 'timetable', icon: Clock },
                     { label: 'Competitive Exams', id: 'competitive-exams', icon: Award },
                     { label: 'Scholarships Directory', id: 'scholarships', icon: GraduationCap },
-                    { label: 'Important Portals', id: 'important-links', icon: Link2 }
+                    { label: 'Important Portals', id: 'important-links', icon: Link2 },
+                    { label: 'Install App (PWA)', id: 'install-pwa', action: () => openInstallModal('navbar_more'), icon: Download }
                   ].map((item, idx) => {
                     const Icon = item.icon;
                     return (
                       <button
                         key={idx}
                         type="button"
-                        onClick={() => handleNavigate(item.id)}
+                        onClick={() => {
+                          if (item.action) {
+                            item.action();
+                            setMoreDropdownOpen(false);
+                          } else {
+                            handleNavigate(item.id);
+                          }
+                        }}
                         style={{
                           width: '100%',
                           display: 'flex',
@@ -726,6 +739,31 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               )}
             </div>
 
+            {/* Theme Toggle Icon (Crescent Moon, Match Reference Image) */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              title={isDark ? "Switch to Light Mode" : "Dark Mode"}
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                backgroundColor: '#FFFFFF',
+                border: '1.5px solid #E2E8F0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#334155',
+                cursor: 'pointer',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = '#881337'}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = '#E2E8F0'}
+            >
+              <Moon size={16} />
+            </button>
+
             {/* Notification Bell Icon with Badge "2" */}
             <button
               type="button"
@@ -767,31 +805,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
               >
                 2
               </span>
-            </button>
-
-            {/* Install App Pill Button */}
-            <button
-              type="button"
-              onClick={() => openInstallModal('navbar_header')}
-              title="Install App"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.35rem',
-                padding: '0.45rem 0.85rem',
-                borderRadius: '999px',
-                backgroundColor: '#FFFFFF',
-                border: '1.5px solid #E2E8F0',
-                color: '#0F172A',
-                fontSize: '0.82rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.03)'
-              }}
-              className="pv-install-btn"
-            >
-              <Download size={14} color="#881337" strokeWidth={2.4} />
-              <span>Install App</span>
             </button>
 
             {/* Login / User Profile Pill (Match Reference Image 1 & 2) */}
