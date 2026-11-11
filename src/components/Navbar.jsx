@@ -209,11 +209,11 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
           position: 'sticky',
           top: 0,
           zIndex: 999,
-          backgroundColor: 'rgba(255, 255, 255, 0.82)',
-          backdropFilter: 'blur(16px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(16px) saturate(180%)',
-          borderBottom: '1px solid rgba(226, 232, 240, 0.7)',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
+          backgroundColor: 'rgba(255, 255, 255, 0.55)',
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.45)',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
           fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
         }}
       >
