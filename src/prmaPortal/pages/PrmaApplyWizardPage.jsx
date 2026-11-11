@@ -24,7 +24,9 @@ import {
   Eye,
   Check,
   RefreshCw,
-  Home
+  Home,
+  Upload,
+  Image as ImageIcon
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
@@ -108,6 +110,17 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
   const [resumeError, setResumeError] = useState('');
   const fileInputRef = useRef(null);
 
+  // Mandatory Social Follow Screenshot States
+  const [linkedinScreenshotFile, setLinkedinScreenshotFile] = useState(null);
+  const [linkedinScreenshotBase64, setLinkedinScreenshotBase64] = useState('');
+  const [linkedinScreenshotError, setLinkedinScreenshotError] = useState('');
+  const linkedinInputRef = useRef(null);
+
+  const [instagramScreenshotFile, setInstagramScreenshotFile] = useState(null);
+  const [instagramScreenshotBase64, setInstagramScreenshotBase64] = useState('');
+  const [instagramScreenshotError, setInstagramScreenshotError] = useState('');
+  const instagramInputRef = useRef(null);
+
   // Submission states
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
@@ -189,6 +202,82 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
+  // LinkedIn Screenshot Select Handler (Compulsory JPG/JPEG/PNG)
+  const handleLinkedinScreenshotSelect = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    const ext = file.name.split('.').pop()?.toLowerCase();
+    if (!validTypes.includes(file.type) && !['jpg', 'jpeg', 'png'].includes(ext)) {
+      setLinkedinScreenshotError('Please upload an image in JPG, JPEG, or PNG format only.');
+      setLinkedinScreenshotFile(null);
+      setLinkedinScreenshotBase64('');
+      return;
+    }
+
+    if (file.size > 8 * 1024 * 1024) {
+      setLinkedinScreenshotError('File size exceeds the 8 MB limit. Please compress your screenshot.');
+      setLinkedinScreenshotFile(null);
+      setLinkedinScreenshotBase64('');
+      return;
+    }
+
+    setLinkedinScreenshotError('');
+    setLinkedinScreenshotFile(file);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setLinkedinScreenshotBase64(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const removeLinkedinScreenshot = () => {
+    setLinkedinScreenshotFile(null);
+    setLinkedinScreenshotBase64('');
+    setLinkedinScreenshotError('');
+    if (linkedinInputRef.current) linkedinInputRef.current.value = '';
+  };
+
+  // Instagram Screenshot Select Handler (Compulsory JPG/JPEG/PNG)
+  const handleInstagramScreenshotSelect = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    const ext = file.name.split('.').pop()?.toLowerCase();
+    if (!validTypes.includes(file.type) && !['jpg', 'jpeg', 'png'].includes(ext)) {
+      setInstagramScreenshotError('Please upload an image in JPG, JPEG, or PNG format only.');
+      setInstagramScreenshotFile(null);
+      setInstagramScreenshotBase64('');
+      return;
+    }
+
+    if (file.size > 8 * 1024 * 1024) {
+      setInstagramScreenshotError('File size exceeds the 8 MB limit. Please compress your screenshot.');
+      setInstagramScreenshotFile(null);
+      setInstagramScreenshotBase64('');
+      return;
+    }
+
+    setInstagramScreenshotError('');
+    setInstagramScreenshotFile(file);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setInstagramScreenshotBase64(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const removeInstagramScreenshot = () => {
+    setInstagramScreenshotFile(null);
+    setInstagramScreenshotBase64('');
+    setInstagramScreenshotError('');
+    if (instagramInputRef.current) instagramInputRef.current.value = '';
+  };
+
   // Validation
   const validateForm = () => {
     // Personal
@@ -228,12 +317,19 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
       return 'Resume upload is compulsory. Please attach your resume in PDF format (Max 5 MB).';
     }
 
-    // Social follow
+    // Social follow & mandatory screenshot verification
     if (!formData.followedLinkedIn) {
       return 'Please confirm that you have followed the official PRMA Tech LinkedIn page.';
     }
+    if (!linkedinScreenshotBase64) {
+      return 'LinkedIn follow screenshot is compulsory. Please upload a screenshot verifying that you follow PRMA Tech on LinkedIn.';
+    }
+
     if (!formData.followedInstagram) {
       return 'Please confirm that you have followed the official PRMA Tech Instagram page.';
+    }
+    if (!instagramScreenshotBase64) {
+      return 'Instagram follow screenshot is compulsory. Please upload a screenshot verifying that you follow PRMA Tech on Instagram.';
     }
 
     // Declaration
@@ -300,8 +396,18 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
       },
       socialFollow: {
         followedLinkedIn: true,
-        followedInstagram: true
+        followedInstagram: true,
+        linkedinScreenshot: {
+          fileName: linkedinScreenshotFile?.name || 'linkedin_follow_proof.png',
+          dataUrl: linkedinScreenshotBase64
+        },
+        instagramScreenshot: {
+          fileName: instagramScreenshotFile?.name || 'instagram_follow_proof.png',
+          dataUrl: instagramScreenshotBase64
+        }
       },
+      linkedinScreenshotUrl: linkedinScreenshotBase64,
+      instagramScreenshotUrl: instagramScreenshotBase64,
       declaration: {
         confirmedAccuracy: true
       }
@@ -1057,7 +1163,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
               )}
             </div>
 
-            {/* SECTION F: SOCIAL MEDIA FOLLOW REQUIREMENT */}
+            {/* SECTION F: SOCIAL MEDIA FOLLOW & SCREENSHOT VERIFICATION */}
             <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
               <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
                 <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center font-bold text-sm">
@@ -1065,62 +1171,220 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                 </div>
                 <div>
                   <h3 className="font-black text-slate-900 text-lg">Social Media Follow Requirement *</h3>
-                  <p className="text-xs text-slate-500">Support our student learning community before submitting</p>
+                  <p className="text-xs text-slate-500">Compulsory follow confirmation &amp; screenshot verification</p>
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <p className="text-xs text-slate-600 leading-relaxed">
-                  To stay updated with technical assignments, announcements, and cohort achievements, please follow PRMA Tech on both LinkedIn and Instagram:
+                  To stay updated with technical assignments, announcements, and cohort achievements, please follow PRMA Tech on both LinkedIn and Instagram. <strong>Uploading a follow screenshot for both platforms is compulsory</strong> before your application can be submitted and reviewed.
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* LinkedIn Follow Button & Confirmation */}
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-                    <a
-                      href="https://www.linkedin.com/company/prmatech"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-2.5 px-4 rounded-xl bg-[#0077B5] hover:bg-[#006097] text-white text-xs font-bold flex items-center justify-center gap-2 transition shadow-sm"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                      Follow PRMA Tech on LinkedIn
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* LinkedIn Follow & Mandatory Screenshot */}
+                  <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold uppercase tracking-wider text-[#0077B5] flex items-center gap-1.5">
+                          <Linkedin className="w-4 h-4" />
+                          LinkedIn Follow *
+                        </span>
+                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                          Compulsory
+                        </span>
+                      </div>
 
-                    <label className="flex items-start gap-2.5 cursor-pointer text-xs text-slate-700 select-none">
+                      <a
+                        href="https://www.linkedin.com/company/prmatech/about/?viewAsMember=true"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-2.5 px-4 rounded-xl bg-[#0077B5] hover:bg-[#006097] text-white text-xs font-bold flex items-center justify-center gap-2 transition shadow-sm"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                        Follow PRMA Tech on LinkedIn
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+
+                      <label className="flex items-start gap-2.5 cursor-pointer text-xs text-slate-700 select-none pt-1">
+                        <input
+                          type="checkbox"
+                          checked={formData.followedLinkedIn}
+                          onChange={(e) => handleChange('followedLinkedIn', e.target.checked)}
+                          className="w-4 h-4 text-blue-600 rounded mt-0.5"
+                        />
+                        <span className="font-semibold">I have followed the official PRMA Tech LinkedIn page. *</span>
+                      </label>
+                    </div>
+
+                    {/* Mandatory LinkedIn Screenshot Upload */}
+                    <div className="pt-3 border-t border-slate-200">
+                      <label className="block text-xs font-bold text-slate-800 mb-1.5">
+                        Upload LinkedIn Follow Screenshot *
+                      </label>
                       <input
-                        type="checkbox"
-                        checked={formData.followedLinkedIn}
-                        onChange={(e) => handleChange('followedLinkedIn', e.target.checked)}
-                        className="w-4 h-4 text-blue-600 rounded mt-0.5"
+                        type="file"
+                        ref={linkedinInputRef}
+                        accept="image/png, image/jpeg, image/jpg"
+                        onChange={handleLinkedinScreenshotSelect}
+                        className="hidden"
                       />
-                      <span className="font-semibold">I have followed the official PRMA Tech LinkedIn page. *</span>
-                    </label>
+
+                      {!linkedinScreenshotBase64 ? (
+                        <button
+                          type="button"
+                          onClick={() => linkedinInputRef.current?.click()}
+                          className="w-full py-4 px-4 border-2 border-dashed border-slate-300 hover:border-blue-500 rounded-xl bg-white text-center transition flex flex-col items-center justify-center gap-1.5 group cursor-pointer"
+                        >
+                          <Upload className="w-5 h-5 text-slate-400 group-hover:text-blue-600 transition" />
+                          <span className="text-xs font-bold text-slate-700 group-hover:text-blue-600">
+                            Choose Screenshot (JPG, PNG)
+                          </span>
+                          <span className="text-[10px] text-slate-400">
+                            Clear proof showing following button clicked
+                          </span>
+                        </button>
+                      ) : (
+                        <div className="bg-white p-3 rounded-xl border border-blue-200 space-y-2">
+                          <div className="relative rounded-lg overflow-hidden border border-slate-100 max-h-48 flex items-center justify-center bg-slate-900/5">
+                            <img
+                              src={linkedinScreenshotBase64}
+                              alt="LinkedIn Follow Screenshot Preview"
+                              className="w-full h-auto max-h-44 object-contain rounded"
+                            />
+                          </div>
+                          <div className="flex items-center justify-between text-xs pt-1">
+                            <span className="font-semibold text-slate-700 truncate max-w-[170px]" title={linkedinScreenshotFile?.name}>
+                              {linkedinScreenshotFile?.name || 'LinkedIn_Screenshot.png'}
+                            </span>
+                            <div className="flex items-center gap-2">
+                              <button
+                                type="button"
+                                onClick={() => linkedinInputRef.current?.click()}
+                                className="text-blue-600 hover:underline font-bold text-[11px]"
+                              >
+                                Replace
+                              </button>
+                              <button
+                                type="button"
+                                onClick={removeLinkedinScreenshot}
+                                className="text-rose-600 hover:underline font-bold text-[11px]"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {linkedinScreenshotError && (
+                        <p className="text-[11px] text-rose-600 font-semibold mt-1">
+                          {linkedinScreenshotError}
+                        </p>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Instagram Follow Button & Confirmation */}
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-                    <a
-                      href="https://www.instagram.com/prmatech"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:opacity-95 text-white text-xs font-bold flex items-center justify-center gap-2 transition shadow-sm"
-                    >
-                      <Instagram className="w-4 h-4" />
-                      Follow PRMA Tech on Instagram
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+                  {/* Instagram Follow & Mandatory Screenshot */}
+                  <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold uppercase tracking-wider text-pink-600 flex items-center gap-1.5">
+                          <Instagram className="w-4 h-4" />
+                          Instagram Follow (@prma.tech) *
+                        </span>
+                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-pink-100 text-pink-800">
+                          Compulsory
+                        </span>
+                      </div>
 
-                    <label className="flex items-start gap-2.5 cursor-pointer text-xs text-slate-700 select-none">
+                      <a
+                        href="https://www.instagram.com/prma.tech/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:opacity-95 text-white text-xs font-bold flex items-center justify-center gap-2 transition shadow-sm"
+                      >
+                        <Instagram className="w-4 h-4" />
+                        Follow PRMA Tech on Instagram
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+
+                      <label className="flex items-start gap-2.5 cursor-pointer text-xs text-slate-700 select-none pt-1">
+                        <input
+                          type="checkbox"
+                          checked={formData.followedInstagram}
+                          onChange={(e) => handleChange('followedInstagram', e.target.checked)}
+                          className="w-4 h-4 text-pink-600 rounded mt-0.5"
+                        />
+                        <span className="font-semibold">I have followed the official PRMA Tech Instagram page (@prma.tech). *</span>
+                      </label>
+                    </div>
+
+                    {/* Mandatory Instagram Screenshot Upload */}
+                    <div className="pt-3 border-t border-slate-200">
+                      <label className="block text-xs font-bold text-slate-800 mb-1.5">
+                        Upload Instagram Follow Screenshot *
+                      </label>
                       <input
-                        type="checkbox"
-                        checked={formData.followedInstagram}
-                        onChange={(e) => handleChange('followedInstagram', e.target.checked)}
-                        className="w-4 h-4 text-pink-600 rounded mt-0.5"
+                        type="file"
+                        ref={instagramInputRef}
+                        accept="image/png, image/jpeg, image/jpg"
+                        onChange={handleInstagramScreenshotSelect}
+                        className="hidden"
                       />
-                      <span className="font-semibold">I have followed the official PRMA Tech Instagram page. *</span>
-                    </label>
+
+                      {!instagramScreenshotBase64 ? (
+                        <button
+                          type="button"
+                          onClick={() => instagramInputRef.current?.click()}
+                          className="w-full py-4 px-4 border-2 border-dashed border-slate-300 hover:border-pink-500 rounded-xl bg-white text-center transition flex flex-col items-center justify-center gap-1.5 group cursor-pointer"
+                        >
+                          <Upload className="w-5 h-5 text-slate-400 group-hover:text-pink-600 transition" />
+                          <span className="text-xs font-bold text-slate-700 group-hover:text-pink-600">
+                            Choose Screenshot (JPG, PNG)
+                          </span>
+                          <span className="text-[10px] text-slate-400">
+                            Clear proof showing following @prma.tech
+                          </span>
+                        </button>
+                      ) : (
+                        <div className="bg-white p-3 rounded-xl border border-pink-200 space-y-2">
+                          <div className="relative rounded-lg overflow-hidden border border-slate-100 max-h-48 flex items-center justify-center bg-slate-900/5">
+                            <img
+                              src={instagramScreenshotBase64}
+                              alt="Instagram Follow Screenshot Preview"
+                              className="w-full h-auto max-h-44 object-contain rounded"
+                            />
+                          </div>
+                          <div className="flex items-center justify-between text-xs pt-1">
+                            <span className="font-semibold text-slate-700 truncate max-w-[170px]" title={instagramScreenshotFile?.name}>
+                              {instagramScreenshotFile?.name || 'Instagram_Screenshot.png'}
+                            </span>
+                            <div className="flex items-center gap-2">
+                              <button
+                                type="button"
+                                onClick={() => instagramInputRef.current?.click()}
+                                className="text-pink-600 hover:underline font-bold text-[11px]"
+                              >
+                                Replace
+                              </button>
+                              <button
+                                type="button"
+                                onClick={removeInstagramScreenshot}
+                                className="text-rose-600 hover:underline font-bold text-[11px]"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {instagramScreenshotError && (
+                        <p className="text-[11px] text-rose-600 font-semibold mt-1">
+                          {instagramScreenshotError}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

@@ -171,7 +171,9 @@ export default function PrmaContactPage({ navigateToTab }) {
                     Helpline & WhatsApp
                   </div>
                   <div style={{ fontSize: '1.05rem', fontWeight: 800, color: '#0F172A', marginTop: '0.2rem' }}>
-                    +91 91207 43534
+                    <a href="tel:+917668016628" style={{ color: '#0F172A', textDecoration: 'none' }}>
+                      +91 76680 16628
+                    </a>
                   </div>
                   <div style={{ fontSize: '0.8rem', color: '#16A34A', fontWeight: 600, marginTop: '0.2rem' }}>
                     Mon – Sat, 10:00 AM – 7:00 PM IST
@@ -260,7 +262,7 @@ export default function PrmaContactPage({ navigateToTab }) {
 
             {/* Quick WhatsApp Action */}
             <a
-              href="https://wa.me/919120743534?text=Hi%20PRMA%20Tech%2C%20I%20have%20an%20inquiry."
+              href="https://wa.me/917668016628?text=Hi%20PRMA%20Tech%2C%20I%20have%20an%20inquiry."
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -280,7 +282,7 @@ export default function PrmaContactPage({ navigateToTab }) {
               }}
             >
               <MessageCircle size={20} />
-              Open WhatsApp Chat (+91 91207 43534)
+              Open WhatsApp Chat (+91 76680 16628)
             </a>
           </div>
 

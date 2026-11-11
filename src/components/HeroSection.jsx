@@ -174,7 +174,7 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
               <span style={{ color: '#F59E0B', fontSize: '0.9rem' }}>⭐</span>
             </div>
 
-            {/* Main Brand Title: ProfessorVirus */}
+            {/* Main Brand Title: ProfessorVirus (Solid Deep Burgundy matching reference image) */}
             <h1
               style={{
                 fontFamily: "'Outfit', system-ui, -apple-system, sans-serif",
@@ -183,12 +183,11 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                 lineHeight: 1.05,
                 margin: '0 0 0.35rem 0',
                 letterSpacing: '-0.03em',
-                color: '#0F172A',
+                color: '#881337',
                 textShadow: '0 1px 3px rgba(255, 255, 255, 0.6)'
               }}
             >
-              <span>Professor</span>
-              <span style={{ color: '#881337' }}>Virus</span>
+              <span>ProfessorVirus</span>
             </h1>
 
             {/* Slogan with Golden Brush Curve: Study Smart. Prepare Better. */}
@@ -493,58 +492,6 @@ export default function HeroSection({ onSearch, onSelectBranch, onNavigate }) {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* ===============================================================
-                3. NEW PRMA TECH INTERNSHIP LINE (Immediately Below Statistics)
-                =============================================================== */}
-            <div style={{ marginTop: '1.35rem', width: '100%' }}>
-              <a
-                href="/prma-tech/internships/domains"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (onNavigate) {
-                    onNavigate('prma-internships-domains');
-                  } else {
-                    window.location.href = '/prma-tech/internships/domains';
-                  }
-                }}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  padding: '0.55rem 1.25rem',
-                  borderRadius: '999px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                  border: '1.5px solid #FBCFE8',
-                  boxShadow: '0 4px 16px rgba(136, 19, 55, 0.12)',
-                  textDecoration: 'none',
-                  color: '#881337',
-                  fontFamily: "'Outfit', system-ui, sans-serif",
-                  fontSize: '0.98rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  backdropFilter: 'blur(8px)',
-                  transition: 'all 0.2s ease'
-                }}
-                className="pv-prma-internship-link-pill"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(136, 19, 55, 0.25)';
-                  e.currentTarget.style.borderColor = '#881337';
-                  e.currentTarget.style.backgroundColor = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(136, 19, 55, 0.12)';
-                  e.currentTarget.style.borderColor = '#FBCFE8';
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                }}
-              >
-                <span style={{ fontSize: '1.1rem' }}>🚀</span>
-                <span>Apply for Internship at PRMA Tech</span>
-                <ArrowRight size={18} strokeWidth={2.5} />
-              </a>
             </div>
           </div>
         </div>

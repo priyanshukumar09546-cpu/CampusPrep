@@ -495,7 +495,7 @@ export default function PrmaServicesPage({ navigateToTab }) {
                 type="button"
                 onClick={() => {
                   window.open(
-                    `https://wa.me/919120743534?text=Hi%20PRMA%20Tech%2C%20I%20am%20interested%20in%20your%20${encodeURIComponent(selectedService.title)}%20services.`,
+                    `https://wa.me/917668016628?text=Hi%20PRMA%20Tech%2C%20I%20am%20interested%20in%20your%20${encodeURIComponent(selectedService.title)}%20services.`,
                     '_blank',
                     'noopener,noreferrer'
                   );

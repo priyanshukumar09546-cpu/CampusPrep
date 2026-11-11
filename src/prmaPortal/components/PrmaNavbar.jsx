@@ -77,33 +77,37 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
           fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
         }}
       >
-        {/* Top Partnership Banner with ProfessorVirus */}
+        {/* Top Partnership Banner with ProfessorVirus - High Contrast Bright Visible Text */}
         <div
           style={{
-            backgroundColor: '#0F172A',
+            backgroundColor: '#0A1128',
             color: '#FFFFFF',
-            padding: '0.4rem 1.25rem',
-            fontSize: '0.78rem',
+            padding: '0.45rem 1.25rem',
+            fontSize: '0.82rem',
             fontWeight: 600,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '0.5rem'
+            gap: '0.65rem',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', margin: '0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', margin: '0 auto', color: '#FFFFFF' }}>
             <span
               style={{
                 display: 'inline-block',
-                width: '7px',
-                height: '7px',
+                width: '8px',
+                height: '8px',
                 borderRadius: '50%',
-                backgroundColor: '#10B981'
+                backgroundColor: '#10B981',
+                boxShadow: '0 0 8px rgba(16, 185, 129, 0.8)',
+                flexShrink: 0
               }}
+              title="Official Active Status"
             />
-            <span>
-              <strong>PRMA Tech™</strong> in Official Partnership with <strong>ProfessorVirus</strong> — Practical Technology & Engineering Career Platform
+            <span style={{ color: '#FFFFFF', letterSpacing: '0.01em', lineHeight: 1.4 }}>
+              <strong style={{ color: '#FFFFFF', fontWeight: 800 }}>PRMA Tech™</strong> in Official Partnership with <strong style={{ color: '#FFFFFF', fontWeight: 800 }}>ProfessorVirus</strong> — Practical Technology &amp; Engineering Career Platform
             </span>
           </div>
 
@@ -111,19 +115,33 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
             type="button"
             onClick={() => handleNav('home')}
             style={{
-              background: 'none',
-              border: 'none',
+              background: 'rgba(251, 191, 36, 0.15)',
+              border: '1px solid rgba(251, 191, 36, 0.5)',
+              borderRadius: '999px',
               color: '#FBBF24',
-              fontSize: '0.75rem',
-              fontWeight: 700,
+              fontSize: '0.78rem',
+              fontWeight: 800,
               cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.3rem',
-              padding: '0.1rem 0.5rem'
+              gap: '0.35rem',
+              padding: '0.2rem 0.75rem',
+              transition: 'all 0.15s ease',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.28)';
+              e.currentTarget.style.color = '#FDE68A';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.15)';
+              e.currentTarget.style.color = '#FBBF24';
+              e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
-            ← Return to ProfessorVirus.site
+            <span>←</span>
+            <span>Return to ProfessorVirus.site</span>
           </button>
         </div>
 

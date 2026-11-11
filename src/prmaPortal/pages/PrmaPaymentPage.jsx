@@ -634,7 +634,7 @@ export default function PrmaPaymentPage({ navigateToTab }) {
                   Facing payment issues or need assistance?
                 </div>
                 <a
-                  href="https://wa.me/919120743534?text=Hi%20PRMA%20Tech%20Team%2C%20I%20have%20an%20application%20query"
+                  href="https://wa.me/917668016628?text=Hi%20PRMA%20Tech%20Team%2C%20I%20have%20an%20application%20query"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{

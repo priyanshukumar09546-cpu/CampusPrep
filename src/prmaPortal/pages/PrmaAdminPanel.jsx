@@ -37,7 +37,11 @@ import {
   X,
   Globe,
   MapPin,
-  FileCheck
+  FileCheck,
+  Linkedin,
+  Instagram,
+  Image as ImageIcon,
+  Maximize2
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
@@ -65,6 +69,7 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
   // Dossier Modal
   const [selectedApp, setSelectedApp] = useState(null);
   const [adminRemarksInput, setAdminRemarksInput] = useState('');
+  const [previewScreenshot, setPreviewScreenshot] = useState(null);
 
   // Shortlist Modal
   const [shortlistModalApp, setShortlistModalApp] = useState(null);
@@ -1143,13 +1148,145 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                 </div>
               </div>
 
-              {/* Social Follow Check */}
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center justify-between mb-6">
-                <span className="text-slate-500 font-medium">Social Media Confirmation:</span>
-                <span className="font-bold text-emerald-700 flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  Followed LinkedIn &amp; Instagram
-                </span>
+              {/* Social Media Follow Verification Section - Mandatory Proofs */}
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 mb-6 space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                  <span className="font-extrabold text-xs uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-blue-600" />
+                    Mandatory Social Media Proofs
+                  </span>
+                  <span className="text-[11px] text-slate-500 font-medium">
+                    Review screenshots before decision
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {/* LinkedIn Follow Proof */}
+                  <div className="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-bold text-[#0077B5] flex items-center gap-1">
+                        <Linkedin className="w-3.5 h-3.5" />
+                        LinkedIn Follow
+                      </span>
+                      {selectedApp.socialFollow?.followedLinkedIn ? (
+                        <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-0.5 border border-emerald-200">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                          Checked
+                        </span>
+                      ) : (
+                        <span className="text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                          Unchecked
+                        </span>
+                      )}
+                    </div>
+
+                    {(selectedApp.socialFollow?.linkedinScreenshot || selectedApp.linkedinScreenshotUrl) ? (
+                      <div className="space-y-1.5">
+                        <div
+                          onClick={() => setPreviewScreenshot({
+                            title: 'LinkedIn Follow Verification Screenshot',
+                            platform: 'LinkedIn',
+                            url: selectedApp.socialFollow?.linkedinScreenshot || selectedApp.linkedinScreenshotUrl,
+                            studentName: selectedApp.student?.fullName,
+                            appId: selectedApp.applicationId
+                          })}
+                          className="relative rounded-lg overflow-hidden border border-slate-200 cursor-pointer group bg-slate-900/5 h-28 flex items-center justify-center"
+                        >
+                          <img
+                            src={selectedApp.socialFollow?.linkedinScreenshot || selectedApp.linkedinScreenshotUrl}
+                            alt="LinkedIn Screenshot Proof"
+                            className="w-full h-full object-cover group-hover:scale-105 transition duration-200"
+                          />
+                          <div className="absolute inset-0 bg-slate-950/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-1 text-white text-xs font-bold">
+                            <Eye className="w-4 h-4" />
+                            Click to View
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setPreviewScreenshot({
+                            title: 'LinkedIn Follow Verification Screenshot',
+                            platform: 'LinkedIn',
+                            url: selectedApp.socialFollow?.linkedinScreenshot || selectedApp.linkedinScreenshotUrl,
+                            studentName: selectedApp.student?.fullName,
+                            appId: selectedApp.applicationId
+                          })}
+                          className="w-full py-1 text-center text-[11px] font-bold text-blue-600 hover:underline flex items-center justify-center gap-1"
+                        >
+                          <Eye className="w-3 h-3" />
+                          View LinkedIn Screenshot
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="h-24 rounded-lg bg-slate-100 border border-dashed border-slate-300 flex items-center justify-center text-center p-2 text-xs text-slate-400">
+                        No LinkedIn screenshot uploaded
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Instagram Follow Proof */}
+                  <div className="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-bold text-pink-600 flex items-center gap-1">
+                        <Instagram className="w-3.5 h-3.5" />
+                        Instagram Follow
+                      </span>
+                      {selectedApp.socialFollow?.followedInstagram ? (
+                        <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-0.5 border border-emerald-200">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                          Checked
+                        </span>
+                      ) : (
+                        <span className="text-[11px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                          Unchecked
+                        </span>
+                      )}
+                    </div>
+
+                    {(selectedApp.socialFollow?.instagramScreenshot || selectedApp.instagramScreenshotUrl) ? (
+                      <div className="space-y-1.5">
+                        <div
+                          onClick={() => setPreviewScreenshot({
+                            title: 'Instagram Follow Verification Screenshot',
+                            platform: 'Instagram',
+                            url: selectedApp.socialFollow?.instagramScreenshot || selectedApp.instagramScreenshotUrl,
+                            studentName: selectedApp.student?.fullName,
+                            appId: selectedApp.applicationId
+                          })}
+                          className="relative rounded-lg overflow-hidden border border-slate-200 cursor-pointer group bg-slate-900/5 h-28 flex items-center justify-center"
+                        >
+                          <img
+                            src={selectedApp.socialFollow?.instagramScreenshot || selectedApp.instagramScreenshotUrl}
+                            alt="Instagram Screenshot Proof"
+                            className="w-full h-full object-cover group-hover:scale-105 transition duration-200"
+                          />
+                          <div className="absolute inset-0 bg-slate-950/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-1 text-white text-xs font-bold">
+                            <Eye className="w-4 h-4" />
+                            Click to View
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setPreviewScreenshot({
+                            title: 'Instagram Follow Verification Screenshot',
+                            platform: 'Instagram',
+                            url: selectedApp.socialFollow?.instagramScreenshot || selectedApp.instagramScreenshotUrl,
+                            studentName: selectedApp.student?.fullName,
+                            appId: selectedApp.applicationId
+                          })}
+                          className="w-full py-1 text-center text-[11px] font-bold text-pink-600 hover:underline flex items-center justify-center gap-1"
+                        >
+                          <Eye className="w-3 h-3" />
+                          View Instagram Screenshot
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="h-24 rounded-lg bg-slate-100 border border-dashed border-slate-300 flex items-center justify-center text-center p-2 text-xs text-slate-400">
+                        No Instagram screenshot uploaded
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -1498,6 +1635,48 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
         </div>
       )}
 
+      {/* 4. Full-Size Social Screenshot Lightbox Modal */}
+      {previewScreenshot && (
+        <div className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 relative flex flex-col max-h-[90vh]">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div>
+                <span className="text-[10px] uppercase font-black tracking-widest text-blue-600">
+                  {previewScreenshot.platform} Verification Proof
+                </span>
+                <h4 className="text-base font-bold text-slate-900">{previewScreenshot.name}</h4>
+              </div>
+              <button
+                type="button"
+                onClick={() => setPreviewScreenshot(null)}
+                className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="overflow-auto py-4 flex items-center justify-center bg-slate-50 rounded-2xl my-3">
+              <img
+                src={previewScreenshot.url}
+                alt={`${previewScreenshot.platform} follow proof for ${previewScreenshot.name}`}
+                className="max-h-[65vh] w-auto object-contain rounded-xl shadow-xs"
+              />
+            </div>
+            <div className="pt-2 flex items-center justify-between">
+              <span className="text-xs text-slate-500">
+                Official {previewScreenshot.platform} Follow Screenshot
+              </span>
+              <button
+                type="button"
+                onClick={() => setPreviewScreenshot(null)}
+                className="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors"
+              >
+                Close Preview
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <PrmaFooter />
     </div>
   );
@@ -1624,6 +1803,14 @@ function ApplicationsTable({
                         >
                           Resume PDF
                         </a>
+                      )}
+                      {(app.linkedinScreenshotUrl || app.instagramScreenshotUrl || app.socialFollow?.hasUploadedLinkedinProof || app.socialFollow?.hasUploadedInstagramProof) && (
+                        <span
+                          className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200 inline-flex items-center gap-1"
+                          title="Verified Social Media Follow Proofs Uploaded"
+                        >
+                          Proofs ✓
+                        </span>
                       )}
                     </div>
                   </td>

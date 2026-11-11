@@ -502,9 +502,19 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         return res.status(400).json({ error: 'Resume must be in PDF format only.' });
       }
 
-      // 6. Validate Social Media Follow Confirmation
+      // 6. Validate Social Media Follow Confirmation & Mandatory Screenshots
       if (!socialFollow?.followedLinkedIn || !socialFollow?.followedInstagram) {
         return res.status(400).json({ error: 'Please confirm that you have followed both PRMA Tech on LinkedIn and Instagram before submitting.' });
+      }
+
+      const linkedinScreen = socialFollow?.linkedinScreenshot?.dataUrl || req.body.linkedinScreenshotUrl || socialFollow?.linkedinScreenshot;
+      const instagramScreen = socialFollow?.instagramScreenshot?.dataUrl || req.body.instagramScreenshotUrl || socialFollow?.instagramScreenshot;
+
+      if (!linkedinScreen) {
+        return res.status(400).json({ error: 'LinkedIn follow screenshot is compulsory. Please upload a screenshot verifying that you followed PRMA Tech on LinkedIn.' });
+      }
+      if (!instagramScreen) {
+        return res.status(400).json({ error: 'Instagram follow screenshot is compulsory. Please upload a screenshot verifying that you followed PRMA Tech on Instagram.' });
       }
 
       // 7. Validate Declaration
@@ -558,8 +568,14 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         },
         socialFollow: {
           followedLinkedIn: true,
-          followedInstagram: true
+          followedInstagram: true,
+          linkedinScreenshot: linkedinScreen,
+          instagramScreenshot: instagramScreen,
+          linkedinScreenshotName: socialFollow?.linkedinScreenshot?.fileName || 'linkedin_follow_proof.png',
+          instagramScreenshotName: socialFollow?.instagramScreenshot?.fileName || 'instagram_follow_proof.png'
         },
+        linkedinScreenshotUrl: linkedinScreen,
+        instagramScreenshotUrl: instagramScreen,
         duration: '1 Month',
         mode: 'Remote',
         fee: '₹0 (100% Free)',
@@ -672,6 +688,33 @@ export function createPrmaRouter({ isDbConnected } = {}) {
     }
 
     res.status(404).send('Resume content unavailable');
+  });
+
+  /**
+   * Admin: View / Download Social Follow Screenshot (LinkedIn / Instagram)
+   */
+  router.get('/admin/applications/:id/screenshot/:platform', (req, res) => {
+    const { id, platform } = req.params;
+    const record = applicationsStore.get(id);
+    if (!record) return res.status(404).send('Application not found');
+
+    const screenshotData = platform === 'linkedin'
+      ? (record.socialFollow?.linkedinScreenshot || record.linkedinScreenshotUrl)
+      : (record.socialFollow?.instagramScreenshot || record.instagramScreenshotUrl);
+
+    if (!screenshotData) return res.status(404).send('Screenshot proof not found');
+
+    if (typeof screenshotData === 'string' && screenshotData.startsWith('data:image/')) {
+      const matches = screenshotData.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.+)$/);
+      if (matches) {
+        const mimeType = matches[1];
+        const buffer = Buffer.from(matches[2], 'base64');
+        res.setHeader('Content-Type', mimeType);
+        res.setHeader('Content-Disposition', `inline; filename="${platform}_follow_proof.png"`);
+        return res.end(buffer);
+      }
+    }
+    res.status(404).send('Invalid or corrupt screenshot format');
   });
 
   /**

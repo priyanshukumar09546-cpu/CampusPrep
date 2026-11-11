@@ -25,7 +25,7 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
 
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/919120743534?text=Hi%20PRMA%20Tech%20Support%2C%20I%20have%20an%20inquiry%20regarding%20PRMA%20Tech.',
+      'https://wa.me/917668016628?text=Hi%20PRMA%20Tech%20Support%2C%20I%20have%20an%20inquiry%20regarding%20PRMA%20Tech.',
       '_blank',
       'noopener,noreferrer'
     );
@@ -99,10 +99,10 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                   <Icon size={22} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.98rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.2rem' }}>
+                  <div style={{ fontSize: '0.98rem', fontWeight: 800, color: '#FFFFFF', marginBottom: '0.25rem' }}>
                     {item.title}
                   </div>
-                  <div style={{ fontSize: '0.82rem', color: '#94A3B8', lineHeight: 1.5 }}>
+                  <div style={{ fontSize: '0.84rem', color: '#E2E8F0', lineHeight: 1.55 }}>
                     {item.desc}
                   </div>
                 </div>
@@ -118,7 +118,7 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
             gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1.2fr',
             gap: '2.5rem',
             paddingBottom: '3rem',
-            borderBottom: '1px solid #1E293B'
+            borderBottom: '1px solid #334155'
           }}
           className="prma-footer-grid"
         >
@@ -137,21 +137,21 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                 e.target.src = '/assets/prma_tech_logo.png';
               }}
             />
-            <p style={{ fontSize: '0.88rem', color: '#94A3B8', lineHeight: 1.6, maxWidth: '300px', marginBottom: '1.25rem' }}>
+            <p style={{ fontSize: '0.88rem', color: '#E2E8F0', lineHeight: 1.65, maxWidth: '300px', marginBottom: '1.25rem' }}>
               PRMA Tech™ is a modern technology company and student-centric software incubator building scalable digital products, enterprise services, and industry-ready remote internship experiences.
             </p>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#10B981', fontWeight: 700 }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10B981' }} />
-              Accepting Applications for Nov & Dec 2026
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#34D399', fontWeight: 700 }}>
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10B981', boxShadow: '0 0 6px #10B981' }} />
+              Accepting Applications for Nov &amp; Dec 2026
             </div>
           </div>
 
           {/* Navigation Links */}
           <div>
-            <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '1.1rem' }}>
               Company
             </div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               {[
                 { label: 'Home', tab: 'prma-home' },
                 { label: 'About Us', tab: 'prma-about' },
@@ -168,13 +168,14 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                       background: 'none',
                       border: 'none',
                       padding: 0,
-                      color: '#94A3B8',
-                      fontSize: '0.875rem',
+                      color: '#CBD5E1',
+                      fontSize: '0.88rem',
+                      fontWeight: 500,
                       cursor: 'pointer',
                       transition: 'color 0.15s ease'
                     }}
                     onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1'; }}
                   >
                     {link.label}
                   </button>
@@ -185,10 +186,10 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
 
           {/* Internship Links */}
           <div>
-            <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '1.1rem' }}>
               Internship Ecosystem
             </div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               {[
                 { label: 'Internship Program', tab: 'prma-internships-home' },
                 { label: '16 Industry Domains', tab: 'prma-internships-domains' },
@@ -204,13 +205,14 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                       background: 'none',
                       border: 'none',
                       padding: 0,
-                      color: '#94A3B8',
-                      fontSize: '0.875rem',
+                      color: '#CBD5E1',
+                      fontSize: '0.88rem',
+                      fontWeight: 500,
                       cursor: 'pointer',
                       transition: 'color 0.15s ease'
                     }}
                     onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1'; }}
                   >
                     {link.label}
                   </button>
@@ -221,10 +223,10 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
 
           {/* Core Services */}
           <div>
-            <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '1.1rem' }}>
               Technology Services
             </div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               {[
                 'Website Development',
                 'Mobile App Development',
@@ -242,13 +244,14 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                       background: 'none',
                       border: 'none',
                       padding: 0,
-                      color: '#94A3B8',
-                      fontSize: '0.875rem',
+                      color: '#CBD5E1',
+                      fontSize: '0.88rem',
+                      fontWeight: 500,
                       cursor: 'pointer',
                       transition: 'color 0.15s ease'
                     }}
                     onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1'; }}
                   >
                     {srv}
                   </button>
@@ -259,25 +262,27 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
 
           {/* Contact & Support */}
           <div>
-            <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
+            <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#FFFFFF', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '1.1rem' }}>
               Contact & Support
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.85rem', color: '#94A3B8' }}>
-                <MapPin size={17} color="#0866F5" style={{ flexShrink: 0, marginTop: '2px' }} />
-                <span>Noida & Greater Noida Tech Corridor, Uttar Pradesh, India</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.95rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.88rem', color: '#E2E8F0', lineHeight: 1.5 }}>
+                <MapPin size={18} color="#38BDF8" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <span>Noida &amp; Greater Noida Tech Corridor, Uttar Pradesh, India</span>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: '#94A3B8' }}>
-                <Mail size={16} color="#0866F5" style={{ flexShrink: 0 }} />
-                <a href="mailto:support@prmatech.in" style={{ color: '#94A3B8', textDecoration: 'none' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.88rem', color: '#E2E8F0' }}>
+                <Mail size={17} color="#38BDF8" style={{ flexShrink: 0 }} />
+                <a href="mailto:support@prmatech.in" style={{ color: '#E2E8F0', textDecoration: 'none', fontWeight: 500 }}>
                   support@prmatech.in
                 </a>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem', color: '#94A3B8' }}>
-                <Phone size={16} color="#0866F5" style={{ flexShrink: 0 }} />
-                <span>+91 91207 43534</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.88rem', color: '#E2E8F0' }}>
+                <Phone size={17} color="#38BDF8" style={{ flexShrink: 0 }} />
+                <a href="tel:+917668016628" style={{ color: '#E2E8F0', textDecoration: 'none', fontWeight: 700 }}>
+                  +91 76680 16628
+                </a>
               </div>
 
               <button
@@ -285,21 +290,30 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                 onClick={openWhatsApp}
                 style={{
                   marginTop: '0.5rem',
-                  padding: '0.65rem 1.15rem',
-                  borderRadius: '10px',
+                  padding: '0.7rem 1.25rem',
+                  borderRadius: '12px',
                   backgroundColor: '#16A34A',
                   color: '#FFFFFF',
                   border: 'none',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
+                  fontSize: '0.88rem',
+                  fontWeight: 800,
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.45rem',
-                  boxShadow: '0 4px 12px rgba(22, 163, 74, 0.3)'
+                  gap: '0.5rem',
+                  boxShadow: '0 4px 14px rgba(22, 163, 74, 0.4)',
+                  transition: 'all 0.15s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#15803D';
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#16A34A';
+                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                <MessageCircle size={16} />
+                <MessageCircle size={18} />
                 WhatsApp Mentor Support
               </button>
             </div>
@@ -315,8 +329,8 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             gap: '1rem',
-            fontSize: '0.82rem',
-            color: '#64748B'
+            fontSize: '0.84rem',
+            color: '#94A3B8'
           }}
         >
           <div>
@@ -327,21 +341,21 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
             <button
               type="button"
               onClick={() => handleNav('home')}
-              style={{ background: 'none', border: 'none', color: '#FBBF24', cursor: 'pointer', fontWeight: 600 }}
+              style={{ background: 'none', border: 'none', color: '#FBBF24', cursor: 'pointer', fontWeight: 700 }}
             >
               ProfessorVirus Ecosystem
             </button>
             <button
               type="button"
               onClick={() => handleNav('internships-jobs')}
-              style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer' }}
+              style={{ background: 'none', border: 'none', color: '#CBD5E1', cursor: 'pointer', fontWeight: 500 }}
             >
               ProfessorVirus Job Board
             </button>
             <button
               type="button"
               onClick={() => handleNav('prma-admin')}
-              style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer', fontSize: '0.75rem' }}
+              style={{ background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', fontSize: '0.78rem' }}
             >
               Admin
             </button>
