@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
+// Pure Light-Mode Theme Context (Dark Mode completely removed per specification)
 const ThemeContext = createContext({
   theme: 'light',
   isDark: false,
@@ -10,91 +11,53 @@ const ThemeContext = createContext({
 export const THEME_STORAGE_KEY = 'pv_theme';
 
 export function getInitialTheme() {
-  if (typeof window === 'undefined') return 'light';
-  try {
-    const saved = localStorage.getItem(THEME_STORAGE_KEY);
-    if (saved === 'dark') return 'dark';
-    if (saved === 'light') return 'light';
-  } catch (e) {}
-  return 'light'; // Light Mode is the default for every new visitor
+  return 'light'; // Strictly Light Mode
 }
 
-function applyThemeToDOM(theme) {
+function applyThemeToDOM() {
   if (typeof document === 'undefined') return;
   const root = document.documentElement;
   const body = document.body;
-  const isDark = theme === 'dark';
 
-  if (isDark) {
-    root.classList.add('dark');
-    root.classList.remove('light');
-    root.setAttribute('data-theme', 'dark');
-    if (body) {
-      body.classList.add('dark-mode');
-      body.classList.remove('light-mode');
-      body.style.backgroundColor = '#030303';
-      body.style.color = '#FFFFFF';
-    }
-    const metas = document.querySelectorAll('meta[name="theme-color"]');
-    metas.forEach(m => m.setAttribute('content', '#030303'));
-  } else {
-    root.classList.add('light');
-    root.classList.remove('dark');
-    root.setAttribute('data-theme', 'light');
-    if (body) {
-      body.classList.add('light-mode');
-      body.classList.remove('dark-mode');
-      body.style.backgroundColor = '#FAF7F2';
-      body.style.color = '#1F2421';
-    }
-    const metas = document.querySelectorAll('meta[name="theme-color"]');
-    metas.forEach(m => m.setAttribute('content', '#FAF7F2'));
+  root.classList.add('light');
+  root.classList.remove('dark');
+  root.setAttribute('data-theme', 'light');
+
+  if (body) {
+    body.classList.add('light-mode');
+    body.classList.remove('dark-mode');
+    body.style.backgroundColor = '#FFFFFF';
+    body.style.color = '#0F172A';
   }
+
+  const metas = document.querySelectorAll('meta[name="theme-color"]');
+  metas.forEach(m => m.setAttribute('content', '#FFFFFF'));
+
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, 'light');
+  } catch (e) {}
 }
 
 export function ThemeProvider({ children }) {
-  const [theme, setThemeState] = useState(getInitialTheme);
+  // Always light mode
+  const [theme] = useState('light');
 
-  // Apply immediately on mount
   useEffect(() => {
-    applyThemeToDOM(theme);
-  }, [theme]);
-
-  // Sync across tabs/windows
-  useEffect(() => {
-    const handleStorageChange = (e) => {
-      if (e.key === THEME_STORAGE_KEY && (e.newValue === 'light' || e.newValue === 'dark')) {
-        setThemeState(e.newValue);
-        applyThemeToDOM(e.newValue);
-      }
-    };
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    applyThemeToDOM();
   }, []);
 
-  const setTheme = useCallback((newTheme) => {
-    const target = newTheme === 'light' ? 'light' : 'dark';
-    setThemeState(target);
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, target);
-    } catch (e) {}
-    applyThemeToDOM(target);
+  const setTheme = useCallback(() => {
+    applyThemeToDOM();
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((prev) => {
-      const next = prev === 'light' ? 'dark' : 'light';
-      try {
-        localStorage.setItem(THEME_STORAGE_KEY, next);
-      } catch (e) {}
-      applyThemeToDOM(next);
-      return next;
-    });
+    // No-op: Dark mode has been permanently removed per specification
+    applyThemeToDOM();
   }, []);
 
   const value = {
-    theme,
-    isDark: theme === 'dark',
+    theme: 'light',
+    isDark: false,
     toggleTheme,
     setTheme
   };
@@ -107,11 +70,5 @@ export function ThemeProvider({ children }) {
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
+  return useContext(ThemeContext);
 }
-
-export default ThemeContext;

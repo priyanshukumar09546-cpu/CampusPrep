@@ -1032,25 +1032,25 @@ pre, code {
     color: #1F2421 !important;
   }
 
-  /* Desktop Navbar wrapper is suppressed on mobile */
-  .pv-desktop-navbar-wrap,
+  /* Liquid Glass Navbar is universal across all viewports */
+  .pv-desktop-navbar-wrap {
+    display: block !important;
+    width: 100% !important;
+  }
   .pv-hide-on-mobile {
     display: none !important;
   }
 
-  /* Universal mobile header wrapper shown only on mobile */
+  /* Universal mobile header wrapper is suppressed in favor of Liquid Glass Navbar */
   .pv-mobile-header-wrap {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-  }
-
-  /* Home Page: Switch to Mobile Redesign View */
-  .pv-desktop-home-view {
     display: none !important;
   }
-  .pv-mobile-home-view {
+
+  /* Home Page is fully responsive across all viewports */
+  .pv-desktop-home-view,
+  .pv-home-page-container {
     display: block !important;
+    width: 100% !important;
   }
 
   /* More Page: Switch to Mobile Dashboard */

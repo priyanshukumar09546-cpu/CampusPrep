@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Search,
-  Sun,
-  Moon,
   Menu,
   X,
   ChevronDown,
@@ -10,7 +8,6 @@ import {
   BookOpen,
   GraduationCap,
   Users,
-  MessageSquare,
   User,
   Bell,
   Briefcase,
@@ -26,27 +23,32 @@ import {
   ArrowRight,
   LogOut,
   Calendar,
-  FileText as FileTextIcon,
   Zap,
-  Download
+  Download,
+  Home as HomeIcon,
+  HelpCircle,
+  ShieldCheck
 } from 'lucide-react';
 import { searchLocalIndex } from '../data/searchIndex';
 import { openInstallModal } from '../utils/pwaManager';
-import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }) {
-  const { theme, isDark, toggleTheme } = useTheme();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
+  const [notesDropdownOpen, setNotesDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [searchFocused, setSearchFocused] = useState(false);
   const [selectedSearchIdx, setSelectedSearchIdx] = useState(-1);
 
   const userMenuRef = useRef(null);
+  const moreMenuRef = useRef(null);
+  const notesMenuRef = useRef(null);
   const searchRef = useRef(null);
   const searchTimerRef = useRef(null);
 
-  // Authenticated Student State (Loaded from localStorage / sessionStorage)
+  // Authenticated Student State
   const [currentUser, setCurrentUser] = useState(() => {
     try {
       const stored = localStorage.getItem('professorvirus_user') || sessionStorage.getItem('professorvirus_user');
@@ -89,19 +91,26 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     if (setActiveTab) setActiveTab('home');
   };
 
-
-
-  // Click outside & Escape key listeners
+  // Close menus on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
         setUserMenuOpen(false);
+      }
+      if (moreMenuRef.current && !moreMenuRef.current.contains(e.target)) {
+        setMoreDropdownOpen(false);
+      }
+      if (notesMenuRef.current && !notesMenuRef.current.contains(e.target)) {
+        setNotesDropdownOpen(false);
       }
     };
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setUserMenuOpen(false);
+        setMoreDropdownOpen(false);
+        setNotesDropdownOpen(false);
+        setSearchFocused(false);
       }
     };
 
@@ -113,19 +122,16 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     };
   }, []);
 
-  const navItems = [
-    { name: 'Home', id: 'home', href: '/' },
-    { name: 'HOOLLOW', id: 'hoollow', href: '/hoollow', hasSparkle: true },
-    { name: 'PYQs', id: 'pyqs', href: '/pyqs' },
-    { name: 'Notes', id: 'notes', href: '/notes' },
-    { name: 'Syllabus', id: 'syllabus', href: '/syllabus' },
-    { name: 'Quizzes', id: 'quizzes', href: '/quizzes' },
-    { name: 'Resume Maker', id: 'resume-maker', href: '/resume-maker' },
-    { name: 'Interview Pro', id: 'interview-pro', href: '/interview-pro', isBeta: true },
-    { name: 'Result & CGPA', id: 'result-cgpa', href: '/result-cgpa' },
-    { name: 'More +', id: 'more', href: '/more' },
-  ];
+  const handleNavigate = (tabId) => {
+    if (setActiveTab) setActiveTab(tabId);
+    setUserMenuOpen(false);
+    setMoreDropdownOpen(false);
+    setNotesDropdownOpen(false);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
+  // Search Logic
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (selectedSearchIdx >= 0 && searchResults[selectedSearchIdx]) {
@@ -141,7 +147,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     }
   };
 
-  // Debounced search on query change
   const handleSearchChange = (e) => {
     const val = e.target.value;
     setSearchQuery(val);
@@ -186,12 +191,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     setSearchFocused(false);
   };
 
-  const clearSearch = () => {
-    setSearchQuery('');
-    setSearchResults([]);
-    setSelectedSearchIdx(-1);
-  };
-
   // Close search dropdown on outside click
   useEffect(() => {
     const handleClickOutsideSearch = (e) => {
@@ -203,831 +202,842 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab }
     return () => document.removeEventListener('mousedown', handleClickOutsideSearch);
   }, []);
 
-  const handleNavigate = (tabId) => {
-    setActiveTab(tabId);
-    setUserMenuOpen(false);
-  };
-
   return (
-    <header
-      className="pv-desktop-navbar"
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-        backgroundColor: isDark ? 'rgba(5, 5, 5, 0.94)' : 'rgba(250, 247, 242, 0.96)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
-        boxShadow: isDark ? '0 4px 20px rgba(0, 0, 0, 0.7)' : '0 2px 12px rgba(0, 0, 0, 0.06)'
-      }}
-    >
-      <div
-        className="container pv-main-container"
+    <>
+      <header
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          height: '66px',
-          maxWidth: 'min(1560px, 94vw)',
-          margin: '0 auto',
-          padding: '0 clamp(1rem, 2vw, 2.5rem)',
-          width: '100%',
-          boxSizing: 'border-box'
+          position: 'sticky',
+          top: 0,
+          zIndex: 999,
+          backgroundColor: 'rgba(255, 255, 255, 0.88)',
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          borderBottom: '1px solid rgba(226, 232, 240, 0.85)',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02)',
+          fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
         }}
       >
-        {/* LEFT WRAPPER: Complete ProfessorVirus Brand and Desktop Nav */}
-        <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0, minWidth: 0 }}>
-          <a
-            href="/"
-            style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', flexShrink: 0, textDecoration: 'none' }}
-            onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}
-            aria-label="ProfessorVirus Homepage"
-          >
-            <div
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: '68px',
+            maxWidth: '1440px',
+            margin: '0 auto',
+            padding: '0 1.5rem',
+            boxSizing: 'border-box'
+          }}
+        >
+          {/* ===================================================================
+              1. LEFT: OFFICIAL PROFESSORVIRUS BRAND LOGO & TYPOGRAPHY
+              =================================================================== */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
+            <a
+              href="/"
+              onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}
               style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                border: '2px solid #FFB800',
-                backgroundColor: '#0B0B0B',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 0 12px rgba(255, 184, 0, 0.35)',
-                transition: 'transform 0.2s ease',
-                flexShrink: 0
+                gap: '0.65rem',
+                textDecoration: 'none',
+                cursor: 'pointer'
               }}
+              aria-label="ProfessorVirus Home"
             >
               <img
-                src="/assets/navbar_logo.png"
-                alt="ProfessorVirus Mascot"
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                src="/assets/pv_official_logo.png"
+                alt="ProfessorVirus Logo"
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  objectFit: 'contain',
+                  flexShrink: 0
+                }}
                 onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80';
+                  e.target.src = '/assets/logo.png';
                 }}
               />
-            </div>
-            <div>
-              <div
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontWeight: 900,
-                  fontSize: '1.25rem',
-                  color: isDark ? '#FFFFFF' : '#1F2421',
-                  lineHeight: 1.1,
-                  letterSpacing: '0.01em',
-                  display: 'flex',
-                  alignItems: 'center',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                <span>Professor</span><span style={{ color: '#FFB800' }}>Virus</span>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <div
+                  style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontSize: '1.35rem',
+                    fontWeight: 900,
+                    lineHeight: 1.08,
+                    letterSpacing: '-0.02em',
+                    color: '#0F172A'
+                  }}
+                >
+                  <span>Professor</span>
+                  <span style={{ color: '#881337' }}>Virus</span>
+                </div>
+                <div
+                  className="pv-navbar-subtitle"
+                  style={{
+                    fontSize: '0.62rem',
+                    fontWeight: 700,
+                    color: '#64748B',
+                    letterSpacing: '0.02em'
+                  }}
+                >
+                  Study Smart. Prepare Better.
+                </div>
               </div>
-              <div
-                className="pv-logo-subtitle"
-                style={{
-                  fontSize: '0.62rem',
-                  fontWeight: 700,
-                  color: '#A1A1AA',
-                  letterSpacing: '0.01em',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                Study Smart. Prepare Better.
-              </div>
-            </div>
-          </a>
+            </a>
+          </div>
 
-          {/* CENTER: Navigation Links (Desktop — Strict Single-Line / No Wrap) */}
+          {/* ===================================================================
+              2. CENTER: NAVIGATION ITEMS (Match Reference Image 1 & 2)
+              =================================================================== */}
           <nav
             style={{
               display: 'flex',
               alignItems: 'center',
-              marginLeft: '0.65rem',
-              gap: '0.14rem',
-              flexWrap: 'nowrap',
-              flexShrink: 0
+              gap: '0.35rem',
+              margin: '0 0.5rem'
             }}
-            className="desktop-nav"
+            className="pv-desktop-nav-items"
           >
-          {navItems.map((item) => {
-            const isHoollow = item.id === 'hoollow';
-            const isActive =
-              activeTab === item.id ||
-              (item.id === 'hoollow' && (activeTab === 'hoollow' || activeTab === 'hoolow')) ||
-              (item.id === 'interview-pro' &&
-                (activeTab === 'aistudy' ||
-                  activeTab === 'interview-confirm' ||
-                  activeTab === 'interview-instructions' ||
-                  activeTab === 'interview-start'));
+            {/* Home Link (Active Pill in Burgundy or Indicator) */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('home')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                padding: activeTab === 'home' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                borderRadius: '999px',
+                border: 'none',
+                backgroundColor: activeTab === 'home' ? '#881337' : 'transparent',
+                color: activeTab === 'home' ? '#FFFFFF' : '#334155',
+                fontSize: '0.84rem',
+                fontWeight: activeTab === 'home' ? 800 : 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== 'home') e.currentTarget.style.color = '#881337';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'home') e.currentTarget.style.color = '#334155';
+              }}
+            >
+              <HomeIcon size={14} strokeWidth={2.4} />
+              <span>Home</span>
+            </button>
 
-            const isPillActive = isHoollow && isActive;
-            const linkColor = isPillActive 
-              ? (isDark ? '#FFB800' : '#861820')
-              : isActive 
-                ? (isDark ? '#FFB800' : '#861820')
-                : (isDark ? '#A1A1AA' : '#5A5248');
+            {/* HOOLLOW AI Link */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('hoollow')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.3rem',
+                padding: activeTab === 'hoollow' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                borderRadius: '999px',
+                border: 'none',
+                backgroundColor: activeTab === 'hoollow' ? '#881337' : 'transparent',
+                color: activeTab === 'hoollow' ? '#FFFFFF' : '#334155',
+                fontSize: '0.84rem',
+                fontWeight: activeTab === 'hoollow' ? 800 : 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== 'hoollow') e.currentTarget.style.color = '#881337';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'hoollow') e.currentTarget.style.color = '#334155';
+              }}
+            >
+              <Sparkles size={14} color={activeTab === 'hoollow' ? '#FFFFFF' : '#881337'} />
+              <span>HOOLLOW</span>
+            </button>
 
-            return (
-              <a
-                key={item.id}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavigate(item.id);
-                }}
-                className="nav-link-item"
+            {/* PYQs Link */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('pyqs')}
+              style={{
+                padding: activeTab === 'pyqs' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                borderRadius: '999px',
+                border: 'none',
+                backgroundColor: activeTab === 'pyqs' ? '#881337' : 'transparent',
+                color: activeTab === 'pyqs' ? '#FFFFFF' : '#334155',
+                fontSize: '0.84rem',
+                fontWeight: activeTab === 'pyqs' ? 800 : 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== 'pyqs') e.currentTarget.style.color = '#881337';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'pyqs') e.currentTarget.style.color = '#334155';
+              }}
+            >
+              PYQs
+            </button>
+
+            {/* Notes with Dropdown */}
+            <div style={{ position: 'relative' }} ref={notesMenuRef}>
+              <button
+                type="button"
+                onClick={() => handleNavigate('notes')}
                 style={{
-                  position: 'relative',
-                  backgroundColor: isPillActive ? (isDark ? '#161616' : '#FFF1F2') : 'transparent',
-                  color: linkColor,
-                  padding: isPillActive ? '0.24rem 0.65rem' : '0.3rem 0.38rem',
-                  borderRadius: isPillActive ? '9999px' : '6px',
-                  fontWeight: isActive ? 800 : 600,
-                  fontSize: '0.78rem',
-                  border: isPillActive ? (isDark ? '1px solid rgba(255, 184, 0, 0.45)' : '1px solid rgba(134, 24, 32, 0.25)') : 'none',
-                  cursor: 'pointer',
-                  textDecoration: 'none',
-                  transition: 'all 0.18s ease',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.25rem',
-                  whiteSpace: 'nowrap',
-                  flexShrink: 0,
-                  boxShadow: isPillActive ? (isDark ? '0 0 12px rgba(255, 184, 0, 0.25)' : '0 2px 6px rgba(134, 24, 32, 0.12)') : 'none',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
+                  padding: activeTab === 'notes' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                  borderRadius: '999px',
+                  border: 'none',
+                  backgroundColor: activeTab === 'notes' ? '#881337' : 'transparent',
+                  color: activeTab === 'notes' ? '#FFFFFF' : '#334155',
+                  fontSize: '0.84rem',
+                  fontWeight: activeTab === 'notes' ? 800 : 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
                 }}
                 onMouseEnter={(e) => {
-                  if (!isPillActive && !isActive) e.currentTarget.style.color = isDark ? '#FFB800' : '#861820';
+                  if (activeTab !== 'notes') e.currentTarget.style.color = '#881337';
                 }}
                 onMouseLeave={(e) => {
-                  if (!isPillActive && !isActive) e.currentTarget.style.color = isDark ? '#A1A1AA' : '#5A5248';
+                  if (activeTab !== 'notes') e.currentTarget.style.color = '#334155';
                 }}
               >
-                {item.hasSparkle && (
-                  <Sparkles size={12} color={isDark ? '#FFB800' : '#861820'} />
-                )}
-                <span>{item.name}</span>
-                {item.isBeta && (
-                  <span
-                    style={{
-                      backgroundColor: isDark ? 'rgba(255, 184, 0, 0.15)' : '#FFF1F2',
-                      color: isDark ? '#FFB800' : '#861820',
-                      border: isDark ? '1px solid rgba(255, 184, 0, 0.4)' : '1px solid rgba(134, 24, 32, 0.25)',
-                      fontSize: '0.52rem',
-                      fontWeight: 800,
-                      padding: '0.05rem 0.28rem',
-                      borderRadius: '9999px',
-                      lineHeight: 1.15,
-                      letterSpacing: '0.02em',
-                      display: 'inline-block',
-                      verticalAlign: 'middle',
-                      whiteSpace: 'nowrap',
-                      flexShrink: 0
-                    }}
-                  >
-                    Beta
-                  </span>
-                )}
-                {isActive && !isPillActive && (
-                  <span
-                    style={{
-                      position: 'absolute',
-                      bottom: '-2px',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      width: '18px',
-                      height: '2.5px',
-                      borderRadius: '9999px',
-                      backgroundColor: isDark ? '#FFB800' : '#861820',
-                      boxShadow: isDark ? '0 0 8px rgba(255, 184, 0, 0.6)' : 'none'
-                    }}
-                  />
-                )}
-              </a>
-            );
-          })}
-          </nav>
-        </div>
+                <span>Notes</span>
+                <ChevronDown size={13} />
+              </button>
+            </div>
 
-        {/* RIGHT: Search, Theme, Notifications, User Profile & Mobile Toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.32rem', flexShrink: 0, marginLeft: 'auto' }}>
-          {/* Quick Search Field with Real-Time Dropdown */}
-          <div
-            ref={searchRef}
-            style={{ position: 'relative', display: 'flex', alignItems: 'center' }}
-            className="desktop-search"
-          >
-            <form onSubmit={handleSearchSubmit} style={{ position: 'relative', display: 'flex', alignItems: 'center', width: '100%' }}>
-              <Search
-                size={13}
-                style={{ position: 'absolute', left: '9px', color: searchFocused ? '#FFB800' : '#71717A', transition: 'color 0.2s ease', zIndex: 2, pointerEvents: 'none' }}
-                className="search-icon"
-              />
-              <input
-                type="text"
-                placeholder={searchFocused ? 'Search subjects...' : 'Search...'}
-                value={searchQuery}
-                onChange={handleSearchChange}
-                onFocus={() => { setSearchFocused(true); if (searchQuery.trim().length >= 2) { setSearchResults(searchLocalIndex(searchQuery, 8)); } }}
-                onKeyDown={handleSearchKeyDown}
-                className="navbar-search-input"
+            {/* Syllabus */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('syllabus')}
+              style={{
+                padding: activeTab === 'syllabus' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                borderRadius: '999px',
+                border: 'none',
+                backgroundColor: activeTab === 'syllabus' ? '#881337' : 'transparent',
+                color: activeTab === 'syllabus' ? '#FFFFFF' : '#334155',
+                fontSize: '0.84rem',
+                fontWeight: activeTab === 'syllabus' ? 800 : 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== 'syllabus') e.currentTarget.style.color = '#881337';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'syllabus') e.currentTarget.style.color = '#334155';
+              }}
+            >
+              Syllabus
+            </button>
+
+            {/* Quizzes */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('quizzes')}
+              style={{
+                padding: activeTab === 'quizzes' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                borderRadius: '999px',
+                border: 'none',
+                backgroundColor: activeTab === 'quizzes' ? '#881337' : 'transparent',
+                color: activeTab === 'quizzes' ? '#FFFFFF' : '#334155',
+                fontSize: '0.84rem',
+                fontWeight: activeTab === 'quizzes' ? 800 : 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== 'quizzes') e.currentTarget.style.color = '#881337';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'quizzes') e.currentTarget.style.color = '#334155';
+              }}
+            >
+              Quizzes
+            </button>
+
+            {/* Resume Maker */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('resume-maker')}
+              style={{
+                padding: activeTab === 'resume-maker' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                borderRadius: '999px',
+                border: 'none',
+                backgroundColor: activeTab === 'resume-maker' ? '#881337' : 'transparent',
+                color: activeTab === 'resume-maker' ? '#FFFFFF' : '#334155',
+                fontSize: '0.84rem',
+                fontWeight: activeTab === 'resume-maker' ? 800 : 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== 'resume-maker') e.currentTarget.style.color = '#881337';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'resume-maker') e.currentTarget.style.color = '#334155';
+              }}
+            >
+              Resume Maker
+            </button>
+
+            {/* Interview Pro with Beta Pill */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('interview-pro')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                padding: activeTab === 'interview-pro' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                borderRadius: '999px',
+                border: 'none',
+                backgroundColor: activeTab === 'interview-pro' ? '#881337' : 'transparent',
+                color: activeTab === 'interview-pro' ? '#FFFFFF' : '#334155',
+                fontSize: '0.84rem',
+                fontWeight: activeTab === 'interview-pro' ? 800 : 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== 'interview-pro') e.currentTarget.style.color = '#881337';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'interview-pro') e.currentTarget.style.color = '#334155';
+              }}
+            >
+              <span>Interview Pro</span>
+              <span
                 style={{
-                  fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  padding: '0.34rem 1.4rem 0.34rem 1.65rem',
-                  borderRadius: '9999px',
-                  border: searchFocused ? '1.5px solid #FFB800' : isDark ? '1.5px solid rgba(255, 255, 255, 0.12)' : '1.5px solid #D5CEBF',
-                  backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
-                  fontSize: '0.78rem',
-                  fontWeight: 600,
-                  color: isDark ? '#FFFFFF' : '#1F2421',
-                  width: searchFocused ? '155px' : '105px',
-                  maxWidth: '160px',
-                  outline: 'none',
-                  boxShadow: searchFocused ? '0 0 16px rgba(255,184,0,0.25)' : 'none',
-                  transition: 'all 0.2s ease'
+                  backgroundColor: '#EA580C',
+                  color: '#FFFFFF',
+                  fontSize: '0.62rem',
+                  fontWeight: 800,
+                  padding: '0.1rem 0.4rem',
+                  borderRadius: '999px'
                 }}
-              />
-              {/* Clear (X) button */}
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={clearSearch}
+              >
+                Beta
+              </span>
+            </button>
+
+            {/* Result & CGPA */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('result-cgpa')}
+              style={{
+                padding: activeTab === 'result-cgpa' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                borderRadius: '999px',
+                border: 'none',
+                backgroundColor: activeTab === 'result-cgpa' ? '#881337' : 'transparent',
+                color: activeTab === 'result-cgpa' ? '#FFFFFF' : '#334155',
+                fontSize: '0.84rem',
+                fontWeight: activeTab === 'result-cgpa' ? 800 : 600,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== 'result-cgpa') e.currentTarget.style.color = '#881337';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'result-cgpa') e.currentTarget.style.color = '#334155';
+              }}
+            >
+              Result & CGPA
+            </button>
+
+            {/* More Menu Dropdown */}
+            <div style={{ position: 'relative' }} ref={moreMenuRef}>
+              <button
+                type="button"
+                onClick={() => setMoreDropdownOpen(prev => !prev)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.2rem',
+                  padding: '0.42rem 0.75rem',
+                  borderRadius: '999px',
+                  border: 'none',
+                  backgroundColor: moreDropdownOpen ? '#F1F5F9' : 'transparent',
+                  color: '#334155',
+                  fontSize: '0.84rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <span>More</span>
+                <ChevronDown size={13} />
+              </button>
+
+              {moreDropdownOpen && (
+                <div
                   style={{
                     position: 'absolute',
-                    right: '7px',
-                    width: '16px',
-                    height: '16px',
-                    borderRadius: '50%',
-                    border: 'none',
-                    backgroundColor: '#1C1C1E',
-                    color: '#A1A1AA',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                    zIndex: 2,
-                    transition: 'all 0.15s ease'
+                    top: 'calc(100% + 8px)',
+                    right: 0,
+                    width: '240px',
+                    backgroundColor: '#FFFFFF',
+                    border: '1.5px solid #E2E8F0',
+                    borderRadius: '16px',
+                    boxShadow: '0 16px 36px rgba(0,0,0,0.08)',
+                    padding: '0.5rem',
+                    zIndex: 1000
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#27272A'; e.currentTarget.style.color = '#FFFFFF'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#1C1C1E'; e.currentTarget.style.color = '#A1A1AA'; }}
                 >
-                  <X size={10} />
-                </button>
-              )}
-            </form>
-
-            {/* SEARCH RESULTS DROPDOWN */}
-            {searchFocused && searchResults.length > 0 && (
-              <div style={{
-                position: 'absolute',
-                top: 'calc(100% + 8px)',
-                right: 0,
-                width: '340px',
-                backgroundColor: '#0B0B0B',
-                border: '1.5px solid rgba(255, 255, 255, 0.12)',
-                borderRadius: '16px',
-                boxShadow: '0 20px 48px rgba(0, 0, 0, 0.85)',
-                zIndex: 1000,
-                overflow: 'hidden',
-                maxHeight: '420px',
-                overflowY: 'auto'
-              }}>
-                <div style={{ padding: '0.5rem 0.75rem', fontSize: '0.7rem', fontWeight: 800, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.04em', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                  {searchResults.length} result{searchResults.length !== 1 ? 's' : ''} found
+                  {[
+                    { label: 'PRMA Tech Internships', id: 'prma-internships-home', icon: Rocket, badge: 'New' },
+                    { label: 'Attendance Calculator', id: 'attendance-calculator', icon: Calendar },
+                    { label: 'PDF Maker & Tools', id: 'pdf-maker', icon: FileText },
+                    { label: 'Timetable Planner', id: 'timetable', icon: Clock },
+                    { label: 'Competitive Exams', id: 'competitive-exams', icon: Award },
+                    { label: 'Scholarships Directory', id: 'scholarships', icon: GraduationCap },
+                    { label: 'Important Portals', id: 'important-links', icon: Link2 }
+                  ].map((item, idx) => {
+                    const Icon = item.icon;
+                    return (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => handleNavigate(item.id)}
+                        style={{
+                          width: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          padding: '0.65rem 0.85rem',
+                          borderRadius: '10px',
+                          border: 'none',
+                          backgroundColor: 'transparent',
+                          color: '#0F172A',
+                          fontSize: '0.84rem',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          textAlign: 'left',
+                          transition: 'background 0.12s'
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F8FAFC'}
+                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <Icon size={16} color="#881337" />
+                          <span>{item.label}</span>
+                        </div>
+                        {item.badge && (
+                          <span style={{ fontSize: '0.65rem', fontWeight: 800, backgroundColor: '#EFF6FF', color: '#1D4ED8', padding: '0.1rem 0.4rem', borderRadius: '999px' }}>
+                            {item.badge}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
-                {searchResults.map((item, idx) => {
-                  const isSelected = idx === selectedSearchIdx;
-                  const typeColorMap = { Page: '#FFB800', Tool: '#FFA000', Subject: '#10B981', Career: '#3B82F6', Branch: '#A855F7', Interview: '#F97316' };
-                  const typeColor = typeColorMap[item.type] || '#A1A1AA';
-                  return (
+              )}
+            </div>
+          </nav>
+
+          {/* ===================================================================
+              3. RIGHT: SEARCH, NOTIFICATIONS, INSTALL APP & LOGIN/PROFILE
+              =================================================================== */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+            {/* Search Pill Input with Live Dropdown */}
+            <div ref={searchRef} style={{ position: 'relative' }} className="pv-navbar-search-wrap">
+              <form onSubmit={handleSearchSubmit} style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                <Search
+                  size={14}
+                  color="#94A3B8"
+                  style={{ position: 'absolute', left: '12px', pointerEvents: 'none' }}
+                />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  onFocus={() => {
+                    setSearchFocused(true);
+                    if (searchQuery.trim().length >= 2) {
+                      setSearchResults(searchLocalIndex(searchQuery, 8));
+                    }
+                  }}
+                  onKeyDown={handleSearchKeyDown}
+                  style={{
+                    padding: '0.45rem 1rem 0.45rem 2.1rem',
+                    borderRadius: '999px',
+                    border: '1.5px solid #E2E8F0',
+                    backgroundColor: '#F8FAFC',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    color: '#0F172A',
+                    width: searchFocused ? '180px' : '120px',
+                    outline: 'none',
+                    transition: 'all 0.2s ease',
+                    boxShadow: searchFocused ? '0 0 0 3px rgba(136, 19, 55, 0.12)' : 'none'
+                  }}
+                />
+              </form>
+
+              {/* Live Search Dropdown */}
+              {searchFocused && searchResults.length > 0 && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 'calc(100% + 8px)',
+                    right: 0,
+                    width: '320px',
+                    backgroundColor: '#FFFFFF',
+                    border: '1.5px solid #E2E8F0',
+                    borderRadius: '16px',
+                    boxShadow: '0 20px 48px rgba(0,0,0,0.12)',
+                    zIndex: 1000,
+                    overflow: 'hidden'
+                  }}
+                >
+                  <div style={{ padding: '0.5rem 0.85rem', fontSize: '0.72rem', fontWeight: 800, color: '#64748B', borderBottom: '1px solid #F1F5F9' }}>
+                    {searchResults.length} results found
+                  </div>
+                  {searchResults.map((item, idx) => (
                     <div
-                      key={`${item.route}-${idx}`}
+                      key={idx}
                       onClick={() => handleSearchResultClick(item)}
                       style={{
                         padding: '0.65rem 0.85rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
                         cursor: 'pointer',
-                        backgroundColor: isSelected ? '#161616' : 'transparent',
-                        borderLeft: isSelected ? '3px solid #FFB800' : '3px solid transparent',
-                        transition: 'all 0.12s ease'
+                        borderBottom: '1px solid #F8FAFC',
+                        backgroundColor: idx === selectedSearchIdx ? '#F8FAFC' : '#FFFFFF'
                       }}
-                      onMouseEnter={(e) => {
-                        setSelectedSearchIdx(idx);
-                        e.currentTarget.style.backgroundColor = '#161616';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = isSelected ? '#161616' : 'transparent';
-                      }}
+                      onMouseEnter={() => setSelectedSearchIdx(idx)}
                     >
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem', minWidth: 0 }}>
-                        <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#FFFFFF', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                          {item.title}
-                        </div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#0F172A' }}>
+                        {item.title}
                       </div>
-                      <span style={{
-                        fontSize: '0.65rem',
-                        fontWeight: 800,
-                        color: typeColor,
-                        backgroundColor: `${typeColor}22`,
-                        padding: '0.15rem 0.5rem',
-                        borderRadius: '9999px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.03em',
-                        flexShrink: 0,
-                        marginLeft: '0.5rem'
-                      }}>
-                        {item.type}
-                      </span>
+                      <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
+                        {item.type} &bull; {item.category || 'Tool'}
+                      </div>
                     </div>
-                  );
-                })}
-                {searchQuery.trim().length >= 2 && (
-                  <div
-                    onClick={() => { if (onSearch) onSearch(searchQuery); setSearchFocused(false); setSearchResults([]); }}
-                    style={{
-                      padding: '0.6rem 0.85rem',
-                      borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                      fontSize: '0.82rem',
-                      fontWeight: 700,
-                      color: '#FFB800',
-                      cursor: 'pointer',
-                      textAlign: 'center',
-                      transition: 'background 0.15s'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#161616'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                  >
-                    Search all notes for "{searchQuery}" →
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* No results state */}
-            {searchFocused && searchQuery.trim().length >= 2 && searchResults.length === 0 && (
-              <div style={{
-                position: 'absolute',
-                top: 'calc(100% + 8px)',
-                right: 0,
-                width: '300px',
-                backgroundColor: '#0B0B0B',
-                border: '1.5px solid rgba(255, 255, 255, 0.12)',
-                borderRadius: '16px',
-                boxShadow: '0 20px 48px rgba(0, 0, 0, 0.85)',
-                zIndex: 1000,
-                padding: '1.25rem',
-                textAlign: 'center'
-              }}>
-                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#A1A1AA', marginBottom: '0.3rem' }}>No matches found</div>
-                <div
-                  onClick={() => { if (onSearch) onSearch(searchQuery); setSearchFocused(false); }}
-                  style={{ fontSize: '0.82rem', fontWeight: 700, color: '#FFB800', cursor: 'pointer' }}
-                >
-                  Search in Notes database →
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Theme Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            title={`Switch to ${isDark ? 'Light' : 'Dark'} Mode`}
-            aria-label={`Switch to ${isDark ? 'Light' : 'Dark'} Mode`}
-            style={{
-              width: '34px',
-              height: '34px',
-              borderRadius: '50%',
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #D5CEBF',
-              backgroundColor: isDark ? '#161616' : '#FFFFFF',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              color: '#FFB800',
-              boxShadow: isDark ? '0 2px 6px rgba(0,0,0,0.4)' : '0 2px 6px rgba(0,0,0,0.06)',
-              transition: 'all 0.2s ease',
-              flexShrink: 0
-            }}
-          >
-            {isDark ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-
-          {/* Notification Bell with Badge 1 */}
-          <button
-            onClick={() => handleNavigate('interview-pro')}
-            title="1 New Placement Notification"
-            style={{
-              width: '34px',
-              height: '34px',
-              borderRadius: '50%',
-              border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid #D5CEBF',
-              backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              color: isDark ? '#FFB800' : '#861820',
-              boxShadow: isDark ? '0 2px 6px rgba(0,0,0,0.4)' : '0 2px 6px rgba(0,0,0,0.06)',
-              position: 'relative',
-              transition: 'all 0.2s ease',
-              flexShrink: 0
-            }}
-          >
-            <Bell size={16} />
-            <span
-              style={{
-                position: 'absolute',
-                top: '-2px',
-                right: '-2px',
-                backgroundColor: '#DC2626',
-                color: '#FFFFFF',
-                fontSize: '0.6rem',
-                fontWeight: 800,
-                width: '15px',
-                height: '15px',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: isDark ? '2px solid #0B0B0B' : '2px solid #FFFFFF',
-                boxShadow: '0 0 8px rgba(220, 38, 38, 0.6)'
-              }}
-            >
-              1
-            </span>
-          </button>
-
-          {/* Permanent Install App Button (Android, iOS & Desktop) */}
-          <button
-            onClick={() => openInstallModal('navbar_header')}
-            title="Install Professor Virus App (Android & iPhone)"
-            aria-label="Install Professor Virus App"
-            style={{
-              height: '34px',
-              padding: '0 0.65rem',
-              borderRadius: '9999px',
-              border: isDark ? '1px solid rgba(255, 184, 0, 0.4)' : '1px solid #D5CEBF',
-              backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.35rem',
-              cursor: 'pointer',
-              color: isDark ? '#FFB800' : '#861820',
-              fontWeight: 700,
-              fontSize: '0.74rem',
-              boxShadow: isDark ? '0 0 10px rgba(255,184,0,0.15)' : '0 2px 6px rgba(0,0,0,0.04)',
-              transition: 'all 0.2s ease',
-              flexShrink: 0
-            }}
-            onMouseEnter={(e) => {
-              if (isDark) {
-                e.currentTarget.style.borderColor = '#FFB800';
-                e.currentTarget.style.backgroundColor = '#161616';
-                e.currentTarget.style.boxShadow = '0 0 18px rgba(255,184,0,0.35)';
-              } else {
-                e.currentTarget.style.borderColor = '#861820';
-                e.currentTarget.style.backgroundColor = '#FAF5ED';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (isDark) {
-                e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)';
-                e.currentTarget.style.backgroundColor = '#0B0B0B';
-                e.currentTarget.style.boxShadow = '0 0 10px rgba(255,184,0,0.15)';
-              } else {
-                e.currentTarget.style.borderColor = '#D5CEBF';
-                e.currentTarget.style.backgroundColor = '#FFFFFF';
-                e.currentTarget.style.boxShadow = '0 2px 6px rgba(0,0,0,0.04)';
-              }
-            }}
-          >
-            <Download size={14} strokeWidth={2.4} />
-            <span style={{ whiteSpace: 'nowrap' }}>Install App</span>
-          </button>
-
-          {/* User Profile / Auth Action Area */}
-          {currentUser ? (
-            <div style={{ position: 'relative' }} ref={userMenuRef} className="desktop-user-profile">
-              <div
-                onClick={() => setUserMenuOpen((prev) => !prev)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.55rem',
-                  padding: '0.24rem 0.65rem 0.24rem 0.25rem',
-                  borderRadius: '9999px',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  backgroundColor: '#0B0B0B',
-                  cursor: 'pointer',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.4)',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#FFB800';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
-                }}
-              >
-                <div
-                  style={{
-                    width: '34px',
-                    height: '34px',
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                    backgroundColor: '#161616',
-                    color: '#FFFFFF',
-                    border: '1.5px solid #FFB800',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: 800,
-                    fontSize: '0.84rem',
-                    flexShrink: 0
-                  }}
-                >
-                  {currentUser.avatarUrl ? (
-                    <img
-                      src={currentUser.avatarUrl}
-                      alt={currentUser.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.style.display = 'none';
-                      }}
-                    />
-                  ) : (
-                    <span>{currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'S'}</span>
-                  )}
-                </div>
-                <div style={{ textAlign: 'left', lineHeight: 1.15 }}>
-                  <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#FFFFFF', whiteSpace: 'nowrap' }}>
-                    {currentUser.name ? currentUser.name.split(' ')[0] : 'Student'}
-                  </div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 600, color: '#A1A1AA', whiteSpace: 'nowrap' }}>
-                    {currentUser.course || 'B.Tech'} {currentUser.branch || 'CSE'}
-                  </div>
-                </div>
-                <ChevronDown size={14} color="#A1A1AA" />
-              </div>
-
-              {userMenuOpen && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '115%',
-                    right: 0,
-                    backgroundColor: '#0B0B0B',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    borderRadius: '14px',
-                    boxShadow: '0 16px 36px rgba(0,0,0,0.85)',
-                    minWidth: '230px',
-                    padding: '0.55rem',
-                    zIndex: 120,
-                    fontFamily: "'Plus Jakarta Sans', sans-serif"
-                  }}
-                >
-                  <div style={{ padding: '0.45rem 0.75rem', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', marginBottom: '0.35rem' }}>
-                    <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#FFFFFF' }}>{currentUser.name}</div>
-                    <div style={{ fontSize: '0.72rem', color: '#A1A1AA' }}>{currentUser.email || `${currentUser.course || 'B.Tech'} Student`}</div>
-                  </div>
-                  <button
-                    style={dropdownBtnStyle}
-                    onClick={() => {
-                      handleNavigate('interview-pro');
-                    }}
-                  >
-                    <Briefcase size={14} style={{ color: '#38BDF8' }} /> Interview Pro Dashboard
-                  </button>
-                  <button
-                    style={dropdownBtnStyle}
-                    onClick={() => {
-                      handleNavigate('notes');
-                    }}
-                  >
-                    <BookOpen size={14} style={{ color: '#FFB800' }} /> My Notes &amp; Saved PYQs
-                  </button>
-                  <button
-                    style={dropdownBtnStyle}
-                    onClick={() => {
-                      openInstallModal('navbar_user_dropdown');
-                      setUserMenuOpen(false);
-                    }}
-                  >
-                    <Download size={14} style={{ color: '#FFB800' }} /> Install App (PWA)
-                  </button>
-                  <button
-                    style={dropdownBtnStyle}
-                    onClick={() => {
-                      if (onOpenAuth) onOpenAuth('login');
-                      setUserMenuOpen(false);
-                    }}
-                  >
-                    <User size={14} style={{ color: '#A855F7' }} /> Switch Account
-                  </button>
-                  <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', marginTop: '0.3rem', paddingTop: '0.3rem' }}>
-                    <button
-                      style={{ ...dropdownBtnStyle, color: '#EF4444' }}
-                      onClick={handleLogout}
-                    >
-                      <LogOut size={14} /> Logout
-                    </button>
-                  </div>
+                  ))}
                 </div>
               )}
             </div>
-          ) : (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-              <button
-                type="button"
-                onClick={() => onOpenAuth && onOpenAuth('login')}
+
+            {/* Notification Bell Icon with Badge "2" */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('interview-pro')}
+              title="2 New Updates"
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                backgroundColor: '#FFFFFF',
+                border: '1.5px solid #E2E8F0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#334155',
+                cursor: 'pointer',
+                position: 'relative',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.03)'
+              }}
+            >
+              <Bell size={16} />
+              <span
                 style={{
-                  fontSize: '0.8rem',
-                  padding: '0.38rem 0.85rem',
-                  borderRadius: '9999px',
-                  fontWeight: 700,
-                  whiteSpace: 'nowrap',
-                  backgroundColor: isDark ? 'rgba(255, 255, 255, 0.05)' : '#FFFFFF',
-                  border: isDark ? '1px solid rgba(255, 255, 255, 0.15)' : '1.5px solid #D5CEBF',
-                  color: isDark ? '#FFFFFF' : '#1F2421',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: isDark ? 'none' : '0 2px 6px rgba(0,0,0,0.04)'
-                }}
-                onMouseEnter={(e) => {
-                  if (isDark) {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 184, 0, 0.4)';
-                    e.currentTarget.style.color = '#FFB800';
-                  } else {
-                    e.currentTarget.style.borderColor = '#861820';
-                    e.currentTarget.style.color = '#861820';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (isDark) {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
-                    e.currentTarget.style.color = '#FFFFFF';
-                  } else {
-                    e.currentTarget.style.backgroundColor = '#FFFFFF';
-                    e.currentTarget.style.borderColor = '#D5CEBF';
-                    e.currentTarget.style.color = '#1F2421';
-                  }
+                  position: 'absolute',
+                  top: '-3px',
+                  right: '-3px',
+                  width: '16px',
+                  height: '16px',
+                  borderRadius: '50%',
+                  backgroundColor: '#DC2626',
+                  color: '#FFFFFF',
+                  fontSize: '0.62rem',
+                  fontWeight: 900,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: '2px solid #FFFFFF'
                 }}
               >
-                Sign In
-              </button>
+                2
+              </span>
+            </button>
+
+            {/* Install App Pill Button */}
+            <button
+              type="button"
+              onClick={() => openInstallModal('navbar_header')}
+              title="Install App"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                padding: '0.45rem 0.85rem',
+                borderRadius: '999px',
+                backgroundColor: '#FFFFFF',
+                border: '1.5px solid #E2E8F0',
+                color: '#0F172A',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.03)'
+              }}
+              className="pv-install-btn"
+            >
+              <Download size={14} color="#881337" strokeWidth={2.4} />
+              <span>Install App</span>
+            </button>
+
+            {/* Login / User Profile Pill (Match Reference Image 1 & 2) */}
+            {currentUser ? (
+              <div style={{ position: 'relative' }} ref={userMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setUserMenuOpen(prev => !prev)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.25rem 0.75rem 0.25rem 0.35rem',
+                    borderRadius: '999px',
+                    backgroundColor: '#FFFFFF',
+                    border: '1.5px solid #E2E8F0',
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '30px',
+                      height: '30px',
+                      borderRadius: '50%',
+                      backgroundColor: '#F1F5F9',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#0F172A',
+                      fontWeight: 900,
+                      fontSize: '0.82rem'
+                    }}
+                  >
+                    {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'P'}
+                  </div>
+                  <div style={{ textAlign: 'left', lineHeight: 1.1 }}>
+                    <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#0F172A' }}>
+                      {currentUser.name ? currentUser.name.split(' ')[0] : 'Priyanshu'}
+                    </div>
+                    <div style={{ fontSize: '0.62rem', color: '#64748B', fontWeight: 600 }}>
+                      B.Tech CSE
+                    </div>
+                  </div>
+                </button>
+
+                {userMenuOpen && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 'calc(100% + 8px)',
+                      right: 0,
+                      width: '200px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1.5px solid #E2E8F0',
+                      borderRadius: '16px',
+                      boxShadow: '0 16px 36px rgba(0,0,0,0.1)',
+                      padding: '0.5rem',
+                      zIndex: 1000
+                    }}
+                  >
+                    <div style={{ padding: '0.5rem 0.75rem', borderBottom: '1px solid #F1F5F9' }}>
+                      <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#0F172A' }}>
+                        {currentUser.name || 'Priyanshu'}
+                      </div>
+                      <div style={{ fontSize: '0.72rem', color: '#64748B' }}>
+                        {currentUser.email || 'student@aktu.ac.in'}
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => handleNavigate('progress')}
+                      style={{
+                        width: '100%',
+                        textAlign: 'left',
+                        padding: '0.6rem 0.75rem',
+                        border: 'none',
+                        background: 'transparent',
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        color: '#0F172A',
+                        cursor: 'pointer',
+                        borderRadius: '8px'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F8FAFC'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                    >
+                      Profile & Progress
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      style={{
+                        width: '100%',
+                        textAlign: 'left',
+                        padding: '0.6rem 0.75rem',
+                        border: 'none',
+                        background: 'transparent',
+                        fontSize: '0.82rem',
+                        fontWeight: 700,
+                        color: '#DC2626',
+                        cursor: 'pointer',
+                        borderRadius: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.4rem'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FEF2F2'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                    >
+                      <LogOut size={14} />
+                      <span>Log Out</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
               <button
                 type="button"
-                onClick={() => onOpenAuth && onOpenAuth('signup')}
+                onClick={() => onOpenAuth ? onOpenAuth() : handleNavigate('signin')}
                 style={{
-                  fontSize: '0.8rem',
-                  padding: '0.38rem 0.95rem',
-                  borderRadius: '9999px',
-                  backgroundColor: isDark ? '#FFB800' : '#861820',
-                  border: isDark ? '1px solid #FFB800' : 'none',
-                  color: isDark ? '#030303' : '#FFFFFF',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  padding: '0.45rem 1.15rem',
+                  borderRadius: '999px',
+                  backgroundColor: '#881337',
+                  border: 'none',
+                  color: '#FFFFFF',
+                  fontSize: '0.82rem',
                   fontWeight: 800,
-                  whiteSpace: 'nowrap',
                   cursor: 'pointer',
-                  boxShadow: isDark ? '0 0 14px rgba(255, 184, 0, 0.3)' : '0 2px 10px rgba(134, 24, 32, 0.3)',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  if (isDark) {
-                    e.currentTarget.style.backgroundColor = '#FFA000';
-                  } else {
-                    e.currentTarget.style.backgroundColor = '#6E1218';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (isDark) {
-                    e.currentTarget.style.backgroundColor = '#FFB800';
-                  } else {
-                    e.currentTarget.style.backgroundColor = '#861820';
-                  }
+                  boxShadow: '0 4px 14px rgba(136, 19, 55, 0.25)',
+                  transition: 'all 0.15s ease'
                 }}
               >
-                Create Account
+                <User size={14} />
+                <span>Login</span>
               </button>
-            </div>
-          )}
+            )}
 
-          {/* Mobile Menu Toggle Button */}
-          <a
-            href="/more"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavigate('more');
-            }}
-            style={{
-              display: 'none',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: '#1F2421',
-              padding: '0.4rem',
-              textDecoration: 'none'
-            }}
-            className="mobile-menu-toggle"
-            title="All Tools & Resources"
-            aria-label="Open More Resources"
-          >
-            <Menu size={26} />
-          </a>
+            {/* Mobile Hamburger Menu Toggle */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(prev => !prev)}
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '10px',
+                backgroundColor: '#FFFFFF',
+                border: '1.5px solid #E2E8F0',
+                display: 'none',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#0F172A',
+                cursor: 'pointer'
+              }}
+              className="pv-mobile-nav-toggle"
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* STYLES FOR ANIMATIONS & RESPONSIVE RULES */}
+        {/* Mobile Navigation Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div
+            style={{
+              backgroundColor: '#FFFFFF',
+              borderTop: '1px solid #E2E8F0',
+              padding: '1rem 1.5rem 1.5rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem'
+            }}
+            className="pv-mobile-dropdown-pane"
+          >
+            {[
+              { name: 'Home', id: 'home', icon: HomeIcon },
+              { name: 'HOOLLOW AI Study', id: 'hoollow', icon: Sparkles },
+              { name: 'AKTU PYQs', id: 'pyqs', icon: FileText },
+              { name: 'Subject Notes', id: 'notes', icon: BookOpen },
+              { name: 'Branch Syllabus', id: 'syllabus', icon: Layers },
+              { name: 'Quizzes & Practice', id: 'quizzes', icon: Zap },
+              { name: 'ATS Resume Maker', id: 'resume-maker', icon: FileText },
+              { name: 'Interview Pro AI', id: 'interview-pro', icon: Briefcase },
+              { name: 'Result & CGPA', id: 'result-cgpa', icon: BarChart2 },
+              { name: 'PRMA Tech Internships', id: 'prma-internships-home', icon: Rocket }
+            ].map((link, i) => {
+              const Icon = link.icon;
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => handleNavigate(link.id)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    padding: '0.75rem 1rem',
+                    borderRadius: '12px',
+                    border: 'none',
+                    backgroundColor: activeTab === link.id ? '#FFF1F2' : '#F8FAFC',
+                    color: activeTab === link.id ? '#881337' : '#0F172A',
+                    fontSize: '0.92rem',
+                    fontWeight: activeTab === link.id ? 800 : 600,
+                    cursor: 'pointer',
+                    textAlign: 'left'
+                  }}
+                >
+                  <Icon size={18} color={activeTab === link.id ? '#881337' : '#64748B'} />
+                  <span>{link.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </header>
+
+      {/* Responsive Breakpoints CSS */}
       <style>{`
-        .desktop-nav {
-          display: flex;
-        }
-        .mobile-menu-toggle {
-          display: none;
-        }
-        .desktop-menu-pill {
-          display: none;
-        }
-        @media (max-width: 1080px) {
-          .desktop-nav {
+        @media (max-width: 1180px) {
+          .pv-desktop-nav-items {
             display: none !important;
           }
-          .mobile-menu-toggle {
-            display: inline-flex !important;
+          .pv-mobile-nav-toggle {
+            display: flex !important;
           }
-          .desktop-search {
+          .pv-navbar-search-wrap input {
+            width: 100px !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .pv-install-btn {
             display: none !important;
           }
-          .desktop-menu-pill {
+          .pv-navbar-search-wrap {
             display: none !important;
           }
-        }
-        .pv-logo-subtitle {
-          display: none !important;
-        }
-        @media (min-width: 1680px) {
-          .pv-logo-subtitle {
-            display: block !important;
-          }
-        }
-        .nav-link-item {
-          padding: 0.28rem 0.35rem !important;
-          font-size: 0.77rem !important;
-        }
-        .navbar-search-input {
-          width: 105px !important;
-        }
-        .navbar-search-input:focus {
-          width: 155px !important;
-        }
-        @media (max-width: 600px) {
-          .desktop-user-profile {
+          .pv-navbar-subtitle {
             display: none !important;
           }
         }
       `}</style>
-    </header>
+    </>
   );
 }
-
-const dropdownBtnStyle = {
-  width: '100%',
-  textAlign: 'left',
-  padding: '0.5rem 0.75rem',
-  borderRadius: '8px',
-  border: 'none',
-  backgroundColor: 'transparent',
-  color: '#E4E4E7',
-  fontSize: '0.82rem',
-  fontWeight: 600,
-  cursor: 'pointer',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.5rem',
-  transition: 'all 0.15s ease'
-};
-
-const compactDropdownItemStyle = {
-  width: '100%',
-  textAlign: 'left',
-  padding: '0.45rem 0.65rem',
-  borderRadius: '10px',
-  border: 'none',
-  backgroundColor: 'transparent',
-  color: '#E4E4E7',
-  cursor: 'pointer',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.65rem',
-  transition: 'background-color 0.15s ease',
-  textDecoration: 'none'
-};

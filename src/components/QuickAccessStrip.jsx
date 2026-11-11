@@ -6,98 +6,108 @@ import {
   Zap,
   FileSpreadsheet,
   Mic,
-  BarChart2
+  BarChart2,
+  ArrowRight
 } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
 
 export default function QuickAccessStrip({ onNavigate }) {
-  const { isDark } = useTheme();
   const items = [
     {
       id: 'notes',
       title: 'Engineering Notes',
       desc: 'Unit-wise study material',
       icon: BookOpen,
-      iconBg: 'rgba(236, 72, 153, 0.12)',
-      iconBorder: 'rgba(236, 72, 153, 0.3)',
-      iconColor: '#F472B6'
+      iconBg: '#FDF2F8',
+      iconBorder: '#FBCFE8',
+      iconColor: '#DB2777'
     },
     {
       id: 'pyqs',
       title: 'AKTU PYQs',
       desc: 'Previous year questions',
       icon: FileText,
-      iconBg: 'rgba(255, 184, 0, 0.12)',
-      iconBorder: 'rgba(255, 184, 0, 0.35)',
-      iconColor: '#FFB800'
+      iconBg: '#FFFBEB',
+      iconBorder: '#FDE68A',
+      iconColor: '#D97706'
     },
     {
       id: 'syllabus',
       title: 'Syllabus',
       desc: 'Branch-wise syllabus',
       icon: ListOrdered,
-      iconBg: 'rgba(168, 85, 247, 0.12)',
-      iconBorder: 'rgba(168, 85, 247, 0.3)',
-      iconColor: '#C084FC'
+      iconBg: '#F5F3FF',
+      iconBorder: '#DDD6FE',
+      iconColor: '#7C3AED'
     },
     {
       id: 'quizzes',
       title: 'Quizzes',
       desc: 'Topic-wise practice',
       icon: Zap,
-      iconBg: 'rgba(16, 185, 129, 0.12)',
-      iconBorder: 'rgba(16, 185, 129, 0.3)',
-      iconColor: '#34D399'
+      iconBg: '#F0FDF4',
+      iconBorder: '#BBF7D0',
+      iconColor: '#16A34A'
     },
     {
       id: 'resume-maker',
       title: 'Resume Maker',
       desc: 'Build ATS-ready resume',
       icon: FileSpreadsheet,
-      iconBg: 'rgba(59, 130, 246, 0.12)',
-      iconBorder: 'rgba(59, 130, 246, 0.3)',
-      iconColor: '#60A5FA'
+      iconBg: '#EFF6FF',
+      iconBorder: '#BFDBFE',
+      iconColor: '#2563EB'
     },
     {
       id: 'interview-pro',
       title: 'Interview Pro',
       desc: 'AI mock interviews',
       icon: Mic,
-      iconBg: 'rgba(239, 68, 68, 0.12)',
-      iconBorder: 'rgba(239, 68, 68, 0.3)',
-      iconColor: '#F87171'
+      iconBg: '#FFF1F2',
+      iconBorder: '#FECDD3',
+      iconColor: '#E11D48'
     },
     {
       id: 'result-cgpa',
       title: 'Result & CGPA',
       desc: 'Analyze your performance',
       icon: BarChart2,
-      iconBg: 'rgba(255, 140, 0, 0.12)',
-      iconBorder: 'rgba(255, 140, 0, 0.35)',
-      iconColor: '#FF8C00'
+      iconBg: '#FEF3C7',
+      iconBorder: '#FDE68A',
+      iconColor: '#B45309'
     }
   ];
 
   return (
-    <section className="pv-scroll-reveal" style={{
-      backgroundColor: 'transparent',
-      padding: '0 0 2.25rem 0',
-      position: 'relative',
-      zIndex: 10
-    }}>
-      <div className="container pv-main-container" style={{ maxWidth: 'min(1560px, 94vw)', margin: '0 auto', padding: '0 clamp(1rem, 2.5vw, 2.5rem)' }}>
-        <div style={{
-          backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
-          borderRadius: '20px',
-          border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',
-          boxShadow: isDark ? '0 8px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 184, 0, 0.04)' : '0 4px 20px rgba(0, 0, 0, 0.04)',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
-          alignItems: 'stretch',
-          overflow: 'hidden',
-          width: '100%',
-          boxSizing: 'border-box'
-        }} className="quick-access-grid">
+    <section
+      style={{
+        backgroundColor: '#FFFFFF',
+        padding: '0 0 3rem 0',
+        position: 'relative',
+        zIndex: 10
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '1440px',
+          margin: '0 auto',
+          padding: '0 1.5rem'
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: '#FFFFFF',
+            borderRadius: '24px',
+            border: '1.5px solid #E2E8F0',
+            boxShadow: '0 8px 30px rgba(15, 23, 42, 0.05)',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
+            alignItems: 'stretch',
+            overflow: 'hidden',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
+          className="pv-quick-access-grid"
+        >
           {items.map((item, idx) => {
             const Icon = item.icon;
             const isLast = idx === items.length - 1;
@@ -106,79 +116,80 @@ export default function QuickAccessStrip({ onNavigate }) {
                 key={item.id}
                 type="button"
                 onClick={() => onNavigate && onNavigate(item.id)}
-                className="quick-access-card"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.45rem',
-                  padding: '0.85rem 0.55rem',
+                  gap: '0.65rem',
+                  padding: '1rem 0.85rem',
                   backgroundColor: 'transparent',
                   border: 'none',
-                  borderRight: isLast ? 'none' : (isDark ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #F0ECE1'),
+                  borderRight: isLast ? 'none' : '1px solid #F1F5F9',
                   textAlign: 'left',
                   cursor: 'pointer',
-                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transition: 'all 0.15s ease',
                   outline: 'none',
-                  position: 'relative',
                   minWidth: 0,
                   width: '100%',
                   boxSizing: 'border-box'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = isDark ? '#141414' : '#FAF5ED';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.backgroundColor = '#F8FAFC';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
                 {/* Icon Container */}
-                <div style={{
-                  width: '34px',
-                  height: '34px',
-                  borderRadius: '10px',
-                  backgroundColor: item.iconBg,
-                  border: `1px solid ${item.iconBorder}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                  color: item.iconColor,
-                  boxShadow: isDark ? '0 2px 8px rgba(0,0,0,0.4)' : '0 1px 4px rgba(0,0,0,0.06)'
-                }}>
-                  <Icon size={17} strokeWidth={2.2} />
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '10px',
+                    backgroundColor: item.iconBg,
+                    border: `1px solid ${item.iconBorder}`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    color: item.iconColor
+                  }}
+                >
+                  <Icon size={18} strokeWidth={2.4} />
                 </div>
 
                 {/* Text Labels */}
                 <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{
-                    fontFamily: "'Outfit', sans-serif",
-                    fontSize: '0.78rem',
-                    fontWeight: 800,
-                    color: isDark ? '#FFFFFF' : '#1F2421',
-                    lineHeight: 1.2,
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis'
-                  }}>
+                  <div
+                    style={{
+                      fontFamily: "'Outfit', system-ui, -apple-system, sans-serif",
+                      fontSize: '0.84rem',
+                      fontWeight: 800,
+                      color: '#0F172A',
+                      lineHeight: 1.2,
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
+                    }}
+                  >
                     {item.title}
                   </div>
-                  <div style={{
-                    fontFamily: "'Plus Jakarta Sans', sans-serif",
-                    fontSize: '0.65rem',
-                    fontWeight: 500,
-                    color: isDark ? '#A1A1AA' : '#64748B',
-                    marginTop: '0.14rem',
-                    lineHeight: 1.22,
-                    whiteSpace: 'normal',
-                    wordBreak: 'break-word',
-                    overflow: 'hidden',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical'
-                  }}>
-                    {item.desc}
+                  <div
+                    style={{
+                      fontSize: '0.68rem',
+                      fontWeight: 600,
+                      color: '#64748B',
+                      marginTop: '0.15rem',
+                      lineHeight: 1.2,
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.2rem'
+                    }}
+                  >
+                    <span>{item.desc}</span>
+                    <span style={{ color: '#94A3B8' }}>&rarr;</span>
                   </div>
                 </div>
               </button>
@@ -188,13 +199,16 @@ export default function QuickAccessStrip({ onNavigate }) {
       </div>
 
       <style>{`
-        @media (max-width: 1024px) {
-          .quick-access-grid {
+        @media (max-width: 1100px) {
+          .pv-quick-access-grid {
             grid-template-columns: repeat(4, 1fr) !important;
+          }
+          .pv-quick-access-grid > button {
+            border-bottom: 1px solid #F1F5F9;
           }
         }
         @media (max-width: 640px) {
-          .quick-access-grid {
+          .pv-quick-access-grid {
             grid-template-columns: repeat(2, 1fr) !important;
           }
         }
