@@ -105,6 +105,7 @@ const PrmaPaymentPage = safeLazy(() => import('./prmaPortal/pages/PrmaPaymentPag
 const PrmaAuthPage = safeLazy(() => import('./prmaPortal/pages/PrmaAuthPage'));
 const PrmaDashboardPage = safeLazy(() => import('./prmaPortal/pages/PrmaDashboardPage'));
 const PrmaVerifyOfferPage = safeLazy(() => import('./prmaPortal/pages/PrmaVerifyOfferPage'));
+const PrmaSubmissionPortal = safeLazy(() => import('./prmaPortal/pages/PrmaSubmissionPortal'));
 import { PrmaApplicationProvider } from './prmaPortal/context/PrmaApplicationContext';
 
 function ViewLoadingFallback() {
@@ -349,6 +350,7 @@ export default function App() {
     if (path === 'prma-tech/internships/login' || path === 'prma/login' || path === 'prma-tech/login') return 'prma-internships-login';
     if (path === 'prma-tech/internships/dashboard' || path === 'prma/dashboard' || path === 'prma-tech/dashboard') return 'prma-internships-dashboard';
     if (path.startsWith('prma-tech/verify-offer') || path.startsWith('prma/verify-offer') || path.startsWith('prma-verify-offer')) return 'prma-verify-offer';
+    if (path.startsWith('prma-tech/submit') || path.startsWith('prma/submit') || path.startsWith('prma-submit')) return 'prma-submit';
     if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'promotion', 'hoollow', 'hoolow', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
       if (path === 'aistudy') return 'interview-pro';
       if (path === 'hoolow') return 'hoollow';
@@ -546,6 +548,8 @@ export default function App() {
         targetPath = '/prma-tech/internships/dashboard';
       } else if (tab === 'prma-verify-offer') {
         targetPath = '/prma-tech/verify-offer';
+      } else if (tab === 'prma-submit') {
+        targetPath = window.location.pathname.startsWith('/prma-tech/submit') ? window.location.pathname : '/prma-tech/submit';
       } else if (tab === 'admin-login') {
         targetPath = '/admin/login';
       } else if (tab === 'subject') {
@@ -1214,6 +1218,10 @@ export default function App() {
         ) : activeTab === 'prma-verify-offer' ? (
           <PrmaApplicationProvider>
             <PrmaVerifyOfferPage navigateToTab={navigateToTab} onNavigate={navigateToTab} />
+          </PrmaApplicationProvider>
+        ) : activeTab === 'prma-submit' ? (
+          <PrmaApplicationProvider>
+            <PrmaSubmissionPortal navigateToTab={navigateToTab} onNavigate={navigateToTab} />
           </PrmaApplicationProvider>
         ) : activeTab === 'scholarship-detail' ? (
           <ScholarshipDetailPage

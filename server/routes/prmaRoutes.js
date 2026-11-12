@@ -467,6 +467,138 @@ export function createPrmaRouter({ isDbConnected } = {}) {
     }
   };
 
+  // Helper: Initialize 4 weekly tasks from domain library
+  const initializeWeeklyTasks = (domainId) => {
+    const tasksDef = DEFAULT_DOMAIN_TASKS[domainId] || DEFAULT_DOMAIN_TASKS['default'];
+    return tasksDef.map(t => ({
+      weekNumber: t.weekNumber,
+      taskTitle: t.title,
+      taskProblemStatement: t.problemStatement,
+      effort: t.effort,
+      prerequisites: t.prerequisites,
+      status: 'not_submitted',
+      submittedAt: '',
+      updatedAt: '',
+      files: [],
+      githubUrl: '',
+      liveUrl: '',
+      studentRemarks: '',
+      adminFeedback: '',
+      reviewedAt: '',
+      reviewedBy: '',
+      reviewStatus: 'pending',
+      resubmissionCount: 0
+    }));
+  };
+
+  // Helper: Persist Submissions to MongoDB Atlas and disk
+  const persistSubmissions = async (specificRecord = null) => {
+    await ensureMongoConnected();
+    if (mongoose.connection && mongoose.connection.readyState === 1) {
+      try {
+        if (specificRecord && specificRecord.submissionId) {
+          await PrmaSubmissionModel.findOneAndUpdate(
+            { submissionId: specificRecord.submissionId },
+            specificRecord,
+            { upsert: true, returnDocument: 'after' }
+          );
+        } else {
+          for (const sub of submissionsStore.values()) {
+            if (sub.submissionId) {
+              await PrmaSubmissionModel.findOneAndUpdate(
+                { submissionId: sub.submissionId },
+                sub,
+                { upsert: true }
+              );
+            }
+          }
+        }
+      } catch (err) {
+        console.error('[PRMA ROUTER] Submissions MongoDB persistence error:', err.message);
+      }
+    }
+    try {
+      const uniqueSubs = Array.from(new Set(Array.from(submissionsStore.values())));
+      fs.writeFileSync(SUBMISSIONS_FILE, JSON.stringify(uniqueSubs, null, 2), 'utf-8');
+    } catch (e) {}
+  };
+
+  // Helper: Load Submissions from MongoDB Atlas and disk
+  const loadSubmissions = async () => {
+    await ensureMongoConnected();
+    if (mongoose.connection && mongoose.connection.readyState === 1) {
+      try {
+        const mongoSubs = await PrmaSubmissionModel.find({}).sort({ updatedAt: -1 }).lean();
+        if (Array.isArray(mongoSubs) && mongoSubs.length > 0) {
+          mongoSubs.forEach(sub => {
+            if (sub.submissionId) {
+              submissionsStore.set(sub.submissionId, sub);
+              if (sub.submissionToken) {
+                submissionsStore.set(sub.submissionToken, sub);
+              }
+            }
+          });
+          return;
+        }
+      } catch (err) {
+        console.warn('[PRMA ROUTER] Mongo load submissions error:', err.message);
+      }
+    }
+
+    try {
+      if (fs.existsSync(SUBMISSIONS_FILE)) {
+        const raw = fs.readFileSync(SUBMISSIONS_FILE, 'utf-8');
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          parsed.forEach((sub) => {
+            if (sub.submissionId) {
+              submissionsStore.set(sub.submissionId, sub);
+              if (sub.submissionToken) {
+                submissionsStore.set(sub.submissionToken, sub);
+              }
+            }
+          });
+        }
+      }
+    } catch (e) {}
+  };
+
+  // Helper: Get submission by token or ID
+  const getSubmissionByToken = async (tokenOrId) => {
+    if (!tokenOrId) return null;
+    const clean = String(tokenOrId).trim();
+
+    // 1. In memory
+    const direct = submissionsStore.get(clean);
+    if (direct) return direct;
+    for (const s of submissionsStore.values()) {
+      if (s.submissionToken === clean || s.submissionId === clean || s.offerId === clean || s.applicationId === clean) {
+        return s;
+      }
+    }
+
+    // 2. In MongoDB Atlas
+    await ensureMongoConnected();
+    if (mongoose.connection && mongoose.connection.readyState === 1) {
+      try {
+        const found = await PrmaSubmissionModel.findOne({
+          $or: [
+            { submissionToken: clean },
+            { submissionId: clean },
+            { offerId: clean },
+            { applicationId: clean }
+          ]
+        }).lean();
+        if (found) {
+          submissionsStore.set(found.submissionId, found);
+          if (found.submissionToken) submissionsStore.set(found.submissionToken, found);
+          return found;
+        }
+      } catch (e) {}
+    }
+    return null;
+  };
+
   // Helper: Load & Persist Domains
   const loadDomains = () => {
     try {
@@ -705,6 +837,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   loadTasks();
   loadJobs();
   loadJobApplications();
+  loadSubmissions();
 
   // Populate sample task if empty
   if (tasksStore.size === 0) {
@@ -1411,42 +1544,106 @@ export function createPrmaRouter({ isDbConnected } = {}) {
 
       const verificationUrl = `https://professorvirus.site/prma-tech/verify-offer/${encodeURIComponent(offerId)}`;
 
-      // 1. Generate Vector PDF
-      let pdfBuffer = null;
+      // Generate or retrieve unique secure Submission Token & URL (DELIVERABLE 3)
+      const submissionToken = record.submissionToken || `prma_sub_${crypto.randomBytes(18).toString('hex')}`;
+      const baseUrl = process.env.APP_BASE_URL || 'https://professorvirus.site';
+      const submissionUrl = `${baseUrl}/prma-tech/submit/${submissionToken}`;
+
+      // 1. Generate DELIVERABLE 1 - Official Joining Letter PDF
+      let joiningLetterPdfBuffer = null;
       try {
-        pdfBuffer = await generatePrmaOfferLetterPdf({
+        joiningLetterPdfBuffer = await generatePrmaOfferLetterPdf({
           studentName,
+          fatherName: record.student?.fatherName || '',
           domainTitle,
           offerId,
           issueDate: todayStr,
           joiningDate: joinDateStr,
           completionDate: completionDateStr,
           duration: '1 Month',
-          mode: 'Remote',
+          mode: 'Fully Remote',
           verificationUrl
         });
-        pdfCacheStore.set(offerId, pdfBuffer);
-        pdfCacheStore.set(record.applicationId, pdfBuffer);
+        pdfCacheStore.set(offerId, joiningLetterPdfBuffer);
+        pdfCacheStore.set(record.applicationId, joiningLetterPdfBuffer);
       } catch (pdfErr) {
-        console.error('[PRMA ROUTER] PDF generation error:', pdfErr);
+        console.error('[PRMA ROUTER] Joining Letter PDF generation error:', pdfErr);
       }
 
-      // 2. Dispatch Email
+      // 2. Generate DELIVERABLE 2 - Official Problem Statement 10-page PDF
+      let problemStatementPdfBuffer = null;
+      try {
+        problemStatementPdfBuffer = await generatePrmaProblemStatementPdf({
+          studentName,
+          offerId,
+          domainTitle,
+          domainId: record.technical?.domainId || 'ai-ml',
+          joiningDate: joinDateStr,
+          completionDate: completionDateStr,
+          submissionToken,
+          submissionUrl
+        });
+        pdfCacheStore.set(`ps_${offerId}`, problemStatementPdfBuffer);
+        pdfCacheStore.set(`ps_${record.applicationId}`, problemStatementPdfBuffer);
+      } catch (psErr) {
+        console.error('[PRMA ROUTER] Problem Statement PDF generation error:', psErr);
+      }
+
+      // 3. Initialize or retrieve PrmaSubmission record
+      let submissionRecord = await getSubmissionByToken(submissionToken);
+      if (!submissionRecord) {
+        submissionRecord = {
+          submissionId: `SUB-${offerId.replace(/[^a-zA-Z0-9]/g, '')}`,
+          applicationId: record.applicationId,
+          offerId,
+          submissionToken,
+          student: {
+            fullName: studentName,
+            email: record.student?.email || '',
+            mobile: record.student?.mobile || '',
+            college: record.academic?.college || '',
+            branch: record.academic?.branch || '',
+            fatherName: record.student?.fatherName || ''
+          },
+          technical: {
+            domainId: record.technical?.domainId || 'ai-ml',
+            domainTitle
+          },
+          joiningDate: joinDateStr,
+          completionDate: completionDateStr,
+          duration: '1 Month',
+          mode: 'Fully Remote',
+          tasks: initializeWeeklyTasks(record.technical?.domainId || 'ai-ml'),
+          overallProgress: 0,
+          completedWeeksCount: 0,
+          lastSubmissionDate: '',
+          status: 'active'
+        };
+        submissionsStore.set(submissionRecord.submissionId, submissionRecord);
+        submissionsStore.set(submissionToken, submissionRecord);
+        await persistSubmissions(submissionRecord);
+      }
+
+      // 4. Dispatch Corporate Approval Email with 3 Deliverables
       let emailResult = { success: false, reason: 'PDF generation failed' };
-      if (pdfBuffer && record.student?.email) {
+      if (joiningLetterPdfBuffer && record.student?.email) {
         try {
-          emailResult = await sendPrmaShortlistEmail({
+          emailResult = await sendPrmaApprovalEmail({
             toEmail: record.student.email,
             studentName,
             domainTitle,
             offerId,
             joiningDate: joinDateStr,
             completionDate: completionDateStr,
-            pdfBuffer
+            duration: '1 Month',
+            mode: 'Fully Remote',
+            submissionUrl,
+            joiningLetterPdfBuffer,
+            problemStatementPdfBuffer
           });
 
           logEmail({
-            type: 'SHORTLIST_OFFER_LETTER',
+            type: 'OFFICIAL_APPROVAL_ONBOARDING',
             recipient: record.student.email,
             studentName,
             domainTitle,
@@ -1460,9 +1657,11 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         }
       }
 
-      // 3. Update application state
+      // 5. Update application state
       record.status = 'shortlisted';
       record.offerId = offerId;
+      record.submissionToken = submissionToken;
+      record.submissionUrl = submissionUrl;
       record.joiningDate = joinDateStr;
       record.completionDate = completionDateStr;
       record.shortlistedAt = new Date().toISOString();
@@ -1476,6 +1675,8 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         success: true,
         message: `Student shortlisted successfully! Offer ID: ${offerId}`,
         offerId,
+        submissionToken,
+        submissionUrl,
         joiningDate: joinDateStr,
         emailSent: emailResult.success,
         emailDetails: emailResult,
@@ -1640,6 +1841,589 @@ export function createPrmaRouter({ isDbConnected } = {}) {
 
   router.get('/admin/applications/:id/offer-letter', handleOfferLetterStream);
   router.get('/offer-letter/:offerId', handleOfferLetterStream);
+  router.get('/admin/applications/:id/joining-letter', handleOfferLetterStream);
+
+  /**
+   * Admin / Student: Stream 10-Page Problem Statement & 4-Week Tasks PDF (DELIVERABLE 2)
+   */
+  router.get('/admin/applications/:id/problem-statement', async (req, res) => {
+    try {
+      const appId = req.params.id;
+      const record = await getApplication(appId);
+      if (!record) return res.status(404).send('Application not found');
+
+      const offerId = record.offerId || 'PRMA/INT/2026/001';
+      const submissionToken = record.submissionToken || `prma_sub_${record.applicationId}`;
+      const baseUrl = process.env.APP_BASE_URL || 'https://professorvirus.site';
+      const submissionUrl = `${baseUrl}/prma-tech/submit/${submissionToken}`;
+
+      let pdfBuffer = pdfCacheStore.get(`ps_${offerId}`) || pdfCacheStore.get(`ps_${record.applicationId}`);
+      if (!pdfBuffer) {
+        pdfBuffer = await generatePrmaProblemStatementPdf({
+          studentName: record.student?.fullName || 'Candidate',
+          offerId,
+          domainTitle: record.technical?.domainTitle || record.domain?.title || 'Technology Track',
+          domainId: record.technical?.domainId || 'ai-ml',
+          joiningDate: record.joiningDate || '',
+          completionDate: record.completionDate || '',
+          submissionToken,
+          submissionUrl
+        });
+        pdfCacheStore.set(`ps_${offerId}`, pdfBuffer);
+        pdfCacheStore.set(`ps_${record.applicationId}`, pdfBuffer);
+      }
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `inline; filename="PRMA_Tech_Problem_Statement_${offerId.replace(/[\/\\]/g, '_')}.pdf"`);
+      res.setHeader('Content-Length', pdfBuffer.length);
+      res.end(pdfBuffer);
+    } catch (err) {
+      console.error('[PRMA ROUTER] Problem statement stream error:', err);
+      res.status(500).send('Error rendering problem statement: ' + err.message);
+    }
+  });
+
+  router.get('/problem-statement/:offerId', async (req, res) => {
+    try {
+      const paramId = decodeURIComponent(req.params.offerId).trim();
+      const record = await getApplication(paramId);
+      if (!record) return res.status(404).send('Record not found');
+
+      const offerId = record.offerId || paramId;
+      const submissionToken = record.submissionToken || `prma_sub_${record.applicationId}`;
+      const baseUrl = process.env.APP_BASE_URL || 'https://professorvirus.site';
+      const submissionUrl = `${baseUrl}/prma-tech/submit/${submissionToken}`;
+
+      const pdfBuffer = await generatePrmaProblemStatementPdf({
+        studentName: record.student?.fullName || 'Candidate',
+        offerId,
+        domainTitle: record.technical?.domainTitle || record.domain?.title || 'Technology Track',
+        domainId: record.technical?.domainId || 'ai-ml',
+        joiningDate: record.joiningDate || '',
+        completionDate: record.completionDate || '',
+        submissionToken,
+        submissionUrl
+      });
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `inline; filename="PRMA_Tech_Problem_Statement_${offerId.replace(/[\/\\]/g, '_')}.pdf"`);
+      res.end(pdfBuffer);
+    } catch (err) {
+      res.status(500).send('Error rendering problem statement: ' + err.message);
+    }
+  });
+
+  // =========================================================================
+  // STUDENT SUBMISSION PORTAL APIS (DELIVERABLE 3)
+  // =========================================================================
+
+  /**
+   * Student: Get submission profile & tasks by secure token
+   */
+  router.get('/submissions/token/:token', async (req, res) => {
+    try {
+      const token = req.params.token;
+      let sub = await getSubmissionByToken(token);
+
+      if (!sub) {
+        // Try to find an application with this submissionToken or offerId
+        await loadApplications();
+        const appMatch = Array.from(applicationsStore.values()).find(
+          a => a.submissionToken === token || a.offerId === token || a.applicationId === token
+        );
+
+        if (appMatch) {
+          const subToken = appMatch.submissionToken || token;
+          sub = {
+            submissionId: `SUB-${appMatch.offerId ? appMatch.offerId.replace(/[^a-zA-Z0-9]/g, '') : 'PORTAL'}`,
+            applicationId: appMatch.applicationId,
+            offerId: appMatch.offerId || 'PRMA-INT-2026',
+            submissionToken: subToken,
+            student: {
+              fullName: appMatch.student?.fullName || 'Candidate',
+              email: appMatch.student?.email || '',
+              mobile: appMatch.student?.mobile || '',
+              college: appMatch.academic?.college || '',
+              branch: appMatch.academic?.branch || '',
+              fatherName: appMatch.student?.fatherName || ''
+            },
+            technical: {
+              domainId: appMatch.technical?.domainId || 'ai-ml',
+              domainTitle: appMatch.technical?.domainTitle || appMatch.domain?.title || 'Technology Track'
+            },
+            joiningDate: appMatch.joiningDate || '',
+            completionDate: appMatch.completionDate || '',
+            duration: appMatch.duration || '1 Month',
+            mode: appMatch.mode || 'Fully Remote',
+            tasks: initializeWeeklyTasks(appMatch.technical?.domainId || 'ai-ml'),
+            overallProgress: 0,
+            completedWeeksCount: 0,
+            lastSubmissionDate: '',
+            status: 'active'
+          };
+          submissionsStore.set(sub.submissionId, sub);
+          submissionsStore.set(subToken, sub);
+          await persistSubmissions(sub);
+        }
+      }
+
+      if (!sub) {
+        return res.status(404).json({
+          error: 'Invalid or expired submission portal link.',
+          notice: 'Please verify the link in your official PRMA Tech approval email.'
+        });
+      }
+
+      res.json({
+        success: true,
+        submission: sub
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to retrieve submission details', details: err.message });
+    }
+  });
+
+  /**
+   * Student: Submit weekly task deliverables
+   */
+  router.post('/submissions/token/:token/submit/:week', async (req, res) => {
+    try {
+      const { token, week } = req.params;
+      const weekNum = parseInt(week, 10);
+      if (![1, 2, 3, 4].includes(weekNum)) {
+        return res.status(400).json({ error: 'Invalid week number. Must be 1, 2, 3, or 4.' });
+      }
+
+      const sub = await getSubmissionByToken(token);
+      if (!sub) {
+        return res.status(404).json({ error: 'Invalid or expired submission link.' });
+      }
+
+      const { files = [], githubUrl = '', liveUrl = '', studentRemarks = '' } = req.body;
+
+      // Validate at least one deliverable is provided
+      if ((!files || files.length === 0) && !githubUrl && !liveUrl) {
+        return res.status(400).json({
+          error: 'Compulsory: Please upload at least one project deliverable (project file/PDF/ZIP, GitHub repository, or live project demo URL).'
+        });
+      }
+
+      // Find or initialize task
+      if (!Array.isArray(sub.tasks)) {
+        sub.tasks = initializeWeeklyTasks(sub.technical?.domainId || 'ai-ml');
+      }
+
+      let task = sub.tasks.find(t => t.weekNumber === weekNum);
+      if (!task) {
+        task = {
+          weekNumber: weekNum,
+          taskTitle: `Week ${weekNum} Deliverable`,
+          status: 'not_submitted',
+          files: [],
+          reviewStatus: 'pending'
+        };
+        sub.tasks.push(task);
+      }
+
+      const nowStr = new Date().toISOString();
+      const isResubmission = task.status === 'revision_required' || (task.resubmissionCount || 0) > 0;
+
+      task.status = 'submitted';
+      task.submittedAt = task.submittedAt || nowStr;
+      task.updatedAt = nowStr;
+      task.reviewStatus = 'under_review';
+      task.githubUrl = (githubUrl || task.githubUrl || '').trim();
+      task.liveUrl = (liveUrl || task.liveUrl || '').trim();
+      task.studentRemarks = (studentRemarks || task.studentRemarks || '').trim();
+
+      if (isResubmission) {
+        task.resubmissionCount = (task.resubmissionCount || 0) + 1;
+      }
+
+      if (Array.isArray(files) && files.length > 0) {
+        task.files = files.map((f, idx) => ({
+          fileId: `file_w${weekNum}_${idx}_${Date.now()}`,
+          fileName: f.fileName || `Deliverable_Week_${weekNum}.pdf`,
+          fileSize: f.fileSize || 0,
+          fileType: f.fileType || 'application/octet-stream',
+          dataUrl: f.dataUrl || ''
+        }));
+      }
+
+      // Recalculate progress
+      const submittedOrApprovedWeeks = sub.tasks.filter(t => t.status === 'submitted' || t.status === 'approved').length;
+      const approvedWeeks = sub.tasks.filter(t => t.status === 'approved').length;
+      sub.completedWeeksCount = approvedWeeks;
+      sub.overallProgress = Math.round((submittedOrApprovedWeeks / 4) * 100);
+      sub.lastSubmissionDate = nowStr;
+
+      submissionsStore.set(sub.submissionId, sub);
+      submissionsStore.set(sub.submissionToken, sub);
+      await persistSubmissions(sub);
+
+      const timestampFormatted = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+      // Send confirmation email to student
+      try {
+        if (sub.student?.email) {
+          await sendPrmaSubmissionConfirmationEmail({
+            toEmail: sub.student.email,
+            studentName: sub.student.fullName,
+            domainTitle: sub.technical?.domainTitle || 'Internship Track',
+            offerId: sub.offerId,
+            weekNumber: weekNum,
+            taskTitle: task.taskTitle,
+            submissionTime: timestampFormatted
+          });
+        }
+      } catch (mailErr) {
+        console.warn('[PRMA ROUTER] Student confirmation email warning:', mailErr.message);
+      }
+
+      // Send alert to admin
+      try {
+        await sendPrmaAdminTaskNotificationEmail({
+          studentName: sub.student?.fullName || 'Student',
+          domainTitle: sub.technical?.domainTitle || 'Internship Track',
+          offerId: sub.offerId,
+          weekNumber: weekNum,
+          taskTitle: task.taskTitle,
+          submissionTime: timestampFormatted,
+          githubUrl: task.githubUrl,
+          liveUrl: task.liveUrl
+        });
+      } catch (adminMailErr) {
+        console.warn('[PRMA ROUTER] Admin notification email warning:', adminMailErr.message);
+      }
+
+      res.json({
+        success: true,
+        message: `✓ Week ${weekNum} project deliverables submitted successfully! Your mentor will review your submission shortly.`,
+        task,
+        submission: sub
+      });
+    } catch (err) {
+      console.error('[PRMA ROUTER] Student submission error:', err);
+      res.status(500).json({ error: 'Failed to submit deliverables', details: err.message });
+    }
+  });
+
+  /**
+   * Download / Stream Student Submitted File
+   */
+  router.get('/submissions/download/:submissionId/:weekNumber/:fileIndex', async (req, res) => {
+    try {
+      const { submissionId, weekNumber, fileIndex } = req.params;
+      const sub = await getSubmissionByToken(submissionId);
+      if (!sub) return res.status(404).send('Submission record not found');
+
+      const weekNum = parseInt(weekNumber, 10);
+      const fIdx = parseInt(fileIndex, 10);
+      const task = (sub.tasks || []).find(t => t.weekNumber === weekNum);
+      if (!task || !task.files || !task.files[fIdx]) {
+        return res.status(404).send('File not found in task submission');
+      }
+
+      const fileObj = task.files[fIdx];
+      if (fileObj.dataUrl && fileObj.dataUrl.includes('base64,')) {
+        const parts = fileObj.dataUrl.split('base64,');
+        const mimeMatch = fileObj.dataUrl.match(/^data:([^;]+);/);
+        const mimeType = mimeMatch ? mimeMatch[1] : (fileObj.fileType || 'application/octet-stream');
+        const buffer = Buffer.from(parts[1], 'base64');
+
+        res.setHeader('Content-Type', mimeType);
+        res.setHeader('Content-Disposition', `attachment; filename="${fileObj.fileName || 'deliverable.pdf'}"`);
+        res.setHeader('Content-Length', buffer.length);
+        return res.end(buffer);
+      }
+
+      res.status(404).send('File data unavailable');
+    } catch (err) {
+      res.status(500).send('Error downloading file: ' + err.message);
+    }
+  });
+
+  // =========================================================================
+  // ADMIN SUBMISSIONS DASHBOARD & REVIEW APIS (REQUIREMENT 2)
+  // =========================================================================
+
+  /**
+   * Admin: Real Database-Driven Submissions Dashboard & Table
+   */
+  router.get('/admin/submissions', async (req, res) => {
+    try {
+      await loadApplications();
+      await loadSubmissions();
+
+      const approvedApps = Array.from(applicationsStore.values()).filter(
+        a => a.status === 'shortlisted' || a.status === 'approved'
+      );
+
+      // Auto-populate submissionsStore for any approved application that doesn't have a record yet
+      for (const app of approvedApps) {
+        if (!app.offerId) continue;
+        const existing = await getSubmissionByToken(app.applicationId);
+        if (!existing) {
+          const subToken = app.submissionToken || `prma_sub_${crypto.randomBytes(18).toString('hex')}`;
+          app.submissionToken = subToken;
+          const newSub = {
+            submissionId: `SUB-${app.offerId.replace(/[^a-zA-Z0-9]/g, '')}`,
+            applicationId: app.applicationId,
+            offerId: app.offerId,
+            submissionToken: subToken,
+            student: {
+              fullName: app.student?.fullName || 'Candidate',
+              email: app.student?.email || '',
+              mobile: app.student?.mobile || '',
+              college: app.academic?.college || '',
+              branch: app.academic?.branch || '',
+              fatherName: app.student?.fatherName || ''
+            },
+            technical: {
+              domainId: app.technical?.domainId || 'ai-ml',
+              domainTitle: app.technical?.domainTitle || app.domain?.title || 'Technology Track'
+            },
+            joiningDate: app.joiningDate || '',
+            completionDate: app.completionDate || '',
+            duration: app.duration || '1 Month',
+            mode: app.mode || 'Fully Remote',
+            tasks: initializeWeeklyTasks(app.technical?.domainId || 'ai-ml'),
+            overallProgress: 0,
+            completedWeeksCount: 0,
+            lastSubmissionDate: '',
+            status: 'active'
+          };
+          submissionsStore.set(newSub.submissionId, newSub);
+          submissionsStore.set(subToken, newSub);
+          await persistSubmissions(newSub);
+        }
+      }
+
+      // Collect unique submission records
+      const seenIds = new Set();
+      let subs = [];
+      for (const s of submissionsStore.values()) {
+        if (s.submissionId && !seenIds.has(s.submissionId)) {
+          seenIds.add(s.submissionId);
+          subs.push(s);
+        }
+      }
+
+      // Calculate Real Database-Driven Statistics (Requirement 2)
+      const totalApprovedInterns = approvedApps.length;
+      let totalSubmissions = 0;
+      let pendingSubmissions = 0;
+      let week1Completed = 0;
+      let week2Completed = 0;
+      let week3Completed = 0;
+      let week4Completed = 0;
+      let reviewedSubmissions = 0;
+
+      subs.forEach(s => {
+        (s.tasks || []).forEach(t => {
+          if (t.status === 'submitted' || t.status === 'approved' || t.status === 'revision_required') {
+            totalSubmissions++;
+          }
+          if (t.status === 'submitted' && (t.reviewStatus === 'under_review' || t.reviewStatus === 'pending')) {
+            pendingSubmissions++;
+          }
+          if (t.reviewStatus === 'approved' || t.reviewStatus === 'revision_required') {
+            reviewedSubmissions++;
+          }
+          if (t.weekNumber === 1 && (t.status === 'submitted' || t.status === 'approved')) week1Completed++;
+          if (t.weekNumber === 2 && (t.status === 'submitted' || t.status === 'approved')) week2Completed++;
+          if (t.weekNumber === 3 && (t.status === 'submitted' || t.status === 'approved')) week3Completed++;
+          if (t.weekNumber === 4 && (t.status === 'submitted' || t.status === 'approved')) week4Completed++;
+        });
+      });
+
+      // Filter by query parameters
+      const { domain, weekStatus, search, reviewStatus } = req.query;
+
+      if (domain && domain !== 'all') {
+        subs = subs.filter(s =>
+          (s.technical?.domainTitle || '').toLowerCase() === domain.toLowerCase() ||
+          (s.technical?.domainId || '').toLowerCase() === domain.toLowerCase()
+        );
+      }
+
+      if (weekStatus && weekStatus !== 'all') {
+        const match = weekStatus.match(/^week(\d)_(.+)$/);
+        if (match) {
+          const wNum = parseInt(match[1], 10);
+          const wStat = match[2];
+          subs = subs.filter(s => {
+            const t = (s.tasks || []).find(tk => tk.weekNumber === wNum);
+            return t && (t.status === wStat || t.reviewStatus === wStat);
+          });
+        }
+      }
+
+      if (reviewStatus && reviewStatus !== 'all') {
+        if (reviewStatus === 'pending') {
+          subs = subs.filter(s => (s.tasks || []).some(t => t.status === 'submitted' && t.reviewStatus === 'under_review'));
+        } else if (reviewStatus === 'completed') {
+          subs = subs.filter(s => (s.tasks || []).filter(t => t.status === 'approved').length === 4);
+        }
+      }
+
+      if (search) {
+        const q = search.toLowerCase();
+        subs = subs.filter(s =>
+          (s.student?.fullName || '').toLowerCase().includes(q) ||
+          (s.student?.email || '').toLowerCase().includes(q) ||
+          (s.offerId || '').toLowerCase().includes(q) ||
+          (s.applicationId || '').toLowerCase().includes(q) ||
+          (s.technical?.domainTitle || '').toLowerCase().includes(q)
+        );
+      }
+
+      res.json({
+        success: true,
+        stats: {
+          totalApprovedInterns,
+          totalSubmissions,
+          pendingSubmissions,
+          week1Completed,
+          week2Completed,
+          week3Completed,
+          week4Completed,
+          reviewedSubmissions
+        },
+        count: subs.length,
+        submissions: subs
+      });
+    } catch (err) {
+      console.error('[PRMA ROUTER] Admin submissions error:', err);
+      res.status(500).json({ error: 'Failed to retrieve submissions', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Get Single Student Submission Dossier
+   */
+  router.get('/admin/submissions/:id', async (req, res) => {
+    try {
+      const sub = await getSubmissionByToken(req.params.id);
+      if (!sub) return res.status(404).json({ error: 'Submission not found' });
+      res.json({ success: true, submission: sub });
+    } catch (err) {
+      res.status(500).json({ error: 'Error fetching submission dossier', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Review Weekly Task (Approve / Request Corrections / Add Feedback)
+   */
+  router.post('/admin/submissions/:id/review/:week', async (req, res) => {
+    try {
+      const { id, week } = req.params;
+      const weekNum = parseInt(week, 10);
+      const { status, feedback = '', reviewer = 'PRMA Tech Mentorship Board' } = req.body;
+
+      if (!['approved', 'revision_required', 'under_review'].includes(status)) {
+        return res.status(400).json({ error: 'Status must be approved, revision_required, or under_review.' });
+      }
+
+      const sub = await getSubmissionByToken(id);
+      if (!sub) return res.status(404).json({ error: 'Submission not found.' });
+
+      if (!Array.isArray(sub.tasks)) {
+        sub.tasks = initializeWeeklyTasks(sub.technical?.domainId || 'ai-ml');
+      }
+
+      let task = sub.tasks.find(t => t.weekNumber === weekNum);
+      if (!task) {
+        task = {
+          weekNumber: weekNum,
+          taskTitle: `Week ${weekNum} Deliverable`,
+          status: 'submitted',
+          files: [],
+          reviewStatus: 'under_review'
+        };
+        sub.tasks.push(task);
+      }
+
+      const nowStr = new Date().toISOString();
+      task.reviewStatus = status;
+      task.adminFeedback = (feedback || '').trim();
+      task.reviewedAt = nowStr;
+      task.reviewedBy = reviewer;
+
+      if (status === 'approved') {
+        task.status = 'approved';
+      } else if (status === 'revision_required') {
+        task.status = 'revision_required';
+        task.resubmissionCount = (task.resubmissionCount || 0) + 1;
+      }
+
+      // Recalculate progress
+      const approvedCount = sub.tasks.filter(t => t.status === 'approved').length;
+      const submittedCount = sub.tasks.filter(t => t.status === 'submitted' || t.status === 'approved').length;
+      sub.completedWeeksCount = approvedCount;
+      sub.overallProgress = Math.round((submittedCount / 4) * 100);
+
+      submissionsStore.set(sub.submissionId, sub);
+      submissionsStore.set(sub.submissionToken, sub);
+      await persistSubmissions(sub);
+
+      // Send Feedback Email to Student
+      try {
+        if (sub.student?.email) {
+          const baseUrl = process.env.APP_BASE_URL || 'https://professorvirus.site';
+          const subUrl = `${baseUrl}/prma-tech/submit/${sub.submissionToken}`;
+          await sendPrmaReviewFeedbackEmail({
+            toEmail: sub.student.email,
+            studentName: sub.student.fullName,
+            domainTitle: sub.technical?.domainTitle || 'Internship Track',
+            offerId: sub.offerId,
+            weekNumber: weekNum,
+            taskTitle: task.taskTitle,
+            reviewStatus: status,
+            adminFeedback: feedback,
+            submissionUrl: subUrl
+          });
+        }
+      } catch (mailErr) {
+        console.warn('[PRMA ROUTER] Review feedback email warning:', mailErr.message);
+      }
+
+      res.json({
+        success: true,
+        message: `✓ Week ${weekNum} review saved as ${status}. Notification sent to student.`,
+        task,
+        submission: sub
+      });
+    } catch (err) {
+      console.error('[PRMA ROUTER] Admin review error:', err);
+      res.status(500).json({ error: 'Failed to record review: ' + err.message });
+    }
+  });
+
+  /**
+   * Admin: Template Configuration & Task Management (Requirement 5)
+   */
+  router.get('/admin/templates', (req, res) => {
+    res.json({
+      success: true,
+      templates: {
+        joiningLetter: {
+          name: 'Official PRMA Tech Internship Joining Letter',
+          format: 'A4 Single Page Vector / Template PDF',
+          registration: 'UDYAM-UP-76-0055635',
+          signatory: 'PRIYANSHU KUMAR (Founder / Authorized Representative)',
+          templateImagePath: '/assets/prma_templates/prma_joining_letter_template.jpg'
+        },
+        problemStatement: {
+          name: 'Official PRMA Tech Problem Statement & 4-Week Tasks',
+          format: '10-Page Standardized Document PDF',
+          structure: 'Page 1 Cover, Pages 2-9 Weekly Tasks & Portal Links, Page 10 Authorization',
+          templatePdfPath: '/assets/prma_templates/prma_problem_statement_template.pdf'
+        },
+        domainTasks: DEFAULT_DOMAIN_TASKS
+      }
+    });
+  });
 
   /**
    * Scannable QR Credential Verification Endpoint

@@ -447,6 +447,12 @@ function prerender() {
       title: 'About PRMA Tech™ — Mission, Vision & Engineering Leadership',
       desc: 'Learn about PRMA Tech, our engineering mission, university partnerships, and commitment to practical student education and technical innovation.',
       h1: 'About PRMA Tech™'
+    },
+    {
+      path: '/prma-tech/submit/',
+      title: 'PRMA Tech™ Official Internship Task Submission Portal | ProfessorVirus',
+      desc: 'Secure candidate submission portal for PRMA Tech remote internships. Upload weekly task deliverables, submit GitHub code repositories, live demo links, and receive official mentor reviews.',
+      h1: 'PRMA Tech™ Internship Task Submission Portal'
     }
   ];
 
