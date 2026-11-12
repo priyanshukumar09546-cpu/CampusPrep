@@ -33,7 +33,9 @@ import {
   Globe,
   Cloud,
   Package,
-  Award
+  Award,
+  Instagram,
+  Linkedin
 } from 'lucide-react';
 import './Footer.css';
 
@@ -552,28 +554,87 @@ export default function Footer({ onNavigate }) {
         </div>
       </div>
 
-      {/* DECORATIVE OBSIDIAN SPACE WAVES */}
+      {/* ELEGANT DUAL GOLDEN WAVE TRANSITION */}
       <div className="pv-footer-wave-wrap" aria-hidden="true">
-        <svg viewBox="0 0 1440 95" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          {/* Secondary background deep shadow wave */}
+        <svg viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" className="pv-footer-wave-svg">
+          <defs>
+            <linearGradient id="pvGoldWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#CA8A04" />
+              <stop offset="30%" stopColor="#FACC15" />
+              <stop offset="65%" stopColor="#EAB308" />
+              <stop offset="100%" stopColor="#FDE047" />
+            </linearGradient>
+            <linearGradient id="pvBurgundyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#730E2A" />
+              <stop offset="100%" stopColor="#5A091E" />
+            </linearGradient>
+          </defs>
+          {/* Main Burgundy Base Wave */}
           <path
-            d="M 0,32 C 180,8 390,62 660,32 C 920,5 1160,52 1440,20 L 1440,95 L 0,95 Z"
-            fill="#090909"
-            opacity="0.8"
+            d="M 0,38 C 240,68 540,15 820,38 C 1100,62 1320,20 1440,32 L 1440,90 L 0,90 Z"
+            fill="url(#pvBurgundyGrad)"
           />
-          {/* Primary sweeping obsidian wave */}
+          {/* Accent Golden Wave Ribbon */}
           <path
-            d="M 0,52 C 220,78 480,18 740,42 C 1000,66 1240,24 1440,38 L 1440,95 L 0,95 Z"
-            fill="#050505"
+            d="M 0,34 C 240,64 540,11 820,34 C 1100,58 1320,16 1440,28 L 1440,34 C 1320,22 1100,64 820,40 C 540,17 240,70 0,40 Z"
+            fill="url(#pvGoldWaveGrad)"
+          />
+          {/* Thin Radiant Gold Contour */}
+          <path
+            d="M 0,34 C 240,64 540,11 820,34 C 1100,58 1320,16 1440,28"
+            stroke="#FEF08A"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            fill="none"
           />
         </svg>
       </div>
 
-      {/* OBSIDIAN BOTTOM COPYRIGHT BAR */}
+      {/* DEEP BURGUNDY BOTTOM COPYRIGHT & CREDENTIALS BAR */}
       <div className="pv-footer-bottom-bar">
         <div className="pv-footer-bottom-inner">
-          {/* Left: Copyright & Tagline */}
-          <div className="pv-footer-bottom-left">
+          {/* 1. Official Government of India & MSME Emblem (Crisp White) */}
+          <div className="pv-footer-msme-block">
+            <img
+              src="/assets/prma_footer_msme.png"
+              alt="Government of India & MSME - Ministry of MSME, Govt. of India"
+              className="pv-footer-msme-emblem"
+            />
+          </div>
+
+          <div className="pv-footer-vdivider" aria-hidden="true" />
+
+          {/* 2. Follow PRMA Tech (Instagram & LinkedIn Outlined Buttons) */}
+          <div className="pv-footer-follow-prma">
+            <span className="pv-footer-follow-title">Follow PRMA Tech</span>
+            <div className="pv-footer-follow-icons">
+              <a
+                href="https://www.instagram.com/prma_tech/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pv-footer-prma-icon-btn"
+                aria-label="Follow PRMA Tech on Instagram"
+                title="Follow PRMA Tech on Instagram"
+              >
+                <Instagram size={18} strokeWidth={2.2} />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/prma-tech/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pv-footer-prma-icon-btn"
+                aria-label="Follow PRMA Tech on LinkedIn"
+                title="Follow PRMA Tech on LinkedIn"
+              >
+                <Linkedin size={18} strokeWidth={2.2} />
+              </a>
+            </div>
+          </div>
+
+          <div className="pv-footer-vdivider" aria-hidden="true" />
+
+          {/* 3. Center Copyright & Made with Love */}
+          <div className="pv-footer-bottom-center">
             <div className="pv-footer-copyright-text">
               © {new Date().getFullYear()} ProfessorVirus. All rights reserved.
             </div>
@@ -582,9 +643,11 @@ export default function Footer({ onNavigate }) {
             </div>
           </div>
 
-          {/* Right: Legal Links & Secure Badge */}
-          <div className="pv-footer-bottom-right">
-            <div className="pv-footer-bottom-links">
+          <div className="pv-footer-vdivider" aria-hidden="true" />
+
+          {/* 4. Legal Links (Stacked 2 Rows) */}
+          <div className="pv-footer-links-stacked">
+            <div className="pv-footer-links-row">
               <button
                 type="button"
                 onClick={() => setActiveModal('privacy')}
@@ -600,7 +663,8 @@ export default function Footer({ onNavigate }) {
               >
                 Terms & Conditions
               </button>
-              <span className="pv-footer-link-divider">|</span>
+            </div>
+            <div className="pv-footer-links-row">
               <button
                 type="button"
                 onClick={() => setActiveModal('disclaimer')}
@@ -617,17 +681,41 @@ export default function Footer({ onNavigate }) {
                 Contact Us
               </button>
             </div>
+          </div>
 
-            {/* Secure & Safe Badge */}
+          {/* 5. Golden Laurel Wheat Wreaths & Shield Badge */}
+          <div className="pv-footer-laurel-badge-wrap">
+            <svg width="22" height="38" viewBox="0 0 24 42" fill="none" className="pv-footer-laurel-svg" aria-hidden="true">
+              <path d="M22 39C16 34 11 26 10 14" stroke="#FACC15" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M10 14C8 10 3 6 1 8C-1 10 3 15 10 14Z" fill="#FACC15" />
+              <path d="M11 20C8 17 3 15 2 18C1 21 6 23 11 20Z" fill="#FACC15" />
+              <path d="M13 26C10 24 5 24 5 27C5 30 10 30 13 26Z" fill="#FACC15" />
+              <path d="M16 32C13 31 8 32 9 35C10 38 14 36 16 32Z" fill="#FACC15" />
+              <path d="M13 10C15 6 19 3 21 5C23 7 19 12 13 10Z" fill="#FACC15" />
+              <path d="M14 17C17 14 21 13 22 16C23 19 18 20 14 17Z" fill="#FACC15" />
+              <path d="M16 24C19 22 23 23 23 26C23 29 19 28 16 24Z" fill="#FACC15" />
+            </svg>
+
             <button
               type="button"
               onClick={() => setActiveModal('security')}
-              className="pv-footer-secure-badge"
+              className="pv-footer-golden-secure-badge"
               title="Click to view Security & Safety Verification"
             >
-              <ShieldCheck size={16} className="badge-icon" strokeWidth={2.4} />
+              <ShieldCheck size={16} className="pv-footer-golden-shield-icon" strokeWidth={2.4} />
               <span>Secure & Safe</span>
             </button>
+
+            <svg width="22" height="38" viewBox="0 0 24 42" fill="none" className="pv-footer-laurel-svg" style={{ transform: 'scaleX(-1)' }} aria-hidden="true">
+              <path d="M22 39C16 34 11 26 10 14" stroke="#FACC15" strokeWidth="1.8" strokeLinecap="round" />
+              <path d="M10 14C8 10 3 6 1 8C-1 10 3 15 10 14Z" fill="#FACC15" />
+              <path d="M11 20C8 17 3 15 2 18C1 21 6 23 11 20Z" fill="#FACC15" />
+              <path d="M13 26C10 24 5 24 5 27C5 30 10 30 13 26Z" fill="#FACC15" />
+              <path d="M16 32C13 31 8 32 9 35C10 38 14 36 16 32Z" fill="#FACC15" />
+              <path d="M13 10C15 6 19 3 21 5C23 7 19 12 13 10Z" fill="#FACC15" />
+              <path d="M14 17C17 14 21 13 22 16C23 19 18 20 14 17Z" fill="#FACC15" />
+              <path d="M16 24C19 22 23 23 23 26C23 29 19 28 16 24Z" fill="#FACC15" />
+            </svg>
           </div>
         </div>
       </div>

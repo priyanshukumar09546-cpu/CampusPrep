@@ -426,20 +426,39 @@
   height: 80px;
 }
 
-.pv-footer-bottom-bar {
-  background-color: #050505;
-  background: linear-gradient(180deg, #090909 0%, #030303 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  color: #FFFFFF;
-  padding: 1.45rem 0 1.85rem 0;
+/* GOLDEN WAVE HEADER */
+.pv-footer-wave-wrap {
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: -2px;
   position: relative;
   z-index: 2;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.pv-footer-wave-wrap svg {
+  display: block;
+  width: 100%;
+  height: 75px;
+}
+
+/* DEEP BURGUNDY BOTTOM BAR (Strictly matches reference image 8) */
+.pv-footer-bottom-bar {
+  background-color: #730E2A !important;
+  background: linear-gradient(180deg, #730E2A 0%, #580820 100%) !important;
+  color: #FFFFFF !important;
+  padding: 1.25rem 0 1.65rem 0;
+  position: relative;
+  z-index: 2;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+  border-top: none !important;
 }
 
 .pv-footer-bottom-inner {
   max-width: min(1560px, 94vw);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -447,87 +466,174 @@
   gap: 1.25rem;
 }
 
-.pv-footer-bottom-left {
+/* 1. MSME Official Block */
+.pv-footer-msme-block {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pv-footer-msme-emblem {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* Vertical Thin Divider */
+.pv-footer-vdivider {
+  width: 1px;
+  height: 38px;
+  background-color: rgba(255, 255, 255, 0.22);
+  flex-shrink: 0;
+}
+
+/* 2. Follow PRMA Tech */
+.pv-footer-follow-prma {
   display: flex;
   flex-direction: column;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.pv-footer-follow-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #FFFFFF !important;
+  letter-spacing: -0.01em;
+}
+
+.pv-footer-follow-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pv-footer-prma-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid #FACC15;
+  background-color: rgba(250, 204, 21, 0.08);
+  color: #FACC15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.pv-footer-prma-icon-btn:hover {
+  background-color: #FACC15;
+  color: #580820;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+}
+
+/* 3. Center Copyright */
+.pv-footer-bottom-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 0.25rem;
+  flex: 1;
+  min-width: 260px;
 }
 
 .pv-footer-copyright-text {
   font-size: 0.88rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   letter-spacing: -0.01em;
 }
 
 .pv-footer-tagline-text {
-  font-size: 0.8rem;
-  color: #A1A1AA;
+  font-size: 0.78rem;
+  color: #FECDD3 !important;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.25rem;
   flex-wrap: wrap;
 }
 
-.pv-footer-bottom-right {
+/* 4. Legal Links Stacked */
+.pv-footer-links-stacked {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: flex-start;
+  flex-shrink: 0;
 }
 
-.pv-footer-bottom-links {
+.pv-footer-links-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  gap: 0.65rem;
 }
 
 .pv-footer-legal-link {
   background: none;
   border: none;
-  color: #A1A1AA;
-  font-size: 0.82rem;
+  color: #FFFFFF !important;
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
-  padding: 0.15rem 0;
+  padding: 0;
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .pv-footer-legal-link:hover {
-  color: #FFB800;
+  color: #FACC15 !important;
   text-decoration: underline;
 }
 
 .pv-footer-link-divider {
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.3);
   font-size: 0.75rem;
   user-select: none;
 }
 
-/* Secure & Safe Badge */
-.pv-footer-secure-badge {
-  display: inline-flex;
+/* 5. Golden Laurel Wheat & Shield Badge */
+.pv-footer-laurel-badge-wrap {
+  display: flex;
   align-items: center;
-  gap: 0.45rem;
-  background-color: #0B0B0B;
-  border: 1px solid rgba(255, 184, 0, 0.3);
-  border-radius: 9999px;
-  padding: 0.45rem 1rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #FFB800;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 0 10px rgba(255, 184, 0, 0.1);
+  gap: 0.4rem;
+  flex-shrink: 0;
 }
 
-.pv-footer-secure-badge:hover {
-  border-color: #FFB800;
-  background-color: #121212;
-  box-shadow: 0 0 18px rgba(255, 184, 0, 0.3);
-  transform: translateY(-1px);
+.pv-footer-laurel-svg {
+  flex-shrink: 0;
+}
+
+.pv-footer-golden-secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgba(250, 204, 21, 0.12);
+  border: 1.5px solid #FACC15;
+  border-radius: 9999px;
+  padding: 0.35rem 0.95rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #FEF08A;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: all 0.15s ease;
+}
+
+.pv-footer-golden-secure-badge:hover {
+  background-color: rgba(250, 204, 21, 0.22);
+  border-color: #FEF08A;
+  color: #FFFFFF;
+  transform: scale(1.03);
+}
+
+.pv-footer-golden-shield-icon {
+  color: #FACC15;
 }
 
 .pv-footer-secure-badge .badge-icon {
@@ -777,20 +883,27 @@
     padding-bottom: 5.5rem;
   }
 
-  .pv-footer-bottom-right {
+  .pv-footer-bottom-inner {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
   }
 
-  .pv-footer-bottom-links {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem 0.75rem;
+  .pv-footer-vdivider {
+    display: none;
   }
 
-  .pv-footer-secure-badge {
-    align-self: flex-start;
+  .pv-footer-follow-prma {
+    align-items: center;
+  }
+
+  .pv-footer-links-stacked {
+    align-items: center;
+  }
+
+  .pv-footer-laurel-badge-wrap {
+    justify-content: center;
   }
 }
 
@@ -903,20 +1016,27 @@
     padding-bottom: 5.5rem;
   }
 
-  .pv-footer-bottom-right {
+  .pv-footer-bottom-inner {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
   }
 
-  .pv-footer-bottom-links {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem 0.75rem;
+  .pv-footer-vdivider {
+    display: none;
   }
 
-  .pv-footer-secure-badge {
-    align-self: flex-start;
+  .pv-footer-follow-prma {
+    align-items: center;
+  }
+
+  .pv-footer-links-stacked {
+    align-items: center;
+  }
+
+  .pv-footer-laurel-badge-wrap {
+    justify-content: center;
   }
 }
 
@@ -993,12 +1113,6 @@ html.light .pv-footer-trust-icon-box {
   color: #D6A13D !important;
 }
 
-html.light .pv-footer-bottom-bar {
-  background-color: #F0ECE1 !important;
-  border-top: 1px solid #E8E2D5 !important;
-  color: #5A5248 !important;
-}
-
 html.light .pv-footer-social-btn {
   background-color: #FFFFFF !important;
   border: 1px solid #E8E2D5 !important;
@@ -1066,12 +1180,6 @@ html.dark .pv-footer-trust-card-title {
 }
 
 html.dark .pv-footer-trust-card-sub {
-  color: #A1A1AA !important;
-}
-
-html.dark .pv-footer-bottom-bar {
-  background-color: #050505 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
   color: #A1A1AA !important;
 }
 

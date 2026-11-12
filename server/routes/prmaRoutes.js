@@ -16,6 +16,7 @@ import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import mongoose from 'mongoose';
 import { generatePrmaOfferLetterPdf } from '../services/prmaOfferLetterEngine.js';
 import {
   sendPrmaShortlistEmail,
@@ -42,6 +43,73 @@ try {
 } catch (e) {
   console.warn('[PRMA ROUTES] Notice: Unable to create data dir:', e.message);
 }
+
+// Persistent MongoDB Schema & Model for PRMA Tech Applications
+const PrmaApplicationSchema = new mongoose.Schema({
+  applicationId: { type: String, required: true, unique: true, index: true },
+  student: {
+    fullName: { type: String, required: true },
+    dob: { type: String, required: true },
+    email: { type: String, required: true, index: true },
+    mobile: { type: String, required: true },
+    gender: { type: String, default: 'Not Specified' },
+    address: { type: String, default: '' },
+    city: { type: String, default: '' },
+    state: { type: String, default: '' },
+    pinCode: { type: String, default: '' }
+  },
+  academic: {
+    college: { type: String, required: true },
+    university: { type: String, required: true },
+    course: { type: String, required: true },
+    branch: { type: String, default: '' },
+    year: { type: String, required: true },
+    semester: { type: String, default: '' },
+    graduationYear: { type: String, default: '' }
+  },
+  technical: {
+    domainId: { type: String, default: 'ai-ml' },
+    domainTitle: { type: String, required: true },
+    skills: [String],
+    languages: [String],
+    experience: { type: String, default: '' },
+    experienceLevel: { type: String, default: 'Beginner' }
+  },
+  profiles: {
+    githubUrl: { type: String, default: '' },
+    linkedinUrl: { type: String, default: '' }
+  },
+  resume: {
+    fileName: { type: String, default: '' },
+    fileSize: { type: Number, default: 0 },
+    dataUrl: { type: String, default: '' }
+  },
+  socialFollow: {
+    followedLinkedIn: { type: Boolean, default: false },
+    followedInstagram: { type: Boolean, default: false },
+    linkedinScreenshot: { type: String, default: '' },
+    instagramScreenshot: { type: String, default: '' },
+    linkedinScreenshotName: { type: String, default: '' },
+    instagramScreenshotName: { type: String, default: '' }
+  },
+  linkedinScreenshotUrl: { type: String, default: '' },
+  instagramScreenshotUrl: { type: String, default: '' },
+  duration: { type: String, default: '1 Month' },
+  mode: { type: String, default: 'Remote' },
+  fee: { type: String, default: '₹0 (100% Free)' },
+  status: { type: String, default: 'submitted', index: true },
+  createdAt: { type: String, default: () => new Date().toISOString() },
+  joiningLetterGenerated: { type: Boolean, default: false },
+  joiningDate: { type: String, default: '' },
+  offerId: { type: String, default: '' },
+  offerGeneratedAt: { type: String, default: '' },
+  lastStatusUpdate: { type: String, default: '' },
+  rejectionReason: { type: String, default: '' },
+  reviewNotes: { type: String, default: '' },
+  adminRemarks: { type: String, default: '' }
+}, { timestamps: true });
+
+export const PrmaApplicationModel = mongoose.models.PrmaApplication || mongoose.model('PrmaApplication', PrmaApplicationSchema);
 
 // 9 Showcase Goodies (Zero Pricing • Coming Soon)
 const SHOWCASE_GOODIES = [
@@ -131,6 +199,10 @@ const SHOWCASE_GOODIES = [
 export function createPrmaRouter({ isDbConnected } = {}) {
   const router = express.Router();
 
+  // Allow robust 50MB body payloads for resumes and verification screenshots
+  router.use(express.json({ limit: '50mb' }));
+  router.use(express.urlencoded({ limit: '50mb', extended: true }));
+
   // In-memory data structures
   const applicationsStore = new Map();
   const domainsStore = new Map();
@@ -140,18 +212,57 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   const jobApplicationsStore = [];
   const pdfCacheStore = new Map(); // offerId/appId -> Buffer
 
-  // Helper: Persist applications
-  const persistApplications = () => {
+  // Helper: Resilient lookup by applicationId or offerId
+  const findApplication = (id) => {
+    if (!id) return null;
+    const direct = applicationsStore.get(id);
+    if (direct) return direct;
+    const lower = String(id).trim().toLowerCase();
+    for (const a of applicationsStore.values()) {
+      if ((a.applicationId && a.applicationId.toLowerCase() === lower) ||
+          (a.offerId && a.offerId.toLowerCase() === lower)) {
+        return a;
+      }
+    }
+    return null;
+  };
+
+  // Helper: Persist applications to disk JSON and MongoDB Atlas
+  const persistApplications = async (specificRecord = null) => {
     try {
       const arr = Array.from(applicationsStore.values());
       fs.writeFileSync(APPS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
     } catch (e) {
-      console.warn('[PRMA ROUTER] Error persisting applications:', e.message);
+      console.warn('[PRMA ROUTER] Error persisting applications to disk:', e.message);
+    }
+
+    if (mongoose.connection && mongoose.connection.readyState === 1) {
+      try {
+        if (specificRecord && specificRecord.applicationId) {
+          await PrmaApplicationModel.findOneAndUpdate(
+            { applicationId: specificRecord.applicationId },
+            specificRecord,
+            { upsert: true, new: true }
+          );
+        } else {
+          for (const app of applicationsStore.values()) {
+            if (app.applicationId) {
+              await PrmaApplicationModel.findOneAndUpdate(
+                { applicationId: app.applicationId },
+                app,
+                { upsert: true }
+              );
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('[PRMA ROUTER] MongoDB sync error:', err.message);
+      }
     }
   };
 
-  // Helper: Load applications
-  const loadApplications = () => {
+  // Helper: Load applications from disk JSON and MongoDB Atlas
+  const loadApplications = async () => {
     try {
       if (fs.existsSync(APPS_FILE)) {
         const raw = fs.readFileSync(APPS_FILE, 'utf-8');
@@ -162,11 +273,31 @@ export function createPrmaRouter({ isDbConnected } = {}) {
               applicationsStore.set(app.applicationId, app);
             }
           });
-          console.log(`[PRMA ROUTER] Loaded ${applicationsStore.size} persistent applications.`);
+          console.log(`[PRMA ROUTER] Loaded ${applicationsStore.size} persistent applications from disk.`);
         }
       }
     } catch (e) {
-      console.warn('[PRMA ROUTER] Could not load persisted applications:', e.message);
+      console.warn('[PRMA ROUTER] Could not load persisted applications from disk:', e.message);
+    }
+
+    if (mongoose.connection && mongoose.connection.readyState === 1) {
+      try {
+        const mongoApps = await PrmaApplicationModel.find({}).lean();
+        if (Array.isArray(mongoApps) && mongoApps.length > 0) {
+          mongoApps.forEach(app => {
+            if (app.applicationId) {
+              applicationsStore.set(app.applicationId, app);
+            }
+          });
+          console.log(`[PRMA ROUTER] Synced ${mongoApps.length} applications from MongoDB Atlas.`);
+          try {
+            const arr = Array.from(applicationsStore.values());
+            fs.writeFileSync(APPS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
+          } catch (e) {}
+        }
+      } catch (err) {
+        console.warn('[PRMA ROUTER] MongoDB load error:', err.message);
+      }
     }
   };
 
@@ -537,7 +668,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   /**
    * Submit Internship Application (100% Free • Strict Validation)
    */
-  router.post('/applications', (req, res) => {
+  router.post('/applications', async (req, res) => {
     try {
       const {
         student,
@@ -691,7 +822,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       };
 
       applicationsStore.set(appId, newApplication);
-      persistApplications();
+      await persistApplications(newApplication);
 
       // Return Confirmation Payload (Requirement 3)
       res.status(201).json({
@@ -781,13 +912,24 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   /**
    * Admin: List Applications with Search & Filters
    */
-  router.get('/admin/applications', (req, res) => {
+  router.get('/admin/applications', async (req, res) => {
     try {
+      if (applicationsStore.size === 0) {
+        await loadApplications();
+      }
+
       const { status, domain, college, university, search } = req.query;
       let list = Array.from(applicationsStore.values()).reverse();
 
       if (status && status !== 'all') {
-        list = list.filter(a => a.status === status);
+        const norm = status.toLowerCase();
+        if (norm === 'submitted' || norm === 'pending') {
+          list = list.filter(a => a.status === 'submitted' || a.status === 'pending');
+        } else if (norm === 'shortlisted' || norm === 'approved') {
+          list = list.filter(a => a.status === 'shortlisted' || a.status === 'approved');
+        } else {
+          list = list.filter(a => a.status === status);
+        }
       }
       if (domain && domain !== 'all') {
         list = list.filter(a => a.technical?.domainTitle === domain || a.technical?.domainId === domain);
@@ -825,16 +967,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
    */
   router.get('/admin/applications/:id', (req, res) => {
     const appId = req.params.id;
-    let found = applicationsStore.get(appId);
-
-    if (!found) {
-      for (const a of applicationsStore.values()) {
-        if (a.offerId === appId || a.applicationId.toLowerCase() === appId.toLowerCase()) {
-          found = a;
-          break;
-        }
-      }
-    }
+    const found = findApplication(appId);
 
     if (!found) {
       return res.status(404).json({ error: 'Application not found' });
@@ -848,7 +981,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
    */
   router.get('/admin/applications/:id/resume', (req, res) => {
     const appId = req.params.id;
-    const record = applicationsStore.get(appId);
+    const record = findApplication(appId);
 
     if (!record || !record.resume) {
       return res.status(404).send('Resume file not found');
@@ -870,7 +1003,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
    */
   router.get('/admin/applications/:id/screenshot/:platform', (req, res) => {
     const { id, platform } = req.params;
-    const record = applicationsStore.get(id);
+    const record = findApplication(id);
     if (!record) return res.status(404).send('Application not found');
 
     const screenshotData = platform === 'linkedin'
@@ -898,16 +1031,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   router.post('/admin/applications/:id/shortlist', async (req, res) => {
     try {
       const appId = req.params.id;
-      let record = applicationsStore.get(appId);
-
-      if (!record) {
-        for (const a of applicationsStore.values()) {
-          if (a.applicationId === appId || a.offerId === appId) {
-            record = a;
-            break;
-          }
-        }
-      }
+      let record = findApplication(appId);
 
       if (!record) {
         return res.status(404).json({ error: 'Application not found' });
@@ -1010,7 +1134,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       record.adminRemarks = req.body.adminRemarks || record.adminRemarks || 'Profile approved for 1-month virtual cohort.';
 
       applicationsStore.set(record.applicationId, record);
-      persistApplications();
+      await persistApplications(record);
 
       res.json({
         success: true,
@@ -1033,7 +1157,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   router.post('/admin/applications/:id/reject', async (req, res) => {
     try {
       const appId = req.params.id;
-      const record = applicationsStore.get(appId);
+      const record = findApplication(appId);
       if (!record) return res.status(404).json({ error: 'Application not found' });
 
       record.status = 'rejected';
@@ -1056,8 +1180,8 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         });
       }
 
-      applicationsStore.set(appId, record);
-      persistApplications();
+      applicationsStore.set(record.applicationId, record);
+      await persistApplications(record);
 
       res.json({ success: true, message: 'Application status updated to Rejected', application: record });
     } catch (err) {
@@ -1068,17 +1192,22 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   /**
    * Admin: Mark Under Review
    */
-  router.post('/admin/applications/:id/review', (req, res) => {
-    const appId = req.params.id;
-    const record = applicationsStore.get(appId);
-    if (!record) return res.status(404).json({ error: 'Application not found' });
+  router.post('/admin/applications/:id/review', async (req, res) => {
+    try {
+      const appId = req.params.id;
+      const record = findApplication(appId);
+      if (!record) return res.status(404).json({ error: 'Application not found' });
 
-    record.status = 'under_review';
-    record.adminRemarks = req.body.remarks || 'Currently undergoing screening.';
-    applicationsStore.set(appId, record);
-    persistApplications();
+      record.status = 'under_review';
+      record.reviewedAt = new Date().toISOString();
+      record.adminRemarks = req.body.remarks || 'Currently undergoing screening.';
+      applicationsStore.set(record.applicationId, record);
+      await persistApplications(record);
 
-    res.json({ success: true, application: record });
+      res.json({ success: true, application: record });
+    } catch (err) {
+      res.status(500).json({ error: 'Review update failed', details: err.message });
+    }
   });
 
   /**
@@ -1087,15 +1216,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   router.post('/admin/applications/:id/status', async (req, res) => {
     try {
       const appId = req.params.id;
-      let record = applicationsStore.get(appId);
-      if (!record) {
-        for (const a of applicationsStore.values()) {
-          if (a.applicationId === appId || a.offerId === appId) {
-            record = a;
-            break;
-          }
-        }
-      }
+      let record = findApplication(appId);
 
       if (!record) return res.status(404).json({ error: 'Application not found' });
 
@@ -1122,7 +1243,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       }
 
       applicationsStore.set(record.applicationId, record);
-      persistApplications();
+      await persistApplications(record);
 
       res.json({
         success: true,
@@ -1271,14 +1392,18 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   /**
    * Real Database-Driven Admin Statistics (Requirement 6.A)
    */
-  router.get('/admin/stats', (req, res) => {
+  router.get('/admin/stats', async (req, res) => {
     try {
+      if (applicationsStore.size === 0) {
+        await loadApplications();
+      }
+
       const apps = Array.from(applicationsStore.values());
 
       const totalApplications = apps.length;
-      const newApplications = apps.filter(a => a.status === 'submitted').length;
+      const newApplications = apps.filter(a => a.status === 'submitted' || a.status === 'pending').length;
       const underReview = apps.filter(a => a.status === 'under_review').length;
-      const shortlisted = apps.filter(a => a.status === 'shortlisted').length;
+      const shortlisted = apps.filter(a => a.status === 'shortlisted' || a.status === 'approved').length;
       const rejected = apps.filter(a => a.status === 'rejected').length;
 
       // Group by domain

@@ -97,7 +97,7 @@ export default function PrmaLandingPage({ navigateToTab, onNavigate }) {
       id: 'mug',
       name: 'Ceramic Coffee Mug',
       category: 'Drinkware',
-      image: '/assets/prma_goodies/prma_mug.png',
+      image: '/assets/prma_goodies/prma_mug_real.jpg',
       description: '350ml high-gloss ceramic coffee mug with dual-sided full-color PRMA Tech logo.'
     },
     {
@@ -335,9 +335,6 @@ export default function PrmaLandingPage({ navigateToTab, onNavigate }) {
                   height: '420px',
                   objectFit: 'cover',
                   display: 'block'
-                }}
-                onError={(e) => {
-                  e.target.src = '/assets/prma_portal_ref/WhatsApp Image 2026-11-10 at 10.37.44 AM.jpeg';
                 }}
               />
             </div>
@@ -1003,9 +1000,7 @@ export default function PrmaLandingPage({ navigateToTab, onNavigate }) {
                         maxWidth: '100%',
                         objectFit: 'contain'
                       }}
-                      onError={(e) => {
-                        e.target.src = '/assets/prma_portal_ref/WhatsApp Image 2026-11-10 at 10.37.44 AM (1).jpeg';
-                      }}
+                      loading="lazy"
                     />
                   </div>
 

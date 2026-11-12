@@ -223,8 +223,8 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
   };
 
   // Applications partitions
-  const newApps = applications.filter(a => a.status === 'submitted');
-  const shortlistedApps = applications.filter(a => a.status === 'shortlisted');
+  const newApps = applications.filter(a => a.status === 'submitted' || a.status === 'pending');
+  const shortlistedApps = applications.filter(a => a.status === 'shortlisted' || a.status === 'approved');
   const rejectedApps = applications.filter(a => a.status === 'rejected');
 
   // Trigger Shortlist Modal

@@ -420,7 +420,12 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
         body: JSON.stringify(payload)
       });
 
-      const data = await res.json();
+      let data = {};
+      try {
+        data = await res.json();
+      } catch (parseErr) {
+        data = { error: 'Server response error (status ' + res.status + ')' };
+      }
 
       if (res.ok && data.success) {
         setSubmissionResult({
@@ -428,23 +433,17 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
           studentName: formData.fullName,
           email: formData.email,
           domainTitle: activeDomain.title,
-          date: new Date().toLocaleDateString('en-GB')
+          date: data.submissionDate || new Date().toLocaleDateString('en-GB')
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         setFormError(data.error || 'Failed to submit application. Please check your details.');
+        window.scrollTo({ top: 350, behavior: 'smooth' });
       }
     } catch (err) {
-      console.warn('Network submit fallback:', err);
-      // Fallback local ID
-      setSubmissionResult({
-        applicationId: 'PRMA' + new Date().getFullYear() + Math.floor(100000 + Math.random() * 900000),
-        studentName: formData.fullName,
-        email: formData.email,
-        domainTitle: activeDomain.title,
-        date: new Date().toLocaleDateString('en-GB')
-      });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      console.error('Application submission error:', err);
+      setFormError('Submission failed: ' + (err.message || 'Server connection issue. Please try again.'));
+      window.scrollTo({ top: 350, behavior: 'smooth' });
     } finally {
       setIsSubmitting(false);
     }

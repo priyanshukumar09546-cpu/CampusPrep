@@ -108,7 +108,8 @@ app.use(cors({
 app.get('/health', (req, res) => res.status(200).json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() }));
 app.get('/api/health', (req, res) => res.status(200).json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() }));
 
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // --- HIGH CONCURRENCY & ABUSE PROTECTION (1,000 CONCURRENT USERS) ---
 // 1. Request Timeout Guard: Terminate hung sockets after 15s to free event loop
@@ -277,6 +278,12 @@ if (IS_VERCEL) {
 app.use('/videos', express.static(path.join(PROJECT_ROOT, 'public', 'videos')));
 if (fs.existsSync(path.join(PROJECT_ROOT, 'dist', 'videos'))) {
   app.use('/videos', express.static(path.join(PROJECT_ROOT, 'dist', 'videos')));
+}
+
+// SERVE STATIC PUBLIC & DIST ASSETS (GOODIES, LOGOS, ICONS)
+app.use('/assets', express.static(path.join(PROJECT_ROOT, 'public', 'assets')));
+if (fs.existsSync(path.join(PROJECT_ROOT, 'dist', 'assets'))) {
+  app.use('/assets', express.static(path.join(PROJECT_ROOT, 'dist', 'assets')));
 }
 
 // DEDICATED ROUTE: Serve generated resume PDFs with in-memory + filesystem + MongoDB + on-demand compilation
