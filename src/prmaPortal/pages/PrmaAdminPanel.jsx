@@ -395,6 +395,19 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
 
   useEffect(() => {
     loadAllData();
+    const interval = setInterval(() => {
+      loadAllData();
+    }, 25000);
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        loadAllData();
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    };
   }, []);
 
   // Filter applications
@@ -2680,6 +2693,10 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                     <span className="font-bold text-slate-900">{selectedApp.student?.mobile}</span>
                   </div>
                   <div>
+                    <span className="text-slate-400 block font-medium">WhatsApp Number</span>
+                    <span className="font-bold text-slate-900">{selectedApp.student?.whatsapp || selectedApp.student?.mobile || 'N/A'}</span>
+                  </div>
+                  <div>
                     <span className="text-slate-400 block font-medium">Gender</span>
                     <span className="font-bold text-slate-900">{selectedApp.student?.gender || 'N/A'}</span>
                   </div>
@@ -2738,6 +2755,17 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                     <span className="font-black text-slate-900 text-sm">
                       {selectedApp.technical?.domainTitle || selectedApp.domain?.title}
                     </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 py-2 border-y border-slate-200">
+                    <div>
+                      <span className="text-slate-400 block font-medium">Requested Duration</span>
+                      <span className="font-bold text-slate-900">{selectedApp.duration || '1 Month'}</span>
+                    </div>
+                    <div>
+                      <span className="text-slate-400 block font-medium">Preferred Start Date</span>
+                      <span className="font-bold text-slate-900">{selectedApp.preferredStartDate || 'Immediate'}</span>
+                    </div>
                   </div>
 
                   {selectedApp.technical?.skills && (

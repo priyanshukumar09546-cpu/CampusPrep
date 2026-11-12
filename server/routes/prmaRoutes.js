@@ -77,6 +77,7 @@ const PrmaApplicationSchema = new mongoose.Schema({
     dob: { type: String, required: true },
     email: { type: String, required: true, index: true },
     mobile: { type: String, required: true },
+    whatsapp: { type: String, default: '' },
     gender: { type: String, default: 'Not Specified' },
     address: { type: String, default: '' },
     city: { type: String, default: '' },
@@ -120,6 +121,7 @@ const PrmaApplicationSchema = new mongoose.Schema({
   linkedinScreenshotUrl: { type: String, default: '' },
   instagramScreenshotUrl: { type: String, default: '' },
   duration: { type: String, default: '1 Month' },
+  preferredStartDate: { type: String, default: 'Immediate' },
   mode: { type: String, default: 'Remote' },
   fee: { type: String, default: '₹0 (100% Free)' },
   status: { type: String, default: 'submitted', index: true },
@@ -219,11 +221,26 @@ export async function ensureMongoConnected() {
   if (mongoose.connection && mongoose.connection.readyState === 1) {
     return true;
   }
-  if (mongoose.connection && mongoose.connection.readyState === 2 && mongoConnectPromise) {
+  if (mongoose.connection && mongoose.connection.readyState === 2) {
+    if (mongoConnectPromise) {
+      try {
+        await mongoConnectPromise;
+      } catch (e) {}
+    } else {
+      for (let i = 0; i < 25; i++) {
+        if (mongoose.connection && mongoose.connection.readyState === 1) return true;
+        if (mongoose.connection && (mongoose.connection.readyState === 0 || mongoose.connection.readyState === 3)) break;
+        await new Promise(r => setTimeout(r, 200));
+      }
+    }
+    return mongoose.connection && mongoose.connection.readyState === 1;
+  }
+
+  if (mongoConnectPromise) {
     try {
       await mongoConnectPromise;
     } catch (e) {}
-    return mongoose.connection.readyState === 1;
+    return mongoose.connection && mongoose.connection.readyState === 1;
   }
 
   const primaryUri = process.env.MONGODB_URI;
@@ -231,9 +248,9 @@ export async function ensureMongoConnected() {
     if (primaryUri) {
       try {
         await mongoose.connect(primaryUri, {
-          serverSelectionTimeoutMS: 5000,
+          serverSelectionTimeoutMS: 6000,
           socketTimeoutMS: 45000,
-          connectTimeoutMS: 5000,
+          connectTimeoutMS: 6000,
           family: 4
         });
         console.log('[PRMA ROUTER] Connected to MongoDB Atlas via primary URI.');
@@ -245,9 +262,9 @@ export async function ensureMongoConnected() {
 
     try {
       await mongoose.connect(DIRECT_ATLAS_URI, {
-        serverSelectionTimeoutMS: 6000,
+        serverSelectionTimeoutMS: 8000,
         socketTimeoutMS: 45000,
-        connectTimeoutMS: 6000,
+        connectTimeoutMS: 8000,
         family: 4
       });
       console.log('[PRMA ROUTER] Connected to MongoDB Atlas via direct replica set.');
@@ -419,7 +436,11 @@ export function createPrmaRouter({ isDbConnected } = {}) {
 
   // Helper: Persist applications to MongoDB Atlas (authoritative) and disk JSON fallback
   const persistApplications = async (specificRecord = null) => {
-    await ensureMongoConnected();
+    let connected = await ensureMongoConnected();
+    if (!connected && (!mongoose.connection || mongoose.connection.readyState !== 1)) {
+      await new Promise(r => setTimeout(r, 600));
+      connected = await ensureMongoConnected();
+    }
 
     if (mongoose.connection && mongoose.connection.readyState === 1) {
       try {
@@ -447,7 +468,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       }
     } else {
       console.error('[PRMA ROUTER] Cannot persist application: MongoDB is not connected!');
-      throw new Error('Database connection unavailable for persistent storage.');
+      throw new Error('Database connection unavailable for persistent storage. Please check connection and try again.');
     }
 
     try {
@@ -1233,10 +1254,10 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         });
       }
 
-      // Generate Unique Application ID: PRMA + Year + 6 digits
+      // Generate Unique Application ID: PRMA-YYYY-XXXXXX
       const year = new Date().getFullYear();
       const rand = Math.floor(100000 + Math.random() * 900000);
-      const appId = `PRMA${year}${rand}`;
+      const appId = `PRMA-${year}-${rand}`;
 
       const newApplication = {
         applicationId: appId,
@@ -1245,6 +1266,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
           dob: student.dob,
           email: student.email.trim().toLowerCase(),
           mobile: student.mobile.trim(),
+          whatsapp: (student.whatsapp || student.mobile || '').trim(),
           gender: student.gender || 'Not Specified',
           address: (student.address || '').trim(),
           city: (student.city || '').trim(),
@@ -1285,9 +1307,10 @@ export function createPrmaRouter({ isDbConnected } = {}) {
           linkedinScreenshotName: socialFollow?.linkedinScreenshot?.fileName || 'linkedin_follow_proof.png',
           instagramScreenshotName: socialFollow?.instagramScreenshot?.fileName || 'instagram_follow_proof.png'
         },
-        linkedinScreenshotUrl: linkedinScreen,
-        instagramScreenshotUrl: instagramScreen,
-        duration: '1 Month',
+        linkedinScreenshotUrl: `/api/prma/admin/applications/${appId}/screenshot/linkedin`,
+        instagramScreenshotUrl: `/api/prma/admin/applications/${appId}/screenshot/instagram`,
+        duration: req.body.duration || req.body.internship?.duration || '1 Month',
+        preferredStartDate: req.body.preferredStartDate || req.body.internship?.preferredStartDate || 'Immediate',
         mode: 'Remote',
         fee: '₹0 (100% Free)',
         status: 'submitted',

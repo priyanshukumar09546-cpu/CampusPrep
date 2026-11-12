@@ -26,7 +26,8 @@ import {
   RefreshCw,
   Home,
   Upload,
-  Image as ImageIcon
+  Image as ImageIcon,
+  MessageCircle
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
@@ -60,6 +61,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     dob: '',
     email: '',
     mobile: '',
+    whatsapp: '',
     gender: 'Male',
     address: '',
     city: '',
@@ -75,11 +77,13 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     semester: '5th',
     graduationYear: '2026',
 
-    // Section C: Technical
+    // Section C: Technical & Internship Preferences
     skills: '',
     languages: '',
     experience: '',
     experienceLevel: 'Beginner',
+    duration: '1 Month',
+    preferredStartDate: 'Immediate',
 
     // Section D: Profiles
     githubUrl: '',
@@ -217,7 +221,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
         img.onload = () => {
           let width = img.width;
           let height = img.height;
-          const maxDim = 1200;
+          const maxDim = 900;
           if (width > maxDim || height > maxDim) {
             if (width > height) {
               height = Math.round((height * maxDim) / width);
@@ -232,7 +236,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
           canvas.height = height;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, width, height);
-          const compressed = canvas.toDataURL('image/jpeg', 0.82);
+          const compressed = canvas.toDataURL('image/jpeg', 0.75);
           resolve(compressed);
         };
         img.src = e.target.result;
@@ -405,6 +409,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
         dob: formData.dob,
         email: formData.email.trim().toLowerCase(),
         mobile: formData.mobile.trim(),
+        whatsapp: (formData.whatsapp || formData.mobile || '').trim(),
         gender: formData.gender,
         address: formData.address.trim(),
         city: formData.city.trim(),
@@ -428,6 +433,8 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
         experience: formData.experience.trim(),
         experienceLevel: formData.experienceLevel
       },
+      duration: formData.duration || '1 Month',
+      preferredStartDate: formData.preferredStartDate || 'Immediate',
       profiles: {
         githubUrl: formData.githubUrl.trim(),
         linkedinUrl: formData.linkedinUrl.trim()
@@ -496,7 +503,8 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
         window.scrollTo({ top: 320, behavior: 'smooth' });
       } else {
         setDuplicateNotice(null);
-        setFormError(data.error || 'Failed to submit application. Please check your details.');
+        const errMsg = data.details ? `${data.error}: ${data.details}` : (data.error || 'Failed to submit application. Please check your details.');
+        setFormError(errMsg);
         window.scrollTo({ top: 350, behavior: 'smooth' });
       }
     } catch (err) {
@@ -560,6 +568,27 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                   Submitted — Under Review
                 </span>
               </div>
+            </div>
+
+            {/* WHATSAPP COMMUNITY CARD — CONFIRMATION SCREEN */}
+            <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-green-50 border-2 border-emerald-400/60 rounded-2xl p-6 text-left max-w-lg mx-auto mb-6 shadow-sm">
+              <div className="flex items-center gap-2 text-emerald-800 font-extrabold text-xs uppercase tracking-wider mb-1.5">
+                <MessageCircle className="w-4 h-4 text-emerald-600" />
+                <span>JOIN THE PRMA TECH INTERNSHIP COMMUNITY</span>
+              </div>
+              <p className="text-xs text-slate-700 leading-relaxed mb-4">
+                Official community group for updates, doubt clearing, batch announcements, and peer networking. Stay connected with mentors and your cohort peers!
+              </p>
+              <a
+                href="https://chat.whatsapp.com/B8zkpc5tc2TKni9jcWsiba"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs flex items-center justify-center gap-2 transition shadow-md shadow-emerald-600/30"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>JOIN WHATSAPP COMMUNITY</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
 
             <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 max-w-lg mx-auto text-xs text-blue-900 mb-8 leading-relaxed">
@@ -803,6 +832,20 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                     placeholder="+91 98765 43210"
                     value={formData.mobile}
                     onChange={(e) => handleChange('mobile', e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                    <span>WhatsApp Number</span>
+                    <span className="text-[10px] text-slate-400 font-normal">Optional (if same as mobile)</span>
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="Same as mobile or +91 98765 43210"
+                    value={formData.whatsapp}
+                    onChange={(e) => handleChange('whatsapp', e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
@@ -1184,6 +1227,40 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                     className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-100">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      Internship Duration *
+                    </label>
+                    <select
+                      value={formData.duration}
+                      onChange={(e) => handleChange('duration', e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold"
+                    >
+                      <option value="1 Month">1 Month (4 Weeks) — Standard Track</option>
+                      <option value="2 Months">2 Months (8 Weeks) — Comprehensive Track</option>
+                      <option value="6 Weeks">6 Weeks (1.5 Months) — Semester Track</option>
+                      <option value="2 Weeks">2 Weeks (15 Days) — Fast Track</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      Preferred Start Date *
+                    </label>
+                    <select
+                      value={formData.preferredStartDate}
+                      onChange={(e) => handleChange('preferredStartDate', e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold"
+                    >
+                      <option value="Immediate">Immediate (Next Upcoming Batch)</option>
+                      <option value="15th of Current Month">15th of Current Month</option>
+                      <option value="1st of Next Month">1st of Next Month</option>
+                      <option value="Flexible / As Scheduled">Flexible / As Scheduled</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -1537,6 +1614,32 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* WHATSAPP COMMUNITY INVITATION CARD (APPLICATION FORM) */}
+            <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-green-50 rounded-3xl border-2 border-emerald-400/60 p-6 sm:p-8 shadow-sm">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+                <div className="space-y-1.5 max-w-xl">
+                  <div className="flex items-center gap-2 text-emerald-800 font-extrabold text-sm uppercase tracking-wider">
+                    <MessageCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                    <span>JOIN THE PRMA TECH INTERNSHIP COMMUNITY</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    This is our official group for cohort updates, doubt clearing, weekly task guidance, batch announcements, and peer networking. Joining is recommended for all applicants!
+                  </p>
+                </div>
+
+                <a
+                  href="https://chat.whatsapp.com/B8zkpc5tc2TKni9jcWsiba"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 shadow-md shadow-emerald-600/30 transition transform hover:-translate-y-0.5 flex-shrink-0"
+                >
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>JOIN WHATSAPP COMMUNITY</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
 

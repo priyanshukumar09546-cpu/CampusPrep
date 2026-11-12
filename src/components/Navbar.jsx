@@ -28,7 +28,8 @@ import {
   Home as HomeIcon,
   HelpCircle,
   ShieldCheck,
-  Rocket
+  Rocket,
+  SlidersHorizontal
 } from 'lucide-react';
 import { searchLocalIndex } from '../data/searchIndex';
 import { openInstallModal } from '../utils/pwaManager';
@@ -36,7 +37,6 @@ import { openInstallModal } from '../utils/pwaManager';
 export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, isHome = false }) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [moreDropdownOpen, setMoreDropdownOpen] = useState(false);
   const [notesDropdownOpen, setNotesDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -44,7 +44,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
   const [selectedSearchIdx, setSelectedSearchIdx] = useState(-1);
 
   const userMenuRef = useRef(null);
-  const moreMenuRef = useRef(null);
   const notesMenuRef = useRef(null);
   const searchRef = useRef(null);
   const searchTimerRef = useRef(null);
@@ -108,9 +107,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
       if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
         setUserMenuOpen(false);
       }
-      if (moreMenuRef.current && !moreMenuRef.current.contains(e.target)) {
-        setMoreDropdownOpen(false);
-      }
       if (notesMenuRef.current && !notesMenuRef.current.contains(e.target)) {
         setNotesDropdownOpen(false);
       }
@@ -119,7 +115,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setUserMenuOpen(false);
-        setMoreDropdownOpen(false);
         setNotesDropdownOpen(false);
         setSearchFocused(false);
       }
@@ -136,7 +131,6 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
   const handleNavigate = (tabId) => {
     if (setActiveTab) setActiveTab(tabId);
     setUserMenuOpen(false);
-    setMoreDropdownOpen(false);
     setNotesDropdownOpen(false);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -559,102 +553,30 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
               Result & CGPA
             </button>
 
-            {/* More Menu Dropdown */}
-            <div style={{ position: 'relative' }} ref={moreMenuRef}>
-              <button
-                type="button"
-                onClick={() => setMoreDropdownOpen(prev => !prev)}
-                className="pv-nav-pill-btn"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.2rem',
-                  padding: '0.42rem 0.75rem',
-                  borderRadius: '999px',
-                  border: 'none',
-                  backgroundColor: moreDropdownOpen ? '#F1F5F9' : 'transparent',
-                  color: '#334155',
-                  fontSize: '0.84rem',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                <span>More</span>
-                <ChevronDown size={13} />
-              </button>
-
-              {moreDropdownOpen && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: 'calc(100% + 8px)',
-                    right: 0,
-                    width: '240px',
-                    backgroundColor: '#FFFFFF',
-                    border: '1.5px solid #E2E8F0',
-                    borderRadius: '16px',
-                    boxShadow: '0 16px 36px rgba(0,0,0,0.08)',
-                    padding: '0.5rem',
-                    zIndex: 1000
-                  }}
-                >
-                  {[
-                    { label: 'PRMA Tech Internships', id: 'prma-home', icon: Rocket, badge: 'New' },
-                    { label: 'Attendance Calculator', id: 'attendance-calculator', icon: Calendar },
-                    { label: 'PDF Maker & Tools', id: 'pdf-maker', icon: FileText },
-                    { label: 'Timetable Planner', id: 'timetable', icon: Clock },
-                    { label: 'Competitive Exams', id: 'competitive-exams', icon: Award },
-                    { label: 'Scholarships Directory', id: 'scholarships', icon: GraduationCap },
-                    { label: 'Important Portals', id: 'important-links', icon: Link2 },
-                    { label: 'Install App (PWA)', id: 'install-pwa', action: () => openInstallModal('navbar_more'), icon: Download }
-                  ].map((item, idx) => {
-                    const Icon = item.icon;
-                    return (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => {
-                          if (item.action) {
-                            item.action();
-                            setMoreDropdownOpen(false);
-                          } else {
-                            handleNavigate(item.id);
-                          }
-                        }}
-                        style={{
-                          width: '100%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          padding: '0.65rem 0.85rem',
-                          borderRadius: '10px',
-                          border: 'none',
-                          backgroundColor: 'transparent',
-                          color: '#0F172A',
-                          fontSize: '0.84rem',
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          textAlign: 'left',
-                          transition: 'background 0.12s'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F8FAFC'}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                          <Icon size={16} color="#881337" />
-                          <span>{item.label}</span>
-                        </div>
-                        {item.badge && (
-                          <span style={{ fontSize: '0.65rem', fontWeight: 800, backgroundColor: '#EFF6FF', color: '#1D4ED8', padding: '0.1rem 0.4rem', borderRadius: '999px' }}>
-                            {item.badge}
-                          </span>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
+            {/* More Page (Direct Navigation, No Dropdown) */}
+            <button
+              type="button"
+              onClick={() => handleNavigate('more')}
+              className="pv-nav-pill-btn"
+              style={{
+                padding: activeTab === 'more' ? '0.42rem 0.95rem' : '0.42rem 0.75rem',
+                borderRadius: '999px',
+                border: 'none',
+                backgroundColor: activeTab === 'more' ? '#881337' : 'transparent',
+                color: activeTab === 'more' ? '#FFFFFF' : '#334155',
+                fontSize: '0.84rem',
+                fontWeight: activeTab === 'more' ? 800 : 600,
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== 'more') e.currentTarget.style.color = '#881337';
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'more') e.currentTarget.style.color = '#334155';
+              }}
+            >
+              More
+            </button>
           </nav>
 
           {/* ===================================================================
@@ -893,7 +815,8 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
               { name: 'ATS Resume Maker', id: 'resume-maker', icon: FileText },
               { name: 'Interview Pro AI', id: 'interview-pro', icon: Briefcase },
               { name: 'Result & CGPA', id: 'result-cgpa', icon: BarChart2 },
-              { name: 'PRMA Tech Internships', id: 'prma-home', icon: Rocket }
+              { name: 'PRMA Tech Internships', id: 'prma-home', icon: Rocket },
+              { name: 'More AI Tools & Utilities', id: 'more', icon: SlidersHorizontal }
             ].map((link, i) => {
               const Icon = link.icon;
               return (

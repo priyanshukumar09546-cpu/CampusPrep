@@ -1294,9 +1294,15 @@ pre, code {
     display: none !important;
   }
 
-  /* Home Page is fully responsive across all viewports */
-  .pv-desktop-home-view,
-  .pv-home-page-container {
+  /* Home Page: Mobile View on < 1024px, Desktop View hidden */
+  .pv-desktop-home-view {
+    display: none !important;
+  }
+  .pv-mobile-home-view {
+    display: block !important;
+    width: 100% !important;
+  }
+  .pv-more-page-container {
     display: block !important;
     width: 100% !important;
   }

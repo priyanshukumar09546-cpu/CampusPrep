@@ -11,6 +11,7 @@ import RealStatsSection from '../components/RealStatsSection';
 import PopularSubjectsSection from '../components/PopularSubjectsSection';
 import PromotionSection from '../components/PromotionSection';
 import FinalCtaSection from '../components/FinalCtaSection';
+import MobileHomepageView from '../components/MobileHomepageView';
 
 export default function Home({
   onSearch,
@@ -23,8 +24,24 @@ export default function Home({
   onOpenSubject
 }) {
   return (
-    <div className="pv-home-page-container w-full relative overflow-x-hidden" style={{ backgroundColor: 'transparent' }}>
-      {/* 1. Hero Section (ProfessorVirus Brand + PRMA Tech Building & Cat Mascot + Centered Search & Quick Access) */}
+    <>
+      {/* 1. MOBILE-ONLY HOMEPAGE VIEW (< 1024px) */}
+      <div className="pv-mobile-home-view">
+        <MobileHomepageView
+          onSearch={onSearch}
+          onSelectBranch={onSelectBranch}
+          onFeatureClick={onFeatureClick}
+          onSelectCourse={onSelectCourse}
+          onSelectYear={onSelectYear}
+          onOpenAI={onOpenAI}
+          onNavigate={onNavigate}
+          onOpenSubject={onOpenSubject}
+        />
+      </div>
+
+      {/* 2. DESKTOP-ONLY HOMEPAGE VIEW (>= 1024px) */}
+      <div className="pv-desktop-home-view pv-home-page-container w-full relative overflow-x-hidden" style={{ backgroundColor: 'transparent' }}>
+        {/* 1. Hero Section (ProfessorVirus Brand + PRMA Tech Building & Cat Mascot + Centered Search & Quick Access) */}
       <HeroSection
         onSearch={onSearch}
         onSelectBranch={onSelectBranch}
@@ -105,6 +122,7 @@ export default function Home({
           onNavigate={onNavigate}
         />
       </div>
-    </div>
+      </div>
+    </>
   );
 }

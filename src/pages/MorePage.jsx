@@ -29,8 +29,6 @@ import {
   SlidersHorizontal
 } from 'lucide-react';
 import { updateSEOForRoute } from '../utils/seoManager';
-import MobileHeader from '../components/MobileHeader';
-import MobileHomeScreen from '../components/MobileHomeScreen';
 
 export default function MorePage({ onNavigate }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -577,60 +575,15 @@ export default function MorePage({ onNavigate }) {
   const isSearching = searchQuery.trim().length > 0 || activeCategory !== 'All';
 
   return (
-    <>
-      {/* 1. MOBILE-ONLY VIEW (< 1024px): Single-Screen Academic Dashboard matching Reference Mockup */}
-      <div 
-        className="pv-mobile-more-view"
-        style={{
-          width: '100%',
-          maxWidth: '100%',
-          minWidth: 0,
-          boxSizing: 'border-box',
-          overflowX: 'clip'
-        }}
-      >
-        <MobileHeader
-          activeTab="more"
-          onNavigate={(tab) => {
-            if (onNavigate) onNavigate(tab);
-          }}
-          onOpenUpdates={() => {
-            const modal = document.querySelector('[data-student-updates-modal]');
-            if (modal) modal.style.display = 'block';
-            else if (onNavigate) onNavigate('interview-pro');
-          }}
-          onOpenSearch={() => {
-            const searchInput = document.querySelector('.pv-mobile-search-input');
-            if (searchInput) searchInput.focus();
-          }}
-        />
-        <MobileHomeScreen
-          onNavigate={(tab) => {
-            if (onNavigate) onNavigate(tab);
-          }}
-          onSearch={(q) => {
-            setSearchQuery(q);
-          }}
-          onOpenSubject={(sub) => {
-            if (onNavigate) onNavigate('subject', sub);
-          }}
-          onOpenAI={() => {
-            const modal = document.querySelector('[data-ai-modal]');
-            if (modal) modal.style.display = 'block';
-          }}
-        />
-      </div>
-
-      {/* 2. DESKTOP-ONLY VIEW (>= 1024px): Full More Resources & Tools Page */}
-      <div
-        className="pv-desktop-more-view"
-        style={{
-          backgroundColor: 'transparent',
-          minHeight: '100vh',
-          color: '#1C1E21',
-          fontFamily: "'Plus Jakarta Sans', sans-serif"
-        }}
-      >
+    <div
+      className="pv-more-page-container w-full min-h-screen"
+      style={{
+        backgroundColor: 'transparent',
+        minHeight: '100vh',
+        color: '#1C1E21',
+        fontFamily: "'Plus Jakarta Sans', sans-serif"
+      }}
+    >
       {/* ========================================================================= */}
       {/* 1. BREADCRUMB & HUB NAVIGATION HEADER                                     */}
       {/* ========================================================================= */}
@@ -952,7 +905,7 @@ export default function MorePage({ onNavigate }) {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
                   gap: '1.15rem'
                 }}
               >
@@ -984,7 +937,7 @@ export default function MorePage({ onNavigate }) {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(460px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 460px), 1fr))',
                   gap: '1.15rem'
                 }}
                 className="pv-popular-grid"
@@ -1010,7 +963,7 @@ export default function MorePage({ onNavigate }) {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
                   gap: '1.15rem'
                 }}
               >
@@ -1035,7 +988,7 @@ export default function MorePage({ onNavigate }) {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
                   gap: '1.15rem'
                 }}
               >
@@ -1060,7 +1013,7 @@ export default function MorePage({ onNavigate }) {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
                   gap: '1.15rem'
                 }}
               >
@@ -1085,7 +1038,7 @@ export default function MorePage({ onNavigate }) {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))',
                   gap: '1.15rem'
                 }}
               >
@@ -1188,7 +1141,7 @@ export default function MorePage({ onNavigate }) {
                 <div
                   style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))',
                     gap: '1rem'
                   }}
                 >
@@ -1342,9 +1295,8 @@ export default function MorePage({ onNavigate }) {
         }
       `}</style>
       </div>
-    </>
-  );
-}
+    );
+  }
 
 // ---------------------------------------------------------------------------
 // SUB-COMPONENTS
