@@ -91,6 +91,22 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
   const [reviewFormScore, setReviewFormScore] = useState(85);
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
+  // Submissions Quick Filter Tab (Requirement 8)
+  const [submissionTabFilter, setSubmissionTabFilter] = useState('all');
+
+  // Document & Email Management States (Requirement 7)
+  const [isResendingEmail, setIsResendingEmail] = useState(false);
+  const [isRegeneratingLetter, setIsRegeneratingLetter] = useState(false);
+  const [isRegeneratingProblemStatement, setIsRegeneratingProblemStatement] = useState(false);
+
+  // Google Form Webhook & Apps Script Integration Modal (Requirement 4 & 7)
+  const [showGformConfigModal, setShowGformConfigModal] = useState(false);
+  const [gformConfig, setGformConfig] = useState(null);
+  const [gformWebhookUrl, setGformWebhookUrl] = useState('');
+  const [gformScriptCode, setGformScriptCode] = useState('');
+  const [gformBaseUrlInput, setGformBaseUrlInput] = useState('');
+  const [gformSaving, setGformSaving] = useState(false);
+
   // Template Management States
   const [templatesData, setTemplatesData] = useState(null);
   const [templatesLoading, setTemplatesLoading] = useState(false);
@@ -306,6 +322,35 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
     }
   };
 
+  const handleSubmissionTabChange = (tab) => {
+    setSubmissionTabFilter(tab);
+    if (tab === 'all') {
+      setSubWeekFilter('all');
+      setSubReviewStatusFilter('all');
+    } else if (tab === 'week-1') {
+      setSubWeekFilter('1');
+      setSubReviewStatusFilter('all');
+    } else if (tab === 'week-2') {
+      setSubWeekFilter('2');
+      setSubReviewStatusFilter('all');
+    } else if (tab === 'week-3') {
+      setSubWeekFilter('3');
+      setSubReviewStatusFilter('all');
+    } else if (tab === 'week-4') {
+      setSubWeekFilter('4');
+      setSubReviewStatusFilter('all');
+    } else if (tab === 'pending') {
+      setSubWeekFilter('all');
+      setSubReviewStatusFilter('pending');
+    } else if (tab === 'approved') {
+      setSubWeekFilter('all');
+      setSubReviewStatusFilter('approved');
+    } else if (tab === 'revision') {
+      setSubWeekFilter('all');
+      setSubReviewStatusFilter('revision_required');
+    }
+  };
+
   const getFilteredSubmissions = () => {
     const list = submissionsData?.submissions || [];
     return list.filter(sub => {
@@ -336,7 +381,12 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
 
       let matchesReview = true;
       if (subReviewStatusFilter !== 'all') {
-        matchesReview = (sub.tasks || []).some(t => t.reviewStatus === subReviewStatusFilter);
+        matchesReview = (sub.tasks || []).some(t => {
+          if (subReviewStatusFilter === 'pending') {
+            return t.status === 'submitted' && (!t.reviewStatus || t.reviewStatus === 'pending');
+          }
+          return t.reviewStatus === subReviewStatusFilter || t.status === subReviewStatusFilter;
+        });
       }
 
       return matchesSearch && matchesDomain && matchesWeek && matchesReview;
@@ -459,21 +509,131 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
     }
   };
 
-  // Resend Shortlist Email
-  const handleResendEmail = async (app) => {
-    if (!window.confirm(`Resend official joining letter email to ${app.student?.email}?`)) return;
+  // Resend Shortlist / Approval Email (Requirement 7)
+  const handleResendJoiningEmail = async (app) => {
+    const targetApp = app || selectedApp;
+    if (!targetApp) return;
+    setIsResendingEmail(true);
     try {
-      const res = await fetch(`/api/prma/admin/applications/${app.applicationId}/shortlist`, {
+      const res = await fetch(`/api/prma/admin/applications/${encodeURIComponent(targetApp.applicationId)}/resend-email`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ forceResend: true, joiningDate: app.joiningDate })
+        headers: { 'Content-Type': 'application/json' }
       });
-      if (res.ok) {
-        showToast(`Joining letter email re-dispatched to ${app.student?.email}.`);
-        loadAllData();
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showToast(`✓ Corporate onboarding email re-dispatched to ${targetApp.student?.email || 'student'} with joining PDFs!`);
+        if (data.application) {
+          setSelectedApp(data.application);
+        }
+        await loadAllData();
+      } else {
+        alert(data.error || data.message || 'Failed to resend approval email.');
       }
     } catch (e) {
       alert('Error resending email: ' + e.message);
+    } finally {
+      setIsResendingEmail(false);
+    }
+  };
+
+  const handleResendEmail = handleResendJoiningEmail;
+
+  // Regenerate Official Joining Letter PDF (Requirement 7)
+  const handleRegenerateLetter = async (app) => {
+    const targetApp = app || selectedApp;
+    if (!targetApp) return;
+    setIsRegeneratingLetter(true);
+    try {
+      const res = await fetch(`/api/prma/admin/applications/${encodeURIComponent(targetApp.applicationId)}/regenerate-letter`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showToast(`✓ Official Joining Letter regenerated with scannable QR verification (${Math.round((data.bytes || 0) / 1024)} KB)!`);
+        if (selectedApp && selectedApp.applicationId === targetApp.applicationId) {
+          setSelectedApp(prev => prev ? { ...prev, joiningLetterPdfRef: data.downloadUrl } : null);
+        }
+        await loadAllData();
+      } else {
+        alert(data.error || 'Failed to regenerate letter.');
+      }
+    } catch (err) {
+      alert('Error regenerating letter: ' + err.message);
+    } finally {
+      setIsRegeneratingLetter(false);
+    }
+  };
+
+  // Regenerate 10-Page Problem Statement PDF (Requirement 7)
+  const handleRegenerateProblemStatement = async (app) => {
+    const targetApp = app || selectedApp;
+    if (!targetApp) return;
+    setIsRegeneratingProblemStatement(true);
+    try {
+      const res = await fetch(`/api/prma/admin/applications/${encodeURIComponent(targetApp.applicationId)}/regenerate-problem-statement`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showToast(`✓ 10-Page Problem Statement PDF regenerated with 4-week task milestones (${Math.round((data.bytes || 0) / 1024)} KB)!`);
+        if (selectedApp && selectedApp.applicationId === targetApp.applicationId) {
+          setSelectedApp(prev => prev ? { ...prev, problemStatementPdfRef: data.downloadUrl } : null);
+        }
+        await loadAllData();
+      } else {
+        alert(data.error || 'Failed to regenerate problem statement.');
+      }
+    } catch (err) {
+      alert('Error regenerating problem statement: ' + err.message);
+    } finally {
+      setIsRegeneratingProblemStatement(false);
+    }
+  };
+
+  // Google Form & Apps Script Modal Controls (Requirement 4 & 7)
+  const openGoogleFormModal = async () => {
+    setShowGformConfigModal(true);
+    try {
+      const res = await fetch('/api/prma/admin/google-form-config');
+      if (res.ok) {
+        const data = await res.json();
+        setGformConfig(data.config);
+        setGformWebhookUrl(data.webhookUrl);
+        setGformScriptCode(data.appsScriptCode);
+        if (data.config?.baseUrl) {
+          setGformBaseUrlInput(data.config.baseUrl);
+        }
+      }
+    } catch (err) {
+      console.warn('Failed to load Google Form configuration:', err);
+    }
+  };
+
+  const handleSaveGformConfig = async () => {
+    if (!gformBaseUrlInput.trim()) {
+      alert('Please enter a valid Google Form Base URL.');
+      return;
+    }
+    setGformSaving(true);
+    try {
+      const res = await fetch('/api/prma/admin/google-form-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ baseUrl: gformBaseUrlInput.trim() })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        showToast('✓ Google Form Base URL updated successfully!');
+        setGformConfig(data.config);
+      } else {
+        alert(data.error || 'Failed to update Google Form settings.');
+      }
+    } catch (err) {
+      alert('Error saving Google Form configuration: ' + err.message);
+    } finally {
+      setGformSaving(false);
     }
   };
 
@@ -860,7 +1020,15 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 self-start sm:self-auto">
+                  <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+                    <button
+                      type="button"
+                      onClick={openGoogleFormModal}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs transition shadow-xs"
+                    >
+                      <Sparkles className="w-3.5 h-3.5" />
+                      Google Form &amp; Apps Script Setup
+                    </button>
                     <button
                       type="button"
                       onClick={loadSubmissionsData}
@@ -979,6 +1147,46 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                       </span>
                       <span className="text-[10px] text-slate-500 font-medium">Final Capstone Ready</span>
                     </div>
+                  </div>
+                </div>
+
+                {/* 8 Filter Tabs for Submissions (Requirement 8) */}
+                <div className="pt-4 border-t border-slate-100">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                      Filter Submissions by Milestone &amp; Status
+                    </span>
+                    <span className="text-[11px] font-bold text-slate-500">
+                      Showing {getFilteredSubmissions().length} Records
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {[
+                      { id: 'all', label: 'All Submissions' },
+                      { id: 'week-1', label: 'Week 1 Submissions' },
+                      { id: 'week-2', label: 'Week 2 Submissions' },
+                      { id: 'week-3', label: 'Week 3 Submissions' },
+                      { id: 'week-4', label: 'Week 4 Submissions' },
+                      { id: 'pending', label: 'Pending Review' },
+                      { id: 'approved', label: 'Approved' },
+                      { id: 'revision', label: 'Revision Required' }
+                    ].map((tab) => {
+                      const isActive = submissionTabFilter === tab.id;
+                      return (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          onClick={() => handleSubmissionTabChange(tab.id)}
+                          className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
+                            isActive
+                              ? 'bg-purple-600 text-white shadow-xs'
+                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
+                          }`}
+                        >
+                          {tab.label}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -2076,10 +2284,21 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                     {/* Student Deliverables Card */}
                     <div className="p-5 rounded-2xl border border-slate-200 bg-white space-y-4">
                       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                        <h4 className="font-black text-slate-900 text-sm flex items-center gap-2">
-                          <UploadCloud className="w-4 h-4 text-purple-600" />
-                          Student Submitted Deliverables
-                        </h4>
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-black text-slate-900 text-sm flex items-center gap-2">
+                            <UploadCloud className="w-4 h-4 text-purple-600" />
+                            Student Submitted Deliverables
+                          </h4>
+                          {currentTask.source === 'google_form' ? (
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                              Google Form Ingested
+                            </span>
+                          ) : hasStudentSubmitted ? (
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200">
+                              PRMA Portal
+                            </span>
+                          ) : null}
+                        </div>
                         <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase ${
                           currentTask.status === 'approved' ? 'bg-emerald-100 text-emerald-800' :
                           currentTask.status === 'revision_required' ? 'bg-amber-100 text-amber-800' :
@@ -2094,15 +2313,22 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
 
                       {hasStudentSubmitted ? (
                         <div className="space-y-4 text-xs">
-                          {currentTask.submittedAt && (
-                            <div className="text-[11px] text-slate-500">
-                              <span className="font-bold text-slate-700">Submitted at:</span>{' '}
-                              {new Date(currentTask.submittedAt).toLocaleString('en-IN', {
-                                dateStyle: 'medium',
-                                timeStyle: 'short'
-                              })}
-                            </div>
-                          )}
+                          <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500">
+                            {currentTask.submittedAt && (
+                              <div>
+                                <span className="font-bold text-slate-700">Submitted at:</span>{' '}
+                                {new Date(currentTask.submittedAt).toLocaleString('en-IN', {
+                                  dateStyle: 'medium',
+                                  timeStyle: 'short'
+                                })}
+                              </div>
+                            )}
+                            {currentTask.googleFormResponseId && (
+                              <span className="font-mono text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-600">
+                                Form Response ID: {currentTask.googleFormResponseId}
+                              </span>
+                            )}
+                          </div>
 
                           {/* GitHub and Live Project Links */}
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -2140,6 +2366,67 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                               </div>
                             )}
                           </div>
+
+                          {/* External Drive / ZIP and Documentation Links */}
+                          {(currentTask.projectZipUrl || currentTask.documentationPdfUrl) && (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                              {currentTask.projectZipUrl && (
+                                <a
+                                  href={currentTask.projectZipUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="flex items-center gap-2 p-3 rounded-xl border border-purple-200 bg-purple-50/50 hover:bg-purple-100/60 text-purple-900 font-bold transition"
+                                >
+                                  <Package className="w-4 h-4 text-purple-600" />
+                                  <span className="truncate flex-1">Project ZIP / Drive Archive</span>
+                                  <ExternalLink className="w-3.5 h-3.5 text-purple-400" />
+                                </a>
+                              )}
+                              {currentTask.documentationPdfUrl && (
+                                <a
+                                  href={currentTask.documentationPdfUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="flex items-center gap-2 p-3 rounded-xl border border-blue-200 bg-blue-50/50 hover:bg-blue-100/60 text-blue-900 font-bold transition"
+                                >
+                                  <FileText className="w-4 h-4 text-blue-600" />
+                                  <span className="truncate flex-1">Documentation PDF / Doc</span>
+                                  <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
+                                </a>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Submitted Social Proof Links */}
+                          {(currentTask.linkedinUrl || currentTask.instagramUrl) && (
+                            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center gap-3">
+                              <span className="text-[10px] font-black uppercase text-slate-400 tracking-wider">
+                                Candidate Social Profiles:
+                              </span>
+                              {currentTask.linkedinUrl && (
+                                <a
+                                  href={currentTask.linkedinUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-1 font-bold text-[#0077B5] hover:underline"
+                                >
+                                  <Linkedin className="w-3.5 h-3.5" />
+                                  LinkedIn Profile
+                                </a>
+                              )}
+                              {currentTask.instagramUrl && (
+                                <a
+                                  href={currentTask.instagramUrl}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-1 font-bold text-pink-600 hover:underline"
+                                >
+                                  <Instagram className="w-3.5 h-3.5" />
+                                  Instagram Profile
+                                </a>
+                              )}
+                            </div>
+                          )}
 
                           {/* Student Remarks */}
                           {currentTask.remarks && (
@@ -2653,9 +2940,267 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                   </div>
                 </div>
               </div>
+
+              {/* SECTION 7: ADMIN PANEL DOCUMENT & EMAIL MANAGEMENT (MANDATORY) */}
+              {(selectedApp.status === 'shortlisted' || selectedApp.status === 'approved' || selectedApp.offerId) && (
+                <div className="space-y-4 mb-6">
+                  {/* A. DOCUMENTS */}
+                  <div className="p-4 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50/30 border border-slate-200 space-y-3">
+                    <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                      <span className="font-extrabold text-xs uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                        <FileText className="w-4 h-4 text-blue-600" />
+                        A &bull; Official Deliverable Documents
+                      </span>
+                      <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        Vector PDFs + QR Verified
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {/* Document 1: Official Joining Letter */}
+                      <div className="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="font-bold text-slate-900 flex items-center gap-1">
+                            <FileCheck className="w-3.5 h-3.5 text-blue-600" />
+                            Official Joining Letter PDF
+                          </span>
+                          <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-0.2 rounded-full">
+                            MSME UDYAM
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-slate-500 leading-tight">
+                          Features authorized signature, company seal, and scannable QR verification link.
+                        </p>
+                        <div className="pt-2 flex flex-wrap items-center gap-1.5">
+                          <a
+                            href={`/api/prma/admin/applications/${encodeURIComponent(selectedApp.applicationId)}/offer-letter`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-[11px] border border-blue-200"
+                          >
+                            <Eye className="w-3 h-3" />
+                            Preview
+                          </a>
+                          <a
+                            href={`/api/prma/admin/applications/${encodeURIComponent(selectedApp.applicationId)}/offer-letter`}
+                            download={`PRMA_Tech_Joining_Letter_${selectedApp.offerId || selectedApp.applicationId}.pdf`}
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px]"
+                          >
+                            <Download className="w-3 h-3" />
+                            Download
+                          </a>
+                          <button
+                            type="button"
+                            onClick={() => handleRegenerateLetter(selectedApp)}
+                            disabled={isRegeneratingLetter}
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold text-[11px] disabled:opacity-50"
+                          >
+                            <RefreshCw className={`w-3 h-3 ${isRegeneratingLetter ? 'animate-spin text-blue-600' : ''}`} />
+                            Regenerate
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Document 2: 10-Page Problem Statement */}
+                      <div className="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="font-bold text-slate-900 flex items-center gap-1">
+                            <FileCode className="w-3.5 h-3.5 text-purple-600" />
+                            10-Page Problem Statement PDF
+                          </span>
+                          <span className="text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-0.2 rounded-full">
+                            4-Week Sprints
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-slate-500 leading-tight">
+                          Domain-specific milestones, industry requirements, and embedded student submission link.
+                        </p>
+                        <div className="pt-2 flex flex-wrap items-center gap-1.5">
+                          <a
+                            href={`/api/prma/admin/applications/${encodeURIComponent(selectedApp.applicationId)}/problem-statement`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-[11px] border border-purple-200"
+                          >
+                            <Eye className="w-3 h-3" />
+                            Preview
+                          </a>
+                          <a
+                            href={`/api/prma/admin/applications/${encodeURIComponent(selectedApp.applicationId)}/problem-statement`}
+                            download={`PRMA_Tech_Problem_Statement_${selectedApp.offerId || selectedApp.applicationId}.pdf`}
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-purple-700 hover:bg-purple-800 text-white font-bold text-[11px]"
+                          >
+                            <Download className="w-3 h-3" />
+                            Download
+                          </a>
+                          <button
+                            type="button"
+                            onClick={() => handleRegenerateProblemStatement(selectedApp)}
+                            disabled={isRegeneratingProblemStatement}
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold text-[11px] disabled:opacity-50"
+                          >
+                            <RefreshCw className={`w-3 h-3 ${isRegeneratingProblemStatement ? 'animate-spin text-purple-600' : ''}`} />
+                            Regenerate
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* B. EMAIL STATUS & DISPATCH AUDIT */}
+                  <div className="p-4 rounded-2xl bg-gradient-to-br from-slate-50 to-emerald-50/20 border border-slate-200 space-y-3">
+                    <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                      <span className="font-extrabold text-xs uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                        <Mail className="w-4 h-4 text-emerald-600" />
+                        B &bull; Onboarding Email Status
+                      </span>
+                      <span className={`text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full flex items-center gap-1 ${
+                        (selectedApp.emailDispatchStatus || 'Sent').toLowerCase() === 'sent'
+                          ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
+                          : (selectedApp.emailDispatchStatus || '').toLowerCase() === 'failed'
+                          ? 'bg-rose-100 text-rose-800 border border-rose-200'
+                          : 'bg-amber-100 text-amber-800 border border-amber-200'
+                      }`}>
+                        {(selectedApp.emailDispatchStatus || 'Sent').toLowerCase() === 'sent' ? (
+                          <>
+                            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                            DISPATCHED / SENT
+                          </>
+                        ) : (
+                          <>
+                            <AlertCircle className="w-3 h-3" />
+                            {selectedApp.emailDispatchStatus || 'PENDING'}
+                          </>
+                        )}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                      <div>
+                        <span className="text-slate-400 font-medium block">Recipient Email:</span>
+                        <span className="font-bold text-slate-900 break-all">{selectedApp.student?.email}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 font-medium block">Email Subject:</span>
+                        <span className="font-bold text-slate-800 truncate block">
+                          Congratulations! Your Internship Application Has Been Approved – PRMA Tech
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 font-medium block">Provider Message ID:</span>
+                        <span className="font-mono text-[11px] font-semibold text-slate-700 truncate block">
+                          {selectedApp.emailMessageId || `MSG-${(selectedApp.offerId || selectedApp.applicationId).replace(/[^a-zA-Z0-9]/g, '')}`}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 font-medium block">Last Dispatch Attempt:</span>
+                        <span className="font-semibold text-slate-700">
+                          {selectedApp.emailLastAttempt
+                            ? new Date(selectedApp.emailLastAttempt).toLocaleString('en-IN')
+                            : selectedApp.shortlistedAt
+                            ? new Date(selectedApp.shortlistedAt).toLocaleString('en-IN')
+                            : 'Logged on selection'}
+                        </span>
+                      </div>
+                      {selectedApp.emailFailureReason && (
+                        <div className="col-span-1 sm:col-span-2 p-2 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-[11px]">
+                          <span className="font-bold">Failure Reason:</span> {selectedApp.emailFailureReason}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="pt-2 flex items-center justify-between border-t border-slate-200">
+                      <span className="text-[11px] text-slate-500">
+                        Includes both Joining Letter PDF &amp; 10-Page Problem Statement attachments
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => handleResendJoiningEmail(selectedApp)}
+                        disabled={isResendingEmail}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs disabled:opacity-50"
+                      >
+                        {isResendingEmail ? (
+                          <>
+                            <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                            Dispatching Email...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-3.5 h-3.5" />
+                            Resend Joining Email
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* C. SUBMISSION DETAILS */}
+                  <div className="p-4 rounded-2xl bg-gradient-to-br from-slate-50 to-purple-50/30 border border-slate-200 space-y-3">
+                    <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+                      <span className="font-extrabold text-xs uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                        <UploadCloud className="w-4 h-4 text-purple-600" />
+                        C &bull; Student Task Submission Link
+                      </span>
+                      <span className="text-[11px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200">
+                        Google Form + Live Portal
+                      </span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div>
+                        <span className="text-slate-500 font-medium block mb-1">
+                          Prefilled Student Google Form Submission URL:
+                        </span>
+                        <div className="flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-200">
+                          <input
+                            type="text"
+                            readOnly
+                            value={selectedApp.googleFormUrl || `https://docs.google.com/forms/d/e/1FAIpQLScXQ4z4FhS93FzR38q848fP9ZfG4gL61678129/viewform?entry.18472910=${encodeURIComponent(selectedApp.offerId || selectedApp.applicationId)}`}
+                            className="flex-1 bg-transparent text-[11px] font-mono text-slate-700 focus:outline-none truncate"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => copyToClipboard(
+                              selectedApp.googleFormUrl || `https://docs.google.com/forms/d/e/1FAIpQLScXQ4z4FhS93FzR38q848fP9ZfG4gL61678129/viewform?entry.18472910=${encodeURIComponent(selectedApp.offerId || selectedApp.applicationId)}`,
+                              'app-gform-url'
+                            )}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-[11px]"
+                          >
+                            {copiedId === 'app-gform-url' ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                            {copiedId === 'app-gform-url' ? 'Copied' : 'Copy Form Link'}
+                          </button>
+                          <a
+                            href={selectedApp.googleFormUrl || `https://docs.google.com/forms/d/e/1FAIpQLScXQ4z4FhS93FzR38q848fP9ZfG4gL61678129/viewform?entry.18472910=${encodeURIComponent(selectedApp.offerId || selectedApp.applicationId)}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-bold text-[11px]"
+                          >
+                            <ExternalLink className="w-3 h-3" />
+                            Open Form
+                          </a>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between pt-2 border-t border-slate-200 text-[11px]">
+                        <span className="text-slate-500">
+                          Direct Portal Alternative: <span className="font-mono font-bold text-slate-700">/prma-tech/submit/{selectedApp.submissionToken || 'token'}</span>
+                        </span>
+                        <a
+                          href={`https://professorvirus.site/prma-tech/submit/${selectedApp.submissionToken || ''}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="font-bold text-purple-700 hover:underline inline-flex items-center gap-1"
+                        >
+                          Open Portal &rarr;
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Bottom Actions Drawer */}
+            {/* Bottom Actions Drawer (Section 7.D) */}
             <div className="pt-6 border-t border-slate-200 flex flex-wrap gap-3 items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Status:</span>
@@ -2678,33 +3223,56 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                       href={`/api/prma/admin/applications/${encodeURIComponent(selectedApp.applicationId)}/offer-letter`}
                       target="_blank"
                       rel="noreferrer"
-                      className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm"
+                      className="px-3.5 py-2 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold text-xs flex items-center gap-1.5 border border-blue-200"
                     >
-                      <Download className="w-3.5 h-3.5" />
-                      Download Joining Letter (PDF)
+                      <Eye className="w-3.5 h-3.5" />
+                      Preview Letter
                     </a>
                     <a
-                      href={`/api/prma/admin/applications/${encodeURIComponent(selectedApp.applicationId)}/problem-statement`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm"
+                      href={`/api/prma/admin/applications/${encodeURIComponent(selectedApp.applicationId)}/offer-letter`}
+                      download={`PRMA_Tech_Joining_Letter_${selectedApp.offerId || selectedApp.applicationId}.pdf`}
+                      className="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm"
                     >
                       <Download className="w-3.5 h-3.5" />
-                      10-Page Problem PDF
+                      Download Joining Letter
                     </a>
                     <button
                       type="button"
-                      onClick={() => handleResendEmail(selectedApp)}
-                      className="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50"
+                      onClick={() => handleRegenerateLetter(selectedApp)}
+                      disabled={isRegeneratingLetter}
+                      className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 disabled:opacity-50 flex items-center gap-1"
                     >
-                      Resend Email
+                      <RefreshCw className={`w-3.5 h-3.5 ${isRegeneratingLetter ? 'animate-spin text-blue-600' : ''}`} />
+                      Regenerate Letter
                     </button>
                     <button
                       type="button"
-                      onClick={() => handleChangeStatus(selectedApp, 'under_review')}
-                      className="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50"
+                      onClick={() => handleRegenerateProblemStatement(selectedApp)}
+                      disabled={isRegeneratingProblemStatement}
+                      className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 disabled:opacity-50 flex items-center gap-1"
                     >
-                      Revert to Review
+                      <RefreshCw className={`w-3.5 h-3.5 ${isRegeneratingProblemStatement ? 'animate-spin text-purple-600' : ''}`} />
+                      Regenerate Problem PDF
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleResendJoiningEmail(selectedApp)}
+                      disabled={isResendingEmail}
+                      className="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm disabled:opacity-50"
+                    >
+                      <Send className={`w-3.5 h-3.5 ${isResendingEmail ? 'animate-pulse' : ''}`} />
+                      Resend Joining Email
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => copyToClipboard(
+                        selectedApp.googleFormUrl || `https://docs.google.com/forms/d/e/1FAIpQLScXQ4z4FhS93FzR38q848fP9ZfG4gL61678129/viewform?entry.18472910=${encodeURIComponent(selectedApp.offerId || selectedApp.applicationId)}`,
+                        'bottom-gform-url'
+                      )}
+                      className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 flex items-center gap-1"
+                    >
+                      {copiedId === 'bottom-gform-url' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                      Copy Submission Link
                     </button>
                   </>
                 ) : (
@@ -2715,7 +3283,7 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                       className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-xs flex items-center gap-1.5 shadow-md"
                     >
                       <Sparkles className="w-3.5 h-3.5" />
-                      Approve &amp; Issue Offer
+                      Approve &amp; Send Joining Letter
                     </button>
                     {selectedApp.status !== 'under_review' && (
                       <button
@@ -3200,6 +3768,142 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                 className="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors"
               >
                 Close Preview
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 5. Google Form & Apps Script Ingestion Modal (Requirements 4 & 7) */}
+      {showGformConfigModal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative flex flex-col max-h-[90vh] animate-scale-in">
+            {/* Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-purple-700" />
+                </div>
+                <div>
+                  <h3 className="font-black text-slate-900 text-lg">Google Form &amp; Apps Script Webhook Integration</h3>
+                  <p className="text-xs text-slate-500">Live task ingestion directly from student Google Form responses</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowGformConfigModal(false)}
+                className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="overflow-y-auto py-4 space-y-5 text-xs text-slate-700 pr-1">
+              {/* Setting: Base Google Form URL */}
+              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                <label className="block text-xs font-black uppercase tracking-wider text-slate-800">
+                  Google Form Base URL (For Student Deliverables)
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="url"
+                    value={gformBaseUrlInput}
+                    onChange={(e) => setGformBaseUrlInput(e.target.value)}
+                    placeholder="https://docs.google.com/forms/d/e/.../viewform"
+                    className="flex-1 px-3 py-2 bg-white rounded-xl border border-slate-200 text-xs font-mono text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleSaveGformConfig}
+                    disabled={gformSaving}
+                    className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs disabled:opacity-50 flex items-center gap-1.5"
+                  >
+                    {gformSaving ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
+                    Save URL
+                  </button>
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  When approving candidates, PRMA Tech automatically appends prefilled query parameters (Candidate Name, Offer ID, Email, Domain, College) so the form opens personalized.
+                </p>
+              </div>
+
+              {/* Webhook Endpoint Info */}
+              <div className="bg-purple-50/50 p-4 rounded-2xl border border-purple-200 space-y-2">
+                <label className="block text-xs font-black uppercase tracking-wider text-purple-900">
+                  PRMA Tech Ingestion Webhook Endpoint
+                </label>
+                <div className="flex items-center gap-2 bg-white p-2.5 rounded-xl border border-purple-200">
+                  <input
+                    type="text"
+                    readOnly
+                    value={gformWebhookUrl || 'https://professorvirus.site/api/prma/submissions/google-form-webhook'}
+                    className="flex-1 bg-transparent font-mono text-[11px] text-purple-950 focus:outline-none"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(gformWebhookUrl || 'https://professorvirus.site/api/prma/submissions/google-form-webhook', 'webhook-url-copy')}
+                    className="px-3 py-1 bg-purple-100 hover:bg-purple-200 text-purple-900 font-bold text-[11px] rounded-lg flex items-center gap-1"
+                  >
+                    {copiedId === 'webhook-url-copy' ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                    {copiedId === 'webhook-url-copy' ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <p className="text-[11px] text-purple-800">
+                  Receives incoming POST webhooks on form submission and synchronizes answers directly into the candidate's MongoDB Atlas record.
+                </p>
+              </div>
+
+              {/* Ready-to-use Google Apps Script Code */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-black uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                    <FileCode className="w-4 h-4 text-purple-600" />
+                    Google Apps Script Code (Ready to Paste)
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      copyToClipboard(gformScriptCode, 'apps-script-copy');
+                      showToast('✓ Google Apps Script code copied to clipboard!');
+                    }}
+                    className="px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] rounded-lg flex items-center gap-1.5"
+                  >
+                    {copiedId === 'apps-script-copy' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                    {copiedId === 'apps-script-copy' ? 'Copied to Clipboard' : 'Copy Full Script'}
+                  </button>
+                </div>
+                <pre className="p-3 bg-slate-900 text-slate-200 rounded-2xl text-[11px] font-mono overflow-x-auto max-h-48 leading-relaxed">
+                  {gformScriptCode || `// PRMA Tech - Google Form Submission Webhook Forwarder
+function onFormSubmit(e) {
+  var WEBHOOK_URL = "${gformWebhookUrl || 'https://professorvirus.site/api/prma/submissions/google-form-webhook'}";
+  // Click 'Copy Full Script' above to get the complete script
+}`}
+                </pre>
+              </div>
+
+              {/* 4-Step Instructions */}
+              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-1.5 text-xs text-slate-700">
+                <span className="font-extrabold text-slate-900 block mb-1">
+                  How to install in your Google Form:
+                </span>
+                <p>1. Open your Google Form in Google Drive.</p>
+                <p>2. Click the <strong>⋮ (three vertical dots)</strong> in the top right &rarr; <strong>Script editor</strong>.</p>
+                <p>3. Delete existing template code, paste the script above, and click <strong>Save (💾)</strong>.</p>
+                <p>4. In the left menu, click <strong>Triggers (alarm clock icon)</strong> &rarr; <strong>+ Add Trigger</strong> &rarr; Select function: <code>onFormSubmit</code> &rarr; Event type: <strong>On form submit</strong> &rarr; Save.</p>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span className="text-[11px] text-slate-400">
+                Dual-Persistence MongoDB Atlas + Local Disk Sync
+              </span>
+              <button
+                type="button"
+                onClick={() => setShowGformConfigModal(false)}
+                className="px-5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold"
+              >
+                Done
               </button>
             </div>
           </div>

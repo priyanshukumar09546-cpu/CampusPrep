@@ -28,6 +28,12 @@ import {
   sendPrmaTaskEmail,
   sendPrmaRejectionEmail
 } from '../services/prmaEmailService.js';
+import {
+  generateStudentGoogleFormUrl,
+  parseGoogleFormWebhookPayload,
+  generateGoogleAppsScriptCode,
+  GOOGLE_FORM_CONFIG
+} from '../services/prmaGoogleFormService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -41,6 +47,18 @@ const JOBS_FILE = path.join(DATA_DIR, 'prma_jobs.json');
 const JOB_APPS_FILE = path.join(DATA_DIR, 'prma_job_applications.json');
 const SUBMISSIONS_FILE = path.join(DATA_DIR, 'prma_submissions.json');
 const TEMPLATES_FILE = path.join(DATA_DIR, 'prma_templates.json');
+const GFORM_CONFIG_FILE = path.join(DATA_DIR, 'prma_gform_config.json');
+
+// Google Form runtime configuration store
+let currentGformConfig = { ...GOOGLE_FORM_CONFIG };
+try {
+  if (fs.existsSync(GFORM_CONFIG_FILE)) {
+    const raw = fs.readFileSync(GFORM_CONFIG_FILE, 'utf8');
+    currentGformConfig = { ...GOOGLE_FORM_CONFIG, ...JSON.parse(raw) };
+  }
+} catch (e) {
+  console.warn('[PRMA ROUTES] Notice reading gform config:', e.message);
+}
 
 // Ensure data directory exists
 try {
@@ -112,6 +130,14 @@ const PrmaApplicationSchema = new mongoose.Schema({
   offerId: { type: String, default: '' },
   submissionToken: { type: String, default: '', index: true },
   submissionUrl: { type: String, default: '' },
+  googleFormUrl: { type: String, default: '' },
+  joiningLetterPdfRef: { type: String, default: '' },
+  problemStatementPdfRef: { type: String, default: '' },
+  emailDispatchStatus: { type: String, default: 'Pending' },
+  emailMessageId: { type: String, default: '' },
+  emailLastAttempt: { type: String, default: '' },
+  emailFailureReason: { type: String, default: '' },
+  approvalTimestamp: { type: String, default: '' },
   offerGeneratedAt: { type: String, default: '' },
   lastStatusUpdate: { type: String, default: '' },
   rejectionReason: { type: String, default: '' },
@@ -150,6 +176,8 @@ const PrmaSubmissionSchema = new mongoose.Schema({
     effort: { type: String, default: '' },
     prerequisites: { type: String, default: '' },
     status: { type: String, default: 'not_submitted' }, // 'not_submitted', 'submitted', 'under_review', 'approved', 'revision_required'
+    source: { type: String, default: 'portal' }, // 'portal' or 'google_form'
+    googleFormResponseId: { type: String, default: '' },
     submittedAt: { type: String, default: '' },
     updatedAt: { type: String, default: '' },
     files: [{
@@ -161,6 +189,12 @@ const PrmaSubmissionSchema = new mongoose.Schema({
     }],
     githubUrl: { type: String, default: '' },
     liveUrl: { type: String, default: '' },
+    instagramUrl: { type: String, default: '' },
+    linkedinUrl: { type: String, default: '' },
+    followedInstagram: { type: Boolean, default: false },
+    followedLinkedIn: { type: Boolean, default: false },
+    projectZipUrl: { type: String, default: '' },
+    documentationPdfUrl: { type: String, default: '' },
     studentRemarks: { type: String, default: '' },
     adminFeedback: { type: String, default: '' },
     reviewedAt: { type: String, default: '' },
@@ -1506,12 +1540,12 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         return res.status(404).json({ error: 'Application not found' });
       }
 
-      // Check if already shortlisted to prevent duplicate emails
-      if (record.status === 'shortlisted' && !req.body.forceResend) {
+      // Check if already shortlisted to prevent duplicate emails (Idempotency)
+      if ((record.status === 'shortlisted' || record.status === 'approved') && !req.body.forceResend && !req.body.forceRegenerate) {
         return res.json({
           success: true,
           alreadyShortlisted: true,
-          message: 'Student is already shortlisted.',
+          message: 'Student is already approved and onboarded.',
           offerId: record.offerId,
           application: record
         });
@@ -1544,10 +1578,19 @@ export function createPrmaRouter({ isDbConnected } = {}) {
 
       const verificationUrl = `https://professorvirus.site/prma-tech/verify-offer/${encodeURIComponent(offerId)}`;
 
-      // Generate or retrieve unique secure Submission Token & URL (DELIVERABLE 3)
+      // Generate or retrieve unique secure Submission Token & URLs
       const submissionToken = record.submissionToken || `prma_sub_${crypto.randomBytes(18).toString('hex')}`;
       const baseUrl = process.env.APP_BASE_URL || 'https://professorvirus.site';
       const submissionUrl = `${baseUrl}/prma-tech/submit/${submissionToken}`;
+
+      // STEP 4: Generate student-specific Google Form submission URL
+      const googleFormUrl = generateStudentGoogleFormUrl({
+        applicationId: record.applicationId,
+        offerId,
+        student: record.student,
+        academic: record.academic,
+        technical: record.technical
+      }, currentGformConfig);
 
       // 1. Generate DELIVERABLE 1 - Official Joining Letter PDF
       let joiningLetterPdfBuffer = null;
@@ -1581,7 +1624,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
           joiningDate: joinDateStr,
           completionDate: completionDateStr,
           submissionToken,
-          submissionUrl
+          submissionUrl: googleFormUrl || submissionUrl
         });
         pdfCacheStore.set(`ps_${offerId}`, problemStatementPdfBuffer);
         pdfCacheStore.set(`ps_${record.applicationId}`, problemStatementPdfBuffer);
@@ -1624,7 +1667,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         await persistSubmissions(submissionRecord);
       }
 
-      // 4. Dispatch Corporate Approval Email with 3 Deliverables
+      // 4. Dispatch Corporate Approval Email with both PDFs and Google Form URL
       let emailResult = { success: false, reason: 'PDF generation failed' };
       if (joiningLetterPdfBuffer && record.student?.email) {
         try {
@@ -1633,11 +1676,13 @@ export function createPrmaRouter({ isDbConnected } = {}) {
             studentName,
             domainTitle,
             offerId,
+            applicationId: record.applicationId,
             joiningDate: joinDateStr,
             completionDate: completionDateStr,
             duration: '1 Month',
             mode: 'Fully Remote',
             submissionUrl,
+            googleFormUrl,
             joiningLetterPdfBuffer,
             problemStatementPdfBuffer
           });
@@ -1662,10 +1707,17 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       record.offerId = offerId;
       record.submissionToken = submissionToken;
       record.submissionUrl = submissionUrl;
+      record.googleFormUrl = googleFormUrl;
+      record.joiningLetterPdfRef = `/api/prma/admin/applications/${record.applicationId}/joining-letter`;
+      record.problemStatementPdfRef = `/api/prma/admin/applications/${record.applicationId}/problem-statement`;
       record.joiningDate = joinDateStr;
       record.completionDate = completionDateStr;
       record.shortlistedAt = new Date().toISOString();
-      record.emailDeliveryStatus = emailResult.success ? 'Sent' : 'Failed';
+      record.approvalTimestamp = new Date().toISOString();
+      record.emailDispatchStatus = emailResult.success ? 'Sent' : 'Failed';
+      record.emailMessageId = emailResult.messageId || `MSG-${offerId.replace(/[^a-zA-Z0-9]/g, '')}-${Date.now()}`;
+      record.emailLastAttempt = new Date().toISOString();
+      record.emailFailureReason = emailResult.success ? '' : (emailResult.error || 'SMTP delivery failure');
       record.adminRemarks = req.body.adminRemarks || record.adminRemarks || 'Profile approved for 1-month virtual cohort.';
 
       applicationsStore.set(record.applicationId, record);
@@ -1673,10 +1725,11 @@ export function createPrmaRouter({ isDbConnected } = {}) {
 
       res.json({
         success: true,
-        message: `Student shortlisted successfully! Offer ID: ${offerId}`,
+        message: `Student approved successfully! Offer ID: ${offerId}`,
         offerId,
         submissionToken,
         submissionUrl,
+        googleFormUrl,
         joiningDate: joinDateStr,
         emailSent: emailResult.success,
         emailDetails: emailResult,
@@ -1685,6 +1738,387 @@ export function createPrmaRouter({ isDbConnected } = {}) {
     } catch (err) {
       console.error('[PRMA ROUTER] Shortlist error:', err);
       res.status(500).json({ error: 'Shortlist processing failed', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Resend Joining Email (Section 7)
+   */
+  router.post('/admin/applications/:id/resend-email', async (req, res) => {
+    try {
+      const appId = req.params.id;
+      const record = await getApplication(appId);
+      if (!record) return res.status(404).json({ error: 'Application not found' });
+      if (!record.offerId) return res.status(400).json({ error: 'Application has not been approved yet. Approve first.' });
+
+      const studentName = record.student?.fullName || 'Candidate';
+      const domainTitle = record.technical?.domainTitle || record.domain?.title || 'Technology Track';
+      const offerId = record.offerId;
+      const joinDateStr = record.joiningDate || new Date().toISOString().slice(0, 10);
+      const completionDateStr = record.completionDate || '';
+
+      const verificationUrl = `https://professorvirus.site/prma-tech/verify-offer/${encodeURIComponent(offerId)}`;
+      const submissionToken = record.submissionToken || `prma_sub_${crypto.randomBytes(18).toString('hex')}`;
+      const baseUrl = process.env.APP_BASE_URL || 'https://professorvirus.site';
+      const submissionUrl = record.submissionUrl || `${baseUrl}/prma-tech/submit/${submissionToken}`;
+      const googleFormUrl = record.googleFormUrl || generateStudentGoogleFormUrl(record, currentGformConfig);
+
+      // Retrieve cached or regenerate Joining Letter PDF
+      let joiningLetterPdfBuffer = pdfCacheStore.get(offerId) || pdfCacheStore.get(record.applicationId);
+      if (!joiningLetterPdfBuffer) {
+        joiningLetterPdfBuffer = await generatePrmaOfferLetterPdf({
+          studentName,
+          fatherName: record.student?.fatherName || '',
+          domainTitle,
+          offerId,
+          issueDate: record.shortlistedAt ? new Date(record.shortlistedAt).toLocaleDateString('en-GB').replace(/\//g, '-') : '',
+          joiningDate: joinDateStr,
+          completionDate: completionDateStr,
+          duration: '1 Month',
+          mode: 'Fully Remote',
+          verificationUrl
+        });
+        pdfCacheStore.set(offerId, joiningLetterPdfBuffer);
+      }
+
+      // Retrieve cached or regenerate Problem Statement PDF
+      let problemStatementPdfBuffer = pdfCacheStore.get(`ps_${offerId}`) || pdfCacheStore.get(`ps_${record.applicationId}`);
+      if (!problemStatementPdfBuffer) {
+        problemStatementPdfBuffer = await generatePrmaProblemStatementPdf({
+          studentName,
+          offerId,
+          domainTitle,
+          domainId: record.technical?.domainId || 'ai-ml',
+          joiningDate: joinDateStr,
+          completionDate: completionDateStr,
+          submissionToken,
+          submissionUrl: googleFormUrl || submissionUrl
+        });
+        pdfCacheStore.set(`ps_${offerId}`, problemStatementPdfBuffer);
+      }
+
+      let emailResult = { success: false };
+      try {
+        emailResult = await sendPrmaApprovalEmail({
+          toEmail: record.student.email,
+          studentName,
+          domainTitle,
+          offerId,
+          applicationId: record.applicationId,
+          joiningDate: joinDateStr,
+          completionDate: completionDateStr,
+          duration: '1 Month',
+          mode: 'Fully Remote',
+          submissionUrl,
+          googleFormUrl,
+          joiningLetterPdfBuffer,
+          problemStatementPdfBuffer
+        });
+
+        logEmail({
+          type: 'OFFICIAL_APPROVAL_RESEND',
+          recipient: record.student.email,
+          studentName,
+          domainTitle,
+          offerId,
+          status: emailResult.success ? 'Delivered' : 'Failed',
+          details: emailResult
+        });
+      } catch (err) {
+        emailResult = { success: false, error: err.message };
+      }
+
+      record.emailDispatchStatus = emailResult.success ? 'Sent' : 'Failed';
+      record.emailMessageId = emailResult.messageId || record.emailMessageId || `MSG-${offerId.replace(/[^a-zA-Z0-9]/g, '')}-${Date.now()}`;
+      record.emailLastAttempt = new Date().toISOString();
+      record.emailFailureReason = emailResult.success ? '' : (emailResult.error || 'Resend delivery failure');
+
+      applicationsStore.set(record.applicationId, record);
+      await persistApplications(record);
+
+      res.json({
+        success: emailResult.success,
+        message: emailResult.success ? 'Joining email resent successfully!' : `Failed to resend: ${emailResult.error || 'SMTP Error'}`,
+        emailDetails: emailResult,
+        application: record
+      });
+    } catch (err) {
+      console.error('[PRMA ROUTER] Resend email error:', err);
+      res.status(500).json({ error: 'Resend email failed', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Regenerate Joining Letter PDF (Section 7)
+   */
+  router.post('/admin/applications/:id/regenerate-letter', async (req, res) => {
+    try {
+      const appId = req.params.id;
+      const record = await getApplication(appId);
+      if (!record) return res.status(404).json({ error: 'Application not found' });
+      if (!record.offerId) return res.status(400).json({ error: 'Application must be approved first.' });
+
+      const studentName = record.student?.fullName || 'Candidate';
+      const domainTitle = record.technical?.domainTitle || record.domain?.title || 'Technology Track';
+      const offerId = record.offerId;
+      const joinDateStr = record.joiningDate || new Date().toISOString().slice(0, 10);
+      const completionDateStr = record.completionDate || '';
+      const verificationUrl = `https://professorvirus.site/prma-tech/verify-offer/${encodeURIComponent(offerId)}`;
+
+      const joiningLetterPdfBuffer = await generatePrmaOfferLetterPdf({
+        studentName,
+        fatherName: record.student?.fatherName || '',
+        domainTitle,
+        offerId,
+        issueDate: new Date().toLocaleDateString('en-GB').replace(/\//g, '-'),
+        joiningDate: joinDateStr,
+        completionDate: completionDateStr,
+        duration: '1 Month',
+        mode: 'Fully Remote',
+        verificationUrl
+      });
+
+      pdfCacheStore.set(offerId, joiningLetterPdfBuffer);
+      pdfCacheStore.set(record.applicationId, joiningLetterPdfBuffer);
+
+      record.joiningLetterPdfRef = `/api/prma/admin/applications/${record.applicationId}/joining-letter`;
+      applicationsStore.set(record.applicationId, record);
+      await persistApplications(record);
+
+      res.json({
+        success: true,
+        message: 'Official Joining Letter regenerated successfully!',
+        bytes: joiningLetterPdfBuffer.length,
+        downloadUrl: record.joiningLetterPdfRef
+      });
+    } catch (err) {
+      console.error('[PRMA ROUTER] Regenerate letter error:', err);
+      res.status(500).json({ error: 'Regeneration failed', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Regenerate Problem Statement PDF (Section 7)
+   */
+  router.post('/admin/applications/:id/regenerate-problem-statement', async (req, res) => {
+    try {
+      const appId = req.params.id;
+      const record = await getApplication(appId);
+      if (!record) return res.status(404).json({ error: 'Application not found' });
+      if (!record.offerId) return res.status(400).json({ error: 'Application must be approved first.' });
+
+      const studentName = record.student?.fullName || 'Candidate';
+      const domainTitle = record.technical?.domainTitle || record.domain?.title || 'Technology Track';
+      const offerId = record.offerId;
+      const joinDateStr = record.joiningDate || new Date().toISOString().slice(0, 10);
+      const completionDateStr = record.completionDate || '';
+      const submissionToken = record.submissionToken || `prma_sub_${crypto.randomBytes(18).toString('hex')}`;
+      const googleFormUrl = record.googleFormUrl || generateStudentGoogleFormUrl(record, currentGformConfig);
+
+      const problemStatementPdfBuffer = await generatePrmaProblemStatementPdf({
+        studentName,
+        offerId,
+        domainTitle,
+        domainId: record.technical?.domainId || 'ai-ml',
+        joiningDate: joinDateStr,
+        completionDate: completionDateStr,
+        submissionToken,
+        submissionUrl: googleFormUrl || record.submissionUrl
+      });
+
+      pdfCacheStore.set(`ps_${offerId}`, problemStatementPdfBuffer);
+      pdfCacheStore.set(`ps_${record.applicationId}`, problemStatementPdfBuffer);
+
+      record.problemStatementPdfRef = `/api/prma/admin/applications/${record.applicationId}/problem-statement`;
+      applicationsStore.set(record.applicationId, record);
+      await persistApplications(record);
+
+      res.json({
+        success: true,
+        message: '10-Page Problem Statement regenerated successfully!',
+        bytes: problemStatementPdfBuffer.length,
+        downloadUrl: record.problemStatementPdfRef
+      });
+    } catch (err) {
+      console.error('[PRMA ROUTER] Regenerate problem statement error:', err);
+      res.status(500).json({ error: 'Regeneration failed', details: err.message });
+    }
+  });
+
+  /**
+   * Admin: Get Google Form Configuration & Apps Script Template (Section 4 & 7)
+   */
+  router.get('/admin/google-form-config', async (req, res) => {
+    const baseUrl = process.env.APP_BASE_URL || 'https://professorvirus.site';
+    const webhookUrl = `${baseUrl}/api/prma/submissions/google-form-webhook`;
+    const appsScriptCode = generateGoogleAppsScriptCode(webhookUrl);
+    res.json({
+      success: true,
+      config: currentGformConfig,
+      webhookUrl,
+      appsScriptCode
+    });
+  });
+
+  /**
+   * Admin: Save Custom Google Form Configuration
+   */
+  router.post('/admin/google-form-config', async (req, res) => {
+    try {
+      const { baseUrl, entryIds } = req.body;
+      if (baseUrl) currentGformConfig.baseUrl = baseUrl.trim();
+      if (entryIds && typeof entryIds === 'object') {
+        currentGformConfig.entryIds = { ...currentGformConfig.entryIds, ...entryIds };
+      }
+      fs.writeFileSync(GFORM_CONFIG_FILE, JSON.stringify(currentGformConfig, null, 2), 'utf8');
+      res.json({ success: true, message: 'Google Form settings saved successfully', config: currentGformConfig });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to save Google Form settings', details: err.message });
+    }
+  });
+
+  /**
+   * Webhook: Google Form Response Ingestion (Section 4 & 8)
+   */
+  router.post('/submissions/google-form-webhook', async (req, res) => {
+    try {
+      const payload = parseGoogleFormWebhookPayload(req.body);
+      if (!payload.rawId && !payload.email) {
+        return res.status(400).json({ error: 'Missing candidate identification (Application ID, Offer ID, or Email)' });
+      }
+
+      await loadApplications();
+      await loadSubmissions();
+
+      // Find matching application
+      let app = null;
+      if (payload.rawId) {
+        app = await getApplication(payload.rawId);
+      }
+      if (!app && payload.email) {
+        for (const a of applicationsStore.values()) {
+          if (a.student?.email && a.student.email.toLowerCase() === payload.email.toLowerCase()) {
+            app = a;
+            break;
+          }
+        }
+      }
+
+      if (!app) {
+        return res.status(404).json({ error: `No active internship application found matching ${payload.rawId || payload.email}` });
+      }
+
+      // Find or create student's PrmaSubmission record
+      let sub = await getSubmissionByToken(app.submissionToken || app.applicationId);
+      if (!sub) {
+        sub = {
+          submissionId: `SUB-${(app.offerId || app.applicationId).replace(/[^a-zA-Z0-9]/g, '')}`,
+          applicationId: app.applicationId,
+          offerId: app.offerId || app.applicationId,
+          submissionToken: app.submissionToken || `prma_sub_${crypto.randomBytes(18).toString('hex')}`,
+          student: {
+            fullName: app.student?.fullName || payload.fullName,
+            email: app.student?.email || payload.email,
+            mobile: app.student?.mobile || '',
+            college: app.academic?.college || '',
+            branch: app.academic?.branch || ''
+          },
+          technical: {
+            domainId: app.technical?.domainId || 'ai-ml',
+            domainTitle: app.technical?.domainTitle || app.domain?.title || 'Technology Track'
+          },
+          joiningDate: app.joiningDate || '',
+          duration: app.duration || '1 Month',
+          mode: app.mode || 'Fully Remote',
+          tasks: initializeWeeklyTasks(app.technical?.domainId || 'ai-ml'),
+          overallProgress: 0,
+          completedWeeksCount: 0,
+          lastSubmissionDate: '',
+          status: 'active'
+        };
+      }
+
+      const weekNum = payload.weekNumber || 1;
+      let task = (sub.tasks || []).find(t => t.weekNumber === weekNum);
+      if (!task) {
+        task = {
+          weekNumber: weekNum,
+          taskTitle: payload.taskTitle || `Week ${weekNum} Deliverable`,
+          status: 'submitted',
+          files: [],
+          reviewStatus: 'pending'
+        };
+        sub.tasks.push(task);
+      }
+
+      // Update task deliverables
+      task.taskTitle = payload.taskTitle || task.taskTitle;
+      task.status = 'submitted';
+      task.reviewStatus = 'pending';
+      task.submittedAt = payload.submissionTimestamp || new Date().toISOString();
+      task.source = 'google_form';
+      task.googleFormResponseId = payload.uniqueSubmissionId;
+      task.githubUrl = payload.githubUrl || task.githubUrl || '';
+      task.liveUrl = payload.liveUrl || task.liveUrl || '';
+      task.studentRemarks = payload.workDescription || task.studentRemarks || '';
+      task.instagramUrl = payload.instagramUrl || '';
+      task.linkedinUrl = payload.linkedinUrl || '';
+      task.followedInstagram = payload.followedInstagram;
+      task.followedLinkedIn = payload.followedLinkedIn;
+
+      if (Array.isArray(payload.files) && payload.files.length > 0) {
+        task.files = [...(task.files || []), ...payload.files];
+      }
+
+      // Recalculate progress
+      const approvedCount = sub.tasks.filter(t => t.status === 'approved' || t.reviewStatus === 'approved').length;
+      const submittedCount = sub.tasks.filter(t => t.status === 'submitted' || t.status === 'approved' || t.reviewStatus === 'under_review').length;
+      sub.completedWeeksCount = approvedCount;
+      sub.overallProgress = Math.round((submittedCount / 4) * 100);
+      sub.lastSubmissionDate = task.submittedAt;
+
+      submissionsStore.set(sub.submissionId, sub);
+      submissionsStore.set(sub.submissionToken, sub);
+      await persistSubmissions(sub);
+
+      // Dispatches confirmation emails
+      try {
+        await sendPrmaSubmissionConfirmationEmail({
+          toEmail: sub.student.email,
+          studentName: sub.student.fullName,
+          weekNumber: weekNum,
+          taskTitle: task.taskTitle,
+          offerId: sub.offerId,
+          domainTitle: sub.technical.domainTitle
+        });
+      } catch (err) {
+        console.warn('[PRMA ROUTER] Confirmation email warning:', err.message);
+      }
+
+      try {
+        await sendPrmaAdminTaskNotificationEmail({
+          studentName: sub.student.fullName,
+          studentEmail: sub.student.email,
+          weekNumber: weekNum,
+          taskTitle: task.taskTitle,
+          offerId: sub.offerId,
+          domainTitle: sub.technical.domainTitle,
+          githubUrl: task.githubUrl,
+          liveUrl: task.liveUrl
+        });
+      } catch (err) {
+        console.warn('[PRMA ROUTER] Admin alert email warning:', err.message);
+      }
+
+      res.json({
+        success: true,
+        submissionId: payload.uniqueSubmissionId,
+        message: `Week ${weekNum} task submitted via Google Form successfully!`,
+        submission: sub
+      });
+    } catch (err) {
+      console.error('[PRMA ROUTER] Google Form webhook error:', err);
+      res.status(500).json({ error: 'Webhook processing failed', details: err.message });
     }
   });
 

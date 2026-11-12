@@ -29,15 +29,19 @@ export async function sendPrmaApprovalEmail({
   studentName,
   domainTitle,
   offerId,
+  applicationId = '',
   joiningDate,
   completionDate,
   duration = '1 Month',
   mode = 'Fully Remote',
   submissionUrl,
+  googleFormUrl,
   joiningLetterPdfBuffer,
   problemStatementPdfBuffer
 }) {
-  const subject = `Official Internship Appointment Letter & Onboarding Package — ${offerId} | PRMA Tech`;
+  const subject = 'Congratulations! Your Internship Application Has Been Approved – PRMA Tech';
+  const cleanId = (offerId || applicationId || 'INTERN').replace(/[^a-zA-Z0-9_-]/g, '_');
+  const primarySubmissionUrl = googleFormUrl || submissionUrl;
 
   const htmlContent = `
 <!DOCTYPE html>
@@ -61,12 +65,13 @@ export async function sendPrmaApprovalEmail({
     .content-body { padding: 36px 32px; line-height: 1.68; font-size: 15px; color: #1E293B; }
     .greeting { font-size: 20px; font-weight: 800; color: #0F172A; margin: 0 0 14px; }
     .congrats-card { background: linear-gradient(135deg, #EFF6FF 0%, #F5F3FF 100%); border: 1.5px solid #BFDBFE; border-radius: 14px; padding: 20px; margin: 18px 0 24px; }
-    .congrats-title { font-size: 17px; font-weight: 900; color: #1D4ED8; margin: 0 0 6px; }
+    .congrats-title { font-size: 18px; font-weight: 900; color: #1D4ED8; margin: 0 0 8px; }
     .meta-table { width: 100%; border-collapse: collapse; margin: 20px 0; background-color: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 12px; overflow: hidden; }
     .meta-row { border-bottom: 1px solid #EEF2F6; }
     .meta-cell-label { padding: 10px 16px; font-size: 13.5px; font-weight: 700; color: #64748B; width: 38%; }
     .meta-cell-val { padding: 10px 16px; font-size: 14px; font-weight: 800; color: #0F172A; }
-    .deliverables-header { font-size: 16px; font-weight: 900; color: #0F172A; margin: 28px 0 14px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #E2E8F0; padding-bottom: 8px; }
+    .status-badge { display: inline-block; background-color: #DCFCE7; color: #15803D; padding: 2px 10px; border-radius: 6px; font-weight: 900; font-size: 12px; border: 1px solid #86EFAC; }
+    .deliverables-header { font-size: 16px; font-weight: 900; color: #0F172A; margin: 28px 0 14px; border-bottom: 2px solid #E2E8F0; padding-bottom: 8px; }
     .deliverable-card { background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; }
     .del-badge { display: inline-block; font-size: 10.5px; font-weight: 800; text-transform: uppercase; padding: 3px 10px; border-radius: 9999px; letter-spacing: 0.5px; margin-bottom: 6px; }
     .del-badge-1 { background-color: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
@@ -75,8 +80,9 @@ export async function sendPrmaApprovalEmail({
     .del-title { font-size: 15px; font-weight: 800; color: #0F172A; margin: 0 0 4px; }
     .del-desc { font-size: 13px; color: #475569; margin: 0; line-height: 1.5; }
     .cta-container { text-align: center; margin: 28px 0 20px; }
-    .cta-button { display: inline-block; background: linear-gradient(135deg, #0866F5 0%, #7025E8 100%); color: #FFFFFF !important; text-decoration: none; font-size: 15px; font-weight: 800; padding: 15px 36px; border-radius: 9999px; box-shadow: 0 8px 24px rgba(8, 102, 245, 0.35); letter-spacing: 0.3px; }
+    .cta-button { display: inline-block; background: linear-gradient(135deg, #0866F5 0%, #7025E8 100%); color: #FFFFFF !important; text-decoration: none; font-size: 15px; font-weight: 900; padding: 16px 38px; border-radius: 9999px; box-shadow: 0 8px 24px rgba(8, 102, 245, 0.35); letter-spacing: 0.5px; text-transform: uppercase; }
     .url-fallback { word-break: break-all; background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px 14px; font-family: monospace; font-size: 12px; color: #0866F5; margin-top: 10px; }
+    .instructions-box { background-color: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 12px; padding: 18px; margin: 20px 0; font-size: 13.5px; color: #334155; line-height: 1.6; }
     .linkedin-box { background-color: #F0FDF4; border: 1.5px solid #BBF7D0; border-radius: 12px; padding: 18px; margin: 24px 0; font-size: 13.5px; color: #166534; line-height: 1.6; }
     .signoff { margin-top: 32px; padding-top: 20px; border-top: 1px solid #E2E8F0; font-size: 14px; color: #334155; line-height: 1.6; }
     .footer { background-color: #F8FAFC; padding: 24px; text-align: center; font-size: 12px; color: #64748B; border-top: 1px solid #E2E8F0; }
@@ -100,97 +106,126 @@ export async function sendPrmaApprovalEmail({
         <div class="greeting">Dear ${studentName},</div>
 
         <div class="congrats-card">
-          <div class="congrats-title">Congratulations on Your Selection!</div>
-          <div style="font-size: 14.5px; color: #1E293B;">
-            Following a comprehensive evaluation of your application, we are delighted to officially welcome you to the <strong>PRMA Tech Virtual Internship Program</strong>.
+          <div class="congrats-title">Congratulations!</div>
+          <div style="font-size: 14.5px; color: #1E293B; line-height: 1.6;">
+            We are pleased to inform you that your application for the <strong>${domainTitle} Internship Program</strong> at PRMA Tech has been officially approved.
+          </div>
+          <div style="margin-top: 10px; font-weight: 800; color: #0866F5; font-size: 15px;">
+            Welcome to PRMA Tech!
           </div>
         </div>
 
-        <p>You have been appointed to the following technical track:</p>
+        <p style="font-weight: 800; color: #0F172A; margin: 20px 0 8px;">YOUR INTERNSHIP DETAILS:</p>
 
         <!-- INTERNSHIP METADATA TABLE -->
         <table class="meta-table">
           <tr class="meta-row">
-            <td class="meta-cell-label">Internship Domain</td>
-            <td class="meta-cell-val" style="color: #0866F5;">${domainTitle}</td>
+            <td class="meta-cell-label">Candidate Name</td>
+            <td class="meta-cell-val">${studentName}</td>
           </tr>
           <tr class="meta-row">
-            <td class="meta-cell-label">Offer / Candidate ID</td>
-            <td class="meta-cell-val" style="font-family: monospace;">${offerId}</td>
+            <td class="meta-cell-label">Internship ID</td>
+            <td class="meta-cell-val" style="font-family: monospace; color: #7025E8;">${offerId}</td>
+          </tr>
+          ${applicationId ? `
+          <tr class="meta-row">
+            <td class="meta-cell-label">Application ID</td>
+            <td class="meta-cell-val" style="font-family: monospace;">${applicationId}</td>
+          </tr>` : ''}
+          <tr class="meta-row">
+            <td class="meta-cell-label">Internship Domain</td>
+            <td class="meta-cell-val" style="color: #0866F5;">${domainTitle}</td>
           </tr>
           <tr class="meta-row">
             <td class="meta-cell-label">Internship Duration</td>
             <td class="meta-cell-val">${duration}</td>
           </tr>
           <tr class="meta-row">
-            <td class="meta-cell-label">Work Mode</td>
-            <td class="meta-cell-val">${mode} (100% Online)</td>
-          </tr>
-          <tr class="meta-row">
             <td class="meta-cell-label">Joining Date</td>
             <td class="meta-cell-val">${joiningDate}</td>
           </tr>
+          <tr class="meta-row">
+            <td class="meta-cell-label">Work Mode</td>
+            <td class="meta-cell-val">${mode} (100% Online)</td>
+          </tr>
           <tr>
-            <td class="meta-cell-label">Scheduled Completion</td>
-            <td class="meta-cell-val">${completionDate}</td>
+            <td class="meta-cell-label">Application Status</td>
+            <td class="meta-cell-val"><span class="status-badge">Approved</span></td>
           </tr>
         </table>
 
-        <!-- 3 MAJOR DELIVERABLES -->
+        <!-- YOUR OFFICIAL DOCUMENTS -->
         <div class="deliverables-header">
-          Your Official Internship Deliverables Package
+          YOUR OFFICIAL DOCUMENTS (ATTACHED TO THIS EMAIL):
         </div>
 
-        <!-- DELIVERABLE 1 -->
+        <!-- ATTACHMENT 1 -->
         <div class="deliverable-card">
-          <span class="del-badge del-badge-1">Deliverable 1 &bull; Attached PDF</span>
-          <h4 class="del-title">Official Internship Joining Letter</h4>
+          <span class="del-badge del-badge-1">ATTACHMENT 1</span>
+          <h4 class="del-title">PRMA_Tech_Joining_Letter_${cleanId}.pdf</h4>
           <p class="del-desc">
-            Your personalized, verified appointment letter bearing the official PRMA Tech seal, authorized signatory verification, and scannable QR code. <strong>(Attached to this email)</strong>
+            Your personalized, verified appointment letter bearing the official PRMA Tech seal, authorized signatory verification, and scannable QR verification code.
           </p>
         </div>
 
-        <!-- DELIVERABLE 2 -->
+        <!-- ATTACHMENT 2 -->
         <div class="deliverable-card">
-          <span class="del-badge del-badge-2">Deliverable 2 &bull; Attached PDF</span>
-          <h4 class="del-title">Internship Problem Statement &amp; 4 Weekly Tasks</h4>
+          <span class="del-badge del-badge-2">ATTACHMENT 2</span>
+          <h4 class="del-title">PRMA_Tech_Problem_Statement_${cleanId}.pdf</h4>
           <p class="del-desc">
-            Your structured 10-page project assignment document defining your technical deliverables across all 4 weeks (Task 1 to Task 4). Follow the weekly deadlines and submission requirements. <strong>(Attached to this email)</strong>
+            Your comprehensive 10-page project specification detailing your 4 weekly tasks, technical problem statements, milestones, and acceptance criteria.
           </p>
         </div>
 
-        <!-- DELIVERABLE 3 -->
+        <!-- YOUR WEEKLY TASK SUBMISSION -->
+        <div class="deliverables-header" style="margin-top: 32px;">
+          YOUR WEEKLY TASK SUBMISSION:
+        </div>
+
         <div class="deliverable-card">
-          <span class="del-badge del-badge-3">Deliverable 3 &bull; Action Required</span>
-          <h4 class="del-title">Your Unique Project Submission Portal Link</h4>
+          <span class="del-badge del-badge-3">Deliverable Submission Portal</span>
+          <h4 class="del-title">Official Weekly Task Submission System</h4>
           <p class="del-desc">
-            A dedicated, secure submission link created specifically for your profile. Use this link to upload your weekly project files (PDF/ZIP), GitHub repositories, live demo URLs, and notes for mentor review.
+            You must complete all four weekly tasks sequentially and submit each week's deliverables separately upon completion. Click the button below to access your personalized, prefilled submission form:
           </p>
 
           <div class="cta-container">
-            <a href="${submissionUrl}" class="cta-button" target="_blank" rel="noopener noreferrer">
-              Access Your Submission Portal &rarr;
+            <a href="${primarySubmissionUrl}" class="cta-button" target="_blank" rel="noopener noreferrer">
+              SUBMIT YOUR WEEKLY INTERNSHIP TASKS
             </a>
           </div>
 
           <div style="font-size: 11.5px; color: #64748B; text-align: center;">
             If the button above does not open, copy and paste this unique link in your browser:
           </div>
-          <div class="url-fallback">${submissionUrl}</div>
+          <div class="url-fallback">${primarySubmissionUrl}</div>
+        </div>
+
+        <!-- SUBMISSION INSTRUCTIONS -->
+        <div class="instructions-box">
+          <strong style="color: #0F172A; display: block; margin-bottom: 6px;">Important Submission Guidelines:</strong>
+          <ul style="margin: 0; padding-left: 20px; color: #475569;">
+            <li>Submit each week's deliverables (Week 1, Week 2, Week 3, Week 4) as you finish them.</li>
+            <li>Include your GitHub repository link and deployed live demo URL (if applicable).</li>
+            <li>Attach your project source code (ZIP) and documentation report (PDF) for evaluation.</li>
+            <li>Our mentorship board evaluates submissions weekly and provides official review feedback.</li>
+          </ul>
         </div>
 
         <!-- LINKEDIN CELEBRATION -->
         <div class="linkedin-box">
           <strong>Share Your Milestone on LinkedIn:</strong><br>
-          We strongly encourage you to share your official Joining Letter on LinkedIn. Tag our official page <a href="${LINKEDIN_URL}" target="_blank" style="color: #059669; font-weight: 800;">PRMA Tech on LinkedIn</a> with hashtags <strong>#PRMATech #Internship #TechCareer</strong>. Our mentorship team will personally celebrate and endorse your selection!
+          We encourage you to share your official Joining Letter on LinkedIn. Tag our official page <a href="${LINKEDIN_URL}" target="_blank" style="color: #059669; font-weight: 800;">PRMA Tech on LinkedIn</a> with hashtags <strong>#PRMATech #Internship #TechCareer</strong>. Our mentorship team will personally celebrate and endorse your selection!
         </div>
 
-        <!-- SIGN-OFF -->
+        <!-- OFFICIAL SIGN-OFF -->
         <div class="signoff">
-          Warm Regards,<br>
-          <strong>Internship Board &amp; Technical Mentorship Team</strong><br>
-          <strong>PRMA Tech</strong><br>
-          <span style="font-size: 12px; color: #64748B;">Greater Noida, Uttar Pradesh, India &bull; Reg. No.: UDYAM-UP-76-0055635</span><br><br>
+          Regards,<br><br>
+          <strong style="font-size: 15px; color: #0F172A;">Priyanshu Kumar</strong><br>
+          Founder &amp; Authorized Representative<br>
+          <strong style="color: #0866F5;">PRMA Tech™</strong><br>
+          <em>Build. Learn. Innovate. Grow.</em><br><br>
+          <span style="font-size: 12px; color: #64748B;">Greater Noida, Uttar Pradesh, India &bull; Reg. No.: UDYAM-UP-76-0055635</span><br>
           Official Website: <a href="https://${COMPANY_WEBSITE}" style="color: #0866F5; font-weight: 600;">${COMPANY_WEBSITE}</a><br>
           Support Email: <a href="mailto:${COMPANY_EMAIL}" style="color: #0866F5; font-weight: 600;">${COMPANY_EMAIL}</a>
         </div>
@@ -199,7 +234,7 @@ export async function sendPrmaApprovalEmail({
       <!-- FOOTER -->
       <div class="footer">
         &copy; ${new Date().getFullYear()} PRMA Tech in Official Partnership with ProfessorVirus.<br>
-        This email was transmitted to ${toEmail} regarding your approved internship application (${offerId}).
+        This email was transmitted to ${toEmail} regarding your approved internship application (${offerId || applicationId}).
       </div>
     </div>
   </div>
@@ -212,7 +247,7 @@ export async function sendPrmaApprovalEmail({
   // Attach Joining Letter PDF
   if (joiningLetterPdfBuffer) {
     attachments.push({
-      filename: `PRMA_Tech_Joining_Letter_${offerId.replace(/[\/\\]/g, '_')}.pdf`,
+      filename: `PRMA_Tech_Joining_Letter_${cleanId}.pdf`,
       content: joiningLetterPdfBuffer,
       contentType: 'application/pdf'
     });
@@ -221,7 +256,7 @@ export async function sendPrmaApprovalEmail({
   // Attach Problem Statement PDF
   if (problemStatementPdfBuffer) {
     attachments.push({
-      filename: `PRMA_Tech_Problem_Statement_Weekly_Tasks_${offerId.replace(/[\/\\]/g, '_')}.pdf`,
+      filename: `PRMA_Tech_Problem_Statement_${cleanId}.pdf`,
       content: problemStatementPdfBuffer,
       contentType: 'application/pdf'
     });
