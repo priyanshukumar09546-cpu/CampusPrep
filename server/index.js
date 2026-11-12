@@ -989,28 +989,28 @@ const safeErrorMessage = (err) => {
   return msg;
 };
 
+const DIRECT_ATLAS_URI = 'mongodb://professorvirus_admin:ProfessorVirus2026@ac-ojbgnqm-shard-00-00.tftgeof.mongodb.net:27017,ac-ojbgnqm-shard-00-01.tftgeof.mongodb.net:27017,ac-ojbgnqm-shard-00-02.tftgeof.mongodb.net:27017/ProfessorVirus?ssl=true&replicaSet=atlas-cxvxsy-shard-0&authSource=admin';
+
 async function connectToDatabase() {
   if (mongoose.connection.readyState === 1) {
     isDbConnected = true;
     return;
   }
-  if (!process.env.MONGODB_URI) {
-    console.warn('[DATABASE] MONGODB_URI not found in process.env. Operating with persistent disk storage mode.');
-    return;
-  }
+
+  const targetUri = process.env.MONGODB_URI || DIRECT_ATLAS_URI;
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(targetUri, {
       maxPoolSize: 50,
       minPoolSize: 5,
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
-      connectTimeoutMS: 10000,
+      connectTimeoutMS: 8000,
       family: 4
     });
     isDbConnected = true;
     console.log('MongoDB connected successfully');
-    console.log('[DATABASE] Target Cluster:', safeMaskUri(process.env.MONGODB_URI));
+    console.log('[DATABASE] Target Cluster:', safeMaskUri(targetUri));
     // Only run local-to-mongo disk sync on persistent server in the background (never on serverless)
     if (!IS_VERCEL) {
       syncMongoDbWithLocalStores().catch(syncErr => {
@@ -1018,9 +1018,28 @@ async function connectToDatabase() {
       });
     }
   } catch (err) {
-    isDbConnected = false;
-    console.warn('[DATABASE] MongoDB connection error:', safeErrorMessage(err));
-    console.warn('[DATABASE] Operating in persistent disk storage mode.');
+    console.warn('[DATABASE] Primary MongoDB connection error:', safeErrorMessage(err), 'Trying direct replica set fallback...');
+    try {
+      await mongoose.connect(DIRECT_ATLAS_URI, {
+        maxPoolSize: 50,
+        minPoolSize: 5,
+        serverSelectionTimeoutMS: 6000,
+        socketTimeoutMS: 45000,
+        connectTimeoutMS: 8000,
+        family: 4
+      });
+      isDbConnected = true;
+      console.log('MongoDB connected successfully via direct replica set');
+      if (!IS_VERCEL) {
+        syncMongoDbWithLocalStores().catch(syncErr => {
+          console.warn('[DATABASE] Background store sync notice:', syncErr.message);
+        });
+      }
+    } catch (fallbackErr) {
+      isDbConnected = false;
+      console.warn('[DATABASE] MongoDB connection error:', safeErrorMessage(fallbackErr));
+      console.warn('[DATABASE] Operating in persistent disk storage mode.');
+    }
   }
 }
 

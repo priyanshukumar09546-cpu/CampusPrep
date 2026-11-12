@@ -202,6 +202,41 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
+  // Helper: Client-side image compression to ensure crystal clear screenshots with compact payload (<200KB)
+  const compressScreenshot = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onerror = reject;
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+          const maxDim = 1200;
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          const compressed = canvas.toDataURL('image/jpeg', 0.82);
+          resolve(compressed);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
   // LinkedIn Screenshot Select Handler (Compulsory JPG/JPEG/PNG)
   const handleLinkedinScreenshotSelect = (e) => {
     const file = e.target.files?.[0];
@@ -217,7 +252,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     }
 
     if (file.size > 8 * 1024 * 1024) {
-      setLinkedinScreenshotError('File size exceeds the 8 MB limit. Please compress your screenshot.');
+      setLinkedinScreenshotError('File size exceeds the 8 MB limit. Please select a valid screenshot.');
       setLinkedinScreenshotFile(null);
       setLinkedinScreenshotBase64('');
       return;
@@ -226,11 +261,13 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     setLinkedinScreenshotError('');
     setLinkedinScreenshotFile(file);
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      setLinkedinScreenshotBase64(reader.result);
-    };
-    reader.readAsDataURL(file);
+    compressScreenshot(file)
+      .then(base64 => setLinkedinScreenshotBase64(base64))
+      .catch(() => {
+        const reader = new FileReader();
+        reader.onload = () => setLinkedinScreenshotBase64(reader.result);
+        reader.readAsDataURL(file);
+      });
   };
 
   const removeLinkedinScreenshot = () => {
@@ -255,7 +292,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     }
 
     if (file.size > 8 * 1024 * 1024) {
-      setInstagramScreenshotError('File size exceeds the 8 MB limit. Please compress your screenshot.');
+      setInstagramScreenshotError('File size exceeds the 8 MB limit. Please select a valid screenshot.');
       setInstagramScreenshotFile(null);
       setInstagramScreenshotBase64('');
       return;
@@ -264,11 +301,13 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     setInstagramScreenshotError('');
     setInstagramScreenshotFile(file);
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      setInstagramScreenshotBase64(reader.result);
-    };
-    reader.readAsDataURL(file);
+    compressScreenshot(file)
+      .then(base64 => setInstagramScreenshotBase64(base64))
+      .catch(() => {
+        const reader = new FileReader();
+        reader.onload = () => setInstagramScreenshotBase64(reader.result);
+        reader.readAsDataURL(file);
+      });
   };
 
   const removeInstagramScreenshot = () => {
@@ -406,8 +445,8 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
           dataUrl: instagramScreenshotBase64
         }
       },
-      linkedinScreenshotUrl: linkedinScreenshotBase64,
-      instagramScreenshotUrl: instagramScreenshotBase64,
+      linkedinScreenshotUrl: '',
+      instagramScreenshotUrl: '',
       declaration: {
         confirmedAccuracy: true
       }

@@ -111,6 +111,61 @@ const PrmaApplicationSchema = new mongoose.Schema({
 
 export const PrmaApplicationModel = mongoose.models.PrmaApplication || mongoose.model('PrmaApplication', PrmaApplicationSchema);
 
+// Resilient direct replica set URI to bypass Vercel serverless DNS SRV query failures
+export const DIRECT_ATLAS_URI = 'mongodb://professorvirus_admin:ProfessorVirus2026@ac-ojbgnqm-shard-00-00.tftgeof.mongodb.net:27017,ac-ojbgnqm-shard-00-01.tftgeof.mongodb.net:27017,ac-ojbgnqm-shard-00-02.tftgeof.mongodb.net:27017/ProfessorVirus?ssl=true&replicaSet=atlas-cxvxsy-shard-0&authSource=admin';
+
+let mongoConnectPromise = null;
+
+export async function ensureMongoConnected() {
+  if (mongoose.connection && mongoose.connection.readyState === 1) {
+    return true;
+  }
+  if (mongoose.connection && mongoose.connection.readyState === 2 && mongoConnectPromise) {
+    try {
+      await mongoConnectPromise;
+    } catch (e) {}
+    return mongoose.connection.readyState === 1;
+  }
+
+  const primaryUri = process.env.MONGODB_URI;
+  mongoConnectPromise = (async () => {
+    if (primaryUri) {
+      try {
+        await mongoose.connect(primaryUri, {
+          serverSelectionTimeoutMS: 5000,
+          socketTimeoutMS: 45000,
+          connectTimeoutMS: 5000,
+          family: 4
+        });
+        console.log('[PRMA ROUTER] Connected to MongoDB Atlas via primary URI.');
+        return true;
+      } catch (err) {
+        console.warn('[PRMA ROUTER] Primary MongoDB URI error:', err.message, '- Falling back to direct replica set...');
+      }
+    }
+
+    try {
+      await mongoose.connect(DIRECT_ATLAS_URI, {
+        serverSelectionTimeoutMS: 6000,
+        socketTimeoutMS: 45000,
+        connectTimeoutMS: 6000,
+        family: 4
+      });
+      console.log('[PRMA ROUTER] Connected to MongoDB Atlas via direct replica set.');
+      return true;
+    } catch (fallbackErr) {
+      console.error('[PRMA ROUTER] Direct replica set connection failed:', fallbackErr.message);
+      return false;
+    }
+  })();
+
+  try {
+    return await mongoConnectPromise;
+  } finally {
+    mongoConnectPromise = null;
+  }
+}
+
 // 9 Showcase Goodies (Zero Pricing • Coming Soon)
 const SHOWCASE_GOODIES = [
   {
@@ -212,7 +267,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   const jobApplicationsStore = [];
   const pdfCacheStore = new Map(); // offerId/appId -> Buffer
 
-  // Helper: Resilient lookup by applicationId or offerId
+  // Helper: Resilient synchronous lookup by applicationId or offerId from in-memory cache
   const findApplication = (id) => {
     if (!id) return null;
     const direct = applicationsStore.get(id);
@@ -227,14 +282,44 @@ export function createPrmaRouter({ isDbConnected } = {}) {
     return null;
   };
 
-  // Helper: Persist applications to disk JSON and MongoDB Atlas
-  const persistApplications = async (specificRecord = null) => {
-    try {
-      const arr = Array.from(applicationsStore.values());
-      fs.writeFileSync(APPS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
-    } catch (e) {
-      console.warn('[PRMA ROUTER] Error persisting applications to disk:', e.message);
+  // Helper: Authoritative async lookup ensuring direct MongoDB Atlas query
+  const getApplication = async (id) => {
+    if (!id) return null;
+    const cleanId = String(id).trim();
+
+    // 1. Check in-memory store
+    const mem = findApplication(cleanId);
+    if (mem && (mem.resume?.dataUrl || mem.socialFollow?.linkedinScreenshot)) {
+      return mem;
     }
+
+    // 2. Query MongoDB Atlas directly
+    await ensureMongoConnected();
+    if (mongoose.connection && mongoose.connection.readyState === 1) {
+      try {
+        const found = await PrmaApplicationModel.findOne({
+          $or: [
+            { applicationId: cleanId },
+            { applicationId: new RegExp('^' + cleanId + '$', 'i') },
+            { offerId: cleanId },
+            { offerId: new RegExp('^' + cleanId + '$', 'i') },
+            { 'student.email': new RegExp('^' + cleanId + '$', 'i') }
+          ]
+        }).lean();
+        if (found) {
+          applicationsStore.set(found.applicationId, found);
+          return found;
+        }
+      } catch (err) {
+        console.warn('[PRMA ROUTER] getApplication DB query error:', err.message);
+      }
+    }
+    return mem || null;
+  };
+
+  // Helper: Persist applications to MongoDB Atlas (authoritative) and disk JSON fallback
+  const persistApplications = async (specificRecord = null) => {
+    await ensureMongoConnected();
 
     if (mongoose.connection && mongoose.connection.readyState === 1) {
       try {
@@ -244,6 +329,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
             specificRecord,
             { upsert: true, new: true }
           );
+          console.log(`[PRMA ROUTER] Successfully persisted application ${specificRecord.applicationId} to MongoDB Atlas.`);
         } else {
           for (const app of applicationsStore.values()) {
             if (app.applicationId) {
@@ -256,13 +342,47 @@ export function createPrmaRouter({ isDbConnected } = {}) {
           }
         }
       } catch (err) {
-        console.warn('[PRMA ROUTER] MongoDB sync error:', err.message);
+        console.error('[PRMA ROUTER] Critical: MongoDB persistence error:', err.message);
+        throw err;
       }
+    } else {
+      console.error('[PRMA ROUTER] Cannot persist application: MongoDB is not connected!');
+      throw new Error('Database connection unavailable for persistent storage.');
+    }
+
+    try {
+      const arr = Array.from(applicationsStore.values());
+      fs.writeFileSync(APPS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
+    } catch (e) {
+      // In Vercel serverless fs write is read-only, which is expected
     }
   };
 
-  // Helper: Load applications from disk JSON and MongoDB Atlas
+  // Helper: Load applications from MongoDB Atlas (authoritative) and disk JSON fallback
   const loadApplications = async () => {
+    await ensureMongoConnected();
+
+    if (mongoose.connection && mongoose.connection.readyState === 1) {
+      try {
+        const mongoApps = await PrmaApplicationModel.find({}).sort({ createdAt: -1 }).lean();
+        if (Array.isArray(mongoApps) && mongoApps.length > 0) {
+          mongoApps.forEach(app => {
+            if (app.applicationId) {
+              applicationsStore.set(app.applicationId, app);
+            }
+          });
+          console.log(`[PRMA ROUTER] Synced ${mongoApps.length} applications from MongoDB Atlas.`);
+          try {
+            const arr = Array.from(applicationsStore.values());
+            fs.writeFileSync(APPS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
+          } catch (e) {}
+          return;
+        }
+      } catch (err) {
+        console.warn('[PRMA ROUTER] MongoDB load error:', err.message);
+      }
+    }
+
     try {
       if (fs.existsSync(APPS_FILE)) {
         const raw = fs.readFileSync(APPS_FILE, 'utf-8');
@@ -278,26 +398,6 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       }
     } catch (e) {
       console.warn('[PRMA ROUTER] Could not load persisted applications from disk:', e.message);
-    }
-
-    if (mongoose.connection && mongoose.connection.readyState === 1) {
-      try {
-        const mongoApps = await PrmaApplicationModel.find({}).lean();
-        if (Array.isArray(mongoApps) && mongoApps.length > 0) {
-          mongoApps.forEach(app => {
-            if (app.applicationId) {
-              applicationsStore.set(app.applicationId, app);
-            }
-          });
-          console.log(`[PRMA ROUTER] Synced ${mongoApps.length} applications from MongoDB Atlas.`);
-          try {
-            const arr = Array.from(applicationsStore.values());
-            fs.writeFileSync(APPS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
-          } catch (e) {}
-        }
-      } catch (err) {
-        console.warn('[PRMA ROUTER] MongoDB load error:', err.message);
-      }
     }
   };
 
@@ -670,6 +770,8 @@ export function createPrmaRouter({ isDbConnected } = {}) {
    */
   router.post('/applications', async (req, res) => {
     try {
+      await ensureMongoConnected();
+
       const {
         student,
         academic,
@@ -745,19 +847,41 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       const targetDomainId = technical.domainId || 'ai-ml';
       const targetDomainTitle = technical.domainTitle.trim().toLowerCase();
 
-      for (const existing of applicationsStore.values()) {
-        const existingEmail = (existing.student?.email || '').trim().toLowerCase();
-        const existingDomainId = existing.technical?.domainId || existing.domain?.id;
-        const existingDomainTitle = (existing.technical?.domainTitle || existing.domain?.title || '').trim().toLowerCase();
-
-        if (existingEmail === studentEmail && (existingDomainId === targetDomainId || existingDomainTitle === targetDomainTitle)) {
-          return res.status(409).json({
-            error: 'An application for this domain has already been submitted with this email address.',
-            applicationId: existing.applicationId,
-            status: existing.status,
-            createdAt: existing.createdAt
-          });
+      let existing = null;
+      if (mongoose.connection && mongoose.connection.readyState === 1) {
+        try {
+          existing = await PrmaApplicationModel.findOne({
+            'student.email': new RegExp('^' + studentEmail.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$', 'i'),
+            $or: [
+              { 'technical.domainId': targetDomainId },
+              { 'technical.domainTitle': new RegExp('^' + targetDomainTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$', 'i') }
+            ]
+          }).lean();
+        } catch (e) {
+          console.warn('[PRMA ROUTER] Duplicate check DB error:', e.message);
         }
+      }
+
+      if (!existing) {
+        for (const a of applicationsStore.values()) {
+          const existingEmail = (a.student?.email || '').trim().toLowerCase();
+          const existingDomainId = a.technical?.domainId || a.domain?.id;
+          const existingDomainTitle = (a.technical?.domainTitle || a.domain?.title || '').trim().toLowerCase();
+
+          if (existingEmail === studentEmail && (existingDomainId === targetDomainId || existingDomainTitle === targetDomainTitle)) {
+            existing = a;
+            break;
+          }
+        }
+      }
+
+      if (existing) {
+        return res.status(409).json({
+          error: 'An application for this domain has already been submitted with this email address.',
+          applicationId: existing.applicationId,
+          status: existing.status,
+          createdAt: existing.createdAt
+        });
       }
 
       // Generate Unique Application ID: PRMA + Year + 6 digits
@@ -844,21 +968,29 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   /**
    * Public: Student Application Status Tracking (By App ID, Offer ID, or Email)
    */
-  router.get('/applications/status/:identifier', (req, res) => {
+  router.get('/applications/status/:identifier', async (req, res) => {
     try {
       const rawParam = decodeURIComponent(req.params.identifier).trim();
-      const lookup = rawParam.toLowerCase();
-      let found = null;
+      let found = await getApplication(rawParam);
 
-      for (const app of applicationsStore.values()) {
-        if (
-          (app.applicationId && app.applicationId.toLowerCase() === lookup) ||
-          (app.offerId && app.offerId.toLowerCase() === lookup) ||
-          (app.student?.email && app.student.email.toLowerCase() === lookup) ||
-          (app.student?.mobile && app.student.mobile.replace(/\D/g, '').includes(lookup.replace(/\D/g, '')))
-        ) {
-          found = app;
-          break;
+      if (!found) {
+        // Also check by mobile number if applicable
+        const cleanPhone = rawParam.replace(/\D/g, '');
+        if (cleanPhone.length >= 7) {
+          await ensureMongoConnected();
+          if (mongoose.connection && mongoose.connection.readyState === 1) {
+            found = await PrmaApplicationModel.findOne({
+              'student.mobile': { $regex: cleanPhone }
+            }).lean();
+          }
+          if (!found) {
+            for (const app of applicationsStore.values()) {
+              if (app.student?.mobile && app.student.mobile.replace(/\D/g, '').includes(cleanPhone)) {
+                found = app;
+                break;
+              }
+            }
+          }
         }
       }
 
@@ -910,16 +1042,26 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   });
 
   /**
-   * Admin: List Applications with Search & Filters
+   * Admin: List Applications with Search & Filters (Authoritative MongoDB Atlas)
    */
   router.get('/admin/applications', async (req, res) => {
     try {
-      if (applicationsStore.size === 0) {
-        await loadApplications();
+      await ensureMongoConnected();
+
+      let list = [];
+      if (mongoose.connection && mongoose.connection.readyState === 1) {
+        list = await PrmaApplicationModel.find({}).sort({ createdAt: -1 }).lean();
+        list.forEach(app => {
+          if (app.applicationId) applicationsStore.set(app.applicationId, app);
+        });
+      } else {
+        if (applicationsStore.size === 0) {
+          await loadApplications();
+        }
+        list = Array.from(applicationsStore.values()).reverse();
       }
 
       const { status, domain, college, university, search } = req.query;
-      let list = Array.from(applicationsStore.values()).reverse();
 
       if (status && status !== 'all') {
         const norm = status.toLowerCase();
@@ -965,64 +1107,76 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   /**
    * Admin: Application Details Dossier
    */
-  router.get('/admin/applications/:id', (req, res) => {
-    const appId = req.params.id;
-    const found = findApplication(appId);
+  router.get('/admin/applications/:id', async (req, res) => {
+    try {
+      const appId = req.params.id;
+      const found = await getApplication(appId);
 
-    if (!found) {
-      return res.status(404).json({ error: 'Application not found' });
+      if (!found) {
+        return res.status(404).json({ error: 'Application not found' });
+      }
+
+      res.json({ success: true, application: found });
+    } catch (err) {
+      res.status(500).json({ error: 'Error fetching application', details: err.message });
     }
-
-    res.json({ success: true, application: found });
   });
 
   /**
    * Admin: Download Candidate Resume
    */
-  router.get('/admin/applications/:id/resume', (req, res) => {
-    const appId = req.params.id;
-    const record = findApplication(appId);
+  router.get('/admin/applications/:id/resume', async (req, res) => {
+    try {
+      const appId = req.params.id;
+      const record = await getApplication(appId);
 
-    if (!record || !record.resume) {
-      return res.status(404).send('Resume file not found');
+      if (!record || !record.resume) {
+        return res.status(404).send('Resume file not found');
+      }
+
+      if (record.resume.dataUrl && record.resume.dataUrl.startsWith('data:application/pdf;base64,')) {
+        const base64Data = record.resume.dataUrl.replace(/^data:application\/pdf;base64,/, '');
+        const buffer = Buffer.from(base64Data, 'base64');
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `inline; filename="${record.resume.fileName || 'Resume.pdf'}"`);
+        return res.end(buffer);
+      }
+
+      res.status(404).send('Resume content unavailable');
+    } catch (err) {
+      res.status(500).send('Error streaming resume: ' + err.message);
     }
-
-    if (record.resume.dataUrl && record.resume.dataUrl.startsWith('data:application/pdf;base64,')) {
-      const base64Data = record.resume.dataUrl.replace(/^data:application\/pdf;base64,/, '');
-      const buffer = Buffer.from(base64Data, 'base64');
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `inline; filename="${record.resume.fileName || 'Resume.pdf'}"`);
-      return res.end(buffer);
-    }
-
-    res.status(404).send('Resume content unavailable');
   });
 
   /**
    * Admin: View / Download Social Follow Screenshot (LinkedIn / Instagram)
    */
-  router.get('/admin/applications/:id/screenshot/:platform', (req, res) => {
-    const { id, platform } = req.params;
-    const record = findApplication(id);
-    if (!record) return res.status(404).send('Application not found');
+  router.get('/admin/applications/:id/screenshot/:platform', async (req, res) => {
+    try {
+      const { id, platform } = req.params;
+      const record = await getApplication(id);
+      if (!record) return res.status(404).send('Application not found');
 
-    const screenshotData = platform === 'linkedin'
-      ? (record.socialFollow?.linkedinScreenshot || record.linkedinScreenshotUrl)
-      : (record.socialFollow?.instagramScreenshot || record.instagramScreenshotUrl);
+      const screenshotData = platform === 'linkedin'
+        ? (record.socialFollow?.linkedinScreenshot || record.linkedinScreenshotUrl)
+        : (record.socialFollow?.instagramScreenshot || record.instagramScreenshotUrl);
 
-    if (!screenshotData) return res.status(404).send('Screenshot proof not found');
+      if (!screenshotData) return res.status(404).send('Screenshot proof not found');
 
-    if (typeof screenshotData === 'string' && screenshotData.startsWith('data:image/')) {
-      const matches = screenshotData.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.+)$/);
-      if (matches) {
-        const mimeType = matches[1];
-        const buffer = Buffer.from(matches[2], 'base64');
-        res.setHeader('Content-Type', mimeType);
-        res.setHeader('Content-Disposition', `inline; filename="${platform}_follow_proof.png"`);
-        return res.end(buffer);
+      if (typeof screenshotData === 'string' && screenshotData.startsWith('data:image/')) {
+        const matches = screenshotData.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.+)$/);
+        if (matches) {
+          const mimeType = matches[1];
+          const buffer = Buffer.from(matches[2], 'base64');
+          res.setHeader('Content-Type', mimeType);
+          res.setHeader('Content-Disposition', `inline; filename="${platform}_follow_proof.png"`);
+          return res.end(buffer);
+        }
       }
+      res.status(404).send('Invalid or corrupt screenshot format');
+    } catch (err) {
+      res.status(500).send('Error streaming screenshot: ' + err.message);
     }
-    res.status(404).send('Invalid or corrupt screenshot format');
   });
 
   /**
@@ -1031,7 +1185,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   router.post('/admin/applications/:id/shortlist', async (req, res) => {
     try {
       const appId = req.params.id;
-      let record = findApplication(appId);
+      let record = await getApplication(appId);
 
       if (!record) {
         return res.status(404).json({ error: 'Application not found' });
@@ -1157,7 +1311,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   router.post('/admin/applications/:id/reject', async (req, res) => {
     try {
       const appId = req.params.id;
-      const record = findApplication(appId);
+      const record = await getApplication(appId);
       if (!record) return res.status(404).json({ error: 'Application not found' });
 
       record.status = 'rejected';
@@ -1195,7 +1349,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   router.post('/admin/applications/:id/review', async (req, res) => {
     try {
       const appId = req.params.id;
-      const record = findApplication(appId);
+      const record = await getApplication(appId);
       if (!record) return res.status(404).json({ error: 'Application not found' });
 
       record.status = 'under_review';
@@ -1216,7 +1370,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   router.post('/admin/applications/:id/status', async (req, res) => {
     try {
       const appId = req.params.id;
-      let record = findApplication(appId);
+      let record = await getApplication(appId);
 
       if (!record) return res.status(404).json({ error: 'Application not found' });
 
@@ -1261,16 +1415,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   const handleOfferLetterStream = async (req, res) => {
     try {
       const idParam = req.params.id || req.params.offerId;
-      let record = applicationsStore.get(idParam);
-
-      if (!record) {
-        for (const a of applicationsStore.values()) {
-          if (a.applicationId === idParam || a.offerId === idParam) {
-            record = a;
-            break;
-          }
-        }
-      }
+      let record = await getApplication(idParam);
 
       let pdfBuffer = pdfCacheStore.get(idParam);
       if (!pdfBuffer && record?.offerId) {
@@ -1317,20 +1462,10 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   /**
    * Scannable QR Credential Verification Endpoint
    */
-  router.get('/verify-offer/:offerId', (req, res) => {
+  router.get('/verify-offer/:offerId', async (req, res) => {
     try {
       const paramId = decodeURIComponent(req.params.offerId).trim();
-      let match = null;
-
-      for (const app of applicationsStore.values()) {
-        if (
-          (app.offerId && app.offerId.toLowerCase() === paramId.toLowerCase()) ||
-          (app.applicationId && app.applicationId.toLowerCase() === paramId.toLowerCase())
-        ) {
-          match = app;
-          break;
-        }
-      }
+      let match = await getApplication(paramId);
 
       // Default sample reference seed
       if (!match && (paramId.toLowerCase().includes('93084') || paramId.toLowerCase() === 'prma/int/a1/93084')) {
@@ -1394,11 +1529,20 @@ export function createPrmaRouter({ isDbConnected } = {}) {
    */
   router.get('/admin/stats', async (req, res) => {
     try {
-      if (applicationsStore.size === 0) {
-        await loadApplications();
-      }
+      await ensureMongoConnected();
 
-      const apps = Array.from(applicationsStore.values());
+      let apps = [];
+      if (mongoose.connection && mongoose.connection.readyState === 1) {
+        apps = await PrmaApplicationModel.find({}).lean();
+        apps.forEach(app => {
+          if (app.applicationId) applicationsStore.set(app.applicationId, app);
+        });
+      } else {
+        if (applicationsStore.size === 0) {
+          await loadApplications();
+        }
+        apps = Array.from(applicationsStore.values());
+      }
 
       const totalApplications = apps.length;
       const newApplications = apps.filter(a => a.status === 'submitted' || a.status === 'pending').length;
