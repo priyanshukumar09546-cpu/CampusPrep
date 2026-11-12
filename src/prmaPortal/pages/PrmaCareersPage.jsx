@@ -33,6 +33,31 @@ export default function PrmaCareersPage({ navigateToTab }) {
   const [selectedLocation, setSelectedLocation] = useState('All Locations');
   const [activeJobModal, setActiveJobModal] = useState(null);
   const [resumeDropModalOpen, setResumeDropModalOpen] = useState(false);
+  const [liveJobs, setLiveJobs] = useState(PRMA_JOB_OPENINGS);
+  const [loadingJobs, setLoadingJobs] = useState(false);
+
+  // Load published jobs from live backend API
+  React.useEffect(() => {
+    let isMounted = true;
+    const fetchJobs = async () => {
+      try {
+        setLoadingJobs(true);
+        const res = await fetch('/api/prma/careers/jobs');
+        if (res.ok) {
+          const data = await res.json();
+          if (isMounted && data.success && Array.isArray(data.jobs)) {
+            setLiveJobs(data.jobs);
+          }
+        }
+      } catch (err) {
+        console.warn('Could not fetch live jobs:', err);
+      } finally {
+        if (isMounted) setLoadingJobs(false);
+      }
+    };
+    fetchJobs();
+    return () => { isMounted = false; };
+  }, []);
 
   // Application Form State
   const [applicationForm, setApplicationForm] = useState({
@@ -57,11 +82,11 @@ export default function PrmaCareersPage({ navigateToTab }) {
     }
   };
 
-  const filteredJobs = PRMA_JOB_OPENINGS.filter((job) => {
+  const filteredJobs = liveJobs.filter((job) => {
     const matchesCategory =
-      selectedCategory === 'All Roles' || job.category.toLowerCase() === selectedCategory.toLowerCase();
+      selectedCategory === 'All Roles' || (job.category || '').toLowerCase() === selectedCategory.toLowerCase();
     const matchesLocation =
-      selectedLocation === 'All Locations' || job.location.toLowerCase().includes(selectedLocation.toLowerCase());
+      selectedLocation === 'All Locations' || (job.location || '').toLowerCase().includes(selectedLocation.toLowerCase());
     return matchesCategory && matchesLocation;
   });
 
@@ -447,7 +472,59 @@ export default function PrmaCareersPage({ navigateToTab }) {
           }}
           className="prma-jobs-grid"
         >
-          {filteredJobs.map((job) => (
+          {filteredJobs.length === 0 ? (
+            <div
+              style={{
+                gridColumn: '1 / -1',
+                textAlign: 'center',
+                padding: '4rem 1.5rem',
+                backgroundColor: '#F8FAFC',
+                borderRadius: '24px',
+                border: '1.5px dashed #CBD5E1'
+              }}
+            >
+              <div
+                style={{
+                  width: '64px',
+                  height: '64px',
+                  borderRadius: '20px',
+                  backgroundColor: '#EFF6FF',
+                  color: '#0866F5',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 1.25rem'
+                }}
+              >
+                <Briefcase size={32} />
+              </div>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 900, color: '#0F172A', marginBottom: '0.5rem' }}>
+                No Current Openings Found
+              </h3>
+              <p style={{ fontSize: '0.92rem', color: '#64748B', maxWidth: '480px', margin: '0 auto 1.5rem', lineHeight: 1.6 }}>
+                We don't have published vacancies matching your selected filters right now. PRMA Tech regularly opens new engineering, design, and product roles.
+              </p>
+              <button
+                type="button"
+                onClick={() => setResumeDropModalOpen(true)}
+                style={{
+                  backgroundColor: '#0866F5',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  borderRadius: '999px',
+                  padding: '0.85rem 2rem',
+                  fontSize: '0.92rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 24px rgba(8, 102, 245, 0.25)',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                Drop Resume in Talent Network &rarr;
+              </button>
+            </div>
+          ) : (
+            filteredJobs.map((job) => (
             <div
               key={job.id}
               onClick={() => setActiveJobModal(job)}
@@ -566,7 +643,8 @@ export default function PrmaCareersPage({ navigateToTab }) {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        )}
         </div>
       </section>
 

@@ -70,9 +70,9 @@ export default function TwoBrandsJourneySection({ onNavigate }) {
 
   const handleInternshipClick = () => {
     if (onNavigate) {
-      onNavigate('prma-internships-home');
+      onNavigate('prma-home');
     } else {
-      window.location.href = '/prma-tech/internships';
+      window.location.href = '/prma-tech';
     }
   };
 

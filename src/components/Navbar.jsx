@@ -599,7 +599,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
                   }}
                 >
                   {[
-                    { label: 'PRMA Tech Internships', id: 'prma-internships-home', icon: Rocket, badge: 'New' },
+                    { label: 'PRMA Tech Internships', id: 'prma-home', icon: Rocket, badge: 'New' },
                     { label: 'Attendance Calculator', id: 'attendance-calculator', icon: Calendar },
                     { label: 'PDF Maker & Tools', id: 'pdf-maker', icon: FileText },
                     { label: 'Timetable Planner', id: 'timetable', icon: Clock },
@@ -893,7 +893,7 @@ export default function Navbar({ onSearch, onOpenAuth, activeTab, setActiveTab, 
               { name: 'ATS Resume Maker', id: 'resume-maker', icon: FileText },
               { name: 'Interview Pro AI', id: 'interview-pro', icon: Briefcase },
               { name: 'Result & CGPA', id: 'result-cgpa', icon: BarChart2 },
-              { name: 'PRMA Tech Internships', id: 'prma-internships-home', icon: Rocket }
+              { name: 'PRMA Tech Internships', id: 'prma-home', icon: Rocket }
             ].map((link, i) => {
               const Icon = link.icon;
               return (

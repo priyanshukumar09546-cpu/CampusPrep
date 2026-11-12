@@ -41,7 +41,8 @@ import {
   Linkedin,
   Instagram,
   Image as ImageIcon,
-  Maximize2
+  Maximize2,
+  Briefcase
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
@@ -59,6 +60,8 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
   const [domains, setDomains] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [emailLogs, setEmailLogs] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const [jobApplications, setJobApplications] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Filters & Search
@@ -100,6 +103,22 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
     project: '',
     iconType: 'frontend',
     color: '#3B82F6'
+  });
+
+  // Job Opening Management Modal
+  const [showAddJobModal, setShowAddJobModal] = useState(false);
+  const [newJobData, setNewJobData] = useState({
+    title: '',
+    category: 'Engineering',
+    type: 'Internship',
+    location: 'Remote',
+    experience: 'Fresher / Student',
+    stipend: 'Performance-based + Certificate',
+    duration: '3 - 6 Months',
+    shortDesc: '',
+    skills: '',
+    responsibilities: '',
+    requirements: ''
   });
 
   // Notifications
@@ -150,6 +169,19 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
       if (emailRes.ok) {
         const data = await emailRes.json();
         setEmailLogs(data.emails || []);
+      }
+
+      // 6. Careers Jobs & Applications
+      const jobsRes = await fetch('/api/prma/admin/jobs');
+      if (jobsRes.ok) {
+        const data = await jobsRes.json();
+        setJobs(data.jobs || []);
+      }
+
+      const jobAppsRes = await fetch('/api/prma/admin/job-applications');
+      if (jobAppsRes.ok) {
+        const data = await jobAppsRes.json();
+        setJobApplications(data.applications || []);
       }
     } catch (err) {
       console.warn('Failed to load live admin data:', err);
@@ -382,6 +414,80 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
     }
   };
 
+  // Change Application Status (Pending, Under Review, Approved, Rejected)
+  const handleChangeStatus = async (app, newStatus) => {
+    if (newStatus === 'shortlisted' || newStatus === 'approved') {
+      openShortlistModal(app);
+      return;
+    }
+    if (newStatus === 'rejected') {
+      handleRejectApp(app);
+      return;
+    }
+    try {
+      const res = await fetch(`/api/prma/admin/applications/${app.applicationId}/status`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus === 'pending' ? 'submitted' : newStatus })
+      });
+      if (res.ok) {
+        showToast(`Application ${app.applicationId} status updated to ${newStatus}.`);
+        if (selectedApp) {
+          setSelectedApp(prev => prev ? { ...prev, status: newStatus === 'pending' ? 'submitted' : newStatus } : null);
+        }
+        loadAllData();
+      }
+    } catch (e) {
+      alert('Error changing status: ' + e.message);
+    }
+  };
+
+  // Create Job Opening
+  const handleCreateJob = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('/api/prma/admin/jobs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newJobData)
+      });
+      if (res.ok) {
+        showToast('✓ Job opening published successfully!');
+        setShowAddJobModal(false);
+        setNewJobData({
+          title: '',
+          category: 'Engineering',
+          type: 'Internship',
+          location: 'Remote',
+          experience: 'Fresher / Student',
+          stipend: 'Performance-based + Certificate',
+          duration: '3 - 6 Months',
+          shortDesc: '',
+          skills: '',
+          responsibilities: '',
+          requirements: ''
+        });
+        loadAllData();
+      }
+    } catch (e) {
+      alert('Error creating job: ' + e.message);
+    }
+  };
+
+  // Delete Job Opening
+  const handleDeleteJob = async (jobId) => {
+    if (!window.confirm('Are you sure you want to delete this job opening?')) return;
+    try {
+      const res = await fetch(`/api/prma/admin/jobs/${jobId}`, { method: 'DELETE' });
+      if (res.ok) {
+        showToast('Job opening removed.');
+        loadAllData();
+      }
+    } catch (e) {
+      alert('Error deleting job: ' + e.message);
+    }
+  };
+
   const copyToClipboard = (text, id) => {
     navigator.clipboard.writeText(text);
     setCopiedId(id);
@@ -396,6 +502,7 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
     { id: 'shortlisted', label: 'Shortlisted Students', icon: UserCheck, count: shortlistedApps.length, badgeColor: 'bg-emerald-600 text-white' },
     { id: 'rejected', label: 'Rejected Applications', icon: UserX, count: rejectedApps.length },
     { id: 'domains', label: 'Domain Management', icon: Code2, count: domains.length },
+    { id: 'careers', label: 'Careers & Jobs', icon: Briefcase, count: jobs.length },
     { id: 'tasks', label: 'Internship Tasks', icon: ListTodo, count: tasks.length },
     { id: 'letters', label: 'Joining Letters', icon: Award, count: shortlistedApps.length },
     { id: 'emails', label: 'Email Management', icon: Mail, count: emailLogs.length },
@@ -594,6 +701,7 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
               onApprove={openShortlistModal}
               onReject={handleRejectApp}
               onReview={handleMarkReview}
+              onChangeStatus={handleChangeStatus}
               domains={domains}
               domainFilter={domainFilter}
               setDomainFilter={setDomainFilter}
@@ -612,6 +720,7 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
               onApprove={openShortlistModal}
               onReject={handleRejectApp}
               onReview={handleMarkReview}
+              onChangeStatus={handleChangeStatus}
               domains={domains}
               domainFilter={domainFilter}
               setDomainFilter={setDomainFilter}
@@ -630,6 +739,7 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
               onApprove={openShortlistModal}
               onReject={handleRejectApp}
               onReview={handleMarkReview}
+              onChangeStatus={handleChangeStatus}
               onResendEmail={handleResendEmail}
               domains={domains}
               domainFilter={domainFilter}
@@ -650,6 +760,7 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
               onApprove={openShortlistModal}
               onReject={handleRejectApp}
               onReview={handleMarkReview}
+              onChangeStatus={handleChangeStatus}
               domains={domains}
               domainFilter={domainFilter}
               setDomainFilter={setDomainFilter}
@@ -712,6 +823,142 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* SECTION: CAREERS & JOB OPENINGS MANAGEMENT */}
+          {activeSection === 'careers' && (
+            <div className="space-y-8">
+              {/* Job Openings Manager */}
+              <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+                  <div>
+                    <h3 className="text-2xl font-black text-slate-900">PRMA Tech Careers &amp; Openings</h3>
+                    <p className="text-xs text-slate-500 mt-1">Manage published job openings on /prma-tech/careers and review candidate submissions</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowAddJobModal(true)}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add Job Opening
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {jobs.length === 0 ? (
+                    <div className="col-span-full py-12 text-center text-slate-400 text-xs">
+                      No published job openings found. Click "Add Job Opening" to post a new vacancy.
+                    </div>
+                  ) : (
+                    jobs.map((job) => (
+                      <div key={job.id} className="p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-white hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">
+                              {job.category}
+                            </span>
+                            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
+                              {job.type}
+                            </span>
+                          </div>
+                          <h4 className="font-extrabold text-slate-900 text-base">{job.title}</h4>
+                          <p className="text-xs text-slate-500 mt-1">{job.location} &bull; {job.experience}</p>
+                          <p className="text-xs text-slate-600 mt-2 line-clamp-2">{job.shortDesc}</p>
+                          <div className="flex flex-wrap gap-1 mt-3">
+                            {(job.skills || []).slice(0, 4).map((sk, i) => (
+                              <span key={i} className="px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-600 text-[10px]">
+                                {sk}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-slate-200 mt-4 flex items-center justify-between text-xs">
+                          <span className="text-[11px] font-semibold text-slate-500">{job.duration}</span>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteJob(job.id)}
+                            className="font-bold text-rose-600 hover:underline flex items-center gap-1 text-[11px]"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+
+              {/* Submitted Job Applications */}
+              <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
+                <div className="pb-4 border-b border-slate-100">
+                  <h4 className="text-lg font-black text-slate-900">Career Applications Received ({jobApplications.length})</h4>
+                  <p className="text-xs text-slate-500 mt-0.5">Real candidate applications submitted through /prma-tech/careers</p>
+                </div>
+
+                {jobApplications.length === 0 ? (
+                  <div className="text-center py-12 text-slate-400 text-xs">
+                    No career applications received yet.
+                  </div>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs">
+                      <thead>
+                        <tr className="text-slate-400 font-bold uppercase tracking-wider border-b border-slate-100">
+                          <th className="py-3 px-3">Applicant</th>
+                          <th className="py-3 px-3">Role Applied</th>
+                          <th className="py-3 px-3">College &amp; Year</th>
+                          <th className="py-3 px-3">Profiles &amp; Resume</th>
+                          <th className="py-3 px-3">Date</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {jobApplications.map((app) => (
+                          <tr key={app.id} className="hover:bg-slate-50">
+                            <td className="py-3 px-3">
+                              <p className="font-bold text-slate-900">{app.fullName}</p>
+                              <p className="text-slate-500 text-[11px]">{app.email}</p>
+                              {app.phone && <p className="text-slate-400 text-[10px]">{app.phone}</p>}
+                            </td>
+                            <td className="py-3 px-3 font-semibold text-blue-600">
+                              {app.jobTitle}
+                            </td>
+                            <td className="py-3 px-3 text-slate-600">
+                              <p>{app.college || 'Not specified'}</p>
+                              <p className="text-slate-400 text-[10px]">{app.graduationYear}</p>
+                            </td>
+                            <td className="py-3 px-3">
+                              <div className="flex items-center gap-2">
+                                {app.resumeFileName && (
+                                  <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-mono text-[10px]">
+                                    {app.resumeFileName}
+                                  </span>
+                                )}
+                                {app.linkedinUrl && (
+                                  <a href={app.linkedinUrl} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline">
+                                    LinkedIn &rarr;
+                                  </a>
+                                )}
+                                {app.githubUrl && (
+                                  <a href={app.githubUrl} target="_blank" rel="noreferrer" className="text-slate-800 hover:underline">
+                                    GitHub &rarr;
+                                  </a>
+                                )}
+                              </div>
+                            </td>
+                            <td className="py-3 px-3 text-slate-400 text-[11px]">
+                              {new Date(app.submittedAt).toLocaleDateString('en-GB')}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -1291,52 +1538,88 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
             </div>
 
             {/* Bottom Actions Drawer */}
-            <div className="pt-6 border-t border-slate-200 flex flex-wrap gap-3">
-              {selectedApp.status === 'shortlisted' ? (
-                <>
-                  <a
-                    href={`/api/prma/admin/applications/${encodeURIComponent(selectedApp.applicationId)}/offer-letter`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex-1 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs text-center flex items-center justify-center gap-1.5 shadow-sm"
-                  >
-                    <Download className="w-4 h-4" />
-                    Download Joining Letter (PDF)
-                  </a>
-                  <button
-                    type="button"
-                    onClick={() => handleResendEmail(selectedApp)}
-                    className="px-4 py-3 rounded-2xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50"
-                  >
-                    Resend Email
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => openShortlistModal(selectedApp)}
-                    className="flex-1 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-md"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    Approve / Shortlist Student
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleMarkReview(selectedApp)}
-                    className="px-4 py-3 rounded-2xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50"
-                  >
-                    Keep Under Review
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleRejectApp(selectedApp)}
-                    className="px-4 py-3 rounded-2xl bg-rose-50 text-rose-700 hover:bg-rose-100 text-xs font-bold"
-                  >
-                    Reject
-                  </button>
-                </>
-              )}
+            <div className="pt-6 border-t border-slate-200 flex flex-wrap gap-3 items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Status:</span>
+                <span className={`px-2.5 py-1 rounded-full text-xs font-black uppercase ${
+                  selectedApp.status === 'shortlisted' ? 'bg-emerald-100 text-emerald-800' :
+                  selectedApp.status === 'rejected' ? 'bg-rose-100 text-rose-800' :
+                  selectedApp.status === 'under_review' ? 'bg-amber-100 text-amber-800' :
+                  'bg-blue-100 text-blue-800'
+                }`}>
+                  {selectedApp.status === 'shortlisted' ? 'Approved / Shortlisted' :
+                   selectedApp.status === 'rejected' ? 'Rejected' :
+                   selectedApp.status === 'under_review' ? 'Under Review' : 'Pending / Submitted'}
+                </span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                {selectedApp.status === 'shortlisted' ? (
+                  <>
+                    <a
+                      href={`/api/prma/admin/applications/${encodeURIComponent(selectedApp.applicationId)}/offer-letter`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      Download Joining Letter (PDF)
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => handleResendEmail(selectedApp)}
+                      className="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50"
+                    >
+                      Resend Email
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleChangeStatus(selectedApp, 'under_review')}
+                      className="px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50"
+                    >
+                      Revert to Review
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => openShortlistModal(selectedApp)}
+                      className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-xs flex items-center gap-1.5 shadow-md"
+                    >
+                      <Sparkles className="w-3.5 h-3.5" />
+                      Approve &amp; Issue Offer
+                    </button>
+                    {selectedApp.status !== 'under_review' && (
+                      <button
+                        type="button"
+                        onClick={() => handleChangeStatus(selectedApp, 'under_review')}
+                        className="px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50"
+                      >
+                        Keep Under Review
+                      </button>
+                    )}
+                    {selectedApp.status !== 'submitted' && (
+                      <button
+                        type="button"
+                        onClick={() => handleChangeStatus(selectedApp, 'submitted')}
+                        className="px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50"
+                      >
+                        Mark Pending
+                      </button>
+                    )}
+                    {selectedApp.status !== 'rejected' && (
+                      <button
+                        type="button"
+                        onClick={() => handleRejectApp(selectedApp)}
+                        className="px-3.5 py-2.5 rounded-xl bg-rose-50 text-rose-700 hover:bg-rose-100 text-xs font-bold"
+                      >
+                        Reject
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -1635,6 +1918,125 @@ export default function PrmaAdminPanel({ onNavigate, navigateToTab }) {
         </div>
       )}
 
+      {/* ADD JOB OPENING MODAL */}
+      {showAddJobModal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 animate-scale-in">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+              <h3 className="font-black text-slate-900 text-lg">Add New Job Opening</h3>
+              <button onClick={() => setShowAddJobModal(false)} className="text-slate-400 hover:text-slate-700">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleCreateJob} className="py-4 space-y-3 text-xs">
+              <div>
+                <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Job Title *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Full-Stack Developer Intern"
+                  value={newJobData.title}
+                  onChange={(e) => setNewJobData(p => ({ ...p, title: e.target.value }))}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Category</label>
+                  <select
+                    value={newJobData.category}
+                    onChange={(e) => setNewJobData(p => ({ ...p, category: e.target.value }))}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="Engineering">Engineering</option>
+                    <option value="Design">Design</option>
+                    <option value="Product">Product</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Operations">Operations</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Type</label>
+                  <select
+                    value={newJobData.type}
+                    onChange={(e) => setNewJobData(p => ({ ...p, type: e.target.value }))}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="Internship">Internship</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Contract">Contract</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Location</label>
+                  <input
+                    type="text"
+                    placeholder="Remote / Hybrid"
+                    value={newJobData.location}
+                    onChange={(e) => setNewJobData(p => ({ ...p, location: e.target.value }))}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Experience</label>
+                  <input
+                    type="text"
+                    placeholder="Fresher / Student"
+                    value={newJobData.experience}
+                    onChange={(e) => setNewJobData(p => ({ ...p, experience: e.target.value }))}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Short Description *</label>
+                <textarea
+                  rows={2}
+                  required
+                  placeholder="Summary of responsibilities and mission..."
+                  value={newJobData.shortDesc}
+                  onChange={(e) => setNewJobData(p => ({ ...p, shortDesc: e.target.value }))}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">Skills (comma-separated)</label>
+                <input
+                  type="text"
+                  placeholder="React, Node.js, TypeScript, PostgreSQL"
+                  value={newJobData.skills}
+                  onChange={(e) => setNewJobData(p => ({ ...p, skills: e.target.value }))}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowAddJobModal(false)}
+                  className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-black shadow-sm"
+                >
+                  Publish Opening
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* 4. Full-Size Social Screenshot Lightbox Modal */}
       {previewScreenshot && (
         <div className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-4">
@@ -1694,6 +2096,7 @@ function ApplicationsTable({
   onReject,
   onReview,
   onResendEmail,
+  onChangeStatus,
   domains,
   domainFilter,
   setDomainFilter,
@@ -1742,7 +2145,7 @@ function ApplicationsTable({
               <th className="py-3 px-4">Student &amp; College</th>
               <th className="py-3 px-4">Domain</th>
               <th className="py-3 px-4">Profiles / Resume</th>
-              <th className="py-3 px-4">Status</th>
+              <th className="py-3 px-4">Status Lifecycle</th>
               <th className="py-3 px-4 text-right">Actions</th>
             </tr>
           </thead>
@@ -1816,28 +2219,29 @@ function ApplicationsTable({
                   </td>
 
                   <td className="py-3 px-4">
-                    {app.status === 'shortlisted' ? (
-                      <div>
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                          Shortlisted
-                        </span>
-                        {app.offerId && (
-                          <span className="block font-mono text-blue-600 text-[10px] mt-0.5">{app.offerId}</span>
-                        )}
-                      </div>
-                    ) : app.status === 'rejected' ? (
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800">
-                        Rejected
-                      </span>
-                    ) : app.status === 'under_review' ? (
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">
-                        Under Review
-                      </span>
-                    ) : (
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700">
-                        Submitted
-                      </span>
+                    <select
+                      value={app.status || 'submitted'}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        if (val === 'shortlisted') onApprove(app);
+                        else if (val === 'rejected') onReject(app);
+                        else if (val === 'under_review') onReview(app);
+                        else if (onChangeStatus) onChangeStatus(app, val);
+                      }}
+                      className={`text-[11px] font-bold py-1 px-2 rounded-lg border outline-none cursor-pointer transition ${
+                        app.status === 'shortlisted' ? 'bg-emerald-50 text-emerald-800 border-emerald-300' :
+                        app.status === 'rejected' ? 'bg-rose-50 text-rose-800 border-rose-300' :
+                        app.status === 'under_review' ? 'bg-amber-50 text-amber-800 border-amber-300' :
+                        'bg-blue-50 text-blue-800 border-blue-300'
+                      }`}
+                    >
+                      <option value="submitted">Pending</option>
+                      <option value="under_review">Under Review</option>
+                      <option value="shortlisted">Approved</option>
+                      <option value="rejected">Rejected</option>
+                    </select>
+                    {app.offerId && (
+                      <span className="block font-mono text-blue-600 text-[10px] mt-0.5">{app.offerId}</span>
                     )}
                   </td>
 

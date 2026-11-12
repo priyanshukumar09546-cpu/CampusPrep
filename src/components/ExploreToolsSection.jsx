@@ -71,9 +71,9 @@ export default function ExploreToolsSection({ onNavigate }) {
       bgLight: '#ECFDF5'
     },
     {
-      id: 'prma-internships-home',
+      id: 'prma-home',
       title: 'Career Growth',
-      desc: 'Get better career guidance',
+      desc: 'PRMA Tech industry tracks',
       icon: Rocket,
       color: '#DC2626',
       bgLight: '#FEF2F2'

@@ -46,46 +46,35 @@ export default function PrmaDashboardPage({ navigateToTab, onNavigate }) {
   const [copiedShare, setCopiedShare] = useState(false);
   const [lightboxGoodie, setLightboxGoodie] = useState(null);
 
-  // Initial load: search using context or local storage or seed
+  const [errorMessage, setErrorMessage] = useState('');
+  const [hasSearched, setHasSearched] = useState(false);
+
+  // Initial load: search using context or local storage only if genuinely available
   useEffect(() => {
-    const defaultSearch = applicationId || studentDetails.email || (currentUser && currentUser.email) || 'PRMA94821034';
+    const defaultSearch = applicationId || studentDetails?.email || (currentUser && currentUser.email);
     if (defaultSearch) {
       fetchStatus(defaultSearch);
     }
-  }, [applicationId, studentDetails.email, currentUser]);
+  }, [applicationId, studentDetails?.email, currentUser]);
 
   const fetchStatus = async (identifier) => {
     if (!identifier) return;
     setLoading(true);
+    setErrorMessage('');
+    setHasSearched(true);
     try {
       const res = await fetch(`/api/prma/applications/status/${encodeURIComponent(identifier.trim())}`);
       const data = await res.json();
       if (res.ok && data.success && data.application) {
         setAppData(data.application);
       } else {
-        // Fallback default mock if offline
-        setAppData({
-          applicationId: identifier,
-          offerId: 'PRMA/INT/A1/93084',
-          student: {
-            fullName: studentDetails.fullName || currentUser?.name || 'Priyanshu Kumar',
-            email: studentDetails.email || currentUser?.email || 'priyanshu@gmail.com',
-            college: studentDetails.college || 'AKGEC Ghaziabad',
-            branch: studentDetails.branch || 'CSE (AI & ML)'
-          },
-          domain: {
-            title: selectedDomain?.title || 'Machine Learning'
-          },
-          joiningDate: '17-Nov-2026',
-          completionDate: '17-Dec-2026',
-          duration: '1 Month',
-          mode: 'Remote',
-          fee: '100% Free',
-          status: 'shortlisted'
-        });
+        setAppData(null);
+        setErrorMessage(data.error || `No application found for "${identifier}".`);
       }
     } catch (err) {
       console.warn('Dashboard fetch offline fallback:', err);
+      setAppData(null);
+      setErrorMessage('Unable to connect to the server. Please check your internet connection and try again.');
     } finally {
       setLoading(false);
     }
@@ -97,12 +86,12 @@ export default function PrmaDashboardPage({ navigateToTab, onNavigate }) {
     fetchStatus(searchId.trim());
   };
 
-  const candidateName = appData?.student?.fullName || studentDetails.fullName || currentUser?.name || 'Priyanshu Kumar';
-  const domainTitle = appData?.domain?.title || selectedDomain?.title || 'Machine Learning';
+  const candidateName = appData?.student?.fullName || studentDetails?.fullName || currentUser?.name || '';
+  const domainTitle = appData?.domain?.title || appData?.technical?.domainTitle || selectedDomain?.title || '';
   const isShortlisted = appData?.status === 'shortlisted';
-  const offerId = appData?.offerId || 'PRMA/INT/A1/93084';
+  const offerId = appData?.offerId || '';
   const joiningDate = appData?.joiningDate || '17-Nov-2026';
-  const displayAppId = appData?.applicationId || applicationId || 'PRMA94821034';
+  const displayAppId = appData?.applicationId || applicationId || '';
 
   const copyOfferId = () => {
     navigator.clipboard.writeText(offerId);
@@ -124,50 +113,132 @@ export default function PrmaDashboardPage({ navigateToTab, onNavigate }) {
       {/* Top Banner / Hero */}
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-blue-950 text-white py-10 px-4 sm:px-6 lg:px-8 border-b border-slate-700">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="flex items-center gap-4 sm:gap-5">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-2xl font-black text-white shadow-lg flex-shrink-0">
-              {candidateName.charAt(0).toUpperCase()}
-            </div>
-            <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className={`px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider ${
-                  isShortlisted ? 'bg-emerald-500 text-white' : 'bg-amber-400 text-slate-950'
-                }`}>
-                  {isShortlisted ? '✓ SHORTLISTED' : 'UNDER REVIEW'}
-                </span>
-                <span className="text-xs text-slate-400 font-mono">App ID: {displayAppId}</span>
+          {appData ? (
+            <div className="flex items-center gap-4 sm:gap-5">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-2xl font-black text-white shadow-lg flex-shrink-0">
+                {(candidateName || 'P').charAt(0).toUpperCase()}
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                Welcome back, {candidateName}!
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className={`px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider ${
+                    isShortlisted
+                      ? 'bg-emerald-500 text-white'
+                      : appData.status === 'rejected'
+                      ? 'bg-rose-500 text-white'
+                      : 'bg-amber-400 text-slate-950'
+                  }`}>
+                    {isShortlisted
+                      ? '✓ SHORTLISTED'
+                      : appData.status === 'rejected'
+                      ? 'REJECTED'
+                      : appData.status === 'under_review'
+                      ? 'UNDER REVIEW'
+                      : 'SUBMITTED'}
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">App ID: {displayAppId}</span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                  Welcome back, {candidateName}!
+                </h1>
+                <p className="text-sm text-slate-300 mt-0.5">
+                  {domainTitle} &bull; 1 Month Program &bull; 100% Free Internship
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider bg-blue-500 text-white">
+                Internship Portal
+              </span>
+              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight mt-2">
+                Student Application Tracker
               </h1>
-              <p className="text-sm text-slate-300 mt-0.5">
-                {domainTitle} &bull; 1 Month Program &bull; 100% Free Internship
+              <p className="text-sm text-slate-300 mt-1 max-w-xl">
+                Track your PRMA Tech 1-Month Virtual Internship application status, view review updates, and download your official joining letter.
               </p>
             </div>
-          </div>
+          )}
 
           {/* Quick Search Widget */}
           <form onSubmit={handleSearchSubmit} className="flex items-center gap-2 bg-slate-800/80 p-1.5 rounded-2xl border border-slate-700/80 max-w-md w-full">
             <Search className="w-4 h-4 text-slate-400 ml-2.5 flex-shrink-0" />
             <input
               type="text"
-              placeholder="Track other App ID or Email..."
+              placeholder="Enter Application ID or Email..."
               value={searchId}
               onChange={(e) => setSearchId(e.target.value)}
               className="bg-transparent text-xs text-white placeholder-slate-400 px-2 py-1.5 focus:outline-none w-full"
             />
             <button
               type="submit"
-              className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition flex-shrink-0"
+              disabled={loading}
+              className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition flex-shrink-0 disabled:opacity-50"
             >
-              Track
+              {loading ? 'Searching...' : 'Track'}
             </button>
           </form>
         </div>
       </section>
 
-      {/* Tabs Bar */}
-      <section className="bg-white border-b border-slate-200 sticky top-16 z-20 shadow-xs">
+      {/* When no application loaded yet */}
+      {!appData && (
+        <main className="max-w-4xl w-full mx-auto px-4 sm:px-6 py-12 flex-1 flex flex-col justify-center">
+          {errorMessage && (
+            <div className="mb-6 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center gap-3">
+              <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0" />
+              <div>
+                <p className="font-bold">No Application Found</p>
+                <p className="mt-0.5">{errorMessage}</p>
+              </div>
+            </div>
+          )}
+
+          <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm text-center">
+            <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4">
+              <Search className="w-8 h-8 text-blue-600" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900">
+              Track Your Internship Application
+            </h2>
+            <p className="text-sm text-slate-500 mt-2 max-w-md mx-auto">
+              Please enter your unique <strong>Application ID</strong> (e.g. PRMA2026123456) or your <strong>registered email address</strong> to track your progress.
+            </p>
+
+            <form onSubmit={handleSearchSubmit} className="max-w-md mx-auto mt-6 flex gap-2">
+              <input
+                type="text"
+                placeholder="Application ID (PRMA...) or Email"
+                value={searchId}
+                onChange={(e) => setSearchId(e.target.value)}
+                className="flex-1 px-4 py-3 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-2xl shadow-sm transition disabled:opacity-50"
+              >
+                {loading ? 'Checking...' : 'Check Status'}
+              </button>
+            </form>
+
+            <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-slate-500">
+              <span>Haven't applied yet?</span>
+              <button
+                type="button"
+                onClick={() => navFn && navFn('prma-internships-domains')}
+                className="font-bold text-blue-600 hover:underline inline-flex items-center gap-1"
+              >
+                Browse Internship Domains &amp; Apply Free &rarr;
+              </button>
+            </div>
+          </div>
+        </main>
+      )}
+
+      {/* Tabs Bar & Detailed Content (Only shown when an application is loaded) */}
+      {appData && (
+        <>
+          <section className="bg-white border-b border-slate-200 sticky top-16 z-20 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-6 overflow-x-auto scrollbar-none">
           {[
             { id: 'overview', label: 'My Internship Status', icon: Calendar },
@@ -588,6 +659,8 @@ export default function PrmaDashboardPage({ navigateToTab, onNavigate }) {
           </div>
         )}
       </main>
+      </>
+      )}
 
       <PrmaFooter />
     </div>

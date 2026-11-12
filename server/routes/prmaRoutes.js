@@ -31,6 +31,8 @@ const APPS_FILE = path.join(DATA_DIR, 'prma_applications.json');
 const DOMAINS_FILE = path.join(DATA_DIR, 'prma_domains.json');
 const TASKS_FILE = path.join(DATA_DIR, 'prma_tasks.json');
 const EMAILS_FILE = path.join(DATA_DIR, 'prma_emails.json');
+const JOBS_FILE = path.join(DATA_DIR, 'prma_jobs.json');
+const JOB_APPS_FILE = path.join(DATA_DIR, 'prma_job_applications.json');
 
 // Ensure data directory exists
 try {
@@ -134,6 +136,8 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   const domainsStore = new Map();
   const tasksStore = new Map();
   const emailLogsStore = [];
+  const jobsStore = new Map();
+  const jobApplicationsStore = [];
   const pdfCacheStore = new Map(); // offerId/appId -> Buffer
 
   // Helper: Persist applications
@@ -244,6 +248,146 @@ export function createPrmaRouter({ isDbConnected } = {}) {
     }
   };
 
+  // Helper: Load & Persist Careers Jobs
+  const loadJobs = () => {
+    try {
+      if (fs.existsSync(JOBS_FILE)) {
+        const raw = fs.readFileSync(JOBS_FILE, 'utf-8');
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          parsed.forEach((j) => {
+            if (j.id) jobsStore.set(j.id, j);
+          });
+          console.log(`[PRMA ROUTER] Loaded ${jobsStore.size} persistent job openings.`);
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('[PRMA ROUTER] Could not load jobs:', e.message);
+    }
+
+    // Default real vacancies
+    const DEFAULT_JOB_LIST = [
+      {
+        id: 'prma-job-swe-intern',
+        title: 'Software Developer Intern',
+        category: 'Engineering',
+        type: 'Internship',
+        location: 'Remote',
+        experience: 'Fresher / Student (UG / PG)',
+        stipend: 'Performance-based + Certificate',
+        duration: '3 - 6 Months',
+        shortDesc: 'Build and ship real-world features for consumer and enterprise SaaS products alongside senior engineers.',
+        skills: ['React', 'Node.js', 'MongoDB', 'TypeScript', 'Git'],
+        responsibilities: [
+          'Develop modern responsive frontend interfaces in React and Next.js',
+          'Build performant REST and WebSocket APIs in Node.js / Express',
+          'Write clean, maintainable, and modular code with unit tests',
+          'Collaborate with UI/UX designers and participate in daily standups'
+        ],
+        requirements: [
+          'Solid understanding of JavaScript / TypeScript fundamentals',
+          'Familiarity with React components, state management, and hooks',
+          'Basic knowledge of databases (MongoDB or PostgreSQL)',
+          'Hunger to learn and solve real-world technical problems'
+        ],
+        active: true,
+        postedAt: 'Active Opening',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'prma-job-uiux-intern',
+        title: 'UI/UX Design Intern',
+        category: 'Design',
+        type: 'Internship',
+        location: 'Remote',
+        experience: 'Fresher / Student',
+        stipend: 'Performance-based + Certificate',
+        duration: '3 - 6 Months',
+        shortDesc: 'Design intuitive, modern and user-friendly web and mobile experiences for PRMA platforms.',
+        skills: ['Figma', 'UI Design', 'Prototyping', 'User Research', 'Design Systems'],
+        responsibilities: [
+          'Create high-fidelity wireframes, mockups, and clickable prototypes in Figma',
+          'Conduct user research and translate feedback into UX enhancements',
+          'Maintain and expand PRMA Tech brand design system tokens',
+          'Coordinate closely with frontend developers during handoff'
+        ],
+        requirements: [
+          'Proficiency in Figma (Auto-layout, Components, Variants)',
+          'Eye for modern SaaS aesthetics, typography, and color harmony',
+          'Portfolio showcasing at least 2 web or mobile UI/UX projects',
+          'Understanding of responsive design principles'
+        ],
+        active: true,
+        postedAt: 'Active Opening',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'prma-job-aiml-intern',
+        title: 'AI/ML Intern',
+        category: 'Engineering',
+        type: 'Internship',
+        location: 'Remote',
+        experience: 'Fresher / Student',
+        stipend: 'Performance-based + Certificate',
+        duration: '3 - 6 Months',
+        shortDesc: 'Work on machine learning models, natural language processing, vector retrieval, and real-world AI applications.',
+        skills: ['Python', 'TensorFlow', 'PyTorch', 'OpenCV', 'FastAPI', 'LLMs'],
+        responsibilities: [
+          'Cleanse, preprocess, and engineer features on tabular and image datasets',
+          'Fine-tune open-source LLMs and implement RAG semantic search pipelines',
+          'Evaluate model performance, loss metrics, and latency trade-offs',
+          'Deploy inference microservices using FastAPI and Docker'
+        ],
+        requirements: [
+          'Strong grasp of Python and scientific libraries (NumPy, Pandas, Scikit-Learn)',
+          'Hands-on experience with PyTorch or TensorFlow',
+          'Understanding of neural network architectures and transformer models',
+          'Excitement for generative AI and LLM agents'
+        ],
+        active: true,
+        postedAt: 'Active Opening',
+        createdAt: new Date().toISOString()
+      }
+    ];
+
+    DEFAULT_JOB_LIST.forEach(j => jobsStore.set(j.id, j));
+    persistJobs();
+  };
+
+  const persistJobs = () => {
+    try {
+      const arr = Array.from(jobsStore.values());
+      fs.writeFileSync(JOBS_FILE, JSON.stringify(arr, null, 2), 'utf-8');
+    } catch (e) {
+      console.warn('[PRMA ROUTER] Error persisting jobs:', e.message);
+    }
+  };
+
+  // Helper: Load & Persist Careers Applications
+  const loadJobApplications = () => {
+    try {
+      if (fs.existsSync(JOB_APPS_FILE)) {
+        const raw = fs.readFileSync(JOB_APPS_FILE, 'utf-8');
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          jobApplicationsStore.length = 0;
+          parsed.forEach(a => jobApplicationsStore.push(a));
+        }
+      }
+    } catch (e) {
+      console.warn('[PRMA ROUTER] Could not load job applications:', e.message);
+    }
+  };
+
+  const persistJobApplications = () => {
+    try {
+      fs.writeFileSync(JOB_APPS_FILE, JSON.stringify(jobApplicationsStore, null, 2), 'utf-8');
+    } catch (e) {
+      console.warn('[PRMA ROUTER] Error persisting job applications:', e.message);
+    }
+  };
+
   // Helper: Log Email
   const logEmail = (entry) => {
     emailLogsStore.unshift({
@@ -258,69 +402,12 @@ export function createPrmaRouter({ isDbConnected } = {}) {
     }
   };
 
-  // Initialize data
+  // Initialize data (Zero Fake Data Policy: strictly genuine store)
   loadApplications();
   loadDomains();
   loadTasks();
-
-  // Populate sample baseline application if empty
-  if (applicationsStore.size === 0) {
-    const seed1 = 'PRMA2026849201';
-    applicationsStore.set(seed1, {
-      applicationId: seed1,
-      offerId: 'PRMA/INT/A1/93084',
-      student: {
-        fullName: 'Priyanshu Kumar',
-        dob: '2004-05-15',
-        email: 'priyanshu@gmail.com',
-        mobile: '+91 98765 43210',
-        gender: 'Male',
-        address: 'Knowledge Park II',
-        city: 'Greater Noida',
-        state: 'Uttar Pradesh',
-        pinCode: '201310'
-      },
-      academic: {
-        college: 'Ajay Kumar Garg Engineering College (AKGEC), Ghaziabad',
-        university: 'Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow',
-        course: 'B.Tech',
-        branch: 'Computer Science and Engineering (AI & ML)',
-        year: '3rd Year',
-        semester: '5th',
-        graduationYear: '2026'
-      },
-      technical: {
-        domainId: 'ai-ml',
-        domainTitle: 'Artificial Intelligence & Machine Learning',
-        skills: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-Learn', 'FastAPI'],
-        languages: ['Python', 'SQL', 'C++'],
-        experience: 'Built deep learning image classifier and real estate price prediction models.',
-        experienceLevel: 'Intermediate'
-      },
-      profiles: {
-        githubUrl: 'https://github.com/priyanshu',
-        linkedinUrl: 'https://www.linkedin.com/in/priyanshu'
-      },
-      resume: {
-        fileName: 'Priyanshu_Kumar_Resume.pdf',
-        fileSize: 124000
-      },
-      socialFollow: {
-        followedLinkedIn: true,
-        followedInstagram: true
-      },
-      duration: '1 Month',
-      mode: 'Remote',
-      fee: '₹0 (100% Free)',
-      status: 'shortlisted',
-      joiningDate: '17-Nov-2026',
-      completionDate: '17-Dec-2026',
-      createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
-      shortlistedAt: new Date(Date.now() - 86400000).toISOString()
-    });
-
-    persistApplications();
-  }
+  loadJobs();
+  loadJobApplications();
 
   // Populate sample task if empty
   if (tasksStore.size === 0) {
@@ -522,6 +609,26 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         return res.status(400).json({ error: 'Please confirm the accuracy declaration before submitting.' });
       }
 
+      // 8. Prevent duplicate application (same student email & domain)
+      const studentEmail = student.email.trim().toLowerCase();
+      const targetDomainId = technical.domainId || 'ai-ml';
+      const targetDomainTitle = technical.domainTitle.trim().toLowerCase();
+
+      for (const existing of applicationsStore.values()) {
+        const existingEmail = (existing.student?.email || '').trim().toLowerCase();
+        const existingDomainId = existing.technical?.domainId || existing.domain?.id;
+        const existingDomainTitle = (existing.technical?.domainTitle || existing.domain?.title || '').trim().toLowerCase();
+
+        if (existingEmail === studentEmail && (existingDomainId === targetDomainId || existingDomainTitle === targetDomainTitle)) {
+          return res.status(409).json({
+            error: 'An application for this domain has already been submitted with this email address.',
+            applicationId: existing.applicationId,
+            status: existing.status,
+            createdAt: existing.createdAt
+          });
+        }
+      }
+
       // Generate Unique Application ID: PRMA + Year + 6 digits
       const year = new Date().getFullYear();
       const rand = Math.floor(100000 + Math.random() * 900000);
@@ -600,6 +707,74 @@ export function createPrmaRouter({ isDbConnected } = {}) {
     } catch (err) {
       console.error('[PRMA ROUTER] Application submission error:', err);
       res.status(500).json({ error: 'Failed to process application', details: err.message });
+    }
+  });
+
+  /**
+   * Public: Student Application Status Tracking (By App ID, Offer ID, or Email)
+   */
+  router.get('/applications/status/:identifier', (req, res) => {
+    try {
+      const rawParam = decodeURIComponent(req.params.identifier).trim();
+      const lookup = rawParam.toLowerCase();
+      let found = null;
+
+      for (const app of applicationsStore.values()) {
+        if (
+          (app.applicationId && app.applicationId.toLowerCase() === lookup) ||
+          (app.offerId && app.offerId.toLowerCase() === lookup) ||
+          (app.student?.email && app.student.email.toLowerCase() === lookup) ||
+          (app.student?.mobile && app.student.mobile.replace(/\D/g, '').includes(lookup.replace(/\D/g, '')))
+        ) {
+          found = app;
+          break;
+        }
+      }
+
+      if (!found) {
+        return res.status(404).json({
+          success: false,
+          error: `No application found for "${rawParam}". Please check your Application ID or registered email.`
+        });
+      }
+
+      res.json({
+        success: true,
+        application: {
+          applicationId: found.applicationId,
+          offerId: found.offerId,
+          status: found.status,
+          student: {
+            fullName: found.student?.fullName,
+            email: found.student?.email,
+            mobile: found.student?.mobile,
+            college: found.academic?.college || found.student?.college,
+            course: found.academic?.course || found.student?.course,
+            branch: found.academic?.branch || found.student?.branch,
+            year: found.academic?.year
+          },
+          technical: {
+            domainId: found.technical?.domainId || found.domain?.id,
+            domainTitle: found.technical?.domainTitle || found.domain?.title,
+            skills: found.technical?.skills || []
+          },
+          domain: {
+            id: found.technical?.domainId || found.domain?.id,
+            title: found.technical?.domainTitle || found.domain?.title
+          },
+          duration: found.duration || '1 Month',
+          mode: found.mode || 'Remote',
+          fee: found.fee || '₹0 (100% Free)',
+          createdAt: found.createdAt,
+          joiningDate: found.joiningDate,
+          completionDate: found.completionDate,
+          shortlistedAt: found.shortlistedAt,
+          rejectedAt: found.rejectedAt,
+          adminRemarks: found.adminRemarks
+        }
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to look up application status', details: err.message });
     }
   });
 
@@ -907,6 +1082,59 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   });
 
   /**
+   * Admin: General Application Status Management (Pending, Under Review, Approved, Rejected)
+   */
+  router.post('/admin/applications/:id/status', async (req, res) => {
+    try {
+      const appId = req.params.id;
+      let record = applicationsStore.get(appId);
+      if (!record) {
+        for (const a of applicationsStore.values()) {
+          if (a.applicationId === appId || a.offerId === appId) {
+            record = a;
+            break;
+          }
+        }
+      }
+
+      if (!record) return res.status(404).json({ error: 'Application not found' });
+
+      const { status, remarks, joiningDate } = req.body;
+      const normalizedStatus = (status === 'pending' || status === 'Submitted') ? 'submitted' : (status === 'approved' ? 'shortlisted' : status);
+
+      if (!['submitted', 'under_review', 'shortlisted', 'rejected'].includes(normalizedStatus)) {
+        return res.status(400).json({ error: 'Invalid status. Permitted values: submitted, under_review, shortlisted, rejected.' });
+      }
+
+      record.status = normalizedStatus;
+      if (remarks) record.adminRemarks = remarks;
+
+      if (normalizedStatus === 'shortlisted') {
+        record.shortlistedAt = new Date().toISOString();
+        if (joiningDate) record.joiningDate = joiningDate;
+        if (!record.offerId) {
+          record.offerId = `PRMA/INT/A1/${Math.floor(10000 + Math.random() * 90000)}`;
+        }
+      } else if (normalizedStatus === 'rejected') {
+        record.rejectedAt = new Date().toISOString();
+      } else if (normalizedStatus === 'under_review') {
+        record.reviewedAt = new Date().toISOString();
+      }
+
+      applicationsStore.set(record.applicationId, record);
+      persistApplications();
+
+      res.json({
+        success: true,
+        message: `Status successfully updated to ${normalizedStatus}`,
+        application: record
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Status update failed', details: err.message });
+    }
+  });
+
+  /**
    * Download Generated Offer Letter PDF
    */
   const handleOfferLetterStream = async (req, res) => {
@@ -1199,6 +1427,164 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       success: true,
       count: emailLogsStore.length,
       emails: emailLogsStore
+    });
+  });
+
+  /**
+   * Careers Public: List Published Jobs
+   */
+  router.get('/careers/jobs', (req, res) => {
+    try {
+      const activeJobs = Array.from(jobsStore.values()).filter(j => j.active !== false);
+      res.json({
+        success: true,
+        count: activeJobs.length,
+        jobs: activeJobs
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to retrieve jobs', details: err.message });
+    }
+  });
+
+  /**
+   * Careers Admin: List All Jobs
+   */
+  router.get('/admin/jobs', (req, res) => {
+    try {
+      const allJobs = Array.from(jobsStore.values());
+      res.json({
+        success: true,
+        count: allJobs.length,
+        jobs: allJobs
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to retrieve admin jobs', details: err.message });
+    }
+  });
+
+  /**
+   * Careers Admin: Add Job Opening
+   */
+  router.post('/admin/jobs', (req, res) => {
+    try {
+      const { title, category, type, location, experience, stipend, duration, shortDesc, skills, responsibilities, requirements } = req.body;
+      if (!title || !category) {
+        return res.status(400).json({ error: 'Job title and category are required' });
+      }
+
+      const id = 'prma-job-' + (title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 20)) + '-' + Date.now().toString().slice(-4);
+      const newJob = {
+        id,
+        title,
+        category: category || 'Engineering',
+        type: type || 'Internship',
+        location: location || 'Remote',
+        experience: experience || 'Fresher / Student',
+        stipend: stipend || 'Performance-based + Certificate',
+        duration: duration || '3 - 6 Months',
+        shortDesc: shortDesc || 'Join PRMA Tech to work on cutting-edge engineering projects.',
+        skills: Array.isArray(skills) ? skills : (skills || '').split(',').map(s => s.trim()).filter(Boolean),
+        responsibilities: Array.isArray(responsibilities) ? responsibilities : (responsibilities || '').split('\n').map(s => s.trim()).filter(Boolean),
+        requirements: Array.isArray(requirements) ? requirements : (requirements || '').split('\n').map(s => s.trim()).filter(Boolean),
+        active: true,
+        postedAt: 'Active Opening',
+        createdAt: new Date().toISOString()
+      };
+
+      jobsStore.set(id, newJob);
+      persistJobs();
+
+      res.status(201).json({ success: true, job: newJob });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to create job', details: err.message });
+    }
+  });
+
+  /**
+   * Careers Admin: Edit Job Opening
+   */
+  router.put('/admin/jobs/:id', (req, res) => {
+    try {
+      const id = req.params.id;
+      const existing = jobsStore.get(id);
+      if (!existing) return res.status(404).json({ error: 'Job opening not found' });
+
+      const updated = { ...existing, ...req.body, id, updatedAt: new Date().toISOString() };
+      jobsStore.set(id, updated);
+      persistJobs();
+
+      res.json({ success: true, job: updated });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to update job', details: err.message });
+    }
+  });
+
+  /**
+   * Careers Admin: Delete Job Opening
+   */
+  router.delete('/admin/jobs/:id', (req, res) => {
+    try {
+      const id = req.params.id;
+      if (!jobsStore.has(id)) return res.status(404).json({ error: 'Job opening not found' });
+
+      jobsStore.delete(id);
+      persistJobs();
+
+      res.json({ success: true, message: 'Job opening removed' });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to delete job', details: err.message });
+    }
+  });
+
+  /**
+   * Careers Public: Submit Application
+   */
+  router.post('/careers/apply', (req, res) => {
+    try {
+      const { jobId, jobTitle, fullName, email, phone, college, graduationYear, portfolioUrl, linkedinUrl, githubUrl, coverNote, resumeFileName } = req.body;
+      if (!fullName || !email) {
+        return res.status(400).json({ error: 'Full name and email are mandatory.' });
+      }
+
+      const id = 'JOB_APP_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+      const newApp = {
+        id,
+        jobId: jobId || 'general-application',
+        jobTitle: jobTitle || 'General Talent Network',
+        fullName: fullName.trim(),
+        email: email.trim().toLowerCase(),
+        phone: phone || '',
+        college: college || '',
+        graduationYear: graduationYear || '',
+        portfolioUrl: portfolioUrl || '',
+        linkedinUrl: linkedinUrl || '',
+        githubUrl: githubUrl || '',
+        coverNote: coverNote || '',
+        resumeFileName: resumeFileName || '',
+        submittedAt: new Date().toISOString()
+      };
+
+      jobApplicationsStore.unshift(newApp);
+      persistJobApplications();
+
+      res.status(201).json({
+        success: true,
+        message: 'Application received! Our recruitment team will review your profile.',
+        applicationId: id
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Failed to record application', details: err.message });
+    }
+  });
+
+  /**
+   * Careers Admin: List Job Applications
+   */
+  router.get('/admin/job-applications', (req, res) => {
+    res.json({
+      success: true,
+      count: jobApplicationsStore.length,
+      applications: jobApplicationsStore
     });
   });
 

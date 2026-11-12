@@ -64,16 +64,16 @@ export default function HeroSection({ onNavigate }) {
         {/* ===============================================================
             CAT SIGNBOARD — FUNCTIONAL CLICKABLE INTERNSHIP LINK OVERLAY
             Accurately positioned over "Apply for Internship at PRMA TECH"
-            Navigates to PRMA Tech Homepage as per Required Flow
+            Navigates to PRMA Tech Corporate Homepage as per Required Flow
             =============================================================== */}
         <a
-          href="/prma-tech/internships"
+          href="/prma-tech"
           onClick={(e) => {
             e.preventDefault();
             if (onNavigate) {
-              onNavigate('prma-internships-home');
+              onNavigate('prma-home');
             } else {
-              window.location.href = '/prma-tech/internships';
+              window.location.href = '/prma-tech';
             }
           }}
           title="Apply for Internship at PRMA Tech"
@@ -483,14 +483,14 @@ export default function HeroSection({ onNavigate }) {
                 3. MSME APPROVAL PROMOTION SECTION & INTERNSHIP CTA (Matching Reference Design)
                 =============================================================== */}
             <div style={{ marginTop: '1.25rem', width: '100%', maxWidth: '690px' }} className="pv-scroll-reveal">
-              {/* Top CTA Pill — Navigates to PRMA Tech Homepage */}
+              {/* Top CTA Pill — Navigates to PRMA Tech Corporate Homepage */}
               <div style={{ marginBottom: '0.65rem' }}>
                 <a
-                  href="/prma-tech/internships"
+                  href="/prma-tech"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (onNavigate) onNavigate('prma-internships-home');
-                    else window.location.href = '/prma-tech/internships';
+                    if (onNavigate) onNavigate('prma-home');
+                    else window.location.href = '/prma-tech';
                   }}
                   style={{
                     display: 'inline-flex',
@@ -553,7 +553,7 @@ export default function HeroSection({ onNavigate }) {
                       }}
                     >
                       <img
-                        src="/assets/msme_emblem_clean.png"
+                        src="/assets/msme_lion_crop.png"
                         alt="Official MSME Registered Udyam Approved Enterprise Emblem"
                         style={{
                           width: '100%',
@@ -694,8 +694,8 @@ export default function HeroSection({ onNavigate }) {
                     <button
                       type="button"
                       onClick={() => {
-                        if (onNavigate) onNavigate('prma-internships-home');
-                        else window.location.href = '/prma-tech/internships';
+                        if (onNavigate) onNavigate('prma-home');
+                        else window.location.href = '/prma-tech';
                       }}
                       style={{
                         display: 'inline-flex',

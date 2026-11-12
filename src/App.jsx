@@ -347,7 +347,7 @@ export default function App() {
     if (path === 'prma-tech/internships/payment' || path === 'prma/payment') return 'prma-internships-payment';
     if (path === 'prma-tech/internships/register' || path === 'prma/register' || path === 'prma-tech/register') return 'prma-internships-register';
     if (path === 'prma-tech/internships/login' || path === 'prma/login' || path === 'prma-tech/login') return 'prma-internships-login';
-    if (path === 'prma-tech/internships/dashboard' || path === 'prma/dashboard' || path === 'prma-tech/dashboard') return 'prma-home';
+    if (path === 'prma-tech/internships/dashboard' || path === 'prma/dashboard' || path === 'prma-tech/dashboard') return 'prma-internships-dashboard';
     if (path.startsWith('prma-tech/verify-offer') || path.startsWith('prma/verify-offer') || path.startsWith('prma-verify-offer')) return 'prma-verify-offer';
     if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'promotion', 'hoollow', 'hoolow', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
       if (path === 'aistudy') return 'interview-pro';
