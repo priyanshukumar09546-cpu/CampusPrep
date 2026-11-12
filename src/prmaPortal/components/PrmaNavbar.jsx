@@ -60,8 +60,7 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
     { id: 'internships', label: 'Internships', route: 'prma-internships-home' },
     { id: 'services', label: 'Services', route: 'prma-services', hasDropdown: true },
     { id: 'projects', label: 'Projects', route: 'prma-projects' },
-    { id: 'about', label: 'About', route: 'prma-about' },
-    { id: 'careers', label: 'Careers', route: 'prma-careers' }
+    { id: 'about', label: 'About', route: 'prma-about' }
   ];
 
   return (
