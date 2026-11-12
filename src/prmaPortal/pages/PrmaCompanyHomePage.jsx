@@ -800,8 +800,8 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
             }}
           >
             <img
-              src="/assets/prma_gen/prma_welcome_kit_hero.jpg"
-              alt="PRMA Tech Official Welcome Kit Bundle"
+              src="/assets/prma_goodies_gift_box_poster.jpg"
+              alt="PRMA Tech Official Welcome Kit Bundle & Goodies Gift Box"
               style={{
                 width: '100%',
                 height: '360px',
@@ -809,7 +809,7 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
                 display: 'block'
               }}
               onError={(e) => {
-                e.target.src = '/assets/prma_portal_ref/WhatsApp Image 2026-11-10 at 10.37.44 AM.jpeg';
+                e.target.src = '/assets/prma_gen/prma_welcome_kit_hero.jpg';
               }}
             />
           </div>

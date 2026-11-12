@@ -466,19 +466,32 @@ export default function PrmaInternshipSection({ onNavigate }) {
             <div style={{ position: 'relative', textAlign: 'center' }}>
               <div
                 style={{
-                  borderRadius: '22px',
+                  borderRadius: '24px',
                   overflow: 'hidden',
-                  border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #E2E8F0',
+                  border: isDark ? '1.5px solid rgba(112, 37, 232, 0.4)' : '2px solid #E2DDF5',
                   boxShadow: isDark
-                    ? '0 12px 36px rgba(0, 0, 0, 0.7)'
-                    : '0 8px 28px rgba(0, 0, 0, 0.08)',
+                    ? '0 16px 40px rgba(0, 0, 0, 0.75), 0 0 30px rgba(112, 37, 232, 0.2)'
+                    : '0 12px 32px rgba(16, 28, 80, 0.12)',
                   backgroundColor: isDark ? '#060A14' : '#F8FAFC',
-                  position: 'relative'
+                  position: 'relative',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = isDark
+                    ? '0 20px 48px rgba(0, 0, 0, 0.85), 0 0 40px rgba(112, 37, 232, 0.35)'
+                    : '0 18px 42px rgba(16, 28, 80, 0.18)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = isDark
+                    ? '0 16px 40px rgba(0, 0, 0, 0.75), 0 0 30px rgba(112, 37, 232, 0.2)'
+                    : '0 12px 32px rgba(16, 28, 80, 0.12)';
                 }}
               >
                 <img
-                  src="/assets/prma_merchandise_kit.png"
-                  alt="Official PRMA Tech Welcome & Merchandise Kit (T-Shirt, Water Bottle, Notebook, ID Card, Certificate, Gift Box)"
+                  src="/assets/prma_goodies_gift_box_poster.jpg"
+                  alt="Official PRMA Tech Internship Welcome Kit & Luxury Goodies Gift Box (Custom T-Shirt, Insulated Bottle, Executive Journal, Smart ID Badge & Certificate)"
                   style={{
                     width: '100%',
                     height: 'auto',
@@ -486,8 +499,7 @@ export default function PrmaInternshipSection({ onNavigate }) {
                     objectFit: 'cover'
                   }}
                   onError={(e) => {
-                    // Fallback to building merch scene if single kit crop fails
-                    e.currentTarget.src = '/assets/prma_building_merch_scene.png';
+                    e.currentTarget.src = '/assets/prma_merchandise_kit.png';
                   }}
                 />
 
@@ -498,46 +510,49 @@ export default function PrmaInternshipSection({ onNavigate }) {
                     bottom: '12px',
                     left: '12px',
                     right: '12px',
-                    backgroundColor: isDark ? 'rgba(11, 15, 30, 0.88)' : 'rgba(255, 255, 255, 0.92)',
-                    backdropFilter: 'blur(8px)',
-                    borderRadius: '12px',
-                    padding: '0.65rem 1rem',
-                    border: isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid #E2E8F0',
+                    backgroundColor: isDark ? 'rgba(11, 15, 30, 0.88)' : 'rgba(255, 255, 255, 0.94)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    borderRadius: '14px',
+                    padding: '0.75rem 1.1rem',
+                    border: isDark ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid rgba(226, 232, 240, 0.9)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: '0.5rem'
+                    gap: '0.65rem'
                   }}
                 >
                   <div style={{ textAlign: 'left' }}>
                     <div
                       style={{
                         fontFamily: "'Outfit', sans-serif",
-                        fontSize: '0.82rem',
+                        fontSize: '0.86rem',
                         fontWeight: 800,
                         color: isDark ? '#FFFFFF' : '#101C50'
                       }}
                     >
-                      Physical Welcome Kit Delivered
+                      Physical Welcome & Goodies Gift Box Delivered
                     </div>
                     <div
                       style={{
-                        fontSize: '0.7rem',
-                        color: isDark ? '#A1A1AA' : '#64748B'
+                        fontSize: '0.72rem',
+                        color: isDark ? '#A1A1AA' : '#64748B',
+                        marginTop: '2px'
                       }}
                     >
-                      Custom T-Shirt, Notebook, Water Bottle, ID Card & Verified Certificate
+                      Custom T-Shirt, Insulated Bottle, Executive Journal, Smart ID & Certificate
                     </div>
                   </div>
                   <span
                     style={{
-                      fontSize: '0.7rem',
+                      fontSize: '0.72rem',
                       fontWeight: 800,
-                      padding: '0.2rem 0.55rem',
+                      padding: '0.3rem 0.65rem',
                       borderRadius: '9999px',
                       backgroundColor: '#079B45',
                       color: '#FFFFFF',
-                      flexShrink: 0
+                      flexShrink: 0,
+                      boxShadow: '0 2px 8px rgba(7, 155, 69, 0.35)'
                     }}
                   >
                     Included Free

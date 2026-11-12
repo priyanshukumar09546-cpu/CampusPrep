@@ -328,13 +328,16 @@ export default function PrmaLandingPage({ navigateToTab, onNavigate }) {
               }}
             >
               <img
-                src="/assets/prma_gen/prma_welcome_kit_hero.jpg"
+                src="/assets/prma_goodies_gift_box_poster.jpg"
                 alt="PRMA Tech Official Welcome Kit Showcase"
                 style={{
                   width: '100%',
                   height: '420px',
                   objectFit: 'cover',
                   display: 'block'
+                }}
+                onError={(e) => {
+                  e.currentTarget.src = '/assets/prma_gen/prma_welcome_kit_hero.jpg';
                 }}
               />
             </div>
