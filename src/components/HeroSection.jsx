@@ -64,15 +64,16 @@ export default function HeroSection({ onNavigate }) {
         {/* ===============================================================
             CAT SIGNBOARD — FUNCTIONAL CLICKABLE INTERNSHIP LINK OVERLAY
             Accurately positioned over "Apply for Internship at PRMA TECH"
+            Navigates to PRMA Tech Homepage as per Required Flow
             =============================================================== */}
         <a
-          href="/prma-tech/internships/domains"
+          href="/prma-tech/internships"
           onClick={(e) => {
             e.preventDefault();
             if (onNavigate) {
-              onNavigate('prma-internships-domains');
+              onNavigate('prma-internships-home');
             } else {
-              window.location.href = '/prma-tech/internships/domains';
+              window.location.href = '/prma-tech/internships';
             }
           }}
           title="Apply for Internship at PRMA Tech"
@@ -482,13 +483,14 @@ export default function HeroSection({ onNavigate }) {
                 3. MSME APPROVAL PROMOTION SECTION & INTERNSHIP CTA (Matching Reference Design)
                 =============================================================== */}
             <div style={{ marginTop: '1.25rem', width: '100%', maxWidth: '690px' }} className="pv-scroll-reveal">
-              {/* Top CTA Pill */}
+              {/* Top CTA Pill — Navigates to PRMA Tech Homepage */}
               <div style={{ marginBottom: '0.65rem' }}>
                 <a
-                  href="/prma-tech/internships/domains"
+                  href="/prma-tech/internships"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (onNavigate) onNavigate('prma-internships-domains');
+                    if (onNavigate) onNavigate('prma-internships-home');
+                    else window.location.href = '/prma-tech/internships';
                   }}
                   style={{
                     display: 'inline-flex',
@@ -506,7 +508,7 @@ export default function HeroSection({ onNavigate }) {
                     cursor: 'pointer',
                     transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
                   }}
-                  className="pv-hero-msme-cta-pill"
+                  className="pv-hero-msme-cta-pill pv-btn-burgundy"
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
                     e.currentTarget.style.boxShadow = '0 8px 24px rgba(136, 19, 55, 0.45)';
@@ -516,13 +518,13 @@ export default function HeroSection({ onNavigate }) {
                     e.currentTarget.style.boxShadow = '0 6px 20px rgba(136, 19, 55, 0.35)';
                   }}
                 >
-                  <Rocket size={16} color="#FFFFFF" />
-                  <span>Apply Now for Internship at PRMA Tech</span>
-                  <ArrowRight size={16} strokeWidth={2.5} />
+                  <Rocket size={16} color="#FFFFFF" strokeWidth={2.4} />
+                  <span style={{ color: '#FFFFFF' }}>Apply Now for Internship at PRMA Tech</span>
+                  <ArrowRight size={16} strokeWidth={2.5} color="#FFFFFF" />
                 </a>
               </div>
 
-              {/* MSME Registered Card */}
+              {/* MSME Registered Card — Exact Reference Composition */}
               <div
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.94)',
@@ -536,41 +538,57 @@ export default function HeroSection({ onNavigate }) {
                 }}
                 className="pv-msme-card"
               >
-                {/* Upper: Emblem & Heading & Description */}
+                {/* Upper: Official Emblem & Headings & Description */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1.15rem', flexWrap: 'wrap' }}>
-                  {/* Emblem & Titles */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexShrink: 0 }}>
-                    <img
-                      src="/assets/emblem_of_india.svg"
-                      alt="Official MSME Government of India Emblem"
+                  {/* Official MSME / Udyam Emblem & Titles */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', flexShrink: 0 }}>
+                    <div
                       style={{
-                        width: '38px',
-                        height: '46px',
-                        objectFit: 'contain'
+                        width: '44px',
+                        height: '52px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
                       }}
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
-                    <div>
+                    >
+                      <img
+                        src="/assets/msme_emblem_clean.png"
+                        alt="Official MSME Registered Udyam Approved Enterprise Emblem"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
+                        onError={(e) => {
+                          e.currentTarget.src = '/assets/emblem_of_india.svg';
+                        }}
+                      />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <div
                         style={{
-                          fontFamily: "'Outfit', sans-serif",
-                          fontSize: '1.12rem',
+                          fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif",
+                          fontSize: '1.16rem',
                           fontWeight: 900,
                           color: '#0F172A',
                           lineHeight: 1.15,
-                          letterSpacing: '-0.01em'
+                          letterSpacing: '-0.02em',
+                          whiteSpace: 'nowrap'
                         }}
                       >
                         MSME Registered
                       </div>
                       <div
                         style={{
-                          fontSize: '0.78rem',
+                          fontFamily: "'Plus Jakarta Sans', sans-serif",
+                          fontSize: '0.8rem',
                           fontWeight: 700,
                           color: '#475569',
-                          marginTop: '0.15rem'
+                          marginTop: '0.15rem',
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap'
                         }}
                       >
                         Udyam Approved Enterprise
@@ -582,19 +600,20 @@ export default function HeroSection({ onNavigate }) {
                   <div
                     style={{
                       width: '1px',
-                      height: '42px',
-                      backgroundColor: '#E2E8F0'
+                      height: '44px',
+                      backgroundColor: '#E2E8F0',
+                      margin: '0 0.2rem'
                     }}
                     className="hidden sm:block"
                   />
 
                   {/* Description */}
                   <div style={{ flex: 1, minWidth: '220px' }}>
-                    <p style={{ margin: 0, fontSize: '0.8rem', lineHeight: 1.45, color: '#334155', fontWeight: 600 }}>
+                    <p style={{ margin: 0, fontSize: '0.81rem', lineHeight: 1.45, color: '#334155', fontWeight: 600 }}>
                       Kickstart your career with a <strong style={{ color: '#0F172A', fontWeight: 800 }}>real industry internship</strong> at{' '}
                       <strong style={{ color: '#881337', fontWeight: 800 }}>PRMA Tech, an MSME Udyam Approved Enterprise</strong>.
                     </p>
-                    <p style={{ margin: '0.2rem 0 0', fontSize: '0.72rem', color: '#64748B', fontWeight: 500 }}>
+                    <p style={{ margin: '0.2rem 0 0', fontSize: '0.73rem', color: '#64748B', fontWeight: 500 }}>
                       Gain hands-on experience, work on live projects and build industry-ready skills.
                     </p>
                   </div>
@@ -613,18 +632,18 @@ export default function HeroSection({ onNavigate }) {
                     flexWrap: 'wrap'
                   }}
                 >
-                  {/* Highlights */}
+                  {/* Highlights Badges */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
                     <span
                       style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.3rem',
-                        padding: '0.25rem 0.65rem',
+                        gap: '0.32rem',
+                        padding: '0.26rem 0.68rem',
                         borderRadius: '999px',
                         backgroundColor: '#F8FAFC',
                         border: '1px solid #E2E8F0',
-                        fontSize: '0.72rem',
+                        fontSize: '0.73rem',
                         fontWeight: 700,
                         color: '#334155'
                       }}
@@ -637,12 +656,12 @@ export default function HeroSection({ onNavigate }) {
                       style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.3rem',
-                        padding: '0.25rem 0.65rem',
+                        gap: '0.32rem',
+                        padding: '0.26rem 0.68rem',
                         borderRadius: '999px',
                         backgroundColor: '#FFF1F2',
                         border: '1px solid #FECDD3',
-                        fontSize: '0.72rem',
+                        fontSize: '0.73rem',
                         fontWeight: 700,
                         color: '#881337'
                       }}
@@ -655,12 +674,12 @@ export default function HeroSection({ onNavigate }) {
                       style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.3rem',
-                        padding: '0.25rem 0.65rem',
+                        gap: '0.32rem',
+                        padding: '0.26rem 0.68rem',
                         borderRadius: '999px',
                         backgroundColor: '#F8FAFC',
                         border: '1px solid #E2E8F0',
-                        fontSize: '0.72rem',
+                        fontSize: '0.73rem',
                         fontWeight: 700,
                         color: '#334155'
                       }}
@@ -670,35 +689,41 @@ export default function HeroSection({ onNavigate }) {
                     </span>
                   </div>
 
-                  {/* Actions */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+                  {/* Actions: Apply Now & Follow on LinkedIn */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexShrink: 0 }}>
                     <button
                       type="button"
                       onClick={() => {
-                        if (onNavigate) onNavigate('prma-internships-domains');
-                        else window.location.href = '/prma-tech/internships/domains';
+                        if (onNavigate) onNavigate('prma-internships-home');
+                        else window.location.href = '/prma-tech/internships';
                       }}
                       style={{
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '0.35rem',
-                        padding: '0.4rem 1rem',
+                        padding: '0.42rem 1.05rem',
                         borderRadius: '999px',
                         backgroundColor: '#881337',
                         color: '#FFFFFF',
-                        fontSize: '0.76rem',
+                        fontSize: '0.77rem',
                         fontWeight: 800,
                         border: 'none',
                         cursor: 'pointer',
-                        boxShadow: '0 3px 10px rgba(136, 19, 55, 0.3)',
+                        boxShadow: '0 3px 12px rgba(136, 19, 55, 0.35)',
                         transition: 'all 0.15s ease'
                       }}
-                      className="pv-msme-btn-apply"
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#70102B'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#881337'}
+                      className="pv-msme-btn-apply pv-btn-burgundy"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#70102B';
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#881337';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }}
                     >
-                      <span>Apply Now</span>
-                      <ArrowRight size={13} strokeWidth={2.5} />
+                      <span style={{ color: '#FFFFFF' }}>Apply Now</span>
+                      <ArrowRight size={13} strokeWidth={2.5} color="#FFFFFF" />
                     </button>
 
                     <a
@@ -709,24 +734,30 @@ export default function HeroSection({ onNavigate }) {
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '0.35rem',
-                        padding: '0.38rem 0.9rem',
+                        padding: '0.4rem 0.95rem',
                         borderRadius: '999px',
                         backgroundColor: '#FFFFFF',
                         border: '1.5px solid #0A66C2',
                         color: '#0A66C2',
-                        fontSize: '0.76rem',
+                        fontSize: '0.77rem',
                         fontWeight: 800,
                         textDecoration: 'none',
                         cursor: 'pointer',
                         transition: 'all 0.15s ease'
                       }}
                       className="pv-msme-btn-linkedin"
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#EFF6FF'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#EFF6FF';
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = '#FFFFFF';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }}
                     >
-                      <Linkedin size={13} />
-                      <span>Follow on LinkedIn</span>
-                      <ExternalLink size={11} />
+                      <Linkedin size={13} color="#0A66C2" fill="#0A66C2" />
+                      <span style={{ color: '#0A66C2' }}>Follow on LinkedIn</span>
+                      <ExternalLink size={11} color="#0A66C2" />
                     </a>
                   </div>
                 </div>

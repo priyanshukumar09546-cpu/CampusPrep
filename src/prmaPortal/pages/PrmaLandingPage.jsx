@@ -43,30 +43,39 @@ export default function PrmaLandingPage({ navigateToTab, onNavigate }) {
   };
 
   const handleApplyForDomain = (domain) => {
-    setSelectedDomainId(domain.id);
-    if (typeof window !== 'undefined') {
-      window.sessionStorage.setItem('prma_selected_domain_id', domain.id);
-      window.sessionStorage.setItem('prma_selected_domain_title', domain.title);
+    try {
+      if (typeof setSelectedDomainId === 'function') {
+        setSelectedDomainId(domain.id);
+      }
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        window.sessionStorage.setItem('prma_selected_domain_id', domain.id);
+        window.sessionStorage.setItem('prma_selected_domain_title', domain.title);
+      }
+    } catch (err) {
+      console.warn('Domain selection storage warning:', err);
     }
     handleNav('prma-internships-apply');
   };
 
-  // Categories extracted from PRMA_DOMAINS
+  // Categories safely extracted from PRMA_DOMAINS
   const categories = useMemo(() => {
-    const cats = new Set(PRMA_DOMAINS.map(d => d.category));
+    if (!Array.isArray(PRMA_DOMAINS)) return ['All'];
+    const cats = new Set(PRMA_DOMAINS.map(d => d.category).filter(Boolean));
     return ['All', ...Array.from(cats)];
   }, []);
 
-  // Filtered domains list
+  // Filtered domains list with defensive null-checks
   const filteredDomains = useMemo(() => {
+    if (!Array.isArray(PRMA_DOMAINS)) return [];
     return PRMA_DOMAINS.filter((domain) => {
-      const q = searchQuery.toLowerCase().trim();
+      if (!domain) return false;
+      const q = (searchQuery || '').toLowerCase().trim();
       const matchesSearch =
         !q ||
-        domain.title.toLowerCase().includes(q) ||
-        domain.description.toLowerCase().includes(q) ||
-        domain.technologies.some(t => t.toLowerCase().includes(q)) ||
-        domain.skills.some(s => s.toLowerCase().includes(q));
+        (domain.title && domain.title.toLowerCase().includes(q)) ||
+        (domain.description && domain.description.toLowerCase().includes(q)) ||
+        (Array.isArray(domain.technologies) && domain.technologies.some(t => t && String(t).toLowerCase().includes(q))) ||
+        (Array.isArray(domain.skills) && domain.skills.some(s => s && String(s).toLowerCase().includes(q)));
 
       const matchesCat =
         selectedCategory === 'All' || domain.category === selectedCategory;

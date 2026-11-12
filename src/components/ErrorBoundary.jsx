@@ -102,7 +102,7 @@ export default class ErrorBoundary extends React.Component {
         iconColor: '#DC2626',
         detailsBg: '#F8FAFC',
         detailsBorder: '#E2E8F0',
-        primaryBtnBg: '#1F2421',
+        primaryBtnBg: '#881337',
         primaryBtnColor: '#FFFFFF',
         secBtnBg: '#FFFFFF',
         secBtnColor: '#334155',
@@ -212,22 +212,24 @@ export default class ErrorBoundary extends React.Component {
               <button
                 onClick={this.handleRetry}
                 style={{
-                  padding: '0.7rem 1.35rem',
+                  padding: '0.7rem 1.45rem',
                   borderRadius: '12px',
                   backgroundColor: themeStyles.primaryBtnBg,
-                  color: themeStyles.primaryBtnColor,
+                  color: '#FFFFFF',
                   border: 'none',
-                  fontWeight: 700,
-                  fontSize: '0.88rem',
+                  fontWeight: 800,
+                  fontSize: '0.9rem',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.45rem',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  gap: '0.5rem',
+                  boxShadow: '0 4px 14px rgba(136, 19, 55, 0.35)',
                   transition: 'all 0.15s ease'
                 }}
+                className="btn-burgundy pv-btn-burgundy"
               >
-                <RotateCcw size={16} /> Try Again
+                <RotateCcw size={16} color="#FFFFFF" strokeWidth={2.4} />
+                <span style={{ color: '#FFFFFF' }}>Try Again</span>
               </button>
 
               <button

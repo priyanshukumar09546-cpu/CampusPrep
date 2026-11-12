@@ -77,37 +77,39 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
           fontFamily: "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
         }}
       >
-        {/* Top Partnership Banner with ProfessorVirus - High Contrast Bright Visible Text */}
+        {/* Top Partnership Banner with ProfessorVirus - High Contrast Bright Visible Pure White Text */}
         <div
           style={{
-            backgroundColor: '#0A1128',
+            backgroundColor: '#070D1E',
             color: '#FFFFFF',
-            padding: '0.45rem 1.25rem',
-            fontSize: '0.82rem',
-            fontWeight: 600,
+            padding: '0.5rem 1.25rem',
+            fontSize: '0.84rem',
+            fontWeight: 700,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '0.65rem',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+            gap: '0.75rem',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
+            boxSizing: 'border-box'
           }}
+          className="prma-top-announcement-strip"
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', margin: '0 auto', color: '#FFFFFF' }}>
             <span
               style={{
                 display: 'inline-block',
-                width: '8px',
-                height: '8px',
+                width: '9px',
+                height: '9px',
                 borderRadius: '50%',
                 backgroundColor: '#10B981',
-                boxShadow: '0 0 8px rgba(16, 185, 129, 0.8)',
+                boxShadow: '0 0 10px #10B981',
                 flexShrink: 0
               }}
               title="Official Active Status"
             />
-            <span style={{ color: '#FFFFFF', letterSpacing: '0.01em', lineHeight: 1.4 }}>
-              <strong style={{ color: '#FFFFFF', fontWeight: 800 }}>PRMA Tech™</strong> in Official Partnership with <strong style={{ color: '#FFFFFF', fontWeight: 800 }}>ProfessorVirus</strong> — Practical Technology &amp; Engineering Career Platform
+            <span style={{ color: '#FFFFFF', letterSpacing: '0.01em', lineHeight: 1.45, fontWeight: 700 }}>
+              <strong style={{ color: '#FFFFFF', fontWeight: 900 }}>PRMA Tech™</strong> in Official Partnership with <strong style={{ color: '#FFFFFF', fontWeight: 900 }}>ProfessorVirus</strong> — Practical Technology &amp; Engineering Career Platform
             </span>
           </div>
 
@@ -115,28 +117,29 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
             type="button"
             onClick={() => handleNav('home')}
             style={{
-              background: 'rgba(251, 191, 36, 0.15)',
-              border: '1px solid rgba(251, 191, 36, 0.5)',
+              background: 'rgba(251, 191, 36, 0.22)',
+              border: '1.5px solid #FBBF24',
               borderRadius: '999px',
-              color: '#FBBF24',
-              fontSize: '0.78rem',
+              color: '#FDE047',
+              fontSize: '0.8rem',
               fontWeight: 800,
               cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.35rem',
-              padding: '0.2rem 0.75rem',
+              gap: '0.4rem',
+              padding: '0.25rem 0.85rem',
               transition: 'all 0.15s ease',
-              whiteSpace: 'nowrap'
+              whiteSpace: 'nowrap',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.28)';
-              e.currentTarget.style.color = '#FDE68A';
+              e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.35)';
+              e.currentTarget.style.color = '#FFFFFF';
               e.currentTarget.style.transform = 'translateY(-1px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.15)';
-              e.currentTarget.style.color = '#FBBF24';
+              e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.22)';
+              e.currentTarget.style.color = '#FDE047';
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >

@@ -168,14 +168,14 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                       background: 'none',
                       border: 'none',
                       padding: 0,
-                      color: '#CBD5E1',
+                      color: '#FFFFFF',
                       fontSize: '0.88rem',
                       fontWeight: 500,
                       cursor: 'pointer',
                       transition: 'color 0.15s ease'
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1'; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FBBF24'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
                   >
                     {link.label}
                   </button>
@@ -205,14 +205,14 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                       background: 'none',
                       border: 'none',
                       padding: 0,
-                      color: '#CBD5E1',
+                      color: '#FFFFFF',
                       fontSize: '0.88rem',
                       fontWeight: 500,
                       cursor: 'pointer',
                       transition: 'color 0.15s ease'
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1'; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FBBF24'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
                   >
                     {link.label}
                   </button>
@@ -244,14 +244,14 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                       background: 'none',
                       border: 'none',
                       padding: 0,
-                      color: '#CBD5E1',
+                      color: '#FFFFFF',
                       fontSize: '0.88rem',
                       fontWeight: 500,
                       cursor: 'pointer',
                       transition: 'color 0.15s ease'
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1'; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#FBBF24'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#FFFFFF'; }}
                   >
                     {srv}
                   </button>
@@ -266,21 +266,31 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
               Contact & Support
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.95rem' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.88rem', color: '#E2E8F0', lineHeight: 1.5 }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.88rem', color: '#FFFFFF', lineHeight: 1.5 }}>
                 <MapPin size={18} color="#38BDF8" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <span>Noida &amp; Greater Noida Tech Corridor, Uttar Pradesh, India</span>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.88rem', color: '#E2E8F0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.88rem', color: '#FFFFFF' }}>
                 <Mail size={17} color="#38BDF8" style={{ flexShrink: 0 }} />
-                <a href="mailto:support@prmatech.in" style={{ color: '#E2E8F0', textDecoration: 'none', fontWeight: 500 }}>
+                <a
+                  href="mailto:support@prmatech.in"
+                  style={{ color: '#FFFFFF', textDecoration: 'none', fontWeight: 600, transition: 'color 0.15s ease' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#FBBF24'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                >
                   support@prmatech.in
                 </a>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.88rem', color: '#E2E8F0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.88rem', color: '#FFFFFF' }}>
                 <Phone size={17} color="#38BDF8" style={{ flexShrink: 0 }} />
-                <a href="tel:+917668016628" style={{ color: '#E2E8F0', textDecoration: 'none', fontWeight: 700 }}>
+                <a
+                  href="tel:+917668016628"
+                  style={{ color: '#FFFFFF', textDecoration: 'none', fontWeight: 700, transition: 'color 0.15s ease' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#FBBF24'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                >
                   +91 76680 16628
                 </a>
               </div>
