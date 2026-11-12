@@ -90,7 +90,7 @@ export default function PrmaLandingPage({ navigateToTab, onNavigate }) {
       id: 'tshirt',
       name: 'PRMA Tech™ T-Shirt',
       category: 'Apparel',
-      image: '/assets/prma_goodies/prma_tshirt.png',
+      image: '/assets/prma_goodies/prma_tshirt_real.jpg',
       description: '100% bio-washed cotton round neck black tee with PRMA Tech™ silicone screen-printed emblem.'
     },
     {
@@ -104,42 +104,42 @@ export default function PrmaLandingPage({ navigateToTab, onNavigate }) {
       id: 'bottle',
       name: 'Insulated Water Bottle',
       category: 'Drinkware',
-      image: '/assets/prma_goodies/prma_bottle.png',
+      image: '/assets/prma_goodies/prma_bottle_real.jpg',
       description: '750ml double-walled vacuum insulated stainless steel flask with laser-engraved branding.'
     },
     {
       id: 'notebook',
       name: 'Hardcover Tech Notebook',
       category: 'Stationery',
-      image: '/assets/prma_goodies/prma_notebook.png',
+      image: '/assets/prma_goodies/prma_notebook_real.jpg',
       description: 'A5 hardbound 160-page dotted engineering diary with gold foil PRMA Tech logo.'
     },
     {
       id: 'id-card',
       name: 'Intern ID Card & Lanyard',
       category: 'Credentials',
-      image: '/assets/prma_goodies/prma_id_card.png',
+      image: '/assets/prma_goodies/prma_id_card_real.jpg',
       description: 'Official verified intern identification card with QR verification badge and satin blue lanyard.'
     },
     {
       id: 'stickers',
       name: 'Die-Cut Tech Stickers Pack',
       category: 'Merchandise',
-      image: '/assets/prma_goodies/prma_stickers.png',
+      image: '/assets/prma_goodies/prma_stickers_real.jpg',
       description: 'Set of 6 high-durability vinyl waterproof laptop stickers featuring PRMA Tech icons.'
     },
     {
       id: 'cap',
       name: 'Embroidered Tech Cap',
       category: 'Apparel',
-      image: '/assets/prma_goodies/prma_cap.png',
+      image: '/assets/prma_goodies/prma_cap_real.jpg',
       description: 'Structured 6-panel breathable black cotton baseball cap with multi-color PRMA 3D embroidery.'
     },
     {
       id: 'box',
       name: 'Official Welcome Box',
       category: 'Packaging',
-      image: '/assets/prma_goodies/prma_welcome_box.png',
+      image: '/assets/prma_goodies/prma_welcome_box_real.jpg',
       description: 'Custom magnetic-closure matte black presentation box with embossed PRMA Tech branding.'
     }
   ];
