@@ -336,7 +336,7 @@ export default function App() {
     if (path === 'prma-tech/internships' || path === 'prma/internships') return 'prma-internships-home';
     if (path === 'prma-tech/services' || path === 'prma/services') return 'prma-services';
     if (path === 'prma-tech/about' || path === 'prma/about') return 'prma-about';
-    if (path === 'prma-tech/careers' || path === 'prma/careers') return 'prma-careers';
+    if (path === 'prma-tech/careers' || path === 'prma/careers') return 'prma-internships-home';
     if (path === 'prma-tech/projects' || path === 'prma/projects') return 'prma-projects';
     if (path === 'prma-tech/contact' || path === 'prma/contact') return 'prma-contact';
     if (path === 'prma-tech/admin' || path === 'prma/admin') return 'prma-admin';
@@ -691,7 +691,8 @@ export default function App() {
       } else if (path === 'prma-tech/about' || path === 'prma/about') {
         setActiveTabState('prma-about');
       } else if (path === 'prma-tech/careers' || path === 'prma/careers') {
-        setActiveTabState('prma-careers');
+        setActiveTabState('prma-internships-home');
+        window.history.replaceState({ tab: 'prma-internships-home' }, '', '/prma-tech/internships');
       } else if (path === 'prma-tech/projects' || path === 'prma/projects') {
         setActiveTabState('prma-projects');
       } else if (path === 'prma-tech/contact' || path === 'prma/contact') {

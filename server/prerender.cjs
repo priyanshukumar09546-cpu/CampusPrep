@@ -447,12 +447,6 @@ function prerender() {
       title: 'About PRMA Tech™ — Mission, Vision & Engineering Leadership',
       desc: 'Learn about PRMA Tech, our engineering mission, university partnerships, and commitment to practical student education and technical innovation.',
       h1: 'About PRMA Tech™'
-    },
-    {
-      path: '/prma-tech/careers/',
-      title: 'Careers & Opportunities | PRMA Tech™',
-      desc: 'Join the PRMA Tech engineering and mentoring team. Explore open roles in software development, technical mentorship, and product management.',
-      h1: 'Careers at PRMA Tech™'
     }
   ];
 

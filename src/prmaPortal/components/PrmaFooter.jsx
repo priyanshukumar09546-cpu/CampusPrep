@@ -157,7 +157,6 @@ export default function PrmaFooter({ navigateToTab, onNavigate }) {
                 { label: 'About Us', tab: 'prma-about' },
                 { label: 'Our Services', tab: 'prma-services' },
                 { label: 'Case Studies & Projects', tab: 'prma-projects' },
-                { label: 'Careers & Hiring', tab: 'prma-careers' },
                 { label: 'Contact Us', tab: 'prma-contact' }
               ].map((link, idx) => (
                 <li key={idx}>

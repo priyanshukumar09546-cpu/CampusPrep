@@ -18,7 +18,8 @@ import {
   MapPin,
   Clock,
   Sparkles,
-  Send
+  Send,
+  Code2
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';

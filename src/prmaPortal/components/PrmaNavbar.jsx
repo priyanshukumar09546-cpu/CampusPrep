@@ -620,7 +620,7 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
               <input
                 type="text"
                 autoFocus
-                placeholder="Search PRMA Tech domains, services, careers..."
+                placeholder="Search PRMA Tech domains, services, projects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
@@ -647,7 +647,7 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
               {[
                 { title: '27 Internship Domains', sub: 'Explore tracks in AI, Full Stack, Cloud...', route: 'prma-internships-domains' },
                 { title: '12 Technology Services', sub: 'Web, Mobile, AI/ML, DevOps, Security...', route: 'prma-services' },
-                { title: 'Open Career Positions', sub: 'Engineering, Design & Product internships', route: 'prma-careers' },
+                { title: 'Case Studies & Projects', sub: 'Real engineering projects and solutions', route: 'prma-projects' },
                 { title: 'Student Welcome Kit & Swag', sub: 'T-Shirts, Smart ID Card, Bottles...', route: 'prma-internships-goodies' }
               ].map((res, i) => (
                 <div

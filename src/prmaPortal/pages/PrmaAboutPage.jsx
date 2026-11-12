@@ -517,7 +517,7 @@ export default function PrmaAboutPage({ navigateToTab }) {
 
           <button
             type="button"
-            onClick={() => handleNav('prma-careers')}
+            onClick={() => handleNav('prma-internships-apply')}
             style={{
               padding: '0.85rem 1.85rem',
               borderRadius: '12px',
@@ -533,7 +533,7 @@ export default function PrmaAboutPage({ navigateToTab }) {
               boxShadow: '0 4px 14px rgba(0,0,0,0.15)'
             }}
           >
-            <span>Join Our Team</span>
+            <span>Apply for Internship</span>
             <ArrowRight size={16} strokeWidth={2.5} />
           </button>
         </div>
