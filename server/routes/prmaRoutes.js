@@ -18,8 +18,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
 import { generatePrmaOfferLetterPdf } from '../services/prmaOfferLetterEngine.js';
+import { generatePrmaProblemStatementPdf, DEFAULT_DOMAIN_TASKS } from '../services/prmaProblemStatementEngine.js';
 import {
+  sendPrmaApprovalEmail,
   sendPrmaShortlistEmail,
+  sendPrmaSubmissionConfirmationEmail,
+  sendPrmaAdminTaskNotificationEmail,
+  sendPrmaReviewFeedbackEmail,
   sendPrmaTaskEmail,
   sendPrmaRejectionEmail
 } from '../services/prmaEmailService.js';
@@ -34,6 +39,8 @@ const TASKS_FILE = path.join(DATA_DIR, 'prma_tasks.json');
 const EMAILS_FILE = path.join(DATA_DIR, 'prma_emails.json');
 const JOBS_FILE = path.join(DATA_DIR, 'prma_jobs.json');
 const JOB_APPS_FILE = path.join(DATA_DIR, 'prma_job_applications.json');
+const SUBMISSIONS_FILE = path.join(DATA_DIR, 'prma_submissions.json');
+const TEMPLATES_FILE = path.join(DATA_DIR, 'prma_templates.json');
 
 // Ensure data directory exists
 try {
@@ -101,7 +108,10 @@ const PrmaApplicationSchema = new mongoose.Schema({
   createdAt: { type: String, default: () => new Date().toISOString() },
   joiningLetterGenerated: { type: Boolean, default: false },
   joiningDate: { type: String, default: '' },
+  completionDate: { type: String, default: '' },
   offerId: { type: String, default: '' },
+  submissionToken: { type: String, default: '', index: true },
+  submissionUrl: { type: String, default: '' },
   offerGeneratedAt: { type: String, default: '' },
   lastStatusUpdate: { type: String, default: '' },
   rejectionReason: { type: String, default: '' },
@@ -110,6 +120,61 @@ const PrmaApplicationSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 export const PrmaApplicationModel = mongoose.models.PrmaApplication || mongoose.model('PrmaApplication', PrmaApplicationSchema);
+
+// Persistent MongoDB Schema & Model for Student Submissions
+const PrmaSubmissionSchema = new mongoose.Schema({
+  submissionId: { type: String, required: true, unique: true, index: true },
+  applicationId: { type: String, required: true, index: true },
+  offerId: { type: String, required: true, index: true },
+  submissionToken: { type: String, required: true, unique: true, index: true },
+  student: {
+    fullName: { type: String, required: true },
+    email: { type: String, required: true, index: true },
+    mobile: { type: String, default: '' },
+    college: { type: String, default: '' },
+    branch: { type: String, default: '' },
+    fatherName: { type: String, default: '' }
+  },
+  technical: {
+    domainId: { type: String, default: 'ai-ml' },
+    domainTitle: { type: String, required: true }
+  },
+  joiningDate: { type: String, default: '' },
+  completionDate: { type: String, default: '' },
+  duration: { type: String, default: '1 Month' },
+  mode: { type: String, default: 'Fully Remote' },
+  tasks: [{
+    weekNumber: { type: Number, required: true },
+    taskTitle: { type: String, required: true },
+    taskProblemStatement: { type: String, default: '' },
+    effort: { type: String, default: '' },
+    prerequisites: { type: String, default: '' },
+    status: { type: String, default: 'not_submitted' }, // 'not_submitted', 'submitted', 'under_review', 'approved', 'revision_required'
+    submittedAt: { type: String, default: '' },
+    updatedAt: { type: String, default: '' },
+    files: [{
+      fileId: { type: String },
+      fileName: { type: String },
+      fileSize: { type: Number },
+      fileType: { type: String },
+      dataUrl: { type: String }
+    }],
+    githubUrl: { type: String, default: '' },
+    liveUrl: { type: String, default: '' },
+    studentRemarks: { type: String, default: '' },
+    adminFeedback: { type: String, default: '' },
+    reviewedAt: { type: String, default: '' },
+    reviewedBy: { type: String, default: '' },
+    reviewStatus: { type: String, default: 'pending' }, // 'pending', 'under_review', 'approved', 'revision_required'
+    resubmissionCount: { type: Number, default: 0 }
+  }],
+  overallProgress: { type: Number, default: 0 },
+  completedWeeksCount: { type: Number, default: 0 },
+  lastSubmissionDate: { type: String, default: '' },
+  status: { type: String, default: 'active' }
+}, { timestamps: true });
+
+export const PrmaSubmissionModel = mongoose.models.PrmaSubmission || mongoose.model('PrmaSubmission', PrmaSubmissionSchema);
 
 // Resilient direct replica set URI to bypass Vercel serverless DNS SRV query failures
 export const DIRECT_ATLAS_URI = 'mongodb://professorvirus_admin:ProfessorVirus2026@ac-ojbgnqm-shard-00-00.tftgeof.mongodb.net:27017,ac-ojbgnqm-shard-00-01.tftgeof.mongodb.net:27017,ac-ojbgnqm-shard-00-02.tftgeof.mongodb.net:27017/ProfessorVirus?ssl=true&replicaSet=atlas-cxvxsy-shard-0&authSource=admin';
@@ -265,6 +330,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   const emailLogsStore = [];
   const jobsStore = new Map();
   const jobApplicationsStore = [];
+  const submissionsStore = new Map();
   const pdfCacheStore = new Map(); // offerId/appId -> Buffer
 
   // Helper: Resilient synchronous lookup by applicationId or offerId from in-memory cache
@@ -327,7 +393,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
           await PrmaApplicationModel.findOneAndUpdate(
             { applicationId: specificRecord.applicationId },
             specificRecord,
-            { upsert: true, new: true }
+            { upsert: true, returnDocument: 'after' }
           );
           console.log(`[PRMA ROUTER] Successfully persisted application ${specificRecord.applicationId} to MongoDB Atlas.`);
         } else {
@@ -766,6 +832,103 @@ export function createPrmaRouter({ isDbConnected } = {}) {
   });
 
   /**
+   * Helper: Resolve Domain ID and Title from parameters or store
+   */
+  const resolveDomainId = (id, title) => {
+    if (id && typeof id === 'string' && id.trim()) {
+      return id.trim().toLowerCase();
+    }
+    if (title && typeof title === 'string' && title.trim()) {
+      const norm = title.trim().toLowerCase();
+      for (const d of domainsStore.values()) {
+        if ((d.title && d.title.toLowerCase() === norm) || (d.shortTitle && d.shortTitle.toLowerCase() === norm)) {
+          return d.id;
+        }
+      }
+    }
+    return '';
+  };
+
+  const resolveDomainTitle = (id, title) => {
+    if (title && typeof title === 'string' && title.trim()) {
+      return title.trim();
+    }
+    if (id && typeof id === 'string' && id.trim()) {
+      const d = domainsStore.get(id.trim().toLowerCase());
+      if (d && d.title) return d.title;
+    }
+    return 'General Technology Track';
+  };
+
+  /**
+   * Public: Query Application Duplicate Status Before Submission
+   */
+  router.get('/applications/check-duplicate', async (req, res) => {
+    try {
+      await ensureMongoConnected();
+      const rawEmail = req.query.email;
+      const rawDomainId = req.query.domainId;
+      const rawDomainTitle = req.query.domainTitle;
+
+      if (!rawEmail) {
+        return res.status(400).json({ error: 'Email query parameter is required.' });
+      }
+
+      const normalizedEmail = String(rawEmail).trim().toLowerCase();
+      const targetDomainId = resolveDomainId(rawDomainId, rawDomainTitle);
+      const targetDomainTitle = resolveDomainTitle(rawDomainId, rawDomainTitle);
+      const normTitle = targetDomainTitle.toLowerCase();
+
+      let studentApps = [];
+      if (mongoose.connection && mongoose.connection.readyState === 1) {
+        studentApps = await PrmaApplicationModel.find({
+          'student.email': new RegExp('^' + normalizedEmail.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$', 'i')
+        }).lean();
+      }
+
+      const isMatch = (app) => {
+        const appDomId = (app.technical?.domainId || app.domain?.id || '').trim().toLowerCase();
+        const appDomTitle = (app.technical?.domainTitle || app.domain?.title || '').trim().toLowerCase();
+        if (targetDomainId && appDomId && targetDomainId === appDomId) return true;
+        if (normTitle && appDomTitle && normTitle === appDomTitle) return true;
+        return false;
+      };
+
+      let existing = studentApps.find(isMatch);
+      if (!existing) {
+        for (const a of applicationsStore.values()) {
+          const aEmail = (a.student?.email || '').trim().toLowerCase();
+          if (aEmail === normalizedEmail && isMatch(a)) {
+            existing = a;
+            break;
+          }
+        }
+      }
+
+      if (existing) {
+        return res.json({
+          isDuplicate: true,
+          message: `Application already exists for ${existing.technical?.domainTitle || targetDomainTitle}`,
+          existingApplication: {
+            applicationId: existing.applicationId,
+            offerId: existing.offerId || null,
+            status: existing.status || 'submitted',
+            domainTitle: existing.technical?.domainTitle || targetDomainTitle,
+            submittedAt: existing.createdAt || null
+          }
+        });
+      }
+
+      return res.json({
+        isDuplicate: false,
+        message: 'No existing application for this domain. Eligible to apply.'
+      });
+    } catch (err) {
+      res.status(500).json({ error: 'Duplicate check failed', details: err.message });
+    }
+  });
+
+  /**
    * Submit Internship Application (100% Free • Strict Validation)
    */
   router.post('/applications', async (req, res) => {
@@ -793,7 +956,7 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       }
 
       // 3. Validate Technical Domain
-      if (!technical?.domainTitle) {
+      if (!technical?.domainTitle && !technical?.domainId) {
         return res.status(400).json({ error: 'Internship domain selection is compulsory.' });
       }
 
@@ -842,21 +1005,28 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         return res.status(400).json({ error: 'Please confirm the accuracy declaration before submitting.' });
       }
 
-      // 8. Prevent duplicate application (same student email & domain)
+      // 8. Prevent duplicate application for the SAME domain (same student email & domain)
       const studentEmail = student.email.trim().toLowerCase();
-      const targetDomainId = technical.domainId || 'ai-ml';
-      const targetDomainTitle = technical.domainTitle.trim().toLowerCase();
+      const targetDomainId = resolveDomainId(technical.domainId, technical.domainTitle);
+      const targetDomainTitle = resolveDomainTitle(technical.domainId, technical.domainTitle);
+      const normTitle = targetDomainTitle.toLowerCase();
 
       let existing = null;
       if (mongoose.connection && mongoose.connection.readyState === 1) {
         try {
-          existing = await PrmaApplicationModel.findOne({
-            'student.email': new RegExp('^' + studentEmail.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$', 'i'),
-            $or: [
-              { 'technical.domainId': targetDomainId },
-              { 'technical.domainTitle': new RegExp('^' + targetDomainTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$', 'i') }
-            ]
+          const studentApps = await PrmaApplicationModel.find({
+            'student.email': new RegExp('^' + studentEmail.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$', 'i')
           }).lean();
+
+          if (Array.isArray(studentApps) && studentApps.length > 0) {
+            existing = studentApps.find(app => {
+              const appDomId = (app.technical?.domainId || app.domain?.id || '').trim().toLowerCase();
+              const appDomTitle = (app.technical?.domainTitle || app.domain?.title || '').trim().toLowerCase();
+              if (targetDomainId && appDomId && targetDomainId === appDomId) return true;
+              if (normTitle && appDomTitle && normTitle === appDomTitle) return true;
+              return false;
+            });
+          }
         } catch (e) {
           console.warn('[PRMA ROUTER] Duplicate check DB error:', e.message);
         }
@@ -865,22 +1035,34 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       if (!existing) {
         for (const a of applicationsStore.values()) {
           const existingEmail = (a.student?.email || '').trim().toLowerCase();
-          const existingDomainId = a.technical?.domainId || a.domain?.id;
-          const existingDomainTitle = (a.technical?.domainTitle || a.domain?.title || '').trim().toLowerCase();
-
-          if (existingEmail === studentEmail && (existingDomainId === targetDomainId || existingDomainTitle === targetDomainTitle)) {
-            existing = a;
-            break;
+          if (existingEmail === studentEmail) {
+            const appDomId = (a.technical?.domainId || a.domain?.id || '').trim().toLowerCase();
+            const appDomTitle = (a.technical?.domainTitle || a.domain?.title || '').trim().toLowerCase();
+            if ((targetDomainId && appDomId && targetDomainId === appDomId) ||
+                (normTitle && appDomTitle && normTitle === appDomTitle)) {
+              existing = a;
+              break;
+            }
           }
         }
       }
 
       if (existing) {
         return res.status(409).json({
-          error: 'An application for this domain has already been submitted with this email address.',
-          applicationId: existing.applicationId,
-          status: existing.status,
-          createdAt: existing.createdAt
+          success: false,
+          isDuplicate: true,
+          error: `An application for "${existing.technical?.domainTitle || targetDomainTitle}" has already been submitted with this email address.`,
+          message: `You have already applied for ${existing.technical?.domainTitle || targetDomainTitle}. Your application status is currently: ${existing.status || 'submitted'}.`,
+          existingApplication: {
+            applicationId: existing.applicationId,
+            offerId: existing.offerId || null,
+            status: existing.status || 'submitted',
+            domainId: existing.technical?.domainId || targetDomainId,
+            domainTitle: existing.technical?.domainTitle || targetDomainTitle,
+            studentName: existing.student?.fullName || student.fullName,
+            email: existing.student?.email || studentEmail,
+            submittedAt: existing.createdAt || null
+          }
         });
       }
 
@@ -912,8 +1094,8 @@ export function createPrmaRouter({ isDbConnected } = {}) {
           graduationYear: academic.graduationYear || ''
         },
         technical: {
-          domainId: technical.domainId || 'ai-ml',
-          domainTitle: technical.domainTitle.trim(),
+          domainId: targetDomainId || 'general',
+          domainTitle: targetDomainTitle,
           skills: Array.isArray(technical.skills) ? technical.skills : (technical.skills || '').split(',').map(s => s.trim()).filter(Boolean),
           languages: Array.isArray(technical.languages) ? technical.languages : (technical.languages || '').split(',').map(s => s.trim()).filter(Boolean),
           experience: (technical.experience || '').trim(),

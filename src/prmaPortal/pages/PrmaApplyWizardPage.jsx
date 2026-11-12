@@ -124,6 +124,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
   // Submission states
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
+  const [duplicateNotice, setDuplicateNotice] = useState(null);
   const [submissionResult, setSubmissionResult] = useState(null);
 
   // Filtered colleges for autocomplete
@@ -164,6 +165,9 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
   const handleChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     setFormError('');
+    if (field === 'email' && duplicateNotice) {
+      setDuplicateNotice(null);
+    }
   };
 
   // Resume Upload Handler (Compulsory PDF < 5MB)
@@ -467,6 +471,8 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
       }
 
       if (res.ok && data.success) {
+        setDuplicateNotice(null);
+        setFormError('');
         setSubmissionResult({
           applicationId: data.applicationId,
           studentName: formData.fullName,
@@ -475,7 +481,21 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
           date: data.submissionDate || new Date().toLocaleDateString('en-GB')
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (res.status === 409 || data.isDuplicate) {
+        setFormError('');
+        const existing = data.existingApplication || {};
+        setDuplicateNotice({
+          message: data.message || data.error || 'An application for this domain has already been submitted with this email address.',
+          applicationId: existing.applicationId || data.applicationId || 'On Record',
+          offerId: existing.offerId || null,
+          status: existing.status || data.status || 'submitted',
+          domainTitle: existing.domainTitle || activeDomain.title,
+          submittedAt: existing.submittedAt || data.createdAt || null,
+          email: existing.email || formData.email
+        });
+        window.scrollTo({ top: 320, behavior: 'smooth' });
       } else {
+        setDuplicateNotice(null);
         setFormError(data.error || 'Failed to submit application. Please check your details.');
         window.scrollTo({ top: 350, behavior: 'smooth' });
       }
@@ -601,6 +621,98 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
               Change Domain
             </button>
           </div>
+
+          {/* DUPLICATE APPLICATION NOTIFICATION CARD */}
+          {duplicateNotice && (
+            <div className="mb-8 p-6 sm:p-7 rounded-3xl bg-amber-50/95 border-2 border-amber-300 shadow-md animate-fade-in">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-300 text-amber-700 flex items-center justify-center flex-shrink-0 font-bold shadow-xs">
+                  <AlertCircle className="w-6 h-6 text-amber-600" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 flex-wrap mb-1">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-200 text-amber-900">
+                      Application Already on File
+                    </span>
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
+                      duplicateNotice.status === 'shortlisted' ? 'bg-emerald-100 text-emerald-800' :
+                      duplicateNotice.status === 'under_review' ? 'bg-blue-100 text-blue-800' :
+                      duplicateNotice.status === 'rejected' ? 'bg-rose-100 text-rose-800' :
+                      'bg-slate-200 text-slate-800'
+                    }`}>
+                      Status: {duplicateNotice.status.toUpperCase()}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base sm:text-lg font-black text-slate-900 mt-1">
+                    You have already applied for {duplicateNotice.domainTitle}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                    An application with email <strong className="text-slate-900">{duplicateNotice.email}</strong> is already registered in our active database for this track. You do not need to reapply for this domain.
+                  </p>
+
+                  <div className="mt-4 p-4 rounded-2xl bg-white border border-amber-200 flex flex-wrap items-center justify-between gap-3 text-xs shadow-xs">
+                    <div>
+                      <span className="text-slate-400 font-bold block text-[10px] uppercase tracking-wider">Application Reference</span>
+                      <span className="font-mono font-black text-blue-600 text-sm">{duplicateNotice.applicationId}</span>
+                    </div>
+                    {duplicateNotice.submittedAt && (
+                      <div>
+                        <span className="text-slate-400 font-bold block text-[10px] uppercase tracking-wider">Submission Date</span>
+                        <span className="font-bold text-slate-700">
+                          {new Date(duplicateNotice.submittedAt).toLocaleDateString('en-GB')}
+                        </span>
+                      </div>
+                    )}
+                    <div>
+                      <span className="text-slate-400 font-bold block text-[10px] uppercase tracking-wider">Current Pipeline Stage</span>
+                      <span className={`font-bold capitalize ${
+                        duplicateNotice.status === 'shortlisted' ? 'text-emerald-600 font-black' :
+                        duplicateNotice.status === 'rejected' ? 'text-rose-600' :
+                        duplicateNotice.status === 'under_review' ? 'text-blue-600 font-black' : 'text-amber-700'
+                      }`}>
+                        {duplicateNotice.status === 'under_review' ? 'Under Review' : duplicateNotice.status}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (typeof window !== 'undefined' && duplicateNotice.applicationId) {
+                          window.sessionStorage.setItem('prma_last_app_id', duplicateNotice.applicationId);
+                        }
+                        handleNav('prma-dashboard');
+                      }}
+                      className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-sm flex items-center gap-2"
+                    >
+                      <Eye className="w-4 h-4" />
+                      Track Live Application Status
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setDuplicateNotice(null);
+                        handleNav('prma-internships-domains');
+                      }}
+                      className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-bold transition shadow-xs flex items-center gap-2"
+                    >
+                      <ArrowRight className="w-4 h-4 text-slate-500" />
+                      Apply for a Different Domain
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDuplicateNotice(null)}
+                      className="px-3 py-2 text-xs font-bold text-slate-400 hover:text-slate-600 transition ml-auto"
+                    >
+                      Dismiss
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {formError && (
             <div className="mb-8 p-4 rounded-2xl bg-rose-50 border border-rose-300 text-rose-800 text-xs font-semibold flex items-center gap-2.5 shadow-sm animate-shake">

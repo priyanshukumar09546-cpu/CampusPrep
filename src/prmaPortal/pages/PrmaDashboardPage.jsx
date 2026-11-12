@@ -49,10 +49,12 @@ export default function PrmaDashboardPage({ navigateToTab, onNavigate }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [hasSearched, setHasSearched] = useState(false);
 
-  // Initial load: search using context or local storage only if genuinely available
+  // Initial load: search using context, session storage, or email
   useEffect(() => {
-    const defaultSearch = applicationId || studentDetails?.email || (currentUser && currentUser.email);
+    const savedAppId = typeof window !== 'undefined' ? (window.sessionStorage.getItem('prma_last_app_id') || window.localStorage.getItem('prma_last_app_id')) : null;
+    const defaultSearch = applicationId || savedAppId || studentDetails?.email || (currentUser && currentUser.email);
     if (defaultSearch) {
+      setSearchId(defaultSearch);
       fetchStatus(defaultSearch);
     }
   }, [applicationId, studentDetails?.email, currentUser]);
