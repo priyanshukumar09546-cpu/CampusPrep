@@ -40,6 +40,7 @@ import {
   FileCheck,
   Linkedin,
   Instagram,
+  Github,
   Image as ImageIcon,
   Maximize2,
   Briefcase
