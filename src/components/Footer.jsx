@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Heart,
   ArrowRight,
-  ChevronRight,
   BookOpen,
   Briefcase,
   Headphones,
@@ -27,15 +26,17 @@ import {
   Users,
   ShieldCheck,
   Lock,
-  BarChart3,
+  BarChart2,
   X,
-  Cpu,
   Globe,
+  Code,
   Cloud,
   Package,
   Award,
   Instagram,
-  Linkedin
+  Linkedin,
+  Monitor,
+  ShoppingBag
 } from 'lucide-react';
 import './Footer.css';
 
@@ -64,18 +65,18 @@ export default function Footer({ onNavigate }) {
     setActiveModal(null);
   };
 
-  // 1. Study Resources column data
+  // 1. Column 2: Study Resources Links
   const studyResourcesLinks = [
     { label: 'AKTU Notes', icon: FileText, href: '/notes', action: () => handleNav('notes') },
     { label: 'Previous Year Question Papers', icon: FileText, href: '/pyqs', action: () => handleNav('pyqs') },
     { label: 'Syllabus', icon: BookOpen, href: '/syllabus', action: () => handleNav('syllabus') },
     { label: 'Quizzes', icon: HelpCircle, href: '/quizzes', action: () => handleNav('quizzes') },
     { label: 'Free Study Materials', icon: GraduationCap, href: '/notes', action: () => handleNav('notes') },
-    { label: 'Quantum Series', icon: BarChart3, href: '/notes', action: () => handleNav('notes') },
+    { label: 'Quantum Series', icon: BarChart2, href: '/notes', action: () => handleNav('notes') },
     { label: 'Result & CGPA Analyzer', icon: TrendingUp, href: '/result-cgpa', action: () => handleNav('result-cgpa') }
   ];
 
-  // 2. Career & Tools column data
+  // 2. Column 3: Career & Tools Links
   const careerToolsLinks = [
     { label: 'Resume Maker', icon: FileText, href: '/resume-maker', action: () => handleNav('resume-maker') },
     { label: 'Interview Pro', icon: Mic, href: '/interview-pro', action: () => handleNav('interview-pro') },
@@ -87,27 +88,27 @@ export default function Footer({ onNavigate }) {
     { label: 'All Tools', icon: LayoutGrid, href: '/more', action: () => handleNav('more') }
   ];
 
-  // 3. PRMA Tech (Technology Partner) column data
+  // 3. Column 4: PRMA Tech (Technology Partner) Links
   const prmaTechLinks = [
-    { label: 'Remote Internships', icon: Briefcase, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
-    { label: 'AI & ML Internship Track', icon: Cpu, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
-    { label: 'Full-Stack Web Dev Track', icon: Globe, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
+    { label: 'Remote Internships', icon: Monitor, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
+    { label: 'AI & ML Internship Track', icon: Globe, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
+    { label: 'Full-Stack Web Dev Track', icon: Code, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
     { label: 'Cloud & DevOps Track', icon: Cloud, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
-    { label: 'PRMA Tech Services', icon: Sparkles, href: '#prma-services-section', action: () => openWhatsApp("Hi PRMA Tech Team, I am interested in your software & technology services.") },
+    { label: 'PRMA Tech Services', icon: Sparkles, href: '#prma-services', action: () => openWhatsApp("Hi PRMA Tech Team, I am interested in software & technology solutions.") },
     { label: 'Physical Welcome Kit', icon: Package, href: '/internships-jobs', action: () => handleNav('internships-jobs') },
     { label: 'Verify Certificate', icon: Award, href: '/internships-jobs', action: () => handleNav('internships-jobs') }
   ];
 
-  // 4. Help & Support column data
+  // 4. Column 5: Help & Support Links
   const helpSupportLinks = [
     { label: 'Contact Us', icon: Mail, action: () => openWhatsApp("Hi ProfessorVirus Support, I need assistance with the platform.") },
     { label: 'FAQs', icon: HelpCircle, action: () => setActiveModal('faqs') },
     { label: 'How It Works', icon: Play, action: () => setActiveModal('how-it-works') },
-    { label: 'Report an Issue', icon: AlertTriangle, action: () => openWhatsApp("Hi ProfessorVirus Team, I would like to report an issue on the platform.") },
-    { label: 'Help & Support', icon: MessageSquare, action: () => openWhatsApp("Hi ProfessorVirus Team, I have a support request.") }
+    { label: 'Report an Issue', icon: AlertTriangle, action: () => openWhatsApp("Hi ProfessorVirus Team, I would like to report an issue.") },
+    { label: 'Help & Support', icon: MessageSquare, action: () => openWhatsApp("Hi ProfessorVirus Support, I have a query.") }
   ];
 
-  // 5. Legal column data
+  // 5. Column 6: Legal Links
   const legalLinks = [
     { label: 'Privacy Policy', icon: FileText, action: () => setActiveModal('privacy') },
     { label: 'Terms & Conditions', icon: FileText, action: () => setActiveModal('terms') },
@@ -116,29 +117,25 @@ export default function Footer({ onNavigate }) {
     { label: 'Disclaimer', icon: Info, action: () => setActiveModal('disclaimer') }
   ];
 
-  // Trust Strip Cards
+  // Trust Strip Cards Data
   const trustStripItems = [
     {
-      type: 'student',
       icon: Users,
       title: 'Student First',
       desc: 'Built by students, for students.'
     },
     {
-      type: 'privacy',
       icon: ShieldCheck,
       title: 'Privacy Focused',
       desc: 'Your data is safe and secure.'
     },
     {
-      type: 'secure',
       icon: Lock,
       title: 'Secure Experience',
       desc: 'Safe, trusted and reliable platform.'
     },
     {
-      type: 'learning',
-      icon: BarChart3,
+      icon: BarChart2,
       title: 'Learning Resources',
       desc: 'Verified and regularly updated.'
     }
@@ -146,69 +143,51 @@ export default function Footer({ onNavigate }) {
 
   return (
     <footer className="pv-footer-root">
-      {/* BACKGROUND PALE ACADEMIC WATERMARK ILLUSTRATION (Horizontal Book Stack & Cap) */}
+      {/* BACKGROUND PALE ACADEMIC WATERMARK (Isometric Books & Mortarboard on Right) */}
       <div className="pv-footer-watermark" aria-hidden="true">
-        <svg viewBox="0 0 420 320" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 360 260" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Bottom Hardcover Book */}
-          <path d="M 80 270 L 370 230 L 410 248 L 120 288 Z" fill="#141414" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M 80 270 L 80 286 L 120 304 L 120 288 Z" fill="#1A1A1A" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M 120 304 L 410 264 L 410 248 L 120 288 Z" fill="#0B0B0B" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
-          {/* Spine Ribs */}
-          <line x1="90" y1="274" x2="90" y2="290" stroke="#FFB800" strokeWidth="1.5" />
-          <line x1="104" y1="280" x2="104" y2="296" stroke="#FFB800" strokeWidth="1.5" />
+          <path d="M 60 210 L 290 170 L 330 188 L 100 228 Z" fill="#E8D3B0" fillOpacity="0.15" stroke="#C5A059" strokeWidth="1.2" strokeLinejoin="round" />
+          <path d="M 60 210 L 60 224 L 100 242 L 100 228 Z" fill="#D4AF37" fillOpacity="0.2" stroke="#C5A059" strokeWidth="1.2" strokeLinejoin="round" />
+          <path d="M 100 242 L 330 202 L 330 188 L 100 228 Z" fill="#FAF7F2" stroke="#C5A059" strokeWidth="1.2" strokeLinejoin="round" />
 
           {/* Middle Hardcover Book */}
-          <path d="M 100 236 L 380 198 L 416 216 L 136 254 Z" fill="#141414" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M 100 236 L 100 252 L 136 270 L 136 254 Z" fill="#1A1A1A" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M 136 270 L 416 232 L 416 216 L 136 254 Z" fill="#0B0B0B" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M 80 180 L 300 144 L 336 162 L 116 198 Z" fill="#E8D3B0" fillOpacity="0.2" stroke="#C5A059" strokeWidth="1.2" strokeLinejoin="round" />
+          <path d="M 80 180 L 80 194 L 116 212 L 116 198 Z" fill="#D4AF37" fillOpacity="0.25" stroke="#C5A059" strokeWidth="1.2" strokeLinejoin="round" />
+          <path d="M 116 212 L 336 176 L 336 162 L 116 198 Z" fill="#FAF7F2" stroke="#C5A059" strokeWidth="1.2" strokeLinejoin="round" />
 
           {/* Top Hardcover Book */}
-          <path d="M 120 202 L 390 166 L 420 184 L 150 220 Z" fill="#141414" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M 120 202 L 120 218 L 150 236 L 150 220 Z" fill="#1A1A1A" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M 150 236 L 420 200 L 420 184 L 150 220 Z" fill="#0B0B0B" stroke="#FFB800" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M 100 150 L 310 118 L 342 136 L 132 168 Z" fill="#E8D3B0" fillOpacity="0.25" stroke="#C5A059" strokeWidth="1.2" strokeLinejoin="round" />
+          <path d="M 100 150 L 100 164 L 132 182 L 132 168 Z" fill="#D4AF37" fillOpacity="0.3" stroke="#C5A059" strokeWidth="1.2" strokeLinejoin="round" />
+          <path d="M 132 182 L 342 150 L 342 136 L 132 168 Z" fill="#FAF7F2" stroke="#C5A059" strokeWidth="1.2" strokeLinejoin="round" />
 
-          {/* Graduation Cap (Mortarboard) sitting horizontally on top */}
-          {/* Cap Skull Base */}
-          <path d="M 180 156 Q 260 190 340 152 L 340 176 Q 260 214 180 176 Z" fill="#FFB800" fillOpacity="0.2" stroke="#FFB800" strokeWidth="1.8" />
-          {/* Cap Diamond Top */}
-          <polygon points="260,90 395,134 260,168 125,124" fill="#0B0B0B" stroke="#FFB800" strokeWidth="2" strokeLinejoin="round" />
-          {/* Cap Center Button */}
-          <circle cx="260" cy="129" r="5" fill="#FFB800" stroke="#FFB800" strokeWidth="1.5" />
-          {/* Hanging Golden Tassel */}
-          <path d="M 260 129 Q 200 138 170 170 L 165 215" fill="none" stroke="#FFB800" strokeWidth="2.5" strokeLinecap="round" />
-          <polygon points="160,212 170,212 173,230 157,230" fill="#FFB800" stroke="#FFB800" strokeWidth="1.2" />
+          {/* Graduation Mortarboard sitting on top */}
+          <polygon points="210,60 315,95 210,122 105,88" fill="#FBF9F5" stroke="#B45309" strokeWidth="1.5" strokeLinejoin="round" />
+          <path d="M 150 110 Q 210 134 270 106 L 270 125 Q 210 152 150 125 Z" fill="#D4AF37" fillOpacity="0.2" stroke="#B45309" strokeWidth="1.2" />
+          <circle cx="210" cy="91" r="3.5" fill="#B45309" />
+          <path d="M 210 91 Q 165 98 140 125 L 136 160" fill="none" stroke="#B45309" strokeWidth="1.8" strokeLinecap="round" />
+          <polygon points="132,158 140,158 142,172 130,172" fill="#B45309" />
         </svg>
       </div>
 
       <div className="pv-footer-container">
-        {/* MAIN FIVE-COLUMN FOOTER GRID */}
+        {/* MAIN SIX-COLUMN FOOTER GRID */}
         <div className="pv-footer-grid">
-          {/* COLUMN 1: Brand Info & Community */}
+          {/* COLUMN 1: ProfessorVirus Brand Info */}
           <div className="pv-footer-brand">
             {/* Logo Row */}
             <div className="pv-footer-logo-row">
               <div className="pv-footer-logo-circle" title="ProfessorVirus Academic Platform">
-                {/* Authentic academic crest: Burgundy circle, gold rim, graduation cap & open book */}
-                <svg viewBox="0 0 54 54" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="27" cy="27" r="26" fill="url(#pvEmblemGrad)" stroke="#C5933A" strokeWidth="2" />
-                  <defs>
-                    <radialGradient id="pvEmblemGrad" cx="35%" cy="30%" r="70%">
-                      <stop offset="0%" stopColor="#8A1822" />
-                      <stop offset="65%" stopColor="#5E0F17" />
-                      <stop offset="100%" stopColor="#3C070C" />
-                    </radialGradient>
-                  </defs>
-                  {/* Open Book in White & Gold */}
-                  <path d="M 12 36 Q 21 34 27 38 Q 33 34 42 36 L 42 27 Q 33 25 27 29 Q 21 25 12 27 Z" fill="#FFFDF8" stroke="#D4AF37" strokeWidth="1.2" strokeLinejoin="round" />
-                  <line x1="27" y1="29" x2="27" y2="38" stroke="#D4AF37" strokeWidth="1.2" />
-                  {/* Hanging Ribbon Bookmark */}
-                  <path d="M 27 38 L 27 43 L 29 41 L 31 43 L 31 37.5" fill="#D4AF37" />
-                  {/* Graduation Cap sitting above book */}
-                  <polygon points="27,13 41,18 27,23 13,18" fill="#FFFDF8" stroke="#D4AF37" strokeWidth="1.3" strokeLinejoin="round" />
-                  <path d="M 18 20.5 Q 27 24 36 20.5 L 36 23.5 Q 27 27 18 23.5 Z" fill="#D4AF37" />
-                  <circle cx="27" cy="18" r="1.5" fill="#D4AF37" />
-                  <path d="M 27 18 Q 20 19 16.5 24 L 16 28" fill="none" stroke="#D4AF37" strokeWidth="1.2" strokeLinecap="round" />
-                  <polygon points="14.5,27.5 17.5,27.5 17.5,30.5 14.5,30.5" fill="#D4AF37" />
+                <svg viewBox="0 0 48 48" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="24" cy="24" r="23" fill="#781416" stroke="#D4AF37" strokeWidth="1.8" />
+                  {/* Graduation Cap */}
+                  <polygon points="24,11 37,16 24,21 11,16" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="1.2" strokeLinejoin="round" />
+                  <path d="M 16 18 Q 24 21.5 32 18 L 32 21 Q 24 24.5 16 21 Z" fill="#D4AF37" />
+                  <circle cx="24" cy="16" r="1.5" fill="#D4AF37" />
+                  <path d="M 24 16 Q 18 17 15 21 L 14.5 25" fill="none" stroke="#D4AF37" strokeWidth="1.2" strokeLinecap="round" />
+                  <polygon points="13.5,24.5 16,24.5 16,27 13.5,27" fill="#D4AF37" />
+                  {/* Book Base */}
+                  <path d="M 14 31 Q 20 29 24 32 Q 28 29 34 31 L 34 26 Q 28 24 24 27 Q 20 24 14 26 Z" fill="#FFFFFF" stroke="#D4AF37" strokeWidth="1" />
                 </svg>
               </div>
 
@@ -244,7 +223,7 @@ export default function Footer({ onNavigate }) {
 
               {/* Instagram */}
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/professorvirus.official/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -297,60 +276,32 @@ export default function Footer({ onNavigate }) {
               </a>
             </div>
 
-            {/* CTA Pill Button */}
+            {/* Burgundy CTA Pill Button */}
             <button
               type="button"
               onClick={openWhatsAppCommunity}
               className="pv-footer-cta-btn"
             >
-              <span className="heart-icon">
-                <Heart size={15} fill="#FFB800" stroke="#FFB800" />
-              </span>
+              <GraduationCap size={16} color="#D4AF37" strokeWidth={2.4} />
               <span>Join Students Across India</span>
-              <ArrowRight size={15} color="#FFB800" strokeWidth={2.2} />
+              <ArrowRight size={15} color="#FFFFFF" strokeWidth={2.4} />
             </button>
 
-            {/* PRMA Tech Partner Card */}
-            <div
-              style={{
-                marginTop: '1.25rem',
-                padding: '0.75rem 0.95rem',
-                borderRadius: '14px',
-                backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem'
-              }}
-            >
+            {/* Official Tech Partner Box */}
+            <div className="pv-footer-partner-box">
               <img
                 src="/assets/prma_tech_logo.png"
                 alt="PRMA Tech Official Logo"
-                style={{ height: '22px', objectFit: 'contain' }}
+                className="pv-footer-partner-logo"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                 }}
               />
-              <div>
-                <div
-                  style={{
-                    fontSize: '0.68rem',
-                    fontWeight: 800,
-                    color: '#FFB800',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.04em'
-                  }}
-                >
-                  Official Tech Partner
+              <div className="pv-footer-partner-text">
+                <div className="pv-footer-partner-badge">
+                  OFFICIAL TECH PARTNER
                 </div>
-                <div
-                  style={{
-                    fontSize: '0.76rem',
-                    fontWeight: 700,
-                    color: '#E4E4E7',
-                    lineHeight: 1.2
-                  }}
-                >
+                <div className="pv-footer-partner-name">
                   PRMA Tech™ — Remote Internships & Solutions
                 </div>
               </div>
@@ -361,7 +312,7 @@ export default function Footer({ onNavigate }) {
           <div className="pv-footer-col">
             <div className="pv-footer-col-header">
               <div className="pv-footer-col-icon-box">
-                <BookOpen size={18} strokeWidth={2.2} />
+                <BookOpen size={16} strokeWidth={2.4} />
               </div>
               <h3 className="pv-footer-col-title">Study Resources</h3>
             </div>
@@ -378,15 +329,11 @@ export default function Footer({ onNavigate }) {
                         item.action();
                       }}
                       className="pv-footer-link-item"
-                      style={{ textDecoration: 'none' }}
                     >
-                      <span className="pv-footer-link-content">
-                        <span className="pv-footer-link-icon">
-                          <ItemIcon size={16} strokeWidth={2} />
-                        </span>
-                        <span className="pv-footer-link-label">{item.label}</span>
+                      <span className="pv-footer-link-icon">
+                        <ItemIcon size={15} strokeWidth={2.1} />
                       </span>
-                      <ChevronRight size={14} className="pv-footer-link-chevron" strokeWidth={2} />
+                      <span className="pv-footer-link-label">{item.label}</span>
                     </a>
                   </li>
                 );
@@ -398,7 +345,7 @@ export default function Footer({ onNavigate }) {
           <div className="pv-footer-col">
             <div className="pv-footer-col-header">
               <div className="pv-footer-col-icon-box">
-                <Briefcase size={18} strokeWidth={2.2} />
+                <ShoppingBag size={16} strokeWidth={2.4} />
               </div>
               <h3 className="pv-footer-col-title">Career & Tools</h3>
             </div>
@@ -415,15 +362,11 @@ export default function Footer({ onNavigate }) {
                         item.action();
                       }}
                       className="pv-footer-link-item"
-                      style={{ textDecoration: 'none' }}
                     >
-                      <span className="pv-footer-link-content">
-                        <span className="pv-footer-link-icon">
-                          <ItemIcon size={16} strokeWidth={2} />
-                        </span>
-                        <span className="pv-footer-link-label">{item.label}</span>
+                      <span className="pv-footer-link-icon">
+                        <ItemIcon size={15} strokeWidth={2.1} />
                       </span>
-                      <ChevronRight size={14} className="pv-footer-link-chevron" strokeWidth={2} />
+                      <span className="pv-footer-link-label">{item.label}</span>
                     </a>
                   </li>
                 );
@@ -431,11 +374,11 @@ export default function Footer({ onNavigate }) {
             </ul>
           </div>
 
-          {/* COLUMN 4: PRMA Tech (Technology Partner) */}
+          {/* COLUMN 4: PRMA Tech */}
           <div className="pv-footer-col">
             <div className="pv-footer-col-header">
-              <div className="pv-footer-col-icon-box" style={{ borderColor: 'rgba(112, 37, 232, 0.4)', color: '#C084FC' }}>
-                <Sparkles size={18} strokeWidth={2.2} />
+              <div className="pv-footer-col-icon-box">
+                <Sparkles size={16} strokeWidth={2.4} />
               </div>
               <h3 className="pv-footer-col-title">PRMA Tech</h3>
             </div>
@@ -452,15 +395,11 @@ export default function Footer({ onNavigate }) {
                         item.action();
                       }}
                       className="pv-footer-link-item"
-                      style={{ textDecoration: 'none' }}
                     >
-                      <span className="pv-footer-link-content">
-                        <span className="pv-footer-link-icon" style={{ color: '#0866F5' }}>
-                          <ItemIcon size={16} strokeWidth={2} />
-                        </span>
-                        <span className="pv-footer-link-label">{item.label}</span>
+                      <span className="pv-footer-link-icon">
+                        <ItemIcon size={15} strokeWidth={2.1} />
                       </span>
-                      <ChevronRight size={14} className="pv-footer-link-chevron" strokeWidth={2} />
+                      <span className="pv-footer-link-label">{item.label}</span>
                     </a>
                   </li>
                 );
@@ -472,7 +411,7 @@ export default function Footer({ onNavigate }) {
           <div className="pv-footer-col">
             <div className="pv-footer-col-header">
               <div className="pv-footer-col-icon-box">
-                <Headphones size={18} strokeWidth={2.2} />
+                <Headphones size={16} strokeWidth={2.4} />
               </div>
               <h3 className="pv-footer-col-title">Help & Support</h3>
             </div>
@@ -487,13 +426,10 @@ export default function Footer({ onNavigate }) {
                       onClick={item.action}
                       className="pv-footer-link-item"
                     >
-                      <span className="pv-footer-link-content">
-                        <span className="pv-footer-link-icon">
-                          <ItemIcon size={16} strokeWidth={2} />
-                        </span>
-                        <span className="pv-footer-link-label">{item.label}</span>
+                      <span className="pv-footer-link-icon">
+                        <ItemIcon size={15} strokeWidth={2.1} />
                       </span>
-                      <ChevronRight size={14} className="pv-footer-link-chevron" strokeWidth={2} />
+                      <span className="pv-footer-link-label">{item.label}</span>
                     </button>
                   </li>
                 );
@@ -501,11 +437,11 @@ export default function Footer({ onNavigate }) {
             </ul>
           </div>
 
-          {/* COLUMN 5: Legal */}
+          {/* COLUMN 6: Legal */}
           <div className="pv-footer-col">
             <div className="pv-footer-col-header">
               <div className="pv-footer-col-icon-box">
-                <Shield size={18} strokeWidth={2.2} />
+                <Shield size={16} strokeWidth={2.4} />
               </div>
               <h3 className="pv-footer-col-title">Legal</h3>
             </div>
@@ -520,13 +456,10 @@ export default function Footer({ onNavigate }) {
                       onClick={item.action}
                       className="pv-footer-link-item"
                     >
-                      <span className="pv-footer-link-content">
-                        <span className="pv-footer-link-icon">
-                          <ItemIcon size={16} strokeWidth={2} />
-                        </span>
-                        <span className="pv-footer-link-label">{item.label}</span>
+                      <span className="pv-footer-link-icon">
+                        <ItemIcon size={15} strokeWidth={2.1} />
                       </span>
-                      <ChevronRight size={14} className="pv-footer-link-chevron" strokeWidth={2} />
+                      <span className="pv-footer-link-label">{item.label}</span>
                     </button>
                   </li>
                 );
@@ -535,16 +468,16 @@ export default function Footer({ onNavigate }) {
           </div>
         </div>
 
-        {/* TRUST STRIP (4-ITEM FLOATING CARD) */}
+        {/* EDUCATIONAL TRUST STRIP (4 EQUALLY SPACED SECTIONS) */}
         <div className="pv-footer-trust-strip">
           {trustStripItems.map((item, idx) => {
             const ItemIcon = item.icon;
             return (
               <div key={idx} className="pv-footer-trust-item">
-                <div className={`pv-footer-trust-icon-box ${item.type}`}>
+                <div className="pv-footer-trust-icon-box">
                   <ItemIcon size={20} strokeWidth={2.2} />
                 </div>
-                <div>
+                <div className="pv-footer-trust-content">
                   <div className="pv-footer-trust-title">{item.title}</div>
                   <div className="pv-footer-trust-desc">{item.desc}</div>
                 </div>
@@ -554,168 +487,187 @@ export default function Footer({ onNavigate }) {
         </div>
       </div>
 
-      {/* ELEGANT DUAL GOLDEN WAVE TRANSITION */}
-      <div className="pv-footer-wave-wrap" aria-hidden="true">
-        <svg viewBox="0 0 1440 90" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" className="pv-footer-wave-svg">
-          <defs>
-            <linearGradient id="pvGoldWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#CA8A04" />
-              <stop offset="30%" stopColor="#FACC15" />
-              <stop offset="65%" stopColor="#EAB308" />
-              <stop offset="100%" stopColor="#FDE047" />
-            </linearGradient>
-            <linearGradient id="pvBurgundyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#730E2A" />
-              <stop offset="100%" stopColor="#5A091E" />
-            </linearGradient>
-          </defs>
-          {/* Main Burgundy Base Wave */}
-          <path
-            d="M 0,38 C 240,68 540,15 820,38 C 1100,62 1320,20 1440,32 L 1440,90 L 0,90 Z"
-            fill="url(#pvBurgundyGrad)"
-          />
-          {/* Accent Golden Wave Ribbon */}
-          <path
-            d="M 0,34 C 240,64 540,11 820,34 C 1100,58 1320,16 1440,28 L 1440,34 C 1320,22 1100,64 820,40 C 540,17 240,70 0,40 Z"
-            fill="url(#pvGoldWaveGrad)"
-          />
-          {/* Thin Radiant Gold Contour */}
-          <path
-            d="M 0,34 C 240,64 540,11 820,34 C 1100,58 1320,16 1440,28"
-            stroke="#FEF08A"
-            strokeWidth="2.5"
-            strokeLinecap="round"
+      {/* BOTTOM COPYRIGHT & MSME FOOTER WITH GOLDEN CURVED TOP WAVE */}
+      <div className="pv-footer-bottom-wrapper">
+        {/* Golden Wave Upper Ribbon */}
+        <div className="pv-footer-wave-wrap" aria-hidden="true">
+          <svg
+            viewBox="0 0 1440 68"
             fill="none"
-          />
-        </svg>
-      </div>
-
-      {/* DEEP BURGUNDY BOTTOM COPYRIGHT & CREDENTIALS BAR */}
-      <div className="pv-footer-bottom-bar">
-        <div className="pv-footer-bottom-inner">
-          {/* 1. Official Government of India & MSME Emblem (Crisp White) */}
-          <div className="pv-footer-msme-block">
-            <img
-              src="/assets/prma_footer_msme.png"
-              alt="Government of India & MSME - Ministry of MSME, Govt. of India"
-              className="pv-footer-msme-emblem"
+            preserveAspectRatio="none"
+            className="pv-footer-wave-svg"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="pvGoldWaveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#D97706" />
+                <stop offset="35%" stopColor="#F59E0B" />
+                <stop offset="70%" stopColor="#D4AF37" />
+                <stop offset="100%" stopColor="#FBBF24" />
+              </linearGradient>
+            </defs>
+            {/* Burgundy Fill below wave */}
+            <path
+              d="M 0,26 C 280,48 580,8 880,26 C 1140,42 1340,12 1440,20 L 1440,68 L 0,68 Z"
+              fill="#5A091E"
             />
-          </div>
+            {/* Golden Ribbon Stroke */}
+            <path
+              d="M 0,26 C 280,48 580,8 880,26 C 1140,42 1340,12 1440,20"
+              stroke="url(#pvGoldWaveGradient)"
+              strokeWidth="2.8"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </svg>
+        </div>
 
-          <div className="pv-footer-vdivider" aria-hidden="true" />
-
-          {/* 2. Follow PRMA Tech (Instagram & LinkedIn Outlined Buttons) */}
-          <div className="pv-footer-follow-prma">
-            <span className="pv-footer-follow-title">Follow PRMA Tech</span>
-            <div className="pv-footer-follow-icons">
-              <a
-                href="https://www.instagram.com/prma_tech/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pv-footer-prma-icon-btn"
-                aria-label="Follow PRMA Tech on Instagram"
-                title="Follow PRMA Tech on Instagram"
-              >
-                <Instagram size={18} strokeWidth={2.2} />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/prma-tech/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pv-footer-prma-icon-btn"
-                aria-label="Follow PRMA Tech on LinkedIn"
-                title="Follow PRMA Tech on LinkedIn"
-              >
-                <Linkedin size={18} strokeWidth={2.2} />
-              </a>
-            </div>
-          </div>
-
-          <div className="pv-footer-vdivider" aria-hidden="true" />
-
-          {/* 3. Center Copyright & Made with Love */}
-          <div className="pv-footer-bottom-center">
-            <div className="pv-footer-copyright-text">
-              © {new Date().getFullYear()} ProfessorVirus. All rights reserved.
-            </div>
-            <div className="pv-footer-tagline-text">
-              Study Smart. Prepare Better. Made with <span style={{ color: '#EF4444' }}>❤️</span> for students across India.
-            </div>
-          </div>
-
-          <div className="pv-footer-vdivider" aria-hidden="true" />
-
-          {/* 4. Legal Links (Stacked 2 Rows) */}
-          <div className="pv-footer-links-stacked">
-            <div className="pv-footer-links-row">
-              <button
-                type="button"
-                onClick={() => setActiveModal('privacy')}
-                className="pv-footer-legal-link"
-              >
-                Privacy Policy
-              </button>
-              <span className="pv-footer-link-divider">|</span>
-              <button
-                type="button"
-                onClick={() => setActiveModal('terms')}
-                className="pv-footer-legal-link"
-              >
-                Terms & Conditions
-              </button>
-            </div>
-            <div className="pv-footer-links-row">
-              <button
-                type="button"
-                onClick={() => setActiveModal('disclaimer')}
-                className="pv-footer-legal-link"
-              >
-                Disclaimer
-              </button>
-              <span className="pv-footer-link-divider">|</span>
-              <button
-                type="button"
-                onClick={() => openWhatsApp("Hi ProfessorVirus Team, I have an inquiry.")}
-                className="pv-footer-legal-link"
-              >
-                Contact Us
-              </button>
-            </div>
-          </div>
-
-          {/* 5. Golden Laurel Wheat Wreaths & Shield Badge */}
-          <div className="pv-footer-laurel-badge-wrap">
-            <svg width="22" height="38" viewBox="0 0 24 42" fill="none" className="pv-footer-laurel-svg" aria-hidden="true">
-              <path d="M22 39C16 34 11 26 10 14" stroke="#FACC15" strokeWidth="1.8" strokeLinecap="round" />
-              <path d="M10 14C8 10 3 6 1 8C-1 10 3 15 10 14Z" fill="#FACC15" />
-              <path d="M11 20C8 17 3 15 2 18C1 21 6 23 11 20Z" fill="#FACC15" />
-              <path d="M13 26C10 24 5 24 5 27C5 30 10 30 13 26Z" fill="#FACC15" />
-              <path d="M16 32C13 31 8 32 9 35C10 38 14 36 16 32Z" fill="#FACC15" />
-              <path d="M13 10C15 6 19 3 21 5C23 7 19 12 13 10Z" fill="#FACC15" />
-              <path d="M14 17C17 14 21 13 22 16C23 19 18 20 14 17Z" fill="#FACC15" />
-              <path d="M16 24C19 22 23 23 23 26C23 29 19 28 16 24Z" fill="#FACC15" />
+        {/* Deep Burgundy Bottom Bar */}
+        <div className="pv-footer-bottom-bar">
+          {/* Left Corner Golden Laurel Flourish */}
+          <div className="pv-footer-laurel-flourish left" aria-hidden="true">
+            <svg width="34" height="54" viewBox="0 0 34 54" fill="none">
+              <path d="M4 50 C8 38 15 24 28 8" stroke="#F59E0B" strokeWidth="2.2" strokeLinecap="round" />
+              <path d="M28 8 C25 4 19 3 16 6 C13 9 18 14 28 8 Z" fill="#F59E0B" />
+              <path d="M22 17 C18 14 12 14 10 18 C8 22 15 24 22 17 Z" fill="#F59E0B" />
+              <path d="M16 26 C12 24 7 25 6 30 C5 34 11 34 16 26 Z" fill="#F59E0B" />
+              <path d="M11 36 C8 35 4 37 4 41 C4 45 9 44 11 36 Z" fill="#F59E0B" />
+              <path d="M29 16 C31 12 34 9 33 6 C31 4 28 8 29 16 Z" fill="#F59E0B" />
+              <path d="M25 25 C27 21 31 19 31 16 C29 14 25 18 25 25 Z" fill="#F59E0B" />
+              <path d="M19 34 C22 30 25 29 25 26 C23 24 19 28 19 34 Z" fill="#F59E0B" />
             </svg>
+          </div>
 
-            <button
-              type="button"
-              onClick={() => setActiveModal('security')}
-              className="pv-footer-golden-secure-badge"
-              title="Click to view Security & Safety Verification"
-            >
-              <ShieldCheck size={16} className="pv-footer-golden-shield-icon" strokeWidth={2.4} />
-              <span>Secure & Safe</span>
-            </button>
-
-            <svg width="22" height="38" viewBox="0 0 24 42" fill="none" className="pv-footer-laurel-svg" style={{ transform: 'scaleX(-1)' }} aria-hidden="true">
-              <path d="M22 39C16 34 11 26 10 14" stroke="#FACC15" strokeWidth="1.8" strokeLinecap="round" />
-              <path d="M10 14C8 10 3 6 1 8C-1 10 3 15 10 14Z" fill="#FACC15" />
-              <path d="M11 20C8 17 3 15 2 18C1 21 6 23 11 20Z" fill="#FACC15" />
-              <path d="M13 26C10 24 5 24 5 27C5 30 10 30 13 26Z" fill="#FACC15" />
-              <path d="M16 32C13 31 8 32 9 35C10 38 14 36 16 32Z" fill="#FACC15" />
-              <path d="M13 10C15 6 19 3 21 5C23 7 19 12 13 10Z" fill="#FACC15" />
-              <path d="M14 17C17 14 21 13 22 16C23 19 18 20 14 17Z" fill="#FACC15" />
-              <path d="M16 24C19 22 23 23 23 26C23 29 19 28 16 24Z" fill="#FACC15" />
+          {/* Right Corner Golden Laurel Flourish */}
+          <div className="pv-footer-laurel-flourish right" aria-hidden="true">
+            <svg width="34" height="54" viewBox="0 0 34 54" fill="none" style={{ transform: 'scaleX(-1)' }}>
+              <path d="M4 50 C8 38 15 24 28 8" stroke="#F59E0B" strokeWidth="2.2" strokeLinecap="round" />
+              <path d="M28 8 C25 4 19 3 16 6 C13 9 18 14 28 8 Z" fill="#F59E0B" />
+              <path d="M22 17 C18 14 12 14 10 18 C8 22 15 24 22 17 Z" fill="#F59E0B" />
+              <path d="M16 26 C12 24 7 25 6 30 C5 34 11 34 16 26 Z" fill="#F59E0B" />
+              <path d="M11 36 C8 35 4 37 4 41 C4 45 9 44 11 36 Z" fill="#F59E0B" />
+              <path d="M29 16 C31 12 34 9 33 6 C31 4 28 8 29 16 Z" fill="#F59E0B" />
+              <path d="M25 25 C27 21 31 19 31 16 C29 14 25 18 25 25 Z" fill="#F59E0B" />
+              <path d="M19 34 C22 30 25 29 25 26 C23 24 19 28 19 34 Z" fill="#F59E0B" />
             </svg>
+          </div>
+
+          <div className="pv-footer-bottom-inner">
+            {/* Left: Official Government of India & MSME Block + Follow PRMA Tech */}
+            <div className="pv-footer-bottom-left">
+              <div className="pv-footer-msme-block">
+                {/* Ashoka Lion Capital Emblem */}
+                <img
+                  src="/assets/msme_lion_crop.png"
+                  alt="State Emblem of India"
+                  className="pv-footer-ashoka-emblem"
+                  onError={(e) => {
+                    e.currentTarget.src = '/assets/emblem_of_india.svg';
+                  }}
+                />
+
+                {/* Official MSME Logo Banner */}
+                <img
+                  src="/assets/msme_official_banner.png"
+                  alt="Ministry of MSME, Govt. of India"
+                  className="pv-footer-msme-emblem"
+                />
+              </div>
+
+              {/* Follow PRMA Tech */}
+              <div className="pv-footer-follow-prma">
+                <span className="pv-footer-follow-title">Follow PRMA Tech</span>
+                <div className="pv-footer-follow-icons">
+                  <a
+                    href="https://www.instagram.com/prma_tech/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pv-footer-prma-icon-btn"
+                    aria-label="Follow PRMA Tech on Instagram"
+                    title="Follow PRMA Tech on Instagram"
+                  >
+                    <Instagram size={17} strokeWidth={2.2} />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/prma-tech/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pv-footer-prma-icon-btn"
+                    aria-label="Follow PRMA Tech on LinkedIn"
+                    title="Follow PRMA Tech on LinkedIn"
+                  >
+                    <Linkedin size={17} strokeWidth={2.2} />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="pv-footer-vdivider" aria-hidden="true" />
+
+            {/* Center Copyright & Tagline */}
+            <div className="pv-footer-bottom-center">
+              <div className="pv-footer-copyright-text">
+                © {new Date().getFullYear()} ProfessorVirus. All rights reserved.
+              </div>
+              <div className="pv-footer-tagline-text">
+                Study Smart. Prepare Better. Made with <Heart size={13} fill="#EF4444" color="#EF4444" style={{ display: 'inline', verticalAlign: 'middle', margin: '0 2px' }} /> for students across India.
+              </div>
+            </div>
+
+            <div className="pv-footer-vdivider" aria-hidden="true" />
+
+            {/* Right: Legal Links + Golden Secure Badge */}
+            <div className="pv-footer-bottom-right">
+              <div className="pv-footer-links-stacked">
+                <div className="pv-footer-links-row">
+                  <button
+                    type="button"
+                    onClick={() => setActiveModal('privacy')}
+                    className="pv-footer-legal-link"
+                  >
+                    Privacy Policy
+                  </button>
+                  <span className="pv-footer-link-divider">|</span>
+                  <button
+                    type="button"
+                    onClick={() => setActiveModal('terms')}
+                    className="pv-footer-legal-link"
+                  >
+                    Terms & Conditions
+                  </button>
+                </div>
+                <div className="pv-footer-links-row">
+                  <button
+                    type="button"
+                    onClick={() => setActiveModal('disclaimer')}
+                    className="pv-footer-legal-link"
+                  >
+                    Disclaimer
+                  </button>
+                  <span className="pv-footer-link-divider">|</span>
+                  <button
+                    type="button"
+                    onClick={() => openWhatsApp("Hi ProfessorVirus Team, I have an inquiry.")}
+                    className="pv-footer-legal-link"
+                  >
+                    Contact Us
+                  </button>
+                </div>
+              </div>
+
+              {/* Golden Outlined Secure & Safe Badge */}
+              <div className="pv-footer-secure-badge-wrap">
+                <button
+                  type="button"
+                  onClick={() => setActiveModal('security')}
+                  className="pv-footer-golden-secure-badge"
+                  title="Click to view Security & Safety Verification"
+                >
+                  <ShieldCheck size={16} className="pv-footer-golden-shield-icon" strokeWidth={2.4} />
+                  <span>Secure & Safe</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
