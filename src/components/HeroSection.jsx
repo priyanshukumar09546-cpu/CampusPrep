@@ -8,14 +8,10 @@ import {
   Star,
   Rocket,
   GraduationCap,
-  Award,
-  Laptop,
-  CheckCircle2,
-  BookOpen,
   Layers,
+  BookOpen,
   Wrench,
-  Bot,
-  ExternalLink
+  Bot
 } from 'lucide-react';
 import DemoVideoModal from './DemoVideoModal';
 
@@ -41,56 +37,101 @@ export default function HeroSection({ onNavigate }) {
         maxWidth: '1920px',
         margin: '0 auto',
         overflow: 'hidden',
-        backgroundColor: '#FFF5F6'
+        background: 'linear-gradient(180deg, #FFFFFF 0%, #FFFDF8 45%, #FAF6EE 100%)',
+        boxSizing: 'border-box'
       }}
     >
       {/* ===================================================================
-          1. HERO BACKGROUND: Premium 4K PRMA Tech Internship Certificate Composition
-          Starts at top: 0 to float behind the liquid-glass navbar.
-          Features:
-          - Top-left burgundy wave with golden curved border
-          - Bottom burgundy wave with golden curved border
-          - Blush pink & ivory gradient with subtle liquid lighting
-          - Large, straight, framed PRMA Tech Internship Certificate on RIGHT
-          - Clean left side for ProfessorVirus typography, buttons & stats
+          1. PURE CSS & SVG AMBIENT BACKGROUND: White & Gold Theme
+          - Pure white (#FFFFFF) & Soft ivory (#FFFDF8)
+          - Delicate golden aura lighting
+          - Curved CSS waves on top corners
+          - Absolutely NO pink, NO heavy maroon, NO full-page background photos
           =================================================================== */}
       <div
-        className="pv-hero-bg-wrapper"
+        className="pv-hero-css-bg"
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 0,
-          overflow: 'hidden'
+          pointerEvents: 'none',
+          overflow: 'hidden',
+          zIndex: 0
         }}
+        aria-hidden="true"
       >
-        <picture>
-          <source srcSet="/assets/prma_certificate_hero_bg.webp" type="image/webp" />
-          <source srcSet="/assets/prma_certificate_hero_bg_4k.jpg" media="(min-width: 1920px)" />
-          <img
-            src="/assets/prma_certificate_hero_bg.jpg"
-            alt="PRMA Tech Official Internship Certificate and Govt Recognized Accreditation"
-            className="pv-hero-bg-img"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              display: 'block',
-              userSelect: 'none',
-              pointerEvents: 'none'
-            }}
+        {/* Soft Golden Ambient Glows */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '-10%',
+            right: '5%',
+            width: '650px',
+            height: '650px',
+            background: 'radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, rgba(255, 243, 204, 0.03) 45%, transparent 70%)',
+            borderRadius: '50%',
+            filter: 'blur(40px)'
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '20%',
+            left: '-5%',
+            width: '500px',
+            height: '500px',
+            background: 'radial-gradient(circle, rgba(255, 223, 105, 0.06) 0%, transparent 65%)',
+            borderRadius: '50%',
+            filter: 'blur(50px)'
+          }}
+        />
+
+        {/* Elegant Golden Curved Wave Accent (Top-Left) */}
+        <svg
+          viewBox="0 0 1440 320"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '280px',
+            opacity: 0.45,
+            pointerEvents: 'none'
+          }}
+        >
+          <path
+            d="M-40 0C180 80 420 120 720 70C1020 20 1260 90 1480 30V0H-40Z"
+            fill="url(#goldGradientWave)"
           />
-        </picture>
+          <path
+            d="M-40 40C220 130 500 110 820 60C1140 10 1320 80 1480 45"
+            stroke="url(#goldStroke)"
+            strokeWidth="1.5"
+            strokeDasharray="4 2"
+            opacity="0.6"
+          />
+          <defs>
+            <linearGradient id="goldGradientWave" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#FFF8E7" stopOpacity="0.8" />
+              <stop offset="50%" stopColor="#FFF2D6" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="goldStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.1" />
+              <stop offset="50%" stopColor="#FFD700" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
 
       {/* ===================================================================
-          2. HERO SCENE CONTENT WRAPPER: Typography, Buttons, Stats & Dual Bar
-          paddingTop: 72px ensures content starts cleanly below the floating navbar
+          2. HERO CONTENT WRAPPER: Two Column Layout + Horizontal Bar + Feature Stripe
+          paddingTop: 80px clears the floating liquid-glass navbar
           =================================================================== */}
       <div
         className="pv-hero-scene-wrap"
@@ -98,10 +139,9 @@ export default function HeroSection({ onNavigate }) {
           position: 'relative',
           zIndex: 2,
           width: '100%',
-          maxWidth: '1920px',
-          height: '100%',
+          maxWidth: '1440px',
           margin: '0 auto',
-          paddingTop: '72px',
+          paddingTop: '80px',
           boxSizing: 'border-box',
           display: 'flex',
           flexDirection: 'column',
@@ -109,24 +149,25 @@ export default function HeroSection({ onNavigate }) {
         }}
       >
         {/* ===================================================================
-            HERO UPPER: Left-Side Typography, Buttons & Verified Stats
+            HERO UPPER: Two Column Layout
+            Left Side: ProfessorVirus Brand, Slogan, Desc, Buttons, Stats
+            Right Side: Genuine Gold-Framed PRMA Tech Internship Certificate
             =================================================================== */}
         <div
           className="pv-hero-upper-inner"
           style={{
             position: 'relative',
             zIndex: 3,
-            maxWidth: '1440px',
             width: '100%',
-            margin: '0 auto',
             padding: '1.25rem 2rem 0.5rem',
             boxSizing: 'border-box',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            gap: '2.5rem'
           }}
         >
-          {/* LEFT COLUMN: Headings, Slogan, Buttons, Stats */}
+          {/* LEFT SIDE — Typography, Buttons & Verified Stats */}
           <div
             className="pv-hero-upper-text-col"
             style={{
@@ -134,7 +175,8 @@ export default function HeroSection({ onNavigate }) {
               flexDirection: 'column',
               alignItems: 'flex-start',
               maxWidth: '620px',
-              width: '100%'
+              width: '100%',
+              flex: '1'
             }}
           >
             {/* Trust badge */}
@@ -145,14 +187,14 @@ export default function HeroSection({ onNavigate }) {
                 alignItems: 'center',
                 gap: '0.45rem',
                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                border: '1.5px solid #E2E8F0',
+                border: '1.5px solid #F1E5D1',
                 borderRadius: '999px',
                 padding: '0.35rem 1rem',
                 fontSize: '0.8rem',
                 fontWeight: 800,
                 color: '#0F172A',
                 marginBottom: '1rem',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+                boxShadow: '0 2px 10px rgba(212, 175, 55, 0.08)',
                 backdropFilter: 'blur(8px)'
               }}
             >
@@ -161,24 +203,24 @@ export default function HeroSection({ onNavigate }) {
               <span style={{ color: '#F59E0B', fontSize: '0.9rem' }}>⭐</span>
             </div>
 
-            {/* Main Brand Title: ProfessorVirus (Deep Burgundy matching reference design) */}
+            {/* Main Brand Title: ProfessorVirus (Solid Deep Burgundy) */}
             <h1
               className="pv-hero-main-title"
               style={{
                 fontFamily: "'Outfit', system-ui, -apple-system, sans-serif",
-                fontSize: 'clamp(2.4rem, 4.4vw, 3.8rem)',
+                fontSize: 'clamp(2.5rem, 4.4vw, 3.85rem)',
                 fontWeight: 900,
                 lineHeight: 1.05,
                 margin: '0 0 0.35rem 0',
                 letterSpacing: '-0.03em',
                 color: '#881337',
-                textShadow: '0 1px 3px rgba(255, 255, 255, 0.7)'
+                textShadow: '0 1px 2px rgba(0, 0, 0, 0.04)'
               }}
             >
               <span>ProfessorVirus</span>
             </h1>
 
-            {/* Slogan with Golden Brush Accent: Study Smart. Prepare Better. */}
+            {/* Slogan with Golden Brush Curve: Study Smart. Prepare Better. */}
             <div className="pv-hero-slogan-wrap" style={{ position: 'relative', display: 'inline-block', marginBottom: '1.15rem' }}>
               <h2
                 style={{
@@ -188,8 +230,7 @@ export default function HeroSection({ onNavigate }) {
                   lineHeight: 1.15,
                   color: '#0F172A',
                   margin: 0,
-                  letterSpacing: '-0.02em',
-                  textShadow: '0 1px 3px rgba(255, 255, 255, 0.7)'
+                  letterSpacing: '-0.02em'
                 }}
               >
                 Study Smart. Prepare Better.
@@ -224,11 +265,10 @@ export default function HeroSection({ onNavigate }) {
                 lineHeight: 1.55,
                 color: '#334155',
                 margin: '0 0 1.5rem 0',
-                maxWidth: '520px',
-                textShadow: '0 1px 2px rgba(255, 255, 255, 0.5)'
+                maxWidth: '520px'
               }}
             >
-              A complete academic and career preparation platform for AKTU students with notes, PYQs, syllabus, quizzes, resume tools and real industry opportunities.
+              A complete academic and career preparation platform for AKTU students with notes, PYQs, syllabi, quizzes, resume tools and real industry opportunities.
             </p>
 
             {/* Action Buttons: Get Started Free & Watch Demo */}
@@ -256,11 +296,11 @@ export default function HeroSection({ onNavigate }) {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.55rem',
-                  transition: 'all 0.2s ease',
+                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
                   backgroundColor: '#881337',
                   color: '#FFFFFF',
                   border: 'none',
-                  boxShadow: '0 6px 20px rgba(136, 19, 55, 0.35)'
+                  boxShadow: '0 6px 20px rgba(136, 19, 55, 0.3)'
                 }}
                 className="pv-btn-burgundy"
                 onMouseEnter={(e) => {
@@ -269,7 +309,7 @@ export default function HeroSection({ onNavigate }) {
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(136, 19, 55, 0.35)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(136, 19, 55, 0.3)';
                 }}
               >
                 <Rocket size={17} color="#FFFFFF" />
@@ -290,10 +330,10 @@ export default function HeroSection({ onNavigate }) {
                   alignItems: 'center',
                   gap: '0.55rem',
                   transition: 'all 0.2s ease',
-                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  backgroundColor: '#FFFFFF',
                   color: '#0F172A',
                   border: '1.5px solid #E2E8F0',
-                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)',
+                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.04)',
                   backdropFilter: 'blur(8px)'
                 }}
                 onMouseEnter={(e) => {
@@ -339,12 +379,11 @@ export default function HeroSection({ onNavigate }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backgroundColor: '#FFFFFF',
                   padding: '0.45rem 0.8rem',
                   borderRadius: '12px',
                   border: '1px solid #E2E8F0',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                  backdropFilter: 'blur(8px)'
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
                 }}
               >
                 <div
@@ -377,12 +416,11 @@ export default function HeroSection({ onNavigate }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backgroundColor: '#FFFFFF',
                   padding: '0.45rem 0.8rem',
                   borderRadius: '12px',
                   border: '1px solid #E2E8F0',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                  backdropFilter: 'blur(8px)'
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
                 }}
               >
                 <div
@@ -415,12 +453,11 @@ export default function HeroSection({ onNavigate }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backgroundColor: '#FFFFFF',
                   padding: '0.45rem 0.8rem',
                   borderRadius: '12px',
                   border: '1px solid #E2E8F0',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                  backdropFilter: 'blur(8px)'
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
                 }}
               >
                 <div
@@ -453,12 +490,11 @@ export default function HeroSection({ onNavigate }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.45rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                  backgroundColor: '#FFFFFF',
                   padding: '0.45rem 0.8rem',
                   borderRadius: '12px',
                   border: '1px solid #E2E8F0',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                  backdropFilter: 'blur(8px)'
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
                 }}
               >
                 <div
@@ -487,10 +523,44 @@ export default function HeroSection({ onNavigate }) {
             </div>
           </div>
 
-          {/* RIGHT COLUMN (DESKTOP CERTIFICATE INTERACTIVE ANCHOR & MOBILE STANDALONE) */}
-          <div className="pv-hero-right-cert-col">
-            {/* Mobile / Tablet Standalone Certificate Image */}
-            <div className="pv-hero-mobile-cert-card">
+          {/* RIGHT SIDE — AUTHENTIC GOLD-FRAMED PRMA TECH INTERNSHIP CERTIFICATE */}
+          <div
+            className="pv-hero-cert-container"
+            style={{
+              flex: '1',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+              maxWidth: '560px',
+              width: '100%'
+            }}
+          >
+            {/* Glowing Golden Aura Backlight */}
+            <div
+              style={{
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                top: 0,
+                left: 0,
+                background: 'radial-gradient(circle at 50% 45%, rgba(255, 215, 0, 0.22) 0%, rgba(212, 175, 55, 0.1) 40%, transparent 70%)',
+                filter: 'blur(30px)',
+                zIndex: 0,
+                pointerEvents: 'none'
+              }}
+            />
+
+            {/* Certificate 3D Animated Card Frame */}
+            <div
+              className="pv-hero-cert-wrapper"
+              style={{
+                position: 'relative',
+                zIndex: 1,
+                width: '100%',
+                maxWidth: '510px'
+              }}
+            >
               <a
                 href="/prma-tech/verify"
                 onClick={(e) => {
@@ -499,51 +569,61 @@ export default function HeroSection({ onNavigate }) {
                     onNavigate('prma-verify-offer');
                   }
                 }}
+                className="pv-hero-cert-card"
                 title="Verify PRMA Tech Official Internship Certificate"
+                style={{
+                  display: 'block',
+                  position: 'relative',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  textDecoration: 'none'
+                }}
               >
-                <img
-                  src="/assets/prma_certificate_standalone.jpg"
-                  alt="PRMA Tech Official Internship Certificate"
-                  style={{
-                    width: '100%',
-                    maxWidth: '460px',
-                    height: 'auto',
-                    borderRadius: '8px',
-                    boxShadow: '0 16px 36px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(136, 19, 55, 0.08)',
-                    display: 'block',
-                    margin: '0 auto'
-                  }}
-                />
-              </a>
-            </div>
+                {/* The Genuine Cropped Certificate Image (WebP + Fallback PNG) */}
+                <picture>
+                  <source srcSet="/assets/prma_internship_certificate.webp" type="image/webp" />
+                  <img
+                    src="/assets/prma_internship_certificate.png"
+                    alt="PRMA Tech Official Internship Certificate with MSME Registration and Govt Approval"
+                    className="pv-hero-cert-img"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      display: 'block',
+                      userSelect: 'none'
+                    }}
+                  />
+                </picture>
 
-            {/* Desktop Transparent Clickable Target over the Background Certificate */}
-            <a
-              href="/prma-tech/verify"
-              className="pv-hero-desktop-cert-target"
-              onClick={(e) => {
-                if (onNavigate) {
-                  e.preventDefault();
-                  onNavigate('prma-verify-offer');
-                }
-              }}
-              title="Click to Verify PRMA Tech Official Internship Certificate"
-              style={{
-                display: 'block',
-                width: '420px',
-                height: '380px',
-                borderRadius: '12px',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
-              }}
-            />
+                {/* Shimmer Light Sweep Overlay */}
+                <div className="pv-cert-shimmer-sweep" />
+              </a>
+
+              {/* Realistic Floor Reflection Gradient */}
+              <div
+                className="pv-hero-cert-reflection"
+                style={{
+                  position: 'absolute',
+                  bottom: '-32px',
+                  left: '8%',
+                  right: '8%',
+                  height: '32px',
+                  background: 'radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.3) 0%, rgba(15, 23, 42, 0.08) 45%, transparent 75%)',
+                  filter: 'blur(7px)',
+                  pointerEvents: 'none'
+                }}
+              />
+            </div>
           </div>
         </div>
 
         {/* ===================================================================
-            3. UNIFIED HORIZONTAL MSME + WHATSAPP SINGLE ROW (Matching Reference Design)
+            3. MSME + WHATSAPP COMMUNITY SECTION (One Single Horizontal Row on Desktop)
             Layout:
-            [ MSME REGISTERED ] | [ PRMA TECH INTERNSHIP + APPLY NOW ] | [ JOIN PROFESSORVIRUS COMMUNITY ] | [ JOIN PRMA TECH COMMUNITY ]
+            [ Section 1: MSME Registered + PRMA Tech Internship + Apply Now ]
+            | [ Section 2: Join ProfessorVirus Community ]
+            | [ Section 3: Join PRMA Tech Community ]
             =================================================================== */}
         <div
           className="pv-hero-unified-wrapper"
@@ -551,8 +631,7 @@ export default function HeroSection({ onNavigate }) {
             position: 'relative',
             zIndex: 4,
             width: '100%',
-            maxWidth: '1440px',
-            margin: '1rem auto 0.75rem',
+            margin: '1.5rem auto 0.85rem',
             padding: '0 2rem',
             boxSizing: 'border-box'
           }}
@@ -560,12 +639,10 @@ export default function HeroSection({ onNavigate }) {
           <div
             className="pv-hero-unified-bar"
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.96)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
+              backgroundColor: '#FFFFFF',
               borderRadius: '20px',
-              border: '1.5px solid rgba(226, 232, 240, 0.95)',
-              boxShadow: '0 12px 32px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(136, 19, 55, 0.04)',
+              border: '1.5px solid #F1E5D1',
+              boxShadow: '0 10px 30px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(212, 175, 55, 0.06)',
               padding: '0.75rem 1.25rem',
               display: 'flex',
               alignItems: 'center',
@@ -574,155 +651,160 @@ export default function HeroSection({ onNavigate }) {
               boxSizing: 'border-box'
             }}
           >
-            {/* SEGMENT 1: MSME REGISTERED */}
+            {/* SECTION 1 — MSME + PRMA TECH INTERNSHIP + APPLY NOW */}
             <div
-              className="pv-unified-seg-msme"
+              className="pv-unified-seg-msme-complete"
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.85rem',
-                flexShrink: 0
+                gap: '1.1rem',
+                flex: '1.6',
+                minWidth: 0
               }}
             >
+              {/* MSME Emblem & Badges */}
               <div
                 style={{
-                  width: '38px',
-                  height: '46px',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
+                  gap: '0.85rem',
                   flexShrink: 0
                 }}
               >
-                <img
-                  src="/assets/msme_lion_crop.png"
-                  alt="Official MSME Registered Udyam Approved Enterprise Emblem"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    display: 'block'
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.src = '/assets/emblem_of_india.svg';
-                  }}
-                />
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <div
                   style={{
-                    fontFamily: "'Outfit', sans-serif",
-                    fontSize: '0.98rem',
-                    fontWeight: 800,
-                    color: '#0F172A',
-                    lineHeight: 1.15,
-                    whiteSpace: 'nowrap'
-                  }}
-                >
-                  MSME Registered
-                </div>
-                <div
-                  style={{
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    color: '#64748B',
-                    marginTop: '0.12rem',
-                    whiteSpace: 'nowrap'
-                  }}
-                >
-                  Udyam Approved Enterprise
-                </div>
-              </div>
-            </div>
-
-            {/* DIVIDER 1 */}
-            <div className="pv-unified-divider" />
-
-            {/* SEGMENT 2: PRMA TECH INTERNSHIP + APPLY NOW */}
-            <div
-              className="pv-unified-seg-internship"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '0.85rem',
-                flex: '1.25'
-              }}
-            >
-              <div style={{ minWidth: 0 }}>
-                <p
-                  style={{
-                    margin: 0,
-                    fontSize: '0.82rem',
-                    lineHeight: 1.38,
-                    color: '#334155',
-                    fontWeight: 600
-                  }}
-                >
-                  Kickstart your career with a{' '}
-                  <strong style={{ color: '#0F172A', fontWeight: 800 }}>real industry internship</strong> at{' '}
-                  <strong style={{ color: '#881337', fontWeight: 800 }}>PRMA Tech, an MSME Udyam Approved Enterprise</strong>.
-                </p>
-                <div
-                  className="pv-unified-badges"
-                  style={{
+                    width: '38px',
+                    height: '46px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.45rem',
-                    marginTop: '0.2rem',
-                    flexWrap: 'wrap'
+                    justifyContent: 'center',
+                    flexShrink: 0
                   }}
                 >
-                  <span style={{ fontSize: '0.7rem', color: '#64748B', fontWeight: 600 }}>
-                    Industry Internship &bull; Govt. Recognized (MSME) &bull; Live Projects
-                  </span>
+                  <img
+                    src="/assets/msme_lion_crop.png"
+                    alt="Official MSME Registered Udyam Approved Enterprise Emblem"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                      display: 'block'
+                    }}
+                    onError={(e) => {
+                      e.currentTarget.src = '/assets/emblem_of_india.svg';
+                    }}
+                  />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div
+                    style={{
+                      fontFamily: "'Outfit', sans-serif",
+                      fontSize: '0.98rem',
+                      fontWeight: 800,
+                      color: '#0F172A',
+                      lineHeight: 1.15,
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    MSME Registered
+                  </div>
+                  <div
+                    style={{
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      color: '#64748B',
+                      marginTop: '0.12rem',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    Udyam Approved Enterprise
+                  </div>
                 </div>
               </div>
 
-              <a
-                href="/prma-tech/internships/apply"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (onNavigate) onNavigate('prma-internships-apply');
-                  else window.location.href = '/prma-tech/internships/apply';
-                }}
+              {/* Sub-divider */}
+              <div
                 style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  padding: '0.52rem 1.25rem',
-                  borderRadius: '999px',
-                  backgroundColor: '#881337',
-                  color: '#FFFFFF',
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: '0.82rem',
-                  fontWeight: 800,
-                  textDecoration: 'none',
-                  whiteSpace: 'nowrap',
-                  boxShadow: '0 4px 14px rgba(136, 19, 55, 0.3)',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                  width: '1px',
+                  height: '36px',
+                  backgroundColor: '#E2E8F0',
                   flexShrink: 0
                 }}
-                className="pv-btn-burgundy"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-1px)';
-                  e.currentTarget.style.boxShadow = '0 6px 18px rgba(136, 19, 55, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(136, 19, 55, 0.3)';
+                className="hidden xl:block"
+              />
+
+              {/* Description & Apply Now */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '0.85rem',
+                  flex: 1,
+                  minWidth: 0
                 }}
               >
-                <span>Apply Now</span>
-                <ArrowRight size={14} strokeWidth={2.5} />
-              </a>
+                <div style={{ minWidth: 0 }}>
+                  <p
+                    style={{
+                      margin: 0,
+                      fontSize: '0.82rem',
+                      lineHeight: 1.38,
+                      color: '#334155',
+                      fontWeight: 600
+                    }}
+                  >
+                    Kickstart your career with a{' '}
+                    <strong style={{ color: '#0F172A', fontWeight: 800 }}>real industry internship</strong> at{' '}
+                    <strong style={{ color: '#881337', fontWeight: 800 }}>PRMA Tech, an MSME Udyam Approved Enterprise</strong>.
+                  </p>
+                </div>
+
+                <a
+                  href="/prma-tech/internships/apply"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onNavigate) onNavigate('prma-internships-apply');
+                    else window.location.href = '/prma-tech/internships/apply';
+                  }}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    padding: '0.52rem 1.25rem',
+                    borderRadius: '999px',
+                    backgroundColor: '#881337',
+                    color: '#FFFFFF',
+                    fontFamily: "'Outfit', sans-serif",
+                    fontSize: '0.82rem',
+                    fontWeight: 800,
+                    textDecoration: 'none',
+                    whiteSpace: 'nowrap',
+                    boxShadow: '0 4px 14px rgba(136, 19, 55, 0.3)',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                    flexShrink: 0
+                  }}
+                  className="pv-btn-burgundy"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 6px 18px rgba(136, 19, 55, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(136, 19, 55, 0.3)';
+                  }}
+                >
+                  <span>Apply Now</span>
+                  <ArrowRight size={14} strokeWidth={2.5} />
+                </a>
+              </div>
             </div>
 
-            {/* DIVIDER 2 */}
+            {/* VERTICAL DIVIDER 1 */}
             <div className="pv-unified-divider" />
 
-            {/* SEGMENT 3: JOIN PROFESSORVIRUS COMMUNITY */}
+            {/* SECTION 2 — PROFESSORVIRUS COMMUNITY */}
             <a
               href="https://whatsapp.com/channel/0029VbDAFGO77qVYFLIhGn1G"
               target="_blank"
@@ -738,14 +820,14 @@ export default function HeroSection({ onNavigate }) {
                 flex: '1',
                 minWidth: '220px',
                 transition: 'all 0.2s ease',
-                backgroundColor: 'rgba(255, 255, 255, 0.7)'
+                backgroundColor: 'rgba(255, 255, 255, 0.8)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#F0FDF4';
                 e.currentTarget.style.transform = 'translateY(-1px)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
@@ -793,7 +875,7 @@ export default function HeroSection({ onNavigate }) {
                     textOverflow: 'ellipsis'
                   }}
                 >
-                  Follow the AKTU Material Free – By ProfessorVirus 🥇
+                  Follow the AKTU Material free – By ProfessorVirus 🥇
                 </div>
               </div>
 
@@ -803,10 +885,10 @@ export default function HeroSection({ onNavigate }) {
               </div>
             </a>
 
-            {/* DIVIDER 3 */}
+            {/* VERTICAL DIVIDER 2 */}
             <div className="pv-unified-divider" />
 
-            {/* SEGMENT 4: JOIN PRMA TECH COMMUNITY */}
+            {/* SECTION 3 — PRMA TECH COMMUNITY */}
             <a
               href="https://chat.whatsapp.com/B8zkpc5tc2TKni9jcWsiba"
               target="_blank"
@@ -822,14 +904,14 @@ export default function HeroSection({ onNavigate }) {
                 flex: '1',
                 minWidth: '220px',
                 transition: 'all 0.2s ease',
-                backgroundColor: 'rgba(255, 255, 255, 0.7)'
+                backgroundColor: 'rgba(255, 255, 255, 0.8)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = '#EFF6FF';
                 e.currentTarget.style.transform = 'translateY(-1px)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
@@ -890,8 +972,8 @@ export default function HeroSection({ onNavigate }) {
         </div>
 
         {/* ===================================================================
-            4. BURGUNDY ACADEMIC TRUST STRIPE (Matching Reference Image 2)
-            5 Items:
+            5. BOTTOM FEATURE BAR (Maroon & Gold Theme)
+            Preserves exact authentic statistics and categories:
             - 24+ University Programmes
             - 25,000+ Study Notes
             - 8 Years PYQs (2017-2026)
@@ -904,7 +986,6 @@ export default function HeroSection({ onNavigate }) {
             position: 'relative',
             zIndex: 4,
             width: '100%',
-            maxWidth: '1440px',
             margin: '0 auto 1.5rem',
             padding: '0 2rem',
             boxSizing: 'border-box'
@@ -927,7 +1008,11 @@ export default function HeroSection({ onNavigate }) {
             }}
           >
             {/* Item 1 */}
-            <div className="pv-trust-item" style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+            <div
+              className="pv-trust-item"
+              onClick={() => onNavigate && onNavigate('notes')}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', cursor: 'pointer' }}
+            >
               <Layers size={19} color="#FFBD12" strokeWidth={2.4} style={{ flexShrink: 0 }} />
               <div>
                 <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: '0.86rem', color: '#FFFFFF' }}>
@@ -942,7 +1027,11 @@ export default function HeroSection({ onNavigate }) {
             <div className="pv-trust-divider" />
 
             {/* Item 2 */}
-            <div className="pv-trust-item" style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+            <div
+              className="pv-trust-item"
+              onClick={() => onNavigate && onNavigate('notes')}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', cursor: 'pointer' }}
+            >
               <BookOpen size={19} color="#FFBD12" strokeWidth={2.4} style={{ flexShrink: 0 }} />
               <div>
                 <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: '0.86rem', color: '#FFFFFF' }}>
@@ -957,7 +1046,11 @@ export default function HeroSection({ onNavigate }) {
             <div className="pv-trust-divider" />
 
             {/* Item 3 */}
-            <div className="pv-trust-item" style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+            <div
+              className="pv-trust-item"
+              onClick={() => onNavigate && onNavigate('pyqs')}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', cursor: 'pointer' }}
+            >
               <FileText size={19} color="#FFBD12" strokeWidth={2.4} style={{ flexShrink: 0 }} />
               <div>
                 <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: '0.86rem', color: '#FFFFFF' }}>
@@ -972,7 +1065,11 @@ export default function HeroSection({ onNavigate }) {
             <div className="pv-trust-divider" />
 
             {/* Item 4 */}
-            <div className="pv-trust-item" style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+            <div
+              className="pv-trust-item"
+              onClick={() => onNavigate && onNavigate('tools')}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', cursor: 'pointer' }}
+            >
               <Wrench size={19} color="#FFBD12" strokeWidth={2.4} style={{ flexShrink: 0 }} />
               <div>
                 <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: '0.86rem', color: '#FFFFFF' }}>
@@ -987,7 +1084,11 @@ export default function HeroSection({ onNavigate }) {
             <div className="pv-trust-divider" />
 
             {/* Item 5 */}
-            <div className="pv-trust-item" style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+            <div
+              className="pv-trust-item"
+              onClick={() => onNavigate && onNavigate('interview-pro')}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', cursor: 'pointer' }}
+            >
               <Bot size={19} color="#FFBD12" strokeWidth={2.4} style={{ flexShrink: 0 }} />
               <div>
                 <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: '0.86rem', color: '#FFFFFF' }}>
@@ -1010,33 +1111,57 @@ export default function HeroSection({ onNavigate }) {
         onClose={() => setIsDemoModalOpen(false)}
       />
 
+      {/* ===================================================================
+          DYNAMIC CSS KEYFRAMES & RESPONSIVE STYLES
+          =================================================================== */}
       <style>{`
         .pv-hero-original-container {
-          min-height: 720px;
-          background-color: #FFF5F6;
+          min-height: 700px;
         }
 
-        .pv-hero-bg-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-          display: block;
+        /* Certificate Animation Pipeline */
+        .pv-hero-cert-wrapper {
+          perspective: 1200px;
+          transform-style: preserve-3d;
         }
 
-        .pv-hero-right-cert-col {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
+        .pv-hero-cert-card {
+          box-shadow: 
+            0 24px 48px -12px rgba(15, 23, 42, 0.18),
+            0 12px 24px -8px rgba(180, 130, 20, 0.16),
+            0 0 0 1px rgba(212, 175, 55, 0.25);
+          animation: certEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                     certFloat 6s ease-in-out infinite 0.85s;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .pv-hero-mobile-cert-card {
-          display: none;
+        .pv-hero-cert-card:hover {
+          transform: translateY(-5px) scale(1.025);
+          box-shadow: 
+            0 32px 64px -16px rgba(15, 23, 42, 0.25),
+            0 18px 32px -10px rgba(180, 130, 20, 0.25),
+            0 0 0 1.5px rgba(212, 175, 55, 0.45);
         }
 
-        .pv-hero-desktop-cert-target {
-          display: block;
+        /* Shimmer sweep across gold frame */
+        .pv-cert-shimmer-sweep {
+          position: absolute;
+          top: -50%;
+          left: -120%;
+          width: 60%;
+          height: 200%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 20%,
+            rgba(255, 215, 0, 0.25) 50%,
+            rgba(255, 255, 255, 0.15) 60%,
+            transparent 100%
+          );
+          transform: rotate(30deg);
+          pointer-events: none;
+          animation: certShimmer 7.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
         .pv-unified-divider {
@@ -1053,51 +1178,64 @@ export default function HeroSection({ onNavigate }) {
           flex-shrink: 0;
         }
 
+        /* Keyframe Animations */
+        @keyframes certEntrance {
+          0% {
+            opacity: 0;
+            transform: translateX(45px) scale(0.95);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+          }
+        }
+
+        @keyframes certFloat {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-6px);
+          }
+        }
+
+        @keyframes certShimmer {
+          0%, 70% {
+            left: -120%;
+          }
+          100% {
+            left: 220%;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .pv-hero-cert-card {
+            animation: none !important;
+            transition: none !important;
+          }
+          .pv-cert-shimmer-sweep {
+            display: none !important;
+          }
+        }
+
         /* ------------------ RESPONSIVE BREAKPOINTS ------------------ */
-        @media (min-width: 1441px) {
-          .pv-hero-original-container {
-            aspect-ratio: 16 / 9;
-            min-height: 820px;
-            max-height: 1080px;
-          }
-        }
-
-        @media (max-width: 1400px) {
-          .pv-hero-upper-text-col {
-            max-width: 540px !important;
-          }
-          .pv-hero-desktop-cert-target {
-            width: 360px !important;
-            height: 320px !important;
-          }
-          .pv-unified-seg-internship {
-            flex: 1.1 !important;
-          }
-        }
-
         @media (max-width: 1200px) {
           .pv-hero-upper-inner {
-            padding: 1rem 1.25rem 0.5rem !important;
+            padding: 1rem 1.5rem 0.5rem !important;
+            gap: 1.5rem !important;
           }
           .pv-hero-upper-text-col {
             max-width: 480px !important;
           }
           .pv-hero-main-title {
-            font-size: 2.2rem !important;
+            font-size: 2.3rem !important;
           }
           .pv-hero-slogan-wrap h2 {
-            font-size: 1.45rem !important;
+            font-size: 1.5rem !important;
           }
           .pv-hero-desc {
             font-size: 0.88rem !important;
-            margin-bottom: 1.15rem !important;
-          }
-          .pv-hero-btn-row button {
-            padding: 0.65rem 1.35rem !important;
-            font-size: 0.86rem !important;
-          }
-          .pv-hero-stats-row > div {
-            padding: 0.35rem 0.65rem !important;
+            margin-bottom: 1.25rem !important;
           }
           .pv-hero-unified-wrapper,
           .pv-hero-trust-stripe-wrap {
@@ -1113,23 +1251,18 @@ export default function HeroSection({ onNavigate }) {
         }
 
         @media (max-width: 1024px) {
-          .pv-hero-original-container {
-            min-height: auto;
-          }
-          .pv-hero-desktop-cert-target {
-            display: none !important;
-          }
-          .pv-hero-mobile-cert-card {
-            display: block !important;
-            width: 100%;
-            margin-top: 1.25rem;
-          }
           .pv-hero-upper-inner {
             flex-direction: column !important;
-            align-items: flex-start !important;
+            align-items: center !important;
+            text-align: left;
+            gap: 2rem !important;
           }
           .pv-hero-upper-text-col {
             max-width: 100% !important;
+            align-items: flex-start !important;
+          }
+          .pv-hero-cert-container {
+            max-width: 480px !important;
           }
           .pv-hero-unified-bar {
             display: grid !important;
@@ -1137,6 +1270,11 @@ export default function HeroSection({ onNavigate }) {
             gap: 0.85rem !important;
             border-radius: 16px !important;
             padding: 1rem !important;
+          }
+          .pv-unified-seg-msme-complete {
+            grid-column: span 2 !important;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 0.75rem;
           }
           .pv-unified-divider {
             display: none !important;
@@ -1155,19 +1293,19 @@ export default function HeroSection({ onNavigate }) {
 
         @media (max-width: 768px) {
           .pv-hero-scene-wrap {
-            padding-top: 60px !important;
+            padding-top: 65px !important;
           }
           .pv-hero-upper-inner {
             padding: 0.75rem 1rem !important;
           }
           .pv-hero-main-title {
-            font-size: 1.85rem !important;
+            font-size: 1.95rem !important;
           }
           .pv-hero-slogan-wrap h2 {
-            font-size: 1.2rem !important;
+            font-size: 1.25rem !important;
           }
           .pv-hero-desc {
-            font-size: 0.82rem !important;
+            font-size: 0.84rem !important;
             line-height: 1.45 !important;
           }
           .pv-hero-stats-row {
@@ -1183,19 +1321,17 @@ export default function HeroSection({ onNavigate }) {
             grid-template-columns: 1fr !important;
             gap: 0.75rem !important;
           }
-          .pv-unified-seg-msme {
-            border-bottom: 1px solid #E2E8F0;
-            padding-bottom: 0.65rem;
-          }
-          .pv-unified-seg-internship {
-            border-bottom: 1px solid #E2E8F0;
-            padding-bottom: 0.75rem;
-            flex-direction: column;
+          .pv-unified-seg-msme-complete {
+            grid-column: span 1 !important;
+            flex-direction: column !important;
             align-items: flex-start !important;
+            gap: 0.75rem !important;
           }
-          .pv-unified-seg-internship a {
-            align-self: flex-start;
-            margin-top: 0.4rem;
+          .pv-unified-seg-msme-complete > div:last-child {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
           }
           .pv-trust-item {
             width: 45% !important;
