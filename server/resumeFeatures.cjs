@@ -1144,9 +1144,6 @@ ${summary}
   return tex;
 }
 
-  return tex;
-}
-
 /**
  * 6. DOCX EXPORT GENERATOR
  * Generates clean, downloadable Microsoft Word (.docx) document
