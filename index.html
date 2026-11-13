@@ -260,6 +260,35 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
   <body>
+    <!-- Immediate Frame-0 First Paint Splash Screen (Guarantees zero text flash / FOUC before React hydration) -->
+    <div id="pv-initial-splash" style="position: fixed; inset: 0; width: 100vw; height: 100dvh; z-index: 9999999; background: #FAF5ED; display: flex; align-items: center; justify-content: center; overflow: hidden; pointer-events: auto;">
+      <style>
+        #pv-initial-splash {
+          position: fixed;
+          inset: 0;
+          width: 100vw;
+          height: 100dvh;
+          z-index: 9999999;
+          background-color: #FAF5ED;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        .pv-initial-splash-desktop { display: flex; width: min(100vw, 177.78vh); height: min(56.25vw, 100dvh); align-items: center; justify-content: center; }
+        .pv-initial-splash-mobile { display: none; width: min(100vw, 56.25vh); height: min(177.78vw, 100dvh); align-items: center; justify-content: center; }
+        @media (max-width: 768px), (orientation: portrait) {
+          .pv-initial-splash-desktop { display: none !important; }
+          .pv-initial-splash-mobile { display: flex !important; }
+        }
+      </style>
+      <div class="pv-initial-splash-desktop">
+        <img src="/assets/splash_desktop_clean.jpg" alt="ProfessorVirus Launch Screen" style="width: 100%; height: 100%; object-fit: contain;" />
+      </div>
+      <div class="pv-initial-splash-mobile">
+        <img src="/assets/splash_mobile_clean.jpg" alt="ProfessorVirus Launch Screen" style="width: 100%; height: 100%; object-fit: contain;" />
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

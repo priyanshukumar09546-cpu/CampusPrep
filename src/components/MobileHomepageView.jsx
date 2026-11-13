@@ -41,6 +41,7 @@ import { useTheme } from '../context/ThemeContext';
 import MobileHeader from './MobileHeader';
 import { searchLocalIndex } from '../data/searchIndex';
 import { GiftPromotion } from './MentorNearby';
+import WhatsAppCommunityCards from './WhatsAppCommunityCards';
 
 export default function MobileHomepageView({
   onSearch,
@@ -859,6 +860,11 @@ export default function MobileHomepageView({
             </button>
           </div>
         </div>
+
+        {/* =========================================================================
+            WHATSAPP COMMUNITY JOINING SECTION (ProfessorVirus & PRMA Tech)
+            ========================================================================= */}
+        <WhatsAppCommunityCards isMobile={true} />
 
         {/* =========================================================================
             SECTION F — THREE FEATURE CARDS (NOTES | PYQ | TOOLS)

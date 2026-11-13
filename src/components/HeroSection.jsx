@@ -14,6 +14,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import DemoVideoModal from './DemoVideoModal';
+import WhatsAppCommunityCards from './WhatsAppCommunityCards';
 
 export default function HeroSection({ onNavigate }) {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
@@ -746,6 +747,9 @@ export default function HeroSection({ onNavigate }) {
                   </div>
                 </div>
               </div>
+
+              {/* WhatsApp Community Joining Section — Immediately Below MSME Card */}
+              <WhatsAppCommunityCards isMobile={false} />
             </div>
           </div>
         </div>

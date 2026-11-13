@@ -30,6 +30,14 @@ export default function SplashScreen({ onFinish }) {
 
   const finishedRef = useRef(false);
 
+  // Remove immediate frame-0 static splash once React SplashScreen is ready to take over
+  useEffect(() => {
+    const el = document.getElementById('pv-initial-splash');
+    if (el) {
+      el.remove();
+    }
+  }, []);
+
   // Resize and orientation listener
   useEffect(() => {
     const handleResize = () => {
@@ -50,6 +58,8 @@ export default function SplashScreen({ onFinish }) {
   const handleComplete = () => {
     if (finishedRef.current) return;
     finishedRef.current = true;
+    const el = document.getElementById('pv-initial-splash');
+    if (el) el.remove();
     setIsFading(true);
     setTimeout(() => {
       setIsMounted(false);

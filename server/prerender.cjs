@@ -78,8 +78,11 @@ function prerender() {
     }
 
     // 6. Inject Pre-rendered Semantic Body into #root
+    // Wrapped in a crawler-semantic container so human browser visitors never experience FOUC / text flash
+    // before the splash screen, while search engine crawlers (Google, Bing) retain 100% full indexing access!
     if (bodyHtml) {
-      html = html.replace('<div id="root"></div>', `<div id="root">${bodyHtml}</div>`);
+      const semanticCrawlerWrapper = `\n    <div class="pv-seo-crawler-content" style="position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; opacity: 0 !important; pointer-events: none !important;">\n      ${bodyHtml}\n    </div>`;
+      html = html.replace('<div id="root"></div>', `<div id="root">${semanticCrawlerWrapper}</div>`);
     }
 
     // 7. Write to dist folder
