@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import API_URL from '../config/api';
+import { analyzeResumeAts } from '../utils/atsScoringEngine';
 
 function getAuthToken() {
   try {
@@ -206,103 +207,9 @@ export default function AtsCheckerPage({ onNavigate, initialResumeData, initialR
     }
   }, [resumeData]);
 
-  // Client-side fallback ATS analysis engine
+  // Client-side fallback ATS analysis engine (Real dynamic scoring, zero hardcoded dummy data)
   const computeClientAtsAnalysis = (data, role, jd) => {
-    const personal = data.personal || data.personalDetails || {};
-    const exp = Array.isArray(data.experience) ? data.experience : [];
-    const projs = Array.isArray(data.projects) ? data.projects : [];
-    const edu = Array.isArray(data.education) ? data.education : [];
-    const hasJd = Boolean(jd && jd.trim().length > 30);
-
-    let score = 55;
-    if (personal.fullName) score += 5;
-    if (personal.email && personal.phone) score += 8;
-    if (personal.summary && personal.summary.length > 30) score += 7;
-    if (edu.length > 0) score += 8;
-    if (projs.length >= 2) score += 9;
-    if (exp.length > 0) score += 8;
-
-    return {
-      overallScore: Math.min(96, score),
-      targetRole: role,
-      hasCustomJobDescription: hasJd,
-      evaluationType: hasJd ? 'Custom Job Description Match' : 'Standard Role ATS Compatibility',
-      sectionBreakdown: [
-        { key: 'skills', name: 'Technical Skills Match', score: 22, max: 30 },
-        { key: 'relevance', name: hasJd ? 'Job Description Relevance' : 'Role Alignment', score: 15, max: 20 },
-        { key: 'formatting', name: 'Formatting & Readability', score: 12, max: 15 },
-        { key: 'experience', name: 'Experience & Internships', score: 11, max: 15 },
-        { key: 'projects', name: 'Projects & Certifications', score: 8, max: 10 },
-        { key: 'education', name: 'Education & Contact Details', score: 8, max: 10 }
-      ],
-      categoryScores: {
-        contact: personal.email && personal.phone ? 9 : 4,
-        summary: personal.summary ? 8 : 2,
-        skills: 8,
-        keywords: 7,
-        experience: exp.length > 0 ? 8 : 4,
-        projects: projs.length >= 2 ? 9 : 5,
-        education: edu.length > 0 ? 9 : 3,
-        certifications: 6,
-        formatting: 8,
-        readability: 9
-      },
-      strengths: [
-        'Clean structural hierarchy with standard ATS headings.',
-        'High technical term density aligned with modern development practices.'
-      ],
-      weaknesses: [
-        'Quantifiable metrics (percentages, throughput, scale) can be expanded.',
-        'Ensure critical target keywords appear in both technical skills and project descriptions.'
-      ],
-      deductions: [
-        { category: 'Technical Skills Match', points: 4, reason: 'Add practical project context for core languages.' },
-        { category: 'Experience & Internships', points: 3, reason: 'Include quantifiable impact (percentages, latency, throughput).' }
-      ],
-      missingKeywords: ['Docker', 'REST API', 'Unit Testing', 'TypeScript', 'CI/CD'],
-      matchedKeywords: ['React', 'JavaScript', 'Node.js', 'Git', 'HTML', 'CSS', 'MongoDB'],
-      supportedSkills: ['React', 'Node.js', 'JavaScript'],
-      explicitSkills: ['MongoDB', 'Git', 'HTML', 'CSS'],
-      actionableRecommendations: [
-        {
-          problem: `Missing critical technical keywords for ${role}.`,
-          location: 'Technical Skills & Projects',
-          why_it_matters: 'Applicant Tracking Systems automatically filter candidates missing primary role keywords.',
-          how_to_fix: 'Incorporate Docker and Unit Testing into your project descriptions if you have genuine coursework or project exposure.',
-          before_after: {
-            before: 'Worked on web app with backend server.',
-            after: `Engineered scalable full-stack application for ${role} with Docker containerization and automated unit tests.`
-          }
-        },
-        {
-          problem: 'Bullet points lack quantifiable achievement metrics.',
-          location: 'Work Experience / Projects',
-          why_it_matters: 'Resumes with numeric metrics receive 40% higher recruiter engagement and pass higher ATS scoring tiers.',
-          how_to_fix: 'Include specific numbers (e.g. latency reduction %, throughput, request volume, active users).',
-          before_after: {
-            before: 'Fixed bugs and improved performance.',
-            after: 'Optimized MongoDB database indexing and queries, decreasing average API response latency by 35%.'
-          }
-        }
-      ],
-      beforeAfterSuggestions: [
-        {
-          section: 'Experience / Projects',
-          before: 'Worked on frontend features and fixed bugs with team.',
-          after: `Architected responsive React components for ${role}, improving page load time by 32% across active users.`,
-          reason: 'Uses active engineering verb and quantifiable outcome.'
-        }
-      ],
-      parsingQuality: {
-        charCount: 1420,
-        wordCount: 220,
-        pageCount: 1,
-        ocrApplied: false,
-        readingOrder: 'Strict Layout Bounding-Box Order',
-        tableExtraction: 'Multi-cell Matrix Parsing Active'
-      },
-      disclaimer: 'ProfessorVirus AI ATS Assessment — Independently computed algorithm, not an official corporate ATS score.'
-    };
+    return analyzeResumeAts(data, { targetRole: role, jobDescription: jd });
   };
 
   // 4. Handle External Resume File Upload (PDF / DOCX)

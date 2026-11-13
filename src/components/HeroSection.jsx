@@ -532,7 +532,7 @@ export default function HeroSection({ onNavigate }) {
               alignItems: 'center',
               justifyContent: 'center',
               position: 'relative',
-              maxWidth: '560px',
+              maxWidth: '580px',
               width: '100%'
             }}
           >
@@ -540,25 +540,25 @@ export default function HeroSection({ onNavigate }) {
             <div
               style={{
                 position: 'absolute',
-                width: '100%',
-                height: '100%',
-                top: 0,
-                left: 0,
-                background: 'radial-gradient(circle at 50% 45%, rgba(255, 215, 0, 0.22) 0%, rgba(212, 175, 55, 0.1) 40%, transparent 70%)',
-                filter: 'blur(30px)',
+                width: '110%',
+                height: '110%',
+                top: '-5%',
+                left: '-5%',
+                background: 'radial-gradient(circle at 50% 45%, rgba(255, 215, 0, 0.18) 0%, rgba(212, 175, 55, 0.08) 45%, transparent 70%)',
+                filter: 'blur(32px)',
                 zIndex: 0,
                 pointerEvents: 'none'
               }}
             />
 
-            {/* Certificate 3D Animated Card Frame */}
+            {/* Certificate Animated Card Frame */}
             <div
               className="pv-hero-cert-wrapper"
               style={{
                 position: 'relative',
                 zIndex: 1,
                 width: '100%',
-                maxWidth: '510px'
+                maxWidth: '560px'
               }}
             >
               <a
@@ -574,30 +574,58 @@ export default function HeroSection({ onNavigate }) {
                 style={{
                   display: 'block',
                   position: 'relative',
-                  borderRadius: '10px',
+                  backgroundColor: '#FFFFFF',
+                  padding: '7px',
+                  borderRadius: '12px',
+                  border: '1.5px solid rgba(212, 175, 55, 0.42)',
                   overflow: 'hidden',
                   cursor: 'pointer',
                   textDecoration: 'none'
                 }}
               >
-                {/* The Genuine Cropped Certificate Image (WebP + Fallback PNG) */}
-                <picture>
-                  <source srcSet="/assets/prma_internship_certificate.webp" type="image/webp" />
-                  <img
-                    src="/assets/prma_internship_certificate.png"
-                    alt="PRMA Tech Official Internship Certificate with MSME Registration and Govt Approval"
-                    className="pv-hero-cert-img"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block',
-                      userSelect: 'none'
-                    }}
-                  />
-                </picture>
+                {/* The Genuine Landscape Certificate Image (WebP + PNG + JPG Fallback) */}
+                <div
+                  style={{
+                    position: 'relative',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    backgroundColor: '#FFFFFF',
+                    lineHeight: 0
+                  }}
+                >
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet="/assets/prma_internship_certificate.webp 1x, /assets/prma_internship_certificate_2x.webp 2x"
+                    />
+                    <source
+                      type="image/png"
+                      srcSet="/assets/prma_internship_certificate.png 1x, /assets/prma_internship_certificate_2x.png 2x"
+                    />
+                    <img
+                      src="/assets/prma_internship_certificate.jpg"
+                      alt="PRMA Tech Official Internship Certificate — MSME Registered Educational Technology Enterprise"
+                      className="pv-hero-cert-img"
+                      width="1024"
+                      height="682"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        aspectRatio: '1024 / 682',
+                        objectFit: 'contain',
+                        display: 'block',
+                        userSelect: 'none',
+                        borderRadius: '6px'
+                      }}
+                      loading="eager"
+                      fetchPriority="high"
+                      decoding="async"
+                    />
+                  </picture>
 
-                {/* Shimmer Light Sweep Overlay */}
-                <div className="pv-cert-shimmer-sweep" />
+                  {/* Subtle Glass Shimmer Light Sweep Overlay */}
+                  <div className="pv-cert-shimmer-sweep" />
+                </div>
               </a>
 
               {/* Realistic Floor Reflection Gradient */}
@@ -605,12 +633,12 @@ export default function HeroSection({ onNavigate }) {
                 className="pv-hero-cert-reflection"
                 style={{
                   position: 'absolute',
-                  bottom: '-32px',
-                  left: '8%',
-                  right: '8%',
-                  height: '32px',
-                  background: 'radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.3) 0%, rgba(15, 23, 42, 0.08) 45%, transparent 75%)',
-                  filter: 'blur(7px)',
+                  bottom: '-28px',
+                  left: '6%',
+                  right: '6%',
+                  height: '28px',
+                  background: 'radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.28) 0%, rgba(15, 23, 42, 0.06) 45%, transparent 75%)',
+                  filter: 'blur(8px)',
                   pointerEvents: 'none'
                 }}
               />
@@ -1121,47 +1149,52 @@ export default function HeroSection({ onNavigate }) {
 
         /* Certificate Animation Pipeline */
         .pv-hero-cert-wrapper {
-          perspective: 1200px;
-          transform-style: preserve-3d;
+          position: relative;
         }
 
         .pv-hero-cert-card {
           box-shadow: 
-            0 24px 48px -12px rgba(15, 23, 42, 0.18),
-            0 12px 24px -8px rgba(180, 130, 20, 0.16),
-            0 0 0 1px rgba(212, 175, 55, 0.25);
+            0 24px 50px -12px rgba(15, 23, 42, 0.16),
+            0 12px 24px -8px rgba(180, 130, 20, 0.14),
+            0 0 0 1px rgba(212, 175, 55, 0.28);
           animation: certEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards,
                      certFloat 6s ease-in-out infinite 0.85s;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                      box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-color 0.35s ease;
         }
 
         .pv-hero-cert-card:hover {
-          transform: translateY(-5px) scale(1.025);
+          transform: translateY(-4px);
           box-shadow: 
-            0 32px 64px -16px rgba(15, 23, 42, 0.25),
-            0 18px 32px -10px rgba(180, 130, 20, 0.25),
-            0 0 0 1.5px rgba(212, 175, 55, 0.45);
+            0 32px 64px -14px rgba(15, 23, 42, 0.22),
+            0 16px 32px -8px rgba(180, 130, 20, 0.22),
+            0 0 0 1.5px rgba(212, 175, 55, 0.55);
+          border-color: rgba(212, 175, 55, 0.65) !important;
         }
 
-        /* Shimmer sweep across gold frame */
+        .pv-hero-cert-reflection {
+          animation: certReflectionFloat 6s ease-in-out infinite 0.85s;
+        }
+
+        /* Subtle Shimmer sweep across gold frame */
         .pv-cert-shimmer-sweep {
           position: absolute;
           top: -50%;
           left: -120%;
-          width: 60%;
+          width: 50%;
           height: 200%;
           background: linear-gradient(
             90deg,
             transparent 0%,
-            rgba(255, 255, 255, 0.05) 20%,
-            rgba(255, 215, 0, 0.25) 50%,
-            rgba(255, 255, 255, 0.15) 60%,
+            rgba(255, 255, 255, 0.04) 20%,
+            rgba(255, 215, 0, 0.18) 50%,
+            rgba(255, 255, 255, 0.10) 60%,
             transparent 100%
           );
-          transform: rotate(30deg);
+          transform: rotate(25deg);
           pointer-events: none;
-          animation: certShimmer 7.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          animation: certShimmer 8s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.2s;
         }
 
         .pv-unified-divider {
@@ -1182,11 +1215,11 @@ export default function HeroSection({ onNavigate }) {
         @keyframes certEntrance {
           0% {
             opacity: 0;
-            transform: translateX(45px) scale(0.95);
+            transform: translateY(22px);
           }
           100% {
             opacity: 1;
-            transform: translateX(0) scale(1);
+            transform: translateY(0);
           }
         }
 
@@ -1199,8 +1232,19 @@ export default function HeroSection({ onNavigate }) {
           }
         }
 
+        @keyframes certReflectionFloat {
+          0%, 100% {
+            transform: scaleX(1);
+            opacity: 0.6;
+          }
+          50% {
+            transform: scaleX(0.93);
+            opacity: 0.35;
+          }
+        }
+
         @keyframes certShimmer {
-          0%, 70% {
+          0%, 75% {
             left: -120%;
           }
           100% {
@@ -1209,7 +1253,8 @@ export default function HeroSection({ onNavigate }) {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .pv-hero-cert-card {
+          .pv-hero-cert-card,
+          .pv-hero-cert-reflection {
             animation: none !important;
             transition: none !important;
           }

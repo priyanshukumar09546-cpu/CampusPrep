@@ -515,18 +515,28 @@ def segment_resume_sections(text: str) -> Dict[str, List[str]]:
         lower = line.lower()
         if re.search(r'^(career\s+)?objective|^professional\s+summary|^about(\s+me)?|^summary', lower):
             current_sec = "summary"
+            rem = re.sub(r'^(career\s+)?objective:?|^professional\s+summary:?|^about(\s+me)?:?|^summary:?', '', line, flags=re.I).strip()
+            if rem: sections["summary"].append(rem)
             continue
         elif re.search(r'^(academic\s+)?education|^academic\s+background|^qualifications', lower):
             current_sec = "education"
+            rem = re.sub(r'^(academic\s+)?education:?|^academic\s+background:?|^qualifications:?', '', line, flags=re.I).strip()
+            if rem: sections["education"].append(rem)
             continue
         elif re.search(r'^(technical\s+)?skills|^technologies|^key\s+skills|^tech\s+stack', lower):
             current_sec = "skills"
+            rem = re.sub(r'^(technical\s+)?skills:?|^technologies:?|^key\s+skills:?|^tech\s+stack:?', '', line, flags=re.I).strip()
+            if rem: sections["skills"].append(rem)
             continue
         elif re.search(r'^(work\s+)?experience|^employment|^internships?|^professional\s+experience', lower):
             current_sec = "experience"
+            rem = re.sub(r'^((work\s+)?experience|employment|internships?|professional\s+experience):?', '', line, flags=re.I).strip()
+            if rem: sections["experience"].append(rem)
             continue
         elif re.search(r'^(academic\s+)?projects?|^personal\s+projects?|^key\s+projects?', lower):
             current_sec = "projects"
+            rem = re.sub(r'^((academic\s+)?projects?|personal\s+projects?|key\s+projects?):?', '', line, flags=re.I).strip()
+            if rem: sections["projects"].append(rem)
             continue
         elif re.search(r'^certifications?|^licenses|^courses|^certifications\s+&\s+trainings', lower):
             current_sec = "certifications"
