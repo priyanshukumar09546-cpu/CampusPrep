@@ -29,11 +29,11 @@ export default function HeroSection({ onNavigate }) {
       }}
     >
       {/* ===================================================================
-          1. HERO BACKGROUND: Full-Width Original Image 1 (100% Intact)
+          1. HERO BACKGROUND: Full-Width Corporate Office Image (100% Intact)
           Starts at top: 0 to float behind the liquid-glass navbar!
-          NO white backgrounds, NO white panels, NO white gradient overlays!
           =================================================================== */}
       <div
+        className="pv-hero-bg-wrapper"
         style={{
           position: 'absolute',
           top: 0,
@@ -45,8 +45,9 @@ export default function HeroSection({ onNavigate }) {
         }}
       >
         <img
-          src="/assets/prma_tech_original_hero_bg_2x.jpg"
-          alt="PRMA Tech Global Campus, Sunset Sky, Trees, Building, Cat Mascot and Internship Signboard"
+          src="/assets/prma_tech_corporate_hero_bg_2x.jpg"
+          alt="PRMA Tech Corporate Office with Reception, Executive Desk, MacBook and Founder"
+          className="pv-hero-bg-img"
           style={{
             width: '100%',
             height: '100%',
@@ -57,42 +58,9 @@ export default function HeroSection({ onNavigate }) {
             pointerEvents: 'none'
           }}
           onError={(e) => {
-            e.currentTarget.src = '/assets/prma_tech_original_hero_bg.jpg';
+            e.currentTarget.src = '/assets/prma_tech_corporate_hero_bg.jpg';
           }}
         />
-
-        {/* ===============================================================
-            CAT SIGNBOARD — FUNCTIONAL CLICKABLE INTERNSHIP LINK OVERLAY
-            Accurately positioned over "Apply for Internship at PRMA TECH"
-            Navigates to PRMA Tech Corporate Homepage as per Required Flow
-            =============================================================== */}
-        <a
-          href="/prma-tech"
-          onClick={(e) => {
-            e.preventDefault();
-            if (onNavigate) {
-              onNavigate('prma-home');
-            } else {
-              window.location.href = '/prma-tech';
-            }
-          }}
-          title="Apply for Internship at PRMA Tech"
-          aria-label="Apply for Internship at PRMA Tech"
-          style={{
-            position: 'absolute',
-            left: '81.05%',
-            top: '42.53%',
-            width: '13.67%',
-            height: '18.23%',
-            cursor: 'pointer',
-            zIndex: 15,
-            borderRadius: '8px',
-            display: 'block'
-          }}
-          className="pv-cat-signboard-link"
-        >
-          <span className="sr-only">Apply for Internship at PRMA Tech</span>
-        </a>
       </div>
 
       {/* ===================================================================
@@ -118,6 +86,7 @@ export default function HeroSection({ onNavigate }) {
             HERO UPPER: Left-Side Typography, Buttons & Verified Stats
             =================================================================== */}
         <div
+          className="pv-hero-upper-inner"
           style={{
             position: 'relative',
             zIndex: 3,
@@ -129,8 +98,8 @@ export default function HeroSection({ onNavigate }) {
           }}
         >
           <div
+            className="pv-hero-upper-text-col"
             style={{
-              maxWidth: '720px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start'
@@ -138,6 +107,7 @@ export default function HeroSection({ onNavigate }) {
           >
             {/* Trust badge */}
             <div
+              className="pv-hero-trust-badge"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -161,6 +131,7 @@ export default function HeroSection({ onNavigate }) {
 
             {/* Main Brand Title: ProfessorVirus (Solid Deep Burgundy matching reference image) */}
             <h1
+              className="pv-hero-main-title"
               style={{
                 fontFamily: "'Outfit', system-ui, -apple-system, sans-serif",
                 fontSize: 'clamp(2.3rem, 4.4vw, 3.9rem)',
@@ -176,7 +147,7 @@ export default function HeroSection({ onNavigate }) {
             </h1>
 
             {/* Slogan with Golden Brush Curve: Study Smart. Prepare Better. */}
-            <div style={{ position: 'relative', display: 'inline-block', marginBottom: '1.15rem' }}>
+            <div className="pv-hero-slogan-wrap" style={{ position: 'relative', display: 'inline-block', marginBottom: '1.15rem' }}>
               <h2
                 style={{
                   fontFamily: "'Outfit', system-ui, -apple-system, sans-serif",
@@ -214,6 +185,7 @@ export default function HeroSection({ onNavigate }) {
 
             {/* Body Description */}
             <p
+              className="pv-hero-desc"
               style={{
                 fontSize: 'clamp(0.94rem, 1.4vw, 1.05rem)',
                 fontWeight: 500,
@@ -229,6 +201,7 @@ export default function HeroSection({ onNavigate }) {
 
             {/* Action Buttons: Get Started Free & Watch Demo */}
             <div
+              className="pv-hero-btn-row"
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -319,6 +292,7 @@ export default function HeroSection({ onNavigate }) {
 
             {/* 4 Verified Statistics Counters */}
             <div
+              className="pv-hero-stats-row"
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -482,7 +456,7 @@ export default function HeroSection({ onNavigate }) {
             {/* ===============================================================
                 3. MSME APPROVAL PROMOTION SECTION & INTERNSHIP CTA (Matching Reference Design)
                 =============================================================== */}
-            <div style={{ marginTop: '1.25rem', width: '100%', maxWidth: '690px' }} className="pv-scroll-reveal">
+            <div style={{ marginTop: '1.25rem', width: '100%', maxWidth: '690px' }} className="pv-hero-msme-section pv-scroll-reveal">
               {/* Top CTA Pill — Navigates to PRMA Tech Corporate Homepage */}
               <div style={{ marginBottom: '0.65rem' }}>
                 <a
@@ -839,15 +813,109 @@ export default function HeroSection({ onNavigate }) {
       />
 
       <style>{`
-        .pv-cat-signboard-link:hover {
-          outline: 3px dashed rgba(234, 88, 12, 0.85);
-          outline-offset: 4px;
-          background-color: rgba(234, 88, 12, 0.1);
-          box-shadow: 0 0 24px rgba(234, 88, 12, 0.5);
+        .pv-hero-bg-img {
+          object-position: center right;
+          transition: object-position 0.3s ease;
+        }
+        .pv-hero-upper-text-col {
+          max-width: 680px;
+          width: 100%;
+          transition: max-width 0.25s ease;
+        }
+        @media (max-width: 1440px) {
+          .pv-hero-upper-text-col {
+            max-width: 540px;
+          }
+          .pv-hero-bg-img {
+            object-position: 92% center;
+          }
+        }
+        @media (max-width: 1366px) {
+          .pv-hero-upper-inner {
+            padding: 0.85rem 1.25rem 1.25rem !important;
+          }
+          .pv-hero-trust-badge {
+            margin-bottom: 0.65rem !important;
+            padding: 0.28rem 0.85rem !important;
+            font-size: 0.75rem !important;
+          }
+          .pv-hero-main-title {
+            font-size: clamp(2rem, 3.2vw, 2.85rem) !important;
+            margin-bottom: 0.2rem !important;
+          }
+          .pv-hero-slogan-wrap {
+            margin-bottom: 0.65rem !important;
+          }
+          .pv-hero-slogan-wrap h2 {
+            font-size: clamp(1.25rem, 2vw, 1.85rem) !important;
+          }
+          .pv-hero-desc {
+            font-size: 0.88rem !important;
+            line-height: 1.45 !important;
+            margin-bottom: 0.85rem !important;
+            max-width: 440px !important;
+          }
+          .pv-hero-btn-row {
+            margin-bottom: 0.85rem !important;
+            gap: 0.65rem !important;
+          }
+          .pv-hero-btn-row button {
+            padding: 0.65rem 1.25rem !important;
+            font-size: 0.85rem !important;
+          }
+          .pv-hero-stats-row {
+            gap: 0.5rem !important;
+          }
+          .pv-hero-stats-row > div {
+            padding: 0.3rem 0.55rem !important;
+          }
+          .pv-hero-msme-section {
+            margin-top: 0.75rem !important;
+          }
+          .pv-hero-msme-cta-pill {
+            padding: 0.45rem 1.05rem !important;
+            font-size: 0.82rem !important;
+            margin-bottom: 0.45rem !important;
+          }
+          .pv-msme-card {
+            padding: 0.8rem 1rem !important;
+          }
+        }
+        @media (max-width: 1280px) {
+          .pv-hero-upper-text-col {
+            max-width: 440px;
+          }
+          .pv-hero-bg-img {
+            object-position: 96% center;
+          }
+        }
+        @media (max-width: 1100px) {
+          .pv-hero-upper-text-col {
+            max-width: 330px;
+          }
+          .pv-hero-desc {
+            max-width: 320px !important;
+            font-size: 0.82rem !important;
+          }
+          .pv-hero-main-title {
+            font-size: 1.85rem !important;
+          }
+          .pv-hero-slogan-wrap h2 {
+            font-size: 1.18rem !important;
+          }
+          .pv-hero-bg-img {
+            object-position: right center;
+          }
         }
         @media (max-width: 900px) {
           .pv-hero-scene-wrap {
             min-height: 580px !important;
+          }
+          .pv-hero-upper-text-col {
+            max-width: 100%;
+          }
+          .pv-hero-bg-img {
+            object-position: 80% center;
           }
         }
       `}</style>
