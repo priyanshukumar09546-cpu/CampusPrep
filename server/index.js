@@ -7839,7 +7839,8 @@ app.post('/api/resumes/import', (req, res) => {
 // Compile Resume Preview (Real-time debounced compilation & 1-page check)
 app.post('/api/resumes/compile', async (req, res) => {
   try {
-    const { resumeData, latex, options, template, generationId } = req.body;
+    const { resumeData: explicitResumeData, latex, options, template, generationId } = req.body;
+    const resumeData = explicitResumeData || ((req.body.personalDetails || req.body.personal) ? req.body : null);
     if (!resumeData) return res.status(400).json({ success: false, message: 'No resume data provided.' });
 
     const compileOptions = { ...(options || {}), ...(template ? { template } : {}), ...(latex ? { latex } : {}) };
