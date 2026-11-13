@@ -143,9 +143,198 @@ export function getEducationDegreeTitle(edu) {
   return title;
 }
 
+// Generates official college placement format LaTeX (AKTU / Campus Placement Cell standard)
+export function generateCollegeLatex(resumeData, formatRules = {}) {
+  const p = resumeData.personal || resumeData.personalDetails || {};
+  const edu = Array.isArray(resumeData.education) ? resumeData.education : [];
+  const exp = Array.isArray(resumeData.experience) ? resumeData.experience : [];
+  const prj = Array.isArray(resumeData.projects) ? resumeData.projects : [];
+  const tech = resumeData.technicalSkills || {};
+  const ach = Array.isArray(resumeData.achievements) ? resumeData.achievements : [];
+  const cert = Array.isArray(resumeData.certifications) ? resumeData.certifications : [];
+
+  const collegeName = escapeLatex(formatRules.collegeName || p.college || 'AFFILIATED TECHNICAL CAMPUS');
+  const name = escapeLatex((p.fullName || 'STUDENT NAME').toUpperCase());
+  const rawPhone = p.phone || '';
+  const displayPhone = escapeLatex(formatDisplayPhone(rawPhone));
+  const telUri = normalizePhone(rawPhone);
+  const email = (p.email || '').trim();
+  const mailtoUri = normalizeEmail(email);
+  const linkedin = (p.linkedinUrl || '').trim();
+  const linkedinUri = normalizeUrl(linkedin);
+  const github = (p.githubUrl || '').trim();
+  const githubUri = normalizeUrl(github);
+  const location = escapeLatex(p.location || 'Uttar Pradesh, India');
+  const summary = escapeLatex(p.summary || 'Seeking a challenging entry-level engineering position in a forward-thinking organization where I can leverage my academic foundations, algorithmic problem-solving abilities, and passion for software development to deliver measurable value.');
+
+  let tex = `%----------------------------------------------------------------------------------------
+% Official College Placement Resume - LaTeX Master Template
+%----------------------------------------------------------------------------------------
+\\documentclass[a4paper,10pt]{article}
+\\usepackage[top=0.45in,bottom=0.45in,left=0.5in,right=0.5in]{geometry}
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+\\usepackage{textcomp}
+\\usepackage{tabularx}
+\\usepackage{array}
+\\usepackage{hyperref}
+\\usepackage{xcolor}
+\\usepackage{enumitem}
+\\usepackage{titlesec}
+
+\\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+\\setlist[itemize]{leftmargin=1.5em, itemsep=1pt, topsep=1pt, parsep=0pt}
+\\pagestyle{empty}
+
+% Section formatting for official college format
+\\titleformat{\\section}{\\bfseries\\normalsize\\uppercase}{}{0em}{}[\\titlerule]
+\\titlespacing*{\\section}{0pt}{6pt}{3pt}
+
+\\begin{document}
+
+% ----------------- COLLEGE HEADER BOX -----------------
+\\begin{center}
+  {\\large \\textbf{${collegeName}}}\\\\
+  \\vspace{2pt}
+  {\\small \\textbf{TRAINING \\& PLACEMENT CELL -- RESUME FORMAT}}\\\\
+  \\vspace{4pt}
+  \\hrule height 1.2pt
+\\end{center}
+
+% ----------------- STUDENT INFORMATION -----------------
+\\vspace{-4pt}
+\\begin{tabular*}{\\textwidth}{l@{\\extracolsep{\\fill}}r}
+  \\textbf{\\Large ${name}} & \\textbf{Email:} ${email ? `\\href{${mailtoUri}}{${escapeLatex(email)}}` : '--'} \\\\
+  \\textbf{Contact:} ${rawPhone ? `\\href{${telUri}}{${displayPhone}}` : '--'} & \\textbf{Location:} ${location} \\\\
+  ${linkedin ? `\\textbf{LinkedIn:} \\href{${linkedinUri}}{${escapeLatex(linkedin)}} & ` : ''}
+  ${github ? `\\textbf{GitHub:} \\href{${githubUri}}{${escapeLatex(github)}}` : ''}
+\\end{tabular*}
+\\vspace{2pt}
+\\hrule
+
+% ----------------- CAREER OBJECTIVE -----------------
+\\section{Career Objective}
+${summary}
+
+% ----------------- ACADEMIC QUALIFICATIONS (TABULAR FORMAT) -----------------
+\\section{Academic Qualifications}
+\\begin{tabularx}{\\textwidth}{|l|X|l|c|r|}
+  \\hline
+  \\textbf{Course / Degree} & \\textbf{College / School} & \\textbf{Board / Univ} & \\textbf{Year} & \\textbf{\\% / CGPA} \\\\
+  \\hline
+`;
+
+  edu.forEach(e => {
+    const deg = escapeLatex(e.degree || 'B.Tech CSE');
+    const inst = escapeLatex(e.institution || 'AKTU Institute');
+    const board = escapeLatex(e.board || 'AKTU');
+    const yr = escapeLatex(e.duration || e.year || '2021-25');
+    const score = escapeLatex(e.cgpa || e.cgpaOrPercentage || '8.2 CGPA');
+    tex += `  ${deg} & ${inst} & ${board} & ${yr} & ${score} \\\\\n  \\hline\n`;
+  });
+
+  tex += `\\end{tabularx}
+
+% ----------------- TECHNICAL SKILLS -----------------
+\\section{Technical Skills Profile}
+\\begin{itemize}
+`;
+
+  const langs = (tech.programmingLanguages || []).map(escapeLatex).join(', ');
+  if (langs) tex += `  \\item \\textbf{Programming Languages:} ${langs}\n`;
+
+  const frames = (tech.frameworks || []).map(escapeLatex).join(', ');
+  if (frames) tex += `  \\item \\textbf{Frameworks \\& Technologies:} ${frames}\n`;
+
+  const dbs = (tech.databases || []).map(escapeLatex).join(', ');
+  if (dbs) tex += `  \\item \\textbf{Databases:} ${dbs}\n`;
+
+  const tools = (tech.developerTools || []).map(escapeLatex).join(', ');
+  if (tools) tex += `  \\item \\textbf{Tools \\& Platforms:} ${tools}\n`;
+
+  const concepts = (tech.coreConcepts || []).map(escapeLatex).join(', ');
+  if (concepts) tex += `  \\item \\textbf{Core Competencies:} ${concepts}\n`;
+
+  tex += `\\end{itemize}
+
+% ----------------- ACADEMIC PROJECTS -----------------
+\\section{Capstone \\& Academic Projects}
+`;
+
+  prj.forEach(proj => {
+    const pTitle = escapeLatex(proj.title || 'Technical Project');
+    const rawTech = Array.isArray(proj.technologies) ? proj.technologies.join(', ') : (proj.technologies || '');
+    const pTech = escapeLatex(rawTech);
+    tex += `\\textbf{${pTitle}} ${pTech ? `(\\textit{Tech: ${pTech}})` : ''}\\\\
+\\begin{itemize}
+`;
+    (Array.isArray(proj.bullets) ? proj.bullets : []).forEach(b => {
+      if (b && b.trim()) tex += `  \\item ${escapeLatex(b.trim())}\n`;
+    });
+    tex += `\\end{itemize}
+\\vspace{2pt}
+`;
+  });
+
+  // ----------------- EXPERIENCE / INTERNSHIPS -----------------
+  if (exp.length > 0) {
+    tex += `\\section{Internships \\& Industrial Training}
+`;
+    exp.forEach(e => {
+      const eTitle = escapeLatex(e.title || 'Intern');
+      const eComp = escapeLatex(e.company || 'Organization');
+      const eDur = escapeLatex(e.duration || '');
+      tex += `\\textbf{${eTitle}} at \\textbf{${eComp}} \\hfill ${eDur}\\\\
+\\begin{itemize}
+`;
+      (Array.isArray(e.bullets) ? e.bullets : []).forEach(b => {
+        if (b && b.trim()) tex += `  \\item ${escapeLatex(b.trim())}\n`;
+      });
+      tex += `\\end{itemize}
+\\vspace{2pt}
+`;
+    });
+  }
+
+  // ----------------- CERTIFICATIONS & ACHIEVEMENTS -----------------
+  if (cert.length > 0 || ach.length > 0) {
+    tex += `\\section{Certifications \\& Achievements}
+\\begin{itemize}
+`;
+    cert.forEach(c => {
+      const cName = escapeLatex(c.name || c.title || '');
+      const cIss = escapeLatex(c.issuer || '');
+      tex += `  \\item \\textbf{Certification:} ${cName} ${cIss ? `(${cIss})` : ''}\n`;
+    });
+    ach.forEach(a => {
+      const aText = escapeLatex(a.description || a.title || '');
+      tex += `  \\item \\textbf{Achievement:} ${aText}\n`;
+    });
+    tex += `\\end{itemize}
+`;
+  }
+
+  // ----------------- PERSONAL DETAILS (College Standard) -----------------
+  tex += `\\section{Personal Profile}
+\\begin{tabular*}{\\textwidth}{l@{\\extracolsep{\\fill}}r}
+  \\textbf{Permanent Address:} ${location} & \\textbf{Nationality:} Indian \\\\
+  \\textbf{Languages Known:} English, Hindi & \\textbf{Status:} Available Immediately \\\\
+\\end{tabular*}
+
+\\end{document}
+`;
+
+  return tex;
+}
+
 // Generates complete, valid, Overleaf-compilable .tex source from resume data
 export function generateLatex(resumeData, options = {}) {
   if (!resumeData) return '';
+
+  const activeTemplate = options.template || resumeData.templateId || resumeData.template || 'classic-tech';
+  if (activeTemplate === 'college-official') {
+    return generateCollegeLatex(resumeData, options.formatRules || resumeData.formatRules || {});
+  }
 
   const p = resumeData.personalDetails || resumeData.personal || {};
   const summary = (resumeData.summary || p.summary || '').trim();
@@ -221,48 +410,50 @@ export function generateLatex(resumeData, options = {}) {
     x && (x.role?.trim() || x.organization?.trim() || x.description?.trim() || x.activity?.trim())
   );
 
-  const fontSize = options.fontSize || '10pt';
-  const margin = options.margin || '0.45in';
+  const isModern = activeTemplate === 'modern-clean';
+  const isMinimalist = activeTemplate === 'minimalist';
+  const fontSize = isMinimalist ? '9.5pt' : (options.fontSize || '10pt');
+  const margin = isMinimalist ? '0.38in' : (options.margin || '0.45in');
+
+  let templateTitle = 'ABES Resume Format - LaTeX Master Template';
+  if (isModern) templateTitle = 'Modern Clean Engineering - LaTeX Master Template';
+  if (isMinimalist) templateTitle = 'Minimalist Executive - LaTeX Master Template';
 
   let tex = `%----------------------------------------------------------------------------------------
-% ABES Resume Format - LaTeX Master Template
+% ${templateTitle}
 % Matching exact typography, layout, icons, and single-page structure
 %----------------------------------------------------------------------------------------
 
-\\documentclass[${fontSize},a4paper]{article}
-\\usepackage[utf8]{inputenc}
-\\usepackage[margin=${margin}]{geometry}
-\\usepackage[hidelinks]{hyperref}
-\\IfFileExists{fontawesome5.sty}{
-  \\usepackage{fontawesome5}
+\documentclass[${fontSize},a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=${margin}]{geometry}
+\usepackage[hidelinks]{hyperref}
+${isModern ? `\usepackage{xcolor}\n\definecolor{primary}{RGB}{20, 80, 160}\n\definecolor{rulecolor}{RGB}{210, 218, 228}\n` : ''}\IfFileExists{fontawesome5.sty}{
+  \usepackage{fontawesome5}
 }{
-  \\providecommand{\\faPhone}{\\textbf{P:}}
-  \\providecommand{\\faEnvelope}{\\textbf{E:}}
-  \\providecommand{\\faMapMarker}{\\textbf{L:}}
-  \\providecommand{\\faLinkedin}{\\textbf{in:}}
-  \\providecommand{\\faGithub}{\\textbf{gh:}}
-  \\providecommand{\\faGlobe}{\\textbf{web:}}
+  \providecommand{\faPhone}{\textbf{P:}}
+  \providecommand{\faEnvelope}{\textbf{E:}}
+  \providecommand{\faMapMarker}{\textbf{L:}}
+  \providecommand{\faLinkedin}{\textbf{in:}}
+  \providecommand{\faGithub}{\textbf{gh:}}
+  \providecommand{\faGlobe}{\textbf{web:}}
 }
-\\usepackage{titlesec}
-\\usepackage{enumitem}
-\\usepackage{tabularx}
-\\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{microtype}
 
 % PDF Metadata
-\\hypersetup{
+\hypersetup{
     pdftitle={${escapeLatex(p.fullName || 'Resume')}},
     pdfauthor={${escapeLatex(p.fullName || 'CampusPrep Resume')}}
 }
 
-% Exact ABES Section formatting: Title Case, large bold, full-width titlerule
-\\titleformat{\\section}{\\large\\bfseries}{}{0em}{}[\\titlerule]
-\\titlespacing*{\\section}{0pt}{6pt}{3pt}
+% Section formatting
+${isModern ? `\titleformat{\section}{\color{primary}\large\bfseries}{}{0em}{}[\vspace{1pt}{\color{rulecolor}\titlerule[0.8pt]}]\n\titlespacing*{\section}{0pt}{6pt}{3pt}\n\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=1.2em, label=\color{primary}--}` : (isMinimalist ? `\titleformat{\section}{\normalsize\bfseries\scshape}{}{0em}{}[\vspace{1pt}\titlerule[0.4pt]]\n\titlespacing*{\section}{0pt}{4pt}{2pt}\n\setlist[itemize]{noitemsep, topsep=0.5pt, leftmargin=1.1em, label=--}` : `\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]\n\titlespacing*{\section}{0pt}{6pt}{3pt}\n\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=1.2em, label=--}`)}
+\pagestyle{empty}
 
-% Exact ABES En-dash Bullet Points
-\\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=1.2em, label=--}
-\\pagestyle{empty}
-
-\\begin{document}
+\begin{document}
 
 `;
 

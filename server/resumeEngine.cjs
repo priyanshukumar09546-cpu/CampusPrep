@@ -245,9 +245,198 @@ function addLinkAnnotation(page, pdfDoc, x, y, width, height, url) {
   }
 }
 
-// Generate valid, clean LaTeX source code from structured resume JSON (ABES Master Format)
+// Generates official college placement format LaTeX (AKTU / Campus Placement Cell standard)
+function generateCollegeLatex(resumeData, formatRules = {}) {
+  const p = resumeData.personal || resumeData.personalDetails || {};
+  const edu = Array.isArray(resumeData.education) ? resumeData.education : [];
+  const exp = Array.isArray(resumeData.experience) ? resumeData.experience : [];
+  const prj = Array.isArray(resumeData.projects) ? resumeData.projects : [];
+  const tech = resumeData.technicalSkills || {};
+  const ach = Array.isArray(resumeData.achievements) ? resumeData.achievements : [];
+  const cert = Array.isArray(resumeData.certifications) ? resumeData.certifications : [];
+
+  const collegeName = escapeLatex(formatRules.collegeName || p.college || 'AFFILIATED TECHNICAL CAMPUS');
+  const name = escapeLatex((p.fullName || 'STUDENT NAME').toUpperCase());
+  const rawPhone = p.phone || '';
+  const displayPhone = escapeLatex(formatDisplayPhone(rawPhone));
+  const telUri = normalizePhone(rawPhone);
+  const email = (p.email || '').trim();
+  const mailtoUri = normalizeEmail(email);
+  const linkedin = (p.linkedinUrl || '').trim();
+  const linkedinUri = normalizeUrl(linkedin);
+  const github = (p.githubUrl || '').trim();
+  const githubUri = normalizeUrl(github);
+  const location = escapeLatex(p.location || 'Uttar Pradesh, India');
+  const summary = escapeLatex(p.summary || 'Seeking a challenging entry-level engineering position in a forward-thinking organization where I can leverage my academic foundations, algorithmic problem-solving abilities, and passion for software development to deliver measurable value.');
+
+  let tex = `%----------------------------------------------------------------------------------------
+% Official College Placement Resume - LaTeX Master Template
+%----------------------------------------------------------------------------------------
+\\documentclass[a4paper,10pt]{article}
+\\usepackage[top=0.45in,bottom=0.45in,left=0.5in,right=0.5in]{geometry}
+\\usepackage{amsmath}
+\\usepackage{amssymb}
+\\usepackage{textcomp}
+\\usepackage{tabularx}
+\\usepackage{array}
+\\usepackage{hyperref}
+\\usepackage{xcolor}
+\\usepackage{enumitem}
+\\usepackage{titlesec}
+
+\\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+\\setlist[itemize]{leftmargin=1.5em, itemsep=1pt, topsep=1pt, parsep=0pt}
+\\pagestyle{empty}
+
+% Section formatting for official college format
+\\titleformat{\\section}{\\bfseries\\normalsize\\uppercase}{}{0em}{}[\\titlerule]
+\\titlespacing*{\\section}{0pt}{6pt}{3pt}
+
+\\begin{document}
+
+% ----------------- COLLEGE HEADER BOX -----------------
+\\begin{center}
+  {\\large \\textbf{${collegeName}}}\\\\
+  \\vspace{2pt}
+  {\\small \\textbf{TRAINING \\& PLACEMENT CELL -- RESUME FORMAT}}\\\\
+  \\vspace{4pt}
+  \\hrule height 1.2pt
+\\end{center}
+
+% ----------------- STUDENT INFORMATION -----------------
+\\vspace{-4pt}
+\\begin{tabular*}{\\textwidth}{l@{\\extracolsep{\\fill}}r}
+  \\textbf{\\Large ${name}} & \\textbf{Email:} ${email ? `\\href{${mailtoUri}}{${escapeLatex(email)}}` : '--'} \\\\
+  \\textbf{Contact:} ${rawPhone ? `\\href{${telUri}}{${displayPhone}}` : '--'} & \\textbf{Location:} ${location} \\\\
+  ${linkedin ? `\\textbf{LinkedIn:} \\href{${linkedinUri}}{${escapeLatex(linkedin)}} & ` : ''}
+  ${github ? `\\textbf{GitHub:} \\href{${githubUri}}{${escapeLatex(github)}}` : ''}
+\\end{tabular*}
+\\vspace{2pt}
+\\hrule
+
+% ----------------- CAREER OBJECTIVE -----------------
+\\section{Career Objective}
+${summary}
+
+% ----------------- ACADEMIC QUALIFICATIONS (TABULAR FORMAT) -----------------
+\\section{Academic Qualifications}
+\\begin{tabularx}{\\textwidth}{|l|X|l|c|r|}
+  \\hline
+  \\textbf{Course / Degree} & \\textbf{College / School} & \\textbf{Board / Univ} & \\textbf{Year} & \\textbf{\\% / CGPA} \\\\
+  \\hline
+`;
+
+  edu.forEach(e => {
+    const deg = escapeLatex(e.degree || 'B.Tech CSE');
+    const inst = escapeLatex(e.institution || 'AKTU Institute');
+    const board = escapeLatex(e.board || 'AKTU');
+    const yr = escapeLatex(e.duration || e.year || '2021-25');
+    const score = escapeLatex(e.cgpa || e.cgpaOrPercentage || '8.2 CGPA');
+    tex += `  ${deg} & ${inst} & ${board} & ${yr} & ${score} \\\\\n  \\hline\n`;
+  });
+
+  tex += `\\end{tabularx}
+
+% ----------------- TECHNICAL SKILLS -----------------
+\\section{Technical Skills Profile}
+\\begin{itemize}
+`;
+
+  const langs = (tech.programmingLanguages || []).map(escapeLatex).join(', ');
+  if (langs) tex += `  \\item \\textbf{Programming Languages:} ${langs}\n`;
+
+  const frames = (tech.frameworks || []).map(escapeLatex).join(', ');
+  if (frames) tex += `  \\item \\textbf{Frameworks \\& Technologies:} ${frames}\n`;
+
+  const dbs = (tech.databases || []).map(escapeLatex).join(', ');
+  if (dbs) tex += `  \\item \\textbf{Databases:} ${dbs}\n`;
+
+  const tools = (tech.developerTools || []).map(escapeLatex).join(', ');
+  if (tools) tex += `  \\item \\textbf{Tools \\& Platforms:} ${tools}\n`;
+
+  const concepts = (tech.coreConcepts || []).map(escapeLatex).join(', ');
+  if (concepts) tex += `  \\item \\textbf{Core Competencies:} ${concepts}\n`;
+
+  tex += `\\end{itemize}
+
+% ----------------- ACADEMIC PROJECTS -----------------
+\\section{Capstone \\& Academic Projects}
+`;
+
+  prj.forEach(proj => {
+    const pTitle = escapeLatex(proj.title || 'Technical Project');
+    const rawTech = Array.isArray(proj.technologies) ? proj.technologies.join(', ') : (proj.technologies || '');
+    const pTech = escapeLatex(rawTech);
+    tex += `\\textbf{${pTitle}} ${pTech ? `(\\textit{Tech: ${pTech}})` : ''}\\\\
+\\begin{itemize}
+`;
+    (Array.isArray(proj.bullets) ? proj.bullets : []).forEach(b => {
+      if (b && b.trim()) tex += `  \\item ${escapeLatex(b.trim())}\n`;
+    });
+    tex += `\\end{itemize}
+\\vspace{2pt}
+`;
+  });
+
+  // ----------------- EXPERIENCE / INTERNSHIPS -----------------
+  if (exp.length > 0) {
+    tex += `\\section{Internships \\& Industrial Training}
+`;
+    exp.forEach(e => {
+      const eTitle = escapeLatex(e.title || 'Intern');
+      const eComp = escapeLatex(e.company || 'Organization');
+      const eDur = escapeLatex(e.duration || '');
+      tex += `\\textbf{${eTitle}} at \\textbf{${eComp}} \\hfill ${eDur}\\\\
+\\begin{itemize}
+`;
+      (Array.isArray(e.bullets) ? e.bullets : []).forEach(b => {
+        if (b && b.trim()) tex += `  \\item ${escapeLatex(b.trim())}\n`;
+      });
+      tex += `\\end{itemize}
+\\vspace{2pt}
+`;
+    });
+  }
+
+  // ----------------- CERTIFICATIONS & ACHIEVEMENTS -----------------
+  if (cert.length > 0 || ach.length > 0) {
+    tex += `\\section{Certifications \\& Achievements}
+\\begin{itemize}
+`;
+    cert.forEach(c => {
+      const cName = escapeLatex(c.name || c.title || '');
+      const cIss = escapeLatex(c.issuer || '');
+      tex += `  \\item \\textbf{Certification:} ${cName} ${cIss ? `(${cIss})` : ''}\n`;
+    });
+    ach.forEach(a => {
+      const aText = escapeLatex(a.description || a.title || '');
+      tex += `  \\item \\textbf{Achievement:} ${aText}\n`;
+    });
+    tex += `\\end{itemize}
+`;
+  }
+
+  // ----------------- PERSONAL DETAILS (College Standard) -----------------
+  tex += `\\section{Personal Profile}
+\\begin{tabular*}{\\textwidth}{l@{\\extracolsep{\\fill}}r}
+  \\textbf{Permanent Address:} ${location} & \\textbf{Nationality:} Indian \\\\
+  \\textbf{Languages Known:} English, Hindi & \\textbf{Status:} Available Immediately \\\\
+\\end{tabular*}
+
+\\end{document}
+`;
+
+  return tex;
+}
+
+// Generate valid, clean LaTeX source code from structured resume JSON
 function generateLatex(resumeData, options = {}) {
   if (!resumeData) return '';
+
+  const activeTemplate = options.template || resumeData.templateId || resumeData.template || 'classic-tech';
+  if (activeTemplate === 'college-official') {
+    return generateCollegeLatex(resumeData, options.formatRules || resumeData.formatRules || {});
+  }
 
   const p = resumeData.personalDetails || resumeData.personal || {};
   const summary = (resumeData.summary || p.summary || '').trim();
@@ -677,10 +866,22 @@ const COMPRESSION_LEVELS = [
   { name: 'Ultra Compact', margin: 22, baseFont: 8.0, nameSize: 15, locSize: 8.0, headSize: 10.0, sectionGap: 4.0, itemGap: 1.8, bulletGap: 1.0 }
 ];
 
+// Helper to clip text with ellipsis to strictly fit inside table cell or column
+function clipText(text, font, size, maxWidth) {
+  if (!text) return '';
+  const str = String(text).trim();
+  if (font.widthOfTextAtSize(str, size) <= maxWidth) return str;
+  let len = str.length;
+  while (len > 3 && font.widthOfTextAtSize(str.slice(0, len) + '...', size) > maxWidth) {
+    len--;
+  }
+  return str.slice(0, len) + '...';
+}
+
 /**
- * Renders resume content to a PDFDocument with optional multi-page pagination.
+ * Renders resume content to a PDFDocument with optional multi-page pagination and template styling.
  */
-async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = false) {
+async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = false, templateOptions = {}) {
   let regularFont, boldFont, obliqueFont;
   const romanBytes = loadFontBytes('CMU-Serif-Roman.ttf');
   const boldBytes = loadFontBytes('CMU-Serif-Bold.ttf');
@@ -704,7 +905,13 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
     obliqueFont = await pdfDoc.embedFont(StandardFonts.TimesRomanItalic);
   }
 
-  const margin = cfg.margin;
+  const activeTemplate = templateOptions.template || resumeData.templateId || resumeData.template || 'classic-tech';
+  const formatRules = templateOptions.formatRules || resumeData.formatRules || {};
+  const isCollege = activeTemplate === 'college-official' || Boolean(formatRules.hasCollegeHeaderBox);
+  const isModern = activeTemplate === 'modern-clean';
+  const isMinimalist = activeTemplate === 'minimalist';
+
+  const margin = isMinimalist ? Math.min(cfg.margin, 24) : cfg.margin;
   const contentWidth = PAGE_WIDTH - 2 * margin;
   const minAcceptableY = margin / 2;
 
@@ -796,35 +1003,145 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
     x && (x.role?.trim() || x.organization?.trim() || x.description?.trim() || x.activity?.trim())
   );
 
-  // --- 1. HEADER (CENTERED, EXACT ABES FORMAT) ---
-  const hasName = !!(p.fullName && p.fullName.trim());
-  if (hasName) {
-    const fullName = p.fullName.trim();
-    const nameWidth = boldFont.widthOfTextAtSize(fullName, cfg.nameSize);
-    page.drawText(fullName, {
-      x: margin + Math.max(0, (contentWidth - nameWidth) / 2),
-      y: cursorY - cfg.nameSize,
-      size: cfg.nameSize,
+  // --- 1. HEADER RENDERING (Branch per template) ---
+  if (isCollege) {
+    // Official College Placement Header Box
+    const collegeTitle = (formatRules.collegeName || p.college || 'DR. A.P.J. ABDUL KALAM TECHNICAL UNIVERSITY').toUpperCase();
+    const titleSize = cfg.baseFont + 2.5;
+    const titleW = boldFont.widthOfTextAtSize(collegeTitle, titleSize);
+    page.drawText(collegeTitle, {
+      x: margin + Math.max(0, (contentWidth - titleW) / 2),
+      y: cursorY - titleSize,
+      size: titleSize,
       font: boldFont,
       color: rgb(0, 0, 0)
     });
-    cursorY -= (cfg.nameSize + 3);
+    cursorY -= (titleSize + 2.5);
 
-    const location = (p.location || '').trim();
-    if (location) {
-      const locWidth = regularFont.widthOfTextAtSize(location, cfg.locSize);
-      page.drawText(location, {
-        x: margin + Math.max(0, (contentWidth - locWidth) / 2),
-        y: cursorY - cfg.locSize,
-        size: cfg.locSize,
-        font: regularFont,
-        color: rgb(0, 0, 0)
-      });
-      cursorY -= (cfg.locSize + 3.5);
-    } else {
-      cursorY -= 1;
+    const tpcText = 'TRAINING & PLACEMENT CELL -- RESUME FORMAT';
+    const tpcW = boldFont.widthOfTextAtSize(tpcText, cfg.baseFont);
+    page.drawText(tpcText, {
+      x: margin + Math.max(0, (contentWidth - tpcW) / 2),
+      y: cursorY - cfg.baseFont,
+      size: cfg.baseFont,
+      font: boldFont,
+      color: rgb(0.2, 0.2, 0.2)
+    });
+    cursorY -= (cfg.baseFont + 3.5);
+
+    page.drawLine({
+      start: { x: margin, y: cursorY },
+      end: { x: margin + contentWidth, y: cursorY },
+      thickness: 1.2,
+      color: rgb(0, 0, 0)
+    });
+    cursorY -= 5;
+
+    const fullName = (p.fullName || 'STUDENT NAME').toUpperCase();
+    page.drawText(fullName, {
+      x: margin,
+      y: cursorY - (cfg.nameSize - 2),
+      size: cfg.nameSize - 2,
+      font: boldFont,
+      color: rgb(0, 0, 0)
+    });
+
+    const emailStr = `Email: ${p.email || '--'}`;
+    const emailW = regularFont.widthOfTextAtSize(emailStr, cfg.baseFont);
+    page.drawText(emailStr, {
+      x: margin + contentWidth - emailW,
+      y: cursorY - cfg.baseFont,
+      size: cfg.baseFont,
+      font: regularFont,
+      color: rgb(0, 0, 0)
+    });
+    cursorY -= (cfg.nameSize - 1);
+
+    const contactStr = `Contact: ${formatDisplayPhone(p.phone) || '--'}`;
+    page.drawText(contactStr, {
+      x: margin,
+      y: cursorY - cfg.baseFont,
+      size: cfg.baseFont,
+      font: regularFont,
+      color: rgb(0, 0, 0)
+    });
+
+    const locStr = `Location: ${p.location || 'Uttar Pradesh, India'}`;
+    const locW = regularFont.widthOfTextAtSize(locStr, cfg.baseFont);
+    page.drawText(locStr, {
+      x: margin + contentWidth - locW,
+      y: cursorY - cfg.baseFont,
+      size: cfg.baseFont,
+      font: regularFont,
+      color: rgb(0, 0, 0)
+    });
+    cursorY -= (cfg.baseFont + 2.5);
+
+    const linkLeft = p.linkedinUrl ? `LinkedIn: ${cleanDisplayUrl(p.linkedinUrl)}` : '';
+    const linkRight = p.githubUrl ? `GitHub: ${cleanDisplayUrl(p.githubUrl)}` : '';
+    if (linkLeft || linkRight) {
+      if (linkLeft) {
+        page.drawText(linkLeft, {
+          x: margin,
+          y: cursorY - (cfg.baseFont - 0.5),
+          size: cfg.baseFont - 0.5,
+          font: regularFont,
+          color: rgb(0.1, 0.2, 0.7)
+        });
+      }
+      if (linkRight) {
+        const rightW = regularFont.widthOfTextAtSize(linkRight, cfg.baseFont - 0.5);
+        page.drawText(linkRight, {
+          x: margin + contentWidth - rightW,
+          y: cursorY - (cfg.baseFont - 0.5),
+          size: cfg.baseFont - 0.5,
+          font: regularFont,
+          color: rgb(0.1, 0.2, 0.7)
+        });
+      }
+      cursorY -= (cfg.baseFont + 2.5);
     }
-  }
+
+    page.drawLine({
+      start: { x: margin, y: cursorY },
+      end: { x: margin + contentWidth, y: cursorY },
+      thickness: 0.5,
+      color: rgb(0, 0, 0)
+    });
+    cursorY -= 4;
+  } else {
+    // Standard ATS header (Classic Tech / Modern Clean / Minimalist)
+    const hasName = !!(p.fullName && p.fullName.trim());
+    if (hasName) {
+      const fullName = p.fullName.trim();
+      const nameSize = isMinimalist ? cfg.nameSize - 2 : cfg.nameSize;
+      const nameWidth = boldFont.widthOfTextAtSize(fullName, nameSize);
+      const nameColor = isModern ? rgb(0.12, 0.25, 0.65) : rgb(0, 0, 0);
+
+      page.drawText(fullName, {
+        x: margin + Math.max(0, (contentWidth - nameWidth) / 2),
+        y: cursorY - nameSize,
+        size: nameSize,
+        font: boldFont,
+        color: nameColor
+      });
+      cursorY -= (nameSize + 3);
+
+      const location = (p.location || '').trim();
+      if (location) {
+        const locWidth = regularFont.widthOfTextAtSize(location, cfg.locSize);
+        page.drawText(location, {
+          x: margin + Math.max(0, (contentWidth - locWidth) / 2),
+          y: cursorY - cfg.locSize,
+          size: cfg.locSize,
+          font: regularFont,
+          color: rgb(0, 0, 0)
+        });
+        cursorY -= (cfg.locSize + 3.5);
+      } else {
+        cursorY -= 1;
+      }
+    }
 
   // Contact Info Line (Phone, Email, LinkedIn, GitHub, Portfolio)
   const contactItems = [];
@@ -955,29 +1272,33 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
   const renderSectionHeading = (title) => {
     ensureSpace(cfg.sectionGap + cfg.headSize + 7 + cfg.baseFont * 2);
     cursorY -= cfg.sectionGap;
-    const headSize = cfg.headSize;
-    page.drawText(title, {
+    const headSize = isMinimalist ? cfg.headSize - 0.5 : cfg.headSize;
+    const headingColor = isModern ? rgb(0.12, 0.25, 0.65) : rgb(0, 0, 0);
+    const ruleColor = isModern ? rgb(0.7, 0.75, 0.85) : rgb(0, 0, 0);
+
+    const displayTitle = isCollege ? title.toUpperCase() : title;
+    page.drawText(displayTitle, {
       x: margin,
       y: cursorY - headSize,
       size: headSize,
       font: boldFont,
-      color: rgb(0, 0, 0)
+      color: headingColor
     });
     cursorY -= (headSize + 2.5);
 
-    // Solid black horizontal rule
+    // Solid horizontal rule
     page.drawLine({
       start: { x: margin, y: cursorY },
       end: { x: margin + contentWidth, y: cursorY },
-      thickness: 0.5,
-      color: rgb(0, 0, 0)
+      thickness: isMinimalist ? 0.35 : (isModern ? 0.8 : 0.5),
+      color: ruleColor
     });
-    cursorY -= 4.5;
+    cursorY -= (isMinimalist ? 3 : 4.5);
   };
 
-  // --- 2. PROFESSIONAL SUMMARY (if provided) ---
+  // --- 2. PROFESSIONAL SUMMARY / CAREER OBJECTIVE (if provided) ---
   if (summary) {
-    renderSectionHeading('Professional Summary');
+    renderSectionHeading(isCollege ? 'Career Objective' : 'Professional Summary');
     const sumLines = wrapText(summary, regularFont, cfg.baseFont, contentWidth);
     sumLines.forEach(line => {
       ensureSpace(cfg.baseFont + 2);
@@ -992,73 +1313,130 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
     });
   }
 
-  // --- 3. EDUCATION (EXACT ABES FORMAT) ---
+  // --- 3. EDUCATION / ACADEMIC QUALIFICATIONS ---
   if (education.length > 0) {
-    renderSectionHeading('Education');
-    education.forEach((edu) => {
-      ensureSpace(cfg.baseFont * 2 + cfg.itemGap);
-      const degTitle = getEducationDegreeTitle(edu);
-      const dateStr = getEducationDuration(edu).replace(/--/g, '–');
-      const scoreStr = formatEducationScore(edu.cgpaOrPercentage || edu.cgpa || edu.percentage || edu.grade || edu.score);
+    if (isCollege) {
+      renderSectionHeading('Academic Qualifications');
+      const colWidths = [
+        contentWidth * 0.24,
+        contentWidth * 0.34,
+        contentWidth * 0.17,
+        contentWidth * 0.11,
+        contentWidth * 0.14
+      ];
+      const rowH = cfg.baseFont + 6;
+      ensureSpace(rowH * (education.length + 1) + 6);
 
-      // Line 1: Degree in Field (Board) (Bold, Left) + Duration (Bold, Right)
-      page.drawText(degTitle, {
-        x: margin,
-        y: cursorY - cfg.baseFont,
-        size: cfg.baseFont,
-        font: boldFont,
-        color: rgb(0, 0, 0)
+      // Header row
+      page.drawLine({ start: { x: margin, y: cursorY }, end: { x: margin + contentWidth, y: cursorY }, thickness: 0.5, color: rgb(0, 0, 0) });
+      let hX = margin;
+      const headers = ['Course / Degree', 'College / School', 'Board / Univ', 'Year', '% / CGPA'];
+      headers.forEach((h, idx) => {
+        page.drawText(h, {
+          x: hX + 3,
+          y: cursorY - (cfg.baseFont + 1),
+          size: cfg.baseFont - 0.5,
+          font: boldFont,
+          color: rgb(0, 0, 0)
+        });
+        hX += colWidths[idx];
       });
-      if (dateStr) {
-        const dateW = boldFont.widthOfTextAtSize(dateStr, cfg.baseFont);
-        page.drawText(dateStr, {
-          x: margin + contentWidth - dateW,
+      cursorY -= rowH;
+      page.drawLine({ start: { x: margin, y: cursorY + 2 }, end: { x: margin + contentWidth, y: cursorY + 2 }, thickness: 0.5, color: rgb(0, 0, 0) });
+
+      // Data rows
+      education.forEach(edu => {
+        const rowDeg = getEducationDegreeTitle(edu);
+        const rowInst = (edu.institution || '').trim();
+        const rowBoard = (edu.board || edu.university || 'AKTU').trim();
+        const rowYear = (edu.duration || edu.year || '').replace(/[–—]/g, '-').trim();
+        const rowScore = formatEducationScore(edu.cgpaOrPercentage || edu.cgpa || edu.percentage || edu.grade || edu.score);
+
+        let cX = margin;
+        const vals = [rowDeg, rowInst, rowBoard, rowYear, rowScore];
+        vals.forEach((v, idx) => {
+          const maxW = colWidths[idx] - 6;
+          const textToShow = clipText(v, regularFont, cfg.baseFont - 1, maxW);
+          page.drawText(textToShow, {
+            x: cX + 3,
+            y: cursorY - (cfg.baseFont - 1),
+            size: cfg.baseFont - 1,
+            font: idx === 0 ? boldFont : regularFont,
+            color: rgb(0, 0, 0)
+          });
+          cX += colWidths[idx];
+        });
+        cursorY -= rowH;
+        page.drawLine({ start: { x: margin, y: cursorY + 2 }, end: { x: margin + contentWidth, y: cursorY + 2 }, thickness: 0.5, color: rgb(0, 0, 0) });
+      });
+      cursorY -= 3;
+    } else {
+      renderSectionHeading('Education');
+      education.forEach((edu) => {
+        ensureSpace(cfg.baseFont * 2 + cfg.itemGap);
+        const degTitle = getEducationDegreeTitle(edu);
+        const dateStr = getEducationDuration(edu).replace(/--/g, '–');
+        const scoreStr = formatEducationScore(edu.cgpaOrPercentage || edu.cgpa || edu.percentage || edu.grade || edu.score);
+
+        // Line 1: Degree in Field (Board) (Bold, Left) + Duration (Bold, Right)
+        page.drawText(degTitle, {
+          x: margin,
           y: cursorY - cfg.baseFont,
           size: cfg.baseFont,
           font: boldFont,
           color: rgb(0, 0, 0)
         });
-      }
-      cursorY -= (cfg.baseFont + 1.5);
-
-      // Line 2: Institution (Italic, Left) + Score (Italic, Right)
-      let instLine = (edu.institution || '').trim();
-      if (instLine) {
-        page.drawText(instLine, {
-          x: margin,
-          y: cursorY - cfg.baseFont,
-          size: cfg.baseFont,
-          font: obliqueFont,
-          color: rgb(0, 0, 0)
-        });
-      }
-      if (scoreStr) {
-        const scoreW = obliqueFont.widthOfTextAtSize(scoreStr, cfg.baseFont);
-        page.drawText(scoreStr, {
-          x: margin + contentWidth - scoreW,
-          y: cursorY - cfg.baseFont,
-          size: cfg.baseFont,
-          font: obliqueFont,
-          color: rgb(0, 0, 0)
-        });
-      }
-      cursorY -= (cfg.baseFont + cfg.itemGap);
-
-      if (edu.description && edu.description.trim()) {
-        const descLines = wrapText(edu.description.trim(), regularFont, cfg.baseFont - 0.5, contentWidth);
-        descLines.forEach(line => {
-          ensureSpace(cfg.baseFont + 1);
-          page.drawText(line, {
-            x: margin,
-            y: cursorY - (cfg.baseFont - 0.5),
-            size: cfg.baseFont - 0.5,
-            font: regularFont,
+        if (dateStr) {
+          const dateW = boldFont.widthOfTextAtSize(dateStr, cfg.baseFont);
+          page.drawText(dateStr, {
+            x: margin + contentWidth - dateW,
+            y: cursorY - cfg.baseFont,
+            size: cfg.baseFont,
+            font: boldFont,
             color: rgb(0, 0, 0)
           });
-          cursorY -= (cfg.baseFont + 1);
-        });
-      }
-    });
+        }
+        cursorY -= (cfg.baseFont + 1.5);
+
+        // Line 2: Institution (Italic, Left) + Score (Italic, Right)
+        let instLine = (edu.institution || '').trim();
+        if (instLine) {
+          page.drawText(instLine, {
+            x: margin,
+            y: cursorY - cfg.baseFont,
+            size: cfg.baseFont,
+            font: obliqueFont,
+            color: rgb(0, 0, 0)
+          });
+        }
+        if (scoreStr) {
+          const scoreW = obliqueFont.widthOfTextAtSize(scoreStr, cfg.baseFont);
+          page.drawText(scoreStr, {
+            x: margin + contentWidth - scoreW,
+            y: cursorY - cfg.baseFont,
+            size: cfg.baseFont,
+            font: obliqueFont,
+            color: rgb(0, 0, 0)
+          });
+        }
+        cursorY -= (cfg.baseFont + cfg.itemGap);
+
+        if (edu.description && edu.description.trim()) {
+          const descLines = wrapText(edu.description.trim(), regularFont, cfg.baseFont - 0.5, contentWidth);
+          descLines.forEach(line => {
+            ensureSpace(cfg.baseFont + 1);
+            page.drawText(line, {
+              x: margin,
+              y: cursorY - (cfg.baseFont - 0.5),
+              size: cfg.baseFont - 0.5,
+              font: regularFont,
+              color: rgb(0, 0, 0)
+            });
+            cursorY -= (cfg.baseFont + 1);
+          });
+        }
+      });
+    }
   }
 
   // --- 4. TECHNICAL SKILLS (EXACT ABES FORMAT) ---

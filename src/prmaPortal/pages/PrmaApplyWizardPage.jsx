@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import {
   Sparkles,
   CheckCircle2,
@@ -27,7 +27,11 @@ import {
   Home,
   Upload,
   Image as ImageIcon,
-  MessageCircle
+  MessageCircle,
+  Clock,
+  Award,
+  Search,
+  X
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
@@ -35,6 +39,7 @@ import PrmaDomainIcon from '../components/PrmaDomainIcon';
 import { PRMA_DOMAINS } from '../data/prmaDomains';
 import { POPULAR_COLLEGES, POPULAR_UNIVERSITIES } from '../data/institutionsData';
 import { usePrmaApplication } from '../context/PrmaApplicationContext';
+import '../styles/prmaInternship.css';
 
 export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
   const { selectedDomainId, setSelectedDomainId } = usePrmaApplication();
@@ -47,8 +52,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     }
   };
 
-  // Draft persistence key to prevent accidental form resets
-  const DRAFT_KEY = 'prma_internship_draft_v2';
+  const DRAFT_KEY = 'prma_internship_draft_v3';
 
   // Determine initial domain from context or session storage
   const [activeDomain, setActiveDomain] = useState(() => {
@@ -57,11 +61,11 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     return PRMA_DOMAINS.find(d => d.id === domId) || PRMA_DOMAINS[0];
   });
 
-  // Modal / Drawer state for changing domain without unmounting the form
+  // Domain selector modal
   const [isDomainPickerOpen, setIsDomainPickerOpen] = useState(false);
   const [pickerSearch, setPickerSearch] = useState('');
 
-  // Multi-section form state with automatic draft recovery
+  // Multi-section form state
   const [formData, setFormData] = useState(() => {
     try {
       const raw = typeof window !== 'undefined' ? window.sessionStorage.getItem(DRAFT_KEY) : null;
@@ -96,7 +100,8 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
           linkedinUrl: draft.linkedinUrl || '',
           followedLinkedIn: Boolean(draft.followedLinkedIn),
           followedInstagram: Boolean(draft.followedInstagram),
-          confirmedAccuracy: Boolean(draft.confirmedAccuracy)
+          confirmedAccuracy: Boolean(draft.confirmedAccuracy),
+          confirmedCodeOfConduct: Boolean(draft.confirmedCodeOfConduct)
         };
       }
     } catch {}
@@ -129,11 +134,12 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
       linkedinUrl: '',
       followedLinkedIn: false,
       followedInstagram: false,
-      confirmedAccuracy: false
+      confirmedAccuracy: false,
+      confirmedCodeOfConduct: false
     };
   });
 
-  // Autocomplete states for College & University
+  // College & University Autocomplete
   const [collegeQuery, setCollegeQuery] = useState(() => {
     try {
       const raw = typeof window !== 'undefined' ? window.sessionStorage.getItem(DRAFT_KEY) : null;
@@ -162,7 +168,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
   const [resumeError, setResumeError] = useState('');
   const fileInputRef = useRef(null);
 
-  // Mandatory Social Follow Screenshot States
+  // Social Screenshots
   const [linkedinScreenshotFile, setLinkedinScreenshotFile] = useState(null);
   const [linkedinScreenshotBase64, setLinkedinScreenshotBase64] = useState('');
   const [linkedinScreenshotError, setLinkedinScreenshotError] = useState('');
@@ -179,7 +185,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
   const [duplicateNotice, setDuplicateNotice] = useState(null);
   const [submissionResult, setSubmissionResult] = useState(null);
 
-  // Persist form draft on state updates to prevent accidental resets
+  // Persist form draft
   useEffect(() => {
     try {
       if (typeof window !== 'undefined') {
@@ -193,63 +199,60 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     } catch {}
   }, [formData, collegeQuery, universityQuery, isCustomCollege, isCustomUniversity]);
 
-  // Filtered colleges for autocomplete
-  const filteredColleges = useMemoSearch(collegeQuery, POPULAR_COLLEGES);
-  const filteredUniversities = useMemoSearch(universityQuery, POPULAR_UNIVERSITIES);
-
-  function useMemoSearch(query, list) {
-    return React.useMemo(() => {
-      if (!query.trim()) return list.slice(0, 8);
-      const q = query.toLowerCase();
-      return list.filter(item => item.toLowerCase().includes(q)).slice(0, 8);
-    }, [query, list]);
-  }
-
-  // Handle outside click for dropdowns
+  // Click outside to close autocomplete
   useEffect(() => {
-    const handleOutsideClick = (e) => {
+    function handleClickOutside(e) {
       if (collegeRef.current && !collegeRef.current.contains(e.target)) {
         setShowCollegeDropdown(false);
       }
       if (universityRef.current && !universityRef.current.contains(e.target)) {
         setShowUniversityDropdown(false);
       }
-    };
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => document.removeEventListener('mousedown', handleOutsideClick);
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Update active domain if context changes
-  useEffect(() => {
-    if (selectedDomainId) {
-      const match = PRMA_DOMAINS.find(d => d.id === selectedDomainId);
-      if (match) setActiveDomain(match);
-    }
-  }, [selectedDomainId]);
+  const filteredColleges = useMemo(() => {
+    const q = collegeQuery.trim().toLowerCase();
+    if (!q) return (POPULAR_COLLEGES || []).slice(0, 10);
+    return (POPULAR_COLLEGES || []).filter(c => c.toLowerCase().includes(q)).slice(0, 15);
+  }, [collegeQuery]);
 
-  // Handle field change
-  const handleChange = (field, value) => {
+  const filteredUniversities = useMemo(() => {
+    const q = universityQuery.trim().toLowerCase();
+    if (!q) return (POPULAR_UNIVERSITIES || []).slice(0, 10);
+    return (POPULAR_UNIVERSITIES || []).filter(u => u.toLowerCase().includes(q)).slice(0, 15);
+  }, [universityQuery]);
+
+  const filteredDomainsForPicker = useMemo(() => {
+    const q = pickerSearch.trim().toLowerCase();
+    if (!q) return PRMA_DOMAINS;
+    return PRMA_DOMAINS.filter(d =>
+      d.title.toLowerCase().includes(q) ||
+      d.category.toLowerCase().includes(q) ||
+      d.technologies.some(t => t.toLowerCase().includes(q))
+    );
+  }, [pickerSearch]);
+
+  const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    setFormError('');
-    if (field === 'email' && duplicateNotice) {
-      setDuplicateNotice(null);
-    }
   };
 
-  // Resume Upload Handler (Compulsory PDF < 5MB)
+  // Resume File Upload Handler (Compulsory PDF <= 5MB)
   const handleResumeSelect = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (!file.name.toLowerCase().endsWith('.pdf') && file.type !== 'application/pdf') {
-      setResumeError('Resume must be in PDF format (.pdf) only.');
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      setResumeError('Only PDF files are accepted. Please attach your resume as a PDF document.');
       setResumeFile(null);
       setResumeBase64('');
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      setResumeError('File size exceeds the 5 MB limit. Please compress your PDF.');
+      setResumeError('Resume file size exceeds the 5 MB limit. Please upload a smaller PDF.');
       setResumeFile(null);
       setResumeBase64('');
       return;
@@ -272,18 +275,17 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  // Helper: Client-side image compression to ensure crystal clear screenshots with compact payload (<200KB)
+  // Image compressor for social verification screenshots
   const compressScreenshot = (file) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const reader = new FileReader();
-      reader.onerror = reject;
       reader.onload = (e) => {
         const img = new Image();
-        img.onerror = reject;
         img.onload = () => {
+          const canvas = document.createElement('canvas');
           let width = img.width;
           let height = img.height;
-          const maxDim = 900;
+          const maxDim = 1200;
           if (width > maxDim || height > maxDim) {
             if (width > height) {
               height = Math.round((height * maxDim) / width);
@@ -293,13 +295,11 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
               height = maxDim;
             }
           }
-          const canvas = document.createElement('canvas');
           canvas.width = width;
           canvas.height = height;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, width, height);
-          const compressed = canvas.toDataURL('image/jpeg', 0.75);
-          resolve(compressed);
+          resolve(canvas.toDataURL('image/jpeg', 0.75));
         };
         img.src = e.target.result;
       };
@@ -307,150 +307,95 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     });
   };
 
-  // LinkedIn Screenshot Select Handler (Compulsory JPG/JPEG/PNG)
-  const handleLinkedinScreenshotSelect = (e) => {
+  const handleLinkedinScreenshot = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    const ext = file.name.split('.').pop()?.toLowerCase();
-    if (!validTypes.includes(file.type) && !['jpg', 'jpeg', 'png'].includes(ext)) {
-      setLinkedinScreenshotError('Please upload an image in JPG, JPEG, or PNG format only.');
-      setLinkedinScreenshotFile(null);
-      setLinkedinScreenshotBase64('');
+    if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type) && !/\.(jpg|jpeg|png)$/i.test(file.name)) {
+      setLinkedinScreenshotError('Please upload an image in JPG or PNG format.');
       return;
     }
-
-    if (file.size > 8 * 1024 * 1024) {
-      setLinkedinScreenshotError('File size exceeds the 8 MB limit. Please select a valid screenshot.');
-      setLinkedinScreenshotFile(null);
-      setLinkedinScreenshotBase64('');
-      return;
-    }
-
     setLinkedinScreenshotError('');
     setLinkedinScreenshotFile(file);
-
     compressScreenshot(file)
-      .then(base64 => setLinkedinScreenshotBase64(base64))
+      .then(b64 => setLinkedinScreenshotBase64(b64))
       .catch(() => {
-        const reader = new FileReader();
-        reader.onload = () => setLinkedinScreenshotBase64(reader.result);
-        reader.readAsDataURL(file);
+        const r = new FileReader();
+        r.onload = () => setLinkedinScreenshotBase64(r.result);
+        r.readAsDataURL(file);
       });
   };
 
-  const removeLinkedinScreenshot = () => {
-    setLinkedinScreenshotFile(null);
-    setLinkedinScreenshotBase64('');
-    setLinkedinScreenshotError('');
-    if (linkedinInputRef.current) linkedinInputRef.current.value = '';
-  };
-
-  // Instagram Screenshot Select Handler (Compulsory JPG/JPEG/PNG)
-  const handleInstagramScreenshotSelect = (e) => {
+  const handleInstagramScreenshot = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-    const ext = file.name.split('.').pop()?.toLowerCase();
-    if (!validTypes.includes(file.type) && !['jpg', 'jpeg', 'png'].includes(ext)) {
-      setInstagramScreenshotError('Please upload an image in JPG, JPEG, or PNG format only.');
-      setInstagramScreenshotFile(null);
-      setInstagramScreenshotBase64('');
+    if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type) && !/\.(jpg|jpeg|png)$/i.test(file.name)) {
+      setInstagramScreenshotError('Please upload an image in JPG or PNG format.');
       return;
     }
-
-    if (file.size > 8 * 1024 * 1024) {
-      setInstagramScreenshotError('File size exceeds the 8 MB limit. Please select a valid screenshot.');
-      setInstagramScreenshotFile(null);
-      setInstagramScreenshotBase64('');
-      return;
-    }
-
     setInstagramScreenshotError('');
     setInstagramScreenshotFile(file);
-
     compressScreenshot(file)
-      .then(base64 => setInstagramScreenshotBase64(base64))
+      .then(b64 => setInstagramScreenshotBase64(b64))
       .catch(() => {
-        const reader = new FileReader();
-        reader.onload = () => setInstagramScreenshotBase64(reader.result);
-        reader.readAsDataURL(file);
+        const r = new FileReader();
+        r.onload = () => setInstagramScreenshotBase64(r.result);
+        r.readAsDataURL(file);
       });
   };
 
-  const removeInstagramScreenshot = () => {
-    setInstagramScreenshotFile(null);
-    setInstagramScreenshotBase64('');
-    setInstagramScreenshotError('');
-    if (instagramInputRef.current) instagramInputRef.current.value = '';
-  };
-
-  // Validation
+  // Form Validation
   const validateForm = () => {
-    // Personal
-    if (!formData.fullName.trim()) return 'Please enter your Full Name.';
-    if (!formData.dob) return 'Please enter your Date of Birth.';
-    if (!formData.email.trim() || !formData.email.includes('@')) return 'Please enter a valid Email Address.';
-    if (!formData.mobile.trim() || formData.mobile.length < 10) return 'Please enter a valid 10-digit Mobile Number.';
-    if (!formData.address.trim()) return 'Please enter your Current Residential Address.';
-    if (!formData.city.trim()) return 'Please enter your City.';
-    if (!formData.state.trim()) return 'Please enter your State.';
-    if (!formData.pinCode.trim()) return 'Please enter your PIN Code.';
+    if (!formData.fullName.trim()) return 'Full Name is required.';
+    if (!formData.dob) return 'Date of Birth is required.';
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      return 'Please enter a valid email address.';
+    }
+    if (!formData.mobile.trim() || formData.mobile.trim().length < 10) {
+      return 'Please enter a valid 10-digit mobile number.';
+    }
 
-    // Academic
     const effectiveCollege = isCustomCollege ? formData.college.trim() : collegeQuery.trim();
-    if (!effectiveCollege) return 'Please select or enter your College Name.';
+    if (!effectiveCollege) return 'College / Institution name is required.';
 
     const effectiveUniversity = isCustomUniversity ? formData.university.trim() : universityQuery.trim();
-    if (!effectiveUniversity) return 'Please select or enter your University Name.';
+    if (!effectiveUniversity) return 'University / Affiliation name is required.';
 
-    if (!formData.course.trim()) return 'Please select your Current Course / Degree.';
-    if (!formData.year.trim()) return 'Please select your Current Academic Year.';
+    if (!formData.rollNumber.trim()) return 'Roll Number / Student ID is required.';
+    if (!formData.branch.trim()) return 'Branch / Specialization is required.';
 
-    // Profiles (Lenient on mobile: auto-normalizes missing https://)
-    let cleanGithub = formData.githubUrl.trim();
-    if (cleanGithub && !cleanGithub.startsWith('http://') && !cleanGithub.startsWith('https://')) {
-      cleanGithub = 'https://' + cleanGithub;
-    }
-    let cleanLinkedin = formData.linkedinUrl.trim();
-    if (cleanLinkedin && !cleanLinkedin.startsWith('http://') && !cleanLinkedin.startsWith('https://')) {
-      cleanLinkedin = 'https://' + cleanLinkedin;
+    // GitHub & LinkedIn validation
+    const gh = formData.githubUrl.trim();
+    if (!gh) return 'GitHub Profile URL is required.';
+    const ghNormalized = gh.startsWith('http') ? gh : 'https://' + gh;
+    if (!/^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9_-]+\/?.*$/i.test(ghNormalized)) {
+      return 'Please enter a valid GitHub profile URL (e.g., https://github.com/username).';
     }
 
-    const githubRegex = /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9_-]+\/?.*$/i;
-    const linkedinRegex = /^https?:\/\/([a-z]{2,3}\.)?linkedin\.com\/(in|company)\/[a-zA-Z0-9_%-]+\/?.*$/i;
-
-    if (!cleanGithub || !githubRegex.test(cleanGithub)) {
-      return 'Please enter a valid GitHub profile URL (e.g. https://github.com/username).';
+    const li = formData.linkedinUrl.trim();
+    if (!li) return 'LinkedIn Profile URL is required.';
+    const liNormalized = li.startsWith('http') ? li : 'https://' + li;
+    if (!/^https?:\/\/([a-z]{2,3}\.)?linkedin\.com\/(in|company)\/[a-zA-Z0-9_%-]+\/?.*$/i.test(liNormalized)) {
+      return 'Please enter a valid LinkedIn profile URL (e.g., https://www.linkedin.com/in/username).';
     }
 
-    if (!cleanLinkedin || !linkedinRegex.test(cleanLinkedin)) {
-      return 'Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/username).';
+    // Resume validation
+    if (!resumeBase64) {
+      return 'Resume upload is compulsory. Please attach your resume in PDF format.';
     }
 
-    // Resume
-    if (!resumeFile || !resumeBase64) {
-      return 'Resume upload is compulsory. Please attach your resume in PDF format (Max 5 MB).';
+    // Social follow confirmation & screenshots
+    if (!formData.followedLinkedIn || !formData.followedInstagram) {
+      return 'Please confirm that you follow PRMA Tech on both LinkedIn and Instagram.';
     }
 
-    // Social follow & mandatory screenshot verification
-    if (!formData.followedLinkedIn) {
-      return 'Please confirm that you have followed the official PRMA Tech LinkedIn page.';
-    }
     if (!linkedinScreenshotBase64) {
-      return 'LinkedIn follow screenshot is compulsory. Please upload a screenshot verifying that you follow PRMA Tech on LinkedIn.';
+      return 'LinkedIn follow verification screenshot is compulsory. Please upload a screenshot verifying that you follow PRMA Tech on LinkedIn.';
     }
 
-    if (!formData.followedInstagram) {
-      return 'Please confirm that you have followed the official PRMA Tech Instagram page.';
-    }
     if (!instagramScreenshotBase64) {
-      return 'Instagram follow screenshot is compulsory. Please upload a screenshot verifying that you follow PRMA Tech on Instagram.';
+      return 'Instagram follow verification screenshot is compulsory. Please upload a screenshot verifying that you follow PRMA Tech on Instagram.';
     }
 
-    // Declaration
     if (!formData.confirmedAccuracy) {
       return 'Please confirm the accuracy declaration before submitting.';
     }
@@ -458,7 +403,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     return null;
   };
 
-  // Submit Handler
+  // Submit Handler -> Real POST to /api/prma/applications
   const handleSubmit = async (e) => {
     e.preventDefault();
     const error = validateForm();
@@ -470,16 +415,17 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
 
     setIsSubmitting(true);
     setFormError('');
+    setDuplicateNotice(null);
 
     const effectiveCollege = isCustomCollege ? formData.college.trim() : collegeQuery.trim();
     const effectiveUniversity = isCustomUniversity ? formData.university.trim() : universityQuery.trim();
 
     let cleanGithub = formData.githubUrl.trim();
-    if (cleanGithub && !cleanGithub.startsWith('http://') && !cleanGithub.startsWith('https://')) {
+    if (!cleanGithub.startsWith('http://') && !cleanGithub.startsWith('https://')) {
       cleanGithub = 'https://' + cleanGithub;
     }
     let cleanLinkedin = formData.linkedinUrl.trim();
-    if (cleanLinkedin && !cleanLinkedin.startsWith('http://') && !cleanLinkedin.startsWith('https://')) {
+    if (!cleanLinkedin.startsWith('http://') && !cleanLinkedin.startsWith('https://')) {
       cleanLinkedin = 'https://' + cleanLinkedin;
     }
 
@@ -510,8 +456,8 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
       technical: {
         domainId: activeDomain.id,
         domainTitle: activeDomain.title,
-        skills: formData.skills.split(',').map(s => s.trim()).filter(Boolean),
-        languages: formData.languages.split(',').map(s => s.trim()).filter(Boolean),
+        skills: formData.skills ? formData.skills.split(',').map(s => s.trim()).filter(Boolean) : activeDomain.skills,
+        languages: formData.languages ? formData.languages.split(',').map(s => s.trim()).filter(Boolean) : [],
         experience: formData.experience.trim(),
         experienceLevel: formData.experienceLevel
       },
@@ -522,26 +468,26 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
         linkedinUrl: cleanLinkedin
       },
       resume: {
-        fileName: resumeFile.name,
-        fileSize: resumeFile.size,
+        fileName: resumeFile?.name || 'Resume.pdf',
+        fileSize: resumeFile?.size || 0,
+        fileType: 'application/pdf',
         dataUrl: resumeBase64
       },
       socialFollow: {
         followedLinkedIn: true,
         followedInstagram: true,
         linkedinScreenshot: {
-          fileName: linkedinScreenshotFile?.name || 'linkedin_follow_proof.png',
+          fileName: linkedinScreenshotFile?.name || 'linkedin-screenshot.jpg',
           dataUrl: linkedinScreenshotBase64
         },
         instagramScreenshot: {
-          fileName: instagramScreenshotFile?.name || 'instagram_follow_proof.png',
+          fileName: instagramScreenshotFile?.name || 'instagram-screenshot.jpg',
           dataUrl: instagramScreenshotBase64
         }
       },
-      linkedinScreenshotUrl: '',
-      instagramScreenshotUrl: '',
       declaration: {
-        confirmedAccuracy: true
+        confirmedAccuracy: true,
+        submittedAt: new Date().toISOString()
       }
     };
 
@@ -552,1435 +498,1076 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
         body: JSON.stringify(payload)
       });
 
-      let data = {};
-      try {
-        data = await res.json();
-      } catch (parseErr) {
-        data = { error: 'Server response error (status ' + res.status + ')' };
-      }
+      const data = await res.json();
 
       if (res.ok && data.success) {
-        try {
-          if (typeof window !== 'undefined') {
-            window.sessionStorage.removeItem(DRAFT_KEY);
-          }
-        } catch {}
-        setDuplicateNotice(null);
-        setFormError('');
         setSubmissionResult({
-          applicationId: data.applicationId,
-          studentName: formData.fullName,
-          email: formData.email,
+          applicationId: data.applicationId || 'PRMA-' + Date.now().toString(36).toUpperCase(),
           domainTitle: activeDomain.title,
-          date: data.submissionDate || new Date().toLocaleDateString('en-GB')
+          email: formData.email.trim(),
+          fullName: formData.fullName.trim(),
+          date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
         });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (res.status === 409 || data.isDuplicate) {
-        setFormError('');
-        const existing = data.existingApplication || {};
-        setDuplicateNotice({
-          message: data.message || data.error || 'An application for this domain has already been submitted with this email address.',
-          applicationId: existing.applicationId || data.applicationId || 'On Record',
-          offerId: existing.offerId || null,
-          status: existing.status || data.status || 'submitted',
-          domainTitle: existing.domainTitle || activeDomain.title,
-          submittedAt: existing.submittedAt || data.createdAt || null,
-          email: existing.email || formData.email
-        });
-        window.scrollTo({ top: 320, behavior: 'smooth' });
+        // Clear draft
+        try {
+          if (typeof window !== 'undefined') window.sessionStorage.removeItem(DRAFT_KEY);
+        } catch {}
+        window.scrollTo({ top: 80, behavior: 'smooth' });
+      } else if (res.status === 409 || (data.error && data.error.includes('already submitted'))) {
+        setDuplicateNotice(data);
+        window.scrollTo({ top: 200, behavior: 'smooth' });
       } else {
-        setDuplicateNotice(null);
-        const errMsg = data.details ? `${data.error}: ${data.details}` : (data.error || 'Failed to submit application. Please check your details.');
-        setFormError(errMsg);
-        window.scrollTo({ top: 350, behavior: 'smooth' });
+        setFormError(data.error || 'Failed to submit application. Please check your information.');
+        window.scrollTo({ top: 200, behavior: 'smooth' });
       }
     } catch (err) {
-      console.error('Application submission error:', err);
-      setFormError('Submission failed: ' + (err.message || 'Server connection issue. Please try again.'));
-      window.scrollTo({ top: 350, behavior: 'smooth' });
+      console.error('Submission error:', err);
+      setFormError('Connection issue: ' + (err.message || 'Please check your internet connection and try again.'));
+      window.scrollTo({ top: 200, behavior: 'smooth' });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
+    <div className="prma-portal-wrap">
       <PrmaNavbar activeTab="internships" onNavigate={navFn} navigateToTab={navFn} />
 
-      {/* REQUIREMENT 3 — PROFESSIONAL CONFIRMATION SCREEN (NO DASHBOARD BUTTON!) */}
+      {/* SUCCESS CONFIRMATION VIEW */}
       {submissionResult ? (
-        <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-16 flex items-center justify-center">
-          <div className="bg-white rounded-3xl border-2 border-emerald-400 p-8 sm:p-12 shadow-2xl text-center animate-scale-in w-full">
-            <div className="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-6 shadow-inner">
-              <CheckCircle2 className="w-12 h-12" />
+        <main className="prma-content-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="prma-success-card">
+            <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#ECFDF5', color: '#10B981', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem' }}>
+              <CheckCircle2 size={38} strokeWidth={2.4} />
             </div>
 
-            <span className="px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-100 text-emerald-800">
+            <div className="prma-success-badge">
               Application Submitted Successfully!
-            </span>
+            </div>
 
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mt-4 mb-3">
-              Thank you for applying to PRMA Tech.
+            <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.85rem', fontWeight: 900, color: '#0F172A', margin: '0 0 0.5rem' }}>
+              Welcome to PRMA Tech!
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto leading-relaxed mb-8">
-              Your application has been received successfully and is currently awaiting review by our recruitment team. If your application is shortlisted, you will receive an official email containing your internship joining letter and further instructions.
+            <p style={{ fontSize: '0.92rem', color: '#64748B', lineHeight: 1.6, maxWidth: '520px', margin: '0 auto 1.5rem' }}>
+              Thank you, <strong>{submissionResult.fullName}</strong>. Your internship application has been registered in our database. Our technical evaluation committee reviews submissions on a rolling basis.
             </p>
 
-            {/* Application Dossier Card */}
-            <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 text-left max-w-lg mx-auto mb-8 space-y-3">
-              <div className="flex justify-between items-center py-1 border-b border-slate-200 text-xs">
-                <span className="text-slate-500 font-medium">Unique Application ID:</span>
-                <span className="font-mono font-black text-blue-600 text-sm">{submissionResult.applicationId}</span>
+            {/* Dossier Box */}
+            <div className="prma-success-id-box">
+              <div className="prma-id-row">
+                <span style={{ color: '#64748B', fontWeight: 600 }}>Application ID:</span>
+                <span style={{ fontFamily: 'monospace', fontWeight: 900, color: '#881337', fontSize: '0.95rem' }}>{submissionResult.applicationId}</span>
               </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-200 text-xs">
-                <span className="text-slate-500 font-medium">Selected Domain:</span>
-                <span className="font-bold text-slate-900">{submissionResult.domainTitle}</span>
+              <div className="prma-id-row">
+                <span style={{ color: '#64748B', fontWeight: 600 }}>Track Domain:</span>
+                <span style={{ fontWeight: 800, color: '#0F172A' }}>{submissionResult.domainTitle}</span>
               </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-200 text-xs">
-                <span className="text-slate-500 font-medium">Registered Email:</span>
-                <span className="font-bold text-slate-900">{submissionResult.email}</span>
+              <div className="prma-id-row">
+                <span style={{ color: '#64748B', fontWeight: 600 }}>Registered Email:</span>
+                <span style={{ fontWeight: 700, color: '#0F172A' }}>{submissionResult.email}</span>
               </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-200 text-xs">
-                <span className="text-slate-500 font-medium">Submission Date:</span>
-                <span className="font-bold text-slate-900">{submissionResult.date}</span>
+              <div className="prma-id-row">
+                <span style={{ color: '#64748B', fontWeight: 600 }}>Submission Date:</span>
+                <span style={{ fontWeight: 700, color: '#0F172A' }}>{submissionResult.date}</span>
               </div>
-              <div className="flex justify-between items-center py-1 border-b border-slate-200 text-xs">
-                <span className="text-slate-500 font-medium">Program Duration:</span>
-                <span className="font-bold text-slate-900">1 Month &bull; Remote</span>
-              </div>
-              <div className="flex justify-between items-center py-1 text-xs">
-                <span className="text-slate-500 font-medium">Current Status:</span>
-                <span className="font-black text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full text-[11px]">
+              <div className="prma-id-row">
+                <span style={{ color: '#64748B', fontWeight: 600 }}>Status:</span>
+                <span style={{ fontWeight: 800, color: '#047857', background: '#ECFDF5', padding: '2px 8px', borderRadius: '6px' }}>
                   Submitted — Under Review
                 </span>
               </div>
             </div>
 
-            {/* WHATSAPP COMMUNITY CARD — CONFIRMATION SCREEN */}
-            <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-green-50 border-2 border-emerald-400/60 rounded-2xl p-6 text-left max-w-lg mx-auto mb-6 shadow-sm">
-              <div className="flex items-center gap-2 text-emerald-800 font-extrabold text-xs uppercase tracking-wider mb-1.5">
-                <MessageCircle className="w-4 h-4 text-emerald-600" />
-                <span>JOIN THE PRMA TECH INTERNSHIP COMMUNITY</span>
+            {/* Next Steps Guidance */}
+            <div style={{ textAlign: 'left', background: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '14px', padding: '1rem', margin: '1.25rem 0', fontSize: '0.82rem', color: '#334155', lineHeight: 1.55 }}>
+              <strong style={{ color: '#0F172A', display: 'block', marginBottom: '4px' }}>What Happens Next?</strong>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <div>&bull; Your resume and credentials will be assessed by senior engineers.</div>
+                <div>&bull; Upon shortlisting, your official PRMA Tech Joining Letter (PDF) and problem statements will be emailed to <strong>{submissionResult.email}</strong>.</div>
+                <div>&bull; Please monitor your Inbox and Spam folder for updates.</div>
               </div>
-              <p className="text-xs text-slate-700 leading-relaxed mb-4">
-                Official community group for updates, doubt clearing, batch announcements, and peer networking. Stay connected with mentors and your cohort peers!
-              </p>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               <a
-                href="https://chat.whatsapp.com/B8zkpc5tc2TKni9jcWsiba"
+                href="https://chat.whatsapp.com/GjN8v0eZ9lO0Ywz8v4z1"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs flex items-center justify-center gap-2 transition shadow-md shadow-emerald-600/30"
+                rel="noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  padding: '0.85rem 1.25rem',
+                  borderRadius: '12px',
+                  background: '#25D366',
+                  color: '#FFFFFF',
+                  fontWeight: 800,
+                  fontSize: '0.9rem',
+                  textDecoration: 'none'
+                }}
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
-                <span>JOIN WHATSAPP COMMUNITY</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <MessageCircle size={18} />
+                <span>Join Official WhatsApp Community</span>
               </a>
-            </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 max-w-lg mx-auto text-xs text-blue-900 mb-8 leading-relaxed">
-              <div className="font-bold mb-1">What Happens Next?</div>
-              All notifications, task assignments, and joining letters are dispatched exclusively to your registered email address. Keep an eye on your inbox!
-            </div>
-
-            {/* Single button to return to PRMA Tech homepage — NO DASHBOARD BUTTON */}
-            <div>
               <button
                 type="button"
-                onClick={() => handleNav('prma-home')}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-extrabold shadow-lg transition"
+                onClick={() => handleNav('home')}
+                style={{
+                  padding: '0.75rem 1.25rem',
+                  borderRadius: '12px',
+                  border: '1.5px solid #CBD5E1',
+                  background: '#FFFFFF',
+                  color: '#475569',
+                  fontWeight: 700,
+                  fontSize: '0.85rem',
+                  cursor: 'pointer'
+                }}
               >
-                <Home className="w-4 h-4" />
-                Return to PRMA Tech Homepage
+                Return to ProfessorVirus Home
               </button>
             </div>
           </div>
         </main>
       ) : (
-        /* APPLICATION FORM */
-        <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          {/* PROGRAM INTRODUCTION HEADER — REQUIREMENT 2 */}
-          <div className="bg-gradient-to-r from-blue-900 via-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-8 mb-8 border border-slate-800 shadow-xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              Welcome to PRMA Tech Internship Program!
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-white">
-              Student Internship Application Portal
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
-              PRMA Tech is an emerging technology startup committed to helping students improve their practical knowledge and develop industry-relevant technical skills. Our mission: <strong>Learn, Build, Innovate and Grow.</strong>
-            </p>
-            <div className="mt-4 p-3.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-xs text-emerald-300 leading-relaxed">
-              <strong>100% Free Program Announcement:</strong> This internship program is currently offered FREE OF COST as part of our initiative to support students, enhance technical knowledge and encourage practical learning. Financial limitations should not stop talented students from learning.
-            </div>
-          </div>
-
-          {/* ACTIVE DOMAIN CARD (PRE-SELECTED FROM STEP 1) */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-sm mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-              <PrmaDomainIcon iconType={activeDomain.iconType} className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0" color={activeDomain.color} />
-              <div className="min-w-0">
-                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800">
-                  Selected Domain &bull; 100% FREE
-                </span>
-                <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1 leading-snug truncate">
-                  {activeDomain.title}
-                </h2>
-                <div className="text-xs text-slate-500">Duration: Exactly 1 Month &bull; Mode: Remote &bull; Fee: ₹0</div>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setIsDomainPickerOpen(true)}
-              className="px-4 py-2.5 min-h-[44px] rounded-xl border border-blue-200 bg-blue-50/60 hover:bg-blue-100 text-xs font-bold text-blue-700 transition flex items-center justify-center gap-1.5 flex-shrink-0 w-full sm:w-auto"
-            >
-              <span>Change Domain</span>
-              <ChevronDown className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* DUPLICATE APPLICATION NOTIFICATION CARD */}
-          {duplicateNotice && (
-            <div className="mb-8 p-6 sm:p-7 rounded-3xl bg-amber-50/95 border-2 border-amber-300 shadow-md animate-fade-in">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-300 text-amber-700 flex items-center justify-center flex-shrink-0 font-bold shadow-xs">
-                  <AlertCircle className="w-6 h-6 text-amber-600" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-200 text-amber-900">
-                      Application Already on File
-                    </span>
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
-                      duplicateNotice.status === 'shortlisted' ? 'bg-emerald-100 text-emerald-800' :
-                      duplicateNotice.status === 'under_review' ? 'bg-blue-100 text-blue-800' :
-                      duplicateNotice.status === 'rejected' ? 'bg-rose-100 text-rose-800' :
-                      'bg-slate-200 text-slate-800'
-                    }`}>
-                      Status: {duplicateNotice.status.toUpperCase()}
-                    </span>
-                  </div>
-
-                  <h3 className="text-base sm:text-lg font-black text-slate-900 mt-1">
-                    You have already applied for {duplicateNotice.domainTitle}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
-                    An application with email <strong className="text-slate-900">{duplicateNotice.email}</strong> is already registered in our active database for this track. You do not need to reapply for this domain.
-                  </p>
-
-                  <div className="mt-4 p-4 rounded-2xl bg-white border border-amber-200 flex flex-wrap items-center justify-between gap-3 text-xs shadow-xs">
-                    <div>
-                      <span className="text-slate-400 font-bold block text-[10px] uppercase tracking-wider">Application Reference</span>
-                      <span className="font-mono font-black text-blue-600 text-sm">{duplicateNotice.applicationId}</span>
-                    </div>
-                    {duplicateNotice.submittedAt && (
-                      <div>
-                        <span className="text-slate-400 font-bold block text-[10px] uppercase tracking-wider">Submission Date</span>
-                        <span className="font-bold text-slate-700">
-                          {new Date(duplicateNotice.submittedAt).toLocaleDateString('en-GB')}
-                        </span>
-                      </div>
-                    )}
-                    <div>
-                      <span className="text-slate-400 font-bold block text-[10px] uppercase tracking-wider">Current Pipeline Stage</span>
-                      <span className={`font-bold capitalize ${
-                        duplicateNotice.status === 'shortlisted' ? 'text-emerald-600 font-black' :
-                        duplicateNotice.status === 'rejected' ? 'text-rose-600' :
-                        duplicateNotice.status === 'under_review' ? 'text-blue-600 font-black' : 'text-amber-700'
-                      }`}>
-                        {duplicateNotice.status === 'under_review' ? 'Under Review' : duplicateNotice.status}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="mt-5 flex flex-wrap items-center gap-3">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (typeof window !== 'undefined' && duplicateNotice.applicationId) {
-                          window.sessionStorage.setItem('prma_last_app_id', duplicateNotice.applicationId);
-                        }
-                        handleNav('prma-dashboard');
-                      }}
-                      className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-sm flex items-center gap-2"
-                    >
-                      <Eye className="w-4 h-4" />
-                      Track Live Application Status
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setDuplicateNotice(null);
-                        handleNav('prma-internships-domains');
-                      }}
-                      className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-bold transition shadow-xs flex items-center gap-2"
-                    >
-                      <ArrowRight className="w-4 h-4 text-slate-500" />
-                      Apply for a Different Domain
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setDuplicateNotice(null)}
-                      className="px-3 py-2 text-xs font-bold text-slate-400 hover:text-slate-600 transition ml-auto"
-                    >
-                      Dismiss
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {formError && (
-            <div className="mb-8 p-4 rounded-2xl bg-rose-50 border border-rose-300 text-rose-800 text-xs font-semibold flex items-center gap-2.5 shadow-sm animate-shake">
-              <AlertCircle className="w-5 h-5 text-rose-600 flex-shrink-0" />
-              <span>{formError}</span>
-            </div>
-          )}
-
-          {/* MULTI-SECTION FORM */}
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {/* SECTION A: PERSONAL INFORMATION */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
-                  A
-                </div>
-                <div>
-                  <h3 className="font-black text-slate-900 text-lg">Personal Information</h3>
-                  <p className="text-xs text-slate-500">All fields marked with * are mandatory</p>
-                </div>
+        /* APPLICATION FORM VIEW */
+        <>
+          {/* TOP HERO BANNER */}
+          <section className="prma-hero-banner">
+            <div className="prma-hero-inner">
+              <div className="prma-brand-pill">
+                <Sparkles size={14} color="#FBBF24" />
+                <span>PRMA Tech™ Official Internship Initiative</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="sm:col-span-2">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Priyanshu Kumar"
-                    value={formData.fullName}
-                    onChange={(e) => handleChange('fullName', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
+              <h1 className="prma-hero-title">
+                Apply for Remote Internship (Batch 2026)
+              </h1>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Date of Birth *
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    value={formData.dob}
-                    onChange={(e) => handleChange('dob', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
+              <p className="prma-hero-subtitle">
+                100% Free Virtual Internship initiative providing industry-level practical training, weekly code reviews, official joining letter, and verified credentials.
+              </p>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Gender *
-                  </label>
-                  <select
-                    value={formData.gender}
-                    onChange={(e) => handleChange('gender', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                    <option value="Prefer not to say">Prefer not to say</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="student@example.com"
-                    value={formData.email}
-                    onChange={(e) => handleChange('email', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Mobile Number *
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="+91 98765 43210"
-                    value={formData.mobile}
-                    onChange={(e) => handleChange('mobile', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                    <span>WhatsApp Number</span>
-                    <span className="text-[10px] text-slate-400 font-normal">Optional (if same as mobile)</span>
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="Same as mobile or +91 98765 43210"
-                    value={formData.whatsapp}
-                    onChange={(e) => handleChange('whatsapp', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Current Residential Address *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="House/Hostel No., Street, Landmark"
-                    value={formData.address}
-                    onChange={(e) => handleChange('address', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    City *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Greater Noida"
-                    value={formData.city}
-                    onChange={(e) => handleChange('city', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    State *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Uttar Pradesh"
-                    value={formData.state}
-                    onChange={(e) => handleChange('state', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    PIN Code *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="201310"
-                    value={formData.pinCode}
-                    onChange={(e) => handleChange('pinCode', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* SECTION B: ACADEMIC INFORMATION (AUTOCOMPLETE COLLEGE & UNIVERSITY) */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
-                <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-sm">
-                  B
-                </div>
-                <div>
-                  <h3 className="font-black text-slate-900 text-lg">Academic Information</h3>
-                  <p className="text-xs text-slate-500">Search your institution or select 'Other' for manual entry</p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Searchable College Dropdown */}
-                <div className="sm:col-span-2 relative" ref={collegeRef}>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    College / Institute Name *
-                  </label>
-                  {!isCustomCollege ? (
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="Start typing college name to search..."
-                        value={collegeQuery}
-                        onFocus={() => setShowCollegeDropdown(true)}
-                        onChange={(e) => {
-                          setCollegeQuery(e.target.value);
-                          setShowCollegeDropdown(true);
-                        }}
-                        className="w-full px-4 py-2.5 pr-10 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-
-                      {showCollegeDropdown && (
-                        <div
-                          className="absolute z-30 left-0 right-0 mt-1 bg-white rounded-2xl border border-slate-200 shadow-xl max-h-60 overflow-y-auto"
-                          style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
-                        >
-                          {filteredColleges.map((col, idx) => (
-                            <button
-                              type="button"
-                              key={idx}
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                setCollegeQuery(col);
-                                setShowCollegeDropdown(false);
-                              }}
-                              onTouchEnd={(e) => {
-                                e.preventDefault();
-                                setCollegeQuery(col);
-                                setShowCollegeDropdown(false);
-                              }}
-                              onClick={() => {
-                                setCollegeQuery(col);
-                                setShowCollegeDropdown(false);
-                              }}
-                              className="w-full text-left px-4 py-3 hover:bg-blue-50 active:bg-blue-100 min-h-[44px] text-xs text-slate-800 border-b border-slate-100 last:border-none flex items-center justify-between"
-                            >
-                              <span className="font-medium">{col}</span>
-                              {collegeQuery === col && <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />}
-                            </button>
-                          ))}
-                          <button
-                            type="button"
-                            onMouseDown={(e) => {
-                              e.preventDefault();
-                              setIsCustomCollege(true);
-                              setShowCollegeDropdown(false);
-                              setCollegeQuery('');
-                            }}
-                            onTouchEnd={(e) => {
-                              e.preventDefault();
-                              setIsCustomCollege(true);
-                              setShowCollegeDropdown(false);
-                              setCollegeQuery('');
-                            }}
-                            onClick={() => {
-                              setIsCustomCollege(true);
-                              setShowCollegeDropdown(false);
-                              setCollegeQuery('');
-                            }}
-                            className="w-full text-left px-4 py-3 min-h-[44px] bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-xs font-bold text-blue-600 flex items-center"
-                          >
-                            + Other / Enter Institution Manually
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div>
-                      <input
-                        type="text"
-                        placeholder="Enter your exact college name"
-                        value={formData.college}
-                        onChange={(e) => handleChange('college', e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl border border-blue-400 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[46px]"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsCustomCollege(false);
-                          setFormData(p => ({ ...p, college: '' }));
-                        }}
-                        className="text-[11px] text-blue-600 hover:underline mt-1.5 inline-block font-semibold py-1"
-                      >
-                        &larr; Back to college suggestions list
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {/* Searchable University Dropdown */}
-                <div className="sm:col-span-2 relative" ref={universityRef}>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Affiliated University *
-                  </label>
-                  {!isCustomUniversity ? (
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="Start typing university name to search..."
-                        value={universityQuery}
-                        onFocus={() => setShowUniversityDropdown(true)}
-                        onChange={(e) => {
-                          setUniversityQuery(e.target.value);
-                          setShowUniversityDropdown(true);
-                        }}
-                        className="w-full px-4 py-2.5 pr-10 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[46px]"
-                      />
-                      <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-
-                      {showUniversityDropdown && (
-                        <div
-                          className="absolute z-30 left-0 right-0 mt-1 bg-white rounded-2xl border border-slate-200 shadow-xl max-h-60 overflow-y-auto"
-                          style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
-                        >
-                          {filteredUniversities.map((uni, idx) => (
-                            <button
-                              type="button"
-                              key={idx}
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                setUniversityQuery(uni);
-                                setShowUniversityDropdown(false);
-                              }}
-                              onTouchEnd={(e) => {
-                                e.preventDefault();
-                                setUniversityQuery(uni);
-                                setShowUniversityDropdown(false);
-                              }}
-                              onClick={() => {
-                                setUniversityQuery(uni);
-                                setShowUniversityDropdown(false);
-                              }}
-                              className="w-full text-left px-4 py-3 hover:bg-blue-50 active:bg-blue-100 min-h-[44px] text-xs text-slate-800 border-b border-slate-100 last:border-none flex items-center justify-between"
-                            >
-                              <span className="font-medium">{uni}</span>
-                              {universityQuery === uni && <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />}
-                            </button>
-                          ))}
-                          <button
-                            type="button"
-                            onMouseDown={(e) => {
-                              e.preventDefault();
-                              setIsCustomUniversity(true);
-                              setShowUniversityDropdown(false);
-                              setUniversityQuery('');
-                            }}
-                            onTouchEnd={(e) => {
-                              e.preventDefault();
-                              setIsCustomUniversity(true);
-                              setShowUniversityDropdown(false);
-                              setUniversityQuery('');
-                            }}
-                            onClick={() => {
-                              setIsCustomUniversity(true);
-                              setShowUniversityDropdown(false);
-                              setUniversityQuery('');
-                            }}
-                            className="w-full text-left px-4 py-3 min-h-[44px] bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-xs font-bold text-blue-600 flex items-center"
-                          >
-                            + Other / Enter University Manually
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div>
-                      <input
-                        type="text"
-                        placeholder="Enter your affiliated university name"
-                        value={formData.university}
-                        onChange={(e) => handleChange('university', e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl border border-blue-400 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[46px]"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setIsCustomUniversity(false);
-                          setFormData(p => ({ ...p, university: '' }));
-                        }}
-                        className="text-[11px] text-blue-600 hover:underline mt-1.5 inline-block font-semibold py-1"
-                      >
-                        &larr; Back to university suggestions list
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Course / Degree *
-                  </label>
-                  <select
-                    value={formData.course}
-                    onChange={(e) => handleChange('course', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="B.Tech">B.Tech (Bachelor of Technology)</option>
-                    <option value="BCA">BCA (Bachelor of Computer Applications)</option>
-                    <option value="MCA">MCA (Master of Computer Applications)</option>
-                    <option value="M.Tech">M.Tech (Master of Technology)</option>
-                    <option value="B.Sc Computer Science">B.Sc Computer Science / IT</option>
-                    <option value="B.Pharm">B.Pharm</option>
-                    <option value="MBA">MBA</option>
-                    <option value="Diploma in Engineering">Diploma in Engineering</option>
-                    <option value="Other">Other Degree</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Branch / Specialization *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Computer Science, AI & ML, ECE"
-                    value={formData.branch}
-                    onChange={(e) => handleChange('branch', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Current Academic Year *
-                  </label>
-                  <select
-                    value={formData.year}
-                    onChange={(e) => handleChange('year', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="1st Year">1st Year</option>
-                    <option value="2nd Year">2nd Year</option>
-                    <option value="3rd Year">3rd Year</option>
-                    <option value="4th Year">4th Year</option>
-                    <option value="Graduated / Final Year">Graduated / Final Year</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Current Semester *
-                  </label>
-                  <select
-                    value={formData.semester}
-                    onChange={(e) => handleChange('semester', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="1st">1st Semester</option>
-                    <option value="2nd">2nd Semester</option>
-                    <option value="3rd">3rd Semester</option>
-                    <option value="4th">4th Semester</option>
-                    <option value="5th">5th Semester</option>
-                    <option value="6th">6th Semester</option>
-                    <option value="7th">7th Semester</option>
-                    <option value="8th">8th Semester</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Graduation Year *
-                  </label>
-                  <select
-                    value={formData.graduationYear}
-                    onChange={(e) => handleChange('graduationYear', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                    <option value="2029">2029</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                    <span>Student ID / University Roll No.</span>
-                    <span className="text-[10px] text-slate-400 font-normal">Optional</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. 2100970100045"
-                    value={formData.rollNumber}
-                    onChange={(e) => handleChange('rollNumber', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[46px]"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* SECTION C: TECHNICAL INFORMATION */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
-                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm">
-                  C
-                </div>
-                <div>
-                  <h3 className="font-black text-slate-900 text-lg">Technical Information</h3>
-                  <p className="text-xs text-slate-500">Your practical knowledge and programming background</p>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Technical Skills (comma-separated) *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. React, Python, Git, SQL, Docker, Tailwind CSS"
-                    value={formData.skills}
-                    onChange={(e) => handleChange('skills', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Programming Languages Known *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Python, Java, C++, JavaScript"
-                    value={formData.languages}
-                    onChange={(e) => handleChange('languages', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Experience Level *
-                  </label>
-                  <select
-                    value={formData.experienceLevel}
-                    onChange={(e) => handleChange('experienceLevel', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="Beginner">Beginner (Foundational knowledge, ready to learn)</option>
-                    <option value="Intermediate">Intermediate (Built a few academic / personal projects)</option>
-                    <option value="Advanced">Advanced (Extensive project work and strong fundamentals)</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Previous Project Experience / Academic Assignments
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="Briefly describe 1 or 2 projects or assignments you have worked on..."
-                    value={formData.experience}
-                    onChange={(e) => handleChange('experience', e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-100">
+              {/* 4 Feature Highlights */}
+              <div className="prma-highlights-row">
+                <div className="prma-highlight-chip featured">
+                  <div className="prma-chip-icon">₹0</div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Internship Duration *
+                    <div className="prma-chip-title">Zero Application Fee</div>
+                    <div className="prma-chip-sub">100% Free Program</div>
+                  </div>
+                </div>
+
+                <div className="prma-highlight-chip">
+                  <div className="prma-chip-icon">
+                    <FileText size={16} />
+                  </div>
+                  <div>
+                    <div className="prma-chip-title">Official Joining Letter</div>
+                    <div className="prma-chip-sub">Issued on Selection</div>
+                  </div>
+                </div>
+
+                <div className="prma-highlight-chip">
+                  <div className="prma-chip-icon">
+                    <Clock size={16} />
+                  </div>
+                  <div>
+                    <div className="prma-chip-title">1 Month &bull; Remote</div>
+                    <div className="prma-chip-sub">Self-Paced Flexible</div>
+                  </div>
+                </div>
+
+                <div className="prma-highlight-chip">
+                  <div className="prma-chip-icon">
+                    <Award size={16} />
+                  </div>
+                  <div>
+                    <div className="prma-chip-title">Verified Certificate</div>
+                    <div className="prma-chip-sub">MSME Registered</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* MAIN APPLICATION CONTAINER */}
+          <main className="prma-content-container">
+            {/* Active Selected Domain Showcase Card */}
+            <div className="prma-domain-active-card">
+              <div className="prma-domain-active-info">
+                <div className="prma-domain-active-icon">
+                  <PrmaDomainIcon iconType={activeDomain.iconType} className="w-7 h-7" color={activeDomain.color} />
+                </div>
+                <div>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#881337', display: 'block' }}>
+                    Applying For Track:
+                  </span>
+                  <div className="prma-domain-active-title">
+                    {activeDomain.title}
+                  </div>
+                  <div className="prma-domain-active-meta">
+                    <span>{activeDomain.category}</span>
+                    <span>&bull;</span>
+                    <span>1 Month Remote</span>
+                    <span>&bull;</span>
+                    <span style={{ color: '#047857', fontWeight: 700 }}>Zero Registration Fee</span>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsDomainPickerOpen(true)}
+                className="prma-btn-change-domain"
+              >
+                <span>Change Domain</span>
+                <ChevronDown size={14} />
+              </button>
+            </div>
+
+            {/* Error Message Banner */}
+            {formError && (
+              <div className="prma-error-banner" role="alert">
+                <AlertCircle size={18} color="#E11D48" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <div>
+                  <strong style={{ display: 'block', marginBottom: '2px' }}>Please check your submission:</strong>
+                  <span>{formError}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Duplicate Notice Banner */}
+            {duplicateNotice && (
+              <div className="prma-duplicate-banner" role="alert">
+                <ShieldCheck size={20} color="#D97706" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <div>
+                  <strong style={{ display: 'block', marginBottom: '2px' }}>Application Already Received</strong>
+                  <span>
+                    You have already submitted an application for <strong>{activeDomain.title}</strong> with this email. Your Application ID is <strong>{duplicateNotice.applicationId}</strong>. Check your inbox for updates!
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* THE FORM */}
+            <form onSubmit={handleSubmit} noValidate>
+              {/* SECTION 1: PERSONAL INFORMATION */}
+              <div className="prma-form-section">
+                <div className="prma-section-header">
+                  <div className="prma-section-number">1</div>
+                  <h3 className="prma-section-title">Personal Information</h3>
+                </div>
+
+                <div className="prma-grid-2">
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Full Legal Name <span className="req">*</span></span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Priyanshu Kumar"
+                      value={formData.fullName}
+                      onChange={(e) => handleInputChange('fullName', e.target.value)}
+                      className="prma-input"
+                      required
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Date of Birth <span className="req">*</span></span>
+                    </label>
+                    <input
+                      type="date"
+                      value={formData.dob}
+                      onChange={(e) => handleInputChange('dob', e.target.value)}
+                      className="prma-input"
+                      required
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Email Address <span className="req">*</span></span>
+                      <span style={{ fontSize: '0.72rem', color: '#94A3B8' }}>Joining letter sent here</span>
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="e.g. student@college.edu or gmail.com"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className="prma-input"
+                      required
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Mobile Number <span className="req">*</span></span>
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="10-digit mobile number"
+                      value={formData.mobile}
+                      onChange={(e) => handleInputChange('mobile', e.target.value.replace(/\D/g, '').slice(0, 10))}
+                      className="prma-input"
+                      maxLength={10}
+                      required
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>WhatsApp Number (Optional)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="Leave blank to use mobile number"
+                      value={formData.whatsapp}
+                      onChange={(e) => handleInputChange('whatsapp', e.target.value.replace(/\D/g, '').slice(0, 10))}
+                      className="prma-input"
+                      maxLength={10}
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Gender <span className="req">*</span></span>
                     </label>
                     <select
-                      value={formData.duration}
-                      onChange={(e) => handleChange('duration', e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold"
+                      value={formData.gender}
+                      onChange={(e) => handleInputChange('gender', e.target.value)}
+                      className="prma-select"
                     >
-                      <option value="1 Month">1 Month (4 Weeks) — Standard Track</option>
-                      <option value="2 Months">2 Months (8 Weeks) — Comprehensive Track</option>
-                      <option value="6 Weeks">6 Weeks (1.5 Months) — Semester Track</option>
-                      <option value="2 Weeks">2 Weeks (15 Days) — Fast Track</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Preferred Start Date *
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>City <span className="req">*</span></span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Noida / New Delhi"
+                      value={formData.city}
+                      onChange={(e) => handleInputChange('city', e.target.value)}
+                      className="prma-input"
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>State <span className="req">*</span></span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Uttar Pradesh"
+                      value={formData.state}
+                      onChange={(e) => handleInputChange('state', e.target.value)}
+                      className="prma-input"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* SECTION 2: ACADEMIC DETAILS */}
+              <div className="prma-form-section">
+                <div className="prma-section-header">
+                  <div className="prma-section-number">2</div>
+                  <h3 className="prma-section-title">Academic Details</h3>
+                </div>
+
+                <div className="prma-grid-2">
+                  {/* College Autocomplete */}
+                  <div className="prma-form-group" ref={collegeRef}>
+                    <label className="prma-label">
+                      <span>College / Institute Name <span className="req">*</span></span>
+                      <button
+                        type="button"
+                        onClick={() => setIsCustomCollege(!isCustomCollege)}
+                        style={{ background: 'none', border: 'none', color: '#881337', fontSize: '0.74rem', fontWeight: 700, cursor: 'pointer', padding: 0 }}
+                      >
+                        {isCustomCollege ? 'Search suggestions' : 'Not listed? Enter custom'}
+                      </button>
+                    </label>
+                    {isCustomCollege ? (
+                      <input
+                        type="text"
+                        placeholder="Type full college name"
+                        value={formData.college}
+                        onChange={(e) => handleInputChange('college', e.target.value)}
+                        className="prma-input"
+                        required
+                      />
+                    ) : (
+                      <>
+                        <input
+                          type="text"
+                          placeholder="Search your college name..."
+                          value={collegeQuery}
+                          onChange={(e) => {
+                            setCollegeQuery(e.target.value);
+                            setShowCollegeDropdown(true);
+                          }}
+                          onFocus={() => setShowCollegeDropdown(true)}
+                          className="prma-input"
+                          required
+                        />
+                        {showCollegeDropdown && filteredColleges.length > 0 && (
+                          <div className="prma-autocomplete-list">
+                            {filteredColleges.map((col, idx) => (
+                              <div
+                                key={idx}
+                                className="prma-autocomplete-item"
+                                onClick={() => {
+                                  setCollegeQuery(col);
+                                  handleInputChange('college', col);
+                                  setShowCollegeDropdown(false);
+                                }}
+                              >
+                                {col}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+
+                  {/* University Autocomplete */}
+                  <div className="prma-form-group" ref={universityRef}>
+                    <label className="prma-label">
+                      <span>University / Board Affiliation <span className="req">*</span></span>
+                      <button
+                        type="button"
+                        onClick={() => setIsCustomUniversity(!isCustomUniversity)}
+                        style={{ background: 'none', border: 'none', color: '#881337', fontSize: '0.74rem', fontWeight: 700, cursor: 'pointer', padding: 0 }}
+                      >
+                        {isCustomUniversity ? 'Search suggestions' : 'Not listed? Enter custom'}
+                      </button>
+                    </label>
+                    {isCustomUniversity ? (
+                      <input
+                        type="text"
+                        placeholder="Type full university name"
+                        value={formData.university}
+                        onChange={(e) => handleInputChange('university', e.target.value)}
+                        className="prma-input"
+                        required
+                      />
+                    ) : (
+                      <>
+                        <input
+                          type="text"
+                          placeholder="Search your university affiliation..."
+                          value={universityQuery}
+                          onChange={(e) => {
+                            setUniversityQuery(e.target.value);
+                            setShowUniversityDropdown(true);
+                          }}
+                          onFocus={() => setShowUniversityDropdown(true)}
+                          className="prma-input"
+                          required
+                        />
+                        {showUniversityDropdown && filteredUniversities.length > 0 && (
+                          <div className="prma-autocomplete-list">
+                            {filteredUniversities.map((uni, idx) => (
+                              <div
+                                key={idx}
+                                className="prma-autocomplete-item"
+                                onClick={() => {
+                                  setUniversityQuery(uni);
+                                  handleInputChange('university', uni);
+                                  setShowUniversityDropdown(false);
+                                }}
+                              >
+                                {uni}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>University Roll Number / Student ID <span className="req">*</span></span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. 2100970100012"
+                      value={formData.rollNumber}
+                      onChange={(e) => handleInputChange('rollNumber', e.target.value)}
+                      className="prma-input"
+                      required
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Course / Degree <span className="req">*</span></span>
+                    </label>
+                    <select
+                      value={formData.course}
+                      onChange={(e) => handleInputChange('course', e.target.value)}
+                      className="prma-select"
+                    >
+                      <option value="B.Tech">B.Tech (Bachelor of Technology)</option>
+                      <option value="BCA">BCA (Bachelor of Computer Applications)</option>
+                      <option value="MCA">MCA (Master of Computer Applications)</option>
+                      <option value="M.Tech">M.Tech (Master of Technology)</option>
+                      <option value="B.Sc CS/IT">B.Sc Computer Science / IT</option>
+                      <option value="Diploma">Polytechnic Diploma</option>
+                      <option value="Other">Other Degree</option>
+                    </select>
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Branch / Specialization <span className="req">*</span></span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Computer Science and Engineering"
+                      value={formData.branch}
+                      onChange={(e) => handleInputChange('branch', e.target.value)}
+                      className="prma-input"
+                      required
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Current Academic Year <span className="req">*</span></span>
+                    </label>
+                    <select
+                      value={formData.year}
+                      onChange={(e) => handleInputChange('year', e.target.value)}
+                      className="prma-select"
+                    >
+                      <option value="1st Year">1st Year</option>
+                      <option value="2nd Year">2nd Year</option>
+                      <option value="3rd Year">3rd Year</option>
+                      <option value="4th Year">4th Year</option>
+                      <option value="Passout / Graduate">Passout / Graduate</option>
+                    </select>
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Graduation Year <span className="req">*</span></span>
+                    </label>
+                    <select
+                      value={formData.graduationYear}
+                      onChange={(e) => handleInputChange('graduationYear', e.target.value)}
+                      className="prma-select"
+                    >
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
+                      <option value="2026">2026</option>
+                      <option value="2027">2027</option>
+                      <option value="2028">2028</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* SECTION 3: TECHNICAL SKILLS */}
+              <div className="prma-form-section">
+                <div className="prma-section-header">
+                  <div className="prma-section-number">3</div>
+                  <h3 className="prma-section-title">Technical Background &amp; Skills</h3>
+                </div>
+
+                <div className="prma-grid-2">
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Known Skills &amp; Frameworks</span>
+                      <span style={{ fontSize: '0.72rem', color: '#94A3B8' }}>Comma separated</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Python, Machine Learning, TensorFlow, Pandas"
+                      value={formData.skills}
+                      onChange={(e) => handleInputChange('skills', e.target.value)}
+                      className="prma-input"
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Programming Languages</span>
+                      <span style={{ fontSize: '0.72rem', color: '#94A3B8' }}>Comma separated</span>
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Python, C++, JavaScript, SQL"
+                      value={formData.languages}
+                      onChange={(e) => handleInputChange('languages', e.target.value)}
+                      className="prma-input"
+                    />
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Self-Assessed Experience Level</span>
+                    </label>
+                    <select
+                      value={formData.experienceLevel}
+                      onChange={(e) => handleInputChange('experienceLevel', e.target.value)}
+                      className="prma-select"
+                    >
+                      <option value="Beginner">Beginner (Curious, eager to learn)</option>
+                      <option value="Intermediate">Intermediate (Built a few projects)</option>
+                      <option value="Advanced">Advanced (Production familiar)</option>
+                    </select>
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>Preferred Start Date</span>
                     </label>
                     <select
                       value={formData.preferredStartDate}
-                      onChange={(e) => handleChange('preferredStartDate', e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold"
+                      onChange={(e) => handleInputChange('preferredStartDate', e.target.value)}
+                      className="prma-select"
                     >
-                      <option value="Immediate">Immediate (Next Upcoming Batch)</option>
-                      <option value="15th of Current Month">15th of Current Month</option>
+                      <option value="Immediate">Immediate (Within 48 hours)</option>
+                      <option value="Next Monday">Next Monday</option>
                       <option value="1st of Next Month">1st of Next Month</option>
-                      <option value="Flexible / As Scheduled">Flexible / As Scheduled</option>
                     </select>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* SECTION D: PROFESSIONAL PROFILES (COMPULSORY GITHUB & LINKEDIN) */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
-                <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-sm">
-                  D
-                </div>
-                <div>
-                  <h3 className="font-black text-slate-900 text-lg">Professional Profiles</h3>
-                  <p className="text-xs text-slate-500">Both GitHub and LinkedIn profiles are compulsory</p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    GitHub Profile URL *
-                  </label>
-                  <div className="relative">
-                    <Github className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="url"
-                      required
-                      placeholder="https://github.com/username"
-                      value={formData.githubUrl}
-                      onChange={(e) => handleChange('githubUrl', e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <span className="text-[11px] text-slate-400 block mt-1">Example: https://github.com/priyanshu</span>
+              {/* SECTION 4: PROFESSIONAL PROFILES */}
+              <div className="prma-form-section">
+                <div className="prma-section-header">
+                  <div className="prma-section-number">4</div>
+                  <h3 className="prma-section-title">Professional Profiles</h3>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    LinkedIn Profile URL *
-                  </label>
-                  <div className="relative">
-                    <Linkedin className="w-4 h-4 text-blue-600 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                    <input
-                      type="url"
-                      required
-                      placeholder="https://www.linkedin.com/in/username/"
-                      value={formData.linkedinUrl}
-                      onChange={(e) => handleChange('linkedinUrl', e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <span className="text-[11px] text-slate-400 block mt-1">Example: https://www.linkedin.com/in/priyanshu/</span>
-                </div>
-              </div>
-            </div>
-
-            {/* SECTION E: COMPULSORY RESUME UPLOAD */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
-                <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-sm">
-                  E
-                </div>
-                <div>
-                  <h3 className="font-black text-slate-900 text-lg">Resume Upload * (Compulsory)</h3>
-                  <p className="text-xs text-slate-500">PDF format only &bull; Maximum file size 5 MB</p>
-                </div>
-              </div>
-
-              {!resumeFile ? (
-                <div>
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    accept=".pdf,application/pdf"
-                    onChange={handleResumeSelect}
-                    className="hidden"
-                    id="resume-file-input"
-                  />
-                  <label
-                    htmlFor="resume-file-input"
-                    className="border-2 border-dashed border-slate-300 hover:border-blue-500 rounded-3xl p-8 flex flex-col items-center justify-center cursor-pointer transition bg-slate-50 hover:bg-blue-50/50"
-                  >
-                    <div className="w-14 h-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center mb-3">
-                      <UploadCloud className="w-7 h-7" />
+                <div className="prma-grid-2">
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>GitHub Profile URL <span className="req">*</span></span>
+                    </label>
+                    <div style={{ position: 'relative' }}>
+                      <Github size={16} color="#64748B" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
+                      <input
+                        type="url"
+                        placeholder="https://github.com/your-username"
+                        value={formData.githubUrl}
+                        onChange={(e) => handleInputChange('githubUrl', e.target.value)}
+                        className="prma-input"
+                        style={{ paddingLeft: '36px' }}
+                        required
+                      />
                     </div>
-                    <span className="font-bold text-sm text-slate-900">Click to upload your resume</span>
-                    <span className="text-xs text-slate-500 mt-1">PDF format (.pdf) &bull; Up to 5 MB</span>
-                  </label>
+                  </div>
+
+                  <div className="prma-form-group">
+                    <label className="prma-label">
+                      <span>LinkedIn Profile URL <span className="req">*</span></span>
+                    </label>
+                    <div style={{ position: 'relative' }}>
+                      <Linkedin size={16} color="#0A66C2" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
+                      <input
+                        type="url"
+                        placeholder="https://www.linkedin.com/in/your-username"
+                        value={formData.linkedinUrl}
+                        onChange={(e) => handleInputChange('linkedinUrl', e.target.value)}
+                        className="prma-input"
+                        style={{ paddingLeft: '36px' }}
+                        required
+                      />
+                    </div>
+                  </div>
                 </div>
-              ) : (
-                <div className="bg-emerald-50 rounded-2xl border border-emerald-200 p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
-                      <FileText className="w-5 h-5" />
+              </div>
+
+              {/* SECTION 5: RESUME UPLOAD */}
+              <div className="prma-form-section">
+                <div className="prma-section-header">
+                  <div className="prma-section-number">5</div>
+                  <h3 className="prma-section-title">Resume / CV Upload (Compulsory PDF) <span className="req">*</span></h3>
+                </div>
+
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  ref={fileInputRef}
+                  onChange={handleResumeSelect}
+                  style={{ display: 'none' }}
+                />
+
+                {!resumeFile ? (
+                  <div
+                    className="prma-upload-zone"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#FFF1F2', color: '#881337', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <UploadCloud size={24} />
                     </div>
                     <div>
-                      <span className="text-sm font-bold text-slate-900 block">{resumeFile.name}</span>
-                      <span className="text-xs text-slate-500">
-                        {(resumeFile.size / (1024 * 1024)).toFixed(2)} MB &bull; PDF Document Ready
+                      <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#881337', display: 'block' }}>
+                        Click to Upload Resume (PDF)
+                      </span>
+                      <span style={{ fontSize: '0.74rem', color: '#64748B' }}>
+                        PDF documents only &bull; Maximum file size: 5 MB
                       </span>
                     </div>
                   </div>
-
-                  <div className="flex items-center gap-2">
-                    {resumeBase64 && (
-                      <a
-                        href={resumeBase64}
-                        download={resumeFile.name}
-                        className="p-2 text-slate-600 hover:text-blue-600 rounded-lg hover:bg-white"
-                        title="Preview / Download"
-                      >
-                        <Eye className="w-4 h-4" />
-                      </a>
-                    )}
+                ) : (
+                  <div className="prma-file-preview">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', minWidth: 0 }}>
+                      <FileText size={22} color="#059669" style={{ flexShrink: 0 }} />
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontSize: '0.86rem', fontWeight: 800, color: '#065F46', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                          {resumeFile.name}
+                        </div>
+                        <div style={{ fontSize: '0.72rem', color: '#059669' }}>
+                          {(resumeFile.size / 1024).toFixed(1)} KB &bull; Verified PDF
+                        </div>
+                      </div>
+                    </div>
                     <button
                       type="button"
                       onClick={removeResume}
-                      className="p-2 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-white"
-                      title="Remove and replace"
+                      style={{ background: 'none', border: 'none', color: '#E11D48', cursor: 'pointer', padding: '6px' }}
+                      aria-label="Remove resume"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 size={16} />
                     </button>
                   </div>
-                </div>
-              )}
+                )}
 
-              {resumeError && (
-                <p className="text-xs text-rose-600 font-semibold mt-2">{resumeError}</p>
-              )}
-            </div>
-
-            {/* SECTION F: SOCIAL MEDIA FOLLOW & SCREENSHOT VERIFICATION */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
-                <div className="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center font-bold text-sm">
-                  F
-                </div>
-                <div>
-                  <h3 className="font-black text-slate-900 text-lg">Social Media Follow Requirement *</h3>
-                  <p className="text-xs text-slate-500">Compulsory follow confirmation &amp; screenshot verification</p>
-                </div>
+                {resumeError && (
+                  <div style={{ marginTop: '0.5rem', color: '#E11D48', fontSize: '0.78rem', fontWeight: 600 }}>
+                    {resumeError}
+                  </div>
+                )}
               </div>
 
-              <div className="space-y-6">
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  To stay updated with technical assignments, announcements, and cohort achievements, please follow PRMA Tech on both LinkedIn and Instagram. <strong>Uploading a follow screenshot for both platforms is compulsory</strong> before your application can be submitted and reviewed.
+              {/* SECTION 6: SOCIAL MEDIA VERIFICATION */}
+              <div className="prma-form-section">
+                <div className="prma-section-header">
+                  <div className="prma-section-number">6</div>
+                  <h3 className="prma-section-title">Official Channel Verification <span className="req">*</span></h3>
+                </div>
+
+                <p style={{ fontSize: '0.82rem', color: '#64748B', lineHeight: 1.5, margin: '0 0 1rem' }}>
+                  To ensure smooth batch coordination, students are required to follow PRMA Tech official handles where joining letters, project problem statements, and batch schedules are announced.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* LinkedIn Follow & Mandatory Screenshot */}
-                  <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-4">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold uppercase tracking-wider text-[#0077B5] flex items-center gap-1.5">
-                          <Linkedin className="w-4 h-4" />
-                          LinkedIn Follow *
-                        </span>
-                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
-                          Compulsory
-                        </span>
-                      </div>
-
-                      <a
-                        href="https://www.linkedin.com/company/prmatech/about/?viewAsMember=true"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full py-2.5 px-4 rounded-xl bg-[#0077B5] hover:bg-[#006097] text-white text-xs font-bold flex items-center justify-center gap-2 transition shadow-sm"
-                      >
-                        <Linkedin className="w-4 h-4" />
-                        Follow PRMA Tech on LinkedIn
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-
-                      <div
-                        onClick={() => handleChange('followedLinkedIn', !formData.followedLinkedIn)}
-                        className={`p-3 rounded-xl border cursor-pointer select-none transition flex items-start gap-2.5 ${
-                          formData.followedLinkedIn ? 'bg-blue-50 border-blue-400' : 'bg-white border-slate-200'
-                        }`}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={formData.followedLinkedIn}
-                          onChange={(e) => handleChange('followedLinkedIn', e.target.checked)}
-                          onClick={(e) => e.stopPropagation()}
-                          className="w-4 h-4 text-blue-600 rounded mt-0.5 cursor-pointer"
-                        />
-                        <span className="font-semibold text-xs text-slate-800">
-                          I have followed the official PRMA Tech LinkedIn page. *
-                        </span>
-                      </div>
+                {/* LinkedIn Follow Card */}
+                <div className="prma-social-card">
+                  <div className="prma-social-header">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <Linkedin size={20} color="#0A66C2" />
+                      <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0F172A' }}>
+                        1. Follow PRMA Tech on LinkedIn <span className="req">*</span>
+                      </span>
                     </div>
 
-                    {/* Mandatory LinkedIn Screenshot Upload */}
-                    <div className="pt-3 border-t border-slate-200">
-                      <label className="block text-xs font-bold text-slate-800 mb-1.5">
-                        Upload LinkedIn Follow Screenshot *
-                      </label>
-                      <input
-                        type="file"
-                        ref={linkedinInputRef}
-                        accept="image/*,image/png,image/jpeg,image/jpg"
-                        onChange={handleLinkedinScreenshotSelect}
-                        className="hidden"
-                      />
-
-                      {!linkedinScreenshotBase64 ? (
-                        <button
-                          type="button"
-                          onClick={() => linkedinInputRef.current?.click()}
-                          className="w-full py-4 px-4 border-2 border-dashed border-slate-300 hover:border-blue-500 rounded-xl bg-white text-center transition flex flex-col items-center justify-center gap-1.5 group cursor-pointer"
-                        >
-                          <Upload className="w-5 h-5 text-slate-400 group-hover:text-blue-600 transition" />
-                          <span className="text-xs font-bold text-slate-700 group-hover:text-blue-600">
-                            Choose Screenshot (JPG, PNG)
-                          </span>
-                          <span className="text-[10px] text-slate-400">
-                            Clear proof showing following button clicked
-                          </span>
-                        </button>
-                      ) : (
-                        <div className="bg-white p-3 rounded-xl border border-blue-200 space-y-2">
-                          <div className="relative rounded-lg overflow-hidden border border-slate-100 max-h-48 flex items-center justify-center bg-slate-900/5">
-                            <img
-                              src={linkedinScreenshotBase64}
-                              alt="LinkedIn Follow Screenshot Preview"
-                              className="w-full h-auto max-h-44 object-contain rounded"
-                            />
-                          </div>
-                          <div className="flex items-center justify-between text-xs pt-1">
-                            <span className="font-semibold text-slate-700 truncate max-w-[170px]" title={linkedinScreenshotFile?.name}>
-                              {linkedinScreenshotFile?.name || 'LinkedIn_Screenshot.png'}
-                            </span>
-                            <div className="flex items-center gap-2">
-                              <button
-                                type="button"
-                                onClick={() => linkedinInputRef.current?.click()}
-                                className="text-blue-600 hover:underline font-bold text-[11px]"
-                              >
-                                Replace
-                              </button>
-                              <button
-                                type="button"
-                                onClick={removeLinkedinScreenshot}
-                                className="text-rose-600 hover:underline font-bold text-[11px]"
-                              >
-                                Remove
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {linkedinScreenshotError && (
-                        <p className="text-[11px] text-rose-600 font-semibold mt-1">
-                          {linkedinScreenshotError}
-                        </p>
-                      )}
-                    </div>
+                    <a
+                      href="https://www.linkedin.com/company/prmatech/about/?viewAsMember=true"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="prma-btn-social-follow linkedin"
+                    >
+                      <span>Follow Company</span>
+                      <ExternalLink size={12} />
+                    </a>
                   </div>
 
-                  {/* Instagram Follow & Mandatory Screenshot */}
-                  <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-4">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold uppercase tracking-wider text-pink-600 flex items-center gap-1.5">
-                          <Instagram className="w-4 h-4" />
-                          Instagram Follow (@prma.tech) *
-                        </span>
-                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-pink-100 text-pink-800">
-                          Compulsory
-                        </span>
-                      </div>
+                  <label className="prma-checkbox-row">
+                    <input
+                      type="checkbox"
+                      checked={formData.followedLinkedIn}
+                      onChange={(e) => handleInputChange('followedLinkedIn', e.target.checked)}
+                      className="prma-checkbox"
+                    />
+                    <span style={{ fontSize: '0.8rem', color: '#334155', lineHeight: 1.4 }}>
+                      I confirm that I have followed PRMA Tech on LinkedIn.
+                    </span>
+                  </label>
 
-                      <a
-                        href="https://www.instagram.com/prma.tech/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:opacity-95 text-white text-xs font-bold flex items-center justify-center gap-2 transition shadow-sm"
+                  {/* Screenshot upload */}
+                  <div style={{ marginTop: '0.75rem' }}>
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/png,image/jpg"
+                      ref={linkedinInputRef}
+                      onChange={handleLinkedinScreenshot}
+                      style={{ display: 'none' }}
+                    />
+                    {!linkedinScreenshotFile ? (
+                      <button
+                        type="button"
+                        onClick={() => linkedinInputRef.current?.click()}
+                        style={{
+                          width: '100%',
+                          padding: '0.65rem',
+                          borderRadius: '10px',
+                          border: '1.5px dashed #CBD5E1',
+                          background: '#FFFFFF',
+                          color: '#475569',
+                          fontSize: '0.78rem',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '0.4rem'
+                        }}
                       >
-                        <Instagram className="w-4 h-4" />
-                        Follow PRMA Tech on Instagram
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-
-                      <div
-                        onClick={() => handleChange('followedInstagram', !formData.followedInstagram)}
-                        className={`p-3 rounded-xl border cursor-pointer select-none transition flex items-start gap-2.5 ${
-                          formData.followedInstagram ? 'bg-pink-50 border-pink-400' : 'bg-white border-slate-200'
-                        }`}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={formData.followedInstagram}
-                          onChange={(e) => handleChange('followedInstagram', e.target.checked)}
-                          onClick={(e) => e.stopPropagation()}
-                          className="w-4 h-4 text-pink-600 rounded mt-0.5 cursor-pointer"
-                        />
-                        <span className="font-semibold text-xs text-slate-800">
-                          I have followed the official PRMA Tech Instagram page (@prma.tech). *
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Mandatory Instagram Screenshot Upload */}
-                    <div className="pt-3 border-t border-slate-200">
-                      <label className="block text-xs font-bold text-slate-800 mb-1.5">
-                        Upload Instagram Follow Screenshot *
-                      </label>
-                      <input
-                        type="file"
-                        ref={instagramInputRef}
-                        accept="image/*,image/png,image/jpeg,image/jpg"
-                        onChange={handleInstagramScreenshotSelect}
-                        className="hidden"
-                      />
-
-                      {!instagramScreenshotBase64 ? (
+                        <ImageIcon size={14} />
+                        <span>Upload LinkedIn Following Screenshot (Compulsory JPG/PNG)</span>
+                      </button>
+                    ) : (
+                      <div className="prma-file-preview">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <CheckCircle2 size={16} color="#059669" />
+                          <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#065F46' }}>
+                            {linkedinScreenshotFile.name} (Uploaded)
+                          </span>
+                        </div>
                         <button
                           type="button"
-                          onClick={() => instagramInputRef.current?.click()}
-                          className="w-full py-4 px-4 border-2 border-dashed border-slate-300 hover:border-pink-500 rounded-xl bg-white text-center transition flex flex-col items-center justify-center gap-1.5 group cursor-pointer"
+                          onClick={() => {
+                            setLinkedinScreenshotFile(null);
+                            setLinkedinScreenshotBase64('');
+                          }}
+                          style={{ background: 'none', border: 'none', color: '#E11D48', cursor: 'pointer' }}
                         >
-                          <Upload className="w-5 h-5 text-slate-400 group-hover:text-pink-600 transition" />
-                          <span className="text-xs font-bold text-slate-700 group-hover:text-pink-600">
-                            Choose Screenshot (JPG, PNG)
-                          </span>
-                          <span className="text-[10px] text-slate-400">
-                            Clear proof showing following @prma.tech
-                          </span>
+                          <Trash2 size={14} />
                         </button>
-                      ) : (
-                        <div className="bg-white p-3 rounded-xl border border-pink-200 space-y-2">
-                          <div className="relative rounded-lg overflow-hidden border border-slate-100 max-h-48 flex items-center justify-center bg-slate-900/5">
-                            <img
-                              src={instagramScreenshotBase64}
-                              alt="Instagram Follow Screenshot Preview"
-                              className="w-full h-auto max-h-44 object-contain rounded"
-                            />
-                          </div>
-                          <div className="flex items-center justify-between text-xs pt-1">
-                            <span className="font-semibold text-slate-700 truncate max-w-[170px]" title={instagramScreenshotFile?.name}>
-                              {instagramScreenshotFile?.name || 'Instagram_Screenshot.png'}
-                            </span>
-                            <div className="flex items-center gap-2">
-                              <button
-                                type="button"
-                                onClick={() => instagramInputRef.current?.click()}
-                                className="text-pink-600 hover:underline font-bold text-[11px]"
-                              >
-                                Replace
-                              </button>
-                              <button
-                                type="button"
-                                onClick={removeInstagramScreenshot}
-                                className="text-rose-600 hover:underline font-bold text-[11px]"
-                              >
-                                Remove
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      )}
+                      </div>
+                    )}
+                    {linkedinScreenshotError && (
+                      <div style={{ color: '#E11D48', fontSize: '0.75rem', marginTop: '4px' }}>
+                        {linkedinScreenshotError}
+                      </div>
+                    )}
+                  </div>
+                </div>
 
-                      {instagramScreenshotError && (
-                        <p className="text-[11px] text-rose-600 font-semibold mt-1">
-                          {instagramScreenshotError}
-                        </p>
-                      )}
+                {/* Instagram Follow Card */}
+                <div className="prma-social-card">
+                  <div className="prma-social-header">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <Instagram size={20} color="#DD2A7B" />
+                      <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0F172A' }}>
+                        2. Follow PRMA Tech on Instagram <span className="req">*</span>
+                      </span>
                     </div>
+
+                    <a
+                      href="https://www.instagram.com/prma.tech/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="prma-btn-social-follow instagram"
+                    >
+                      <span>Follow Handle</span>
+                      <ExternalLink size={12} />
+                    </a>
+                  </div>
+
+                  <label className="prma-checkbox-row">
+                    <input
+                      type="checkbox"
+                      checked={formData.followedInstagram}
+                      onChange={(e) => handleInputChange('followedInstagram', e.target.checked)}
+                      className="prma-checkbox"
+                    />
+                    <span style={{ fontSize: '0.8rem', color: '#334155', lineHeight: 1.4 }}>
+                      I confirm that I have followed PRMA Tech on Instagram.
+                    </span>
+                  </label>
+
+                  {/* Screenshot upload */}
+                  <div style={{ marginTop: '0.75rem' }}>
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/png,image/jpg"
+                      ref={instagramInputRef}
+                      onChange={handleInstagramScreenshot}
+                      style={{ display: 'none' }}
+                    />
+                    {!instagramScreenshotFile ? (
+                      <button
+                        type="button"
+                        onClick={() => instagramInputRef.current?.click()}
+                        style={{
+                          width: '100%',
+                          padding: '0.65rem',
+                          borderRadius: '10px',
+                          border: '1.5px dashed #CBD5E1',
+                          background: '#FFFFFF',
+                          color: '#475569',
+                          fontSize: '0.78rem',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '0.4rem'
+                        }}
+                      >
+                        <ImageIcon size={14} />
+                        <span>Upload Instagram Following Screenshot (Compulsory JPG/PNG)</span>
+                      </button>
+                    ) : (
+                      <div className="prma-file-preview">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <CheckCircle2 size={16} color="#059669" />
+                          <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#065F46' }}>
+                            {instagramScreenshotFile.name} (Uploaded)
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setInstagramScreenshotFile(null);
+                            setInstagramScreenshotBase64('');
+                          }}
+                          style={{ background: 'none', border: 'none', color: '#E11D48', cursor: 'pointer' }}
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    )}
+                    {instagramScreenshotError && (
+                      <div style={{ color: '#E11D48', fontSize: '0.75rem', marginTop: '4px' }}>
+                        {instagramScreenshotError}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* WHATSAPP COMMUNITY INVITATION CARD (APPLICATION FORM) */}
-            <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-green-50 rounded-3xl border-2 border-emerald-400/60 p-6 sm:p-8 shadow-sm">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-                <div className="space-y-1.5 max-w-xl">
-                  <div className="flex items-center gap-2 text-emerald-800 font-extrabold text-sm uppercase tracking-wider">
-                    <MessageCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                    <span>JOIN THE PRMA TECH INTERNSHIP COMMUNITY</span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                    This is our official group for cohort updates, doubt clearing, weekly task guidance, batch announcements, and peer networking. Joining is recommended for all applicants!
+              {/* SECTION 7: DECLARATION */}
+              <div className="prma-form-section">
+                <div className="prma-section-header">
+                  <div className="prma-section-number">7</div>
+                  <h3 className="prma-section-title">Declaration &amp; Honor Code <span className="req">*</span></h3>
+                </div>
+
+                <label className="prma-checkbox-row">
+                  <input
+                    type="checkbox"
+                    checked={formData.confirmedAccuracy}
+                    onChange={(e) => handleInputChange('confirmedAccuracy', e.target.checked)}
+                    className="prma-checkbox"
+                    required
+                  />
+                  <span style={{ fontSize: '0.82rem', color: '#334155', lineHeight: 1.5 }}>
+                    I solemnly declare that all information submitted in this application is accurate and true to the best of my knowledge. I understand that selection is strictly merit-based and zero application fees are required.
+                  </span>
+                </label>
+
+                <div style={{ marginTop: '1.5rem' }}>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="prma-btn-submit"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <RefreshCw size={18} className="animate-spin" />
+                        <span>Submitting Application to PRMA Tech...</span>
+                      </>
+                    ) : (
+                      <>
+                        <ShieldCheck size={19} />
+                        <span>Submit Official Internship Application (100% Free)</span>
+                        <ArrowRight size={18} />
+                      </>
+                    )}
+                  </button>
+                  <p style={{ textAlign: 'center', fontSize: '0.72rem', color: '#94A3B8', marginTop: '0.5rem' }}>
+                    Zero Registration Fee &bull; Verified MSME Certified Internship
                   </p>
                 </div>
-
-                <a
-                  href="https://chat.whatsapp.com/B8zkpc5tc2TKni9jcWsiba"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 shadow-md shadow-emerald-600/30 transition transform hover:-translate-y-0.5 flex-shrink-0"
-                >
-                  <MessageCircle className="w-4 h-4 fill-current" />
-                  <span>JOIN WHATSAPP COMMUNITY</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
               </div>
-            </div>
-
-            {/* SECTION G: COMPULSORY DECLARATION */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
-              <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100 mb-6">
-                <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
-                  G
-                </div>
-                <div>
-                  <h3 className="font-black text-slate-900 text-lg">Declaration & Honor Code *</h3>
-                  <p className="text-xs text-slate-500">Confirm accuracy before submitting</p>
-                </div>
-              </div>
-
-              <div
-                onClick={() => handleChange('confirmedAccuracy', !formData.confirmedAccuracy)}
-                className={`flex items-start gap-3 cursor-pointer text-xs text-slate-700 select-none p-4 rounded-2xl border transition ${
-                  formData.confirmedAccuracy ? 'bg-blue-50 border-blue-400' : 'bg-slate-50 border-slate-200'
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  checked={formData.confirmedAccuracy}
-                  onChange={(e) => handleChange('confirmedAccuracy', e.target.checked)}
-                  onClick={(e) => e.stopPropagation()}
-                  className="w-5 h-5 text-blue-600 rounded mt-0.5 cursor-pointer flex-shrink-0"
-                />
-                <span className="font-medium leading-relaxed">
-                  I confirm that the information provided by me is accurate and that I understand the internship application is subject to review and approval by PRMA Tech. *
-                </span>
-              </div>
-            </div>
-
-            {/* SUBMIT BUTTON */}
-            <div className="pt-2">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-base shadow-lg shadow-blue-600/30 transition disabled:opacity-50 flex items-center justify-center gap-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <RefreshCw className="w-5 h-5 animate-spin" />
-                    Submitting Application to PRMA Tech...
-                  </>
-                ) : (
-                  <>
-                    <span>Submit Free Application</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </>
-                )}
-              </button>
-              <p className="text-center text-xs text-slate-400 mt-3">
-                100% Free Internship Program &bull; Zero Charges &bull; Direct Communication via Registered Email
-              </p>
-            </div>
-          </form>
-        </main>
+            </form>
+          </main>
+        </>
       )}
 
-      {/* DOMAIN PICKER MODAL (INSTANT TRACK SWITCHING WITHOUT RESETTING FORM) */}
+      {/* DOMAIN PICKER MODAL */}
       {isDomainPickerOpen && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
-            {/* Header */}
-            <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between gap-3 bg-slate-50">
+        <div className="prma-modal-backdrop" onClick={(e) => { if (e.target === e.currentTarget) setIsDomainPickerOpen(false); }}>
+          <div className="prma-modal-window">
+            <div className="prma-modal-header">
               <div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 block">
-                  Change Track &bull; 100% Free
-                </span>
-                <h3 className="text-base sm:text-xl font-extrabold text-slate-900">
-                  Select Internship Domain (27 Tracks)
-                </h3>
+                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: '#0F172A' }}>Select Internship Domain</h3>
+                <span style={{ fontSize: '0.76rem', color: '#64748B' }}>Choose from 27 specialized engineering tracks</span>
               </div>
               <button
                 type="button"
                 onClick={() => setIsDomainPickerOpen(false)}
-                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 flex items-center justify-center flex-shrink-0"
-                aria-label="Close"
+                style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer', padding: '6px' }}
+                aria-label="Close modal"
               >
-                <X className="w-5 h-5" />
+                <X size={20} />
               </button>
             </div>
 
-            {/* Quick search input */}
-            <div className="p-3 sm:p-4 border-b border-slate-100 bg-white">
-              <div className="relative">
-                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <div style={{ padding: '0.85rem 1.35rem', borderBottom: '1.5px solid #F1F5F9' }}>
+              <div style={{ position: 'relative' }}>
+                <Search size={15} color="#94A3B8" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)' }} />
                 <input
                   type="text"
-                  placeholder="Filter by title, skill, or keyword..."
+                  placeholder="Search 27 domains, skills, tools..."
                   value={pickerSearch}
                   onChange={(e) => setPickerSearch(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="prma-input"
+                  style={{ paddingLeft: '34px' }}
                 />
               </div>
             </div>
 
-            {/* List of Domains */}
-            <div
-              className="p-3 sm:p-4 overflow-y-auto space-y-2 flex-1"
-              style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
-            >
-              {PRMA_DOMAINS
-                .filter(d => {
-                  if (!pickerSearch.trim()) return true;
-                  const q = pickerSearch.toLowerCase();
-                  return d.title.toLowerCase().includes(q) || d.category.toLowerCase().includes(q);
-                })
-                .map((dom) => {
-                  const isSelected = dom.id === activeDomain.id;
-                  return (
-                    <div
-                      key={dom.id}
-                      role="button"
-                      tabIndex={0}
-                      onClick={() => {
-                        setActiveDomain(dom);
-                        setSelectedDomainId(dom.id);
-                        if (typeof window !== 'undefined') {
-                          window.sessionStorage.setItem('prma_selected_domain_id', dom.id);
-                          window.sessionStorage.setItem('prma_selected_domain_title', dom.title);
-                        }
-                        setIsDomainPickerOpen(false);
-                      }}
-                      className={`p-3 rounded-xl sm:rounded-2xl border transition flex items-center justify-between gap-3 cursor-pointer active:scale-[0.99] ${
-                        isSelected
-                          ? 'bg-blue-50/80 border-blue-500 shadow-xs'
-                          : 'bg-white border-slate-200 hover:border-blue-300 hover:bg-slate-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <PrmaDomainIcon iconType={dom.iconType} className="w-10 h-10 flex-shrink-0" color={dom.color} />
-                        <div className="min-w-0">
-                          <div className="text-xs sm:text-sm font-bold text-slate-900 truncate">
-                            {dom.title}
-                          </div>
-                          <div className="text-[10px] sm:text-xs text-slate-400">
-                            {dom.category} &bull; 1 Month &bull; 100% Free
-                          </div>
-                        </div>
-                      </div>
-                      {isSelected ? (
-                        <span className="px-2.5 py-1 rounded-full bg-blue-600 text-white text-[10px] font-black uppercase flex-shrink-0">
-                          Active
-                        </span>
-                      ) : (
-                        <span className="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 text-[10px] font-bold uppercase flex-shrink-0">
-                          Select
-                        </span>
-                      )}
+            <div className="prma-modal-body">
+              <div className="prma-domain-grid-modal">
+                {filteredDomainsForPicker.map((d) => (
+                  <div
+                    key={d.id}
+                    className={`prma-domain-option-card ${activeDomain.id === d.id ? 'active' : ''}`}
+                    onClick={() => {
+                      setActiveDomain(d);
+                      setSelectedDomainId(d.id);
+                      if (typeof window !== 'undefined') {
+                        window.sessionStorage.setItem('prma_selected_domain_id', d.id);
+                        window.sessionStorage.setItem('prma_selected_domain_title', d.title);
+                      }
+                      setIsDomainPickerOpen(false);
+                    }}
+                  >
+                    <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: `${d.color || '#881337'}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <PrmaDomainIcon iconType={d.iconType} className="w-5 h-5" color={d.color} />
                     </div>
-                  );
-                })}
-            </div>
-
-            {/* Footer */}
-            <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
-              <span className="text-slate-500 hidden sm:inline">Choosing a track updates your application instantly.</span>
-              <button
-                type="button"
-                onClick={() => {
-                  setIsDomainPickerOpen(false);
-                  handleNav('prma-internships-domains');
-                }}
-                className="text-blue-600 font-bold hover:underline inline-flex items-center gap-1 min-h-[38px]"
-              >
-                <span>Browse Full Syllabus Catalog</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+                    <div style={{ minWidth: 0, flex: 1 }}>
+                      <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#0F172A', lineHeight: 1.25 }}>{d.title}</div>
+                      <div style={{ fontSize: '0.72rem', color: '#881337', fontWeight: 600, marginTop: '2px' }}>{d.category}</div>
+                      <div style={{ fontSize: '0.7rem', color: '#94A3B8', marginTop: '2px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                        {d.technologies.slice(0, 3).join(', ')}
+                      </div>
+                    </div>
+                    {activeDomain.id === d.id && (
+                      <CheckCircle2 size={16} color="#881337" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
