@@ -4,21 +4,21 @@ import {
   Sparkles,
   ArrowRight,
   CheckCircle2,
-  Filter,
   Check,
   X,
-  ExternalLink,
   BookOpen,
   Calendar,
   Clock,
   ShieldCheck,
-  Laptop
+  Award,
+  FileText
 } from 'lucide-react';
 import PrmaNavbar from '../components/PrmaNavbar';
 import PrmaFooter from '../components/PrmaFooter';
 import PrmaDomainIcon from '../components/PrmaDomainIcon';
 import { PRMA_DOMAINS } from '../data/prmaDomains';
 import { usePrmaApplication } from '../context/PrmaApplicationContext';
+import '../styles/prmaInternship.css';
 
 export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
   const { setSelectedDomainId } = usePrmaApplication();
@@ -66,299 +66,280 @@ export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
   }, [searchQuery, selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
+    <div className="prma-portal-wrap">
       <PrmaNavbar activeTab="internships" onNavigate={navFn} navigateToTab={navFn} />
 
-      {/* TOP ANNOUNCEMENT BANNER — REQUIREMENT 2 */}
-      <section className="bg-gradient-to-b from-blue-900 via-slate-900 to-slate-950 text-white pt-6 pb-8 sm:pt-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
-            PRMA Tech™ Official Internship Initiative
+      {/* TOP HERO ANNOUNCEMENT BANNER */}
+      <section className="prma-hero-banner">
+        <div className="prma-hero-inner">
+          <div className="prma-brand-pill">
+            <Sparkles size={14} color="#FBBF24" />
+            <span>PRMA Tech™ Official Internship Initiative</span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mb-3">
-            Welcome to PRMA Tech Internship Program!
+          <h1 className="prma-hero-title">
+            Industry-Ready Remote Internship Program
           </h1>
 
-          <p className="text-xs sm:text-base text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            PRMA Tech is an emerging technology startup committed to helping students improve their practical knowledge and develop industry-relevant technical skills.
+          <p className="prma-hero-subtitle">
+            PRMA Tech is committed to empowering college students with production-grade practical skills, weekly mentor code reviews, and authentic credentials recognized by hiring teams.
           </p>
 
-          <div className="mt-3 inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-blue-400 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
-            <span>Our Mission:</span>
-            <span className="text-white">Learn &bull; Build &bull; Innovate &bull; Grow</span>
-          </div>
-
-          {/* Important Zero-Cost Announcement Card */}
-          <div className="mt-5 bg-gradient-to-r from-emerald-950/80 via-slate-900 to-blue-950/80 border-2 border-emerald-500/40 rounded-2xl sm:rounded-3xl p-4 sm:p-7 text-left shadow-xl">
-            <div className="flex items-start gap-3 sm:gap-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 font-bold text-base sm:text-xl border border-emerald-500/30">
-                ₹0
+          {/* 4 Feature Highlights */}
+          <div className="prma-highlights-row">
+            <div className="prma-highlight-chip featured">
+              <div className="prma-chip-icon">₹0</div>
+              <div>
+                <div className="prma-chip-title">Zero Application Fee</div>
+                <div className="prma-chip-sub">100% Free Program</div>
               </div>
-              <div className="space-y-1 sm:space-y-2">
-                <div className="text-[10px] sm:text-xs uppercase tracking-wider font-extrabold text-emerald-400">
-                  Important Public Announcement &bull; 100% Free Program
-                </div>
-                <h2 className="text-base sm:text-xl font-bold text-white">
-                  Zero Application Fee &bull; Zero Enrollment Fee
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  This internship program is currently offered <strong>FREE OF COST</strong> as part of our initiative to support students, enhance technical knowledge and encourage practical learning.
-                </p>
+            </div>
+
+            <div className="prma-highlight-chip">
+              <div className="prma-chip-icon">
+                <FileText size={16} />
+              </div>
+              <div>
+                <div className="prma-chip-title">Official Joining Letter</div>
+                <div className="prma-chip-sub">Issued Upon Selection</div>
+              </div>
+            </div>
+
+            <div className="prma-highlight-chip">
+              <div className="prma-chip-icon">
+                <Clock size={16} />
+              </div>
+              <div>
+                <div className="prma-chip-title">1 Month &bull; Remote</div>
+                <div className="prma-chip-sub">Self-Paced Flexible</div>
+              </div>
+            </div>
+
+            <div className="prma-highlight-chip">
+              <div className="prma-chip-icon">
+                <Award size={16} />
+              </div>
+              <div>
+                <div className="prma-chip-title">Verified Certificate</div>
+                <div className="prma-chip-sub">MSME Registered</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* DOMAIN SELECTION STEP 1 — HEADER & CONTROLS */}
-      <section className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 flex-1">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200">
+      {/* CATALOG CONTAINER */}
+      <main className="prma-catalog-container">
+        {/* Controls: Search & Category Filter */}
+        <div className="prma-catalog-controls">
           <div>
-            <span className="text-[11px] font-extrabold uppercase tracking-widest text-blue-600 block mb-1">
-              Step 1 of 2 &bull; Select Your Internship Track
+            <span style={{ fontSize: '0.74rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#881337', display: 'block', marginBottom: '2px' }}>
+              Step 1 of 2 &bull; Choose Domain
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Explore 27 Industry Internship Domains
+            <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.5rem', fontWeight: 900, color: '#0F172A', margin: 0 }}>
+              27 Industry Internship Tracks ({filteredDomains.length} Available)
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
-              Tap any domain card or button to select and proceed directly to your 100% Free application form.
-            </p>
           </div>
 
-          {/* Search bar */}
-          <div className="relative w-full md:w-80 flex-shrink-0">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          {/* Search Box */}
+          <div style={{ position: 'relative', width: '100%', maxWidth: '340px' }}>
+            <Search size={16} color="#94A3B8" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
             <input
               type="text"
-              placeholder="Search domain, skills, tools..."
+              placeholder="Search domains, skills, tools..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-xs"
+              className="prma-input"
+              style={{ paddingLeft: '36px', paddingRight: searchQuery ? '36px' : '14px' }}
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#94A3B8', cursor: 'pointer', padding: '4px' }}
                 aria-label="Clear search"
               >
-                <X className="w-4 h-4" />
+                <X size={15} />
               </button>
             )}
           </div>
         </div>
 
-        {/* Category Pills with smooth horizontal scrolling */}
-        <div
-          className="flex items-center gap-2 overflow-x-auto py-4 scrollbar-none"
-          style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-x' }}
-        >
+        {/* Category Pills */}
+        <div className="prma-category-pills-row">
           {categories.map((cat) => (
             <button
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap min-h-[38px] flex items-center ${
-                selectedCategory === cat
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 active:bg-slate-200'
-              }`}
+              className={`prma-category-pill ${selectedCategory === cat ? 'active' : ''}`}
             >
               {cat}
             </button>
           ))}
         </div>
 
-        {/* 27 DOMAIN CARDS GRID (Touch responsive, comfortable targets) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pt-2">
+        {/* 27 Domains Grid */}
+        <div className="prma-catalog-grid">
           {filteredDomains.map((domain) => (
             <div
               key={domain.id}
-              role="button"
-              tabIndex={0}
-              onClick={() => handleApplyForDomain(domain)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  handleApplyForDomain(domain);
-                }
-              }}
-              className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 hover:border-blue-400 p-4 sm:p-6 flex flex-col justify-between shadow-xs hover:shadow-lg transition group relative cursor-pointer active:scale-[0.99] touch-manipulation text-left"
+              className="prma-catalog-card"
             >
               <div>
-                {/* Header: Distinctive Domain Illustration + Badges */}
-                <div className="flex items-start justify-between gap-3 mb-3 sm:mb-4">
-                  <div className="p-2 rounded-2xl bg-slate-50 group-hover:scale-105 transition flex-shrink-0">
-                    <PrmaDomainIcon iconType={domain.iconType} className="w-12 h-12 sm:w-14 sm:h-14" color={domain.color} />
+                {/* Top Row: Icon + Badges */}
+                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.75rem', marginBottom: '0.85rem' }}>
+                  <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: `${domain.color || '#881337'}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <PrmaDomainIcon iconType={domain.iconType} className="w-8 h-8" color={domain.color} />
                   </div>
-                  <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
-                    <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800">
-                      100% FREE
-                    </span>
-                    <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-blue-50 text-blue-700">
-                      Remote Internship
-                    </span>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
+                    <span className="prma-card-badge-free">100% Free</span>
+                    <span className="prma-card-badge-mode">Remote &bull; 1 Mo</span>
                   </div>
                 </div>
 
-                {/* Domain Title */}
-                <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition leading-snug">
+                {/* Title & Category */}
+                <h3 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '1.15rem', fontWeight: 800, color: '#0F172A', margin: '0 0 0.25rem', lineHeight: 1.3 }}>
                   {domain.title}
                 </h3>
-                <div className="text-xs text-slate-400 font-semibold mb-2 sm:mb-3">
-                  Duration: Exactly 1 Month &bull; {domain.category}
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#881337', marginBottom: '0.5rem' }}>
+                  {domain.category}
                 </div>
 
                 {/* Description */}
-                <p className="text-xs text-slate-600 leading-relaxed mb-3 sm:mb-4 line-clamp-3">
+                <p style={{ fontSize: '0.82rem', color: '#64748B', lineHeight: 1.55, margin: '0 0 0.85rem' }}>
                   {domain.description}
                 </p>
 
                 {/* Technologies Covered */}
-                <div className="mb-3 sm:mb-4">
-                  <span className="text-[10px] sm:text-[11px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1.5">
-                    Technologies Covered:
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {domain.technologies.slice(0, 5).map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] sm:text-[11px] font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {domain.technologies.length > 5 && (
-                      <span className="text-[10px] text-slate-400 font-semibold self-center">
-                        +{domain.technologies.length - 5}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Skills You Will Develop */}
-                <div className="mb-4 sm:mb-6 bg-slate-50 p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-slate-100">
-                  <span className="text-[10px] sm:text-[11px] font-extrabold text-slate-500 uppercase tracking-wider block mb-1.5 sm:mb-2">
-                    Key Skills Developed:
-                  </span>
-                  <ul className="space-y-1 sm:space-y-1.5 text-xs text-slate-700">
-                    {domain.skills.slice(0, 3).map((skill, idx) => (
-                      <li key={idx} className="flex items-start gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" />
-                        <span className="line-clamp-1">{skill}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="prma-tech-tags-wrap">
+                  {domain.technologies.slice(0, 5).map((tech, idx) => (
+                    <span key={idx} className="prma-tech-tag">
+                      {tech}
+                    </span>
+                  ))}
+                  {domain.technologies.length > 5 && (
+                    <span style={{ fontSize: '0.7rem', color: '#94A3B8', alignSelf: 'center', fontWeight: 600 }}>
+                      +{domain.technologies.length - 5}
+                    </span>
+                  )}
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-3 sm:pt-4 border-t border-slate-100 flex items-center gap-2">
+              <div className="prma-card-actions">
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setDetailModalDomain(domain);
-                  }}
-                  className="px-3.5 py-2.5 min-h-[44px] rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 active:bg-slate-100 text-xs font-bold transition flex items-center gap-1.5 flex-shrink-0"
+                  onClick={() => setDetailModalDomain(domain)}
+                  className="prma-btn-syllabus"
+                  aria-label={`View syllabus for ${domain.title}`}
                 >
-                  <BookOpen className="w-3.5 h-3.5" />
+                  <BookOpen size={14} />
                   <span>Syllabus</span>
                 </button>
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleApplyForDomain(domain);
-                  }}
-                  className="flex-1 min-h-[44px] py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs sm:text-sm font-extrabold shadow-sm transition flex items-center justify-center gap-1.5"
+                  onClick={() => handleApplyForDomain(domain)}
+                  className="prma-btn-apply-card"
                 >
-                  <span>Select Domain</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>Apply for Track</span>
+                  <ArrowRight size={14} />
                 </button>
               </div>
             </div>
           ))}
         </div>
-      </section>
+      </main>
 
       {/* DETAIL SYLLABUS MODAL */}
       {detailModalDomain && (
-        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-scale-in max-h-[90vh] overflow-y-auto">
-            <button
-              onClick={() => setDetailModalDomain(null)}
-              className="absolute top-5 right-5 text-slate-400 hover:text-slate-700"
-            >
-              <X className="w-6 h-6" />
-            </button>
-
-            <div className="flex items-center gap-4 mb-4">
-              <PrmaDomainIcon iconType={detailModalDomain.iconType} className="w-16 h-16" color={detailModalDomain.color} />
-              <div>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800">
-                  100% Free &bull; 1 Month Virtual Program
-                </span>
-                <h3 className="text-2xl font-black text-slate-900 mt-1">{detailModalDomain.title}</h3>
-                <span className="text-xs text-slate-400">{detailModalDomain.category}</span>
+        <div className="prma-modal-backdrop" onClick={(e) => { if (e.target === e.currentTarget) setDetailModalDomain(null); }}>
+          <div className="prma-modal-window">
+            <div className="prma-modal-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', background: `${detailModalDomain.color || '#881337'}18`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <PrmaDomainIcon iconType={detailModalDomain.iconType} className="w-6 h-6" color={detailModalDomain.color} />
+                </div>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: '#0F172A' }}>{detailModalDomain.title}</h3>
+                  <span style={{ fontSize: '0.75rem', color: '#64748B' }}>1 Month &bull; Remote &bull; Zero Application Fee</span>
+                </div>
               </div>
+              <button
+                type="button"
+                onClick={() => setDetailModalDomain(null)}
+                style={{ background: 'none', border: 'none', color: '#64748B', cursor: 'pointer', padding: '6px' }}
+                aria-label="Close modal"
+              >
+                <X size={20} />
+              </button>
             </div>
 
-            <p className="text-sm text-slate-600 leading-relaxed mb-6">
-              {detailModalDomain.description}
-            </p>
+            <div className="prma-modal-body">
+              <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+                {detailModalDomain.description}
+              </p>
 
-            <div className="space-y-4 text-xs">
-              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                <span className="font-extrabold uppercase tracking-wider text-slate-500 block mb-2">Technologies Covered</span>
-                <div className="flex flex-wrap gap-1.5">
+              {/* Technologies */}
+              <div style={{ marginBottom: '1.25rem' }}>
+                <span style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', color: '#0F172A', display: 'block', marginBottom: '0.45rem' }}>
+                  Technologies &amp; Frameworks
+                </span>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
                   {detailModalDomain.technologies.map((t, i) => (
-                    <span key={i} className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 font-semibold text-slate-800">
+                    <span key={i} style={{ padding: '0.35rem 0.65rem', borderRadius: '8px', background: '#F1F5F9', border: '1px solid #E2E8F0', fontSize: '0.78rem', fontWeight: 600, color: '#1E293B' }}>
                       {t}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="bg-blue-50 p-4 rounded-2xl border border-blue-200">
-                <span className="font-extrabold uppercase tracking-wider text-blue-800 block mb-2">Capstone Practical Project</span>
-                <p className="text-blue-950 font-medium leading-relaxed">{detailModalDomain.project}</p>
+              {/* Capstone Project */}
+              <div style={{ background: '#FFF1F2', border: '1.5px solid #FECDD3', borderRadius: '14px', padding: '1rem', marginBottom: '1.25rem' }}>
+                <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', color: '#881337', display: 'block', marginBottom: '0.25rem' }}>
+                  Capstone Practical Project
+                </span>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#70102B', fontWeight: 600, lineHeight: 1.45 }}>
+                  {detailModalDomain.project}
+                </p>
               </div>
 
-              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                <span className="font-extrabold uppercase tracking-wider text-slate-500 block mb-2">Learning Outcomes</span>
-                <ul className="space-y-1.5 text-slate-700">
-                  {detailModalDomain.outcomes.map((o, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <span>{o}</span>
-                    </li>
+              {/* Learning Outcomes */}
+              <div>
+                <span style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', color: '#0F172A', display: 'block', marginBottom: '0.45rem' }}>
+                  Key Skills You Will Master
+                </span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                  {detailModalDomain.skills.map((skill, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.82rem', color: '#334155' }}>
+                      <CheckCircle2 size={15} color="#10B981" style={{ flexShrink: 0 }} />
+                      <span>{skill}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-100 flex items-center justify-end gap-3 mt-6">
+            <div style={{ padding: '1rem 1.35rem', borderTop: '1.5px solid #E2E8F0', display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', background: '#F8FAFC' }}>
               <button
                 type="button"
                 onClick={() => setDetailModalDomain(null)}
-                className="px-5 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50"
+                style={{ padding: '0.55rem 1.15rem', borderRadius: '10px', border: '1.5px solid #CBD5E1', background: '#FFFFFF', color: '#475569', fontSize: '0.82rem', fontWeight: 700, cursor: 'pointer' }}
               >
                 Close
               </button>
               <button
                 type="button"
                 onClick={() => {
-                  const dom = detailModalDomain;
+                  const d = detailModalDomain;
                   setDetailModalDomain(null);
-                  handleApplyForDomain(dom);
+                  handleApplyForDomain(d);
                 }}
-                className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-black shadow-md transition flex items-center gap-2"
+                className="prma-btn-apply-card"
+                style={{ flex: 'initial', padding: '0.55rem 1.35rem' }}
               >
-                <span>Select &amp; Fill Application</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Select &amp; Apply for Free</span>
+                <ArrowRight size={15} />
               </button>
             </div>
           </div>

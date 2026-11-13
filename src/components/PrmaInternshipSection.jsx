@@ -157,11 +157,14 @@ export default function PrmaInternshipSection({ onNavigate }) {
     { text: 'Globally Verified Certificate & Performance Stipend', icon: Award }
   ];
 
-  const handleApplyClick = () => {
+  const handleApplyClick = (domainId = null) => {
+    if (domainId && typeof window !== 'undefined') {
+      window.sessionStorage.setItem('prma_selected_domain_id', domainId);
+    }
     if (onNavigate) {
-      onNavigate('prma-home');
+      onNavigate('prma-internships-apply');
     } else {
-      window.location.href = '/prma-tech';
+      window.location.href = '/prma-tech/internships/apply';
     }
   };
 
@@ -646,7 +649,7 @@ export default function PrmaInternshipSection({ onNavigate }) {
               return (
                 <div
                   key={domain.id}
-                  onClick={handleApplyClick}
+                  onClick={() => handleApplyClick(domain.id)}
                   style={{
                     backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
                     border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1.5px solid #E8E2D5',

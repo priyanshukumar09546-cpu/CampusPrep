@@ -819,7 +819,7 @@ export default function MobileHomepageView({
           <div style={{ display: 'flex', gap: '6px' }}>
             <button
               type="button"
-              onClick={() => onNavigate && onNavigate('prma-home')}
+              onClick={() => onNavigate && onNavigate('prma-internships-apply')}
               style={{
                 flex: 1,
                 padding: '8px 0',
@@ -1241,7 +1241,7 @@ export default function MobileHomepageView({
             </div>
             <button
               type="button"
-              onClick={() => onNavigate && onNavigate('prma-home')}
+              onClick={() => onNavigate && onNavigate('prma-internships-apply')}
               style={{
                 background: 'none',
                 border: 'none',
@@ -1279,7 +1279,11 @@ export default function MobileHomepageView({
               return (
                 <div
                   key={tidx}
-                  onClick={() => onNavigate && onNavigate('prma-home')}
+                  onClick={() => {
+                    const slugMap = { 0: 'ai-ml', 1: 'data-science', 2: 'full-stack-web', 3: 'app-dev-flutter', 4: 'cloud-devops', 5: 'cyber-security' };
+                    if (typeof window !== 'undefined' && slugMap[tidx]) window.sessionStorage.setItem('prma_selected_domain_id', slugMap[tidx]);
+                    if (onNavigate) onNavigate('prma-internships-apply');
+                  }}
                   style={{
                     backgroundColor: isDark ? '#0B0B0B' : '#FFFFFF',
                     border: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
@@ -1410,7 +1414,7 @@ export default function MobileHomepageView({
             </p>
             <button
               type="button"
-              onClick={() => onNavigate && onNavigate('prma-home')}
+              onClick={() => onNavigate && onNavigate('prma-internships-apply')}
               style={{
                 width: '100%',
                 padding: '7px 0',

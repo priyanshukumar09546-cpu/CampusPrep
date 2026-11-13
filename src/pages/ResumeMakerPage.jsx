@@ -233,6 +233,16 @@ const RESUME_TEMPLATES = [
     badgeBg: "#FFFBEB",
     desc: "High density layout designed to maximize content fitting on a single page. Ideal for experienced developers and campus placements.",
     features: ["Ultra Compact", "High Content Density", "Strict 1-Page Fit", "Crisp Serif"]
+  },
+  {
+    id: 'college-official',
+    name: "Official College Placement",
+    subtitle: "AKTU / University Format",
+    badge: "Campus Format",
+    badgeColor: "#8B5CF6",
+    badgeBg: "#F5F3FF",
+    desc: "Official Training & Placement Cell layout with College Header Box, student profile grid, and tabular academic qualifications border table.",
+    features: ["College Header Box", "Tabular Qualifications", "TPC Approved", "Placement Ready"]
   }
 ];
 
@@ -495,6 +505,10 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       ...prev,
       template: newTemplate
     }));
+    lastCompiledPayloadRef.current = '';
+    setCompileError(null);
+    setIsCompiling(true);
+    setCompileTrigger(Date.now());
   };
 
   // 1. Fetch User's Saved Resumes List

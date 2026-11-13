@@ -463,7 +463,7 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
             {/* Apply for Internship Primary Button (pill shape matching Image 1) */}
             <button
               type="button"
-              onClick={() => handleNav('prma-internships-domains')}
+              onClick={() => handleNav('prma-internships-apply')}
               style={{
                 padding: '0.58rem 1.35rem',
                 borderRadius: '999px',

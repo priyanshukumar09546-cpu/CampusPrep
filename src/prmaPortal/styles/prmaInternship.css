@@ -1,0 +1,889 @@
+/* ==========================================================================
+   PRMA TECH™ OFFICIAL INTERNSHIP PLATFORM STYLESHEET
+   Clean Light Corporate Aesthetic: Burgundy (#881337), Golden (#D97706), Slate (#0F172A)
+   ========================================================================== */
+
+.prma-portal-wrap {
+  min-height: 100vh;
+  background-color: #FAF7F2;
+  color: #0F172A;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   Top Hero / Banner Section
+   -------------------------------------------------------------------------- */
+.prma-hero-banner {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 40%, #2A0818 100%);
+  color: #FFFFFF;
+  padding: 2.25rem 1rem 2.75rem;
+  border-bottom: 2px solid #881337;
+  position: relative;
+  overflow: hidden;
+}
+
+.prma-hero-banner::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.prma-hero-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.prma-brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(136, 19, 55, 0.35);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #FBBF24;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.prma-hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin: 0 0 0.65rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .prma-hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+.prma-hero-subtitle {
+  font-size: 0.92rem;
+  color: #CBD5E1;
+  max-width: 680px;
+  margin: 0 auto 1.25rem;
+  line-height: 1.6;
+}
+
+/* Highlights Grid: Zero Fee, Letter, Certificate, Training */
+.prma-highlights-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .prma-highlights-row {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.85rem;
+  }
+}
+
+.prma-highlight-chip {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 0.75rem 0.85rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.prma-highlight-chip.featured {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.1) 100%);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.prma-chip-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FBBF24;
+}
+
+.prma-highlight-chip.featured .prma-chip-icon {
+  background: rgba(16, 185, 129, 0.25);
+  color: #34D399;
+}
+
+.prma-chip-title {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.prma-chip-sub {
+  font-size: 0.68rem;
+  color: #94A3B8;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Main Form Container & Layout
+   -------------------------------------------------------------------------- */
+.prma-content-container {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+/* Active Domain Showcase Card */
+.prma-domain-active-card {
+  background: #FFFFFF;
+  border: 1.5px solid #F1E5E7;
+  border-left: 5px solid #881337;
+  border-radius: 18px;
+  padding: 1.15rem 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .prma-domain-active-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.prma-domain-active-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.prma-domain-active-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #FFF1F2;
+  border: 1px solid #FECDD3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prma-domain-active-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 0.2rem;
+  line-height: 1.3;
+}
+
+.prma-domain-active-meta {
+  font-size: 0.78rem;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.prma-btn-change-domain {
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  color: #0F172A;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+.prma-btn-change-domain:hover {
+  background: #FFF1F2;
+  border-color: #881337;
+  color: #881337;
+}
+
+/* Form Section Card */
+.prma-form-section {
+  background: #FFFFFF;
+  border: 1.5px solid #EAE4D9;
+  border-radius: 20px;
+  padding: 1.35rem 1.25rem;
+  margin-bottom: 1.35rem;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03);
+}
+
+@media (min-width: 768px) {
+  .prma-form-section {
+    padding: 1.75rem 2rem;
+    margin-bottom: 1.65rem;
+  }
+}
+
+.prma-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px solid #F1EFE9;
+}
+
+.prma-section-number {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #881337;
+  color: #FFFFFF;
+  font-size: 0.78rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prma-section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* Grids */
+.prma-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .prma-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.15rem;
+  }
+}
+
+.prma-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .prma-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.15rem;
+  }
+}
+
+/* Form Controls */
+.prma-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+}
+
+.prma-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prma-label .req {
+  color: #E11D48;
+  font-weight: 800;
+  margin-left: 2px;
+}
+
+.prma-input,
+.prma-select,
+.prma-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #FDFDFD;
+  border: 1.5px solid #D8D2C4;
+  border-radius: 11px;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.88rem;
+  color: #0F172A;
+  font-family: inherit;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.prma-input:focus,
+.prma-select:focus,
+.prma-textarea:focus {
+  border-color: #881337;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(136, 19, 55, 0.12);
+}
+
+.prma-input::placeholder,
+.prma-textarea::placeholder {
+  color: #94A3B8;
+}
+
+/* Autocomplete list */
+.prma-autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
+  border-radius: 12px;
+  margin-top: 4px;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 50;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+  padding: 4px 0;
+}
+
+.prma-autocomplete-item {
+  padding: 0.55rem 0.85rem;
+  font-size: 0.84rem;
+  color: #1E293B;
+  cursor: pointer;
+  transition: background 0.1s ease;
+  line-height: 1.35;
+}
+
+.prma-autocomplete-item:hover {
+  background: #FFF1F2;
+  color: #881337;
+  font-weight: 600;
+}
+
+/* Upload Dropzones */
+.prma-upload-zone {
+  border: 2px dashed #CBD5E1;
+  background: #F8FAFC;
+  border-radius: 14px;
+  padding: 1.35rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.prma-upload-zone:hover {
+  border-color: #881337;
+  background: #FFF1F2;
+}
+
+.prma-upload-zone.has-file {
+  border-color: #10B981;
+  background: #ECFDF5;
+}
+
+.prma-file-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: #ECFDF5;
+  border: 1.5px solid #A7F3D0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-top: 0.65rem;
+}
+
+/* Social media action bar */
+.prma-social-card {
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.prma-social-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.prma-btn-social-follow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.prma-btn-social-follow.linkedin {
+  background: #0A66C2;
+  color: #FFFFFF;
+}
+
+.prma-btn-social-follow.instagram {
+  background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
+  color: #FFFFFF;
+}
+
+/* Declaration check row */
+.prma-checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.75rem;
+  border-radius: 11px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.prma-checkbox-row:hover {
+  background: #FFF1F2;
+  border-color: #FECDD3;
+}
+
+.prma-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #881337;
+  cursor: pointer;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Error Banner */
+.prma-error-banner {
+  background: #FFF1F2;
+  border: 1.5px solid #F43F5E;
+  color: #9F1239;
+  border-radius: 14px;
+  padding: 0.95rem 1.15rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* Duplicate Notice */
+.prma-duplicate-banner {
+  background: #FEF3C7;
+  border: 1.5px solid #F59E0B;
+  color: #92400E;
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+/* Submit Button */
+.prma-btn-submit {
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #881337 0%, #6E1218 100%);
+  color: #FFFFFF;
+  border: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(136, 19, 55, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prma-btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(136, 19, 55, 0.45);
+}
+
+.prma-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   Success Confirmation Screen
+   -------------------------------------------------------------------------- */
+.prma-success-card {
+  background: #FFFFFF;
+  border: 2px solid #10B981;
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 16px 40px rgba(16, 185, 129, 0.12);
+  text-align: center;
+  max-width: 640px;
+  margin: 1.5rem auto;
+}
+
+@media (min-width: 640px) {
+  .prma-success-card {
+    padding: 2.75rem 2.25rem;
+  }
+}
+
+.prma-success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: #ECFDF5;
+  color: #065F46;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.prma-success-id-box {
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 1rem;
+  margin: 1.25rem 0;
+  text-align: left;
+}
+
+.prma-id-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 0.82rem;
+}
+
+.prma-id-row:last-child {
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------
+   Domain Picker Modal / Catalog Grid
+   -------------------------------------------------------------------------- */
+.prma-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.prma-modal-window {
+  background: #FFFFFF;
+  border-radius: 24px;
+  max-width: 860px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.prma-modal-header {
+  padding: 1.15rem 1.35rem;
+  border-bottom: 1.5px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.prma-modal-body {
+  padding: 1.15rem 1.35rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.prma-domain-grid-modal {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .prma-domain-grid-modal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.prma-domain-option-card {
+  border: 1.5px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.prma-domain-option-card:hover {
+  border-color: #881337;
+  background: #FFF1F2;
+}
+
+.prma-domain-option-card.active {
+  border-color: #881337;
+  background: #FFF1F2;
+  box-shadow: 0 0 0 2px #881337;
+}
+
+/* --------------------------------------------------------------------------
+   Domains Catalog Page Styles (PrmaDomainsPage)
+   -------------------------------------------------------------------------- */
+.prma-catalog-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3.5rem;
+  box-sizing: border-box;
+}
+
+.prma-catalog-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid #E2E8F0;
+}
+
+@media (min-width: 768px) {
+  .prma-catalog-controls {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.prma-category-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
+}
+
+.prma-category-pill {
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1.5px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #475569;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.prma-category-pill.active {
+  background: #881337;
+  color: #FFFFFF;
+  border-color: #881337;
+  box-shadow: 0 4px 12px rgba(136, 19, 55, 0.25);
+}
+
+.prma-catalog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .prma-catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .prma-catalog-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.prma-catalog-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E8E2D5;
+  border-radius: 20px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+}
+
+.prma-catalog-card:hover {
+  transform: translateY(-4px);
+  border-color: #881337;
+  box-shadow: 0 12px 28px rgba(136, 19, 55, 0.12);
+}
+
+.prma-card-badge-free {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  background: #ECFDF5;
+  color: #065F46;
+  border: 1px solid #A7F3D0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.prma-card-badge-mode {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+}
+
+.prma-tech-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.65rem 0 1rem;
+}
+
+.prma-tech-tag {
+  font-size: 0.68rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: #F1F5F9;
+  color: #334155;
+  font-weight: 600;
+}
+
+.prma-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-top: 1rem;
+  border-top: 1.5px solid #F1F5F9;
+  margin-top: auto;
+}
+
+.prma-btn-syllabus {
+  padding: 0.55rem 0.95rem;
+  border-radius: 10px;
+  border: 1.5px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.15s ease;
+}
+
+.prma-btn-syllabus:hover {
+  background: #F8FAFC;
+  border-color: #94A3B8;
+  color: #0F172A;
+}
+
+.prma-btn-apply-card {
+  flex: 1;
+  padding: 0.58rem 1rem;
+  border-radius: 10px;
+  background: #881337;
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 8px rgba(136, 19, 55, 0.25);
+}
+
+.prma-btn-apply-card:hover {
+  background: #70102B;
+  transform: translateY(-1px);
+}

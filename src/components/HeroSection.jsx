@@ -467,14 +467,14 @@ export default function HeroSection({ onNavigate }) {
                 3. MSME APPROVAL PROMOTION SECTION & INTERNSHIP CTA (Matching Reference Design)
                 =============================================================== */}
             <div style={{ marginTop: '1.25rem', width: '100%', maxWidth: '690px' }} className="pv-hero-msme-section pv-scroll-reveal">
-              {/* Top CTA Pill — Navigates to PRMA Tech Corporate Homepage */}
+              {/* Top CTA Pill — Navigates to PRMA Tech Internship Application */}
               <div style={{ marginBottom: '0.65rem' }}>
                 <a
-                  href="/prma-tech"
+                  href="/prma-tech/internships/apply"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (onNavigate) onNavigate('prma-home');
-                    else window.location.href = '/prma-tech';
+                    if (onNavigate) onNavigate('prma-internships-apply');
+                    else window.location.href = '/prma-tech/internships/apply';
                   }}
                   style={{
                     display: 'inline-flex',
@@ -678,8 +678,8 @@ export default function HeroSection({ onNavigate }) {
                     <button
                       type="button"
                       onClick={() => {
-                        if (onNavigate) onNavigate('prma-home');
-                        else window.location.href = '/prma-tech';
+                        if (onNavigate) onNavigate('prma-internships-apply');
+                        else window.location.href = '/prma-tech/internships/apply';
                       }}
                       style={{
                         display: 'inline-flex',

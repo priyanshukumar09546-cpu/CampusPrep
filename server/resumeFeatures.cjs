@@ -1,13 +1,49 @@
 // server/resumeFeatures.cjs
 // Advanced AI Resume Management, ATS Rubric Scoring, College Format Replicator, Job Optimizer & Multi-Format Exporter
 
+require('./polyfills.cjs');
 const fs = require('fs');
 const path = require('path');
 const JSZip = require('jszip');
-const { PDFParse } = require('pdf-parse');
-const Tesseract = require('tesseract.js');
-const docx = require('docx');
-const { Document, Paragraph, TextRun, HeadingLevel, AlignmentType, BorderStyle, Table, TableRow, TableCell, WidthType, Packer } = docx;
+
+// Lazy loaded heavy dependencies to prevent serverless function startup crashes and save memory
+let _PDFParse = null;
+function getPdfParser() {
+  if (!_PDFParse) {
+    try {
+      require('./polyfills.cjs');
+      const pdfParseMod = require('pdf-parse');
+      _PDFParse = pdfParseMod.PDFParse || pdfParseMod;
+    } catch (e) {
+      console.warn('[RESUME ENGINE] pdf-parse lazy-load warning:', e.message);
+    }
+  }
+  return _PDFParse;
+}
+
+let _Tesseract = null;
+function getTesseract() {
+  if (!_Tesseract) {
+    try {
+      _Tesseract = require('tesseract.js');
+    } catch (e) {
+      console.warn('[RESUME ENGINE] tesseract.js lazy-load warning:', e.message);
+    }
+  }
+  return _Tesseract;
+}
+
+let _docx = null;
+function getDocx() {
+  if (!_docx) {
+    try {
+      _docx = require('docx');
+    } catch (e) {
+      console.warn('[RESUME ENGINE] docx lazy-load warning:', e.message);
+    }
+  }
+  return _docx;
+}
 
 // Common tech keywords dictionary organized by domain for transparent ATS scoring
 const TECH_KEYWORDS = {
@@ -509,10 +545,13 @@ async function parseResumeFile(fileBuffer, mimetype = '', originalname = '') {
     // 2. PDF Parsing via pdf-parse PDFParse
     else if (ext === '.pdf' || mime.includes('pdf')) {
       try {
-        const parser = new PDFParse({ data: fileBuffer });
-        const result = await parser.getText();
-        extractedText = (result && result.text) ? result.text.trim() : '';
-        await parser.destroy().catch(() => {});
+        const ParserClass = getPdfParser();
+        if (ParserClass) {
+          const parser = new ParserClass({ data: fileBuffer });
+          const result = await parser.getText();
+          extractedText = (result && result.text) ? result.text.trim() : '';
+          await parser.destroy().catch(() => {});
+        }
       } catch (pdfErr) {
         console.warn('PDFParse failed, falling back to buffer extraction:', pdfErr.message);
       }
@@ -534,9 +573,12 @@ async function parseResumeFile(fileBuffer, mimetype = '', originalname = '') {
     }
     // 3. Images (JPG, PNG, JPEG) via Tesseract OCR
     else if (['.jpg', '.jpeg', '.png', '.webp', '.bmp'].includes(ext) || mime.includes('image/')) {
-      const ocrResult = await Tesseract.recognize(fileBuffer, 'eng');
-      if (ocrResult && ocrResult.data && ocrResult.data.text) {
-        extractedText = ocrResult.data.text.trim();
+      const TesseractMod = getTesseract();
+      if (TesseractMod) {
+        const ocrResult = await TesseractMod.recognize(fileBuffer, 'eng');
+        if (ocrResult && ocrResult.data && ocrResult.data.text) {
+          extractedText = ocrResult.data.text.trim();
+        }
       }
     }
     // 4. Plain text fallback
@@ -817,13 +859,19 @@ async function detectCollegeFormat(fileBuffer, mimetype = '', originalname = '')
 
   try {
     if (ext === '.pdf' || mimetype.includes('pdf')) {
-      const parser = new PDFParse({ data: fileBuffer });
-      const res = await parser.getText();
-      detectedText = res?.text || '';
-      await parser.destroy().catch(() => {});
+      const ParserClass = getPdfParser();
+      if (ParserClass) {
+        const parser = new ParserClass({ data: fileBuffer });
+        const res = await parser.getText();
+        detectedText = res?.text || '';
+        await parser.destroy().catch(() => {});
+      }
     } else if (['.jpg', '.jpeg', '.png'].includes(ext) || mimetype.includes('image/')) {
-      const ocrResult = await Tesseract.recognize(fileBuffer, 'eng');
-      detectedText = ocrResult?.data?.text || '';
+      const TesseractMod = getTesseract();
+      if (TesseractMod) {
+        const ocrResult = await TesseractMod.recognize(fileBuffer, 'eng');
+        detectedText = ocrResult?.data?.text || '';
+      }
     } else if (ext === '.docx' || mimetype.includes('wordprocessingml')) {
       const zip = await JSZip.loadAsync(fileBuffer);
       detectedText = (await zip.file('word/document.xml')?.async('text')) || '';
@@ -915,6 +963,8 @@ async function detectCollegeFormat(fileBuffer, mimetype = '', originalname = '')
  * Generates exact academic college format with official college header box and tabular education
  */
 function generateCollegeLatex(resumeData, formatRules = {}) {
+  const { escapeLatex, normalizeUrl, normalizeEmail, normalizePhone, formatDisplayPhone } = require('./resumeEngine.cjs');
+
   const p = resumeData.personal || resumeData.personalDetails || {};
   const edu = Array.isArray(resumeData.education) ? resumeData.education : [];
   const exp = Array.isArray(resumeData.experience) ? resumeData.experience : [];
@@ -923,13 +973,19 @@ function generateCollegeLatex(resumeData, formatRules = {}) {
   const ach = Array.isArray(resumeData.achievements) ? resumeData.achievements : [];
   const cert = Array.isArray(resumeData.certifications) ? resumeData.certifications : [];
 
-  const collegeName = formatRules.collegeName || 'AFFILIATED TECHNICAL CAMPUS';
-  const name = (p.fullName || 'STUDENT NAME').toUpperCase();
-  const phone = p.phone || '';
-  const email = p.email || '';
-  const linkedin = p.linkedinUrl || '';
-  const github = p.githubUrl || '';
-  const summary = p.summary || 'Seeking a challenging entry-level engineering position in a forward-thinking organization where I can leverage my academic foundations, algorithmic problem-solving abilities, and passion for software development to deliver measurable value.';
+  const collegeName = escapeLatex(formatRules.collegeName || 'AFFILIATED TECHNICAL CAMPUS');
+  const name = escapeLatex((p.fullName || 'STUDENT NAME').toUpperCase());
+  const rawPhone = p.phone || '';
+  const displayPhone = escapeLatex(formatDisplayPhone(rawPhone));
+  const telUri = normalizePhone(rawPhone);
+  const email = (p.email || '').trim();
+  const mailtoUri = normalizeEmail(email);
+  const linkedin = (p.linkedinUrl || '').trim();
+  const linkedinUri = normalizeUrl(linkedin);
+  const github = (p.githubUrl || '').trim();
+  const githubUri = normalizeUrl(github);
+  const location = escapeLatex(p.location || 'Uttar Pradesh, India');
+  const summary = escapeLatex(p.summary || 'Seeking a challenging entry-level engineering position in a forward-thinking organization where I can leverage my academic foundations, algorithmic problem-solving abilities, and passion for software development to deliver measurable value.');
 
   let tex = `\\documentclass[a4paper,10pt]{article}
 \\usepackage[top=0.45in,bottom=0.45in,left=0.5in,right=0.5in]{geometry}
@@ -965,10 +1021,10 @@ function generateCollegeLatex(resumeData, formatRules = {}) {
 % ----------------- STUDENT INFORMATION -----------------
 \\vspace{-4pt}
 \\begin{tabular*}{\\textwidth}{l@{\\extracolsep{\\fill}}r}
-  \\textbf{\\Large ${name}} & \\textbf{Email:} \\href{mailto:${email}}{${email}} \\\\
-  \\textbf{Contact:} ${phone} & \\textbf{Location:} ${p.location || 'Uttar Pradesh, India'} \\\\
-  ${linkedin ? `\\textbf{LinkedIn:} \\href{${linkedin}}{${linkedin}} & ` : ''}
-  ${github ? `\\textbf{GitHub:} \\href{${github}}{${github}}` : ''}
+  \\textbf{\\Large ${name}} & \\textbf{Email:} ${email ? `\\href{${mailtoUri}}{${escapeLatex(email)}}` : '--'} \\\\
+  \\textbf{Contact:} ${rawPhone ? `\\href{${telUri}}{${displayPhone}}` : '--'} & \\textbf{Location:} ${location} \\\\
+  ${linkedin ? `\\textbf{LinkedIn:} \\href{${linkedinUri}}{${escapeLatex(linkedin)}} & ` : ''}
+  ${github ? `\\textbf{GitHub:} \\href{${githubUri}}{${escapeLatex(github)}}` : ''}
 \\end{tabular*}
 \\vspace{2pt}
 \\hrule
@@ -986,11 +1042,11 @@ ${summary}
 `;
 
   edu.forEach(e => {
-    const deg = e.degree || 'B.Tech CSE';
-    const inst = e.institution || 'AKTU Institute';
-    const board = e.board || 'AKTU';
-    const yr = e.duration || e.year || '2021-25';
-    const score = e.cgpa || e.cgpaOrPercentage || '8.2 CGPA';
+    const deg = escapeLatex(e.degree || 'B.Tech CSE');
+    const inst = escapeLatex(e.institution || 'AKTU Institute');
+    const board = escapeLatex(e.board || 'AKTU');
+    const yr = escapeLatex(e.duration || e.year || '2021-25');
+    const score = escapeLatex(e.cgpa || e.cgpaOrPercentage || '8.2 CGPA');
     tex += `  ${deg} & ${inst} & ${board} & ${yr} & ${score} \\\\\n  \\hline\n`;
   });
 
@@ -1001,19 +1057,19 @@ ${summary}
 \\begin{itemize}
 `;
 
-  const langs = (tech.programmingLanguages || []).join(', ');
+  const langs = (tech.programmingLanguages || []).map(escapeLatex).join(', ');
   if (langs) tex += `  \\item \\textbf{Programming Languages:} ${langs}\n`;
 
-  const frames = (tech.frameworks || []).join(', ');
+  const frames = (tech.frameworks || []).map(escapeLatex).join(', ');
   if (frames) tex += `  \\item \\textbf{Frameworks \\& Technologies:} ${frames}\n`;
 
-  const dbs = (tech.databases || []).join(', ');
+  const dbs = (tech.databases || []).map(escapeLatex).join(', ');
   if (dbs) tex += `  \\item \\textbf{Databases:} ${dbs}\n`;
 
-  const tools = (tech.developerTools || []).join(', ');
+  const tools = (tech.developerTools || []).map(escapeLatex).join(', ');
   if (tools) tex += `  \\item \\textbf{Tools \\& Platforms:} ${tools}\n`;
 
-  const concepts = (tech.coreConcepts || []).join(', ');
+  const concepts = (tech.coreConcepts || []).map(escapeLatex).join(', ');
   if (concepts) tex += `  \\item \\textbf{Core Competencies:} ${concepts}\n`;
 
   tex += `\\end{itemize}
@@ -1023,13 +1079,14 @@ ${summary}
 `;
 
   prj.forEach(proj => {
-    const pTitle = proj.title || 'Technical Project';
-    const pTech = Array.isArray(proj.technologies) ? proj.technologies.join(', ') : (proj.technologies || '');
+    const pTitle = escapeLatex(proj.title || 'Technical Project');
+    const rawTech = Array.isArray(proj.technologies) ? proj.technologies.join(', ') : (proj.technologies || '');
+    const pTech = escapeLatex(rawTech);
     tex += `\\textbf{${pTitle}} ${pTech ? `(\\textit{Tech: ${pTech}})` : ''}\\\\
 \\begin{itemize}
 `;
     (Array.isArray(proj.bullets) ? proj.bullets : []).forEach(b => {
-      if (b.trim()) tex += `  \\item ${b.trim()}\n`;
+      if (b && b.trim()) tex += `  \\item ${escapeLatex(b.trim())}\n`;
     });
     tex += `\\end{itemize}
 \\vspace{2pt}
@@ -1041,11 +1098,14 @@ ${summary}
     tex += `\\section{Internships \\& Industrial Training}
 `;
     exp.forEach(e => {
-      tex += `\\textbf{${e.title || 'Intern'}} at \\textbf{${e.company || 'Organization'}} \\hfill ${e.duration || ''}\\\\
+      const eTitle = escapeLatex(e.title || 'Intern');
+      const eComp = escapeLatex(e.company || 'Organization');
+      const eDur = escapeLatex(e.duration || '');
+      tex += `\\textbf{${eTitle}} at \\textbf{${eComp}} \\hfill ${eDur}\\\\
 \\begin{itemize}
 `;
       (Array.isArray(e.bullets) ? e.bullets : []).forEach(b => {
-        if (b.trim()) tex += `  \\item ${b.trim()}\n`;
+        if (b && b.trim()) tex += `  \\item ${escapeLatex(b.trim())}\n`;
       });
       tex += `\\end{itemize}
 \\vspace{2pt}
@@ -1059,10 +1119,13 @@ ${summary}
 \\begin{itemize}
 `;
     cert.forEach(c => {
-      tex += `  \\item \\textbf{Certification:} ${c.name || c.title || ''} ${c.issuer ? `(${c.issuer})` : ''}\n`;
+      const cName = escapeLatex(c.name || c.title || '');
+      const cIss = escapeLatex(c.issuer || '');
+      tex += `  \\item \\textbf{Certification:} ${cName} ${cIss ? `(${cIss})` : ''}\n`;
     });
     ach.forEach(a => {
-      tex += `  \\item \\textbf{Achievement:} ${a.description || a.title || ''}\n`;
+      const aText = escapeLatex(a.description || a.title || '');
+      tex += `  \\item \\textbf{Achievement:} ${aText}\n`;
     });
     tex += `\\end{itemize}
 `;
@@ -1071,7 +1134,7 @@ ${summary}
   // ----------------- PERSONAL DETAILS (College Standard) -----------------
   tex += `\\section{Personal Profile}
 \\begin{tabular*}{\\textwidth}{l@{\\extracolsep{\\fill}}r}
-  \\textbf{Permanent Address:} ${p.location || 'Uttar Pradesh, India'} & \\textbf{Nationality:} Indian \\\\
+  \\textbf{Permanent Address:} ${location} & \\textbf{Nationality:} Indian \\\\
   \\textbf{Languages Known:} English, Hindi & \\textbf{Status:} Available Immediately \\\\
 \\end{tabular*}
 
@@ -1081,11 +1144,20 @@ ${summary}
   return tex;
 }
 
+  return tex;
+}
+
 /**
  * 6. DOCX EXPORT GENERATOR
  * Generates clean, downloadable Microsoft Word (.docx) document
  */
 async function generateDocxBuffer(resumeData) {
+  const docx = getDocx();
+  if (!docx) {
+    throw new Error('Microsoft Word DOCX generator is unavailable in this environment.');
+  }
+  const { Document, Paragraph, TextRun, HeadingLevel, AlignmentType, BorderStyle, Table, TableRow, TableCell, WidthType, Packer } = docx;
+
   const p = resumeData.personal || resumeData.personalDetails || {};
   const edu = Array.isArray(resumeData.education) ? resumeData.education : [];
   const exp = Array.isArray(resumeData.experience) ? resumeData.experience : [];

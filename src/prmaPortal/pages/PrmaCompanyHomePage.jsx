@@ -141,7 +141,7 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
             >
               <button
                 type="button"
-                onClick={() => handleNav('prma-internships-domains')}
+                onClick={() => handleNav('prma-internships-apply')}
                 style={{
                   padding: '0.95rem 2rem',
                   borderRadius: '14px',
@@ -750,7 +750,7 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem' }}>
               <button
                 type="button"
-                onClick={() => handleNav('prma-internships-domains')}
+                onClick={() => handleNav('prma-internships-apply')}
                 style={{
                   padding: '0.9rem 1.85rem',
                   borderRadius: '12px',
@@ -1072,7 +1072,7 @@ export default function PrmaCompanyHomePage({ navigateToTab }) {
 
           <button
             type="button"
-            onClick={() => handleNav('prma-internships-domains')}
+            onClick={() => handleNav('prma-internships-apply')}
             style={{
               padding: '0.85rem 1.75rem',
               borderRadius: '12px',

@@ -84,15 +84,20 @@ export default function MobileBottomNav({ activeTab, onNavigate, onOpenAuth }) {
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         borderTop: isDark ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid #E8E2D5',
-        zIndex: 9998,
+        zIndex: 99999,
         boxShadow: isDark ? '0 -4px 20px rgba(0, 0, 0, 0.7)' : '0 -2px 12px rgba(0, 0, 0, 0.06)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-around',
-        height: '60px',
+        height: 'calc(62px + env(safe-area-inset-bottom, 0px))',
         padding: '0 4px',
         paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         boxSizing: 'border-box',
+        WebkitTransform: 'translate3d(0, 0, 0)',
+        transform: 'translate3d(0, 0, 0)',
+        willChange: 'transform',
+        contain: 'layout paint',
+        pointerEvents: 'auto',
         fontFamily: "'Plus Jakarta Sans', sans-serif"
       }}
     >

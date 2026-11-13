@@ -10,10 +10,13 @@ export function escapeLatex(text) {
   const str = String(text);
   if (!str.trim() || str === 'undefined' || str === 'null' || str === '[object Object]') return '';
   return str
-    .replace(/\\/g, '\\textbackslash ')
-    .replace(/([&%$#_{}])/g, (m) => '\\' + m)
-    .replace(/~/g, '\\textasciitilde ')
-    .replace(/\^/g, '\\textasciicircum ')
+    .replace(/\\/g, '\\textbackslash{}')
+    .replace(/([&%$#_{}])/g, '\\$1')
+    .replace(/~/g, '\\textasciitilde{}')
+    .replace(/\^/g, '\\textasciicircum{}')
+    .replace(/</g, '\\textless{}')
+    .replace(/>/g, '\\textgreater{}')
+    .replace(/\|/g, '\\textbar{}')
     .replace(/₹/g, 'Rs.~')
     .replace(/→/g, '$\\rightarrow$')
     .replace(/•/g, '--')
@@ -21,7 +24,7 @@ export function escapeLatex(text) {
     .replace(/[‘’]/g, "'")
     .replace(/—/g, '---')
     .replace(/–/g, '--')
-    .replace(/…/g, '\\ldots ');
+    .replace(/…/g, '\\ldots{}');
 }
 
 // Normalizes user input URLs to ensure valid clickable hyperlinks in LaTeX \\href
