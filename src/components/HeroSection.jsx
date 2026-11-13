@@ -24,13 +24,20 @@ export default function HeroSection({ onNavigate }) {
       style={{
         position: 'relative',
         width: '100%',
+        maxWidth: '1920px',
+        margin: '0 auto',
         overflow: 'hidden',
-        backgroundColor: '#FAF5F2'
+        backgroundColor: '#70102B'
       }}
     >
       {/* ===================================================================
-          1. HERO BACKGROUND: Full-Width Corporate Office Image (100% Intact)
-          Starts at top: 0 to float behind the liquid-glass navbar!
+          1. HERO BACKGROUND: Exact High-Resolution PRMA Tech Corporate Image (100% Intact)
+          Starts at top: 0 to float behind the liquid-glass navbar.
+          Preserves the complete 16:9 composition with:
+          - Top-left burgundy and golden curved border
+          - Bottom burgundy wave and golden curved line
+          - Lit PRMA Tech wall and ceiling chandeliers
+          - CEO girl, Apple MacBook, PRMA Tech mug and leadership books
           =================================================================== */}
       <div
         className="pv-hero-bg-wrapper"
@@ -40,32 +47,34 @@ export default function HeroSection({ onNavigate }) {
           left: 0,
           right: 0,
           bottom: 0,
+          width: '100%',
+          height: '100%',
           zIndex: 0,
           overflow: 'hidden'
         }}
       >
         <img
-          src="/assets/prma_tech_corporate_hero_bg_2x.jpg"
+          src="/assets/prma_tech_corporate_hero_bg.jpg"
           alt="PRMA Tech Corporate Office with Reception, Executive Desk, MacBook and Founder"
           className="pv-hero-bg-img"
           style={{
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center right',
+            objectFit: 'contain',
+            objectPosition: 'center',
             display: 'block',
             userSelect: 'none',
             pointerEvents: 'none'
           }}
           onError={(e) => {
-            e.currentTarget.src = '/assets/prma_tech_corporate_hero_bg.jpg';
+            e.currentTarget.src = '/assets/prma_tech_corporate_hero_bg_2x.jpg';
           }}
         />
       </div>
 
       {/* ===================================================================
           2. HERO CONTENT WRAPPER: Typography, Buttons, Stats & Search
-          paddingTop: 62px ensures content starts cleanly below the floating navbar
+          paddingTop: 68px ensures content starts cleanly below the floating navbar
           =================================================================== */}
       <div
         className="pv-hero-scene-wrap"
@@ -74,9 +83,10 @@ export default function HeroSection({ onNavigate }) {
           zIndex: 2,
           width: '100%',
           maxWidth: '1920px',
+          height: '100%',
           margin: '0 auto',
           paddingTop: '68px',
-          minHeight: 'auto',
+          boxSizing: 'border-box',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-start'
@@ -742,92 +752,35 @@ export default function HeroSection({ onNavigate }) {
       </div>
 
       {/* ===================================================================
-          4. GOLDEN-MAROON RIBBON WAVE TRANSITION DIVIDER (Matching IMAGE 2)
-          Flows smoothly between the hero scene and the feature cards below
+          DEMO VIDEO MODAL
           =================================================================== */}
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          overflow: 'hidden',
-          lineHeight: 0,
-          zIndex: 4,
-          marginTop: '-1px'
-        }}
-        aria-hidden="true"
-      >
-        <svg
-          viewBox="0 0 1440 96"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          style={{
-            display: 'block',
-            width: '100%',
-            height: 'clamp(48px, 6vw, 84px)'
-          }}
-        >
-          <defs>
-            <linearGradient id="maroonRibbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#70102B" />
-              <stop offset="35%" stopColor="#881337" />
-              <stop offset="70%" stopColor="#9F1239" />
-              <stop offset="100%" stopColor="#BE123C" />
-            </linearGradient>
-            <linearGradient id="goldRibbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#D97706" />
-              <stop offset="45%" stopColor="#F59E0B" />
-              <stop offset="75%" stopColor="#FBBF24" />
-              <stop offset="100%" stopColor="#FDE68A" />
-            </linearGradient>
-            <filter id="ribbonShadow" x="-10%" y="-20%" width="120%" height="160%">
-              <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#70102B" floodOpacity="0.18" />
-            </filter>
-          </defs>
-
-          {/* Golden Under-Ribbon Swoosh */}
-          <path
-            d="M0,45 C280,12 560,78 920,40 C1140,16 1320,52 1440,32 L1440,96 L0,96 Z"
-            fill="url(#goldRibbonGrad)"
-            opacity="0.95"
-          />
-
-          {/* Deep Maroon Main Ribbon Wave */}
-          <path
-            d="M0,32 C320,68 640,8 1000,54 C1200,80 1340,38 1440,48 L1440,96 L0,96 Z"
-            fill="url(#maroonRibbonGrad)"
-            filter="url(#ribbonShadow)"
-          />
-
-          {/* Seamless White Bottom Fill matching the Quick Access section background */}
-          <path
-            d="M0,62 C340,82 720,42 1100,72 C1260,84 1380,68 1440,64 L1440,96 L0,96 Z"
-            fill="#FFFFFF"
-          />
-        </svg>
-      </div>
-
       <DemoVideoModal
         isOpen={isDemoModalOpen}
         onClose={() => setIsDemoModalOpen(false)}
       />
 
       <style>{`
+        .pv-hero-original-container {
+          aspect-ratio: 16 / 9;
+          min-height: calc(100vw * 9 / 16);
+          max-height: 1080px;
+          background-color: #70102B;
+        }
         .pv-hero-bg-img {
-          object-position: center right;
-          transition: object-position 0.3s ease;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+          display: block;
         }
         .pv-hero-upper-text-col {
-          max-width: 680px;
+          max-width: 580px;
           width: 100%;
           transition: max-width 0.25s ease;
         }
         @media (max-width: 1440px) {
           .pv-hero-upper-text-col {
-            max-width: 540px;
-          }
-          .pv-hero-bg-img {
-            object-position: 92% center;
+            max-width: 500px;
           }
         }
         @media (max-width: 1366px) {
@@ -835,32 +788,32 @@ export default function HeroSection({ onNavigate }) {
             padding: 0.85rem 1.25rem 1.25rem !important;
           }
           .pv-hero-trust-badge {
-            margin-bottom: 0.65rem !important;
-            padding: 0.28rem 0.85rem !important;
+            margin-bottom: 0.55rem !important;
+            padding: 0.25rem 0.8rem !important;
             font-size: 0.75rem !important;
           }
           .pv-hero-main-title {
-            font-size: clamp(2rem, 3.2vw, 2.85rem) !important;
+            font-size: clamp(1.9rem, 3vw, 2.7rem) !important;
             margin-bottom: 0.2rem !important;
           }
           .pv-hero-slogan-wrap {
-            margin-bottom: 0.65rem !important;
+            margin-bottom: 0.55rem !important;
           }
           .pv-hero-slogan-wrap h2 {
-            font-size: clamp(1.25rem, 2vw, 1.85rem) !important;
+            font-size: clamp(1.2rem, 1.8vw, 1.7rem) !important;
           }
           .pv-hero-desc {
-            font-size: 0.88rem !important;
+            font-size: 0.86rem !important;
             line-height: 1.45 !important;
-            margin-bottom: 0.85rem !important;
+            margin-bottom: 0.75rem !important;
             max-width: 440px !important;
           }
           .pv-hero-btn-row {
-            margin-bottom: 0.85rem !important;
+            margin-bottom: 0.75rem !important;
             gap: 0.65rem !important;
           }
           .pv-hero-btn-row button {
-            padding: 0.65rem 1.25rem !important;
+            padding: 0.6rem 1.2rem !important;
             font-size: 0.85rem !important;
           }
           .pv-hero-stats-row {
@@ -870,52 +823,90 @@ export default function HeroSection({ onNavigate }) {
             padding: 0.3rem 0.55rem !important;
           }
           .pv-hero-msme-section {
-            margin-top: 0.75rem !important;
+            margin-top: 0.65rem !important;
           }
           .pv-hero-msme-cta-pill {
-            padding: 0.45rem 1.05rem !important;
+            padding: 0.42rem 1rem !important;
             font-size: 0.82rem !important;
-            margin-bottom: 0.45rem !important;
+            margin-bottom: 0.4rem !important;
           }
           .pv-msme-card {
-            padding: 0.8rem 1rem !important;
+            padding: 0.75rem 0.95rem !important;
           }
         }
         @media (max-width: 1280px) {
           .pv-hero-upper-text-col {
             max-width: 440px;
           }
-          .pv-hero-bg-img {
-            object-position: 96% center;
-          }
         }
         @media (max-width: 1100px) {
+          .pv-hero-scene-wrap {
+            padding-top: 54px !important;
+          }
+          .pv-hero-upper-inner {
+            padding: 0.35rem 1rem 0.5rem !important;
+          }
           .pv-hero-upper-text-col {
-            max-width: 330px;
+            max-width: 340px;
+          }
+          .pv-hero-trust-badge {
+            margin-bottom: 0.35rem !important;
+            padding: 0.18rem 0.65rem !important;
+            font-size: 0.68rem !important;
+          }
+          .pv-hero-main-title {
+            font-size: 1.65rem !important;
+            margin-bottom: 0.1rem !important;
+          }
+          .pv-hero-slogan-wrap {
+            margin-bottom: 0.35rem !important;
+          }
+          .pv-hero-slogan-wrap h2 {
+            font-size: 1.05rem !important;
           }
           .pv-hero-desc {
             max-width: 320px !important;
-            font-size: 0.82rem !important;
+            font-size: 0.76rem !important;
+            line-height: 1.35 !important;
+            margin-bottom: 0.45rem !important;
           }
-          .pv-hero-main-title {
-            font-size: 1.85rem !important;
+          .pv-hero-btn-row {
+            margin-bottom: 0.45rem !important;
+            gap: 0.45rem !important;
           }
-          .pv-hero-slogan-wrap h2 {
-            font-size: 1.18rem !important;
+          .pv-hero-btn-row button {
+            padding: 0.45rem 0.95rem !important;
+            font-size: 0.78rem !important;
           }
-          .pv-hero-bg-img {
-            object-position: right center;
+          .pv-hero-stats-row {
+            gap: 0.35rem !important;
+          }
+          .pv-hero-stats-row > div {
+            padding: 0.2rem 0.45rem !important;
+          }
+          .pv-hero-msme-section {
+            margin-top: 0.45rem !important;
+          }
+          .pv-hero-msme-cta-pill {
+            padding: 0.35rem 0.85rem !important;
+            font-size: 0.76rem !important;
+            margin-bottom: 0.35rem !important;
+          }
+          .pv-msme-card {
+            padding: 0.5rem 0.75rem !important;
           }
         }
         @media (max-width: 900px) {
-          .pv-hero-scene-wrap {
-            min-height: 580px !important;
+          .pv-hero-original-container {
+            aspect-ratio: auto;
+            min-height: auto;
+          }
+          .pv-hero-bg-img {
+            object-fit: cover;
+            object-position: center;
           }
           .pv-hero-upper-text-col {
             max-width: 100%;
-          }
-          .pv-hero-bg-img {
-            object-position: 80% center;
           }
         }
       `}</style>
