@@ -8,6 +8,19 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
 
   const getPageTitle = () => {
     switch (activeTab) {
+      case 'prma-home': return 'PRMA Tech';
+      case 'prma-internships-home': return 'PRMA Tech Internships';
+      case 'prma-internships-domains': return 'Internship Domains';
+      case 'prma-internships-apply': return 'Internship Application';
+      case 'prma-internships-goodies': return 'Welcome Kit & Goodies';
+      case 'prma-internships-review': return 'Application Status';
+      case 'prma-internships-dashboard': return 'Intern Dashboard';
+      case 'prma-services': return 'PRMA Tech Services';
+      case 'prma-projects': return 'PRMA Tech Projects';
+      case 'prma-about': return 'About PRMA Tech';
+      case 'prma-admin': return 'PRMA Tech Admin';
+      case 'prma-verify-offer': return 'Verify Offer Letter';
+      case 'prma-submit': return 'Submit Internship Task';
       case 'notes': return `${selectedCourse || 'B.Tech'} Notes`;
       case 'pyqs': return `${selectedCourse || 'B.Tech'} PYQs`;
       case 'syllabus': return 'Syllabus';
@@ -45,6 +58,38 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
         return 'Sign In';
       case 'signup': return 'Create Account';
       default: return 'ProfessorVirus';
+    }
+  };
+
+  const handleBack = () => {
+    if (!onNavigate) {
+      if (typeof window !== 'undefined' && window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '/';
+      }
+      return;
+    }
+    if (activeTab === 'prma-internships-apply') {
+      onNavigate('prma-internships-domains');
+    } else if (
+      activeTab === 'prma-internships-domains' ||
+      activeTab === 'prma-internships-goodies' ||
+      activeTab === 'prma-internships-review' ||
+      activeTab === 'prma-internships-dashboard'
+    ) {
+      onNavigate('prma-internships-home');
+    } else if (
+      activeTab === 'prma-internships-home' ||
+      activeTab === 'prma-services' ||
+      activeTab === 'prma-projects' ||
+      activeTab === 'prma-about'
+    ) {
+      onNavigate('prma-home');
+    } else if (activeTab === 'prma-home') {
+      onNavigate('home');
+    } else {
+      onNavigate('home');
     }
   };
 
@@ -223,8 +268,8 @@ export default function MobileHeader({ activeTab, onNavigate, onOpenUpdates, onO
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
             <button
               type="button"
-              onClick={() => onNavigate ? onNavigate('home') : (window.location.href = '/')}
-              aria-label="Go back to Home"
+              onClick={handleBack}
+              aria-label="Go back"
               style={{
                 width: '34px',
                 height: '34px',

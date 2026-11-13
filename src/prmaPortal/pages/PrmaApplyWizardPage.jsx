@@ -47,6 +47,9 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     }
   };
 
+  // Draft persistence key to prevent accidental form resets
+  const DRAFT_KEY = 'prma_internship_draft_v2';
+
   // Determine initial domain from context or session storage
   const [activeDomain, setActiveDomain] = useState(() => {
     const savedId = typeof window !== 'undefined' ? window.sessionStorage.getItem('prma_selected_domain_id') : null;
@@ -54,56 +57,101 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     return PRMA_DOMAINS.find(d => d.id === domId) || PRMA_DOMAINS[0];
   });
 
-  // Multi-section form state
-  const [formData, setFormData] = useState({
-    // Section A: Personal
-    fullName: '',
-    dob: '',
-    email: '',
-    mobile: '',
-    whatsapp: '',
-    gender: 'Male',
-    address: '',
-    city: '',
-    state: '',
-    pinCode: '',
+  // Modal / Drawer state for changing domain without unmounting the form
+  const [isDomainPickerOpen, setIsDomainPickerOpen] = useState(false);
+  const [pickerSearch, setPickerSearch] = useState('');
 
-    // Section B: Academic
-    college: '',
-    university: '',
-    course: 'B.Tech',
-    branch: 'Computer Science and Engineering',
-    year: '3rd Year',
-    semester: '5th',
-    graduationYear: '2026',
-
-    // Section C: Technical & Internship Preferences
-    skills: '',
-    languages: '',
-    experience: '',
-    experienceLevel: 'Beginner',
-    duration: '1 Month',
-    preferredStartDate: 'Immediate',
-
-    // Section D: Profiles
-    githubUrl: '',
-    linkedinUrl: '',
-
-    // Section F: Social Follow
-    followedLinkedIn: false,
-    followedInstagram: false,
-
-    // Section G: Declaration
-    confirmedAccuracy: false
+  // Multi-section form state with automatic draft recovery
+  const [formData, setFormData] = useState(() => {
+    try {
+      const raw = typeof window !== 'undefined' ? window.sessionStorage.getItem(DRAFT_KEY) : null;
+      if (raw) {
+        const draft = JSON.parse(raw);
+        return {
+          fullName: draft.fullName || '',
+          dob: draft.dob || '',
+          email: draft.email || '',
+          mobile: draft.mobile || '',
+          whatsapp: draft.whatsapp || '',
+          gender: draft.gender || 'Male',
+          address: draft.address || '',
+          city: draft.city || '',
+          state: draft.state || '',
+          pinCode: draft.pinCode || '',
+          college: draft.college || '',
+          university: draft.university || '',
+          rollNumber: draft.rollNumber || '',
+          course: draft.course || 'B.Tech',
+          branch: draft.branch || 'Computer Science and Engineering',
+          year: draft.year || '3rd Year',
+          semester: draft.semester || '5th',
+          graduationYear: draft.graduationYear || '2026',
+          skills: draft.skills || '',
+          languages: draft.languages || '',
+          experience: draft.experience || '',
+          experienceLevel: draft.experienceLevel || 'Beginner',
+          duration: draft.duration || '1 Month',
+          preferredStartDate: draft.preferredStartDate || 'Immediate',
+          githubUrl: draft.githubUrl || '',
+          linkedinUrl: draft.linkedinUrl || '',
+          followedLinkedIn: Boolean(draft.followedLinkedIn),
+          followedInstagram: Boolean(draft.followedInstagram),
+          confirmedAccuracy: Boolean(draft.confirmedAccuracy)
+        };
+      }
+    } catch {}
+    return {
+      fullName: '',
+      dob: '',
+      email: '',
+      mobile: '',
+      whatsapp: '',
+      gender: 'Male',
+      address: '',
+      city: '',
+      state: '',
+      pinCode: '',
+      college: '',
+      university: '',
+      rollNumber: '',
+      course: 'B.Tech',
+      branch: 'Computer Science and Engineering',
+      year: '3rd Year',
+      semester: '5th',
+      graduationYear: '2026',
+      skills: '',
+      languages: '',
+      experience: '',
+      experienceLevel: 'Beginner',
+      duration: '1 Month',
+      preferredStartDate: 'Immediate',
+      githubUrl: '',
+      linkedinUrl: '',
+      followedLinkedIn: false,
+      followedInstagram: false,
+      confirmedAccuracy: false
+    };
   });
 
   // Autocomplete states for College & University
-  const [collegeQuery, setCollegeQuery] = useState('');
+  const [collegeQuery, setCollegeQuery] = useState(() => {
+    try {
+      const raw = typeof window !== 'undefined' ? window.sessionStorage.getItem(DRAFT_KEY) : null;
+      if (raw) return JSON.parse(raw).college || '';
+    } catch {}
+    return '';
+  });
   const [showCollegeDropdown, setShowCollegeDropdown] = useState(false);
   const [isCustomCollege, setIsCustomCollege] = useState(false);
   const collegeRef = useRef(null);
 
-  const [universityQuery, setUniversityQuery] = useState('');
+  const [universityQuery, setUniversityQuery] = useState(() => {
+    try {
+      const raw = typeof window !== 'undefined' ? window.sessionStorage.getItem(DRAFT_KEY) : null;
+      if (raw) return JSON.parse(raw).university || '';
+    } catch {}
+    return '';
+  });
   const [showUniversityDropdown, setShowUniversityDropdown] = useState(false);
   const [isCustomUniversity, setIsCustomUniversity] = useState(false);
   const universityRef = useRef(null);
@@ -130,6 +178,20 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
   const [formError, setFormError] = useState('');
   const [duplicateNotice, setDuplicateNotice] = useState(null);
   const [submissionResult, setSubmissionResult] = useState(null);
+
+  // Persist form draft on state updates to prevent accidental resets
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const toSave = {
+          ...formData,
+          college: isCustomCollege ? formData.college : collegeQuery,
+          university: isCustomUniversity ? formData.university : universityQuery
+        };
+        window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(toSave));
+      }
+    } catch {}
+  }, [formData, collegeQuery, universityQuery, isCustomCollege, isCustomUniversity]);
 
   // Filtered colleges for autocomplete
   const filteredColleges = useMemoSearch(collegeQuery, POPULAR_COLLEGES);
@@ -347,15 +409,24 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     if (!formData.course.trim()) return 'Please select your Current Course / Degree.';
     if (!formData.year.trim()) return 'Please select your Current Academic Year.';
 
-    // Profiles
+    // Profiles (Lenient on mobile: auto-normalizes missing https://)
+    let cleanGithub = formData.githubUrl.trim();
+    if (cleanGithub && !cleanGithub.startsWith('http://') && !cleanGithub.startsWith('https://')) {
+      cleanGithub = 'https://' + cleanGithub;
+    }
+    let cleanLinkedin = formData.linkedinUrl.trim();
+    if (cleanLinkedin && !cleanLinkedin.startsWith('http://') && !cleanLinkedin.startsWith('https://')) {
+      cleanLinkedin = 'https://' + cleanLinkedin;
+    }
+
     const githubRegex = /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9_-]+\/?.*$/i;
     const linkedinRegex = /^https?:\/\/([a-z]{2,3}\.)?linkedin\.com\/(in|company)\/[a-zA-Z0-9_%-]+\/?.*$/i;
 
-    if (!formData.githubUrl.trim() || !githubRegex.test(formData.githubUrl.trim())) {
+    if (!cleanGithub || !githubRegex.test(cleanGithub)) {
       return 'Please enter a valid GitHub profile URL (e.g. https://github.com/username).';
     }
 
-    if (!formData.linkedinUrl.trim() || !linkedinRegex.test(formData.linkedinUrl.trim())) {
+    if (!cleanLinkedin || !linkedinRegex.test(cleanLinkedin)) {
       return 'Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/username).';
     }
 
@@ -393,7 +464,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
     const error = validateForm();
     if (error) {
       setFormError(error);
-      window.scrollTo({ top: 350, behavior: 'smooth' });
+      window.scrollTo({ top: 120, behavior: 'smooth' });
       return;
     }
 
@@ -402,6 +473,15 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
 
     const effectiveCollege = isCustomCollege ? formData.college.trim() : collegeQuery.trim();
     const effectiveUniversity = isCustomUniversity ? formData.university.trim() : universityQuery.trim();
+
+    let cleanGithub = formData.githubUrl.trim();
+    if (cleanGithub && !cleanGithub.startsWith('http://') && !cleanGithub.startsWith('https://')) {
+      cleanGithub = 'https://' + cleanGithub;
+    }
+    let cleanLinkedin = formData.linkedinUrl.trim();
+    if (cleanLinkedin && !cleanLinkedin.startsWith('http://') && !cleanLinkedin.startsWith('https://')) {
+      cleanLinkedin = 'https://' + cleanLinkedin;
+    }
 
     const payload = {
       student: {
@@ -419,6 +499,8 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
       academic: {
         college: effectiveCollege,
         university: effectiveUniversity,
+        rollNumber: (formData.rollNumber || '').trim(),
+        studentId: (formData.rollNumber || '').trim(),
         course: formData.course,
         branch: formData.branch.trim(),
         year: formData.year,
@@ -436,8 +518,8 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
       duration: formData.duration || '1 Month',
       preferredStartDate: formData.preferredStartDate || 'Immediate',
       profiles: {
-        githubUrl: formData.githubUrl.trim(),
-        linkedinUrl: formData.linkedinUrl.trim()
+        githubUrl: cleanGithub,
+        linkedinUrl: cleanLinkedin
       },
       resume: {
         fileName: resumeFile.name,
@@ -478,6 +560,11 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
       }
 
       if (res.ok && data.success) {
+        try {
+          if (typeof window !== 'undefined') {
+            window.sessionStorage.removeItem(DRAFT_KEY);
+          }
+        } catch {}
         setDuplicateNotice(null);
         setFormError('');
         setSubmissionResult({
@@ -630,24 +717,27 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
           </div>
 
           {/* ACTIVE DOMAIN CARD (PRE-SELECTED FROM STEP 1) */}
-          <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <PrmaDomainIcon iconType={activeDomain.iconType} className="w-14 h-14 flex-shrink-0" color={activeDomain.color} />
-              <div>
+          <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-sm mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+              <PrmaDomainIcon iconType={activeDomain.iconType} className="w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0" color={activeDomain.color} />
+              <div className="min-w-0">
                 <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800">
                   Selected Domain &bull; 100% FREE
                 </span>
-                <h2 className="text-xl font-black text-slate-900 mt-1">{activeDomain.title}</h2>
+                <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1 leading-snug truncate">
+                  {activeDomain.title}
+                </h2>
                 <div className="text-xs text-slate-500">Duration: Exactly 1 Month &bull; Mode: Remote &bull; Fee: ₹0</div>
               </div>
             </div>
 
             <button
               type="button"
-              onClick={() => handleNav('prma-internships-domains')}
-              className="px-4 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-bold text-blue-600 transition flex-shrink-0"
+              onClick={() => setIsDomainPickerOpen(true)}
+              className="px-4 py-2.5 min-h-[44px] rounded-xl border border-blue-200 bg-blue-50/60 hover:bg-blue-100 text-xs font-bold text-blue-700 transition flex items-center justify-center gap-1.5 flex-shrink-0 w-full sm:w-auto"
             >
-              Change Domain
+              <span>Change Domain</span>
+              <ChevronDown className="w-4 h-4" />
             </button>
           </div>
 
@@ -942,29 +1032,54 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                       <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
 
                       {showCollegeDropdown && (
-                        <div className="absolute z-30 left-0 right-0 mt-1 bg-white rounded-2xl border border-slate-200 shadow-xl max-h-60 overflow-y-auto">
+                        <div
+                          className="absolute z-30 left-0 right-0 mt-1 bg-white rounded-2xl border border-slate-200 shadow-xl max-h-60 overflow-y-auto"
+                          style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
+                        >
                           {filteredColleges.map((col, idx) => (
                             <button
                               type="button"
                               key={idx}
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                setCollegeQuery(col);
+                                setShowCollegeDropdown(false);
+                              }}
+                              onTouchEnd={(e) => {
+                                e.preventDefault();
+                                setCollegeQuery(col);
+                                setShowCollegeDropdown(false);
+                              }}
                               onClick={() => {
                                 setCollegeQuery(col);
                                 setShowCollegeDropdown(false);
                               }}
-                              className="w-full text-left px-4 py-2.5 hover:bg-blue-50 text-xs text-slate-800 border-b border-slate-100 last:border-none flex items-center justify-between"
+                              className="w-full text-left px-4 py-3 hover:bg-blue-50 active:bg-blue-100 min-h-[44px] text-xs text-slate-800 border-b border-slate-100 last:border-none flex items-center justify-between"
                             >
-                              <span>{col}</span>
-                              {collegeQuery === col && <Check className="w-3.5 h-3.5 text-blue-600" />}
+                              <span className="font-medium">{col}</span>
+                              {collegeQuery === col && <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />}
                             </button>
                           ))}
                           <button
                             type="button"
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              setIsCustomCollege(true);
+                              setShowCollegeDropdown(false);
+                              setCollegeQuery('');
+                            }}
+                            onTouchEnd={(e) => {
+                              e.preventDefault();
+                              setIsCustomCollege(true);
+                              setShowCollegeDropdown(false);
+                              setCollegeQuery('');
+                            }}
                             onClick={() => {
                               setIsCustomCollege(true);
                               setShowCollegeDropdown(false);
                               setCollegeQuery('');
                             }}
-                            className="w-full text-left px-4 py-2.5 bg-slate-50 hover:bg-slate-100 text-xs font-bold text-blue-600"
+                            className="w-full text-left px-4 py-3 min-h-[44px] bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-xs font-bold text-blue-600 flex items-center"
                           >
                             + Other / Enter Institution Manually
                           </button>
@@ -978,7 +1093,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                         placeholder="Enter your exact college name"
                         value={formData.college}
                         onChange={(e) => handleChange('college', e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl border border-blue-400 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2.5 rounded-xl border border-blue-400 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[46px]"
                       />
                       <button
                         type="button"
@@ -986,7 +1101,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                           setIsCustomCollege(false);
                           setFormData(p => ({ ...p, college: '' }));
                         }}
-                        className="text-[11px] text-blue-600 hover:underline mt-1 inline-block"
+                        className="text-[11px] text-blue-600 hover:underline mt-1.5 inline-block font-semibold py-1"
                       >
                         &larr; Back to college suggestions list
                       </button>
@@ -1010,34 +1125,59 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                           setUniversityQuery(e.target.value);
                           setShowUniversityDropdown(true);
                         }}
-                        className="w-full px-4 py-2.5 pr-10 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2.5 pr-10 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[46px]"
                       />
                       <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
 
                       {showUniversityDropdown && (
-                        <div className="absolute z-30 left-0 right-0 mt-1 bg-white rounded-2xl border border-slate-200 shadow-xl max-h-60 overflow-y-auto">
+                        <div
+                          className="absolute z-30 left-0 right-0 mt-1 bg-white rounded-2xl border border-slate-200 shadow-xl max-h-60 overflow-y-auto"
+                          style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
+                        >
                           {filteredUniversities.map((uni, idx) => (
                             <button
                               type="button"
                               key={idx}
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                setUniversityQuery(uni);
+                                setShowUniversityDropdown(false);
+                              }}
+                              onTouchEnd={(e) => {
+                                e.preventDefault();
+                                setUniversityQuery(uni);
+                                setShowUniversityDropdown(false);
+                              }}
                               onClick={() => {
                                 setUniversityQuery(uni);
                                 setShowUniversityDropdown(false);
                               }}
-                              className="w-full text-left px-4 py-2.5 hover:bg-blue-50 text-xs text-slate-800 border-b border-slate-100 last:border-none flex items-center justify-between"
+                              className="w-full text-left px-4 py-3 hover:bg-blue-50 active:bg-blue-100 min-h-[44px] text-xs text-slate-800 border-b border-slate-100 last:border-none flex items-center justify-between"
                             >
-                              <span>{uni}</span>
-                              {universityQuery === uni && <Check className="w-3.5 h-3.5 text-blue-600" />}
+                              <span className="font-medium">{uni}</span>
+                              {universityQuery === uni && <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />}
                             </button>
                           ))}
                           <button
                             type="button"
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              setIsCustomUniversity(true);
+                              setShowUniversityDropdown(false);
+                              setUniversityQuery('');
+                            }}
+                            onTouchEnd={(e) => {
+                              e.preventDefault();
+                              setIsCustomUniversity(true);
+                              setShowUniversityDropdown(false);
+                              setUniversityQuery('');
+                            }}
                             onClick={() => {
                               setIsCustomUniversity(true);
                               setShowUniversityDropdown(false);
                               setUniversityQuery('');
                             }}
-                            className="w-full text-left px-4 py-2.5 bg-slate-50 hover:bg-slate-100 text-xs font-bold text-blue-600"
+                            className="w-full text-left px-4 py-3 min-h-[44px] bg-slate-50 hover:bg-slate-100 active:bg-slate-200 text-xs font-bold text-blue-600 flex items-center"
                           >
                             + Other / Enter University Manually
                           </button>
@@ -1051,7 +1191,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                         placeholder="Enter your affiliated university name"
                         value={formData.university}
                         onChange={(e) => handleChange('university', e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-xl border border-blue-400 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2.5 rounded-xl border border-blue-400 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[46px]"
                       />
                       <button
                         type="button"
@@ -1059,7 +1199,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                           setIsCustomUniversity(false);
                           setFormData(p => ({ ...p, university: '' }));
                         }}
-                        className="text-[11px] text-blue-600 hover:underline mt-1 inline-block"
+                        className="text-[11px] text-blue-600 hover:underline mt-1.5 inline-block font-semibold py-1"
                       >
                         &larr; Back to university suggestions list
                       </button>
@@ -1155,6 +1295,20 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                     <option value="2028">2028</option>
                     <option value="2029">2029</option>
                   </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                    <span>Student ID / University Roll No.</span>
+                    <span className="text-[10px] text-slate-400 font-normal">Optional</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. 2100970100045"
+                    value={formData.rollNumber}
+                    onChange={(e) => handleChange('rollNumber', e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[46px]"
+                  />
                 </div>
               </div>
             </div>
@@ -1432,15 +1586,23 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
 
-                      <label className="flex items-start gap-2.5 cursor-pointer text-xs text-slate-700 select-none pt-1">
+                      <div
+                        onClick={() => handleChange('followedLinkedIn', !formData.followedLinkedIn)}
+                        className={`p-3 rounded-xl border cursor-pointer select-none transition flex items-start gap-2.5 ${
+                          formData.followedLinkedIn ? 'bg-blue-50 border-blue-400' : 'bg-white border-slate-200'
+                        }`}
+                      >
                         <input
                           type="checkbox"
                           checked={formData.followedLinkedIn}
                           onChange={(e) => handleChange('followedLinkedIn', e.target.checked)}
-                          className="w-4 h-4 text-blue-600 rounded mt-0.5"
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-4 h-4 text-blue-600 rounded mt-0.5 cursor-pointer"
                         />
-                        <span className="font-semibold">I have followed the official PRMA Tech LinkedIn page. *</span>
-                      </label>
+                        <span className="font-semibold text-xs text-slate-800">
+                          I have followed the official PRMA Tech LinkedIn page. *
+                        </span>
+                      </div>
                     </div>
 
                     {/* Mandatory LinkedIn Screenshot Upload */}
@@ -1451,7 +1613,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                       <input
                         type="file"
                         ref={linkedinInputRef}
-                        accept="image/png, image/jpeg, image/jpg"
+                        accept="image/*,image/png,image/jpeg,image/jpg"
                         onChange={handleLinkedinScreenshotSelect}
                         className="hidden"
                       />
@@ -1535,15 +1697,23 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
 
-                      <label className="flex items-start gap-2.5 cursor-pointer text-xs text-slate-700 select-none pt-1">
+                      <div
+                        onClick={() => handleChange('followedInstagram', !formData.followedInstagram)}
+                        className={`p-3 rounded-xl border cursor-pointer select-none transition flex items-start gap-2.5 ${
+                          formData.followedInstagram ? 'bg-pink-50 border-pink-400' : 'bg-white border-slate-200'
+                        }`}
+                      >
                         <input
                           type="checkbox"
                           checked={formData.followedInstagram}
                           onChange={(e) => handleChange('followedInstagram', e.target.checked)}
-                          className="w-4 h-4 text-pink-600 rounded mt-0.5"
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-4 h-4 text-pink-600 rounded mt-0.5 cursor-pointer"
                         />
-                        <span className="font-semibold">I have followed the official PRMA Tech Instagram page (@prma.tech). *</span>
-                      </label>
+                        <span className="font-semibold text-xs text-slate-800">
+                          I have followed the official PRMA Tech Instagram page (@prma.tech). *
+                        </span>
+                      </div>
                     </div>
 
                     {/* Mandatory Instagram Screenshot Upload */}
@@ -1554,7 +1724,7 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                       <input
                         type="file"
                         ref={instagramInputRef}
-                        accept="image/png, image/jpeg, image/jpg"
+                        accept="image/*,image/png,image/jpeg,image/jpg"
                         onChange={handleInstagramScreenshotSelect}
                         className="hidden"
                       />
@@ -1655,17 +1825,23 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
                 </div>
               </div>
 
-              <label className="flex items-start gap-3 cursor-pointer text-xs text-slate-700 select-none bg-slate-50 p-4 rounded-2xl border border-slate-200">
+              <div
+                onClick={() => handleChange('confirmedAccuracy', !formData.confirmedAccuracy)}
+                className={`flex items-start gap-3 cursor-pointer text-xs text-slate-700 select-none p-4 rounded-2xl border transition ${
+                  formData.confirmedAccuracy ? 'bg-blue-50 border-blue-400' : 'bg-slate-50 border-slate-200'
+                }`}
+              >
                 <input
                   type="checkbox"
                   checked={formData.confirmedAccuracy}
                   onChange={(e) => handleChange('confirmedAccuracy', e.target.checked)}
-                  className="w-5 h-5 text-blue-600 rounded mt-0.5"
+                  onClick={(e) => e.stopPropagation()}
+                  className="w-5 h-5 text-blue-600 rounded mt-0.5 cursor-pointer flex-shrink-0"
                 />
                 <span className="font-medium leading-relaxed">
                   I confirm that the information provided by me is accurate and that I understand the internship application is subject to review and approval by PRMA Tech. *
                 </span>
-              </label>
+              </div>
             </div>
 
             {/* SUBMIT BUTTON */}
@@ -1693,6 +1869,121 @@ export default function PrmaApplyWizardPage({ navigateToTab, onNavigate }) {
             </div>
           </form>
         </main>
+      )}
+
+      {/* DOMAIN PICKER MODAL (INSTANT TRACK SWITCHING WITHOUT RESETTING FORM) */}
+      {isDomainPickerOpen && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+            {/* Header */}
+            <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between gap-3 bg-slate-50">
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 block">
+                  Change Track &bull; 100% Free
+                </span>
+                <h3 className="text-base sm:text-xl font-extrabold text-slate-900">
+                  Select Internship Domain (27 Tracks)
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsDomainPickerOpen(false)}
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 flex items-center justify-center flex-shrink-0"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Quick search input */}
+            <div className="p-3 sm:p-4 border-b border-slate-100 bg-white">
+              <div className="relative">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <input
+                  type="text"
+                  placeholder="Filter by title, skill, or keyword..."
+                  value={pickerSearch}
+                  onChange={(e) => setPickerSearch(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+
+            {/* List of Domains */}
+            <div
+              className="p-3 sm:p-4 overflow-y-auto space-y-2 flex-1"
+              style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-y' }}
+            >
+              {PRMA_DOMAINS
+                .filter(d => {
+                  if (!pickerSearch.trim()) return true;
+                  const q = pickerSearch.toLowerCase();
+                  return d.title.toLowerCase().includes(q) || d.category.toLowerCase().includes(q);
+                })
+                .map((dom) => {
+                  const isSelected = dom.id === activeDomain.id;
+                  return (
+                    <div
+                      key={dom.id}
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => {
+                        setActiveDomain(dom);
+                        setSelectedDomainId(dom.id);
+                        if (typeof window !== 'undefined') {
+                          window.sessionStorage.setItem('prma_selected_domain_id', dom.id);
+                          window.sessionStorage.setItem('prma_selected_domain_title', dom.title);
+                        }
+                        setIsDomainPickerOpen(false);
+                      }}
+                      className={`p-3 rounded-xl sm:rounded-2xl border transition flex items-center justify-between gap-3 cursor-pointer active:scale-[0.99] ${
+                        isSelected
+                          ? 'bg-blue-50/80 border-blue-500 shadow-xs'
+                          : 'bg-white border-slate-200 hover:border-blue-300 hover:bg-slate-50'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <PrmaDomainIcon iconType={dom.iconType} className="w-10 h-10 flex-shrink-0" color={dom.color} />
+                        <div className="min-w-0">
+                          <div className="text-xs sm:text-sm font-bold text-slate-900 truncate">
+                            {dom.title}
+                          </div>
+                          <div className="text-[10px] sm:text-xs text-slate-400">
+                            {dom.category} &bull; 1 Month &bull; 100% Free
+                          </div>
+                        </div>
+                      </div>
+                      {isSelected ? (
+                        <span className="px-2.5 py-1 rounded-full bg-blue-600 text-white text-[10px] font-black uppercase flex-shrink-0">
+                          Active
+                        </span>
+                      ) : (
+                        <span className="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-700 text-[10px] font-bold uppercase flex-shrink-0">
+                          Select
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+            </div>
+
+            {/* Footer */}
+            <div className="p-3 sm:p-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span className="text-slate-500 hidden sm:inline">Choosing a track updates your application instantly.</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsDomainPickerOpen(false);
+                  handleNav('prma-internships-domains');
+                }}
+                className="text-blue-600 font-bold hover:underline inline-flex items-center gap-1 min-h-[38px]"
+              >
+                <span>Browse Full Syllabus Catalog</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       <PrmaFooter />

@@ -14,6 +14,7 @@ import { fileURLToPath } from 'url';
 import https from 'https';
 import http from 'http';
 import resumeEngine from './resumeEngine.cjs';
+import resumeFeatures from './resumeFeatures.cjs';
 import { createPdfRouter } from './routes/pdfRoutes.js';
 import { createResultRouter } from './routes/resultRoutes.js';
 import { createAttendanceRouter } from './routes/attendanceRoutes.js';
@@ -468,15 +469,17 @@ const resumeStorage = multer.diskStorage({
 
 const uploadResume = multer({
   storage: resumeStorage,
-  limits: { fileSize: 15 * 1024 * 1024 },
+  limits: { fileSize: 20 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    const isPdf = file.originalname.toLowerCase().endsWith('.pdf');
-    const isDoc = file.originalname.toLowerCase().endsWith('.doc');
-    const isDocx = file.originalname.toLowerCase().endsWith('.docx');
-    if (isPdf || isDoc || isDocx) {
+    const lower = file.originalname.toLowerCase();
+    const isPdf = lower.endsWith('.pdf');
+    const isDoc = lower.endsWith('.doc');
+    const isDocx = lower.endsWith('.docx');
+    const isImage = /\.(jpg|jpeg|png|webp|bmp)$/.test(lower);
+    if (isPdf || isDoc || isDocx || isImage) {
       cb(null, true);
     } else {
-      cb(new Error('Invalid format. Only PDF, DOC, and DOCX files are allowed.'));
+      cb(new Error('Invalid format. Supported formats: PDF, DOCX, DOC, JPG, JPEG, and PNG.'));
     }
   }
 });
@@ -671,16 +674,21 @@ const ResumeSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
   userId: { type: String, required: true, index: true },
   title: { type: String, default: 'My Resume' },
-  templateId: { type: String, default: 'ats-one-page' },
+  targetRole: { type: String, default: '' },
+  status: { type: String, default: 'active' }, // 'active', 'draft', 'optimized', 'college_format'
+  templateId: { type: String, default: 'classic-tech' },
+  template: { type: String, default: 'classic-tech' },
   personalDetails: { type: Object, default: {} },
   summary: { type: String, default: '' },
   education: { type: Array, default: [] },
   skills: { type: Array, default: [] },
+  technicalSkills: { type: Object, default: {} },
   experience: { type: Array, default: [] },
   projects: { type: Array, default: [] },
   achievements: { type: Array, default: [] },
   certifications: { type: Array, default: [] },
   extracurricular: { type: Array, default: [] },
+  resumeData: { type: Object, default: null }, // full structured data snapshot
   generatedLatex: { type: String, default: '' },
   pdfUrl: { type: String, default: '' },
   pdfBase64: { type: String, default: '' },
@@ -688,8 +696,38 @@ const ResumeSchema = new mongoose.Schema({
   compileStatus: { type: String, default: 'success' },
   compileErrors: { type: Array, default: [] },
   onePageOptimized: { type: Boolean, default: false },
-  version: { type: Number, default: 1 }
+  version: { type: Number, default: 1 },
+  atsScore: { type: Number, default: 0 },
+  atsAnalysis: { type: Object, default: null },
+  jobOptimization: { type: Object, default: null },
+  collegeFormat: { type: Object, default: null },
+  versions: { type: Array, default: [] }
 }, { timestamps: true });
+
+const CollegeTemplateSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  userId: { type: String, required: true, index: true },
+  collegeName: { type: String, default: '' },
+  originalFileName: { type: String, default: '' },
+  originalFileUrl: { type: String, default: '' },
+  detectedSections: { type: Array, default: [] },
+  formatRules: { type: Object, default: {} }
+}, { timestamps: true });
+const CollegeTemplateModel = mongoose.models.CollegeTemplate || mongoose.model('CollegeTemplate', CollegeTemplateSchema);
+
+const AtsAnalysisSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true },
+  userId: { type: String, required: true, index: true },
+  resumeId: { type: String, index: true },
+  overallScore: { type: Number, default: 0 },
+  targetRole: { type: String, default: '' },
+  categoryScores: { type: Object, default: {} },
+  strengths: { type: Array, default: [] },
+  weaknesses: { type: Array, default: [] },
+  missingKeywords: { type: Array, default: [] },
+  actionableSuggestions: { type: Array, default: [] }
+}, { timestamps: true });
+const AtsAnalysisModel = mongoose.models.AtsAnalysis || mongoose.model('AtsAnalysis', AtsAnalysisSchema);
 
 const ResumeTemplateSchema = new mongoose.Schema({
   templateId: { type: String, required: true, unique: true },
@@ -7774,7 +7812,7 @@ app.post('/api/resumes/upload', (req, res) => {
   });
 });
 
-// Import & Parse existing Resume (PDF, DOCX, DOC) into structured JSON
+// Import & Parse existing Resume (PDF, DOCX, DOC, Images/Scans) into structured JSON
 app.post('/api/resumes/import', (req, res) => {
   uploadResume.single('resume')(req, res, async (err) => {
     if (err) return res.status(400).json({ success: false, message: err.message });
@@ -7782,9 +7820,16 @@ app.post('/api/resumes/import', (req, res) => {
 
     try {
       const buffer = fs.readFileSync(req.file.path);
-      const parsedData = await resumeEngine.parseUploadedResume(buffer, req.file.mimetype, req.file.originalname);
-      res.json({ success: true, parsedData });
+      const parsedData = await resumeFeatures.parseResumeFile(buffer, req.file.mimetype, req.file.originalname);
+      res.json({
+        success: true,
+        parsed: parsedData,
+        parsedData,
+        fileName: req.file.originalname,
+        fileUrl: `/uploads/resumes/${req.file.filename}`
+      });
     } catch (parseErr) {
+      console.error('Resume import error:', parseErr);
       res.status(500).json({ success: false, message: 'Failed to extract resume content: ' + parseErr.message });
     }
   });
@@ -7896,18 +7941,52 @@ app.post('/api/resumes', optionalUserToken, async (req, res) => {
 
     const compileResult = await resumeEngine.compileResumePdf({ ...resumeData, id: resumeId });
 
+    // Calculate baseline ATS score if not present
+    let atsScore = resumeData.atsScore || 0;
+    let atsAnalysis = resumeData.atsAnalysis || null;
+    try {
+      const computedAts = resumeFeatures.analyzeAtsScore(resumeData.resumeData || resumeData);
+      if (computedAts) {
+        atsScore = computedAts.overallScore;
+        atsAnalysis = computedAts;
+      }
+    } catch (e) {
+      console.warn('ATS calculation during save warning:', e.message);
+    }
+
+    const initialVersion = {
+      versionNumber: 1,
+      title: resumeData.title || 'Initial Version',
+      targetRole: resumeData.targetRole || '',
+      template: resumeData.template || resumeData.templateId || 'classic-tech',
+      atsScore,
+      resumeData: resumeData.resumeData || resumeData,
+      createdAt: new Date().toISOString(),
+      note: 'Initial resume created'
+    };
+
     const newRecord = {
       ...resumeData,
       id: resumeId,
       userId,
       title: resumeData.title || (resumeData.personalDetails && resumeData.personalDetails.fullName ? `${resumeData.personalDetails.fullName} Resume` : 'My Resume'),
+      targetRole: resumeData.targetRole || (resumeData.personalDetails?.targetRole) || (resumeData.resumeData?.personal?.targetRole) || '',
+      status: resumeData.status || 'active',
+      template: resumeData.template || resumeData.templateId || 'classic-tech',
+      templateId: resumeData.template || resumeData.templateId || 'classic-tech',
+      resumeData: resumeData.resumeData || resumeData,
+      atsScore,
+      atsAnalysis,
       pdfUrl: compileResult.pdfUrl || '',
       pdfBase64: compileResult.pdfBase64 || '',
       generatedLatex: compileResult.generatedLatex || '',
       pageCount: compileResult.pageCount || 1,
       compileStatus: compileResult.compileStatus || 'success',
       onePageOptimized: compileResult.onePageOptimized || false,
-      updatedAt: new Date().toISOString()
+      versions: [initialVersion],
+      version: 1,
+      updatedAt: new Date().toISOString(),
+      createdAt: new Date().toISOString()
     };
 
     const existingIdx = dbResumes.findIndex(r => r.id === resumeId);
@@ -7932,7 +8011,7 @@ app.post('/api/resumes', optionalUserToken, async (req, res) => {
   }
 });
 
-// Update Existing Resume
+// Update Existing Resume (Debounced Autosave & Snapshot Tracking)
 app.put('/api/resumes/:id', optionalUserToken, async (req, res) => {
   try {
     const userId = req.user ? req.user.userId : (req.headers['x-guest-id'] || req.body.guestId || 'guest');
@@ -7948,17 +8027,58 @@ app.put('/api/resumes/:id', optionalUserToken, async (req, res) => {
 
     const compileResult = await resumeEngine.compileResumePdf({ ...req.body, id });
 
+    // Calculate updated ATS score
+    let atsScore = req.body.atsScore || existing?.atsScore || 0;
+    let atsAnalysis = req.body.atsAnalysis || existing?.atsAnalysis || null;
+    try {
+      const computedAts = resumeFeatures.analyzeAtsScore(req.body.resumeData || req.body);
+      if (computedAts) {
+        atsScore = computedAts.overallScore;
+        atsAnalysis = computedAts;
+      }
+    } catch (e) {}
+
+    // Maintain Version History: create snapshot on meaningful changes or explicit save
+    const currentVersions = Array.isArray(existing?.versions) ? [...existing.versions] : [];
+    const shouldAddVersion = req.body.createVersion || currentVersions.length === 0;
+
+    if (shouldAddVersion) {
+      const nextVerNum = (currentVersions.length > 0 ? currentVersions[0].versionNumber : 0) + 1;
+      currentVersions.unshift({
+        versionNumber: nextVerNum,
+        title: req.body.title || existing?.title || 'Version',
+        targetRole: req.body.targetRole || existing?.targetRole || '',
+        template: req.body.template || existing?.template || 'classic-tech',
+        atsScore,
+        resumeData: req.body.resumeData || req.body,
+        createdAt: new Date().toISOString(),
+        note: req.body.versionNote || 'Autosaved edit'
+      });
+      // Cap at 20 versions
+      if (currentVersions.length > 20) currentVersions.pop();
+    }
+
     const updated = {
       ...(existing || {}),
       ...req.body,
       id,
       userId: existing ? existing.userId : userId,
+      title: req.body.title || existing?.title || 'My Resume',
+      targetRole: req.body.targetRole !== undefined ? req.body.targetRole : (existing?.targetRole || ''),
+      status: req.body.status || existing?.status || 'active',
+      template: req.body.template || req.body.templateId || existing?.template || 'classic-tech',
+      templateId: req.body.template || req.body.templateId || existing?.templateId || 'classic-tech',
+      resumeData: req.body.resumeData || req.body,
+      atsScore,
+      atsAnalysis,
       pdfUrl: compileResult.pdfUrl || (existing ? existing.pdfUrl : ''),
       pdfBase64: compileResult.pdfBase64 || (existing ? existing.pdfBase64 : ''),
       generatedLatex: compileResult.generatedLatex || '',
       pageCount: compileResult.pageCount || 1,
       compileStatus: compileResult.compileStatus || 'success',
       onePageOptimized: compileResult.onePageOptimized || false,
+      versions: currentVersions,
+      version: currentVersions.length > 0 ? currentVersions[0].versionNumber : (existing?.version || 1),
       updatedAt: new Date().toISOString()
     };
 
@@ -7976,6 +8096,233 @@ app.put('/api/resumes/:id', optionalUserToken, async (req, res) => {
     res.json({ success: true, resume: updated, compileResult });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Error updating resume: ' + err.message });
+  }
+});
+
+// Rename Resume
+app.post('/api/resumes/:id/rename', optionalUserToken, async (req, res) => {
+  try {
+    const userId = req.user ? req.user.userId : (req.headers['x-guest-id'] || 'guest');
+    const { id } = req.params;
+    const { title, targetRole } = req.body;
+
+    if (!title || !title.trim()) return res.status(400).json({ success: false, message: 'Title cannot be empty.' });
+
+    let resume = dbResumes.find(r => r.id === id);
+    if (isDbConnected && !resume) resume = await ResumeModel.findOne({ id }).lean();
+    if (!resume) return res.status(404).json({ success: false, message: 'Resume not found.' });
+
+    if (resume.userId !== userId && resume.userId !== 'guest' && (!req.user || req.user.role !== 'admin')) {
+      return res.status(403).json({ success: false, message: 'Access denied.' });
+    }
+
+    resume.title = title.trim();
+    if (targetRole !== undefined) resume.targetRole = targetRole.trim();
+    resume.updatedAt = new Date().toISOString();
+
+    const idx = dbResumes.findIndex(r => r.id === id);
+    if (idx !== -1) dbResumes[idx] = resume;
+    saveResumesToDisk(dbResumes);
+
+    if (isDbConnected) {
+      try {
+        await ResumeModel.updateOne({ id }, { $set: { title: resume.title, targetRole: resume.targetRole, updatedAt: resume.updatedAt } });
+      } catch (e) {}
+    }
+
+    res.json({ success: true, resume });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Error renaming resume.' });
+  }
+});
+
+// Get Resume Version History
+app.get('/api/resumes/:id/versions', optionalUserToken, async (req, res) => {
+  try {
+    const userId = req.user ? req.user.userId : (req.headers['x-guest-id'] || 'guest');
+    const { id } = req.params;
+
+    let resume = dbResumes.find(r => r.id === id);
+    if (isDbConnected && !resume) resume = await ResumeModel.findOne({ id }).lean();
+    if (!resume) return res.status(404).json({ success: false, message: 'Resume not found.' });
+
+    if (resume.userId !== userId && resume.userId !== 'guest' && (!req.user || req.user.role !== 'admin')) {
+      return res.status(403).json({ success: false, message: 'Access denied.' });
+    }
+
+    res.json({ success: true, versions: resume.versions || [] });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Failed to retrieve version history.' });
+  }
+});
+
+// Restore Previous Resume Version
+app.post('/api/resumes/:id/restore-version/:versionNumber', optionalUserToken, async (req, res) => {
+  try {
+    const userId = req.user ? req.user.userId : (req.headers['x-guest-id'] || 'guest');
+    const { id, versionNumber } = req.params;
+    const verNum = parseInt(versionNumber, 10);
+
+    let resume = dbResumes.find(r => r.id === id);
+    if (isDbConnected && !resume) resume = await ResumeModel.findOne({ id }).lean();
+    if (!resume) return res.status(404).json({ success: false, message: 'Resume not found.' });
+
+    if (resume.userId !== userId && resume.userId !== 'guest' && (!req.user || req.user.role !== 'admin')) {
+      return res.status(403).json({ success: false, message: 'Access denied.' });
+    }
+
+    const versions = resume.versions || [];
+    const targetVer = versions.find(v => v.versionNumber === verNum);
+    if (!targetVer || !targetVer.resumeData) {
+      return res.status(404).json({ success: false, message: 'Version snapshot not found.' });
+    }
+
+    // Recompile restored resume data
+    const restoredData = targetVer.resumeData;
+    const compileResult = await resumeEngine.compileResumePdf({ ...restoredData, id, template: targetVer.template || resume.template });
+
+    resume.resumeData = restoredData;
+    resume.title = targetVer.title || resume.title;
+    resume.template = targetVer.template || resume.template;
+    resume.targetRole = targetVer.targetRole || resume.targetRole;
+    resume.pdfUrl = compileResult.pdfUrl;
+    resume.pdfBase64 = compileResult.pdfBase64;
+    resume.generatedLatex = compileResult.generatedLatex;
+    resume.updatedAt = new Date().toISOString();
+
+    const idx = dbResumes.findIndex(r => r.id === id);
+    if (idx !== -1) dbResumes[idx] = resume;
+    saveResumesToDisk(dbResumes);
+
+    if (isDbConnected) {
+      try {
+        await ResumeModel.updateOne({ id }, { $set: resume });
+      } catch (e) {}
+    }
+
+    res.json({ success: true, resume, message: `Restored to version ${verNum}` });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Error restoring version: ' + err.message });
+  }
+});
+
+// ATS Analysis Endpoint (Calculates 0-100 score with 10-category rubric & actionable suggestions)
+app.post('/api/resumes/ats-analyze', optionalUserToken, async (req, res) => {
+  try {
+    const { resumeData, targetRole, resumeId } = req.body;
+    if (!resumeData) return res.status(400).json({ success: false, message: 'No resume data provided for ATS analysis.' });
+
+    const analysis = resumeFeatures.analyzeAtsScore(resumeData, { targetRole });
+
+    // If resumeId provided and owned, persist score and analysis
+    if (resumeId) {
+      const idx = dbResumes.findIndex(r => r.id === resumeId);
+      if (idx !== -1) {
+        dbResumes[idx].atsScore = analysis.overallScore;
+        dbResumes[idx].atsAnalysis = analysis;
+        saveResumesToDisk(dbResumes);
+      }
+      if (isDbConnected) {
+        try {
+          await ResumeModel.updateOne({ id: resumeId }, { $set: { atsScore: analysis.overallScore, atsAnalysis: analysis } });
+        } catch (e) {}
+      }
+    }
+
+    res.json({ success: true, analysis });
+  } catch (err) {
+    console.error('ATS Analysis error:', err);
+    res.status(500).json({ success: false, message: 'ATS analysis failed: ' + err.message });
+  }
+});
+
+// AI Job-Specific Resume Optimizer
+app.post('/api/resumes/job-optimize', optionalUserToken, async (req, res) => {
+  try {
+    const { resumeData, jobDescription, targetRole, companyName } = req.body;
+    if (!resumeData || !jobDescription) {
+      return res.status(400).json({ success: false, message: 'Resume data and Job Description are required.' });
+    }
+
+    const optimization = resumeFeatures.optimizeResumeForJob(resumeData, jobDescription, targetRole, companyName);
+    res.json({ success: true, optimization });
+  } catch (err) {
+    console.error('Job Optimizer error:', err);
+    res.status(500).json({ success: false, message: 'Job optimization failed: ' + err.message });
+  }
+});
+
+// Upload and Detect College Resume Format (PDF, DOCX, Image OCR)
+app.post('/api/resumes/college-format/upload', (req, res) => {
+  uploadResume.single('template')(req, res, async (err) => {
+    if (err) return res.status(400).json({ success: false, message: err.message });
+    if (!req.file) return res.status(400).json({ success: false, message: 'No college format template uploaded.' });
+
+    try {
+      const buffer = fs.readFileSync(req.file.path);
+      const detection = await resumeFeatures.detectCollegeFormat(buffer, req.file.mimetype, req.file.originalname);
+      const fileUrl = `/uploads/resumes/${req.file.filename}`;
+
+      res.json({
+        success: true,
+        collegeName: detection.collegeName,
+        detectedSections: detection.detectedSections,
+        formatRules: detection.formatRules,
+        templateFileUrl: fileUrl,
+        fileName: req.file.originalname
+      });
+    } catch (detectErr) {
+      console.error('College format detection error:', detectErr);
+      res.status(500).json({ success: false, message: 'Format detection failed: ' + detectErr.message });
+    }
+  });
+});
+
+// Generate College-Format Replicated Resume
+app.post('/api/resumes/college-format/generate', async (req, res) => {
+  try {
+    const { resumeData, formatRules } = req.body;
+    if (!resumeData) return res.status(400).json({ success: false, message: 'Resume data is required.' });
+
+    const collegeLatex = resumeFeatures.generateCollegeLatex(resumeData, formatRules || {});
+    const compileResult = await resumeEngine.compileResumePdf(resumeData, {
+      latex: collegeLatex,
+      template: 'college-official',
+      options: { template: 'college-official' }
+    });
+
+    res.json({
+      success: true,
+      latex: collegeLatex,
+      pdfUrl: compileResult.pdfUrl,
+      pdfBase64: compileResult.pdfBase64,
+      pageCount: compileResult.pageCount || 1,
+      compileResult
+    });
+  } catch (err) {
+    console.error('College format generation error:', err);
+    res.status(500).json({ success: false, message: 'College resume generation failed: ' + err.message });
+  }
+});
+
+// Download DOCX (.docx) Microsoft Word Format
+app.get('/api/resumes/:id/download-docx', optionalUserToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    let resume = dbResumes.find(r => r.id === id);
+    if (isDbConnected && !resume) resume = await ResumeModel.findOne({ id }).lean();
+    if (!resume) return res.status(404).send('Resume not found.');
+
+    const dataToUse = resume.resumeData || resume;
+    const docxBuffer = await resumeFeatures.generateDocxBuffer(dataToUse);
+    const safeTitle = (resume.title || (dataToUse.personal?.fullName ? `${dataToUse.personal.fullName}_Resume` : 'Resume')).replace(/[^a-zA-Z0-9_-]/g, '_');
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    res.setHeader('Content-Disposition', `attachment; filename="${safeTitle}.docx"`);
+    res.send(docxBuffer);
+  } catch (err) {
+    console.error('DOCX download error:', err);
+    res.status(500).send('Error generating DOCX: ' + err.message);
   }
 });
 

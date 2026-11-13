@@ -100,6 +100,7 @@ export function ApplicationDossierModal({
                 <div><span className="font-bold text-slate-900">University:</span> {app.academic?.university || '—'}</div>
                 <div><span className="font-bold text-slate-900">Course / Branch:</span> {app.academic?.course || 'B.Tech'} ({app.academic?.branch || 'CSE'})</div>
                 <div><span className="font-bold text-slate-900">Academic Year:</span> {app.academic?.year || '3rd Year'} (Graduation: {app.academic?.graduationYear || '2026'})</div>
+                <div><span className="font-bold text-slate-900">Student ID / Roll No:</span> {app.academic?.rollNumber || app.academic?.studentId || app.student?.studentId || '—'}</div>
               </div>
             </div>
           </div>

@@ -88,6 +88,8 @@ const PrmaApplicationSchema = new mongoose.Schema({
   academic: {
     college: { type: String, required: true },
     university: { type: String, required: true },
+    rollNumber: { type: String, default: '' },
+    studentId: { type: String, default: '' },
     course: { type: String, required: true },
     branch: { type: String, default: '' },
     year: { type: String, required: true },
@@ -1277,6 +1279,8 @@ export function createPrmaRouter({ isDbConnected } = {}) {
         academic: {
           college: academic.college.trim(),
           university: academic.university.trim(),
+          rollNumber: (academic.rollNumber || academic.studentId || '').trim(),
+          studentId: (academic.studentId || academic.rollNumber || '').trim(),
           course: academic.course.trim(),
           branch: (academic.branch || '').trim(),
           year: academic.year.trim(),

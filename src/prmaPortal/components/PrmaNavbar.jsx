@@ -66,6 +66,7 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
   return (
     <>
       <header
+        className="prma-desktop-header-wrap"
         style={{
           position: 'sticky',
           top: 0,
@@ -677,8 +678,13 @@ export default function PrmaNavbar({ activePage = 'home', navigateToTab, onNavig
         </div>
       )}
 
-      {/* Responsive Styles */}
+      {/* Responsive Styles: On mobile viewports (< 1024px), PRMA Tech uses the unified ProfessorVirus MobileHeader & MobileBottomNav */}
       <style>{`
+        @media (max-width: 1023px) {
+          .prma-desktop-header-wrap {
+            display: none !important;
+          }
+        }
         @media (max-width: 900px) {
           .prma-desktop-nav {
             display: none !important;

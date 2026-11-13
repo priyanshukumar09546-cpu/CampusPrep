@@ -780,14 +780,10 @@ export default function App() {
   const hideTopNav = isStandaloneAuth || isPrmaPortal;
 
   const pagesWithOwnMobileHeader = [
-    'home', 'notes', 'pyqs', 'more', 'progress', 'profile',
-    'signin', 'signup', 'login', 'admin', 'admin-login', 'resume-maker',
-    'prma-home', 'prma-services', 'prma-about', 'prma-careers', 'prma-projects', 'prma-contact', 'prma-admin',
-    'prma-internships-home', 'prma-internships-domains', 'prma-internships-apply',
-    'prma-internships-goodies', 'prma-internships-review', 'prma-internships-payment',
-    'prma-internships-register', 'prma-internships-login', 'prma-internships-dashboard', 'prma-verify-offer'
+    'home', 'notes', 'pyqs', 'progress', 'profile',
+    'signin', 'signup', 'login', 'admin', 'admin-login'
   ];
-  const showStandaloneMobileHeader = !hideTopNav && !pagesWithOwnMobileHeader.includes(activeTab);
+  const showStandaloneMobileHeader = !pagesWithOwnMobileHeader.includes(activeTab);
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '100vw', overflowX: 'hidden', backgroundColor: 'transparent', color: isDark ? '#FFFFFF' : '#1F2421', position: 'relative', zIndex: 1 }}>
@@ -1342,7 +1338,7 @@ export default function App() {
       {!isPrmaPortal && <PWAInstallPopup />}
 
       {/* Mobile Bottom Navigation */}
-      {!isStandaloneAuth && !isPrmaPortal && (
+      {!isStandaloneAuth && (
         <MobileBottomNav
           activeTab={activeTab}
           onNavigate={(tab) => navigateToTab(tab)}

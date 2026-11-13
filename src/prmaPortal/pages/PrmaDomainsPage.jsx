@@ -70,44 +70,41 @@ export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
       <PrmaNavbar activeTab="internships" onNavigate={navFn} navigateToTab={navFn} />
 
       {/* TOP ANNOUNCEMENT BANNER — REQUIREMENT 2 */}
-      <section className="bg-gradient-to-b from-blue-900 via-slate-900 to-slate-950 text-white pt-12 pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+      <section className="bg-gradient-to-b from-blue-900 via-slate-900 to-slate-950 text-white pt-6 pb-8 sm:pt-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
         <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider mb-4">
-            <Sparkles className="w-4 h-4 text-blue-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
             PRMA Tech™ Official Internship Initiative
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white mb-4">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white mb-3">
             Welcome to PRMA Tech Internship Program!
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            PRMA Tech is an emerging technology startup committed to helping students improve their practical knowledge and develop industry-relevant technical skills. Our internship initiative is designed to provide students with learning opportunities, practical assignments, project-based exposure and professional guidance.
+          <p className="text-xs sm:text-base text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            PRMA Tech is an emerging technology startup committed to helping students improve their practical knowledge and develop industry-relevant technical skills.
           </p>
 
-          <div className="mt-4 inline-flex items-center gap-3 text-sm font-bold text-blue-400 bg-white/5 px-4 py-2 rounded-xl border border-white/10">
+          <div className="mt-3 inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-blue-400 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
             <span>Our Mission:</span>
             <span className="text-white">Learn &bull; Build &bull; Innovate &bull; Grow</span>
           </div>
 
           {/* Important Zero-Cost Announcement Card */}
-          <div className="mt-8 bg-gradient-to-r from-emerald-950/80 via-slate-900 to-blue-950/80 border-2 border-emerald-500/40 rounded-3xl p-6 sm:p-8 text-left shadow-xl">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-500/30 font-bold text-xl">
+          <div className="mt-5 bg-gradient-to-r from-emerald-950/80 via-slate-900 to-blue-950/80 border-2 border-emerald-500/40 rounded-2xl sm:rounded-3xl p-4 sm:p-7 text-left shadow-xl">
+            <div className="flex items-start gap-3 sm:gap-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 font-bold text-base sm:text-xl border border-emerald-500/30">
                 ₹0
               </div>
-              <div className="space-y-2">
-                <div className="text-xs uppercase tracking-wider font-extrabold text-emerald-400">
+              <div className="space-y-1 sm:space-y-2">
+                <div className="text-[10px] sm:text-xs uppercase tracking-wider font-extrabold text-emerald-400">
                   Important Public Announcement &bull; 100% Free Program
                 </div>
-                <h2 className="text-lg sm:text-xl font-bold text-white">
+                <h2 className="text-base sm:text-xl font-bold text-white">
                   Zero Application Fee &bull; Zero Enrollment Fee
                 </h2>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  This internship program is currently offered <strong>FREE OF COST</strong> as part of our initiative to support students, enhance technical knowledge and encourage practical learning. We believe that financial limitations should not stop talented students from learning and developing their skills.
-                </p>
-                <p className="text-sm text-emerald-300 font-medium pt-1">
-                  Keep working hard, build real projects, improve your skills and encourage your friends to explore learning opportunities with PRMA Tech.
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  This internship program is currently offered <strong>FREE OF COST</strong> as part of our initiative to support students, enhance technical knowledge and encourage practical learning.
                 </p>
               </div>
             </div>
@@ -116,43 +113,57 @@ export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
       </section>
 
       {/* DOMAIN SELECTION STEP 1 — HEADER & CONTROLS */}
-      <section className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-slate-200">
+      <section className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 flex-1">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200">
           <div>
-            <span className="text-xs font-extrabold uppercase tracking-widest text-blue-600 block mb-1">
+            <span className="text-[11px] font-extrabold uppercase tracking-widest text-blue-600 block mb-1">
               Step 1 of 2 &bull; Select Your Internship Track
             </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Explore 27 Industry Internship Domains
             </h2>
-            <p className="text-sm text-slate-500 mt-1 max-w-2xl">
-              Choose your specialized engineering track. Selecting a domain will open your 100% Free application form with that domain pre-selected.
+            <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl">
+              Tap any domain card or button to select and proceed directly to your 100% Free application form.
             </p>
           </div>
 
           {/* Search bar */}
           <div className="relative w-full md:w-80 flex-shrink-0">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               placeholder="Search domain, skills, tools..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-xs"
+              className="w-full pl-10 pr-9 py-2.5 rounded-xl border border-slate-200 bg-white text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-xs"
             />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                aria-label="Clear search"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto py-6 scrollbar-none">
+        {/* Category Pills with smooth horizontal scrolling */}
+        <div
+          className="flex items-center gap-2 overflow-x-auto py-4 scrollbar-none"
+          style={{ WebkitOverflowScrolling: 'touch', touchAction: 'pan-x' }}
+        >
           {categories.map((cat) => (
             <button
               key={cat}
+              type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap ${
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition whitespace-nowrap min-h-[38px] flex items-center ${
                 selectedCategory === cat
                   ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100'
+                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 active:bg-slate-200'
               }`}
             >
               {cat}
@@ -160,21 +171,30 @@ export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
           ))}
         </div>
 
-        {/* 16 DOMAIN CARDS GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+        {/* 27 DOMAIN CARDS GRID (Touch responsive, comfortable targets) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pt-2">
           {filteredDomains.map((domain) => (
             <div
               key={domain.id}
-              className="bg-white rounded-3xl border border-slate-200 hover:border-blue-400 p-6 flex flex-col justify-between shadow-xs hover:shadow-lg transition group relative"
+              role="button"
+              tabIndex={0}
+              onClick={() => handleApplyForDomain(domain)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleApplyForDomain(domain);
+                }
+              }}
+              className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 hover:border-blue-400 p-4 sm:p-6 flex flex-col justify-between shadow-xs hover:shadow-lg transition group relative cursor-pointer active:scale-[0.99] touch-manipulation text-left"
             >
               <div>
                 {/* Header: Distinctive Domain Illustration + Badges */}
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <div className="p-2 rounded-2xl bg-slate-50 group-hover:scale-105 transition">
-                    <PrmaDomainIcon iconType={domain.iconType} className="w-14 h-14" color={domain.color} />
+                <div className="flex items-start justify-between gap-3 mb-3 sm:mb-4">
+                  <div className="p-2 rounded-2xl bg-slate-50 group-hover:scale-105 transition flex-shrink-0">
+                    <PrmaDomainIcon iconType={domain.iconType} className="w-12 h-12 sm:w-14 sm:h-14" color={domain.color} />
                   </div>
-                  <div className="flex flex-col items-end gap-1.5">
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800">
+                  <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-800">
                       100% FREE
                     </span>
                     <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-blue-50 text-blue-700">
@@ -184,28 +204,28 @@ export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
                 </div>
 
                 {/* Domain Title */}
-                <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition">
+                <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 group-hover:text-blue-600 transition leading-snug">
                   {domain.title}
                 </h3>
-                <div className="text-xs text-slate-400 font-semibold mb-3">
+                <div className="text-xs text-slate-400 font-semibold mb-2 sm:mb-3">
                   Duration: Exactly 1 Month &bull; {domain.category}
                 </div>
 
                 {/* Description */}
-                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                <p className="text-xs text-slate-600 leading-relaxed mb-3 sm:mb-4 line-clamp-3">
                   {domain.description}
                 </p>
 
                 {/* Technologies Covered */}
-                <div className="mb-4">
-                  <span className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1.5">
+                <div className="mb-3 sm:mb-4">
+                  <span className="text-[10px] sm:text-[11px] font-extrabold text-slate-400 uppercase tracking-wider block mb-1.5">
                     Technologies Covered:
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {domain.technologies.slice(0, 5).map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-medium"
+                        className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] sm:text-[11px] font-medium"
                       >
                         {tech}
                       </span>
@@ -219,11 +239,11 @@ export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
                 </div>
 
                 {/* Skills You Will Develop */}
-                <div className="mb-6 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
-                  <span className="text-[11px] font-extrabold text-slate-500 uppercase tracking-wider block mb-2">
+                <div className="mb-4 sm:mb-6 bg-slate-50 p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border border-slate-100">
+                  <span className="text-[10px] sm:text-[11px] font-extrabold text-slate-500 uppercase tracking-wider block mb-1.5 sm:mb-2">
                     Key Skills Developed:
                   </span>
-                  <ul className="space-y-1.5 text-xs text-slate-700">
+                  <ul className="space-y-1 sm:space-y-1.5 text-xs text-slate-700">
                     {domain.skills.slice(0, 3).map((skill, idx) => (
                       <li key={idx} className="flex items-start gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" />
@@ -235,19 +255,25 @@ export default function PrmaDomainsPage({ navigateToTab, onNavigate }) {
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-slate-100 flex items-center gap-2">
+              <div className="pt-3 sm:pt-4 border-t border-slate-100 flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => setDetailModalDomain(domain)}
-                  className="px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-xs font-bold transition flex items-center gap-1.5"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDetailModalDomain(domain);
+                  }}
+                  className="px-3.5 py-2.5 min-h-[44px] rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 active:bg-slate-100 text-xs font-bold transition flex items-center gap-1.5 flex-shrink-0"
                 >
                   <BookOpen className="w-3.5 h-3.5" />
-                  Syllabus
+                  <span>Syllabus</span>
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleApplyForDomain(domain)}
-                  className="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-extrabold shadow-sm hover:shadow transition flex items-center justify-center gap-1.5"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleApplyForDomain(domain);
+                  }}
+                  className="flex-1 min-h-[44px] py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs sm:text-sm font-extrabold shadow-sm transition flex items-center justify-center gap-1.5"
                 >
                   <span>Select Domain</span>
                   <ArrowRight className="w-3.5 h-3.5" />
