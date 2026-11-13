@@ -34,6 +34,7 @@ import {
   generateGoogleAppsScriptCode,
   GOOGLE_FORM_CONFIG
 } from '../services/prmaGoogleFormService.js';
+import { createPrmaEnterpriseRouter } from './prmaEnterpriseRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -3279,6 +3280,16 @@ export function createPrmaRouter({ isDbConnected } = {}) {
       applications: jobApplicationsStore
     });
   });
+
+  // Mount Enterprise Command Center Routes
+  router.use(createPrmaEnterpriseRouter({
+    applicationsStore,
+    submissionsStore,
+    getApplication,
+    ensureMongoConnected,
+    PrmaApplicationModel,
+    PrmaSubmissionModel
+  }));
 
   return router;
 }
