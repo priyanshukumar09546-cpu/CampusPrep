@@ -42,11 +42,21 @@ import {
   Calendar,
   Percent,
   Search,
-  ChevronDown
+  ChevronDown,
+  History
 } from 'lucide-react';
 import { generateLatex } from '../utils/latexGenerator';
 import SearchableSkillsSelector from '../components/SearchableSkillsSelector';
 import API_URL from '../config/api';
+
+// AI Resume Platform Modular Components
+import ResumeLandingHub from '../components/resume/ResumeLandingHub';
+import MyResumesDrawer from '../components/resume/MyResumesDrawer';
+import AtsScoreModal from '../components/resume/AtsScoreModal';
+import JobOptimizerModal from '../components/resume/JobOptimizerModal';
+import CollegeFormatModal from '../components/resume/CollegeFormatModal';
+import ResumeVersionModal from '../components/resume/ResumeVersionModal';
+import ResumeImportReviewModal from '../components/resume/ResumeImportReviewModal';
 
 // Normalizes resume skills between structured arrays and legacy string fields
 function getAuthToken() {
@@ -369,12 +379,40 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');
 
+  // View Mode: 'hub' (Landing Hub) | 'editor' (Two-panel Resume Studio)
+  const [viewMode, setViewMode] = useState(() => {
+    if (isFromInterviewPro) return 'editor';
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('mode') === 'editor' || params.get('edit') || params.get('create')) {
+        return 'editor';
+      }
+    } catch (_) {}
+    return 'hub';
+  });
+
   // Modals & Drawers
   const [showMyResumesDrawer, setShowMyResumesDrawer] = useState(false);
   const [myResumesList, setMyResumesList] = useState([]);
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
   const [importReviewData, setImportReviewData] = useState(null);
+  const [importFileName, setImportFileName] = useState('');
+
+  // AI & Advanced Feature Modals
+  const [showAtsScoreModal, setShowAtsScoreModal] = useState(false);
+  const [showJobOptimizerModal, setShowJobOptimizerModal] = useState(false);
+  const [showCollegeFormatModal, setShowCollegeFormatModal] = useState(false);
+  const [showVersionModal, setShowVersionModal] = useState(false);
+  const [versionTargetResume, setVersionTargetResume] = useState(null);
+  const [currentAtsScore, setCurrentAtsScore] = useState(null);
+
+  // Autosave State: 'saved' | 'saving' | 'failed' | 'offline'
+  const [autosaveStatus, setAutosaveStatus] = useState('saved');
+  const [lastSavedTime, setLastSavedTime] = useState(null);
+  const autosaveTimeoutRef = useRef(null);
+  const isInitialMountRef = useRef(true);
+  const lastSavedPayloadRef = useRef('');
 
   // AI Assistant Modal
   const [aiModal, setAiModal] = useState({
@@ -676,6 +714,12 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       const data = await res.json();
       if (data.success && data.resume) {
         setActiveResumeId(data.resume.id || data.resume._id);
+        if (data.resume.atsScore !== undefined) {
+          setCurrentAtsScore(data.resume.atsScore);
+        }
+        setAutosaveStatus('saved');
+        setLastSavedTime(new Date());
+        lastSavedPayloadRef.current = JSON.stringify({ resumeTitle, template, resumeData });
         setSaveMessage('Resume saved successfully!');
         fetchMyResumes();
       } else {
@@ -689,6 +733,111 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       setTimeout(() => setSaveMessage(''), 3000);
     }
   };
+
+  // 3B. Debounced Autosave Engine (~1500ms after changes when in editor with valid data)
+  useEffect(() => {
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false;
+      return;
+    }
+
+    if (viewMode !== 'editor' || !hasMinimumData) {
+      return;
+    }
+
+    const currentPayload = JSON.stringify({
+      resumeTitle,
+      template,
+      resumeData
+    });
+
+    if (currentPayload === lastSavedPayloadRef.current) {
+      return;
+    }
+
+    if (typeof navigator !== 'undefined' && !navigator.onLine) {
+      setAutosaveStatus('offline');
+      try {
+        localStorage.setItem('pv_offline_resume_draft', currentPayload);
+      } catch (_) {}
+      return;
+    }
+
+    if (autosaveTimeoutRef.current) {
+      clearTimeout(autosaveTimeoutRef.current);
+    }
+
+    setAutosaveStatus('saving');
+
+    autosaveTimeoutRef.current = setTimeout(async () => {
+      const token = getAuthToken();
+      if (!token) {
+        try {
+          localStorage.setItem('pv_local_resume_draft', currentPayload);
+          lastSavedPayloadRef.current = currentPayload;
+          setAutosaveStatus('saved');
+          setLastSavedTime(new Date());
+        } catch (_) {}
+        return;
+      }
+
+      try {
+        const payload = {
+          title: resumeTitle,
+          template,
+          resumeData,
+          latexSource,
+          pdfUrl
+        };
+
+        let res;
+        if (activeResumeId) {
+          res = await fetch(`${API_URL}/api/resumes/${activeResumeId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+          });
+        } else {
+          res = await fetch(`${API_URL}/api/resumes`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+          });
+        }
+
+        const data = await res.json();
+        if (data.success && data.resume) {
+          if (!activeResumeId) {
+            setActiveResumeId(data.resume.id || data.resume._id);
+          }
+          if (data.resume.atsScore !== undefined) {
+            setCurrentAtsScore(data.resume.atsScore);
+          }
+          lastSavedPayloadRef.current = currentPayload;
+          setAutosaveStatus('saved');
+          setLastSavedTime(new Date());
+          fetchMyResumes();
+        } else {
+          setAutosaveStatus('failed');
+        }
+      } catch (err) {
+        console.warn('Autosave sync issue:', err);
+        setAutosaveStatus('failed');
+      }
+    }, 1500);
+
+    return () => {
+      if (autosaveTimeoutRef.current) {
+        clearTimeout(autosaveTimeoutRef.current);
+      }
+    };
+  }, [resumeData, resumeTitle, template, viewMode, hasMinimumData, activeResumeId, latexSource, pdfUrl, fetchMyResumes]);
 
   // 4. Download PDF
   const handleDownloadPdf = () => {
@@ -704,6 +853,51 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  // 4B. Download Microsoft Word DOCX (.docx)
+  const handleDownloadDocx = async () => {
+    try {
+      const cleanName = (resumeData.personal?.fullName || 'Resume').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
+
+      if (activeResumeId) {
+        const token = getAuthToken();
+        const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
+        const res = await fetch(`${API_URL}/api/resumes/${activeResumeId}/download-docx`, { headers });
+        if (res.ok) {
+          const blob = await res.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `${cleanName}_ATS.docx`;
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+          a.remove();
+          return;
+        }
+      }
+
+      // Direct payload generation
+      const res = await fetch(`${API_URL}/api/resumes/download-docx`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ resumeData, title: resumeTitle })
+      });
+      if (!res.ok) throw new Error('DOCX generation failed');
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${cleanName}_ATS.docx`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+    } catch (err) {
+      console.error('Error downloading DOCX:', err);
+      alert('Could not download Word document. Please try again.');
+    }
   };
 
   // 5. Download LaTeX Source (.tex) - Overleaf standard resume.tex
@@ -731,6 +925,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
   // 7. Load an existing resume
   const handleLoadResume = (item) => {
+    if (!item) return;
     setActiveResumeId(item.id || item._id);
     setResumeTitle(item.title || 'My ATS Resume');
     const loadedTemplate = item.template || 'classic-tech';
@@ -741,7 +936,142 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       const tex = item.latexSource || generateLatex(normalized, { template: loadedTemplate });
       setLatexSource(tex);
     }
+    if (item.atsScore !== undefined) {
+      setCurrentAtsScore(item.atsScore);
+    }
+    lastSavedPayloadRef.current = JSON.stringify({
+      resumeTitle: item.title || 'My ATS Resume',
+      template: loadedTemplate,
+      resumeData: item.resumeData
+    });
+    setAutosaveStatus('saved');
+    setLastSavedTime(item.updatedAt ? new Date(item.updatedAt) : new Date());
+    setViewMode('editor');
     setShowMyResumesDrawer(false);
+  };
+
+  // Open Version History Modal
+  const handleOpenVersions = (targetResume) => {
+    const resumeToInspect = targetResume || myResumesList.find(r => (r.id || r._id) === activeResumeId) || {
+      id: activeResumeId,
+      _id: activeResumeId,
+      title: resumeTitle,
+      template,
+      versions: []
+    };
+    setVersionTargetResume(resumeToInspect);
+    setShowVersionModal(true);
+  };
+
+  // Restore previous version
+  const handleRestoreVersion = (restoredResume) => {
+    if (restoredResume) {
+      handleLoadResume(restoredResume);
+      setSaveMessage(`Restored Version ${restoredResume.versionNumber || ''}!`);
+      setTimeout(() => setSaveMessage(''), 3500);
+    }
+  };
+
+  // Apply ATS suggestion directly to resume data
+  const handleApplyAtsSuggestion = (suggestion, applyData) => {
+    if (!applyData) return;
+    setResumeData(prev => {
+      const copy = JSON.parse(JSON.stringify(prev));
+      if (applyData.type === 'skills') {
+        const cat = applyData.category || 'developerTools';
+        const currentTech = copy.technicalSkills || {};
+        const currentList = currentTech[cat] || [];
+        const toAdd = Array.isArray(applyData.skills) ? applyData.skills : [applyData.skills];
+        const merged = Array.from(new Set([...currentList, ...toAdd]));
+        copy.technicalSkills = {
+          ...currentTech,
+          [cat]: merged
+        };
+      } else if (applyData.type === 'summary' && applyData.summary) {
+        copy.personal = {
+          ...(copy.personal || {}),
+          summary: applyData.summary
+        };
+      } else if (applyData.type === 'role' && applyData.role) {
+        copy.personal = {
+          ...(copy.personal || {}),
+          targetRole: applyData.role,
+          professionalHeadline: applyData.role
+        };
+      } else if (applyData.type === 'headline' && applyData.headline) {
+        copy.personal = {
+          ...(copy.personal || {}),
+          professionalHeadline: applyData.headline
+        };
+      }
+      return normalizeResumeSkills(copy);
+    });
+  };
+
+  // Create an optimized duplicate copy of current resume
+  const handleCreateOptimizedCopy = (newResume) => {
+    if (newResume) {
+      handleLoadResume(newResume);
+      fetchMyResumes();
+    }
+    setViewMode('editor');
+    setShowJobOptimizerModal(false);
+  };
+
+  // Apply college template format rules
+  const handleApplyCollegeFormat = (rules) => {
+    setResumeData(prev => ({
+      ...prev,
+      collegeFormat: rules
+    }));
+  };
+
+  // Save new college placement resume
+  const handleSaveAsCollegeResume = (collegeResume) => {
+    if (collegeResume) {
+      handleLoadResume(collegeResume);
+      fetchMyResumes();
+    }
+    setViewMode('editor');
+    setShowCollegeFormatModal(false);
+  };
+
+  // Apply parsed resume from import review
+  const handleApplyImportReview = (extracted, asNewResume) => {
+    if (!extracted) return;
+    const normalized = normalizeResumeSkills(extracted);
+    if (asNewResume) {
+      setActiveResumeId(null);
+      setResumeTitle(extracted.personal?.fullName ? `${extracted.personal.fullName}'s Resume` : 'Imported ATS Resume');
+      setResumeData(normalized);
+    } else {
+      setResumeData(prev => {
+        const merged = {
+          ...prev,
+          personal: {
+            ...prev.personal,
+            fullName: extracted.personal?.fullName || prev.personal.fullName,
+            email: extracted.personal?.email || prev.personal.email,
+            phone: extracted.personal?.phone || prev.personal.phone,
+            location: extracted.personal?.location || prev.personal.location,
+            linkedinUrl: extracted.personal?.linkedinUrl || prev.personal.linkedinUrl,
+            githubUrl: extracted.personal?.githubUrl || prev.personal.githubUrl,
+            summary: extracted.personal?.summary || prev.personal.summary
+          },
+          education: extracted.education?.length ? extracted.education : prev.education,
+          technicalSkills: extracted.technicalSkills || prev.technicalSkills,
+          skills: extracted.skills || prev.skills,
+          experience: extracted.experience?.length ? extracted.experience : prev.experience,
+          projects: extracted.projects?.length ? extracted.projects : prev.projects,
+          achievements: extracted.achievements?.length ? extracted.achievements : prev.achievements,
+          certifications: extracted.certifications?.length ? extracted.certifications : prev.certifications,
+          extracurricular: extracted.extracurricular?.length ? extracted.extracurricular : prev.extracurricular
+        };
+        return normalizeResumeSkills(merged);
+      });
+    }
+    setViewMode('editor');
+    setImportReviewData(null);
   };
 
   // 8. Delete resume
@@ -870,11 +1200,12 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     setAiModal({ isOpen: false, action: '', inputPayload: {}, result: null, loading: false });
   };
 
-  // 10. File Import Handler
+  // 10. File Import Handler (PDF, DOC, DOCX, and Scanned Image OCR)
   const handleImportFile = async (e) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
 
+    setImportFileName(file.name);
     const formData = new FormData();
     formData.append('resume', file);
 
@@ -891,7 +1222,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
         alert(data.message || 'Could not parse uploaded file.');
       }
     } catch (err) {
-      alert('Error parsing uploaded resume.');
+      alert('Error parsing uploaded resume: ' + err.message);
     } finally {
       setIsImporting(false);
       setShowUploadModal(false);
@@ -984,6 +1315,167 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
   const handleMobileNextStep = handleNextMobileStep;
   const handleMobilePrevStep = handlePrevMobileStep;
 
+  // Render Hub landing page if viewMode === 'hub'
+  if (viewMode === 'hub') {
+    return (
+      <div className="pv-resume-maker-page" style={{ backgroundColor: '#FAF7F2', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+        <ResumeLandingHub
+          onStartNewResume={() => {
+            setActiveResumeId(null);
+            setResumeTitle('My ATS Resume');
+            setResumeData(DEFAULT_RESUME_DATA);
+            setViewMode('editor');
+          }}
+          onOpenMyResumes={() => setShowMyResumesDrawer(true)}
+          onOpenCollegeFormat={() => setShowCollegeFormatModal(true)}
+          onOpenImport={() => setShowUploadModal(true)}
+          onOpenAtsChecker={() => setShowAtsScoreModal(true)}
+          onOpenJobOptimizer={() => setShowJobOptimizerModal(true)}
+          savedResumesCount={myResumesList.length}
+          onNavigate={onNavigate}
+        />
+
+        {/* Modular Modals accessible from Hub */}
+        <MyResumesDrawer
+          isOpen={showMyResumesDrawer}
+          onClose={() => setShowMyResumesDrawer(false)}
+          resumes={myResumesList}
+          activeResumeId={activeResumeId}
+          onSelectResume={(item) => {
+            handleLoadResume(item);
+            setViewMode('editor');
+          }}
+          onStartNewResume={() => {
+            setActiveResumeId(null);
+            setResumeTitle('My ATS Resume');
+            setResumeData(DEFAULT_RESUME_DATA);
+            setViewMode('editor');
+            setShowMyResumesDrawer(false);
+          }}
+          onOpenVersions={handleOpenVersions}
+          onRefreshList={fetchMyResumes}
+        />
+
+        <CollegeFormatModal
+          isOpen={showCollegeFormatModal}
+          onClose={() => setShowCollegeFormatModal(false)}
+          resumeData={resumeData}
+          onApplyCollegeFormat={handleApplyCollegeFormat}
+          onSaveAsCollegeResume={handleSaveAsCollegeResume}
+        />
+
+        <AtsScoreModal
+          isOpen={showAtsScoreModal}
+          onClose={() => setShowAtsScoreModal(false)}
+          resumeData={resumeData}
+          resumeId={activeResumeId}
+          onApplySuggestion={handleApplyAtsSuggestion}
+          onUpdateScore={(score) => setCurrentAtsScore(score)}
+        />
+
+        <JobOptimizerModal
+          isOpen={showJobOptimizerModal}
+          onClose={() => setShowJobOptimizerModal(false)}
+          resumeData={resumeData}
+          resumeTitle={resumeTitle}
+          onApplyTailoredSummary={(summary) => {
+            setResumeData(prev => ({
+              ...prev,
+              personal: { ...prev.personal, summary }
+            }));
+          }}
+          onCreateOptimizedCopy={handleCreateOptimizedCopy}
+        />
+
+        <ResumeVersionModal
+          isOpen={showVersionModal}
+          onClose={() => setShowVersionModal(false)}
+          resume={versionTargetResume || myResumesList.find(r => (r.id || r._id) === activeResumeId)}
+          onRestoreVersion={handleRestoreVersion}
+        />
+
+        <ResumeImportReviewModal
+          isOpen={Boolean(importReviewData)}
+          onClose={() => setImportReviewData(null)}
+          extractedData={importReviewData}
+          fileName={importFileName}
+          onApplyImport={handleApplyImportReview}
+        />
+
+        {/* Upload Modal */}
+        {showUploadModal && (
+          <div style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(3px)',
+            zIndex: 1000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1rem'
+          }}>
+            <div style={{
+              backgroundColor: '#FFFFFF',
+              borderRadius: '16px',
+              width: '100%',
+              maxWidth: '500px',
+              padding: '1.5rem',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.2)'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                  <UploadCloud size={20} color="#781416" />
+                  <h3 style={{ fontSize: '1.12rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
+                    Import Existing Resume
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowUploadModal(false)}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#70675D' }}
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <p style={{ fontSize: '0.8rem', color: '#5A5044', margin: '0 0 1.25rem 0' }}>
+                Upload your current resume in PDF, DOC, DOCX, or scanned images. We will automatically parse your contact details, education, skills, and projects into the editor.
+              </p>
+
+              <label style={{
+                border: '2px dashed #C88D2D',
+                borderRadius: '12px',
+                padding: '2rem 1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#FEFAF3',
+                cursor: isImporting ? 'not-allowed' : 'pointer'
+              }}>
+                <UploadCloud size={32} color="#781416" style={{ marginBottom: '0.5rem' }} />
+                <div style={{ fontSize: '0.86rem', fontWeight: 800, color: '#1C1814' }}>
+                  {isImporting ? 'Parsing resume fields with OCR...' : 'Click to choose resume file'}
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#70675D', marginTop: '2px' }}>
+                  Supports .pdf, .doc, .docx, .png, .jpg (Max 20MB)
+                </div>
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp"
+                  onChange={handleImportFile}
+                  disabled={isImporting}
+                  style={{ display: 'none' }}
+                />
+              </label>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="pv-resume-maker-page" style={{ backgroundColor: 'transparent', minHeight: '100vh', color: '#1F1A14', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
@@ -1032,23 +1524,24 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             ) : (
               <button
                 type="button"
-                onClick={() => onNavigate ? onNavigate('more') : null}
+                onClick={() => setViewMode('hub')}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.35rem',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #E8DFCF',
-                  color: '#4A4036',
-                  padding: '0.35rem 0.65rem',
+                  backgroundColor: '#FAF5ED',
+                  border: '1.5px solid #781416',
+                  color: '#781416',
+                  padding: '0.35rem 0.75rem',
                   borderRadius: '8px',
-                  fontSize: '0.76rem',
-                  fontWeight: 700,
+                  fontSize: '0.78rem',
+                  fontWeight: 800,
                   cursor: 'pointer'
                 }}
+                title="Return to Resume Maker Hub"
               >
                 <ArrowLeft size={13} />
-                <span>All Tools</span>
+                <span>Resume Hub</span>
               </button>
             )}
 
@@ -1173,6 +1666,76 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               </div>
             )}
 
+            {/* Autosave Status Pill */}
+            {autosaveStatus === 'saving' && (
+              <div style={{
+                backgroundColor: '#FFFBEB',
+                border: '1px solid #FDE68A',
+                color: '#B45309',
+                padding: '0.28rem 0.6rem',
+                borderRadius: '9999px',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem'
+              }}>
+                <RefreshCw size={11} style={{ animation: 'spin 1s linear infinite' }} />
+                <span>Autosaving...</span>
+              </div>
+            )}
+            {autosaveStatus === 'saved' && (
+              <div style={{
+                backgroundColor: '#E7F5EE',
+                border: '1px solid #A3E0C1',
+                color: '#0E7A4A',
+                padding: '0.28rem 0.6rem',
+                borderRadius: '9999px',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem'
+              }}>
+                <CheckCircle2 size={11} />
+                <span>Saved{lastSavedTime ? ` ${lastSavedTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}</span>
+              </div>
+            )}
+            {autosaveStatus === 'offline' && (
+              <div style={{
+                backgroundColor: '#FEF2F2',
+                border: '1px solid #FECACA',
+                color: '#991B1B',
+                padding: '0.28rem 0.6rem',
+                borderRadius: '9999px',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem'
+              }}>
+                <AlertTriangle size={11} />
+                <span>Offline Draft</span>
+              </div>
+            )}
+            {autosaveStatus === 'failed' && (
+              <div style={{
+                backgroundColor: '#FFF1F2',
+                border: '1px solid #FECDD3',
+                color: '#BE123C',
+                padding: '0.28rem 0.6rem',
+                borderRadius: '9999px',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem'
+              }}>
+                <AlertTriangle size={11} />
+                <span>Sync Pending</span>
+              </div>
+            )}
+
             {/* Template Selector */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
               <span style={{ fontSize: '0.72rem', color: '#70675D', fontWeight: 700 }}>Template:</span>
@@ -1198,8 +1761,125 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             </div>
           </div>
 
-          {/* Right: Actions (Import, Saved, AI, Download) */}
+          {/* Right: Actions (ATS Score, Job Optimizer, College Format, DOCX, Versions, Import, Saved, Save, Download) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap' }}>
+            {/* ATS Score Checker Button */}
+            <button
+              type="button"
+              onClick={() => setShowAtsScoreModal(true)}
+              style={{
+                backgroundColor: '#FEF9EE',
+                border: '1.5px solid #C88D2D',
+                borderRadius: '6px',
+                padding: '0.38rem 0.65rem',
+                fontSize: '0.75rem',
+                fontWeight: 800,
+                color: '#8A5D00',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem'
+              }}
+              title="Analyze ATS compatibility and score breakdown"
+            >
+              <Award size={14} color="#C88D2D" />
+              <span>ATS Score {currentAtsScore !== null ? `(${currentAtsScore})` : ''}</span>
+            </button>
+
+            {/* AI Job Optimizer Button */}
+            <button
+              type="button"
+              onClick={() => setShowJobOptimizerModal(true)}
+              style={{
+                backgroundColor: '#FAF5ED',
+                border: '1px solid #D5C7B2',
+                borderRadius: '6px',
+                padding: '0.38rem 0.65rem',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                color: '#4A4036',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem'
+              }}
+              title="Tailor resume to a target job description"
+            >
+              <Sliders size={14} color="#781416" />
+              <span>Job Optimizer</span>
+            </button>
+
+            {/* College Format Replicator Button */}
+            <button
+              type="button"
+              onClick={() => setShowCollegeFormatModal(true)}
+              style={{
+                backgroundColor: '#FAF5ED',
+                border: '1px solid #D5C7B2',
+                borderRadius: '6px',
+                padding: '0.38rem 0.65rem',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                color: '#4A4036',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem'
+              }}
+              title="Replicate college placement resume format"
+            >
+              <GraduationCap size={14} color="#781416" />
+              <span>College Format</span>
+            </button>
+
+            {/* Download Microsoft Word DOCX */}
+            <button
+              type="button"
+              onClick={handleDownloadDocx}
+              style={{
+                backgroundColor: '#FAF5ED',
+                border: '1px solid #D5C7B2',
+                borderRadius: '6px',
+                padding: '0.38rem 0.65rem',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                color: '#4A4036',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.3rem'
+              }}
+              title="Download editable Microsoft Word (.docx) format"
+            >
+              <Download size={13} color="#2563EB" />
+              <span>Word (.docx)</span>
+            </button>
+
+            {/* Version History Button (When resume is saved/active) */}
+            {activeResumeId && (
+              <button
+                type="button"
+                onClick={() => handleOpenVersions()}
+                style={{
+                  backgroundColor: '#FAF5ED',
+                  border: '1px solid #D5C7B2',
+                  borderRadius: '6px',
+                  padding: '0.38rem 0.65rem',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  color: '#4A4036',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.3rem'
+                }}
+                title="View resume snapshot version history"
+              >
+                <History size={14} color="#781416" />
+                <span>Versions</span>
+              </button>
+            )}
+
             {/* Import Button */}
             <button
               type="button"
@@ -2948,27 +3628,27 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             onClick={() => {
               if (isFromInterviewPro) {
                 handleReturnToInterviewPro();
-              } else if (onNavigate) {
-                onNavigate('more');
+              } else {
+                setViewMode('hub');
               }
             }}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.35rem',
-              backgroundColor: 'transparent',
-              border: '1px solid #E8DFCF',
-              color: '#4A4036',
+              backgroundColor: '#FAF5ED',
+              border: '1.5px solid #781416',
+              color: '#781416',
               padding: '0.4rem 0.65rem',
               borderRadius: '8px',
               fontSize: '0.76rem',
-              fontWeight: 700,
+              fontWeight: 800,
               cursor: 'pointer',
               flexShrink: 0
             }}
           >
             <ArrowLeft size={13} />
-            <span>{isFromInterviewPro ? 'Assessment' : 'All Tools'}</span>
+            <span>{isFromInterviewPro ? 'Assessment' : 'Hub'}</span>
           </button>
 
           {/* Title and Subtitle */}
@@ -3260,6 +3940,158 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
               <Save size={14} color="#781416" />
               <span>{isSaving ? 'Saving...' : 'Save'}</span>
             </button>
+          </div>
+
+          {/* Mobile AI Tools & Word Export Quick Strip */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            overflowX: 'auto',
+            paddingBottom: '0.45rem',
+            marginBottom: '0.65rem',
+            width: '100%',
+            boxSizing: 'border-box',
+            WebkitOverflowScrolling: 'touch'
+          }}>
+            {/* ATS Score Pill */}
+            <button
+              type="button"
+              onClick={() => setShowAtsScoreModal(true)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                backgroundColor: '#FEF9EE',
+                border: '1px solid #C88D2D',
+                borderRadius: '9999px',
+                padding: '0.35rem 0.65rem',
+                fontSize: '0.72rem',
+                fontWeight: 800,
+                color: '#8A5D00',
+                whiteSpace: 'nowrap',
+                cursor: 'pointer',
+                flexShrink: 0
+              }}
+            >
+              <Award size={12} color="#C88D2D" />
+              <span>ATS Score {currentAtsScore !== null ? `(${currentAtsScore})` : ''}</span>
+            </button>
+
+            {/* Optimize for JD Pill */}
+            <button
+              type="button"
+              onClick={() => setShowJobOptimizerModal(true)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                backgroundColor: '#FAF5ED',
+                border: '1px solid #D5C7B2',
+                borderRadius: '9999px',
+                padding: '0.35rem 0.65rem',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                color: '#4A4036',
+                whiteSpace: 'nowrap',
+                cursor: 'pointer',
+                flexShrink: 0
+              }}
+            >
+              <Sliders size={12} color="#781416" />
+              <span>Job Optimizer</span>
+            </button>
+
+            {/* College Format Pill */}
+            <button
+              type="button"
+              onClick={() => setShowCollegeFormatModal(true)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                backgroundColor: '#FAF5ED',
+                border: '1px solid #D5C7B2',
+                borderRadius: '9999px',
+                padding: '0.35rem 0.65rem',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                color: '#4A4036',
+                whiteSpace: 'nowrap',
+                cursor: 'pointer',
+                flexShrink: 0
+              }}
+            >
+              <GraduationCap size={12} color="#781416" />
+              <span>College Format</span>
+            </button>
+
+            {/* Word DOCX Download */}
+            <button
+              type="button"
+              onClick={handleDownloadDocx}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                backgroundColor: '#FAF5ED',
+                border: '1px solid #D5C7B2',
+                borderRadius: '9999px',
+                padding: '0.35rem 0.65rem',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                color: '#4A4036',
+                whiteSpace: 'nowrap',
+                cursor: 'pointer',
+                flexShrink: 0
+              }}
+            >
+              <Download size={12} color="#2563EB" />
+              <span>Word (.docx)</span>
+            </button>
+
+            {/* Versions (if active resume) */}
+            {activeResumeId && (
+              <button
+                type="button"
+                onClick={() => handleOpenVersions()}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.25rem',
+                  backgroundColor: '#FAF5ED',
+                  border: '1px solid #D5C7B2',
+                  borderRadius: '9999px',
+                  padding: '0.35rem 0.65rem',
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  color: '#4A4036',
+                  whiteSpace: 'nowrap',
+                  cursor: 'pointer',
+                  flexShrink: 0
+                }}
+              >
+                <History size={12} color="#781416" />
+                <span>Versions</span>
+              </button>
+            )}
+
+            {/* Autosave Status Pill */}
+            {autosaveStatus === 'saving' && (
+              <span style={{ fontSize: '0.68rem', color: '#B45309', fontWeight: 700, whiteSpace: 'nowrap', padding: '0.3rem 0.45rem' }}>
+                Autosaving...
+              </span>
+            )}
+            {autosaveStatus === 'saved' && (
+              <span style={{ fontSize: '0.68rem', color: '#0E7A4A', fontWeight: 700, whiteSpace: 'nowrap', padding: '0.3rem 0.45rem' }}>
+                ✓ Saved{lastSavedTime ? ` ${lastSavedTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}
+              </span>
+            )}
+            {autosaveStatus === 'offline' && (
+              <span style={{ fontSize: '0.68rem', color: '#DC2626', fontWeight: 700, whiteSpace: 'nowrap', padding: '0.3rem 0.45rem' }}>
+                Offline Draft
+              </span>
+            )}
           </div>
 
           {/* Download PDF Primary Button */}
@@ -4987,138 +5819,80 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
       {/* =========================================================================
           SHARED MODALS & DRAWERS (DESKTOP & MOBILE)
           ========================================================================= */}
-      {/* =========================================================================
-          DRAWER: MY RESUMES (SAVED CRUD)
-          ========================================================================= */}
 
-      {/* =========================================================================
-          SHARED MODALS & DRAWERS (DESKTOP & MOBILE)
-          ========================================================================= */}
-      {/* =========================================================================
-          DRAWER: MY RESUMES (SAVED CRUD)
-          ========================================================================= */}
-      {showMyResumesDrawer && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          backdropFilter: 'blur(3px)',
-          zIndex: 1000,
-          display: 'flex',
-          justifyContent: 'flex-end'
-        }}>
-          <div style={{
-            backgroundColor: '#FFFFFF',
-            width: '100%',
-            maxWidth: '420px',
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            boxShadow: '-8px 0 24px rgba(0,0,0,0.15)',
-            padding: '1.25rem'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.15rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
-                <FolderOpen size={18} color="#781416" />
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 900, color: '#1C1814', margin: 0 }}>
-                  My Saved Resumes
-                </h3>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowMyResumesDrawer(false)}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#70675D' }}
-              >
-                <X size={18} />
-              </button>
-            </div>
+      {/* Drawer: My Saved Resumes Cloud Manager */}
+      <MyResumesDrawer
+        isOpen={showMyResumesDrawer}
+        onClose={() => setShowMyResumesDrawer(false)}
+        resumes={myResumesList}
+        activeResumeId={activeResumeId}
+        onSelectResume={(item) => {
+          handleLoadResume(item);
+          setViewMode('editor');
+        }}
+        onStartNewResume={() => {
+          setActiveResumeId(null);
+          setResumeTitle('My ATS Resume');
+          setResumeData(DEFAULT_RESUME_DATA);
+          setViewMode('editor');
+          setShowMyResumesDrawer(false);
+        }}
+        onOpenVersions={handleOpenVersions}
+        onRefreshList={fetchMyResumes}
+      />
 
-            <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              {myResumesList.length > 0 ? (
-                myResumesList.map((resItem) => {
-                  const isCurrent = activeResumeId === (resItem.id || resItem._id);
-                  return (
-                    <div
-                      key={resItem.id || resItem._id}
-                      onClick={() => handleLoadResume(resItem)}
-                      style={{
-                        backgroundColor: isCurrent ? '#FAF0F0' : '#FAF7F2',
-                        border: isCurrent ? '1.5px solid #781416' : '1px solid #E8DFCF',
-                        borderRadius: '8px',
-                        padding: '0.75rem',
-                        cursor: 'pointer',
-                        transition: 'all 0.15s ease'
-                      }}
-                    >
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                        <div>
-                          <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#1C1814' }}>
-                            {resItem.title || 'Engineering Resume'}
-                          </div>
-                          <div style={{ fontSize: '0.7rem', color: '#70675D', marginTop: '2px' }}>
-                            {resItem.resumeData?.personal?.fullName || 'Untitled'} · {resItem.template || 'classic-tech'}
-                          </div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={(e) => handleDeleteResume(resItem.id || resItem._id, e)}
-                          style={{ background: 'none', border: 'none', color: '#DC2626', cursor: 'pointer', padding: '0.2rem' }}
-                          title="Delete Resume"
-                        >
-                          <Trash2 size={13} />
-                        </button>
-                      </div>
+      {/* Modal: ATS Score Analyzer & Rubric Breakdown */}
+      <AtsScoreModal
+        isOpen={showAtsScoreModal}
+        onClose={() => setShowAtsScoreModal(false)}
+        resumeData={resumeData}
+        resumeId={activeResumeId}
+        onApplySuggestion={handleApplyAtsSuggestion}
+        onUpdateScore={(score) => setCurrentAtsScore(score)}
+      />
 
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.55rem', fontSize: '0.68rem', color: '#8A8074' }}>
-                        <span>Updated: {resItem.updatedAt ? new Date(resItem.updatedAt).toLocaleDateString() : 'Recently'}</span>
-                        <span style={{ color: '#0E7A4A', fontWeight: 800 }}>✓ 1-Page Verified</span>
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div style={{ textAlign: 'center', color: '#70675D', fontSize: '0.82rem', marginTop: '2rem' }}>
-                  No saved resumes yet. Click Save to create your first resume!
-                </div>
-              )}
-            </div>
+      {/* Modal: AI Job-Specific Resume Optimizer */}
+      <JobOptimizerModal
+        isOpen={showJobOptimizerModal}
+        onClose={() => setShowJobOptimizerModal(false)}
+        resumeData={resumeData}
+        resumeTitle={resumeTitle}
+        onApplyTailoredSummary={(summary) => {
+          setResumeData(prev => ({
+            ...prev,
+            personal: { ...prev.personal, summary }
+          }));
+        }}
+        onCreateOptimizedCopy={handleCreateOptimizedCopy}
+      />
 
-            <div style={{ paddingTop: '1rem', borderTop: '1px solid #EDE5D6' }}>
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveResumeId(null);
-                  setResumeTitle('My New ATS Resume');
-                  setResumeData(DEFAULT_RESUME_DATA);
-                  setShowMyResumesDrawer(false);
-                }}
-                style={{
-                  width: '100%',
-                  backgroundColor: '#781416',
-                  color: '#FFFFFF',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '0.65rem',
-                  fontSize: '0.82rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.4rem'
-                }}
-              >
-                <Plus size={15} />
-                <span>Create New Resume</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Modal: AI College Resume Format Replicator */}
+      <CollegeFormatModal
+        isOpen={showCollegeFormatModal}
+        onClose={() => setShowCollegeFormatModal(false)}
+        resumeData={resumeData}
+        onApplyCollegeFormat={handleApplyCollegeFormat}
+        onSaveAsCollegeResume={handleSaveAsCollegeResume}
+      />
 
-      {/* =========================================================================
-          MODAL: UPLOAD / IMPORT RESUME (PDF, DOC, DOCX)
-          ========================================================================= */}
+      {/* Modal: Resume Version History & Restoration */}
+      <ResumeVersionModal
+        isOpen={showVersionModal}
+        onClose={() => setShowVersionModal(false)}
+        resume={versionTargetResume || myResumesList.find(r => (r.id || r._id) === activeResumeId)}
+        onRestoreVersion={handleRestoreVersion}
+      />
+
+      {/* Modal: Review Extracted Information Before Loading */}
+      <ResumeImportReviewModal
+        isOpen={Boolean(importReviewData)}
+        onClose={() => setImportReviewData(null)}
+        extractedData={importReviewData}
+        fileName={importFileName}
+        onApplyImport={handleApplyImportReview}
+      />
+
+      {/* Modal: Upload / Import Resume File (PDF, DOC, DOCX, Scanned Images) */}
       {showUploadModal && (
         <div style={{
           position: 'fixed',
@@ -5156,7 +5930,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             </div>
 
             <p style={{ fontSize: '0.8rem', color: '#5A5044', margin: '0 0 1.25rem 0' }}>
-              Upload your current resume in PDF, DOC, or DOCX format. We will automatically parse your contact details, education, skills, and projects into the editor.
+              Upload your current resume in PDF, DOC, DOCX, or scanned images. We will automatically parse your contact details, education, skills, and projects into the editor.
             </p>
 
             <label style={{
@@ -5172,147 +5946,19 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
             }}>
               <UploadCloud size={32} color="#781416" style={{ marginBottom: '0.5rem' }} />
               <div style={{ fontSize: '0.86rem', fontWeight: 800, color: '#1C1814' }}>
-                {isImporting ? 'Parsing resume fields...' : 'Click to choose resume file'}
+                {isImporting ? 'Parsing resume fields with OCR...' : 'Click to choose resume file'}
               </div>
               <div style={{ fontSize: '0.72rem', color: '#70675D', marginTop: '2px' }}>
-                Supports .pdf, .doc, .docx (Max 15MB)
+                Supports .pdf, .doc, .docx, .png, .jpg (Max 20MB)
               </div>
               <input
                 type="file"
-                accept=".pdf,.doc,.docx"
+                accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp"
                 onChange={handleImportFile}
                 disabled={isImporting}
                 style={{ display: 'none' }}
               />
             </label>
-          </div>
-        </div>
-      )}
-
-      {/* =========================================================================
-          MODAL: REVIEW IMPORTED INFORMATION BEFORE POPULATING
-          ========================================================================= */}
-      {importReviewData && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          backdropFilter: 'blur(3px)',
-          zIndex: 1000,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '1rem'
-        }}>
-          <div style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: '16px',
-            width: '100%',
-            maxWidth: '650px',
-            maxHeight: '85vh',
-            display: 'flex',
-            flexDirection: 'column',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.25)',
-            overflow: 'hidden'
-          }}>
-            <div style={{
-              padding: '1rem 1.25rem',
-              backgroundColor: '#FAF5ED',
-              borderBottom: '1px solid #E8E0D0',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}>
-              <div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 900, color: '#781416', margin: 0 }}>
-                  Review Imported Information
-                </h3>
-                <div style={{ fontSize: '0.74rem', color: '#665C50' }}>
-                  Confirm the parsed details before loading them into your resume editor.
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setImportReviewData(null)}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#70675D' }}
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            <div style={{ flex: 1, overflowY: 'auto', padding: '1.25rem' }}>
-              <div style={{ marginBottom: '1rem' }}>
-                <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#1C1814' }}>Personal Details:</span>
-                <div style={{ fontSize: '0.76rem', color: '#4A4036', marginTop: '0.25rem', backgroundColor: 'transparent', padding: '0.6rem', borderRadius: '6px' }}>
-                  <div>Name: <strong>{importReviewData.personal?.fullName || 'Not detected'}</strong></div>
-                  <div>Email: <strong>{importReviewData.personal?.email || 'Not detected'}</strong></div>
-                  <div>Phone: <strong>{importReviewData.personal?.phone || 'Not detected'}</strong></div>
-                </div>
-              </div>
-
-              {importReviewData.skills && (
-                <div style={{ marginBottom: '1rem' }}>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#1C1814' }}>Extracted Skills:</span>
-                  <div style={{ fontSize: '0.76rem', color: '#4A4036', marginTop: '0.25rem', backgroundColor: 'transparent', padding: '0.6rem', borderRadius: '6px' }}>
-                    {importReviewData.skills.languages && <div>Languages: {importReviewData.skills.languages}</div>}
-                    {importReviewData.skills.frameworks && <div>Frameworks: {importReviewData.skills.frameworks}</div>}
-                    {importReviewData.skills.tools && <div>Tools: {importReviewData.skills.tools}</div>}
-                  </div>
-                </div>
-              )}
-
-              {importReviewData.education && importReviewData.education.length > 0 && (
-                <div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#1C1814' }}>Education Items:</span>
-                  <div style={{ fontSize: '0.76rem', color: '#4A4036', marginTop: '0.25rem', backgroundColor: 'transparent', padding: '0.6rem', borderRadius: '6px' }}>
-                    {importReviewData.education.map((e, i) => (
-                      <div key={i}>{e.degree} — {e.institution} ({e.duration})</div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div style={{
-              padding: '0.85rem 1.25rem',
-              borderTop: '1px solid #E8E0D0',
-              display: 'flex',
-              justifyContent: 'flex-end',
-              gap: '0.55rem'
-            }}>
-              <button
-                type="button"
-                onClick={() => setImportReviewData(null)}
-                style={{
-                  backgroundColor: 'transparent',
-                  border: '1px solid #DDD3C3',
-                  borderRadius: '6px',
-                  padding: '0.4rem 0.85rem',
-                  fontSize: '0.76rem',
-                  fontWeight: 700,
-                  cursor: 'pointer'
-                }}
-              >
-                Cancel
-              </button>
-
-              <button
-                type="button"
-                onClick={handleConfirmImport}
-                style={{
-                  backgroundColor: '#781416',
-                  color: '#FFFFFF',
-                  border: 'none',
-                  borderRadius: '6px',
-                  padding: '0.4rem 1rem',
-                  fontSize: '0.76rem',
-                  fontWeight: 800,
-                  cursor: 'pointer'
-                }}
-              >
-                Apply to Editor
-              </button>
-            </div>
           </div>
         </div>
       )}

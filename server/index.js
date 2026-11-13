@@ -8305,7 +8305,7 @@ app.post('/api/resumes/college-format/generate', async (req, res) => {
   }
 });
 
-// Download DOCX (.docx) Microsoft Word Format
+// Download DOCX (.docx) Microsoft Word Format by ID
 app.get('/api/resumes/:id/download-docx', optionalUserToken, async (req, res) => {
   try {
     const { id } = req.params;
@@ -8322,6 +8322,24 @@ app.get('/api/resumes/:id/download-docx', optionalUserToken, async (req, res) =>
     res.send(docxBuffer);
   } catch (err) {
     console.error('DOCX download error:', err);
+    res.status(500).send('Error generating DOCX: ' + err.message);
+  }
+});
+
+// Download DOCX directly from current resume data payload
+app.post('/api/resumes/download-docx', optionalUserToken, async (req, res) => {
+  try {
+    const { resumeData, title } = req.body;
+    if (!resumeData) return res.status(400).send('Missing resumeData payload');
+
+    const docxBuffer = await resumeFeatures.generateDocxBuffer(resumeData);
+    const safeTitle = (title || (resumeData.personal?.fullName ? `${resumeData.personal.fullName}_Resume` : 'Resume')).replace(/[^a-zA-Z0-9_-]/g, '_');
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    res.setHeader('Content-Disposition', `attachment; filename="${safeTitle}.docx"`);
+    res.send(docxBuffer);
+  } catch (err) {
+    console.error('Direct DOCX generation error:', err);
     res.status(500).send('Error generating DOCX: ' + err.message);
   }
 });

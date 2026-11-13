@@ -827,6 +827,8 @@ async function detectCollegeFormat(fileBuffer, mimetype = '', originalname = '')
     } else if (ext === '.docx' || mimetype.includes('wordprocessingml')) {
       const zip = await JSZip.loadAsync(fileBuffer);
       detectedText = (await zip.file('word/document.xml')?.async('text')) || '';
+    } else if (fileBuffer) {
+      detectedText = fileBuffer.toString('utf8');
     }
   } catch (err) {
     console.warn('Error detecting college format:', err.message);
