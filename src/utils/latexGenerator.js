@@ -415,6 +415,15 @@ export function generateLatex(resumeData, options = {}) {
   const fontSize = isMinimalist ? '9.5pt' : (options.fontSize || '10pt');
   const margin = isMinimalist ? '0.38in' : (options.margin || '0.45in');
 
+  let modernPreamble = '';
+  let sectionCmd = '\\titleformat{\\section}{\\large\\bfseries}{}{0em}{}[\\titlerule]\n\\titlespacing*{\\section}{0pt}{6pt}{3pt}\n\\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=1.2em, label=--}';
+  if (isModern) {
+    modernPreamble = '\\usepackage{xcolor}\n\\definecolor{primary}{RGB}{20, 80, 160}\n\\definecolor{rulecolor}{RGB}{210, 218, 228}\n';
+    sectionCmd = '\\titleformat{\\section}{\\color{primary}\\large\\bfseries}{}{0em}{}[\\vspace{1pt}{\\color{rulecolor}\\titlerule[0.8pt]}]\n\\titlespacing*{\\section}{0pt}{6pt}{3pt}\n\\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=1.2em, label=\\color{primary}--}';
+  } else if (isMinimalist) {
+    sectionCmd = '\\titleformat{\\section}{\\normalsize\\bfseries\\scshape}{}{0em}{}[\\vspace{1pt}\\titlerule[0.4pt]]\n\\titlespacing*{\\section}{0pt}{4pt}{2pt}\n\\setlist[itemize]{noitemsep, topsep=0.5pt, leftmargin=1.1em, label=--}';
+  }
+
   let templateTitle = 'ABES Resume Format - LaTeX Master Template';
   if (isModern) templateTitle = 'Modern Clean Engineering - LaTeX Master Template';
   if (isMinimalist) templateTitle = 'Minimalist Executive - LaTeX Master Template';
@@ -424,36 +433,36 @@ export function generateLatex(resumeData, options = {}) {
 % Matching exact typography, layout, icons, and single-page structure
 %----------------------------------------------------------------------------------------
 
-\documentclass[${fontSize},a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[margin=${margin}]{geometry}
-\usepackage[hidelinks]{hyperref}
-${isModern ? `\usepackage{xcolor}\n\definecolor{primary}{RGB}{20, 80, 160}\n\definecolor{rulecolor}{RGB}{210, 218, 228}\n` : ''}\IfFileExists{fontawesome5.sty}{
-  \usepackage{fontawesome5}
+\\documentclass[${fontSize},a4paper]{article}
+\\usepackage[utf8]{inputenc}
+\\usepackage[margin=${margin}]{geometry}
+\\usepackage[hidelinks]{hyperref}
+${modernPreamble}\\IfFileExists{fontawesome5.sty}{
+  \\usepackage{fontawesome5}
 }{
-  \providecommand{\faPhone}{\textbf{P:}}
-  \providecommand{\faEnvelope}{\textbf{E:}}
-  \providecommand{\faMapMarker}{\textbf{L:}}
-  \providecommand{\faLinkedin}{\textbf{in:}}
-  \providecommand{\faGithub}{\textbf{gh:}}
-  \providecommand{\faGlobe}{\textbf{web:}}
+  \\providecommand{\\faPhone}{\\textbf{P:}}
+  \\providecommand{\\faEnvelope}{\\textbf{E:}}
+  \\providecommand{\\faMapMarker}{\\textbf{L:}}
+  \\providecommand{\\faLinkedin}{\\textbf{in:}}
+  \\providecommand{\\faGithub}{\\textbf{gh:}}
+  \\providecommand{\\faGlobe}{\\textbf{web:}}
 }
-\usepackage{titlesec}
-\usepackage{enumitem}
-\usepackage{tabularx}
-\usepackage{microtype}
+\\usepackage{titlesec}
+\\usepackage{enumitem}
+\\usepackage{tabularx}
+\\usepackage{microtype}
 
 % PDF Metadata
-\hypersetup{
+\\hypersetup{
     pdftitle={${escapeLatex(p.fullName || 'Resume')}},
     pdfauthor={${escapeLatex(p.fullName || 'CampusPrep Resume')}}
 }
 
 % Section formatting
-${isModern ? `\titleformat{\section}{\color{primary}\large\bfseries}{}{0em}{}[\vspace{1pt}{\color{rulecolor}\titlerule[0.8pt]}]\n\titlespacing*{\section}{0pt}{6pt}{3pt}\n\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=1.2em, label=\color{primary}--}` : (isMinimalist ? `\titleformat{\section}{\normalsize\bfseries\scshape}{}{0em}{}[\vspace{1pt}\titlerule[0.4pt]]\n\titlespacing*{\section}{0pt}{4pt}{2pt}\n\setlist[itemize]{noitemsep, topsep=0.5pt, leftmargin=1.1em, label=--}` : `\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]\n\titlespacing*{\section}{0pt}{6pt}{3pt}\n\setlist[itemize]{noitemsep, topsep=1pt, leftmargin=1.2em, label=--}`)}
-\pagestyle{empty}
+${sectionCmd}
+\\pagestyle{empty}
 
-\begin{document}
+\\begin{document}
 
 `;
 

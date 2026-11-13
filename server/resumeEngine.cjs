@@ -1267,6 +1267,7 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
     }
   }
   cursorY -= 2;
+  }
 
   // Helper to render section title with crisp horizontal rule
   const renderSectionHeading = (title) => {
@@ -1864,6 +1865,14 @@ async function renderResumeToDocument(pdfDoc, resumeData, cfg, allowMultiPage = 
 async function compileResumePdf(resumeData, customOptions = {}) {
   const startTime = Date.now();
 
+  const activeTemplate = (customOptions && customOptions.template) || resumeData.templateId || resumeData.template || 'classic-tech';
+  const formatRules = (customOptions && customOptions.formatRules) || resumeData.formatRules || {};
+  const templateOptions = {
+    template: activeTemplate,
+    formatRules,
+    ...((customOptions && customOptions.options) || {})
+  };
+
   let selectedPdfBytes = null;
   let finalStatus = 'failed';
   let onePageOptimized = false;
@@ -1876,7 +1885,7 @@ async function compileResumePdf(resumeData, customOptions = {}) {
     const cfg = COMPRESSION_LEVELS[i];
     try {
       const pdfDoc = await PDFDocument.create();
-      const renderRes = await renderResumeToDocument(pdfDoc, resumeData, cfg, false);
+      const renderRes = await renderResumeToDocument(pdfDoc, resumeData, cfg, false, templateOptions);
 
       if (renderRes.fitsOnePage) {
         selectedPdfBytes = await pdfDoc.save();
@@ -1896,7 +1905,7 @@ async function compileResumePdf(resumeData, customOptions = {}) {
       const multiDoc = await PDFDocument.create();
       // Use Standard typography (level 0) so the 2-page document has readable, elegant spacing
       const multiCfg = COMPRESSION_LEVELS[0];
-      await renderResumeToDocument(multiDoc, resumeData, multiCfg, true);
+      await renderResumeToDocument(multiDoc, resumeData, multiCfg, true, templateOptions);
       const actualPages = multiDoc.getPageCount();
 
       selectedPdfBytes = await multiDoc.save();
@@ -1916,11 +1925,10 @@ async function compileResumePdf(resumeData, customOptions = {}) {
   // Generate matching LaTeX source
   const latexMargin = successfulConfig ? `${(successfulConfig.margin / 72).toFixed(2)}in` : '0.45in';
   const latexFontSize = successfulConfig ? `${Math.round(successfulConfig.baseFont)}pt` : '10pt';
-  const activeTemplate = (customOptions && customOptions.template) || resumeData.template || 'classic-tech';
   if (customOptions && typeof customOptions.latex === 'string' && customOptions.latex.trim()) {
     generatedLatexCode = customOptions.latex.trim();
   } else {
-    generatedLatexCode = generateLatex(resumeData, { margin: latexMargin, fontSize: latexFontSize, template: activeTemplate });
+    generatedLatexCode = generateLatex(resumeData, { margin: latexMargin, fontSize: latexFontSize, template: activeTemplate, formatRules });
   }
 
   if (!selectedPdfBytes || selectedPdfBytes.length === 0) {
