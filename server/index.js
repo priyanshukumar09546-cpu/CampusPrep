@@ -8208,14 +8208,15 @@ app.post('/api/resumes/:id/restore-version/:versionNumber', optionalUserToken, a
   }
 });
 
-// ATS Analysis Endpoint (Calculates 0-100 score with 10-category rubric & actionable suggestions)
+// ATS Analysis Endpoint (Calculates 0-100 score with Python AI Engine, 6-category NumPy rubric & actionable suggestions)
 app.post('/api/resumes/ats-analyze', optionalUserToken, async (req, res) => {
   try {
     const userId = req.user ? req.user.userId : (req.headers['x-guest-id'] || req.body.guestId || 'guest');
-    const { resumeData, targetRole, resumeId } = req.body;
+    const { resumeData, targetRole, resumeId, jobDescription } = req.body;
     if (!resumeData) return res.status(400).json({ success: false, message: 'No resume data provided for ATS analysis.' });
 
-    const analysis = resumeFeatures.analyzeAtsScore(resumeData, { targetRole });
+    // Use Python AI Engine with asynchronous fallback to JS rule analyzer
+    const analysis = await resumeFeatures.analyzeAtsScoreAsync(resumeData, { targetRole, jobDescription });
 
     // If resumeId provided and owned, persist score and analysis
     if (resumeId) {
@@ -8240,15 +8241,20 @@ app.post('/api/resumes/ats-analyze', optionalUserToken, async (req, res) => {
       resumeTitle: req.body.resumeTitle || resumeData.title || (resumeData.personal?.fullName ? `${resumeData.personal.fullName} Resume` : 'Resume'),
       overallScore: analysis.overallScore,
       targetRole: analysis.targetRole,
+      hasCustomJobDescription: Boolean(analysis.hasCustomJobDescription),
+      evaluationType: analysis.evaluationType || (analysis.hasCustomJobDescription ? 'Custom Job Description Match' : 'Standard Role ATS Compatibility'),
       categoryScores: analysis.categoryScores,
-      strengths: analysis.strengths,
-      weaknesses: analysis.weaknesses,
-      missingKeywords: analysis.missingKeywords,
+      sectionBreakdown: analysis.sectionBreakdown || [],
+      strengths: analysis.strengths || [],
+      weaknesses: analysis.weaknesses || [],
+      matchedKeywords: analysis.matchedKeywords || [],
+      missingKeywords: analysis.missingKeywords || [],
       missingSections: analysis.missingSections || [],
       beforeAfterSuggestions: analysis.beforeAfterSuggestions || [],
       strongestSections: analysis.strongestSections || [],
       weakestSections: analysis.weakestSections || [],
-      actionableSuggestions: analysis.actionableSuggestions || [],
+      actionableRecommendations: analysis.actionableRecommendations || analysis.actionableSuggestions || [],
+      parsingQuality: analysis.parsingQuality || null,
       evaluatedAt: analysis.evaluatedAt || new Date().toISOString()
     };
 
@@ -11832,6 +11838,25 @@ if (process.env.VERCEL !== '1' && !process.env.VERCEL_ENV && !process.env.AWS_LA
     console.log(`║  Scholarships:  ${dbScholarships.length} loaded from disk                        ║`);
     console.log('╚══════════════════════════════════════════════════════════════╝');
     console.log('');
+
+    // Ensure Python ATS AI Engine (PyMuPDF, spaCy, SentenceTransformers, NumPy) is active
+    try {
+      fetch('http://127.0.0.1:5005/health')
+        .then(r => r.json())
+        .then(healthData => {
+          console.log(`[ATS ENGINE] ✓ Python AI Engine is active on port 5005 (${healthData.service}, Python ${healthData.python})`);
+        })
+        .catch(() => {
+          console.log('[ATS ENGINE] Spawning Python AI Engine microservice on port 5005...');
+          const { spawn } = require('child_process');
+          const pyProc = spawn('python', ['server/ats_engine.py', '--serve', '--port', '5005'], {
+            detached: true,
+            stdio: 'ignore'
+          });
+          pyProc.unref();
+        });
+    } catch (_) {}
+
     if (!geminiOk) {
       console.warn('[AI ENGINE] Notice: GEMINI_API_KEY is not configured in .env. AI Result Analysis is operating in zero-assumption structural verification mode.');
     }

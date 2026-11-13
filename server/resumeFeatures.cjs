@@ -81,7 +81,44 @@ const TECH_KEYWORDS = {
 };
 
 /**
- * 1. ATS RESUME COMPATIBILITY ANALYZER
+ * 1. ATS RESUME COMPATIBILITY ANALYZER (ASYNC & PYTHON POWERED)
+ * Evaluates resume using the Python AI engine (PyMuPDF, spaCy, MiniLM, Scikit-learn, NumPy)
+ * Seamlessly falls back to local rule-based analysis if Python engine is temporarily offline.
+ */
+async function analyzeAtsScoreAsync(resumeData, options = {}) {
+  if (!resumeData) return null;
+
+  try {
+    const targetRole = options.targetRole || 'Software Developer';
+    const jobDescription = options.jobDescription || null;
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 7000);
+
+    const response = await fetch('http://127.0.0.1:5005/ats/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ resumeData, targetRole, jobDescription }),
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.success && data.analysis) {
+        return data.analysis;
+      }
+    }
+  } catch (pyErr) {
+    console.warn('[RESUME ENGINE] Python ATS service call failed, using built-in rule analyzer:', pyErr.message);
+  }
+
+  // Built-in rule analyzer fallback
+  return analyzeAtsScore(resumeData, options);
+}
+
+/**
+ * 1B. BUILT-IN DETERMINISTIC RULE ANALYZER
  * Evaluates resume across 10 transparent, explainable rubric dimensions (0-100 total)
  */
 function analyzeAtsScore(resumeData, options = {}) {
@@ -630,12 +667,51 @@ function optimizeResumeForJob(resumeData, jobDescription, targetRole = '', compa
 
 /**
  * 3. ADVANCED MULTI-FORMAT RESUME FILE PARSER
- * Parses PDF (text & scan OCR), DOCX (JSZip XML), and Image formats (Tesseract.js OCR)
+ * Primary: PyMuPDF / python-docx / OCR via Python Engine
+ * Fallback: PDFParse / JSZip / Tesseract.js
  */
 async function parseResumeFile(fileBuffer, mimetype = '', originalname = '') {
-  let extractedText = '';
   const ext = (path.extname(originalname || '') || '').toLowerCase();
   const mime = String(mimetype || '').toLowerCase();
+
+  // 1. Try Python High-Accuracy Parsing Engine (PyMuPDF with coordinate bounding boxes & OCR)
+  try {
+    const formData = new FormData();
+    const blob = new Blob([fileBuffer], { type: mimetype || 'application/octet-stream' });
+    formData.append('file', blob, originalname || 'resume.pdf');
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
+    const pyRes = await fetch('http://127.0.0.1:5005/ats/parse', {
+      method: 'POST',
+      body: formData,
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+
+    if (pyRes.ok) {
+      const pyData = await pyRes.json();
+      if (pyData.success && pyData.text) {
+        const mapped = mapTextToResumeData(pyData.text, originalname);
+        if (pyData.contact) {
+          if (pyData.contact.email) mapped.personal.email = pyData.contact.email;
+          if (pyData.contact.phone) mapped.personal.phone = pyData.contact.phone;
+          if (pyData.contact.linkedin) mapped.personal.linkedinUrl = pyData.contact.linkedin;
+          if (pyData.contact.github) mapped.personal.githubUrl = pyData.contact.github;
+          if (pyData.contact.portfolio) mapped.personal.portfolioUrl = pyData.contact.portfolio;
+        }
+        if (pyData.quality) {
+          mapped._parsingQuality = pyData.quality;
+        }
+        return mapped;
+      }
+    }
+  } catch (pyErr) {
+    console.warn('[RESUME ENGINE] Python resume parse skipped/failed, using local fallback:', pyErr.message);
+  }
+
+  let extractedText = '';
 
   try {
     // 1. DOCX Parsing via JSZip
@@ -1511,6 +1587,7 @@ async function generateDocxBuffer(resumeData) {
 
 module.exports = {
   analyzeAtsScore,
+  analyzeAtsScoreAsync,
   optimizeResumeForJob,
   parseResumeFile,
   detectCollegeFormat,
