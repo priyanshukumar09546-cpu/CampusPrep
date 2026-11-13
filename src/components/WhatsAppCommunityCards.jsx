@@ -16,7 +16,7 @@ export default function WhatsAppCommunityCards({ isMobile = false }) {
     {
       id: 'pv-community',
       title: 'Join ProfessorVirus Community',
-      subtitle: 'Follow the AKTU Material free – By ProfessorVirus 🥇',
+      subtitle: 'Follow the AKTU Material Free – By ProfessorVirus 🥇',
       description: 'Get free AKTU study materials, notes, previous-year questions, academic updates and useful learning resources.',
       buttonText: 'JOIN PROFESSORVIRUS',
       url: 'https://whatsapp.com/channel/0029VbDAFGO77qVYFLIhGn1G',
