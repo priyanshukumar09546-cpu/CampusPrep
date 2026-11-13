@@ -22,7 +22,8 @@ export default function AtsScoreModal({
   resumeData,
   resumeId,
   onApplySuggestion,
-  onUpdateScore
+  onUpdateScore,
+  onNavigate
 }) {
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -31,8 +32,6 @@ export default function AtsScoreModal({
   );
   const [appliedIds, setAppliedIds] = useState(new Set());
   const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'categories' | 'suggestions'
-
-  if (!isOpen) return null;
 
   const handleRunAnalysis = async () => {
     setLoading(true);
@@ -62,19 +61,21 @@ export default function AtsScoreModal({
     }
   };
 
-  // Run analysis automatically on first open if not already analyzed
+  // Run analysis automatically on first open if not already analyzed (guaranteed stable hook order)
   React.useEffect(() => {
     if (isOpen && !analysis && resumeData) {
       handleRunAnalysis();
     }
-  }, [isOpen]);
+  }, [isOpen, analysis, resumeData]);
 
   const handleApply = (sug) => {
     if (onApplySuggestion && sug.applyData) {
-      onApplySuggestion(sug);
+      onApplySuggestion(sug, sug.applyData);
       setAppliedIds(prev => new Set(prev).add(sug.id));
     }
   };
+
+  if (!isOpen) return null;
 
   const score = analysis?.overallScore ?? 0;
   const scoreColor = score >= 80 ? '#059669' : score >= 60 ? '#C88D2D' : '#DC2626';
@@ -127,7 +128,40 @@ export default function AtsScoreModal({
             </h2>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => {
+                  try {
+                    sessionStorage.setItem('pv_active_ats_resume', JSON.stringify({
+                      resumeData,
+                      resumeId
+                    }));
+                  } catch (_) {}
+                  onClose();
+                  onNavigate('ats-checker');
+                }}
+                style={{
+                  backgroundColor: '#781416',
+                  backgroundImage: 'linear-gradient(135deg, #8C1C24 0%, #781416 100%)',
+                  border: '1px solid rgba(255, 209, 102, 0.45)',
+                  borderRadius: '8px',
+                  padding: '0.4rem 0.85rem',
+                  fontSize: '0.76rem',
+                  fontWeight: 800,
+                  color: '#FFFFFF',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  cursor: 'pointer'
+                }}
+              >
+                <Sparkles size={13} color="#FFD166" />
+                <span>Full ATS Studio</span>
+              </button>
+            )}
+
             <button
               type="button"
               onClick={handleRunAnalysis}

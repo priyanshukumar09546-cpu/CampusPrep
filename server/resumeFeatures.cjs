@@ -434,6 +434,105 @@ function analyzeAtsScore(resumeData, options = {}) {
     }
   }
 
+  // Identify missing sections
+  const missingSections = [];
+  if (!personal.summary && !resumeData.summary) missingSections.push('Professional Summary');
+  if (experience.length === 0) missingSections.push('Work Experience / Internships');
+  if (projects.length === 0) missingSections.push('Technical Projects');
+  if (certifications.length === 0) missingSections.push('Certifications & Credentials');
+  if (achievements.length === 0) missingSections.push('Honors & Achievements');
+  if (uniqueSkills.length === 0) missingSections.push('Categorized Technical Skills');
+  if (education.length === 0) missingSections.push('Education History');
+
+  // Concrete before vs after phrasing transformations
+  const beforeAfterSuggestions = [
+    {
+      section: 'Experience / Projects',
+      before: 'Worked on building frontend features and fixed bugs with team.',
+      after: 'Architected responsive UI components using React and TypeScript, reducing client-side load time by 32% across 15,000+ daily sessions.',
+      reason: 'Replaces generic passive phrasing with strong action verbs and quantified impact metrics.'
+    },
+    {
+      section: 'Backend / Database',
+      before: 'Created backend APIs and connected database for app.',
+      after: 'Engineered robust RESTful microservices in Node.js & Express with indexed MongoDB pipelines, maintaining sub-80ms response latency under heavy load.',
+      reason: 'Specifies architectural pattern, tech stack depth, and operational reliability benchmarks.'
+    },
+    {
+      section: 'Professional Summary',
+      before: 'Hardworking student looking for a software job to gain industry experience.',
+      after: `Results-oriented ${targetRole} with proven engineering experience building full-stack applications and scalable APIs. Eager to contribute clean code and rapid problem-solving to high-velocity development teams.`,
+      reason: 'Eliminates candidate-centric wording in favor of employer-focused value propositions and core technical competencies.'
+    }
+  ];
+
+  // Strongest and weakest sections breakdown
+  const sectionLabels = {
+    contact: 'Contact Information',
+    summary: 'Professional Summary',
+    skills: 'Technical Skills Depth',
+    keywords: 'Keyword Optimization',
+    experience: 'Work Experience',
+    projects: 'Projects & Portfolio',
+    education: 'Education Details',
+    certifications: 'Certifications',
+    formatting: 'Action Verbs & Formatting',
+    readability: 'Layout & ATS Readability'
+  };
+
+  const sortedCategories = Object.entries(categoryScores)
+    .map(([key, sc]) => ({ key, name: sectionLabels[key] || key, score: sc, max: 10 }))
+    .sort((a, b) => b.score - a.score);
+
+  const strongestSections = sortedCategories.filter(c => c.score >= 7);
+  const weakestSections = sortedCategories.filter(c => c.score < 7).reverse();
+
+  // Granular section analysis map
+  const sectionAnalysis = {
+    summary: {
+      score: categoryScores.summary,
+      status: categoryScores.summary >= 8 ? 'Excellent' : categoryScores.summary >= 5 ? 'Fair' : 'Needs Optimization',
+      feedback: categoryScores.summary >= 8
+        ? 'Professional summary contains concise role keywords without first-person pronouns.'
+        : 'Add a 2-3 line summary emphasizing target role, primary tech stack, and demonstrable achievements.'
+    },
+    skills: {
+      score: categoryScores.skills,
+      status: categoryScores.skills >= 8 ? 'Excellent' : categoryScores.skills >= 5 ? 'Fair' : 'Needs Optimization',
+      feedback: categoryScores.skills >= 8
+        ? 'Well-structured skill categorization across languages, frameworks, tools, and databases.'
+        : 'Separate skills into categorized buckets (Languages, Frameworks, Developer Tools, Databases) for automated ATS parsers.'
+    },
+    experience: {
+      score: categoryScores.experience,
+      status: categoryScores.experience >= 8 ? 'Excellent' : categoryScores.experience >= 5 ? 'Fair' : 'Needs Optimization',
+      feedback: categoryScores.experience >= 8
+        ? 'Strong internship/experience descriptions featuring action verbs and metrics.'
+        : 'Incorporate quantifiable metrics (e.g., % improvement, users served, latency reduction) in bullet points.'
+    },
+    projects: {
+      score: categoryScores.projects,
+      status: categoryScores.projects >= 8 ? 'Excellent' : categoryScores.projects >= 5 ? 'Fair' : 'Needs Optimization',
+      feedback: categoryScores.projects >= 8
+        ? 'Comprehensive portfolio of technical projects with clear tech stacks.'
+        : 'Include at least 2 in-depth technical projects highlighting technologies used, core features, and live URLs/GitHub links.'
+    },
+    education: {
+      score: categoryScores.education,
+      status: categoryScores.education >= 8 ? 'Excellent' : categoryScores.education >= 5 ? 'Fair' : 'Needs Optimization',
+      feedback: categoryScores.education >= 8
+        ? 'Accredited university, degree, graduation year, and academic scores verified.'
+        : 'Ensure standard degree name, institution, graduation year, and CGPA/percentage are clearly stated.'
+    },
+    formatting: {
+      score: categoryScores.formatting,
+      status: categoryScores.formatting >= 8 ? 'Excellent' : categoryScores.formatting >= 5 ? 'Fair' : 'Needs Optimization',
+      feedback: categoryScores.formatting >= 8
+        ? 'Clean bullet point length (10-25 words) with active voice throughout.'
+        : 'Eliminate passive phrases such as "worked on" or "helped with"; replace with assertive engineering verbs.'
+    }
+  };
+
   return {
     overallScore,
     targetRole,
@@ -442,6 +541,11 @@ function analyzeAtsScore(resumeData, options = {}) {
     weaknesses,
     missingKeywords: missingKeywords.slice(0, 10),
     matchedKeywords: matchedKeywords.slice(0, 15),
+    missingSections,
+    beforeAfterSuggestions,
+    strongestSections,
+    weakestSections,
+    sectionAnalysis,
     actionableSuggestions,
     evaluatedAt: new Date().toISOString()
   };

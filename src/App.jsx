@@ -62,6 +62,7 @@ const safeLazy = (factory) =>
 
 // Heavy & Specialized Tools (Route-Based Lazy Loaded for 1,000 Concurrent Users Optimization)
 const ResumeMakerPage = safeLazy(() => import('./pages/ResumeMakerPage'));
+const AtsCheckerPage = safeLazy(() => import('./pages/AtsCheckerPage'));
 const PdfMakerPage = safeLazy(() => import('./pages/PdfMakerPage'));
 const ResultCgpaPage = safeLazy(() => import('./pages/ResultCgpaPage'));
 const AttendanceCalculatorPage = safeLazy(() => import('./pages/AttendanceCalculatorPage'));
@@ -310,6 +311,7 @@ export default function App() {
     if (path === 'interview-pro/hr' || path === 'interview-hr') return 'interview-hr';
     if (path === 'interview-pro/report' || path === 'interview-report') return 'interview-report';
     if (path === 'resume-maker') return 'resume-maker';
+    if (path === 'ats-checker' || path === 'ats-score' || path === 'ats') return 'ats-checker';
     if (path === 'plagiarism' || path === 'plagiarism-checker') return 'plagiarism';
     if (path === 'pdf-maker' || path === 'pdfmaker' || path === 'pdf') return 'pdf-maker';
     if (path === 'result-cgpa' || path === 'result' || path === 'results' || path === 'cgpa') return 'result-cgpa';
@@ -351,9 +353,10 @@ export default function App() {
     if (path === 'prma-tech/internships/dashboard' || path === 'prma/dashboard' || path === 'prma-tech/dashboard') return 'prma-internships-dashboard';
     if (path.startsWith('prma-tech/verify-offer') || path.startsWith('prma/verify-offer') || path.startsWith('prma-verify-offer')) return 'prma-verify-offer';
     if (path.startsWith('prma-tech/submit') || path.startsWith('prma/submit') || path.startsWith('prma-submit')) return 'prma-submit';
-    if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'promotion', 'hoollow', 'hoolow', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
+    if (['signin', 'signup', 'select-course', 'select-year', 'select-subject', 'subject-detail', 'login', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'ats-checker', 'ats-score', 'ats', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'interview-aptitude', 'interview-coding', 'interview-technical', 'interview-hr', 'interview-report', 'aistudy', 'planner', 'progress', 'promotion', 'hoollow', 'hoolow', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
       if (path === 'aistudy') return 'interview-pro';
       if (path === 'hoolow') return 'hoollow';
+      if (path === 'ats-score' || path === 'ats') return 'ats-checker';
       return path;
     }
     return 'home';
@@ -498,6 +501,8 @@ export default function App() {
         targetPath = '/interview-report';
       } else if (tab === 'resume-maker') {
         targetPath = '/resume-maker';
+      } else if (tab === 'ats-checker' || tab === 'ats-score' || tab === 'ats') {
+        targetPath = '/ats-checker';
       } else if (tab === 'plagiarism') {
         targetPath = '/plagiarism';
       } else if (tab === 'pdf-maker') {
@@ -638,6 +643,8 @@ export default function App() {
         setActiveTabState('interview-start');
       } else if (path === 'resume-maker') {
         setActiveTabState('resume-maker');
+      } else if (path === 'ats-checker' || path === 'ats-score' || path === 'ats') {
+        setActiveTabState('ats-checker');
       } else if (path === 'plagiarism' || path === 'plagiarism-checker') {
         setActiveTabState('plagiarism');
       } else if (path === 'pdf-maker' || path === 'pdfmaker' || path === 'pdf') {
@@ -723,8 +730,8 @@ export default function App() {
         const sub = parseSubjectFromUrl();
         if (sub) setSelectedSubjectData(sub);
         setActiveTabState('subject');
-      } else if (['login', 'signup', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'aistudy', 'planner', 'progress', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
-        setActiveTabState(path === 'aistudy' ? 'interview-pro' : path);
+      } else if (['login', 'signup', 'more', 'timetable', 'attendance-calculator', 'competitive-exams', 'important-links', 'resume-maker', 'ats-checker', 'ats-score', 'ats', 'pdf-maker', 'result-cgpa', 'project-ideas', 'internships-jobs', 'scholarships', 'pyqs', 'notes', 'syllabus', 'quizzes', 'interview-pro', 'interview-confirm', 'interview-instructions', 'interview-start', 'aistudy', 'planner', 'progress', 'home', 'admin', 'admin-login', 'subject'].includes(path)) {
+        setActiveTabState(path === 'aistudy' ? 'interview-pro' : (path === 'ats-score' || path === 'ats') ? 'ats-checker' : path);
       } else {
         setActiveTabState('home');
       }
@@ -1060,8 +1067,16 @@ export default function App() {
           />
         ) : activeTab === 'resume-maker' ? (
           <ResumeMakerPage
-            onNavigate={(tab) => {
-              setActiveTab(tab);
+            onNavigate={(tab, data) => {
+              navigateToTab(tab, data);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            onOpenAuth={handleOpenAuth}
+          />
+        ) : (activeTab === 'ats-checker' || activeTab === 'ats-score' || activeTab === 'ats') ? (
+          <AtsCheckerPage
+            onNavigate={(tab, data) => {
+              navigateToTab(tab, data);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             onOpenAuth={handleOpenAuth}

@@ -57,6 +57,7 @@ import JobOptimizerModal from '../components/resume/JobOptimizerModal';
 import CollegeFormatModal from '../components/resume/CollegeFormatModal';
 import ResumeVersionModal from '../components/resume/ResumeVersionModal';
 import ResumeImportReviewModal from '../components/resume/ResumeImportReviewModal';
+import ResumeDownloadSuccessModal from '../components/resume/ResumeDownloadSuccessModal';
 
 // Normalizes resume skills between structured arrays and legacy string fields
 function getAuthToken() {
@@ -411,6 +412,7 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
 
   // AI & Advanced Feature Modals
   const [showAtsScoreModal, setShowAtsScoreModal] = useState(false);
+  const [showDownloadSuccessModal, setShowDownloadSuccessModal] = useState(false);
   const [showJobOptimizerModal, setShowJobOptimizerModal] = useState(false);
   const [showCollegeFormatModal, setShowCollegeFormatModal] = useState(false);
   const [showVersionModal, setShowVersionModal] = useState(false);
@@ -853,13 +855,108 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     };
   }, [resumeData, resumeTitle, template, viewMode, hasMinimumData, activeResumeId, latexSource, pdfUrl, fetchMyResumes]);
 
-  // 4. Download PDF
-  const handleDownloadPdf = () => {
-    const downloadHref = activeBlobUrlRef.current || pdfBlobUrl || serverPdfUrl || pdfUrl;
+  // 4. Download PDF with Automatic Account Saving & Success Modal
+  const handleDownloadPdf = async () => {
+    let downloadHref = activeBlobUrlRef.current || pdfBlobUrl || serverPdfUrl || pdfUrl;
+    
+    // If PDF is not ready yet or currently compiling, compile immediately
+    if (!downloadHref || isCompiling) {
+      setIsCompiling(true);
+      try {
+        const exactLatex = generateLatex(resumeData, { template });
+        const res = await fetch(`${API_URL}/api/resumes/compile`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            resumeData,
+            latex: exactLatex,
+            template,
+            options: { template }
+          })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data.pdfBase64) {
+            const binaryString = window.atob(data.pdfBase64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+              bytes[i] = binaryString.charCodeAt(i);
+            }
+            const blob = new Blob([bytes], { type: 'application/pdf' });
+            downloadHref = URL.createObjectURL(blob);
+            activeBlobUrlRef.current = downloadHref;
+            setPdfBlobUrl(downloadHref);
+            setPdfUrl(downloadHref);
+          } else if (data.pdfUrl) {
+            downloadHref = data.pdfUrl.startsWith('http') ? data.pdfUrl : `${API_URL}${data.pdfUrl}`;
+            setServerPdfUrl(downloadHref);
+          }
+        }
+      } catch (err) {
+        console.error('On-demand PDF compilation failed:', err);
+      } finally {
+        setIsCompiling(false);
+      }
+    }
+
     if (!downloadHref) {
-      alert('Generating PDF, please wait a moment...');
+      alert('Unable to generate PDF preview. Please check your details and try again.');
       return;
     }
+
+    const token = getAuthToken();
+    let currentSavedId = activeResumeId;
+
+    // Automatically save resume to authenticated user's account before download
+    if (token) {
+      try {
+        const payload = {
+          title: resumeTitle,
+          template,
+          resumeData,
+          latexSource,
+          pdfUrl: downloadHref
+        };
+
+        const headers = {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        };
+
+        let res;
+        if (currentSavedId) {
+          res = await fetch(`${API_URL}/api/resumes/${currentSavedId}`, {
+            method: 'PUT',
+            headers,
+            body: JSON.stringify(payload)
+          });
+        } else {
+          res = await fetch(`${API_URL}/api/resumes`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(payload)
+          });
+        }
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.resume) {
+            currentSavedId = data.resume.id || data.resume._id;
+            setActiveResumeId(currentSavedId);
+            if (data.resume.atsScore !== undefined) {
+              setCurrentAtsScore(data.resume.atsScore);
+            }
+            fetchMyResumes();
+          }
+        }
+      } catch (saveErr) {
+        console.warn('Auto-save during download warning:', saveErr);
+      }
+    }
+
+    // Trigger file download
     const link = document.createElement('a');
     link.href = downloadHref;
     const cleanName = (resumeData.personal?.fullName || 'Resume').trim().replace(/[^a-zA-Z0-9_-]/g, '_');
@@ -867,6 +964,19 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+
+    // Save snapshot in sessionStorage for seamless ATS Checker loading
+    try {
+      sessionStorage.setItem('pv_active_ats_resume', JSON.stringify({
+        resumeData,
+        resumeTitle,
+        resumeId: currentSavedId,
+        pdfUrl: downloadHref
+      }));
+    } catch (_) {}
+
+    // Show premium download completion modal
+    setShowDownloadSuccessModal(true);
   };
 
   // 4B. Download Microsoft Word DOCX (.docx)
@@ -1343,10 +1453,58 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
           onOpenMyResumes={() => setShowMyResumesDrawer(true)}
           onOpenCollegeFormat={() => setShowCollegeFormatModal(true)}
           onOpenImport={() => setShowUploadModal(true)}
-          onOpenAtsChecker={() => setShowAtsScoreModal(true)}
+          onOpenAtsChecker={() => {
+            try {
+              sessionStorage.setItem('pv_active_ats_resume', JSON.stringify({
+                resumeData,
+                resumeTitle,
+                resumeId: activeResumeId
+              }));
+            } catch (_) {}
+            if (onNavigate) onNavigate('ats-checker');
+            else setShowAtsScoreModal(true);
+          }}
           onOpenJobOptimizer={() => setShowJobOptimizerModal(true)}
           savedResumesCount={myResumesList.length}
           onNavigate={onNavigate}
+        />
+
+        {/* Post-Download Success Modal */}
+        <ResumeDownloadSuccessModal
+          isOpen={showDownloadSuccessModal}
+          onClose={() => setShowDownloadSuccessModal(false)}
+          isLoggedIn={Boolean(getAuthToken())}
+          resumeTitle={resumeTitle}
+          resumeId={activeResumeId}
+          pdfUrl={activeBlobUrlRef.current || pdfBlobUrl || serverPdfUrl || pdfUrl}
+          onCheckAtsScore={() => {
+            try {
+              sessionStorage.setItem('pv_active_ats_resume', JSON.stringify({
+                resumeData,
+                resumeTitle,
+                resumeId: activeResumeId,
+                pdfUrl: activeBlobUrlRef.current || pdfBlobUrl || serverPdfUrl || pdfUrl
+              }));
+            } catch (_) {}
+            if (onNavigate) onNavigate('ats-checker');
+            else window.location.href = '/ats-checker';
+          }}
+          onPreviewResume={() => {
+            setViewMode('editor');
+            const previewEl = document.getElementById('pv-resume-live-preview');
+            if (previewEl) {
+              previewEl.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              const url = activeBlobUrlRef.current || pdfBlobUrl || serverPdfUrl || pdfUrl;
+              if (url) window.open(url, '_blank');
+            }
+          }}
+          onEditResume={() => {
+            setViewMode('editor');
+          }}
+          onOpenMyResumes={() => {
+            setShowMyResumesDrawer(true);
+          }}
         />
 
         {/* Modular Modals accessible from Hub */}
@@ -5863,6 +6021,45 @@ export default function ResumeMakerPage({ onNavigate, onOpenAuth }) {
         resumeId={activeResumeId}
         onApplySuggestion={handleApplyAtsSuggestion}
         onUpdateScore={(score) => setCurrentAtsScore(score)}
+        onNavigate={onNavigate}
+      />
+
+      {/* Modal: Post-Download Success & Next Steps */}
+      <ResumeDownloadSuccessModal
+        isOpen={showDownloadSuccessModal}
+        onClose={() => setShowDownloadSuccessModal(false)}
+        isLoggedIn={Boolean(getAuthToken())}
+        resumeTitle={resumeTitle}
+        resumeId={activeResumeId}
+        pdfUrl={activeBlobUrlRef.current || pdfBlobUrl || serverPdfUrl || pdfUrl}
+        onCheckAtsScore={() => {
+          try {
+            sessionStorage.setItem('pv_active_ats_resume', JSON.stringify({
+              resumeData,
+              resumeTitle,
+              resumeId: activeResumeId,
+              pdfUrl: activeBlobUrlRef.current || pdfBlobUrl || serverPdfUrl || pdfUrl
+            }));
+          } catch (_) {}
+          if (onNavigate) onNavigate('ats-checker');
+          else window.location.href = '/ats-checker';
+        }}
+        onPreviewResume={() => {
+          setViewMode('editor');
+          const previewEl = document.getElementById('pv-resume-live-preview');
+          if (previewEl) {
+            previewEl.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            const url = activeBlobUrlRef.current || pdfBlobUrl || serverPdfUrl || pdfUrl;
+            if (url) window.open(url, '_blank');
+          }
+        }}
+        onEditResume={() => {
+          setViewMode('editor');
+        }}
+        onOpenMyResumes={() => {
+          setShowMyResumesDrawer(true);
+        }}
       />
 
       {/* Modal: AI Job-Specific Resume Optimizer */}

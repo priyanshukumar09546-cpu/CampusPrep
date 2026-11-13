@@ -8211,6 +8211,7 @@ app.post('/api/resumes/:id/restore-version/:versionNumber', optionalUserToken, a
 // ATS Analysis Endpoint (Calculates 0-100 score with 10-category rubric & actionable suggestions)
 app.post('/api/resumes/ats-analyze', optionalUserToken, async (req, res) => {
   try {
+    const userId = req.user ? req.user.userId : (req.headers['x-guest-id'] || req.body.guestId || 'guest');
     const { resumeData, targetRole, resumeId } = req.body;
     if (!resumeData) return res.status(400).json({ success: false, message: 'No resume data provided for ATS analysis.' });
 
@@ -8231,10 +8232,75 @@ app.post('/api/resumes/ats-analyze', optionalUserToken, async (req, res) => {
       }
     }
 
-    res.json({ success: true, analysis });
+    // Persist ATS Analysis Record into History
+    const analysisRecord = {
+      id: `ats_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`,
+      userId,
+      resumeId: resumeId || null,
+      resumeTitle: req.body.resumeTitle || resumeData.title || (resumeData.personal?.fullName ? `${resumeData.personal.fullName} Resume` : 'Resume'),
+      overallScore: analysis.overallScore,
+      targetRole: analysis.targetRole,
+      categoryScores: analysis.categoryScores,
+      strengths: analysis.strengths,
+      weaknesses: analysis.weaknesses,
+      missingKeywords: analysis.missingKeywords,
+      missingSections: analysis.missingSections || [],
+      beforeAfterSuggestions: analysis.beforeAfterSuggestions || [],
+      strongestSections: analysis.strongestSections || [],
+      weakestSections: analysis.weakestSections || [],
+      actionableSuggestions: analysis.actionableSuggestions || [],
+      evaluatedAt: analysis.evaluatedAt || new Date().toISOString()
+    };
+
+    if (isDbConnected) {
+      try {
+        await AtsAnalysisModel.create(analysisRecord);
+      } catch (err) {
+        console.warn('AtsAnalysisModel save warning:', err.message);
+      }
+    }
+
+    res.json({ success: true, analysis, recordId: analysisRecord.id });
   } catch (err) {
     console.error('ATS Analysis error:', err);
     res.status(500).json({ success: false, message: 'ATS analysis failed: ' + err.message });
+  }
+});
+
+// Get User's ATS Analysis History
+app.get('/api/resumes/ats-history', optionalUserToken, async (req, res) => {
+  try {
+    const userId = req.user ? req.user.userId : (req.headers['x-guest-id'] || req.query.guestId || 'guest');
+    let history = [];
+    if (isDbConnected) {
+      try {
+        history = await AtsAnalysisModel.find({ userId }).sort({ createdAt: -1 }).limit(20).lean();
+      } catch (e) {
+        console.warn('Could not query AtsAnalysisModel:', e.message);
+      }
+    }
+    // Fallback from dbResumes that have atsAnalysis
+    if (history.length === 0) {
+      const userResumes = dbResumes.filter(r => r.userId === userId && r.atsAnalysis);
+      history = userResumes.map(r => ({
+        id: `ats_${r.id}`,
+        userId: r.userId,
+        resumeId: r.id,
+        resumeTitle: r.title,
+        overallScore: r.atsScore || r.atsAnalysis.overallScore,
+        targetRole: r.targetRole || r.atsAnalysis.targetRole,
+        categoryScores: r.atsAnalysis.categoryScores,
+        strengths: r.atsAnalysis.strengths,
+        weaknesses: r.atsAnalysis.weaknesses,
+        missingKeywords: r.atsAnalysis.missingKeywords,
+        missingSections: r.atsAnalysis.missingSections || [],
+        actionableSuggestions: r.atsAnalysis.actionableSuggestions || [],
+        evaluatedAt: r.atsAnalysis.evaluatedAt || r.updatedAt || r.createdAt
+      }));
+    }
+    res.json({ success: true, history });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Failed to retrieve ATS history: ' + err.message });
   }
 });
 

@@ -133,6 +133,21 @@ export default function MorePage({ onNavigate }) {
       tags: ['resume', 'cv', 'ats', 'resume maker', 'builder', 'latex', 'pdf', 'placement']
     },
     {
+      id: 'ats-checker',
+      title: 'ATS Score Checker',
+      desc: 'Verify resume compatibility against automated ATS screening systems with full 10-point rubric audits and PDF reports.',
+      category: 'Career',
+      badge: 'Rubric Audit',
+      badgeBg: '#FEF9EE',
+      badgeColor: '#8A5D00',
+      icon: Award,
+      iconBg: '#FEF9EE',
+      iconColor: '#C88D2D',
+      borderColor: '#FCD34D',
+      route: 'ats-checker',
+      tags: ['ats', 'score', 'resume', 'checker', 'audit', 'compatibility', 'recruiter', 'placement']
+    },
+    {
       id: 'interview-pro',
       title: 'Interview Pro',
       desc: 'AI placement mock rounds: Aptitude assessment, live Coding IDE, Tech viva & HR.',
@@ -368,6 +383,21 @@ export default function MorePage({ onNavigate }) {
       borderColor: '#BBF7D0',
       route: 'resume-maker',
       tags: ['resume', 'cv', 'ats', 'placements', 'latex', 'resume builder']
+    },
+    {
+      id: 'ats-checker-career',
+      title: 'ATS Score Checker',
+      desc: 'Test resume compatibility with automated ATS applicant screening algorithms and generate official audit reports.',
+      category: 'Career',
+      badge: 'Score 0-100',
+      badgeBg: '#FEF9EE',
+      badgeColor: '#8A5D00',
+      icon: Award,
+      iconBg: '#FEF9EE',
+      iconColor: '#C88D2D',
+      borderColor: '#FCD34D',
+      route: 'ats-checker',
+      tags: ['ats', 'score', 'resume', 'checker', 'audit', 'compatibility']
     },
     {
       id: 'interview-pro-career',
